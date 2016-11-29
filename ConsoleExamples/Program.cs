@@ -15,6 +15,12 @@ namespace ConsoleExamples
         {
             //Add Api key
             string apiKey = "";
+            if (apiKey == string.Empty)
+            {
+                Console.Error.WriteLine("API key is required!!!");
+                Console.ReadKey();
+                return;
+            }
             Config config = new Config(apiKey);
             config.Host = "https://lab-api.mbedcloudintegration.net";
             runEndpointsExample(config);
