@@ -4,12 +4,12 @@ All URIs are relative to *http://api.mbedcloud.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeviceQueryCreate**](DefaultApi.md#devicequerycreate) | **POST** /v3/device-queries{var} | 
-[**DeviceQueryDestroy**](DefaultApi.md#devicequerydestroy) | **DELETE** /v3/device-queries/{query_id}{var} | 
-[**DeviceQueryList**](DefaultApi.md#devicequerylist) | **GET** /v3/device-queries{var} | 
-[**DeviceQueryPartialUpdate**](DefaultApi.md#devicequerypartialupdate) | **PATCH** /v3/device-queries/{query_id}{var} | 
-[**DeviceQueryRetrieve**](DefaultApi.md#devicequeryretrieve) | **GET** /v3/device-queries/{query_id}{var} | 
-[**DeviceQueryUpdate**](DefaultApi.md#devicequeryupdate) | **PUT** /v3/device-queries/{query_id}{var} | 
+[**DeviceQueryCreate**](DefaultApi.md#devicequerycreate) | **POST** /v3/device-queries/ | 
+[**DeviceQueryDestroy**](DefaultApi.md#devicequerydestroy) | **DELETE** /v3/device-queries/{query_id}/ | 
+[**DeviceQueryList**](DefaultApi.md#devicequerylist) | **GET** /v3/device-queries/ | 
+[**DeviceQueryPartialUpdate**](DefaultApi.md#devicequerypartialupdate) | **PATCH** /v3/device-queries/{query_id}/ | 
+[**DeviceQueryRetrieve**](DefaultApi.md#devicequeryretrieve) | **GET** /v3/device-queries/{query_id}/ | 
+[**DeviceQueryUpdate**](DefaultApi.md#devicequeryupdate) | **PUT** /v3/device-queries/{query_id}/ | 
 
 
 <a name="devicequerycreate"></a>

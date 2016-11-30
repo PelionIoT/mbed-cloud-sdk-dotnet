@@ -90,8 +90,8 @@ namespace device_catalog.Api
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
         /// <param name="totalCount"> (optional)</param>
-        /// <returns>List&lt;DeviceSerializer&gt;</returns>
-        List<DeviceSerializer> DeviceList (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null);
+        /// <returns>DeviceSerializer</returns>
+        DeviceSerializer DeviceList (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null);
 
         /// <summary>
         /// 
@@ -107,8 +107,8 @@ namespace device_catalog.Api
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
         /// <param name="totalCount"> (optional)</param>
-        /// <returns>ApiResponse of List&lt;DeviceSerializer&gt;</returns>
-        ApiResponse<List<DeviceSerializer>> DeviceListWithHttpInfo (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null);
+        /// <returns>ApiResponse of DeviceSerializer</returns>
+        ApiResponse<DeviceSerializer> DeviceListWithHttpInfo (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null);
         /// <summary>
         /// 
         /// </summary>
@@ -123,8 +123,8 @@ namespace device_catalog.Api
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
         /// <param name="totalCount"> (optional)</param>
-        /// <returns>List&lt;DeviceLogSerializer&gt;</returns>
-        List<DeviceLogSerializer> DeviceLogList (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null);
+        /// <returns>DeviceLogSerializer</returns>
+        DeviceLogSerializer DeviceLogList (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null);
 
         /// <summary>
         /// 
@@ -140,8 +140,8 @@ namespace device_catalog.Api
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
         /// <param name="totalCount"> (optional)</param>
-        /// <returns>ApiResponse of List&lt;DeviceLogSerializer&gt;</returns>
-        ApiResponse<List<DeviceLogSerializer>> DeviceLogListWithHttpInfo (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null);
+        /// <returns>ApiResponse of DeviceLogSerializer</returns>
+        ApiResponse<DeviceLogSerializer> DeviceLogListWithHttpInfo (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null);
         /// <summary>
         /// 
         /// </summary>
@@ -282,8 +282,8 @@ namespace device_catalog.Api
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
         /// <param name="totalCount"> (optional)</param>
-        /// <returns>Task of List&lt;DeviceSerializer&gt;</returns>
-        System.Threading.Tasks.Task<List<DeviceSerializer>> DeviceListAsync (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null);
+        /// <returns>Task of DeviceSerializer</returns>
+        System.Threading.Tasks.Task<DeviceSerializer> DeviceListAsync (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null);
 
         /// <summary>
         /// 
@@ -299,8 +299,8 @@ namespace device_catalog.Api
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
         /// <param name="totalCount"> (optional)</param>
-        /// <returns>Task of ApiResponse (List&lt;DeviceSerializer&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<DeviceSerializer>>> DeviceListAsyncWithHttpInfo (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null);
+        /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceListAsyncWithHttpInfo (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null);
         /// <summary>
         /// 
         /// </summary>
@@ -315,8 +315,8 @@ namespace device_catalog.Api
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
         /// <param name="totalCount"> (optional)</param>
-        /// <returns>Task of List&lt;DeviceLogSerializer&gt;</returns>
-        System.Threading.Tasks.Task<List<DeviceLogSerializer>> DeviceLogListAsync (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null);
+        /// <returns>Task of DeviceLogSerializer</returns>
+        System.Threading.Tasks.Task<DeviceLogSerializer> DeviceLogListAsync (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null);
 
         /// <summary>
         /// 
@@ -332,8 +332,8 @@ namespace device_catalog.Api
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
         /// <param name="totalCount"> (optional)</param>
-        /// <returns>Task of ApiResponse (List&lt;DeviceLogSerializer&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<DeviceLogSerializer>>> DeviceLogListAsyncWithHttpInfo (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null);
+        /// <returns>Task of ApiResponse (DeviceLogSerializer)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceLogSerializer>> DeviceLogListAsyncWithHttpInfo (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null);
         /// <summary>
         /// 
         /// </summary>
@@ -549,7 +549,7 @@ namespace device_catalog.Api
         public ApiResponse< DeviceSerializer > DeviceCreateWithHttpInfo ()
         {
 
-            var localVarPath = "/v3/devices{var}";
+            var localVarPath = "/v3/devices/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -619,7 +619,7 @@ namespace device_catalog.Api
         public async System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceCreateAsyncWithHttpInfo ()
         {
 
-            var localVarPath = "/v3/devices{var}";
+            var localVarPath = "/v3/devices/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -692,7 +692,7 @@ namespace device_catalog.Api
             if (deviceId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DeviceDestroy");
 
-            var localVarPath = "/v3/devices/{device_id}{var}";
+            var localVarPath = "/v3/devices/{device_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -768,7 +768,7 @@ namespace device_catalog.Api
             if (deviceId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DeviceDestroy");
 
-            var localVarPath = "/v3/devices/{device_id}{var}";
+            var localVarPath = "/v3/devices/{device_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -829,10 +829,10 @@ namespace device_catalog.Api
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
         /// <param name="totalCount"> (optional)</param>
-        /// <returns>List&lt;DeviceSerializer&gt;</returns>
-        public List<DeviceSerializer> DeviceList (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null)
+        /// <returns>DeviceSerializer</returns>
+        public DeviceSerializer DeviceList (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null)
         {
-             ApiResponse<List<DeviceSerializer>> localVarResponse = DeviceListWithHttpInfo(_object, limit, hasMore, data, order, after, totalCount);
+             ApiResponse<DeviceSerializer> localVarResponse = DeviceListWithHttpInfo(_object, limit, hasMore, data, order, after, totalCount);
              return localVarResponse.Data;
         }
 
@@ -847,11 +847,11 @@ namespace device_catalog.Api
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
         /// <param name="totalCount"> (optional)</param>
-        /// <returns>ApiResponse of List&lt;DeviceSerializer&gt;</returns>
-        public ApiResponse< List<DeviceSerializer> > DeviceListWithHttpInfo (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null)
+        /// <returns>ApiResponse of DeviceSerializer</returns>
+        public ApiResponse< DeviceSerializer > DeviceListWithHttpInfo (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null)
         {
 
-            var localVarPath = "/v3/devices{var}";
+            var localVarPath = "/v3/devices/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -902,9 +902,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<List<DeviceSerializer>>(localVarStatusCode,
+            return new ApiResponse<DeviceSerializer>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<DeviceSerializer>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<DeviceSerializer>)));
+                (DeviceSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceSerializer)));
             
         }
 
@@ -919,10 +919,10 @@ namespace device_catalog.Api
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
         /// <param name="totalCount"> (optional)</param>
-        /// <returns>Task of List&lt;DeviceSerializer&gt;</returns>
-        public async System.Threading.Tasks.Task<List<DeviceSerializer>> DeviceListAsync (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null)
+        /// <returns>Task of DeviceSerializer</returns>
+        public async System.Threading.Tasks.Task<DeviceSerializer> DeviceListAsync (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null)
         {
-             ApiResponse<List<DeviceSerializer>> localVarResponse = await DeviceListAsyncWithHttpInfo(_object, limit, hasMore, data, order, after, totalCount);
+             ApiResponse<DeviceSerializer> localVarResponse = await DeviceListAsyncWithHttpInfo(_object, limit, hasMore, data, order, after, totalCount);
              return localVarResponse.Data;
 
         }
@@ -938,11 +938,11 @@ namespace device_catalog.Api
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
         /// <param name="totalCount"> (optional)</param>
-        /// <returns>Task of ApiResponse (List&lt;DeviceSerializer&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<DeviceSerializer>>> DeviceListAsyncWithHttpInfo (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null)
+        /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceListAsyncWithHttpInfo (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null)
         {
 
-            var localVarPath = "/v3/devices{var}";
+            var localVarPath = "/v3/devices/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -992,9 +992,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<List<DeviceSerializer>>(localVarStatusCode,
+            return new ApiResponse<DeviceSerializer>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<DeviceSerializer>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<DeviceSerializer>)));
+                (DeviceSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceSerializer)));
             
         }
 
@@ -1009,10 +1009,10 @@ namespace device_catalog.Api
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
         /// <param name="totalCount"> (optional)</param>
-        /// <returns>List&lt;DeviceLogSerializer&gt;</returns>
-        public List<DeviceLogSerializer> DeviceLogList (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null)
+        /// <returns>DeviceLogSerializer</returns>
+        public DeviceLogSerializer DeviceLogList (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null)
         {
-             ApiResponse<List<DeviceLogSerializer>> localVarResponse = DeviceLogListWithHttpInfo(_object, limit, hasMore, data, order, after, totalCount);
+             ApiResponse<DeviceLogSerializer> localVarResponse = DeviceLogListWithHttpInfo(_object, limit, hasMore, data, order, after, totalCount);
              return localVarResponse.Data;
         }
 
@@ -1027,11 +1027,11 @@ namespace device_catalog.Api
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
         /// <param name="totalCount"> (optional)</param>
-        /// <returns>ApiResponse of List&lt;DeviceLogSerializer&gt;</returns>
-        public ApiResponse< List<DeviceLogSerializer> > DeviceLogListWithHttpInfo (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null)
+        /// <returns>ApiResponse of DeviceLogSerializer</returns>
+        public ApiResponse< DeviceLogSerializer > DeviceLogListWithHttpInfo (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null)
         {
 
-            var localVarPath = "/v3/devicelog{var}";
+            var localVarPath = "/v3/devicelog/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1082,9 +1082,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<List<DeviceLogSerializer>>(localVarStatusCode,
+            return new ApiResponse<DeviceLogSerializer>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<DeviceLogSerializer>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<DeviceLogSerializer>)));
+                (DeviceLogSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceLogSerializer)));
             
         }
 
@@ -1099,10 +1099,10 @@ namespace device_catalog.Api
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
         /// <param name="totalCount"> (optional)</param>
-        /// <returns>Task of List&lt;DeviceLogSerializer&gt;</returns>
-        public async System.Threading.Tasks.Task<List<DeviceLogSerializer>> DeviceLogListAsync (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null)
+        /// <returns>Task of DeviceLogSerializer</returns>
+        public async System.Threading.Tasks.Task<DeviceLogSerializer> DeviceLogListAsync (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null)
         {
-             ApiResponse<List<DeviceLogSerializer>> localVarResponse = await DeviceLogListAsyncWithHttpInfo(_object, limit, hasMore, data, order, after, totalCount);
+             ApiResponse<DeviceLogSerializer> localVarResponse = await DeviceLogListAsyncWithHttpInfo(_object, limit, hasMore, data, order, after, totalCount);
              return localVarResponse.Data;
 
         }
@@ -1118,11 +1118,11 @@ namespace device_catalog.Api
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
         /// <param name="totalCount"> (optional)</param>
-        /// <returns>Task of ApiResponse (List&lt;DeviceLogSerializer&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<DeviceLogSerializer>>> DeviceLogListAsyncWithHttpInfo (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null)
+        /// <returns>Task of ApiResponse (DeviceLogSerializer)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceLogSerializer>> DeviceLogListAsyncWithHttpInfo (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null)
         {
 
-            var localVarPath = "/v3/devicelog{var}";
+            var localVarPath = "/v3/devicelog/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1172,9 +1172,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<List<DeviceLogSerializer>>(localVarStatusCode,
+            return new ApiResponse<DeviceLogSerializer>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<DeviceLogSerializer>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<DeviceLogSerializer>)));
+                (DeviceLogSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceLogSerializer)));
             
         }
 
@@ -1202,7 +1202,7 @@ namespace device_catalog.Api
             if (deviceLogId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceLogId' when calling DefaultApi->DeviceLogRetrieve");
 
-            var localVarPath = "/v3/devicelog/{device_log_id}{var}";
+            var localVarPath = "/v3/devicelog/{device_log_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1278,7 +1278,7 @@ namespace device_catalog.Api
             if (deviceLogId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceLogId' when calling DefaultApi->DeviceLogRetrieve");
 
-            var localVarPath = "/v3/devicelog/{device_log_id}{var}";
+            var localVarPath = "/v3/devicelog/{device_log_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1352,7 +1352,7 @@ namespace device_catalog.Api
             if (deviceId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DevicePartialUpdate");
 
-            var localVarPath = "/v3/devices/{device_id}{var}";
+            var localVarPath = "/v3/devices/{device_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1428,7 +1428,7 @@ namespace device_catalog.Api
             if (deviceId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DevicePartialUpdate");
 
-            var localVarPath = "/v3/devices/{device_id}{var}";
+            var localVarPath = "/v3/devices/{device_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1502,7 +1502,7 @@ namespace device_catalog.Api
             if (deviceId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DeviceRetrieve");
 
-            var localVarPath = "/v3/devices/{device_id}{var}";
+            var localVarPath = "/v3/devices/{device_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1578,7 +1578,7 @@ namespace device_catalog.Api
             if (deviceId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DeviceRetrieve");
 
-            var localVarPath = "/v3/devices/{device_id}{var}";
+            var localVarPath = "/v3/devices/{device_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1652,7 +1652,7 @@ namespace device_catalog.Api
             if (deviceId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DeviceUpdate");
 
-            var localVarPath = "/v3/devices/{device_id}{var}";
+            var localVarPath = "/v3/devices/{device_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1728,7 +1728,7 @@ namespace device_catalog.Api
             if (deviceId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DeviceUpdate");
 
-            var localVarPath = "/v3/devices/{device_id}{var}";
+            var localVarPath = "/v3/devices/{device_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);

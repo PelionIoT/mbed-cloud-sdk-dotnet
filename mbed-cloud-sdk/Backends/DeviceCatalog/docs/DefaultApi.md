@@ -4,14 +4,14 @@ All URIs are relative to *http://api.mbedcloud.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeviceCreate**](DefaultApi.md#devicecreate) | **POST** /v3/devices{var} | 
-[**DeviceDestroy**](DefaultApi.md#devicedestroy) | **DELETE** /v3/devices/{device_id}{var} | 
-[**DeviceList**](DefaultApi.md#devicelist) | **GET** /v3/devices{var} | 
-[**DeviceLogList**](DefaultApi.md#deviceloglist) | **GET** /v3/devicelog{var} | 
-[**DeviceLogRetrieve**](DefaultApi.md#devicelogretrieve) | **GET** /v3/devicelog/{device_log_id}{var} | 
-[**DevicePartialUpdate**](DefaultApi.md#devicepartialupdate) | **PATCH** /v3/devices/{device_id}{var} | 
-[**DeviceRetrieve**](DefaultApi.md#deviceretrieve) | **GET** /v3/devices/{device_id}{var} | 
-[**DeviceUpdate**](DefaultApi.md#deviceupdate) | **PUT** /v3/devices/{device_id}{var} | 
+[**DeviceCreate**](DefaultApi.md#devicecreate) | **POST** /v3/devices/ | 
+[**DeviceDestroy**](DefaultApi.md#devicedestroy) | **DELETE** /v3/devices/{device_id}/ | 
+[**DeviceList**](DefaultApi.md#devicelist) | **GET** /v3/devices/ | 
+[**DeviceLogList**](DefaultApi.md#deviceloglist) | **GET** /v3/devicelog/ | 
+[**DeviceLogRetrieve**](DefaultApi.md#devicelogretrieve) | **GET** /v3/devicelog/{device_log_id}/ | 
+[**DevicePartialUpdate**](DefaultApi.md#devicepartialupdate) | **PATCH** /v3/devices/{device_id}/ | 
+[**DeviceRetrieve**](DefaultApi.md#deviceretrieve) | **GET** /v3/devices/{device_id}/ | 
+[**DeviceUpdate**](DefaultApi.md#deviceupdate) | **PUT** /v3/devices/{device_id}/ | 
 
 
 <a name="devicecreate"></a>
@@ -144,7 +144,7 @@ Name | Type | Description  | Notes
 
 <a name="devicelist"></a>
 # **DeviceList**
-> List<DeviceSerializer> DeviceList (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null)
+> DeviceSerializer DeviceList (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null)
 
 
 
@@ -181,7 +181,7 @@ namespace Example
 
             try
             {
-                List&lt;DeviceSerializer&gt; result = apiInstance.DeviceList(_object, limit, hasMore, data, order, after, totalCount);
+                DeviceSerializer result = apiInstance.DeviceList(_object, limit, hasMore, data, order, after, totalCount);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -207,7 +207,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List<DeviceSerializer>**](DeviceSerializer.md)
+[**DeviceSerializer**](DeviceSerializer.md)
 
 ### Authorization
 
@@ -222,7 +222,7 @@ Name | Type | Description  | Notes
 
 <a name="deviceloglist"></a>
 # **DeviceLogList**
-> List<DeviceLogSerializer> DeviceLogList (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null)
+> DeviceLogSerializer DeviceLogList (string _object = null, int? limit = null, bool? hasMore = null, List<string> data = null, string order = null, string after = null, int? totalCount = null)
 
 
 
@@ -259,7 +259,7 @@ namespace Example
 
             try
             {
-                List&lt;DeviceLogSerializer&gt; result = apiInstance.DeviceLogList(_object, limit, hasMore, data, order, after, totalCount);
+                DeviceLogSerializer result = apiInstance.DeviceLogList(_object, limit, hasMore, data, order, after, totalCount);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -285,7 +285,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List<DeviceLogSerializer>**](DeviceLogSerializer.md)
+[**DeviceLogSerializer**](DeviceLogSerializer.md)
 
 ### Authorization
 

@@ -521,7 +521,7 @@ namespace device_query_service.Api
             if (query == null)
                 throw new ApiException(400, "Missing required parameter 'query' when calling DefaultApi->DeviceQueryCreate");
 
-            var localVarPath = "/v3/device-queries{var}";
+            var localVarPath = "/v3/device-queries/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -612,7 +612,7 @@ namespace device_query_service.Api
             if (query == null)
                 throw new ApiException(400, "Missing required parameter 'query' when calling DefaultApi->DeviceQueryCreate");
 
-            var localVarPath = "/v3/device-queries{var}";
+            var localVarPath = "/v3/device-queries/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -690,7 +690,7 @@ namespace device_query_service.Api
             if (queryId == null)
                 throw new ApiException(400, "Missing required parameter 'queryId' when calling DefaultApi->DeviceQueryDestroy");
 
-            var localVarPath = "/v3/device-queries/{query_id}{var}";
+            var localVarPath = "/v3/device-queries/{query_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -766,7 +766,7 @@ namespace device_query_service.Api
             if (queryId == null)
                 throw new ApiException(400, "Missing required parameter 'queryId' when calling DefaultApi->DeviceQueryDestroy");
 
-            var localVarPath = "/v3/device-queries/{query_id}{var}";
+            var localVarPath = "/v3/device-queries/{query_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -851,7 +851,7 @@ namespace device_query_service.Api
         public ApiResponse< List<DeviceQuerySerializer> > DeviceQueryListWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
         {
 
-            var localVarPath = "/v3/device-queries{var}";
+            var localVarPath = "/v3/device-queries/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -945,7 +945,7 @@ namespace device_query_service.Api
         public async System.Threading.Tasks.Task<ApiResponse<List<DeviceQuerySerializer>>> DeviceQueryListAsyncWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
         {
 
-            var localVarPath = "/v3/device-queries{var}";
+            var localVarPath = "/v3/device-queries/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1036,7 +1036,7 @@ namespace device_query_service.Api
             if (queryId == null)
                 throw new ApiException(400, "Missing required parameter 'queryId' when calling DefaultApi->DeviceQueryPartialUpdate");
 
-            var localVarPath = "/v3/device-queries/{query_id}{var}";
+            var localVarPath = "/v3/device-queries/{query_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1127,7 +1127,7 @@ namespace device_query_service.Api
             if (queryId == null)
                 throw new ApiException(400, "Missing required parameter 'queryId' when calling DefaultApi->DeviceQueryPartialUpdate");
 
-            var localVarPath = "/v3/device-queries/{query_id}{var}";
+            var localVarPath = "/v3/device-queries/{query_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1206,7 +1206,7 @@ namespace device_query_service.Api
             if (queryId == null)
                 throw new ApiException(400, "Missing required parameter 'queryId' when calling DefaultApi->DeviceQueryRetrieve");
 
-            var localVarPath = "/v3/device-queries/{query_id}{var}";
+            var localVarPath = "/v3/device-queries/{query_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1282,7 +1282,7 @@ namespace device_query_service.Api
             if (queryId == null)
                 throw new ApiException(400, "Missing required parameter 'queryId' when calling DefaultApi->DeviceQueryRetrieve");
 
-            var localVarPath = "/v3/device-queries/{query_id}{var}";
+            var localVarPath = "/v3/device-queries/{query_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1372,7 +1372,7 @@ namespace device_query_service.Api
             if (query == null)
                 throw new ApiException(400, "Missing required parameter 'query' when calling DefaultApi->DeviceQueryUpdate");
 
-            var localVarPath = "/v3/device-queries/{query_id}{var}";
+            var localVarPath = "/v3/device-queries/{query_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1469,7 +1469,7 @@ namespace device_query_service.Api
             if (query == null)
                 throw new ApiException(400, "Missing required parameter 'query' when calling DefaultApi->DeviceQueryUpdate");
 
-            var localVarPath = "/v3/device-queries/{query_id}{var}";
+            var localVarPath = "/v3/device-queries/{query_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
