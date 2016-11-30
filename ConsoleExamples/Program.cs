@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using mbed_cloud_sdk;
-using mbed_cloud_sdk.Access;
-using mbed_cloud_sdk.Devices;
+using mbedCloudSDK.Access;
+using mbedCloudSDK.Common;
+using mbedCloudSDK.Devices;
 
 namespace ConsoleExamples
 {

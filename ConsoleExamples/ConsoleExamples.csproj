@@ -9,7 +9,6 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ConsoleExamples</RootNamespace>
     <AssemblyName>ConsoleExamples</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
@@ -50,9 +49,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\mbed-cloud-sdk\mbed-cloud-sdk.csproj">
-      <Project>{27cbf014-3acb-4ec2-ba8c-92a567ee73d2}</Project>
-      <Name>mbed-cloud-sdk</Name>
+    <ProjectReference Include="..\mbedCloudSDK\mbedCloudSDK.csproj">
+      <Project>{7C35731A-8701-45BA-9478-76027FEEB003}</Project>
+      <Name>mbedCloudSDK</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
