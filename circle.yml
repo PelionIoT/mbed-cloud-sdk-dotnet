@@ -7,11 +7,7 @@ dependencies:
   override:
     - dotnet restore
 test:
-  pre:
-    - mkdir test
-    - cd test
-    - dotnet new
   override:
     - dotnet restore
-    - dotnet run
+    - dotnet test mbedCloudSDK.UnitTests/
     - echo "finished"
