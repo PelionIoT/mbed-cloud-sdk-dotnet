@@ -23,10 +23,7 @@ namespace device_catalog.Model
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum EventTypeEnum {
-            
-            [EnumMember(Value = "")]
-            ,
-            
+           	
             [EnumMember(Value = "update.device.device-created")]
             Updatedevicedevicecreated,
             

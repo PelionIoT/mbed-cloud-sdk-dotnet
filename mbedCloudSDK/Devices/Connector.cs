@@ -10,9 +10,16 @@ using mds.Model;
 
 namespace mbedCloudSDK.Devices
 {
-    public class Connector: BaseAPI
+    /// <summary>
+    /// Connector.
+    /// </summary>
+	public class Connector: BaseAPI
     {
-        public Connector(Config config) : base(config)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:mbedCloudSDK.Devices.Connector"/> class.
+        /// </summary>
+        /// <param name="config">Config.</param>
+		public Connector(Config config) : base(config)
         {
             if (config.Host != string.Empty)
             {
@@ -22,6 +29,10 @@ namespace mbedCloudSDK.Devices
             Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
         }
 
+		/// <summary>
+		/// Lists the endpoints.
+		/// </summary>
+		/// <returns>The endpoints.</returns>
         public List<Endpoint> listEndpoints()
         {
             var api = new EndpointsApi();

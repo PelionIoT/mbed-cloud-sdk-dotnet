@@ -12,15 +12,14 @@ namespace ConsoleExamples
     class Program
     {
         static void Main(string[] args)
-        {
-            //Add Api key
-            string apiKey = "";
-            if (apiKey == string.Empty)
+		{
+			if (args == null || args.Length == 0)
             {
                 Console.Error.WriteLine("API key is required!!!");
                 Console.ReadKey();
                 return;
             }
+			string apiKey = args[0];
             Config config = new Config(apiKey);
             config.Host = "https://lab-api.mbedcloudintegration.net";
             runEndpointsExample(config);
@@ -45,5 +44,15 @@ namespace ConsoleExamples
                 Console.WriteLine(endpoint);
             }
         }
+
+		private static void runDevicesExample(Config config)
+		{
+			Devices devices = new Devices(config);
+			foreach (var device in devices.ListDevices())
+			{
+				Console.WriteLine(device.ToString());
+			}
+		}
+
     }
 }
