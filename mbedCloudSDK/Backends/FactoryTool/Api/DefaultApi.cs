@@ -21,47 +21,43 @@ namespace factory_tool.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Gets a list of downloadable Factory Tool versions.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
+        /// Returns a specific Factory Tool package in a ZIP archive.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
         /// </remarks>
         /// <exception cref="factory_tool.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">\&quot;Bearer\&quot; followed by a reference token (API key forbidden).</param>
-        /// <returns>InlineResponse200</returns>
-        InlineResponse200 DownloadsMbedFactoryProvisioningPackageInfoGet (string authorization);
+        /// <param name="os">Requires Factory Tool OS name (Windows or Linux).</param>
+        /// <returns>byte[]</returns>
+        byte[] DownloadsMbedFactoryProvisioningPackageGet (string os);
   
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Gets a list of downloadable Factory Tool versions.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
+        /// Returns a specific Factory Tool package in a ZIP archive.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
         /// </remarks>
         /// <exception cref="factory_tool.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">\&quot;Bearer\&quot; followed by a reference token (API key forbidden).</param>
-        /// <returns>ApiResponse of InlineResponse200</returns>
-        ApiResponse<InlineResponse200> DownloadsMbedFactoryProvisioningPackageInfoGetWithHttpInfo (string authorization);
+        /// <param name="os">Requires Factory Tool OS name (Windows or Linux).</param>
+        /// <returns>ApiResponse of byte[]</returns>
+        ApiResponse<byte[]> DownloadsMbedFactoryProvisioningPackageGetWithHttpInfo (string os);
         
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Returns a specific Factory Tool package in a ZIP archive.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
+        /// Gets a list of downloadable Factory Tool versions.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
         /// </remarks>
         /// <exception cref="factory_tool.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">\&quot;Bearer\&quot; followed by a reference token (API key forbidden).</param>
-        /// <param name="os">Requires Factory Tool OS name (Windows or Linux).</param>
-        /// <returns></returns>
-        void DownloadsMbedFactoryProvisioningPackageososGet (string authorization, string os);
+        /// <returns>InlineResponse200</returns>
+        InlineResponse200 DownloadsMbedFactoryProvisioningPackageInfoGet ();
   
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Returns a specific Factory Tool package in a ZIP archive.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
+        /// Gets a list of downloadable Factory Tool versions.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
         /// </remarks>
         /// <exception cref="factory_tool.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">\&quot;Bearer\&quot; followed by a reference token (API key forbidden).</param>
-        /// <param name="os">Requires Factory Tool OS name (Windows or Linux).</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DownloadsMbedFactoryProvisioningPackageososGetWithHttpInfo (string authorization, string os);
+        /// <returns>ApiResponse of InlineResponse200</returns>
+        ApiResponse<InlineResponse200> DownloadsMbedFactoryProvisioningPackageInfoGetWithHttpInfo ();
         
         #endregion Synchronous Operations
         
@@ -71,47 +67,43 @@ namespace factory_tool.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Gets a list of downloadable Factory Tool versions.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
+        /// Returns a specific Factory Tool package in a ZIP archive.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
         /// </remarks>
         /// <exception cref="factory_tool.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">\&quot;Bearer\&quot; followed by a reference token (API key forbidden).</param>
-        /// <returns>Task of InlineResponse200</returns>
-        System.Threading.Tasks.Task<InlineResponse200> DownloadsMbedFactoryProvisioningPackageInfoGetAsync (string authorization);
+        /// <param name="os">Requires Factory Tool OS name (Windows or Linux).</param>
+        /// <returns>Task of byte[]</returns>
+        System.Threading.Tasks.Task<byte[]> DownloadsMbedFactoryProvisioningPackageGetAsync (string os);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Gets a list of downloadable Factory Tool versions.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
+        /// Returns a specific Factory Tool package in a ZIP archive.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
         /// </remarks>
         /// <exception cref="factory_tool.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">\&quot;Bearer\&quot; followed by a reference token (API key forbidden).</param>
-        /// <returns>Task of ApiResponse (InlineResponse200)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> DownloadsMbedFactoryProvisioningPackageInfoGetAsyncWithHttpInfo (string authorization);
+        /// <param name="os">Requires Factory Tool OS name (Windows or Linux).</param>
+        /// <returns>Task of ApiResponse (byte[])</returns>
+        System.Threading.Tasks.Task<ApiResponse<byte[]>> DownloadsMbedFactoryProvisioningPackageGetAsyncWithHttpInfo (string os);
         
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Returns a specific Factory Tool package in a ZIP archive.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
+        /// Gets a list of downloadable Factory Tool versions.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
         /// </remarks>
         /// <exception cref="factory_tool.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">\&quot;Bearer\&quot; followed by a reference token (API key forbidden).</param>
-        /// <param name="os">Requires Factory Tool OS name (Windows or Linux).</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DownloadsMbedFactoryProvisioningPackageososGetAsync (string authorization, string os);
+        /// <returns>Task of InlineResponse200</returns>
+        System.Threading.Tasks.Task<InlineResponse200> DownloadsMbedFactoryProvisioningPackageInfoGetAsync ();
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Returns a specific Factory Tool package in a ZIP archive.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
+        /// Gets a list of downloadable Factory Tool versions.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
         /// </remarks>
         /// <exception cref="factory_tool.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">\&quot;Bearer\&quot; followed by a reference token (API key forbidden).</param>
-        /// <param name="os">Requires Factory Tool OS name (Windows or Linux).</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DownloadsMbedFactoryProvisioningPackageososGetAsyncWithHttpInfo (string authorization, string os);
+        /// <returns>Task of ApiResponse (InlineResponse200)</returns>
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> DownloadsMbedFactoryProvisioningPackageInfoGetAsyncWithHttpInfo ();
         
         #endregion Asynchronous Operations
         
@@ -206,208 +198,32 @@ namespace factory_tool.Api
    
         
         /// <summary>
-        ///  Gets a list of downloadable Factory Tool versions.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
-        /// </summary>
-        /// <exception cref="factory_tool.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">\&quot;Bearer\&quot; followed by a reference token (API key forbidden).</param> 
-        /// <returns>InlineResponse200</returns>
-        public InlineResponse200 DownloadsMbedFactoryProvisioningPackageInfoGet (string authorization)
-        {
-             ApiResponse<InlineResponse200> localVarResponse = DownloadsMbedFactoryProvisioningPackageInfoGetWithHttpInfo(authorization);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Gets a list of downloadable Factory Tool versions.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
-        /// </summary>
-        /// <exception cref="factory_tool.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">\&quot;Bearer\&quot; followed by a reference token (API key forbidden).</param> 
-        /// <returns>ApiResponse of InlineResponse200</returns>
-        public ApiResponse< InlineResponse200 > DownloadsMbedFactoryProvisioningPackageInfoGetWithHttpInfo (string authorization)
-        {
-            
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->DownloadsMbedFactoryProvisioningPackageInfoGet");
-            
-    
-            var localVarPath = "/downloads/mbed_factory_provisioning_package/info";
-    
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            
-            
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
-            
-            
-            
-
-            // authentication (Bearer) required
-            
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-            
-    
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath, 
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-    
-            if (localVarStatusCode >= 400)
-                throw new ApiException (localVarStatusCode, "Error calling DownloadsMbedFactoryProvisioningPackageInfoGet: " + localVarResponse.Content, localVarResponse.Content);
-            else if (localVarStatusCode == 0)
-                throw new ApiException (localVarStatusCode, "Error calling DownloadsMbedFactoryProvisioningPackageInfoGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
-    
-            return new ApiResponse<InlineResponse200>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse200) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse200)));
-            
-        }
-
-        
-        /// <summary>
-        ///  Gets a list of downloadable Factory Tool versions.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
-        /// </summary>
-        /// <exception cref="factory_tool.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">\&quot;Bearer\&quot; followed by a reference token (API key forbidden).</param>
-        /// <returns>Task of InlineResponse200</returns>
-        public async System.Threading.Tasks.Task<InlineResponse200> DownloadsMbedFactoryProvisioningPackageInfoGetAsync (string authorization)
-        {
-             ApiResponse<InlineResponse200> localVarResponse = await DownloadsMbedFactoryProvisioningPackageInfoGetAsyncWithHttpInfo(authorization);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        ///  Gets a list of downloadable Factory Tool versions.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
-        /// </summary>
-        /// <exception cref="factory_tool.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">\&quot;Bearer\&quot; followed by a reference token (API key forbidden).</param>
-        /// <returns>Task of ApiResponse (InlineResponse200)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> DownloadsMbedFactoryProvisioningPackageInfoGetAsyncWithHttpInfo (string authorization)
-        {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null) throw new ApiException(400, "Missing required parameter 'authorization' when calling DownloadsMbedFactoryProvisioningPackageInfoGet");
-            
-    
-            var localVarPath = "/downloads/mbed_factory_provisioning_package/info";
-    
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            
-            
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
-            
-            
-            
-
-            
-            // authentication (Bearer) required
-            
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-            
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath, 
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams, 
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
- 
-            if (localVarStatusCode >= 400)
-                throw new ApiException (localVarStatusCode, "Error calling DownloadsMbedFactoryProvisioningPackageInfoGet: " + localVarResponse.Content, localVarResponse.Content);
-            else if (localVarStatusCode == 0)
-                throw new ApiException (localVarStatusCode, "Error calling DownloadsMbedFactoryProvisioningPackageInfoGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
-
-            return new ApiResponse<InlineResponse200>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse200) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse200)));
-            
-        }
-        
-        /// <summary>
         ///  Returns a specific Factory Tool package in a ZIP archive.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
         /// </summary>
         /// <exception cref="factory_tool.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">\&quot;Bearer\&quot; followed by a reference token (API key forbidden).</param> 
         /// <param name="os">Requires Factory Tool OS name (Windows or Linux).</param> 
-        /// <returns></returns>
-        public void DownloadsMbedFactoryProvisioningPackageososGet (string authorization, string os)
+        /// <returns>byte[]</returns>
+        public byte[] DownloadsMbedFactoryProvisioningPackageGet (string os)
         {
-             DownloadsMbedFactoryProvisioningPackageososGetWithHttpInfo(authorization, os);
+             ApiResponse<byte[]> localVarResponse = DownloadsMbedFactoryProvisioningPackageGetWithHttpInfo(os);
+             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  Returns a specific Factory Tool package in a ZIP archive.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
         /// </summary>
         /// <exception cref="factory_tool.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">\&quot;Bearer\&quot; followed by a reference token (API key forbidden).</param> 
         /// <param name="os">Requires Factory Tool OS name (Windows or Linux).</param> 
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> DownloadsMbedFactoryProvisioningPackageososGetWithHttpInfo (string authorization, string os)
+        /// <returns>ApiResponse of byte[]</returns>
+        public ApiResponse< byte[] > DownloadsMbedFactoryProvisioningPackageGetWithHttpInfo (string os)
         {
-            
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->DownloadsMbedFactoryProvisioningPackageososGet");
             
             // verify the required parameter 'os' is set
             if (os == null)
-                throw new ApiException(400, "Missing required parameter 'os' when calling DefaultApi->DownloadsMbedFactoryProvisioningPackageososGet");
+                throw new ApiException(400, "Missing required parameter 'os' when calling DefaultApi->DownloadsMbedFactoryProvisioningPackageGet");
             
     
-            var localVarPath = "/downloads/mbed_factory_provisioning_package?os={os}";
+            var localVarPath = "/downloads/mbed_factory_provisioning_package";
     
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
@@ -433,10 +249,9 @@ namespace factory_tool.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (os != null) localVarPathParams.Add("os", Configuration.ApiClient.ParameterToString(os)); // path parameter
             
+            if (os != null) localVarQueryParams.Add("os", Configuration.ApiClient.ParameterToString(os)); // query parameter
             
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
             
             
             
@@ -457,14 +272,14 @@ namespace factory_tool.Api
             int localVarStatusCode = (int) localVarResponse.StatusCode;
     
             if (localVarStatusCode >= 400)
-                throw new ApiException (localVarStatusCode, "Error calling DownloadsMbedFactoryProvisioningPackageososGet: " + localVarResponse.Content, localVarResponse.Content);
+                throw new ApiException (localVarStatusCode, "Error calling DownloadsMbedFactoryProvisioningPackageGet: " + localVarResponse.Content, localVarResponse.Content);
             else if (localVarStatusCode == 0)
-                throw new ApiException (localVarStatusCode, "Error calling DownloadsMbedFactoryProvisioningPackageososGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+                throw new ApiException (localVarStatusCode, "Error calling DownloadsMbedFactoryProvisioningPackageGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
     
-            
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<byte[]>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (byte[]) Configuration.ApiClient.Deserialize(localVarResponse, typeof(byte[])));
+            
         }
 
         
@@ -472,12 +287,12 @@ namespace factory_tool.Api
         ///  Returns a specific Factory Tool package in a ZIP archive.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
         /// </summary>
         /// <exception cref="factory_tool.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">\&quot;Bearer\&quot; followed by a reference token (API key forbidden).</param>
         /// <param name="os">Requires Factory Tool OS name (Windows or Linux).</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DownloadsMbedFactoryProvisioningPackageososGetAsync (string authorization, string os)
+        /// <returns>Task of byte[]</returns>
+        public async System.Threading.Tasks.Task<byte[]> DownloadsMbedFactoryProvisioningPackageGetAsync (string os)
         {
-             await DownloadsMbedFactoryProvisioningPackageososGetAsyncWithHttpInfo(authorization, os);
+             ApiResponse<byte[]> localVarResponse = await DownloadsMbedFactoryProvisioningPackageGetAsyncWithHttpInfo(os);
+             return localVarResponse.Data;
 
         }
 
@@ -485,18 +300,15 @@ namespace factory_tool.Api
         ///  Returns a specific Factory Tool package in a ZIP archive.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
         /// </summary>
         /// <exception cref="factory_tool.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">\&quot;Bearer\&quot; followed by a reference token (API key forbidden).</param>
         /// <param name="os">Requires Factory Tool OS name (Windows or Linux).</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> DownloadsMbedFactoryProvisioningPackageososGetAsyncWithHttpInfo (string authorization, string os)
+        /// <returns>Task of ApiResponse (byte[])</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<byte[]>> DownloadsMbedFactoryProvisioningPackageGetAsyncWithHttpInfo (string os)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null) throw new ApiException(400, "Missing required parameter 'authorization' when calling DownloadsMbedFactoryProvisioningPackageososGet");
             // verify the required parameter 'os' is set
-            if (os == null) throw new ApiException(400, "Missing required parameter 'os' when calling DownloadsMbedFactoryProvisioningPackageososGet");
+            if (os == null) throw new ApiException(400, "Missing required parameter 'os' when calling DownloadsMbedFactoryProvisioningPackageGet");
             
     
-            var localVarPath = "/downloads/mbed_factory_provisioning_package?os={os}";
+            var localVarPath = "/downloads/mbed_factory_provisioning_package";
     
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
@@ -522,10 +334,9 @@ namespace factory_tool.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (os != null) localVarPathParams.Add("os", Configuration.ApiClient.ParameterToString(os)); // path parameter
             
+            if (os != null) localVarQueryParams.Add("os", Configuration.ApiClient.ParameterToString(os)); // query parameter
             
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
             
             
             
@@ -547,14 +358,173 @@ namespace factory_tool.Api
             int localVarStatusCode = (int) localVarResponse.StatusCode;
  
             if (localVarStatusCode >= 400)
-                throw new ApiException (localVarStatusCode, "Error calling DownloadsMbedFactoryProvisioningPackageososGet: " + localVarResponse.Content, localVarResponse.Content);
+                throw new ApiException (localVarStatusCode, "Error calling DownloadsMbedFactoryProvisioningPackageGet: " + localVarResponse.Content, localVarResponse.Content);
             else if (localVarStatusCode == 0)
-                throw new ApiException (localVarStatusCode, "Error calling DownloadsMbedFactoryProvisioningPackageososGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+                throw new ApiException (localVarStatusCode, "Error calling DownloadsMbedFactoryProvisioningPackageGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+
+            return new ApiResponse<byte[]>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (byte[]) Configuration.ApiClient.Deserialize(localVarResponse, typeof(byte[])));
+            
+        }
+        
+        /// <summary>
+        ///  Gets a list of downloadable Factory Tool versions.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
+        /// </summary>
+        /// <exception cref="factory_tool.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>InlineResponse200</returns>
+        public InlineResponse200 DownloadsMbedFactoryProvisioningPackageInfoGet ()
+        {
+             ApiResponse<InlineResponse200> localVarResponse = DownloadsMbedFactoryProvisioningPackageInfoGetWithHttpInfo();
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Gets a list of downloadable Factory Tool versions.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
+        /// </summary>
+        /// <exception cref="factory_tool.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of InlineResponse200</returns>
+        public ApiResponse< InlineResponse200 > DownloadsMbedFactoryProvisioningPackageInfoGetWithHttpInfo ()
+        {
+            
+    
+            var localVarPath = "/downloads/mbed_factory_provisioning_package/info";
+    
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            
+            
+            
+            
+            
+
+            // authentication (Bearer) required
+            
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+            
+    
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath, 
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+    
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling DownloadsMbedFactoryProvisioningPackageInfoGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling DownloadsMbedFactoryProvisioningPackageInfoGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+    
+            return new ApiResponse<InlineResponse200>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (InlineResponse200) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse200)));
+            
+        }
+
+        
+        /// <summary>
+        ///  Gets a list of downloadable Factory Tool versions.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
+        /// </summary>
+        /// <exception cref="factory_tool.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of InlineResponse200</returns>
+        public async System.Threading.Tasks.Task<InlineResponse200> DownloadsMbedFactoryProvisioningPackageInfoGetAsync ()
+        {
+             ApiResponse<InlineResponse200> localVarResponse = await DownloadsMbedFactoryProvisioningPackageInfoGetAsyncWithHttpInfo();
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Gets a list of downloadable Factory Tool versions.\n* mbed Cloud user role must be Administrator.\n* mbed Cloud account must have Factory Tool downloads enabled.\n
+        /// </summary>
+        /// <exception cref="factory_tool.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (InlineResponse200)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> DownloadsMbedFactoryProvisioningPackageInfoGetAsyncWithHttpInfo ()
+        {
+            
+    
+            var localVarPath = "/downloads/mbed_factory_provisioning_package/info";
+    
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            
+            
+            
+            
+            
 
             
-            return new ApiResponse<Object>(localVarStatusCode,
+            // authentication (Bearer) required
+            
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+            
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath, 
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams, 
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+ 
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling DownloadsMbedFactoryProvisioningPackageInfoGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling DownloadsMbedFactoryProvisioningPackageInfoGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+
+            return new ApiResponse<InlineResponse200>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (InlineResponse200) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse200)));
+            
         }
         
     }
