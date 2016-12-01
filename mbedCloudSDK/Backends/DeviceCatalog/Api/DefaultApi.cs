@@ -69,8 +69,10 @@ namespace device_catalog.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>DeviceSerializer</returns>
-        DeviceSerializer DeviceList (int? limit = null, string order = null, string after = null);
+        DeviceSerializer DeviceList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
   
         /// <summary>
         /// 
@@ -82,8 +84,10 @@ namespace device_catalog.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>ApiResponse of DeviceSerializer</returns>
-        ApiResponse<DeviceSerializer> DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null);
+        ApiResponse<DeviceSerializer> DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         
         /// <summary>
         /// 
@@ -95,8 +99,10 @@ namespace device_catalog.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>DeviceLogSerializer</returns>
-        DeviceLogSerializer DeviceLogList (int? limit = null, string order = null, string after = null);
+        DeviceLogSerializer DeviceLogList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
   
         /// <summary>
         /// 
@@ -108,8 +114,10 @@ namespace device_catalog.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>ApiResponse of DeviceLogSerializer</returns>
-        ApiResponse<DeviceLogSerializer> DeviceLogListWithHttpInfo (int? limit = null, string order = null, string after = null);
+        ApiResponse<DeviceLogSerializer> DeviceLogListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         
         /// <summary>
         /// 
@@ -255,8 +263,10 @@ namespace device_catalog.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>Task of DeviceSerializer</returns>
-        System.Threading.Tasks.Task<DeviceSerializer> DeviceListAsync (int? limit = null, string order = null, string after = null);
+        System.Threading.Tasks.Task<DeviceSerializer> DeviceListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
@@ -268,8 +278,10 @@ namespace device_catalog.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null);
+        System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         
         /// <summary>
         /// 
@@ -281,8 +293,10 @@ namespace device_catalog.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>Task of DeviceLogSerializer</returns>
-        System.Threading.Tasks.Task<DeviceLogSerializer> DeviceLogListAsync (int? limit = null, string order = null, string after = null);
+        System.Threading.Tasks.Task<DeviceLogSerializer> DeviceLogListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
@@ -294,8 +308,10 @@ namespace device_catalog.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>Task of ApiResponse (DeviceLogSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceLogSerializer>> DeviceLogListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null);
+        System.Threading.Tasks.Task<ApiResponse<DeviceLogSerializer>> DeviceLogListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         
         /// <summary>
         /// 
@@ -814,10 +830,12 @@ namespace device_catalog.Api
         /// <param name="limit"> (optional)</param> 
         /// <param name="order"> (optional)</param> 
         /// <param name="after"> (optional)</param> 
+        /// <param name="filter"> (optional)</param> 
+        /// <param name="include"> (optional)</param> 
         /// <returns>DeviceSerializer</returns>
-        public DeviceSerializer DeviceList (int? limit = null, string order = null, string after = null)
+        public DeviceSerializer DeviceList (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<DeviceSerializer> localVarResponse = DeviceListWithHttpInfo(limit, order, after);
+             ApiResponse<DeviceSerializer> localVarResponse = DeviceListWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
         }
 
@@ -828,8 +846,10 @@ namespace device_catalog.Api
         /// <param name="limit"> (optional)</param> 
         /// <param name="order"> (optional)</param> 
         /// <param name="after"> (optional)</param> 
+        /// <param name="filter"> (optional)</param> 
+        /// <param name="include"> (optional)</param> 
         /// <returns>ApiResponse of DeviceSerializer</returns>
-        public ApiResponse< DeviceSerializer > DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null)
+        public ApiResponse< DeviceSerializer > DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
             
     
@@ -863,6 +883,8 @@ namespace device_catalog.Api
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
             
             
             
@@ -902,10 +924,12 @@ namespace device_catalog.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>Task of DeviceSerializer</returns>
-        public async System.Threading.Tasks.Task<DeviceSerializer> DeviceListAsync (int? limit = null, string order = null, string after = null)
+        public async System.Threading.Tasks.Task<DeviceSerializer> DeviceListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<DeviceSerializer> localVarResponse = await DeviceListAsyncWithHttpInfo(limit, order, after);
+             ApiResponse<DeviceSerializer> localVarResponse = await DeviceListAsyncWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
 
         }
@@ -917,8 +941,10 @@ namespace device_catalog.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
             
     
@@ -952,6 +978,8 @@ namespace device_catalog.Api
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
             
             
             
@@ -991,10 +1019,12 @@ namespace device_catalog.Api
         /// <param name="limit"> (optional)</param> 
         /// <param name="order"> (optional)</param> 
         /// <param name="after"> (optional)</param> 
+        /// <param name="filter"> (optional)</param> 
+        /// <param name="include"> (optional)</param> 
         /// <returns>DeviceLogSerializer</returns>
-        public DeviceLogSerializer DeviceLogList (int? limit = null, string order = null, string after = null)
+        public DeviceLogSerializer DeviceLogList (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<DeviceLogSerializer> localVarResponse = DeviceLogListWithHttpInfo(limit, order, after);
+             ApiResponse<DeviceLogSerializer> localVarResponse = DeviceLogListWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
         }
 
@@ -1005,8 +1035,10 @@ namespace device_catalog.Api
         /// <param name="limit"> (optional)</param> 
         /// <param name="order"> (optional)</param> 
         /// <param name="after"> (optional)</param> 
+        /// <param name="filter"> (optional)</param> 
+        /// <param name="include"> (optional)</param> 
         /// <returns>ApiResponse of DeviceLogSerializer</returns>
-        public ApiResponse< DeviceLogSerializer > DeviceLogListWithHttpInfo (int? limit = null, string order = null, string after = null)
+        public ApiResponse< DeviceLogSerializer > DeviceLogListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
             
     
@@ -1040,6 +1072,8 @@ namespace device_catalog.Api
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
             
             
             
@@ -1079,10 +1113,12 @@ namespace device_catalog.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>Task of DeviceLogSerializer</returns>
-        public async System.Threading.Tasks.Task<DeviceLogSerializer> DeviceLogListAsync (int? limit = null, string order = null, string after = null)
+        public async System.Threading.Tasks.Task<DeviceLogSerializer> DeviceLogListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<DeviceLogSerializer> localVarResponse = await DeviceLogListAsyncWithHttpInfo(limit, order, after);
+             ApiResponse<DeviceLogSerializer> localVarResponse = await DeviceLogListAsyncWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
 
         }
@@ -1094,8 +1130,10 @@ namespace device_catalog.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>Task of ApiResponse (DeviceLogSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceLogSerializer>> DeviceLogListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceLogSerializer>> DeviceLogListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
             
     
@@ -1129,6 +1167,8 @@ namespace device_catalog.Api
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
             
             
             

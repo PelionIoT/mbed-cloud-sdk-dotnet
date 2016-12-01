@@ -24,29 +24,26 @@ namespace device_catalog.Model
         [JsonConverter(typeof(StringEnumConverter))]
         public enum EventTypeEnum {
             
-            [EnumMember(Value = "")]
-            ,
-            
             [EnumMember(Value = "update.device.device-created")]
-            Updatedevicedevicecreated,
+            Devicedevicecreated,
             
             [EnumMember(Value = "update.device.device-updated")]
-            Updatedevicedeviceupdated,
+            Devicedeviceupdated,
             
             [EnumMember(Value = "update.deployment.campaign-device-metadata-created")]
-            Updatedeploymentcampaigndevicemetadatacreated,
+            Deploymentcampaigndevicemetadatacreated,
             
             [EnumMember(Value = "update.deployment.campaign-device-metadata-updated")]
-            Updatedeploymentcampaigndevicemetadataupdated,
+            Deploymentcampaigndevicemetadataupdated,
             
             [EnumMember(Value = "update.deployment.campaign-device-metadata-removed")]
-            Updatedeploymentcampaigndevicemetadataremoved,
+            Deploymentcampaigndevicemetadataremoved,
             
             [EnumMember(Value = "update.connector.connector-device.firmware-update.state")]
-            Updateconnectorconnectordevicefirmwareupdatestate,
+            Connectorconnectordevicefirmwareupdatestate,
             
             [EnumMember(Value = "update.connector.connector-device.firmware-update.result")]
-            Updateconnectorconnectordevicefirmwareupdateresult
+            Connectorconnectordevicefirmwareupdateresult
         }
 
     
