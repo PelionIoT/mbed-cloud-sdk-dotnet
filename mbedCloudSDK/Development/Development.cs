@@ -10,10 +10,18 @@ using mbedCloudSDK.Common;
 
 namespace mbedCloudSDK.Development
 {
-    public class Certificate: BaseAPI
+    /// <summary>
+    /// Expose Developer Certificate functionality.
+    /// </summary>
+	public class Development: BaseAPI
     {
         private string auth;
-        public Certificate(Config config): base(config)
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:mbedCloudSDK.Development.Development"/> class.
+		/// </summary>
+		/// <param name="config">Config.</param>
+        public Development(Config config): base(config)
         {
             if (config.Host != string.Empty)
             {
@@ -25,27 +33,28 @@ namespace mbedCloudSDK.Development
         }
 
         /// <summary>
-        /// 
+        /// Gets the certificate.
         /// </summary>
-        /// <param name="certificateId"></param>
+        /// <returns>The certificate.</returns>
+        /// <param name="certificateId">Certificate identifier.</param>
         public DeveloperCertificate getCertificate(string certificateId)
         {
             var api = new DefaultApi();
-            try
-            {
-                return api.V3DeveloperCertificateGet(certificateId);
-            }
-            catch(ApiException e) {
-                Console.Error.WriteLine(e);
-            }
-            return null;
+			try
+			{
+				return api.V3DeveloperCertificateGet(certificateId);
+			}
+			catch (ApiException e)
+			{
+				throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+			}
         }
 
         /// <summary>
-        /// 
+        /// Revokes the certificate.
         /// </summary>
-        /// <param name="certificateId"></param>
-        /// <returns></returns>
+        /// <returns><c>true</c>, if certificate was revoked, <c>false</c> otherwise.</returns>
+        /// <param name="certificateId">Certificate identifier.</param>
         public bool RevokeCertificate(string certificateId)
         {
             var api = new DefaultApi();
@@ -57,30 +66,29 @@ namespace mbedCloudSDK.Development
             }
             catch(ApiException e)
             {
-                Console.Error.WriteLine(e);
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
             return success;
         }
 
         /// <summary>
-        /// 
+        /// Creates the certificate.
         /// </summary>
-        /// <param name="publicKey"></param>
-        /// <returns></returns>
+        /// <returns>The certificate.</returns>
+        /// <param name="publicKey">Public key.</param>
         public DeveloperCertificate CreateCertificate(string publicKey)
         {
             var api = new DefaultApi();
             var body = new Body();
             body.PubKey = publicKey;
-            try
-            {
-                return api.V3DeveloperCertificatePost(this.auth, body);
-            }
-            catch(ApiException e)
-            {
-                Console.Error.WriteLine(e);
-            }
-            return null;
+			try
+			{
+				return api.V3DeveloperCertificatePost(this.auth, body);
+			}
+			catch (ApiException e)
+			{
+				throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+			}
         }
     }
 }

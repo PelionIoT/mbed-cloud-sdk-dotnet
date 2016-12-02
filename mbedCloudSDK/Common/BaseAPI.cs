@@ -6,10 +6,18 @@ using System.Threading.Tasks;
 
 namespace mbedCloudSDK.Common
 {
-    public class BaseAPI
+    /// <summary>
+    /// Base API.
+    /// </summary>
+	public class BaseAPI
     {
         protected Config config;
-        public BaseAPI(Config config)
+        
+		/// <summary>
+        /// Initializes a new instance of the <see cref="T:mbedCloudSDK.Common.BaseAPI"/> class.
+        /// </summary>
+        /// <param name="config">Config.</param>
+		public BaseAPI(Config config)
         {
             this.config = config;
         }

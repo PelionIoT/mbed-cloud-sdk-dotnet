@@ -10,9 +10,16 @@ using mbedCloudSDK.Common;
 
 namespace mbedCloudSDK.Access
 {
-    public class Accounts: BaseAPI
+    /// <summary>
+    /// Exposing functionality from IAM.
+    /// </summary>
+	public class Access: BaseAPI
     {
-        public Accounts(Config config): base(config)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:mbedCloudSDK.Access.Access"/> class.
+        /// </summary>
+        /// <param name="config">Config.</param>
+		public Access(Config config): base(config)
         {
             if (config.Host != string.Empty)
             {
@@ -23,22 +30,25 @@ namespace mbedCloudSDK.Access
         }
 
         /// <summary>
-        /// Get All API keys Endpoints, optionally filtered by owner
+        /// Lists the API keys.
         /// </summary>
-        /// <param name="owner"></param>
-        /// <returns></returns>
-        public List<ApiKeyInfoResp> ListApiKeys(string owner = null)
+        /// <returns>The API keys.</returns>
+        /// <param name="listParams">List parameters.</param>
+        public List<ApiKeyInfoResp> ListApiKeys(ListParams listParams = null)
         {
-            var api = new DeveloperApi();
+			if (listParams != null)
+			{
+				throw new NotImplementedException();
+			}
+			var api = new DeveloperApi();
             try
             {
-                return api.GetAllApiKeys(owner).Data;
+                return api.GetAllApiKeys().Data;
             }
             catch (ApiException e)
             {
-                Console.Error.WriteLine(e);
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
-            return null;
         }
 
         /// <summary>
@@ -48,15 +58,14 @@ namespace mbedCloudSDK.Access
         public ApiKeyInfoResp GetApiKey(string keyId)
         {
             var api = new DeveloperApi();
-            try
-            {
-                return api.GetApiKey(keyId);
-            }
-            catch(ApiException e)
-            {
-                Console.Error.WriteLine(e);
-            }
-            return null;
+			try
+			{
+				return api.GetApiKey(keyId);
+			}
+			catch (ApiException e)
+			{
+				throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+			}
         }
 
         /// <summary>
@@ -74,7 +83,7 @@ namespace mbedCloudSDK.Access
             }
             catch (ApiException e)
             {
-                Console.Error.WriteLine(e);
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
             return success;
         }
@@ -83,28 +92,42 @@ namespace mbedCloudSDK.Access
         /// List groups
         /// </summary>
         /// <returns></returns>
-        public List<GroupSummary> ListGroups()
+        public List<GroupSummary> ListGroups(ListParams listParams = null)
         {
-            var api = new DeveloperApi();
-            return api.GetAllGroups().Data;
+            if (listParams != null)
+			{
+				throw new NotImplementedException();
+			}
+			var api = new DeveloperApi();
+			try
+			{
+				return api.GetAllGroups().Data;
+			}
+			catch (ApiException e)
+			{
+				throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+			}
         }
 
         /// <summary>
         /// List users
         /// </summary>
         /// <returns></returns>
-        public List<UserInfoResp> ListUsers()
+        public List<UserInfoResp> ListUsers(ListParams listParams = null)
         {
-            var api = new AccountAdminApi();
-            try
-            {
-                return api.GetAllUsers().Data;
-            }
-            catch (ApiException e)
-            {
-                Console.Error.WriteLine(e);
-            }
-            return null;
+            if (listParams != null)
+			{
+				throw new NotImplementedException();
+			}
+			var api = new AccountAdminApi();
+			try
+			{
+				return api.GetAllUsers().Data;
+			}
+			catch (ApiException e)
+			{
+				throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+			}
         }
 
         /// <summary>
@@ -121,9 +144,8 @@ namespace mbedCloudSDK.Access
             }
             catch(ApiException e)
             {
-                Console.Error.WriteLine(e);
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
-            return null;
         }
 
         /// <summary>
@@ -135,15 +157,14 @@ namespace mbedCloudSDK.Access
         public UserInfoResp UpdateUser(String userId, UserInfoReq body)
         {
             var api = new AccountAdminApi();
-            try
-            {
-                return api.UpdateUser(userId, body);
-            }
-            catch (ApiException e)
-            {
-                Console.Error.WriteLine(e);
-            }
-            return null;
+			try
+			{
+				return api.UpdateUser(userId, body);
+			}
+			catch (ApiException e)
+			{
+				throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+			}
         }
 
         /// <summary>
@@ -161,7 +182,7 @@ namespace mbedCloudSDK.Access
             }
             catch (ApiException e)
             {
-                Console.Error.WriteLine(e);
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
             return success;
         }
@@ -172,17 +193,16 @@ namespace mbedCloudSDK.Access
         /// <param name="body"></param>
         /// <returns></returns>
         public UserInfoResp CreateUser(UserInfoReq body)
-        {
-            var api = new AccountAdminApi();
+		{
+			var api = new AccountAdminApi();
             try
             {
                 return api.CreateUser(body);
             }
             catch (ApiException e)
             {
-                Console.Error.WriteLine(e);
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
-            return null;
         }
     }
 }
