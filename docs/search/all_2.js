@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['certificate',['Certificate',['../classmbed_cloud_s_d_k_1_1_development_1_1_certificate.html',1,'mbedCloudSDK::Development']]],
+  ['cloudapiexception',['CloudApiException',['../classmbed_cloud_s_d_k_1_1_cloud_api_exception.html',1,'mbedCloudSDK']]],
+  ['cloudapiexception',['CloudApiException',['../classmbed_cloud_s_d_k_1_1_cloud_api_exception.html#a6f96f692df33797ec82a6bf5e49482f2',1,'mbedCloudSDK.CloudApiException.CloudApiException()'],['../classmbed_cloud_s_d_k_1_1_cloud_api_exception.html#a60527248fd4404b6acbac886a9aada20',1,'mbedCloudSDK.CloudApiException.CloudApiException(int errorCode, string message)'],['../classmbed_cloud_s_d_k_1_1_cloud_api_exception.html#a78170614d17453dd540b37514d593cb1',1,'mbedCloudSDK.CloudApiException.CloudApiException(int errorCode, string message, dynamic errorContent=null)']]],
   ['config',['Config',['../classmbed_cloud_s_d_k_1_1_common_1_1_config.html',1,'mbedCloudSDK::Common']]],
-  ['connector',['Connector',['../classmbed_cloud_s_d_k_1_1_devices_1_1_connector.html#ae47a0e36047f878760552ec04dfc587d',1,'mbedCloudSDK::Devices::Connector']]],
-  ['connector',['Connector',['../classmbed_cloud_s_d_k_1_1_devices_1_1_connector.html',1,'mbedCloudSDK::Devices']]],
-  ['createcertificate',['CreateCertificate',['../classmbed_cloud_s_d_k_1_1_development_1_1_certificate.html#a38f8f56d5691a072d97bead2f1afdd62',1,'mbedCloudSDK::Development::Certificate']]],
-  ['createuser',['CreateUser',['../classmbed_cloud_s_d_k_1_1_access_1_1_accounts.html#aca92f88ce10cbb45835b739b33583371',1,'mbedCloudSDK::Access::Accounts']]]
+  ['config',['Config',['../classmbed_cloud_s_d_k_1_1_common_1_1_config.html#ab89a6c217a13108bea9dbdcbd0336d75',1,'mbedCloudSDK::Common::Config']]],
+  ['createcertificate',['CreateCertificate',['../classmbed_cloud_s_d_k_1_1_development_1_1_development.html#a3448a797457bd291d817f2786910da2e',1,'mbedCloudSDK::Development::Development']]],
+  ['createuser',['CreateUser',['../classmbed_cloud_s_d_k_1_1_access_1_1_access.html#a98954c8fbcfc4cbb4034007ed583eacb',1,'mbedCloudSDK::Access::Access']]]
 ];

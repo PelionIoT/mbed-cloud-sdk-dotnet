@@ -98,9 +98,8 @@
     <Compile Include="Backends\ProvisioningCertificate\Client\ApiResponse.cs" />
     <Compile Include="Backends\ProvisioningCertificate\Client\Configuration.cs" />
     <Compile Include="Backends\ProvisioningCertificate\Model\ProvisioningCertificate.cs" />
-    <Compile Include="Access\Accounts.cs" />
-    <Compile Include="Development\Certificate.cs" />
-    <Compile Include="Devices\Connector.cs" />
+    <Compile Include="Access\Access.cs" />
+    <Compile Include="Development\Development.cs" />
     <Compile Include="Common\BaseAPI.cs" />
     <Compile Include="Common\Config.cs" />
     <Compile Include="Devices\Devices.cs" />
@@ -164,6 +163,9 @@
     <Compile Include="Backends\Mds\Client\IApiAccessor.cs" />
     <Compile Include="Backends\ProvisioningCertificate\Client\ExceptionFactory.cs" />
     <Compile Include="Backends\ProvisioningCertificate\Client\IApiAccessor.cs" />
+    <Compile Include="Exceptions\CloudApiException.cs" />
+    <Compile Include="Common\ListParams.cs" />
+    <Compile Include="Manufacturing\Manufacturing.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Backends\Iam\README.md" />
@@ -185,6 +187,8 @@
     <Folder Include="Devices\" />
     <Folder Include="lib\" />
     <Folder Include="Common\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Manufacturing\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="lib\Newtonsoft.Json.dll" />
