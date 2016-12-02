@@ -24,7 +24,7 @@ limitations under the License.
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{41083BF6-F064-4555-96E2-049D0BFF21D0}</ProjectGuid>
+    <ProjectGuid>{0D0D0640-5CBA-425F-894D-E28799F57715}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>provisioning_certificate</RootNamespace>
