@@ -34,10 +34,10 @@ using Newtonsoft.Json.Converters;
 namespace device_catalog.Model
 {
     /// <summary>
-    /// DeviceSerializerData
+    /// DeviceDetail
     /// </summary>
     [DataContract]
-    public partial class DeviceSerializerData :  IEquatable<DeviceSerializerData>
+    public partial class DeviceDetail :  IEquatable<DeviceDetail>
     {
         /// <summary>
         /// The ID of the channel used to communicate with the device
@@ -133,12 +133,7 @@ namespace device_catalog.Model
         [DataMember(Name="deployed_state", EmitDefaultValue=false)]
         public DeployedStateEnum? DeployedState { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceSerializerData" /> class.
-        /// </summary>
-        [JsonConstructorAttribute]
-        protected DeviceSerializerData() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceSerializerData" /> class.
+        /// Initializes a new instance of the <see cref="DeviceDetail" /> class.
         /// </summary>
         /// <param name="BootstrappedTimestamp">BootstrappedTimestamp.</param>
         /// <param name="UpdatedAt">The time the object was updated.</param>
@@ -147,13 +142,13 @@ namespace device_catalog.Model
         /// <param name="Id">The ID of the device.</param>
         /// <param name="Description">The description of the object.</param>
         /// <param name="AutoUpdate">Mark this device for auto firmware update.</param>
-        /// <param name="Mechanism">The ID of the channel used to communicate with the device (required).</param>
+        /// <param name="Mechanism">The ID of the channel used to communicate with the device.</param>
         /// <param name="State">The current state of the device.</param>
         /// <param name="Etag">The entity instance signature.</param>
-        /// <param name="ProvisionKey">The key used to provision the device (required).</param>
+        /// <param name="ProvisionKey">The key used to provision the device.</param>
         /// <param name="SerialNumber">The serial number of the device.</param>
         /// <param name="VendorId">The device vendor ID.</param>
-        /// <param name="AccountId">The owning IAM account ID (required).</param>
+        /// <param name="AccountId">The owning IAM account ID.</param>
         /// <param name="DeployedState">The state of the device&#39;s deployment.</param>
         /// <param name="_Object">The API resource entity.</param>
         /// <param name="TrustClass">The device trust class.</param>
@@ -164,35 +159,8 @@ namespace device_catalog.Model
         /// <param name="Name">The name of the object.</param>
         /// <param name="CreatedAt">The time the object was created.</param>
         /// <param name="Manifest">URL for the current device manifest.</param>
-        public DeviceSerializerData(string BootstrappedTimestamp = null, DateTime? UpdatedAt = null, string CustomAttributes = null, string DeviceClass = null, string Id = null, string Description = null, bool? AutoUpdate = null, MechanismEnum? Mechanism = null, StateEnum? State = null, DateTime? Etag = null, string ProvisionKey = null, string SerialNumber = null, string VendorId = null, string AccountId = null, DeployedStateEnum? DeployedState = null, string _Object = null, long? TrustClass = null, string Deployment = null, string MechanismUrl = null, long? TrustLevel = null, string DeviceId = null, string Name = null, DateTime? CreatedAt = null, string Manifest = null)
+        public DeviceDetail(string BootstrappedTimestamp = null, DateTime? UpdatedAt = null, string CustomAttributes = null, string DeviceClass = null, string Id = null, string Description = null, bool? AutoUpdate = null, MechanismEnum? Mechanism = null, StateEnum? State = null, DateTime? Etag = null, string ProvisionKey = null, string SerialNumber = null, string VendorId = null, string AccountId = null, DeployedStateEnum? DeployedState = null, string _Object = null, long? TrustClass = null, string Deployment = null, string MechanismUrl = null, long? TrustLevel = null, string DeviceId = null, string Name = null, DateTime? CreatedAt = null, string Manifest = null)
         {
-            // to ensure "Mechanism" is required (not null)
-            if (Mechanism == null)
-            {
-                throw new InvalidDataException("Mechanism is a required property for DeviceSerializerData and cannot be null");
-            }
-            else
-            {
-                this.Mechanism = Mechanism;
-            }
-            // to ensure "ProvisionKey" is required (not null)
-            if (ProvisionKey == null)
-            {
-                throw new InvalidDataException("ProvisionKey is a required property for DeviceSerializerData and cannot be null");
-            }
-            else
-            {
-                this.ProvisionKey = ProvisionKey;
-            }
-            // to ensure "AccountId" is required (not null)
-            if (AccountId == null)
-            {
-                throw new InvalidDataException("AccountId is a required property for DeviceSerializerData and cannot be null");
-            }
-            else
-            {
-                this.AccountId = AccountId;
-            }
             this.BootstrappedTimestamp = BootstrappedTimestamp;
             this.UpdatedAt = UpdatedAt;
             this.CustomAttributes = CustomAttributes;
@@ -200,10 +168,13 @@ namespace device_catalog.Model
             this.Id = Id;
             this.Description = Description;
             this.AutoUpdate = AutoUpdate;
+            this.Mechanism = Mechanism;
             this.State = State;
             this.Etag = Etag;
+            this.ProvisionKey = ProvisionKey;
             this.SerialNumber = SerialNumber;
             this.VendorId = VendorId;
+            this.AccountId = AccountId;
             this.DeployedState = DeployedState;
             this._Object = _Object;
             this.TrustClass = TrustClass;
@@ -348,7 +319,7 @@ namespace device_catalog.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class DeviceSerializerData {\n");
+            sb.Append("class DeviceDetail {\n");
             sb.Append("  BootstrappedTimestamp: ").Append(BootstrappedTimestamp).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  CustomAttributes: ").Append(CustomAttributes).Append("\n");
@@ -394,15 +365,15 @@ namespace device_catalog.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as DeviceSerializerData);
+            return this.Equals(obj as DeviceDetail);
         }
 
         /// <summary>
-        /// Returns true if DeviceSerializerData instances are equal
+        /// Returns true if DeviceDetail instances are equal
         /// </summary>
-        /// <param name="other">Instance of DeviceSerializerData to be compared</param>
+        /// <param name="other">Instance of DeviceDetail to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DeviceSerializerData other)
+        public bool Equals(DeviceDetail other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
