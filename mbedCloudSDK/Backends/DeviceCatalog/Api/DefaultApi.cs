@@ -67,8 +67,8 @@ namespace device_catalog.Api
         /// <param name="trustLevel">The device trust level (optional)</param>
         /// <param name="updatedAt">The time the object was updated (optional)</param>
         /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>DeviceListResp</returns>
-        DeviceListResp DeviceCreate (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null);
+        /// <returns>DeviceDetail</returns>
+        DeviceDetail DeviceCreate (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null);
 
         /// <summary>
         /// 
@@ -101,8 +101,8 @@ namespace device_catalog.Api
         /// <param name="trustLevel">The device trust level (optional)</param>
         /// <param name="updatedAt">The time the object was updated (optional)</param>
         /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>ApiResponse of DeviceListResp</returns>
-        ApiResponse<DeviceListResp> DeviceCreateWithHttpInfo (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null);
+        /// <returns>ApiResponse of DeviceDetail</returns>
+        ApiResponse<DeviceDetail> DeviceCreateWithHttpInfo (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null);
         /// <summary>
         /// 
         /// </summary>
@@ -299,8 +299,8 @@ namespace device_catalog.Api
         /// <param name="trustLevel">The device trust level (optional)</param>
         /// <param name="updatedAt">The time the object was updated (optional)</param>
         /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>Task of DeviceListResp</returns>
-        System.Threading.Tasks.Task<DeviceListResp> DeviceCreateAsync (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null);
+        /// <returns>Task of DeviceDetail</returns>
+        System.Threading.Tasks.Task<DeviceDetail> DeviceCreateAsync (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null);
 
         /// <summary>
         /// 
@@ -333,8 +333,8 @@ namespace device_catalog.Api
         /// <param name="trustLevel">The device trust level (optional)</param>
         /// <param name="updatedAt">The time the object was updated (optional)</param>
         /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>Task of ApiResponse (DeviceListResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceListResp>> DeviceCreateAsyncWithHttpInfo (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null);
+        /// <returns>Task of ApiResponse (DeviceDetail)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceDetail>> DeviceCreateAsyncWithHttpInfo (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null);
         /// <summary>
         /// 
         /// </summary>
@@ -638,10 +638,10 @@ namespace device_catalog.Api
         /// <param name="trustLevel">The device trust level (optional)</param>
         /// <param name="updatedAt">The time the object was updated (optional)</param>
         /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>DeviceListResp</returns>
-        public DeviceListResp DeviceCreate (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null)
+        /// <returns>DeviceDetail</returns>
+        public DeviceDetail DeviceCreate (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null)
         {
-             ApiResponse<DeviceListResp> localVarResponse = DeviceCreateWithHttpInfo(mechanism, provisionKey, accountId, autoUpdate, bootstrappedTimestamp, createdAt, customAttributes, deployedState, deployment, description, deviceClass, deviceId, etag, id, manifest, mechanismUrl, name, _object, serialNumber, state, trustClass, trustLevel, updatedAt, vendorId);
+             ApiResponse<DeviceDetail> localVarResponse = DeviceCreateWithHttpInfo(mechanism, provisionKey, accountId, autoUpdate, bootstrappedTimestamp, createdAt, customAttributes, deployedState, deployment, description, deviceClass, deviceId, etag, id, manifest, mechanismUrl, name, _object, serialNumber, state, trustClass, trustLevel, updatedAt, vendorId);
              return localVarResponse.Data;
         }
 
@@ -673,8 +673,8 @@ namespace device_catalog.Api
         /// <param name="trustLevel">The device trust level (optional)</param>
         /// <param name="updatedAt">The time the object was updated (optional)</param>
         /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>ApiResponse of DeviceListResp</returns>
-        public ApiResponse< DeviceListResp > DeviceCreateWithHttpInfo (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null)
+        /// <returns>ApiResponse of DeviceDetail</returns>
+        public ApiResponse< DeviceDetail > DeviceCreateWithHttpInfo (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null)
         {
             // verify the required parameter 'mechanism' is set
             if (mechanism == null)
@@ -752,9 +752,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceListResp>(localVarStatusCode,
+            return new ApiResponse<DeviceDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceListResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceListResp)));
+                (DeviceDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceDetail)));
             
         }
 
@@ -786,10 +786,10 @@ namespace device_catalog.Api
         /// <param name="trustLevel">The device trust level (optional)</param>
         /// <param name="updatedAt">The time the object was updated (optional)</param>
         /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>Task of DeviceListResp</returns>
-        public async System.Threading.Tasks.Task<DeviceListResp> DeviceCreateAsync (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null)
+        /// <returns>Task of DeviceDetail</returns>
+        public async System.Threading.Tasks.Task<DeviceDetail> DeviceCreateAsync (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null)
         {
-             ApiResponse<DeviceListResp> localVarResponse = await DeviceCreateAsyncWithHttpInfo(mechanism, provisionKey, accountId, autoUpdate, bootstrappedTimestamp, createdAt, customAttributes, deployedState, deployment, description, deviceClass, deviceId, etag, id, manifest, mechanismUrl, name, _object, serialNumber, state, trustClass, trustLevel, updatedAt, vendorId);
+             ApiResponse<DeviceDetail> localVarResponse = await DeviceCreateAsyncWithHttpInfo(mechanism, provisionKey, accountId, autoUpdate, bootstrappedTimestamp, createdAt, customAttributes, deployedState, deployment, description, deviceClass, deviceId, etag, id, manifest, mechanismUrl, name, _object, serialNumber, state, trustClass, trustLevel, updatedAt, vendorId);
              return localVarResponse.Data;
 
         }
@@ -822,8 +822,8 @@ namespace device_catalog.Api
         /// <param name="trustLevel">The device trust level (optional)</param>
         /// <param name="updatedAt">The time the object was updated (optional)</param>
         /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>Task of ApiResponse (DeviceListResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceListResp>> DeviceCreateAsyncWithHttpInfo (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null)
+        /// <returns>Task of ApiResponse (DeviceDetail)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceDetail>> DeviceCreateAsyncWithHttpInfo (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null)
         {
             // verify the required parameter 'mechanism' is set
             if (mechanism == null)
@@ -900,9 +900,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceListResp>(localVarStatusCode,
+            return new ApiResponse<DeviceDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceListResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceListResp)));
+                (DeviceDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceDetail)));
             
         }
 
