@@ -24,7 +24,7 @@ limitations under the License.
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{18AD3B86-044D-4E46-B371-F760CFAB3563}</ProjectGuid>
+    <ProjectGuid>{3E28BA3B-A318-48ED-93E0-3667C283F708}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>factory_tool</RootNamespace>

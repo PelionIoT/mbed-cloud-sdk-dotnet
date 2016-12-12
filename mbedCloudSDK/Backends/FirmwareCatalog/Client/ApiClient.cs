@@ -125,7 +125,7 @@ namespace firmware_catalog.Client
         {
             // add path parameter, if any
             foreach (var param in pathParams)
-                path = path.Replace(string.Format("{{{0}}}", param.Key) , param.Value);
+                path = path.Replace("{" + param.Key + "}" , param.Value);
 
             var request = new RestRequest(path, method);
 

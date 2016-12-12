@@ -24,7 +24,7 @@ limitations under the License.
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{881C7512-A463-40FF-BB27-732FE05980B4}</ProjectGuid>
+    <ProjectGuid>{AD103C15-E497-4D2C-9AD9-77646BD3A5E8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>iam</RootNamespace>
