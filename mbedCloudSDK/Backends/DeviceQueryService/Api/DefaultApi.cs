@@ -101,8 +101,8 @@ namespace device_query_service.Api
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="queryId"> (optional)</param>
-        /// <returns>List&lt;DeviceQueryResp&gt;</returns>
-        List<DeviceQueryResp> DeviceQueryList (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null);
+        /// <returns>DeviceQueryResp</returns>
+        DeviceQueryResp DeviceQueryList (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null);
 
         /// <summary>
         /// 
@@ -119,8 +119,8 @@ namespace device_query_service.Api
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="queryId"> (optional)</param>
-        /// <returns>ApiResponse of List&lt;DeviceQueryResp&gt;</returns>
-        ApiResponse<List<DeviceQueryResp>> DeviceQueryListWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null);
+        /// <returns>ApiResponse of DeviceQueryResp</returns>
+        ApiResponse<DeviceQueryResp> DeviceQueryListWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null);
         /// <summary>
         /// 
         /// </summary>
@@ -271,8 +271,8 @@ namespace device_query_service.Api
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="queryId"> (optional)</param>
-        /// <returns>Task of List&lt;DeviceQueryResp&gt;</returns>
-        System.Threading.Tasks.Task<List<DeviceQueryResp>> DeviceQueryListAsync (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null);
+        /// <returns>Task of DeviceQueryResp</returns>
+        System.Threading.Tasks.Task<DeviceQueryResp> DeviceQueryListAsync (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null);
 
         /// <summary>
         /// 
@@ -289,8 +289,8 @@ namespace device_query_service.Api
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="queryId"> (optional)</param>
-        /// <returns>Task of ApiResponse (List&lt;DeviceQueryResp&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<DeviceQueryResp>>> DeviceQueryListAsyncWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null);
+        /// <returns>Task of ApiResponse (DeviceQueryResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceQueryResp>> DeviceQueryListAsyncWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null);
         /// <summary>
         /// 
         /// </summary>
@@ -828,10 +828,10 @@ namespace device_query_service.Api
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="queryId"> (optional)</param>
-        /// <returns>List&lt;DeviceQueryResp&gt;</returns>
-        public List<DeviceQueryResp> DeviceQueryList (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
+        /// <returns>DeviceQueryResp</returns>
+        public DeviceQueryResp DeviceQueryList (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
         {
-             ApiResponse<List<DeviceQueryResp>> localVarResponse = DeviceQueryListWithHttpInfo(description, createdAt, updatedAt, etag, name, _object, query, queryId);
+             ApiResponse<DeviceQueryResp> localVarResponse = DeviceQueryListWithHttpInfo(description, createdAt, updatedAt, etag, name, _object, query, queryId);
              return localVarResponse.Data;
         }
 
@@ -847,8 +847,8 @@ namespace device_query_service.Api
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="queryId"> (optional)</param>
-        /// <returns>ApiResponse of List&lt;DeviceQueryResp&gt;</returns>
-        public ApiResponse< List<DeviceQueryResp> > DeviceQueryListWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
+        /// <returns>ApiResponse of DeviceQueryResp</returns>
+        public ApiResponse< DeviceQueryResp > DeviceQueryListWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
         {
 
             var localVarPath = "/v3/device-queries/";
@@ -903,9 +903,9 @@ namespace device_query_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<List<DeviceQueryResp>>(localVarStatusCode,
+            return new ApiResponse<DeviceQueryResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<DeviceQueryResp>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<DeviceQueryResp>)));
+                (DeviceQueryResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQueryResp)));
             
         }
 
@@ -921,10 +921,10 @@ namespace device_query_service.Api
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="queryId"> (optional)</param>
-        /// <returns>Task of List&lt;DeviceQueryResp&gt;</returns>
-        public async System.Threading.Tasks.Task<List<DeviceQueryResp>> DeviceQueryListAsync (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
+        /// <returns>Task of DeviceQueryResp</returns>
+        public async System.Threading.Tasks.Task<DeviceQueryResp> DeviceQueryListAsync (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
         {
-             ApiResponse<List<DeviceQueryResp>> localVarResponse = await DeviceQueryListAsyncWithHttpInfo(description, createdAt, updatedAt, etag, name, _object, query, queryId);
+             ApiResponse<DeviceQueryResp> localVarResponse = await DeviceQueryListAsyncWithHttpInfo(description, createdAt, updatedAt, etag, name, _object, query, queryId);
              return localVarResponse.Data;
 
         }
@@ -941,8 +941,8 @@ namespace device_query_service.Api
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="queryId"> (optional)</param>
-        /// <returns>Task of ApiResponse (List&lt;DeviceQueryResp&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<DeviceQueryResp>>> DeviceQueryListAsyncWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
+        /// <returns>Task of ApiResponse (DeviceQueryResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryResp>> DeviceQueryListAsyncWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
         {
 
             var localVarPath = "/v3/device-queries/";
@@ -996,9 +996,9 @@ namespace device_query_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<List<DeviceQueryResp>>(localVarStatusCode,
+            return new ApiResponse<DeviceQueryResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<DeviceQueryResp>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<DeviceQueryResp>)));
+                (DeviceQueryResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQueryResp)));
             
         }
 
