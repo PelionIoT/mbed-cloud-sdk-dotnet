@@ -22,14 +22,14 @@ namespace ConsoleExamples
 			string apiKey = args[0];
             Config config = new Config(apiKey);
             config.Host = "https://lab-api.mbedcloudintegration.net";
-            runIAMExample(config);
+			runIAMExample(config);
             Console.ReadKey();
         }
 
         private static void runIAMExample(Config config)
         {
-            Accounts accounts = new Accounts(config);
-            var keys = accounts.ListApiKeys();
+            Access access = new Access(config);
+            var keys = access.ListApiKeys();
             foreach (var key in keys)
             {
                 Console.WriteLine(key);
@@ -38,8 +38,8 @@ namespace ConsoleExamples
 
         private static void runEndpointsExample(Config config)
         {
-            Connector connector = new Connector(config);
-            foreach (var endpoint in connector.listEndpoints())
+            Devices devices = new Devices(config);
+			foreach (var endpoint in devices.ListEndpoints())
             {
                 Console.WriteLine(endpoint);
             }

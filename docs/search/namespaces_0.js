@@ -4,5 +4,6 @@ var searchData=
   ['common',['Common',['../namespacembed_cloud_s_d_k_1_1_common.html',1,'mbedCloudSDK']]],
   ['development',['Development',['../namespacembed_cloud_s_d_k_1_1_development.html',1,'mbedCloudSDK']]],
   ['devices',['Devices',['../namespacembed_cloud_s_d_k_1_1_devices.html',1,'mbedCloudSDK']]],
+  ['manufacturing',['Manufacturing',['../namespacembed_cloud_s_d_k_1_1_manufacturing.html',1,'mbedCloudSDK']]],
   ['mbedcloudsdk',['mbedCloudSDK',['../namespacembed_cloud_s_d_k.html',1,'']]]
 ];

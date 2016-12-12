@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['listapikeys',['ListApiKeys',['../classmbed_cloud_s_d_k_1_1_access_1_1_accounts.html#afa9c379f83c903feaee21b78e1b70d22',1,'mbedCloudSDK::Access::Accounts']]],
-  ['listdevices',['ListDevices',['../classmbed_cloud_s_d_k_1_1_devices_1_1_devices.html#aca99ea38e6a83a66186f7d4d0448fff5',1,'mbedCloudSDK::Devices::Devices']]],
-  ['listendpoints',['listEndpoints',['../classmbed_cloud_s_d_k_1_1_devices_1_1_connector.html#ad2cc4abae6376cd19f9a19f7db63b8b0',1,'mbedCloudSDK::Devices::Connector']]],
-  ['listgroups',['ListGroups',['../classmbed_cloud_s_d_k_1_1_access_1_1_accounts.html#adc74901bd65b9e59c04cba9637e9da4c',1,'mbedCloudSDK::Access::Accounts']]],
-  ['listusers',['ListUsers',['../classmbed_cloud_s_d_k_1_1_access_1_1_accounts.html#a781f6ea5c5ebf2d481937179dbba6ad0',1,'mbedCloudSDK::Access::Accounts']]]
+  ['deleteapikey',['DeleteApiKey',['../classmbed_cloud_s_d_k_1_1_access_1_1_access.html#aa1c15156c95acd106941380232abee8f',1,'mbedCloudSDK::Access::Access']]],
+  ['deleteuser',['DeleteUser',['../classmbed_cloud_s_d_k_1_1_access_1_1_access.html#af0794fb9362c49491deda3be4e43c1f0',1,'mbedCloudSDK::Access::Access']]],
+  ['development',['Development',['../classmbed_cloud_s_d_k_1_1_development_1_1_development.html#a33c22180f2296241765a2ea5b0f97fc4',1,'mbedCloudSDK::Development::Development']]],
+  ['devices',['Devices',['../classmbed_cloud_s_d_k_1_1_devices_1_1_devices.html#a5e34373aa22473277109071aabe29d65',1,'mbedCloudSDK::Devices::Devices']]]
 ];

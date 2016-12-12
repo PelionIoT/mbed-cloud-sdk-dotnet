@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using developer_certificate.Client;
-using device_catalog.Api;
 using mbedCloudSDK.Common;
 namespace mbedCloudSDK.Devices
 {
 	/// <summary>
-	/// Devices.
+	/// Exposing functionality from the following underlying services:
+	/// - Connector / mDS
+	/// - Device query service
+	/// - Device catalog
 	/// </summary>
 	public class Devices : BaseAPI
 	{
@@ -16,25 +17,55 @@ namespace mbedCloudSDK.Devices
 		/// <param name="config">Config.</param>
 		public Devices(Config config) : base(config)
 		{
-			if (config.Host != string.Empty)
-			{
-				Configuration.Default.ApiClient = new ApiClient(config.Host);
-			}
-			Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
-			Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
 		}
 
 		/// <summary>
 		/// Lists the devices.
 		/// </summary>
 		/// <returns>The devices.</returns>
-		public List<device_catalog.Model.DeviceDetail> ListDevices()
+		/// <param name="listParams">List of parameters.</param>
+		public List<device_catalog.Model.DeviceDetail> ListDevices(ListParams listParams = null)
 		{
+			if (listParams == null)
+			{
+				listParams = new ListParams();
+			}
 			var api = new device_catalog.Api.DefaultApi(config.Host);
 			api.Configuration.ApiKey["Authorization"] = config.ApiKey;
 			api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-			return api.DeviceList().Data;
+			try
+			{
+				return api.DeviceList(listParams.Limit,listParams.Order, listParams.After, listParams.Filter, listParams.Include).Data;
+			}
+			catch (device_catalog.Client.ApiException e)
+			{
+				throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+			}
 		}
-			
+
+		/// <summary>
+		/// Lists the endpoints.
+		/// </summary>
+		/// <returns>The endpoints.</returns>
+		/// <param name="listParams">List of parameters.</param>
+		public List<mds.Model.Endpoint> ListEndpoints(ListParams listParams = null)
+		{
+			if (listParams != null)
+			{
+				throw new NotImplementedException();
+			}
+			var api = new mds.Api.EndpointsApi(config.Host);
+			api.Configuration.ApiKey["Authorization"] = config.ApiKey;
+			api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+			try
+			{
+				return api.V2EndpointsGet();
+			}
+			catch (mds.Client.ApiException e)
+			{
+				throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+			}
+		}
+
 	}
 }
