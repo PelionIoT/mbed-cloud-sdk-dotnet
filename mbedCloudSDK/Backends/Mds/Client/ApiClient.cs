@@ -123,11 +123,16 @@ namespace mds.Client
             Dictionary<String, FileParameter> fileParams, Dictionary<String, String> pathParams,
             String contentType)
         {
-            var request = new RestRequest(path, method);
+            
 
-            // add path parameter, if any
-            foreach(var param in pathParams)
-                request.AddParameter(param.Key, param.Value, ParameterType.UrlSegment);
+			// add path parameter, if any
+			/*foreach(var param in pathParams)
+                request.AddParameter(param.Key, param.Value, ParameterType.UrlSegment);*/
+
+			foreach (var param in pathParams)
+				path = path.Replace(string.Format("{{{0}}}", param.Key) , param.Value);
+
+			var request = new RestRequest(path, method);
 
             // add header parameter, if any
             foreach(var param in headerParams)
@@ -189,6 +194,7 @@ namespace mds.Client
             RestClient.Timeout = Configuration.Timeout;
             // set user agent
             RestClient.UserAgent = Configuration.UserAgent;
+			Uri req = RestClient.BuildUri(request);
 
             InterceptRequest(request);
             var response = RestClient.Execute(request);
