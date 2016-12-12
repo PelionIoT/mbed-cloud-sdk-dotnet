@@ -22,7 +22,7 @@ namespace ConsoleExamples
 			string apiKey = args[0];
             Config config = new Config(apiKey);
             config.Host = "https://lab-api.mbedcloudintegration.net";
-            runEndpointsExample(config);
+            runIAMExample(config);
             Console.ReadKey();
         }
 

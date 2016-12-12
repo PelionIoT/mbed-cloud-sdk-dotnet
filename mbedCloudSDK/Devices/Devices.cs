@@ -28,7 +28,7 @@ namespace mbedCloudSDK.Devices
 		/// Lists the devices.
 		/// </summary>
 		/// <returns>The devices.</returns>
-		public List<device_catalog.Model.DeviceSerializerData> ListDevices()
+		public List<device_catalog.Model.DeviceDetail> ListDevices()
 		{
 			var api = new device_catalog.Api.DefaultApi(config.Host);
 			api.Configuration.ApiKey["Authorization"] = config.ApiKey;
