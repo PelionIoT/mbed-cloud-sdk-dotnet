@@ -34,13 +34,13 @@ using Newtonsoft.Json.Converters;
 namespace device_catalog.Model
 {
     /// <summary>
-    /// DeviceSerializer
+    /// DeviceListResp
     /// </summary>
     [DataContract]
-    public partial class DeviceSerializer :  IEquatable<DeviceSerializer>
+    public partial class DeviceListResp :  IEquatable<DeviceListResp>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceSerializer" /> class.
+        /// Initializes a new instance of the <see cref="DeviceListResp" /> class.
         /// </summary>
         /// <param name="_Object">API Resource name.</param>
         /// <param name="HasMore">Whether there are more results to display.</param>
@@ -49,7 +49,7 @@ namespace device_catalog.Model
         /// <param name="Limit">The number of results to return.</param>
         /// <param name="Data">Data.</param>
         /// <param name="Order">Order of returned records.</param>
-        public DeviceSerializer(string _Object = null, bool? HasMore = null, int? TotalCount = null, string After = null, int? Limit = null, List<DeviceSerializerData> Data = null, string Order = null)
+        public DeviceListResp(string _Object = null, bool? HasMore = null, int? TotalCount = null, string After = null, int? Limit = null, List<DeviceDetail> Data = null, string Order = null)
         {
             this._Object = _Object;
             this.HasMore = HasMore;
@@ -94,7 +94,7 @@ namespace device_catalog.Model
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name="data", EmitDefaultValue=false)]
-        public List<DeviceSerializerData> Data { get; set; }
+        public List<DeviceDetail> Data { get; set; }
         /// <summary>
         /// Order of returned records
         /// </summary>
@@ -108,7 +108,7 @@ namespace device_catalog.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class DeviceSerializer {\n");
+            sb.Append("class DeviceListResp {\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  HasMore: ").Append(HasMore).Append("\n");
             sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
@@ -137,15 +137,15 @@ namespace device_catalog.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as DeviceSerializer);
+            return this.Equals(obj as DeviceListResp);
         }
 
         /// <summary>
-        /// Returns true if DeviceSerializer instances are equal
+        /// Returns true if DeviceListResp instances are equal
         /// </summary>
-        /// <param name="other">Instance of DeviceSerializer to be compared</param>
+        /// <param name="other">Instance of DeviceListResp to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DeviceSerializer other)
+        public bool Equals(DeviceListResp other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)

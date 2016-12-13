@@ -43,8 +43,32 @@ namespace device_catalog.Api
         /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>DeviceSerializer</returns>
-        DeviceSerializer DeviceCreate ();
+        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
+        /// <param name="provisionKey">The key used to provision the device</param>
+        /// <param name="accountId">The owning IAM account ID (optional)</param>
+        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
+        /// <param name="bootstrappedTimestamp"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
+        /// <param name="deployedState">The state of the device&#39;s deployment (optional)</param>
+        /// <param name="deployment">The last deployment used on the device (optional)</param>
+        /// <param name="description">The description of the object (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="deviceId">DEPRECATED: The ID of the device (optional)</param>
+        /// <param name="etag">The entity instance signature (optional)</param>
+        /// <param name="id">The ID of the device (optional)</param>
+        /// <param name="manifest">URL for the current device manifest (optional)</param>
+        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
+        /// <param name="name">The name of the object (optional)</param>
+        /// <param name="_object">The API resource entity (optional)</param>
+        /// <param name="serialNumber">The serial number of the device (optional)</param>
+        /// <param name="state">The current state of the device (optional)</param>
+        /// <param name="trustClass">The device trust class (optional)</param>
+        /// <param name="trustLevel">The device trust level (optional)</param>
+        /// <param name="updatedAt">The time the object was updated (optional)</param>
+        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <returns>DeviceDetail</returns>
+        DeviceDetail DeviceCreate (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null);
 
         /// <summary>
         /// 
@@ -53,8 +77,32 @@ namespace device_catalog.Api
         /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of DeviceSerializer</returns>
-        ApiResponse<DeviceSerializer> DeviceCreateWithHttpInfo ();
+        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
+        /// <param name="provisionKey">The key used to provision the device</param>
+        /// <param name="accountId">The owning IAM account ID (optional)</param>
+        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
+        /// <param name="bootstrappedTimestamp"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
+        /// <param name="deployedState">The state of the device&#39;s deployment (optional)</param>
+        /// <param name="deployment">The last deployment used on the device (optional)</param>
+        /// <param name="description">The description of the object (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="deviceId">DEPRECATED: The ID of the device (optional)</param>
+        /// <param name="etag">The entity instance signature (optional)</param>
+        /// <param name="id">The ID of the device (optional)</param>
+        /// <param name="manifest">URL for the current device manifest (optional)</param>
+        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
+        /// <param name="name">The name of the object (optional)</param>
+        /// <param name="_object">The API resource entity (optional)</param>
+        /// <param name="serialNumber">The serial number of the device (optional)</param>
+        /// <param name="state">The current state of the device (optional)</param>
+        /// <param name="trustClass">The device trust class (optional)</param>
+        /// <param name="trustLevel">The device trust level (optional)</param>
+        /// <param name="updatedAt">The time the object was updated (optional)</param>
+        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <returns>ApiResponse of DeviceDetail</returns>
+        ApiResponse<DeviceDetail> DeviceCreateWithHttpInfo (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null);
         /// <summary>
         /// 
         /// </summary>
@@ -63,8 +111,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>DeviceSerializer</returns>
-        DeviceSerializer DeviceDestroy (string deviceId);
+        /// <returns>DeviceListResp</returns>
+        DeviceListResp DeviceDestroy (string deviceId);
 
         /// <summary>
         /// 
@@ -74,8 +122,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>ApiResponse of DeviceSerializer</returns>
-        ApiResponse<DeviceSerializer> DeviceDestroyWithHttpInfo (string deviceId);
+        /// <returns>ApiResponse of DeviceListResp</returns>
+        ApiResponse<DeviceListResp> DeviceDestroyWithHttpInfo (string deviceId);
         /// <summary>
         /// 
         /// </summary>
@@ -88,8 +136,8 @@ namespace device_catalog.Api
         /// <param name="after"> (optional)</param>
         /// <param name="filter"> (optional)</param>
         /// <param name="include"> (optional)</param>
-        /// <returns>DeviceSerializer</returns>
-        DeviceSerializer DeviceList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
+        /// <returns>DeviceListResp</returns>
+        DeviceListResp DeviceList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
@@ -103,8 +151,8 @@ namespace device_catalog.Api
         /// <param name="after"> (optional)</param>
         /// <param name="filter"> (optional)</param>
         /// <param name="include"> (optional)</param>
-        /// <returns>ApiResponse of DeviceSerializer</returns>
-        ApiResponse<DeviceSerializer> DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
+        /// <returns>ApiResponse of DeviceListResp</returns>
+        ApiResponse<DeviceListResp> DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -163,8 +211,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>DeviceSerializer</returns>
-        DeviceSerializer DevicePartialUpdate (string deviceId);
+        /// <returns>DeviceListResp</returns>
+        DeviceListResp DevicePartialUpdate (string deviceId);
 
         /// <summary>
         /// 
@@ -174,8 +222,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>ApiResponse of DeviceSerializer</returns>
-        ApiResponse<DeviceSerializer> DevicePartialUpdateWithHttpInfo (string deviceId);
+        /// <returns>ApiResponse of DeviceListResp</returns>
+        ApiResponse<DeviceListResp> DevicePartialUpdateWithHttpInfo (string deviceId);
         /// <summary>
         /// 
         /// </summary>
@@ -184,8 +232,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>DeviceSerializer</returns>
-        DeviceSerializer DeviceRetrieve (string deviceId);
+        /// <returns>DeviceListResp</returns>
+        DeviceListResp DeviceRetrieve (string deviceId);
 
         /// <summary>
         /// 
@@ -195,8 +243,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>ApiResponse of DeviceSerializer</returns>
-        ApiResponse<DeviceSerializer> DeviceRetrieveWithHttpInfo (string deviceId);
+        /// <returns>ApiResponse of DeviceListResp</returns>
+        ApiResponse<DeviceListResp> DeviceRetrieveWithHttpInfo (string deviceId);
         /// <summary>
         /// 
         /// </summary>
@@ -205,8 +253,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>DeviceSerializer</returns>
-        DeviceSerializer DeviceUpdate (string deviceId);
+        /// <returns>DeviceListResp</returns>
+        DeviceListResp DeviceUpdate (string deviceId);
 
         /// <summary>
         /// 
@@ -216,8 +264,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>ApiResponse of DeviceSerializer</returns>
-        ApiResponse<DeviceSerializer> DeviceUpdateWithHttpInfo (string deviceId);
+        /// <returns>ApiResponse of DeviceListResp</returns>
+        ApiResponse<DeviceListResp> DeviceUpdateWithHttpInfo (string deviceId);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -227,8 +275,32 @@ namespace device_catalog.Api
         /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of DeviceSerializer</returns>
-        System.Threading.Tasks.Task<DeviceSerializer> DeviceCreateAsync ();
+        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
+        /// <param name="provisionKey">The key used to provision the device</param>
+        /// <param name="accountId">The owning IAM account ID (optional)</param>
+        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
+        /// <param name="bootstrappedTimestamp"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
+        /// <param name="deployedState">The state of the device&#39;s deployment (optional)</param>
+        /// <param name="deployment">The last deployment used on the device (optional)</param>
+        /// <param name="description">The description of the object (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="deviceId">DEPRECATED: The ID of the device (optional)</param>
+        /// <param name="etag">The entity instance signature (optional)</param>
+        /// <param name="id">The ID of the device (optional)</param>
+        /// <param name="manifest">URL for the current device manifest (optional)</param>
+        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
+        /// <param name="name">The name of the object (optional)</param>
+        /// <param name="_object">The API resource entity (optional)</param>
+        /// <param name="serialNumber">The serial number of the device (optional)</param>
+        /// <param name="state">The current state of the device (optional)</param>
+        /// <param name="trustClass">The device trust class (optional)</param>
+        /// <param name="trustLevel">The device trust level (optional)</param>
+        /// <param name="updatedAt">The time the object was updated (optional)</param>
+        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <returns>Task of DeviceDetail</returns>
+        System.Threading.Tasks.Task<DeviceDetail> DeviceCreateAsync (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null);
 
         /// <summary>
         /// 
@@ -237,8 +309,32 @@ namespace device_catalog.Api
         /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceCreateAsyncWithHttpInfo ();
+        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
+        /// <param name="provisionKey">The key used to provision the device</param>
+        /// <param name="accountId">The owning IAM account ID (optional)</param>
+        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
+        /// <param name="bootstrappedTimestamp"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
+        /// <param name="deployedState">The state of the device&#39;s deployment (optional)</param>
+        /// <param name="deployment">The last deployment used on the device (optional)</param>
+        /// <param name="description">The description of the object (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="deviceId">DEPRECATED: The ID of the device (optional)</param>
+        /// <param name="etag">The entity instance signature (optional)</param>
+        /// <param name="id">The ID of the device (optional)</param>
+        /// <param name="manifest">URL for the current device manifest (optional)</param>
+        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
+        /// <param name="name">The name of the object (optional)</param>
+        /// <param name="_object">The API resource entity (optional)</param>
+        /// <param name="serialNumber">The serial number of the device (optional)</param>
+        /// <param name="state">The current state of the device (optional)</param>
+        /// <param name="trustClass">The device trust class (optional)</param>
+        /// <param name="trustLevel">The device trust level (optional)</param>
+        /// <param name="updatedAt">The time the object was updated (optional)</param>
+        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <returns>Task of ApiResponse (DeviceDetail)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceDetail>> DeviceCreateAsyncWithHttpInfo (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null);
         /// <summary>
         /// 
         /// </summary>
@@ -247,8 +343,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>Task of DeviceSerializer</returns>
-        System.Threading.Tasks.Task<DeviceSerializer> DeviceDestroyAsync (string deviceId);
+        /// <returns>Task of DeviceListResp</returns>
+        System.Threading.Tasks.Task<DeviceListResp> DeviceDestroyAsync (string deviceId);
 
         /// <summary>
         /// 
@@ -258,8 +354,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceDestroyAsyncWithHttpInfo (string deviceId);
+        /// <returns>Task of ApiResponse (DeviceListResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceListResp>> DeviceDestroyAsyncWithHttpInfo (string deviceId);
         /// <summary>
         /// 
         /// </summary>
@@ -272,8 +368,8 @@ namespace device_catalog.Api
         /// <param name="after"> (optional)</param>
         /// <param name="filter"> (optional)</param>
         /// <param name="include"> (optional)</param>
-        /// <returns>Task of DeviceSerializer</returns>
-        System.Threading.Tasks.Task<DeviceSerializer> DeviceListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
+        /// <returns>Task of DeviceListResp</returns>
+        System.Threading.Tasks.Task<DeviceListResp> DeviceListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
@@ -287,8 +383,8 @@ namespace device_catalog.Api
         /// <param name="after"> (optional)</param>
         /// <param name="filter"> (optional)</param>
         /// <param name="include"> (optional)</param>
-        /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
+        /// <returns>Task of ApiResponse (DeviceListResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceListResp>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -347,8 +443,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>Task of DeviceSerializer</returns>
-        System.Threading.Tasks.Task<DeviceSerializer> DevicePartialUpdateAsync (string deviceId);
+        /// <returns>Task of DeviceListResp</returns>
+        System.Threading.Tasks.Task<DeviceListResp> DevicePartialUpdateAsync (string deviceId);
 
         /// <summary>
         /// 
@@ -358,8 +454,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DevicePartialUpdateAsyncWithHttpInfo (string deviceId);
+        /// <returns>Task of ApiResponse (DeviceListResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceListResp>> DevicePartialUpdateAsyncWithHttpInfo (string deviceId);
         /// <summary>
         /// 
         /// </summary>
@@ -368,8 +464,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>Task of DeviceSerializer</returns>
-        System.Threading.Tasks.Task<DeviceSerializer> DeviceRetrieveAsync (string deviceId);
+        /// <returns>Task of DeviceListResp</returns>
+        System.Threading.Tasks.Task<DeviceListResp> DeviceRetrieveAsync (string deviceId);
 
         /// <summary>
         /// 
@@ -379,8 +475,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceRetrieveAsyncWithHttpInfo (string deviceId);
+        /// <returns>Task of ApiResponse (DeviceListResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceListResp>> DeviceRetrieveAsyncWithHttpInfo (string deviceId);
         /// <summary>
         /// 
         /// </summary>
@@ -389,8 +485,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>Task of DeviceSerializer</returns>
-        System.Threading.Tasks.Task<DeviceSerializer> DeviceUpdateAsync (string deviceId);
+        /// <returns>Task of DeviceListResp</returns>
+        System.Threading.Tasks.Task<DeviceListResp> DeviceUpdateAsync (string deviceId);
 
         /// <summary>
         /// 
@@ -400,8 +496,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceUpdateAsyncWithHttpInfo (string deviceId);
+        /// <returns>Task of ApiResponse (DeviceListResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceListResp>> DeviceUpdateAsyncWithHttpInfo (string deviceId);
         #endregion Asynchronous Operations
     }
 
@@ -518,10 +614,34 @@ namespace device_catalog.Api
         ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>DeviceSerializer</returns>
-        public DeviceSerializer DeviceCreate ()
+        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
+        /// <param name="provisionKey">The key used to provision the device</param>
+        /// <param name="accountId">The owning IAM account ID (optional)</param>
+        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
+        /// <param name="bootstrappedTimestamp"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
+        /// <param name="deployedState">The state of the device&#39;s deployment (optional)</param>
+        /// <param name="deployment">The last deployment used on the device (optional)</param>
+        /// <param name="description">The description of the object (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="deviceId">DEPRECATED: The ID of the device (optional)</param>
+        /// <param name="etag">The entity instance signature (optional)</param>
+        /// <param name="id">The ID of the device (optional)</param>
+        /// <param name="manifest">URL for the current device manifest (optional)</param>
+        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
+        /// <param name="name">The name of the object (optional)</param>
+        /// <param name="_object">The API resource entity (optional)</param>
+        /// <param name="serialNumber">The serial number of the device (optional)</param>
+        /// <param name="state">The current state of the device (optional)</param>
+        /// <param name="trustClass">The device trust class (optional)</param>
+        /// <param name="trustLevel">The device trust level (optional)</param>
+        /// <param name="updatedAt">The time the object was updated (optional)</param>
+        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <returns>DeviceDetail</returns>
+        public DeviceDetail DeviceCreate (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null)
         {
-             ApiResponse<DeviceSerializer> localVarResponse = DeviceCreateWithHttpInfo();
+             ApiResponse<DeviceDetail> localVarResponse = DeviceCreateWithHttpInfo(mechanism, provisionKey, accountId, autoUpdate, bootstrappedTimestamp, createdAt, customAttributes, deployedState, deployment, description, deviceClass, deviceId, etag, id, manifest, mechanismUrl, name, _object, serialNumber, state, trustClass, trustLevel, updatedAt, vendorId);
              return localVarResponse.Data;
         }
 
@@ -529,9 +649,39 @@ namespace device_catalog.Api
         ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of DeviceSerializer</returns>
-        public ApiResponse< DeviceSerializer > DeviceCreateWithHttpInfo ()
+        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
+        /// <param name="provisionKey">The key used to provision the device</param>
+        /// <param name="accountId">The owning IAM account ID (optional)</param>
+        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
+        /// <param name="bootstrappedTimestamp"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
+        /// <param name="deployedState">The state of the device&#39;s deployment (optional)</param>
+        /// <param name="deployment">The last deployment used on the device (optional)</param>
+        /// <param name="description">The description of the object (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="deviceId">DEPRECATED: The ID of the device (optional)</param>
+        /// <param name="etag">The entity instance signature (optional)</param>
+        /// <param name="id">The ID of the device (optional)</param>
+        /// <param name="manifest">URL for the current device manifest (optional)</param>
+        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
+        /// <param name="name">The name of the object (optional)</param>
+        /// <param name="_object">The API resource entity (optional)</param>
+        /// <param name="serialNumber">The serial number of the device (optional)</param>
+        /// <param name="state">The current state of the device (optional)</param>
+        /// <param name="trustClass">The device trust class (optional)</param>
+        /// <param name="trustLevel">The device trust level (optional)</param>
+        /// <param name="updatedAt">The time the object was updated (optional)</param>
+        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <returns>ApiResponse of DeviceDetail</returns>
+        public ApiResponse< DeviceDetail > DeviceCreateWithHttpInfo (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null)
         {
+            // verify the required parameter 'mechanism' is set
+            if (mechanism == null)
+                throw new ApiException(400, "Missing required parameter 'mechanism' when calling DefaultApi->DeviceCreate");
+            // verify the required parameter 'provisionKey' is set
+            if (provisionKey == null)
+                throw new ApiException(400, "Missing required parameter 'provisionKey' when calling DefaultApi->DeviceCreate");
 
             var localVarPath = "/v3/devices/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -543,6 +693,7 @@ namespace device_catalog.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/x-www-form-urlencoded"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -556,6 +707,30 @@ namespace device_catalog.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
+            if (accountId != null) localVarFormParams.Add("account_id", Configuration.ApiClient.ParameterToString(accountId)); // form parameter
+            if (autoUpdate != null) localVarFormParams.Add("auto_update", Configuration.ApiClient.ParameterToString(autoUpdate)); // form parameter
+            if (bootstrappedTimestamp != null) localVarFormParams.Add("bootstrapped_timestamp", Configuration.ApiClient.ParameterToString(bootstrappedTimestamp)); // form parameter
+            if (createdAt != null) localVarFormParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // form parameter
+            if (customAttributes != null) localVarFormParams.Add("custom_attributes", Configuration.ApiClient.ParameterToString(customAttributes)); // form parameter
+            if (deployedState != null) localVarFormParams.Add("deployed_state", Configuration.ApiClient.ParameterToString(deployedState)); // form parameter
+            if (deployment != null) localVarFormParams.Add("deployment", Configuration.ApiClient.ParameterToString(deployment)); // form parameter
+            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
+            if (deviceClass != null) localVarFormParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // form parameter
+            if (deviceId != null) localVarFormParams.Add("device_id", Configuration.ApiClient.ParameterToString(deviceId)); // form parameter
+            if (etag != null) localVarFormParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // form parameter
+            if (id != null) localVarFormParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // form parameter
+            if (manifest != null) localVarFormParams.Add("manifest", Configuration.ApiClient.ParameterToString(manifest)); // form parameter
+            if (mechanism != null) localVarFormParams.Add("mechanism", Configuration.ApiClient.ParameterToString(mechanism)); // form parameter
+            if (mechanismUrl != null) localVarFormParams.Add("mechanism_url", Configuration.ApiClient.ParameterToString(mechanismUrl)); // form parameter
+            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
+            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
+            if (provisionKey != null) localVarFormParams.Add("provision_key", Configuration.ApiClient.ParameterToString(provisionKey)); // form parameter
+            if (serialNumber != null) localVarFormParams.Add("serial_number", Configuration.ApiClient.ParameterToString(serialNumber)); // form parameter
+            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
+            if (trustClass != null) localVarFormParams.Add("trust_class", Configuration.ApiClient.ParameterToString(trustClass)); // form parameter
+            if (trustLevel != null) localVarFormParams.Add("trust_level", Configuration.ApiClient.ParameterToString(trustLevel)); // form parameter
+            if (updatedAt != null) localVarFormParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // form parameter
+            if (vendorId != null) localVarFormParams.Add("vendor_id", Configuration.ApiClient.ParameterToString(vendorId)); // form parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -577,9 +752,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceSerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceSerializer)));
+                (DeviceDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceDetail)));
             
         }
 
@@ -587,10 +762,34 @@ namespace device_catalog.Api
         ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of DeviceSerializer</returns>
-        public async System.Threading.Tasks.Task<DeviceSerializer> DeviceCreateAsync ()
+        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
+        /// <param name="provisionKey">The key used to provision the device</param>
+        /// <param name="accountId">The owning IAM account ID (optional)</param>
+        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
+        /// <param name="bootstrappedTimestamp"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
+        /// <param name="deployedState">The state of the device&#39;s deployment (optional)</param>
+        /// <param name="deployment">The last deployment used on the device (optional)</param>
+        /// <param name="description">The description of the object (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="deviceId">DEPRECATED: The ID of the device (optional)</param>
+        /// <param name="etag">The entity instance signature (optional)</param>
+        /// <param name="id">The ID of the device (optional)</param>
+        /// <param name="manifest">URL for the current device manifest (optional)</param>
+        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
+        /// <param name="name">The name of the object (optional)</param>
+        /// <param name="_object">The API resource entity (optional)</param>
+        /// <param name="serialNumber">The serial number of the device (optional)</param>
+        /// <param name="state">The current state of the device (optional)</param>
+        /// <param name="trustClass">The device trust class (optional)</param>
+        /// <param name="trustLevel">The device trust level (optional)</param>
+        /// <param name="updatedAt">The time the object was updated (optional)</param>
+        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <returns>Task of DeviceDetail</returns>
+        public async System.Threading.Tasks.Task<DeviceDetail> DeviceCreateAsync (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null)
         {
-             ApiResponse<DeviceSerializer> localVarResponse = await DeviceCreateAsyncWithHttpInfo();
+             ApiResponse<DeviceDetail> localVarResponse = await DeviceCreateAsyncWithHttpInfo(mechanism, provisionKey, accountId, autoUpdate, bootstrappedTimestamp, createdAt, customAttributes, deployedState, deployment, description, deviceClass, deviceId, etag, id, manifest, mechanismUrl, name, _object, serialNumber, state, trustClass, trustLevel, updatedAt, vendorId);
              return localVarResponse.Data;
 
         }
@@ -599,9 +798,39 @@ namespace device_catalog.Api
         ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceCreateAsyncWithHttpInfo ()
+        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
+        /// <param name="provisionKey">The key used to provision the device</param>
+        /// <param name="accountId">The owning IAM account ID (optional)</param>
+        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
+        /// <param name="bootstrappedTimestamp"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
+        /// <param name="deployedState">The state of the device&#39;s deployment (optional)</param>
+        /// <param name="deployment">The last deployment used on the device (optional)</param>
+        /// <param name="description">The description of the object (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="deviceId">DEPRECATED: The ID of the device (optional)</param>
+        /// <param name="etag">The entity instance signature (optional)</param>
+        /// <param name="id">The ID of the device (optional)</param>
+        /// <param name="manifest">URL for the current device manifest (optional)</param>
+        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
+        /// <param name="name">The name of the object (optional)</param>
+        /// <param name="_object">The API resource entity (optional)</param>
+        /// <param name="serialNumber">The serial number of the device (optional)</param>
+        /// <param name="state">The current state of the device (optional)</param>
+        /// <param name="trustClass">The device trust class (optional)</param>
+        /// <param name="trustLevel">The device trust level (optional)</param>
+        /// <param name="updatedAt">The time the object was updated (optional)</param>
+        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <returns>Task of ApiResponse (DeviceDetail)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceDetail>> DeviceCreateAsyncWithHttpInfo (string mechanism, string provisionKey, string accountId = null, bool? autoUpdate = null, string bootstrappedTimestamp = null, DateTime? createdAt = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, DateTime? etag = null, string id = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, long? trustClass = null, long? trustLevel = null, DateTime? updatedAt = null, string vendorId = null)
         {
+            // verify the required parameter 'mechanism' is set
+            if (mechanism == null)
+                throw new ApiException(400, "Missing required parameter 'mechanism' when calling DefaultApi->DeviceCreate");
+            // verify the required parameter 'provisionKey' is set
+            if (provisionKey == null)
+                throw new ApiException(400, "Missing required parameter 'provisionKey' when calling DefaultApi->DeviceCreate");
 
             var localVarPath = "/v3/devices/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -613,6 +842,7 @@ namespace device_catalog.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/x-www-form-urlencoded"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -626,6 +856,30 @@ namespace device_catalog.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
+            if (accountId != null) localVarFormParams.Add("account_id", Configuration.ApiClient.ParameterToString(accountId)); // form parameter
+            if (autoUpdate != null) localVarFormParams.Add("auto_update", Configuration.ApiClient.ParameterToString(autoUpdate)); // form parameter
+            if (bootstrappedTimestamp != null) localVarFormParams.Add("bootstrapped_timestamp", Configuration.ApiClient.ParameterToString(bootstrappedTimestamp)); // form parameter
+            if (createdAt != null) localVarFormParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // form parameter
+            if (customAttributes != null) localVarFormParams.Add("custom_attributes", Configuration.ApiClient.ParameterToString(customAttributes)); // form parameter
+            if (deployedState != null) localVarFormParams.Add("deployed_state", Configuration.ApiClient.ParameterToString(deployedState)); // form parameter
+            if (deployment != null) localVarFormParams.Add("deployment", Configuration.ApiClient.ParameterToString(deployment)); // form parameter
+            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
+            if (deviceClass != null) localVarFormParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // form parameter
+            if (deviceId != null) localVarFormParams.Add("device_id", Configuration.ApiClient.ParameterToString(deviceId)); // form parameter
+            if (etag != null) localVarFormParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // form parameter
+            if (id != null) localVarFormParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // form parameter
+            if (manifest != null) localVarFormParams.Add("manifest", Configuration.ApiClient.ParameterToString(manifest)); // form parameter
+            if (mechanism != null) localVarFormParams.Add("mechanism", Configuration.ApiClient.ParameterToString(mechanism)); // form parameter
+            if (mechanismUrl != null) localVarFormParams.Add("mechanism_url", Configuration.ApiClient.ParameterToString(mechanismUrl)); // form parameter
+            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
+            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
+            if (provisionKey != null) localVarFormParams.Add("provision_key", Configuration.ApiClient.ParameterToString(provisionKey)); // form parameter
+            if (serialNumber != null) localVarFormParams.Add("serial_number", Configuration.ApiClient.ParameterToString(serialNumber)); // form parameter
+            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
+            if (trustClass != null) localVarFormParams.Add("trust_class", Configuration.ApiClient.ParameterToString(trustClass)); // form parameter
+            if (trustLevel != null) localVarFormParams.Add("trust_level", Configuration.ApiClient.ParameterToString(trustLevel)); // form parameter
+            if (updatedAt != null) localVarFormParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // form parameter
+            if (vendorId != null) localVarFormParams.Add("vendor_id", Configuration.ApiClient.ParameterToString(vendorId)); // form parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -646,9 +900,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceSerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceSerializer)));
+                (DeviceDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceDetail)));
             
         }
 
@@ -657,10 +911,10 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>DeviceSerializer</returns>
-        public DeviceSerializer DeviceDestroy (string deviceId)
+        /// <returns>DeviceListResp</returns>
+        public DeviceListResp DeviceDestroy (string deviceId)
         {
-             ApiResponse<DeviceSerializer> localVarResponse = DeviceDestroyWithHttpInfo(deviceId);
+             ApiResponse<DeviceListResp> localVarResponse = DeviceDestroyWithHttpInfo(deviceId);
              return localVarResponse.Data;
         }
 
@@ -669,8 +923,8 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>ApiResponse of DeviceSerializer</returns>
-        public ApiResponse< DeviceSerializer > DeviceDestroyWithHttpInfo (string deviceId)
+        /// <returns>ApiResponse of DeviceListResp</returns>
+        public ApiResponse< DeviceListResp > DeviceDestroyWithHttpInfo (string deviceId)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
@@ -721,9 +975,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceSerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceListResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceSerializer)));
+                (DeviceListResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceListResp)));
             
         }
 
@@ -732,10 +986,10 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>Task of DeviceSerializer</returns>
-        public async System.Threading.Tasks.Task<DeviceSerializer> DeviceDestroyAsync (string deviceId)
+        /// <returns>Task of DeviceListResp</returns>
+        public async System.Threading.Tasks.Task<DeviceListResp> DeviceDestroyAsync (string deviceId)
         {
-             ApiResponse<DeviceSerializer> localVarResponse = await DeviceDestroyAsyncWithHttpInfo(deviceId);
+             ApiResponse<DeviceListResp> localVarResponse = await DeviceDestroyAsyncWithHttpInfo(deviceId);
              return localVarResponse.Data;
 
         }
@@ -745,8 +999,8 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceDestroyAsyncWithHttpInfo (string deviceId)
+        /// <returns>Task of ApiResponse (DeviceListResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceListResp>> DeviceDestroyAsyncWithHttpInfo (string deviceId)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
@@ -796,9 +1050,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceSerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceListResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceSerializer)));
+                (DeviceListResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceListResp)));
             
         }
 
@@ -811,10 +1065,10 @@ namespace device_catalog.Api
         /// <param name="after"> (optional)</param>
         /// <param name="filter"> (optional)</param>
         /// <param name="include"> (optional)</param>
-        /// <returns>DeviceSerializer</returns>
-        public DeviceSerializer DeviceList (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
+        /// <returns>DeviceListResp</returns>
+        public DeviceListResp DeviceList (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<DeviceSerializer> localVarResponse = DeviceListWithHttpInfo(limit, order, after, filter, include);
+             ApiResponse<DeviceListResp> localVarResponse = DeviceListWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
         }
 
@@ -827,8 +1081,8 @@ namespace device_catalog.Api
         /// <param name="after"> (optional)</param>
         /// <param name="filter"> (optional)</param>
         /// <param name="include"> (optional)</param>
-        /// <returns>ApiResponse of DeviceSerializer</returns>
-        public ApiResponse< DeviceSerializer > DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
+        /// <returns>ApiResponse of DeviceListResp</returns>
+        public ApiResponse< DeviceListResp > DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/devices/";
@@ -880,9 +1134,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceSerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceListResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceSerializer)));
+                (DeviceListResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceListResp)));
             
         }
 
@@ -895,10 +1149,10 @@ namespace device_catalog.Api
         /// <param name="after"> (optional)</param>
         /// <param name="filter"> (optional)</param>
         /// <param name="include"> (optional)</param>
-        /// <returns>Task of DeviceSerializer</returns>
-        public async System.Threading.Tasks.Task<DeviceSerializer> DeviceListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
+        /// <returns>Task of DeviceListResp</returns>
+        public async System.Threading.Tasks.Task<DeviceListResp> DeviceListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<DeviceSerializer> localVarResponse = await DeviceListAsyncWithHttpInfo(limit, order, after, filter, include);
+             ApiResponse<DeviceListResp> localVarResponse = await DeviceListAsyncWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
 
         }
@@ -912,8 +1166,8 @@ namespace device_catalog.Api
         /// <param name="after"> (optional)</param>
         /// <param name="filter"> (optional)</param>
         /// <param name="include"> (optional)</param>
-        /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
+        /// <returns>Task of ApiResponse (DeviceListResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceListResp>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/devices/";
@@ -964,9 +1218,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceSerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceListResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceSerializer)));
+                (DeviceListResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceListResp)));
             
         }
 
@@ -1293,10 +1547,10 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>DeviceSerializer</returns>
-        public DeviceSerializer DevicePartialUpdate (string deviceId)
+        /// <returns>DeviceListResp</returns>
+        public DeviceListResp DevicePartialUpdate (string deviceId)
         {
-             ApiResponse<DeviceSerializer> localVarResponse = DevicePartialUpdateWithHttpInfo(deviceId);
+             ApiResponse<DeviceListResp> localVarResponse = DevicePartialUpdateWithHttpInfo(deviceId);
              return localVarResponse.Data;
         }
 
@@ -1305,8 +1559,8 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>ApiResponse of DeviceSerializer</returns>
-        public ApiResponse< DeviceSerializer > DevicePartialUpdateWithHttpInfo (string deviceId)
+        /// <returns>ApiResponse of DeviceListResp</returns>
+        public ApiResponse< DeviceListResp > DevicePartialUpdateWithHttpInfo (string deviceId)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
@@ -1357,9 +1611,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceSerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceListResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceSerializer)));
+                (DeviceListResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceListResp)));
             
         }
 
@@ -1368,10 +1622,10 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>Task of DeviceSerializer</returns>
-        public async System.Threading.Tasks.Task<DeviceSerializer> DevicePartialUpdateAsync (string deviceId)
+        /// <returns>Task of DeviceListResp</returns>
+        public async System.Threading.Tasks.Task<DeviceListResp> DevicePartialUpdateAsync (string deviceId)
         {
-             ApiResponse<DeviceSerializer> localVarResponse = await DevicePartialUpdateAsyncWithHttpInfo(deviceId);
+             ApiResponse<DeviceListResp> localVarResponse = await DevicePartialUpdateAsyncWithHttpInfo(deviceId);
              return localVarResponse.Data;
 
         }
@@ -1381,8 +1635,8 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DevicePartialUpdateAsyncWithHttpInfo (string deviceId)
+        /// <returns>Task of ApiResponse (DeviceListResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceListResp>> DevicePartialUpdateAsyncWithHttpInfo (string deviceId)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
@@ -1432,9 +1686,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceSerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceListResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceSerializer)));
+                (DeviceListResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceListResp)));
             
         }
 
@@ -1443,10 +1697,10 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>DeviceSerializer</returns>
-        public DeviceSerializer DeviceRetrieve (string deviceId)
+        /// <returns>DeviceListResp</returns>
+        public DeviceListResp DeviceRetrieve (string deviceId)
         {
-             ApiResponse<DeviceSerializer> localVarResponse = DeviceRetrieveWithHttpInfo(deviceId);
+             ApiResponse<DeviceListResp> localVarResponse = DeviceRetrieveWithHttpInfo(deviceId);
              return localVarResponse.Data;
         }
 
@@ -1455,8 +1709,8 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>ApiResponse of DeviceSerializer</returns>
-        public ApiResponse< DeviceSerializer > DeviceRetrieveWithHttpInfo (string deviceId)
+        /// <returns>ApiResponse of DeviceListResp</returns>
+        public ApiResponse< DeviceListResp > DeviceRetrieveWithHttpInfo (string deviceId)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
@@ -1507,9 +1761,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceSerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceListResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceSerializer)));
+                (DeviceListResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceListResp)));
             
         }
 
@@ -1518,10 +1772,10 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>Task of DeviceSerializer</returns>
-        public async System.Threading.Tasks.Task<DeviceSerializer> DeviceRetrieveAsync (string deviceId)
+        /// <returns>Task of DeviceListResp</returns>
+        public async System.Threading.Tasks.Task<DeviceListResp> DeviceRetrieveAsync (string deviceId)
         {
-             ApiResponse<DeviceSerializer> localVarResponse = await DeviceRetrieveAsyncWithHttpInfo(deviceId);
+             ApiResponse<DeviceListResp> localVarResponse = await DeviceRetrieveAsyncWithHttpInfo(deviceId);
              return localVarResponse.Data;
 
         }
@@ -1531,8 +1785,8 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceRetrieveAsyncWithHttpInfo (string deviceId)
+        /// <returns>Task of ApiResponse (DeviceListResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceListResp>> DeviceRetrieveAsyncWithHttpInfo (string deviceId)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
@@ -1582,9 +1836,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceSerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceListResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceSerializer)));
+                (DeviceListResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceListResp)));
             
         }
 
@@ -1593,10 +1847,10 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>DeviceSerializer</returns>
-        public DeviceSerializer DeviceUpdate (string deviceId)
+        /// <returns>DeviceListResp</returns>
+        public DeviceListResp DeviceUpdate (string deviceId)
         {
-             ApiResponse<DeviceSerializer> localVarResponse = DeviceUpdateWithHttpInfo(deviceId);
+             ApiResponse<DeviceListResp> localVarResponse = DeviceUpdateWithHttpInfo(deviceId);
              return localVarResponse.Data;
         }
 
@@ -1605,8 +1859,8 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>ApiResponse of DeviceSerializer</returns>
-        public ApiResponse< DeviceSerializer > DeviceUpdateWithHttpInfo (string deviceId)
+        /// <returns>ApiResponse of DeviceListResp</returns>
+        public ApiResponse< DeviceListResp > DeviceUpdateWithHttpInfo (string deviceId)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
@@ -1657,9 +1911,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceSerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceListResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceSerializer)));
+                (DeviceListResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceListResp)));
             
         }
 
@@ -1668,10 +1922,10 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>Task of DeviceSerializer</returns>
-        public async System.Threading.Tasks.Task<DeviceSerializer> DeviceUpdateAsync (string deviceId)
+        /// <returns>Task of DeviceListResp</returns>
+        public async System.Threading.Tasks.Task<DeviceListResp> DeviceUpdateAsync (string deviceId)
         {
-             ApiResponse<DeviceSerializer> localVarResponse = await DeviceUpdateAsyncWithHttpInfo(deviceId);
+             ApiResponse<DeviceListResp> localVarResponse = await DeviceUpdateAsyncWithHttpInfo(deviceId);
              return localVarResponse.Data;
 
         }
@@ -1681,8 +1935,8 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceUpdateAsyncWithHttpInfo (string deviceId)
+        /// <returns>Task of ApiResponse (DeviceListResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceListResp>> DeviceUpdateAsyncWithHttpInfo (string deviceId)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
@@ -1732,9 +1986,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceSerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceListResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceSerializer)));
+                (DeviceListResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceListResp)));
             
         }
 

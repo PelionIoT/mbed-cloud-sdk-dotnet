@@ -126,9 +126,6 @@
     <Compile Include="Backends\DeviceCatalog\Client\IApiAccessor.cs" />
     <Compile Include="Backends\DeviceCatalog\Model\DeviceLogSerializer.cs" />
     <Compile Include="Backends\DeviceCatalog\Model\DeviceLogSerializerData.cs" />
-    <Compile Include="Backends\DeviceCatalog\Model\DeviceSerializer.cs" />
-    <Compile Include="Backends\DeviceCatalog\Model\DeviceSerializerData.cs" />
-    <Compile Include="Backends\DeviceCatalog\Model\WriteDeviceLogSerializer.cs" />
     <Compile Include="Backends\DeviceQueryService\Api\DefaultApi.cs" />
     <Compile Include="Backends\DeviceQueryService\Client\ApiClient.cs" />
     <Compile Include="Backends\DeviceQueryService\Client\ApiException.cs" />
@@ -136,8 +133,6 @@
     <Compile Include="Backends\DeviceQueryService\Client\Configuration.cs" />
     <Compile Include="Backends\DeviceQueryService\Client\ExceptionFactory.cs" />
     <Compile Include="Backends\DeviceQueryService\Client\IApiAccessor.cs" />
-    <Compile Include="Backends\DeviceQueryService\Model\DeviceQuerySerializer.cs" />
-    <Compile Include="Backends\DeviceQueryService\Model\WriteDeviceQuerySerializer.cs" />
     <Compile Include="Backends\FactoryTool\Api\DefaultApi.cs" />
     <Compile Include="Backends\FactoryTool\Client\ApiClient.cs" />
     <Compile Include="Backends\FactoryTool\Client\ApiException.cs" />
@@ -163,6 +158,10 @@
     <Compile Include="Backends\Mds\Client\IApiAccessor.cs" />
     <Compile Include="Backends\ProvisioningCertificate\Client\ExceptionFactory.cs" />
     <Compile Include="Backends\ProvisioningCertificate\Client\IApiAccessor.cs" />
+    <Compile Include="Backends\DeviceQueryService\Model\DeviceQueryDetail.cs" />
+    <Compile Include="Backends\DeviceQueryService\Model\DeviceQueryResp.cs" />
+    <Compile Include="Backends\DeviceCatalog\Model\DeviceDetail.cs" />
+    <Compile Include="Backends\DeviceCatalog\Model\DeviceListResp.cs" />
     <Compile Include="Exceptions\CloudApiException.cs" />
     <Compile Include="Common\ListParams.cs" />
     <Compile Include="Manufacturing\Manufacturing.cs" />
@@ -189,6 +188,7 @@
     <Folder Include="Devices\" />
     <Folder Include="lib\" />
     <Folder Include="Common\" />
+    <Folder Include="Backends\DeviceQueryService\Model\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Manufacturing\" />
   </ItemGroup>

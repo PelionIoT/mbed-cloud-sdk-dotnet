@@ -123,16 +123,12 @@ namespace mds.Client
             Dictionary<String, FileParameter> fileParams, Dictionary<String, String> pathParams,
             String contentType)
         {
-            
 
-			// add path parameter, if any
-			/*foreach(var param in pathParams)
-                request.AddParameter(param.Key, param.Value, ParameterType.UrlSegment);*/
+            // add path parameter, if any
+            foreach (var param in pathParams)
+                path = path.Replace("{" + param.Key + "}" , param.Value);
 
-			foreach (var param in pathParams)
-				path = path.Replace(string.Format("{{{0}}}", param.Key) , param.Value);
-
-			var request = new RestRequest(path, method);
+            var request = new RestRequest(path, method);
 
             // add header parameter, if any
             foreach(var param in headerParams)
