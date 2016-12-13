@@ -24,7 +24,7 @@ namespace mbedCloudSDK.Devices
 		/// </summary>
 		/// <returns>The devices.</returns>
 		/// <param name="listParams">List of parameters.</param>
-		public List<device_catalog.Model.DeviceSerializerData> ListDevices(ListParams listParams = null)
+		public List<device_catalog.Model.DeviceDetail> ListDevices(ListParams listParams = null)
 		{
 			if (listParams == null)
 			{

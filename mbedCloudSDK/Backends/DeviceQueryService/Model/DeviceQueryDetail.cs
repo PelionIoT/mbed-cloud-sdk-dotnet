@@ -34,18 +34,18 @@ using Newtonsoft.Json.Converters;
 namespace device_query_service.Model
 {
     /// <summary>
-    /// DeviceQuerySerializer
+    /// DeviceQueryDetail
     /// </summary>
     [DataContract]
-    public partial class DeviceQuerySerializer :  IEquatable<DeviceQuerySerializer>
+    public partial class DeviceQueryDetail :  IEquatable<DeviceQueryDetail>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceQuerySerializer" /> class.
+        /// Initializes a new instance of the <see cref="DeviceQueryDetail" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected DeviceQuerySerializer() { }
+        protected DeviceQueryDetail() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceQuerySerializer" /> class.
+        /// Initializes a new instance of the <see cref="DeviceQueryDetail" /> class.
         /// </summary>
         /// <param name="Description">The description of the object (required).</param>
         /// <param name="CreatedAt">The time the object was created (required).</param>
@@ -56,12 +56,12 @@ namespace device_query_service.Model
         /// <param name="Query">The device query (required).</param>
         /// <param name="Id">The ID of the query (required).</param>
         /// <param name="Name">The name of the query (required).</param>
-        public DeviceQuerySerializer(string Description = null, DateTime? CreatedAt = null, string _Object = null, DateTime? UpdatedAt = null, DateTime? Etag = null, string QueryId = null, string Query = null, string Id = null, string Name = null)
+        public DeviceQueryDetail(string Description = null, DateTime? CreatedAt = null, string _Object = null, DateTime? UpdatedAt = null, DateTime? Etag = null, string QueryId = null, string Query = null, string Id = null, string Name = null)
         {
             // to ensure "Description" is required (not null)
             if (Description == null)
             {
-                throw new InvalidDataException("Description is a required property for DeviceQuerySerializer and cannot be null");
+                throw new InvalidDataException("Description is a required property for DeviceQueryDetail and cannot be null");
             }
             else
             {
@@ -70,7 +70,7 @@ namespace device_query_service.Model
             // to ensure "CreatedAt" is required (not null)
             if (CreatedAt == null)
             {
-                throw new InvalidDataException("CreatedAt is a required property for DeviceQuerySerializer and cannot be null");
+                throw new InvalidDataException("CreatedAt is a required property for DeviceQueryDetail and cannot be null");
             }
             else
             {
@@ -79,7 +79,7 @@ namespace device_query_service.Model
             // to ensure "_Object" is required (not null)
             if (_Object == null)
             {
-                throw new InvalidDataException("_Object is a required property for DeviceQuerySerializer and cannot be null");
+                throw new InvalidDataException("_Object is a required property for DeviceQueryDetail and cannot be null");
             }
             else
             {
@@ -88,7 +88,7 @@ namespace device_query_service.Model
             // to ensure "UpdatedAt" is required (not null)
             if (UpdatedAt == null)
             {
-                throw new InvalidDataException("UpdatedAt is a required property for DeviceQuerySerializer and cannot be null");
+                throw new InvalidDataException("UpdatedAt is a required property for DeviceQueryDetail and cannot be null");
             }
             else
             {
@@ -97,7 +97,7 @@ namespace device_query_service.Model
             // to ensure "Etag" is required (not null)
             if (Etag == null)
             {
-                throw new InvalidDataException("Etag is a required property for DeviceQuerySerializer and cannot be null");
+                throw new InvalidDataException("Etag is a required property for DeviceQueryDetail and cannot be null");
             }
             else
             {
@@ -106,7 +106,7 @@ namespace device_query_service.Model
             // to ensure "QueryId" is required (not null)
             if (QueryId == null)
             {
-                throw new InvalidDataException("QueryId is a required property for DeviceQuerySerializer and cannot be null");
+                throw new InvalidDataException("QueryId is a required property for DeviceQueryDetail and cannot be null");
             }
             else
             {
@@ -115,7 +115,7 @@ namespace device_query_service.Model
             // to ensure "Query" is required (not null)
             if (Query == null)
             {
-                throw new InvalidDataException("Query is a required property for DeviceQuerySerializer and cannot be null");
+                throw new InvalidDataException("Query is a required property for DeviceQueryDetail and cannot be null");
             }
             else
             {
@@ -124,7 +124,7 @@ namespace device_query_service.Model
             // to ensure "Id" is required (not null)
             if (Id == null)
             {
-                throw new InvalidDataException("Id is a required property for DeviceQuerySerializer and cannot be null");
+                throw new InvalidDataException("Id is a required property for DeviceQueryDetail and cannot be null");
             }
             else
             {
@@ -133,7 +133,7 @@ namespace device_query_service.Model
             // to ensure "Name" is required (not null)
             if (Name == null)
             {
-                throw new InvalidDataException("Name is a required property for DeviceQuerySerializer and cannot be null");
+                throw new InvalidDataException("Name is a required property for DeviceQueryDetail and cannot be null");
             }
             else
             {
@@ -202,7 +202,7 @@ namespace device_query_service.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class DeviceQuerySerializer {\n");
+            sb.Append("class DeviceQueryDetail {\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
@@ -233,15 +233,15 @@ namespace device_query_service.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as DeviceQuerySerializer);
+            return this.Equals(obj as DeviceQueryDetail);
         }
 
         /// <summary>
-        /// Returns true if DeviceQuerySerializer instances are equal
+        /// Returns true if DeviceQueryDetail instances are equal
         /// </summary>
-        /// <param name="other">Instance of DeviceQuerySerializer to be compared</param>
+        /// <param name="other">Instance of DeviceQueryDetail to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DeviceQuerySerializer other)
+        public bool Equals(DeviceQueryDetail other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)

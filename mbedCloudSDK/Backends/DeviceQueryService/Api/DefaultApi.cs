@@ -48,8 +48,8 @@ namespace device_query_service.Api
         /// <param name="description">The description of the object (optional)</param>
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="queryId">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>DeviceQuerySerializer</returns>
-        DeviceQuerySerializer DeviceQueryCreate (string name, string query, string description = null, string _object = null, string queryId = null);
+        /// <returns>DeviceQueryDetail</returns>
+        DeviceQueryDetail DeviceQueryCreate (string name, string query, string description = null, string _object = null, string queryId = null);
 
         /// <summary>
         /// 
@@ -63,8 +63,8 @@ namespace device_query_service.Api
         /// <param name="description">The description of the object (optional)</param>
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="queryId">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>ApiResponse of DeviceQuerySerializer</returns>
-        ApiResponse<DeviceQuerySerializer> DeviceQueryCreateWithHttpInfo (string name, string query, string description = null, string _object = null, string queryId = null);
+        /// <returns>ApiResponse of DeviceQueryDetail</returns>
+        ApiResponse<DeviceQueryDetail> DeviceQueryCreateWithHttpInfo (string name, string query, string description = null, string _object = null, string queryId = null);
         /// <summary>
         /// 
         /// </summary>
@@ -73,8 +73,8 @@ namespace device_query_service.Api
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>DeviceQuerySerializer</returns>
-        DeviceQuerySerializer DeviceQueryDestroy (string queryId);
+        /// <returns>DeviceQueryDetail</returns>
+        DeviceQueryDetail DeviceQueryDestroy (string queryId);
 
         /// <summary>
         /// 
@@ -84,8 +84,8 @@ namespace device_query_service.Api
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>ApiResponse of DeviceQuerySerializer</returns>
-        ApiResponse<DeviceQuerySerializer> DeviceQueryDestroyWithHttpInfo (string queryId);
+        /// <returns>ApiResponse of DeviceQueryDetail</returns>
+        ApiResponse<DeviceQueryDetail> DeviceQueryDestroyWithHttpInfo (string queryId);
         /// <summary>
         /// 
         /// </summary>
@@ -101,8 +101,8 @@ namespace device_query_service.Api
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="queryId"> (optional)</param>
-        /// <returns>List&lt;DeviceQuerySerializer&gt;</returns>
-        List<DeviceQuerySerializer> DeviceQueryList (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null);
+        /// <returns>DeviceQueryResp</returns>
+        DeviceQueryResp DeviceQueryList (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null);
 
         /// <summary>
         /// 
@@ -119,8 +119,8 @@ namespace device_query_service.Api
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="queryId"> (optional)</param>
-        /// <returns>ApiResponse of List&lt;DeviceQuerySerializer&gt;</returns>
-        ApiResponse<List<DeviceQuerySerializer>> DeviceQueryListWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null);
+        /// <returns>ApiResponse of DeviceQueryResp</returns>
+        ApiResponse<DeviceQueryResp> DeviceQueryListWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null);
         /// <summary>
         /// 
         /// </summary>
@@ -134,8 +134,8 @@ namespace device_query_service.Api
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="query">The device query (optional)</param>
         /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>DeviceQuerySerializer</returns>
-        DeviceQuerySerializer DeviceQueryPartialUpdate (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null);
+        /// <returns>DeviceQueryDetail</returns>
+        DeviceQueryDetail DeviceQueryPartialUpdate (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null);
 
         /// <summary>
         /// 
@@ -150,8 +150,8 @@ namespace device_query_service.Api
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="query">The device query (optional)</param>
         /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>ApiResponse of DeviceQuerySerializer</returns>
-        ApiResponse<DeviceQuerySerializer> DeviceQueryPartialUpdateWithHttpInfo (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null);
+        /// <returns>ApiResponse of DeviceQueryDetail</returns>
+        ApiResponse<DeviceQueryDetail> DeviceQueryPartialUpdateWithHttpInfo (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null);
         /// <summary>
         /// 
         /// </summary>
@@ -160,8 +160,8 @@ namespace device_query_service.Api
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>DeviceQuerySerializer</returns>
-        DeviceQuerySerializer DeviceQueryRetrieve (string queryId);
+        /// <returns>DeviceQueryDetail</returns>
+        DeviceQueryDetail DeviceQueryRetrieve (string queryId);
 
         /// <summary>
         /// 
@@ -171,8 +171,8 @@ namespace device_query_service.Api
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>ApiResponse of DeviceQuerySerializer</returns>
-        ApiResponse<DeviceQuerySerializer> DeviceQueryRetrieveWithHttpInfo (string queryId);
+        /// <returns>ApiResponse of DeviceQueryDetail</returns>
+        ApiResponse<DeviceQueryDetail> DeviceQueryRetrieveWithHttpInfo (string queryId);
         /// <summary>
         /// 
         /// </summary>
@@ -186,8 +186,8 @@ namespace device_query_service.Api
         /// <param name="description">The description of the object (optional)</param>
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>DeviceQuerySerializer</returns>
-        DeviceQuerySerializer DeviceQueryUpdate (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null);
+        /// <returns>DeviceQueryDetail</returns>
+        DeviceQueryDetail DeviceQueryUpdate (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null);
 
         /// <summary>
         /// 
@@ -202,8 +202,8 @@ namespace device_query_service.Api
         /// <param name="description">The description of the object (optional)</param>
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>ApiResponse of DeviceQuerySerializer</returns>
-        ApiResponse<DeviceQuerySerializer> DeviceQueryUpdateWithHttpInfo (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null);
+        /// <returns>ApiResponse of DeviceQueryDetail</returns>
+        ApiResponse<DeviceQueryDetail> DeviceQueryUpdateWithHttpInfo (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -218,8 +218,8 @@ namespace device_query_service.Api
         /// <param name="description">The description of the object (optional)</param>
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="queryId">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>Task of DeviceQuerySerializer</returns>
-        System.Threading.Tasks.Task<DeviceQuerySerializer> DeviceQueryCreateAsync (string name, string query, string description = null, string _object = null, string queryId = null);
+        /// <returns>Task of DeviceQueryDetail</returns>
+        System.Threading.Tasks.Task<DeviceQueryDetail> DeviceQueryCreateAsync (string name, string query, string description = null, string _object = null, string queryId = null);
 
         /// <summary>
         /// 
@@ -233,8 +233,8 @@ namespace device_query_service.Api
         /// <param name="description">The description of the object (optional)</param>
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="queryId">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>Task of ApiResponse (DeviceQuerySerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQuerySerializer>> DeviceQueryCreateAsyncWithHttpInfo (string name, string query, string description = null, string _object = null, string queryId = null);
+        /// <returns>Task of ApiResponse (DeviceQueryDetail)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceQueryDetail>> DeviceQueryCreateAsyncWithHttpInfo (string name, string query, string description = null, string _object = null, string queryId = null);
         /// <summary>
         /// 
         /// </summary>
@@ -243,8 +243,8 @@ namespace device_query_service.Api
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>Task of DeviceQuerySerializer</returns>
-        System.Threading.Tasks.Task<DeviceQuerySerializer> DeviceQueryDestroyAsync (string queryId);
+        /// <returns>Task of DeviceQueryDetail</returns>
+        System.Threading.Tasks.Task<DeviceQueryDetail> DeviceQueryDestroyAsync (string queryId);
 
         /// <summary>
         /// 
@@ -254,8 +254,8 @@ namespace device_query_service.Api
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>Task of ApiResponse (DeviceQuerySerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQuerySerializer>> DeviceQueryDestroyAsyncWithHttpInfo (string queryId);
+        /// <returns>Task of ApiResponse (DeviceQueryDetail)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceQueryDetail>> DeviceQueryDestroyAsyncWithHttpInfo (string queryId);
         /// <summary>
         /// 
         /// </summary>
@@ -271,8 +271,8 @@ namespace device_query_service.Api
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="queryId"> (optional)</param>
-        /// <returns>Task of List&lt;DeviceQuerySerializer&gt;</returns>
-        System.Threading.Tasks.Task<List<DeviceQuerySerializer>> DeviceQueryListAsync (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null);
+        /// <returns>Task of DeviceQueryResp</returns>
+        System.Threading.Tasks.Task<DeviceQueryResp> DeviceQueryListAsync (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null);
 
         /// <summary>
         /// 
@@ -289,8 +289,8 @@ namespace device_query_service.Api
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="queryId"> (optional)</param>
-        /// <returns>Task of ApiResponse (List&lt;DeviceQuerySerializer&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<DeviceQuerySerializer>>> DeviceQueryListAsyncWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null);
+        /// <returns>Task of ApiResponse (DeviceQueryResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceQueryResp>> DeviceQueryListAsyncWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null);
         /// <summary>
         /// 
         /// </summary>
@@ -304,8 +304,8 @@ namespace device_query_service.Api
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="query">The device query (optional)</param>
         /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>Task of DeviceQuerySerializer</returns>
-        System.Threading.Tasks.Task<DeviceQuerySerializer> DeviceQueryPartialUpdateAsync (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null);
+        /// <returns>Task of DeviceQueryDetail</returns>
+        System.Threading.Tasks.Task<DeviceQueryDetail> DeviceQueryPartialUpdateAsync (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null);
 
         /// <summary>
         /// 
@@ -320,8 +320,8 @@ namespace device_query_service.Api
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="query">The device query (optional)</param>
         /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>Task of ApiResponse (DeviceQuerySerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQuerySerializer>> DeviceQueryPartialUpdateAsyncWithHttpInfo (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null);
+        /// <returns>Task of ApiResponse (DeviceQueryDetail)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceQueryDetail>> DeviceQueryPartialUpdateAsyncWithHttpInfo (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null);
         /// <summary>
         /// 
         /// </summary>
@@ -330,8 +330,8 @@ namespace device_query_service.Api
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>Task of DeviceQuerySerializer</returns>
-        System.Threading.Tasks.Task<DeviceQuerySerializer> DeviceQueryRetrieveAsync (string queryId);
+        /// <returns>Task of DeviceQueryDetail</returns>
+        System.Threading.Tasks.Task<DeviceQueryDetail> DeviceQueryRetrieveAsync (string queryId);
 
         /// <summary>
         /// 
@@ -341,8 +341,8 @@ namespace device_query_service.Api
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>Task of ApiResponse (DeviceQuerySerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQuerySerializer>> DeviceQueryRetrieveAsyncWithHttpInfo (string queryId);
+        /// <returns>Task of ApiResponse (DeviceQueryDetail)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceQueryDetail>> DeviceQueryRetrieveAsyncWithHttpInfo (string queryId);
         /// <summary>
         /// 
         /// </summary>
@@ -356,8 +356,8 @@ namespace device_query_service.Api
         /// <param name="description">The description of the object (optional)</param>
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>Task of DeviceQuerySerializer</returns>
-        System.Threading.Tasks.Task<DeviceQuerySerializer> DeviceQueryUpdateAsync (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null);
+        /// <returns>Task of DeviceQueryDetail</returns>
+        System.Threading.Tasks.Task<DeviceQueryDetail> DeviceQueryUpdateAsync (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null);
 
         /// <summary>
         /// 
@@ -372,8 +372,8 @@ namespace device_query_service.Api
         /// <param name="description">The description of the object (optional)</param>
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>Task of ApiResponse (DeviceQuerySerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQuerySerializer>> DeviceQueryUpdateAsyncWithHttpInfo (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null);
+        /// <returns>Task of ApiResponse (DeviceQueryDetail)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceQueryDetail>> DeviceQueryUpdateAsyncWithHttpInfo (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null);
         #endregion Asynchronous Operations
     }
 
@@ -495,10 +495,10 @@ namespace device_query_service.Api
         /// <param name="description">The description of the object (optional)</param>
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="queryId">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>DeviceQuerySerializer</returns>
-        public DeviceQuerySerializer DeviceQueryCreate (string name, string query, string description = null, string _object = null, string queryId = null)
+        /// <returns>DeviceQueryDetail</returns>
+        public DeviceQueryDetail DeviceQueryCreate (string name, string query, string description = null, string _object = null, string queryId = null)
         {
-             ApiResponse<DeviceQuerySerializer> localVarResponse = DeviceQueryCreateWithHttpInfo(name, query, description, _object, queryId);
+             ApiResponse<DeviceQueryDetail> localVarResponse = DeviceQueryCreateWithHttpInfo(name, query, description, _object, queryId);
              return localVarResponse.Data;
         }
 
@@ -511,8 +511,8 @@ namespace device_query_service.Api
         /// <param name="description">The description of the object (optional)</param>
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="queryId">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>ApiResponse of DeviceQuerySerializer</returns>
-        public ApiResponse< DeviceQuerySerializer > DeviceQueryCreateWithHttpInfo (string name, string query, string description = null, string _object = null, string queryId = null)
+        /// <returns>ApiResponse of DeviceQueryDetail</returns>
+        public ApiResponse< DeviceQueryDetail > DeviceQueryCreateWithHttpInfo (string name, string query, string description = null, string _object = null, string queryId = null)
         {
             // verify the required parameter 'name' is set
             if (name == null)
@@ -531,6 +531,7 @@ namespace device_query_service.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/x-www-form-urlencoded"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -570,9 +571,9 @@ namespace device_query_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceQuerySerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceQueryDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceQuerySerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuerySerializer)));
+                (DeviceQueryDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQueryDetail)));
             
         }
 
@@ -585,10 +586,10 @@ namespace device_query_service.Api
         /// <param name="description">The description of the object (optional)</param>
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="queryId">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>Task of DeviceQuerySerializer</returns>
-        public async System.Threading.Tasks.Task<DeviceQuerySerializer> DeviceQueryCreateAsync (string name, string query, string description = null, string _object = null, string queryId = null)
+        /// <returns>Task of DeviceQueryDetail</returns>
+        public async System.Threading.Tasks.Task<DeviceQueryDetail> DeviceQueryCreateAsync (string name, string query, string description = null, string _object = null, string queryId = null)
         {
-             ApiResponse<DeviceQuerySerializer> localVarResponse = await DeviceQueryCreateAsyncWithHttpInfo(name, query, description, _object, queryId);
+             ApiResponse<DeviceQueryDetail> localVarResponse = await DeviceQueryCreateAsyncWithHttpInfo(name, query, description, _object, queryId);
              return localVarResponse.Data;
 
         }
@@ -602,8 +603,8 @@ namespace device_query_service.Api
         /// <param name="description">The description of the object (optional)</param>
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="queryId">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>Task of ApiResponse (DeviceQuerySerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuerySerializer>> DeviceQueryCreateAsyncWithHttpInfo (string name, string query, string description = null, string _object = null, string queryId = null)
+        /// <returns>Task of ApiResponse (DeviceQueryDetail)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryDetail>> DeviceQueryCreateAsyncWithHttpInfo (string name, string query, string description = null, string _object = null, string queryId = null)
         {
             // verify the required parameter 'name' is set
             if (name == null)
@@ -622,6 +623,7 @@ namespace device_query_service.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/x-www-form-urlencoded"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -660,9 +662,9 @@ namespace device_query_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceQuerySerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceQueryDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceQuerySerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuerySerializer)));
+                (DeviceQueryDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQueryDetail)));
             
         }
 
@@ -671,10 +673,10 @@ namespace device_query_service.Api
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>DeviceQuerySerializer</returns>
-        public DeviceQuerySerializer DeviceQueryDestroy (string queryId)
+        /// <returns>DeviceQueryDetail</returns>
+        public DeviceQueryDetail DeviceQueryDestroy (string queryId)
         {
-             ApiResponse<DeviceQuerySerializer> localVarResponse = DeviceQueryDestroyWithHttpInfo(queryId);
+             ApiResponse<DeviceQueryDetail> localVarResponse = DeviceQueryDestroyWithHttpInfo(queryId);
              return localVarResponse.Data;
         }
 
@@ -683,8 +685,8 @@ namespace device_query_service.Api
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>ApiResponse of DeviceQuerySerializer</returns>
-        public ApiResponse< DeviceQuerySerializer > DeviceQueryDestroyWithHttpInfo (string queryId)
+        /// <returns>ApiResponse of DeviceQueryDetail</returns>
+        public ApiResponse< DeviceQueryDetail > DeviceQueryDestroyWithHttpInfo (string queryId)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)
@@ -735,9 +737,9 @@ namespace device_query_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceQuerySerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceQueryDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceQuerySerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuerySerializer)));
+                (DeviceQueryDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQueryDetail)));
             
         }
 
@@ -746,10 +748,10 @@ namespace device_query_service.Api
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>Task of DeviceQuerySerializer</returns>
-        public async System.Threading.Tasks.Task<DeviceQuerySerializer> DeviceQueryDestroyAsync (string queryId)
+        /// <returns>Task of DeviceQueryDetail</returns>
+        public async System.Threading.Tasks.Task<DeviceQueryDetail> DeviceQueryDestroyAsync (string queryId)
         {
-             ApiResponse<DeviceQuerySerializer> localVarResponse = await DeviceQueryDestroyAsyncWithHttpInfo(queryId);
+             ApiResponse<DeviceQueryDetail> localVarResponse = await DeviceQueryDestroyAsyncWithHttpInfo(queryId);
              return localVarResponse.Data;
 
         }
@@ -759,8 +761,8 @@ namespace device_query_service.Api
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>Task of ApiResponse (DeviceQuerySerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuerySerializer>> DeviceQueryDestroyAsyncWithHttpInfo (string queryId)
+        /// <returns>Task of ApiResponse (DeviceQueryDetail)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryDetail>> DeviceQueryDestroyAsyncWithHttpInfo (string queryId)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)
@@ -810,9 +812,9 @@ namespace device_query_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceQuerySerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceQueryDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceQuerySerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuerySerializer)));
+                (DeviceQueryDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQueryDetail)));
             
         }
 
@@ -828,10 +830,10 @@ namespace device_query_service.Api
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="queryId"> (optional)</param>
-        /// <returns>List&lt;DeviceQuerySerializer&gt;</returns>
-        public List<DeviceQuerySerializer> DeviceQueryList (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
+        /// <returns>DeviceQueryResp</returns>
+        public DeviceQueryResp DeviceQueryList (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
         {
-             ApiResponse<List<DeviceQuerySerializer>> localVarResponse = DeviceQueryListWithHttpInfo(description, createdAt, updatedAt, etag, name, _object, query, queryId);
+             ApiResponse<DeviceQueryResp> localVarResponse = DeviceQueryListWithHttpInfo(description, createdAt, updatedAt, etag, name, _object, query, queryId);
              return localVarResponse.Data;
         }
 
@@ -847,8 +849,8 @@ namespace device_query_service.Api
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="queryId"> (optional)</param>
-        /// <returns>ApiResponse of List&lt;DeviceQuerySerializer&gt;</returns>
-        public ApiResponse< List<DeviceQuerySerializer> > DeviceQueryListWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
+        /// <returns>ApiResponse of DeviceQueryResp</returns>
+        public ApiResponse< DeviceQueryResp > DeviceQueryListWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
         {
 
             var localVarPath = "/v3/device-queries/";
@@ -903,9 +905,9 @@ namespace device_query_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<List<DeviceQuerySerializer>>(localVarStatusCode,
+            return new ApiResponse<DeviceQueryResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<DeviceQuerySerializer>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<DeviceQuerySerializer>)));
+                (DeviceQueryResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQueryResp)));
             
         }
 
@@ -921,10 +923,10 @@ namespace device_query_service.Api
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="queryId"> (optional)</param>
-        /// <returns>Task of List&lt;DeviceQuerySerializer&gt;</returns>
-        public async System.Threading.Tasks.Task<List<DeviceQuerySerializer>> DeviceQueryListAsync (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
+        /// <returns>Task of DeviceQueryResp</returns>
+        public async System.Threading.Tasks.Task<DeviceQueryResp> DeviceQueryListAsync (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
         {
-             ApiResponse<List<DeviceQuerySerializer>> localVarResponse = await DeviceQueryListAsyncWithHttpInfo(description, createdAt, updatedAt, etag, name, _object, query, queryId);
+             ApiResponse<DeviceQueryResp> localVarResponse = await DeviceQueryListAsyncWithHttpInfo(description, createdAt, updatedAt, etag, name, _object, query, queryId);
              return localVarResponse.Data;
 
         }
@@ -941,8 +943,8 @@ namespace device_query_service.Api
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
         /// <param name="queryId"> (optional)</param>
-        /// <returns>Task of ApiResponse (List&lt;DeviceQuerySerializer&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<DeviceQuerySerializer>>> DeviceQueryListAsyncWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
+        /// <returns>Task of ApiResponse (DeviceQueryResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryResp>> DeviceQueryListAsyncWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
         {
 
             var localVarPath = "/v3/device-queries/";
@@ -996,9 +998,9 @@ namespace device_query_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<List<DeviceQuerySerializer>>(localVarStatusCode,
+            return new ApiResponse<DeviceQueryResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<DeviceQuerySerializer>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<DeviceQuerySerializer>)));
+                (DeviceQueryResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQueryResp)));
             
         }
 
@@ -1012,10 +1014,10 @@ namespace device_query_service.Api
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="query">The device query (optional)</param>
         /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>DeviceQuerySerializer</returns>
-        public DeviceQuerySerializer DeviceQueryPartialUpdate (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null)
+        /// <returns>DeviceQueryDetail</returns>
+        public DeviceQueryDetail DeviceQueryPartialUpdate (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null)
         {
-             ApiResponse<DeviceQuerySerializer> localVarResponse = DeviceQueryPartialUpdateWithHttpInfo(queryId, description, name, _object, query, queryId2);
+             ApiResponse<DeviceQueryDetail> localVarResponse = DeviceQueryPartialUpdateWithHttpInfo(queryId, description, name, _object, query, queryId2);
              return localVarResponse.Data;
         }
 
@@ -1029,8 +1031,8 @@ namespace device_query_service.Api
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="query">The device query (optional)</param>
         /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>ApiResponse of DeviceQuerySerializer</returns>
-        public ApiResponse< DeviceQuerySerializer > DeviceQueryPartialUpdateWithHttpInfo (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null)
+        /// <returns>ApiResponse of DeviceQueryDetail</returns>
+        public ApiResponse< DeviceQueryDetail > DeviceQueryPartialUpdateWithHttpInfo (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)
@@ -1086,9 +1088,9 @@ namespace device_query_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceQuerySerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceQueryDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceQuerySerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuerySerializer)));
+                (DeviceQueryDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQueryDetail)));
             
         }
 
@@ -1102,10 +1104,10 @@ namespace device_query_service.Api
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="query">The device query (optional)</param>
         /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>Task of DeviceQuerySerializer</returns>
-        public async System.Threading.Tasks.Task<DeviceQuerySerializer> DeviceQueryPartialUpdateAsync (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null)
+        /// <returns>Task of DeviceQueryDetail</returns>
+        public async System.Threading.Tasks.Task<DeviceQueryDetail> DeviceQueryPartialUpdateAsync (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null)
         {
-             ApiResponse<DeviceQuerySerializer> localVarResponse = await DeviceQueryPartialUpdateAsyncWithHttpInfo(queryId, description, name, _object, query, queryId2);
+             ApiResponse<DeviceQueryDetail> localVarResponse = await DeviceQueryPartialUpdateAsyncWithHttpInfo(queryId, description, name, _object, query, queryId2);
              return localVarResponse.Data;
 
         }
@@ -1120,8 +1122,8 @@ namespace device_query_service.Api
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="query">The device query (optional)</param>
         /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>Task of ApiResponse (DeviceQuerySerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuerySerializer>> DeviceQueryPartialUpdateAsyncWithHttpInfo (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null)
+        /// <returns>Task of ApiResponse (DeviceQueryDetail)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryDetail>> DeviceQueryPartialUpdateAsyncWithHttpInfo (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)
@@ -1176,9 +1178,9 @@ namespace device_query_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceQuerySerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceQueryDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceQuerySerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuerySerializer)));
+                (DeviceQueryDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQueryDetail)));
             
         }
 
@@ -1187,10 +1189,10 @@ namespace device_query_service.Api
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>DeviceQuerySerializer</returns>
-        public DeviceQuerySerializer DeviceQueryRetrieve (string queryId)
+        /// <returns>DeviceQueryDetail</returns>
+        public DeviceQueryDetail DeviceQueryRetrieve (string queryId)
         {
-             ApiResponse<DeviceQuerySerializer> localVarResponse = DeviceQueryRetrieveWithHttpInfo(queryId);
+             ApiResponse<DeviceQueryDetail> localVarResponse = DeviceQueryRetrieveWithHttpInfo(queryId);
              return localVarResponse.Data;
         }
 
@@ -1199,8 +1201,8 @@ namespace device_query_service.Api
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>ApiResponse of DeviceQuerySerializer</returns>
-        public ApiResponse< DeviceQuerySerializer > DeviceQueryRetrieveWithHttpInfo (string queryId)
+        /// <returns>ApiResponse of DeviceQueryDetail</returns>
+        public ApiResponse< DeviceQueryDetail > DeviceQueryRetrieveWithHttpInfo (string queryId)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)
@@ -1251,9 +1253,9 @@ namespace device_query_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceQuerySerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceQueryDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceQuerySerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuerySerializer)));
+                (DeviceQueryDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQueryDetail)));
             
         }
 
@@ -1262,10 +1264,10 @@ namespace device_query_service.Api
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>Task of DeviceQuerySerializer</returns>
-        public async System.Threading.Tasks.Task<DeviceQuerySerializer> DeviceQueryRetrieveAsync (string queryId)
+        /// <returns>Task of DeviceQueryDetail</returns>
+        public async System.Threading.Tasks.Task<DeviceQueryDetail> DeviceQueryRetrieveAsync (string queryId)
         {
-             ApiResponse<DeviceQuerySerializer> localVarResponse = await DeviceQueryRetrieveAsyncWithHttpInfo(queryId);
+             ApiResponse<DeviceQueryDetail> localVarResponse = await DeviceQueryRetrieveAsyncWithHttpInfo(queryId);
              return localVarResponse.Data;
 
         }
@@ -1275,8 +1277,8 @@ namespace device_query_service.Api
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>Task of ApiResponse (DeviceQuerySerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuerySerializer>> DeviceQueryRetrieveAsyncWithHttpInfo (string queryId)
+        /// <returns>Task of ApiResponse (DeviceQueryDetail)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryDetail>> DeviceQueryRetrieveAsyncWithHttpInfo (string queryId)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)
@@ -1326,9 +1328,9 @@ namespace device_query_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceQuerySerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceQueryDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceQuerySerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuerySerializer)));
+                (DeviceQueryDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQueryDetail)));
             
         }
 
@@ -1342,10 +1344,10 @@ namespace device_query_service.Api
         /// <param name="description">The description of the object (optional)</param>
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>DeviceQuerySerializer</returns>
-        public DeviceQuerySerializer DeviceQueryUpdate (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null)
+        /// <returns>DeviceQueryDetail</returns>
+        public DeviceQueryDetail DeviceQueryUpdate (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null)
         {
-             ApiResponse<DeviceQuerySerializer> localVarResponse = DeviceQueryUpdateWithHttpInfo(queryId, name, query, description, _object, queryId2);
+             ApiResponse<DeviceQueryDetail> localVarResponse = DeviceQueryUpdateWithHttpInfo(queryId, name, query, description, _object, queryId2);
              return localVarResponse.Data;
         }
 
@@ -1359,8 +1361,8 @@ namespace device_query_service.Api
         /// <param name="description">The description of the object (optional)</param>
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>ApiResponse of DeviceQuerySerializer</returns>
-        public ApiResponse< DeviceQuerySerializer > DeviceQueryUpdateWithHttpInfo (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null)
+        /// <returns>ApiResponse of DeviceQueryDetail</returns>
+        public ApiResponse< DeviceQueryDetail > DeviceQueryUpdateWithHttpInfo (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)
@@ -1422,9 +1424,9 @@ namespace device_query_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceQuerySerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceQueryDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceQuerySerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuerySerializer)));
+                (DeviceQueryDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQueryDetail)));
             
         }
 
@@ -1438,10 +1440,10 @@ namespace device_query_service.Api
         /// <param name="description">The description of the object (optional)</param>
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>Task of DeviceQuerySerializer</returns>
-        public async System.Threading.Tasks.Task<DeviceQuerySerializer> DeviceQueryUpdateAsync (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null)
+        /// <returns>Task of DeviceQueryDetail</returns>
+        public async System.Threading.Tasks.Task<DeviceQueryDetail> DeviceQueryUpdateAsync (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null)
         {
-             ApiResponse<DeviceQuerySerializer> localVarResponse = await DeviceQueryUpdateAsyncWithHttpInfo(queryId, name, query, description, _object, queryId2);
+             ApiResponse<DeviceQueryDetail> localVarResponse = await DeviceQueryUpdateAsyncWithHttpInfo(queryId, name, query, description, _object, queryId2);
              return localVarResponse.Data;
 
         }
@@ -1456,8 +1458,8 @@ namespace device_query_service.Api
         /// <param name="description">The description of the object (optional)</param>
         /// <param name="_object">The API resource entity (optional)</param>
         /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
-        /// <returns>Task of ApiResponse (DeviceQuerySerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuerySerializer>> DeviceQueryUpdateAsyncWithHttpInfo (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null)
+        /// <returns>Task of ApiResponse (DeviceQueryDetail)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryDetail>> DeviceQueryUpdateAsyncWithHttpInfo (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)
@@ -1518,9 +1520,9 @@ namespace device_query_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceQuerySerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceQueryDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceQuerySerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuerySerializer)));
+                (DeviceQueryDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQueryDetail)));
             
         }
 
