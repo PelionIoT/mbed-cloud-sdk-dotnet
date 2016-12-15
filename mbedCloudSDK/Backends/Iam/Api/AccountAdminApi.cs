@@ -1,7 +1,7 @@
 /* 
  * IAM Identities REST API
  *
- * REST API to manage accounts, groups, users and api-keys
+ * REST API to manage accounts, groups, users and API keys
  *
  * OpenAPI spec version: v3
  * 
@@ -40,68 +40,82 @@ namespace iam.Api
         /// Create a new user.
         /// </summary>
         /// <remarks>
-        /// Endpoint for creating a new user.
+        /// An endpoint for creating a new user.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
+        /// <param name="action">Action, either &#39;create&#39; or &#39;invite&#39;. (optional, default to create)</param>
         /// <returns>UserInfoResp</returns>
-        UserInfoResp CreateUser (UserInfoReq body);
+        UserInfoResp CreateUser (UserInfoReq body, string action = null);
 
         /// <summary>
         /// Create a new user.
         /// </summary>
         /// <remarks>
-        /// Endpoint for creating a new user.
+        /// An endpoint for creating a new user.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
+        /// <param name="action">Action, either &#39;create&#39; or &#39;invite&#39;. (optional, default to create)</param>
         /// <returns>ApiResponse of UserInfoResp</returns>
-        ApiResponse<UserInfoResp> CreateUserWithHttpInfo (UserInfoReq body);
+        ApiResponse<UserInfoResp> CreateUserWithHttpInfo (UserInfoReq body, string action = null);
         /// <summary>
         /// Delete a user.
         /// </summary>
         /// <remarks>
-        /// Endpoint for deleting a user.
+        /// An endpoint for deleting a user.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
+        /// <param name="force">Flag indicating that user is forced to be deleted. (optional)</param>
         /// <returns></returns>
-        void DeleteUser (string userId);
+        void DeleteUser (string userId, string force = null);
 
         /// <summary>
         /// Delete a user.
         /// </summary>
         /// <remarks>
-        /// Endpoint for deleting a user.
+        /// An endpoint for deleting a user.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
+        /// <param name="force">Flag indicating that user is forced to be deleted. (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DeleteUserWithHttpInfo (string userId);
+        ApiResponse<Object> DeleteUserWithHttpInfo (string userId, string force = null);
         /// <summary>
         /// Get the details of all users.
         /// </summary>
         /// <remarks>
-        /// Endpoint for retrieving the details of all users.
+        /// An endpoint for retrieving the details of all users.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter for the query, for example filter&#x3D;status%3Dactive,status%3Dreset. (optional)</param>
         /// <returns>UserInfoRespList</returns>
-        UserInfoRespList GetAllUsers ();
+        UserInfoRespList GetAllUsers (int? limit = null, string after = null, string order = null, string include = null, string filter = null);
 
         /// <summary>
         /// Get the details of all users.
         /// </summary>
         /// <remarks>
-        /// Endpoint for retrieving the details of all users.
+        /// An endpoint for retrieving the details of all users.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter for the query, for example filter&#x3D;status%3Dactive,status%3Dreset. (optional)</param>
         /// <returns>ApiResponse of UserInfoRespList</returns>
-        ApiResponse<UserInfoRespList> GetAllUsersWithHttpInfo ();
+        ApiResponse<UserInfoRespList> GetAllUsersWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null);
         /// <summary>
         /// Details of a user.
         /// </summary>
         /// <remarks>
-        /// Endpoint for retrieving the details of a user.
+        /// An endpoint for retrieving the details of a user.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID or name of the user whose details are retrieved.</param>
@@ -112,7 +126,7 @@ namespace iam.Api
         /// Details of a user.
         /// </summary>
         /// <remarks>
-        /// Endpoint for retrieving the details of a user.
+        /// An endpoint for retrieving the details of a user.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID or name of the user whose details are retrieved.</param>
@@ -122,28 +136,28 @@ namespace iam.Api
         /// Updates attributes of the account.
         /// </summary>
         /// <remarks>
-        /// Endpoint for updating the account.
+        /// An endpoint for updating the account.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the account to be updated.</param>
-        /// <returns>UpdatedResponse</returns>
-        UpdatedResponse UpdateMyAccount (AccountUpdateReq body);
+        /// <returns>AccountInfo</returns>
+        AccountInfo UpdateMyAccount (AccountUpdateReq body);
 
         /// <summary>
         /// Updates attributes of the account.
         /// </summary>
         /// <remarks>
-        /// Endpoint for updating the account.
+        /// An endpoint for updating the account.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the account to be updated.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        ApiResponse<UpdatedResponse> UpdateMyAccountWithHttpInfo (AccountUpdateReq body);
+        /// <returns>ApiResponse of AccountInfo</returns>
+        ApiResponse<AccountInfo> UpdateMyAccountWithHttpInfo (AccountUpdateReq body);
         /// <summary>
         /// Update user details.
         /// </summary>
         /// <remarks>
-        /// Endpoint for updating user details.
+        /// An endpoint for updating user details.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are updated.</param>
@@ -155,7 +169,7 @@ namespace iam.Api
         /// Update user details.
         /// </summary>
         /// <remarks>
-        /// Endpoint for updating user details.
+        /// An endpoint for updating user details.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are updated.</param>
@@ -168,68 +182,82 @@ namespace iam.Api
         /// Create a new user.
         /// </summary>
         /// <remarks>
-        /// Endpoint for creating a new user.
+        /// An endpoint for creating a new user.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
+        /// <param name="action">Action, either &#39;create&#39; or &#39;invite&#39;. (optional, default to create)</param>
         /// <returns>Task of UserInfoResp</returns>
-        System.Threading.Tasks.Task<UserInfoResp> CreateUserAsync (UserInfoReq body);
+        System.Threading.Tasks.Task<UserInfoResp> CreateUserAsync (UserInfoReq body, string action = null);
 
         /// <summary>
         /// Create a new user.
         /// </summary>
         /// <remarks>
-        /// Endpoint for creating a new user.
+        /// An endpoint for creating a new user.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
+        /// <param name="action">Action, either &#39;create&#39; or &#39;invite&#39;. (optional, default to create)</param>
         /// <returns>Task of ApiResponse (UserInfoResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> CreateUserAsyncWithHttpInfo (UserInfoReq body);
+        System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> CreateUserAsyncWithHttpInfo (UserInfoReq body, string action = null);
         /// <summary>
         /// Delete a user.
         /// </summary>
         /// <remarks>
-        /// Endpoint for deleting a user.
+        /// An endpoint for deleting a user.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
+        /// <param name="force">Flag indicating that user is forced to be deleted. (optional)</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteUserAsync (string userId);
+        System.Threading.Tasks.Task DeleteUserAsync (string userId, string force = null);
 
         /// <summary>
         /// Delete a user.
         /// </summary>
         /// <remarks>
-        /// Endpoint for deleting a user.
+        /// An endpoint for deleting a user.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
+        /// <param name="force">Flag indicating that user is forced to be deleted. (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteUserAsyncWithHttpInfo (string userId);
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteUserAsyncWithHttpInfo (string userId, string force = null);
         /// <summary>
         /// Get the details of all users.
         /// </summary>
         /// <remarks>
-        /// Endpoint for retrieving the details of all users.
+        /// An endpoint for retrieving the details of all users.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter for the query, for example filter&#x3D;status%3Dactive,status%3Dreset. (optional)</param>
         /// <returns>Task of UserInfoRespList</returns>
-        System.Threading.Tasks.Task<UserInfoRespList> GetAllUsersAsync ();
+        System.Threading.Tasks.Task<UserInfoRespList> GetAllUsersAsync (int? limit = null, string after = null, string order = null, string include = null, string filter = null);
 
         /// <summary>
         /// Get the details of all users.
         /// </summary>
         /// <remarks>
-        /// Endpoint for retrieving the details of all users.
+        /// An endpoint for retrieving the details of all users.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter for the query, for example filter&#x3D;status%3Dactive,status%3Dreset. (optional)</param>
         /// <returns>Task of ApiResponse (UserInfoRespList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetAllUsersAsyncWithHttpInfo ();
+        System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetAllUsersAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null);
         /// <summary>
         /// Details of a user.
         /// </summary>
         /// <remarks>
-        /// Endpoint for retrieving the details of a user.
+        /// An endpoint for retrieving the details of a user.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID or name of the user whose details are retrieved.</param>
@@ -240,7 +268,7 @@ namespace iam.Api
         /// Details of a user.
         /// </summary>
         /// <remarks>
-        /// Endpoint for retrieving the details of a user.
+        /// An endpoint for retrieving the details of a user.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID or name of the user whose details are retrieved.</param>
@@ -250,28 +278,28 @@ namespace iam.Api
         /// Updates attributes of the account.
         /// </summary>
         /// <remarks>
-        /// Endpoint for updating the account.
+        /// An endpoint for updating the account.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the account to be updated.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        System.Threading.Tasks.Task<UpdatedResponse> UpdateMyAccountAsync (AccountUpdateReq body);
+        /// <returns>Task of AccountInfo</returns>
+        System.Threading.Tasks.Task<AccountInfo> UpdateMyAccountAsync (AccountUpdateReq body);
 
         /// <summary>
         /// Updates attributes of the account.
         /// </summary>
         /// <remarks>
-        /// Endpoint for updating the account.
+        /// An endpoint for updating the account.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the account to be updated.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> UpdateMyAccountAsyncWithHttpInfo (AccountUpdateReq body);
+        /// <returns>Task of ApiResponse (AccountInfo)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AccountInfo>> UpdateMyAccountAsyncWithHttpInfo (AccountUpdateReq body);
         /// <summary>
         /// Update user details.
         /// </summary>
         /// <remarks>
-        /// Endpoint for updating user details.
+        /// An endpoint for updating user details.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are updated.</param>
@@ -283,7 +311,7 @@ namespace iam.Api
         /// Update user details.
         /// </summary>
         /// <remarks>
-        /// Endpoint for updating user details.
+        /// An endpoint for updating user details.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are updated.</param>
@@ -403,24 +431,26 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Create a new user. Endpoint for creating a new user.
+        /// Create a new user. An endpoint for creating a new user.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
+        /// <param name="action">Action, either &#39;create&#39; or &#39;invite&#39;. (optional, default to create)</param>
         /// <returns>UserInfoResp</returns>
-        public UserInfoResp CreateUser (UserInfoReq body)
+        public UserInfoResp CreateUser (UserInfoReq body, string action = null)
         {
-             ApiResponse<UserInfoResp> localVarResponse = CreateUserWithHttpInfo(body);
+             ApiResponse<UserInfoResp> localVarResponse = CreateUserWithHttpInfo(body, action);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Create a new user. Endpoint for creating a new user.
+        /// Create a new user. An endpoint for creating a new user.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
+        /// <param name="action">Action, either &#39;create&#39; or &#39;invite&#39;. (optional, default to create)</param>
         /// <returns>ApiResponse of UserInfoResp</returns>
-        public ApiResponse< UserInfoResp > CreateUserWithHttpInfo (UserInfoReq body)
+        public ApiResponse< UserInfoResp > CreateUserWithHttpInfo (UserInfoReq body, string action = null)
         {
             // verify the required parameter 'body' is set
             if (body == null)
@@ -451,6 +481,7 @@ namespace iam.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
+            if (action != null) localVarQueryParams.Add("action", Configuration.ApiClient.ParameterToString(action)); // query parameter
             if (body != null && body.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
@@ -487,25 +518,27 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Create a new user. Endpoint for creating a new user.
+        /// Create a new user. An endpoint for creating a new user.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
+        /// <param name="action">Action, either &#39;create&#39; or &#39;invite&#39;. (optional, default to create)</param>
         /// <returns>Task of UserInfoResp</returns>
-        public async System.Threading.Tasks.Task<UserInfoResp> CreateUserAsync (UserInfoReq body)
+        public async System.Threading.Tasks.Task<UserInfoResp> CreateUserAsync (UserInfoReq body, string action = null)
         {
-             ApiResponse<UserInfoResp> localVarResponse = await CreateUserAsyncWithHttpInfo(body);
+             ApiResponse<UserInfoResp> localVarResponse = await CreateUserAsyncWithHttpInfo(body, action);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Create a new user. Endpoint for creating a new user.
+        /// Create a new user. An endpoint for creating a new user.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
+        /// <param name="action">Action, either &#39;create&#39; or &#39;invite&#39;. (optional, default to create)</param>
         /// <returns>Task of ApiResponse (UserInfoResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> CreateUserAsyncWithHttpInfo (UserInfoReq body)
+        public async System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> CreateUserAsyncWithHttpInfo (UserInfoReq body, string action = null)
         {
             // verify the required parameter 'body' is set
             if (body == null)
@@ -536,6 +569,7 @@ namespace iam.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
+            if (action != null) localVarQueryParams.Add("action", Configuration.ApiClient.ParameterToString(action)); // query parameter
             if (body != null && body.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
@@ -571,23 +605,25 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Delete a user. Endpoint for deleting a user.
+        /// Delete a user. An endpoint for deleting a user.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
+        /// <param name="force">Flag indicating that user is forced to be deleted. (optional)</param>
         /// <returns></returns>
-        public void DeleteUser (string userId)
+        public void DeleteUser (string userId, string force = null)
         {
-             DeleteUserWithHttpInfo(userId);
+             DeleteUserWithHttpInfo(userId, force);
         }
 
         /// <summary>
-        /// Delete a user. Endpoint for deleting a user.
+        /// Delete a user. An endpoint for deleting a user.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
+        /// <param name="force">Flag indicating that user is forced to be deleted. (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> DeleteUserWithHttpInfo (string userId)
+        public ApiResponse<Object> DeleteUserWithHttpInfo (string userId, string force = null)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
@@ -618,6 +654,7 @@ namespace iam.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (userId != null) localVarPathParams.Add("user-id", Configuration.ApiClient.ParameterToString(userId)); // path parameter
+            if (force != null) localVarQueryParams.Add("force", Configuration.ApiClient.ParameterToString(force)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -646,24 +683,26 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Delete a user. Endpoint for deleting a user.
+        /// Delete a user. An endpoint for deleting a user.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
+        /// <param name="force">Flag indicating that user is forced to be deleted. (optional)</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteUserAsync (string userId)
+        public async System.Threading.Tasks.Task DeleteUserAsync (string userId, string force = null)
         {
-             await DeleteUserAsyncWithHttpInfo(userId);
+             await DeleteUserAsyncWithHttpInfo(userId, force);
 
         }
 
         /// <summary>
-        /// Delete a user. Endpoint for deleting a user.
+        /// Delete a user. An endpoint for deleting a user.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
+        /// <param name="force">Flag indicating that user is forced to be deleted. (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteUserAsyncWithHttpInfo (string userId)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteUserAsyncWithHttpInfo (string userId, string force = null)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
@@ -694,6 +733,7 @@ namespace iam.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (userId != null) localVarPathParams.Add("user-id", Configuration.ApiClient.ParameterToString(userId)); // path parameter
+            if (force != null) localVarQueryParams.Add("force", Configuration.ApiClient.ParameterToString(force)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -721,22 +761,32 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get the details of all users. Endpoint for retrieving the details of all users.
+        /// Get the details of all users. An endpoint for retrieving the details of all users.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter for the query, for example filter&#x3D;status%3Dactive,status%3Dreset. (optional)</param>
         /// <returns>UserInfoRespList</returns>
-        public UserInfoRespList GetAllUsers ()
+        public UserInfoRespList GetAllUsers (int? limit = null, string after = null, string order = null, string include = null, string filter = null)
         {
-             ApiResponse<UserInfoRespList> localVarResponse = GetAllUsersWithHttpInfo();
+             ApiResponse<UserInfoRespList> localVarResponse = GetAllUsersWithHttpInfo(limit, after, order, include, filter);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get the details of all users. Endpoint for retrieving the details of all users.
+        /// Get the details of all users. An endpoint for retrieving the details of all users.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter for the query, for example filter&#x3D;status%3Dactive,status%3Dreset. (optional)</param>
         /// <returns>ApiResponse of UserInfoRespList</returns>
-        public ApiResponse< UserInfoRespList > GetAllUsersWithHttpInfo ()
+        public ApiResponse< UserInfoRespList > GetAllUsersWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null)
         {
 
             var localVarPath = "/v3/users";
@@ -763,6 +813,11 @@ namespace iam.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
+            if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
+            if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -791,23 +846,33 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get the details of all users. Endpoint for retrieving the details of all users.
+        /// Get the details of all users. An endpoint for retrieving the details of all users.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter for the query, for example filter&#x3D;status%3Dactive,status%3Dreset. (optional)</param>
         /// <returns>Task of UserInfoRespList</returns>
-        public async System.Threading.Tasks.Task<UserInfoRespList> GetAllUsersAsync ()
+        public async System.Threading.Tasks.Task<UserInfoRespList> GetAllUsersAsync (int? limit = null, string after = null, string order = null, string include = null, string filter = null)
         {
-             ApiResponse<UserInfoRespList> localVarResponse = await GetAllUsersAsyncWithHttpInfo();
+             ApiResponse<UserInfoRespList> localVarResponse = await GetAllUsersAsyncWithHttpInfo(limit, after, order, include, filter);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Get the details of all users. Endpoint for retrieving the details of all users.
+        /// Get the details of all users. An endpoint for retrieving the details of all users.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter for the query, for example filter&#x3D;status%3Dactive,status%3Dreset. (optional)</param>
         /// <returns>Task of ApiResponse (UserInfoRespList)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetAllUsersAsyncWithHttpInfo ()
+        public async System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetAllUsersAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null)
         {
 
             var localVarPath = "/v3/users";
@@ -834,6 +899,11 @@ namespace iam.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
+            if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
+            if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -861,7 +931,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Details of a user. Endpoint for retrieving the details of a user.
+        /// Details of a user. An endpoint for retrieving the details of a user.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID or name of the user whose details are retrieved.</param>
@@ -873,7 +943,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Details of a user. Endpoint for retrieving the details of a user.
+        /// Details of a user. An endpoint for retrieving the details of a user.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID or name of the user whose details are retrieved.</param>
@@ -937,7 +1007,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Details of a user. Endpoint for retrieving the details of a user.
+        /// Details of a user. An endpoint for retrieving the details of a user.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID or name of the user whose details are retrieved.</param>
@@ -950,7 +1020,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Details of a user. Endpoint for retrieving the details of a user.
+        /// Details of a user. An endpoint for retrieving the details of a user.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID or name of the user whose details are retrieved.</param>
@@ -1013,24 +1083,24 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Updates attributes of the account. Endpoint for updating the account.
+        /// Updates attributes of the account. An endpoint for updating the account.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the account to be updated.</param>
-        /// <returns>UpdatedResponse</returns>
-        public UpdatedResponse UpdateMyAccount (AccountUpdateReq body)
+        /// <returns>AccountInfo</returns>
+        public AccountInfo UpdateMyAccount (AccountUpdateReq body)
         {
-             ApiResponse<UpdatedResponse> localVarResponse = UpdateMyAccountWithHttpInfo(body);
+             ApiResponse<AccountInfo> localVarResponse = UpdateMyAccountWithHttpInfo(body);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Updates attributes of the account. Endpoint for updating the account.
+        /// Updates attributes of the account. An endpoint for updating the account.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the account to be updated.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        public ApiResponse< UpdatedResponse > UpdateMyAccountWithHttpInfo (AccountUpdateReq body)
+        /// <returns>ApiResponse of AccountInfo</returns>
+        public ApiResponse< AccountInfo > UpdateMyAccountWithHttpInfo (AccountUpdateReq body)
         {
             // verify the required parameter 'body' is set
             if (body == null)
@@ -1090,32 +1160,32 @@ namespace iam.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+            return new ApiResponse<AccountInfo>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+                (AccountInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountInfo)));
             
         }
 
         /// <summary>
-        /// Updates attributes of the account. Endpoint for updating the account.
+        /// Updates attributes of the account. An endpoint for updating the account.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the account to be updated.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        public async System.Threading.Tasks.Task<UpdatedResponse> UpdateMyAccountAsync (AccountUpdateReq body)
+        /// <returns>Task of AccountInfo</returns>
+        public async System.Threading.Tasks.Task<AccountInfo> UpdateMyAccountAsync (AccountUpdateReq body)
         {
-             ApiResponse<UpdatedResponse> localVarResponse = await UpdateMyAccountAsyncWithHttpInfo(body);
+             ApiResponse<AccountInfo> localVarResponse = await UpdateMyAccountAsyncWithHttpInfo(body);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Updates attributes of the account. Endpoint for updating the account.
+        /// Updates attributes of the account. An endpoint for updating the account.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the account to be updated.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> UpdateMyAccountAsyncWithHttpInfo (AccountUpdateReq body)
+        /// <returns>Task of ApiResponse (AccountInfo)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<AccountInfo>> UpdateMyAccountAsyncWithHttpInfo (AccountUpdateReq body)
         {
             // verify the required parameter 'body' is set
             if (body == null)
@@ -1174,14 +1244,14 @@ namespace iam.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+            return new ApiResponse<AccountInfo>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+                (AccountInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountInfo)));
             
         }
 
         /// <summary>
-        /// Update user details. Endpoint for updating user details.
+        /// Update user details. An endpoint for updating user details.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are updated.</param>
@@ -1194,7 +1264,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update user details. Endpoint for updating user details.
+        /// Update user details. An endpoint for updating user details.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are updated.</param>
@@ -1271,7 +1341,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update user details. Endpoint for updating user details.
+        /// Update user details. An endpoint for updating user details.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are updated.</param>
@@ -1285,7 +1355,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update user details. Endpoint for updating user details.
+        /// Update user details. An endpoint for updating user details.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are updated.</param>

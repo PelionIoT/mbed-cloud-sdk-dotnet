@@ -1,7 +1,7 @@
 /* 
  * IAM Identities REST API
  *
- * REST API to manage accounts, groups, users and api-keys
+ * REST API to manage accounts, groups, users and API keys
  *
  * OpenAPI spec version: v3
  * 
@@ -40,9 +40,9 @@ namespace iam.Model
     public partial class GroupSummary :  IEquatable<GroupSummary>
     {
         /// <summary>
-        /// entity name: always 'group'
+        /// Entity name: always 'group'
         /// </summary>
-        /// <value>entity name: always 'group'</value>
+        /// <value>Entity name: always 'group'</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ObjectEnum
         {
@@ -72,6 +72,12 @@ namespace iam.Model
             Account,
             
             /// <summary>
+            /// Enum Cacert for "ca_cert"
+            /// </summary>
+            [EnumMember(Value = "ca_cert")]
+            Cacert,
+            
+            /// <summary>
             /// Enum List for "list"
             /// </summary>
             [EnumMember(Value = "list")]
@@ -85,9 +91,9 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// entity name: always 'group'
+        /// Entity name: always 'group'
         /// </summary>
-        /// <value>entity name: always 'group'</value>
+        /// <value>Entity name: always 'group'</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public ObjectEnum? _Object { get; set; }
         /// <summary>
@@ -102,7 +108,7 @@ namespace iam.Model
         /// <param name="LastUpdateTime">A timestamp of the latest group update, in milliseconds..</param>
         /// <param name="ApiKeyCount">The number of API keys in this group. (required).</param>
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
-        /// <param name="_Object">entity name: always &#39;group&#39; (required).</param>
+        /// <param name="_Object">Entity name: always &#39;group&#39; (required).</param>
         /// <param name="CreationTime">A timestamp of the group creation in the storage, in milliseconds..</param>
         /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="Id">The UUID of the group. (required).</param>

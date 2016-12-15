@@ -1,7 +1,7 @@
 /* 
  * IAM Identities REST API
  *
- * REST API to manage accounts, groups, users and api-keys
+ * REST API to manage accounts, groups, users and API keys
  *
  * OpenAPI spec version: v3
  * 
@@ -40,9 +40,9 @@ namespace iam.Model
     public partial class GroupSummaryList :  IEquatable<GroupSummaryList>
     {
         /// <summary>
-        /// entity name: always 'list'
+        /// Entity name: always 'list'
         /// </summary>
-        /// <value>entity name: always 'list'</value>
+        /// <value>Entity name: always 'list'</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ObjectEnum
         {
@@ -72,6 +72,12 @@ namespace iam.Model
             Account,
             
             /// <summary>
+            /// Enum Cacert for "ca_cert"
+            /// </summary>
+            [EnumMember(Value = "ca_cert")]
+            Cacert,
+            
+            /// <summary>
             /// Enum List for "list"
             /// </summary>
             [EnumMember(Value = "list")]
@@ -85,9 +91,9 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// The order of the records to return. Available values: ASC, DESC. Default value is ASC
+        /// The order of the records to return. Available values: ASC, DESC; by default ASC.
         /// </summary>
-        /// <value>The order of the records to return. Available values: ASC, DESC. Default value is ASC</value>
+        /// <value>The order of the records to return. Available values: ASC, DESC; by default ASC.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum OrderEnum
         {
@@ -106,15 +112,15 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// entity name: always 'list'
+        /// Entity name: always 'list'
         /// </summary>
-        /// <value>entity name: always 'list'</value>
+        /// <value>Entity name: always 'list'</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public ObjectEnum? _Object { get; set; }
         /// <summary>
-        /// The order of the records to return. Available values: ASC, DESC. Default value is ASC
+        /// The order of the records to return. Available values: ASC, DESC; by default ASC.
         /// </summary>
-        /// <value>The order of the records to return. Available values: ASC, DESC. Default value is ASC</value>
+        /// <value>The order of the records to return. Available values: ASC, DESC; by default ASC.</value>
         [DataMember(Name="order", EmitDefaultValue=false)]
         public OrderEnum? Order { get; set; }
         /// <summary>
@@ -125,12 +131,12 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="GroupSummaryList" /> class.
         /// </summary>
-        /// <param name="After">The entity id to fetch after it..</param>
-        /// <param name="_Object">entity name: always &#39;list&#39; (required).</param>
+        /// <param name="After">The entity ID to fetch after the given one..</param>
+        /// <param name="_Object">Entity name: always &#39;list&#39; (required).</param>
         /// <param name="TotalCount">The total number or records, if requested  (required).</param>
-        /// <param name="Limit">The number of results to return, (range: 2-1000), or equals to total_count (required).</param>
-        /// <param name="Data">List of entities. (required).</param>
-        /// <param name="Order">The order of the records to return. Available values: ASC, DESC. Default value is ASC.</param>
+        /// <param name="Limit">The number of results to return, (range: 2-1000), or equals to &#x60;total_count&#x60; (required).</param>
+        /// <param name="Data">A list of entities. (required).</param>
+        /// <param name="Order">The order of the records to return. Available values: ASC, DESC; by default ASC..</param>
         public GroupSummaryList(string After = null, ObjectEnum? _Object = null, int? TotalCount = null, int? Limit = null, List<GroupSummary> Data = null, OrderEnum? Order = null)
         {
             // to ensure "_Object" is required (not null)
@@ -174,9 +180,9 @@ namespace iam.Model
         }
         
         /// <summary>
-        /// The entity id to fetch after it.
+        /// The entity ID to fetch after the given one.
         /// </summary>
-        /// <value>The entity id to fetch after it.</value>
+        /// <value>The entity ID to fetch after the given one.</value>
         [DataMember(Name="after", EmitDefaultValue=false)]
         public string After { get; set; }
         /// <summary>
@@ -186,15 +192,15 @@ namespace iam.Model
         [DataMember(Name="totalCount", EmitDefaultValue=false)]
         public int? TotalCount { get; set; }
         /// <summary>
-        /// The number of results to return, (range: 2-1000), or equals to total_count
+        /// The number of results to return, (range: 2-1000), or equals to &#x60;total_count&#x60;
         /// </summary>
-        /// <value>The number of results to return, (range: 2-1000), or equals to total_count</value>
+        /// <value>The number of results to return, (range: 2-1000), or equals to &#x60;total_count&#x60;</value>
         [DataMember(Name="limit", EmitDefaultValue=false)]
         public int? Limit { get; set; }
         /// <summary>
-        /// List of entities.
+        /// A list of entities.
         /// </summary>
-        /// <value>List of entities.</value>
+        /// <value>A list of entities.</value>
         [DataMember(Name="data", EmitDefaultValue=false)]
         public List<GroupSummary> Data { get; set; }
         /// <summary>

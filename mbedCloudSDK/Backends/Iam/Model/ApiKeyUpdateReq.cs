@@ -34,30 +34,45 @@ using Newtonsoft.Json.Converters;
 namespace iam.Model
 {
     /// <summary>
-    /// Field
+    /// This object represents an API key in requests towards mbed Cloud.
     /// </summary>
     [DataContract]
-    public partial class Field :  IEquatable<Field>
+    public partial class ApiKeyUpdateReq :  IEquatable<ApiKeyUpdateReq>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Field" /> class.
+        /// Initializes a new instance of the <see cref="ApiKeyUpdateReq" /> class.
         /// </summary>
-        /// <param name="Message">Message.</param>
-        /// <param name="Name">Name.</param>
-        public Field(string Message = null, string Name = null)
+        [JsonConstructorAttribute]
+        protected ApiKeyUpdateReq() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiKeyUpdateReq" /> class.
+        /// </summary>
+        /// <param name="Owner">The owner of this API key, who is the creator by default..</param>
+        /// <param name="Name">The display name for the API key. (required).</param>
+        public ApiKeyUpdateReq(string Owner = null, string Name = null)
         {
-            this.Message = Message;
-            this.Name = Name;
+            // to ensure "Name" is required (not null)
+            if (Name == null)
+            {
+                throw new InvalidDataException("Name is a required property for ApiKeyUpdateReq and cannot be null");
+            }
+            else
+            {
+                this.Name = Name;
+            }
+            this.Owner = Owner;
         }
         
         /// <summary>
-        /// Gets or Sets Message
+        /// The owner of this API key, who is the creator by default.
         /// </summary>
-        [DataMember(Name="message", EmitDefaultValue=false)]
-        public string Message { get; set; }
+        /// <value>The owner of this API key, who is the creator by default.</value>
+        [DataMember(Name="owner", EmitDefaultValue=false)]
+        public string Owner { get; set; }
         /// <summary>
-        /// Gets or Sets Name
+        /// The display name for the API key.
         /// </summary>
+        /// <value>The display name for the API key.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
@@ -67,8 +82,8 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Field {\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("class ApiKeyUpdateReq {\n");
+            sb.Append("  Owner: ").Append(Owner).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -91,15 +106,15 @@ namespace iam.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as Field);
+            return this.Equals(obj as ApiKeyUpdateReq);
         }
 
         /// <summary>
-        /// Returns true if Field instances are equal
+        /// Returns true if ApiKeyUpdateReq instances are equal
         /// </summary>
-        /// <param name="other">Instance of Field to be compared</param>
+        /// <param name="other">Instance of ApiKeyUpdateReq to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Field other)
+        public bool Equals(ApiKeyUpdateReq other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -107,9 +122,9 @@ namespace iam.Model
 
             return 
                 (
-                    this.Message == other.Message ||
-                    this.Message != null &&
-                    this.Message.Equals(other.Message)
+                    this.Owner == other.Owner ||
+                    this.Owner != null &&
+                    this.Owner.Equals(other.Owner)
                 ) && 
                 (
                     this.Name == other.Name ||
@@ -129,8 +144,8 @@ namespace iam.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Message != null)
-                    hash = hash * 59 + this.Message.GetHashCode();
+                if (this.Owner != null)
+                    hash = hash * 59 + this.Owner.GetHashCode();
                 if (this.Name != null)
                     hash = hash * 59 + this.Name.GetHashCode();
                 return hash;

@@ -1,7 +1,7 @@
 /* 
  * IAM Identities REST API
  *
- * REST API to manage accounts, groups, users and api-keys
+ * REST API to manage accounts, groups, users and API keys
  *
  * OpenAPI spec version: v3
  * 
@@ -40,9 +40,9 @@ namespace iam.Model
     public partial class ErrorResponse :  IEquatable<ErrorResponse>
     {
         /// <summary>
-        /// entity name, always 'error'
+        /// Entity name, always 'error'.
         /// </summary>
-        /// <value>entity name, always 'error'</value>
+        /// <value>Entity name, always 'error'.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ObjectEnum
         {
@@ -72,6 +72,12 @@ namespace iam.Model
             Account,
             
             /// <summary>
+            /// Enum Cacert for "ca_cert"
+            /// </summary>
+            [EnumMember(Value = "ca_cert")]
+            Cacert,
+            
+            /// <summary>
             /// Enum List for "list"
             /// </summary>
             [EnumMember(Value = "list")]
@@ -85,9 +91,9 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// error type
+        /// Error type.
         /// </summary>
-        /// <value>error type</value>
+        /// <value>Error type.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -153,6 +159,12 @@ namespace iam.Model
             Methodnotsupported,
             
             /// <summary>
+            /// Enum Notacceptable for "not_acceptable"
+            /// </summary>
+            [EnumMember(Value = "not_acceptable")]
+            Notacceptable,
+            
+            /// <summary>
             /// Enum Duplicate for "duplicate"
             /// </summary>
             [EnumMember(Value = "duplicate")]
@@ -190,15 +202,15 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// entity name, always 'error'
+        /// Entity name, always 'error'.
         /// </summary>
-        /// <value>entity name, always 'error'</value>
+        /// <value>Entity name, always 'error'.</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public ObjectEnum? _Object { get; set; }
         /// <summary>
-        /// error type
+        /// Error type.
         /// </summary>
-        /// <value>error type</value>
+        /// <value>Error type.</value>
         [DataMember(Name="type", EmitDefaultValue=false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
@@ -209,12 +221,12 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ErrorResponse" /> class.
         /// </summary>
-        /// <param name="Code">response code (required).</param>
-        /// <param name="Fields">failed input fields during request object validation.</param>
-        /// <param name="_Object">entity name, always &#39;error&#39; (required).</param>
-        /// <param name="RequestId">request id (required).</param>
-        /// <param name="Message">a human readable message with detailed info (required).</param>
-        /// <param name="Type">error type (required).</param>
+        /// <param name="Code">Response code. (required).</param>
+        /// <param name="Fields">Failed input fields during request object validation..</param>
+        /// <param name="_Object">Entity name, always &#39;error&#39;. (required).</param>
+        /// <param name="RequestId">Request ID (required).</param>
+        /// <param name="Message">A human readable message with detailed info. (required).</param>
+        /// <param name="Type">Error type. (required).</param>
         public ErrorResponse(int? Code = null, List<Field> Fields = null, ObjectEnum? _Object = null, string RequestId = null, string Message = null, TypeEnum? Type = null)
         {
             // to ensure "Code" is required (not null)
@@ -266,27 +278,27 @@ namespace iam.Model
         }
         
         /// <summary>
-        /// response code
+        /// Response code.
         /// </summary>
-        /// <value>response code</value>
+        /// <value>Response code.</value>
         [DataMember(Name="code", EmitDefaultValue=false)]
         public int? Code { get; set; }
         /// <summary>
-        /// failed input fields during request object validation
+        /// Failed input fields during request object validation.
         /// </summary>
-        /// <value>failed input fields during request object validation</value>
+        /// <value>Failed input fields during request object validation.</value>
         [DataMember(Name="fields", EmitDefaultValue=false)]
         public List<Field> Fields { get; set; }
         /// <summary>
-        /// request id
+        /// Request ID
         /// </summary>
-        /// <value>request id</value>
+        /// <value>Request ID</value>
         [DataMember(Name="request_id", EmitDefaultValue=false)]
         public string RequestId { get; set; }
         /// <summary>
-        /// a human readable message with detailed info
+        /// A human readable message with detailed info.
         /// </summary>
-        /// <value>a human readable message with detailed info</value>
+        /// <value>A human readable message with detailed info.</value>
         [DataMember(Name="message", EmitDefaultValue=false)]
         public string Message { get; set; }
         /// <summary>

@@ -1,7 +1,7 @@
 /* 
  * IAM Identities REST API
  *
- * REST API to manage accounts, groups, users and api-keys
+ * REST API to manage accounts, groups, users and API keys
  *
  * OpenAPI spec version: v3
  * 
@@ -40,9 +40,9 @@ namespace iam.Model
     public partial class AccountInfo :  IEquatable<AccountInfo>
     {
         /// <summary>
-        /// entity name: always 'account'
+        /// Entity name: always 'account'
         /// </summary>
-        /// <value>entity name: always 'account'</value>
+        /// <value>Entity name: always 'account'</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ObjectEnum
         {
@@ -72,6 +72,12 @@ namespace iam.Model
             Account,
             
             /// <summary>
+            /// Enum Cacert for "ca_cert"
+            /// </summary>
+            [EnumMember(Value = "ca_cert")]
+            Cacert,
+            
+            /// <summary>
             /// Enum List for "list"
             /// </summary>
             [EnumMember(Value = "list")]
@@ -93,6 +99,12 @@ namespace iam.Model
         {
             
             /// <summary>
+            /// Enum ENROLLING for "ENROLLING"
+            /// </summary>
+            [EnumMember(Value = "ENROLLING")]
+            ENROLLING,
+            
+            /// <summary>
             /// Enum ACTIVE for "ACTIVE"
             /// </summary>
             [EnumMember(Value = "ACTIVE")]
@@ -112,9 +124,9 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// entity name: always 'account'
+        /// Entity name: always 'account'
         /// </summary>
-        /// <value>entity name: always 'account'</value>
+        /// <value>Entity name: always 'account'</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public ObjectEnum? _Object { get; set; }
         /// <summary>
@@ -135,9 +147,10 @@ namespace iam.Model
         /// <param name="City">The city part of the postal address..</param>
         /// <param name="AddressLine1">Postal address line 1..</param>
         /// <param name="DisplayName">The display name for the account..</param>
+        /// <param name="UpgradedAt">Time when upgraded to commercial account in UTC format RFC3339..</param>
         /// <param name="Country">The country part of the postal address..</param>
         /// <param name="Company">The name of the company..</param>
-        /// <param name="_Object">entity name: always &#39;account&#39; (required).</param>
+        /// <param name="_Object">Entity name: always &#39;account&#39; (required).</param>
         /// <param name="Status">The status of the account. (required).</param>
         /// <param name="Id">Account ID. (required).</param>
         /// <param name="Email">The company email address for this account..</param>
@@ -150,7 +163,7 @@ namespace iam.Model
         /// <param name="PhoneNumber">The phone number of the company..</param>
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
         /// <param name="Aliases">An array of aliases. (required).</param>
-        public AccountInfo(string AddressLine2 = null, string City = null, string AddressLine1 = null, string DisplayName = null, string Country = null, string Company = null, ObjectEnum? _Object = null, StatusEnum? Status = null, string Id = null, string Email = null, string State = null, string Etag = null, string PostalCode = null, string Contact = null, bool? IsProvisioningAllowed = null, string Tier = null, string PhoneNumber = null, string CreatedAt = null, List<string> Aliases = null)
+        public AccountInfo(string AddressLine2 = null, string City = null, string AddressLine1 = null, string DisplayName = null, string UpgradedAt = null, string Country = null, string Company = null, ObjectEnum? _Object = null, StatusEnum? Status = null, string Id = null, string Email = null, string State = null, string Etag = null, string PostalCode = null, string Contact = null, bool? IsProvisioningAllowed = null, string Tier = null, string PhoneNumber = null, string CreatedAt = null, List<string> Aliases = null)
         {
             // to ensure "_Object" is required (not null)
             if (_Object == null)
@@ -219,6 +232,7 @@ namespace iam.Model
             this.City = City;
             this.AddressLine1 = AddressLine1;
             this.DisplayName = DisplayName;
+            this.UpgradedAt = UpgradedAt;
             this.Country = Country;
             this.Company = Company;
             this.Email = Email;
@@ -253,6 +267,12 @@ namespace iam.Model
         /// <value>The display name for the account.</value>
         [DataMember(Name="display_name", EmitDefaultValue=false)]
         public string DisplayName { get; set; }
+        /// <summary>
+        /// Time when upgraded to commercial account in UTC format RFC3339.
+        /// </summary>
+        /// <value>Time when upgraded to commercial account in UTC format RFC3339.</value>
+        [DataMember(Name="upgraded_at", EmitDefaultValue=false)]
+        public string UpgradedAt { get; set; }
         /// <summary>
         /// The country part of the postal address.
         /// </summary>
@@ -343,6 +363,7 @@ namespace iam.Model
             sb.Append("  City: ").Append(City).Append("\n");
             sb.Append("  AddressLine1: ").Append(AddressLine1).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
+            sb.Append("  UpgradedAt: ").Append(UpgradedAt).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
@@ -413,6 +434,11 @@ namespace iam.Model
                     this.DisplayName == other.DisplayName ||
                     this.DisplayName != null &&
                     this.DisplayName.Equals(other.DisplayName)
+                ) && 
+                (
+                    this.UpgradedAt == other.UpgradedAt ||
+                    this.UpgradedAt != null &&
+                    this.UpgradedAt.Equals(other.UpgradedAt)
                 ) && 
                 (
                     this.Country == other.Country ||
@@ -510,6 +536,8 @@ namespace iam.Model
                     hash = hash * 59 + this.AddressLine1.GetHashCode();
                 if (this.DisplayName != null)
                     hash = hash * 59 + this.DisplayName.GetHashCode();
+                if (this.UpgradedAt != null)
+                    hash = hash * 59 + this.UpgradedAt.GetHashCode();
                 if (this.Country != null)
                     hash = hash * 59 + this.Country.GetHashCode();
                 if (this.Company != null)

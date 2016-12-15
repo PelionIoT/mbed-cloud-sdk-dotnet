@@ -1,7 +1,7 @@
 /* 
  * IAM Identities REST API
  *
- * REST API to manage accounts, groups, users and api-keys
+ * REST API to manage accounts, groups, users and API keys
  *
  * OpenAPI spec version: v3
  * 
@@ -61,9 +61,9 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// entity name: always 'apikey'
+        /// Entity name: always 'apikey'
         /// </summary>
-        /// <value>entity name: always 'apikey'</value>
+        /// <value>Entity name: always 'apikey'</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ObjectEnum
         {
@@ -93,6 +93,12 @@ namespace iam.Model
             Account,
             
             /// <summary>
+            /// Enum Cacert for "ca_cert"
+            /// </summary>
+            [EnumMember(Value = "ca_cert")]
+            Cacert,
+            
+            /// <summary>
             /// Enum List for "list"
             /// </summary>
             [EnumMember(Value = "list")]
@@ -112,9 +118,9 @@ namespace iam.Model
         [DataMember(Name="status", EmitDefaultValue=false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
-        /// entity name: always 'apikey'
+        /// Entity name: always 'apikey'
         /// </summary>
-        /// <value>entity name: always 'apikey'</value>
+        /// <value>Entity name: always 'apikey'</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public ObjectEnum? _Object { get; set; }
         /// <summary>
@@ -126,16 +132,16 @@ namespace iam.Model
         /// Initializes a new instance of the <see cref="ApiKeyInfoResp" /> class.
         /// </summary>
         /// <param name="Status">The status of the API key..</param>
-        /// <param name="Apikey">API key. (required).</param>
+        /// <param name="Apikey">The API key. (required).</param>
         /// <param name="Name">The display name for the API key. (required).</param>
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
-        /// <param name="_Object">entity name: always &#39;apikey&#39; (required).</param>
+        /// <param name="_Object">Entity name: always &#39;apikey&#39; (required).</param>
         /// <param name="CreationTime">The timestamp of the API key creation in the storage, in milliseconds..</param>
         /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="Groups">A list of group IDs this API key belongs to..</param>
         /// <param name="Owner">The owner of this API key, who is the creator by default..</param>
-        /// <param name="SecretKey">API key secret..</param>
-        /// <param name="Id">UUID of the API key. (required).</param>
+        /// <param name="SecretKey">API key secret, deprecated and always empty string..</param>
+        /// <param name="Id">The UUID of the API key. (required).</param>
         /// <param name="LastLoginTime">The timestamp of the latest API key usage, in milliseconds..</param>
         public ApiKeyInfoResp(StatusEnum? Status = null, string Apikey = null, string Name = null, string CreatedAt = null, ObjectEnum? _Object = null, long? CreationTime = null, string Etag = null, List<string> Groups = null, string Owner = null, string SecretKey = null, string Id = null, long? LastLoginTime = null)
         {
@@ -194,9 +200,9 @@ namespace iam.Model
         }
         
         /// <summary>
-        /// API key.
+        /// The API key.
         /// </summary>
-        /// <value>API key.</value>
+        /// <value>The API key.</value>
         [DataMember(Name="apikey", EmitDefaultValue=false)]
         public string Apikey { get; set; }
         /// <summary>
@@ -236,15 +242,15 @@ namespace iam.Model
         [DataMember(Name="owner", EmitDefaultValue=false)]
         public string Owner { get; set; }
         /// <summary>
-        /// API key secret.
+        /// API key secret, deprecated and always empty string.
         /// </summary>
-        /// <value>API key secret.</value>
+        /// <value>API key secret, deprecated and always empty string.</value>
         [DataMember(Name="secret_key", EmitDefaultValue=false)]
         public string SecretKey { get; set; }
         /// <summary>
-        /// UUID of the API key.
+        /// The UUID of the API key.
         /// </summary>
-        /// <value>UUID of the API key.</value>
+        /// <value>The UUID of the API key.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
         /// <summary>

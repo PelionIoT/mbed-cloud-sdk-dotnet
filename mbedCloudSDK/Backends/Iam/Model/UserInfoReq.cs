@@ -1,7 +1,7 @@
 /* 
  * IAM Identities REST API
  *
- * REST API to manage accounts, groups, users and api-keys
+ * REST API to manage accounts, groups, users and API keys
  *
  * OpenAPI spec version: v3
  * 
@@ -55,7 +55,7 @@ namespace iam.Model
         /// <param name="FullName">The full name of the user..</param>
         /// <param name="Address">Address..</param>
         /// <param name="Password">The password when creating a new user. It will will generated when not present in the request..</param>
-        /// <param name="Email">Email address. (required).</param>
+        /// <param name="Email">The email address. (required).</param>
         public UserInfoReq(string Username = null, string PhoneNumber = null, List<string> Groups = null, bool? IsGtcAccepted = null, bool? IsMarketingAccepted = null, string FullName = null, string Address = null, string Password = null, string Email = null)
         {
             // to ensure "Username" is required (not null)
@@ -150,9 +150,9 @@ namespace iam.Model
         [DataMember(Name="password", EmitDefaultValue=false)]
         public string Password { get; set; }
         /// <summary>
-        /// Email address.
+        /// The email address.
         /// </summary>
-        /// <value>Email address.</value>
+        /// <value>The email address.</value>
         [DataMember(Name="email", EmitDefaultValue=false)]
         public string Email { get; set; }
         /// <summary>

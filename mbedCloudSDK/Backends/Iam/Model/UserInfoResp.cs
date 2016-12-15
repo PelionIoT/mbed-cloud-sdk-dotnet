@@ -1,7 +1,7 @@
 /* 
  * IAM Identities REST API
  *
- * REST API to manage accounts, groups, users and api-keys
+ * REST API to manage accounts, groups, users and API keys
  *
  * OpenAPI spec version: v3
  * 
@@ -73,9 +73,9 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// entity name: always 'user'
+        /// Entity name: always 'user'
         /// </summary>
-        /// <value>entity name: always 'user'</value>
+        /// <value>Entity name: always 'user'</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ObjectEnum
         {
@@ -105,6 +105,12 @@ namespace iam.Model
             Account,
             
             /// <summary>
+            /// Enum Cacert for "ca_cert"
+            /// </summary>
+            [EnumMember(Value = "ca_cert")]
+            Cacert,
+            
+            /// <summary>
             /// Enum List for "list"
             /// </summary>
             [EnumMember(Value = "list")]
@@ -124,9 +130,9 @@ namespace iam.Model
         [DataMember(Name="status", EmitDefaultValue=false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
-        /// entity name: always 'user'
+        /// Entity name: always 'user'
         /// </summary>
-        /// <value>entity name: always 'user'</value>
+        /// <value>Entity name: always 'user'</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public ObjectEnum? _Object { get; set; }
         /// <summary>
@@ -144,9 +150,9 @@ namespace iam.Model
         /// <param name="PasswordChangedTime">A timestamp of the latest change of the user password, in milliseconds..</param>
         /// <param name="Groups">A list of IDs of the groups this user belongs to..</param>
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
-        /// <param name="_Object">entity name: always &#39;user&#39; (required).</param>
+        /// <param name="_Object">Entity name: always &#39;user&#39; (required).</param>
         /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted. (default to false).</param>
-        /// <param name="Email">Email address. (required).</param>
+        /// <param name="Email">The email address. (required).</param>
         /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted. (default to false).</param>
         /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="FullName">The full name of the user..</param>
@@ -302,9 +308,9 @@ namespace iam.Model
         [DataMember(Name="is_gtc_accepted", EmitDefaultValue=false)]
         public bool? IsGtcAccepted { get; set; }
         /// <summary>
-        /// Email address.
+        /// The email address.
         /// </summary>
-        /// <value>Email address.</value>
+        /// <value>The email address.</value>
         [DataMember(Name="email", EmitDefaultValue=false)]
         public string Email { get; set; }
         /// <summary>

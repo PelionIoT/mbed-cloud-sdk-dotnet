@@ -2,7 +2,7 @@
 <!--
 IAM Identities REST API
 
-REST API to manage accounts, groups, users and api-keys
+REST API to manage accounts, groups, users and API keys
 
 OpenAPI spec version: v3
 
@@ -24,7 +24,7 @@ limitations under the License.
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BABB7D1E-E02B-40DC-9120-D11F8DD177E8}</ProjectGuid>
+    <ProjectGuid>{3F629A7D-B23F-491F-B407-49EF87DBFE71}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>iam</RootNamespace>
