@@ -123,6 +123,7 @@ namespace mds.Client
             Dictionary<String, FileParameter> fileParams, Dictionary<String, String> pathParams,
             String contentType)
         {
+
             // add path parameter, if any
             foreach (var param in pathParams)
                 path = path.Replace("{" + param.Key + "}" , param.Value);
@@ -189,6 +190,7 @@ namespace mds.Client
             RestClient.Timeout = Configuration.Timeout;
             // set user agent
             RestClient.UserAgent = Configuration.UserAgent;
+			Uri req = RestClient.BuildUri(request);
 
             InterceptRequest(request);
             var response = RestClient.Execute(request);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using mbedCloudSDK.Access;
 using mbedCloudSDK.Common;
@@ -21,9 +22,9 @@ namespace ConsoleExamples
             }
 			string apiKey = args[0];
             Config config = new Config(apiKey);
-            config.Host = "https://lab-api.mbedcloudintegration.net";
-			runIAMExample(config);
-            Console.ReadKey();
+			config.Host = "https://lab-api.mbedcloudintegration.net";
+			runSubscriptionExample(config);
+			Console.ReadKey();
         }
 
         private static void runIAMExample(Config config)
@@ -51,6 +52,24 @@ namespace ConsoleExamples
 			foreach (var device in devices.ListDevices())
 			{
 				Console.WriteLine(device.ToString());
+			}
+		}
+
+		private static void runSubscriptionExample(Config config)
+		{
+			var buttonResource = "/3200/0/5501";
+			Devices devices = new Devices(config);
+			var endpoints = devices.ListEndpoints();
+			if (endpoints == null)
+			{
+				throw new Exception("No endpoints registered. Aborting.");
+			}
+			devices.StartLongPolling();
+			AsyncConsumer<String> consumer =  devices.Subscribe(endpoints[0].Name, buttonResource);
+			while (true)
+			{
+				Task<string> t = consumer.GetValue();
+				Console.WriteLine(t.Result);
 			}
 		}
 
