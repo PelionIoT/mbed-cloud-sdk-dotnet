@@ -89,7 +89,7 @@ namespace mbedCloudSDK.Devices
 		/// </summary>
 		/// <param name="url">URL.</param>
 		/// <param name="headers">Headers.</param>
-		public void RegisterWebhook(string url, object headers)
+		public void RegisterWebhook(string url, object headers=null)
 		{
 			var api = new mds.Api.NotificationsApi(config.Host);
 			api.Configuration.ApiKey["Authorization"] = config.ApiKey;

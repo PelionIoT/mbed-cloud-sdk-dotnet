@@ -23,7 +23,7 @@ namespace ConsoleExamples
 			string apiKey = args[0];
             Config config = new Config(apiKey);
 			config.Host = "https://lab-api.mbedcloudintegration.net";
-			runSubscriptionExample(config);
+			runIAMExample(config);
 			Console.ReadKey();
         }
 
@@ -71,6 +71,24 @@ namespace ConsoleExamples
 				Task<string> t = consumer.GetValue();
 				Console.WriteLine(t.Result);
 			}
+		}
+
+		private static void runWebhookExample(Config config)
+		{
+			var buttonResource = "/3200/0/5501";
+			Devices devices = new Devices(config);
+			var endpoints = devices.ListEndpoints();
+			if (endpoints == null)
+			{
+				throw new Exception("No endpoints registered. Aborting.");
+			}
+			string webhook = "http://testwebhooks.requestcatcher.com/test";
+			devices.RegisterWebhook(webhook);
+			Thread.Sleep(2000);
+			devices.Subscribe(endpoints[0].Name, buttonResource);
+			Console.WriteLine(string.Format("Webhook registered, see output on {0}", webhook));
+			Thread.Sleep(20000);
+			devices.DeregisterWebhooks();
 		}
 
     }
