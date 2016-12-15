@@ -103,10 +103,11 @@ namespace mbedCloudSDK.Devices
 		/// </summary>
 		public void DeregisterWebhooks()
 		{
-			var api = new mds.Api.NotificationsApi(config.Host);
+			var api = new mds.Api.DefaultApi(config.Host);
 			api.Configuration.ApiKey["Authorization"] = config.ApiKey;
 			api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-			//TODO Notification delete doesn't exists in backend
+			api.V2NotificationCallbackDelete();
+			queues.Clear();
 		}
 
 		#endregion
@@ -273,8 +274,6 @@ namespace mbedCloudSDK.Devices
 					{
 						byte[] data = Convert.FromBase64String(notification.Payload);
 						string payload = Encoding.UTF8.GetString(data);
-						Console.WriteLine(payload);
-						Console.WriteLine(notification.Path);
 						Resource r = queues[notification.Ep].Resources[notification.Path];
 						r.Queue.Add(payload);
 					}
