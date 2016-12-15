@@ -22,9 +22,9 @@ namespace ConsoleExamples
             }
 			string apiKey = args[0];
             Config config = new Config(apiKey);
-            config.Host = "https://lab-api.mbedcloudintegration.net";
-			runIAMExample(config);
-            Console.ReadKey();
+			config.Host = "https://lab-api.mbedcloudintegration.net";
+			runSubscriptionExample(config);
+			Console.ReadKey();
         }
 
         private static void runIAMExample(Config config)
@@ -57,20 +57,19 @@ namespace ConsoleExamples
 
 		private static void runSubscriptionExample(Config config)
 		{
-			var buttonResource = "3200/0/5501";
+			var buttonResource = "/3200/0/5501";
 			Devices devices = new Devices(config);
 			var endpoints = devices.ListEndpoints();
 			if (endpoints == null)
 			{
 				throw new Exception("No endpoints registered. Aborting.");
 			}
-			Console.WriteLine(endpoints);
-			//devices.Subscribe(endpoints[0].Name, buttonResource);
-			//var resources = devices.ListResources(endpoints[0].Name);
-			devices.GetResource(endpoints[0].Name, buttonResource);
+			devices.StartLongPolling();
+			AsyncConsumer<String> consumer =  devices.Subscribe(endpoints[0].Name, buttonResource);
 			while (true)
 			{
-				Thread.Sleep(1000);
+				Task<string> t = consumer.GetValue();
+				Console.WriteLine(t.Result);
 			}
 		}
 

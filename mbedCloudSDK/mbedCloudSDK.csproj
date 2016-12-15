@@ -167,6 +167,8 @@
     <Compile Include="Manufacturing\Manufacturing.cs" />
     <Compile Include="Devices\AsyncProducerConsumerCollection.cs" />
     <Compile Include="Devices\AsyncConsumer.cs" />
+    <Compile Include="Devices\Endpoint.cs" />
+    <Compile Include="Devices\Resource.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Backends\Iam\README.md" />

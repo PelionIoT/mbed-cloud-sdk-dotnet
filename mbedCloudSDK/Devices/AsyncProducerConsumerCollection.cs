@@ -2,14 +2,21 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK
+namespace mbedCloudSDK.Devices
 {
+	/// <summary>
+	/// Async producer consumer collection.
+	/// </summary>
 	public class AsyncProducerConsumerCollection<T>
 	{
 		private readonly Queue<T> m_collection = new Queue<T>();
 		private readonly Queue<TaskCompletionSource<T>> m_waiting =
 			new Queue<TaskCompletionSource<T>>();
 
+		/// <summary>
+		/// Add the specified item.
+		/// </summary>
+		/// <param name="item">Item.</param>
 		public void Add(T item)
 		{
 			TaskCompletionSource<T> tcs = null;
@@ -21,6 +28,9 @@ namespace mbedCloudSDK
 			if (tcs != null) tcs.TrySetResult(item);
 		}
 
+		/// <summary>
+		/// Take this instance.
+		/// </summary>
 		public Task<T> Take()
 		{
 			lock (m_collection)
