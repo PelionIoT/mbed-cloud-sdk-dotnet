@@ -302,21 +302,11 @@ namespace firmware_catalog.Api
         /// &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests&lt;/p&gt;
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="manifestId"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="timestamp"> (optional)</param>
-        /// <param name="page">The page number to retrieve. If not given, then defaults to first page.  (optional)</param>
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
         /// <returns>FirmwareManifestSerializer</returns>
-        FirmwareManifestSerializer FirmwareManifestList (string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string deviceClass = null, string etag = null, string manifestId = null, string _object = null, string timestamp = null, int? page = null);
+        FirmwareManifestSerializer FirmwareManifestList (int? limit = null, string order = null, string after = null);
 
         /// <summary>
         /// 
@@ -325,21 +315,11 @@ namespace firmware_catalog.Api
         /// &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests&lt;/p&gt;
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="manifestId"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="timestamp"> (optional)</param>
-        /// <param name="page">The page number to retrieve. If not given, then defaults to first page.  (optional)</param>
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
         /// <returns>ApiResponse of FirmwareManifestSerializer</returns>
-        ApiResponse<FirmwareManifestSerializer> FirmwareManifestListWithHttpInfo (string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string deviceClass = null, string etag = null, string manifestId = null, string _object = null, string timestamp = null, int? page = null);
+        ApiResponse<FirmwareManifestSerializer> FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null);
         /// <summary>
         /// 
         /// </summary>
@@ -651,21 +631,11 @@ namespace firmware_catalog.Api
         /// &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests&lt;/p&gt;
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="manifestId"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="timestamp"> (optional)</param>
-        /// <param name="page">The page number to retrieve. If not given, then defaults to first page.  (optional)</param>
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
         /// <returns>Task of FirmwareManifestSerializer</returns>
-        System.Threading.Tasks.Task<FirmwareManifestSerializer> FirmwareManifestListAsync (string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string deviceClass = null, string etag = null, string manifestId = null, string _object = null, string timestamp = null, int? page = null);
+        System.Threading.Tasks.Task<FirmwareManifestSerializer> FirmwareManifestListAsync (int? limit = null, string order = null, string after = null);
 
         /// <summary>
         /// 
@@ -674,21 +644,11 @@ namespace firmware_catalog.Api
         /// &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests&lt;/p&gt;
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="manifestId"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="timestamp"> (optional)</param>
-        /// <param name="page">The page number to retrieve. If not given, then defaults to first page.  (optional)</param>
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareManifestSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareManifestSerializer>> FirmwareManifestListAsyncWithHttpInfo (string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string deviceClass = null, string etag = null, string manifestId = null, string _object = null, string timestamp = null, int? page = null);
+        System.Threading.Tasks.Task<ApiResponse<FirmwareManifestSerializer>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null);
         /// <summary>
         /// 
         /// </summary>
@@ -2234,23 +2194,13 @@ namespace firmware_catalog.Api
         ///  &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests&lt;/p&gt;
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="manifestId"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="timestamp"> (optional)</param>
-        /// <param name="page">The page number to retrieve. If not given, then defaults to first page.  (optional)</param>
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
         /// <returns>FirmwareManifestSerializer</returns>
-        public FirmwareManifestSerializer FirmwareManifestList (string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string deviceClass = null, string etag = null, string manifestId = null, string _object = null, string timestamp = null, int? page = null)
+        public FirmwareManifestSerializer FirmwareManifestList (int? limit = null, string order = null, string after = null)
         {
-             ApiResponse<FirmwareManifestSerializer> localVarResponse = FirmwareManifestListWithHttpInfo(updatingRequestId, updatingIpAddress, name, description, createdAt, updatedAt, datafileChecksum, deviceClass, etag, manifestId, _object, timestamp, page);
+             ApiResponse<FirmwareManifestSerializer> localVarResponse = FirmwareManifestListWithHttpInfo(limit, order, after);
              return localVarResponse.Data;
         }
 
@@ -2258,21 +2208,11 @@ namespace firmware_catalog.Api
         ///  &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests&lt;/p&gt;
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="manifestId"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="timestamp"> (optional)</param>
-        /// <param name="page">The page number to retrieve. If not given, then defaults to first page.  (optional)</param>
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
         /// <returns>ApiResponse of FirmwareManifestSerializer</returns>
-        public ApiResponse< FirmwareManifestSerializer > FirmwareManifestListWithHttpInfo (string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string deviceClass = null, string etag = null, string manifestId = null, string _object = null, string timestamp = null, int? page = null)
+        public ApiResponse< FirmwareManifestSerializer > FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null)
         {
 
             var localVarPath = "/v3/firmware/manifests/";
@@ -2298,19 +2238,9 @@ namespace firmware_catalog.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
-            if (deviceClass != null) localVarQueryParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (manifestId != null) localVarQueryParams.Add("manifest_id", Configuration.ApiClient.ParameterToString(manifestId)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (timestamp != null) localVarQueryParams.Add("timestamp", Configuration.ApiClient.ParameterToString(timestamp)); // query parameter
-            if (page != null) localVarQueryParams.Add("page", Configuration.ApiClient.ParameterToString(page)); // query parameter
+            if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
+            if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
+            if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2342,23 +2272,13 @@ namespace firmware_catalog.Api
         ///  &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests&lt;/p&gt;
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="manifestId"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="timestamp"> (optional)</param>
-        /// <param name="page">The page number to retrieve. If not given, then defaults to first page.  (optional)</param>
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
         /// <returns>Task of FirmwareManifestSerializer</returns>
-        public async System.Threading.Tasks.Task<FirmwareManifestSerializer> FirmwareManifestListAsync (string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string deviceClass = null, string etag = null, string manifestId = null, string _object = null, string timestamp = null, int? page = null)
+        public async System.Threading.Tasks.Task<FirmwareManifestSerializer> FirmwareManifestListAsync (int? limit = null, string order = null, string after = null)
         {
-             ApiResponse<FirmwareManifestSerializer> localVarResponse = await FirmwareManifestListAsyncWithHttpInfo(updatingRequestId, updatingIpAddress, name, description, createdAt, updatedAt, datafileChecksum, deviceClass, etag, manifestId, _object, timestamp, page);
+             ApiResponse<FirmwareManifestSerializer> localVarResponse = await FirmwareManifestListAsyncWithHttpInfo(limit, order, after);
              return localVarResponse.Data;
 
         }
@@ -2367,21 +2287,11 @@ namespace firmware_catalog.Api
         ///  &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests&lt;/p&gt;
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="manifestId"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="timestamp"> (optional)</param>
-        /// <param name="page">The page number to retrieve. If not given, then defaults to first page.  (optional)</param>
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareManifestSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifestSerializer>> FirmwareManifestListAsyncWithHttpInfo (string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string deviceClass = null, string etag = null, string manifestId = null, string _object = null, string timestamp = null, int? page = null)
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifestSerializer>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null)
         {
 
             var localVarPath = "/v3/firmware/manifests/";
@@ -2407,19 +2317,9 @@ namespace firmware_catalog.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
-            if (deviceClass != null) localVarQueryParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (manifestId != null) localVarQueryParams.Add("manifest_id", Configuration.ApiClient.ParameterToString(manifestId)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (timestamp != null) localVarQueryParams.Add("timestamp", Configuration.ApiClient.ParameterToString(timestamp)); // query parameter
-            if (page != null) localVarQueryParams.Add("page", Configuration.ApiClient.ParameterToString(page)); // query parameter
+            if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
+            if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
+            if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
