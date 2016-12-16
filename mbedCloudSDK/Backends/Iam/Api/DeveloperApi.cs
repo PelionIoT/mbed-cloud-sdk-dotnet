@@ -164,8 +164,9 @@ namespace iam.Api
         /// Returns detailed information about the account.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits (optional)</param>
         /// <returns>AccountInfo</returns>
-        AccountInfo GetMyAccountInfo ();
+        AccountInfo GetMyAccountInfo (string include = null);
 
         /// <summary>
         /// Get account info.
@@ -174,8 +175,9 @@ namespace iam.Api
         /// Returns detailed information about the account.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits (optional)</param>
         /// <returns>ApiResponse of AccountInfo</returns>
-        ApiResponse<AccountInfo> GetMyAccountInfoWithHttpInfo ();
+        ApiResponse<AccountInfo> GetMyAccountInfoWithHttpInfo (string include = null);
         /// <summary>
         /// Get API key details.
         /// </summary>
@@ -409,8 +411,9 @@ namespace iam.Api
         /// Returns detailed information about the account.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits (optional)</param>
         /// <returns>Task of AccountInfo</returns>
-        System.Threading.Tasks.Task<AccountInfo> GetMyAccountInfoAsync ();
+        System.Threading.Tasks.Task<AccountInfo> GetMyAccountInfoAsync (string include = null);
 
         /// <summary>
         /// Get account info.
@@ -419,8 +422,9 @@ namespace iam.Api
         /// Returns detailed information about the account.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits (optional)</param>
         /// <returns>Task of ApiResponse (AccountInfo)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccountInfo>> GetMyAccountInfoAsyncWithHttpInfo ();
+        System.Threading.Tasks.Task<ApiResponse<AccountInfo>> GetMyAccountInfoAsyncWithHttpInfo (string include = null);
         /// <summary>
         /// Get API key details.
         /// </summary>
@@ -1450,10 +1454,11 @@ namespace iam.Api
         /// Get account info. Returns detailed information about the account.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits (optional)</param>
         /// <returns>AccountInfo</returns>
-        public AccountInfo GetMyAccountInfo ()
+        public AccountInfo GetMyAccountInfo (string include = null)
         {
-             ApiResponse<AccountInfo> localVarResponse = GetMyAccountInfoWithHttpInfo();
+             ApiResponse<AccountInfo> localVarResponse = GetMyAccountInfoWithHttpInfo(include);
              return localVarResponse.Data;
         }
 
@@ -1461,8 +1466,9 @@ namespace iam.Api
         /// Get account info. Returns detailed information about the account.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits (optional)</param>
         /// <returns>ApiResponse of AccountInfo</returns>
-        public ApiResponse< AccountInfo > GetMyAccountInfoWithHttpInfo ()
+        public ApiResponse< AccountInfo > GetMyAccountInfoWithHttpInfo (string include = null)
         {
 
             var localVarPath = "/v3/accounts/me";
@@ -1489,6 +1495,7 @@ namespace iam.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1520,10 +1527,11 @@ namespace iam.Api
         /// Get account info. Returns detailed information about the account.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits (optional)</param>
         /// <returns>Task of AccountInfo</returns>
-        public async System.Threading.Tasks.Task<AccountInfo> GetMyAccountInfoAsync ()
+        public async System.Threading.Tasks.Task<AccountInfo> GetMyAccountInfoAsync (string include = null)
         {
-             ApiResponse<AccountInfo> localVarResponse = await GetMyAccountInfoAsyncWithHttpInfo();
+             ApiResponse<AccountInfo> localVarResponse = await GetMyAccountInfoAsyncWithHttpInfo(include);
              return localVarResponse.Data;
 
         }
@@ -1532,8 +1540,9 @@ namespace iam.Api
         /// Get account info. Returns detailed information about the account.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits (optional)</param>
         /// <returns>Task of ApiResponse (AccountInfo)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<AccountInfo>> GetMyAccountInfoAsyncWithHttpInfo ()
+        public async System.Threading.Tasks.Task<ApiResponse<AccountInfo>> GetMyAccountInfoAsyncWithHttpInfo (string include = null)
         {
 
             var localVarPath = "/v3/accounts/me";
@@ -1560,6 +1569,7 @@ namespace iam.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))

@@ -48,6 +48,7 @@ namespace iam.Model
         /// <param name="DisplayName">The display name for the account..</param>
         /// <param name="Country">The country part of the postal address..</param>
         /// <param name="Company">The name of the company..</param>
+        /// <param name="TemplateId">Account template ID. Manageable by the root admin only..</param>
         /// <param name="Status">The status of the account. Manageable by the root admin only..</param>
         /// <param name="State">The state part of the postal address..</param>
         /// <param name="Contact">The name of the contact person for this account..</param>
@@ -57,7 +58,7 @@ namespace iam.Model
         /// <param name="PhoneNumber">The phone number of the company..</param>
         /// <param name="Email">The company email address for this account..</param>
         /// <param name="Aliases">An array of aliases..</param>
-        public AccountUpdateReq(string AddressLine2 = null, string City = null, string AddressLine1 = null, string DisplayName = null, string Country = null, string Company = null, string Status = null, string State = null, string Contact = null, string PostalCode = null, bool? IsProvisioningAllowed = null, string Tier = null, string PhoneNumber = null, string Email = null, List<string> Aliases = null)
+        public AccountUpdateReq(string AddressLine2 = null, string City = null, string AddressLine1 = null, string DisplayName = null, string Country = null, string Company = null, string TemplateId = null, string Status = null, string State = null, string Contact = null, string PostalCode = null, bool? IsProvisioningAllowed = null, string Tier = null, string PhoneNumber = null, string Email = null, List<string> Aliases = null)
         {
             this.AddressLine2 = AddressLine2;
             this.City = City;
@@ -65,6 +66,7 @@ namespace iam.Model
             this.DisplayName = DisplayName;
             this.Country = Country;
             this.Company = Company;
+            this.TemplateId = TemplateId;
             this.Status = Status;
             this.State = State;
             this.Contact = Contact;
@@ -120,6 +122,12 @@ namespace iam.Model
         /// <value>The name of the company.</value>
         [DataMember(Name="company", EmitDefaultValue=false)]
         public string Company { get; set; }
+        /// <summary>
+        /// Account template ID. Manageable by the root admin only.
+        /// </summary>
+        /// <value>Account template ID. Manageable by the root admin only.</value>
+        [DataMember(Name="template_id", EmitDefaultValue=false)]
+        public string TemplateId { get; set; }
         /// <summary>
         /// The status of the account. Manageable by the root admin only.
         /// </summary>
@@ -188,6 +196,7 @@ namespace iam.Model
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
+            sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  Contact: ").Append(Contact).Append("\n");
@@ -264,6 +273,11 @@ namespace iam.Model
                     this.Company.Equals(other.Company)
                 ) && 
                 (
+                    this.TemplateId == other.TemplateId ||
+                    this.TemplateId != null &&
+                    this.TemplateId.Equals(other.TemplateId)
+                ) && 
+                (
                     this.Status == other.Status ||
                     this.Status != null &&
                     this.Status.Equals(other.Status)
@@ -333,6 +347,8 @@ namespace iam.Model
                     hash = hash * 59 + this.Country.GetHashCode();
                 if (this.Company != null)
                     hash = hash * 59 + this.Company.GetHashCode();
+                if (this.TemplateId != null)
+                    hash = hash * 59 + this.TemplateId.GetHashCode();
                 if (this.Status != null)
                     hash = hash * 59 + this.Status.GetHashCode();
                 if (this.State != null)

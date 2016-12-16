@@ -40,57 +40,6 @@ namespace iam.Model
     public partial class AccountInfo :  IEquatable<AccountInfo>
     {
         /// <summary>
-        /// Entity name: always 'account'
-        /// </summary>
-        /// <value>Entity name: always 'account'</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ObjectEnum
-        {
-            
-            /// <summary>
-            /// Enum User for "user"
-            /// </summary>
-            [EnumMember(Value = "user")]
-            User,
-            
-            /// <summary>
-            /// Enum Apikey for "apikey"
-            /// </summary>
-            [EnumMember(Value = "apikey")]
-            Apikey,
-            
-            /// <summary>
-            /// Enum Group for "group"
-            /// </summary>
-            [EnumMember(Value = "group")]
-            Group,
-            
-            /// <summary>
-            /// Enum Account for "account"
-            /// </summary>
-            [EnumMember(Value = "account")]
-            Account,
-            
-            /// <summary>
-            /// Enum Cacert for "ca_cert"
-            /// </summary>
-            [EnumMember(Value = "ca_cert")]
-            Cacert,
-            
-            /// <summary>
-            /// Enum List for "list"
-            /// </summary>
-            [EnumMember(Value = "list")]
-            List,
-            
-            /// <summary>
-            /// Enum Error for "error"
-            /// </summary>
-            [EnumMember(Value = "error")]
-            Error
-        }
-
-        /// <summary>
         /// The status of the account.
         /// </summary>
         /// <value>The status of the account.</value>
@@ -127,14 +76,71 @@ namespace iam.Model
         /// Entity name: always 'account'
         /// </summary>
         /// <value>Entity name: always 'account'</value>
-        [DataMember(Name="object", EmitDefaultValue=false)]
-        public ObjectEnum? _Object { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ObjectEnum
+        {
+            
+            /// <summary>
+            /// Enum User for "user"
+            /// </summary>
+            [EnumMember(Value = "user")]
+            User,
+            
+            /// <summary>
+            /// Enum Apikey for "apikey"
+            /// </summary>
+            [EnumMember(Value = "apikey")]
+            Apikey,
+            
+            /// <summary>
+            /// Enum Group for "group"
+            /// </summary>
+            [EnumMember(Value = "group")]
+            Group,
+            
+            /// <summary>
+            /// Enum Account for "account"
+            /// </summary>
+            [EnumMember(Value = "account")]
+            Account,
+            
+            /// <summary>
+            /// Enum Accounttemplate for "account_template"
+            /// </summary>
+            [EnumMember(Value = "account_template")]
+            Accounttemplate,
+            
+            /// <summary>
+            /// Enum Cacert for "ca_cert"
+            /// </summary>
+            [EnumMember(Value = "ca_cert")]
+            Cacert,
+            
+            /// <summary>
+            /// Enum List for "list"
+            /// </summary>
+            [EnumMember(Value = "list")]
+            List,
+            
+            /// <summary>
+            /// Enum Error for "error"
+            /// </summary>
+            [EnumMember(Value = "error")]
+            Error
+        }
+
         /// <summary>
         /// The status of the account.
         /// </summary>
         /// <value>The status of the account.</value>
         [DataMember(Name="status", EmitDefaultValue=false)]
         public StatusEnum? Status { get; set; }
+        /// <summary>
+        /// Entity name: always 'account'
+        /// </summary>
+        /// <value>Entity name: always 'account'</value>
+        [DataMember(Name="object", EmitDefaultValue=false)]
+        public ObjectEnum? _Object { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountInfo" /> class.
         /// </summary>
@@ -143,46 +149,32 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountInfo" /> class.
         /// </summary>
+        /// <param name="PhoneNumber">The phone number of the company..</param>
+        /// <param name="PostalCode">The postal code part of the postal address..</param>
+        /// <param name="Id">Account ID. (required).</param>
+        /// <param name="Aliases">An array of aliases. (required).</param>
         /// <param name="AddressLine2">Postal address line 2..</param>
         /// <param name="City">The city part of the postal address..</param>
         /// <param name="AddressLine1">Postal address line 1..</param>
         /// <param name="DisplayName">The display name for the account..</param>
-        /// <param name="UpgradedAt">Time when upgraded to commercial account in UTC format RFC3339..</param>
-        /// <param name="Country">The country part of the postal address..</param>
-        /// <param name="Company">The name of the company..</param>
-        /// <param name="_Object">Entity name: always &#39;account&#39; (required).</param>
-        /// <param name="Status">The status of the account. (required).</param>
-        /// <param name="Id">Account ID. (required).</param>
-        /// <param name="Email">The company email address for this account..</param>
         /// <param name="State">The state part of the postal address..</param>
         /// <param name="Etag">API resource entity version. (required).</param>
-        /// <param name="PostalCode">The postal code part of the postal address..</param>
-        /// <param name="Contact">The name of the contact person for this account..</param>
-        /// <param name="IsProvisioningAllowed">Flag (true/false) indicating whether Factory Tool is allowed to download or not.. (required) (default to false).</param>
+        /// <param name="IsProvisioningAllowed">Flag (true/false) indicating whether Factory Tool is allowed to download or not. (required) (default to false).</param>
+        /// <param name="CreationTimeMillis">CreationTimeMillis.</param>
+        /// <param name="Email">The company email address for this account..</param>
+        /// <param name="Status">The status of the account. (required).</param>
+        /// <param name="Company">The name of the company..</param>
+        /// <param name="_Object">Entity name: always &#39;account&#39; (required).</param>
+        /// <param name="UpgradedAt">Time when upgraded to commercial account in UTC format RFC3339..</param>
         /// <param name="Tier">The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account. Other values are reserved for the future. (required).</param>
-        /// <param name="PhoneNumber">The phone number of the company..</param>
+        /// <param name="Limits">List of limits as key-value pairs if requested..</param>
+        /// <param name="Country">The country part of the postal address..</param>
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
-        /// <param name="Aliases">An array of aliases. (required).</param>
-        public AccountInfo(string AddressLine2 = null, string City = null, string AddressLine1 = null, string DisplayName = null, string UpgradedAt = null, string Country = null, string Company = null, ObjectEnum? _Object = null, StatusEnum? Status = null, string Id = null, string Email = null, string State = null, string Etag = null, string PostalCode = null, string Contact = null, bool? IsProvisioningAllowed = null, string Tier = null, string PhoneNumber = null, string CreatedAt = null, List<string> Aliases = null)
+        /// <param name="Contact">The name of the contact person for this account..</param>
+        /// <param name="Policies">List of policies if requested..</param>
+        /// <param name="TemplateId">Account template ID..</param>
+        public AccountInfo(string PhoneNumber = null, string PostalCode = null, string Id = null, List<string> Aliases = null, string AddressLine2 = null, string City = null, string AddressLine1 = null, string DisplayName = null, string State = null, string Etag = null, bool? IsProvisioningAllowed = null, long? CreationTimeMillis = null, string Email = null, StatusEnum? Status = null, string Company = null, ObjectEnum? _Object = null, string UpgradedAt = null, string Tier = null, Dictionary<string, string> Limits = null, string Country = null, string CreatedAt = null, string Contact = null, List<Policy> Policies = null, string TemplateId = null)
         {
-            // to ensure "_Object" is required (not null)
-            if (_Object == null)
-            {
-                throw new InvalidDataException("_Object is a required property for AccountInfo and cannot be null");
-            }
-            else
-            {
-                this._Object = _Object;
-            }
-            // to ensure "Status" is required (not null)
-            if (Status == null)
-            {
-                throw new InvalidDataException("Status is a required property for AccountInfo and cannot be null");
-            }
-            else
-            {
-                this.Status = Status;
-            }
             // to ensure "Id" is required (not null)
             if (Id == null)
             {
@@ -191,6 +183,15 @@ namespace iam.Model
             else
             {
                 this.Id = Id;
+            }
+            // to ensure "Aliases" is required (not null)
+            if (Aliases == null)
+            {
+                throw new InvalidDataException("Aliases is a required property for AccountInfo and cannot be null");
+            }
+            else
+            {
+                this.Aliases = Aliases;
             }
             // to ensure "Etag" is required (not null)
             if (Etag == null)
@@ -210,6 +211,24 @@ namespace iam.Model
             {
                 this.IsProvisioningAllowed = IsProvisioningAllowed;
             }
+            // to ensure "Status" is required (not null)
+            if (Status == null)
+            {
+                throw new InvalidDataException("Status is a required property for AccountInfo and cannot be null");
+            }
+            else
+            {
+                this.Status = Status;
+            }
+            // to ensure "_Object" is required (not null)
+            if (_Object == null)
+            {
+                throw new InvalidDataException("_Object is a required property for AccountInfo and cannot be null");
+            }
+            else
+            {
+                this._Object = _Object;
+            }
             // to ensure "Tier" is required (not null)
             if (Tier == null)
             {
@@ -219,30 +238,49 @@ namespace iam.Model
             {
                 this.Tier = Tier;
             }
-            // to ensure "Aliases" is required (not null)
-            if (Aliases == null)
-            {
-                throw new InvalidDataException("Aliases is a required property for AccountInfo and cannot be null");
-            }
-            else
-            {
-                this.Aliases = Aliases;
-            }
+            this.PhoneNumber = PhoneNumber;
+            this.PostalCode = PostalCode;
             this.AddressLine2 = AddressLine2;
             this.City = City;
             this.AddressLine1 = AddressLine1;
             this.DisplayName = DisplayName;
-            this.UpgradedAt = UpgradedAt;
-            this.Country = Country;
-            this.Company = Company;
-            this.Email = Email;
             this.State = State;
-            this.PostalCode = PostalCode;
-            this.Contact = Contact;
-            this.PhoneNumber = PhoneNumber;
+            this.CreationTimeMillis = CreationTimeMillis;
+            this.Email = Email;
+            this.Company = Company;
+            this.UpgradedAt = UpgradedAt;
+            this.Limits = Limits;
+            this.Country = Country;
             this.CreatedAt = CreatedAt;
+            this.Contact = Contact;
+            this.Policies = Policies;
+            this.TemplateId = TemplateId;
         }
         
+        /// <summary>
+        /// The phone number of the company.
+        /// </summary>
+        /// <value>The phone number of the company.</value>
+        [DataMember(Name="phone_number", EmitDefaultValue=false)]
+        public string PhoneNumber { get; set; }
+        /// <summary>
+        /// The postal code part of the postal address.
+        /// </summary>
+        /// <value>The postal code part of the postal address.</value>
+        [DataMember(Name="postal_code", EmitDefaultValue=false)]
+        public string PostalCode { get; set; }
+        /// <summary>
+        /// Account ID.
+        /// </summary>
+        /// <value>Account ID.</value>
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public string Id { get; set; }
+        /// <summary>
+        /// An array of aliases.
+        /// </summary>
+        /// <value>An array of aliases.</value>
+        [DataMember(Name="aliases", EmitDefaultValue=false)]
+        public List<string> Aliases { get; set; }
         /// <summary>
         /// Postal address line 2.
         /// </summary>
@@ -268,36 +306,6 @@ namespace iam.Model
         [DataMember(Name="display_name", EmitDefaultValue=false)]
         public string DisplayName { get; set; }
         /// <summary>
-        /// Time when upgraded to commercial account in UTC format RFC3339.
-        /// </summary>
-        /// <value>Time when upgraded to commercial account in UTC format RFC3339.</value>
-        [DataMember(Name="upgraded_at", EmitDefaultValue=false)]
-        public string UpgradedAt { get; set; }
-        /// <summary>
-        /// The country part of the postal address.
-        /// </summary>
-        /// <value>The country part of the postal address.</value>
-        [DataMember(Name="country", EmitDefaultValue=false)]
-        public string Country { get; set; }
-        /// <summary>
-        /// The name of the company.
-        /// </summary>
-        /// <value>The name of the company.</value>
-        [DataMember(Name="company", EmitDefaultValue=false)]
-        public string Company { get; set; }
-        /// <summary>
-        /// Account ID.
-        /// </summary>
-        /// <value>Account ID.</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
-        public string Id { get; set; }
-        /// <summary>
-        /// The company email address for this account.
-        /// </summary>
-        /// <value>The company email address for this account.</value>
-        [DataMember(Name="email", EmitDefaultValue=false)]
-        public string Email { get; set; }
-        /// <summary>
         /// The state part of the postal address.
         /// </summary>
         /// <value>The state part of the postal address.</value>
@@ -310,23 +318,34 @@ namespace iam.Model
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public string Etag { get; set; }
         /// <summary>
-        /// The postal code part of the postal address.
+        /// Flag (true/false) indicating whether Factory Tool is allowed to download or not.
         /// </summary>
-        /// <value>The postal code part of the postal address.</value>
-        [DataMember(Name="postal_code", EmitDefaultValue=false)]
-        public string PostalCode { get; set; }
-        /// <summary>
-        /// The name of the contact person for this account.
-        /// </summary>
-        /// <value>The name of the contact person for this account.</value>
-        [DataMember(Name="contact", EmitDefaultValue=false)]
-        public string Contact { get; set; }
-        /// <summary>
-        /// Flag (true/false) indicating whether Factory Tool is allowed to download or not..
-        /// </summary>
-        /// <value>Flag (true/false) indicating whether Factory Tool is allowed to download or not..</value>
+        /// <value>Flag (true/false) indicating whether Factory Tool is allowed to download or not.</value>
         [DataMember(Name="is_provisioning_allowed", EmitDefaultValue=false)]
         public bool? IsProvisioningAllowed { get; set; }
+        /// <summary>
+        /// Gets or Sets CreationTimeMillis
+        /// </summary>
+        [DataMember(Name="creationTimeMillis", EmitDefaultValue=false)]
+        public long? CreationTimeMillis { get; set; }
+        /// <summary>
+        /// The company email address for this account.
+        /// </summary>
+        /// <value>The company email address for this account.</value>
+        [DataMember(Name="email", EmitDefaultValue=false)]
+        public string Email { get; set; }
+        /// <summary>
+        /// The name of the company.
+        /// </summary>
+        /// <value>The name of the company.</value>
+        [DataMember(Name="company", EmitDefaultValue=false)]
+        public string Company { get; set; }
+        /// <summary>
+        /// Time when upgraded to commercial account in UTC format RFC3339.
+        /// </summary>
+        /// <value>Time when upgraded to commercial account in UTC format RFC3339.</value>
+        [DataMember(Name="upgraded_at", EmitDefaultValue=false)]
+        public string UpgradedAt { get; set; }
         /// <summary>
         /// The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account. Other values are reserved for the future.
         /// </summary>
@@ -334,11 +353,17 @@ namespace iam.Model
         [DataMember(Name="tier", EmitDefaultValue=false)]
         public string Tier { get; set; }
         /// <summary>
-        /// The phone number of the company.
+        /// List of limits as key-value pairs if requested.
         /// </summary>
-        /// <value>The phone number of the company.</value>
-        [DataMember(Name="phone_number", EmitDefaultValue=false)]
-        public string PhoneNumber { get; set; }
+        /// <value>List of limits as key-value pairs if requested.</value>
+        [DataMember(Name="limits", EmitDefaultValue=false)]
+        public Dictionary<string, string> Limits { get; set; }
+        /// <summary>
+        /// The country part of the postal address.
+        /// </summary>
+        /// <value>The country part of the postal address.</value>
+        [DataMember(Name="country", EmitDefaultValue=false)]
+        public string Country { get; set; }
         /// <summary>
         /// Creation UTC time RFC3339.
         /// </summary>
@@ -346,11 +371,23 @@ namespace iam.Model
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public string CreatedAt { get; set; }
         /// <summary>
-        /// An array of aliases.
+        /// The name of the contact person for this account.
         /// </summary>
-        /// <value>An array of aliases.</value>
-        [DataMember(Name="aliases", EmitDefaultValue=false)]
-        public List<string> Aliases { get; set; }
+        /// <value>The name of the contact person for this account.</value>
+        [DataMember(Name="contact", EmitDefaultValue=false)]
+        public string Contact { get; set; }
+        /// <summary>
+        /// List of policies if requested.
+        /// </summary>
+        /// <value>List of policies if requested.</value>
+        [DataMember(Name="policies", EmitDefaultValue=false)]
+        public List<Policy> Policies { get; set; }
+        /// <summary>
+        /// Account template ID.
+        /// </summary>
+        /// <value>Account template ID.</value>
+        [DataMember(Name="template_id", EmitDefaultValue=false)]
+        public string TemplateId { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -359,26 +396,30 @@ namespace iam.Model
         {
             var sb = new StringBuilder();
             sb.Append("class AccountInfo {\n");
+            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
+            sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Aliases: ").Append(Aliases).Append("\n");
             sb.Append("  AddressLine2: ").Append(AddressLine2).Append("\n");
             sb.Append("  City: ").Append(City).Append("\n");
             sb.Append("  AddressLine1: ").Append(AddressLine1).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
-            sb.Append("  UpgradedAt: ").Append(UpgradedAt).Append("\n");
-            sb.Append("  Country: ").Append(Country).Append("\n");
-            sb.Append("  Company: ").Append(Company).Append("\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
-            sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");
-            sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  IsProvisioningAllowed: ").Append(IsProvisioningAllowed).Append("\n");
+            sb.Append("  CreationTimeMillis: ").Append(CreationTimeMillis).Append("\n");
+            sb.Append("  Email: ").Append(Email).Append("\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
+            sb.Append("  UpgradedAt: ").Append(UpgradedAt).Append("\n");
             sb.Append("  Tier: ").Append(Tier).Append("\n");
-            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
+            sb.Append("  Limits: ").Append(Limits).Append("\n");
+            sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  Aliases: ").Append(Aliases).Append("\n");
+            sb.Append("  Contact: ").Append(Contact).Append("\n");
+            sb.Append("  Policies: ").Append(Policies).Append("\n");
+            sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -416,6 +457,26 @@ namespace iam.Model
 
             return 
                 (
+                    this.PhoneNumber == other.PhoneNumber ||
+                    this.PhoneNumber != null &&
+                    this.PhoneNumber.Equals(other.PhoneNumber)
+                ) && 
+                (
+                    this.PostalCode == other.PostalCode ||
+                    this.PostalCode != null &&
+                    this.PostalCode.Equals(other.PostalCode)
+                ) && 
+                (
+                    this.Id == other.Id ||
+                    this.Id != null &&
+                    this.Id.Equals(other.Id)
+                ) && 
+                (
+                    this.Aliases == other.Aliases ||
+                    this.Aliases != null &&
+                    this.Aliases.SequenceEqual(other.Aliases)
+                ) && 
+                (
                     this.AddressLine2 == other.AddressLine2 ||
                     this.AddressLine2 != null &&
                     this.AddressLine2.Equals(other.AddressLine2)
@@ -436,14 +497,34 @@ namespace iam.Model
                     this.DisplayName.Equals(other.DisplayName)
                 ) && 
                 (
-                    this.UpgradedAt == other.UpgradedAt ||
-                    this.UpgradedAt != null &&
-                    this.UpgradedAt.Equals(other.UpgradedAt)
+                    this.State == other.State ||
+                    this.State != null &&
+                    this.State.Equals(other.State)
                 ) && 
                 (
-                    this.Country == other.Country ||
-                    this.Country != null &&
-                    this.Country.Equals(other.Country)
+                    this.Etag == other.Etag ||
+                    this.Etag != null &&
+                    this.Etag.Equals(other.Etag)
+                ) && 
+                (
+                    this.IsProvisioningAllowed == other.IsProvisioningAllowed ||
+                    this.IsProvisioningAllowed != null &&
+                    this.IsProvisioningAllowed.Equals(other.IsProvisioningAllowed)
+                ) && 
+                (
+                    this.CreationTimeMillis == other.CreationTimeMillis ||
+                    this.CreationTimeMillis != null &&
+                    this.CreationTimeMillis.Equals(other.CreationTimeMillis)
+                ) && 
+                (
+                    this.Email == other.Email ||
+                    this.Email != null &&
+                    this.Email.Equals(other.Email)
+                ) && 
+                (
+                    this.Status == other.Status ||
+                    this.Status != null &&
+                    this.Status.Equals(other.Status)
                 ) && 
                 (
                     this.Company == other.Company ||
@@ -456,44 +537,9 @@ namespace iam.Model
                     this._Object.Equals(other._Object)
                 ) && 
                 (
-                    this.Status == other.Status ||
-                    this.Status != null &&
-                    this.Status.Equals(other.Status)
-                ) && 
-                (
-                    this.Id == other.Id ||
-                    this.Id != null &&
-                    this.Id.Equals(other.Id)
-                ) && 
-                (
-                    this.Email == other.Email ||
-                    this.Email != null &&
-                    this.Email.Equals(other.Email)
-                ) && 
-                (
-                    this.State == other.State ||
-                    this.State != null &&
-                    this.State.Equals(other.State)
-                ) && 
-                (
-                    this.Etag == other.Etag ||
-                    this.Etag != null &&
-                    this.Etag.Equals(other.Etag)
-                ) && 
-                (
-                    this.PostalCode == other.PostalCode ||
-                    this.PostalCode != null &&
-                    this.PostalCode.Equals(other.PostalCode)
-                ) && 
-                (
-                    this.Contact == other.Contact ||
-                    this.Contact != null &&
-                    this.Contact.Equals(other.Contact)
-                ) && 
-                (
-                    this.IsProvisioningAllowed == other.IsProvisioningAllowed ||
-                    this.IsProvisioningAllowed != null &&
-                    this.IsProvisioningAllowed.Equals(other.IsProvisioningAllowed)
+                    this.UpgradedAt == other.UpgradedAt ||
+                    this.UpgradedAt != null &&
+                    this.UpgradedAt.Equals(other.UpgradedAt)
                 ) && 
                 (
                     this.Tier == other.Tier ||
@@ -501,9 +547,14 @@ namespace iam.Model
                     this.Tier.Equals(other.Tier)
                 ) && 
                 (
-                    this.PhoneNumber == other.PhoneNumber ||
-                    this.PhoneNumber != null &&
-                    this.PhoneNumber.Equals(other.PhoneNumber)
+                    this.Limits == other.Limits ||
+                    this.Limits != null &&
+                    this.Limits.SequenceEqual(other.Limits)
+                ) && 
+                (
+                    this.Country == other.Country ||
+                    this.Country != null &&
+                    this.Country.Equals(other.Country)
                 ) && 
                 (
                     this.CreatedAt == other.CreatedAt ||
@@ -511,9 +562,19 @@ namespace iam.Model
                     this.CreatedAt.Equals(other.CreatedAt)
                 ) && 
                 (
-                    this.Aliases == other.Aliases ||
-                    this.Aliases != null &&
-                    this.Aliases.SequenceEqual(other.Aliases)
+                    this.Contact == other.Contact ||
+                    this.Contact != null &&
+                    this.Contact.Equals(other.Contact)
+                ) && 
+                (
+                    this.Policies == other.Policies ||
+                    this.Policies != null &&
+                    this.Policies.SequenceEqual(other.Policies)
+                ) && 
+                (
+                    this.TemplateId == other.TemplateId ||
+                    this.TemplateId != null &&
+                    this.TemplateId.Equals(other.TemplateId)
                 );
         }
 
@@ -528,6 +589,14 @@ namespace iam.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
+                if (this.PhoneNumber != null)
+                    hash = hash * 59 + this.PhoneNumber.GetHashCode();
+                if (this.PostalCode != null)
+                    hash = hash * 59 + this.PostalCode.GetHashCode();
+                if (this.Id != null)
+                    hash = hash * 59 + this.Id.GetHashCode();
+                if (this.Aliases != null)
+                    hash = hash * 59 + this.Aliases.GetHashCode();
                 if (this.AddressLine2 != null)
                     hash = hash * 59 + this.AddressLine2.GetHashCode();
                 if (this.City != null)
@@ -536,38 +605,38 @@ namespace iam.Model
                     hash = hash * 59 + this.AddressLine1.GetHashCode();
                 if (this.DisplayName != null)
                     hash = hash * 59 + this.DisplayName.GetHashCode();
-                if (this.UpgradedAt != null)
-                    hash = hash * 59 + this.UpgradedAt.GetHashCode();
-                if (this.Country != null)
-                    hash = hash * 59 + this.Country.GetHashCode();
-                if (this.Company != null)
-                    hash = hash * 59 + this.Company.GetHashCode();
-                if (this._Object != null)
-                    hash = hash * 59 + this._Object.GetHashCode();
-                if (this.Status != null)
-                    hash = hash * 59 + this.Status.GetHashCode();
-                if (this.Id != null)
-                    hash = hash * 59 + this.Id.GetHashCode();
-                if (this.Email != null)
-                    hash = hash * 59 + this.Email.GetHashCode();
                 if (this.State != null)
                     hash = hash * 59 + this.State.GetHashCode();
                 if (this.Etag != null)
                     hash = hash * 59 + this.Etag.GetHashCode();
-                if (this.PostalCode != null)
-                    hash = hash * 59 + this.PostalCode.GetHashCode();
-                if (this.Contact != null)
-                    hash = hash * 59 + this.Contact.GetHashCode();
                 if (this.IsProvisioningAllowed != null)
                     hash = hash * 59 + this.IsProvisioningAllowed.GetHashCode();
+                if (this.CreationTimeMillis != null)
+                    hash = hash * 59 + this.CreationTimeMillis.GetHashCode();
+                if (this.Email != null)
+                    hash = hash * 59 + this.Email.GetHashCode();
+                if (this.Status != null)
+                    hash = hash * 59 + this.Status.GetHashCode();
+                if (this.Company != null)
+                    hash = hash * 59 + this.Company.GetHashCode();
+                if (this._Object != null)
+                    hash = hash * 59 + this._Object.GetHashCode();
+                if (this.UpgradedAt != null)
+                    hash = hash * 59 + this.UpgradedAt.GetHashCode();
                 if (this.Tier != null)
                     hash = hash * 59 + this.Tier.GetHashCode();
-                if (this.PhoneNumber != null)
-                    hash = hash * 59 + this.PhoneNumber.GetHashCode();
+                if (this.Limits != null)
+                    hash = hash * 59 + this.Limits.GetHashCode();
+                if (this.Country != null)
+                    hash = hash * 59 + this.Country.GetHashCode();
                 if (this.CreatedAt != null)
                     hash = hash * 59 + this.CreatedAt.GetHashCode();
-                if (this.Aliases != null)
-                    hash = hash * 59 + this.Aliases.GetHashCode();
+                if (this.Contact != null)
+                    hash = hash * 59 + this.Contact.GetHashCode();
+                if (this.Policies != null)
+                    hash = hash * 59 + this.Policies.GetHashCode();
+                if (this.TemplateId != null)
+                    hash = hash * 59 + this.TemplateId.GetHashCode();
                 return hash;
             }
         }

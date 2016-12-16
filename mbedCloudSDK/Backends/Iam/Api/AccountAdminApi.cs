@@ -37,6 +37,27 @@ namespace iam.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Upload a new CA certificate.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for uploading new CA certificates.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A CA certificate object with attributes.</param>
+        /// <returns>CACertificateResp</returns>
+        CACertificateResp AddCertificate (CACertificateReq body);
+
+        /// <summary>
+        /// Upload a new CA certificate.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for uploading new CA certificates.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A CA certificate object with attributes.</param>
+        /// <returns>ApiResponse of CACertificateResp</returns>
+        ApiResponse<CACertificateResp> AddCertificateWithHttpInfo (CACertificateReq body);
+        /// <summary>
         /// Create a new user.
         /// </summary>
         /// <remarks>
@@ -60,6 +81,27 @@ namespace iam.Api
         /// <returns>ApiResponse of UserInfoResp</returns>
         ApiResponse<UserInfoResp> CreateUserWithHttpInfo (UserInfoReq body, string action = null);
         /// <summary>
+        /// Delete a CA certificate by ID.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for deleting a CA certificate.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID of the CA certificate to be deleted.</param>
+        /// <returns></returns>
+        void DeleteCertificate (string caCertId);
+
+        /// <summary>
+        /// Delete a CA certificate by ID.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for deleting a CA certificate.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID of the CA certificate to be deleted.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> DeleteCertificateWithHttpInfo (string caCertId);
+        /// <summary>
         /// Delete a user.
         /// </summary>
         /// <remarks>
@@ -82,6 +124,35 @@ namespace iam.Api
         /// <param name="force">Flag indicating that user is forced to be deleted. (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> DeleteUserWithHttpInfo (string userId, string force = null);
+        /// <summary>
+        /// Get all CA certificates.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving CA certificates in an array.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">The filter for the query, for example filter&#x3D;service%3Dlwm2m (optional)</param>
+        /// <returns>CACertificateRespList</returns>
+        CACertificateRespList GetAllCertificates (int? limit = null, string after = null, string order = null, string include = null, string filter = null);
+
+        /// <summary>
+        /// Get all CA certificates.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving CA certificates in an array.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">The filter for the query, for example filter&#x3D;service%3Dlwm2m (optional)</param>
+        /// <returns>ApiResponse of CACertificateRespList</returns>
+        ApiResponse<CACertificateRespList> GetAllCertificatesWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null);
         /// <summary>
         /// Get the details of all users.
         /// </summary>
@@ -112,6 +183,27 @@ namespace iam.Api
         /// <returns>ApiResponse of UserInfoRespList</returns>
         ApiResponse<UserInfoRespList> GetAllUsersWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null);
         /// <summary>
+        /// Get CA certificate by ID.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving a CA certificate by ID.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID or name of the CA certificate to be retrieved.</param>
+        /// <returns>CACertificateResp</returns>
+        CACertificateResp GetCertificate (string caCertId);
+
+        /// <summary>
+        /// Get CA certificate by ID.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving a CA certificate by ID.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID or name of the CA certificate to be retrieved.</param>
+        /// <returns>ApiResponse of CACertificateResp</returns>
+        ApiResponse<CACertificateResp> GetCertificateWithHttpInfo (string caCertId);
+        /// <summary>
         /// Details of a user.
         /// </summary>
         /// <remarks>
@@ -132,6 +224,29 @@ namespace iam.Api
         /// <param name="userId">The ID or name of the user whose details are retrieved.</param>
         /// <returns>ApiResponse of UserInfoResp</returns>
         ApiResponse<UserInfoResp> GetUserWithHttpInfo (string userId);
+        /// <summary>
+        /// Update CA certificate.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating existing CA certificates.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID of the CA certificate to be updated.</param>
+        /// <param name="body">A CA certificate object with attributes.</param>
+        /// <returns>CACertificateResp</returns>
+        CACertificateResp UpdateCertificate (string caCertId, CACertificateReq body);
+
+        /// <summary>
+        /// Update CA certificate.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating existing CA certificates.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID of the CA certificate to be updated.</param>
+        /// <param name="body">A CA certificate object with attributes.</param>
+        /// <returns>ApiResponse of CACertificateResp</returns>
+        ApiResponse<CACertificateResp> UpdateCertificateWithHttpInfo (string caCertId, CACertificateReq body);
         /// <summary>
         /// Updates attributes of the account.
         /// </summary>
@@ -179,6 +294,27 @@ namespace iam.Api
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
+        /// Upload a new CA certificate.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for uploading new CA certificates.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A CA certificate object with attributes.</param>
+        /// <returns>Task of CACertificateResp</returns>
+        System.Threading.Tasks.Task<CACertificateResp> AddCertificateAsync (CACertificateReq body);
+
+        /// <summary>
+        /// Upload a new CA certificate.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for uploading new CA certificates.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A CA certificate object with attributes.</param>
+        /// <returns>Task of ApiResponse (CACertificateResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CACertificateResp>> AddCertificateAsyncWithHttpInfo (CACertificateReq body);
+        /// <summary>
         /// Create a new user.
         /// </summary>
         /// <remarks>
@@ -202,6 +338,27 @@ namespace iam.Api
         /// <returns>Task of ApiResponse (UserInfoResp)</returns>
         System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> CreateUserAsyncWithHttpInfo (UserInfoReq body, string action = null);
         /// <summary>
+        /// Delete a CA certificate by ID.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for deleting a CA certificate.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID of the CA certificate to be deleted.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task DeleteCertificateAsync (string caCertId);
+
+        /// <summary>
+        /// Delete a CA certificate by ID.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for deleting a CA certificate.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID of the CA certificate to be deleted.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteCertificateAsyncWithHttpInfo (string caCertId);
+        /// <summary>
         /// Delete a user.
         /// </summary>
         /// <remarks>
@@ -224,6 +381,35 @@ namespace iam.Api
         /// <param name="force">Flag indicating that user is forced to be deleted. (optional)</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> DeleteUserAsyncWithHttpInfo (string userId, string force = null);
+        /// <summary>
+        /// Get all CA certificates.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving CA certificates in an array.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">The filter for the query, for example filter&#x3D;service%3Dlwm2m (optional)</param>
+        /// <returns>Task of CACertificateRespList</returns>
+        System.Threading.Tasks.Task<CACertificateRespList> GetAllCertificatesAsync (int? limit = null, string after = null, string order = null, string include = null, string filter = null);
+
+        /// <summary>
+        /// Get all CA certificates.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving CA certificates in an array.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">The filter for the query, for example filter&#x3D;service%3Dlwm2m (optional)</param>
+        /// <returns>Task of ApiResponse (CACertificateRespList)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CACertificateRespList>> GetAllCertificatesAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null);
         /// <summary>
         /// Get the details of all users.
         /// </summary>
@@ -254,6 +440,27 @@ namespace iam.Api
         /// <returns>Task of ApiResponse (UserInfoRespList)</returns>
         System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetAllUsersAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null);
         /// <summary>
+        /// Get CA certificate by ID.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving a CA certificate by ID.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID or name of the CA certificate to be retrieved.</param>
+        /// <returns>Task of CACertificateResp</returns>
+        System.Threading.Tasks.Task<CACertificateResp> GetCertificateAsync (string caCertId);
+
+        /// <summary>
+        /// Get CA certificate by ID.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving a CA certificate by ID.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID or name of the CA certificate to be retrieved.</param>
+        /// <returns>Task of ApiResponse (CACertificateResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CACertificateResp>> GetCertificateAsyncWithHttpInfo (string caCertId);
+        /// <summary>
         /// Details of a user.
         /// </summary>
         /// <remarks>
@@ -274,6 +481,29 @@ namespace iam.Api
         /// <param name="userId">The ID or name of the user whose details are retrieved.</param>
         /// <returns>Task of ApiResponse (UserInfoResp)</returns>
         System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> GetUserAsyncWithHttpInfo (string userId);
+        /// <summary>
+        /// Update CA certificate.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating existing CA certificates.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID of the CA certificate to be updated.</param>
+        /// <param name="body">A CA certificate object with attributes.</param>
+        /// <returns>Task of CACertificateResp</returns>
+        System.Threading.Tasks.Task<CACertificateResp> UpdateCertificateAsync (string caCertId, CACertificateReq body);
+
+        /// <summary>
+        /// Update CA certificate.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating existing CA certificates.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID of the CA certificate to be updated.</param>
+        /// <param name="body">A CA certificate object with attributes.</param>
+        /// <returns>Task of ApiResponse (CACertificateResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CACertificateResp>> UpdateCertificateAsyncWithHttpInfo (string caCertId, CACertificateReq body);
         /// <summary>
         /// Updates attributes of the account.
         /// </summary>
@@ -428,6 +658,174 @@ namespace iam.Api
         public void AddDefaultHeader(string key, string value)
         {
             this.Configuration.AddDefaultHeader(key, value);
+        }
+
+        /// <summary>
+        /// Upload a new CA certificate. An endpoint for uploading new CA certificates.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A CA certificate object with attributes.</param>
+        /// <returns>CACertificateResp</returns>
+        public CACertificateResp AddCertificate (CACertificateReq body)
+        {
+             ApiResponse<CACertificateResp> localVarResponse = AddCertificateWithHttpInfo(body);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Upload a new CA certificate. An endpoint for uploading new CA certificates.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A CA certificate object with attributes.</param>
+        /// <returns>ApiResponse of CACertificateResp</returns>
+        public ApiResponse< CACertificateResp > AddCertificateWithHttpInfo (CACertificateReq body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->AddCertificate");
+
+            var localVarPath = "/v3/ca-certificates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("AddCertificate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CACertificateResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CACertificateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CACertificateResp)));
+            
+        }
+
+        /// <summary>
+        /// Upload a new CA certificate. An endpoint for uploading new CA certificates.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A CA certificate object with attributes.</param>
+        /// <returns>Task of CACertificateResp</returns>
+        public async System.Threading.Tasks.Task<CACertificateResp> AddCertificateAsync (CACertificateReq body)
+        {
+             ApiResponse<CACertificateResp> localVarResponse = await AddCertificateAsyncWithHttpInfo(body);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Upload a new CA certificate. An endpoint for uploading new CA certificates.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A CA certificate object with attributes.</param>
+        /// <returns>Task of ApiResponse (CACertificateResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<CACertificateResp>> AddCertificateAsyncWithHttpInfo (CACertificateReq body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->AddCertificate");
+
+            var localVarPath = "/v3/ca-certificates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("AddCertificate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CACertificateResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CACertificateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CACertificateResp)));
+            
         }
 
         /// <summary>
@@ -605,6 +1003,156 @@ namespace iam.Api
         }
 
         /// <summary>
+        /// Delete a CA certificate by ID. An endpoint for deleting a CA certificate.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID of the CA certificate to be deleted.</param>
+        /// <returns></returns>
+        public void DeleteCertificate (string caCertId)
+        {
+             DeleteCertificateWithHttpInfo(caCertId);
+        }
+
+        /// <summary>
+        /// Delete a CA certificate by ID. An endpoint for deleting a CA certificate.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID of the CA certificate to be deleted.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> DeleteCertificateWithHttpInfo (string caCertId)
+        {
+            // verify the required parameter 'caCertId' is set
+            if (caCertId == null)
+                throw new ApiException(400, "Missing required parameter 'caCertId' when calling AccountAdminApi->DeleteCertificate");
+
+            var localVarPath = "/v3/ca-certificates/{ca-cert-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (caCertId != null) localVarPathParams.Add("ca-cert-id", Configuration.ApiClient.ParameterToString(caCertId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteCertificate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Delete a CA certificate by ID. An endpoint for deleting a CA certificate.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID of the CA certificate to be deleted.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task DeleteCertificateAsync (string caCertId)
+        {
+             await DeleteCertificateAsyncWithHttpInfo(caCertId);
+
+        }
+
+        /// <summary>
+        /// Delete a CA certificate by ID. An endpoint for deleting a CA certificate.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID of the CA certificate to be deleted.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteCertificateAsyncWithHttpInfo (string caCertId)
+        {
+            // verify the required parameter 'caCertId' is set
+            if (caCertId == null)
+                throw new ApiException(400, "Missing required parameter 'caCertId' when calling AccountAdminApi->DeleteCertificate");
+
+            var localVarPath = "/v3/ca-certificates/{ca-cert-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (caCertId != null) localVarPathParams.Add("ca-cert-id", Configuration.ApiClient.ParameterToString(caCertId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteCertificate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
         /// Delete a user. An endpoint for deleting a user.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
@@ -758,6 +1306,176 @@ namespace iam.Api
             return new ApiResponse<Object>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
+        }
+
+        /// <summary>
+        /// Get all CA certificates. An endpoint for retrieving CA certificates in an array.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">The filter for the query, for example filter&#x3D;service%3Dlwm2m (optional)</param>
+        /// <returns>CACertificateRespList</returns>
+        public CACertificateRespList GetAllCertificates (int? limit = null, string after = null, string order = null, string include = null, string filter = null)
+        {
+             ApiResponse<CACertificateRespList> localVarResponse = GetAllCertificatesWithHttpInfo(limit, after, order, include, filter);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get all CA certificates. An endpoint for retrieving CA certificates in an array.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">The filter for the query, for example filter&#x3D;service%3Dlwm2m (optional)</param>
+        /// <returns>ApiResponse of CACertificateRespList</returns>
+        public ApiResponse< CACertificateRespList > GetAllCertificatesWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null)
+        {
+
+            var localVarPath = "/v3/ca-certificates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
+            if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetAllCertificates", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CACertificateRespList>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CACertificateRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CACertificateRespList)));
+            
+        }
+
+        /// <summary>
+        /// Get all CA certificates. An endpoint for retrieving CA certificates in an array.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">The filter for the query, for example filter&#x3D;service%3Dlwm2m (optional)</param>
+        /// <returns>Task of CACertificateRespList</returns>
+        public async System.Threading.Tasks.Task<CACertificateRespList> GetAllCertificatesAsync (int? limit = null, string after = null, string order = null, string include = null, string filter = null)
+        {
+             ApiResponse<CACertificateRespList> localVarResponse = await GetAllCertificatesAsyncWithHttpInfo(limit, after, order, include, filter);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get all CA certificates. An endpoint for retrieving CA certificates in an array.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">The filter for the query, for example filter&#x3D;service%3Dlwm2m (optional)</param>
+        /// <returns>Task of ApiResponse (CACertificateRespList)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<CACertificateRespList>> GetAllCertificatesAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null)
+        {
+
+            var localVarPath = "/v3/ca-certificates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
+            if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetAllCertificates", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CACertificateRespList>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CACertificateRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CACertificateRespList)));
+            
         }
 
         /// <summary>
@@ -931,6 +1649,158 @@ namespace iam.Api
         }
 
         /// <summary>
+        /// Get CA certificate by ID. An endpoint for retrieving a CA certificate by ID.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID or name of the CA certificate to be retrieved.</param>
+        /// <returns>CACertificateResp</returns>
+        public CACertificateResp GetCertificate (string caCertId)
+        {
+             ApiResponse<CACertificateResp> localVarResponse = GetCertificateWithHttpInfo(caCertId);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get CA certificate by ID. An endpoint for retrieving a CA certificate by ID.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID or name of the CA certificate to be retrieved.</param>
+        /// <returns>ApiResponse of CACertificateResp</returns>
+        public ApiResponse< CACertificateResp > GetCertificateWithHttpInfo (string caCertId)
+        {
+            // verify the required parameter 'caCertId' is set
+            if (caCertId == null)
+                throw new ApiException(400, "Missing required parameter 'caCertId' when calling AccountAdminApi->GetCertificate");
+
+            var localVarPath = "/v3/ca-certificates/{ca-cert-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (caCertId != null) localVarPathParams.Add("ca-cert-id", Configuration.ApiClient.ParameterToString(caCertId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetCertificate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CACertificateResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CACertificateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CACertificateResp)));
+            
+        }
+
+        /// <summary>
+        /// Get CA certificate by ID. An endpoint for retrieving a CA certificate by ID.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID or name of the CA certificate to be retrieved.</param>
+        /// <returns>Task of CACertificateResp</returns>
+        public async System.Threading.Tasks.Task<CACertificateResp> GetCertificateAsync (string caCertId)
+        {
+             ApiResponse<CACertificateResp> localVarResponse = await GetCertificateAsyncWithHttpInfo(caCertId);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get CA certificate by ID. An endpoint for retrieving a CA certificate by ID.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID or name of the CA certificate to be retrieved.</param>
+        /// <returns>Task of ApiResponse (CACertificateResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<CACertificateResp>> GetCertificateAsyncWithHttpInfo (string caCertId)
+        {
+            // verify the required parameter 'caCertId' is set
+            if (caCertId == null)
+                throw new ApiException(400, "Missing required parameter 'caCertId' when calling AccountAdminApi->GetCertificate");
+
+            var localVarPath = "/v3/ca-certificates/{ca-cert-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (caCertId != null) localVarPathParams.Add("ca-cert-id", Configuration.ApiClient.ParameterToString(caCertId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetCertificate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CACertificateResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CACertificateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CACertificateResp)));
+            
+        }
+
+        /// <summary>
         /// Details of a user. An endpoint for retrieving the details of a user.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1079,6 +1949,186 @@ namespace iam.Api
             return new ApiResponse<UserInfoResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoResp)));
+            
+        }
+
+        /// <summary>
+        /// Update CA certificate. An endpoint for updating existing CA certificates.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID of the CA certificate to be updated.</param>
+        /// <param name="body">A CA certificate object with attributes.</param>
+        /// <returns>CACertificateResp</returns>
+        public CACertificateResp UpdateCertificate (string caCertId, CACertificateReq body)
+        {
+             ApiResponse<CACertificateResp> localVarResponse = UpdateCertificateWithHttpInfo(caCertId, body);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update CA certificate. An endpoint for updating existing CA certificates.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID of the CA certificate to be updated.</param>
+        /// <param name="body">A CA certificate object with attributes.</param>
+        /// <returns>ApiResponse of CACertificateResp</returns>
+        public ApiResponse< CACertificateResp > UpdateCertificateWithHttpInfo (string caCertId, CACertificateReq body)
+        {
+            // verify the required parameter 'caCertId' is set
+            if (caCertId == null)
+                throw new ApiException(400, "Missing required parameter 'caCertId' when calling AccountAdminApi->UpdateCertificate");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->UpdateCertificate");
+
+            var localVarPath = "/v3/ca-certificates/{ca-cert-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (caCertId != null) localVarPathParams.Add("ca-cert-id", Configuration.ApiClient.ParameterToString(caCertId)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UpdateCertificate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CACertificateResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CACertificateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CACertificateResp)));
+            
+        }
+
+        /// <summary>
+        /// Update CA certificate. An endpoint for updating existing CA certificates.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID of the CA certificate to be updated.</param>
+        /// <param name="body">A CA certificate object with attributes.</param>
+        /// <returns>Task of CACertificateResp</returns>
+        public async System.Threading.Tasks.Task<CACertificateResp> UpdateCertificateAsync (string caCertId, CACertificateReq body)
+        {
+             ApiResponse<CACertificateResp> localVarResponse = await UpdateCertificateAsyncWithHttpInfo(caCertId, body);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Update CA certificate. An endpoint for updating existing CA certificates.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="caCertId">The ID of the CA certificate to be updated.</param>
+        /// <param name="body">A CA certificate object with attributes.</param>
+        /// <returns>Task of ApiResponse (CACertificateResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<CACertificateResp>> UpdateCertificateAsyncWithHttpInfo (string caCertId, CACertificateReq body)
+        {
+            // verify the required parameter 'caCertId' is set
+            if (caCertId == null)
+                throw new ApiException(400, "Missing required parameter 'caCertId' when calling AccountAdminApi->UpdateCertificate");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->UpdateCertificate");
+
+            var localVarPath = "/v3/ca-certificates/{ca-cert-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (caCertId != null) localVarPathParams.Add("ca-cert-id", Configuration.ApiClient.ParameterToString(caCertId)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UpdateCertificate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CACertificateResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CACertificateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CACertificateResp)));
             
         }
 

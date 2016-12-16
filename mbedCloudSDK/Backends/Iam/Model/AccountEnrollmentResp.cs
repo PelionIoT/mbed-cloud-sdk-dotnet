@@ -34,10 +34,10 @@ using Newtonsoft.Json.Converters;
 namespace iam.Model
 {
     /// <summary>
-    /// This object represents a user in mbed Cloud.
+    /// This object represents an account creation response.
     /// </summary>
     [DataContract]
-    public partial class UserInfoResp :  IEquatable<UserInfoResp>
+    public partial class AccountEnrollmentResp :  IEquatable<AccountEnrollmentResp>
     {
         /// <summary>
         /// The status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately.
@@ -142,18 +142,19 @@ namespace iam.Model
         [DataMember(Name="object", EmitDefaultValue=false)]
         public ObjectEnum? _Object { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserInfoResp" /> class.
+        /// Initializes a new instance of the <see cref="AccountEnrollmentResp" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected UserInfoResp() { }
+        protected AccountEnrollmentResp() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserInfoResp" /> class.
+        /// Initializes a new instance of the <see cref="AccountEnrollmentResp" /> class.
         /// </summary>
         /// <param name="Status">The status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately. (required).</param>
         /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters. (required).</param>
         /// <param name="EmailVerified">A flag indicating whether the user&#39;s email address has been verified or not. (default to false).</param>
         /// <param name="AccountId">The UUID of the account. (required).</param>
         /// <param name="PasswordChangedTime">A timestamp of the latest change of the user password, in milliseconds..</param>
+        /// <param name="Aliases">An array of aliases. (required).</param>
         /// <param name="Groups">A list of IDs of the groups this user belongs to..</param>
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
         /// <param name="_Object">Entity name: always &#39;user&#39; (required).</param>
@@ -169,12 +170,12 @@ namespace iam.Model
         /// <param name="PhoneNumber">Phone number..</param>
         /// <param name="Id">The UUID of the user. (required).</param>
         /// <param name="LastLoginTime">A timestamp of the latest login of the user, in milliseconds..</param>
-        public UserInfoResp(StatusEnum? Status = null, string Username = null, bool? EmailVerified = null, string AccountId = null, long? PasswordChangedTime = null, List<string> Groups = null, string CreatedAt = null, ObjectEnum? _Object = null, bool? IsGtcAccepted = null, string Email = null, bool? IsMarketingAccepted = null, string Etag = null, string FullName = null, string Address = null, long? CreationTimeMillis = null, long? CreationTime = null, string Password = null, string PhoneNumber = null, string Id = null, long? LastLoginTime = null)
+        public AccountEnrollmentResp(StatusEnum? Status = null, string Username = null, bool? EmailVerified = null, string AccountId = null, long? PasswordChangedTime = null, List<string> Aliases = null, List<string> Groups = null, string CreatedAt = null, ObjectEnum? _Object = null, bool? IsGtcAccepted = null, string Email = null, bool? IsMarketingAccepted = null, string Etag = null, string FullName = null, string Address = null, long? CreationTimeMillis = null, long? CreationTime = null, string Password = null, string PhoneNumber = null, string Id = null, long? LastLoginTime = null)
         {
             // to ensure "Status" is required (not null)
             if (Status == null)
             {
-                throw new InvalidDataException("Status is a required property for UserInfoResp and cannot be null");
+                throw new InvalidDataException("Status is a required property for AccountEnrollmentResp and cannot be null");
             }
             else
             {
@@ -183,7 +184,7 @@ namespace iam.Model
             // to ensure "Username" is required (not null)
             if (Username == null)
             {
-                throw new InvalidDataException("Username is a required property for UserInfoResp and cannot be null");
+                throw new InvalidDataException("Username is a required property for AccountEnrollmentResp and cannot be null");
             }
             else
             {
@@ -192,16 +193,25 @@ namespace iam.Model
             // to ensure "AccountId" is required (not null)
             if (AccountId == null)
             {
-                throw new InvalidDataException("AccountId is a required property for UserInfoResp and cannot be null");
+                throw new InvalidDataException("AccountId is a required property for AccountEnrollmentResp and cannot be null");
             }
             else
             {
                 this.AccountId = AccountId;
             }
+            // to ensure "Aliases" is required (not null)
+            if (Aliases == null)
+            {
+                throw new InvalidDataException("Aliases is a required property for AccountEnrollmentResp and cannot be null");
+            }
+            else
+            {
+                this.Aliases = Aliases;
+            }
             // to ensure "_Object" is required (not null)
             if (_Object == null)
             {
-                throw new InvalidDataException("_Object is a required property for UserInfoResp and cannot be null");
+                throw new InvalidDataException("_Object is a required property for AccountEnrollmentResp and cannot be null");
             }
             else
             {
@@ -210,7 +220,7 @@ namespace iam.Model
             // to ensure "Email" is required (not null)
             if (Email == null)
             {
-                throw new InvalidDataException("Email is a required property for UserInfoResp and cannot be null");
+                throw new InvalidDataException("Email is a required property for AccountEnrollmentResp and cannot be null");
             }
             else
             {
@@ -219,7 +229,7 @@ namespace iam.Model
             // to ensure "Etag" is required (not null)
             if (Etag == null)
             {
-                throw new InvalidDataException("Etag is a required property for UserInfoResp and cannot be null");
+                throw new InvalidDataException("Etag is a required property for AccountEnrollmentResp and cannot be null");
             }
             else
             {
@@ -228,7 +238,7 @@ namespace iam.Model
             // to ensure "Id" is required (not null)
             if (Id == null)
             {
-                throw new InvalidDataException("Id is a required property for UserInfoResp and cannot be null");
+                throw new InvalidDataException("Id is a required property for AccountEnrollmentResp and cannot be null");
             }
             else
             {
@@ -297,6 +307,12 @@ namespace iam.Model
         /// <value>A timestamp of the latest change of the user password, in milliseconds.</value>
         [DataMember(Name="password_changed_time", EmitDefaultValue=false)]
         public long? PasswordChangedTime { get; set; }
+        /// <summary>
+        /// An array of aliases.
+        /// </summary>
+        /// <value>An array of aliases.</value>
+        [DataMember(Name="aliases", EmitDefaultValue=false)]
+        public List<string> Aliases { get; set; }
         /// <summary>
         /// A list of IDs of the groups this user belongs to.
         /// </summary>
@@ -387,12 +403,13 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class UserInfoResp {\n");
+            sb.Append("class AccountEnrollmentResp {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("  EmailVerified: ").Append(EmailVerified).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  PasswordChangedTime: ").Append(PasswordChangedTime).Append("\n");
+            sb.Append("  Aliases: ").Append(Aliases).Append("\n");
             sb.Append("  Groups: ").Append(Groups).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
@@ -429,15 +446,15 @@ namespace iam.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as UserInfoResp);
+            return this.Equals(obj as AccountEnrollmentResp);
         }
 
         /// <summary>
-        /// Returns true if UserInfoResp instances are equal
+        /// Returns true if AccountEnrollmentResp instances are equal
         /// </summary>
-        /// <param name="other">Instance of UserInfoResp to be compared</param>
+        /// <param name="other">Instance of AccountEnrollmentResp to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(UserInfoResp other)
+        public bool Equals(AccountEnrollmentResp other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -468,6 +485,11 @@ namespace iam.Model
                     this.PasswordChangedTime == other.PasswordChangedTime ||
                     this.PasswordChangedTime != null &&
                     this.PasswordChangedTime.Equals(other.PasswordChangedTime)
+                ) && 
+                (
+                    this.Aliases == other.Aliases ||
+                    this.Aliases != null &&
+                    this.Aliases.SequenceEqual(other.Aliases)
                 ) && 
                 (
                     this.Groups == other.Groups ||
@@ -567,6 +589,8 @@ namespace iam.Model
                     hash = hash * 59 + this.AccountId.GetHashCode();
                 if (this.PasswordChangedTime != null)
                     hash = hash * 59 + this.PasswordChangedTime.GetHashCode();
+                if (this.Aliases != null)
+                    hash = hash * 59 + this.Aliases.GetHashCode();
                 if (this.Groups != null)
                     hash = hash * 59 + this.Groups.GetHashCode();
                 if (this.CreatedAt != null)

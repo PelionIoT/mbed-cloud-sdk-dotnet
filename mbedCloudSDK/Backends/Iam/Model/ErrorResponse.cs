@@ -34,7 +34,7 @@ using Newtonsoft.Json.Converters;
 namespace iam.Model
 {
     /// <summary>
-    /// This object represents an error message
+    /// This object represents an error message.
     /// </summary>
     [DataContract]
     public partial class ErrorResponse :  IEquatable<ErrorResponse>
@@ -70,6 +70,12 @@ namespace iam.Model
             /// </summary>
             [EnumMember(Value = "account")]
             Account,
+            
+            /// <summary>
+            /// Enum Accounttemplate for "account_template"
+            /// </summary>
+            [EnumMember(Value = "account_template")]
+            Accounttemplate,
             
             /// <summary>
             /// Enum Cacert for "ca_cert"
@@ -224,7 +230,7 @@ namespace iam.Model
         /// <param name="Code">Response code. (required).</param>
         /// <param name="Fields">Failed input fields during request object validation..</param>
         /// <param name="_Object">Entity name, always &#39;error&#39;. (required).</param>
-        /// <param name="RequestId">Request ID (required).</param>
+        /// <param name="RequestId">Request ID. (required).</param>
         /// <param name="Message">A human readable message with detailed info. (required).</param>
         /// <param name="Type">Error type. (required).</param>
         public ErrorResponse(int? Code = null, List<Field> Fields = null, ObjectEnum? _Object = null, string RequestId = null, string Message = null, TypeEnum? Type = null)
@@ -290,9 +296,9 @@ namespace iam.Model
         [DataMember(Name="fields", EmitDefaultValue=false)]
         public List<Field> Fields { get; set; }
         /// <summary>
-        /// Request ID
+        /// Request ID.
         /// </summary>
-        /// <value>Request ID</value>
+        /// <value>Request ID.</value>
         [DataMember(Name="request_id", EmitDefaultValue=false)]
         public string RequestId { get; set; }
         /// <summary>

@@ -72,6 +72,12 @@ namespace iam.Model
             Account,
             
             /// <summary>
+            /// Enum Accounttemplate for "account_template"
+            /// </summary>
+            [EnumMember(Value = "account_template")]
+            Accounttemplate,
+            
+            /// <summary>
             /// Enum Cacert for "ca_cert"
             /// </summary>
             [EnumMember(Value = "ca_cert")]
@@ -132,22 +138,14 @@ namespace iam.Model
         /// Initializes a new instance of the <see cref="GroupSummaryList" /> class.
         /// </summary>
         /// <param name="After">The entity ID to fetch after the given one..</param>
+        /// <param name="HasMore">Flag indicating whether there is more results. (default to false).</param>
+        /// <param name="TotalCount">The total number or records, if requested. It might be returned also for small lists. (required).</param>
         /// <param name="_Object">Entity name: always &#39;list&#39; (required).</param>
-        /// <param name="TotalCount">The total number or records, if requested  (required).</param>
         /// <param name="Limit">The number of results to return, (range: 2-1000), or equals to &#x60;total_count&#x60; (required).</param>
         /// <param name="Data">A list of entities. (required).</param>
         /// <param name="Order">The order of the records to return. Available values: ASC, DESC; by default ASC..</param>
-        public GroupSummaryList(string After = null, ObjectEnum? _Object = null, int? TotalCount = null, int? Limit = null, List<GroupSummary> Data = null, OrderEnum? Order = null)
+        public GroupSummaryList(string After = null, bool? HasMore = null, int? TotalCount = null, ObjectEnum? _Object = null, int? Limit = null, List<GroupSummary> Data = null, OrderEnum? Order = null)
         {
-            // to ensure "_Object" is required (not null)
-            if (_Object == null)
-            {
-                throw new InvalidDataException("_Object is a required property for GroupSummaryList and cannot be null");
-            }
-            else
-            {
-                this._Object = _Object;
-            }
             // to ensure "TotalCount" is required (not null)
             if (TotalCount == null)
             {
@@ -156,6 +154,15 @@ namespace iam.Model
             else
             {
                 this.TotalCount = TotalCount;
+            }
+            // to ensure "_Object" is required (not null)
+            if (_Object == null)
+            {
+                throw new InvalidDataException("_Object is a required property for GroupSummaryList and cannot be null");
+            }
+            else
+            {
+                this._Object = _Object;
             }
             // to ensure "Limit" is required (not null)
             if (Limit == null)
@@ -176,6 +183,15 @@ namespace iam.Model
                 this.Data = Data;
             }
             this.After = After;
+            // use default value if no "HasMore" provided
+            if (HasMore == null)
+            {
+                this.HasMore = false;
+            }
+            else
+            {
+                this.HasMore = HasMore;
+            }
             this.Order = Order;
         }
         
@@ -186,10 +202,16 @@ namespace iam.Model
         [DataMember(Name="after", EmitDefaultValue=false)]
         public string After { get; set; }
         /// <summary>
-        /// The total number or records, if requested 
+        /// Flag indicating whether there is more results.
         /// </summary>
-        /// <value>The total number or records, if requested </value>
-        [DataMember(Name="totalCount", EmitDefaultValue=false)]
+        /// <value>Flag indicating whether there is more results.</value>
+        [DataMember(Name="has_more", EmitDefaultValue=false)]
+        public bool? HasMore { get; set; }
+        /// <summary>
+        /// The total number or records, if requested. It might be returned also for small lists.
+        /// </summary>
+        /// <value>The total number or records, if requested. It might be returned also for small lists.</value>
+        [DataMember(Name="total_count", EmitDefaultValue=false)]
         public int? TotalCount { get; set; }
         /// <summary>
         /// The number of results to return, (range: 2-1000), or equals to &#x60;total_count&#x60;
@@ -212,8 +234,9 @@ namespace iam.Model
             var sb = new StringBuilder();
             sb.Append("class GroupSummaryList {\n");
             sb.Append("  After: ").Append(After).Append("\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
+            sb.Append("  HasMore: ").Append(HasMore).Append("\n");
             sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  Limit: ").Append(Limit).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("  Order: ").Append(Order).Append("\n");
@@ -259,14 +282,19 @@ namespace iam.Model
                     this.After.Equals(other.After)
                 ) && 
                 (
-                    this._Object == other._Object ||
-                    this._Object != null &&
-                    this._Object.Equals(other._Object)
+                    this.HasMore == other.HasMore ||
+                    this.HasMore != null &&
+                    this.HasMore.Equals(other.HasMore)
                 ) && 
                 (
                     this.TotalCount == other.TotalCount ||
                     this.TotalCount != null &&
                     this.TotalCount.Equals(other.TotalCount)
+                ) && 
+                (
+                    this._Object == other._Object ||
+                    this._Object != null &&
+                    this._Object.Equals(other._Object)
                 ) && 
                 (
                     this.Limit == other.Limit ||
@@ -298,10 +326,12 @@ namespace iam.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.After != null)
                     hash = hash * 59 + this.After.GetHashCode();
-                if (this._Object != null)
-                    hash = hash * 59 + this._Object.GetHashCode();
+                if (this.HasMore != null)
+                    hash = hash * 59 + this.HasMore.GetHashCode();
                 if (this.TotalCount != null)
                     hash = hash * 59 + this.TotalCount.GetHashCode();
+                if (this._Object != null)
+                    hash = hash * 59 + this._Object.GetHashCode();
                 if (this.Limit != null)
                     hash = hash * 59 + this.Limit.GetHashCode();
                 if (this.Data != null)

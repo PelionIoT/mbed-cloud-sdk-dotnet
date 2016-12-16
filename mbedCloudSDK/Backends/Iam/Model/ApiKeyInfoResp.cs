@@ -93,6 +93,12 @@ namespace iam.Model
             Account,
             
             /// <summary>
+            /// Enum Accounttemplate for "account_template"
+            /// </summary>
+            [EnumMember(Value = "account_template")]
+            Accounttemplate,
+            
+            /// <summary>
             /// Enum Cacert for "ca_cert"
             /// </summary>
             [EnumMember(Value = "ca_cert")]
@@ -137,13 +143,14 @@ namespace iam.Model
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
         /// <param name="_Object">Entity name: always &#39;apikey&#39; (required).</param>
         /// <param name="CreationTime">The timestamp of the API key creation in the storage, in milliseconds..</param>
+        /// <param name="CreationTimeMillis">CreationTimeMillis.</param>
         /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="Groups">A list of group IDs this API key belongs to..</param>
         /// <param name="Owner">The owner of this API key, who is the creator by default..</param>
         /// <param name="SecretKey">API key secret, deprecated and always empty string..</param>
         /// <param name="Id">The UUID of the API key. (required).</param>
         /// <param name="LastLoginTime">The timestamp of the latest API key usage, in milliseconds..</param>
-        public ApiKeyInfoResp(StatusEnum? Status = null, string Apikey = null, string Name = null, string CreatedAt = null, ObjectEnum? _Object = null, long? CreationTime = null, string Etag = null, List<string> Groups = null, string Owner = null, string SecretKey = null, string Id = null, long? LastLoginTime = null)
+        public ApiKeyInfoResp(StatusEnum? Status = null, string Apikey = null, string Name = null, string CreatedAt = null, ObjectEnum? _Object = null, long? CreationTime = null, long? CreationTimeMillis = null, string Etag = null, List<string> Groups = null, string Owner = null, string SecretKey = null, string Id = null, long? LastLoginTime = null)
         {
             // to ensure "Apikey" is required (not null)
             if (Apikey == null)
@@ -193,6 +200,7 @@ namespace iam.Model
             this.Status = Status;
             this.CreatedAt = CreatedAt;
             this.CreationTime = CreationTime;
+            this.CreationTimeMillis = CreationTimeMillis;
             this.Groups = Groups;
             this.Owner = Owner;
             this.SecretKey = SecretKey;
@@ -223,6 +231,11 @@ namespace iam.Model
         /// <value>The timestamp of the API key creation in the storage, in milliseconds.</value>
         [DataMember(Name="creation_time", EmitDefaultValue=false)]
         public long? CreationTime { get; set; }
+        /// <summary>
+        /// Gets or Sets CreationTimeMillis
+        /// </summary>
+        [DataMember(Name="creationTimeMillis", EmitDefaultValue=false)]
+        public long? CreationTimeMillis { get; set; }
         /// <summary>
         /// API resource entity version.
         /// </summary>
@@ -273,6 +286,7 @@ namespace iam.Model
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
+            sb.Append("  CreationTimeMillis: ").Append(CreationTimeMillis).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  Groups: ").Append(Groups).Append("\n");
             sb.Append("  Owner: ").Append(Owner).Append("\n");
@@ -346,6 +360,11 @@ namespace iam.Model
                     this.CreationTime.Equals(other.CreationTime)
                 ) && 
                 (
+                    this.CreationTimeMillis == other.CreationTimeMillis ||
+                    this.CreationTimeMillis != null &&
+                    this.CreationTimeMillis.Equals(other.CreationTimeMillis)
+                ) && 
+                (
                     this.Etag == other.Etag ||
                     this.Etag != null &&
                     this.Etag.Equals(other.Etag)
@@ -400,6 +419,8 @@ namespace iam.Model
                     hash = hash * 59 + this._Object.GetHashCode();
                 if (this.CreationTime != null)
                     hash = hash * 59 + this.CreationTime.GetHashCode();
+                if (this.CreationTimeMillis != null)
+                    hash = hash * 59 + this.CreationTimeMillis.GetHashCode();
                 if (this.Etag != null)
                     hash = hash * 59 + this.Etag.GetHashCode();
                 if (this.Groups != null)
