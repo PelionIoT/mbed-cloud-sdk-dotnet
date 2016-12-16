@@ -13,18 +13,18 @@ namespace ConsoleExamples
     class Program
     {
         static void Main(string[] args)
-		{
-			if (args == null || args.Length == 0)
+        {
+            if (args == null || args.Length == 0)
             {
                 Console.Error.WriteLine("API key is required!!!");
                 Console.ReadKey();
                 return;
             }
-			string apiKey = args[0];
+            string apiKey = args[0];
             Config config = new Config(apiKey);
-			config.Host = "https://lab-api.mbedcloudintegration.net";
-			runIAMExample(config);
-			Console.ReadKey();
+            config.Host = "https://lab-api.mbedcloudintegration.net";
+            runIAMExample(config);
+            Console.ReadKey();
         }
 
         private static void runIAMExample(Config config)
