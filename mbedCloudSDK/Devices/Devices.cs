@@ -260,7 +260,87 @@ namespace mbedCloudSDK.Devices
         }
 
         #endregion
+        
+        #region Queries
+        
+        /// <summary>
+        /// Creates the filter.
+        /// </summary>
+        /// <returns>The filter.</returns>
+        /// <param name="name">Name.</param>
+        /// <param name="query">Query.</param>
+        /// <param name="customAttributes">Custom attributes.</param>
+        /// <param name="description">Description.</param>
+        public DeviceQueryDetail CreateFilter(string name, Dictionary<String, String> query, Dictionary<String, String> customAttributes = null, string description=null)
+        {
+            var api = new device_query_service.Api.DefaultApi();
+            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
+            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
 
+            if (query == null)
+            {
+                query = new Dictionary<string, string>();
+            }
+
+            if (customAttributes != null)
+            {
+                foreach (var entry in customAttributes)
+                {
+                    query.Add(CustomAttributes + entry.Key, entry.Value);
+                }
+            }
+
+            if (query.Count == 0)
+            {
+                throw new ValueException("Valid Filter needs to contain at least one element in query or customAttributes collections");
+            }
+
+            string queryString = string.Join("&", query.Select(q => String.Format("{0}={1}", q.Key, q.Value)));
+            queryString = device_query_service.Client.ApiClient.UrlEncode(queryString);
+
+            return api.DeviceQueryCreate(name, queryString, description);
+        }
+        
+        /// <summary>
+        /// Deletes the filter.
+        /// </summary>
+        /// <returns>The filter.</returns>
+        /// <param name="filterID">Filter identifier.</param>
+        public DeviceQueryDetail DeleteFilter(string filterID)
+        {
+            var api = new device_query_service.Api.DefaultApi();
+            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
+            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            return api.DeviceQueryDestroy(filterID);
+        }
+
+        /// <summary>
+        /// Lists the filters.
+        /// </summary>
+        /// <returns>The filters.</returns>
+        /// <param name="listParams">List parameters.</param>
+        public List<DeviceQueryDetail> ListFilters(ListParams listParams = null)
+        {
+            if (listParams != null)
+            {
+                throw new NotImplementedException();
+            }
+
+            var api = new device_query_service.Api.DefaultApi();
+            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
+            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            try
+            {
+                return api.DeviceQueryList().Data;
+            }
+            catch (mds.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        #endregion
+        
         #region Polling
 
         private void LongPolling()
@@ -311,69 +391,6 @@ namespace mbedCloudSDK.Devices
                 path = path.Substring(1);
             }
             return path;
-        }
-
-        #endregion
-        
-        #region Queries
-
-        public DeviceQueryDetail CreateFilter(string name, Dictionary<String, String> query, Dictionary<String, String> customAttributes = null, string description=null)
-        {
-            var api = new device_query_service.Api.DefaultApi();
-            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-
-            if (query == null)
-            {
-                query = new Dictionary<string, string>();
-            }
-
-            if (customAttributes != null)
-            {
-                foreach (var entry in customAttributes)
-                {
-                    query.Add(CustomAttributes + entry.Key, entry.Value);
-                }
-            }
-
-            if (query.Count == 0)
-            {
-                throw new ValueException("Valid Filter needs to contain at least one element in query or customAttributes collections");
-            }
-
-            string queryString = string.Join("&", query.Select(q => String.Format("{0}={1}", q.Key, q.Value)));
-            queryString = device_query_service.Client.ApiClient.UrlEncode(queryString);
-
-            return api.DeviceQueryCreate(name, queryString, description);
-        }
-
-        public DeviceQueryDetail DeleteFilter(string filterID)
-        {
-            var api = new device_query_service.Api.DefaultApi();
-            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            return api.DeviceQueryDestroy(filterID);
-        }
-
-
-        public List<DeviceQueryDetail> ListFilters(ListParams listParams = null)
-        {
-            if (listParams != null)
-            {
-                throw new NotImplementedException();
-            }
-
-            var api = new device_query_service.Api.DefaultApi();
-            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            try
-            {
-                return api.DeviceQueryList().Data;
-            }
-            catch (mds.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
         }
 
         #endregion
