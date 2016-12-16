@@ -305,8 +305,8 @@ namespace firmware_catalog.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
-        /// <returns>FirmwareManifestSerializer</returns>
-        FirmwareManifestSerializer FirmwareManifestList (int? limit = null, string order = null, string after = null);
+        /// <returns>ManifestSerializer</returns>
+        ManifestSerializer FirmwareManifestList (int? limit = null, string order = null, string after = null);
 
         /// <summary>
         /// 
@@ -318,8 +318,8 @@ namespace firmware_catalog.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
-        /// <returns>ApiResponse of FirmwareManifestSerializer</returns>
-        ApiResponse<FirmwareManifestSerializer> FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null);
+        /// <returns>ApiResponse of ManifestSerializer</returns>
+        ApiResponse<ManifestSerializer> FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null);
         /// <summary>
         /// 
         /// </summary>
@@ -634,8 +634,8 @@ namespace firmware_catalog.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
-        /// <returns>Task of FirmwareManifestSerializer</returns>
-        System.Threading.Tasks.Task<FirmwareManifestSerializer> FirmwareManifestListAsync (int? limit = null, string order = null, string after = null);
+        /// <returns>Task of ManifestSerializer</returns>
+        System.Threading.Tasks.Task<ManifestSerializer> FirmwareManifestListAsync (int? limit = null, string order = null, string after = null);
 
         /// <summary>
         /// 
@@ -647,8 +647,8 @@ namespace firmware_catalog.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
-        /// <returns>Task of ApiResponse (FirmwareManifestSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareManifestSerializer>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null);
+        /// <returns>Task of ApiResponse (ManifestSerializer)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ManifestSerializer>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null);
         /// <summary>
         /// 
         /// </summary>
@@ -2197,10 +2197,10 @@ namespace firmware_catalog.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
-        /// <returns>FirmwareManifestSerializer</returns>
-        public FirmwareManifestSerializer FirmwareManifestList (int? limit = null, string order = null, string after = null)
+        /// <returns>ManifestSerializer</returns>
+        public ManifestSerializer FirmwareManifestList (int? limit = null, string order = null, string after = null)
         {
-             ApiResponse<FirmwareManifestSerializer> localVarResponse = FirmwareManifestListWithHttpInfo(limit, order, after);
+             ApiResponse<ManifestSerializer> localVarResponse = FirmwareManifestListWithHttpInfo(limit, order, after);
              return localVarResponse.Data;
         }
 
@@ -2211,8 +2211,8 @@ namespace firmware_catalog.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
-        /// <returns>ApiResponse of FirmwareManifestSerializer</returns>
-        public ApiResponse< FirmwareManifestSerializer > FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null)
+        /// <returns>ApiResponse of ManifestSerializer</returns>
+        public ApiResponse< ManifestSerializer > FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null)
         {
 
             var localVarPath = "/v3/firmware/manifests/";
@@ -2262,9 +2262,9 @@ namespace firmware_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<FirmwareManifestSerializer>(localVarStatusCode,
+            return new ApiResponse<ManifestSerializer>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (FirmwareManifestSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifestSerializer)));
+                (ManifestSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ManifestSerializer)));
             
         }
 
@@ -2275,10 +2275,10 @@ namespace firmware_catalog.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
-        /// <returns>Task of FirmwareManifestSerializer</returns>
-        public async System.Threading.Tasks.Task<FirmwareManifestSerializer> FirmwareManifestListAsync (int? limit = null, string order = null, string after = null)
+        /// <returns>Task of ManifestSerializer</returns>
+        public async System.Threading.Tasks.Task<ManifestSerializer> FirmwareManifestListAsync (int? limit = null, string order = null, string after = null)
         {
-             ApiResponse<FirmwareManifestSerializer> localVarResponse = await FirmwareManifestListAsyncWithHttpInfo(limit, order, after);
+             ApiResponse<ManifestSerializer> localVarResponse = await FirmwareManifestListAsyncWithHttpInfo(limit, order, after);
              return localVarResponse.Data;
 
         }
@@ -2290,8 +2290,8 @@ namespace firmware_catalog.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
-        /// <returns>Task of ApiResponse (FirmwareManifestSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifestSerializer>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null)
+        /// <returns>Task of ApiResponse (ManifestSerializer)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ManifestSerializer>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null)
         {
 
             var localVarPath = "/v3/firmware/manifests/";
@@ -2340,9 +2340,9 @@ namespace firmware_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<FirmwareManifestSerializer>(localVarStatusCode,
+            return new ApiResponse<ManifestSerializer>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (FirmwareManifestSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifestSerializer)));
+                (ManifestSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ManifestSerializer)));
             
         }
 
