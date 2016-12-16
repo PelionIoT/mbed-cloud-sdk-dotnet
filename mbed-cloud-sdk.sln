@@ -43,7 +43,6 @@ Global
 		$1.inheritsSet = VisualStudio
 		$1.inheritsScope = text/plain
 		$1.scope = text/plain
-		$1.TabsToSpaces = False
 		$0.CSharpFormattingPolicy = $2
 		$2.IndentSwitchSection = True
 		$2.NewLinesForBracesInProperties = True
