@@ -7,6 +7,7 @@ using developer_certificate.Api;
 using developer_certificate.Client;
 using developer_certificate.Model;
 using mbedCloudSDK.Common;
+using mbedCloudSDK.Exceptions;
 
 namespace mbedCloudSDK.Development
 {

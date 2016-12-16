@@ -89,5 +89,16 @@ namespace ConsoleExamples
             Thread.Sleep(20000);
             devices.DeregisterWebhooks();
         }
+
+        private static void runDeviceQueryExample(Config config)
+        {
+            Devices devices = new Devices(config);
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            query.Add("auto_update", "true");
+            Dictionary<string, string> customAttributes = new Dictionary<string, string>();
+            customAttributes.Add("att1", "val1");
+            customAttributes.Add("att2", "val2");
+            devices.CreateFilter("test", query, customAttributes);
+        }
     }
 }

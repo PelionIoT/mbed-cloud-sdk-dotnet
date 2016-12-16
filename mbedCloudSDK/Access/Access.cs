@@ -7,6 +7,7 @@ using iam.Api;
 using iam.Client;
 using iam.Model;
 using mbedCloudSDK.Common;
+using mbedCloudSDK.Exceptions;
 
 namespace mbedCloudSDK.Access
 {

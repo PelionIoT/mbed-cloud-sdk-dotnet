@@ -169,6 +169,7 @@
     <Compile Include="Devices\AsyncConsumer.cs" />
     <Compile Include="Devices\Endpoint.cs" />
     <Compile Include="Devices\Resource.cs" />
+    <Compile Include="Exceptions\ValueException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Backends\Iam\README.md" />

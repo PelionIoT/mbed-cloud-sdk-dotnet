@@ -1,5 +1,6 @@
 ﻿using System;
 using mbedCloudSDK.Common;
+using mbedCloudSDK.Exceptions;
 using provisioning_certificate.Model;
 
 namespace mbedCloudSDK.Manufacturing
