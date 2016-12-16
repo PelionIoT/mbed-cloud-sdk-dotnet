@@ -1813,6 +1813,7 @@ namespace firmware_catalog.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "multipart/form-data"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -1934,6 +1935,7 @@ namespace firmware_catalog.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "multipart/form-data"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
