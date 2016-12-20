@@ -11,7 +11,7 @@ namespace mbedCloudSDK.Manufacturing
 	/// - Provisioning certificate
 	/// - Factory tool download
 	/// </summary>
-	public class Manufacturing: BaseAPI
+	public class ManufacturingApi: BaseApi
 	{
 		private string auth;
 
@@ -19,7 +19,7 @@ namespace mbedCloudSDK.Manufacturing
 		/// Initializes a new instance of the <see cref="T:mbedCloudSDK.Manufacturing.Manufacturing"/> class.
 		/// </summary>
 		/// <param name="config">Config.</param>
-		public Manufacturing(Config config) : base(config)
+		public ManufacturingApi(Config config) : base(config)
 		{
 			this.auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);
 		}
@@ -41,6 +41,6 @@ namespace mbedCloudSDK.Manufacturing
 			{
 				throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
 			}
-		}	
+		}
 	}
 }

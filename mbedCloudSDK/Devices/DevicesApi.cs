@@ -18,7 +18,7 @@ namespace mbedCloudSDK.Devices
     /// - Device query service
     /// - Device catalog
     /// </summary>
-    public class Devices : BaseAPI
+    public class DevicesApi : BaseApi
     {
 
         #region Variables
@@ -36,7 +36,7 @@ namespace mbedCloudSDK.Devices
         /// Initializes a new instance of the <see cref="T:mbedCloudSDK.Devices.Devices"/> class.
         /// </summary>
         /// <param name="config">Config.</param>
-        public Devices(Config config) : base(config)
+        public DevicesApi(Config config) : base(config)
         {
             cancellationToken = new CancellationTokenSource();
             longPollingTask = new Task(new Action(LongPolling), cancellationToken.Token, TaskCreationOptions.LongRunning);

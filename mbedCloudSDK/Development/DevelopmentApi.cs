@@ -14,7 +14,7 @@ namespace mbedCloudSDK.Development
     /// <summary>
     /// Expose Developer Certificate functionality.
     /// </summary>
-	public class Development: BaseAPI
+	public class DevelopmentApi: BaseApi
     {
         private string auth;
 
@@ -22,7 +22,7 @@ namespace mbedCloudSDK.Development
 		/// Initializes a new instance of the <see cref="T:mbedCloudSDK.Development.Development"/> class.
 		/// </summary>
 		/// <param name="config">Config.</param>
-        public Development(Config config): base(config)
+        public DevelopmentApi(Config config): base(config)
         {
             if (config.Host != string.Empty)
             {
