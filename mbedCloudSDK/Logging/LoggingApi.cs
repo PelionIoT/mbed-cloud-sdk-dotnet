@@ -20,7 +20,7 @@ namespace mbedCloudSDK.Logging
         /// <param name="config">Config.</param>
         public LoggingApi(Config config) : base(config)
         {
-            device_catalog.Client.Configuration.Default..ApiKey["Authorization"] = config.ApiKey;
+            device_catalog.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
             device_catalog.Client.Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             if (config.Host != string.Empty)
             {

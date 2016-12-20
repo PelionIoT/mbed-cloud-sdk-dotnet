@@ -24,7 +24,7 @@ namespace ConsoleExamples
                 example = ShowMenu();
                 int exampleNumber = 0;
                 if (Int32.TryParse(example, out exampleNumber) && exampleNumber >=1 && exampleNumber<=6)
-                    examples.RunExample(Convert.ToInt32(exampleNumber));
+                    RunExample(examples, Convert.ToInt32(exampleNumber));
                 else
                     break;
             }
@@ -43,6 +43,31 @@ namespace ConsoleExamples
             Console.WriteLine("---Press any other key to exit---");
             Console.WriteLine();
             return Console.ReadLine();
+        }
+        
+        private static void RunExample(Examples examples, int example)
+        {
+            switch (example)
+            {
+                case 1:
+                    examples.runIAMExample();    
+                    break;
+                case 2:
+                    examples.runDevicesExample();    
+                    break;
+                case 3:
+                    examples.runEndpointsExample();    
+                    break;
+                case 4:
+                    examples.runSubscriptionExample();    
+                    break;
+                case 5:
+                    examples.runWebhookExample();    
+                    break;
+                case 6:
+                    examples.runDeviceQueryExample();    
+                    break;
+            }
         }
     }
 }
