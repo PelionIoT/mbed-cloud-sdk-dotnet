@@ -1,5 +1,5 @@
 ﻿using System;
-namespace mbedCloudSDK
+namespace mbedCloudSDK.Exceptions
 {
 	/// <summary>
 	/// Cloud API exception. Common exception thrown when ApiException is raised from backend API

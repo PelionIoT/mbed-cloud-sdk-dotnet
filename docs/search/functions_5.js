@@ -1,9 +1,11 @@
 var searchData=
 [
-  ['listapikeys',['ListApiKeys',['../classmbed_cloud_s_d_k_1_1_access_1_1_access.html#a4d723aff2e484ad55d954c5d99c33d9e',1,'mbedCloudSDK::Access::Access']]],
-  ['listdevices',['ListDevices',['../classmbed_cloud_s_d_k_1_1_devices_1_1_devices.html#a9776d53b005792e63b0df93bfb624fcc',1,'mbedCloudSDK::Devices::Devices']]],
-  ['listendpoints',['ListEndpoints',['../classmbed_cloud_s_d_k_1_1_devices_1_1_devices.html#add4313896ed6964943e83c2543b2f025',1,'mbedCloudSDK::Devices::Devices']]],
-  ['listgroups',['ListGroups',['../classmbed_cloud_s_d_k_1_1_access_1_1_access.html#adf24c473a49577314757be44aa6ad2b6',1,'mbedCloudSDK::Access::Access']]],
-  ['listparams',['ListParams',['../classmbed_cloud_s_d_k_1_1_common_1_1_list_params.html#af395b456439dd525373d1698d4ac839b',1,'mbedCloudSDK::Common::ListParams']]],
-  ['listusers',['ListUsers',['../classmbed_cloud_s_d_k_1_1_access_1_1_access.html#a5d7ac6b9cf00337f95d0e01dece15113',1,'mbedCloudSDK::Access::Access']]]
+  ['getapikey',['GetApiKey',['../classmbed_cloud_s_d_k_1_1_access_1_1_access_api.html#a7033b1a115c3739ef97d268b3efd33b9',1,'mbedCloudSDK::Access::AccessApi']]],
+  ['getcertificate',['getCertificate',['../classmbed_cloud_s_d_k_1_1_development_1_1_development_api.html#adc418ebab20de239b41e5ed1f750d4da',1,'mbedCloudSDK::Development::DevelopmentApi']]],
+  ['getdevicelog',['GetDeviceLog',['../classmbed_cloud_s_d_k_1_1_logging_1_1_logging_api.html#a35ed1f04c3098460bb3f860b5b64b2f1',1,'mbedCloudSDK::Logging::LoggingApi']]],
+  ['getprovisioningcertificate',['GetProvisioningCertificate',['../classmbed_cloud_s_d_k_1_1_manufacturing_1_1_manufacturing_api.html#ac6560461fc4f8f2cbff85ee309bc7228',1,'mbedCloudSDK::Manufacturing::ManufacturingApi']]],
+  ['getresource',['GetResource',['../classmbed_cloud_s_d_k_1_1_devices_1_1_devices_api.html#ad3bebacd0d5fb1b903a0054b63d5360d',1,'mbedCloudSDK::Devices::DevicesApi']]],
+  ['getresources',['GetResources',['../classmbed_cloud_s_d_k_1_1_devices_1_1_devices_api.html#ab4221d90916ea8ad6deae1d5d2d41d3d',1,'mbedCloudSDK::Devices::DevicesApi']]],
+  ['getuser',['GetUser',['../classmbed_cloud_s_d_k_1_1_access_1_1_access_api.html#a69aaa23fe6378ac6ff6f7628bcf2fc3f',1,'mbedCloudSDK::Access::AccessApi']]],
+  ['getvalue',['GetValue',['../classmbed_cloud_s_d_k_1_1_devices_1_1_async_consumer.html#a1a586cb23e4c05a96fa6cf4c60974c4d',1,'mbedCloudSDK::Devices::AsyncConsumer']]]
 ];

@@ -7,19 +7,20 @@ using iam.Api;
 using iam.Client;
 using iam.Model;
 using mbedCloudSDK.Common;
+using mbedCloudSDK.Exceptions;
 
 namespace mbedCloudSDK.Access
 {
     /// <summary>
     /// Exposing functionality from IAM.
     /// </summary>
-	public class Access: BaseAPI
+	public class AccessApi: BaseApi
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="T:mbedCloudSDK.Access.Access"/> class.
         /// </summary>
         /// <param name="config">Config.</param>
-		public Access(Config config): base(config)
+		public AccessApi(Config config): base(config)
         {
             if (config.Host != string.Empty)
             {

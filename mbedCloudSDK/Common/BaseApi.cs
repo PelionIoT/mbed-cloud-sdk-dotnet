@@ -9,7 +9,7 @@ namespace mbedCloudSDK.Common
     /// <summary>
     /// Base API.
     /// </summary>
-	public class BaseAPI
+	public class BaseApi
     {
         protected Config config;
         
@@ -17,7 +17,7 @@ namespace mbedCloudSDK.Common
         /// Initializes a new instance of the <see cref="T:mbedCloudSDK.Common.BaseAPI"/> class.
         /// </summary>
         /// <param name="config">Config.</param>
-		public BaseAPI(Config config)
+		public BaseApi(Config config)
         {
             this.config = config;
         }
