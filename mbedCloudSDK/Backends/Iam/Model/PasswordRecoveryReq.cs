@@ -34,32 +34,55 @@ using Newtonsoft.Json.Converters;
 namespace iam.Model
 {
     /// <summary>
-    /// Field
+    /// This object represents a password recovery request.
     /// </summary>
     [DataContract]
-    public partial class Field :  IEquatable<Field>
+    public partial class PasswordRecoveryReq :  IEquatable<PasswordRecoveryReq>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Field" /> class.
+        /// Initializes a new instance of the <see cref="PasswordRecoveryReq" /> class.
         /// </summary>
-        /// <param name="Message">Message.</param>
-        /// <param name="Name">Name.</param>
-        public Field(string Message = null, string Name = null)
+        [JsonConstructorAttribute]
+        protected PasswordRecoveryReq() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PasswordRecoveryReq" /> class.
+        /// </summary>
+        /// <param name="Password">The new password to be set. (required).</param>
+        /// <param name="Hash">The hash code for the password recovery. (required).</param>
+        public PasswordRecoveryReq(string Password = null, string Hash = null)
         {
-            this.Message = Message;
-            this.Name = Name;
+            // to ensure "Password" is required (not null)
+            if (Password == null)
+            {
+                throw new InvalidDataException("Password is a required property for PasswordRecoveryReq and cannot be null");
+            }
+            else
+            {
+                this.Password = Password;
+            }
+            // to ensure "Hash" is required (not null)
+            if (Hash == null)
+            {
+                throw new InvalidDataException("Hash is a required property for PasswordRecoveryReq and cannot be null");
+            }
+            else
+            {
+                this.Hash = Hash;
+            }
         }
         
         /// <summary>
-        /// Gets or Sets Message
+        /// The new password to be set.
         /// </summary>
-        [DataMember(Name="message", EmitDefaultValue=false)]
-        public string Message { get; set; }
+        /// <value>The new password to be set.</value>
+        [DataMember(Name="password", EmitDefaultValue=false)]
+        public string Password { get; set; }
         /// <summary>
-        /// Gets or Sets Name
+        /// The hash code for the password recovery.
         /// </summary>
-        [DataMember(Name="name", EmitDefaultValue=false)]
-        public string Name { get; set; }
+        /// <value>The hash code for the password recovery.</value>
+        [DataMember(Name="hash", EmitDefaultValue=false)]
+        public string Hash { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -67,9 +90,9 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Field {\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("class PasswordRecoveryReq {\n");
+            sb.Append("  Password: ").Append(Password).Append("\n");
+            sb.Append("  Hash: ").Append(Hash).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -91,15 +114,15 @@ namespace iam.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as Field);
+            return this.Equals(obj as PasswordRecoveryReq);
         }
 
         /// <summary>
-        /// Returns true if Field instances are equal
+        /// Returns true if PasswordRecoveryReq instances are equal
         /// </summary>
-        /// <param name="other">Instance of Field to be compared</param>
+        /// <param name="other">Instance of PasswordRecoveryReq to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Field other)
+        public bool Equals(PasswordRecoveryReq other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -107,14 +130,14 @@ namespace iam.Model
 
             return 
                 (
-                    this.Message == other.Message ||
-                    this.Message != null &&
-                    this.Message.Equals(other.Message)
+                    this.Password == other.Password ||
+                    this.Password != null &&
+                    this.Password.Equals(other.Password)
                 ) && 
                 (
-                    this.Name == other.Name ||
-                    this.Name != null &&
-                    this.Name.Equals(other.Name)
+                    this.Hash == other.Hash ||
+                    this.Hash != null &&
+                    this.Hash.Equals(other.Hash)
                 );
         }
 
@@ -129,10 +152,10 @@ namespace iam.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Message != null)
-                    hash = hash * 59 + this.Message.GetHashCode();
-                if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
+                if (this.Password != null)
+                    hash = hash * 59 + this.Password.GetHashCode();
+                if (this.Hash != null)
+                    hash = hash * 59 + this.Hash.GetHashCode();
                 return hash;
             }
         }

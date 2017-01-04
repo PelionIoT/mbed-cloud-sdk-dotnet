@@ -34,59 +34,65 @@ using Newtonsoft.Json.Converters;
 namespace iam.Model
 {
     /// <summary>
-    /// This object represents a user in requests towards mbed Cloud.
+    /// This object represents a service sign-up request.
     /// </summary>
     [DataContract]
-    public partial class UserInfoReq :  IEquatable<UserInfoReq>
+    public partial class AccountSignupReq :  IEquatable<AccountSignupReq>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserInfoReq" /> class.
+        /// Initializes a new instance of the <see cref="AccountSignupReq" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected UserInfoReq() { }
+        protected AccountSignupReq() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserInfoReq" /> class.
+        /// Initializes a new instance of the <see cref="AccountSignupReq" /> class.
         /// </summary>
-        /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters. (required).</param>
-        /// <param name="PhoneNumber">Phone number..</param>
-        /// <param name="Groups">A list of IDs of the groups this user belongs to..</param>
-        /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted. (default to false).</param>
+        /// <param name="PhoneNumber">The phone number of the user..</param>
         /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted. (default to false).</param>
-        /// <param name="FullName">The full name of the user..</param>
-        /// <param name="Address">Address..</param>
-        /// <param name="Password">The password when creating a new user. It will will generated when not present in the request..</param>
-        /// <param name="Email">The email address. (required).</param>
-        public UserInfoReq(string Username = null, string PhoneNumber = null, List<string> Groups = null, bool? IsGtcAccepted = null, bool? IsMarketingAccepted = null, string FullName = null, string Address = null, string Password = null, string Email = null)
+        /// <param name="Country">The country for the company. (required).</param>
+        /// <param name="Company">The name of the company. (required).</param>
+        /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted. (default to false).</param>
+        /// <param name="FullName">The full name of the user. (required).</param>
+        /// <param name="Email">The email address of the user. (required).</param>
+        public AccountSignupReq(string PhoneNumber = null, bool? IsMarketingAccepted = null, string Country = null, string Company = null, bool? IsGtcAccepted = null, string FullName = null, string Email = null)
         {
-            // to ensure "Username" is required (not null)
-            if (Username == null)
+            // to ensure "Country" is required (not null)
+            if (Country == null)
             {
-                throw new InvalidDataException("Username is a required property for UserInfoReq and cannot be null");
+                throw new InvalidDataException("Country is a required property for AccountSignupReq and cannot be null");
             }
             else
             {
-                this.Username = Username;
+                this.Country = Country;
+            }
+            // to ensure "Company" is required (not null)
+            if (Company == null)
+            {
+                throw new InvalidDataException("Company is a required property for AccountSignupReq and cannot be null");
+            }
+            else
+            {
+                this.Company = Company;
+            }
+            // to ensure "FullName" is required (not null)
+            if (FullName == null)
+            {
+                throw new InvalidDataException("FullName is a required property for AccountSignupReq and cannot be null");
+            }
+            else
+            {
+                this.FullName = FullName;
             }
             // to ensure "Email" is required (not null)
             if (Email == null)
             {
-                throw new InvalidDataException("Email is a required property for UserInfoReq and cannot be null");
+                throw new InvalidDataException("Email is a required property for AccountSignupReq and cannot be null");
             }
             else
             {
                 this.Email = Email;
             }
             this.PhoneNumber = PhoneNumber;
-            this.Groups = Groups;
-            // use default value if no "IsGtcAccepted" provided
-            if (IsGtcAccepted == null)
-            {
-                this.IsGtcAccepted = false;
-            }
-            else
-            {
-                this.IsGtcAccepted = IsGtcAccepted;
-            }
             // use default value if no "IsMarketingAccepted" provided
             if (IsMarketingAccepted == null)
             {
@@ -96,35 +102,23 @@ namespace iam.Model
             {
                 this.IsMarketingAccepted = IsMarketingAccepted;
             }
-            this.FullName = FullName;
-            this.Address = Address;
-            this.Password = Password;
+            // use default value if no "IsGtcAccepted" provided
+            if (IsGtcAccepted == null)
+            {
+                this.IsGtcAccepted = false;
+            }
+            else
+            {
+                this.IsGtcAccepted = IsGtcAccepted;
+            }
         }
         
         /// <summary>
-        /// A username containing alphanumerical letters and -,._@+&#x3D; characters.
+        /// The phone number of the user.
         /// </summary>
-        /// <value>A username containing alphanumerical letters and -,._@+&#x3D; characters.</value>
-        [DataMember(Name="username", EmitDefaultValue=false)]
-        public string Username { get; set; }
-        /// <summary>
-        /// Phone number.
-        /// </summary>
-        /// <value>Phone number.</value>
+        /// <value>The phone number of the user.</value>
         [DataMember(Name="phone_number", EmitDefaultValue=false)]
         public string PhoneNumber { get; set; }
-        /// <summary>
-        /// A list of IDs of the groups this user belongs to.
-        /// </summary>
-        /// <value>A list of IDs of the groups this user belongs to.</value>
-        [DataMember(Name="groups", EmitDefaultValue=false)]
-        public List<string> Groups { get; set; }
-        /// <summary>
-        /// A flag indicating that the General Terms and Conditions has been accepted.
-        /// </summary>
-        /// <value>A flag indicating that the General Terms and Conditions has been accepted.</value>
-        [DataMember(Name="is_gtc_accepted", EmitDefaultValue=false)]
-        public bool? IsGtcAccepted { get; set; }
         /// <summary>
         /// A flag indicating that receiving marketing information has been accepted.
         /// </summary>
@@ -132,27 +126,33 @@ namespace iam.Model
         [DataMember(Name="is_marketing_accepted", EmitDefaultValue=false)]
         public bool? IsMarketingAccepted { get; set; }
         /// <summary>
+        /// The country for the company.
+        /// </summary>
+        /// <value>The country for the company.</value>
+        [DataMember(Name="country", EmitDefaultValue=false)]
+        public string Country { get; set; }
+        /// <summary>
+        /// The name of the company.
+        /// </summary>
+        /// <value>The name of the company.</value>
+        [DataMember(Name="company", EmitDefaultValue=false)]
+        public string Company { get; set; }
+        /// <summary>
+        /// A flag indicating that the General Terms and Conditions has been accepted.
+        /// </summary>
+        /// <value>A flag indicating that the General Terms and Conditions has been accepted.</value>
+        [DataMember(Name="is_gtc_accepted", EmitDefaultValue=false)]
+        public bool? IsGtcAccepted { get; set; }
+        /// <summary>
         /// The full name of the user.
         /// </summary>
         /// <value>The full name of the user.</value>
         [DataMember(Name="full_name", EmitDefaultValue=false)]
         public string FullName { get; set; }
         /// <summary>
-        /// Address.
+        /// The email address of the user.
         /// </summary>
-        /// <value>Address.</value>
-        [DataMember(Name="address", EmitDefaultValue=false)]
-        public string Address { get; set; }
-        /// <summary>
-        /// The password when creating a new user. It will will generated when not present in the request.
-        /// </summary>
-        /// <value>The password when creating a new user. It will will generated when not present in the request.</value>
-        [DataMember(Name="password", EmitDefaultValue=false)]
-        public string Password { get; set; }
-        /// <summary>
-        /// The email address.
-        /// </summary>
-        /// <value>The email address.</value>
+        /// <value>The email address of the user.</value>
         [DataMember(Name="email", EmitDefaultValue=false)]
         public string Email { get; set; }
         /// <summary>
@@ -162,15 +162,13 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class UserInfoReq {\n");
-            sb.Append("  Username: ").Append(Username).Append("\n");
+            sb.Append("class AccountSignupReq {\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
-            sb.Append("  Groups: ").Append(Groups).Append("\n");
-            sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
             sb.Append("  IsMarketingAccepted: ").Append(IsMarketingAccepted).Append("\n");
+            sb.Append("  Country: ").Append(Country).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
+            sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
             sb.Append("  FullName: ").Append(FullName).Append("\n");
-            sb.Append("  Address: ").Append(Address).Append("\n");
-            sb.Append("  Password: ").Append(Password).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -193,15 +191,15 @@ namespace iam.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as UserInfoReq);
+            return this.Equals(obj as AccountSignupReq);
         }
 
         /// <summary>
-        /// Returns true if UserInfoReq instances are equal
+        /// Returns true if AccountSignupReq instances are equal
         /// </summary>
-        /// <param name="other">Instance of UserInfoReq to be compared</param>
+        /// <param name="other">Instance of AccountSignupReq to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(UserInfoReq other)
+        public bool Equals(AccountSignupReq other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -209,24 +207,9 @@ namespace iam.Model
 
             return 
                 (
-                    this.Username == other.Username ||
-                    this.Username != null &&
-                    this.Username.Equals(other.Username)
-                ) && 
-                (
                     this.PhoneNumber == other.PhoneNumber ||
                     this.PhoneNumber != null &&
                     this.PhoneNumber.Equals(other.PhoneNumber)
-                ) && 
-                (
-                    this.Groups == other.Groups ||
-                    this.Groups != null &&
-                    this.Groups.SequenceEqual(other.Groups)
-                ) && 
-                (
-                    this.IsGtcAccepted == other.IsGtcAccepted ||
-                    this.IsGtcAccepted != null &&
-                    this.IsGtcAccepted.Equals(other.IsGtcAccepted)
                 ) && 
                 (
                     this.IsMarketingAccepted == other.IsMarketingAccepted ||
@@ -234,19 +217,24 @@ namespace iam.Model
                     this.IsMarketingAccepted.Equals(other.IsMarketingAccepted)
                 ) && 
                 (
+                    this.Country == other.Country ||
+                    this.Country != null &&
+                    this.Country.Equals(other.Country)
+                ) && 
+                (
+                    this.Company == other.Company ||
+                    this.Company != null &&
+                    this.Company.Equals(other.Company)
+                ) && 
+                (
+                    this.IsGtcAccepted == other.IsGtcAccepted ||
+                    this.IsGtcAccepted != null &&
+                    this.IsGtcAccepted.Equals(other.IsGtcAccepted)
+                ) && 
+                (
                     this.FullName == other.FullName ||
                     this.FullName != null &&
                     this.FullName.Equals(other.FullName)
-                ) && 
-                (
-                    this.Address == other.Address ||
-                    this.Address != null &&
-                    this.Address.Equals(other.Address)
-                ) && 
-                (
-                    this.Password == other.Password ||
-                    this.Password != null &&
-                    this.Password.Equals(other.Password)
                 ) && 
                 (
                     this.Email == other.Email ||
@@ -266,22 +254,18 @@ namespace iam.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Username != null)
-                    hash = hash * 59 + this.Username.GetHashCode();
                 if (this.PhoneNumber != null)
                     hash = hash * 59 + this.PhoneNumber.GetHashCode();
-                if (this.Groups != null)
-                    hash = hash * 59 + this.Groups.GetHashCode();
-                if (this.IsGtcAccepted != null)
-                    hash = hash * 59 + this.IsGtcAccepted.GetHashCode();
                 if (this.IsMarketingAccepted != null)
                     hash = hash * 59 + this.IsMarketingAccepted.GetHashCode();
+                if (this.Country != null)
+                    hash = hash * 59 + this.Country.GetHashCode();
+                if (this.Company != null)
+                    hash = hash * 59 + this.Company.GetHashCode();
+                if (this.IsGtcAccepted != null)
+                    hash = hash * 59 + this.IsGtcAccepted.GetHashCode();
                 if (this.FullName != null)
                     hash = hash * 59 + this.FullName.GetHashCode();
-                if (this.Address != null)
-                    hash = hash * 59 + this.Address.GetHashCode();
-                if (this.Password != null)
-                    hash = hash * 59 + this.Password.GetHashCode();
                 if (this.Email != null)
                     hash = hash * 59 + this.Email.GetHashCode();
                 return hash;

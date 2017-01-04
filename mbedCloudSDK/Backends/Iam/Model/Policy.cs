@@ -34,32 +34,50 @@ using Newtonsoft.Json.Converters;
 namespace iam.Model
 {
     /// <summary>
-    /// Field
+    /// This object represents a policy.
     /// </summary>
     [DataContract]
-    public partial class Field :  IEquatable<Field>
+    public partial class Policy :  IEquatable<Policy>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Field" /> class.
+        /// Initializes a new instance of the <see cref="Policy" /> class.
         /// </summary>
-        /// <param name="Message">Message.</param>
-        /// <param name="Name">Name.</param>
-        public Field(string Message = null, string Name = null)
+        /// <param name="Action">Comma separated list of action, empty string represents all actions..</param>
+        /// <param name="Resource">Resource that is protected by this policy..</param>
+        /// <param name="Allow">true or false controlling wether action is allowed or not. (default to false).</param>
+        public Policy(string Action = null, string Resource = null, bool? Allow = null)
         {
-            this.Message = Message;
-            this.Name = Name;
+            this.Action = Action;
+            this.Resource = Resource;
+            // use default value if no "Allow" provided
+            if (Allow == null)
+            {
+                this.Allow = false;
+            }
+            else
+            {
+                this.Allow = Allow;
+            }
         }
         
         /// <summary>
-        /// Gets or Sets Message
+        /// Comma separated list of action, empty string represents all actions.
         /// </summary>
-        [DataMember(Name="message", EmitDefaultValue=false)]
-        public string Message { get; set; }
+        /// <value>Comma separated list of action, empty string represents all actions.</value>
+        [DataMember(Name="action", EmitDefaultValue=false)]
+        public string Action { get; set; }
         /// <summary>
-        /// Gets or Sets Name
+        /// Resource that is protected by this policy.
         /// </summary>
-        [DataMember(Name="name", EmitDefaultValue=false)]
-        public string Name { get; set; }
+        /// <value>Resource that is protected by this policy.</value>
+        [DataMember(Name="resource", EmitDefaultValue=false)]
+        public string Resource { get; set; }
+        /// <summary>
+        /// true or false controlling wether action is allowed or not.
+        /// </summary>
+        /// <value>true or false controlling wether action is allowed or not.</value>
+        [DataMember(Name="allow", EmitDefaultValue=false)]
+        public bool? Allow { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -67,9 +85,10 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Field {\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("class Policy {\n");
+            sb.Append("  Action: ").Append(Action).Append("\n");
+            sb.Append("  Resource: ").Append(Resource).Append("\n");
+            sb.Append("  Allow: ").Append(Allow).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -91,15 +110,15 @@ namespace iam.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as Field);
+            return this.Equals(obj as Policy);
         }
 
         /// <summary>
-        /// Returns true if Field instances are equal
+        /// Returns true if Policy instances are equal
         /// </summary>
-        /// <param name="other">Instance of Field to be compared</param>
+        /// <param name="other">Instance of Policy to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Field other)
+        public bool Equals(Policy other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -107,14 +126,19 @@ namespace iam.Model
 
             return 
                 (
-                    this.Message == other.Message ||
-                    this.Message != null &&
-                    this.Message.Equals(other.Message)
+                    this.Action == other.Action ||
+                    this.Action != null &&
+                    this.Action.Equals(other.Action)
                 ) && 
                 (
-                    this.Name == other.Name ||
-                    this.Name != null &&
-                    this.Name.Equals(other.Name)
+                    this.Resource == other.Resource ||
+                    this.Resource != null &&
+                    this.Resource.Equals(other.Resource)
+                ) && 
+                (
+                    this.Allow == other.Allow ||
+                    this.Allow != null &&
+                    this.Allow.Equals(other.Allow)
                 );
         }
 
@@ -129,10 +153,12 @@ namespace iam.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Message != null)
-                    hash = hash * 59 + this.Message.GetHashCode();
-                if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
+                if (this.Action != null)
+                    hash = hash * 59 + this.Action.GetHashCode();
+                if (this.Resource != null)
+                    hash = hash * 59 + this.Resource.GetHashCode();
+                if (this.Allow != null)
+                    hash = hash * 59 + this.Allow.GetHashCode();
                 return hash;
             }
         }

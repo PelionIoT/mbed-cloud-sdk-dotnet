@@ -34,15 +34,15 @@ using Newtonsoft.Json.Converters;
 namespace iam.Model
 {
     /// <summary>
-    /// This object contains basic information about groups.
+    /// This object represents an account template in responses.
     /// </summary>
     [DataContract]
-    public partial class GroupSummary :  IEquatable<GroupSummary>
+    public partial class AccountTemplateResp :  IEquatable<AccountTemplateResp>
     {
         /// <summary>
-        /// Entity name: always 'group'
+        /// entity name: 'user', 'apikey', 'group', 'account' or error
         /// </summary>
-        /// <value>Entity name: always 'group'</value>
+        /// <value>entity name: 'user', 'apikey', 'group', 'account' or error</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ObjectEnum
         {
@@ -97,53 +97,44 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// Entity name: always 'group'
+        /// entity name: 'user', 'apikey', 'group', 'account' or error
         /// </summary>
-        /// <value>Entity name: always 'group'</value>
+        /// <value>entity name: 'user', 'apikey', 'group', 'account' or error</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public ObjectEnum? _Object { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="GroupSummary" /> class.
+        /// Initializes a new instance of the <see cref="AccountTemplateResp" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected GroupSummary() { }
+        protected AccountTemplateResp() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="GroupSummary" /> class.
+        /// Initializes a new instance of the <see cref="AccountTemplateResp" /> class.
         /// </summary>
-        /// <param name="Name">The name of the group. (required).</param>
-        /// <param name="LastUpdateTime">A timestamp of the latest group update, in milliseconds..</param>
-        /// <param name="ApiKeyCount">The number of API keys in this group. (required).</param>
+        /// <param name="Limits">List of limits as name-value pairs.</param>
+        /// <param name="Name">Account template name (required).</param>
+        /// <param name="Parent">ID of the parent template, can be null..</param>
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
-        /// <param name="_Object">Entity name: always &#39;group&#39; (required).</param>
-        /// <param name="CreationTime">A timestamp of the group creation in the storage, in milliseconds..</param>
+        /// <param name="_Object">entity name: &#39;user&#39;, &#39;apikey&#39;, &#39;group&#39;, &#39;account&#39; or error (required).</param>
         /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="CreationTimeMillis">CreationTimeMillis.</param>
-        /// <param name="Id">The UUID of the group. (required).</param>
-        /// <param name="UserCount">The number of users in this group. (required).</param>
-        public GroupSummary(string Name = null, long? LastUpdateTime = null, int? ApiKeyCount = null, string CreatedAt = null, ObjectEnum? _Object = null, long? CreationTime = null, string Etag = null, long? CreationTimeMillis = null, string Id = null, int? UserCount = null)
+        /// <param name="Id">Entity ID. (required).</param>
+        /// <param name="Resources">List of resource-action-allow triplets, policies..</param>
+        /// <param name="Description">Account template description.</param>
+        public AccountTemplateResp(Dictionary<string, string> Limits = null, string Name = null, string Parent = null, string CreatedAt = null, ObjectEnum? _Object = null, string Etag = null, long? CreationTimeMillis = null, string Id = null, List<Policy> Resources = null, string Description = null)
         {
             // to ensure "Name" is required (not null)
             if (Name == null)
             {
-                throw new InvalidDataException("Name is a required property for GroupSummary and cannot be null");
+                throw new InvalidDataException("Name is a required property for AccountTemplateResp and cannot be null");
             }
             else
             {
                 this.Name = Name;
             }
-            // to ensure "ApiKeyCount" is required (not null)
-            if (ApiKeyCount == null)
-            {
-                throw new InvalidDataException("ApiKeyCount is a required property for GroupSummary and cannot be null");
-            }
-            else
-            {
-                this.ApiKeyCount = ApiKeyCount;
-            }
             // to ensure "_Object" is required (not null)
             if (_Object == null)
             {
-                throw new InvalidDataException("_Object is a required property for GroupSummary and cannot be null");
+                throw new InvalidDataException("_Object is a required property for AccountTemplateResp and cannot be null");
             }
             else
             {
@@ -152,7 +143,7 @@ namespace iam.Model
             // to ensure "Etag" is required (not null)
             if (Etag == null)
             {
-                throw new InvalidDataException("Etag is a required property for GroupSummary and cannot be null");
+                throw new InvalidDataException("Etag is a required property for AccountTemplateResp and cannot be null");
             }
             else
             {
@@ -161,57 +152,44 @@ namespace iam.Model
             // to ensure "Id" is required (not null)
             if (Id == null)
             {
-                throw new InvalidDataException("Id is a required property for GroupSummary and cannot be null");
+                throw new InvalidDataException("Id is a required property for AccountTemplateResp and cannot be null");
             }
             else
             {
                 this.Id = Id;
             }
-            // to ensure "UserCount" is required (not null)
-            if (UserCount == null)
-            {
-                throw new InvalidDataException("UserCount is a required property for GroupSummary and cannot be null");
-            }
-            else
-            {
-                this.UserCount = UserCount;
-            }
-            this.LastUpdateTime = LastUpdateTime;
+            this.Limits = Limits;
+            this.Parent = Parent;
             this.CreatedAt = CreatedAt;
-            this.CreationTime = CreationTime;
             this.CreationTimeMillis = CreationTimeMillis;
+            this.Resources = Resources;
+            this.Description = Description;
         }
         
         /// <summary>
-        /// The name of the group.
+        /// List of limits as name-value pairs
         /// </summary>
-        /// <value>The name of the group.</value>
+        /// <value>List of limits as name-value pairs</value>
+        [DataMember(Name="limits", EmitDefaultValue=false)]
+        public Dictionary<string, string> Limits { get; set; }
+        /// <summary>
+        /// Account template name
+        /// </summary>
+        /// <value>Account template name</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
-        /// A timestamp of the latest group update, in milliseconds.
+        /// ID of the parent template, can be null.
         /// </summary>
-        /// <value>A timestamp of the latest group update, in milliseconds.</value>
-        [DataMember(Name="lastUpdateTime", EmitDefaultValue=false)]
-        public long? LastUpdateTime { get; set; }
-        /// <summary>
-        /// The number of API keys in this group.
-        /// </summary>
-        /// <value>The number of API keys in this group.</value>
-        [DataMember(Name="apiKeyCount", EmitDefaultValue=false)]
-        public int? ApiKeyCount { get; set; }
+        /// <value>ID of the parent template, can be null.</value>
+        [DataMember(Name="parent", EmitDefaultValue=false)]
+        public string Parent { get; set; }
         /// <summary>
         /// Creation UTC time RFC3339.
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public string CreatedAt { get; set; }
-        /// <summary>
-        /// A timestamp of the group creation in the storage, in milliseconds.
-        /// </summary>
-        /// <value>A timestamp of the group creation in the storage, in milliseconds.</value>
-        [DataMember(Name="creationTime", EmitDefaultValue=false)]
-        public long? CreationTime { get; set; }
         /// <summary>
         /// API resource entity version.
         /// </summary>
@@ -224,17 +202,23 @@ namespace iam.Model
         [DataMember(Name="creationTimeMillis", EmitDefaultValue=false)]
         public long? CreationTimeMillis { get; set; }
         /// <summary>
-        /// The UUID of the group.
+        /// Entity ID.
         /// </summary>
-        /// <value>The UUID of the group.</value>
+        /// <value>Entity ID.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
         /// <summary>
-        /// The number of users in this group.
+        /// List of resource-action-allow triplets, policies.
         /// </summary>
-        /// <value>The number of users in this group.</value>
-        [DataMember(Name="userCount", EmitDefaultValue=false)]
-        public int? UserCount { get; set; }
+        /// <value>List of resource-action-allow triplets, policies.</value>
+        [DataMember(Name="resources", EmitDefaultValue=false)]
+        public List<Policy> Resources { get; set; }
+        /// <summary>
+        /// Account template description
+        /// </summary>
+        /// <value>Account template description</value>
+        [DataMember(Name="description", EmitDefaultValue=false)]
+        public string Description { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -242,17 +226,17 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class GroupSummary {\n");
+            sb.Append("class AccountTemplateResp {\n");
+            sb.Append("  Limits: ").Append(Limits).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  LastUpdateTime: ").Append(LastUpdateTime).Append("\n");
-            sb.Append("  ApiKeyCount: ").Append(ApiKeyCount).Append("\n");
+            sb.Append("  Parent: ").Append(Parent).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
-            sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  CreationTimeMillis: ").Append(CreationTimeMillis).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  UserCount: ").Append(UserCount).Append("\n");
+            sb.Append("  Resources: ").Append(Resources).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -274,15 +258,15 @@ namespace iam.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as GroupSummary);
+            return this.Equals(obj as AccountTemplateResp);
         }
 
         /// <summary>
-        /// Returns true if GroupSummary instances are equal
+        /// Returns true if AccountTemplateResp instances are equal
         /// </summary>
-        /// <param name="other">Instance of GroupSummary to be compared</param>
+        /// <param name="other">Instance of AccountTemplateResp to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(GroupSummary other)
+        public bool Equals(AccountTemplateResp other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -290,19 +274,19 @@ namespace iam.Model
 
             return 
                 (
+                    this.Limits == other.Limits ||
+                    this.Limits != null &&
+                    this.Limits.SequenceEqual(other.Limits)
+                ) && 
+                (
                     this.Name == other.Name ||
                     this.Name != null &&
                     this.Name.Equals(other.Name)
                 ) && 
                 (
-                    this.LastUpdateTime == other.LastUpdateTime ||
-                    this.LastUpdateTime != null &&
-                    this.LastUpdateTime.Equals(other.LastUpdateTime)
-                ) && 
-                (
-                    this.ApiKeyCount == other.ApiKeyCount ||
-                    this.ApiKeyCount != null &&
-                    this.ApiKeyCount.Equals(other.ApiKeyCount)
+                    this.Parent == other.Parent ||
+                    this.Parent != null &&
+                    this.Parent.Equals(other.Parent)
                 ) && 
                 (
                     this.CreatedAt == other.CreatedAt ||
@@ -313,11 +297,6 @@ namespace iam.Model
                     this._Object == other._Object ||
                     this._Object != null &&
                     this._Object.Equals(other._Object)
-                ) && 
-                (
-                    this.CreationTime == other.CreationTime ||
-                    this.CreationTime != null &&
-                    this.CreationTime.Equals(other.CreationTime)
                 ) && 
                 (
                     this.Etag == other.Etag ||
@@ -335,9 +314,14 @@ namespace iam.Model
                     this.Id.Equals(other.Id)
                 ) && 
                 (
-                    this.UserCount == other.UserCount ||
-                    this.UserCount != null &&
-                    this.UserCount.Equals(other.UserCount)
+                    this.Resources == other.Resources ||
+                    this.Resources != null &&
+                    this.Resources.SequenceEqual(other.Resources)
+                ) && 
+                (
+                    this.Description == other.Description ||
+                    this.Description != null &&
+                    this.Description.Equals(other.Description)
                 );
         }
 
@@ -352,26 +336,26 @@ namespace iam.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
+                if (this.Limits != null)
+                    hash = hash * 59 + this.Limits.GetHashCode();
                 if (this.Name != null)
                     hash = hash * 59 + this.Name.GetHashCode();
-                if (this.LastUpdateTime != null)
-                    hash = hash * 59 + this.LastUpdateTime.GetHashCode();
-                if (this.ApiKeyCount != null)
-                    hash = hash * 59 + this.ApiKeyCount.GetHashCode();
+                if (this.Parent != null)
+                    hash = hash * 59 + this.Parent.GetHashCode();
                 if (this.CreatedAt != null)
                     hash = hash * 59 + this.CreatedAt.GetHashCode();
                 if (this._Object != null)
                     hash = hash * 59 + this._Object.GetHashCode();
-                if (this.CreationTime != null)
-                    hash = hash * 59 + this.CreationTime.GetHashCode();
                 if (this.Etag != null)
                     hash = hash * 59 + this.Etag.GetHashCode();
                 if (this.CreationTimeMillis != null)
                     hash = hash * 59 + this.CreationTimeMillis.GetHashCode();
                 if (this.Id != null)
                     hash = hash * 59 + this.Id.GetHashCode();
-                if (this.UserCount != null)
-                    hash = hash * 59 + this.UserCount.GetHashCode();
+                if (this.Resources != null)
+                    hash = hash * 59 + this.Resources.GetHashCode();
+                if (this.Description != null)
+                    hash = hash * 59 + this.Description.GetHashCode();
                 return hash;
             }
         }

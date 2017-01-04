@@ -1,7 +1,7 @@
 /* 
  * IAM Identities REST API
  *
- * REST API to manage accounts, groups, users and api-keys
+ * REST API to manage accounts, groups, users and API keys
  *
  * OpenAPI spec version: v3
  * 
@@ -42,45 +42,48 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountUpdateReq" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected AccountUpdateReq() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AccountUpdateReq" /> class.
-        /// </summary>
         /// <param name="AddressLine2">Postal address line 2..</param>
         /// <param name="City">The city part of the postal address..</param>
         /// <param name="AddressLine1">Postal address line 1..</param>
         /// <param name="DisplayName">The display name for the account..</param>
         /// <param name="Country">The country part of the postal address..</param>
         /// <param name="Company">The name of the company..</param>
+        /// <param name="TemplateId">Account template ID. Manageable by the root admin only..</param>
+        /// <param name="Status">The status of the account. Manageable by the root admin only..</param>
         /// <param name="State">The state part of the postal address..</param>
         /// <param name="Contact">The name of the contact person for this account..</param>
         /// <param name="PostalCode">The postal code part of the postal address..</param>
+        /// <param name="IsProvisioningAllowed">Flag (true/false) indicating whether Factory Tool is allowed to download or not. Manageable by the root admin only. (default to false).</param>
+        /// <param name="Tier">The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account. Other values are reserved for the future. Manageable by the root admin only..</param>
         /// <param name="PhoneNumber">The phone number of the company..</param>
         /// <param name="Email">The company email address for this account..</param>
-        /// <param name="Aliases">An array of aliases. (required).</param>
-        public AccountUpdateReq(string AddressLine2 = null, string City = null, string AddressLine1 = null, string DisplayName = null, string Country = null, string Company = null, string State = null, string Contact = null, string PostalCode = null, string PhoneNumber = null, string Email = null, List<string> Aliases = null)
+        /// <param name="Aliases">An array of aliases..</param>
+        public AccountUpdateReq(string AddressLine2 = null, string City = null, string AddressLine1 = null, string DisplayName = null, string Country = null, string Company = null, string TemplateId = null, string Status = null, string State = null, string Contact = null, string PostalCode = null, bool? IsProvisioningAllowed = null, string Tier = null, string PhoneNumber = null, string Email = null, List<string> Aliases = null)
         {
-            // to ensure "Aliases" is required (not null)
-            if (Aliases == null)
-            {
-                throw new InvalidDataException("Aliases is a required property for AccountUpdateReq and cannot be null");
-            }
-            else
-            {
-                this.Aliases = Aliases;
-            }
             this.AddressLine2 = AddressLine2;
             this.City = City;
             this.AddressLine1 = AddressLine1;
             this.DisplayName = DisplayName;
             this.Country = Country;
             this.Company = Company;
+            this.TemplateId = TemplateId;
+            this.Status = Status;
             this.State = State;
             this.Contact = Contact;
             this.PostalCode = PostalCode;
+            // use default value if no "IsProvisioningAllowed" provided
+            if (IsProvisioningAllowed == null)
+            {
+                this.IsProvisioningAllowed = false;
+            }
+            else
+            {
+                this.IsProvisioningAllowed = IsProvisioningAllowed;
+            }
+            this.Tier = Tier;
             this.PhoneNumber = PhoneNumber;
             this.Email = Email;
+            this.Aliases = Aliases;
         }
         
         /// <summary>
@@ -120,6 +123,18 @@ namespace iam.Model
         [DataMember(Name="company", EmitDefaultValue=false)]
         public string Company { get; set; }
         /// <summary>
+        /// Account template ID. Manageable by the root admin only.
+        /// </summary>
+        /// <value>Account template ID. Manageable by the root admin only.</value>
+        [DataMember(Name="template_id", EmitDefaultValue=false)]
+        public string TemplateId { get; set; }
+        /// <summary>
+        /// The status of the account. Manageable by the root admin only.
+        /// </summary>
+        /// <value>The status of the account. Manageable by the root admin only.</value>
+        [DataMember(Name="status", EmitDefaultValue=false)]
+        public string Status { get; set; }
+        /// <summary>
         /// The state part of the postal address.
         /// </summary>
         /// <value>The state part of the postal address.</value>
@@ -137,6 +152,18 @@ namespace iam.Model
         /// <value>The postal code part of the postal address.</value>
         [DataMember(Name="postal_code", EmitDefaultValue=false)]
         public string PostalCode { get; set; }
+        /// <summary>
+        /// Flag (true/false) indicating whether Factory Tool is allowed to download or not. Manageable by the root admin only.
+        /// </summary>
+        /// <value>Flag (true/false) indicating whether Factory Tool is allowed to download or not. Manageable by the root admin only.</value>
+        [DataMember(Name="is_provisioning_allowed", EmitDefaultValue=false)]
+        public bool? IsProvisioningAllowed { get; set; }
+        /// <summary>
+        /// The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account. Other values are reserved for the future. Manageable by the root admin only.
+        /// </summary>
+        /// <value>The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account. Other values are reserved for the future. Manageable by the root admin only.</value>
+        [DataMember(Name="tier", EmitDefaultValue=false)]
+        public string Tier { get; set; }
         /// <summary>
         /// The phone number of the company.
         /// </summary>
@@ -169,9 +196,13 @@ namespace iam.Model
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
+            sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");
+            sb.Append("  IsProvisioningAllowed: ").Append(IsProvisioningAllowed).Append("\n");
+            sb.Append("  Tier: ").Append(Tier).Append("\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  Aliases: ").Append(Aliases).Append("\n");
@@ -242,6 +273,16 @@ namespace iam.Model
                     this.Company.Equals(other.Company)
                 ) && 
                 (
+                    this.TemplateId == other.TemplateId ||
+                    this.TemplateId != null &&
+                    this.TemplateId.Equals(other.TemplateId)
+                ) && 
+                (
+                    this.Status == other.Status ||
+                    this.Status != null &&
+                    this.Status.Equals(other.Status)
+                ) && 
+                (
                     this.State == other.State ||
                     this.State != null &&
                     this.State.Equals(other.State)
@@ -255,6 +296,16 @@ namespace iam.Model
                     this.PostalCode == other.PostalCode ||
                     this.PostalCode != null &&
                     this.PostalCode.Equals(other.PostalCode)
+                ) && 
+                (
+                    this.IsProvisioningAllowed == other.IsProvisioningAllowed ||
+                    this.IsProvisioningAllowed != null &&
+                    this.IsProvisioningAllowed.Equals(other.IsProvisioningAllowed)
+                ) && 
+                (
+                    this.Tier == other.Tier ||
+                    this.Tier != null &&
+                    this.Tier.Equals(other.Tier)
                 ) && 
                 (
                     this.PhoneNumber == other.PhoneNumber ||
@@ -296,12 +347,20 @@ namespace iam.Model
                     hash = hash * 59 + this.Country.GetHashCode();
                 if (this.Company != null)
                     hash = hash * 59 + this.Company.GetHashCode();
+                if (this.TemplateId != null)
+                    hash = hash * 59 + this.TemplateId.GetHashCode();
+                if (this.Status != null)
+                    hash = hash * 59 + this.Status.GetHashCode();
                 if (this.State != null)
                     hash = hash * 59 + this.State.GetHashCode();
                 if (this.Contact != null)
                     hash = hash * 59 + this.Contact.GetHashCode();
                 if (this.PostalCode != null)
                     hash = hash * 59 + this.PostalCode.GetHashCode();
+                if (this.IsProvisioningAllowed != null)
+                    hash = hash * 59 + this.IsProvisioningAllowed.GetHashCode();
+                if (this.Tier != null)
+                    hash = hash * 59 + this.Tier.GetHashCode();
                 if (this.PhoneNumber != null)
                     hash = hash * 59 + this.PhoneNumber.GetHashCode();
                 if (this.Email != null)

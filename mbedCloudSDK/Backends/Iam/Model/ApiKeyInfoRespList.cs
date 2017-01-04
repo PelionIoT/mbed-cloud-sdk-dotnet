@@ -1,7 +1,7 @@
 /* 
  * IAM Identities REST API
  *
- * REST API to manage accounts, groups, users and api-keys
+ * REST API to manage accounts, groups, users and API keys
  *
  * OpenAPI spec version: v3
  * 
@@ -40,9 +40,9 @@ namespace iam.Model
     public partial class ApiKeyInfoRespList :  IEquatable<ApiKeyInfoRespList>
     {
         /// <summary>
-        /// entity name: always 'list'
+        /// Entity name: always 'list'
         /// </summary>
-        /// <value>entity name: always 'list'</value>
+        /// <value>Entity name: always 'list'</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ObjectEnum
         {
@@ -72,6 +72,18 @@ namespace iam.Model
             Account,
             
             /// <summary>
+            /// Enum Accounttemplate for "account_template"
+            /// </summary>
+            [EnumMember(Value = "account_template")]
+            Accounttemplate,
+            
+            /// <summary>
+            /// Enum Cacert for "ca_cert"
+            /// </summary>
+            [EnumMember(Value = "ca_cert")]
+            Cacert,
+            
+            /// <summary>
             /// Enum List for "list"
             /// </summary>
             [EnumMember(Value = "list")]
@@ -85,9 +97,9 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// The order of the records to return. Available values: ASC, DESC. Default value is ASC
+        /// The order of the records to return. Available values: ASC, DESC; by default ASC.
         /// </summary>
-        /// <value>The order of the records to return. Available values: ASC, DESC. Default value is ASC</value>
+        /// <value>The order of the records to return. Available values: ASC, DESC; by default ASC.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum OrderEnum
         {
@@ -106,15 +118,15 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// entity name: always 'list'
+        /// Entity name: always 'list'
         /// </summary>
-        /// <value>entity name: always 'list'</value>
+        /// <value>Entity name: always 'list'</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public ObjectEnum? _Object { get; set; }
         /// <summary>
-        /// The order of the records to return. Available values: ASC, DESC. Default value is ASC
+        /// The order of the records to return. Available values: ASC, DESC; by default ASC.
         /// </summary>
-        /// <value>The order of the records to return. Available values: ASC, DESC. Default value is ASC</value>
+        /// <value>The order of the records to return. Available values: ASC, DESC; by default ASC.</value>
         [DataMember(Name="order", EmitDefaultValue=false)]
         public OrderEnum? Order { get; set; }
         /// <summary>
@@ -125,23 +137,15 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiKeyInfoRespList" /> class.
         /// </summary>
-        /// <param name="After">The entity id to fetch after it..</param>
-        /// <param name="_Object">entity name: always &#39;list&#39; (required).</param>
-        /// <param name="TotalCount">The total number or records, if requested  (required).</param>
-        /// <param name="Limit">The number of results to return, (range: 2-1000), or equals to total_count (required).</param>
-        /// <param name="Data">List of entities. (required).</param>
-        /// <param name="Order">The order of the records to return. Available values: ASC, DESC. Default value is ASC.</param>
-        public ApiKeyInfoRespList(string After = null, ObjectEnum? _Object = null, int? TotalCount = null, int? Limit = null, List<ApiKeyInfoResp> Data = null, OrderEnum? Order = null)
+        /// <param name="After">The entity ID to fetch after the given one..</param>
+        /// <param name="HasMore">Flag indicating whether there is more results. (default to false).</param>
+        /// <param name="TotalCount">The total number or records, if requested. It might be returned also for small lists. (required).</param>
+        /// <param name="_Object">Entity name: always &#39;list&#39; (required).</param>
+        /// <param name="Limit">The number of results to return, (range: 2-1000), or equals to &#x60;total_count&#x60; (required).</param>
+        /// <param name="Data">A list of entities. (required).</param>
+        /// <param name="Order">The order of the records to return. Available values: ASC, DESC; by default ASC..</param>
+        public ApiKeyInfoRespList(string After = null, bool? HasMore = null, int? TotalCount = null, ObjectEnum? _Object = null, int? Limit = null, List<ApiKeyInfoResp> Data = null, OrderEnum? Order = null)
         {
-            // to ensure "_Object" is required (not null)
-            if (_Object == null)
-            {
-                throw new InvalidDataException("_Object is a required property for ApiKeyInfoRespList and cannot be null");
-            }
-            else
-            {
-                this._Object = _Object;
-            }
             // to ensure "TotalCount" is required (not null)
             if (TotalCount == null)
             {
@@ -150,6 +154,15 @@ namespace iam.Model
             else
             {
                 this.TotalCount = TotalCount;
+            }
+            // to ensure "_Object" is required (not null)
+            if (_Object == null)
+            {
+                throw new InvalidDataException("_Object is a required property for ApiKeyInfoRespList and cannot be null");
+            }
+            else
+            {
+                this._Object = _Object;
             }
             // to ensure "Limit" is required (not null)
             if (Limit == null)
@@ -170,31 +183,46 @@ namespace iam.Model
                 this.Data = Data;
             }
             this.After = After;
+            // use default value if no "HasMore" provided
+            if (HasMore == null)
+            {
+                this.HasMore = false;
+            }
+            else
+            {
+                this.HasMore = HasMore;
+            }
             this.Order = Order;
         }
         
         /// <summary>
-        /// The entity id to fetch after it.
+        /// The entity ID to fetch after the given one.
         /// </summary>
-        /// <value>The entity id to fetch after it.</value>
+        /// <value>The entity ID to fetch after the given one.</value>
         [DataMember(Name="after", EmitDefaultValue=false)]
         public string After { get; set; }
         /// <summary>
-        /// The total number or records, if requested 
+        /// Flag indicating whether there is more results.
         /// </summary>
-        /// <value>The total number or records, if requested </value>
-        [DataMember(Name="totalCount", EmitDefaultValue=false)]
+        /// <value>Flag indicating whether there is more results.</value>
+        [DataMember(Name="has_more", EmitDefaultValue=false)]
+        public bool? HasMore { get; set; }
+        /// <summary>
+        /// The total number or records, if requested. It might be returned also for small lists.
+        /// </summary>
+        /// <value>The total number or records, if requested. It might be returned also for small lists.</value>
+        [DataMember(Name="total_count", EmitDefaultValue=false)]
         public int? TotalCount { get; set; }
         /// <summary>
-        /// The number of results to return, (range: 2-1000), or equals to total_count
+        /// The number of results to return, (range: 2-1000), or equals to &#x60;total_count&#x60;
         /// </summary>
-        /// <value>The number of results to return, (range: 2-1000), or equals to total_count</value>
+        /// <value>The number of results to return, (range: 2-1000), or equals to &#x60;total_count&#x60;</value>
         [DataMember(Name="limit", EmitDefaultValue=false)]
         public int? Limit { get; set; }
         /// <summary>
-        /// List of entities.
+        /// A list of entities.
         /// </summary>
-        /// <value>List of entities.</value>
+        /// <value>A list of entities.</value>
         [DataMember(Name="data", EmitDefaultValue=false)]
         public List<ApiKeyInfoResp> Data { get; set; }
         /// <summary>
@@ -206,8 +234,9 @@ namespace iam.Model
             var sb = new StringBuilder();
             sb.Append("class ApiKeyInfoRespList {\n");
             sb.Append("  After: ").Append(After).Append("\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
+            sb.Append("  HasMore: ").Append(HasMore).Append("\n");
             sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  Limit: ").Append(Limit).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("  Order: ").Append(Order).Append("\n");
@@ -253,14 +282,19 @@ namespace iam.Model
                     this.After.Equals(other.After)
                 ) && 
                 (
-                    this._Object == other._Object ||
-                    this._Object != null &&
-                    this._Object.Equals(other._Object)
+                    this.HasMore == other.HasMore ||
+                    this.HasMore != null &&
+                    this.HasMore.Equals(other.HasMore)
                 ) && 
                 (
                     this.TotalCount == other.TotalCount ||
                     this.TotalCount != null &&
                     this.TotalCount.Equals(other.TotalCount)
+                ) && 
+                (
+                    this._Object == other._Object ||
+                    this._Object != null &&
+                    this._Object.Equals(other._Object)
                 ) && 
                 (
                     this.Limit == other.Limit ||
@@ -292,10 +326,12 @@ namespace iam.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.After != null)
                     hash = hash * 59 + this.After.GetHashCode();
-                if (this._Object != null)
-                    hash = hash * 59 + this._Object.GetHashCode();
+                if (this.HasMore != null)
+                    hash = hash * 59 + this.HasMore.GetHashCode();
                 if (this.TotalCount != null)
                     hash = hash * 59 + this.TotalCount.GetHashCode();
+                if (this._Object != null)
+                    hash = hash * 59 + this._Object.GetHashCode();
                 if (this.Limit != null)
                     hash = hash * 59 + this.Limit.GetHashCode();
                 if (this.Data != null)

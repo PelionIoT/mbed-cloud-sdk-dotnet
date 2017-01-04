@@ -93,16 +93,11 @@ namespace device_query_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;List all device queries. The result will be paged into pages of 100.&lt;/p&gt;
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="query"> (optional)</param>
-        /// <param name="queryId"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
         /// <returns>DeviceQueryResp</returns>
-        DeviceQueryResp DeviceQueryList (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null);
+        DeviceQueryResp DeviceQueryList (int? limit = null, string order = null, string after = null);
 
         /// <summary>
         /// 
@@ -111,16 +106,11 @@ namespace device_query_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;List all device queries. The result will be paged into pages of 100.&lt;/p&gt;
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="query"> (optional)</param>
-        /// <param name="queryId"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
         /// <returns>ApiResponse of DeviceQueryResp</returns>
-        ApiResponse<DeviceQueryResp> DeviceQueryListWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null);
+        ApiResponse<DeviceQueryResp> DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null);
         /// <summary>
         /// 
         /// </summary>
@@ -263,16 +253,11 @@ namespace device_query_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;List all device queries. The result will be paged into pages of 100.&lt;/p&gt;
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="query"> (optional)</param>
-        /// <param name="queryId"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
         /// <returns>Task of DeviceQueryResp</returns>
-        System.Threading.Tasks.Task<DeviceQueryResp> DeviceQueryListAsync (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null);
+        System.Threading.Tasks.Task<DeviceQueryResp> DeviceQueryListAsync (int? limit = null, string order = null, string after = null);
 
         /// <summary>
         /// 
@@ -281,16 +266,11 @@ namespace device_query_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;List all device queries. The result will be paged into pages of 100.&lt;/p&gt;
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="query"> (optional)</param>
-        /// <param name="queryId"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
         /// <returns>Task of ApiResponse (DeviceQueryResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQueryResp>> DeviceQueryListAsyncWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null);
+        System.Threading.Tasks.Task<ApiResponse<DeviceQueryResp>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null);
         /// <summary>
         /// 
         /// </summary>
@@ -822,18 +802,13 @@ namespace device_query_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;List all device queries. The result will be paged into pages of 100.&lt;/p&gt;
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="query"> (optional)</param>
-        /// <param name="queryId"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
         /// <returns>DeviceQueryResp</returns>
-        public DeviceQueryResp DeviceQueryList (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
+        public DeviceQueryResp DeviceQueryList (int? limit = null, string order = null, string after = null)
         {
-             ApiResponse<DeviceQueryResp> localVarResponse = DeviceQueryListWithHttpInfo(description, createdAt, updatedAt, etag, name, _object, query, queryId);
+             ApiResponse<DeviceQueryResp> localVarResponse = DeviceQueryListWithHttpInfo(limit, order, after);
              return localVarResponse.Data;
         }
 
@@ -841,16 +816,11 @@ namespace device_query_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;List all device queries. The result will be paged into pages of 100.&lt;/p&gt;
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="query"> (optional)</param>
-        /// <param name="queryId"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
         /// <returns>ApiResponse of DeviceQueryResp</returns>
-        public ApiResponse< DeviceQueryResp > DeviceQueryListWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
+        public ApiResponse< DeviceQueryResp > DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null)
         {
 
             var localVarPath = "/v3/device-queries/";
@@ -876,14 +846,9 @@ namespace device_query_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (query != null) localVarQueryParams.Add("query", Configuration.ApiClient.ParameterToString(query)); // query parameter
-            if (queryId != null) localVarQueryParams.Add("query_id", Configuration.ApiClient.ParameterToString(queryId)); // query parameter
+            if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
+            if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
+            if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -915,18 +880,13 @@ namespace device_query_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;List all device queries. The result will be paged into pages of 100.&lt;/p&gt;
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="query"> (optional)</param>
-        /// <param name="queryId"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
         /// <returns>Task of DeviceQueryResp</returns>
-        public async System.Threading.Tasks.Task<DeviceQueryResp> DeviceQueryListAsync (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
+        public async System.Threading.Tasks.Task<DeviceQueryResp> DeviceQueryListAsync (int? limit = null, string order = null, string after = null)
         {
-             ApiResponse<DeviceQueryResp> localVarResponse = await DeviceQueryListAsyncWithHttpInfo(description, createdAt, updatedAt, etag, name, _object, query, queryId);
+             ApiResponse<DeviceQueryResp> localVarResponse = await DeviceQueryListAsyncWithHttpInfo(limit, order, after);
              return localVarResponse.Data;
 
         }
@@ -935,16 +895,11 @@ namespace device_query_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;List all device queries. The result will be paged into pages of 100.&lt;/p&gt;
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="query"> (optional)</param>
-        /// <param name="queryId"> (optional)</param>
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
         /// <returns>Task of ApiResponse (DeviceQueryResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryResp>> DeviceQueryListAsyncWithHttpInfo (string description = null, string createdAt = null, string updatedAt = null, string etag = null, string name = null, string _object = null, string query = null, string queryId = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryResp>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null)
         {
 
             var localVarPath = "/v3/device-queries/";
@@ -970,14 +925,9 @@ namespace device_query_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (query != null) localVarQueryParams.Add("query", Configuration.ApiClient.ParameterToString(query)); // query parameter
-            if (queryId != null) localVarQueryParams.Add("query_id", Configuration.ApiClient.ParameterToString(queryId)); // query parameter
+            if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
+            if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
+            if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))

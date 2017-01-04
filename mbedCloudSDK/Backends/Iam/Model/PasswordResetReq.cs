@@ -34,32 +34,39 @@ using Newtonsoft.Json.Converters;
 namespace iam.Model
 {
     /// <summary>
-    /// Field
+    /// This object represents a password recovery request.
     /// </summary>
     [DataContract]
-    public partial class Field :  IEquatable<Field>
+    public partial class PasswordResetReq :  IEquatable<PasswordResetReq>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Field" /> class.
+        /// Initializes a new instance of the <see cref="PasswordResetReq" /> class.
         /// </summary>
-        /// <param name="Message">Message.</param>
-        /// <param name="Name">Name.</param>
-        public Field(string Message = null, string Name = null)
+        [JsonConstructorAttribute]
+        protected PasswordResetReq() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PasswordResetReq" /> class.
+        /// </summary>
+        /// <param name="Email">Email address. (required).</param>
+        public PasswordResetReq(string Email = null)
         {
-            this.Message = Message;
-            this.Name = Name;
+            // to ensure "Email" is required (not null)
+            if (Email == null)
+            {
+                throw new InvalidDataException("Email is a required property for PasswordResetReq and cannot be null");
+            }
+            else
+            {
+                this.Email = Email;
+            }
         }
         
         /// <summary>
-        /// Gets or Sets Message
+        /// Email address.
         /// </summary>
-        [DataMember(Name="message", EmitDefaultValue=false)]
-        public string Message { get; set; }
-        /// <summary>
-        /// Gets or Sets Name
-        /// </summary>
-        [DataMember(Name="name", EmitDefaultValue=false)]
-        public string Name { get; set; }
+        /// <value>Email address.</value>
+        [DataMember(Name="email", EmitDefaultValue=false)]
+        public string Email { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -67,9 +74,8 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Field {\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("class PasswordResetReq {\n");
+            sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -91,15 +97,15 @@ namespace iam.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as Field);
+            return this.Equals(obj as PasswordResetReq);
         }
 
         /// <summary>
-        /// Returns true if Field instances are equal
+        /// Returns true if PasswordResetReq instances are equal
         /// </summary>
-        /// <param name="other">Instance of Field to be compared</param>
+        /// <param name="other">Instance of PasswordResetReq to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Field other)
+        public bool Equals(PasswordResetReq other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -107,14 +113,9 @@ namespace iam.Model
 
             return 
                 (
-                    this.Message == other.Message ||
-                    this.Message != null &&
-                    this.Message.Equals(other.Message)
-                ) && 
-                (
-                    this.Name == other.Name ||
-                    this.Name != null &&
-                    this.Name.Equals(other.Name)
+                    this.Email == other.Email ||
+                    this.Email != null &&
+                    this.Email.Equals(other.Email)
                 );
         }
 
@@ -129,10 +130,8 @@ namespace iam.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Message != null)
-                    hash = hash * 59 + this.Message.GetHashCode();
-                if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
+                if (this.Email != null)
+                    hash = hash * 59 + this.Email.GetHashCode();
                 return hash;
             }
         }

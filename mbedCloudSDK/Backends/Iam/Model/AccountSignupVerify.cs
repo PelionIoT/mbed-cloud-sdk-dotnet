@@ -34,32 +34,47 @@ using Newtonsoft.Json.Converters;
 namespace iam.Model
 {
     /// <summary>
-    /// Field
+    /// This object represents a verify request during service sign-up process.
     /// </summary>
     [DataContract]
-    public partial class Field :  IEquatable<Field>
+    public partial class AccountSignupVerify :  IEquatable<AccountSignupVerify>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Field" /> class.
+        /// Initializes a new instance of the <see cref="AccountSignupVerify" /> class.
         /// </summary>
-        /// <param name="Message">Message.</param>
-        /// <param name="Name">Name.</param>
-        public Field(string Message = null, string Name = null)
+        [JsonConstructorAttribute]
+        protected AccountSignupVerify() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountSignupVerify" /> class.
+        /// </summary>
+        /// <param name="Code">Verification code, also required while checking account aliases. (required).</param>
+        /// <param name="Aliases">Account alias array to be checked for being unique..</param>
+        public AccountSignupVerify(string Code = null, List<string> Aliases = null)
         {
-            this.Message = Message;
-            this.Name = Name;
+            // to ensure "Code" is required (not null)
+            if (Code == null)
+            {
+                throw new InvalidDataException("Code is a required property for AccountSignupVerify and cannot be null");
+            }
+            else
+            {
+                this.Code = Code;
+            }
+            this.Aliases = Aliases;
         }
         
         /// <summary>
-        /// Gets or Sets Message
+        /// Verification code, also required while checking account aliases.
         /// </summary>
-        [DataMember(Name="message", EmitDefaultValue=false)]
-        public string Message { get; set; }
+        /// <value>Verification code, also required while checking account aliases.</value>
+        [DataMember(Name="code", EmitDefaultValue=false)]
+        public string Code { get; set; }
         /// <summary>
-        /// Gets or Sets Name
+        /// Account alias array to be checked for being unique.
         /// </summary>
-        [DataMember(Name="name", EmitDefaultValue=false)]
-        public string Name { get; set; }
+        /// <value>Account alias array to be checked for being unique.</value>
+        [DataMember(Name="aliases", EmitDefaultValue=false)]
+        public List<string> Aliases { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -67,9 +82,9 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Field {\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("class AccountSignupVerify {\n");
+            sb.Append("  Code: ").Append(Code).Append("\n");
+            sb.Append("  Aliases: ").Append(Aliases).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -91,15 +106,15 @@ namespace iam.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as Field);
+            return this.Equals(obj as AccountSignupVerify);
         }
 
         /// <summary>
-        /// Returns true if Field instances are equal
+        /// Returns true if AccountSignupVerify instances are equal
         /// </summary>
-        /// <param name="other">Instance of Field to be compared</param>
+        /// <param name="other">Instance of AccountSignupVerify to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Field other)
+        public bool Equals(AccountSignupVerify other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -107,14 +122,14 @@ namespace iam.Model
 
             return 
                 (
-                    this.Message == other.Message ||
-                    this.Message != null &&
-                    this.Message.Equals(other.Message)
+                    this.Code == other.Code ||
+                    this.Code != null &&
+                    this.Code.Equals(other.Code)
                 ) && 
                 (
-                    this.Name == other.Name ||
-                    this.Name != null &&
-                    this.Name.Equals(other.Name)
+                    this.Aliases == other.Aliases ||
+                    this.Aliases != null &&
+                    this.Aliases.SequenceEqual(other.Aliases)
                 );
         }
 
@@ -129,10 +144,10 @@ namespace iam.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Message != null)
-                    hash = hash * 59 + this.Message.GetHashCode();
-                if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
+                if (this.Code != null)
+                    hash = hash * 59 + this.Code.GetHashCode();
+                if (this.Aliases != null)
+                    hash = hash * 59 + this.Aliases.GetHashCode();
                 return hash;
             }
         }

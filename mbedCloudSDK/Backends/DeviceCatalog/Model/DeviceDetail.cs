@@ -159,7 +159,7 @@ namespace device_catalog.Model
         /// <param name="Name">The name of the object.</param>
         /// <param name="CreatedAt">The time the object was created.</param>
         /// <param name="Manifest">URL for the current device manifest.</param>
-        public DeviceDetail(string BootstrappedTimestamp = null, DateTime? UpdatedAt = null, string CustomAttributes = null, string DeviceClass = null, string Id = null, string Description = null, bool? AutoUpdate = null, MechanismEnum? Mechanism = null, StateEnum? State = null, DateTime? Etag = null, string ProvisionKey = null, string SerialNumber = null, string VendorId = null, string AccountId = null, DeployedStateEnum? DeployedState = null, string _Object = null, long? TrustClass = null, string Deployment = null, string MechanismUrl = null, long? TrustLevel = null, string DeviceId = null, string Name = null, DateTime? CreatedAt = null, string Manifest = null)
+        public DeviceDetail(string BootstrappedTimestamp = null, DateTime? UpdatedAt = null, Object CustomAttributes = null, string DeviceClass = null, string Id = null, string Description = null, bool? AutoUpdate = null, MechanismEnum? Mechanism = null, StateEnum? State = null, DateTime? Etag = null, string ProvisionKey = null, string SerialNumber = null, string VendorId = null, string AccountId = null, DeployedStateEnum? DeployedState = null, string _Object = null, long? TrustClass = null, string Deployment = null, string MechanismUrl = null, long? TrustLevel = null, string DeviceId = null, string Name = null, DateTime? CreatedAt = null, string Manifest = null)
         {
             this.BootstrappedTimestamp = BootstrappedTimestamp;
             this.UpdatedAt = UpdatedAt;
@@ -203,7 +203,7 @@ namespace device_catalog.Model
         /// </summary>
         /// <value>Up to 5 custom JSON attributes</value>
         [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
-        public string CustomAttributes { get; set; }
+        public Object CustomAttributes { get; set; }
         /// <summary>
         /// The device class
         /// </summary>
