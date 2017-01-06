@@ -54,7 +54,7 @@ namespace firmware_catalog.Model
         /// <param name="Limit">The number of results to return.</param>
         /// <param name="Data">Data.</param>
         /// <param name="Order">Order of returned records.</param>
-        public ManifestSerializer(string _Object = null, bool? HasMore = null, int? TotalCount = null, string After = null, int? Limit = null, List<ManifestSerializerData> Data = null, string Order = null)
+        public ManifestSerializer(string _Object = null, bool? HasMore = null, int? TotalCount = null, string After = null, int? Limit = null, List<FirmwareManifestSerializerData> Data = null, string Order = null)
         {
             // to ensure "_Object" is required (not null)
             if (_Object == null)
@@ -107,7 +107,7 @@ namespace firmware_catalog.Model
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name="data", EmitDefaultValue=false)]
-        public List<ManifestSerializerData> Data { get; set; }
+        public List<FirmwareManifestSerializerData> Data { get; set; }
         /// <summary>
         /// Order of returned records
         /// </summary>
