@@ -34,13 +34,13 @@ using Newtonsoft.Json.Converters;
 namespace firmware_catalog.Model
 {
     /// <summary>
-    /// ManifestSerializerData
+    /// FirmwareManifestSerializerData
     /// </summary>
     [DataContract]
-    public partial class ManifestSerializerData :  IEquatable<ManifestSerializerData>
+    public partial class FirmwareManifestSerializerData :  IEquatable<FirmwareManifestSerializerData>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ManifestSerializerData" /> class.
+        /// Initializes a new instance of the <see cref="FirmwareManifestSerializerData" /> class.
         /// </summary>
         /// <param name="Datafile">Datafile.</param>
         /// <param name="ManifestId">DEPRECATED: The ID of the firmware manifest.</param>
@@ -54,7 +54,7 @@ namespace firmware_catalog.Model
         /// <param name="DeviceClass">The class of device.</param>
         /// <param name="Id">The ID of the firmware manifest.</param>
         /// <param name="Name">The name of the object.</param>
-        public ManifestSerializerData(string Datafile = null, string ManifestId = null, string Description = null, DateTime? Timestamp = null, DateTime? CreatedAt = null, string _Object = null, DateTime? UpdatedAt = null, Object ManifestContents = null, DateTime? Etag = null, string DeviceClass = null, string Id = null, string Name = null)
+        public FirmwareManifestSerializerData(string Datafile = null, string ManifestId = null, string Description = null, DateTime? Timestamp = null, DateTime? CreatedAt = null, string _Object = null, DateTime? UpdatedAt = null, Object ManifestContents = null, DateTime? Etag = null, string DeviceClass = null, string Id = null, string Name = null)
         {
             this.Datafile = Datafile;
             this.ManifestId = ManifestId;
@@ -148,7 +148,7 @@ namespace firmware_catalog.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ManifestSerializerData {\n");
+            sb.Append("class FirmwareManifestSerializerData {\n");
             sb.Append("  Datafile: ").Append(Datafile).Append("\n");
             sb.Append("  ManifestId: ").Append(ManifestId).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
@@ -182,15 +182,15 @@ namespace firmware_catalog.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as ManifestSerializerData);
+            return this.Equals(obj as FirmwareManifestSerializerData);
         }
 
         /// <summary>
-        /// Returns true if ManifestSerializerData instances are equal
+        /// Returns true if FirmwareManifestSerializerData instances are equal
         /// </summary>
-        /// <param name="other">Instance of ManifestSerializerData to be compared</param>
+        /// <param name="other">Instance of FirmwareManifestSerializerData to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ManifestSerializerData other)
+        public bool Equals(FirmwareManifestSerializerData other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
