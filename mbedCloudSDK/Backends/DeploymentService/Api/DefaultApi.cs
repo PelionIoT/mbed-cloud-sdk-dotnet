@@ -72,7 +72,7 @@ namespace deployment_service.Api
         /// <param name="state">The state of the campaign (optional)</param>
         /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
         /// <returns>UpdateCampaignSerializer</returns>
-        UpdateCampaignSerializer UpdateCampaignCreate (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        UpdateCampaignSerializer UpdateCampaignCreate (string name, string campaignId = null, string description = null, string deviceFilter = null, string finished = null, string _object = null, string rootManifestId = null, string state = null, string when = null);
 
         /// <summary>
         /// 
@@ -91,7 +91,7 @@ namespace deployment_service.Api
         /// <param name="state">The state of the campaign (optional)</param>
         /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
         /// <returns>ApiResponse of UpdateCampaignSerializer</returns>
-        ApiResponse<UpdateCampaignSerializer> UpdateCampaignCreateWithHttpInfo (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        ApiResponse<UpdateCampaignSerializer> UpdateCampaignCreateWithHttpInfo (string name, string campaignId = null, string description = null, string deviceFilter = null, string finished = null, string _object = null, string rootManifestId = null, string state = null, string when = null);
         /// <summary>
         /// 
         /// </summary>
@@ -406,7 +406,7 @@ namespace deployment_service.Api
         /// <param name="state">The state of the campaign (optional)</param>
         /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
         /// <returns>Task of UpdateCampaignSerializer</returns>
-        System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignCreateAsync (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignCreateAsync (string name, string campaignId = null, string description = null, string deviceFilter = null, string finished = null, string _object = null, string rootManifestId = null, string state = null, string when = null);
 
         /// <summary>
         /// 
@@ -425,7 +425,7 @@ namespace deployment_service.Api
         /// <param name="state">The state of the campaign (optional)</param>
         /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
         /// <returns>Task of ApiResponse (UpdateCampaignSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignCreateAsyncWithHttpInfo (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignCreateAsyncWithHttpInfo (string name, string campaignId = null, string description = null, string deviceFilter = null, string finished = null, string _object = null, string rootManifestId = null, string state = null, string when = null);
         /// <summary>
         /// 
         /// </summary>
@@ -966,7 +966,7 @@ namespace deployment_service.Api
         /// <param name="state">The state of the campaign (optional)</param>
         /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
         /// <returns>UpdateCampaignSerializer</returns>
-        public UpdateCampaignSerializer UpdateCampaignCreate (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public UpdateCampaignSerializer UpdateCampaignCreate (string name, string campaignId = null, string description = null, string deviceFilter = null, string finished = null, string _object = null, string rootManifestId = null, string state = null, string when = null)
         {
              ApiResponse<UpdateCampaignSerializer> localVarResponse = UpdateCampaignCreateWithHttpInfo(name, campaignId, description, deviceFilter, finished, _object, rootManifestId, state, when);
              return localVarResponse.Data;
@@ -986,7 +986,7 @@ namespace deployment_service.Api
         /// <param name="state">The state of the campaign (optional)</param>
         /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
         /// <returns>ApiResponse of UpdateCampaignSerializer</returns>
-        public ApiResponse< UpdateCampaignSerializer > UpdateCampaignCreateWithHttpInfo (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public ApiResponse< UpdateCampaignSerializer > UpdateCampaignCreateWithHttpInfo (string name, string campaignId = null, string description = null, string deviceFilter = null, string finished = null, string _object = null, string rootManifestId = null, string state = null, string when = null)
         {
             // verify the required parameter 'name' is set
             if (name == null)
@@ -1002,6 +1002,7 @@ namespace deployment_service.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/json"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -1015,15 +1016,14 @@ namespace deployment_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (campaignId != null) localVarQueryParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (deviceFilter != null) localVarQueryParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // query parameter
-            if (finished != null) localVarQueryParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (rootManifestId != null) localVarQueryParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // query parameter
-            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
-            if (when != null) localVarQueryParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // query parameter
+            if (when != null && when.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(when); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = when; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1065,7 +1065,7 @@ namespace deployment_service.Api
         /// <param name="state">The state of the campaign (optional)</param>
         /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
         /// <returns>Task of UpdateCampaignSerializer</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignCreateAsync (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public async System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignCreateAsync (string name, string campaignId = null, string description = null, string deviceFilter = null, string finished = null, string _object = null, string rootManifestId = null, string state = null, string when = null)
         {
              ApiResponse<UpdateCampaignSerializer> localVarResponse = await UpdateCampaignCreateAsyncWithHttpInfo(name, campaignId, description, deviceFilter, finished, _object, rootManifestId, state, when);
              return localVarResponse.Data;
@@ -1086,7 +1086,7 @@ namespace deployment_service.Api
         /// <param name="state">The state of the campaign (optional)</param>
         /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
         /// <returns>Task of ApiResponse (UpdateCampaignSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignCreateAsyncWithHttpInfo (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignCreateAsyncWithHttpInfo (string name, string campaignId = null, string description = null, string deviceFilter = null, string finished = null, string _object = null, string rootManifestId = null, string state = null, string when = null)
         {
             // verify the required parameter 'name' is set
             if (name == null)
@@ -1102,6 +1102,7 @@ namespace deployment_service.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/json"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -1115,15 +1116,14 @@ namespace deployment_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (campaignId != null) localVarQueryParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (deviceFilter != null) localVarQueryParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // query parameter
-            if (finished != null) localVarQueryParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (rootManifestId != null) localVarQueryParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // query parameter
-            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
-            if (when != null) localVarQueryParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // query parameter
+            if (when != null && when.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(when); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = when; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
