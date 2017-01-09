@@ -1015,15 +1015,15 @@ namespace deployment_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (campaignId != null) localVarFormParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // form parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (deviceFilter != null) localVarFormParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // form parameter
-            if (finished != null) localVarFormParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (rootManifestId != null) localVarFormParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // form parameter
-            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
-            if (when != null) localVarFormParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // form parameter
+            if (campaignId != null) localVarQueryParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // query parameter
+            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
+            if (deviceFilter != null) localVarQueryParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // query parameter
+            if (finished != null) localVarQueryParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // query parameter
+            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
+            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
+            if (rootManifestId != null) localVarQueryParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // query parameter
+            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
+            if (when != null) localVarQueryParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1115,15 +1115,15 @@ namespace deployment_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (campaignId != null) localVarFormParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // form parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (deviceFilter != null) localVarFormParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // form parameter
-            if (finished != null) localVarFormParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (rootManifestId != null) localVarFormParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // form parameter
-            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
-            if (when != null) localVarFormParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // form parameter
+            if (campaignId != null) localVarQueryParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // query parameter
+            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
+            if (deviceFilter != null) localVarQueryParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // query parameter
+            if (finished != null) localVarQueryParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // query parameter
+            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
+            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
+            if (rootManifestId != null) localVarQueryParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // query parameter
+            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
+            if (when != null) localVarQueryParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
