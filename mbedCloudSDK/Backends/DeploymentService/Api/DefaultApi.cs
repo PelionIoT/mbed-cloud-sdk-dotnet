@@ -62,17 +62,9 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>UpdateCampaignSerializer</returns>
-        UpdateCampaignSerializer UpdateCampaignCreate (string name, string campaignId = null, string description = null, string deviceFilter = null, string finished = null, string _object = null, string rootManifestId = null, string state = null, string when = null);
+        UpdateCampaignSerializer UpdateCampaignCreate (WriteUpdateCampaignSerializer body);
 
         /// <summary>
         /// 
@@ -81,17 +73,9 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>ApiResponse of UpdateCampaignSerializer</returns>
-        ApiResponse<UpdateCampaignSerializer> UpdateCampaignCreateWithHttpInfo (string name, string campaignId = null, string description = null, string deviceFilter = null, string finished = null, string _object = null, string rootManifestId = null, string state = null, string when = null);
+        ApiResponse<UpdateCampaignSerializer> UpdateCampaignCreateWithHttpInfo (WriteUpdateCampaignSerializer body);
         /// <summary>
         /// 
         /// </summary>
@@ -396,17 +380,9 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>Task of UpdateCampaignSerializer</returns>
-        System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignCreateAsync (string name, string campaignId = null, string description = null, string deviceFilter = null, string finished = null, string _object = null, string rootManifestId = null, string state = null, string when = null);
+        System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignCreateAsync (WriteUpdateCampaignSerializer body);
 
         /// <summary>
         /// 
@@ -415,17 +391,9 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>Task of ApiResponse (UpdateCampaignSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignCreateAsyncWithHttpInfo (string name, string campaignId = null, string description = null, string deviceFilter = null, string finished = null, string _object = null, string rootManifestId = null, string state = null, string when = null);
+        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignCreateAsyncWithHttpInfo (WriteUpdateCampaignSerializer body);
         /// <summary>
         /// 
         /// </summary>
@@ -956,19 +924,11 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>UpdateCampaignSerializer</returns>
-        public UpdateCampaignSerializer UpdateCampaignCreate (string name, string campaignId = null, string description = null, string deviceFilter = null, string finished = null, string _object = null, string rootManifestId = null, string state = null, string when = null)
+        public UpdateCampaignSerializer UpdateCampaignCreate (WriteUpdateCampaignSerializer body)
         {
-             ApiResponse<UpdateCampaignSerializer> localVarResponse = UpdateCampaignCreateWithHttpInfo(name, campaignId, description, deviceFilter, finished, _object, rootManifestId, state, when);
+             ApiResponse<UpdateCampaignSerializer> localVarResponse = UpdateCampaignCreateWithHttpInfo(body);
              return localVarResponse.Data;
         }
 
@@ -976,21 +936,13 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>ApiResponse of UpdateCampaignSerializer</returns>
-        public ApiResponse< UpdateCampaignSerializer > UpdateCampaignCreateWithHttpInfo (string name, string campaignId = null, string description = null, string deviceFilter = null, string finished = null, string _object = null, string rootManifestId = null, string state = null, string when = null)
+        public ApiResponse< UpdateCampaignSerializer > UpdateCampaignCreateWithHttpInfo (WriteUpdateCampaignSerializer body)
         {
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->UpdateCampaignCreate");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DefaultApi->UpdateCampaignCreate");
 
             var localVarPath = "/v3/update-campaigns/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1016,13 +968,13 @@ namespace deployment_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (when != null && when.GetType() != typeof(byte[]))
+            if (body != null && body.GetType() != typeof(byte[]))
             {
-                localVarPostBody = Configuration.ApiClient.Serialize(when); // http body (model) parameter
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
             }
             else
             {
-                localVarPostBody = when; // byte array
+                localVarPostBody = body; // byte array
             }
 
             // authentication (Bearer) required
@@ -1055,19 +1007,11 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>Task of UpdateCampaignSerializer</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignCreateAsync (string name, string campaignId = null, string description = null, string deviceFilter = null, string finished = null, string _object = null, string rootManifestId = null, string state = null, string when = null)
+        public async System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignCreateAsync (WriteUpdateCampaignSerializer body)
         {
-             ApiResponse<UpdateCampaignSerializer> localVarResponse = await UpdateCampaignCreateAsyncWithHttpInfo(name, campaignId, description, deviceFilter, finished, _object, rootManifestId, state, when);
+             ApiResponse<UpdateCampaignSerializer> localVarResponse = await UpdateCampaignCreateAsyncWithHttpInfo(body);
              return localVarResponse.Data;
 
         }
@@ -1076,21 +1020,13 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>Task of ApiResponse (UpdateCampaignSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignCreateAsyncWithHttpInfo (string name, string campaignId = null, string description = null, string deviceFilter = null, string finished = null, string _object = null, string rootManifestId = null, string state = null, string when = null)
+        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignCreateAsyncWithHttpInfo (WriteUpdateCampaignSerializer body)
         {
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->UpdateCampaignCreate");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DefaultApi->UpdateCampaignCreate");
 
             var localVarPath = "/v3/update-campaigns/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1116,13 +1052,13 @@ namespace deployment_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (when != null && when.GetType() != typeof(byte[]))
+            if (body != null && body.GetType() != typeof(byte[]))
             {
-                localVarPostBody = Configuration.ApiClient.Serialize(when); // http body (model) parameter
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
             }
             else
             {
-                localVarPostBody = when; // byte array
+                localVarPostBody = body; // byte array
             }
 
             // authentication (Bearer) required
