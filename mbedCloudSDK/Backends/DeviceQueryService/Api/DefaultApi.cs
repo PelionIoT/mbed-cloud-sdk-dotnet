@@ -96,8 +96,9 @@ namespace device_query_service.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>DeviceQueryResp</returns>
-        DeviceQueryResp DeviceQueryList (int? limit = null, string order = null, string after = null);
+        DeviceQueryResp DeviceQueryList (int? limit = null, string order = null, string after = null, string include = null);
 
         /// <summary>
         /// 
@@ -109,8 +110,9 @@ namespace device_query_service.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>ApiResponse of DeviceQueryResp</returns>
-        ApiResponse<DeviceQueryResp> DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null);
+        ApiResponse<DeviceQueryResp> DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -256,8 +258,9 @@ namespace device_query_service.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>Task of DeviceQueryResp</returns>
-        System.Threading.Tasks.Task<DeviceQueryResp> DeviceQueryListAsync (int? limit = null, string order = null, string after = null);
+        System.Threading.Tasks.Task<DeviceQueryResp> DeviceQueryListAsync (int? limit = null, string order = null, string after = null, string include = null);
 
         /// <summary>
         /// 
@@ -269,8 +272,9 @@ namespace device_query_service.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>Task of ApiResponse (DeviceQueryResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQueryResp>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null);
+        System.Threading.Tasks.Task<ApiResponse<DeviceQueryResp>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -805,10 +809,11 @@ namespace device_query_service.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>DeviceQueryResp</returns>
-        public DeviceQueryResp DeviceQueryList (int? limit = null, string order = null, string after = null)
+        public DeviceQueryResp DeviceQueryList (int? limit = null, string order = null, string after = null, string include = null)
         {
-             ApiResponse<DeviceQueryResp> localVarResponse = DeviceQueryListWithHttpInfo(limit, order, after);
+             ApiResponse<DeviceQueryResp> localVarResponse = DeviceQueryListWithHttpInfo(limit, order, after, include);
              return localVarResponse.Data;
         }
 
@@ -819,8 +824,9 @@ namespace device_query_service.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>ApiResponse of DeviceQueryResp</returns>
-        public ApiResponse< DeviceQueryResp > DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null)
+        public ApiResponse< DeviceQueryResp > DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null, string include = null)
         {
 
             var localVarPath = "/v3/device-queries/";
@@ -849,6 +855,7 @@ namespace device_query_service.Api
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -883,10 +890,11 @@ namespace device_query_service.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>Task of DeviceQueryResp</returns>
-        public async System.Threading.Tasks.Task<DeviceQueryResp> DeviceQueryListAsync (int? limit = null, string order = null, string after = null)
+        public async System.Threading.Tasks.Task<DeviceQueryResp> DeviceQueryListAsync (int? limit = null, string order = null, string after = null, string include = null)
         {
-             ApiResponse<DeviceQueryResp> localVarResponse = await DeviceQueryListAsyncWithHttpInfo(limit, order, after);
+             ApiResponse<DeviceQueryResp> localVarResponse = await DeviceQueryListAsyncWithHttpInfo(limit, order, after, include);
              return localVarResponse.Data;
 
         }
@@ -898,8 +906,9 @@ namespace device_query_service.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>Task of ApiResponse (DeviceQueryResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryResp>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryResp>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string include = null)
         {
 
             var localVarPath = "/v3/device-queries/";
@@ -928,6 +937,7 @@ namespace device_query_service.Api
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
