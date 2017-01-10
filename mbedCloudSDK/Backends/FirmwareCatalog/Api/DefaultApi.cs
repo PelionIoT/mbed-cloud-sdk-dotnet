@@ -909,7 +909,7 @@ namespace firmware_catalog.Api
             if (name == null)
                 throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->FirmwareImageCreate");
 
-            var localVarPath = "/v3/firmware/images/";
+            var localVarPath = "/v3/firmware-images/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1024,7 +1024,7 @@ namespace firmware_catalog.Api
             if (name == null)
                 throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->FirmwareImageCreate");
 
-            var localVarPath = "/v3/firmware/images/";
+            var localVarPath = "/v3/firmware-images/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1128,7 +1128,7 @@ namespace firmware_catalog.Api
             if (imageId == null)
                 throw new ApiException(400, "Missing required parameter 'imageId' when calling DefaultApi->FirmwareImageDestroy");
 
-            var localVarPath = "/v3/firmware/images/{image_id}/";
+            var localVarPath = "/v3/firmware-images/{image_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1231,7 +1231,7 @@ namespace firmware_catalog.Api
             if (imageId == null)
                 throw new ApiException(400, "Missing required parameter 'imageId' when calling DefaultApi->FirmwareImageDestroy");
 
-            var localVarPath = "/v3/firmware/images/{image_id}/";
+            var localVarPath = "/v3/firmware-images/{image_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1317,7 +1317,7 @@ namespace firmware_catalog.Api
         public ApiResponse< FirmwareImageSerializer > FirmwareImageListWithHttpInfo (int? limit = null, string order = null, string after = null, string include = null)
         {
 
-            var localVarPath = "/v3/firmware/images/";
+            var localVarPath = "/v3/firmware-images/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1399,7 +1399,7 @@ namespace firmware_catalog.Api
         public async System.Threading.Tasks.Task<ApiResponse<FirmwareImageSerializer>> FirmwareImageListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string include = null)
         {
 
-            var localVarPath = "/v3/firmware/images/";
+            var localVarPath = "/v3/firmware-images/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1494,7 +1494,7 @@ namespace firmware_catalog.Api
             if (imageId == null)
                 throw new ApiException(400, "Missing required parameter 'imageId' when calling DefaultApi->FirmwareImageRetrieve");
 
-            var localVarPath = "/v3/firmware/images/{image_id}/";
+            var localVarPath = "/v3/firmware-images/{image_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1597,7 +1597,7 @@ namespace firmware_catalog.Api
             if (imageId == null)
                 throw new ApiException(400, "Missing required parameter 'imageId' when calling DefaultApi->FirmwareImageRetrieve");
 
-            var localVarPath = "/v3/firmware/images/{image_id}/";
+            var localVarPath = "/v3/firmware-images/{image_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1687,7 +1687,7 @@ namespace firmware_catalog.Api
             if (name == null)
                 throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->FirmwareManifestCreate");
 
-            var localVarPath = "/v3/firmware/manifests/";
+            var localVarPath = "/v3/firmware-manifests/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1773,7 +1773,7 @@ namespace firmware_catalog.Api
             if (name == null)
                 throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->FirmwareManifestCreate");
 
-            var localVarPath = "/v3/firmware/manifests/";
+            var localVarPath = "/v3/firmware-manifests/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1850,7 +1850,7 @@ namespace firmware_catalog.Api
             if (manifestId == null)
                 throw new ApiException(400, "Missing required parameter 'manifestId' when calling DefaultApi->FirmwareManifestDestroy");
 
-            var localVarPath = "/v3/firmware/manifests/{manifest_id}/";
+            var localVarPath = "/v3/firmware-manifests/{manifest_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1926,7 +1926,7 @@ namespace firmware_catalog.Api
             if (manifestId == null)
                 throw new ApiException(400, "Missing required parameter 'manifestId' when calling DefaultApi->FirmwareManifestDestroy");
 
-            var localVarPath = "/v3/firmware/manifests/{manifest_id}/";
+            var localVarPath = "/v3/firmware-manifests/{manifest_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2003,7 +2003,7 @@ namespace firmware_catalog.Api
         public ApiResponse< ManifestSerializer > FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null, string include = null)
         {
 
-            var localVarPath = "/v3/firmware/manifests/";
+            var localVarPath = "/v3/firmware-manifests/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2085,7 +2085,7 @@ namespace firmware_catalog.Api
         public async System.Threading.Tasks.Task<ApiResponse<ManifestSerializer>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string include = null)
         {
 
-            var localVarPath = "/v3/firmware/manifests/";
+            var localVarPath = "/v3/firmware-manifests/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2184,7 +2184,7 @@ namespace firmware_catalog.Api
             if (manifestId == null)
                 throw new ApiException(400, "Missing required parameter 'manifestId' when calling DefaultApi->FirmwareManifestRetrieve");
 
-            var localVarPath = "/v3/firmware/manifests/{manifest_id}/";
+            var localVarPath = "/v3/firmware-manifests/{manifest_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2293,7 +2293,7 @@ namespace firmware_catalog.Api
             if (manifestId == null)
                 throw new ApiException(400, "Missing required parameter 'manifestId' when calling DefaultApi->FirmwareManifestRetrieve");
 
-            var localVarPath = "/v3/firmware/manifests/{manifest_id}/";
+            var localVarPath = "/v3/firmware-manifests/{manifest_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
