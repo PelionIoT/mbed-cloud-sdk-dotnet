@@ -140,7 +140,7 @@ namespace deployment_service.Model
         /// <param name="UpdatingAccountId">The updating account ID (required).</param>
         /// <param name="DeviceFilter">The filter for the devices the campaign will target (required).</param>
         /// <param name="Name">A name for this campaign (required).</param>
-        public UpdateCampaignStatusSerializer(string DirectDevices = null, string ConnectorDevices = null, string Description = null, StateEnum? State = null, string UpdatingUserId = null, DateTime? CreatedAt = null, string TotalDevices = null, List<CampaignDeviceMetadataSerializer> CampaigndevicemetadataSet = null, string CampaignId = null, string DeployedDevices = null, DateTime? UpdatedAt = null, DateTime? When = null, DateTime? Finished = null, string RootManifestUrl = null, string UpdatingApiKey = null, string UpdatingAccountId = null, string DeviceFilter = null, string Name = null)
+        public UpdateCampaignStatusSerializer(int? DirectDevices = null, int? ConnectorDevices = null, string Description = null, StateEnum? State = null, string UpdatingUserId = null, DateTime? CreatedAt = null, int? TotalDevices = null, List<CampaignDeviceMetadataSerializer> CampaigndevicemetadataSet = null, string CampaignId = null, int? DeployedDevices = null, DateTime? UpdatedAt = null, DateTime? When = null, DateTime? Finished = null, string RootManifestUrl = null, string UpdatingApiKey = null, string UpdatingAccountId = null, string DeviceFilter = null, string Name = null)
         {
             // to ensure "DirectDevices" is required (not null)
             if (DirectDevices == null)
@@ -310,12 +310,12 @@ namespace deployment_service.Model
         /// Gets or Sets DirectDevices
         /// </summary>
         [DataMember(Name="direct_devices", EmitDefaultValue=false)]
-        public string DirectDevices { get; set; }
+        public int? DirectDevices { get; set; }
         /// <summary>
         /// Gets or Sets ConnectorDevices
         /// </summary>
         [DataMember(Name="connector_devices", EmitDefaultValue=false)]
-        public string ConnectorDevices { get; set; }
+        public int? ConnectorDevices { get; set; }
         /// <summary>
         /// An optional description of the campaign
         /// </summary>
@@ -338,7 +338,7 @@ namespace deployment_service.Model
         /// Gets or Sets TotalDevices
         /// </summary>
         [DataMember(Name="total_devices", EmitDefaultValue=false)]
-        public string TotalDevices { get; set; }
+        public int? TotalDevices { get; set; }
         /// <summary>
         /// Gets or Sets CampaigndevicemetadataSet
         /// </summary>
@@ -354,7 +354,7 @@ namespace deployment_service.Model
         /// Gets or Sets DeployedDevices
         /// </summary>
         [DataMember(Name="deployed_devices", EmitDefaultValue=false)]
-        public string DeployedDevices { get; set; }
+        public int? DeployedDevices { get; set; }
         /// <summary>
         /// The time the object was updated
         /// </summary>
