@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using mbedCloudSDK.Access;
+using mbedCloudSDK.Access.Model.ApiKey;
 using mbedCloudSDK.Common;
 using mbedCloudSDK.Devices;
 
@@ -116,6 +117,18 @@ namespace ConsoleExamples
             Dictionary<string, string> query = new Dictionary<string, string>();
             query.Add("auto_update", "true");
             devices.CreateFilter("test", query, null);
+        }
+        
+        public async void runAsyncExample()
+        {
+            AccessApi access = new AccessApi(config);
+            var keysTask = access.ListApiKeysAsync();
+            Console.WriteLine("Dont wait for response");
+            List<ApiKeyResp> keys = keysTask.Result;
+            foreach (var key in keys)
+            {
+                Console.WriteLine(key);
+            }
         }
     }
 }

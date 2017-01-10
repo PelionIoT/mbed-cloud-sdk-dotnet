@@ -16,14 +16,15 @@ namespace ConsoleExamples
             }
             string apiKey = args[0];
             Config config = new Config(apiKey);
-            config.Host = "https://lab-api.mbedcloudintegration.net";
+            config.Host = "https://api.mbedcloud.com";
+            //config.Host = "https://lab-api.mbedcloudintegration.net";
             string example;
             Examples examples = new Examples(config);
             while(true)
             {
                 example = ShowMenu();
                 int exampleNumber = 0;
-                if (Int32.TryParse(example, out exampleNumber) && exampleNumber >=1 && exampleNumber<=6)
+                if (Int32.TryParse(example, out exampleNumber) && exampleNumber >=1 && exampleNumber<=7)
                     RunExample(examples, Convert.ToInt32(exampleNumber));
                 else
                     break;
@@ -40,6 +41,7 @@ namespace ConsoleExamples
             Console.WriteLine("4. Subscribe to the resource");
             Console.WriteLine("5. Create a webhook for a resource");
             Console.WriteLine("6. Run device query");
+            Console.WriteLine("7. Run async example");
             Console.WriteLine("---Press any other key to exit---");
             Console.WriteLine();
             return Console.ReadLine();
@@ -66,6 +68,9 @@ namespace ConsoleExamples
                     break;
                 case 6:
                     examples.runDeviceQueryExample();    
+                    break;
+                case 7:
+                    examples.runAsyncExample();
                     break;
             }
         }

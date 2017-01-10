@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using iam.Api;
 using iam.Client;
 using iam.Model;
+using mbedCloudSDK.Access.Model;
+using mbedCloudSDK.Access.Model.ApiKey;
 using mbedCloudSDK.Common;
 using mbedCloudSDK.Exceptions;
 
@@ -35,7 +37,7 @@ namespace mbedCloudSDK.Access
         /// </summary>
         /// <returns>The API keys.</returns>
         /// <param name="listParams">List parameters.</param>
-        public List<ApiKeyInfoResp> ListApiKeys(ListParams listParams = null)
+        public List<ApiKeyResp> ListApiKeys(ListParams listParams = null)
         {
 			if (listParams != null)
 			{
@@ -44,7 +46,36 @@ namespace mbedCloudSDK.Access
 			var api = new DeveloperApi();
             try
             {
-                return api.GetAllApiKeys().Data;
+                var apiKeysInfo = api.GetAllApiKeys().Data;
+                List<ApiKeyResp> apiKeys = new List<ApiKeyResp>();
+                foreach (var key in apiKeysInfo)
+                {
+                    apiKeys.Add(ConvertResponseToApiKey(key));
+                }
+                return apiKeys;
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+        
+        public async Task<List<ApiKeyResp>> ListApiKeysAsync(ListParams listParams = null)
+        {
+            if (listParams != null)
+            {
+                throw new NotImplementedException();
+            }
+            var api = new DeveloperApi();
+            try
+            {
+                var apiKeysInfo = await api.GetAllApiKeysAsync();
+                List<ApiKeyResp> apiKeys = new List<ApiKeyResp>();
+                foreach (var key in apiKeysInfo.Data)
+                {
+                    apiKeys.Add(ConvertResponseToApiKey(key));
+                }
+                return apiKeys;
             }
             catch (ApiException e)
             {
@@ -52,21 +83,52 @@ namespace mbedCloudSDK.Access
             }
         }
 
+        private ApiKeyResp ConvertResponseToApiKey(ApiKeyInfoResp apiKeyInfo)
+        {
+            StatusEnum apiKeyStatus = (StatusEnum) Enum.Parse(typeof(StatusEnum), apiKeyInfo.Status.ToString());
+            return new ApiKeyResp(apiKeyStatus, apiKeyInfo.Apikey, apiKeyInfo.Name, apiKeyInfo.CreatedAt,
+                apiKeyInfo.CreationTime, apiKeyInfo.CreationTimeMillis, apiKeyInfo.Etag, apiKeyInfo.Groups,
+                apiKeyInfo.Owner, apiKeyInfo.SecretKey, apiKeyInfo.Id, apiKeyInfo.LastLoginTime);
+        }
+        
         /// <summary>
         /// Get API key details
         /// </summary>
         /// <param name="keyId">API key ID</param>
-        public ApiKeyInfoResp GetApiKey(string keyId)
+        public ApiKeyResp GetApiKey(string keyId = null)
         {
             var api = new DeveloperApi();
 			try
 			{
-				return api.GetApiKey(keyId);
+                if (keyId != null)
+                {
+                    return ConvertResponseToApiKey(api.GetApiKey(keyId));
+                }
+                //return currently used api key for empty keyId
+                else 
+                {
+                    return ConvertResponseToApiKey(api.GetMyApiKey());
+                }
+                
 			}
 			catch (ApiException e)
 			{
 				throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
 			}
+        }
+        
+        public async Task<ApiKeyResp> GetApiKeyAsync(string keyId = null)
+        {
+            var api = new DeveloperApi();
+            try
+            {
+                var apiKey = await api.GetApiKeyAsync(keyId);
+                return ConvertResponseToApiKey(apiKey);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
         }
 
         /// <summary>
