@@ -253,8 +253,9 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>DeviceListResp</returns>
-        DeviceListResp DeviceUpdate (string deviceId);
+        /// <param name="body">Device object to update</param>
+        /// <returns>DeviceDetail</returns>
+        DeviceDetail DeviceUpdate (string deviceId, DeviceDetail body);
 
         /// <summary>
         /// 
@@ -264,8 +265,9 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>ApiResponse of DeviceListResp</returns>
-        ApiResponse<DeviceListResp> DeviceUpdateWithHttpInfo (string deviceId);
+        /// <param name="body">Device object to update</param>
+        /// <returns>ApiResponse of DeviceDetail</returns>
+        ApiResponse<DeviceDetail> DeviceUpdateWithHttpInfo (string deviceId, DeviceDetail body);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -485,8 +487,9 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>Task of DeviceListResp</returns>
-        System.Threading.Tasks.Task<DeviceListResp> DeviceUpdateAsync (string deviceId);
+        /// <param name="body">Device object to update</param>
+        /// <returns>Task of DeviceDetail</returns>
+        System.Threading.Tasks.Task<DeviceDetail> DeviceUpdateAsync (string deviceId, DeviceDetail body);
 
         /// <summary>
         /// 
@@ -496,8 +499,9 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>Task of ApiResponse (DeviceListResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceListResp>> DeviceUpdateAsyncWithHttpInfo (string deviceId);
+        /// <param name="body">Device object to update</param>
+        /// <returns>Task of ApiResponse (DeviceDetail)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceDetail>> DeviceUpdateAsyncWithHttpInfo (string deviceId, DeviceDetail body);
         #endregion Asynchronous Operations
     }
 
@@ -1847,10 +1851,11 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>DeviceListResp</returns>
-        public DeviceListResp DeviceUpdate (string deviceId)
+        /// <param name="body">Device object to update</param>
+        /// <returns>DeviceDetail</returns>
+        public DeviceDetail DeviceUpdate (string deviceId, DeviceDetail body)
         {
-             ApiResponse<DeviceListResp> localVarResponse = DeviceUpdateWithHttpInfo(deviceId);
+             ApiResponse<DeviceDetail> localVarResponse = DeviceUpdateWithHttpInfo(deviceId, body);
              return localVarResponse.Data;
         }
 
@@ -1859,12 +1864,16 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>ApiResponse of DeviceListResp</returns>
-        public ApiResponse< DeviceListResp > DeviceUpdateWithHttpInfo (string deviceId)
+        /// <param name="body">Device object to update</param>
+        /// <returns>ApiResponse of DeviceDetail</returns>
+        public ApiResponse< DeviceDetail > DeviceUpdateWithHttpInfo (string deviceId, DeviceDetail body)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DeviceUpdate");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DefaultApi->DeviceUpdate");
 
             var localVarPath = "/v3/devices/{device_id}/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1890,6 +1899,14 @@ namespace device_catalog.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (deviceId != null) localVarPathParams.Add("device_id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1911,9 +1928,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceListResp>(localVarStatusCode,
+            return new ApiResponse<DeviceDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceListResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceListResp)));
+                (DeviceDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceDetail)));
             
         }
 
@@ -1922,10 +1939,11 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>Task of DeviceListResp</returns>
-        public async System.Threading.Tasks.Task<DeviceListResp> DeviceUpdateAsync (string deviceId)
+        /// <param name="body">Device object to update</param>
+        /// <returns>Task of DeviceDetail</returns>
+        public async System.Threading.Tasks.Task<DeviceDetail> DeviceUpdateAsync (string deviceId, DeviceDetail body)
         {
-             ApiResponse<DeviceListResp> localVarResponse = await DeviceUpdateAsyncWithHttpInfo(deviceId);
+             ApiResponse<DeviceDetail> localVarResponse = await DeviceUpdateAsyncWithHttpInfo(deviceId, body);
              return localVarResponse.Data;
 
         }
@@ -1935,12 +1953,16 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>Task of ApiResponse (DeviceListResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceListResp>> DeviceUpdateAsyncWithHttpInfo (string deviceId)
+        /// <param name="body">Device object to update</param>
+        /// <returns>Task of ApiResponse (DeviceDetail)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceDetail>> DeviceUpdateAsyncWithHttpInfo (string deviceId, DeviceDetail body)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DeviceUpdate");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DefaultApi->DeviceUpdate");
 
             var localVarPath = "/v3/devices/{device_id}/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1966,6 +1988,14 @@ namespace device_catalog.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (deviceId != null) localVarPathParams.Add("device_id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1986,9 +2016,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceListResp>(localVarStatusCode,
+            return new ApiResponse<DeviceDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceListResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceListResp)));
+                (DeviceDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceDetail)));
             
         }
 
