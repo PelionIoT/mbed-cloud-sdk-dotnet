@@ -7,7 +7,7 @@ namespace mbedCloudSDK.Access.Model.ApiKey
     /// The status of the API key.
     /// </summary>
     /// <value>The status of the API key.</value>
-    public enum StatusEnum
+    public enum ApiKeyStatus
     {
         /// <summary>
         /// Enum ACTIVE for "ACTIVE"

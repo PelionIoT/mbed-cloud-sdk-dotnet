@@ -8,6 +8,7 @@ using mbedCloudSDK.Access;
 using mbedCloudSDK.Access.Model.ApiKey;
 using mbedCloudSDK.Common;
 using mbedCloudSDK.Devices;
+using mbedCloudSDK.Access.Api;
 
 namespace ConsoleExamples
 {
@@ -124,7 +125,7 @@ namespace ConsoleExamples
             AccessApi access = new AccessApi(config);
             var keysTask = access.ListApiKeysAsync();
             Console.WriteLine("Dont wait for response");
-            List<ApiKeyResp> keys = keysTask.Result;
+            List<ApiKey> keys = keysTask.Result;
             foreach (var key in keys)
             {
                 Console.WriteLine(key);

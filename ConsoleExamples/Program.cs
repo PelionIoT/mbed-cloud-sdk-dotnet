@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Text;
 using mbedCloudSDK.Common;
+using mbedCloudSDK.Access.Model.ApiKey;
+using mbedCloudSDK.Access.Api;
+using mbedCloudSDK.Access.Model.User;
 
 namespace ConsoleExamples
 {
@@ -17,6 +20,7 @@ namespace ConsoleExamples
             string apiKey = args[0];
             Config config = new Config(apiKey);
             config.Host = "https://api.mbedcloud.com";
+
             //config.Host = "https://lab-api.mbedcloudintegration.net";
             string example;
             Examples examples = new Examples(config);
