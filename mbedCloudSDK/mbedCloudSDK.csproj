@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -45,6 +45,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Access\Model\Account\AccountStatus.cs" />
+    <Compile Include="Access\Model\User\UserStatus.cs" />
     <Compile Include="Backends\DeveloperCertificate\Api\DefaultApi.cs" />
     <Compile Include="Backends\DeveloperCertificate\Client\ApiClient.cs" />
     <Compile Include="Backends\DeveloperCertificate\Client\ApiException.cs" />
@@ -79,7 +81,6 @@
     <Compile Include="Backends\ProvisioningCertificate\Client\ApiResponse.cs" />
     <Compile Include="Backends\ProvisioningCertificate\Client\Configuration.cs" />
     <Compile Include="Backends\ProvisioningCertificate\Model\ProvisioningCertificate.cs" />
-    <Compile Include="Access\AccessApi.cs" />
     <Compile Include="Development\DevelopmentApi.cs" />
     <Compile Include="Common\BaseApi.cs" />
     <Compile Include="Common\Config.cs" />
@@ -190,6 +191,12 @@
     <Compile Include="Backends\Iam\Model\UserInfoReq.cs" />
     <Compile Include="Backends\Iam\Model\UserInfoResp.cs" />
     <Compile Include="Backends\Iam\Model\UserInfoRespList.cs" />
+    <Compile Include="Access\Model\Group\Group.cs" />
+    <Compile Include="Access\Model\User\User.cs" />
+    <Compile Include="Access\Api\AccessApi.cs" />
+    <Compile Include="Access\Model\ApiKey\ApiKey.cs" />
+    <Compile Include="Access\Model\Account\Account.cs" />
+    <Compile Include="Access\Model\ApiKey\ApiKeyStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Backends\Mds\README.md" />
@@ -202,20 +209,7 @@
     <None Include="Backends\FactoryTool\Api\.DS_Store" />
     <None Include="Backends\ProvisioningCertificate\README.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Backends\" />
-    <Folder Include="Access\" />
-    <Folder Include="Development\" />
-    <Folder Include="Devices\" />
-    <Folder Include="lib\" />
-    <Folder Include="Common\" />
-    <Folder Include="Backends\DeviceQueryService\Model\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Manufacturing\" />
-    <Folder Include="Update\" />
-    <Folder Include="Logging\" />
-    <Folder Include="Assets\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="lib\Newtonsoft.Json.dll" />
     <Content Include="lib\RestSharp.dll" />

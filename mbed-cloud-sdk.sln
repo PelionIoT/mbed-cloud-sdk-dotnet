@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleExamples", "ConsoleE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mbedCloudSDK", "mbedCloudSDK\mbedCloudSDK.csproj", "{7C35731A-8701-45BA-9478-76027FEEB003}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mbedCloudSDK.UnitTests", "mbedCloudSDK.UnitTests\mbedCloudSDK.UnitTests.csproj", "{39B90AFF-53CA-4361-8150-435E98B53061}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,10 +23,6 @@ Global
 		{7C35731A-8701-45BA-9478-76027FEEB003}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C35731A-8701-45BA-9478-76027FEEB003}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C35731A-8701-45BA-9478-76027FEEB003}.Release|Any CPU.Build.0 = Release|Any CPU
-		{39B90AFF-53CA-4361-8150-435E98B53061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39B90AFF-53CA-4361-8150-435E98B53061}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{39B90AFF-53CA-4361-8150-435E98B53061}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{39B90AFF-53CA-4361-8150-435E98B53061}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
