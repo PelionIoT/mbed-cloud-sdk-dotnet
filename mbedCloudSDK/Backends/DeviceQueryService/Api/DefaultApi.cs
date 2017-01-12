@@ -96,8 +96,9 @@ namespace device_query_service.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>DeviceQueryResp</returns>
-        DeviceQueryResp DeviceQueryList (int? limit = null, string order = null, string after = null);
+        DeviceQueryResp DeviceQueryList (int? limit = null, string order = null, string after = null, string include = null);
 
         /// <summary>
         /// 
@@ -109,8 +110,9 @@ namespace device_query_service.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>ApiResponse of DeviceQueryResp</returns>
-        ApiResponse<DeviceQueryResp> DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null);
+        ApiResponse<DeviceQueryResp> DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -171,13 +173,9 @@ namespace device_query_service.Api
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="name">The name of the query</param>
-        /// <param name="query">The device query</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="body">Device query update object</param>
         /// <returns>DeviceQueryDetail</returns>
-        DeviceQueryDetail DeviceQueryUpdate (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null);
+        DeviceQueryDetail DeviceQueryUpdate (string queryId, Body body);
 
         /// <summary>
         /// 
@@ -187,13 +185,9 @@ namespace device_query_service.Api
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="name">The name of the query</param>
-        /// <param name="query">The device query</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="body">Device query update object</param>
         /// <returns>ApiResponse of DeviceQueryDetail</returns>
-        ApiResponse<DeviceQueryDetail> DeviceQueryUpdateWithHttpInfo (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null);
+        ApiResponse<DeviceQueryDetail> DeviceQueryUpdateWithHttpInfo (string queryId, Body body);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -256,8 +250,9 @@ namespace device_query_service.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>Task of DeviceQueryResp</returns>
-        System.Threading.Tasks.Task<DeviceQueryResp> DeviceQueryListAsync (int? limit = null, string order = null, string after = null);
+        System.Threading.Tasks.Task<DeviceQueryResp> DeviceQueryListAsync (int? limit = null, string order = null, string after = null, string include = null);
 
         /// <summary>
         /// 
@@ -269,8 +264,9 @@ namespace device_query_service.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>Task of ApiResponse (DeviceQueryResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQueryResp>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null);
+        System.Threading.Tasks.Task<ApiResponse<DeviceQueryResp>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -331,13 +327,9 @@ namespace device_query_service.Api
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="name">The name of the query</param>
-        /// <param name="query">The device query</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="body">Device query update object</param>
         /// <returns>Task of DeviceQueryDetail</returns>
-        System.Threading.Tasks.Task<DeviceQueryDetail> DeviceQueryUpdateAsync (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null);
+        System.Threading.Tasks.Task<DeviceQueryDetail> DeviceQueryUpdateAsync (string queryId, Body body);
 
         /// <summary>
         /// 
@@ -347,13 +339,9 @@ namespace device_query_service.Api
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="name">The name of the query</param>
-        /// <param name="query">The device query</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="body">Device query update object</param>
         /// <returns>Task of ApiResponse (DeviceQueryDetail)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQueryDetail>> DeviceQueryUpdateAsyncWithHttpInfo (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null);
+        System.Threading.Tasks.Task<ApiResponse<DeviceQueryDetail>> DeviceQueryUpdateAsyncWithHttpInfo (string queryId, Body body);
         #endregion Asynchronous Operations
     }
 
@@ -805,10 +793,11 @@ namespace device_query_service.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>DeviceQueryResp</returns>
-        public DeviceQueryResp DeviceQueryList (int? limit = null, string order = null, string after = null)
+        public DeviceQueryResp DeviceQueryList (int? limit = null, string order = null, string after = null, string include = null)
         {
-             ApiResponse<DeviceQueryResp> localVarResponse = DeviceQueryListWithHttpInfo(limit, order, after);
+             ApiResponse<DeviceQueryResp> localVarResponse = DeviceQueryListWithHttpInfo(limit, order, after, include);
              return localVarResponse.Data;
         }
 
@@ -819,8 +808,9 @@ namespace device_query_service.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>ApiResponse of DeviceQueryResp</returns>
-        public ApiResponse< DeviceQueryResp > DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null)
+        public ApiResponse< DeviceQueryResp > DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null, string include = null)
         {
 
             var localVarPath = "/v3/device-queries/";
@@ -849,6 +839,7 @@ namespace device_query_service.Api
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -883,10 +874,11 @@ namespace device_query_service.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>Task of DeviceQueryResp</returns>
-        public async System.Threading.Tasks.Task<DeviceQueryResp> DeviceQueryListAsync (int? limit = null, string order = null, string after = null)
+        public async System.Threading.Tasks.Task<DeviceQueryResp> DeviceQueryListAsync (int? limit = null, string order = null, string after = null, string include = null)
         {
-             ApiResponse<DeviceQueryResp> localVarResponse = await DeviceQueryListAsyncWithHttpInfo(limit, order, after);
+             ApiResponse<DeviceQueryResp> localVarResponse = await DeviceQueryListAsyncWithHttpInfo(limit, order, after, include);
              return localVarResponse.Data;
 
         }
@@ -898,8 +890,9 @@ namespace device_query_service.Api
         /// <param name="limit"> (optional)</param>
         /// <param name="order"> (optional)</param>
         /// <param name="after"> (optional)</param>
+        /// <param name="include"> (optional)</param>
         /// <returns>Task of ApiResponse (DeviceQueryResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryResp>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryResp>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string include = null)
         {
 
             var localVarPath = "/v3/device-queries/";
@@ -928,6 +921,7 @@ namespace device_query_service.Api
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1289,15 +1283,11 @@ namespace device_query_service.Api
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="name">The name of the query</param>
-        /// <param name="query">The device query</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="body">Device query update object</param>
         /// <returns>DeviceQueryDetail</returns>
-        public DeviceQueryDetail DeviceQueryUpdate (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null)
+        public DeviceQueryDetail DeviceQueryUpdate (string queryId, Body body)
         {
-             ApiResponse<DeviceQueryDetail> localVarResponse = DeviceQueryUpdateWithHttpInfo(queryId, name, query, description, _object, queryId2);
+             ApiResponse<DeviceQueryDetail> localVarResponse = DeviceQueryUpdateWithHttpInfo(queryId, body);
              return localVarResponse.Data;
         }
 
@@ -1306,23 +1296,16 @@ namespace device_query_service.Api
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="name">The name of the query</param>
-        /// <param name="query">The device query</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="body">Device query update object</param>
         /// <returns>ApiResponse of DeviceQueryDetail</returns>
-        public ApiResponse< DeviceQueryDetail > DeviceQueryUpdateWithHttpInfo (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null)
+        public ApiResponse< DeviceQueryDetail > DeviceQueryUpdateWithHttpInfo (string queryId, Body body)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)
                 throw new ApiException(400, "Missing required parameter 'queryId' when calling DefaultApi->DeviceQueryUpdate");
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->DeviceQueryUpdate");
-            // verify the required parameter 'query' is set
-            if (query == null)
-                throw new ApiException(400, "Missing required parameter 'query' when calling DefaultApi->DeviceQueryUpdate");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DefaultApi->DeviceQueryUpdate");
 
             var localVarPath = "/v3/device-queries/{query_id}/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1348,11 +1331,14 @@ namespace device_query_service.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (queryId != null) localVarPathParams.Add("query_id", Configuration.ApiClient.ParameterToString(queryId)); // path parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (query != null) localVarFormParams.Add("query", Configuration.ApiClient.ParameterToString(query)); // form parameter
-            if (queryId2 != null) localVarFormParams.Add("query_id", Configuration.ApiClient.ParameterToString(queryId2)); // form parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1385,15 +1371,11 @@ namespace device_query_service.Api
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="name">The name of the query</param>
-        /// <param name="query">The device query</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="body">Device query update object</param>
         /// <returns>Task of DeviceQueryDetail</returns>
-        public async System.Threading.Tasks.Task<DeviceQueryDetail> DeviceQueryUpdateAsync (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null)
+        public async System.Threading.Tasks.Task<DeviceQueryDetail> DeviceQueryUpdateAsync (string queryId, Body body)
         {
-             ApiResponse<DeviceQueryDetail> localVarResponse = await DeviceQueryUpdateAsyncWithHttpInfo(queryId, name, query, description, _object, queryId2);
+             ApiResponse<DeviceQueryDetail> localVarResponse = await DeviceQueryUpdateAsyncWithHttpInfo(queryId, body);
              return localVarResponse.Data;
 
         }
@@ -1403,23 +1385,16 @@ namespace device_query_service.Api
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="name">The name of the query</param>
-        /// <param name="query">The device query</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="body">Device query update object</param>
         /// <returns>Task of ApiResponse (DeviceQueryDetail)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryDetail>> DeviceQueryUpdateAsyncWithHttpInfo (string queryId, string name, string query, string description = null, string _object = null, string queryId2 = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryDetail>> DeviceQueryUpdateAsyncWithHttpInfo (string queryId, Body body)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)
                 throw new ApiException(400, "Missing required parameter 'queryId' when calling DefaultApi->DeviceQueryUpdate");
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->DeviceQueryUpdate");
-            // verify the required parameter 'query' is set
-            if (query == null)
-                throw new ApiException(400, "Missing required parameter 'query' when calling DefaultApi->DeviceQueryUpdate");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DefaultApi->DeviceQueryUpdate");
 
             var localVarPath = "/v3/device-queries/{query_id}/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1445,11 +1420,14 @@ namespace device_query_service.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (queryId != null) localVarPathParams.Add("query_id", Configuration.ApiClient.ParameterToString(queryId)); // path parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (query != null) localVarFormParams.Add("query", Configuration.ApiClient.ParameterToString(query)); // form parameter
-            if (queryId2 != null) localVarFormParams.Add("query_id", Configuration.ApiClient.ParameterToString(queryId2)); // form parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))

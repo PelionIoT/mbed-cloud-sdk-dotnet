@@ -62,17 +62,9 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>UpdateCampaignSerializer</returns>
-        UpdateCampaignSerializer UpdateCampaignCreate (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        UpdateCampaignSerializer UpdateCampaignCreate (WriteUpdateCampaignSerializer body);
 
         /// <summary>
         /// 
@@ -81,17 +73,9 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>ApiResponse of UpdateCampaignSerializer</returns>
-        ApiResponse<UpdateCampaignSerializer> UpdateCampaignCreateWithHttpInfo (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        ApiResponse<UpdateCampaignSerializer> UpdateCampaignCreateWithHttpInfo (WriteUpdateCampaignSerializer body);
         /// <summary>
         /// 
         /// </summary>
@@ -100,22 +84,8 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
         /// <returns>UpdateCampaignSerializer</returns>
-        UpdateCampaignSerializer UpdateCampaignDestroy (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null);
+        UpdateCampaignSerializer UpdateCampaignDestroy (string campaignId);
 
         /// <summary>
         /// 
@@ -125,22 +95,8 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
         /// <returns>ApiResponse of UpdateCampaignSerializer</returns>
-        ApiResponse<UpdateCampaignSerializer> UpdateCampaignDestroyWithHttpInfo (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null);
+        ApiResponse<UpdateCampaignSerializer> UpdateCampaignDestroyWithHttpInfo (string campaignId);
         /// <summary>
         /// 
         /// </summary>
@@ -148,25 +104,13 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;List all update campaigns&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="campaignId"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="page">The page number to retrieve. If not given, then defaults to first page. (optional)</param>
-        /// <param name="rootManifestUrl">The firmware catalog URL for the manifest that will be sent to the device as part of the campaign (optional)</param>
-        /// <returns>List&lt;UpdateCampaignSerializer&gt;</returns>
-        List<UpdateCampaignSerializer> UpdateCampaignList (string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string campaignId = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null, int? page = null, string rootManifestUrl = null);
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="include"> (optional)</param>
+        /// <returns>UpdateCampaignPage</returns>
+        UpdateCampaignPage UpdateCampaignList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
@@ -175,25 +119,13 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;List all update campaigns&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="campaignId"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="page">The page number to retrieve. If not given, then defaults to first page. (optional)</param>
-        /// <param name="rootManifestUrl">The firmware catalog URL for the manifest that will be sent to the device as part of the campaign (optional)</param>
-        /// <returns>ApiResponse of List&lt;UpdateCampaignSerializer&gt;</returns>
-        ApiResponse<List<UpdateCampaignSerializer>> UpdateCampaignListWithHttpInfo (string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string campaignId = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null, int? page = null, string rootManifestUrl = null);
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="include"> (optional)</param>
+        /// <returns>ApiResponse of UpdateCampaignPage</returns>
+        ApiResponse<UpdateCampaignPage> UpdateCampaignListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -239,23 +171,8 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="rootManifestUrl">The firmware catalog URL for the manifest that will be sent to the device as part of the campaign (optional)</param>
         /// <returns>UpdateCampaignSerializer</returns>
-        UpdateCampaignSerializer UpdateCampaignRetrieve (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null, string rootManifestUrl = null);
+        UpdateCampaignSerializer UpdateCampaignRetrieve (string campaignId);
 
         /// <summary>
         /// 
@@ -265,23 +182,8 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="rootManifestUrl">The firmware catalog URL for the manifest that will be sent to the device as part of the campaign (optional)</param>
         /// <returns>ApiResponse of UpdateCampaignSerializer</returns>
-        ApiResponse<UpdateCampaignSerializer> UpdateCampaignRetrieveWithHttpInfo (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null, string rootManifestUrl = null);
+        ApiResponse<UpdateCampaignSerializer> UpdateCampaignRetrieveWithHttpInfo (string campaignId);
         /// <summary>
         /// 
         /// </summary>
@@ -290,22 +192,8 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
         /// <returns>UpdateCampaignStatusSerializer</returns>
-        UpdateCampaignStatusSerializer UpdateCampaignStatus (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null);
+        UpdateCampaignStatusSerializer UpdateCampaignStatus (string campaignId);
 
         /// <summary>
         /// 
@@ -315,22 +203,8 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
         /// <returns>ApiResponse of UpdateCampaignStatusSerializer</returns>
-        ApiResponse<UpdateCampaignStatusSerializer> UpdateCampaignStatusWithHttpInfo (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null);
+        ApiResponse<UpdateCampaignStatusSerializer> UpdateCampaignStatusWithHttpInfo (string campaignId);
         /// <summary>
         /// 
         /// </summary>
@@ -338,17 +212,10 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Update campaign&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="campaignId">Campaign ID to update</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>UpdateCampaignSerializer</returns>
-        UpdateCampaignSerializer UpdateCampaignUpdate (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        UpdateCampaignSerializer UpdateCampaignUpdate (string campaignId, WriteUpdateCampaignSerializer body);
 
         /// <summary>
         /// 
@@ -357,17 +224,10 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Update campaign&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="campaignId">Campaign ID to update</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>ApiResponse of UpdateCampaignSerializer</returns>
-        ApiResponse<UpdateCampaignSerializer> UpdateCampaignUpdateWithHttpInfo (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        ApiResponse<UpdateCampaignSerializer> UpdateCampaignUpdateWithHttpInfo (string campaignId, WriteUpdateCampaignSerializer body);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -396,17 +256,9 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>Task of UpdateCampaignSerializer</returns>
-        System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignCreateAsync (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignCreateAsync (WriteUpdateCampaignSerializer body);
 
         /// <summary>
         /// 
@@ -415,17 +267,9 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>Task of ApiResponse (UpdateCampaignSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignCreateAsyncWithHttpInfo (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignCreateAsyncWithHttpInfo (WriteUpdateCampaignSerializer body);
         /// <summary>
         /// 
         /// </summary>
@@ -434,22 +278,8 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
         /// <returns>Task of UpdateCampaignSerializer</returns>
-        System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignDestroyAsync (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null);
+        System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignDestroyAsync (string campaignId);
 
         /// <summary>
         /// 
@@ -459,22 +289,8 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
         /// <returns>Task of ApiResponse (UpdateCampaignSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignDestroyAsyncWithHttpInfo (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null);
+        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignDestroyAsyncWithHttpInfo (string campaignId);
         /// <summary>
         /// 
         /// </summary>
@@ -482,25 +298,13 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;List all update campaigns&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="campaignId"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="page">The page number to retrieve. If not given, then defaults to first page. (optional)</param>
-        /// <param name="rootManifestUrl">The firmware catalog URL for the manifest that will be sent to the device as part of the campaign (optional)</param>
-        /// <returns>Task of List&lt;UpdateCampaignSerializer&gt;</returns>
-        System.Threading.Tasks.Task<List<UpdateCampaignSerializer>> UpdateCampaignListAsync (string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string campaignId = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null, int? page = null, string rootManifestUrl = null);
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="include"> (optional)</param>
+        /// <returns>Task of UpdateCampaignPage</returns>
+        System.Threading.Tasks.Task<UpdateCampaignPage> UpdateCampaignListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
@@ -509,25 +313,13 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;List all update campaigns&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="campaignId"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="page">The page number to retrieve. If not given, then defaults to first page. (optional)</param>
-        /// <param name="rootManifestUrl">The firmware catalog URL for the manifest that will be sent to the device as part of the campaign (optional)</param>
-        /// <returns>Task of ApiResponse (List&lt;UpdateCampaignSerializer&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<UpdateCampaignSerializer>>> UpdateCampaignListAsyncWithHttpInfo (string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string campaignId = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null, int? page = null, string rootManifestUrl = null);
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="include"> (optional)</param>
+        /// <returns>Task of ApiResponse (UpdateCampaignPage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPage>> UpdateCampaignListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -573,23 +365,8 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="rootManifestUrl">The firmware catalog URL for the manifest that will be sent to the device as part of the campaign (optional)</param>
         /// <returns>Task of UpdateCampaignSerializer</returns>
-        System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignRetrieveAsync (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null, string rootManifestUrl = null);
+        System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignRetrieveAsync (string campaignId);
 
         /// <summary>
         /// 
@@ -599,23 +376,8 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="rootManifestUrl">The firmware catalog URL for the manifest that will be sent to the device as part of the campaign (optional)</param>
         /// <returns>Task of ApiResponse (UpdateCampaignSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignRetrieveAsyncWithHttpInfo (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null, string rootManifestUrl = null);
+        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignRetrieveAsyncWithHttpInfo (string campaignId);
         /// <summary>
         /// 
         /// </summary>
@@ -624,22 +386,8 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
         /// <returns>Task of UpdateCampaignStatusSerializer</returns>
-        System.Threading.Tasks.Task<UpdateCampaignStatusSerializer> UpdateCampaignStatusAsync (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null);
+        System.Threading.Tasks.Task<UpdateCampaignStatusSerializer> UpdateCampaignStatusAsync (string campaignId);
 
         /// <summary>
         /// 
@@ -649,22 +397,8 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
         /// <returns>Task of ApiResponse (UpdateCampaignStatusSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignStatusSerializer>> UpdateCampaignStatusAsyncWithHttpInfo (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null);
+        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignStatusSerializer>> UpdateCampaignStatusAsyncWithHttpInfo (string campaignId);
         /// <summary>
         /// 
         /// </summary>
@@ -672,17 +406,10 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Update campaign&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="campaignId">Campaign ID to update</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>Task of UpdateCampaignSerializer</returns>
-        System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignUpdateAsync (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignUpdateAsync (string campaignId, WriteUpdateCampaignSerializer body);
 
         /// <summary>
         /// 
@@ -691,17 +418,10 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Update campaign&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="campaignId">Campaign ID to update</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>Task of ApiResponse (UpdateCampaignSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignUpdateAsyncWithHttpInfo (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignUpdateAsyncWithHttpInfo (string campaignId, WriteUpdateCampaignSerializer body);
         #endregion Asynchronous Operations
     }
 
@@ -956,19 +676,11 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>UpdateCampaignSerializer</returns>
-        public UpdateCampaignSerializer UpdateCampaignCreate (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public UpdateCampaignSerializer UpdateCampaignCreate (WriteUpdateCampaignSerializer body)
         {
-             ApiResponse<UpdateCampaignSerializer> localVarResponse = UpdateCampaignCreateWithHttpInfo(name, campaignId, description, deviceFilter, finished, _object, rootManifestId, state, when);
+             ApiResponse<UpdateCampaignSerializer> localVarResponse = UpdateCampaignCreateWithHttpInfo(body);
              return localVarResponse.Data;
         }
 
@@ -976,21 +688,13 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>ApiResponse of UpdateCampaignSerializer</returns>
-        public ApiResponse< UpdateCampaignSerializer > UpdateCampaignCreateWithHttpInfo (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public ApiResponse< UpdateCampaignSerializer > UpdateCampaignCreateWithHttpInfo (WriteUpdateCampaignSerializer body)
         {
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->UpdateCampaignCreate");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DefaultApi->UpdateCampaignCreate");
 
             var localVarPath = "/v3/update-campaigns/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1002,6 +706,7 @@ namespace deployment_service.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/json"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -1015,15 +720,14 @@ namespace deployment_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (campaignId != null) localVarFormParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // form parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (deviceFilter != null) localVarFormParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // form parameter
-            if (finished != null) localVarFormParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (rootManifestId != null) localVarFormParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // form parameter
-            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
-            if (when != null) localVarFormParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // form parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1055,19 +759,11 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>Task of UpdateCampaignSerializer</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignCreateAsync (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public async System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignCreateAsync (WriteUpdateCampaignSerializer body)
         {
-             ApiResponse<UpdateCampaignSerializer> localVarResponse = await UpdateCampaignCreateAsyncWithHttpInfo(name, campaignId, description, deviceFilter, finished, _object, rootManifestId, state, when);
+             ApiResponse<UpdateCampaignSerializer> localVarResponse = await UpdateCampaignCreateAsyncWithHttpInfo(body);
              return localVarResponse.Data;
 
         }
@@ -1076,21 +772,13 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>Task of ApiResponse (UpdateCampaignSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignCreateAsyncWithHttpInfo (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignCreateAsyncWithHttpInfo (WriteUpdateCampaignSerializer body)
         {
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->UpdateCampaignCreate");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DefaultApi->UpdateCampaignCreate");
 
             var localVarPath = "/v3/update-campaigns/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1102,6 +790,7 @@ namespace deployment_service.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/json"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -1115,15 +804,14 @@ namespace deployment_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (campaignId != null) localVarFormParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // form parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (deviceFilter != null) localVarFormParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // form parameter
-            if (finished != null) localVarFormParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (rootManifestId != null) localVarFormParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // form parameter
-            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
-            if (when != null) localVarFormParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // form parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1155,24 +843,10 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
         /// <returns>UpdateCampaignSerializer</returns>
-        public UpdateCampaignSerializer UpdateCampaignDestroy (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null)
+        public UpdateCampaignSerializer UpdateCampaignDestroy (string campaignId)
         {
-             ApiResponse<UpdateCampaignSerializer> localVarResponse = UpdateCampaignDestroyWithHttpInfo(campaignId, updatingRequestId, updatingIpAddress, createdAt, updatedAt, attempts, description, deviceFilter, etag, finished, name, _object, rootManifestId, state, when);
+             ApiResponse<UpdateCampaignSerializer> localVarResponse = UpdateCampaignDestroyWithHttpInfo(campaignId);
              return localVarResponse.Data;
         }
 
@@ -1181,22 +855,8 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
         /// <returns>ApiResponse of UpdateCampaignSerializer</returns>
-        public ApiResponse< UpdateCampaignSerializer > UpdateCampaignDestroyWithHttpInfo (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null)
+        public ApiResponse< UpdateCampaignSerializer > UpdateCampaignDestroyWithHttpInfo (string campaignId)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -1226,20 +886,6 @@ namespace deployment_service.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (attempts != null) localVarQueryParams.Add("attempts", Configuration.ApiClient.ParameterToString(attempts)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (deviceFilter != null) localVarQueryParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (finished != null) localVarQueryParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (rootManifestId != null) localVarQueryParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // query parameter
-            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
-            if (when != null) localVarQueryParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1272,24 +918,10 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
         /// <returns>Task of UpdateCampaignSerializer</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignDestroyAsync (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null)
+        public async System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignDestroyAsync (string campaignId)
         {
-             ApiResponse<UpdateCampaignSerializer> localVarResponse = await UpdateCampaignDestroyAsyncWithHttpInfo(campaignId, updatingRequestId, updatingIpAddress, createdAt, updatedAt, attempts, description, deviceFilter, etag, finished, name, _object, rootManifestId, state, when);
+             ApiResponse<UpdateCampaignSerializer> localVarResponse = await UpdateCampaignDestroyAsyncWithHttpInfo(campaignId);
              return localVarResponse.Data;
 
         }
@@ -1299,22 +931,8 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
         /// <returns>Task of ApiResponse (UpdateCampaignSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignDestroyAsyncWithHttpInfo (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null)
+        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignDestroyAsyncWithHttpInfo (string campaignId)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -1344,20 +962,6 @@ namespace deployment_service.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (attempts != null) localVarQueryParams.Add("attempts", Configuration.ApiClient.ParameterToString(attempts)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (deviceFilter != null) localVarQueryParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (finished != null) localVarQueryParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (rootManifestId != null) localVarQueryParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // query parameter
-            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
-            if (when != null) localVarQueryParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1388,27 +992,15 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;List all update campaigns&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="campaignId"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="page">The page number to retrieve. If not given, then defaults to first page. (optional)</param>
-        /// <param name="rootManifestUrl">The firmware catalog URL for the manifest that will be sent to the device as part of the campaign (optional)</param>
-        /// <returns>List&lt;UpdateCampaignSerializer&gt;</returns>
-        public List<UpdateCampaignSerializer> UpdateCampaignList (string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string campaignId = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null, int? page = null, string rootManifestUrl = null)
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="include"> (optional)</param>
+        /// <returns>UpdateCampaignPage</returns>
+        public UpdateCampaignPage UpdateCampaignList (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<List<UpdateCampaignSerializer>> localVarResponse = UpdateCampaignListWithHttpInfo(updatingRequestId, updatingIpAddress, createdAt, updatedAt, attempts, campaignId, description, deviceFilter, etag, finished, name, _object, rootManifestId, state, when, page, rootManifestUrl);
+             ApiResponse<UpdateCampaignPage> localVarResponse = UpdateCampaignListWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
         }
 
@@ -1416,25 +1008,13 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;List all update campaigns&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="campaignId"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="page">The page number to retrieve. If not given, then defaults to first page. (optional)</param>
-        /// <param name="rootManifestUrl">The firmware catalog URL for the manifest that will be sent to the device as part of the campaign (optional)</param>
-        /// <returns>ApiResponse of List&lt;UpdateCampaignSerializer&gt;</returns>
-        public ApiResponse< List<UpdateCampaignSerializer> > UpdateCampaignListWithHttpInfo (string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string campaignId = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null, int? page = null, string rootManifestUrl = null)
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="include"> (optional)</param>
+        /// <returns>ApiResponse of UpdateCampaignPage</returns>
+        public ApiResponse< UpdateCampaignPage > UpdateCampaignListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/update-campaigns/";
@@ -1460,23 +1040,11 @@ namespace deployment_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (attempts != null) localVarQueryParams.Add("attempts", Configuration.ApiClient.ParameterToString(attempts)); // query parameter
-            if (campaignId != null) localVarQueryParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (deviceFilter != null) localVarQueryParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (finished != null) localVarQueryParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (rootManifestId != null) localVarQueryParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // query parameter
-            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
-            if (when != null) localVarQueryParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // query parameter
-            if (page != null) localVarQueryParams.Add("page", Configuration.ApiClient.ParameterToString(page)); // query parameter
-            if (rootManifestUrl != null) localVarQueryParams.Add("root_manifest_url", Configuration.ApiClient.ParameterToString(rootManifestUrl)); // query parameter
+            if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
+            if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
+            if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1498,9 +1066,9 @@ namespace deployment_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<List<UpdateCampaignSerializer>>(localVarStatusCode,
+            return new ApiResponse<UpdateCampaignPage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<UpdateCampaignSerializer>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<UpdateCampaignSerializer>)));
+                (UpdateCampaignPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaignPage)));
             
         }
 
@@ -1508,27 +1076,15 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;List all update campaigns&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="campaignId"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="page">The page number to retrieve. If not given, then defaults to first page. (optional)</param>
-        /// <param name="rootManifestUrl">The firmware catalog URL for the manifest that will be sent to the device as part of the campaign (optional)</param>
-        /// <returns>Task of List&lt;UpdateCampaignSerializer&gt;</returns>
-        public async System.Threading.Tasks.Task<List<UpdateCampaignSerializer>> UpdateCampaignListAsync (string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string campaignId = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null, int? page = null, string rootManifestUrl = null)
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="include"> (optional)</param>
+        /// <returns>Task of UpdateCampaignPage</returns>
+        public async System.Threading.Tasks.Task<UpdateCampaignPage> UpdateCampaignListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<List<UpdateCampaignSerializer>> localVarResponse = await UpdateCampaignListAsyncWithHttpInfo(updatingRequestId, updatingIpAddress, createdAt, updatedAt, attempts, campaignId, description, deviceFilter, etag, finished, name, _object, rootManifestId, state, when, page, rootManifestUrl);
+             ApiResponse<UpdateCampaignPage> localVarResponse = await UpdateCampaignListAsyncWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
 
         }
@@ -1537,25 +1093,13 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;List all update campaigns&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="campaignId"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="page">The page number to retrieve. If not given, then defaults to first page. (optional)</param>
-        /// <param name="rootManifestUrl">The firmware catalog URL for the manifest that will be sent to the device as part of the campaign (optional)</param>
-        /// <returns>Task of ApiResponse (List&lt;UpdateCampaignSerializer&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<UpdateCampaignSerializer>>> UpdateCampaignListAsyncWithHttpInfo (string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string campaignId = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null, int? page = null, string rootManifestUrl = null)
+        /// <param name="limit"> (optional)</param>
+        /// <param name="order"> (optional)</param>
+        /// <param name="after"> (optional)</param>
+        /// <param name="filter"> (optional)</param>
+        /// <param name="include"> (optional)</param>
+        /// <returns>Task of ApiResponse (UpdateCampaignPage)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPage>> UpdateCampaignListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/update-campaigns/";
@@ -1581,23 +1125,11 @@ namespace deployment_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (attempts != null) localVarQueryParams.Add("attempts", Configuration.ApiClient.ParameterToString(attempts)); // query parameter
-            if (campaignId != null) localVarQueryParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (deviceFilter != null) localVarQueryParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (finished != null) localVarQueryParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (rootManifestId != null) localVarQueryParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // query parameter
-            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
-            if (when != null) localVarQueryParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // query parameter
-            if (page != null) localVarQueryParams.Add("page", Configuration.ApiClient.ParameterToString(page)); // query parameter
-            if (rootManifestUrl != null) localVarQueryParams.Add("root_manifest_url", Configuration.ApiClient.ParameterToString(rootManifestUrl)); // query parameter
+            if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
+            if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
+            if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1618,9 +1150,9 @@ namespace deployment_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<List<UpdateCampaignSerializer>>(localVarStatusCode,
+            return new ApiResponse<UpdateCampaignPage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<UpdateCampaignSerializer>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<UpdateCampaignSerializer>)));
+                (UpdateCampaignPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaignPage)));
             
         }
 
@@ -1821,25 +1353,10 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="rootManifestUrl">The firmware catalog URL for the manifest that will be sent to the device as part of the campaign (optional)</param>
         /// <returns>UpdateCampaignSerializer</returns>
-        public UpdateCampaignSerializer UpdateCampaignRetrieve (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null, string rootManifestUrl = null)
+        public UpdateCampaignSerializer UpdateCampaignRetrieve (string campaignId)
         {
-             ApiResponse<UpdateCampaignSerializer> localVarResponse = UpdateCampaignRetrieveWithHttpInfo(campaignId, updatingRequestId, updatingIpAddress, createdAt, updatedAt, attempts, description, deviceFilter, etag, finished, name, _object, rootManifestId, state, when, rootManifestUrl);
+             ApiResponse<UpdateCampaignSerializer> localVarResponse = UpdateCampaignRetrieveWithHttpInfo(campaignId);
              return localVarResponse.Data;
         }
 
@@ -1848,23 +1365,8 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="rootManifestUrl">The firmware catalog URL for the manifest that will be sent to the device as part of the campaign (optional)</param>
         /// <returns>ApiResponse of UpdateCampaignSerializer</returns>
-        public ApiResponse< UpdateCampaignSerializer > UpdateCampaignRetrieveWithHttpInfo (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null, string rootManifestUrl = null)
+        public ApiResponse< UpdateCampaignSerializer > UpdateCampaignRetrieveWithHttpInfo (string campaignId)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -1893,22 +1395,7 @@ namespace deployment_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (attempts != null) localVarQueryParams.Add("attempts", Configuration.ApiClient.ParameterToString(attempts)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (deviceFilter != null) localVarQueryParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (finished != null) localVarQueryParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (rootManifestId != null) localVarQueryParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // query parameter
-            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
-            if (when != null) localVarQueryParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // query parameter
-            if (rootManifestUrl != null) localVarQueryParams.Add("root_manifest_url", Configuration.ApiClient.ParameterToString(rootManifestUrl)); // query parameter
-            if (campaignId != null) localVarFormParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // form parameter
+            if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1941,25 +1428,10 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="rootManifestUrl">The firmware catalog URL for the manifest that will be sent to the device as part of the campaign (optional)</param>
         /// <returns>Task of UpdateCampaignSerializer</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignRetrieveAsync (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null, string rootManifestUrl = null)
+        public async System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignRetrieveAsync (string campaignId)
         {
-             ApiResponse<UpdateCampaignSerializer> localVarResponse = await UpdateCampaignRetrieveAsyncWithHttpInfo(campaignId, updatingRequestId, updatingIpAddress, createdAt, updatedAt, attempts, description, deviceFilter, etag, finished, name, _object, rootManifestId, state, when, rootManifestUrl);
+             ApiResponse<UpdateCampaignSerializer> localVarResponse = await UpdateCampaignRetrieveAsyncWithHttpInfo(campaignId);
              return localVarResponse.Data;
 
         }
@@ -1969,23 +1441,8 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="rootManifestUrl">The firmware catalog URL for the manifest that will be sent to the device as part of the campaign (optional)</param>
         /// <returns>Task of ApiResponse (UpdateCampaignSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignRetrieveAsyncWithHttpInfo (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null, string rootManifestUrl = null)
+        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignRetrieveAsyncWithHttpInfo (string campaignId)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -2014,22 +1471,7 @@ namespace deployment_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (attempts != null) localVarQueryParams.Add("attempts", Configuration.ApiClient.ParameterToString(attempts)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (deviceFilter != null) localVarQueryParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (finished != null) localVarQueryParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (rootManifestId != null) localVarQueryParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // query parameter
-            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
-            if (when != null) localVarQueryParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // query parameter
-            if (rootManifestUrl != null) localVarQueryParams.Add("root_manifest_url", Configuration.ApiClient.ParameterToString(rootManifestUrl)); // query parameter
-            if (campaignId != null) localVarFormParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // form parameter
+            if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2061,24 +1503,10 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
         /// <returns>UpdateCampaignStatusSerializer</returns>
-        public UpdateCampaignStatusSerializer UpdateCampaignStatus (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null)
+        public UpdateCampaignStatusSerializer UpdateCampaignStatus (string campaignId)
         {
-             ApiResponse<UpdateCampaignStatusSerializer> localVarResponse = UpdateCampaignStatusWithHttpInfo(campaignId, updatingRequestId, updatingIpAddress, createdAt, updatedAt, attempts, description, deviceFilter, etag, finished, name, _object, rootManifestId, state, when);
+             ApiResponse<UpdateCampaignStatusSerializer> localVarResponse = UpdateCampaignStatusWithHttpInfo(campaignId);
              return localVarResponse.Data;
         }
 
@@ -2087,22 +1515,8 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
         /// <returns>ApiResponse of UpdateCampaignStatusSerializer</returns>
-        public ApiResponse< UpdateCampaignStatusSerializer > UpdateCampaignStatusWithHttpInfo (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null)
+        public ApiResponse< UpdateCampaignStatusSerializer > UpdateCampaignStatusWithHttpInfo (string campaignId)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -2132,20 +1546,6 @@ namespace deployment_service.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (attempts != null) localVarQueryParams.Add("attempts", Configuration.ApiClient.ParameterToString(attempts)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (deviceFilter != null) localVarQueryParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (finished != null) localVarQueryParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (rootManifestId != null) localVarQueryParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // query parameter
-            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
-            if (when != null) localVarQueryParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2178,24 +1578,10 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
         /// <returns>Task of UpdateCampaignStatusSerializer</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaignStatusSerializer> UpdateCampaignStatusAsync (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null)
+        public async System.Threading.Tasks.Task<UpdateCampaignStatusSerializer> UpdateCampaignStatusAsync (string campaignId)
         {
-             ApiResponse<UpdateCampaignStatusSerializer> localVarResponse = await UpdateCampaignStatusAsyncWithHttpInfo(campaignId, updatingRequestId, updatingIpAddress, createdAt, updatedAt, attempts, description, deviceFilter, etag, finished, name, _object, rootManifestId, state, when);
+             ApiResponse<UpdateCampaignStatusSerializer> localVarResponse = await UpdateCampaignStatusAsyncWithHttpInfo(campaignId);
              return localVarResponse.Data;
 
         }
@@ -2205,22 +1591,8 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="when"> (optional)</param>
         /// <returns>Task of ApiResponse (UpdateCampaignStatusSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignStatusSerializer>> UpdateCampaignStatusAsyncWithHttpInfo (string campaignId, string updatingRequestId = null, string updatingIpAddress = null, string createdAt = null, string updatedAt = null, string attempts = null, string description = null, string deviceFilter = null, string etag = null, string finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, string when = null)
+        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignStatusSerializer>> UpdateCampaignStatusAsyncWithHttpInfo (string campaignId)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -2250,20 +1622,6 @@ namespace deployment_service.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (attempts != null) localVarQueryParams.Add("attempts", Configuration.ApiClient.ParameterToString(attempts)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (deviceFilter != null) localVarQueryParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (finished != null) localVarQueryParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (rootManifestId != null) localVarQueryParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // query parameter
-            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
-            if (when != null) localVarQueryParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2294,19 +1652,12 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Update campaign&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="campaignId">Campaign ID to update</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>UpdateCampaignSerializer</returns>
-        public UpdateCampaignSerializer UpdateCampaignUpdate (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public UpdateCampaignSerializer UpdateCampaignUpdate (string campaignId, WriteUpdateCampaignSerializer body)
         {
-             ApiResponse<UpdateCampaignSerializer> localVarResponse = UpdateCampaignUpdateWithHttpInfo(name, campaignId, description, deviceFilter, finished, _object, rootManifestId, state, when);
+             ApiResponse<UpdateCampaignSerializer> localVarResponse = UpdateCampaignUpdateWithHttpInfo(campaignId, body);
              return localVarResponse.Data;
         }
 
@@ -2314,21 +1665,17 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Update campaign&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="campaignId">Campaign ID to update</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>ApiResponse of UpdateCampaignSerializer</returns>
-        public ApiResponse< UpdateCampaignSerializer > UpdateCampaignUpdateWithHttpInfo (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public ApiResponse< UpdateCampaignSerializer > UpdateCampaignUpdateWithHttpInfo (string campaignId, WriteUpdateCampaignSerializer body)
         {
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->UpdateCampaignUpdate");
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->UpdateCampaignUpdate");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DefaultApi->UpdateCampaignUpdate");
 
             var localVarPath = "/v3/update-campaigns/{campaign_id}/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -2340,6 +1687,7 @@ namespace deployment_service.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/json"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -2353,15 +1701,15 @@ namespace deployment_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (campaignId != null) localVarFormParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // form parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (deviceFilter != null) localVarFormParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // form parameter
-            if (finished != null) localVarFormParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (rootManifestId != null) localVarFormParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // form parameter
-            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
-            if (when != null) localVarFormParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // form parameter
+            if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2393,19 +1741,12 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Update campaign&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="campaignId">Campaign ID to update</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>Task of UpdateCampaignSerializer</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignUpdateAsync (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public async System.Threading.Tasks.Task<UpdateCampaignSerializer> UpdateCampaignUpdateAsync (string campaignId, WriteUpdateCampaignSerializer body)
         {
-             ApiResponse<UpdateCampaignSerializer> localVarResponse = await UpdateCampaignUpdateAsyncWithHttpInfo(name, campaignId, description, deviceFilter, finished, _object, rootManifestId, state, when);
+             ApiResponse<UpdateCampaignSerializer> localVarResponse = await UpdateCampaignUpdateAsyncWithHttpInfo(campaignId, body);
              return localVarResponse.Data;
 
         }
@@ -2414,21 +1755,17 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Update campaign&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="campaignId">Campaign ID to update</param>
+        /// <param name="body">Update campaign object to create</param>
         /// <returns>Task of ApiResponse (UpdateCampaignSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignUpdateAsyncWithHttpInfo (string name, string campaignId = null, string description = null, string deviceFilter = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignSerializer>> UpdateCampaignUpdateAsyncWithHttpInfo (string campaignId, WriteUpdateCampaignSerializer body)
         {
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->UpdateCampaignUpdate");
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->UpdateCampaignUpdate");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DefaultApi->UpdateCampaignUpdate");
 
             var localVarPath = "/v3/update-campaigns/{campaign_id}/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -2440,6 +1777,7 @@ namespace deployment_service.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/json"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -2453,15 +1791,15 @@ namespace deployment_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (campaignId != null) localVarFormParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // form parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (deviceFilter != null) localVarFormParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // form parameter
-            if (finished != null) localVarFormParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (rootManifestId != null) localVarFormParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // form parameter
-            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
-            if (when != null) localVarFormParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // form parameter
+            if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))

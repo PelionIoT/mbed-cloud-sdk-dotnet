@@ -1,7 +1,7 @@
 /* 
- * Firmware Catalog API
+ * Deployment Service API
  *
- * This is the API Documentation for the mbed firmware catalog service which is part of the update service.
+ * This is the API Documentation for the mbed deployment service which is part of the update service.
  *
  * OpenAPI spec version: 0.1
  * 
@@ -31,54 +31,33 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace firmware_catalog.Model
+namespace deployment_service.Model
 {
     /// <summary>
-    /// ManifestSerializer
+    /// UpdateCampaignPage
     /// </summary>
     [DataContract]
-    public partial class ManifestSerializer :  IEquatable<ManifestSerializer>
+    public partial class UpdateCampaignPage :  IEquatable<UpdateCampaignPage>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ManifestSerializer" /> class.
+        /// Initializes a new instance of the <see cref="UpdateCampaignPage" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected ManifestSerializer() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ManifestSerializer" /> class.
-        /// </summary>
-        /// <param name="_Object">API Resource name (required).</param>
         /// <param name="HasMore">Whether there are more results to display.</param>
         /// <param name="TotalCount">Total number of records.</param>
-        /// <param name="After">Entity id for fetch after it.</param>
+        /// <param name="_Object">API Resource name.</param>
         /// <param name="Limit">The number of results to return.</param>
         /// <param name="Data">Data.</param>
         /// <param name="Order">Order of returned records.</param>
-        public ManifestSerializer(string _Object = null, bool? HasMore = null, int? TotalCount = null, string After = null, int? Limit = null, List<FirmwareManifestSerializerData> Data = null, string Order = null)
+        public UpdateCampaignPage(bool? HasMore = null, int? TotalCount = null, string _Object = null, int? Limit = null, List<UpdateCampaignSerializer> Data = null, string Order = null)
         {
-            // to ensure "_Object" is required (not null)
-            if (_Object == null)
-            {
-                throw new InvalidDataException("_Object is a required property for ManifestSerializer and cannot be null");
-            }
-            else
-            {
-                this._Object = _Object;
-            }
             this.HasMore = HasMore;
             this.TotalCount = TotalCount;
-            this.After = After;
+            this._Object = _Object;
             this.Limit = Limit;
             this.Data = Data;
             this.Order = Order;
         }
         
-        /// <summary>
-        /// API Resource name
-        /// </summary>
-        /// <value>API Resource name</value>
-        [DataMember(Name="object", EmitDefaultValue=false)]
-        public string _Object { get; set; }
         /// <summary>
         /// Whether there are more results to display
         /// </summary>
@@ -92,11 +71,11 @@ namespace firmware_catalog.Model
         [DataMember(Name="total_count", EmitDefaultValue=false)]
         public int? TotalCount { get; set; }
         /// <summary>
-        /// Entity id for fetch after it
+        /// API Resource name
         /// </summary>
-        /// <value>Entity id for fetch after it</value>
-        [DataMember(Name="after", EmitDefaultValue=false)]
-        public string After { get; set; }
+        /// <value>API Resource name</value>
+        [DataMember(Name="object", EmitDefaultValue=false)]
+        public string _Object { get; set; }
         /// <summary>
         /// The number of results to return
         /// </summary>
@@ -107,7 +86,7 @@ namespace firmware_catalog.Model
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name="data", EmitDefaultValue=false)]
-        public List<FirmwareManifestSerializerData> Data { get; set; }
+        public List<UpdateCampaignSerializer> Data { get; set; }
         /// <summary>
         /// Order of returned records
         /// </summary>
@@ -121,11 +100,10 @@ namespace firmware_catalog.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ManifestSerializer {\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
+            sb.Append("class UpdateCampaignPage {\n");
             sb.Append("  HasMore: ").Append(HasMore).Append("\n");
             sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
-            sb.Append("  After: ").Append(After).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  Limit: ").Append(Limit).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("  Order: ").Append(Order).Append("\n");
@@ -150,26 +128,21 @@ namespace firmware_catalog.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as ManifestSerializer);
+            return this.Equals(obj as UpdateCampaignPage);
         }
 
         /// <summary>
-        /// Returns true if ManifestSerializer instances are equal
+        /// Returns true if UpdateCampaignPage instances are equal
         /// </summary>
-        /// <param name="other">Instance of ManifestSerializer to be compared</param>
+        /// <param name="other">Instance of UpdateCampaignPage to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ManifestSerializer other)
+        public bool Equals(UpdateCampaignPage other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
                 return false;
 
             return 
-                (
-                    this._Object == other._Object ||
-                    this._Object != null &&
-                    this._Object.Equals(other._Object)
-                ) && 
                 (
                     this.HasMore == other.HasMore ||
                     this.HasMore != null &&
@@ -181,9 +154,9 @@ namespace firmware_catalog.Model
                     this.TotalCount.Equals(other.TotalCount)
                 ) && 
                 (
-                    this.After == other.After ||
-                    this.After != null &&
-                    this.After.Equals(other.After)
+                    this._Object == other._Object ||
+                    this._Object != null &&
+                    this._Object.Equals(other._Object)
                 ) && 
                 (
                     this.Limit == other.Limit ||
@@ -213,14 +186,12 @@ namespace firmware_catalog.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this._Object != null)
-                    hash = hash * 59 + this._Object.GetHashCode();
                 if (this.HasMore != null)
                     hash = hash * 59 + this.HasMore.GetHashCode();
                 if (this.TotalCount != null)
                     hash = hash * 59 + this.TotalCount.GetHashCode();
-                if (this.After != null)
-                    hash = hash * 59 + this.After.GetHashCode();
+                if (this._Object != null)
+                    hash = hash * 59 + this._Object.GetHashCode();
                 if (this.Limit != null)
                     hash = hash * 59 + this.Limit.GetHashCode();
                 if (this.Data != null)

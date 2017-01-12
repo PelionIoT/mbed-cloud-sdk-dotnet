@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Access\Model\Account\AccountStatus.cs" />
     <Compile Include="Access\Model\User\UserStatus.cs" />
+    <Compile Include="Backends\DeploymentService\Model\UpdateCampaignPage.cs" />
     <Compile Include="Backends\DeveloperCertificate\Api\DefaultApi.cs" />
     <Compile Include="Backends\DeveloperCertificate\Client\ApiClient.cs" />
     <Compile Include="Backends\DeveloperCertificate\Client\ApiException.cs" />
@@ -54,6 +55,8 @@
     <Compile Include="Backends\DeveloperCertificate\Client\Configuration.cs" />
     <Compile Include="Backends\DeveloperCertificate\Model\Body.cs" />
     <Compile Include="Backends\DeveloperCertificate\Model\DeveloperCertificate.cs" />
+    <Compile Include="Backends\DeviceQueryService\Model\Body.cs" />
+    <Compile Include="Backends\FirmwareCatalog\Model\FirmwareManifestSerializerData.cs" />
     <Compile Include="Backends\Mds\Api\DefaultApi.cs" />
     <Compile Include="Backends\Mds\Api\EndpointsApi.cs" />
     <Compile Include="Backends\Mds\Api\NotificationsApi.cs" />
@@ -153,7 +156,6 @@
     <Compile Include="Backends\FirmwareCatalog\Model\FirmwareImageSerializer.cs" />
     <Compile Include="Backends\FirmwareCatalog\Model\FirmwareImageSerializerData.cs" />
     <Compile Include="Backends\FirmwareCatalog\Model\ManifestSerializer.cs" />
-    <Compile Include="Backends\FirmwareCatalog\Model\ManifestSerializerData.cs" />
     <Compile Include="Backends\Iam\Api\AccountAdminApi.cs" />
     <Compile Include="Backends\Iam\Api\DefaultApi.cs" />
     <Compile Include="Backends\Iam\Api\DeveloperApi.cs" />
