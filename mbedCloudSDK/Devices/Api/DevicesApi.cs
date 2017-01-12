@@ -9,8 +9,9 @@ using mbedCloudSDK.Common;
 using mbedCloudSDK.Exceptions;
 using mds.Model;
 using RestSharp;
+using mbedCloudSDK.Devices.Model;
 
-namespace mbedCloudSDK.Devices
+namespace mbedCloudSDK.Devices.Api
 {
     /// <summary>
     /// Exposing functionality from the following underlying services:
@@ -25,7 +26,7 @@ namespace mbedCloudSDK.Devices
 
         private Task longPollingTask;
         private CancellationTokenSource cancellationToken;
-        private Dictionary<String, Endpoint> queues;
+        private Dictionary<String, Model.Endpoint> queues;
         private readonly string CustomAttributes = "custom_attributes__";
 
         #endregion
@@ -40,7 +41,7 @@ namespace mbedCloudSDK.Devices
         {
             cancellationToken = new CancellationTokenSource();
             longPollingTask = new Task(new Action(LongPolling), cancellationToken.Token, TaskCreationOptions.LongRunning);
-            queues = new Dictionary<string, Endpoint>();
+            queues = new Dictionary<string, Model.Endpoint>();
         }
 
         #endregion
@@ -130,14 +131,14 @@ namespace mbedCloudSDK.Devices
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             api.V2SubscriptionsEndpointNameResourcePathPut(endpointName, fixedPath);
-            Endpoint e;
-            Resource r;
+            Model.Endpoint e;
+            Model.Resource r;
             if (queues.ContainsKey(endpointName)) 
             {
                 e = queues[endpointName];
                 if (!e.Resources.ContainsKey(resourcePath))
                 {
-                    r = new Resource(resourcePath);
+                    r = new Model.Resource(resourcePath);
                     e.Resources.Add(resourcePath, r);
                 }
                 else 
@@ -147,8 +148,8 @@ namespace mbedCloudSDK.Devices
             }
             else {
 
-                e = new Endpoint(endpointName);
-                r = new Resource(resourcePath);
+                e = new Model.Endpoint(endpointName);
+                r = new Model.Resource(resourcePath);
                 e.Resources.Add(resourcePath, r);
                 queues.Add(endpointName, e);
             }
@@ -357,7 +358,7 @@ namespace mbedCloudSDK.Devices
                     {
                         byte[] data = Convert.FromBase64String(notification.Payload);
                         string payload = Encoding.UTF8.GetString(data);
-                        Resource r = queues[notification.Ep].Resources[notification.Path];
+                        Model.Resource r = queues[notification.Ep].Resources[notification.Path];
                         r.Queue.Add(payload);
                     }
                 }

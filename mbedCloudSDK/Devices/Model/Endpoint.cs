@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace mbedCloudSDK.Devices
+namespace mbedCloudSDK.Devices.Model
 {
 	/// <summary>
 	/// Endpoint.

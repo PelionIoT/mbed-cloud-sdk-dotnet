@@ -87,7 +87,7 @@
     <Compile Include="Development\DevelopmentApi.cs" />
     <Compile Include="Common\BaseApi.cs" />
     <Compile Include="Common\Config.cs" />
-    <Compile Include="Devices\DevicesApi.cs" />
+    <Compile Include="Devices\Api\DevicesApi.cs" />
     <Compile Include="Backends\DeploymentService\Api\DefaultApi.cs" />
     <Compile Include="Backends\DeploymentService\Client\ApiClient.cs" />
     <Compile Include="Backends\DeploymentService\Client\ApiException.cs" />
@@ -138,10 +138,10 @@
     <Compile Include="Exceptions\CloudApiException.cs" />
     <Compile Include="Common\ListParams.cs" />
     <Compile Include="Manufacturing\Manufacturing.cs" />
-    <Compile Include="Devices\AsyncProducerConsumerCollection.cs" />
-    <Compile Include="Devices\AsyncConsumer.cs" />
-    <Compile Include="Devices\Endpoint.cs" />
-    <Compile Include="Devices\Resource.cs" />
+    <Compile Include="Devices\Model\AsyncProducerConsumerCollection.cs" />
+    <Compile Include="Devices\Model\AsyncConsumer.cs" />
+    <Compile Include="Devices\Model\Endpoint.cs" />
+    <Compile Include="Devices\Model\Resource.cs" />
     <Compile Include="Exceptions\ValueException.cs" />
     <Compile Include="Update\Update.cs" />
     <Compile Include="Logging\LoggingApi.cs" />

@@ -9,6 +9,8 @@ using mbedCloudSDK.Access.Model.ApiKey;
 using mbedCloudSDK.Common;
 using mbedCloudSDK.Devices;
 using mbedCloudSDK.Access.Api;
+using mbedCloudSDK.Devices.Api;
+using mbedCloudSDK.Devices.Model;
 
 namespace ConsoleExamples
 {

@@ -1,5 +1,5 @@
 ﻿using System;
-namespace mbedCloudSDK.Devices
+namespace mbedCloudSDK.Devices.Model
 {
 	/// <summary>
 	/// Resource.
