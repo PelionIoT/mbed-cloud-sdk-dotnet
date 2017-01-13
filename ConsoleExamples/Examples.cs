@@ -11,6 +11,7 @@ using mbedCloudSDK.Devices;
 using mbedCloudSDK.Access.Api;
 using mbedCloudSDK.Devices.Api;
 using mbedCloudSDK.Devices.Model;
+using mbedCloudSDK.Devices.Model.Device;
 
 namespace ConsoleExamples
 {
@@ -42,7 +43,7 @@ namespace ConsoleExamples
         public void runEndpointsExample()
         {
             DevicesApi devices = new DevicesApi(config);
-            foreach (var endpoint in devices.ListEndpoints())
+            foreach (var endpoint in devices.ListConnectedDevices())
             {
                 Console.WriteLine(endpoint);
             }
@@ -68,20 +69,27 @@ namespace ConsoleExamples
             var buttonResource = "/3200/0/5501";
             DevicesApi devices = new DevicesApi(config);
             //List all connected endpoints
-            var endpoints = devices.ListEndpoints();
+            var endpoints = devices.ListConnectedDevices();
             if (endpoints == null)
             {
                 throw new Exception("No endpoints registered. Aborting.");
             }
             //Start long polling thread
             devices.StartLongPolling();
-            //Subscribe to the resource
-            AsyncConsumer<String> consumer =  devices.Subscribe(endpoints[0].Name, buttonResource);
-            while (true)
+            var resources = endpoints[0].ListResources();
+            foreach(var resource in resources)
             {
-                //Get the value of the resource and print it
-                Task<string> t = consumer.GetValue();
-                Console.WriteLine(t.Result);
+                if (resource.Uri == buttonResource)
+                {
+                    //Subscribe to the resource
+                    AsyncConsumer<String> consumer = devices.Subscribe(endpoints[0].Id, resource);
+                    while (true)
+                    {
+                        //Get the value of the resource and print it
+                        Task<string> t = consumer.GetValue();
+                        Console.WriteLine(t.Result);
+                    }
+                }
             }
         }
         
@@ -94,7 +102,7 @@ namespace ConsoleExamples
             var buttonResource = "/3200/0/5501";
             DevicesApi devices = new DevicesApi(config);
             //List all connected endpoints
-            var endpoints = devices.ListEndpoints();
+            var endpoints = devices.ListConnectedDevices();
             if (endpoints == null)
             {
                 throw new Exception("No endpoints registered. Aborting.");
@@ -104,11 +112,20 @@ namespace ConsoleExamples
             devices.RegisterWebhook(webhook);
             Thread.Sleep(2000);
             //subscribe to the resource
-            devices.Subscribe(endpoints[0].Name, buttonResource);
-            Console.WriteLine(string.Format("Webhook registered, see output on {0}", webhook));
-            //Deregister webhook after 1 minute
-            Thread.Sleep(60000);
-            devices.DeregisterWebhooks();
+            var resources = endpoints[0].ListResources();
+            foreach (var resource in resources)
+            {
+                if (resource.Uri == buttonResource)
+                {
+                    //Subscribe to the resource
+                    devices.Subscribe(endpoints[0].Id, resource);
+                    Console.WriteLine(string.Format("Webhook registered, see output on {0}", webhook));
+                    //Deregister webhook after 1 minute
+                    Thread.Sleep(60000);
+                    devices.DeregisterWebhooks();
+                }
+            }
+            
         }
         
         /// <summary>

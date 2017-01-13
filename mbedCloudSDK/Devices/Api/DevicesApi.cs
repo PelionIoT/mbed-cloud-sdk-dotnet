@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 using device_query_service.Model;
 using mbedCloudSDK.Common;
 using mbedCloudSDK.Exceptions;
-using mds.Model;
 using RestSharp;
 using mbedCloudSDK.Devices.Model;
+using mbedCloudSDK.Devices.Model.Device;
+using mbedCloudSDK.Devices.Model.Resource;
 
 namespace mbedCloudSDK.Devices.Api
 {
@@ -26,7 +27,17 @@ namespace mbedCloudSDK.Devices.Api
 
         private Task longPollingTask;
         private CancellationTokenSource cancellationToken;
-        private Dictionary<String, Model.Endpoint> queues;
+
+        /// <summary>
+        /// Resources that are currently subscribed.
+        /// </summary>
+        public static Dictionary<String, Resource> resourceSubscribtions = new Dictionary<string, Resource>();
+
+        /// <summary>
+        /// Responses to async requests.
+        /// </summary>
+        public static Dictionary<String, AsyncProducerConsumerCollection<String>> asyncResponses = new Dictionary<string, AsyncProducerConsumerCollection<String>>();
+
         private readonly string CustomAttributes = "custom_attributes__";
 
         #endregion
@@ -41,7 +52,7 @@ namespace mbedCloudSDK.Devices.Api
         {
             cancellationToken = new CancellationTokenSource();
             longPollingTask = new Task(new Action(LongPolling), cancellationToken.Token, TaskCreationOptions.LongRunning);
-            queues = new Dictionary<string, Model.Endpoint>();
+            resourceSubscribtions = new Dictionary<string, Resource>();
         }
 
         #endregion
@@ -53,7 +64,7 @@ namespace mbedCloudSDK.Devices.Api
         /// </summary>
         /// <returns>The devices.</returns>
         /// <param name="listParams">List of parameters.</param>
-        public List<device_catalog.Model.DeviceDetail> ListDevices(ListParams listParams = null)
+        public List<Device> ListDevices(ListParams listParams = null)
         {
             if (listParams == null)
             {
@@ -64,7 +75,17 @@ namespace mbedCloudSDK.Devices.Api
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             try
             {
-                return api.DeviceList(listParams.Limit, listParams.Order, listParams.After, listParams.Filter, listParams.Include).Data;
+                List<Device> devices = new List<Device>();
+                var devicesInfoList = api.DeviceList(listParams.Limit, listParams.Order, listParams.After, listParams.Filter, listParams.Include).Data;
+                foreach(var device in devicesInfoList)
+                {
+                    devices.Add(new Device(this, device.BootstrappedTimestamp, device.UpdatedAt, device.CustomAttributes,
+                        device.DeviceClass, device.Id, device.Description, device.AutoUpdate, device.Mechanism,
+                        device.State, device.Etag, device.ProvisionKey, device.SerialNumber, device.VendorId,
+                        device.AccountId, device.DeployedState, device.TrustClass, device.Deployment, device.MechanismUrl,
+                        device.TrustLevel, device.DeviceId, device.Name, device.CreatedAt, device.Manifest));
+                }
+                return devices;
             }
             catch (device_catalog.Client.ApiException e)
             {
@@ -99,7 +120,7 @@ namespace mbedCloudSDK.Devices.Api
             var api = new mds.Api.NotificationsApi(config.Host);
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            Webhook webhook = new Webhook(url, headers);
+            mds.Model.Webhook webhook = new mds.Model.Webhook(url, headers);
             api.V2NotificationCallbackPut(webhook);
         }
 
@@ -112,7 +133,6 @@ namespace mbedCloudSDK.Devices.Api
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             api.V2NotificationCallbackDelete();
-            queues.Clear();
         }
 
         #endregion
@@ -123,41 +143,24 @@ namespace mbedCloudSDK.Devices.Api
         /// Subscribe the specified endpointName and resourcePath.
         /// </summary>
         /// <param name="endpointName">Endpoint name.</param>
-        /// <param name="resourcePath">Resource path.</param>
-        public AsyncConsumer<String> Subscribe(String endpointName, String resourcePath)
+        /// <param name="resource">Resource to subscribe.</param>
+        public AsyncConsumer<String> Subscribe(String endpointName, Resource resource)
         {
-            string fixedPath = FixedPath(resourcePath);
+            string fixedPath = FixedPath(resource.Uri);
             var api = new mds.Api.SubscriptionsApi(config.Host);
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             api.V2SubscriptionsEndpointNameResourcePathPut(endpointName, fixedPath);
-            Model.Endpoint e;
-            Model.Resource r;
-            if (queues.ContainsKey(endpointName)) 
+            string subscribePath = endpointName + resource.Uri;
+            if (!DevicesApi.resourceSubscribtions.ContainsKey(subscribePath))
             {
-                e = queues[endpointName];
-                if (!e.Resources.ContainsKey(resourcePath))
-                {
-                    r = new Model.Resource(resourcePath);
-                    e.Resources.Add(resourcePath, r);
-                }
-                else 
-                {
-                    r = e.Resources[resourcePath];
-                }
+                DevicesApi.resourceSubscribtions.Add(subscribePath, resource);
             }
-            else {
-
-                e = new Model.Endpoint(endpointName);
-                r = new Model.Resource(resourcePath);
-                e.Resources.Add(resourcePath, r);
-                queues.Add(endpointName, e);
-            }
-            return new AsyncConsumer<String>(r.Queue);
+            return new AsyncConsumer<String>(resource.Queue);
         }
 
         /// <summary>
-        /// Pres the subscribe.
+        /// Presubscribe to the resource.
         /// </summary>
         /// <param name="endpointName">Endpoint name.</param>
         /// <param name="resourcePath">Resource path.</param>
@@ -168,16 +171,26 @@ namespace mbedCloudSDK.Devices.Api
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             //TODO ResourcePath is not generated correctly
-            Presubscription presubscription = new Presubscription(endpointName, endpointType); 
+            mds.Model.Presubscription presubscription = new mds.Model.Presubscription(endpointName, endpointType); 
         }
 
-        public void Unsubscribe(String endpointName, String resourcePath)
+        /// <summary>
+        /// Unsubscribe resource.
+        /// </summary>
+        /// <param name="deviceName">Name of the device.</param>
+        /// <param name="resource">Resource to unsubscribe.</param>
+        public void Unsubscribe(String deviceName, Resource resource)
         {
-            string fixedPath = FixedPath(resourcePath);
+            string fixedPath = FixedPath(resource.Uri);
             var api = new mds.Api.SubscriptionsApi(config.Host);
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            api.V2SubscriptionsEndpointNameResourcePathDelete(endpointName, fixedPath);
+            string subscribePath = deviceName + resource.Uri;
+            api.V2SubscriptionsEndpointNameResourcePathDelete(deviceName, fixedPath);
+            if (resourceSubscribtions.ContainsKey(subscribePath))
+            {
+                resourceSubscribtions.Remove(subscribePath);
+            }
         }
 
         #endregion
@@ -189,7 +202,7 @@ namespace mbedCloudSDK.Devices.Api
         /// </summary>
         /// <returns>The endpoints.</returns>
         /// <param name="listParams">List of parameters.</param>
-        public List<mds.Model.Endpoint> ListEndpoints(ListParams listParams = null)
+        public List<Device> ListConnectedDevices(ListParams listParams = null)
         {
             if (listParams != null)
             {
@@ -200,7 +213,15 @@ namespace mbedCloudSDK.Devices.Api
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             try
             {
-                return api.V2EndpointsGet();
+                var endpoints = api.V2EndpointsGet();
+                List<Device> devices = new List<Device>();
+                foreach(var endpoint in endpoints)
+                {
+                    devices.Add(new Device(this, null, null, null, null, endpoint.Name, null, null, null, null,
+                        null, null, null, null, null, null, null, null, null, null, null, null, null,
+                        null, endpoint.Status, endpoint.Q, endpoint.Type));
+                }
+                return devices;
             }
             catch (mds.Client.ApiException e)
             {
@@ -213,18 +234,38 @@ namespace mbedCloudSDK.Devices.Api
         #region Resources
 
         /// <summary>
-        /// Gets the resource.
+        /// Gets the value of the resource..
         /// </summary>
         /// <param name="endpointName">Endpoint name.</param>
         /// <param name="resourcePath">Resource path.</param>
-        public void GetResource(string endpointName, string resourcePath)
+        public AsyncConsumer<string> GetResourceValue(string endpointName, string resourcePath)
         {
             var api = new mds.Api.ResourcesApi(config.Host);
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             var asyncID =  api.V2EndpointsEndpointNameResourcePathGet(endpointName, resourcePath);
-            Console.WriteLine(asyncID.AsyncResponseId);
-            return;
+            AsyncProducerConsumerCollection<string> collection = new AsyncProducerConsumerCollection<string>();
+            asyncResponses.Add(asyncID.AsyncResponseId, collection);
+            return new AsyncConsumer<string>(collection);
+        }
+
+        /// <summary>
+        /// Set value of the resource.
+        /// </summary>
+        /// <param name="deviceName">Name of the device.</param>
+        /// <param name="resourcePath">Path to the resource.</param>
+        /// <param name="resourceValue">Value to set.</param>
+        /// <param name="noResponse">Don't get a response.</param>
+        /// <returns></returns>
+        public AsyncConsumer<string> SetResourceValue(string deviceName, string resourcePath, string resourceValue, bool? noResponse = null)
+        {
+            var api = new mds.Api.ResourcesApi(config.Host);
+            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
+            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            var asyncID = api.V2EndpointsEndpointNameResourcePathPut(deviceName, resourcePath, resourceValue, noResponse);
+            AsyncProducerConsumerCollection<string> collection = new AsyncProducerConsumerCollection<string>();
+            asyncResponses.Add(asyncID.AsyncResponseId, collection);
+            return new AsyncConsumer<string>(collection);
         }
 
         /// <summary>
@@ -232,12 +273,39 @@ namespace mbedCloudSDK.Devices.Api
         /// </summary>
         /// <returns>The resources.</returns>
         /// <param name="endpointName">Endpoint name.</param>
-        public List<mds.Model.Resource> ListResources(string endpointName)
+        public List<Resource> ListResources(string endpointName)
         {
             var api = new mds.Api.EndpointsApi(config.Host);
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            return api.V2EndpointsEndpointNameGet(endpointName);
+            try
+            {
+                var resourcesList = api.V2EndpointsEndpointNameGet(endpointName);
+                List<Resource> resources = new List<Resource>();
+                foreach (var resource in resourcesList)
+                {
+                    resources.Add(new Resource(this, endpointName, resource.Rt, resource.Type, resource.Uri, resource.Obs));
+                }
+                return resources;
+            }
+            catch (mds.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        /// <summary>
+        /// Delete resource.
+        /// </summary>
+        /// <param name="deviceName">Name of the Device</param>
+        /// <param name="resourcePath">Path to the resource.</param>
+        /// <param name="noResponse"></param>
+        public void DeleteResource(string deviceName, string resourcePath, bool? noResponse = null)
+        {
+            var api = new mds.Api.ResourcesApi(config.Host);
+            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
+            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            api.V2EndpointsEndpointNameResourcePathDelete(deviceName, resourcePath, noResponse);
         }
 
         /// <summary>
@@ -352,14 +420,29 @@ namespace mbedCloudSDK.Devices.Api
             while (!cancellationToken.IsCancellationRequested)
             {
                 var resp = api.V2NotificationPullGet();
+                if (resp.AsyncResponses != null)
+                {
+                    foreach (var asyncReponse in resp.AsyncResponses)
+                    {
+                        byte[] data = Convert.FromBase64String(asyncReponse.Payload);
+                        string payload = Encoding.UTF8.GetString(data);
+                        if (asyncResponses.ContainsKey(asyncReponse.Id))
+                        {
+                            asyncResponses[asyncReponse.Id].Add(payload);
+                        }
+                    }
+                }
                 if (resp.Notifications != null)
                 {
                     foreach (var notification in resp.Notifications)
                     {
                         byte[] data = Convert.FromBase64String(notification.Payload);
                         string payload = Encoding.UTF8.GetString(data);
-                        Model.Resource r = queues[notification.Ep].Resources[notification.Path];
-                        r.Queue.Add(payload);
+                        string resourceSubs = notification.Ep + notification.Path;
+                        if (resourceSubscribtions.ContainsKey(resourceSubs))
+                        {
+                            resourceSubscribtions[resourceSubs].Queue.Add(payload);
+                        }
                     }
                 }
             }
