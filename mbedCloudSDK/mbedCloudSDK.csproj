@@ -87,7 +87,7 @@
     <Compile Include="Development\DevelopmentApi.cs" />
     <Compile Include="Common\BaseApi.cs" />
     <Compile Include="Common\Config.cs" />
-    <Compile Include="Devices\DevicesApi.cs" />
+    <Compile Include="Devices\Api\DevicesApi.cs" />
     <Compile Include="Backends\DeploymentService\Api\DefaultApi.cs" />
     <Compile Include="Backends\DeploymentService\Client\ApiClient.cs" />
     <Compile Include="Backends\DeploymentService\Client\ApiException.cs" />
@@ -135,13 +135,16 @@
     <Compile Include="Backends\DeviceQueryService\Model\DeviceQueryResp.cs" />
     <Compile Include="Backends\DeviceCatalog\Model\DeviceDetail.cs" />
     <Compile Include="Backends\DeviceCatalog\Model\DeviceListResp.cs" />
+    <Compile Include="Devices\Model\Device\DeployedState.cs" />
+    <Compile Include="Devices\Model\Device\Mechanism.cs" />
+    <Compile Include="Devices\Model\Device\State.cs" />
     <Compile Include="Exceptions\CloudApiException.cs" />
     <Compile Include="Common\ListParams.cs" />
     <Compile Include="Manufacturing\Manufacturing.cs" />
-    <Compile Include="Devices\AsyncProducerConsumerCollection.cs" />
-    <Compile Include="Devices\AsyncConsumer.cs" />
-    <Compile Include="Devices\Endpoint.cs" />
-    <Compile Include="Devices\Resource.cs" />
+    <Compile Include="Devices\Model\Device\AsyncProducerConsumerCollection.cs" />
+    <Compile Include="Devices\Model\Device\AsyncConsumer.cs" />
+    <Compile Include="Devices\Model\Device\Device.cs" />
+    <Compile Include="Devices\Model\Resource\Resource.cs" />
     <Compile Include="Exceptions\ValueException.cs" />
     <Compile Include="Update\Update.cs" />
     <Compile Include="Logging\LoggingApi.cs" />
@@ -211,7 +214,10 @@
     <None Include="Backends\FactoryTool\Api\.DS_Store" />
     <None Include="Backends\ProvisioningCertificate\README.md" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Devices\Model\Subscription\" />
+    <Folder Include="Devices\Model\Webhook\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="lib\Newtonsoft.Json.dll" />
     <Content Include="lib\RestSharp.dll" />
