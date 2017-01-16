@@ -86,7 +86,7 @@ namespace mbedCloudSDK.Access.Api
             var api = new AccountAdminApi();
             AccountUpdateReq req = new AccountUpdateReq(account.AddressLine2, account.City, account.AddressLine1, account.DisplayName,
                 account.Country, account.Company, account.TemplateId, account.Status.ToString(), account.State, account.Contact, account.PostalCode,
-                account.IsProvisioningAllowed, account.Tier, account.PhoneNumber, account.Email, account.Aliases);
+                account.IsProvisioningAllowed, null, account.Tier, account.PhoneNumber, account.Email, account.Aliases);
 
             try
             {
@@ -109,7 +109,7 @@ namespace mbedCloudSDK.Access.Api
             var api = new AccountAdminApi();
             AccountUpdateReq req = new AccountUpdateReq(account.AddressLine2, account.City, account.AddressLine1, account.DisplayName,
                 account.Country, account.Company, account.TemplateId, account.Status.ToString(), account.State, account.Contact, account.PostalCode,
-                account.IsProvisioningAllowed, account.Tier, account.PhoneNumber, account.Email, account.Aliases);
+                account.IsProvisioningAllowed, null, account.Tier, account.PhoneNumber, account.Email, account.Aliases);
 
             try
             {
@@ -507,7 +507,7 @@ namespace mbedCloudSDK.Access.Api
             var api = new AccountAdminApi();
             try
             {
-                UserInfoReq req = new UserInfoReq(body.Username, body.PhoneNumber, body.Groups, body.IsGtcAccepted, body.IsMarketingAccepted,
+                UserInfoReq req = new UserInfoReq(body.Username, body.PhoneNumber, body.IsMarketingAccepted, body.Groups, body.IsGtcAccepted,
                     body.FullName, body.Address, body.Password, body.Email);
                 return User.Convert(api.CreateUser(req));
             }
@@ -527,7 +527,7 @@ namespace mbedCloudSDK.Access.Api
             var api = new AccountAdminApi();
             try
             {
-                UserInfoReq req = new UserInfoReq(body.Username, body.PhoneNumber, body.Groups, body.IsGtcAccepted, body.IsMarketingAccepted,
+                UserInfoReq req = new UserInfoReq(body.Username, body.PhoneNumber, body.IsMarketingAccepted, body.Groups, body.IsGtcAccepted,
                     body.FullName, body.Address, body.Password, body.Email);
                 return User.Convert(await api.CreateUserAsync(req));
             }
@@ -547,7 +547,7 @@ namespace mbedCloudSDK.Access.Api
             var api = new AccountAdminApi();
 			try
 			{
-                UserInfoReq req = new UserInfoReq(body.Username, body.PhoneNumber, body.Groups, body.IsGtcAccepted, body.IsMarketingAccepted,
+                UserUpdateReq req = new UserUpdateReq(body.Username, body.PhoneNumber, body.IsMarketingAccepted, body.IsGtcAccepted,
                     body.FullName, body.Address, body.Password, body.Email);
                 return User.Convert(api.UpdateUser(body.Id, req));
 			}
@@ -567,7 +567,7 @@ namespace mbedCloudSDK.Access.Api
             var api = new AccountAdminApi();
             try
             {
-                UserInfoReq req = new UserInfoReq(body.Username, body.PhoneNumber, body.Groups, body.IsGtcAccepted, body.IsMarketingAccepted,
+                UserUpdateReq req = new UserUpdateReq(body.Username, body.PhoneNumber, body.IsMarketingAccepted, body.IsGtcAccepted,
                     body.FullName, body.Address, body.Password, body.Email);
                 var user = await api.UpdateUserAsync(body.Id, req);
                 return User.Convert(user);

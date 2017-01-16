@@ -36,6 +36,7 @@
       <HintPath>lib\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -57,6 +58,7 @@
     <Compile Include="Backends\DeveloperCertificate\Model\DeveloperCertificate.cs" />
     <Compile Include="Backends\DeviceQueryService\Model\Body.cs" />
     <Compile Include="Backends\FirmwareCatalog\Model\FirmwareManifestSerializerData.cs" />
+    <Compile Include="Backends\Iam\Model\UserUpdateReq.cs" />
     <Compile Include="Backends\Mds\Api\DefaultApi.cs" />
     <Compile Include="Backends\Mds\Api\EndpointsApi.cs" />
     <Compile Include="Backends\Mds\Api\NotificationsApi.cs" />
@@ -162,7 +164,6 @@
     <Compile Include="Backends\Iam\Api\AccountAdminApi.cs" />
     <Compile Include="Backends\Iam\Api\DefaultApi.cs" />
     <Compile Include="Backends\Iam\Api\DeveloperApi.cs" />
-    <Compile Include="Backends\Iam\Api\RootAdminApi.cs" />
     <Compile Include="Backends\Iam\Client\ApiClient.cs" />
     <Compile Include="Backends\Iam\Client\ApiException.cs" />
     <Compile Include="Backends\Iam\Client\ApiResponse.cs" />
@@ -175,9 +176,6 @@
     <Compile Include="Backends\Iam\Model\AccountSignupReq.cs" />
     <Compile Include="Backends\Iam\Model\AccountSignupResp.cs" />
     <Compile Include="Backends\Iam\Model\AccountSignupVerify.cs" />
-    <Compile Include="Backends\Iam\Model\AccountTemplateReq.cs" />
-    <Compile Include="Backends\Iam\Model\AccountTemplateResp.cs" />
-    <Compile Include="Backends\Iam\Model\AccountTemplateRespList.cs" />
     <Compile Include="Backends\Iam\Model\AccountUpdateReq.cs" />
     <Compile Include="Backends\Iam\Model\ApiKeyInfoReq.cs" />
     <Compile Include="Backends\Iam\Model\ApiKeyInfoResp.cs" />
