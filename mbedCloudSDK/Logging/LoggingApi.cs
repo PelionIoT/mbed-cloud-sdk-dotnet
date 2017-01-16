@@ -55,7 +55,7 @@ namespace mbedCloudSDK.Logging
         /// </summary>
         /// <returns>The device log.</returns>
         /// <param name="deviceLogId">Device log identifier.</param>
-        public device_catalog.Model.DeviceLogSerializer GetDeviceLog(string deviceLogId)
+        public device_catalog.Model.DeviceLogSerializerData GetDeviceLog(string deviceLogId)
         {
             var api = new device_catalog.Api.DefaultApi();
             try

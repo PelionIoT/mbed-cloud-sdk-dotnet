@@ -27,31 +27,30 @@ namespace iam.Model
     /// This object represents a user in requests towards mbed Cloud.
     /// </summary>
     [DataContract]
-    public partial class UserInfoReq :  IEquatable<UserInfoReq>, IValidatableObject
+    public partial class UserUpdateReq :  IEquatable<UserUpdateReq>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserInfoReq" /> class.
+        /// Initializes a new instance of the <see cref="UserUpdateReq" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected UserInfoReq() { }
+        protected UserUpdateReq() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserInfoReq" /> class.
+        /// Initializes a new instance of the <see cref="UserUpdateReq" /> class.
         /// </summary>
         /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters. (required).</param>
         /// <param name="PhoneNumber">Phone number..</param>
         /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted. (default to false).</param>
-        /// <param name="Groups">A list of IDs of the groups this user belongs to..</param>
         /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted. (default to false).</param>
         /// <param name="FullName">The full name of the user..</param>
         /// <param name="Address">Address..</param>
         /// <param name="Password">The password when creating a new user. It will will generated when not present in the request..</param>
         /// <param name="Email">The email address. (required).</param>
-        public UserInfoReq(string Username = default(string), string PhoneNumber = default(string), bool? IsMarketingAccepted = false, List<string> Groups = default(List<string>), bool? IsGtcAccepted = false, string FullName = default(string), string Address = default(string), string Password = default(string), string Email = default(string))
+        public UserUpdateReq(string Username = default(string), string PhoneNumber = default(string), bool? IsMarketingAccepted = false, bool? IsGtcAccepted = false, string FullName = default(string), string Address = default(string), string Password = default(string), string Email = default(string))
         {
             // to ensure "Username" is required (not null)
             if (Username == null)
             {
-                throw new InvalidDataException("Username is a required property for UserInfoReq and cannot be null");
+                throw new InvalidDataException("Username is a required property for UserUpdateReq and cannot be null");
             }
             else
             {
@@ -60,7 +59,7 @@ namespace iam.Model
             // to ensure "Email" is required (not null)
             if (Email == null)
             {
-                throw new InvalidDataException("Email is a required property for UserInfoReq and cannot be null");
+                throw new InvalidDataException("Email is a required property for UserUpdateReq and cannot be null");
             }
             else
             {
@@ -76,7 +75,6 @@ namespace iam.Model
             {
                 this.IsMarketingAccepted = IsMarketingAccepted;
             }
-            this.Groups = Groups;
             // use default value if no "IsGtcAccepted" provided
             if (IsGtcAccepted == null)
             {
@@ -109,12 +107,6 @@ namespace iam.Model
         /// <value>A flag indicating that receiving marketing information has been accepted.</value>
         [DataMember(Name="is_marketing_accepted", EmitDefaultValue=false)]
         public bool? IsMarketingAccepted { get; set; }
-        /// <summary>
-        /// A list of IDs of the groups this user belongs to.
-        /// </summary>
-        /// <value>A list of IDs of the groups this user belongs to.</value>
-        [DataMember(Name="groups", EmitDefaultValue=false)]
-        public List<string> Groups { get; set; }
         /// <summary>
         /// A flag indicating that the General Terms and Conditions has been accepted.
         /// </summary>
@@ -152,11 +144,10 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class UserInfoReq {\n");
+            sb.Append("class UserUpdateReq {\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  IsMarketingAccepted: ").Append(IsMarketingAccepted).Append("\n");
-            sb.Append("  Groups: ").Append(Groups).Append("\n");
             sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
             sb.Append("  FullName: ").Append(FullName).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
@@ -183,15 +174,15 @@ namespace iam.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as UserInfoReq);
+            return this.Equals(obj as UserUpdateReq);
         }
 
         /// <summary>
-        /// Returns true if UserInfoReq instances are equal
+        /// Returns true if UserUpdateReq instances are equal
         /// </summary>
-        /// <param name="other">Instance of UserInfoReq to be compared</param>
+        /// <param name="other">Instance of UserUpdateReq to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(UserInfoReq other)
+        public bool Equals(UserUpdateReq other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -212,11 +203,6 @@ namespace iam.Model
                     this.IsMarketingAccepted == other.IsMarketingAccepted ||
                     this.IsMarketingAccepted != null &&
                     this.IsMarketingAccepted.Equals(other.IsMarketingAccepted)
-                ) && 
-                (
-                    this.Groups == other.Groups ||
-                    this.Groups != null &&
-                    this.Groups.SequenceEqual(other.Groups)
                 ) && 
                 (
                     this.IsGtcAccepted == other.IsGtcAccepted ||
@@ -262,8 +248,6 @@ namespace iam.Model
                     hash = hash * 59 + this.PhoneNumber.GetHashCode();
                 if (this.IsMarketingAccepted != null)
                     hash = hash * 59 + this.IsMarketingAccepted.GetHashCode();
-                if (this.Groups != null)
-                    hash = hash * 59 + this.Groups.GetHashCode();
                 if (this.IsGtcAccepted != null)
                     hash = hash * 59 + this.IsGtcAccepted.GetHashCode();
                 if (this.FullName != null)

@@ -64,12 +64,6 @@ namespace mbedCloudSDK.Access.Model.ApiKey
         public List<string> Groups { get; }
         
         /// <summary>
-        /// API key secret, deprecated and always empty string.
-        /// </summary>
-        /// <value>API key secret, deprecated and always empty string.</value>
-        public string SecretKey { get; }
-        
-        /// <summary>
         /// The UUID of the API key.
         /// </summary>
         /// <value>The UUID of the API key.</value>
@@ -93,10 +87,9 @@ namespace mbedCloudSDK.Access.Model.ApiKey
         /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="Groups">A list of group IDs this API key belongs to..</param>
         /// <param name="Owner">The owner of this API key, who is the creator by default..</param>
-        /// <param name="SecretKey">API key secret, deprecated and always empty string..</param>
         /// <param name="Id">The UUID of the API key. (required).</param>
         /// <param name="LastLoginTime">The timestamp of the latest API key usage, in milliseconds..</param>
-        public ApiKey(ApiKeyStatus? Status = null, string Apikey = null, string Name = null, string CreatedAt = null, long? CreationTime = null, long? CreationTimeMillis = null, string Etag = null, List<string> Groups = null, string Owner = null, string SecretKey = null, string Id = null, long? LastLoginTime = null)
+        public ApiKey(ApiKeyStatus? Status = null, string Apikey = null, string Name = null, string CreatedAt = null, long? CreationTime = null, long? CreationTimeMillis = null, string Etag = null, List<string> Groups = null, string Owner = null, string Id = null, long? LastLoginTime = null)
         {
             this.Owner = Owner;
             this.Name = Name;
@@ -109,7 +102,6 @@ namespace mbedCloudSDK.Access.Model.ApiKey
             this.CreationTimeMillis = CreationTimeMillis;
             this.Groups = Groups;
             this.Owner = Owner;
-            this.SecretKey = SecretKey;
             this.LastLoginTime = LastLoginTime;
         }
         
@@ -130,7 +122,6 @@ namespace mbedCloudSDK.Access.Model.ApiKey
             sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  Groups: ").Append(Groups).Append("\n");
             sb.Append("  Owner: ").Append(Owner).Append("\n");
-            sb.Append("  SecretKey: ").Append(SecretKey).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  LastLoginTime: ").Append(LastLoginTime).Append("\n");
             sb.Append("}\n");
@@ -140,9 +131,9 @@ namespace mbedCloudSDK.Access.Model.ApiKey
         public static ApiKey Convert(ApiKeyInfoResp apiKeyInfo)
         {
             ApiKeyStatus apiKeyStatus = (ApiKeyStatus)Enum.Parse(typeof(ApiKeyStatus), apiKeyInfo.Status.ToString());
-            return new ApiKey(apiKeyStatus, apiKeyInfo.Apikey, apiKeyInfo.Name, apiKeyInfo.CreatedAt,
+            return new ApiKey(apiKeyStatus, apiKeyInfo.Key, apiKeyInfo.Name, apiKeyInfo.CreatedAt,
                 apiKeyInfo.CreationTime, apiKeyInfo.CreationTimeMillis, apiKeyInfo.Etag, apiKeyInfo.Groups,
-                apiKeyInfo.Owner, apiKeyInfo.SecretKey, apiKeyInfo.Id, apiKeyInfo.LastLoginTime);
+                apiKeyInfo.Owner, apiKeyInfo.Id, apiKeyInfo.LastLoginTime);
         }
     }
 }
