@@ -50,7 +50,7 @@ namespace mbedCloudSDK.Access.Api
             try
             {
                 var account = api.GetMyAccountInfo();
-                return Account.Convert(account);
+                return Account.Map(account);
             }
             catch (ApiException e)
             {
@@ -68,7 +68,7 @@ namespace mbedCloudSDK.Access.Api
             try
             {
                 var account = await api.GetMyAccountInfoAsync();
-                return Account.Convert(account);
+                return Account.Map(account);
             }
             catch(ApiException e)
             {
@@ -91,7 +91,7 @@ namespace mbedCloudSDK.Access.Api
             try
             {
                 var accountInfo = api.UpdateMyAccount(req);
-                return Account.Convert(accountInfo);
+                return Account.Map(accountInfo);
             }
             catch (ApiException e)
             {
@@ -114,7 +114,7 @@ namespace mbedCloudSDK.Access.Api
             try
             {
                 var accountInfo = await api.UpdateMyAccountAsync(req);
-                return Account.Convert(accountInfo);
+                return Account.Map(accountInfo);
             }
             catch (ApiException e)
             {
@@ -239,7 +239,7 @@ namespace mbedCloudSDK.Access.Api
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public ApiKey CreateApiKey(ApiKey key)
+        public ApiKey AddApiKey(ApiKey key)
         {
             var api = new DeveloperApi();
             try
@@ -258,7 +258,7 @@ namespace mbedCloudSDK.Access.Api
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public async Task<ApiKey> CreateApiKeyAsync(ApiKey key)
+        public async Task<ApiKey> AddApiKeyAsync(ApiKey key)
         {
             var api = new DeveloperApi();
             try
@@ -502,7 +502,7 @@ namespace mbedCloudSDK.Access.Api
         /// </summary>
         /// <param name="body"></param>
         /// <returns></returns>
-        public User CreateUser(User body)
+        public User AddUser(User body)
         {
             var api = new AccountAdminApi();
             try
@@ -522,7 +522,7 @@ namespace mbedCloudSDK.Access.Api
         /// </summary>
         /// <param name="body"></param>
         /// <returns></returns>
-        public async Task<User> CreateUserAsync(User body)
+        public async Task<User> AddUserAsync(User body)
         {
             var api = new AccountAdminApi();
             try

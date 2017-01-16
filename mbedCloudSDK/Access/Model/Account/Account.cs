@@ -145,104 +145,12 @@ namespace mbedCloudSDK.Access.Model.Account
         /// <summary>
         /// Initializes a new instance of the <see cref="Account" /> class.
         /// </summary>
-        /// <param name="PhoneNumber">The phone number of the company..</param>
-        /// <param name="PostalCode">The postal code part of the postal address..</param>
-        /// <param name="Id">Account ID. (required).</param>
-        /// <param name="Aliases">An array of aliases. (required).</param>
-        /// <param name="AddressLine2">Postal address line 2..</param>
-        /// <param name="City">The city part of the postal address..</param>
-        /// <param name="AddressLine1">Postal address line 1..</param>
-        /// <param name="DisplayName">The display name for the account..</param>
-        /// <param name="State">The state part of the postal address..</param>
-        /// <param name="Etag">API resource entity version. (required).</param>
-        /// <param name="IsProvisioningAllowed">Flag (true/false) indicating whether Factory Tool is allowed to download or not. (required) (default to false).</param>
-        /// <param name="CreationTimeMillis">CreationTimeMillis.</param>
-        /// <param name="Email">The company email address for this account..</param>
-        /// <param name="Status">The status of the account. (required).</param>
-        /// <param name="Company">The name of the company..</param>
-        /// <param name="UpgradedAt">Time when upgraded to commercial account in UTC format RFC3339..</param>
-        /// <param name="Tier">The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account. Other values are reserved for the future. (required).</param>
-        /// <param name="Limits">List of limits as key-value pairs if requested..</param>
-        /// <param name="Country">The country part of the postal address..</param>
-        /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
-        /// <param name="Contact">The name of the contact person for this account..</param>
-        /// <param name="TemplateId">Account template ID..</param>
-        public Account(string PhoneNumber = null, string PostalCode = null, string Id = null, List<string> Aliases = null, string AddressLine2 = null, string City = null, string AddressLine1 = null, string DisplayName = null, string State = null, string Etag = null, bool? IsProvisioningAllowed = null, long? CreationTimeMillis = null, string Email = null, AccountStatus? Status = null, string Company = null, string UpgradedAt = null, string Tier = null, Dictionary<string, string> Limits = null, string Country = null, string CreatedAt = null, string Contact = null, string TemplateId = null)
+        public Account()
         {
-            // to ensure "Id" is required (not null)
-            if (Id == null)
-            {
-                throw new InvalidDataException("Id is a required property for AccountInfo and cannot be null");
-            }
-            else
-            {
-                this.Id = Id;
-            }
-            // to ensure "Aliases" is required (not null)
-            if (Aliases == null)
-            {
-                throw new InvalidDataException("Aliases is a required property for AccountInfo and cannot be null");
-            }
-            else
-            {
-                this.Aliases = Aliases;
-            }
-            // to ensure "Etag" is required (not null)
-            if (Etag == null)
-            {
-                throw new InvalidDataException("Etag is a required property for AccountInfo and cannot be null");
-            }
-            else
-            {
-                this.Etag = Etag;
-            }
-            // to ensure "IsProvisioningAllowed" is required (not null)
-            if (IsProvisioningAllowed == null)
-            {
-                throw new InvalidDataException("IsProvisioningAllowed is a required property for AccountInfo and cannot be null");
-            }
-            else
-            {
-                this.IsProvisioningAllowed = IsProvisioningAllowed;
-            }
-            // to ensure "Status" is required (not null)
-            if (Status == null)
-            {
-                throw new InvalidDataException("Status is a required property for AccountInfo and cannot be null");
-            }
-            else
-            {
-                this.Status = Status;
-            }
-            // to ensure "Tier" is required (not null)
-            if (Tier == null)
-            {
-                throw new InvalidDataException("Tier is a required property for AccountInfo and cannot be null");
-            }
-            else
-            {
-                this.Tier = Tier;
-            }
-            this.PhoneNumber = PhoneNumber;
-            this.PostalCode = PostalCode;
-            this.AddressLine2 = AddressLine2;
-            this.City = City;
-            this.AddressLine1 = AddressLine1;
-            this.DisplayName = DisplayName;
-            this.State = State;
-            this.CreationTimeMillis = CreationTimeMillis;
-            this.Email = Email;
-            this.Company = Company;
-            this.UpgradedAt = UpgradedAt;
-            this.Limits = Limits;
-            this.Country = Country;
-            this.CreatedAt = CreatedAt;
-            this.Contact = Contact;
-            this.TemplateId = TemplateId;
         }
 
         /// <summary>
-        /// Returns the string presentation of the object
+        /// Returns the string presentation of the object.
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -275,14 +183,38 @@ namespace mbedCloudSDK.Access.Model.Account
             return sb.ToString();
         }
 
-        public static Account Convert(iam.Model.AccountInfo accountInfo)
+        /// <summary>
+        /// Map to Account object.
+        /// </summary>
+        /// <param name="accountInfo"></param>
+        /// <returns></returns>
+        public static Account Map(iam.Model.AccountInfo accountInfo)
         {
             var accountStatus = (AccountStatus)Enum.Parse(typeof(AccountStatus), accountInfo.Status.ToString());
-            return new Account(accountInfo.PhoneNumber, accountInfo.PostalCode, accountInfo.Id, accountInfo.Aliases,
-                accountInfo.AddressLine2, accountInfo.City, accountInfo.AddressLine1, accountInfo.DisplayName, accountInfo.State,
-                accountInfo.Etag, accountInfo.IsProvisioningAllowed, accountInfo.CreationTimeMillis, accountInfo.Email,
-                accountStatus, accountInfo.Company, accountInfo.UpgradedAt, accountInfo.Tier, accountInfo.Limits, 
-                accountInfo.Country, accountInfo.CreatedAt, accountInfo.Contact, accountInfo.TemplateId);
+            var account = new Account();
+            account.PhoneNumber = accountInfo.PhoneNumber;
+            account.PostalCode = accountInfo.PostalCode;
+            account.Id = accountInfo.Id;
+            account.Aliases = accountInfo.Aliases;
+            account.AddressLine2 = accountInfo.AddressLine2;
+            account.City = accountInfo.City;
+            account.AddressLine1 = accountInfo.AddressLine1;
+            account.DisplayName = accountInfo.DisplayName;
+            account.State = accountInfo.State;
+            account.Etag = accountInfo.Etag;
+            account.IsProvisioningAllowed = accountInfo.IsProvisioningAllowed;
+            account.CreationTimeMillis = accountInfo.CreationTimeMillis;
+            account.Email = accountInfo.Email;
+            account.Status = accountStatus;
+            account.Company = accountInfo.Company;
+            account.UpgradedAt = accountInfo.UpgradedAt;
+            account.Tier = accountInfo.Tier;
+            account.Limits = accountInfo.Limits;
+            account.Country = accountInfo.Country;
+            account.CreatedAt = accountInfo.CreatedAt;
+            account.Contact = account.Contact;
+            account.TemplateId = accountInfo.TemplateId;
+            return account;
         }
     }
 }
