@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.Devices
+namespace mbedCloudSDK.Devices.Model.Device
 {
 	/// <summary>
 	/// Async consumer.
