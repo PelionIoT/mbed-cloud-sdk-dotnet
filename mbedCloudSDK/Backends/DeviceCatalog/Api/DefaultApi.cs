@@ -178,8 +178,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceLogId"></param>
-        /// <returns>DeviceLogSerializer</returns>
-        DeviceLogSerializer DeviceLogRetrieve (string deviceLogId);
+        /// <returns>DeviceLogSerializerData</returns>
+        DeviceLogSerializerData DeviceLogRetrieve (string deviceLogId);
 
         /// <summary>
         /// 
@@ -189,8 +189,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceLogId"></param>
-        /// <returns>ApiResponse of DeviceLogSerializer</returns>
-        ApiResponse<DeviceLogSerializer> DeviceLogRetrieveWithHttpInfo (string deviceLogId);
+        /// <returns>ApiResponse of DeviceLogSerializerData</returns>
+        ApiResponse<DeviceLogSerializerData> DeviceLogRetrieveWithHttpInfo (string deviceLogId);
         /// <summary>
         /// 
         /// </summary>
@@ -412,8 +412,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceLogId"></param>
-        /// <returns>Task of DeviceLogSerializer</returns>
-        System.Threading.Tasks.Task<DeviceLogSerializer> DeviceLogRetrieveAsync (string deviceLogId);
+        /// <returns>Task of DeviceLogSerializerData</returns>
+        System.Threading.Tasks.Task<DeviceLogSerializerData> DeviceLogRetrieveAsync (string deviceLogId);
 
         /// <summary>
         /// 
@@ -423,8 +423,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceLogId"></param>
-        /// <returns>Task of ApiResponse (DeviceLogSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceLogSerializer>> DeviceLogRetrieveAsyncWithHttpInfo (string deviceLogId);
+        /// <returns>Task of ApiResponse (DeviceLogSerializerData)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceLogSerializerData>> DeviceLogRetrieveAsyncWithHttpInfo (string deviceLogId);
         /// <summary>
         /// 
         /// </summary>
@@ -1389,10 +1389,10 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceLogId"></param>
-        /// <returns>DeviceLogSerializer</returns>
-        public DeviceLogSerializer DeviceLogRetrieve (string deviceLogId)
+        /// <returns>DeviceLogSerializerData</returns>
+        public DeviceLogSerializerData DeviceLogRetrieve (string deviceLogId)
         {
-             ApiResponse<DeviceLogSerializer> localVarResponse = DeviceLogRetrieveWithHttpInfo(deviceLogId);
+             ApiResponse<DeviceLogSerializerData> localVarResponse = DeviceLogRetrieveWithHttpInfo(deviceLogId);
              return localVarResponse.Data;
         }
 
@@ -1401,8 +1401,8 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceLogId"></param>
-        /// <returns>ApiResponse of DeviceLogSerializer</returns>
-        public ApiResponse< DeviceLogSerializer > DeviceLogRetrieveWithHttpInfo (string deviceLogId)
+        /// <returns>ApiResponse of DeviceLogSerializerData</returns>
+        public ApiResponse< DeviceLogSerializerData > DeviceLogRetrieveWithHttpInfo (string deviceLogId)
         {
             // verify the required parameter 'deviceLogId' is set
             if (deviceLogId == null)
@@ -1453,9 +1453,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceLogSerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceLogSerializerData>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceLogSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceLogSerializer)));
+                (DeviceLogSerializerData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceLogSerializerData)));
             
         }
 
@@ -1464,10 +1464,10 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceLogId"></param>
-        /// <returns>Task of DeviceLogSerializer</returns>
-        public async System.Threading.Tasks.Task<DeviceLogSerializer> DeviceLogRetrieveAsync (string deviceLogId)
+        /// <returns>Task of DeviceLogSerializerData</returns>
+        public async System.Threading.Tasks.Task<DeviceLogSerializerData> DeviceLogRetrieveAsync (string deviceLogId)
         {
-             ApiResponse<DeviceLogSerializer> localVarResponse = await DeviceLogRetrieveAsyncWithHttpInfo(deviceLogId);
+             ApiResponse<DeviceLogSerializerData> localVarResponse = await DeviceLogRetrieveAsyncWithHttpInfo(deviceLogId);
              return localVarResponse.Data;
 
         }
@@ -1477,8 +1477,8 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceLogId"></param>
-        /// <returns>Task of ApiResponse (DeviceLogSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceLogSerializer>> DeviceLogRetrieveAsyncWithHttpInfo (string deviceLogId)
+        /// <returns>Task of ApiResponse (DeviceLogSerializerData)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceLogSerializerData>> DeviceLogRetrieveAsyncWithHttpInfo (string deviceLogId)
         {
             // verify the required parameter 'deviceLogId' is set
             if (deviceLogId == null)
@@ -1528,9 +1528,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceLogSerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceLogSerializerData>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceLogSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceLogSerializer)));
+                (DeviceLogSerializerData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceLogSerializerData)));
             
         }
 
