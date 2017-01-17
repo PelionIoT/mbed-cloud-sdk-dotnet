@@ -1,6 +1,7 @@
 ﻿using mbedCloudSDK.Devices.Api;
 using mbedCloudSDK.Devices.Model.Device;
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace mbedCloudSDK.Devices.Model.Resource
@@ -15,7 +16,7 @@ namespace mbedCloudSDK.Devices.Model.Resource
         /// <summary>
         /// Id of the device this resource belongs to.
         /// </summary>
-        public string DeviceId { get; }
+        public string DeviceId { get; private set; }
 
         /// <summary>
         /// Resource&#39;s type
@@ -51,20 +52,34 @@ namespace mbedCloudSDK.Devices.Model.Resource
         /// Initializes a new instance of the <see cref="Resource" /> class.
         /// </summary>
         /// <param name="api">Devices api</param>
-        /// <param name="deviceId">Id of the device.</param>
-        /// <param name="type">Resource&#39;s type.</param>
-        /// <param name="conentType">The content type of the resource. &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Important&lt;/b&gt;&lt;br/&gt; You are encouraged to use the resource types listed in the LWM2M specification: http://technical.openmobilealliance.org/Technical/technical-information/omna/lightweight-m2m-lwm2m-object-registry .</param>
-        /// <param name="uri">Resource&#39;s url..</param>
-        /// <param name="observable">Observable determines whether you can subscribe to changes for this resource. It can have values \&quot;true\&quot; or \&quot;false\&quot;. .</param>
-        public Resource(DevicesApi api, string deviceId, string type = null, string conentType = null, string uri = null, bool? observable = null)
+        /// <param name="options">Dictionary containing properties.</param>
+        public Resource(DevicesApi api, string deviceID, IDictionary<string, object> options = null)
         {
             this.api = api;
-            this.DeviceId = deviceId;
-            this.Type = type;
-            this.ConentType = conentType;
-            this.Uri = uri;
-            this.Observable = observable;
-            this.Queue = new AsyncProducerConsumerCollection<string>();
+            if (options != null)
+            {
+                foreach (KeyValuePair<string, object> item in options)
+                {
+                    var property = this.GetType().GetProperty(item.Key);
+                    if (property != null)
+                    {
+                        property.SetValue(this, item.Value, null);
+                    }
+                }
+            }
+            
+        }
+
+        public static Resource Map(DevicesApi api, string deviceID, mds.Model.Resource res)
+        {
+            Resource resource = new Resource(api, deviceID);
+            resource.DeviceId = deviceID;
+            resource.Type = res.Rt;
+            resource.ConentType = res.Type;
+            resource.Uri = res.Uri;
+            resource.Observable = res.Obs;
+            resource.Queue = new AsyncProducerConsumerCollection<string>();
+            return resource;
         }
 
         /// <summary>
