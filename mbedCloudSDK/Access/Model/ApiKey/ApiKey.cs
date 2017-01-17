@@ -14,7 +14,7 @@ namespace mbedCloudSDK.Access.Model.ApiKey
         /// The status of the API key.
         /// </summary>
         /// <value>The status of the API key.</value>
-        public ApiKeyStatus? Status { get; }
+        public ApiKeyStatus? Status { get; private set; }
 
         /// <summary>
         /// The display name for the API key.
@@ -32,77 +32,66 @@ namespace mbedCloudSDK.Access.Model.ApiKey
         /// The API key.
         /// </summary>
         /// <value>The API key.</value>
-        public string Apikey { get; }
+        public string Apikey { get; private set; }
         
         /// <summary>
         /// Creation UTC time RFC3339.
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
-        public string CreatedAt { get; }
+        public string CreatedAt { get; private set; }
         
         /// <summary>
         /// The timestamp of the API key creation in the storage, in milliseconds.
         /// </summary>
         /// <value>The timestamp of the API key creation in the storage, in milliseconds.</value>
-        public long? CreationTime { get; }
+        public long? CreationTime { get; private set; }
         
         /// <summary>
         /// Gets or Sets CreationTimeMillis
         /// </summary>
-        public long? CreationTimeMillis { get; }
+        public long? CreationTimeMillis { get; private set; }
         
         /// <summary>
         /// API resource entity version.
         /// </summary>
         /// <value>API resource entity version.</value>
-        public string Etag { get; }
+        public string Etag { get; private set; }
         
         /// <summary>
         /// A list of group IDs this API key belongs to.
         /// </summary>
         /// <value>A list of group IDs this API key belongs to.</value>
-        public List<string> Groups { get; }
+        public List<string> Groups { get; private set; }
         
         /// <summary>
         /// The UUID of the API key.
         /// </summary>
         /// <value>The UUID of the API key.</value>
-        public string Id { get; }
+        public string Id { get; private set; }
         
         /// <summary>
         /// The timestamp of the latest API key usage, in milliseconds.
         /// </summary>
         /// <value>The timestamp of the latest API key usage, in milliseconds.</value>
-        public long? LastLoginTime { get; }
+        public long? LastLoginTime { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiKeyInfoResp" /> class.
+        /// Create new instance of api key class.
         /// </summary>
-        /// <param name="Status">The status of the API key..</param>
-        /// <param name="Apikey">The API key. (required).</param>
-        /// <param name="Name">The display name for the API key. (required).</param>
-        /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
-        /// <param name="CreationTime">The timestamp of the API key creation in the storage, in milliseconds..</param>
-        /// <param name="CreationTimeMillis">CreationTimeMillis.</param>
-        /// <param name="Etag">API resource entity version. (required).</param>
-        /// <param name="Groups">A list of group IDs this API key belongs to..</param>
-        /// <param name="Owner">The owner of this API key, who is the creator by default..</param>
-        /// <param name="Id">The UUID of the API key. (required).</param>
-        /// <param name="LastLoginTime">The timestamp of the latest API key usage, in milliseconds..</param>
-        public ApiKey(ApiKeyStatus? Status = null, string Apikey = null, string Name = null, string CreatedAt = null, long? CreationTime = null, long? CreationTimeMillis = null, string Etag = null, List<string> Groups = null, string Owner = null, string Id = null, long? LastLoginTime = null)
+        /// <param name="options">Dictionary containing properties.</param>
+        public ApiKey(IDictionary<string, object> options = null)
         {
-            this.Owner = Owner;
-            this.Name = Name;
-            this.Apikey = Apikey;
-            this.Etag = Etag;
-            this.Id = Id;
-            this.Status = Status;
-            this.CreatedAt = CreatedAt;
-            this.CreationTime = CreationTime;
-            this.CreationTimeMillis = CreationTimeMillis;
-            this.Groups = Groups;
-            this.Owner = Owner;
-            this.LastLoginTime = LastLoginTime;
+            if (options != null)
+            {
+                foreach (KeyValuePair<string, object> item in options)
+                {
+                    var property = this.GetType().GetProperty(item.Key);
+                    if (property != null)
+                    {
+                        property.SetValue(this, item.Value, null);
+                    }
+                }
+            }
         }
         
         /// <summary>
@@ -112,7 +101,7 @@ namespace mbedCloudSDK.Access.Model.ApiKey
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ApiKeyInfoResp {\n");
+            sb.Append("class ApiKey {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Apikey: ").Append(Apikey).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
@@ -128,12 +117,22 @@ namespace mbedCloudSDK.Access.Model.ApiKey
             return sb.ToString();
         }
 
-        public static ApiKey Convert(ApiKeyInfoResp apiKeyInfo)
+        public static ApiKey Map(ApiKeyInfoResp apiKeyInfo)
         {
             ApiKeyStatus apiKeyStatus = (ApiKeyStatus)Enum.Parse(typeof(ApiKeyStatus), apiKeyInfo.Status.ToString());
-            return new ApiKey(apiKeyStatus, apiKeyInfo.Key, apiKeyInfo.Name, apiKeyInfo.CreatedAt,
-                apiKeyInfo.CreationTime, apiKeyInfo.CreationTimeMillis, apiKeyInfo.Etag, apiKeyInfo.Groups,
-                apiKeyInfo.Owner, apiKeyInfo.Id, apiKeyInfo.LastLoginTime);
+            var apiKey = new ApiKey();
+            apiKey.Status = apiKeyStatus;
+            apiKey.Apikey = apiKeyInfo.Key;
+            apiKey.Name = apiKeyInfo.Name;
+            apiKey.CreatedAt = apiKeyInfo.CreatedAt;
+            apiKey.CreationTime = apiKeyInfo.CreationTime;
+            apiKey.CreationTimeMillis = apiKeyInfo.CreationTimeMillis;
+            apiKey.Etag = apiKeyInfo.Etag;
+            apiKey.Groups = apiKeyInfo.Groups;
+            apiKey.Owner = apiKeyInfo.Owner;
+            apiKey.Id = apiKeyInfo.Id;
+            apiKey.LastLoginTime = apiKeyInfo.LastLoginTime;
+            return apiKey;
         }
     }
 }
