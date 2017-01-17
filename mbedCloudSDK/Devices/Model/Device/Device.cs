@@ -244,7 +244,6 @@ namespace mbedCloudSDK.Devices.Model.Device
             this.Status = Status;
             this.QueueMode = QueueMode;
             this.Type = Type;
-            //this.Resources = new Dictionary<string, Resource.Resource>();
         }
 
         /// <summary>

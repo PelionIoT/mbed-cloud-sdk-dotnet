@@ -145,8 +145,19 @@ namespace mbedCloudSDK.Access.Model.Account
         /// <summary>
         /// Initializes a new instance of the <see cref="Account" /> class.
         /// </summary>
-        public Account()
+        public Account(IDictionary<string, object> options = null)
         {
+            if (options != null)
+            {
+                foreach (KeyValuePair<string, object> item in options)
+                {
+                    var property = this.GetType().GetProperty(item.Key);
+                    if (property != null)
+                    {
+                        property.SetValue(this, item.Value, null);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -156,7 +167,7 @@ namespace mbedCloudSDK.Access.Model.Account
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class AccountInfo {\n");
+            sb.Append("class Account {\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");

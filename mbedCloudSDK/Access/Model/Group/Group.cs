@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace mbedCloudSDK.Access.Model.Group
 {
+    /// <summary>
+    /// Represents group from IAM.
+    /// </summary>
     public class Group
     {
 
@@ -10,25 +14,25 @@ namespace mbedCloudSDK.Access.Model.Group
         /// The name of the group.
         /// </summary>
         /// <value>The name of the group.</value>
-        public string Name { get; }
+        public string Name { get; private set; }
         
         /// <summary>
         /// A timestamp of the latest group update, in milliseconds.
         /// </summary>
         /// <value>A timestamp of the latest group update, in milliseconds.</value>
-        public long? LastUpdateTime { get; }
+        public long? LastUpdateTime { get; private set; }
         
         /// <summary>
         /// The number of API keys in this group.
         /// </summary>
         /// <value>The number of API keys in this group.</value>
-        public int? ApiKeyCount { get; }
+        public int? ApiKeyCount { get; private set; }
         
         /// <summary>
         /// Creation UTC time RFC3339.
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
-        public string CreatedAt { get; }
+        public string CreatedAt { get; private set; }
         
         /// <summary>
         /// A timestamp of the group creation in the storage, in milliseconds.
@@ -51,37 +55,31 @@ namespace mbedCloudSDK.Access.Model.Group
         /// The UUID of the group.
         /// </summary>
         /// <value>The UUID of the group.</value>
-        public string Id { get; }
+        public string Id { get; private set; }
         
         /// <summary>
         /// The number of users in this group.
         /// </summary>
         /// <value>The number of users in this group.</value>
-        public int? UserCount { get; }
+        public int? UserCount { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GroupSummary" /> class.
+        /// Initializes a new instance of the <see cref="Group" /> class.
         /// </summary>
-        /// <param name="Name">The name of the group. (required).</param>
-        /// <param name="LastUpdateTime">A timestamp of the latest group update, in milliseconds..</param>
-        /// <param name="ApiKeyCount">The number of API keys in this group. (required).</param>
-        /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
-        /// <param name="CreationTime">A timestamp of the group creation in the storage, in milliseconds..</param>
-        /// <param name="Etag">API resource entity version. (required).</param>
-        /// <param name="CreationTimeMillis">CreationTimeMillis.</param>
-        /// <param name="Id">The UUID of the group. (required).</param>
-        /// <param name="UserCount">The number of users in this group. (required).</param>
-        public Group(string Name = null, long? LastUpdateTime = null, int? ApiKeyCount = null, string CreatedAt = null, long? CreationTime = null, string Etag = null, long? CreationTimeMillis = null, string Id = null, int? UserCount = null)
+        /// <param name="options">Dictionary containing properties.</param>
+        public Group(IDictionary<string, object> options = null)
         {
-            this.Name = Name;
-            this.ApiKeyCount = ApiKeyCount;
-            this.Etag = Etag;
-            this.Id = Id;
-            this.UserCount = UserCount;
-            this.LastUpdateTime = LastUpdateTime;
-            this.CreatedAt = CreatedAt;
-            this.CreationTime = CreationTime;
-            this.CreationTimeMillis = CreationTimeMillis;
+            if (options != null)
+            {
+                foreach (KeyValuePair<string, object> item in options)
+                {
+                    var property = this.GetType().GetProperty(item.Key);
+                    if (property != null)
+                    {
+                        property.SetValue(this, item.Value, null);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -91,7 +89,7 @@ namespace mbedCloudSDK.Access.Model.Group
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class GroupSummary {\n");
+            sb.Append("class Group {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  LastUpdateTime: ").Append(LastUpdateTime).Append("\n");
             sb.Append("  ApiKeyCount: ").Append(ApiKeyCount).Append("\n");
@@ -105,10 +103,19 @@ namespace mbedCloudSDK.Access.Model.Group
             return sb.ToString();
         }
 
-        public static Group Convert(iam.Model.GroupSummary groupInfo)
+        public static Group Map(iam.Model.GroupSummary groupInfo)
         {
-            return new Group(groupInfo.Name, groupInfo.LastUpdateTime, groupInfo.ApiKeyCount, groupInfo.CreatedAt, groupInfo.CreationTime,
-                groupInfo.Etag, groupInfo.CreationTimeMillis, groupInfo.Id, groupInfo.UserCount);
+            var group = new Group();
+            group.Name = groupInfo.Name;
+            group.LastUpdateTime = groupInfo.LastUpdateTime;
+            group.ApiKeyCount = groupInfo.ApiKeyCount;
+            group.CreatedAt = groupInfo.CreatedAt;
+            group.CreationTime = groupInfo.CreationTime;
+            group.Etag = groupInfo.Etag;
+            group.CreationTimeMillis = groupInfo.CreationTimeMillis;
+            group.Id = groupInfo.Id;
+            group.UserCount = groupInfo.UserCount;
+            return group;
         }
 
     }

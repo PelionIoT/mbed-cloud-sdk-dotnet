@@ -3,7 +3,7 @@ using mbedCloudSDK.Common;
 using mbedCloudSDK.Exceptions;
 using provisioning_certificate.Model;
 
-namespace mbedCloudSDK.Manufacturing
+namespace mbedCloudSDK.Manufacturing.Api
 {
 	/// <summary>
 	/// Exposing functionality from the following services:

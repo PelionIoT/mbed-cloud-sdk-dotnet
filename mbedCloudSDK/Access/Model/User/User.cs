@@ -14,7 +14,7 @@ namespace mbedCloudSDK.Access.Model.User
         /// The status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately.
         /// </summary>
         /// <value>The status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately.</value>
-        public UserStatus? Status { get; }
+        public UserStatus? Status { get; private set; }
 
         /// <summary>
         /// A username containing alphanumerical letters and -,._@+&#x3D; characters.
@@ -26,19 +26,19 @@ namespace mbedCloudSDK.Access.Model.User
         /// A flag indicating whether the user&#39;s email address has been verified or not.
         /// </summary>
         /// <value>A flag indicating whether the user&#39;s email address has been verified or not.</value>
-        public bool? EmailVerified { get; }
+        public bool? EmailVerified { get; private set; }
         
         /// <summary>
         /// The UUID of the account.
         /// </summary>
         /// <value>The UUID of the account.</value>
-        public string AccountId { get; }
+        public string AccountId { get; private set; }
         
         /// <summary>
         /// A timestamp of the latest change of the user password, in milliseconds.
         /// </summary>
         /// <value>A timestamp of the latest change of the user password, in milliseconds.</value>
-        public long? PasswordChangedTime { get; }
+        public long? PasswordChangedTime { get; private set; }
         
         /// <summary>
         /// A list of IDs of the groups this user belongs to.
@@ -50,7 +50,7 @@ namespace mbedCloudSDK.Access.Model.User
         /// Creation UTC time RFC3339.
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
-        public string CreatedAt { get; }
+        public string CreatedAt { get; private set; }
         
         /// <summary>
         /// A flag indicating that the General Terms and Conditions has been accepted.
@@ -74,7 +74,7 @@ namespace mbedCloudSDK.Access.Model.User
         /// API resource entity version.
         /// </summary>
         /// <value>API resource entity version.</value>
-        public string Etag { get; }
+        public string Etag { get; private set; }
         
         /// <summary>
         /// The full name of the user.
@@ -91,13 +91,13 @@ namespace mbedCloudSDK.Access.Model.User
         /// <summary>
         /// Gets or Sets CreationTimeMillis
         /// </summary>
-        public long? CreationTimeMillis { get; }
+        public long? CreationTimeMillis { get; private set; }
         
         /// <summary>
         /// A timestamp of the user creation in the storage, in milliseconds.
         /// </summary>
         /// <value>A timestamp of the user creation in the storage, in milliseconds.</value>
-        public long? CreationTime { get; }
+        public long? CreationTime { get; private set; }
         
         /// <summary>
         /// The password when creating a new user. It will will generated when not present in the request.
@@ -115,73 +115,31 @@ namespace mbedCloudSDK.Access.Model.User
         /// The UUID of the user.
         /// </summary>
         /// <value>The UUID of the user.</value>
-        public string Id { get; }
+        public string Id { get; private set; }
         
         /// <summary>
         /// A timestamp of the latest login of the user, in milliseconds.
         /// </summary>
         /// <value>A timestamp of the latest login of the user, in milliseconds.</value>
-        public long? LastLoginTime { get; }
+        public long? LastLoginTime { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="User" /> class.
+        /// Initializes new instance of User class.
         /// </summary>
-        /// <param name="Status">The status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately. (required).</param>
-        /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters. (required).</param>
-        /// <param name="EmailVerified">A flag indicating whether the user&#39;s email address has been verified or not. (default to false).</param>
-        /// <param name="AccountId">The UUID of the account. (required).</param>
-        /// <param name="PasswordChangedTime">A timestamp of the latest change of the user password, in milliseconds..</param>
-        /// <param name="Groups">A list of IDs of the groups this user belongs to..</param>
-        /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
-        /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted. (default to false).</param>
-        /// <param name="Email">The email address. (required).</param>
-        /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted. (default to false).</param>
-        /// <param name="Etag">API resource entity version. (required).</param>
-        /// <param name="FullName">The full name of the user..</param>
-        /// <param name="Address">Address..</param>
-        /// <param name="CreationTimeMillis">CreationTimeMillis.</param>
-        /// <param name="CreationTime">A timestamp of the user creation in the storage, in milliseconds..</param>
-        /// <param name="Password">The password when creating a new user. It will will generated when not present in the request..</param>
-        /// <param name="PhoneNumber">Phone number..</param>
-        /// <param name="Id">The UUID of the user. (required).</param>
-        /// <param name="LastLoginTime">A timestamp of the latest login of the user, in milliseconds..</param>
-        public User(UserStatus? Status = null, string Username = null, bool? EmailVerified = null, string AccountId = null, long? PasswordChangedTime = null, List<string> Groups = null, string CreatedAt = null, bool? IsGtcAccepted = null, string Email = null, bool? IsMarketingAccepted = null, string Etag = null, string FullName = null, string Address = null, long? CreationTimeMillis = null, long? CreationTime = null, string Password = null, string PhoneNumber = null, string Id = null, long? LastLoginTime = null)
+        /// <param name="options">Dictionary containing properties.</param>
+        public User(IDictionary<string, object> options = null)
         {
-            this.Status = Status;
-            this.Username = Username;
-            this.AccountId = AccountId;
-            this.Email = Email;
-            this.Etag = Etag;
-            this.Id = Id;
-            this.EmailVerified = false;
-            this.PasswordChangedTime = PasswordChangedTime;
-            this.Groups = Groups;
-            this.CreatedAt = CreatedAt;
-            // use default value if no "IsGtcAccepted" provided
-            if (IsGtcAccepted == null)
+            if (options != null)
             {
-                this.IsGtcAccepted = false;
+                foreach (KeyValuePair<string, object> item in options)
+                {
+                    var property = this.GetType().GetProperty(item.Key);
+                    if (property != null)
+                    {
+                        property.SetValue(this, item.Value, null);
+                    }
+                }
             }
-            else
-            {
-                this.IsGtcAccepted = IsGtcAccepted;
-            }
-            // use default value if no "IsMarketingAccepted" provided
-            if (IsMarketingAccepted == null)
-            {
-                this.IsMarketingAccepted = false;
-            }
-            else
-            {
-                this.IsMarketingAccepted = IsMarketingAccepted;
-            }
-            this.FullName = FullName;
-            this.Address = Address;
-            this.CreationTimeMillis = CreationTimeMillis;
-            this.CreationTime = CreationTime;
-            this.Password = Password;
-            this.PhoneNumber = PhoneNumber;
-            this.LastLoginTime = LastLoginTime;
         }
 
         /// <summary>
@@ -191,7 +149,7 @@ namespace mbedCloudSDK.Access.Model.User
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class UserInfoResp {\n");
+            sb.Append("class User {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("  EmailVerified: ").Append(EmailVerified).Append("\n");
@@ -215,13 +173,30 @@ namespace mbedCloudSDK.Access.Model.User
             return sb.ToString();
         }
 
-        public static User Convert(iam.Model.UserInfoResp userInfo)
+        public static User Map(iam.Model.UserInfoResp userInfo)
         {
             var userStatus = (UserStatus)Enum.Parse(typeof(UserStatus), userInfo.Status.ToString());
-            return new User(userStatus, userInfo.Username, userInfo.EmailVerified, userInfo.AccountId, userInfo.PasswordChangedTime,
-                userInfo.Groups, userInfo.CreatedAt, userInfo.IsGtcAccepted, userInfo.Email, userInfo.IsMarketingAccepted, userInfo.Etag,
-                userInfo.FullName, userInfo.Address, userInfo.CreationTimeMillis, userInfo.CreationTime, userInfo.Password, userInfo.PhoneNumber,
-                userInfo.Id, userInfo.LastLoginTime);
+            User user = new User();
+            user.Status = userStatus;
+            user.Username = userInfo.Username;
+            user.EmailVerified = userInfo.EmailVerified;
+            user.AccountId = userInfo.AccountId;
+            user.PasswordChangedTime = userInfo.PasswordChangedTime;
+            user.Groups = userInfo.Groups;
+            user.CreatedAt = userInfo.CreatedAt;
+            user.IsGtcAccepted = userInfo.IsGtcAccepted;
+            user.Email = userInfo.Email;
+            user.IsMarketingAccepted = userInfo.IsMarketingAccepted;
+            user.Etag = userInfo.Etag;
+            user.FullName = userInfo.FullName;
+            user.Address = userInfo.Address;
+            user.CreationTimeMillis = userInfo.CreationTimeMillis;
+            user.CreationTime = userInfo.CreationTime;
+            user.Password = userInfo.Password;
+            user.PhoneNumber = userInfo.PhoneNumber;
+            user.Id = userInfo.Id;
+            user.LastLoginTime = userInfo.LastLoginTime;
+            return user; 
         }
     }
 }
