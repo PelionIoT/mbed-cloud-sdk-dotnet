@@ -123,8 +123,8 @@ namespace deployment_service.Model
         /// <param name="CampaignId">DEPRECATED: The ID of the campaign (required).</param>
         /// <param name="DeployedDevices">DeployedDevices (required).</param>
         /// <param name="UpdatedAt">The time the object was updated (required).</param>
-        /// <param name="When">The timestamp at which campaign is scheduled to start (required).</param>
-        /// <param name="Finished">The timestamp when the update campaign finished (required).</param>
+        /// <param name="When">The timestamp at which campaign is scheduled to start.</param>
+        /// <param name="Finished">The timestamp when the update campaign finished.</param>
         /// <param name="RootManifestUrl">RootManifestUrl (required).</param>
         /// <param name="UpdatingApiKey">The gateway client API key (required).</param>
         /// <param name="UpdatingAccountId">The updating account ID (required).</param>
@@ -231,24 +231,6 @@ namespace deployment_service.Model
             {
                 this.UpdatedAt = UpdatedAt;
             }
-            // to ensure "When" is required (not null)
-            if (When == null)
-            {
-                throw new InvalidDataException("When is a required property for UpdateCampaignStatusSerializer and cannot be null");
-            }
-            else
-            {
-                this.When = When;
-            }
-            // to ensure "Finished" is required (not null)
-            if (Finished == null)
-            {
-                throw new InvalidDataException("Finished is a required property for UpdateCampaignStatusSerializer and cannot be null");
-            }
-            else
-            {
-                this.Finished = Finished;
-            }
             // to ensure "RootManifestUrl" is required (not null)
             if (RootManifestUrl == null)
             {
@@ -294,6 +276,8 @@ namespace deployment_service.Model
             {
                 this.Name = Name;
             }
+            this.When = When;
+            this.Finished = Finished;
         }
         
         /// <summary>
