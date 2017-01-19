@@ -86,7 +86,7 @@
     <Compile Include="Backends\ProvisioningCertificate\Client\ApiResponse.cs" />
     <Compile Include="Backends\ProvisioningCertificate\Client\Configuration.cs" />
     <Compile Include="Backends\ProvisioningCertificate\Model\ProvisioningCertificate.cs" />
-    <Compile Include="Development\DevelopmentApi.cs" />
+    <Compile Include="Development\Api\DevelopmentApi.cs" />
     <Compile Include="Common\BaseApi.cs" />
     <Compile Include="Common\Config.cs" />
     <Compile Include="Devices\Api\DevicesApi.cs" />
@@ -142,15 +142,17 @@
     <Compile Include="Devices\Model\Device\State.cs" />
     <Compile Include="Exceptions\CloudApiException.cs" />
     <Compile Include="Common\ListParams.cs" />
-    <Compile Include="Manufacturing\Manufacturing.cs" />
+    <Compile Include="Logging\Model\DeviceLog.cs" />
+    <Compile Include="Logging\Model\EventType.cs" />
+    <Compile Include="Manufacturing\Api\ManufacturingApi.cs" />
     <Compile Include="Devices\Model\Device\AsyncProducerConsumerCollection.cs" />
     <Compile Include="Devices\Model\Device\AsyncConsumer.cs" />
     <Compile Include="Devices\Model\Device\Device.cs" />
     <Compile Include="Devices\Model\Resource\Resource.cs" />
     <Compile Include="Exceptions\ValueException.cs" />
-    <Compile Include="Update\Update.cs" />
-    <Compile Include="Logging\LoggingApi.cs" />
-    <Compile Include="Assets\AsstetsApi.cs" />
+    <Compile Include="Update\Api\UpdateApi.cs" />
+    <Compile Include="Logging\Api\LoggingApi.cs" />
+    <Compile Include="Assets\Api\AsstetsApi.cs" />
     <Compile Include="Backends\FirmwareCatalog\Api\DefaultApi.cs" />
     <Compile Include="Backends\FirmwareCatalog\Client\ApiClient.cs" />
     <Compile Include="Backends\FirmwareCatalog\Client\ApiException.cs" />
@@ -213,8 +215,12 @@
     <None Include="Backends\ProvisioningCertificate\README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\Model\" />
+    <Folder Include="Development\Model\" />
     <Folder Include="Devices\Model\Subscription\" />
     <Folder Include="Devices\Model\Webhook\" />
+    <Folder Include="Manufacturing\Model\" />
+    <Folder Include="Update\Model\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="lib\Newtonsoft.Json.dll" />

@@ -50,7 +50,7 @@ namespace mbedCloudSDK.Access.Api
             try
             {
                 var account = api.GetMyAccountInfo();
-                return Account.Convert(account);
+                return Account.Map(account);
             }
             catch (ApiException e)
             {
@@ -68,7 +68,7 @@ namespace mbedCloudSDK.Access.Api
             try
             {
                 var account = await api.GetMyAccountInfoAsync();
-                return Account.Convert(account);
+                return Account.Map(account);
             }
             catch(ApiException e)
             {
@@ -91,7 +91,7 @@ namespace mbedCloudSDK.Access.Api
             try
             {
                 var accountInfo = api.UpdateMyAccount(req);
-                return Account.Convert(accountInfo);
+                return Account.Map(accountInfo);
             }
             catch (ApiException e)
             {
@@ -114,7 +114,7 @@ namespace mbedCloudSDK.Access.Api
             try
             {
                 var accountInfo = await api.UpdateMyAccountAsync(req);
-                return Account.Convert(accountInfo);
+                return Account.Map(accountInfo);
             }
             catch (ApiException e)
             {
@@ -144,7 +144,7 @@ namespace mbedCloudSDK.Access.Api
                 List<ApiKey> apiKeys = new List<ApiKey>();
                 foreach (var key in apiKeysInfo)
                 {
-                    apiKeys.Add(ApiKey.Convert(key));
+                    apiKeys.Add(ApiKey.Map(key));
                 }
                 return apiKeys;
             }
@@ -172,7 +172,7 @@ namespace mbedCloudSDK.Access.Api
                 List<ApiKey> apiKeys = new List<ApiKey>();
                 foreach (var key in apiKeysInfo.Data)
                 {
-                    apiKeys.Add(ApiKey.Convert(key));
+                    apiKeys.Add(ApiKey.Map(key));
                 }
                 return apiKeys;
             }
@@ -193,12 +193,12 @@ namespace mbedCloudSDK.Access.Api
 			{
                 if (keyId != null)
                 {
-                    return ApiKey.Convert(api.GetApiKey(keyId));
+                    return ApiKey.Map(api.GetApiKey(keyId));
                 }
                 //return currently used api key for empty keyId
                 else 
                 {
-                    return ApiKey.Convert(api.GetMyApiKey());
+                    return ApiKey.Map(api.GetMyApiKey());
                 }
                 
 			}
@@ -220,12 +220,12 @@ namespace mbedCloudSDK.Access.Api
             {
                 if (keyId != null)
                 {
-                    return ApiKey.Convert(await api.GetApiKeyAsync(keyId));
+                    return ApiKey.Map(await api.GetApiKeyAsync(keyId));
                 }
                 //return currently used api key for empty keyId
                 else
                 {
-                    return ApiKey.Convert(await api.GetMyApiKeyAsync());
+                    return ApiKey.Map(await api.GetMyApiKeyAsync());
                 }
             }
             catch (ApiException e)
@@ -239,13 +239,13 @@ namespace mbedCloudSDK.Access.Api
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public ApiKey CreateApiKey(ApiKey key)
+        public ApiKey AddApiKey(ApiKey key)
         {
             var api = new DeveloperApi();
             try
             {
                 var keyBody = new ApiKeyInfoReq(key.Owner, key.Name, key.Groups);
-                return ApiKey.Convert(api.CreateApiKey(keyBody));
+                return ApiKey.Map(api.CreateApiKey(keyBody));
             }
             catch (ApiException e)
             {
@@ -258,13 +258,13 @@ namespace mbedCloudSDK.Access.Api
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public async Task<ApiKey> CreateApiKeyAsync(ApiKey key)
+        public async Task<ApiKey> AddApiKeyAsync(ApiKey key)
         {
             var api = new DeveloperApi();
             try
             {
                 var keyBody = new ApiKeyInfoReq(key.Owner, key.Name, key.Groups);
-                return ApiKey.Convert(await api.CreateApiKeyAsync(keyBody));
+                return ApiKey.Map(await api.CreateApiKeyAsync(keyBody));
             }
             catch (ApiException e)
             {
@@ -284,7 +284,7 @@ namespace mbedCloudSDK.Access.Api
             try
             {
                 ApiKeyUpdateReq req = new ApiKeyUpdateReq(key.Owner, key.Name);
-                return ApiKey.Convert(api.UpdateApiKey(apiKey, req));
+                return ApiKey.Map(api.UpdateApiKey(apiKey, req));
             }
             catch (ApiException e)
             {
@@ -304,7 +304,7 @@ namespace mbedCloudSDK.Access.Api
             try
             {
                 ApiKeyUpdateReq req = new ApiKeyUpdateReq(key.Owner, key.Name);
-                return ApiKey.Convert(await api.UpdateApiKeyAsync(apiKey, req));
+                return ApiKey.Map(await api.UpdateApiKeyAsync(apiKey, req));
             }
             catch (ApiException e)
             {
@@ -366,7 +366,7 @@ namespace mbedCloudSDK.Access.Api
                 List<Group> groups = new List<Group>();
                 foreach (var group in api.GetAllGroups().Data)
                 {
-                    groups.Add(Group.Convert(group));
+                    groups.Add(Group.Map(group));
                 }
                 return groups;
 			}
@@ -393,7 +393,7 @@ namespace mbedCloudSDK.Access.Api
                 List<Group> groups = new List<Group>();
                 foreach (var group in groupsInfo.Data)
                 {
-                    groups.Add(Group.Convert(group));
+                    groups.Add(Group.Map(group));
                 }
                 return groups;
             }
@@ -423,7 +423,7 @@ namespace mbedCloudSDK.Access.Api
                 List<User> users = new List<User>();
                 foreach (var user in api.GetAllUsers().Data)
                 {
-                    users.Add(User.Convert(user));
+                    users.Add(User.Map(user));
                 }
                 return users;
 			}
@@ -450,7 +450,7 @@ namespace mbedCloudSDK.Access.Api
                 var usersInfo = await api.GetAllUsersAsync();
                 foreach (var user in usersInfo.Data)
                 {
-                    users.Add(User.Convert(user));
+                    users.Add(User.Map(user));
                 }
                 return users;
             }
@@ -470,7 +470,7 @@ namespace mbedCloudSDK.Access.Api
             var api = new AccountAdminApi();
             try
             {
-                return User.Convert(api.GetUser(userId));
+                return User.Map(api.GetUser(userId));
             }
             catch(ApiException e)
             {
@@ -489,7 +489,7 @@ namespace mbedCloudSDK.Access.Api
             try
             {
                 var user = await api.GetUserAsync(userId);
-                return User.Convert(user);
+                return User.Map(user);
             }
             catch (ApiException e)
             {
@@ -502,14 +502,14 @@ namespace mbedCloudSDK.Access.Api
         /// </summary>
         /// <param name="body"></param>
         /// <returns></returns>
-        public User CreateUser(User body)
+        public User AddUser(User body)
         {
             var api = new AccountAdminApi();
             try
             {
                 UserInfoReq req = new UserInfoReq(body.Username, body.PhoneNumber, body.IsMarketingAccepted, body.Groups, body.IsGtcAccepted,
                     body.FullName, body.Address, body.Password, body.Email);
-                return User.Convert(api.CreateUser(req));
+                return User.Map(api.CreateUser(req));
             }
             catch (ApiException e)
             {
@@ -522,14 +522,14 @@ namespace mbedCloudSDK.Access.Api
         /// </summary>
         /// <param name="body"></param>
         /// <returns></returns>
-        public async Task<User> CreateUserAsync(User body)
+        public async Task<User> AddUserAsync(User body)
         {
             var api = new AccountAdminApi();
             try
             {
                 UserInfoReq req = new UserInfoReq(body.Username, body.PhoneNumber, body.IsMarketingAccepted, body.Groups, body.IsGtcAccepted,
                     body.FullName, body.Address, body.Password, body.Email);
-                return User.Convert(await api.CreateUserAsync(req));
+                return User.Map(await api.CreateUserAsync(req));
             }
             catch (ApiException e)
             {
@@ -549,7 +549,7 @@ namespace mbedCloudSDK.Access.Api
 			{
                 UserUpdateReq req = new UserUpdateReq(body.Username, body.PhoneNumber, body.IsMarketingAccepted, body.IsGtcAccepted,
                     body.FullName, body.Address, body.Password, body.Email);
-                return User.Convert(api.UpdateUser(body.Id, req));
+                return User.Map(api.UpdateUser(body.Id, req));
 			}
 			catch (ApiException e)
 			{
@@ -570,7 +570,7 @@ namespace mbedCloudSDK.Access.Api
                 UserUpdateReq req = new UserUpdateReq(body.Username, body.PhoneNumber, body.IsMarketingAccepted, body.IsGtcAccepted,
                     body.FullName, body.Address, body.Password, body.Email);
                 var user = await api.UpdateUserAsync(body.Id, req);
-                return User.Convert(user);
+                return User.Map(user);
             }
             catch (ApiException e)
             {

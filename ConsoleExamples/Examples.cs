@@ -83,11 +83,17 @@ namespace ConsoleExamples
                 {
                     //Subscribe to the resource
                     AsyncConsumer<String> consumer = devices.Subscribe(endpoints[0].Id, resource);
+                    int counter = 0;
                     while (true)
                     {
                         //Get the value of the resource and print it
                         Task<string> t = consumer.GetValue();
                         Console.WriteLine(t.Result);
+                        counter++;
+                        if (counter >=5)
+                        {
+                            break;
+                        }
                     }
                 }
             }
@@ -108,7 +114,7 @@ namespace ConsoleExamples
                 throw new Exception("No endpoints registered. Aborting.");
             }
             //webhook address
-            string webhook = "http://testwebhooks.requestcatcher.com/test";
+            string webhook = "http://testwebhooksdotnet.requestcatcher.com/test";
             devices.RegisterWebhook(webhook);
             Thread.Sleep(2000);
             //subscribe to the resource
@@ -123,6 +129,7 @@ namespace ConsoleExamples
                     //Deregister webhook after 1 minute
                     Thread.Sleep(60000);
                     devices.DeregisterWebhooks();
+                    break;
                 }
             }
             

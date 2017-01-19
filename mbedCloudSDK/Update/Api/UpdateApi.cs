@@ -4,7 +4,7 @@ using firmware_catalog.Client;
 using System.Collections.Generic;
 using mbedCloudSDK.Exceptions;
 
-namespace mbedCloudSDK
+namespace mbedCloudSDK.Update.Api
 {
     /// <summary>
     /// Exposing functionality from: Update service, Update campaigns and Manifest management

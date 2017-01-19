@@ -1,7 +1,7 @@
 ﻿using System;
 using mbedCloudSDK.Common;
 
-namespace mbedCloudSDK
+namespace mbedCloudSDK.Assets.Api
 {
     /// <summary>
     /// Describing the public assets API

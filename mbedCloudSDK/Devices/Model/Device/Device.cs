@@ -5,6 +5,8 @@ using System.Text;
 using static device_catalog.Model.DeviceDetail;
 using mbedCloudSDK.Devices.Api;
 using mbedCloudSDK.Exceptions;
+using device_catalog.Model;
+using mds.Model;
 
 namespace mbedCloudSDK.Devices.Model.Device
 {
@@ -169,82 +171,73 @@ namespace mbedCloudSDK.Devices.Model.Device
         /// <value>Type of endpoint. (Free text)</value>
         public string Type { get; set; }
 
-
-        /// <summary>
-        /// Gets or sets the resources.
-        /// </summary>
-        /// <value>The resources.</value>
-        //public Dictionary<string, Resource.Resource> Resources { get; set;}
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Device" /> class.
         /// </summary>
         /// <param name="api">Devices Api.</param>
-        /// <param name="BootstrappedTimestamp">BootstrappedTimestamp.</param>
-        /// <param name="UpdatedAt">The time the object was updated.</param>
-        /// <param name="CustomAttributes">Up to 5 custom JSON attributes.</param>
-        /// <param name="DeviceClass">The device class.</param>
-        /// <param name="Id">The ID of the device.</param>
-        /// <param name="Description">The description of the object.</param>
-        /// <param name="AutoUpdate">Mark this device for auto firmware update.</param>
-        /// <param name="Mechanism">The ID of the channel used to communicate with the device.</param>
-        /// <param name="State">The current state of the device.</param>
-        /// <param name="Etag">The entity instance signature.</param>
-        /// <param name="ProvisionKey">The key used to provision the device.</param>
-        /// <param name="SerialNumber">The serial number of the device.</param>
-        /// <param name="VendorId">The device vendor ID.</param>
-        /// <param name="AccountId">The owning IAM account ID.</param>
-        /// <param name="DeployedState">The state of the device&#39;s deployment.</param>
-        /// <param name="TrustClass">The device trust class.</param>
-        /// <param name="Deployment">The last deployment used on the device.</param>
-        /// <param name="MechanismUrl">The address of the connector to use.</param>
-        /// <param name="TrustLevel">The device trust level.</param>
-        /// <param name="DeviceId">DEPRECATED: The ID of the device.</param>
-        /// <param name="Name">The name of the object.</param>
-        /// <param name="CreatedAt">The time the object was created.</param>
-        /// <param name="Manifest">URL for the current device manifest.</param>
-        /// <param name="Status">Possible values ACTIVE, STALE.</param>
-        /// <param name="QueueMode">Determines whether the device is in queue mode.</param>
-        /// <param name="Type">Type of endpoint.</param>
-        public Device(DevicesApi api, string BootstrappedTimestamp = null, DateTime? UpdatedAt = null, Object CustomAttributes = null, string DeviceClass = null, string Id = null, string Description = null, bool? AutoUpdate = null, MechanismEnum? Mechanism = null, StateEnum? State = null, DateTime? Etag = null, string ProvisionKey = null, string SerialNumber = null, string VendorId = null, string AccountId = null, DeployedStateEnum? DeployedState = null, long? TrustClass = null, string Deployment = null, string MechanismUrl = null, long? TrustLevel = null, string DeviceId = null, string Name = null, DateTime? CreatedAt = null, string Manifest = null, string Status = null, bool? QueueMode = null, string Type = null)
+        /// <param name="options">Dictionary containing properties.</param>
+        public Device(DevicesApi api, IDictionary<string, object> options = null)
         {
             this.api = api;
-            this.BootstrappedTimestamp = BootstrappedTimestamp;
-            this.UpdatedAt = UpdatedAt;
-            this.CustomAttributes = CustomAttributes;
-            this.DeviceClass = DeviceClass;
-            this.Id = Id;
-            this.Description = Description;
-            this.AutoUpdate = AutoUpdate;
-            if (Mechanism != null)
+            if (options != null)
             {
-                this.Mechanism = (Mechanism)Enum.Parse(typeof(Mechanism), Mechanism.ToString());
+                foreach (KeyValuePair<string, object> item in options)
+                {
+                    var property = this.GetType().GetProperty(item.Key);
+                    if (property != null)
+                    {
+                        property.SetValue(this, item.Value, null);
+                    }
+                }
             }
-            if (State != null)
+        }
+
+        public static Device Map(DevicesApi api, Endpoint endpoint)
+        {
+            var device = new Device(api);
+            device.Id = endpoint.Name;
+            device.Status = endpoint.Status;
+            device.QueueMode = endpoint.Q;
+            device.Type = endpoint.Type;
+            return device;
+        }
+
+        public static Device Map(DevicesApi api, DeviceDetail deviceDetail)
+        {
+            var device = new Device(api);
+            device.BootstrappedTimestamp = deviceDetail.BootstrappedTimestamp;
+            device.UpdatedAt = deviceDetail.UpdatedAt;
+            device.CustomAttributes = deviceDetail.CustomAttributes;
+            device.DeviceClass = deviceDetail.DeviceClass;
+            device.Id = deviceDetail.Id;
+            device.Description = deviceDetail.Description;
+            device.AutoUpdate = deviceDetail.AutoUpdate;
+            if (deviceDetail.Mechanism != null)
             {
-                this.State = (State)Enum.Parse(typeof(State), State.ToString());
+                device.Mechanism = (Mechanism)Enum.Parse(typeof(Mechanism), deviceDetail.Mechanism.ToString());
             }
-            this.Etag = Etag;
-            this.ProvisionKey = ProvisionKey;
-            this.SerialNumber = SerialNumber;
-            this.VendorId = VendorId;
-            this.AccountId = AccountId;
-            if (DeployedState != null)
+            if (deviceDetail.State != null)
             {
-                this.DeployedState = (DeployedState)Enum.Parse(typeof(DeployedState), DeployedState.ToString());
+                device.State = (State)Enum.Parse(typeof(State), deviceDetail.State.ToString());
             }
-            this.TrustClass = TrustClass;
-            this.Deployment = Deployment;
-            this.MechanismUrl = MechanismUrl;
-            this.TrustLevel = TrustLevel;
-            this.DeviceId = DeviceId;
-            this.Name = Name;
-            this.CreatedAt = CreatedAt;
-            this.Manifest = Manifest;
-            this.Status = Status;
-            this.QueueMode = QueueMode;
-            this.Type = Type;
-            //this.Resources = new Dictionary<string, Resource.Resource>();
+            device.Etag = deviceDetail.Etag;
+            device.ProvisionKey = deviceDetail.ProvisionKey;
+            device.SerialNumber = deviceDetail.SerialNumber;
+            device.VendorId = deviceDetail.VendorId;
+            device.AccountId = deviceDetail.AccountId;
+            if (deviceDetail.DeployedState != null)
+            {
+                device.DeployedState = (DeployedState)Enum.Parse(typeof(DeployedState), deviceDetail.DeployedState.ToString());
+            }
+            device.TrustClass = deviceDetail.TrustClass;
+            device.Deployment = deviceDetail.Deployment;
+            device.MechanismUrl = deviceDetail.MechanismUrl;
+            device.TrustLevel = deviceDetail.TrustLevel;
+            device.DeviceId = deviceDetail.DeviceId;
+            device.Name = deviceDetail.Name;
+            device.CreatedAt = deviceDetail.CreatedAt;
+            device.Manifest = deviceDetail.Manifest;
+            return device;
         }
 
         /// <summary>
@@ -300,7 +293,6 @@ namespace mbedCloudSDK.Devices.Model.Device
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  QueueMode: ").Append(QueueMode).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
-            //sb.Append("  Resources: ").Append(Resources).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

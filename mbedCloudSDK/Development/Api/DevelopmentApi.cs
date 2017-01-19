@@ -9,7 +9,7 @@ using developer_certificate.Model;
 using mbedCloudSDK.Common;
 using mbedCloudSDK.Exceptions;
 
-namespace mbedCloudSDK.Development
+namespace mbedCloudSDK.Development.Api
 {
     /// <summary>
     /// Expose Developer Certificate functionality.
