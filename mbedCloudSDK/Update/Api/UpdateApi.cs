@@ -3,6 +3,7 @@ using mbedCloudSDK.Common;
 using firmware_catalog.Client;
 using System.Collections.Generic;
 using mbedCloudSDK.Exceptions;
+using System.IO;
 
 namespace mbedCloudSDK.Update.Api
 {
@@ -53,12 +54,12 @@ namespace mbedCloudSDK.Update.Api
         /// <returns>The firmware image.</returns>
         /// <param name="dataFile">Data file.</param>
         /// <param name="name">Name.</param>
-        public List<firmware_catalog.Model.FirmwareImageSerializerData> CreateFirmwareImage(string dataFile, string name)
+        public firmware_catalog.Model.FirmwareImageSerializerData CreateFirmwareImage(Stream dataFile, string name)
         {
             var api = new firmware_catalog.Api.DefaultApi(config.Host);
             try
             {
-                return api.FirmwareImageCreate(dataFile, name).Data;
+                return api.FirmwareImageCreate(dataFile, name);
             }
             catch (device_catalog.Client.ApiException e)
             {
