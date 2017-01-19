@@ -124,6 +124,7 @@ Class | Method | HTTP request | Description
  - [Model.DeviceListResp](docs/DeviceListResp.md)
  - [Model.DeviceLogSerializer](docs/DeviceLogSerializer.md)
  - [Model.DeviceLogSerializerData](docs/DeviceLogSerializerData.md)
+ - [Model.DeviceUpdateDetail](docs/DeviceUpdateDetail.md)
 
 
 <a name="documentation-for-authorization"></a>

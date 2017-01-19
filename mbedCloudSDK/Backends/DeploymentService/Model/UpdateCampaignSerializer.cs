@@ -121,8 +121,8 @@ namespace deployment_service.Model
         /// <param name="CampaignId">DEPRECATED: The ID of the campaign (required).</param>
         /// <param name="UpdatingAccountId">The updating account ID (required).</param>
         /// <param name="UpdatedAt">The time the object was updated (required).</param>
-        /// <param name="When">The timestamp at which update campaign scheduled to start (required).</param>
-        /// <param name="Finished">The timestamp when the update campaign finished (required).</param>
+        /// <param name="When">The timestamp at which update campaign scheduled to start.</param>
+        /// <param name="Finished">The timestamp when the update campaign finished.</param>
         /// <param name="Etag">The entity instance signature (required).</param>
         /// <param name="RootManifestUrl">RootManifestUrl (required).</param>
         /// <param name="UpdatingApiKey">The gateway client API key (required).</param>
@@ -212,24 +212,6 @@ namespace deployment_service.Model
             {
                 this.UpdatedAt = UpdatedAt;
             }
-            // to ensure "When" is required (not null)
-            if (When == null)
-            {
-                throw new InvalidDataException("When is a required property for UpdateCampaignSerializer and cannot be null");
-            }
-            else
-            {
-                this.When = When;
-            }
-            // to ensure "Finished" is required (not null)
-            if (Finished == null)
-            {
-                throw new InvalidDataException("Finished is a required property for UpdateCampaignSerializer and cannot be null");
-            }
-            else
-            {
-                this.Finished = Finished;
-            }
             // to ensure "Etag" is required (not null)
             if (Etag == null)
             {
@@ -284,6 +266,8 @@ namespace deployment_service.Model
             {
                 this.Name = Name;
             }
+            this.When = When;
+            this.Finished = Finished;
         }
         
         /// <summary>

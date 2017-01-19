@@ -63,8 +63,8 @@ namespace firmware_catalog.Api
         /// <param name="etag"> (optional)</param>
         /// <param name="imageId"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>FirmwareImageSerializer</returns>
-        FirmwareImageSerializer FirmwareImageCreate (string datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null);
+        /// <returns>FirmwareImageSerializerData</returns>
+        FirmwareImageSerializerData FirmwareImageCreate (System.IO.Stream datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null);
 
         /// <summary>
         /// 
@@ -86,8 +86,8 @@ namespace firmware_catalog.Api
         /// <param name="etag"> (optional)</param>
         /// <param name="imageId"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>ApiResponse of FirmwareImageSerializer</returns>
-        ApiResponse<FirmwareImageSerializer> FirmwareImageCreateWithHttpInfo (string datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null);
+        /// <returns>ApiResponse of FirmwareImageSerializerData</returns>
+        ApiResponse<FirmwareImageSerializerData> FirmwareImageCreateWithHttpInfo (System.IO.Stream datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null);
         /// <summary>
         /// 
         /// </summary>
@@ -350,8 +350,8 @@ namespace firmware_catalog.Api
         /// <param name="etag"> (optional)</param>
         /// <param name="imageId"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>Task of FirmwareImageSerializer</returns>
-        System.Threading.Tasks.Task<FirmwareImageSerializer> FirmwareImageCreateAsync (string datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null);
+        /// <returns>Task of FirmwareImageSerializerData</returns>
+        System.Threading.Tasks.Task<FirmwareImageSerializerData> FirmwareImageCreateAsync (System.IO.Stream datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null);
 
         /// <summary>
         /// 
@@ -373,8 +373,8 @@ namespace firmware_catalog.Api
         /// <param name="etag"> (optional)</param>
         /// <param name="imageId"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>Task of ApiResponse (FirmwareImageSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareImageSerializer>> FirmwareImageCreateAsyncWithHttpInfo (string datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null);
+        /// <returns>Task of ApiResponse (FirmwareImageSerializerData)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FirmwareImageSerializerData>> FirmwareImageCreateAsyncWithHttpInfo (System.IO.Stream datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null);
         /// <summary>
         /// 
         /// </summary>
@@ -863,10 +863,10 @@ namespace firmware_catalog.Api
         /// <param name="etag"> (optional)</param>
         /// <param name="imageId"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>FirmwareImageSerializer</returns>
-        public FirmwareImageSerializer FirmwareImageCreate (string datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null)
+        /// <returns>FirmwareImageSerializerData</returns>
+        public FirmwareImageSerializerData FirmwareImageCreate (System.IO.Stream datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null)
         {
-             ApiResponse<FirmwareImageSerializer> localVarResponse = FirmwareImageCreateWithHttpInfo(datafile, name, description, updatingRequestId, updatingIpAddress, name2, description2, createdAt, updatedAt, datafileChecksum, etag, imageId, _object);
+             ApiResponse<FirmwareImageSerializerData> localVarResponse = FirmwareImageCreateWithHttpInfo(datafile, name, description, updatingRequestId, updatingIpAddress, name2, description2, createdAt, updatedAt, datafileChecksum, etag, imageId, _object);
              return localVarResponse.Data;
         }
 
@@ -887,8 +887,8 @@ namespace firmware_catalog.Api
         /// <param name="etag"> (optional)</param>
         /// <param name="imageId"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>ApiResponse of FirmwareImageSerializer</returns>
-        public ApiResponse< FirmwareImageSerializer > FirmwareImageCreateWithHttpInfo (string datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null)
+        /// <returns>ApiResponse of FirmwareImageSerializerData</returns>
+        public ApiResponse< FirmwareImageSerializerData > FirmwareImageCreateWithHttpInfo (System.IO.Stream datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null)
         {
             // verify the required parameter 'datafile' is set
             if (datafile == null)
@@ -907,6 +907,7 @@ namespace firmware_catalog.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "multipart/form-data"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -930,7 +931,7 @@ namespace firmware_catalog.Api
             if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
             if (imageId != null) localVarQueryParams.Add("image_id", Configuration.ApiClient.ParameterToString(imageId)); // query parameter
             if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (datafile != null) localVarFormParams.Add("datafile", Configuration.ApiClient.ParameterToString(datafile)); // form parameter
+            if (datafile != null) localVarFileParams.Add("datafile", Configuration.ApiClient.ParameterToFile("datafile", datafile));
             if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
             if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
 
@@ -954,9 +955,9 @@ namespace firmware_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<FirmwareImageSerializer>(localVarStatusCode,
+            return new ApiResponse<FirmwareImageSerializerData>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (FirmwareImageSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImageSerializer)));
+                (FirmwareImageSerializerData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImageSerializerData)));
             
         }
 
@@ -977,10 +978,10 @@ namespace firmware_catalog.Api
         /// <param name="etag"> (optional)</param>
         /// <param name="imageId"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>Task of FirmwareImageSerializer</returns>
-        public async System.Threading.Tasks.Task<FirmwareImageSerializer> FirmwareImageCreateAsync (string datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null)
+        /// <returns>Task of FirmwareImageSerializerData</returns>
+        public async System.Threading.Tasks.Task<FirmwareImageSerializerData> FirmwareImageCreateAsync (System.IO.Stream datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null)
         {
-             ApiResponse<FirmwareImageSerializer> localVarResponse = await FirmwareImageCreateAsyncWithHttpInfo(datafile, name, description, updatingRequestId, updatingIpAddress, name2, description2, createdAt, updatedAt, datafileChecksum, etag, imageId, _object);
+             ApiResponse<FirmwareImageSerializerData> localVarResponse = await FirmwareImageCreateAsyncWithHttpInfo(datafile, name, description, updatingRequestId, updatingIpAddress, name2, description2, createdAt, updatedAt, datafileChecksum, etag, imageId, _object);
              return localVarResponse.Data;
 
         }
@@ -1002,8 +1003,8 @@ namespace firmware_catalog.Api
         /// <param name="etag"> (optional)</param>
         /// <param name="imageId"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>Task of ApiResponse (FirmwareImageSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareImageSerializer>> FirmwareImageCreateAsyncWithHttpInfo (string datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null)
+        /// <returns>Task of ApiResponse (FirmwareImageSerializerData)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareImageSerializerData>> FirmwareImageCreateAsyncWithHttpInfo (System.IO.Stream datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null)
         {
             // verify the required parameter 'datafile' is set
             if (datafile == null)
@@ -1022,6 +1023,7 @@ namespace firmware_catalog.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "multipart/form-data"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -1045,7 +1047,7 @@ namespace firmware_catalog.Api
             if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
             if (imageId != null) localVarQueryParams.Add("image_id", Configuration.ApiClient.ParameterToString(imageId)); // query parameter
             if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (datafile != null) localVarFormParams.Add("datafile", Configuration.ApiClient.ParameterToString(datafile)); // form parameter
+            if (datafile != null) localVarFileParams.Add("datafile", Configuration.ApiClient.ParameterToFile("datafile", datafile));
             if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
             if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
 
@@ -1068,9 +1070,9 @@ namespace firmware_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<FirmwareImageSerializer>(localVarStatusCode,
+            return new ApiResponse<FirmwareImageSerializerData>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (FirmwareImageSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImageSerializer)));
+                (FirmwareImageSerializerData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImageSerializerData)));
             
         }
 
