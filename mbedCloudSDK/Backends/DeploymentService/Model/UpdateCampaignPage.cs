@@ -32,22 +32,30 @@ namespace deployment_service.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateCampaignPage" /> class.
         /// </summary>
+        /// <param name="_Object">API Resource name.</param>
         /// <param name="HasMore">Whether there are more results to display.</param>
         /// <param name="TotalCount">Total number of records.</param>
-        /// <param name="_Object">API Resource name.</param>
+        /// <param name="After">Entity id for fetch after it.</param>
         /// <param name="Limit">The number of results to return.</param>
         /// <param name="Data">Data.</param>
         /// <param name="Order">Order of returned records.</param>
-        public UpdateCampaignPage(bool? HasMore = default(bool?), int? TotalCount = default(int?), string _Object = default(string), int? Limit = default(int?), List<UpdateCampaignSerializer> Data = default(List<UpdateCampaignSerializer>), string Order = default(string))
+        public UpdateCampaignPage(string _Object = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), string After = default(string), int? Limit = default(int?), List<UpdateCampaignSerializer> Data = default(List<UpdateCampaignSerializer>), string Order = default(string))
         {
+            this._Object = _Object;
             this.HasMore = HasMore;
             this.TotalCount = TotalCount;
-            this._Object = _Object;
+            this.After = After;
             this.Limit = Limit;
             this.Data = Data;
             this.Order = Order;
         }
         
+        /// <summary>
+        /// API Resource name
+        /// </summary>
+        /// <value>API Resource name</value>
+        [DataMember(Name="object", EmitDefaultValue=false)]
+        public string _Object { get; set; }
         /// <summary>
         /// Whether there are more results to display
         /// </summary>
@@ -61,11 +69,11 @@ namespace deployment_service.Model
         [DataMember(Name="total_count", EmitDefaultValue=false)]
         public int? TotalCount { get; set; }
         /// <summary>
-        /// API Resource name
+        /// Entity id for fetch after it
         /// </summary>
-        /// <value>API Resource name</value>
-        [DataMember(Name="object", EmitDefaultValue=false)]
-        public string _Object { get; set; }
+        /// <value>Entity id for fetch after it</value>
+        [DataMember(Name="after", EmitDefaultValue=false)]
+        public string After { get; set; }
         /// <summary>
         /// The number of results to return
         /// </summary>
@@ -91,9 +99,10 @@ namespace deployment_service.Model
         {
             var sb = new StringBuilder();
             sb.Append("class UpdateCampaignPage {\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  HasMore: ").Append(HasMore).Append("\n");
             sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
+            sb.Append("  After: ").Append(After).Append("\n");
             sb.Append("  Limit: ").Append(Limit).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("  Order: ").Append(Order).Append("\n");
@@ -134,6 +143,11 @@ namespace deployment_service.Model
 
             return 
                 (
+                    this._Object == other._Object ||
+                    this._Object != null &&
+                    this._Object.Equals(other._Object)
+                ) && 
+                (
                     this.HasMore == other.HasMore ||
                     this.HasMore != null &&
                     this.HasMore.Equals(other.HasMore)
@@ -144,9 +158,9 @@ namespace deployment_service.Model
                     this.TotalCount.Equals(other.TotalCount)
                 ) && 
                 (
-                    this._Object == other._Object ||
-                    this._Object != null &&
-                    this._Object.Equals(other._Object)
+                    this.After == other.After ||
+                    this.After != null &&
+                    this.After.Equals(other.After)
                 ) && 
                 (
                     this.Limit == other.Limit ||
@@ -176,12 +190,14 @@ namespace deployment_service.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
+                if (this._Object != null)
+                    hash = hash * 59 + this._Object.GetHashCode();
                 if (this.HasMore != null)
                     hash = hash * 59 + this.HasMore.GetHashCode();
                 if (this.TotalCount != null)
                     hash = hash * 59 + this.TotalCount.GetHashCode();
-                if (this._Object != null)
-                    hash = hash * 59 + this._Object.GetHashCode();
+                if (this.After != null)
+                    hash = hash * 59 + this.After.GetHashCode();
                 if (this.Limit != null)
                     hash = hash * 59 + this.Limit.GetHashCode();
                 if (this.Data != null)
