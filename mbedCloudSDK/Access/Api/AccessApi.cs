@@ -85,8 +85,7 @@ namespace mbedCloudSDK.Access.Api
         {
             var api = new AccountAdminApi();
             AccountUpdateReq req = new AccountUpdateReq(account.AddressLine2, account.City, account.AddressLine1, account.DisplayName,
-                account.Country, account.Company, account.TemplateId, account.Status.ToString(), account.State, account.Contact, account.PostalCode,
-                account.IsProvisioningAllowed, null, account.Tier, account.PhoneNumber, account.Email, account.Aliases);
+                account.Country, account.Company, account.State, account.Contact, account.PostalCode, null, account.PhoneNumber, account.Email, account.Aliases);
 
             try
             {
@@ -108,8 +107,7 @@ namespace mbedCloudSDK.Access.Api
         {
             var api = new AccountAdminApi();
             AccountUpdateReq req = new AccountUpdateReq(account.AddressLine2, account.City, account.AddressLine1, account.DisplayName,
-                account.Country, account.Company, account.TemplateId, account.Status.ToString(), account.State, account.Contact, account.PostalCode,
-                account.IsProvisioningAllowed, null, account.Tier, account.PhoneNumber, account.Email, account.Aliases);
+                account.Country, account.Company, account.State, account.Contact, account.PostalCode, null, account.PhoneNumber, account.Email, account.Aliases);
 
             try
             {

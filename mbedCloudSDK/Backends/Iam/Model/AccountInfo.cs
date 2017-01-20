@@ -77,9 +77,9 @@ namespace iam.Model
             User,
             
             /// <summary>
-            /// Enum Apikey for "api_key"
+            /// Enum Apikey for "api-key"
             /// </summary>
-            [EnumMember(Value = "api_key")]
+            [EnumMember(Value = "api-key")]
             Apikey,
             
             /// <summary>
@@ -95,15 +95,15 @@ namespace iam.Model
             Account,
             
             /// <summary>
-            /// Enum Accounttemplate for "account_template"
+            /// Enum Accounttemplate for "account-template"
             /// </summary>
-            [EnumMember(Value = "account_template")]
+            [EnumMember(Value = "account-template")]
             Accounttemplate,
             
             /// <summary>
-            /// Enum Cacert for "ca_cert"
+            /// Enum Cacert for "ca-cert"
             /// </summary>
-            [EnumMember(Value = "ca_cert")]
+            [EnumMember(Value = "ca-cert")]
             Cacert,
             
             /// <summary>
@@ -157,6 +157,7 @@ namespace iam.Model
         /// <param name="Company">The name of the company..</param>
         /// <param name="_Object">Entity name: always &#39;account&#39; (required).</param>
         /// <param name="UpgradedAt">Time when upgraded to commercial account in UTC format RFC3339..</param>
+        /// <param name="SubAccounts">List of sub accounts..</param>
         /// <param name="Tier">The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account. Other values are reserved for the future. (required).</param>
         /// <param name="Limits">List of limits as key-value pairs if requested..</param>
         /// <param name="Country">The country part of the postal address..</param>
@@ -164,7 +165,7 @@ namespace iam.Model
         /// <param name="Contact">The name of the contact person for this account..</param>
         /// <param name="Policies">List of policies if requested..</param>
         /// <param name="TemplateId">Account template ID..</param>
-        public AccountInfo(StatusEnum? Status = default(StatusEnum?), string PostalCode = default(string), string ParentID = default(string), string Id = default(string), List<string> Aliases = default(List<string>), string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string State = default(string), string Etag = default(string), bool? IsProvisioningAllowed = false, long? CreationTimeMillis = default(long?), string Email = default(string), string PhoneNumber = default(string), string Company = default(string), ObjectEnum? _Object = default(ObjectEnum?), string UpgradedAt = default(string), string Tier = default(string), Dictionary<string, string> Limits = default(Dictionary<string, string>), string Country = default(string), string CreatedAt = default(string), string Contact = default(string), List<Policy> Policies = default(List<Policy>), string TemplateId = default(string))
+        public AccountInfo(StatusEnum? Status = default(StatusEnum?), string PostalCode = default(string), string ParentID = default(string), string Id = default(string), List<string> Aliases = default(List<string>), string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string State = default(string), string Etag = default(string), bool? IsProvisioningAllowed = false, long? CreationTimeMillis = default(long?), string Email = default(string), string PhoneNumber = default(string), string Company = default(string), ObjectEnum? _Object = default(ObjectEnum?), string UpgradedAt = default(string), List<AccountInfo> SubAccounts = default(List<AccountInfo>), string Tier = default(string), Dictionary<string, string> Limits = default(Dictionary<string, string>), string Country = default(string), string CreatedAt = default(string), string Contact = default(string), List<Policy> Policies = default(List<Policy>), string TemplateId = default(string))
         {
             // to ensure "Status" is required (not null)
             if (Status == null)
@@ -241,6 +242,7 @@ namespace iam.Model
             this.PhoneNumber = PhoneNumber;
             this.Company = Company;
             this.UpgradedAt = UpgradedAt;
+            this.SubAccounts = SubAccounts;
             this.Limits = Limits;
             this.Country = Country;
             this.CreatedAt = CreatedAt;
@@ -345,6 +347,12 @@ namespace iam.Model
         [DataMember(Name="upgraded_at", EmitDefaultValue=false)]
         public string UpgradedAt { get; set; }
         /// <summary>
+        /// List of sub accounts.
+        /// </summary>
+        /// <value>List of sub accounts.</value>
+        [DataMember(Name="subAccounts", EmitDefaultValue=false)]
+        public List<AccountInfo> SubAccounts { get; set; }
+        /// <summary>
         /// The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account. Other values are reserved for the future.
         /// </summary>
         /// <value>The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account. Other values are reserved for the future.</value>
@@ -412,6 +420,7 @@ namespace iam.Model
             sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  UpgradedAt: ").Append(UpgradedAt).Append("\n");
+            sb.Append("  SubAccounts: ").Append(SubAccounts).Append("\n");
             sb.Append("  Tier: ").Append(Tier).Append("\n");
             sb.Append("  Limits: ").Append(Limits).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
@@ -546,6 +555,11 @@ namespace iam.Model
                     this.UpgradedAt.Equals(other.UpgradedAt)
                 ) && 
                 (
+                    this.SubAccounts == other.SubAccounts ||
+                    this.SubAccounts != null &&
+                    this.SubAccounts.SequenceEqual(other.SubAccounts)
+                ) && 
+                (
                     this.Tier == other.Tier ||
                     this.Tier != null &&
                     this.Tier.Equals(other.Tier)
@@ -629,6 +643,8 @@ namespace iam.Model
                     hash = hash * 59 + this._Object.GetHashCode();
                 if (this.UpgradedAt != null)
                     hash = hash * 59 + this.UpgradedAt.GetHashCode();
+                if (this.SubAccounts != null)
+                    hash = hash * 59 + this.SubAccounts.GetHashCode();
                 if (this.Tier != null)
                     hash = hash * 59 + this.Tier.GetHashCode();
                 if (this.Limits != null)

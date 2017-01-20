@@ -100,8 +100,9 @@ namespace device_catalog.Model
         /// <param name="DeviceLogId">DeviceLogId.</param>
         /// <param name="EventType">EventType.</param>
         /// <param name="Data">Data.</param>
+        /// <param name="Id">Id.</param>
         /// <param name="DeviceId">DeviceId.</param>
-        public DeviceLogSerializerData(DateTime? DateTime = default(DateTime?), bool? StateChange = default(bool?), string Description = default(string), string Changes = default(string), string EventTypeDescription = default(string), string DeviceLogId = default(string), EventTypeEnum? EventType = default(EventTypeEnum?), string Data = default(string), string DeviceId = default(string))
+        public DeviceLogSerializerData(DateTime? DateTime = default(DateTime?), bool? StateChange = default(bool?), string Description = default(string), Object Changes = default(Object), string EventTypeDescription = default(string), string DeviceLogId = default(string), EventTypeEnum? EventType = default(EventTypeEnum?), string Data = default(string), string Id = default(string), string DeviceId = default(string))
         {
             // to ensure "DateTime" is required (not null)
             if (DateTime == null)
@@ -119,6 +120,7 @@ namespace device_catalog.Model
             this.DeviceLogId = DeviceLogId;
             this.EventType = EventType;
             this.Data = Data;
+            this.Id = Id;
             this.DeviceId = DeviceId;
         }
         
@@ -141,7 +143,7 @@ namespace device_catalog.Model
         /// Gets or Sets Changes
         /// </summary>
         [DataMember(Name="changes", EmitDefaultValue=false)]
-        public string Changes { get; set; }
+        public Object Changes { get; set; }
         /// <summary>
         /// Gets or Sets EventTypeDescription
         /// </summary>
@@ -157,6 +159,11 @@ namespace device_catalog.Model
         /// </summary>
         [DataMember(Name="data", EmitDefaultValue=false)]
         public string Data { get; set; }
+        /// <summary>
+        /// Gets or Sets Id
+        /// </summary>
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public string Id { get; set; }
         /// <summary>
         /// Gets or Sets DeviceId
         /// </summary>
@@ -178,6 +185,7 @@ namespace device_catalog.Model
             sb.Append("  DeviceLogId: ").Append(DeviceLogId).Append("\n");
             sb.Append("  EventType: ").Append(EventType).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -256,6 +264,11 @@ namespace device_catalog.Model
                     this.Data.Equals(other.Data)
                 ) && 
                 (
+                    this.Id == other.Id ||
+                    this.Id != null &&
+                    this.Id.Equals(other.Id)
+                ) && 
+                (
                     this.DeviceId == other.DeviceId ||
                     this.DeviceId != null &&
                     this.DeviceId.Equals(other.DeviceId)
@@ -289,6 +302,8 @@ namespace device_catalog.Model
                     hash = hash * 59 + this.EventType.GetHashCode();
                 if (this.Data != null)
                     hash = hash * 59 + this.Data.GetHashCode();
+                if (this.Id != null)
+                    hash = hash * 59 + this.Id.GetHashCode();
                 if (this.DeviceId != null)
                     hash = hash * 59 + this.DeviceId.GetHashCode();
                 return hash;
