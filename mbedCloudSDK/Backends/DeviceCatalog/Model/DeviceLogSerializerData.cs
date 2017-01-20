@@ -101,7 +101,7 @@ namespace device_catalog.Model
         /// <param name="EventType">EventType.</param>
         /// <param name="Data">Data.</param>
         /// <param name="DeviceId">DeviceId.</param>
-        public DeviceLogSerializerData(DateTime? DateTime = default(DateTime?), bool? StateChange = default(bool?), string Description = default(string), string Changes = default(string), string EventTypeDescription = default(string), string DeviceLogId = default(string), EventTypeEnum? EventType = default(EventTypeEnum?), string Data = default(string), string DeviceId = default(string))
+        public DeviceLogSerializerData(DateTime? DateTime = default(DateTime?), bool? StateChange = default(bool?), string Description = default(string), Object Changes = default(Object), string EventTypeDescription = default(string), string DeviceLogId = default(string), EventTypeEnum? EventType = default(EventTypeEnum?), string Data = default(string), string DeviceId = default(string))
         {
             // to ensure "DateTime" is required (not null)
             if (DateTime == null)
@@ -141,7 +141,7 @@ namespace device_catalog.Model
         /// Gets or Sets Changes
         /// </summary>
         [DataMember(Name="changes", EmitDefaultValue=false)]
-        public string Changes { get; set; }
+        public Object Changes { get; set; }
         /// <summary>
         /// Gets or Sets EventTypeDescription
         /// </summary>
