@@ -87,6 +87,8 @@
     <Compile Include="Backends\ProvisioningCertificate\Client\ApiResponse.cs" />
     <Compile Include="Backends\ProvisioningCertificate\Client\Configuration.cs" />
     <Compile Include="Backends\ProvisioningCertificate\Model\ProvisioningCertificate.cs" />
+    <Compile Include="Common\PaginatedResponse.cs" />
+    <Compile Include="Common\ResponsePage.cs" />
     <Compile Include="Development\Api\DevelopmentApi.cs" />
     <Compile Include="Common\BaseApi.cs" />
     <Compile Include="Common\Config.cs" />

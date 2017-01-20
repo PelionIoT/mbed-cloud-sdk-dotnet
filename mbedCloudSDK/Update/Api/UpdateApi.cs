@@ -4,6 +4,7 @@ using firmware_catalog.Client;
 using System.Collections.Generic;
 using mbedCloudSDK.Exceptions;
 using System.IO;
+using deployment_service.Model;
 
 namespace mbedCloudSDK.Update.Api
 {
@@ -24,6 +25,13 @@ namespace mbedCloudSDK.Update.Api
             }
             Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
             Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+        }
+
+        public List<UpdateCampaignSerializer> ListUpdateCampaigns(ListParams listParams = null)
+        {
+            deployment_service.Api.DefaultApi api = new deployment_service.Api.DefaultApi(config.Host);
+            var updateCampaignList = api.UpdateCampaignList(listParams.Limit, listParams.Order, listParams.After,listParams.Filter, listParams.Include).Data;
+            return updateCampaignList;
         }
         
         /// <summary>
