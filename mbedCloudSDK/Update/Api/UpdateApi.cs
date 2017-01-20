@@ -3,6 +3,8 @@ using mbedCloudSDK.Common;
 using firmware_catalog.Client;
 using System.Collections.Generic;
 using mbedCloudSDK.Exceptions;
+using System.IO;
+using deployment_service.Model;
 
 namespace mbedCloudSDK.Update.Api
 {
@@ -23,6 +25,13 @@ namespace mbedCloudSDK.Update.Api
             }
             Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
             Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+        }
+
+        public List<UpdateCampaignSerializer> ListUpdateCampaigns(ListParams listParams = null)
+        {
+            deployment_service.Api.DefaultApi api = new deployment_service.Api.DefaultApi(config.Host);
+            var updateCampaignList = api.UpdateCampaignList(listParams.Limit, listParams.Order, listParams.After,listParams.Filter, listParams.Include).Data;
+            return updateCampaignList;
         }
         
         /// <summary>
@@ -53,12 +62,12 @@ namespace mbedCloudSDK.Update.Api
         /// <returns>The firmware image.</returns>
         /// <param name="dataFile">Data file.</param>
         /// <param name="name">Name.</param>
-        public List<firmware_catalog.Model.FirmwareImageSerializerData> CreateFirmwareImage(string dataFile, string name)
+        public firmware_catalog.Model.FirmwareImageSerializerData CreateFirmwareImage(Stream dataFile, string name)
         {
             var api = new firmware_catalog.Api.DefaultApi(config.Host);
             try
             {
-                return api.FirmwareImageCreate(dataFile, name).Data;
+                return api.FirmwareImageCreate(dataFile, name);
             }
             catch (device_catalog.Client.ApiException e)
             {

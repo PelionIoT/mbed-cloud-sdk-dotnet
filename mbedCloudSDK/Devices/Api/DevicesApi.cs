@@ -64,7 +64,23 @@ namespace mbedCloudSDK.Devices.Api
         /// </summary>
         /// <returns>The devices.</returns>
         /// <param name="listParams">List of parameters.</param>
-        public List<Device> ListDevices(ListParams listParams = null)
+        public PaginatedResponse<Device> ListDevices(ListParams listParams = null)
+        {
+            if (listParams == null)
+            {
+                listParams = new ListParams();
+            }
+            try
+            {
+                return new PaginatedResponse<Device>(ListDevicesFunc, listParams);
+            }
+            catch (CloudApiException e)
+            {
+                throw e;
+            }
+        }
+
+        private ResponsePage<Device> ListDevicesFunc(ListParams listParams = null)
         {
             if (listParams == null)
             {
@@ -75,13 +91,19 @@ namespace mbedCloudSDK.Devices.Api
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             try
             {
-                List<Device> devices = new List<Device>();
-                var devicesInfoList = api.DeviceList(listParams.Limit, listParams.Order, listParams.After, listParams.Filter, listParams.Include).Data;
-                foreach(var device in devicesInfoList)
+                //List<Device> devices = new List<Device>();
+                var resp = api.DeviceList(listParams.Limit, listParams.Order, listParams.After, listParams.Filter, listParams.Include);
+                ResponsePage<Device> respDevices = new ResponsePage<Device>();
+                respDevices.After = resp.After;
+                respDevices.HasMore = resp.HasMore;
+                respDevices.Limit = resp.Limit;
+                respDevices.Order = resp.Order;
+                respDevices.TotalCount = resp.TotalCount;
+                foreach(var device in resp.Data)
                 {
-                    devices.Add(Device.Map(this, device));
+                    respDevices.Data.Add(Device.Map(this, device));
                 }
-                return devices;
+                return respDevices;
             }
             catch (device_catalog.Client.ApiException e)
             {

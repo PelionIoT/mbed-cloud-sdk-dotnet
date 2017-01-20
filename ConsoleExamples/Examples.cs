@@ -54,7 +54,9 @@ namespace ConsoleExamples
         /// </summary>
         public void runDevicesExample(){
             DevicesApi devices = new DevicesApi(config);
-            foreach (var device in devices.ListDevices())
+            ListParams listParam = new ListParams();
+            listParam.Limit = 10;
+            foreach (var device in devices.ListDevices(listParam))
             {
                 Console.WriteLine(device.ToString());
             }

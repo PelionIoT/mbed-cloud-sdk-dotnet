@@ -51,13 +51,13 @@
     <Compile Include="Examples.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\mbedCloudSDK\mbedCloudSDK.csproj">
-      <Project>{7C35731A-8701-45BA-9478-76027FEEB003}</Project>
-      <Name>mbedCloudSDK</Name>
-    </ProjectReference>
+    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <ProjectReference Include="..\mbedCloudSDK\mbedCloudSDK.csproj">
+      <Project>{7c35731a-8701-45ba-9478-76027feeb003}</Project>
+      <Name>mbedCloudSDK</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
