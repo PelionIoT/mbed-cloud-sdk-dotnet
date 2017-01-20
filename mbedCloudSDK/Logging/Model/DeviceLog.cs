@@ -33,7 +33,7 @@ namespace mbedCloudSDK.Logging.Model
         /// <summary>
         /// Gets or Sets Changes
         /// </summary>
-        public string Changes { get; set; }
+        public object Changes { get; set; }
         
         /// <summary>
         /// Gets or Sets EventTypeDescription

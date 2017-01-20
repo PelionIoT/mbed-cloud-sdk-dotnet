@@ -44,9 +44,9 @@ namespace iam.Model
             User,
             
             /// <summary>
-            /// Enum Apikey for "api_key"
+            /// Enum Apikey for "api-key"
             /// </summary>
-            [EnumMember(Value = "api_key")]
+            [EnumMember(Value = "api-key")]
             Apikey,
             
             /// <summary>
@@ -62,15 +62,15 @@ namespace iam.Model
             Account,
             
             /// <summary>
-            /// Enum Accounttemplate for "account_template"
+            /// Enum Accounttemplate for "account-template"
             /// </summary>
-            [EnumMember(Value = "account_template")]
+            [EnumMember(Value = "account-template")]
             Accounttemplate,
             
             /// <summary>
-            /// Enum Cacert for "ca_cert"
+            /// Enum Cacert for "ca-cert"
             /// </summary>
-            [EnumMember(Value = "ca_cert")]
+            [EnumMember(Value = "ca-cert")]
             Cacert,
             
             /// <summary>
