@@ -48,7 +48,7 @@ namespace mbedCloudSDK.Logging.Model
         /// <summary>
         /// Gets or Sets Data
         /// </summary>
-        public string Data { get; set; }
+        public object Data { get; set; }
         
         /// <summary>
         /// Gets or Sets DeviceId
