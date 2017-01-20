@@ -19,7 +19,7 @@ namespace mbedCloudSDK.Common
         /// Whether there are more results to display
         /// </summary>
         /// <value>Whether there are more results to display</value>
-        public bool? HasMore { get; set; }
+        public bool? HasMore { get; private set; }
         
         /// <summary>
         /// Total number of records
@@ -78,7 +78,7 @@ namespace mbedCloudSDK.Common
         /// Return total count of items
         /// </summary>
         /// <returns></returns>
-        public int? getTotalCount()
+        public int? GetTotalCount()
         {
             ListParams listParams = new ListParams();
             listParams.Include = "total_count";

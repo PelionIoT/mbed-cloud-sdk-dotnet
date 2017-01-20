@@ -29,13 +29,36 @@ namespace mbedCloudSDK.Logging.Api
                 device_catalog.Client.Configuration.Default.ApiClient = new device_catalog.Client.ApiClient(config.Host);
             }
         }
-        
+
+
+
         /// <summary>
         /// Lists the device logs.
         /// </summary>
         /// <returns>The device logs.</returns>
         /// <param name="listParams">List parameters.</param>
-        public List<DeviceLog> ListDeviceLogs(ListParams listParams = null)
+        public PaginatedResponse<DeviceLog> ListDeviceLogs(ListParams listParams = null)
+        {
+            if (listParams == null)
+            {
+                listParams = new ListParams();
+            }
+            try
+            {
+                return new PaginatedResponse<DeviceLog>(ListDeviceLogsFunc, listParams);
+            }
+            catch (CloudApiException e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Lists the device logs.
+        /// </summary>
+        /// <returns>The device logs.</returns>
+        /// <param name="listParams">List parameters.</param>
+        private ResponsePage<DeviceLog> ListDeviceLogsFunc(ListParams listParams = null)
         {
             if (listParams == null)
             {
@@ -44,13 +67,13 @@ namespace mbedCloudSDK.Logging.Api
             var api = new device_catalog.Api.DefaultApi();
             try
             {
-                var deviceLogs = new List<DeviceLog>();
-                var deviceLogsList = api.DeviceLogList(listParams.Limit, listParams.Order, listParams.After, listParams.Filter, listParams.Include).Data;
-                foreach(var log in deviceLogsList)
+                var resp = api.DeviceLogList(listParams.Limit, listParams.Order, listParams.After, listParams.Filter, listParams.Include);
+                ResponsePage<DeviceLog> respDeviceLogs = new ResponsePage<DeviceLog>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
+                foreach (var deviceLog in resp.Data)
                 {
-                    deviceLogs.Add(DeviceLog.Map(log));
+                    respDeviceLogs.Data.Add(DeviceLog.Map(deviceLog));
                 }
-                return deviceLogs;
+                return respDeviceLogs;
             }
             catch (device_catalog.Client.ApiException e)
             {

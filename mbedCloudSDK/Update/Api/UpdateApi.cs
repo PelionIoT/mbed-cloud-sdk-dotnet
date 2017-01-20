@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using mbedCloudSDK.Exceptions;
 using System.IO;
 using deployment_service.Model;
+using mbedCloudSDK.Update.Model;
 
 namespace mbedCloudSDK.Update.Api
 {
@@ -13,6 +14,9 @@ namespace mbedCloudSDK.Update.Api
     /// </summary>
     public class UpdateApi: BaseApi
     {
+        private deployment_service.Api.DefaultApi updateApi;
+        private firmware_catalog.Api.DefaultApi firmwareApi;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:mbedCloudSDK.Update"/> class.
         /// </summary>
@@ -23,17 +27,53 @@ namespace mbedCloudSDK.Update.Api
             {
                 Configuration.Default.ApiClient = new ApiClient(config.Host);
             }
-            Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
-            Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            this.updateApi = new deployment_service.Api.DefaultApi(config.Host);
+            this.updateApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
+            this.updateApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+
+            this.firmwareApi = new firmware_catalog.Api.DefaultApi(config.Host);
+            this.firmwareApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
+            this.firmwareApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
         }
 
-        public List<UpdateCampaignSerializer> ListUpdateCampaigns(ListParams listParams = null)
+        public PaginatedResponse<UpdateCampaign> ListUpdateCampaigns(ListParams listParams = null)
         {
-            deployment_service.Api.DefaultApi api = new deployment_service.Api.DefaultApi(config.Host);
-            var updateCampaignList = api.UpdateCampaignList(listParams.Limit, listParams.Order, listParams.After,listParams.Filter, listParams.Include).Data;
-            return updateCampaignList;
+            if (listParams == null)
+            {
+                listParams = new ListParams();
+            }
+            try
+            {
+                return new PaginatedResponse<UpdateCampaign>(ListUpdateCampaignsFunc, listParams);
+            }
+            catch (CloudApiException e)
+            {
+                throw e;
+            }
         }
-        
+
+        private ResponsePage<UpdateCampaign> ListUpdateCampaignsFunc(ListParams listParams = null)
+        {
+            if (listParams == null)
+            {
+                listParams = new ListParams();
+            }
+            try
+            {
+                var resp = updateApi.UpdateCampaignList(listParams.Limit, listParams.Order, listParams.After, listParams.Filter, listParams.Include);
+                ResponsePage<UpdateCampaign> respDevices = new ResponsePage<UpdateCampaign>(null, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
+                foreach (var device in resp.Data)
+                {
+                    respDevices.Data.Add(UpdateCampaign.Map(device));
+                }
+                return respDevices;
+            }
+            catch (device_catalog.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
         /// <summary>
         /// Lists the firmware images.
         /// </summary>

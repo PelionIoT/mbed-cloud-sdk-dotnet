@@ -12,6 +12,8 @@ using mbedCloudSDK.Access.Api;
 using mbedCloudSDK.Devices.Api;
 using mbedCloudSDK.Devices.Model;
 using mbedCloudSDK.Devices.Model.Device;
+using mbedCloudSDK.Logging.Api;
+using mbedCloudSDK.Update.Api;
 
 namespace ConsoleExamples
 {
@@ -136,6 +138,17 @@ namespace ConsoleExamples
             }
             
         }
+
+        public void runLogsExample()
+        {
+            LoggingApi api = new LoggingApi(config);
+            ListParams listParam = new ListParams();
+            listParam.Limit = 10;
+            foreach (var log in api.ListDeviceLogs(listParam))
+            {
+                Console.WriteLine(log.ToString());
+            }
+        }
         
         /// <summary>
         /// Runs the device query example. Create new filter.
@@ -157,6 +170,16 @@ namespace ConsoleExamples
             foreach (var key in keys)
             {
                 Console.WriteLine(key);
+            }
+        }
+
+        public void runUpdateCampaignExample()
+        {
+            UpdateApi api = new UpdateApi(config);
+            var updateCampaigns = api.ListUpdateCampaigns();
+            foreach(var updateCampaign in updateCampaigns)
+            {
+                Console.WriteLine(updateCampaign);
             }
         }
     }

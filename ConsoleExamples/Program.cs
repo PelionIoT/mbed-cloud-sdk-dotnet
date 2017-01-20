@@ -28,7 +28,7 @@ namespace ConsoleExamples
             {
                 example = ShowMenu();
                 int exampleNumber = 0;
-                if (Int32.TryParse(example, out exampleNumber) && exampleNumber >=1 && exampleNumber<=7)
+                if (Int32.TryParse(example, out exampleNumber) && exampleNumber >=1 && exampleNumber<=9)
                     RunExample(examples, Convert.ToInt32(exampleNumber));
                 else
                     break;
@@ -46,6 +46,8 @@ namespace ConsoleExamples
             Console.WriteLine("5. Create a webhook for a resource");
             Console.WriteLine("6. Run device query");
             Console.WriteLine("7. Run async example");
+            Console.WriteLine("8. Run device logs example");
+            Console.WriteLine("9. Run update campaign example");
             Console.WriteLine("---Press any other key to exit---");
             Console.WriteLine();
             return Console.ReadLine();
@@ -75,6 +77,12 @@ namespace ConsoleExamples
                     break;
                 case 7:
                     examples.runAsyncExample();
+                    break;
+                case 8:
+                    examples.runLogsExample();
+                    break;
+                case 9:
+                    examples.runUpdateCampaignExample();
                     break;
             }
         }

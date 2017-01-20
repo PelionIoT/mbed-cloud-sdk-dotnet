@@ -205,6 +205,8 @@
     <Compile Include="Access\Model\ApiKey\ApiKey.cs" />
     <Compile Include="Access\Model\Account\Account.cs" />
     <Compile Include="Access\Model\ApiKey\ApiKeyStatus.cs" />
+    <Compile Include="Update\Model\UpdateCampaign.cs" />
+    <Compile Include="Update\Model\UpdateCampaignStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Backends\Mds\README.md" />
@@ -223,7 +225,6 @@
     <Folder Include="Devices\Model\Subscription\" />
     <Folder Include="Devices\Model\Webhook\" />
     <Folder Include="Manufacturing\Model\" />
-    <Folder Include="Update\Model\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="lib\Newtonsoft.Json.dll" />
