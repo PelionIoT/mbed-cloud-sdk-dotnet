@@ -28,7 +28,7 @@ namespace ConsoleExamples
             {
                 example = ShowMenu();
                 int exampleNumber = 0;
-                if (Int32.TryParse(example, out exampleNumber) && exampleNumber >=1 && exampleNumber<=9)
+                if (Int32.TryParse(example, out exampleNumber) && exampleNumber >=1 && exampleNumber<=12)
                     RunExample(examples, Convert.ToInt32(exampleNumber));
                 else
                     break;
@@ -48,6 +48,9 @@ namespace ConsoleExamples
             Console.WriteLine("7. Run async example");
             Console.WriteLine("8. Run device logs example");
             Console.WriteLine("9. Run update campaign example");
+            Console.WriteLine("10. List firmware images");
+            Console.WriteLine("11. List firmware manifests");
+            Console.WriteLine("12. Run update campaign example");
             Console.WriteLine("---Press any other key to exit---");
             Console.WriteLine();
             return Console.ReadLine();
@@ -82,6 +85,15 @@ namespace ConsoleExamples
                     examples.runLogsExample();
                     break;
                 case 9:
+                    examples.runListUpdateCampaignsExample();
+                    break;
+                case 10:
+                    examples.runListFirmwareImagesExample();
+                    break;
+                case 11:
+                    examples.runListFirmwareManifestsExample();
+                    break;
+                case 12:
                     examples.runUpdateCampaignExample();
                     break;
             }

@@ -143,6 +143,7 @@
     <Compile Include="Devices\Model\Device\DeployedState.cs" />
     <Compile Include="Devices\Model\Device\Mechanism.cs" />
     <Compile Include="Devices\Model\Device\State.cs" />
+    <Compile Include="Devices\Model\Filter\DeviceFilter.cs" />
     <Compile Include="Exceptions\CloudApiException.cs" />
     <Compile Include="Common\ListParams.cs" />
     <Compile Include="Logging\Model\DeviceLog.cs" />
@@ -205,8 +206,13 @@
     <Compile Include="Access\Model\ApiKey\ApiKey.cs" />
     <Compile Include="Access\Model\Account\Account.cs" />
     <Compile Include="Access\Model\ApiKey\ApiKeyStatus.cs" />
-    <Compile Include="Update\Model\UpdateCampaign.cs" />
-    <Compile Include="Update\Model\UpdateCampaignStatus.cs" />
+    <Compile Include="Update\Model\Campaign\UpdateCampaign.cs" />
+    <Compile Include="Update\Model\Campaign\UpdateCampaignDeviceMetada.cs" />
+    <Compile Include="Update\Model\Campaign\UpdateCampaignDeviceState.cs" />
+    <Compile Include="Update\Model\Campaign\UpdateCampaignState.cs" />
+    <Compile Include="Update\Model\Campaign\UpdateCampaignStatus.cs" />
+    <Compile Include="Update\Model\FirmwareImage\FirmwareImage.cs" />
+    <Compile Include="Update\Model\FirmwareManifest\FirmwareManifest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Backends\Mds\README.md" />

@@ -5,13 +5,13 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.Update.Model
+namespace mbedCloudSDK.Update.Model.Campaign
 {
     /// <summary>
     /// The state of the campaign
     /// </summary>
     /// <value>The state of the campaign</value>
-    public enum UpdateCampaignStatus
+    public enum UpdateCampaignState
     {
         /// <summary>
         /// Enum Draft for "draft"

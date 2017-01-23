@@ -14,6 +14,10 @@ using mbedCloudSDK.Devices.Model;
 using mbedCloudSDK.Devices.Model.Device;
 using mbedCloudSDK.Logging.Api;
 using mbedCloudSDK.Update.Api;
+using System.Windows.Forms;
+using System.IO;
+using mbedCloudSDK.Exceptions;
+using mbedCloudSDK.Update.Model.FirmwareManifest;
 
 namespace ConsoleExamples
 {
@@ -173,14 +177,98 @@ namespace ConsoleExamples
             }
         }
 
+        private string CreateRandomName()
+        {
+            return DateTime.Now.ToString();
+        }
+
         public void runUpdateCampaignExample()
         {
             UpdateApi api = new UpdateApi(config);
-            var updateCampaigns = api.ListUpdateCampaigns();
-            foreach(var updateCampaign in updateCampaigns)
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.RestoreDirectory = true;
+            Stream dataFile = null;
+            Console.WriteLine("Choose manifest file to upload: ");
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                Console.WriteLine(updateCampaign);
+                try
+                {
+                    if ((dataFile = openFileDialog.OpenFile()) != null)
+                    {
+                        using (dataFile)
+                        {
+                            // Upload manifest
+                            try
+                            {
+                                api.AddFirmwareManifest(dataFile, CreateRandomName());
+                            }
+                            catch(CloudApiException e)
+                            {
+                                Console.WriteLine("Error while uploading manifest, Error: " + e.ToString());
+                                return;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: Could not read file from disk. Wrror: " + ex.Message);
+                }
             }
+            
+            // List all firware manifests
+            ListParams listParamas = new ListParams();
+            listParamas.Limit = 10;
+            PaginatedResponse<FirmwareManifest> manifests = api.ListFirmwareManifests(listParamas);
+            var enumerator = manifests.GetEnumerator();
+            while(enumerator.MoveNext())
+            {
+                Console.WriteLine(enumerator.Current);
+            }
+
+            // List all filters
+
+            var devicesApi = new DevicesApi(config);
+            devicesApi.ListFilters();
+
+        }
+
+        public void runListUpdateCampaignsExample()
+        {
+            UpdateApi api = new UpdateApi(config);
+            var updateCampaigns = api.ListUpdateCampaigns();
+            var enumerator = updateCampaigns.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                Console.WriteLine(enumerator.Current);
+            }
+        }
+
+        public void runListFirmwareImagesExample()
+        {
+            UpdateApi api = new UpdateApi(config);
+            var enumerator = api.ListFirmwareImages().GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                Console.WriteLine(enumerator.Current);
+            }
+        }
+
+        public void runListFirmwareManifestsExample()
+        {
+            UpdateApi api = new UpdateApi(config);
+            var manifests = api.ListFirmwareManifests();
+            var enumerator = manifests.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                Console.WriteLine(enumerator.Current);
+            }
+            /*
+            var enumerator = api.ListFirmwareManifests().GetEnumerator();
+            while(enumerator.MoveNext())
+            {
+                Console.WriteLine(enumerator.Current);
+            }*/
         }
     }
 }

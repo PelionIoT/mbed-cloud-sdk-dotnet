@@ -11,6 +11,7 @@ using RestSharp;
 using mbedCloudSDK.Devices.Model;
 using mbedCloudSDK.Devices.Model.Device;
 using mbedCloudSDK.Devices.Model.Resource;
+using mbedCloudSDK.Devices.Model.Filter;
 
 namespace mbedCloudSDK.Devices.Api
 {
@@ -379,7 +380,7 @@ namespace mbedCloudSDK.Devices.Api
 
         #endregion
         
-        #region Queries
+        #region Filters
         
         /// <summary>
         /// Creates the filter.
@@ -389,7 +390,7 @@ namespace mbedCloudSDK.Devices.Api
         /// <param name="query">Query.</param>
         /// <param name="customAttributes">Custom attributes.</param>
         /// <param name="description">Description.</param>
-        public DeviceQueryDetail CreateFilter(string name, Dictionary<String, String> query, Dictionary<String, String> customAttributes = null, string description=null)
+        public DeviceFilter CreateFilter(string name, Dictionary<String, String> query, Dictionary<String, String> customAttributes = null, string description=null)
         {
             var api = new device_query_service.Api.DefaultApi();
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
@@ -416,7 +417,7 @@ namespace mbedCloudSDK.Devices.Api
             string queryString = string.Join("&", query.Select(q => String.Format("{0}={1}", q.Key, q.Value)));
             queryString = device_query_service.Client.ApiClient.UrlEncode(queryString);
 
-            return api.DeviceQueryCreate(name, queryString, description);
+            return DeviceFilter.Map(api.DeviceQueryCreate(name, queryString, description));
         }
         
         /// <summary>
@@ -424,41 +425,57 @@ namespace mbedCloudSDK.Devices.Api
         /// </summary>
         /// <returns>The filter.</returns>
         /// <param name="filterID">Filter identifier.</param>
-        public DeviceQueryDetail DeleteFilter(string filterID)
+        public DeviceFilter DeleteFilter(string filterID)
         {
             var api = new device_query_service.Api.DefaultApi();
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            return api.DeviceQueryDestroy(filterID);
+            return DeviceFilter.Map(api.DeviceQueryDestroy(filterID));
         }
 
-        /// <summary>
-        /// Lists the filters.
-        /// </summary>
-        /// <returns>The filters.</returns>
-        /// <param name="listParams">List parameters.</param>
-        public List<DeviceQueryDetail> ListFilters(ListParams listParams = null)
+        public PaginatedResponse<DeviceFilter> ListFilters(ListParams listParams = null)
         {
-            if (listParams != null)
+            if (listParams == null)
             {
-                throw new NotImplementedException();
+                listParams = new ListParams();
             }
+            try
+            {
+                return new PaginatedResponse<DeviceFilter>(ListDeviceFiltersFunc, listParams);
+            }
+            catch (CloudApiException e)
+            {
+                throw e;
+            }
+        }
 
-            var api = new device_query_service.Api.DefaultApi();
+        private ResponsePage<DeviceFilter> ListDeviceFiltersFunc(ListParams listParams = null)
+        {
+            if (listParams == null)
+            {
+                listParams = new ListParams();
+            }
+            var api = new device_query_service.Api.DefaultApi(config.Host);
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             try
             {
-                return api.DeviceQueryList().Data;
+                var resp = api.DeviceQueryList(listParams.Limit, listParams.Order, listParams.After, listParams.Include);
+                ResponsePage<DeviceFilter> respDevices = new ResponsePage<DeviceFilter>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
+                foreach (var deviceFilter in resp.Data)
+                {
+                    respDevices.Data.Add(DeviceFilter.Map(deviceFilter));
+                }
+                return respDevices;
             }
-            catch (mds.Client.ApiException e)
+            catch (device_catalog.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
         }
 
         #endregion
-        
+
         #region Polling
 
         private void LongPolling()

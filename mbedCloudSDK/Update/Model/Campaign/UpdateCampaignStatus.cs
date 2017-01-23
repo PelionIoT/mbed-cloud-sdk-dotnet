@@ -1,15 +1,26 @@
-﻿using System;
+﻿using deployment_service.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.Update.Model
+namespace mbedCloudSDK.Update.Model.Campaign
 {
-    public class UpdateCampaign
+    public class UpdateCampaignStatus
     {
+        public UpdateCampaignState State { get; set; }
         
-        public UpdateCampaignStatus State { get; set; }
+        /// <summary>
+        /// Gets or Sets DirectDevices
+        /// </summary>
+        public int? DirectDevices { get; set; }
+        
+        /// <summary>
+        /// Gets or Sets ConnectorDevices
+        /// </summary>
+        /// 
+        public int? ConnectorDevices { get; set; }
         
         /// <summary>
         /// An optional description of the campaign
@@ -30,9 +41,14 @@ namespace mbedCloudSDK.Update.Model
         public DateTime? CreatedAt { get; set; }
         
         /// <summary>
-        /// Gets or Sets RootManifestId
+        /// Gets or Sets TotalDevices
         /// </summary>
-        public string RootManifestId { get; set; }
+        public int? TotalDevices { get; set; }
+        
+        /// <summary>
+        /// Gets or Sets CampaigndevicemetadataSet
+        /// </summary>
+        public List<UpdateCampaignDeviceMetada> Metadata { get; set; }
         
         /// <summary>
         /// DEPRECATED: The ID of the campaign
@@ -41,10 +57,9 @@ namespace mbedCloudSDK.Update.Model
         public string CampaignId { get; set; }
         
         /// <summary>
-        /// The updating account ID
+        /// Gets or Sets DeployedDevices
         /// </summary>
-        /// <value>The updating account ID</value>
-        public string UpdatingAccountId { get; set; }
+        public int? DeployedDevices { get; set; }
         
         /// <summary>
         /// The time the object was updated
@@ -53,9 +68,9 @@ namespace mbedCloudSDK.Update.Model
         public DateTime? UpdatedAt { get; set; }
         
         /// <summary>
-        /// The timestamp at which update campaign scheduled to start
+        /// The timestamp at which campaign is scheduled to start
         /// </summary>
-        /// <value>The timestamp at which update campaign scheduled to start</value>
+        /// <value>The timestamp at which campaign is scheduled to start</value>
         public DateTime? When { get; set; }
         
         /// <summary>
@@ -63,12 +78,6 @@ namespace mbedCloudSDK.Update.Model
         /// </summary>
         /// <value>The timestamp when the update campaign finished</value>
         public DateTime? Finished { get; set; }
-
-        /// <summary>
-        /// The entity instance signature
-        /// </summary>
-        /// <value>The entity instance signature</value>
-        public DateTime? Etag { get; set; }
         
         /// <summary>
         /// Gets or Sets RootManifestUrl
@@ -82,10 +91,10 @@ namespace mbedCloudSDK.Update.Model
         public string UpdatingApiKey { get; set; }
         
         /// <summary>
-        /// The ID of the campaign
+        /// The updating account ID
         /// </summary>
-        /// <value>The ID of the campaign</value>
-        public string Id { get; set; }
+        /// <value>The updating account ID</value>
+        public string UpdatingAccountId { get; set; }
         
         /// <summary>
         /// The filter for the devices the campaign will target
@@ -98,22 +107,6 @@ namespace mbedCloudSDK.Update.Model
         /// </summary>
         /// <value>A name for this campaign</value>
         public string Name { get; set; }
-
-
-        public UpdateCampaign(IDictionary<string, object> options = null)
-        {
-            if (options != null)
-            {
-                foreach (KeyValuePair<string, object> item in options)
-                {
-                    var property = this.GetType().GetProperty(item.Key);
-                    if (property != null)
-                    {
-                        property.SetValue(this, item.Value, null);
-                    }
-                }
-            }
-        }
         
         /// <summary>
         /// Returns the string presentation of the object
@@ -122,53 +115,54 @@ namespace mbedCloudSDK.Update.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class UpdateCampaignSerializer {\n");
+            sb.Append("class UpdateCampaignStatusSerializer {\n");
+            sb.Append("  DirectDevices: ").Append(DirectDevices).Append("\n");
+            sb.Append("  ConnectorDevices: ").Append(ConnectorDevices).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  UpdatingUserId: ").Append(UpdatingUserId).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  RootManifestId: ").Append(RootManifestId).Append("\n");
+            sb.Append("  TotalDevices: ").Append(TotalDevices).Append("\n");
+            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
-            sb.Append("  UpdatingAccountId: ").Append(UpdatingAccountId).Append("\n");
+            sb.Append("  DeployedDevices: ").Append(DeployedDevices).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  When: ").Append(When).Append("\n");
             sb.Append("  Finished: ").Append(Finished).Append("\n");
-            sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  RootManifestUrl: ").Append(RootManifestUrl).Append("\n");
             sb.Append("  UpdatingApiKey: ").Append(UpdatingApiKey).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  UpdatingAccountId: ").Append(UpdatingAccountId).Append("\n");
             sb.Append("  DeviceFilter: ").Append(DeviceFilter).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
 
-        /// <summary>
-        /// Map to Update campaign object.
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public static UpdateCampaign Map(deployment_service.Model.UpdateCampaignSerializer data)
+        public static UpdateCampaignStatus Map(UpdateCampaignStatusSerializer data)
         {
-            var updateCampaignStatus = (UpdateCampaignStatus)Enum.Parse(typeof(UpdateCampaignStatus), data.State.ToString());
-            var campaign = new UpdateCampaign();
-            campaign.CampaignId = data.CampaignId;
-            campaign.CreatedAt = data.CreatedAt;
-            campaign.Description = data.Description;
-            campaign.DeviceFilter = data.DeviceFilter;
-            campaign.Etag = data.Etag;
-            campaign.Finished = data.Finished;
-            campaign.Id = data.Id;
-            campaign.Name = data.Name;
-            campaign.RootManifestId = data.RootManifestId;
-            campaign.RootManifestUrl = data.RootManifestUrl;
-            campaign.State = updateCampaignStatus;
-            campaign.UpdatedAt = data.UpdatedAt;
-            campaign.UpdatingAccountId = data.UpdatingAccountId;
-            campaign.UpdatingApiKey = data.UpdatingApiKey;
-            campaign.UpdatingUserId = data.UpdatingUserId;
-            campaign.When = data.When;
-            return campaign;
+            UpdateCampaignStatus u = new UpdateCampaignStatus();
+            u.Metadata = new List<UpdateCampaignDeviceMetada>();
+            foreach (var d in data.CampaigndevicemetadataSet)
+            {
+                u.Metadata.Add(UpdateCampaignDeviceMetada.Map(d));
+            }
+            u.ConnectorDevices = data.ConnectorDevices;
+            u.CreatedAt = data.CreatedAt;
+            u.DeployedDevices = data.DeployedDevices;
+            u.Description = data.Description;
+            u.DeviceFilter = data.DeviceFilter;
+            u.DirectDevices = data.DirectDevices;
+            u.Finished = data.Finished;
+            u.Name = data.Name;
+            u.RootManifestUrl = data.RootManifestUrl;
+            u.State = (UpdateCampaignState)Enum.Parse(typeof(UpdateCampaignState), data.State.ToString());
+            u.TotalDevices = data.TotalDevices;
+            u.UpdatedAt = data.UpdatedAt;
+            u.UpdatingAccountId = data.UpdatingAccountId;
+            u.UpdatingApiKey = data.UpdatingApiKey;
+            u.UpdatingUserId = data.UpdatingUserId;
+            u.When = data.When;
+            return u;
         }
     }
 }
