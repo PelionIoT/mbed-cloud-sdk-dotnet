@@ -92,6 +92,7 @@
     <Compile Include="Development\Api\DevelopmentApi.cs" />
     <Compile Include="Common\BaseApi.cs" />
     <Compile Include="Common\Config.cs" />
+    <Compile Include="Development\Model\DeveloperCertificate.cs" />
     <Compile Include="Devices\Api\DevicesApi.cs" />
     <Compile Include="Backends\DeploymentService\Api\DefaultApi.cs" />
     <Compile Include="Backends\DeploymentService\Client\ApiClient.cs" />
@@ -225,7 +226,6 @@
     <None Include="Backends\ProvisioningCertificate\README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Development\Model\" />
     <Folder Include="Manufacturing\Model\" />
   </ItemGroup>
   <ItemGroup>
