@@ -26,12 +26,17 @@ namespace mbedCloudSDK.Devices.Model.Filter
         /// </summary>
         /// <value>The time the object was updated</value>
         public DateTime? UpdatedAt { get; set; }
-        
+
+        private string query;
+
         /// <summary>
         /// The device query
         /// </summary>
         /// <value>The device query</value>
-        public string Query { get; set; }
+        public string Query {
+            get { return Uri.UnescapeDataString(query); } 
+            set { query = value; }
+        }
         
         /// <summary>
         /// The ID of the query
