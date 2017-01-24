@@ -132,7 +132,25 @@ namespace ConsoleExamples
                 }
             }
         }
-        
+
+        public void runSetValueExample()
+        {
+            //Resource path
+            var buttonResource = "3200/0/5501";
+            DevicesApi devices = new DevicesApi(config);
+            //List all connected endpoints
+            var endpoints = devices.ListConnectedDevices();
+            if (endpoints == null)
+            {
+                throw new Exception("No endpoints registered. Aborting.");
+            }
+            //Start long polling thread
+            devices.StartLongPolling();
+            var resources = endpoints[0].ListResources();
+            var resp = devices.SetResourceValue(endpoints[0].Id, buttonResource, "100");
+            Console.WriteLine(resp.GetValue().Result);
+        }
+
         /// <summary>
         /// Runs the webhook example. Create a webhook for the resouce.
         /// </summary>
