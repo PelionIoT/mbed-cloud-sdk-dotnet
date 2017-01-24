@@ -19,6 +19,7 @@ using System.IO;
 using mbedCloudSDK.Exceptions;
 using mbedCloudSDK.Update.Model.FirmwareManifest;
 using mbedCloudSDK.Update.Model.Campaign;
+using mbedCloudSDK.Devices.Model.Query;
 
 namespace ConsoleExamples
 {
@@ -107,6 +108,30 @@ namespace ConsoleExamples
                 }
             }
         }
+
+        public void runGetValueExample()
+        {
+            //Resource path
+            var buttonResource = "/3200/0/5501";
+            DevicesApi devices = new DevicesApi(config);
+            //List all connected endpoints
+            var endpoints = devices.ListConnectedDevices();
+            if (endpoints == null)
+            {
+                throw new Exception("No endpoints registered. Aborting.");
+            }
+            //Start long polling thread
+            devices.StartLongPolling();
+            var resources = endpoints[0].ListResources();
+            foreach (var resource in resources)
+            {
+                if (resource.Uri == buttonResource)
+                {
+                    var resp = devices.GetResourceValue(endpoints[0].Id, resource.Uri);
+                    Console.WriteLine(resp.GetValue().Result);
+                }
+            }
+        }
         
         /// <summary>
         /// Runs the webhook example. Create a webhook for the resouce.
@@ -161,9 +186,10 @@ namespace ConsoleExamples
         public void runDeviceQueryExample()
         {
             DevicesApi devices = new DevicesApi(config);
-            Dictionary<string, string> query = new Dictionary<string, string>();
-            query.Add("auto_update", "true");
-            devices.CreateQuery("test", query, null);
+            Query query = new Query();
+            query.Attributes.Add("auto_update", "true");
+            query.Name = "test";
+            devices.AddQuery(query);
         }
         
         public async void runAsyncExample()

@@ -141,6 +141,11 @@
     <Compile Include="Backends\DeviceQueryService\Model\DeviceQueryResp.cs" />
     <Compile Include="Backends\DeviceCatalog\Model\DeviceDetail.cs" />
     <Compile Include="Backends\DeviceCatalog\Model\DeviceListResp.cs" />
+    <Compile Include="Devices\Api\DevicesApi.Devices.cs" />
+    <Compile Include="Devices\Api\DevicesApi.LongPolling.cs" />
+    <Compile Include="Devices\Api\DevicesApi.Notifications.cs" />
+    <Compile Include="Devices\Api\DevicesApi.Query.cs" />
+    <Compile Include="Devices\Api\DevicesApi.Subscriptions.cs" />
     <Compile Include="Devices\Model\Device\DeployedState.cs" />
     <Compile Include="Devices\Model\Device\Mechanism.cs" />
     <Compile Include="Devices\Model\Device\State.cs" />

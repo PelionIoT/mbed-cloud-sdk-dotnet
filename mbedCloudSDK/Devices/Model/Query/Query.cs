@@ -9,7 +9,7 @@ namespace mbedCloudSDK.Devices.Model.Query
 {
     public class Query
     {
-        private static readonly string CustomAttributesPrefix = "custom_attributes__";
+        public static readonly string CustomAttributesPrefix = "custom_attributes__";
         
         /// <summary>
         /// The description of the object

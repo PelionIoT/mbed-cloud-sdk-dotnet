@@ -20,7 +20,7 @@ namespace mbedCloudSDK.Access.Api
     /// <summary>
     /// Exposing functionality from IAM.
     /// </summary>
-	public class AccessApi: BaseApi
+	public partial class AccessApi: BaseApi
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="T:mbedCloudSDK.Access.Access"/> class.

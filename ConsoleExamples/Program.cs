@@ -29,7 +29,7 @@ namespace ConsoleExamples
             {
                 example = ShowMenu();
                 int exampleNumber = 0;
-                if (Int32.TryParse(example, out exampleNumber) && exampleNumber >=1 && exampleNumber<=12)
+                if (Int32.TryParse(example, out exampleNumber) && exampleNumber >=1 && exampleNumber<=13)
                     RunExample(examples, Convert.ToInt32(exampleNumber));
                 else
                     break;
@@ -52,6 +52,7 @@ namespace ConsoleExamples
             Console.WriteLine("10. List firmware images");
             Console.WriteLine("11. List firmware manifests");
             Console.WriteLine("12. Run update campaign example");
+            Console.WriteLine("13. Get resource value example");
             Console.WriteLine("---Press any other key to exit---");
             Console.WriteLine();
             return Console.ReadLine();
@@ -96,6 +97,9 @@ namespace ConsoleExamples
                     break;
                 case 12:
                     examples.runUpdateCampaignExample();
+                    break;
+                case 13:
+                    examples.runGetValueExample();
                     break;
             }
         }
