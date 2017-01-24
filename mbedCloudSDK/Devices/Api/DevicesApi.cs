@@ -11,7 +11,7 @@ using RestSharp;
 using mbedCloudSDK.Devices.Model;
 using mbedCloudSDK.Devices.Model.Device;
 using mbedCloudSDK.Devices.Model.Resource;
-using mbedCloudSDK.Devices.Model.Filter;
+using mbedCloudSDK.Devices.Model.Query;
 
 namespace mbedCloudSDK.Devices.Api
 {
@@ -96,7 +96,7 @@ namespace mbedCloudSDK.Devices.Api
                 ResponsePage<Device> respDevices = new ResponsePage<Device>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
                 foreach(var device in resp.Data)
                 {
-                    respDevices.Data.Add(Device.Map(this, device));
+                    respDevices.Data.Add(Device.Map(device, this));
                 }
                 return respDevices;
             }
@@ -269,7 +269,7 @@ namespace mbedCloudSDK.Devices.Api
                 List<Device> devices = new List<Device>();
                 foreach(var endpoint in endpoints)
                 {
-                    devices.Add(Device.Map(this, endpoint));
+                    devices.Add(Device.Map(endpoint, this));
                 }
                 return devices;
             }
@@ -379,61 +379,61 @@ namespace mbedCloudSDK.Devices.Api
         }
 
         #endregion
-        
-        #region Filters
-        
+
+        #region Queries
+
         /// <summary>
-        /// Creates the filter.
+        /// Creates new query.
         /// </summary>
-        /// <returns>The filter.</returns>
+        /// <returns>The query.</returns>
         /// <param name="name">Name.</param>
-        /// <param name="query">Query.</param>
+        /// <param name="attributes">Query.</param>
         /// <param name="customAttributes">Custom attributes.</param>
         /// <param name="description">Description.</param>
-        public DeviceFilter CreateFilter(string name, Dictionary<String, String> query, Dictionary<String, String> customAttributes = null, string description=null)
+        public Query CreateQuery(string name, Dictionary<String, String> attributes, Dictionary<String, String> customAttributes = null, string description=null)
         {
             var api = new device_query_service.Api.DefaultApi();
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
 
-            if (query == null)
+            if (attributes == null)
             {
-                query = new Dictionary<string, string>();
+                attributes = new Dictionary<string, string>();
             }
 
             if (customAttributes != null)
             {
                 foreach (var entry in customAttributes)
                 {
-                    query.Add(CustomAttributes + entry.Key, entry.Value);
+                    attributes.Add(CustomAttributes + entry.Key, entry.Value);
                 }
             }
 
-            if (query.Count == 0)
+            if (attributes.Count == 0)
             {
-                throw new ValueException("Valid Filter needs to contain at least one element in query or customAttributes collections");
+                throw new ValueException("Valid Query needs to contain at least one element in query or customAttributes collections");
             }
 
-            string queryString = string.Join("&", query.Select(q => String.Format("{0}={1}", q.Key, q.Value)));
+            string queryString = string.Join("&", attributes.Select(q => String.Format("{0}={1}", q.Key, q.Value)));
             queryString = device_query_service.Client.ApiClient.UrlEncode(queryString);
 
-            return DeviceFilter.Map(api.DeviceQueryCreate(name, queryString, description));
+            return Query.Map(api.DeviceQueryCreate(name, queryString, description));
         }
         
         /// <summary>
-        /// Deletes the filter.
+        /// Deletes the query.
         /// </summary>
-        /// <returns>The filter.</returns>
-        /// <param name="filterID">Filter identifier.</param>
-        public DeviceFilter DeleteFilter(string filterID)
+        /// <returns>The query.</returns>
+        /// <param name="queryID">Query identifier.</param>
+        public Query DeleteQuery(string queryID)
         {
             var api = new device_query_service.Api.DefaultApi();
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            return DeviceFilter.Map(api.DeviceQueryDestroy(filterID));
+            return Query.Map(api.DeviceQueryDestroy(queryID));
         }
 
-        public PaginatedResponse<DeviceFilter> ListFilters(ListParams listParams = null)
+        public PaginatedResponse<Query> ListQueries(ListParams listParams = null)
         {
             if (listParams == null)
             {
@@ -441,7 +441,7 @@ namespace mbedCloudSDK.Devices.Api
             }
             try
             {
-                return new PaginatedResponse<DeviceFilter>(ListDeviceFiltersFunc, listParams);
+                return new PaginatedResponse<Query>(ListDeviceQueriesFunc, listParams);
             }
             catch (CloudApiException e)
             {
@@ -449,7 +449,7 @@ namespace mbedCloudSDK.Devices.Api
             }
         }
 
-        private ResponsePage<DeviceFilter> ListDeviceFiltersFunc(ListParams listParams = null)
+        private ResponsePage<Query> ListDeviceQueriesFunc(ListParams listParams = null)
         {
             if (listParams == null)
             {
@@ -461,10 +461,10 @@ namespace mbedCloudSDK.Devices.Api
             try
             {
                 var resp = api.DeviceQueryList(listParams.Limit, listParams.Order, listParams.After, listParams.Include);
-                ResponsePage<DeviceFilter> respDevices = new ResponsePage<DeviceFilter>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
-                foreach (var deviceFilter in resp.Data)
+                ResponsePage<Query> respDevices = new ResponsePage<Query>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
+                foreach (var deviceQuery in resp.Data)
                 {
-                    respDevices.Data.Add(DeviceFilter.Map(deviceFilter));
+                    respDevices.Data.Add(Query.Map(deviceQuery));
                 }
                 return respDevices;
             }

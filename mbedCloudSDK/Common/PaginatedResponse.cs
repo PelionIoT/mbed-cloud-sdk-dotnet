@@ -52,6 +52,21 @@ namespace mbedCloudSDK.Common
             }
         }
 
+        /// <summary>
+        /// Return the paginated response as a list containing all elements.
+        /// </summary>
+        /// <returns></returns>
+        public List<T> ToList()
+        {
+            List<T> list = new List<T>();
+            IEnumerator<T> enumerator = this.GetEnumerator();
+            while(enumerator.MoveNext())
+            {
+                list.Add(enumerator.Current);
+            }
+            return list;
+        }
+
         private void GetPage()
         {
             ResponsePage<T> resp = this.getDataFunc(this.ListParams);

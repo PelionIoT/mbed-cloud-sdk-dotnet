@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 
 namespace mbedCloudSDK.Update.Model.Campaign
 {
+    /// <summary>
+    /// Represents status of Update Campaign.
+    /// </summary>
     public class UpdateCampaignStatus
     {
+
+        /// <summary>
+        /// State of update campaign.
+        /// </summary>
         public UpdateCampaignState State { get; set; }
         
         /// <summary>
@@ -138,6 +145,11 @@ namespace mbedCloudSDK.Update.Model.Campaign
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Map to UpdateCampaignStatus class.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static UpdateCampaignStatus Map(UpdateCampaignStatusSerializer data)
         {
             UpdateCampaignStatus u = new UpdateCampaignStatus();

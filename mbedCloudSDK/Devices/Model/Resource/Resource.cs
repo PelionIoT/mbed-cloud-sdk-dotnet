@@ -51,8 +51,9 @@ namespace mbedCloudSDK.Devices.Model.Resource
         /// <summary>
         /// Initializes a new instance of the <see cref="Resource" /> class.
         /// </summary>
-        /// <param name="api">Devices api</param>
-        /// <param name="options">Dictionary containing properties.</param>
+        /// <param name="api"></param>
+        /// <param name="deviceID"></param>
+        /// <param name="options"></param>
         public Resource(DevicesApi api, string deviceID, IDictionary<string, object> options = null)
         {
             this.api = api;

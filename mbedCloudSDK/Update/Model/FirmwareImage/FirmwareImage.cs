@@ -70,6 +70,11 @@ namespace mbedCloudSDK.Update.Model.FirmwareImage
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Map to FirmwareImage object.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static FirmwareImage Map(FirmwareImageSerializerData data)
         {
             FirmwareImage image = new FirmwareImage();

@@ -156,14 +156,14 @@ namespace ConsoleExamples
         }
         
         /// <summary>
-        /// Runs the device query example. Create new filter.
+        /// Runs the device query example. Create new query.
         /// </summary>
         public void runDeviceQueryExample()
         {
             DevicesApi devices = new DevicesApi(config);
             Dictionary<string, string> query = new Dictionary<string, string>();
             query.Add("auto_update", "true");
-            devices.CreateFilter("test", query, null);
+            devices.CreateQuery("test", query, null);
         }
         
         public async void runAsyncExample()
@@ -228,25 +228,25 @@ namespace ConsoleExamples
                 Console.WriteLine(enumerator.Current);
             }
 
-            // List all filters
+            // List all queries
 
             var devicesApi = new DevicesApi(config);
-            var filters = devicesApi.ListFilters();
+            var queries = devicesApi.ListQueries();
 
-            var enumeratorFilters = filters.GetEnumerator();
-            if (!enumeratorFilters.MoveNext())
+            var enumeratorQueries = queries.GetEnumerator();
+            if (!enumeratorQueries.MoveNext())
             {
-                Console.WriteLine("No filter found");
+                Console.WriteLine("No query found");
                 return;
             }
-            var filter = enumeratorFilters.Current;
+            var query = enumeratorQueries.Current;
 
             // Create Campaign
             string campaignName = CreateRandomName();
             var campaign = new UpdateCampaign();
             campaign.Name = campaignName;
             campaign.RootManifestId = manifest.Id;
-            campaign.DeviceFilter = Uri.UnescapeDataString(filter.Query);
+            campaign.DeviceFilter = query.QueryString;
             campaign = api.AddUpdateCampaign(campaign);
             Console.WriteLine("Created campaign : " + campaign);
 

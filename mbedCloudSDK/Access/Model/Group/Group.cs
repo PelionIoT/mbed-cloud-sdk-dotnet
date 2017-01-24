@@ -103,6 +103,11 @@ namespace mbedCloudSDK.Access.Model.Group
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Map to Group object
+        /// </summary>
+        /// <param name="groupInfo"></param>
+        /// <returns></returns>
         public static Group Map(iam.Model.GroupSummary groupInfo)
         {
             var group = new Group();

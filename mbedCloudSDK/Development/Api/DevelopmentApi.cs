@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using developer_certificate.Api;
 using developer_certificate.Client;
-using developer_certificate.Model;
 using mbedCloudSDK.Common;
 using mbedCloudSDK.Exceptions;
+using mbedCloudSDK.Development.Model;
 
 namespace mbedCloudSDK.Development.Api
 {
@@ -38,12 +38,12 @@ namespace mbedCloudSDK.Development.Api
         /// </summary>
         /// <returns>The certificate.</returns>
         /// <param name="certificateId">Certificate identifier.</param>
-        public DeveloperCertificate getCertificate(string certificateId)
+        public DeveloperCertificate GetCertificate(string certificateId)
         {
             var api = new DefaultApi();
 			try
 			{
-				return api.V3DeveloperCertificateGet(certificateId);
+				return DeveloperCertificate.Map(api.V3DeveloperCertificateGet(certificateId));
 			}
 			catch (ApiException e)
 			{
@@ -52,24 +52,59 @@ namespace mbedCloudSDK.Development.Api
         }
 
         /// <summary>
+        /// Gets the certificate asynchronously.
+        /// </summary>
+        /// <returns>The certificate.</returns>
+        /// <param name="certificateId">Certificate identifier.</param>
+        public async Task<DeveloperCertificate> GetCertificateAsync(string certificateId)
+        {
+            var api = new DefaultApi();
+            try
+            {
+                return DeveloperCertificate.Map(await api.V3DeveloperCertificateGetAsync(certificateId));
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+
+
+        /// <summary>
         /// Revokes the certificate.
         /// </summary>
         /// <returns><c>true</c>, if certificate was revoked, <c>false</c> otherwise.</returns>
         /// <param name="certificateId">Certificate identifier.</param>
-        public bool RevokeCertificate(string certificateId)
+        public void DeleteCertificate(string certificateId)
         {
             var api = new DefaultApi();
-            bool success = false;
             try
             {
                 api.V3DeveloperCertificateDelete(certificateId);
-                success = true;
             }
             catch(ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
-            return success;
+        }
+
+        /// <summary>
+        /// Revokes the certificate asynchronously.
+        /// </summary>
+        /// <returns><c>true</c>, if certificate was revoked, <c>false</c> otherwise.</returns>
+        /// <param name="certificateId">Certificate identifier.</param>
+        public async Task DeleteCertificateAsync(string certificateId)
+        {
+            var api = new DefaultApi();
+            try
+            {
+                await api.V3DeveloperCertificateDeleteAsync(certificateId);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
         }
 
         /// <summary>
@@ -77,19 +112,39 @@ namespace mbedCloudSDK.Development.Api
         /// </summary>
         /// <returns>The certificate.</returns>
         /// <param name="publicKey">Public key.</param>
-        public DeveloperCertificate CreateCertificate(string publicKey)
+        public DeveloperCertificate AddCertificate(string publicKey)
         {
             var api = new DefaultApi();
-            var body = new Body();
+            var body = new developer_certificate.Model.Body();
             body.PubKey = publicKey;
 			try
 			{
-				return api.V3DeveloperCertificatePost(this.auth, body);
+				return DeveloperCertificate.Map(api.V3DeveloperCertificatePost(this.auth, body));
 			}
 			catch (ApiException e)
 			{
 				throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
 			}
+        }
+
+        /// <summary>
+        /// Creates the certificate asynchronously.
+        /// </summary>
+        /// <returns>The certificate.</returns>
+        /// <param name="publicKey">Public key.</param>
+        public async Task<DeveloperCertificate> AddCertificateAsync(string publicKey)
+        {
+            var api = new DefaultApi();
+            var body = new developer_certificate.Model.Body();
+            body.PubKey = publicKey;
+            try
+            {
+                return DeveloperCertificate.Map(await api.V3DeveloperCertificatePostAsync(this.auth, body));
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
         }
     }
 }

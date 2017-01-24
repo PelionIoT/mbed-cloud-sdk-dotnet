@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace mbedCloudSDK.Update.Model.Campaign
 {
+    /// <summary>
+    /// Contains information about Device in Update Campaign.
+    /// </summary>
     public class UpdateCampaignDeviceMetada
     {
+        /// <summary>
+        /// State of the Device in Update Campaign.
+        /// </summary>
         public UpdateCampaignDeviceState State { get; set; }
         
         /// <summary>
@@ -94,6 +100,11 @@ namespace mbedCloudSDK.Update.Model.Campaign
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Map to UpdateCampaignDeviceMetada object.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static UpdateCampaignDeviceMetada Map(CampaignDeviceMetadataSerializer data)
         {
             UpdateCampaignDeviceMetada metadata = new UpdateCampaignDeviceMetada();

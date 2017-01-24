@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace mbedCloudSDK.Update.Model.FirmwareManifest
 {
+    /// <summary>
+    /// Firmware manifest from Update Campaign.
+    /// </summary>
     public class FirmwareManifest
     {
         /// <summary>
@@ -83,6 +86,11 @@ namespace mbedCloudSDK.Update.Model.FirmwareManifest
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Map to FirmwareManifest object.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static FirmwareManifest Map(FirmwareManifestSerializerData data)
         {
             FirmwareManifest manifest = new FirmwareManifest();

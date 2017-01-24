@@ -117,6 +117,11 @@ namespace mbedCloudSDK.Access.Model.ApiKey
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Map to ApiKey object.
+        /// </summary>
+        /// <param name="apiKeyInfo"></param>
+        /// <returns></returns>
         public static ApiKey Map(ApiKeyInfoResp apiKeyInfo)
         {
             ApiKeyStatus apiKeyStatus = (ApiKeyStatus)Enum.Parse(typeof(ApiKeyStatus), apiKeyInfo.Status.ToString());

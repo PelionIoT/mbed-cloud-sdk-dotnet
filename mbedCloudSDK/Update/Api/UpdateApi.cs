@@ -90,6 +90,11 @@ namespace mbedCloudSDK.Update.Api
             }
         }
 
+        /// <summary>
+        /// Get status of the update campaign.
+        /// </summary>
+        /// <param name="campaignId"></param>
+        /// <returns></returns>
         public UpdateCampaignStatus GetUpdateCampaignStatus(string campaignId)
         {
             try

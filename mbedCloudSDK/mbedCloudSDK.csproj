@@ -143,7 +143,7 @@
     <Compile Include="Devices\Model\Device\DeployedState.cs" />
     <Compile Include="Devices\Model\Device\Mechanism.cs" />
     <Compile Include="Devices\Model\Device\State.cs" />
-    <Compile Include="Devices\Model\Filter\DeviceFilter.cs" />
+    <Compile Include="Devices\Model\Query\Query.cs" />
     <Compile Include="Exceptions\CloudApiException.cs" />
     <Compile Include="Common\ListParams.cs" />
     <Compile Include="Logging\Model\DeviceLog.cs" />
@@ -156,7 +156,6 @@
     <Compile Include="Exceptions\ValueException.cs" />
     <Compile Include="Update\Api\UpdateApi.cs" />
     <Compile Include="Logging\Api\LoggingApi.cs" />
-    <Compile Include="Assets\Api\AsstetsApi.cs" />
     <Compile Include="Backends\FirmwareCatalog\Api\DefaultApi.cs" />
     <Compile Include="Backends\FirmwareCatalog\Client\ApiClient.cs" />
     <Compile Include="Backends\FirmwareCatalog\Client\ApiException.cs" />
@@ -226,10 +225,7 @@
     <None Include="Backends\ProvisioningCertificate\README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Model\" />
     <Folder Include="Development\Model\" />
-    <Folder Include="Devices\Model\Subscription\" />
-    <Folder Include="Devices\Model\Webhook\" />
     <Folder Include="Manufacturing\Model\" />
   </ItemGroup>
   <ItemGroup>
