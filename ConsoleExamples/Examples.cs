@@ -18,6 +18,7 @@ using System.Windows.Forms;
 using System.IO;
 using mbedCloudSDK.Exceptions;
 using mbedCloudSDK.Update.Model.FirmwareManifest;
+using mbedCloudSDK.Update.Model.Campaign;
 
 namespace ConsoleExamples
 {
@@ -189,6 +190,7 @@ namespace ConsoleExamples
             openFileDialog.RestoreDirectory = true;
             Stream dataFile = null;
             Console.WriteLine("Choose manifest file to upload: ");
+            FirmwareManifest manifest = null;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -200,7 +202,7 @@ namespace ConsoleExamples
                             // Upload manifest
                             try
                             {
-                                api.AddFirmwareManifest(dataFile, CreateRandomName());
+                                manifest = api.AddFirmwareManifest(dataFile, CreateRandomName());
                             }
                             catch(CloudApiException e)
                             {
@@ -229,8 +231,35 @@ namespace ConsoleExamples
             // List all filters
 
             var devicesApi = new DevicesApi(config);
-            devicesApi.ListFilters();
+            var filters = devicesApi.ListFilters();
 
+            var enumeratorFilters = filters.GetEnumerator();
+            if (!enumeratorFilters.MoveNext())
+            {
+                Console.WriteLine("No filter found");
+                return;
+            }
+            var filter = enumeratorFilters.Current;
+
+            // Create Campaign
+            string campaignName = CreateRandomName();
+            var campaign = new UpdateCampaign();
+            campaign.Name = campaignName;
+            campaign.RootManifestId = manifest.Id;
+            campaign.DeviceFilter = Uri.UnescapeDataString(filter.Query);
+            campaign = api.AddUpdateCampaign(campaign);
+            Console.WriteLine("Created campaign : " + campaign);
+
+            // Start update campaign
+            campaign = api.StartUpdateCampaign(campaign);
+
+            // Print status of update campaign
+            int countdown = 10;
+            while(countdown >=0)
+            {
+                Console.WriteLine(api.GetUpdateCampaignStatus(campaign.Id));
+                countdown--;
+            }
         }
 
         public void runListUpdateCampaignsExample()
@@ -263,12 +292,6 @@ namespace ConsoleExamples
             {
                 Console.WriteLine(enumerator.Current);
             }
-            /*
-            var enumerator = api.ListFirmwareManifests().GetEnumerator();
-            while(enumerator.MoveNext())
-            {
-                Console.WriteLine(enumerator.Current);
-            }*/
         }
     }
 }
