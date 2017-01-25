@@ -17,6 +17,7 @@ namespace mbedCloudSDK.Development.Api
 	public class DevelopmentApi: BaseApi
     {
         private string auth;
+        private DefaultApi api;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:mbedCloudSDK.Development.Development"/> class.
@@ -30,6 +31,7 @@ namespace mbedCloudSDK.Development.Api
             }
             Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
             Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            api = new DefaultApi();
             this.auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);
         }
 
@@ -40,7 +42,6 @@ namespace mbedCloudSDK.Development.Api
         /// <param name="certificateId">Certificate identifier.</param>
         public DeveloperCertificate GetCertificate(string certificateId)
         {
-            var api = new DefaultApi();
 			try
 			{
 				return DeveloperCertificate.Map(api.V3DeveloperCertificateGet(certificateId));
@@ -58,7 +59,6 @@ namespace mbedCloudSDK.Development.Api
         /// <param name="certificateId">Certificate identifier.</param>
         public async Task<DeveloperCertificate> GetCertificateAsync(string certificateId)
         {
-            var api = new DefaultApi();
             try
             {
                 return DeveloperCertificate.Map(await api.V3DeveloperCertificateGetAsync(certificateId));
@@ -78,7 +78,6 @@ namespace mbedCloudSDK.Development.Api
         /// <param name="certificateId">Certificate identifier.</param>
         public void DeleteCertificate(string certificateId)
         {
-            var api = new DefaultApi();
             try
             {
                 api.V3DeveloperCertificateDelete(certificateId);
@@ -96,7 +95,6 @@ namespace mbedCloudSDK.Development.Api
         /// <param name="certificateId">Certificate identifier.</param>
         public async Task DeleteCertificateAsync(string certificateId)
         {
-            var api = new DefaultApi();
             try
             {
                 await api.V3DeveloperCertificateDeleteAsync(certificateId);
@@ -114,7 +112,6 @@ namespace mbedCloudSDK.Development.Api
         /// <param name="publicKey">Public key.</param>
         public DeveloperCertificate AddCertificate(string publicKey)
         {
-            var api = new DefaultApi();
             var body = new developer_certificate.Model.Body();
             body.PubKey = publicKey;
 			try
@@ -134,7 +131,6 @@ namespace mbedCloudSDK.Development.Api
         /// <param name="publicKey">Public key.</param>
         public async Task<DeveloperCertificate> AddCertificateAsync(string publicKey)
         {
-            var api = new DefaultApi();
             var body = new developer_certificate.Model.Body();
             body.PubKey = publicKey;
             try

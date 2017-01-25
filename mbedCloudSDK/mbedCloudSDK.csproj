@@ -46,6 +46,10 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Access\Api\AccessApi.Account.cs" />
+    <Compile Include="Access\Api\AccessApi.ApiKey.cs" />
+    <Compile Include="Access\Api\AccessApi.Group.cs" />
+    <Compile Include="Access\Api\AccessApi.User.cs" />
     <Compile Include="Access\Model\Account\AccountStatus.cs" />
     <Compile Include="Access\Model\User\UserStatus.cs" />
     <Compile Include="Backends\DeploymentService\Model\UpdateCampaignPage.cs" />
