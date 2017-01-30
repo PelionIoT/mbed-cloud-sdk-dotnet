@@ -1,4 +1,5 @@
 ﻿using mbedCloudSDK.Common;
+using mbedCloudSDK.Common.Query;
 using mbedCloudSDK.Devices.Model.Query;
 using mbedCloudSDK.Exceptions;
 using System;
@@ -40,17 +41,17 @@ namespace mbedCloudSDK.Devices.Api
         /// <summary>
         /// List all queries.
         /// </summary>
-        /// <param name="listParams"></param>
+        /// <param name="options"></param>
         /// <returns></returns>
-        public PaginatedResponse<Query> ListQueries(ListParams listParams = null)
+        public PaginatedResponse<Query> ListQueries(QueryOptions options = null)
         {
-            if (listParams == null)
+            if (options == null)
             {
-                listParams = new ListParams();
+                options = new QueryOptions();
             }
             try
             {
-                return new PaginatedResponse<Query>(ListDeviceQueriesFunc, listParams);
+                return new PaginatedResponse<Query>(ListDeviceQueriesFunc, options);
             }
             catch (CloudApiException e)
             {
@@ -58,18 +59,18 @@ namespace mbedCloudSDK.Devices.Api
             }
         }
 
-        private ResponsePage<Query> ListDeviceQueriesFunc(ListParams listParams = null)
+        private ResponsePage<Query> ListDeviceQueriesFunc(QueryOptions options = null)
         {
-            if (listParams == null)
+            if (options == null)
             {
-                listParams = new ListParams();
+                options = new QueryOptions();
             }
             var api = new device_query_service.Api.DefaultApi(config.Host);
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             try
             {
-                var resp = api.DeviceQueryList(listParams.Limit, listParams.Order, listParams.After, listParams.Include);
+                var resp = api.DeviceQueryList(options.Limit, options.Order, options.After, options.Include);
                 ResponsePage<Query> respDevices = new ResponsePage<Query>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
                 foreach (var deviceQuery in resp.Data)
                 {

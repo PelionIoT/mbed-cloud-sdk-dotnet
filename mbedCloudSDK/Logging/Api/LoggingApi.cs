@@ -4,6 +4,7 @@ using mbedCloudSDK.Exceptions;
 using System.Collections.Generic;
 using mbedCloudSDK.Logging.Model;
 using System.Threading.Tasks;
+using mbedCloudSDK.Common.Query;
 
 namespace mbedCloudSDK.Logging.Api
 {
@@ -35,16 +36,16 @@ namespace mbedCloudSDK.Logging.Api
         /// Lists the device logs.
         /// </summary>
         /// <returns>The device logs.</returns>
-        /// <param name="listParams">List parameters.</param>
-        public PaginatedResponse<DeviceLog> ListDeviceLogs(ListParams listParams = null)
+        /// <param name="options">Query options.</param>
+        public PaginatedResponse<DeviceLog> ListDeviceLogs(QueryOptions options = null)
         {
-            if (listParams == null)
+            if (options == null)
             {
-                listParams = new ListParams();
+                options = new QueryOptions();
             }
             try
             {
-                return new PaginatedResponse<DeviceLog>(ListDeviceLogsFunc, listParams);
+                return new PaginatedResponse<DeviceLog>(ListDeviceLogsFunc, options);
             }
             catch (CloudApiException e)
             {
@@ -56,49 +57,22 @@ namespace mbedCloudSDK.Logging.Api
         /// Lists the device logs.
         /// </summary>
         /// <returns>The device logs.</returns>
-        /// <param name="listParams">List parameters.</param>
-        private ResponsePage<DeviceLog> ListDeviceLogsFunc(ListParams listParams = null)
+        /// <param name="options">Query options.</param>
+        private ResponsePage<DeviceLog> ListDeviceLogsFunc(QueryOptions options = null)
         {
-            if (listParams == null)
+            if (options == null)
             {
-                listParams = new ListParams();
+                options = new QueryOptions();
             }
             try
             {
-                var resp = deviceCatalogApi.DeviceLogList(listParams.Limit, listParams.Order, listParams.After, listParams.Filter, listParams.Include);
+                var resp = deviceCatalogApi.DeviceLogList(options.Limit, options.Order, options.After, options.QueryString, options.Include);
                 ResponsePage<DeviceLog> respDeviceLogs = new ResponsePage<DeviceLog>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
                 foreach (var deviceLog in resp.Data)
                 {
                     respDeviceLogs.Data.Add(DeviceLog.Map(deviceLog));
                 }
                 return respDeviceLogs;
-            }
-            catch (device_catalog.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        /// <summary>
-        /// Lists the device logs asynchronously.
-        /// </summary>
-        /// <returns>The device logs.</returns>
-        /// <param name="listParams">List parameters.</param>
-        public async Task<List<DeviceLog>> ListDeviceLogsAsync(ListParams listParams = null)
-        {
-            if (listParams == null)
-            {
-                listParams = new ListParams();
-            }
-            try
-            {
-                var deviceLogs = new List<DeviceLog>();
-                var deviceLogsList = await deviceCatalogApi.DeviceLogListAsync(listParams.Limit, listParams.Order, listParams.After, listParams.Filter, listParams.Include);
-                foreach (var log in deviceLogsList.Data)
-                {
-                    deviceLogs.Add(DeviceLog.Map(log));
-                }
-                return deviceLogs;
             }
             catch (device_catalog.Client.ApiException e)
             {

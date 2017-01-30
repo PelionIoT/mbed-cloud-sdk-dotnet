@@ -246,7 +246,7 @@ namespace mbedCloudSDK.Devices.Model.Device
         /// <returns></returns>
         public List<Resource.Resource> ListResources()
         {
-            return this.api.ListResources(this.Id);
+            return this.api.GetResources(this.Id);
         }
 
         /// <summary>

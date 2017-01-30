@@ -91,7 +91,10 @@
     <Compile Include="Backends\ProvisioningCertificate\Client\ApiResponse.cs" />
     <Compile Include="Backends\ProvisioningCertificate\Client\Configuration.cs" />
     <Compile Include="Backends\ProvisioningCertificate\Model\ProvisioningCertificate.cs" />
+    <Compile Include="Common\Query\DeviceQueryOptions.cs" />
     <Compile Include="Common\PaginatedResponse.cs" />
+    <Compile Include="Common\Query\QueryAttribute.cs" />
+    <Compile Include="Common\Query\QueryOperator.cs" />
     <Compile Include="Common\ResponsePage.cs" />
     <Compile Include="Development\Api\DevelopmentApi.cs" />
     <Compile Include="Common\BaseApi.cs" />
@@ -155,7 +158,7 @@
     <Compile Include="Devices\Model\Device\State.cs" />
     <Compile Include="Devices\Model\Query\Query.cs" />
     <Compile Include="Exceptions\CloudApiException.cs" />
-    <Compile Include="Common\ListParams.cs" />
+    <Compile Include="Common\Query\QueryOptions.cs" />
     <Compile Include="Logging\Model\DeviceLog.cs" />
     <Compile Include="Logging\Model\EventType.cs" />
     <Compile Include="Manufacturing\Api\ManufacturingApi.cs" />

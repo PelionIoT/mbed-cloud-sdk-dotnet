@@ -2,6 +2,7 @@
 using iam.Model;
 using mbedCloudSDK.Access.Model.ApiKey;
 using mbedCloudSDK.Common;
+using mbedCloudSDK.Common.Query;
 using mbedCloudSDK.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -17,16 +18,16 @@ namespace mbedCloudSDK.Access.Api
         /// Lists API keys.
         /// </summary>
         /// <returns>The API keys.</returns>
-        /// <param name="listParams">List parameters.</param>
-        public PaginatedResponse<ApiKey> ListApiKeys(ListParams listParams = null)
+        /// <param name="options">Query options.</param>
+        public PaginatedResponse<ApiKey> ListApiKeys(QueryOptions options = null)
         {
-            if (listParams == null)
+            if (options == null)
             {
-                listParams = new ListParams();
+                options = new QueryOptions();
             }
             try
             {
-                return new PaginatedResponse<ApiKey>(ListApiKeysFunc, listParams);
+                return new PaginatedResponse<ApiKey>(ListApiKeysFunc, options);
             }
             catch (CloudApiException e)
             {
@@ -34,15 +35,15 @@ namespace mbedCloudSDK.Access.Api
             }
         }
 
-        private ResponsePage<ApiKey> ListApiKeysFunc(ListParams listParams = null)
+        private ResponsePage<ApiKey> ListApiKeysFunc(QueryOptions options = null)
         {
-            if (listParams != null)
+            if (options != null)
             {
-                listParams = new ListParams();
+                options = new QueryOptions();
             }
             try
             {
-                var resp = developerApi.GetAllApiKeys();
+                var resp = developerApi.GetAllApiKeys(options.Limit, options.After, options.Order, options.Include, options.QueryString);
                 ResponsePage<ApiKey> respKeys = new ResponsePage<ApiKey>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach(var key in resp.Data)
                 {
@@ -59,17 +60,17 @@ namespace mbedCloudSDK.Access.Api
         /// <summary>
         /// List API keys asynchronously.
         /// </summary>
-        /// <param name="listParams"></param>
+        /// <param name="options"></param>
         /// <returns></returns>
-        public async Task<List<ApiKey>> ListApiKeysAsync(ListParams listParams = null)
+        public async Task<List<ApiKey>> ListApiKeysAsync(QueryOptions options = null)
         {
-            if (listParams != null)
+            if (options != null)
             {
-                listParams = new ListParams();
+                options = new QueryOptions();
             }
             try
             {
-                var apiKeysInfo = await developerApi.GetAllApiKeysAsync();
+                var apiKeysInfo = await developerApi.GetAllApiKeysAsync(options.Limit, options.After, options.Order, options.Include, options.QueryString);
                 List<ApiKey> apiKeys = new List<ApiKey>();
                 foreach (var key in apiKeysInfo.Data)
                 {

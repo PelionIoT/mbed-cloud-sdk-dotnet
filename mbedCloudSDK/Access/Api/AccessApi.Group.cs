@@ -1,6 +1,7 @@
 ﻿using iam.Api;
 using mbedCloudSDK.Access.Model.Group;
 using mbedCloudSDK.Common;
+using mbedCloudSDK.Common.Query;
 using mbedCloudSDK.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -16,20 +17,15 @@ namespace mbedCloudSDK.Access.Api
         /// List groups.
         /// </summary>
         /// <returns></returns>
-        public List<Group> ListGroups(ListParams listParams = null)
+        public PaginatedResponse<Group> ListGroups(QueryOptions options = null)
         {
-            if (listParams != null)
+            if (options != null)
             {
-                listParams = new ListParams();
+                options = new QueryOptions();
             }
             try
             {
-                List<Group> groups = new List<Group>();
-                foreach (var group in developerApi.GetAllGroups().Data)
-                {
-                    groups.Add(Group.Map(group));
-                }
-                return groups;
+                return new PaginatedResponse<Group>(ListGroupsFunc, options);
             }
             catch (iam.Client.ApiException e)
             {
@@ -37,27 +33,23 @@ namespace mbedCloudSDK.Access.Api
             }
         }
 
-        /// <summary>
-        /// List groups.
-        /// </summary>
-        /// <returns></returns>
-        public async Task<List<Group>> ListGroupsAsync(ListParams listParams = null)
+        private ResponsePage<Group> ListGroupsFunc(QueryOptions options = null)
         {
-            if (listParams != null)
+            if (options == null)
             {
-                listParams = new ListParams();
+                options = new DeviceQueryOptions();
             }
             try
             {
-                var groupsInfo = await developerApi.GetAllGroupsAsync();
-                List<Group> groups = new List<Group>();
-                foreach (var group in groupsInfo.Data)
+                var resp = developerApi.GetAllGroups(options.Limit, options.Order, options.After, options.Include);
+                ResponsePage<Group> respGroups = new ResponsePage<Group>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
+                foreach (var group in resp.Data)
                 {
-                    groups.Add(Group.Map(group));
+                    respGroups.Data.Add(Group.Map(group));
                 }
-                return groups;
+                return respGroups;
             }
-            catch (iam.Client.ApiException e)
+            catch (device_catalog.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }

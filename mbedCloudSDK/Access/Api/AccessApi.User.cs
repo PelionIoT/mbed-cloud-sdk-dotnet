@@ -2,6 +2,7 @@
 using iam.Model;
 using mbedCloudSDK.Access.Model.User;
 using mbedCloudSDK.Common;
+using mbedCloudSDK.Common.Query;
 using mbedCloudSDK.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -17,20 +18,15 @@ namespace mbedCloudSDK.Access.Api
         /// List users.
         /// </summary>
         /// <returns></returns>
-        public List<User> ListUsers(ListParams listParams = null)
+        public PaginatedResponse<User> ListUsers(QueryOptions options = null)
         {
-            if (listParams != null)
+            if (options != null)
             {
-                listParams = new ListParams();
+                options = new QueryOptions();
             }
             try
             {
-                List<User> users = new List<User>();
-                foreach (var user in adminApi.GetAllUsers().Data)
-                {
-                    users.Add(User.Map(user));
-                }
-                return users;
+                return new PaginatedResponse<User>(ListUsersFunc, options);
             }
             catch (iam.Client.ApiException e)
             {
@@ -39,26 +35,27 @@ namespace mbedCloudSDK.Access.Api
         }
 
         /// <summary>
-        /// List users asynchronously.
+        /// Lists the device logs.
         /// </summary>
-        /// <returns></returns>
-        public async Task<List<User>> ListUsersAsynchronously(ListParams listParams = null)
+        /// <returns>The device logs.</returns>
+        /// <param name="options">Query options.</param>
+        private ResponsePage<User> ListUsersFunc(QueryOptions options = null)
         {
-            if (listParams != null)
+            if (options == null)
             {
-                throw new NotImplementedException();
+                options = new QueryOptions();
             }
             try
             {
-                List<User> users = new List<User>();
-                var usersInfo = await adminApi.GetAllUsersAsync();
-                foreach (var user in usersInfo.Data)
+                var resp = adminApi.GetAllUsers(options.Limit, options.Order, options.After, options.QueryString, options.Include);
+                ResponsePage<User> respUsers = new ResponsePage<User>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
+                foreach (var user in resp.Data)
                 {
-                    users.Add(User.Map(user));
+                    respUsers.Data.Add(User.Map(user));
                 }
-                return users;
+                return respUsers;
             }
-            catch (iam.Client.ApiException e)
+            catch (device_catalog.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }

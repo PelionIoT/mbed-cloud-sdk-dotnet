@@ -9,6 +9,7 @@ using mbedCloudSDK.Update.Model;
 using mbedCloudSDK.Update.Model.Campaign;
 using mbedCloudSDK.Update.Model.FirmwareImage;
 using mbedCloudSDK.Update.Model.FirmwareManifest;
+using mbedCloudSDK.Common.Query;
 
 namespace mbedCloudSDK.Update.Api
 {
@@ -39,11 +40,11 @@ namespace mbedCloudSDK.Update.Api
             this.firmwareApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
         }
 
-        public PaginatedResponse<UpdateCampaign> ListUpdateCampaigns(ListParams listParams = null)
+        public PaginatedResponse<UpdateCampaign> ListUpdateCampaigns(QueryOptions listParams = null)
         {
             if (listParams == null)
             {
-                listParams = new ListParams();
+                listParams = new QueryOptions();
             }
             try
             {
@@ -55,15 +56,15 @@ namespace mbedCloudSDK.Update.Api
             }
         }
 
-        private ResponsePage<UpdateCampaign> ListUpdateCampaignsFunc(ListParams listParams = null)
+        private ResponsePage<UpdateCampaign> ListUpdateCampaignsFunc(QueryOptions listParams = null)
         {
             if (listParams == null)
             {
-                listParams = new ListParams();
+                listParams = new QueryOptions();
             }
             try
             {
-                var resp = updateApi.UpdateCampaignList(listParams.Limit, listParams.Order, listParams.After, listParams.Filter, listParams.Include);
+                var resp = updateApi.UpdateCampaignList(listParams.Limit, listParams.Order, listParams.After, listParams.QueryString, listParams.Include);
                 ResponsePage<UpdateCampaign> respDevices = new ResponsePage<UpdateCampaign>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
                 foreach (var device in resp.Data)
                 {
@@ -156,11 +157,11 @@ namespace mbedCloudSDK.Update.Api
         /// </summary>
         /// <param name="listParams">List of parameters.</param>
         /// <returns></returns>
-        public PaginatedResponse<FirmwareImage> ListFirmwareImages(ListParams listParams = null)
+        public PaginatedResponse<FirmwareImage> ListFirmwareImages(QueryOptions listParams = null)
         {
             if (listParams == null)
             {
-                listParams = new ListParams();
+                listParams = new QueryOptions();
             }
             try
             {
@@ -172,11 +173,11 @@ namespace mbedCloudSDK.Update.Api
             }
         }
 
-        private ResponsePage<FirmwareImage> ListFirmwareImagesFun(ListParams listParams = null)
+        private ResponsePage<FirmwareImage> ListFirmwareImagesFun(QueryOptions listParams = null)
         {
             if (listParams == null)
             {
-                listParams = new ListParams();
+                listParams = new QueryOptions();
             }
             try
             {
@@ -231,11 +232,11 @@ namespace mbedCloudSDK.Update.Api
         /// </summary>
         /// <param name="listParams">List of parameters.</param>
         /// <returns></returns>
-        public PaginatedResponse<FirmwareManifest> ListFirmwareManifests(ListParams listParams = null)
+        public PaginatedResponse<FirmwareManifest> ListFirmwareManifests(QueryOptions listParams = null)
         {
             if (listParams == null)
             {
-                listParams = new ListParams();
+                listParams = new QueryOptions();
             }
             try
             {
@@ -247,11 +248,11 @@ namespace mbedCloudSDK.Update.Api
             }
         }
 
-        private ResponsePage<FirmwareManifest> ListFirmwareManifestsFun(ListParams listParams = null)
+        private ResponsePage<FirmwareManifest> ListFirmwareManifestsFun(QueryOptions listParams = null)
         {
             if (listParams == null)
             {
-                listParams = new ListParams();
+                listParams = new QueryOptions();
             }
             try
             {

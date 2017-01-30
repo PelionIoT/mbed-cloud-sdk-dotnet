@@ -1,4 +1,5 @@
 ﻿using mbedCloudSDK.Common;
+using mbedCloudSDK.Common.Query;
 using mbedCloudSDK.Devices.Model.Device;
 using mbedCloudSDK.Devices.Model.Resource;
 using mbedCloudSDK.Exceptions;
@@ -16,12 +17,12 @@ namespace mbedCloudSDK.Devices.Api
         /// Lists all endpoints.
         /// </summary>
         /// <returns>The endpoints.</returns>
-        /// <param name="listParams">List of parameters.</param>
-        public List<Device> ListConnectedDevices(ListParams listParams = null)
+        /// <param name="options">Query options.</param>
+        public PaginatedResponse<Device> ListConnectedDevices(DeviceQueryOptions options = null)
         {
-            if (listParams != null)
+            if (options != null)
             {
-                throw new NotImplementedException();
+                options = new DeviceQueryOptions();
             }
             var api = new mds.Api.EndpointsApi(config.Host);
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
@@ -34,7 +35,7 @@ namespace mbedCloudSDK.Devices.Api
                 {
                     devices.Add(Device.Map(endpoint, this));
                 }
-                return devices;
+                return new PaginatedResponse<Device>(null, options, devices);
             }
             catch (mds.Client.ApiException e)
             {
@@ -46,16 +47,16 @@ namespace mbedCloudSDK.Devices.Api
         /// Lists the devices.
         /// </summary>
         /// <returns>The devices.</returns>
-        /// <param name="listParams">List of parameters.</param>
-        public PaginatedResponse<Device> ListDevices(ListParams listParams = null)
+        /// <param name="options">Query options.</param>
+        public PaginatedResponse<Device> ListDevices(DeviceQueryOptions options = null)
         {
-            if (listParams == null)
+            if (options == null)
             {
-                listParams = new ListParams();
+                options = new DeviceQueryOptions();
             }
             try
             {
-                return new PaginatedResponse<Device>(ListDevicesFunc, listParams);
+                return new PaginatedResponse<Device>(ListDevicesFunc, options);
             }
             catch (CloudApiException e)
             {
@@ -63,18 +64,18 @@ namespace mbedCloudSDK.Devices.Api
             }
         }
 
-        private ResponsePage<Device> ListDevicesFunc(ListParams listParams = null)
+        private ResponsePage<Device> ListDevicesFunc(QueryOptions options = null)
         {
-            if (listParams == null)
+            if (options == null)
             {
-                listParams = new ListParams();
+                options = new DeviceQueryOptions();
             }
             var api = new device_catalog.Api.DefaultApi(config.Host);
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             try
             {
-                var resp = api.DeviceList(listParams.Limit, listParams.Order, listParams.After, listParams.Filter, listParams.Include);
+                var resp = api.DeviceList(options.Limit, options.Order, options.After, options.QueryString, options.Include);
                 ResponsePage<Device> respDevices = new ResponsePage<Device>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
                 foreach (var device in resp.Data)
                 {
@@ -143,8 +144,12 @@ namespace mbedCloudSDK.Devices.Api
         /// </summary>
         /// <returns>The resources.</returns>
         /// <param name="endpointName">Endpoint name.</param>
-        public List<Resource> ListResources(string endpointName)
+        public PaginatedResponse<Resource> ListResources(string endpointName, QueryOptions options = null)
         {
+            if (options == null)
+            {
+                options = new QueryOptions();
+            }
             var api = new mds.Api.EndpointsApi(config.Host);
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
@@ -156,7 +161,7 @@ namespace mbedCloudSDK.Devices.Api
                 {
                     resources.Add(Resource.Map(this, endpointName, resource));
                 }
-                return resources;
+                return new PaginatedResponse<Resource>(null, options, resources);
             }
             catch (mds.Client.ApiException e)
             {
