@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleExamples.Examples.Devices
 {
-    class DeviceQuery
+    public class DeviceQuery
     {
         private Config config;
         public DeviceQuery(Config config)

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleExamples.Examples.Development
 {
-    class CreateDeveloperCertificate
+    public class CreateDeveloperCertificate
     {
         private Config config;
 

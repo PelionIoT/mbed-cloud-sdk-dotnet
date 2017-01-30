@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleExamples.Examples.Devices
 {
-    class Webhook
+    public class Webhook
     {
         private Config config;
 

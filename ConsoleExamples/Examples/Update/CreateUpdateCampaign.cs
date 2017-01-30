@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace ConsoleExamples.Examples.Update
 {
-    class CreateUpdateCampaign
+    public class CreateUpdateCampaign
     {
         private Config config;
 
