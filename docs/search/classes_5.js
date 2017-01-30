@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['listparams',['ListParams',['../classmbed_cloud_s_d_k_1_1_common_1_1_list_params.html',1,'mbedCloudSDK::Common']]],
-  ['loggingapi',['LoggingApi',['../classmbed_cloud_s_d_k_1_1_logging_1_1_logging_api.html',1,'mbedCloudSDK::Logging']]]
+  ['group',['Group',['../classmbed_cloud_s_d_k_1_1_access_1_1_model_1_1_group_1_1_group.html',1,'mbedCloudSDK::Access::Model::Group']]]
 ];

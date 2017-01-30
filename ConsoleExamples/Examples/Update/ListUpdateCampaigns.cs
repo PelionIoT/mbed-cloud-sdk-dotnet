@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleExamples.Examples.Update
 {
+    /// @example
     public class ListUpdateCampaigns
     {
         private Config config;

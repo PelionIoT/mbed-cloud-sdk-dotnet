@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleExamples.Examples.Logging
 {
+    /// @example
     public class ListLogs
     {
         private Config config;

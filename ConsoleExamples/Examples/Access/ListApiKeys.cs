@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleExamples.Examples.Access
 {
+    /// @example
     public class ListApiKeys
     {
         private Config config;

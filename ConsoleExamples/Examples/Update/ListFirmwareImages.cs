@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleExamples.Examples.Update
 {
+    /// @example
     public class ListFirmwareImages
     {
         private Config config;

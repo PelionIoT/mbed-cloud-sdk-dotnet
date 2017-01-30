@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleExamples.Examples.Devices
 {
+    /// @example
     public class Resource
     {
         Config config;
