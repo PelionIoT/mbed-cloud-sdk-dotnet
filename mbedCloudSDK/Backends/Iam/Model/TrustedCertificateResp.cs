@@ -24,10 +24,10 @@ using System.ComponentModel.DataAnnotations;
 namespace iam.Model
 {
     /// <summary>
-    /// This object represents an CA Certificate in responses.
+    /// This object represents a trusted certificate in responses.
     /// </summary>
     [DataContract]
-    public partial class CACertificateResp :  IEquatable<CACertificateResp>, IValidatableObject
+    public partial class TrustedCertificateResp :  IEquatable<TrustedCertificateResp>, IValidatableObject
     {
         /// <summary>
         /// Service name where the certificate is to be used.
@@ -57,9 +57,9 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// Entity name: always 'ca-cert'
+        /// Entity name: always 'trusted-cert'
         /// </summary>
-        /// <value>Entity name: always 'ca-cert'</value>
+        /// <value>Entity name: always 'trusted-cert'</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ObjectEnum
         {
@@ -89,16 +89,16 @@ namespace iam.Model
             Account,
             
             /// <summary>
-            /// Enum Accounttemplate for "account-template"
+            /// Enum Accounttemplate for "account_template"
             /// </summary>
-            [EnumMember(Value = "account-template")]
+            [EnumMember(Value = "account_template")]
             Accounttemplate,
             
             /// <summary>
-            /// Enum Cacert for "ca-cert"
+            /// Enum Trustedcert for "trusted_cert"
             /// </summary>
-            [EnumMember(Value = "ca-cert")]
-            Cacert,
+            [EnumMember(Value = "trusted_cert")]
+            Trustedcert,
             
             /// <summary>
             /// Enum List for "list"
@@ -120,37 +120,38 @@ namespace iam.Model
         [DataMember(Name="service", EmitDefaultValue=false)]
         public ServiceEnum? Service { get; set; }
         /// <summary>
-        /// Entity name: always 'ca-cert'
+        /// Entity name: always 'trusted-cert'
         /// </summary>
-        /// <value>Entity name: always 'ca-cert'</value>
+        /// <value>Entity name: always 'trusted-cert'</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public ObjectEnum? _Object { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CACertificateResp" /> class.
+        /// Initializes a new instance of the <see cref="TrustedCertificateResp" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected CACertificateResp() { }
+        protected TrustedCertificateResp() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CACertificateResp" /> class.
+        /// Initializes a new instance of the <see cref="TrustedCertificateResp" /> class.
         /// </summary>
         /// <param name="AccountId">The UUID of the account. (required).</param>
         /// <param name="Service">Service name where the certificate is to be used. (required).</param>
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
-        /// <param name="_Object">Entity name: always &#39;ca-cert&#39; (required).</param>
+        /// <param name="_Object">Entity name: always &#39;trusted-cert&#39; (required).</param>
         /// <param name="Subject">Subject of the certificate. (required).</param>
         /// <param name="Validity">Expiration time in UTC formatted as RFC3339. (required).</param>
         /// <param name="Etag">API resource entity version. (required).</param>
+        /// <param name="AttestationMethod">Attestation method where zero means a developer certificate. (required).</param>
         /// <param name="CreationTimeMillis">CreationTimeMillis.</param>
         /// <param name="Issuer">Issuer of the certificate. (required).</param>
-        /// <param name="CertData">X509.v3 CA certificate in PEM or base64 encoded DER format. (required).</param>
+        /// <param name="CertData">X509.v3 trusted certificate in PEM or base64 encoded DER format. (required).</param>
         /// <param name="Id">Entity ID. (required).</param>
         /// <param name="Name">Certificate name. (required).</param>
-        public CACertificateResp(string AccountId = default(string), ServiceEnum? Service = default(ServiceEnum?), string CreatedAt = default(string), ObjectEnum? _Object = default(ObjectEnum?), string Subject = default(string), string Validity = default(string), string Etag = default(string), long? CreationTimeMillis = default(long?), string Issuer = default(string), string CertData = default(string), string Id = default(string), string Name = default(string))
+        public TrustedCertificateResp(string AccountId = default(string), ServiceEnum? Service = default(ServiceEnum?), string CreatedAt = default(string), ObjectEnum? _Object = default(ObjectEnum?), string Subject = default(string), string Validity = default(string), string Etag = default(string), int? AttestationMethod = default(int?), long? CreationTimeMillis = default(long?), string Issuer = default(string), string CertData = default(string), string Id = default(string), string Name = default(string))
         {
             // to ensure "AccountId" is required (not null)
             if (AccountId == null)
             {
-                throw new InvalidDataException("AccountId is a required property for CACertificateResp and cannot be null");
+                throw new InvalidDataException("AccountId is a required property for TrustedCertificateResp and cannot be null");
             }
             else
             {
@@ -159,7 +160,7 @@ namespace iam.Model
             // to ensure "Service" is required (not null)
             if (Service == null)
             {
-                throw new InvalidDataException("Service is a required property for CACertificateResp and cannot be null");
+                throw new InvalidDataException("Service is a required property for TrustedCertificateResp and cannot be null");
             }
             else
             {
@@ -168,7 +169,7 @@ namespace iam.Model
             // to ensure "_Object" is required (not null)
             if (_Object == null)
             {
-                throw new InvalidDataException("_Object is a required property for CACertificateResp and cannot be null");
+                throw new InvalidDataException("_Object is a required property for TrustedCertificateResp and cannot be null");
             }
             else
             {
@@ -177,7 +178,7 @@ namespace iam.Model
             // to ensure "Subject" is required (not null)
             if (Subject == null)
             {
-                throw new InvalidDataException("Subject is a required property for CACertificateResp and cannot be null");
+                throw new InvalidDataException("Subject is a required property for TrustedCertificateResp and cannot be null");
             }
             else
             {
@@ -186,7 +187,7 @@ namespace iam.Model
             // to ensure "Validity" is required (not null)
             if (Validity == null)
             {
-                throw new InvalidDataException("Validity is a required property for CACertificateResp and cannot be null");
+                throw new InvalidDataException("Validity is a required property for TrustedCertificateResp and cannot be null");
             }
             else
             {
@@ -195,16 +196,25 @@ namespace iam.Model
             // to ensure "Etag" is required (not null)
             if (Etag == null)
             {
-                throw new InvalidDataException("Etag is a required property for CACertificateResp and cannot be null");
+                throw new InvalidDataException("Etag is a required property for TrustedCertificateResp and cannot be null");
             }
             else
             {
                 this.Etag = Etag;
             }
+            // to ensure "AttestationMethod" is required (not null)
+            if (AttestationMethod == null)
+            {
+                throw new InvalidDataException("AttestationMethod is a required property for TrustedCertificateResp and cannot be null");
+            }
+            else
+            {
+                this.AttestationMethod = AttestationMethod;
+            }
             // to ensure "Issuer" is required (not null)
             if (Issuer == null)
             {
-                throw new InvalidDataException("Issuer is a required property for CACertificateResp and cannot be null");
+                throw new InvalidDataException("Issuer is a required property for TrustedCertificateResp and cannot be null");
             }
             else
             {
@@ -213,7 +223,7 @@ namespace iam.Model
             // to ensure "CertData" is required (not null)
             if (CertData == null)
             {
-                throw new InvalidDataException("CertData is a required property for CACertificateResp and cannot be null");
+                throw new InvalidDataException("CertData is a required property for TrustedCertificateResp and cannot be null");
             }
             else
             {
@@ -222,7 +232,7 @@ namespace iam.Model
             // to ensure "Id" is required (not null)
             if (Id == null)
             {
-                throw new InvalidDataException("Id is a required property for CACertificateResp and cannot be null");
+                throw new InvalidDataException("Id is a required property for TrustedCertificateResp and cannot be null");
             }
             else
             {
@@ -231,7 +241,7 @@ namespace iam.Model
             // to ensure "Name" is required (not null)
             if (Name == null)
             {
-                throw new InvalidDataException("Name is a required property for CACertificateResp and cannot be null");
+                throw new InvalidDataException("Name is a required property for TrustedCertificateResp and cannot be null");
             }
             else
             {
@@ -272,6 +282,12 @@ namespace iam.Model
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public string Etag { get; set; }
         /// <summary>
+        /// Attestation method where zero means a developer certificate.
+        /// </summary>
+        /// <value>Attestation method where zero means a developer certificate.</value>
+        [DataMember(Name="attestation_method", EmitDefaultValue=false)]
+        public int? AttestationMethod { get; set; }
+        /// <summary>
         /// Gets or Sets CreationTimeMillis
         /// </summary>
         [DataMember(Name="creationTimeMillis", EmitDefaultValue=false)]
@@ -283,9 +299,9 @@ namespace iam.Model
         [DataMember(Name="issuer", EmitDefaultValue=false)]
         public string Issuer { get; set; }
         /// <summary>
-        /// X509.v3 CA certificate in PEM or base64 encoded DER format.
+        /// X509.v3 trusted certificate in PEM or base64 encoded DER format.
         /// </summary>
-        /// <value>X509.v3 CA certificate in PEM or base64 encoded DER format.</value>
+        /// <value>X509.v3 trusted certificate in PEM or base64 encoded DER format.</value>
         [DataMember(Name="cert_data", EmitDefaultValue=false)]
         public string CertData { get; set; }
         /// <summary>
@@ -307,7 +323,7 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class CACertificateResp {\n");
+            sb.Append("class TrustedCertificateResp {\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Service: ").Append(Service).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
@@ -315,6 +331,7 @@ namespace iam.Model
             sb.Append("  Subject: ").Append(Subject).Append("\n");
             sb.Append("  Validity: ").Append(Validity).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
+            sb.Append("  AttestationMethod: ").Append(AttestationMethod).Append("\n");
             sb.Append("  CreationTimeMillis: ").Append(CreationTimeMillis).Append("\n");
             sb.Append("  Issuer: ").Append(Issuer).Append("\n");
             sb.Append("  CertData: ").Append(CertData).Append("\n");
@@ -341,15 +358,15 @@ namespace iam.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as CACertificateResp);
+            return this.Equals(obj as TrustedCertificateResp);
         }
 
         /// <summary>
-        /// Returns true if CACertificateResp instances are equal
+        /// Returns true if TrustedCertificateResp instances are equal
         /// </summary>
-        /// <param name="other">Instance of CACertificateResp to be compared</param>
+        /// <param name="other">Instance of TrustedCertificateResp to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CACertificateResp other)
+        public bool Equals(TrustedCertificateResp other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -390,6 +407,11 @@ namespace iam.Model
                     this.Etag == other.Etag ||
                     this.Etag != null &&
                     this.Etag.Equals(other.Etag)
+                ) && 
+                (
+                    this.AttestationMethod == other.AttestationMethod ||
+                    this.AttestationMethod != null &&
+                    this.AttestationMethod.Equals(other.AttestationMethod)
                 ) && 
                 (
                     this.CreationTimeMillis == other.CreationTimeMillis ||
@@ -443,6 +465,8 @@ namespace iam.Model
                     hash = hash * 59 + this.Validity.GetHashCode();
                 if (this.Etag != null)
                     hash = hash * 59 + this.Etag.GetHashCode();
+                if (this.AttestationMethod != null)
+                    hash = hash * 59 + this.AttestationMethod.GetHashCode();
                 if (this.CreationTimeMillis != null)
                     hash = hash * 59 + this.CreationTimeMillis.GetHashCode();
                 if (this.Issuer != null)

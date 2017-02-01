@@ -101,16 +101,16 @@ namespace iam.Model
             Account,
             
             /// <summary>
-            /// Enum Accounttemplate for "account-template"
+            /// Enum Accounttemplate for "account_template"
             /// </summary>
-            [EnumMember(Value = "account-template")]
+            [EnumMember(Value = "account_template")]
             Accounttemplate,
             
             /// <summary>
-            /// Enum Cacert for "ca-cert"
+            /// Enum Trustedcert for "trusted_cert"
             /// </summary>
-            [EnumMember(Value = "ca-cert")]
-            Cacert,
+            [EnumMember(Value = "trusted_cert")]
+            Trustedcert,
             
             /// <summary>
             /// Enum List for "list"

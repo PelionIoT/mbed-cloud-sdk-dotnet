@@ -95,16 +95,16 @@ namespace iam.Model
             Account,
             
             /// <summary>
-            /// Enum Accounttemplate for "account-template"
+            /// Enum Accounttemplate for "account_template"
             /// </summary>
-            [EnumMember(Value = "account-template")]
+            [EnumMember(Value = "account_template")]
             Accounttemplate,
             
             /// <summary>
-            /// Enum Cacert for "ca-cert"
+            /// Enum Trustedcert for "trusted_cert"
             /// </summary>
-            [EnumMember(Value = "ca-cert")]
-            Cacert,
+            [EnumMember(Value = "trusted_cert")]
+            Trustedcert,
             
             /// <summary>
             /// Enum List for "list"
@@ -141,13 +141,13 @@ namespace iam.Model
         /// </summary>
         /// <param name="Status">The status of the account. (required).</param>
         /// <param name="PostalCode">The postal code part of the postal address..</param>
-        /// <param name="ParentID">The ID of the parent account, if it has any..</param>
         /// <param name="Id">Account ID. (required).</param>
         /// <param name="Aliases">An array of aliases. (required).</param>
         /// <param name="AddressLine2">Postal address line 2..</param>
         /// <param name="City">The city part of the postal address..</param>
         /// <param name="AddressLine1">Postal address line 1..</param>
         /// <param name="DisplayName">The display name for the account..</param>
+        /// <param name="ParentId">The ID of the parent account, if it has any..</param>
         /// <param name="State">The state part of the postal address..</param>
         /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="IsProvisioningAllowed">Flag (true/false) indicating whether Factory Tool is allowed to download or not. (required) (default to false).</param>
@@ -157,15 +157,15 @@ namespace iam.Model
         /// <param name="Company">The name of the company..</param>
         /// <param name="_Object">Entity name: always &#39;account&#39; (required).</param>
         /// <param name="UpgradedAt">Time when upgraded to commercial account in UTC format RFC3339..</param>
-        /// <param name="SubAccounts">List of sub accounts..</param>
         /// <param name="Tier">The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account. Other values are reserved for the future. (required).</param>
+        /// <param name="SubAccounts">List of sub accounts..</param>
         /// <param name="Limits">List of limits as key-value pairs if requested..</param>
         /// <param name="Country">The country part of the postal address..</param>
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
         /// <param name="Contact">The name of the contact person for this account..</param>
         /// <param name="Policies">List of policies if requested..</param>
         /// <param name="TemplateId">Account template ID..</param>
-        public AccountInfo(StatusEnum? Status = default(StatusEnum?), string PostalCode = default(string), string ParentID = default(string), string Id = default(string), List<string> Aliases = default(List<string>), string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string State = default(string), string Etag = default(string), bool? IsProvisioningAllowed = false, long? CreationTimeMillis = default(long?), string Email = default(string), string PhoneNumber = default(string), string Company = default(string), ObjectEnum? _Object = default(ObjectEnum?), string UpgradedAt = default(string), List<AccountInfo> SubAccounts = default(List<AccountInfo>), string Tier = default(string), Dictionary<string, string> Limits = default(Dictionary<string, string>), string Country = default(string), string CreatedAt = default(string), string Contact = default(string), List<Policy> Policies = default(List<Policy>), string TemplateId = default(string))
+        public AccountInfo(StatusEnum? Status = default(StatusEnum?), string PostalCode = default(string), string Id = default(string), List<string> Aliases = default(List<string>), string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string ParentId = default(string), string State = default(string), string Etag = default(string), bool? IsProvisioningAllowed = false, long? CreationTimeMillis = default(long?), string Email = default(string), string PhoneNumber = default(string), string Company = default(string), ObjectEnum? _Object = default(ObjectEnum?), string UpgradedAt = default(string), string Tier = default(string), List<AccountInfo> SubAccounts = default(List<AccountInfo>), Dictionary<string, string> Limits = default(Dictionary<string, string>), string Country = default(string), string CreatedAt = default(string), string Contact = default(string), List<Policy> Policies = default(List<Policy>), string TemplateId = default(string))
         {
             // to ensure "Status" is required (not null)
             if (Status == null)
@@ -231,11 +231,11 @@ namespace iam.Model
                 this.Tier = Tier;
             }
             this.PostalCode = PostalCode;
-            this.ParentID = ParentID;
             this.AddressLine2 = AddressLine2;
             this.City = City;
             this.AddressLine1 = AddressLine1;
             this.DisplayName = DisplayName;
+            this.ParentId = ParentId;
             this.State = State;
             this.CreationTimeMillis = CreationTimeMillis;
             this.Email = Email;
@@ -257,12 +257,6 @@ namespace iam.Model
         /// <value>The postal code part of the postal address.</value>
         [DataMember(Name="postal_code", EmitDefaultValue=false)]
         public string PostalCode { get; set; }
-        /// <summary>
-        /// The ID of the parent account, if it has any.
-        /// </summary>
-        /// <value>The ID of the parent account, if it has any.</value>
-        [DataMember(Name="parentID", EmitDefaultValue=false)]
-        public string ParentID { get; set; }
         /// <summary>
         /// Account ID.
         /// </summary>
@@ -299,6 +293,12 @@ namespace iam.Model
         /// <value>The display name for the account.</value>
         [DataMember(Name="display_name", EmitDefaultValue=false)]
         public string DisplayName { get; set; }
+        /// <summary>
+        /// The ID of the parent account, if it has any.
+        /// </summary>
+        /// <value>The ID of the parent account, if it has any.</value>
+        [DataMember(Name="parent_id", EmitDefaultValue=false)]
+        public string ParentId { get; set; }
         /// <summary>
         /// The state part of the postal address.
         /// </summary>
@@ -347,17 +347,17 @@ namespace iam.Model
         [DataMember(Name="upgraded_at", EmitDefaultValue=false)]
         public string UpgradedAt { get; set; }
         /// <summary>
-        /// List of sub accounts.
-        /// </summary>
-        /// <value>List of sub accounts.</value>
-        [DataMember(Name="subAccounts", EmitDefaultValue=false)]
-        public List<AccountInfo> SubAccounts { get; set; }
-        /// <summary>
         /// The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account. Other values are reserved for the future.
         /// </summary>
         /// <value>The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account. Other values are reserved for the future.</value>
         [DataMember(Name="tier", EmitDefaultValue=false)]
         public string Tier { get; set; }
+        /// <summary>
+        /// List of sub accounts.
+        /// </summary>
+        /// <value>List of sub accounts.</value>
+        [DataMember(Name="sub_accounts", EmitDefaultValue=false)]
+        public List<AccountInfo> SubAccounts { get; set; }
         /// <summary>
         /// List of limits as key-value pairs if requested.
         /// </summary>
@@ -404,13 +404,13 @@ namespace iam.Model
             sb.Append("class AccountInfo {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");
-            sb.Append("  ParentID: ").Append(ParentID).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Aliases: ").Append(Aliases).Append("\n");
             sb.Append("  AddressLine2: ").Append(AddressLine2).Append("\n");
             sb.Append("  City: ").Append(City).Append("\n");
             sb.Append("  AddressLine1: ").Append(AddressLine1).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
+            sb.Append("  ParentId: ").Append(ParentId).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  IsProvisioningAllowed: ").Append(IsProvisioningAllowed).Append("\n");
@@ -420,8 +420,8 @@ namespace iam.Model
             sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  UpgradedAt: ").Append(UpgradedAt).Append("\n");
-            sb.Append("  SubAccounts: ").Append(SubAccounts).Append("\n");
             sb.Append("  Tier: ").Append(Tier).Append("\n");
+            sb.Append("  SubAccounts: ").Append(SubAccounts).Append("\n");
             sb.Append("  Limits: ").Append(Limits).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
@@ -475,11 +475,6 @@ namespace iam.Model
                     this.PostalCode.Equals(other.PostalCode)
                 ) && 
                 (
-                    this.ParentID == other.ParentID ||
-                    this.ParentID != null &&
-                    this.ParentID.Equals(other.ParentID)
-                ) && 
-                (
                     this.Id == other.Id ||
                     this.Id != null &&
                     this.Id.Equals(other.Id)
@@ -508,6 +503,11 @@ namespace iam.Model
                     this.DisplayName == other.DisplayName ||
                     this.DisplayName != null &&
                     this.DisplayName.Equals(other.DisplayName)
+                ) && 
+                (
+                    this.ParentId == other.ParentId ||
+                    this.ParentId != null &&
+                    this.ParentId.Equals(other.ParentId)
                 ) && 
                 (
                     this.State == other.State ||
@@ -555,14 +555,14 @@ namespace iam.Model
                     this.UpgradedAt.Equals(other.UpgradedAt)
                 ) && 
                 (
-                    this.SubAccounts == other.SubAccounts ||
-                    this.SubAccounts != null &&
-                    this.SubAccounts.SequenceEqual(other.SubAccounts)
-                ) && 
-                (
                     this.Tier == other.Tier ||
                     this.Tier != null &&
                     this.Tier.Equals(other.Tier)
+                ) && 
+                (
+                    this.SubAccounts == other.SubAccounts ||
+                    this.SubAccounts != null &&
+                    this.SubAccounts.SequenceEqual(other.SubAccounts)
                 ) && 
                 (
                     this.Limits == other.Limits ||
@@ -611,8 +611,6 @@ namespace iam.Model
                     hash = hash * 59 + this.Status.GetHashCode();
                 if (this.PostalCode != null)
                     hash = hash * 59 + this.PostalCode.GetHashCode();
-                if (this.ParentID != null)
-                    hash = hash * 59 + this.ParentID.GetHashCode();
                 if (this.Id != null)
                     hash = hash * 59 + this.Id.GetHashCode();
                 if (this.Aliases != null)
@@ -625,6 +623,8 @@ namespace iam.Model
                     hash = hash * 59 + this.AddressLine1.GetHashCode();
                 if (this.DisplayName != null)
                     hash = hash * 59 + this.DisplayName.GetHashCode();
+                if (this.ParentId != null)
+                    hash = hash * 59 + this.ParentId.GetHashCode();
                 if (this.State != null)
                     hash = hash * 59 + this.State.GetHashCode();
                 if (this.Etag != null)
@@ -643,10 +643,10 @@ namespace iam.Model
                     hash = hash * 59 + this._Object.GetHashCode();
                 if (this.UpgradedAt != null)
                     hash = hash * 59 + this.UpgradedAt.GetHashCode();
-                if (this.SubAccounts != null)
-                    hash = hash * 59 + this.SubAccounts.GetHashCode();
                 if (this.Tier != null)
                     hash = hash * 59 + this.Tier.GetHashCode();
+                if (this.SubAccounts != null)
+                    hash = hash * 59 + this.SubAccounts.GetHashCode();
                 if (this.Limits != null)
                     hash = hash * 59 + this.Limits.GetHashCode();
                 if (this.Country != null)

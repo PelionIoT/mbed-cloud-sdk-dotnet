@@ -38,6 +38,20 @@ using iam.Api;
 using iam.Client;
 using iam.Model;
 ```
+
+<a name="packaging"></a>
+## Packaging
+
+A `.nuspec` is included with the project. You can follow the Nuget quickstart to [create](https://docs.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package#create-the-package) and [publish](https://docs.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package#publish-the-package) packages.
+
+This `.nuspec` uses placeholders from the `.csproj`, so build the `.csproj` directly:
+
+```
+nuget pack -Build -OutputDirectory out iam.csproj
+```
+
+Then, publish to a [local feed](https://docs.microsoft.com/en-us/nuget/hosting-packages/local-feeds) or [other host](https://docs.microsoft.com/en-us/nuget/hosting-packages/overview) and consume the new package via Nuget as usual.
+
 <a name="getting-started"></a>
 ## Getting Started
 
@@ -61,12 +75,12 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
 
             var apiInstance = new AccountAdminApi();
-            var body = new CACertificateReq(); // CACertificateReq | A CA certificate object with attributes.
+            var body = new TrustedCertificateReq(); // TrustedCertificateReq | A trusted certificate object with attributes.
 
             try
             {
-                // Upload a new CA certificate.
-                CACertificateResp result = apiInstance.AddCertificate(body);
+                // Upload a new trusted certificate.
+                TrustedCertificateResp result = apiInstance.AddCertificate(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -85,15 +99,15 @@ All URIs are relative to *https://api.mbedcloud.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AccountAdminApi* | [**AddCertificate**](docs/AccountAdminApi.md#addcertificate) | **POST** /v3/ca-certificates | Upload a new CA certificate.
+*AccountAdminApi* | [**AddCertificate**](docs/AccountAdminApi.md#addcertificate) | **POST** /v3/trusted-certificates | Upload a new trusted certificate.
 *AccountAdminApi* | [**CreateUser**](docs/AccountAdminApi.md#createuser) | **POST** /v3/users | Create a new user.
-*AccountAdminApi* | [**DeleteCertificate**](docs/AccountAdminApi.md#deletecertificate) | **DELETE** /v3/ca-certificates/{ca-cert-id} | Delete a CA certificate by ID.
+*AccountAdminApi* | [**DeleteCertificate**](docs/AccountAdminApi.md#deletecertificate) | **DELETE** /v3/trusted-certificates/{cert-id} | Delete a trusted certificate by ID.
 *AccountAdminApi* | [**DeleteUser**](docs/AccountAdminApi.md#deleteuser) | **DELETE** /v3/users/{user-id} | Delete a user.
-*AccountAdminApi* | [**GetAllCertificates**](docs/AccountAdminApi.md#getallcertificates) | **GET** /v3/ca-certificates | Get all CA certificates.
+*AccountAdminApi* | [**GetAllCertificates**](docs/AccountAdminApi.md#getallcertificates) | **GET** /v3/trusted-certificates | Get all trusted certificates.
 *AccountAdminApi* | [**GetAllUsers**](docs/AccountAdminApi.md#getallusers) | **GET** /v3/users | Get the details of all users.
-*AccountAdminApi* | [**GetCertificate**](docs/AccountAdminApi.md#getcertificate) | **GET** /v3/ca-certificates/{ca-cert-id} | Get CA certificate by ID.
+*AccountAdminApi* | [**GetCertificate**](docs/AccountAdminApi.md#getcertificate) | **GET** /v3/trusted-certificates/{cert-id} | Get trusted certificate by ID.
 *AccountAdminApi* | [**GetUser**](docs/AccountAdminApi.md#getuser) | **GET** /v3/users/{user-id} | Details of a user.
-*AccountAdminApi* | [**UpdateCertificate**](docs/AccountAdminApi.md#updatecertificate) | **PUT** /v3/ca-certificates/{ca-cert-id} | Update CA certificate.
+*AccountAdminApi* | [**UpdateCertificate**](docs/AccountAdminApi.md#updatecertificate) | **PUT** /v3/trusted-certificates/{cert-id} | Update trusted certificate.
 *AccountAdminApi* | [**UpdateMyAccount**](docs/AccountAdminApi.md#updatemyaccount) | **PUT** /v3/accounts/me | Updates attributes of the account.
 *AccountAdminApi* | [**UpdateUser**](docs/AccountAdminApi.md#updateuser) | **PUT** /v3/users/{user-id} | Update user details.
 *DefaultApi* | [**ActivateUser**](docs/DefaultApi.md#activateuser) | **PUT** /auth/invitations/{invitation-id} | Accept invitation.
@@ -131,9 +145,6 @@ Class | Method | HTTP request | Description
  - [Model.ApiKeyInfoResp](docs/ApiKeyInfoResp.md)
  - [Model.ApiKeyInfoRespList](docs/ApiKeyInfoRespList.md)
  - [Model.ApiKeyUpdateReq](docs/ApiKeyUpdateReq.md)
- - [Model.CACertificateReq](docs/CACertificateReq.md)
- - [Model.CACertificateResp](docs/CACertificateResp.md)
- - [Model.CACertificateRespList](docs/CACertificateRespList.md)
  - [Model.ErrorResponse](docs/ErrorResponse.md)
  - [Model.Field](docs/Field.md)
  - [Model.GroupSummary](docs/GroupSummary.md)
@@ -141,6 +152,9 @@ Class | Method | HTTP request | Description
  - [Model.PasswordRecoveryReq](docs/PasswordRecoveryReq.md)
  - [Model.PasswordResetReq](docs/PasswordResetReq.md)
  - [Model.Policy](docs/Policy.md)
+ - [Model.TrustedCertificateReq](docs/TrustedCertificateReq.md)
+ - [Model.TrustedCertificateResp](docs/TrustedCertificateResp.md)
+ - [Model.TrustedCertificateRespList](docs/TrustedCertificateRespList.md)
  - [Model.UserInfoReq](docs/UserInfoReq.md)
  - [Model.UserInfoResp](docs/UserInfoResp.md)
  - [Model.UserInfoRespList](docs/UserInfoRespList.md)

@@ -152,7 +152,7 @@ namespace iam.Api
         /// Returns detailed information about the account.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="include">Comma separated additional data to return. Currently supported: limits (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
         /// <returns>AccountInfo</returns>
         AccountInfo GetMyAccountInfo (string include = null);
 
@@ -163,7 +163,7 @@ namespace iam.Api
         /// Returns detailed information about the account.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="include">Comma separated additional data to return. Currently supported: limits (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
         /// <returns>ApiResponse of AccountInfo</returns>
         ApiResponse<AccountInfo> GetMyAccountInfoWithHttpInfo (string include = null);
         /// <summary>
@@ -399,7 +399,7 @@ namespace iam.Api
         /// Returns detailed information about the account.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="include">Comma separated additional data to return. Currently supported: limits (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
         /// <returns>Task of AccountInfo</returns>
         System.Threading.Tasks.Task<AccountInfo> GetMyAccountInfoAsync (string include = null);
 
@@ -410,7 +410,7 @@ namespace iam.Api
         /// Returns detailed information about the account.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="include">Comma separated additional data to return. Currently supported: limits (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
         /// <returns>Task of ApiResponse (AccountInfo)</returns>
         System.Threading.Tasks.Task<ApiResponse<AccountInfo>> GetMyAccountInfoAsyncWithHttpInfo (string include = null);
         /// <summary>
@@ -1442,7 +1442,7 @@ namespace iam.Api
         /// Get account info. Returns detailed information about the account.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="include">Comma separated additional data to return. Currently supported: limits (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
         /// <returns>AccountInfo</returns>
         public AccountInfo GetMyAccountInfo (string include = null)
         {
@@ -1454,7 +1454,7 @@ namespace iam.Api
         /// Get account info. Returns detailed information about the account.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="include">Comma separated additional data to return. Currently supported: limits (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
         /// <returns>ApiResponse of AccountInfo</returns>
         public ApiResponse< AccountInfo > GetMyAccountInfoWithHttpInfo (string include = null)
         {
@@ -1515,7 +1515,7 @@ namespace iam.Api
         /// Get account info. Returns detailed information about the account.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="include">Comma separated additional data to return. Currently supported: limits (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
         /// <returns>Task of AccountInfo</returns>
         public async System.Threading.Tasks.Task<AccountInfo> GetMyAccountInfoAsync (string include = null)
         {
@@ -1528,7 +1528,7 @@ namespace iam.Api
         /// Get account info. Returns detailed information about the account.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="include">Comma separated additional data to return. Currently supported: limits (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
         /// <returns>Task of ApiResponse (AccountInfo)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<AccountInfo>> GetMyAccountInfoAsyncWithHttpInfo (string include = null)
         {
