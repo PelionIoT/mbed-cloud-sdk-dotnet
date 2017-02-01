@@ -24,10 +24,10 @@ using System.ComponentModel.DataAnnotations;
 namespace iam.Model
 {
     /// <summary>
-    /// TrustedCertificateRespList
+    /// AccountTemplateRespList
     /// </summary>
     [DataContract]
-    public partial class TrustedCertificateRespList :  IEquatable<TrustedCertificateRespList>, IValidatableObject
+    public partial class AccountTemplateRespList :  IEquatable<AccountTemplateRespList>, IValidatableObject
     {
         /// <summary>
         /// Entity name: always 'list'
@@ -44,9 +44,9 @@ namespace iam.Model
             User,
             
             /// <summary>
-            /// Enum Apikey for "api-key"
+            /// Enum Apikey for "api_key"
             /// </summary>
-            [EnumMember(Value = "api-key")]
+            [EnumMember(Value = "api_key")]
             Apikey,
             
             /// <summary>
@@ -68,10 +68,10 @@ namespace iam.Model
             Accounttemplate,
             
             /// <summary>
-            /// Enum Trustedcert for "trusted_cert"
+            /// Enum Cacert for "ca_cert"
             /// </summary>
-            [EnumMember(Value = "trusted_cert")]
-            Trustedcert,
+            [EnumMember(Value = "ca_cert")]
+            Cacert,
             
             /// <summary>
             /// Enum List for "list"
@@ -120,12 +120,12 @@ namespace iam.Model
         [DataMember(Name="order", EmitDefaultValue=false)]
         public OrderEnum? Order { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="TrustedCertificateRespList" /> class.
+        /// Initializes a new instance of the <see cref="AccountTemplateRespList" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected TrustedCertificateRespList() { }
+        protected AccountTemplateRespList() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="TrustedCertificateRespList" /> class.
+        /// Initializes a new instance of the <see cref="AccountTemplateRespList" /> class.
         /// </summary>
         /// <param name="After">The entity ID to fetch after the given one..</param>
         /// <param name="HasMore">Flag indicating whether there is more results. (required) (default to false).</param>
@@ -134,12 +134,12 @@ namespace iam.Model
         /// <param name="Limit">The number of results to return, (range: 2-1000), or equals to &#x60;total_count&#x60; (required).</param>
         /// <param name="Data">A list of entities. (required).</param>
         /// <param name="Order">The order of the records to return. Available values: ASC, DESC; by default ASC..</param>
-        public TrustedCertificateRespList(string After = default(string), bool? HasMore = false, int? TotalCount = default(int?), ObjectEnum? _Object = default(ObjectEnum?), int? Limit = default(int?), List<TrustedCertificateResp> Data = default(List<TrustedCertificateResp>), OrderEnum? Order = default(OrderEnum?))
+        public AccountTemplateRespList(string After = default(string), bool? HasMore = false, int? TotalCount = default(int?), ObjectEnum? _Object = default(ObjectEnum?), int? Limit = default(int?), List<AccountTemplateResp> Data = default(List<AccountTemplateResp>), OrderEnum? Order = default(OrderEnum?))
         {
             // to ensure "HasMore" is required (not null)
             if (HasMore == null)
             {
-                throw new InvalidDataException("HasMore is a required property for TrustedCertificateRespList and cannot be null");
+                throw new InvalidDataException("HasMore is a required property for AccountTemplateRespList and cannot be null");
             }
             else
             {
@@ -148,7 +148,7 @@ namespace iam.Model
             // to ensure "TotalCount" is required (not null)
             if (TotalCount == null)
             {
-                throw new InvalidDataException("TotalCount is a required property for TrustedCertificateRespList and cannot be null");
+                throw new InvalidDataException("TotalCount is a required property for AccountTemplateRespList and cannot be null");
             }
             else
             {
@@ -157,7 +157,7 @@ namespace iam.Model
             // to ensure "_Object" is required (not null)
             if (_Object == null)
             {
-                throw new InvalidDataException("_Object is a required property for TrustedCertificateRespList and cannot be null");
+                throw new InvalidDataException("_Object is a required property for AccountTemplateRespList and cannot be null");
             }
             else
             {
@@ -166,7 +166,7 @@ namespace iam.Model
             // to ensure "Limit" is required (not null)
             if (Limit == null)
             {
-                throw new InvalidDataException("Limit is a required property for TrustedCertificateRespList and cannot be null");
+                throw new InvalidDataException("Limit is a required property for AccountTemplateRespList and cannot be null");
             }
             else
             {
@@ -175,7 +175,7 @@ namespace iam.Model
             // to ensure "Data" is required (not null)
             if (Data == null)
             {
-                throw new InvalidDataException("Data is a required property for TrustedCertificateRespList and cannot be null");
+                throw new InvalidDataException("Data is a required property for AccountTemplateRespList and cannot be null");
             }
             else
             {
@@ -214,7 +214,7 @@ namespace iam.Model
         /// </summary>
         /// <value>A list of entities.</value>
         [DataMember(Name="data", EmitDefaultValue=false)]
-        public List<TrustedCertificateResp> Data { get; set; }
+        public List<AccountTemplateResp> Data { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -222,7 +222,7 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class TrustedCertificateRespList {\n");
+            sb.Append("class AccountTemplateRespList {\n");
             sb.Append("  After: ").Append(After).Append("\n");
             sb.Append("  HasMore: ").Append(HasMore).Append("\n");
             sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
@@ -251,15 +251,15 @@ namespace iam.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as TrustedCertificateRespList);
+            return this.Equals(obj as AccountTemplateRespList);
         }
 
         /// <summary>
-        /// Returns true if TrustedCertificateRespList instances are equal
+        /// Returns true if AccountTemplateRespList instances are equal
         /// </summary>
-        /// <param name="other">Instance of TrustedCertificateRespList to be compared</param>
+        /// <param name="other">Instance of AccountTemplateRespList to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TrustedCertificateRespList other)
+        public bool Equals(AccountTemplateRespList other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)

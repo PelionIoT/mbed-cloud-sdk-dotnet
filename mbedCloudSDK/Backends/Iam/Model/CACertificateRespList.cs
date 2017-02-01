@@ -24,10 +24,10 @@ using System.ComponentModel.DataAnnotations;
 namespace iam.Model
 {
     /// <summary>
-    /// GroupSummaryList
+    /// CACertificateRespList
     /// </summary>
     [DataContract]
-    public partial class GroupSummaryList :  IEquatable<GroupSummaryList>, IValidatableObject
+    public partial class CACertificateRespList :  IEquatable<CACertificateRespList>, IValidatableObject
     {
         /// <summary>
         /// Entity name: always 'list'
@@ -120,12 +120,12 @@ namespace iam.Model
         [DataMember(Name="order", EmitDefaultValue=false)]
         public OrderEnum? Order { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="GroupSummaryList" /> class.
+        /// Initializes a new instance of the <see cref="CACertificateRespList" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected GroupSummaryList() { }
+        protected CACertificateRespList() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="GroupSummaryList" /> class.
+        /// Initializes a new instance of the <see cref="CACertificateRespList" /> class.
         /// </summary>
         /// <param name="After">The entity ID to fetch after the given one..</param>
         /// <param name="HasMore">Flag indicating whether there is more results. (required) (default to false).</param>
@@ -134,12 +134,12 @@ namespace iam.Model
         /// <param name="Limit">The number of results to return, (range: 2-1000), or equals to &#x60;total_count&#x60; (required).</param>
         /// <param name="Data">A list of entities. (required).</param>
         /// <param name="Order">The order of the records to return. Available values: ASC, DESC; by default ASC..</param>
-        public GroupSummaryList(string After = default(string), bool? HasMore = false, int? TotalCount = default(int?), ObjectEnum? _Object = default(ObjectEnum?), int? Limit = default(int?), List<GroupSummary> Data = default(List<GroupSummary>), OrderEnum? Order = default(OrderEnum?))
+        public CACertificateRespList(string After = default(string), bool? HasMore = false, int? TotalCount = default(int?), ObjectEnum? _Object = default(ObjectEnum?), int? Limit = default(int?), List<CACertificateResp> Data = default(List<CACertificateResp>), OrderEnum? Order = default(OrderEnum?))
         {
             // to ensure "HasMore" is required (not null)
             if (HasMore == null)
             {
-                throw new InvalidDataException("HasMore is a required property for GroupSummaryList and cannot be null");
+                throw new InvalidDataException("HasMore is a required property for CACertificateRespList and cannot be null");
             }
             else
             {
@@ -148,7 +148,7 @@ namespace iam.Model
             // to ensure "TotalCount" is required (not null)
             if (TotalCount == null)
             {
-                throw new InvalidDataException("TotalCount is a required property for GroupSummaryList and cannot be null");
+                throw new InvalidDataException("TotalCount is a required property for CACertificateRespList and cannot be null");
             }
             else
             {
@@ -157,7 +157,7 @@ namespace iam.Model
             // to ensure "_Object" is required (not null)
             if (_Object == null)
             {
-                throw new InvalidDataException("_Object is a required property for GroupSummaryList and cannot be null");
+                throw new InvalidDataException("_Object is a required property for CACertificateRespList and cannot be null");
             }
             else
             {
@@ -166,7 +166,7 @@ namespace iam.Model
             // to ensure "Limit" is required (not null)
             if (Limit == null)
             {
-                throw new InvalidDataException("Limit is a required property for GroupSummaryList and cannot be null");
+                throw new InvalidDataException("Limit is a required property for CACertificateRespList and cannot be null");
             }
             else
             {
@@ -175,7 +175,7 @@ namespace iam.Model
             // to ensure "Data" is required (not null)
             if (Data == null)
             {
-                throw new InvalidDataException("Data is a required property for GroupSummaryList and cannot be null");
+                throw new InvalidDataException("Data is a required property for CACertificateRespList and cannot be null");
             }
             else
             {
@@ -214,7 +214,7 @@ namespace iam.Model
         /// </summary>
         /// <value>A list of entities.</value>
         [DataMember(Name="data", EmitDefaultValue=false)]
-        public List<GroupSummary> Data { get; set; }
+        public List<CACertificateResp> Data { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -222,7 +222,7 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class GroupSummaryList {\n");
+            sb.Append("class CACertificateRespList {\n");
             sb.Append("  After: ").Append(After).Append("\n");
             sb.Append("  HasMore: ").Append(HasMore).Append("\n");
             sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
@@ -251,15 +251,15 @@ namespace iam.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as GroupSummaryList);
+            return this.Equals(obj as CACertificateRespList);
         }
 
         /// <summary>
-        /// Returns true if GroupSummaryList instances are equal
+        /// Returns true if CACertificateRespList instances are equal
         /// </summary>
-        /// <param name="other">Instance of GroupSummaryList to be compared</param>
+        /// <param name="other">Instance of CACertificateRespList to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(GroupSummaryList other)
+        public bool Equals(CACertificateRespList other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)

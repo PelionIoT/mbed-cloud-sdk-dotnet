@@ -24,15 +24,15 @@ using System.ComponentModel.DataAnnotations;
 namespace iam.Model
 {
     /// <summary>
-    /// This object represents an error message.
+    /// This object represents a response to an update request.
     /// </summary>
     [DataContract]
-    public partial class ErrorResponse :  IEquatable<ErrorResponse>, IValidatableObject
+    public partial class UpdatedResponse :  IEquatable<UpdatedResponse>, IValidatableObject
     {
         /// <summary>
-        /// Entity name, always 'error'.
+        /// Entity name: 'user', 'apikey', 'group' or 'account'.
         /// </summary>
-        /// <value>Entity name, always 'error'.</value>
+        /// <value>Entity name: 'user', 'apikey', 'group' or 'account'.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ObjectEnum
         {
@@ -87,9 +87,9 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// Error type.
+        /// Response type: success.
         /// </summary>
-        /// <value>Error type.</value>
+        /// <value>Response type: success.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -198,37 +198,37 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// Entity name, always 'error'.
+        /// Entity name: 'user', 'apikey', 'group' or 'account'.
         /// </summary>
-        /// <value>Entity name, always 'error'.</value>
+        /// <value>Entity name: 'user', 'apikey', 'group' or 'account'.</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public ObjectEnum? _Object { get; set; }
         /// <summary>
-        /// Error type.
+        /// Response type: success.
         /// </summary>
-        /// <value>Error type.</value>
+        /// <value>Response type: success.</value>
         [DataMember(Name="type", EmitDefaultValue=false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ErrorResponse" /> class.
+        /// Initializes a new instance of the <see cref="UpdatedResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected ErrorResponse() { }
+        protected UpdatedResponse() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ErrorResponse" /> class.
+        /// Initializes a new instance of the <see cref="UpdatedResponse" /> class.
         /// </summary>
         /// <param name="Code">Response code. (required).</param>
-        /// <param name="Fields">Failed input fields during request object validation..</param>
-        /// <param name="_Object">Entity name, always &#39;error&#39;. (required).</param>
+        /// <param name="_Object">Entity name: &#39;user&#39;, &#39;apikey&#39;, &#39;group&#39; or &#39;account&#39;. (required).</param>
         /// <param name="RequestId">Request ID. (required).</param>
         /// <param name="Message">A human readable message with detailed info. (required).</param>
-        /// <param name="Type">Error type. (required).</param>
-        public ErrorResponse(int? Code = default(int?), List<Field> Fields = default(List<Field>), ObjectEnum? _Object = default(ObjectEnum?), string RequestId = default(string), string Message = default(string), TypeEnum? Type = default(TypeEnum?))
+        /// <param name="Type">Response type: success. (required).</param>
+        /// <param name="Id">Entity ID. (required).</param>
+        public UpdatedResponse(int? Code = default(int?), ObjectEnum? _Object = default(ObjectEnum?), string RequestId = default(string), string Message = default(string), TypeEnum? Type = default(TypeEnum?), string Id = default(string))
         {
             // to ensure "Code" is required (not null)
             if (Code == null)
             {
-                throw new InvalidDataException("Code is a required property for ErrorResponse and cannot be null");
+                throw new InvalidDataException("Code is a required property for UpdatedResponse and cannot be null");
             }
             else
             {
@@ -237,7 +237,7 @@ namespace iam.Model
             // to ensure "_Object" is required (not null)
             if (_Object == null)
             {
-                throw new InvalidDataException("_Object is a required property for ErrorResponse and cannot be null");
+                throw new InvalidDataException("_Object is a required property for UpdatedResponse and cannot be null");
             }
             else
             {
@@ -246,7 +246,7 @@ namespace iam.Model
             // to ensure "RequestId" is required (not null)
             if (RequestId == null)
             {
-                throw new InvalidDataException("RequestId is a required property for ErrorResponse and cannot be null");
+                throw new InvalidDataException("RequestId is a required property for UpdatedResponse and cannot be null");
             }
             else
             {
@@ -255,7 +255,7 @@ namespace iam.Model
             // to ensure "Message" is required (not null)
             if (Message == null)
             {
-                throw new InvalidDataException("Message is a required property for ErrorResponse and cannot be null");
+                throw new InvalidDataException("Message is a required property for UpdatedResponse and cannot be null");
             }
             else
             {
@@ -264,13 +264,21 @@ namespace iam.Model
             // to ensure "Type" is required (not null)
             if (Type == null)
             {
-                throw new InvalidDataException("Type is a required property for ErrorResponse and cannot be null");
+                throw new InvalidDataException("Type is a required property for UpdatedResponse and cannot be null");
             }
             else
             {
                 this.Type = Type;
             }
-            this.Fields = Fields;
+            // to ensure "Id" is required (not null)
+            if (Id == null)
+            {
+                throw new InvalidDataException("Id is a required property for UpdatedResponse and cannot be null");
+            }
+            else
+            {
+                this.Id = Id;
+            }
         }
         
         /// <summary>
@@ -279,12 +287,6 @@ namespace iam.Model
         /// <value>Response code.</value>
         [DataMember(Name="code", EmitDefaultValue=false)]
         public int? Code { get; set; }
-        /// <summary>
-        /// Failed input fields during request object validation.
-        /// </summary>
-        /// <value>Failed input fields during request object validation.</value>
-        [DataMember(Name="fields", EmitDefaultValue=false)]
-        public List<Field> Fields { get; set; }
         /// <summary>
         /// Request ID.
         /// </summary>
@@ -298,19 +300,25 @@ namespace iam.Model
         [DataMember(Name="message", EmitDefaultValue=false)]
         public string Message { get; set; }
         /// <summary>
+        /// Entity ID.
+        /// </summary>
+        /// <value>Entity ID.</value>
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public string Id { get; set; }
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ErrorResponse {\n");
+            sb.Append("class UpdatedResponse {\n");
             sb.Append("  Code: ").Append(Code).Append("\n");
-            sb.Append("  Fields: ").Append(Fields).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  RequestId: ").Append(RequestId).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -332,15 +340,15 @@ namespace iam.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as ErrorResponse);
+            return this.Equals(obj as UpdatedResponse);
         }
 
         /// <summary>
-        /// Returns true if ErrorResponse instances are equal
+        /// Returns true if UpdatedResponse instances are equal
         /// </summary>
-        /// <param name="other">Instance of ErrorResponse to be compared</param>
+        /// <param name="other">Instance of UpdatedResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ErrorResponse other)
+        public bool Equals(UpdatedResponse other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -351,11 +359,6 @@ namespace iam.Model
                     this.Code == other.Code ||
                     this.Code != null &&
                     this.Code.Equals(other.Code)
-                ) && 
-                (
-                    this.Fields == other.Fields ||
-                    this.Fields != null &&
-                    this.Fields.SequenceEqual(other.Fields)
                 ) && 
                 (
                     this._Object == other._Object ||
@@ -376,6 +379,11 @@ namespace iam.Model
                     this.Type == other.Type ||
                     this.Type != null &&
                     this.Type.Equals(other.Type)
+                ) && 
+                (
+                    this.Id == other.Id ||
+                    this.Id != null &&
+                    this.Id.Equals(other.Id)
                 );
         }
 
@@ -392,8 +400,6 @@ namespace iam.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.Code != null)
                     hash = hash * 59 + this.Code.GetHashCode();
-                if (this.Fields != null)
-                    hash = hash * 59 + this.Fields.GetHashCode();
                 if (this._Object != null)
                     hash = hash * 59 + this._Object.GetHashCode();
                 if (this.RequestId != null)
@@ -402,6 +408,8 @@ namespace iam.Model
                     hash = hash * 59 + this.Message.GetHashCode();
                 if (this.Type != null)
                     hash = hash * 59 + this.Type.GetHashCode();
+                if (this.Id != null)
+                    hash = hash * 59 + this.Id.GetHashCode();
                 return hash;
             }
         }

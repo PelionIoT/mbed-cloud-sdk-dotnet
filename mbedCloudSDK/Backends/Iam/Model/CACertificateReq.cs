@@ -24,10 +24,10 @@ using System.ComponentModel.DataAnnotations;
 namespace iam.Model
 {
     /// <summary>
-    /// This object represents a trusted certificate in requests.
+    /// This object represents an CA Certificate in requests.
     /// </summary>
     [DataContract]
-    public partial class TrustedCertificateReq :  IEquatable<TrustedCertificateReq>, IValidatableObject
+    public partial class CACertificateReq :  IEquatable<CACertificateReq>, IValidatableObject
     {
         /// <summary>
         /// Service name where the certificate must be used.
@@ -63,23 +63,23 @@ namespace iam.Model
         [DataMember(Name="service", EmitDefaultValue=false)]
         public ServiceEnum? Service { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="TrustedCertificateReq" /> class.
+        /// Initializes a new instance of the <see cref="CACertificateReq" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected TrustedCertificateReq() { }
+        protected CACertificateReq() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="TrustedCertificateReq" /> class.
+        /// Initializes a new instance of the <see cref="CACertificateReq" /> class.
         /// </summary>
-        /// <param name="CertData">X509.v3 trusted certificate in PEM or base64 encoded DER format. (required).</param>
+        /// <param name="CertData">X509.v3 CA certificate in PEM or base64 encoded DER format. (required).</param>
         /// <param name="Name">Certificate name. (required).</param>
         /// <param name="Service">Service name where the certificate must be used. (required).</param>
         /// <param name="Signature">Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. (required).</param>
-        public TrustedCertificateReq(string CertData = default(string), string Name = default(string), ServiceEnum? Service = default(ServiceEnum?), string Signature = default(string))
+        public CACertificateReq(string CertData = default(string), string Name = default(string), ServiceEnum? Service = default(ServiceEnum?), string Signature = default(string))
         {
             // to ensure "CertData" is required (not null)
             if (CertData == null)
             {
-                throw new InvalidDataException("CertData is a required property for TrustedCertificateReq and cannot be null");
+                throw new InvalidDataException("CertData is a required property for CACertificateReq and cannot be null");
             }
             else
             {
@@ -88,7 +88,7 @@ namespace iam.Model
             // to ensure "Name" is required (not null)
             if (Name == null)
             {
-                throw new InvalidDataException("Name is a required property for TrustedCertificateReq and cannot be null");
+                throw new InvalidDataException("Name is a required property for CACertificateReq and cannot be null");
             }
             else
             {
@@ -97,7 +97,7 @@ namespace iam.Model
             // to ensure "Service" is required (not null)
             if (Service == null)
             {
-                throw new InvalidDataException("Service is a required property for TrustedCertificateReq and cannot be null");
+                throw new InvalidDataException("Service is a required property for CACertificateReq and cannot be null");
             }
             else
             {
@@ -106,7 +106,7 @@ namespace iam.Model
             // to ensure "Signature" is required (not null)
             if (Signature == null)
             {
-                throw new InvalidDataException("Signature is a required property for TrustedCertificateReq and cannot be null");
+                throw new InvalidDataException("Signature is a required property for CACertificateReq and cannot be null");
             }
             else
             {
@@ -115,9 +115,9 @@ namespace iam.Model
         }
         
         /// <summary>
-        /// X509.v3 trusted certificate in PEM or base64 encoded DER format.
+        /// X509.v3 CA certificate in PEM or base64 encoded DER format.
         /// </summary>
-        /// <value>X509.v3 trusted certificate in PEM or base64 encoded DER format.</value>
+        /// <value>X509.v3 CA certificate in PEM or base64 encoded DER format.</value>
         [DataMember(Name="cert_data", EmitDefaultValue=false)]
         public string CertData { get; set; }
         /// <summary>
@@ -139,7 +139,7 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class TrustedCertificateReq {\n");
+            sb.Append("class CACertificateReq {\n");
             sb.Append("  CertData: ").Append(CertData).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Service: ").Append(Service).Append("\n");
@@ -165,15 +165,15 @@ namespace iam.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as TrustedCertificateReq);
+            return this.Equals(obj as CACertificateReq);
         }
 
         /// <summary>
-        /// Returns true if TrustedCertificateReq instances are equal
+        /// Returns true if CACertificateReq instances are equal
         /// </summary>
-        /// <param name="other">Instance of TrustedCertificateReq to be compared</param>
+        /// <param name="other">Instance of CACertificateReq to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TrustedCertificateReq other)
+        public bool Equals(CACertificateReq other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)

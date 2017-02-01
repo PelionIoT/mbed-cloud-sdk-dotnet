@@ -24,53 +24,88 @@ using System.ComponentModel.DataAnnotations;
 namespace iam.Model
 {
     /// <summary>
-    /// This object represents an account update request.
+    /// This object represents an account creation response.
     /// </summary>
     [DataContract]
-    public partial class AccountUpdateReq :  IEquatable<AccountUpdateReq>, IValidatableObject
+    public partial class AccountCreationResp :  IEquatable<AccountCreationResp>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountUpdateReq" /> class.
+        /// Initializes a new instance of the <see cref="AccountCreationResp" /> class.
+        /// </summary>
+        [JsonConstructorAttribute]
+        protected AccountCreationResp() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountCreationResp" /> class.
         /// </summary>
         /// <param name="AddressLine2">Postal address line 2..</param>
         /// <param name="City">The city part of the postal address..</param>
         /// <param name="AddressLine1">Postal address line 1..</param>
         /// <param name="DisplayName">The display name for the account..</param>
+        /// <param name="IsProvisioningAllowed">Flag (true/false) indicating whether Factory Tool is allowed to download or not.. (required) (default to false).</param>
+        /// <param name="AdminId">The ID of the admin user created. (required).</param>
         /// <param name="Country">The country part of the postal address..</param>
         /// <param name="Company">The name of the company..</param>
-        /// <param name="TemplateId">Account template ID. Manageable by the root admin only..</param>
-        /// <param name="Status">The status of the account. Manageable by the root admin only..</param>
+        /// <param name="Id">Account ID..</param>
         /// <param name="State">The state part of the postal address..</param>
         /// <param name="Contact">The name of the contact person for this account..</param>
         /// <param name="PostalCode">The postal code part of the postal address..</param>
-        /// <param name="IsProvisioningAllowed">Flag (true/false) indicating whether Factory Tool is allowed to download or not. Manageable by the root admin only. (default to false).</param>
+        /// <param name="AdminPassword">The password when creating a new user. It will be generated when not present in the request..</param>
+        /// <param name="AdminName">The username of the admin user to be created, containing alphanumerical letters and -,._@+&#x3D; characters. (required).</param>
         /// <param name="ParentID">The ID of the parent account, if it has any..</param>
-        /// <param name="Tier">The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account. Other values are reserved for the future. Manageable by the root admin only..</param>
+        /// <param name="Tier">The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account. Other values are reserved for the future..</param>
+        /// <param name="AdminEmail">The email address of the account admin. (required).</param>
         /// <param name="PhoneNumber">The phone number of the company..</param>
         /// <param name="Email">The company email address for this account..</param>
         /// <param name="Aliases">An array of aliases..</param>
-        public AccountUpdateReq(string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string Country = default(string), string Company = default(string), string TemplateId = default(string), string Status = default(string), string State = default(string), string Contact = default(string), string PostalCode = default(string), bool? IsProvisioningAllowed = false, string ParentID = default(string), string Tier = default(string), string PhoneNumber = default(string), string Email = default(string), List<string> Aliases = default(List<string>))
+        public AccountCreationResp(string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), bool? IsProvisioningAllowed = false, string AdminId = default(string), string Country = default(string), string Company = default(string), string Id = default(string), string State = default(string), string Contact = default(string), string PostalCode = default(string), string AdminPassword = default(string), string AdminName = default(string), string ParentID = default(string), string Tier = default(string), string AdminEmail = default(string), string PhoneNumber = default(string), string Email = default(string), List<string> Aliases = default(List<string>))
         {
+            // to ensure "IsProvisioningAllowed" is required (not null)
+            if (IsProvisioningAllowed == null)
+            {
+                throw new InvalidDataException("IsProvisioningAllowed is a required property for AccountCreationResp and cannot be null");
+            }
+            else
+            {
+                this.IsProvisioningAllowed = IsProvisioningAllowed;
+            }
+            // to ensure "AdminId" is required (not null)
+            if (AdminId == null)
+            {
+                throw new InvalidDataException("AdminId is a required property for AccountCreationResp and cannot be null");
+            }
+            else
+            {
+                this.AdminId = AdminId;
+            }
+            // to ensure "AdminName" is required (not null)
+            if (AdminName == null)
+            {
+                throw new InvalidDataException("AdminName is a required property for AccountCreationResp and cannot be null");
+            }
+            else
+            {
+                this.AdminName = AdminName;
+            }
+            // to ensure "AdminEmail" is required (not null)
+            if (AdminEmail == null)
+            {
+                throw new InvalidDataException("AdminEmail is a required property for AccountCreationResp and cannot be null");
+            }
+            else
+            {
+                this.AdminEmail = AdminEmail;
+            }
             this.AddressLine2 = AddressLine2;
             this.City = City;
             this.AddressLine1 = AddressLine1;
             this.DisplayName = DisplayName;
             this.Country = Country;
             this.Company = Company;
-            this.TemplateId = TemplateId;
-            this.Status = Status;
+            this.Id = Id;
             this.State = State;
             this.Contact = Contact;
             this.PostalCode = PostalCode;
-            // use default value if no "IsProvisioningAllowed" provided
-            if (IsProvisioningAllowed == null)
-            {
-                this.IsProvisioningAllowed = false;
-            }
-            else
-            {
-                this.IsProvisioningAllowed = IsProvisioningAllowed;
-            }
+            this.AdminPassword = AdminPassword;
             this.ParentID = ParentID;
             this.Tier = Tier;
             this.PhoneNumber = PhoneNumber;
@@ -103,6 +138,18 @@ namespace iam.Model
         [DataMember(Name="display_name", EmitDefaultValue=false)]
         public string DisplayName { get; set; }
         /// <summary>
+        /// Flag (true/false) indicating whether Factory Tool is allowed to download or not..
+        /// </summary>
+        /// <value>Flag (true/false) indicating whether Factory Tool is allowed to download or not..</value>
+        [DataMember(Name="is_provisioning_allowed", EmitDefaultValue=false)]
+        public bool? IsProvisioningAllowed { get; set; }
+        /// <summary>
+        /// The ID of the admin user created.
+        /// </summary>
+        /// <value>The ID of the admin user created.</value>
+        [DataMember(Name="admin_id", EmitDefaultValue=false)]
+        public string AdminId { get; set; }
+        /// <summary>
         /// The country part of the postal address.
         /// </summary>
         /// <value>The country part of the postal address.</value>
@@ -115,17 +162,11 @@ namespace iam.Model
         [DataMember(Name="company", EmitDefaultValue=false)]
         public string Company { get; set; }
         /// <summary>
-        /// Account template ID. Manageable by the root admin only.
+        /// Account ID.
         /// </summary>
-        /// <value>Account template ID. Manageable by the root admin only.</value>
-        [DataMember(Name="template_id", EmitDefaultValue=false)]
-        public string TemplateId { get; set; }
-        /// <summary>
-        /// The status of the account. Manageable by the root admin only.
-        /// </summary>
-        /// <value>The status of the account. Manageable by the root admin only.</value>
-        [DataMember(Name="status", EmitDefaultValue=false)]
-        public string Status { get; set; }
+        /// <value>Account ID.</value>
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public string Id { get; set; }
         /// <summary>
         /// The state part of the postal address.
         /// </summary>
@@ -145,11 +186,17 @@ namespace iam.Model
         [DataMember(Name="postal_code", EmitDefaultValue=false)]
         public string PostalCode { get; set; }
         /// <summary>
-        /// Flag (true/false) indicating whether Factory Tool is allowed to download or not. Manageable by the root admin only.
+        /// The password when creating a new user. It will be generated when not present in the request.
         /// </summary>
-        /// <value>Flag (true/false) indicating whether Factory Tool is allowed to download or not. Manageable by the root admin only.</value>
-        [DataMember(Name="is_provisioning_allowed", EmitDefaultValue=false)]
-        public bool? IsProvisioningAllowed { get; set; }
+        /// <value>The password when creating a new user. It will be generated when not present in the request.</value>
+        [DataMember(Name="admin_password", EmitDefaultValue=false)]
+        public string AdminPassword { get; set; }
+        /// <summary>
+        /// The username of the admin user to be created, containing alphanumerical letters and -,._@+&#x3D; characters.
+        /// </summary>
+        /// <value>The username of the admin user to be created, containing alphanumerical letters and -,._@+&#x3D; characters.</value>
+        [DataMember(Name="admin_name", EmitDefaultValue=false)]
+        public string AdminName { get; set; }
         /// <summary>
         /// The ID of the parent account, if it has any.
         /// </summary>
@@ -157,11 +204,17 @@ namespace iam.Model
         [DataMember(Name="parentID", EmitDefaultValue=false)]
         public string ParentID { get; set; }
         /// <summary>
-        /// The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account. Other values are reserved for the future. Manageable by the root admin only.
+        /// The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account. Other values are reserved for the future.
         /// </summary>
-        /// <value>The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account. Other values are reserved for the future. Manageable by the root admin only.</value>
+        /// <value>The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account. Other values are reserved for the future.</value>
         [DataMember(Name="tier", EmitDefaultValue=false)]
         public string Tier { get; set; }
+        /// <summary>
+        /// The email address of the account admin.
+        /// </summary>
+        /// <value>The email address of the account admin.</value>
+        [DataMember(Name="admin_email", EmitDefaultValue=false)]
+        public string AdminEmail { get; set; }
         /// <summary>
         /// The phone number of the company.
         /// </summary>
@@ -187,21 +240,24 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class AccountUpdateReq {\n");
+            sb.Append("class AccountCreationResp {\n");
             sb.Append("  AddressLine2: ").Append(AddressLine2).Append("\n");
             sb.Append("  City: ").Append(City).Append("\n");
             sb.Append("  AddressLine1: ").Append(AddressLine1).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
+            sb.Append("  IsProvisioningAllowed: ").Append(IsProvisioningAllowed).Append("\n");
+            sb.Append("  AdminId: ").Append(AdminId).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
-            sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");
-            sb.Append("  IsProvisioningAllowed: ").Append(IsProvisioningAllowed).Append("\n");
+            sb.Append("  AdminPassword: ").Append(AdminPassword).Append("\n");
+            sb.Append("  AdminName: ").Append(AdminName).Append("\n");
             sb.Append("  ParentID: ").Append(ParentID).Append("\n");
             sb.Append("  Tier: ").Append(Tier).Append("\n");
+            sb.Append("  AdminEmail: ").Append(AdminEmail).Append("\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  Aliases: ").Append(Aliases).Append("\n");
@@ -226,15 +282,15 @@ namespace iam.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as AccountUpdateReq);
+            return this.Equals(obj as AccountCreationResp);
         }
 
         /// <summary>
-        /// Returns true if AccountUpdateReq instances are equal
+        /// Returns true if AccountCreationResp instances are equal
         /// </summary>
-        /// <param name="other">Instance of AccountUpdateReq to be compared</param>
+        /// <param name="other">Instance of AccountCreationResp to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AccountUpdateReq other)
+        public bool Equals(AccountCreationResp other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -262,6 +318,16 @@ namespace iam.Model
                     this.DisplayName.Equals(other.DisplayName)
                 ) && 
                 (
+                    this.IsProvisioningAllowed == other.IsProvisioningAllowed ||
+                    this.IsProvisioningAllowed != null &&
+                    this.IsProvisioningAllowed.Equals(other.IsProvisioningAllowed)
+                ) && 
+                (
+                    this.AdminId == other.AdminId ||
+                    this.AdminId != null &&
+                    this.AdminId.Equals(other.AdminId)
+                ) && 
+                (
                     this.Country == other.Country ||
                     this.Country != null &&
                     this.Country.Equals(other.Country)
@@ -272,14 +338,9 @@ namespace iam.Model
                     this.Company.Equals(other.Company)
                 ) && 
                 (
-                    this.TemplateId == other.TemplateId ||
-                    this.TemplateId != null &&
-                    this.TemplateId.Equals(other.TemplateId)
-                ) && 
-                (
-                    this.Status == other.Status ||
-                    this.Status != null &&
-                    this.Status.Equals(other.Status)
+                    this.Id == other.Id ||
+                    this.Id != null &&
+                    this.Id.Equals(other.Id)
                 ) && 
                 (
                     this.State == other.State ||
@@ -297,9 +358,14 @@ namespace iam.Model
                     this.PostalCode.Equals(other.PostalCode)
                 ) && 
                 (
-                    this.IsProvisioningAllowed == other.IsProvisioningAllowed ||
-                    this.IsProvisioningAllowed != null &&
-                    this.IsProvisioningAllowed.Equals(other.IsProvisioningAllowed)
+                    this.AdminPassword == other.AdminPassword ||
+                    this.AdminPassword != null &&
+                    this.AdminPassword.Equals(other.AdminPassword)
+                ) && 
+                (
+                    this.AdminName == other.AdminName ||
+                    this.AdminName != null &&
+                    this.AdminName.Equals(other.AdminName)
                 ) && 
                 (
                     this.ParentID == other.ParentID ||
@@ -310,6 +376,11 @@ namespace iam.Model
                     this.Tier == other.Tier ||
                     this.Tier != null &&
                     this.Tier.Equals(other.Tier)
+                ) && 
+                (
+                    this.AdminEmail == other.AdminEmail ||
+                    this.AdminEmail != null &&
+                    this.AdminEmail.Equals(other.AdminEmail)
                 ) && 
                 (
                     this.PhoneNumber == other.PhoneNumber ||
@@ -347,26 +418,32 @@ namespace iam.Model
                     hash = hash * 59 + this.AddressLine1.GetHashCode();
                 if (this.DisplayName != null)
                     hash = hash * 59 + this.DisplayName.GetHashCode();
+                if (this.IsProvisioningAllowed != null)
+                    hash = hash * 59 + this.IsProvisioningAllowed.GetHashCode();
+                if (this.AdminId != null)
+                    hash = hash * 59 + this.AdminId.GetHashCode();
                 if (this.Country != null)
                     hash = hash * 59 + this.Country.GetHashCode();
                 if (this.Company != null)
                     hash = hash * 59 + this.Company.GetHashCode();
-                if (this.TemplateId != null)
-                    hash = hash * 59 + this.TemplateId.GetHashCode();
-                if (this.Status != null)
-                    hash = hash * 59 + this.Status.GetHashCode();
+                if (this.Id != null)
+                    hash = hash * 59 + this.Id.GetHashCode();
                 if (this.State != null)
                     hash = hash * 59 + this.State.GetHashCode();
                 if (this.Contact != null)
                     hash = hash * 59 + this.Contact.GetHashCode();
                 if (this.PostalCode != null)
                     hash = hash * 59 + this.PostalCode.GetHashCode();
-                if (this.IsProvisioningAllowed != null)
-                    hash = hash * 59 + this.IsProvisioningAllowed.GetHashCode();
+                if (this.AdminPassword != null)
+                    hash = hash * 59 + this.AdminPassword.GetHashCode();
+                if (this.AdminName != null)
+                    hash = hash * 59 + this.AdminName.GetHashCode();
                 if (this.ParentID != null)
                     hash = hash * 59 + this.ParentID.GetHashCode();
                 if (this.Tier != null)
                     hash = hash * 59 + this.Tier.GetHashCode();
+                if (this.AdminEmail != null)
+                    hash = hash * 59 + this.AdminEmail.GetHashCode();
                 if (this.PhoneNumber != null)
                     hash = hash * 59 + this.PhoneNumber.GetHashCode();
                 if (this.Email != null)

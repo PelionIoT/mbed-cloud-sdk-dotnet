@@ -75,17 +75,18 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
 
             var apiInstance = new AccountAdminApi();
-            var body = new TrustedCertificateReq(); // TrustedCertificateReq | A trusted certificate object with attributes.
+            var accountID = accountID_example;  // string | The ID of the account to be updated.
+            var alias = alias_example;  // string | The account alias to be added.
 
             try
             {
-                // Upload a new trusted certificate.
-                TrustedCertificateResp result = apiInstance.AddCertificate(body);
+                // Add an alias.
+                UpdatedResponse result = apiInstance.AddAlias(accountID, alias);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling AccountAdminApi.AddCertificate: " + e.Message );
+                Debug.Print("Exception when calling AccountAdminApi.AddAlias: " + e.Message );
             }
         }
     }
@@ -99,62 +100,158 @@ All URIs are relative to *https://api.mbedcloud.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AccountAdminApi* | [**AddCertificate**](docs/AccountAdminApi.md#addcertificate) | **POST** /v3/trusted-certificates | Upload a new trusted certificate.
+*AccountAdminApi* | [**AddAlias**](docs/AccountAdminApi.md#addalias) | **PUT** /v3/accounts/{accountID}/alias/{alias} | Add an alias.
+*AccountAdminApi* | [**AddCertificate**](docs/AccountAdminApi.md#addcertificate) | **POST** /v3/ca-certificates | Upload a new CA certificate.
+*AccountAdminApi* | [**AddMyAccountAlias**](docs/AccountAdminApi.md#addmyaccountalias) | **PUT** /v3/accounts/me/alias/{alias} | Add an alias.
+*AccountAdminApi* | [**AddSubjectsToGroup**](docs/AccountAdminApi.md#addsubjectstogroup) | **POST** /v3/policy-groups/{groupID} | Add members to a group.
+*AccountAdminApi* | [**AddUsersToGroup**](docs/AccountAdminApi.md#adduserstogroup) | **POST** /v3/policy-groups/{groupID}/users | Add users to a group.
+*AccountAdminApi* | [**CreateGroup**](docs/AccountAdminApi.md#creategroup) | **POST** /v3/policy-groups | Create a new group.
 *AccountAdminApi* | [**CreateUser**](docs/AccountAdminApi.md#createuser) | **POST** /v3/users | Create a new user.
-*AccountAdminApi* | [**DeleteCertificate**](docs/AccountAdminApi.md#deletecertificate) | **DELETE** /v3/trusted-certificates/{cert-id} | Delete a trusted certificate by ID.
+*AccountAdminApi* | [**DeleteCertificate**](docs/AccountAdminApi.md#deletecertificate) | **DELETE** /v3/ca-certificates/{ca-cert-id} | Delete a CA certificate by ID.
+*AccountAdminApi* | [**DeleteGroup**](docs/AccountAdminApi.md#deletegroup) | **DELETE** /v3/policy-groups/{groupID} | Delete a group.
 *AccountAdminApi* | [**DeleteUser**](docs/AccountAdminApi.md#deleteuser) | **DELETE** /v3/users/{user-id} | Delete a user.
-*AccountAdminApi* | [**GetAllCertificates**](docs/AccountAdminApi.md#getallcertificates) | **GET** /v3/trusted-certificates | Get all trusted certificates.
+*AccountAdminApi* | [**GetAllCertificates**](docs/AccountAdminApi.md#getallcertificates) | **GET** /v3/ca-certificates | Get all CA certificates.
 *AccountAdminApi* | [**GetAllUsers**](docs/AccountAdminApi.md#getallusers) | **GET** /v3/users | Get the details of all users.
-*AccountAdminApi* | [**GetCertificate**](docs/AccountAdminApi.md#getcertificate) | **GET** /v3/trusted-certificates/{cert-id} | Get trusted certificate by ID.
+*AccountAdminApi* | [**GetCertificate**](docs/AccountAdminApi.md#getcertificate) | **GET** /v3/ca-certificates/{ca-cert-id} | Get CA certificate by ID.
 *AccountAdminApi* | [**GetUser**](docs/AccountAdminApi.md#getuser) | **GET** /v3/users/{user-id} | Details of a user.
-*AccountAdminApi* | [**UpdateCertificate**](docs/AccountAdminApi.md#updatecertificate) | **PUT** /v3/trusted-certificates/{cert-id} | Update trusted certificate.
+*AccountAdminApi* | [**GetUsersOfGroup**](docs/AccountAdminApi.md#getusersofgroup) | **GET** /v3/policy-groups/{groupID}/users | Get users of a group.
+*AccountAdminApi* | [**RemoveAlias**](docs/AccountAdminApi.md#removealias) | **DELETE** /v3/accounts/{accountID}/alias/{alias} | Remove an alias.
+*AccountAdminApi* | [**RemoveMyAccountAlias**](docs/AccountAdminApi.md#removemyaccountalias) | **DELETE** /v3/accounts/me/alias/{alias} | Remove an alias.
+*AccountAdminApi* | [**RemoveUsersFromGroup**](docs/AccountAdminApi.md#removeusersfromgroup) | **DELETE** /v3/policy-groups/{groupID}/users | Remove users from a group.
+*AccountAdminApi* | [**ResetUserPassword**](docs/AccountAdminApi.md#resetuserpassword) | **POST** /v3/users/{user-id}/reset-password | Reset the user password.
+*AccountAdminApi* | [**SetAliases**](docs/AccountAdminApi.md#setaliases) | **POST** /v3/accounts/{accountID}/alias | Set aliases.
+*AccountAdminApi* | [**SetMyAccountAliases**](docs/AccountAdminApi.md#setmyaccountaliases) | **POST** /v3/accounts/me/alias | Set aliases.
+*AccountAdminApi* | [**UpdateAccount**](docs/AccountAdminApi.md#updateaccount) | **PUT** /v3/accounts/{accountID} | Update attributes of an existing account.
+*AccountAdminApi* | [**UpdateCertificate**](docs/AccountAdminApi.md#updatecertificate) | **PUT** /v3/ca-certificates/{ca-cert-id} | Update CA certificate.
 *AccountAdminApi* | [**UpdateMyAccount**](docs/AccountAdminApi.md#updatemyaccount) | **PUT** /v3/accounts/me | Updates attributes of the account.
 *AccountAdminApi* | [**UpdateUser**](docs/AccountAdminApi.md#updateuser) | **PUT** /v3/users/{user-id} | Update user details.
 *DefaultApi* | [**ActivateUser**](docs/DefaultApi.md#activateuser) | **PUT** /auth/invitations/{invitation-id} | Accept invitation.
 *DefaultApi* | [**ApplyPasswordRecovery**](docs/DefaultApi.md#applypasswordrecovery) | **PUT** /auth/recover | Apply password recovery.
+*DefaultApi* | [**CleanUnconfirmedAccounts**](docs/DefaultApi.md#cleanunconfirmedaccounts) | **POST** /internal/v1/gc/register | Remove unconfirmed accounts.
+*DefaultApi* | [**GetAllAccountsAllCertificates**](docs/DefaultApi.md#getallaccountsallcertificates) | **GET** /internal/v1/ca-certificates | Get all accounts all CA certificates.
 *DefaultApi* | [**GetInvitedUser**](docs/DefaultApi.md#getinviteduser) | **GET** /auth/invitations/{invitation-id} | Get invited user.
 *DefaultApi* | [**GetSelfEnrollingUser**](docs/DefaultApi.md#getselfenrollinguser) | **GET** /auth/register/{signup-id} | Get registering user.
+*DefaultApi* | [**HeadAllAccounts**](docs/DefaultApi.md#headallaccounts) | **HEAD** /v3/accounts | The heartbeat method for this API.
+*DefaultApi* | [**HeadAllApiKeys**](docs/DefaultApi.md#headallapikeys) | **HEAD** /v3/api-keys | The heartbeat method for this API.
+*DefaultApi* | [**HeadAllCertificates**](docs/DefaultApi.md#headallcertificates) | **HEAD** /v3/ca-certificates | The heartbeat method for this API.
+*DefaultApi* | [**HeadAllGroups**](docs/DefaultApi.md#headallgroups) | **HEAD** /v3/policy-groups | The heartbeat method for this API.
+*DefaultApi* | [**HeadAllInternalCertificates**](docs/DefaultApi.md#headallinternalcertificates) | **HEAD** /internal/v1/ca-certificates | The heartbeat method for this API.
+*DefaultApi* | [**HeadAllUsers**](docs/DefaultApi.md#headallusers) | **HEAD** /v3/users | The heartbeat method for this API.
+*DefaultApi* | [**HeadInternalLimits**](docs/DefaultApi.md#headinternallimits) | **HEAD** /internal/v1/limits | The heartbeat method for this API.
+*DefaultApi* | [**HeadInvitations**](docs/DefaultApi.md#headinvitations) | **HEAD** /auth/invitations | The heartbeat method for this API.
+*DefaultApi* | [**HeadMyAccount**](docs/DefaultApi.md#headmyaccount) | **HEAD** /v3/accounts/me | The heartbeat method for this API.
+*DefaultApi* | [**HeadMyApiKey**](docs/DefaultApi.md#headmyapikey) | **HEAD** /v3/api-keys/me | The heartbeat method for this API.
+*DefaultApi* | [**HeadMyUser**](docs/DefaultApi.md#headmyuser) | **HEAD** /v3/users/me | The heartbeat method for this API.
+*DefaultApi* | [**HeadRecovery**](docs/DefaultApi.md#headrecovery) | **HEAD** /auth/recover | The heartbeat method for this API.
+*DefaultApi* | [**HeadRegister**](docs/DefaultApi.md#headregister) | **HEAD** /auth/register | The heartbeat method for this API.
 *DefaultApi* | [**RegisterAccount**](docs/DefaultApi.md#registeraccount) | **PUT** /auth/register/{signup-id} | Register a new account.
 *DefaultApi* | [**RequestPasswordRecovery**](docs/DefaultApi.md#requestpasswordrecovery) | **POST** /auth/recover | Request password recovery.
+*DefaultApi* | [**SetLoggingLevel**](docs/DefaultApi.md#setlogginglevel) | **POST** /admin/v3/logging | Set the logging level
 *DefaultApi* | [**Signup**](docs/DefaultApi.md#signup) | **POST** /auth/register | Sign up for a new account.
 *DefaultApi* | [**VerifySelfEnrollment**](docs/DefaultApi.md#verifyselfenrollment) | **POST** /auth/register/{signup-id} | Verify self-enrollment code and aliases.
+*DeveloperApi* | [**AddApiKeysToGroup**](docs/DeveloperApi.md#addapikeystogroup) | **POST** /v3/policy-groups/{groupID}/api-keys | Add API keys to a group.
+*DeveloperApi* | [**ChangeMyPassword**](docs/DeveloperApi.md#changemypassword) | **PUT** /v3/users/me/password | Change the password of the current user.
 *DeveloperApi* | [**CreateApiKey**](docs/DeveloperApi.md#createapikey) | **POST** /v3/api-keys | Create a new API key.
 *DeveloperApi* | [**DeleteApiKey**](docs/DeveloperApi.md#deleteapikey) | **DELETE** /v3/api-keys/{apiKey} | Delete API key.
+*DeveloperApi* | [**GetAccountAttributes**](docs/DeveloperApi.md#getaccountattributes) | **GET** /v3/accounts/{accountID}/attributes | Read account attributes.
+*DeveloperApi* | [**GetAliases**](docs/DeveloperApi.md#getaliases) | **GET** /v3/accounts/{accountID}/alias | Get aliases.
 *DeveloperApi* | [**GetAllApiKeys**](docs/DeveloperApi.md#getallapikeys) | **GET** /v3/api-keys | Get all API keys
 *DeveloperApi* | [**GetAllGroups**](docs/DeveloperApi.md#getallgroups) | **GET** /v3/policy-groups | Get all group information.
 *DeveloperApi* | [**GetApiKey**](docs/DeveloperApi.md#getapikey) | **GET** /v3/api-keys/{apiKey} | Get API key details.
+*DeveloperApi* | [**GetApiKeysOfGroup**](docs/DeveloperApi.md#getapikeysofgroup) | **GET** /v3/policy-groups/{groupID}/api-keys | Get the API keys of a group.
+*DeveloperApi* | [**GetGroupSummary**](docs/DeveloperApi.md#getgroupsummary) | **GET** /v3/policy-groups/{groupID} | Get group information.
+*DeveloperApi* | [**GetMyAccountAliases**](docs/DeveloperApi.md#getmyaccountaliases) | **GET** /v3/accounts/me/alias | Get aliases.
+*DeveloperApi* | [**GetMyAccountAttributes**](docs/DeveloperApi.md#getmyaccountattributes) | **GET** /v3/accounts/me/attributes | Read account attributes.
 *DeveloperApi* | [**GetMyAccountInfo**](docs/DeveloperApi.md#getmyaccountinfo) | **GET** /v3/accounts/me | Get account info.
 *DeveloperApi* | [**GetMyApiKey**](docs/DeveloperApi.md#getmyapikey) | **GET** /v3/api-keys/me | Get API key details.
 *DeveloperApi* | [**GetMyUser**](docs/DeveloperApi.md#getmyuser) | **GET** /v3/users/me | Details of the current user.
+*DeveloperApi* | [**RemoveApiKeysFromGroup**](docs/DeveloperApi.md#removeapikeysfromgroup) | **DELETE** /v3/policy-groups/{groupID}/api-keys | Remove API keys from a group.
+*DeveloperApi* | [**ResetSecret**](docs/DeveloperApi.md#resetsecret) | **POST** /v3/api-keys/{apiKey}/reset-secret | Reset secret key.
 *DeveloperApi* | [**UpdateApiKey**](docs/DeveloperApi.md#updateapikey) | **PUT** /v3/api-keys/{apiKey} | Update API key details.
 *DeveloperApi* | [**UpdateMyApiKey**](docs/DeveloperApi.md#updatemyapikey) | **PUT** /v3/api-keys/me | Update API key details.
 *DeveloperApi* | [**UpdateMyUser**](docs/DeveloperApi.md#updatemyuser) | **PUT** /v3/users/me | Update user details.
+*RootAdminApi* | [**AddAccountCertificate**](docs/RootAdminApi.md#addaccountcertificate) | **POST** /v3/accounts/{accountID}/ca-certificates | Upload new CA certificate.
+*RootAdminApi* | [**AddApiKeysToAccountGroup**](docs/RootAdminApi.md#addapikeystoaccountgroup) | **POST** /v3/accounts/{accountID}/policy-groups/{groupID}/api-keys | Add API keys to a group.
+*RootAdminApi* | [**AddSubjectsToAccountGroup**](docs/RootAdminApi.md#addsubjectstoaccountgroup) | **POST** /v3/accounts/{accountID}/policy-groups/{groupID} | Add members to a group.
+*RootAdminApi* | [**AddUsersToAccountGroup**](docs/RootAdminApi.md#adduserstoaccountgroup) | **POST** /v3/accounts/{accountID}/policy-groups/{groupID}/users | Add users to a group.
+*RootAdminApi* | [**ChangeAccountUserPassword**](docs/RootAdminApi.md#changeaccountuserpassword) | **PUT** /v3/accounts/{accountID}/users/{user-id}/password | Change the password of a user.
+*RootAdminApi* | [**CheckAccountUserPassword**](docs/RootAdminApi.md#checkaccountuserpassword) | **POST** /v3/accounts/{accountID}/users/{user-id}/password | Check the password of a user.
+*RootAdminApi* | [**CreateAccount**](docs/RootAdminApi.md#createaccount) | **POST** /v3/accounts | Create a new account.
+*RootAdminApi* | [**CreateAccountApiKey**](docs/RootAdminApi.md#createaccountapikey) | **POST** /v3/accounts/{accountID}/api-keys | Create a new API key.
+*RootAdminApi* | [**CreateAccountGroup**](docs/RootAdminApi.md#createaccountgroup) | **POST** /v3/accounts/{accountID}/policy-groups | Create a new group.
+*RootAdminApi* | [**CreateAccountTemplate**](docs/RootAdminApi.md#createaccounttemplate) | **POST** /admin/v3/account-templates | Create a new account template.
+*RootAdminApi* | [**CreateAccountUser**](docs/RootAdminApi.md#createaccountuser) | **POST** /v3/accounts/{accountID}/users | Create a new user.
+*RootAdminApi* | [**DeleteAccount**](docs/RootAdminApi.md#deleteaccount) | **DELETE** /v3/accounts/{accountID} | Delete an existing account.
+*RootAdminApi* | [**DeleteAccountApiKey**](docs/RootAdminApi.md#deleteaccountapikey) | **DELETE** /v3/accounts/{accountID}/api-keys/{apiKey} | Delete the API key.
+*RootAdminApi* | [**DeleteAccountCertificate**](docs/RootAdminApi.md#deleteaccountcertificate) | **DELETE** /v3/accounts/{accountID}/ca-certificates/{ca-cert-id} | Delete CA certificate by ID.
+*RootAdminApi* | [**DeleteAccountGroup**](docs/RootAdminApi.md#deleteaccountgroup) | **DELETE** /v3/accounts/{accountID}/policy-groups/{groupID} | Delete a group.
+*RootAdminApi* | [**DeleteAccountTemplate**](docs/RootAdminApi.md#deleteaccounttemplate) | **DELETE** /admin/v3/account-templates/{template-id} | Delete account template by ID.
+*RootAdminApi* | [**DeleteAccountUser**](docs/RootAdminApi.md#deleteaccountuser) | **DELETE** /v3/accounts/{accountID}/users/{user-id} | Delete a user.
+*RootAdminApi* | [**GetAccountApiKey**](docs/RootAdminApi.md#getaccountapikey) | **GET** /v3/accounts/{accountID}/api-keys/{apiKey} | Get API key details.
+*RootAdminApi* | [**GetAccountCertificate**](docs/RootAdminApi.md#getaccountcertificate) | **GET** /v3/accounts/{accountID}/ca-certificates/{ca-cert-id} | Get CA certificate by ID.
+*RootAdminApi* | [**GetAccountGroupSummary**](docs/RootAdminApi.md#getaccountgroupsummary) | **GET** /v3/accounts/{accountID}/policy-groups/{groupID} | Get group information.
+*RootAdminApi* | [**GetAccountInfo**](docs/RootAdminApi.md#getaccountinfo) | **GET** /v3/accounts/{accountID} | Get account info.
+*RootAdminApi* | [**GetAccountLimits**](docs/RootAdminApi.md#getaccountlimits) | **GET** /internal/v1/limits/{account-id} | Get limits for account.
+*RootAdminApi* | [**GetAccountTemplate**](docs/RootAdminApi.md#getaccounttemplate) | **GET** /admin/v3/account-templates/{template-id} | Get account template by ID.
+*RootAdminApi* | [**GetAccountUser**](docs/RootAdminApi.md#getaccountuser) | **GET** /v3/accounts/{accountID}/users/{user-id} | Details of the user.
+*RootAdminApi* | [**GetAllAccountApiKeys**](docs/RootAdminApi.md#getallaccountapikeys) | **GET** /v3/accounts/{accountID}/api-keys | Get all API keys.
+*RootAdminApi* | [**GetAllAccountCertificates**](docs/RootAdminApi.md#getallaccountcertificates) | **GET** /v3/accounts/{accountID}/ca-certificates | Get all CA certificates.
+*RootAdminApi* | [**GetAllAccountGroups**](docs/RootAdminApi.md#getallaccountgroups) | **GET** /v3/accounts/{accountID}/policy-groups | Get all group information.
+*RootAdminApi* | [**GetAllAccountTemplates**](docs/RootAdminApi.md#getallaccounttemplates) | **GET** /admin/v3/account-templates | Get all account templates.
+*RootAdminApi* | [**GetAllAccountUsers**](docs/RootAdminApi.md#getallaccountusers) | **GET** /v3/accounts/{accountID}/users | Get all user details.
+*RootAdminApi* | [**GetAllAccounts**](docs/RootAdminApi.md#getallaccounts) | **GET** /v3/accounts | Get all accounts.
+*RootAdminApi* | [**GetAllAccountsAllUsers**](docs/RootAdminApi.md#getallaccountsallusers) | **GET** /admin/v3/users | Get all users from all accounts
+*RootAdminApi* | [**GetApiKeysOfAccountGroup**](docs/RootAdminApi.md#getapikeysofaccountgroup) | **GET** /v3/accounts/{accountID}/policy-groups/{groupID}/api-keys | Get API keys of a group.
+*RootAdminApi* | [**GetUsersOfAccountGroup**](docs/RootAdminApi.md#getusersofaccountgroup) | **GET** /v3/accounts/{accountID}/policy-groups/{groupID}/users | Get users of a group.
+*RootAdminApi* | [**ManageAccount**](docs/RootAdminApi.md#manageaccount) | **POST** /v3/accounts/{accountID}/manage | Manage an account.
+*RootAdminApi* | [**RemoveApiKeysFromAccountGroup**](docs/RootAdminApi.md#removeapikeysfromaccountgroup) | **DELETE** /v3/accounts/{accountID}/policy-groups/{groupID}/api-keys | Remove API keys from a group.
+*RootAdminApi* | [**RemoveUsersFromAccountGroup**](docs/RootAdminApi.md#removeusersfromaccountgroup) | **DELETE** /v3/accounts/{accountID}/policy-groups/{groupID}/users | Remove users from a group.
+*RootAdminApi* | [**ResetAccountApiKeySecret**](docs/RootAdminApi.md#resetaccountapikeysecret) | **POST** /v3/accounts/{accountID}/api-keys/{apiKey}/reset-secret | Reset the secret key.
+*RootAdminApi* | [**ResetAccountUserPassword**](docs/RootAdminApi.md#resetaccountuserpassword) | **POST** /v3/accounts/{accountID}/users/{user-id}/reset-password | Reset the user password.
+*RootAdminApi* | [**UpdateAccountApiKey**](docs/RootAdminApi.md#updateaccountapikey) | **PUT** /v3/accounts/{accountID}/api-keys/{apiKey} | Update API key details.
+*RootAdminApi* | [**UpdateAccountCertificate**](docs/RootAdminApi.md#updateaccountcertificate) | **PUT** /v3/accounts/{accountID}/ca-certificates/{ca-cert-id} | Update CA certificate.
+*RootAdminApi* | [**UpdateAccountTemplate**](docs/RootAdminApi.md#updateaccounttemplate) | **PUT** /admin/v3/account-templates/{template-id} | Update an existing account template.
+*RootAdminApi* | [**UpdateAccountUser**](docs/RootAdminApi.md#updateaccountuser) | **PUT** /v3/accounts/{accountID}/users/{user-id} | Update user details.
 
 
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [Model.AccountCreationReq](docs/AccountCreationReq.md)
+ - [Model.AccountCreationResp](docs/AccountCreationResp.md)
  - [Model.AccountEnrollmentReq](docs/AccountEnrollmentReq.md)
  - [Model.AccountEnrollmentResp](docs/AccountEnrollmentResp.md)
  - [Model.AccountInfo](docs/AccountInfo.md)
+ - [Model.AccountInfoList](docs/AccountInfoList.md)
  - [Model.AccountSignupReq](docs/AccountSignupReq.md)
  - [Model.AccountSignupResp](docs/AccountSignupResp.md)
  - [Model.AccountSignupVerify](docs/AccountSignupVerify.md)
+ - [Model.AccountTemplateReq](docs/AccountTemplateReq.md)
+ - [Model.AccountTemplateResp](docs/AccountTemplateResp.md)
+ - [Model.AccountTemplateRespList](docs/AccountTemplateRespList.md)
  - [Model.AccountUpdateReq](docs/AccountUpdateReq.md)
  - [Model.ApiKeyInfoReq](docs/ApiKeyInfoReq.md)
  - [Model.ApiKeyInfoResp](docs/ApiKeyInfoResp.md)
  - [Model.ApiKeyInfoRespList](docs/ApiKeyInfoRespList.md)
  - [Model.ApiKeyUpdateReq](docs/ApiKeyUpdateReq.md)
+ - [Model.CACertificateReq](docs/CACertificateReq.md)
+ - [Model.CACertificateResp](docs/CACertificateResp.md)
+ - [Model.CACertificateRespList](docs/CACertificateRespList.md)
+ - [Model.Duration](docs/Duration.md)
  - [Model.ErrorResponse](docs/ErrorResponse.md)
  - [Model.Field](docs/Field.md)
+ - [Model.GroupCreationInfo](docs/GroupCreationInfo.md)
  - [Model.GroupSummary](docs/GroupSummary.md)
  - [Model.GroupSummaryList](docs/GroupSummaryList.md)
+ - [Model.LoggingLevel](docs/LoggingLevel.md)
+ - [Model.PasswordChangeReq](docs/PasswordChangeReq.md)
  - [Model.PasswordRecoveryReq](docs/PasswordRecoveryReq.md)
  - [Model.PasswordResetReq](docs/PasswordResetReq.md)
  - [Model.Policy](docs/Policy.md)
- - [Model.TrustedCertificateReq](docs/TrustedCertificateReq.md)
- - [Model.TrustedCertificateResp](docs/TrustedCertificateResp.md)
- - [Model.TrustedCertificateRespList](docs/TrustedCertificateRespList.md)
+ - [Model.RootAdminApiKeyUpdateReq](docs/RootAdminApiKeyUpdateReq.md)
+ - [Model.RootAdminUpdateReq](docs/RootAdminUpdateReq.md)
+ - [Model.SubjectList](docs/SubjectList.md)
+ - [Model.UpdatedResponse](docs/UpdatedResponse.md)
  - [Model.UserInfoReq](docs/UserInfoReq.md)
  - [Model.UserInfoResp](docs/UserInfoResp.md)
  - [Model.UserInfoRespList](docs/UserInfoRespList.md)
