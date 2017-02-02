@@ -1,14 +1,14 @@
 var searchData=
 [
-  ['registerwebhook',['RegisterWebhook',['../classmbed_cloud_s_d_k_1_1_devices_1_1_devices_api.html#a26b1e04a8ac198e7a11f0b31c6ea47a9',1,'mbedCloudSDK::Devices::DevicesApi']]],
-  ['resource',['Resource',['../classmbed_cloud_s_d_k_1_1_devices_1_1_resource.html',1,'mbedCloudSDK::Devices']]],
-  ['resource',['Resource',['../classmbed_cloud_s_d_k_1_1_devices_1_1_resource.html#a8dade0983f1b1f0ee660154ff63ba54e',1,'mbedCloudSDK::Devices::Resource']]],
-  ['resources',['Resources',['../classmbed_cloud_s_d_k_1_1_devices_1_1_endpoint.html#a7dd55ff3fcbb261fac27f99b2015dcae',1,'mbedCloudSDK::Devices::Endpoint']]],
-  ['revokecertificate',['RevokeCertificate',['../classmbed_cloud_s_d_k_1_1_development_1_1_development_api.html#a4f784f0ac904f9a5776a1dc885e8f445',1,'mbedCloudSDK::Development::DevelopmentApi']]],
-  ['rundevicequeryexample',['runDeviceQueryExample',['../class_console_examples_1_1_examples.html#a785d60842693fab9ac93e25670ec717b',1,'ConsoleExamples::Examples']]],
-  ['rundevicesexample',['runDevicesExample',['../class_console_examples_1_1_examples.html#aca24f76c5be63c415ff723adb3e21531',1,'ConsoleExamples::Examples']]],
-  ['runendpointsexample',['runEndpointsExample',['../class_console_examples_1_1_examples.html#a7a9828268dd6e3456d0cc66822ef8634',1,'ConsoleExamples::Examples']]],
-  ['runiamexample',['runIAMExample',['../class_console_examples_1_1_examples.html#ae50c6763d0c0bbb39062006011ac506d',1,'ConsoleExamples::Examples']]],
-  ['runsubscriptionexample',['runSubscriptionExample',['../class_console_examples_1_1_examples.html#a6f77c2d1893b54350019c2ef9dd056d7',1,'ConsoleExamples::Examples']]],
-  ['runwebhookexample',['runWebhookExample',['../class_console_examples_1_1_examples.html#a9858277b6e124bacbadd62532f88b90f',1,'ConsoleExamples::Examples']]]
+  ['registered',['Registered',['../namespacembed_cloud_s_d_k_1_1_devices_1_1_model_1_1_device.html#abfb831dff724c453d9571185935a1667a6205cf9436aee7ccb42779ac5e69bd3f',1,'mbedCloudSDK::Devices::Model::Device']]],
+  ['registerwebhook',['RegisterWebhook',['../classmbed_cloud_s_d_k_1_1_devices_1_1_api_1_1_devices_api.html#ac0a595e2a05a81714c49b8e69e33c668',1,'mbedCloudSDK.Devices.Api.DevicesApi.RegisterWebhook()'],['../class_console_examples_1_1_examples_1_1_devices_1_1_webhook.html#af9370dbb1b80285ed765658cd2f9b41e',1,'ConsoleExamples.Examples.Devices.Webhook.RegisterWebhook()']]],
+  ['reset',['RESET',['../namespacembed_cloud_s_d_k_1_1_access_1_1_model_1_1_user.html#ad0ab1051b68be757175fc163ff406f50ab5859d8721cfdc0312b2838b9c985bc1',1,'mbedCloudSDK::Access::Model::User']]],
+  ['resource',['Resource',['../classmbed_cloud_s_d_k_1_1_devices_1_1_model_1_1_resource_1_1_resource.html#a7090bff45d89bd6e02d3a6c5f27a7cb4',1,'mbedCloudSDK::Devices::Model::Resource::Resource']]],
+  ['resource',['Resource',['../classmbed_cloud_s_d_k_1_1_devices_1_1_model_1_1_resource_1_1_resource.html',1,'mbedCloudSDK::Devices::Model::Resource']]],
+  ['resource',['Resource',['../class_console_examples_1_1_examples_1_1_devices_1_1_resource.html',1,'ConsoleExamples::Examples::Devices']]],
+  ['resourcesubscribtions',['resourceSubscribtions',['../classmbed_cloud_s_d_k_1_1_devices_1_1_api_1_1_devices_api.html#a38c4743c54ce74a3917bbb3c0ea0876b',1,'mbedCloudSDK::Devices::Api::DevicesApi']]],
+  ['responsepage',['ResponsePage',['../classmbed_cloud_s_d_k_1_1_common_1_1_response_page.html#aca474e30a16fa1be714c0d0e1b983eae',1,'mbedCloudSDK::Common::ResponsePage']]],
+  ['responsepage',['ResponsePage',['../classmbed_cloud_s_d_k_1_1_common_1_1_response_page.html',1,'mbedCloudSDK::Common']]],
+  ['rootmanifestid',['RootManifestId',['../classmbed_cloud_s_d_k_1_1_update_1_1_model_1_1_campaign_1_1_update_campaign.html#ab1573b519a1c2baee1f347a9b06caf53',1,'mbedCloudSDK::Update::Model::Campaign::UpdateCampaign']]],
+  ['rootmanifesturl',['RootManifestUrl',['../classmbed_cloud_s_d_k_1_1_update_1_1_model_1_1_campaign_1_1_update_campaign.html#abc1a3e841ba14e5ba890e25c250c9657',1,'mbedCloudSDK.Update.Model.Campaign.UpdateCampaign.RootManifestUrl()'],['../classmbed_cloud_s_d_k_1_1_update_1_1_model_1_1_campaign_1_1_update_campaign_status.html#a162248b126fe81179166ac79dcc7e09b',1,'mbedCloudSDK.Update.Model.Campaign.UpdateCampaignStatus.RootManifestUrl()']]]
 ];

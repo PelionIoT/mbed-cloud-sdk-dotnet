@@ -174,9 +174,9 @@ namespace mbedCloudSDK.Devices.Model.Device
         /// <summary>
         /// Initializes a new instance of the <see cref="Device" /> class.
         /// </summary>
-        /// <param name="api">Devices Api.</param>
         /// <param name="options">Dictionary containing properties.</param>
-        public Device(DevicesApi api, IDictionary<string, object> options = null)
+        /// <param name="api">Devices Api.</param>
+        public Device(IDictionary<string, object> options = null, DevicesApi api = null)
         {
             this.api = api;
             if (options != null)
@@ -192,9 +192,9 @@ namespace mbedCloudSDK.Devices.Model.Device
             }
         }
 
-        public static Device Map(DevicesApi api, Endpoint endpoint)
+        public static Device Map(Endpoint endpoint, DevicesApi api)
         {
-            var device = new Device(api);
+            var device = new Device(null, api);
             device.Id = endpoint.Name;
             device.Status = endpoint.Status;
             device.QueueMode = endpoint.Q;
@@ -202,9 +202,9 @@ namespace mbedCloudSDK.Devices.Model.Device
             return device;
         }
 
-        public static Device Map(DevicesApi api, DeviceDetail deviceDetail)
+        public static Device Map(DeviceDetail deviceDetail, DevicesApi api)
         {
-            var device = new Device(api);
+            var device = new Device(null, api);
             device.BootstrappedTimestamp = deviceDetail.BootstrappedTimestamp;
             device.UpdatedAt = deviceDetail.UpdatedAt;
             device.CustomAttributes = deviceDetail.CustomAttributes;
@@ -246,7 +246,7 @@ namespace mbedCloudSDK.Devices.Model.Device
         /// <returns></returns>
         public List<Resource.Resource> ListResources()
         {
-            return this.api.ListResources(this.Id);
+            return this.api.GetResources(this.Id);
         }
 
         /// <summary>

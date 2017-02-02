@@ -173,6 +173,11 @@ namespace mbedCloudSDK.Access.Model.User
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Map to User object.
+        /// </summary>
+        /// <param name="userInfo"></param>
+        /// <returns></returns>
         public static User Map(iam.Model.UserInfoResp userInfo)
         {
             var userStatus = (UserStatus)Enum.Parse(typeof(UserStatus), userInfo.Status.ToString());

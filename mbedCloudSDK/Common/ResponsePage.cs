@@ -43,9 +43,22 @@ namespace mbedCloudSDK.Common
         /// <value>Order of returned records</value>
         public string Order { get; set; }
 
-        public ResponsePage()
+        /// <summary>
+        /// Create new instance of response page.
+        /// </summary>
+        /// <param name="after"></param>
+        /// <param name="hasMore"></param>
+        /// <param name="limit"></param>
+        /// <param name="order"></param>
+        /// <param name="totalCount"></param>
+        public ResponsePage(string after, bool? hasMore, int? limit, string order, int? totalCount)
         {
             Data = new List<T>();
+            this.After = after;
+            this.HasMore = hasMore;
+            this.Limit = limit;
+            this.Order = order;
+            this.TotalCount = totalCount;
         }
     }
 }

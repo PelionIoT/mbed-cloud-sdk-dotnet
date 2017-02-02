@@ -5,6 +5,11 @@ using System.Collections.Generic;
 using mbedCloudSDK.Exceptions;
 using System.IO;
 using deployment_service.Model;
+using mbedCloudSDK.Update.Model;
+using mbedCloudSDK.Update.Model.Campaign;
+using mbedCloudSDK.Update.Model.FirmwareImage;
+using mbedCloudSDK.Update.Model.FirmwareManifest;
+using mbedCloudSDK.Common.Query;
 
 namespace mbedCloudSDK.Update.Api
 {
@@ -13,6 +18,9 @@ namespace mbedCloudSDK.Update.Api
     /// </summary>
     public class UpdateApi: BaseApi
     {
+        private deployment_service.Api.DefaultApi updateApi;
+        private firmware_catalog.Api.DefaultApi firmwareApi;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:mbedCloudSDK.Update"/> class.
         /// </summary>
@@ -23,32 +31,163 @@ namespace mbedCloudSDK.Update.Api
             {
                 Configuration.Default.ApiClient = new ApiClient(config.Host);
             }
-            Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
-            Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            this.updateApi = new deployment_service.Api.DefaultApi(config.Host);
+            this.updateApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
+            this.updateApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+
+            this.firmwareApi = new firmware_catalog.Api.DefaultApi(config.Host);
+            this.firmwareApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
+            this.firmwareApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
         }
 
-        public List<UpdateCampaignSerializer> ListUpdateCampaigns(ListParams listParams = null)
-        {
-            deployment_service.Api.DefaultApi api = new deployment_service.Api.DefaultApi(config.Host);
-            var updateCampaignList = api.UpdateCampaignList(listParams.Limit, listParams.Order, listParams.After,listParams.Filter, listParams.Include).Data;
-            return updateCampaignList;
-        }
-        
-        /// <summary>
-        /// Lists the firmware images.
-        /// </summary>
-        /// <returns>The firmware images.</returns>
-        /// <param name="listParams">List parameters.</param>
-        public List<firmware_catalog.Model.FirmwareImageSerializerData> ListFirmwareImages(ListParams listParams = null)
+        public PaginatedResponse<UpdateCampaign> ListUpdateCampaigns(QueryOptions listParams = null)
         {
             if (listParams == null)
             {
-                listParams = new ListParams();
+                listParams = new QueryOptions();
             }
-            var api = new firmware_catalog.Api.DefaultApi(config.Host);
             try
             {
-                return api.FirmwareImageList(listParams.Limit, listParams.Order, listParams.After).Data;
+                return new PaginatedResponse<UpdateCampaign>(ListUpdateCampaignsFunc, listParams);
+            }
+            catch (CloudApiException e)
+            {
+                throw e;
+            }
+        }
+
+        private ResponsePage<UpdateCampaign> ListUpdateCampaignsFunc(QueryOptions listParams = null)
+        {
+            if (listParams == null)
+            {
+                listParams = new QueryOptions();
+            }
+            try
+            {
+                var resp = updateApi.UpdateCampaignList(listParams.Limit, listParams.Order, listParams.After, listParams.QueryString, listParams.Include);
+                ResponsePage<UpdateCampaign> respDevices = new ResponsePage<UpdateCampaign>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
+                foreach (var device in resp.Data)
+                {
+                    respDevices.Data.Add(UpdateCampaign.Map(device));
+                }
+                return respDevices;
+            }
+            catch (device_catalog.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public UpdateCampaign GetUpdateCampaign(string campaignId)
+        {
+            try
+            {
+                var resp = updateApi.UpdateCampaignRetrieve(campaignId);
+                return UpdateCampaign.Map(resp);
+            }
+            catch(device_catalog.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        /// <summary>
+        /// Get status of the update campaign.
+        /// </summary>
+        /// <param name="campaignId"></param>
+        /// <returns></returns>
+        public UpdateCampaignStatus GetUpdateCampaignStatus(string campaignId)
+        {
+            try
+            {
+                var resp = updateApi.UpdateCampaignStatus(campaignId);
+                return UpdateCampaignStatus.Map(resp);
+            }
+            catch (device_catalog.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public UpdateCampaign AddUpdateCampaign(UpdateCampaign updateCampaign)
+        {
+            try
+            {
+                WriteUpdateCampaignSerializer serializer = new WriteUpdateCampaignSerializer(updateCampaign.Name, null, null, null, updateCampaign.RootManifestId, null,
+                    null, null, null, null, updateCampaign.DeviceFilter, updateCampaign.Description);
+                var resp = updateApi.UpdateCampaignCreate(serializer);
+                return UpdateCampaign.Map(resp);
+            }
+            catch (device_catalog.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public UpdateCampaign StartUpdateCampaign(UpdateCampaign updateCampaign)
+        {
+            try
+            {
+                WriteUpdateCampaignSerializer serializer = new WriteUpdateCampaignSerializer(updateCampaign.Name, WriteUpdateCampaignSerializer.StateEnum.Scheduled, updateCampaign.UpdatingUserId,
+                    null, updateCampaign.RootManifestId, updateCampaign.CampaignId, updateCampaign.UpdatingApiKey, updateCampaign.When, updateCampaign.Finished, updateCampaign.UpdatingAccountId,
+                    updateCampaign.DeviceFilter, updateCampaign.Description);
+                var resp = updateApi.UpdateCampaignUpdate(updateCampaign.Id, serializer);
+                return UpdateCampaign.Map(resp);
+            }
+            catch (device_catalog.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public void DeleteUpdateCampaign(string upateCampaignId)
+        {
+            try
+            {
+                updateApi.UpdateCampaignDestroy(upateCampaignId);
+            }
+            catch (device_catalog.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        /// <summary>
+        /// List Firmware Images.
+        /// </summary>
+        /// <param name="listParams">List of parameters.</param>
+        /// <returns></returns>
+        public PaginatedResponse<FirmwareImage> ListFirmwareImages(QueryOptions listParams = null)
+        {
+            if (listParams == null)
+            {
+                listParams = new QueryOptions();
+            }
+            try
+            {
+                return new PaginatedResponse<FirmwareImage>(ListFirmwareImagesFun, listParams);
+            }
+            catch (CloudApiException e)
+            {
+                throw e;
+            }
+        }
+
+        private ResponsePage<FirmwareImage> ListFirmwareImagesFun(QueryOptions listParams = null)
+        {
+            if (listParams == null)
+            {
+                listParams = new QueryOptions();
+            }
+            try
+            {
+                var resp = firmwareApi.FirmwareImageList(listParams.Limit, listParams.Order, listParams.After);
+                ResponsePage<FirmwareImage> respImages = new ResponsePage<FirmwareImage>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
+                foreach (var image in resp.Data)
+                {
+                    respImages.Data.Add(FirmwareImage.Map(image));
+                }
+                return respImages;
             }
             catch (device_catalog.Client.ApiException e)
             {
@@ -62,17 +201,100 @@ namespace mbedCloudSDK.Update.Api
         /// <returns>The firmware image.</returns>
         /// <param name="dataFile">Data file.</param>
         /// <param name="name">Name.</param>
-        public firmware_catalog.Model.FirmwareImageSerializerData CreateFirmwareImage(Stream dataFile, string name)
+        public FirmwareImage AddFirmwareImage(Stream dataFile, string name)
         {
             var api = new firmware_catalog.Api.DefaultApi(config.Host);
             try
             {
-                return api.FirmwareImageCreate(dataFile, name);
+                return FirmwareImage.Map(api.FirmwareImageCreate(dataFile, name));
             }
             catch (device_catalog.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
         }
+
+        public void DeleteFirmwareImage(int firmwareImageId)
+        {
+            try
+            {
+                firmwareApi.FirmwareImageDestroy(firmwareImageId);
+      
+            }
+            catch (device_catalog.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        /// <summary>
+        /// List Firmware Images.
+        /// </summary>
+        /// <param name="listParams">List of parameters.</param>
+        /// <returns></returns>
+        public PaginatedResponse<FirmwareManifest> ListFirmwareManifests(QueryOptions listParams = null)
+        {
+            if (listParams == null)
+            {
+                listParams = new QueryOptions();
+            }
+            try
+            {
+                return new PaginatedResponse<FirmwareManifest>(ListFirmwareManifestsFun, listParams);
+            }
+            catch (CloudApiException e)
+            {
+                throw e;
+            }
+        }
+
+        private ResponsePage<FirmwareManifest> ListFirmwareManifestsFun(QueryOptions listParams = null)
+        {
+            if (listParams == null)
+            {
+                listParams = new QueryOptions();
+            }
+            try
+            {
+                var resp = firmwareApi.FirmwareManifestList(listParams.Limit, listParams.Order, listParams.After);
+                ResponsePage<FirmwareManifest> respManifests = new ResponsePage<FirmwareManifest>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
+                foreach (var manifest in resp.Data)
+                {
+                    respManifests.Data.Add(FirmwareManifest.Map(manifest));
+                }
+                return respManifests;
+            }
+            catch (device_catalog.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public FirmwareManifest AddFirmwareManifest(Stream dataFile, string name, string description = null )
+        {
+            try
+            {
+                return FirmwareManifest.Map(firmwareApi.FirmwareManifestCreate(dataFile, name, description));
+            }
+            catch (device_catalog.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public void DeleteFirmwareManifest(int manifestId)
+        {
+            try
+            {
+                firmwareApi.FirmwareManifestDestroy(manifestId);
+
+            }
+            catch (device_catalog.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using mbedCloudSDK.Common.Query;
 
 namespace mbedCloudSDK.Common
 {
@@ -13,13 +14,13 @@ namespace mbedCloudSDK.Common
     /// <typeparam name="T"></typeparam>
     public class PaginatedResponse<T> : IEnumerable<T>
     {
-        private Func<ListParams, ResponsePage<T>> getDataFunc;
+        private Func<QueryOptions, ResponsePage<T>> getDataFunc;
 
         /// <summary>
         /// Whether there are more results to display
         /// </summary>
         /// <value>Whether there are more results to display</value>
-        public bool? HasMore { get; set; }
+        public bool? HasMore { get; private set; }
         
         /// <summary>
         /// Total number of records
@@ -27,7 +28,7 @@ namespace mbedCloudSDK.Common
         /// <value>Total number of records</value>
         public int? TotalCount { get; set; }
 
-        private ListParams ListParams { get; set; }
+        private QueryOptions ListParams { get; set; }
 
         private List<T> Data { get; set; }
 
@@ -37,7 +38,7 @@ namespace mbedCloudSDK.Common
         /// <param name="getDataFunc">function to call to get next page.</param>
         /// <param name="listParams">Page params</param>
         /// <param name="initData">Data</param>
-        public PaginatedResponse(Func<ListParams, ResponsePage<T>> getDataFunc, ListParams listParams, List<T> initData = null)
+        public PaginatedResponse(Func<QueryOptions, ResponsePage<T>> getDataFunc, QueryOptions listParams, List<T> initData = null)
         {
             this.getDataFunc = getDataFunc;
             this.Data = initData;
@@ -50,6 +51,21 @@ namespace mbedCloudSDK.Common
             {
                 GetPage();
             }
+        }
+
+        /// <summary>
+        /// Return the paginated response as a list containing all elements.
+        /// </summary>
+        /// <returns></returns>
+        public List<T> ToList()
+        {
+            List<T> list = new List<T>();
+            IEnumerator<T> enumerator = this.GetEnumerator();
+            while(enumerator.MoveNext())
+            {
+                list.Add(enumerator.Current);
+            }
+            return list;
         }
 
         private void GetPage()
@@ -78,9 +94,9 @@ namespace mbedCloudSDK.Common
         /// Return total count of items
         /// </summary>
         /// <returns></returns>
-        public int? getTotalCount()
+        public int? GetTotalCount()
         {
-            ListParams listParams = new ListParams();
+            QueryOptions listParams = new QueryOptions();
             listParams.Include = "total_count";
             listParams.Limit = 2;
             ResponsePage<T> resp = this.getDataFunc(listParams);

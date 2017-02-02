@@ -95,6 +95,11 @@ namespace mbedCloudSDK.Logging.Model
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Map to DeviceLog object.
+        /// </summary>
+        /// <param name="deviceLogSerializer"></param>
+        /// <returns></returns>
         public static DeviceLog Map(DeviceLogSerializerData deviceLogSerializer)
         {
             var deviceLog = new DeviceLog();
