@@ -5,7 +5,6 @@ dependencies:
     - sudo apt-get install doxygen
 test:
   override:
-    - cd mbedCloudSDK
     - xbuild
     - echo "finished"
 deployment:
