@@ -10,7 +10,7 @@ greatly appreciated and you can read more about the process
 
 ## Installation
 
-1. Download mbedCloudSDK library dll from releases.
+1. Download mbedCloudSDK library dll from [here](https://github.com/ARMmbed/mbed-cloud-sdk-dotnet/releases/tag/v0.1.1-beta)
 2. Reference downloaded dll in your project.
 
 ## Usage
