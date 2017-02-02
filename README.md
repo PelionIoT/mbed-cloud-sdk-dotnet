@@ -18,28 +18,28 @@ greatly appreciated and you can read more about the process
 1. Create API key in the [mbed Cloud Portal](https://portal.mbedcloud.com/).
 2. Create config object:
 
-```csharp
-using mbedCloudSDK.Common;
+    ```csharp
+    using mbedCloudSDK.Common;
 
-Config config = new Config(apiKey);
-config.Host = "https://api.mbedcloud.com";
-```
+    Config config = new Config(apiKey);
+    config.Host = "https://api.mbedcloud.com";
+    ```
 3. Import api and you are ready to go.
 
-```csharp
-using mbedCloudSDK.Common;
-using mbedCloudSDK.Common.Query;
-using mbedCloudSDK.Devices.Api;
-using System;
+    ```csharp
+    using mbedCloudSDK.Common;
+    using mbedCloudSDK.Common.Query;
+    using mbedCloudSDK.Devices.Api;
+    using System;
 
-DevicesApi devices = new DevicesApi(config);
-DeviceQueryOptions options = new DeviceQueryOptions();
-options.Limit = 10;
-foreach (var device in devices.ListDevices(options))
-{
-    Console.WriteLine(device.ToString());
-}
-```
+    DevicesApi devices = new DevicesApi(config);
+    DeviceQueryOptions options = new DeviceQueryOptions();
+    options.Limit = 10;
+    foreach (var device in devices.ListDevices(options))
+    {
+        Console.WriteLine(device.ToString());
+    }
+    ```
 
 ## Documentation
 
