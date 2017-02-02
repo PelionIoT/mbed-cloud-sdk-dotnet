@@ -8,7 +8,6 @@ using ConsoleExamples.Examples.Access;
 using ConsoleExamples.Examples.Devices;
 using ConsoleExamples.Examples.Logging;
 using ConsoleExamples.Examples.Update;
-using ConsoleExamples.Examples.Development;
 
 namespace ConsoleExamples
 {
@@ -33,7 +32,7 @@ namespace ConsoleExamples
             {
                 example = ShowMenu();
                 int exampleNumber = 0;
-                if (Int32.TryParse(example, out exampleNumber) && exampleNumber >=1 && exampleNumber<=15)
+                if (Int32.TryParse(example, out exampleNumber) && exampleNumber >=1 && exampleNumber<=14)
                     RunExample(config, Convert.ToInt32(exampleNumber));
                 else
                     break;
@@ -58,7 +57,6 @@ namespace ConsoleExamples
             Console.WriteLine("12. Run update campaign example");
             Console.WriteLine("13. Get resource value example");
             Console.WriteLine("14. Set resource value example");
-            Console.WriteLine("15. Create developer certificate example");
             Console.WriteLine("---Press any other key to exit---");
             Console.WriteLine();
             return Console.ReadLine();
@@ -123,10 +121,6 @@ namespace ConsoleExamples
                 case 14:
                     Resource setRes = new Resource(config);
                     setRes.SetResourceValue();
-                    break;
-                case 15:
-                    CreateDeveloperCertificate cert = new CreateDeveloperCertificate(config);
-                    cert.CreateCertificate();
                     break;
             }
         }
