@@ -40,15 +40,20 @@ namespace mbedCloudSDK.Update.Api
             this.firmwareApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
         }
 
-        public PaginatedResponse<UpdateCampaign> ListUpdateCampaigns(QueryOptions listParams = null)
+        /// <summary>
+        /// List update campaigns.
+        /// </summary>
+        /// <param name="options">Query options.</param>
+        /// <returns></returns>
+        public PaginatedResponse<UpdateCampaign> ListUpdateCampaigns(QueryOptions options = null)
         {
-            if (listParams == null)
+            if (options == null)
             {
-                listParams = new QueryOptions();
+                options = new QueryOptions();
             }
             try
             {
-                return new PaginatedResponse<UpdateCampaign>(ListUpdateCampaignsFunc, listParams);
+                return new PaginatedResponse<UpdateCampaign>(ListUpdateCampaignsFunc, options);
             }
             catch (CloudApiException e)
             {
@@ -56,15 +61,15 @@ namespace mbedCloudSDK.Update.Api
             }
         }
 
-        private ResponsePage<UpdateCampaign> ListUpdateCampaignsFunc(QueryOptions listParams = null)
+        private ResponsePage<UpdateCampaign> ListUpdateCampaignsFunc(QueryOptions options = null)
         {
-            if (listParams == null)
+            if (options == null)
             {
-                listParams = new QueryOptions();
+                options = new QueryOptions();
             }
             try
             {
-                var resp = updateApi.UpdateCampaignList(listParams.Limit, listParams.Order, listParams.After, listParams.QueryString, listParams.Include);
+                var resp = updateApi.UpdateCampaignList(options.Limit, options.Order, options.After, options.QueryString, options.Include);
                 ResponsePage<UpdateCampaign> respDevices = new ResponsePage<UpdateCampaign>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
                 foreach (var device in resp.Data)
                 {
@@ -78,6 +83,11 @@ namespace mbedCloudSDK.Update.Api
             }
         }
 
+        /// <summary>
+        /// Get update campaign.
+        /// </summary>
+        /// <param name="campaignId">Id of the update campaign.</param>
+        /// <returns></returns>
         public UpdateCampaign GetUpdateCampaign(string campaignId)
         {
             try
@@ -109,6 +119,11 @@ namespace mbedCloudSDK.Update.Api
             }
         }
 
+        /// <summary>
+        /// Create update campaign.
+        /// </summary>
+        /// <param name="updateCampaign">Update campaign that will be created.</param>
+        /// <returns></returns>
         public UpdateCampaign AddUpdateCampaign(UpdateCampaign updateCampaign)
         {
             try
@@ -124,6 +139,11 @@ namespace mbedCloudSDK.Update.Api
             }
         }
 
+        /// <summary>
+        /// Start update campaign.
+        /// </summary>
+        /// <param name="updateCampaign">Update campaign to be started.</param>
+        /// <returns></returns>
         public UpdateCampaign StartUpdateCampaign(UpdateCampaign updateCampaign)
         {
             try
@@ -140,6 +160,10 @@ namespace mbedCloudSDK.Update.Api
             }
         }
 
+        /// <summary>
+        /// Delete Update campaign.
+        /// </summary>
+        /// <param name="upateCampaignId">Id of the update campaign.</param>
         public void DeleteUpdateCampaign(string upateCampaignId)
         {
             try
@@ -155,17 +179,17 @@ namespace mbedCloudSDK.Update.Api
         /// <summary>
         /// List Firmware Images.
         /// </summary>
-        /// <param name="listParams">List of parameters.</param>
+        /// <param name="options">Query optionss.</param>
         /// <returns></returns>
-        public PaginatedResponse<FirmwareImage> ListFirmwareImages(QueryOptions listParams = null)
+        public PaginatedResponse<FirmwareImage> ListFirmwareImages(QueryOptions options = null)
         {
-            if (listParams == null)
+            if (options == null)
             {
-                listParams = new QueryOptions();
+                options = new QueryOptions();
             }
             try
             {
-                return new PaginatedResponse<FirmwareImage>(ListFirmwareImagesFun, listParams);
+                return new PaginatedResponse<FirmwareImage>(ListFirmwareImagesFun, options);
             }
             catch (CloudApiException e)
             {
@@ -173,15 +197,15 @@ namespace mbedCloudSDK.Update.Api
             }
         }
 
-        private ResponsePage<FirmwareImage> ListFirmwareImagesFun(QueryOptions listParams = null)
+        private ResponsePage<FirmwareImage> ListFirmwareImagesFun(QueryOptions options = null)
         {
-            if (listParams == null)
+            if (options == null)
             {
-                listParams = new QueryOptions();
+                options = new QueryOptions();
             }
             try
             {
-                var resp = firmwareApi.FirmwareImageList(listParams.Limit, listParams.Order, listParams.After);
+                var resp = firmwareApi.FirmwareImageList(options.Limit, options.Order, options.After);
                 ResponsePage<FirmwareImage> respImages = new ResponsePage<FirmwareImage>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
                 foreach (var image in resp.Data)
                 {
@@ -214,6 +238,10 @@ namespace mbedCloudSDK.Update.Api
             }
         }
 
+        /// <summary>
+        /// Delete firmware image.
+        /// </summary>
+        /// <param name="firmwareImageId">Id of the firmware image.</param>
         public void DeleteFirmwareImage(int firmwareImageId)
         {
             try
@@ -230,17 +258,17 @@ namespace mbedCloudSDK.Update.Api
         /// <summary>
         /// List Firmware Images.
         /// </summary>
-        /// <param name="listParams">List of parameters.</param>
+        /// <param name="options">Query options.</param>
         /// <returns></returns>
-        public PaginatedResponse<FirmwareManifest> ListFirmwareManifests(QueryOptions listParams = null)
+        public PaginatedResponse<FirmwareManifest> ListFirmwareManifests(QueryOptions options = null)
         {
-            if (listParams == null)
+            if (options == null)
             {
-                listParams = new QueryOptions();
+                options = new QueryOptions();
             }
             try
             {
-                return new PaginatedResponse<FirmwareManifest>(ListFirmwareManifestsFun, listParams);
+                return new PaginatedResponse<FirmwareManifest>(ListFirmwareManifestsFun, options);
             }
             catch (CloudApiException e)
             {
@@ -248,15 +276,15 @@ namespace mbedCloudSDK.Update.Api
             }
         }
 
-        private ResponsePage<FirmwareManifest> ListFirmwareManifestsFun(QueryOptions listParams = null)
+        private ResponsePage<FirmwareManifest> ListFirmwareManifestsFun(QueryOptions options = null)
         {
-            if (listParams == null)
+            if (options == null)
             {
-                listParams = new QueryOptions();
+                options = new QueryOptions();
             }
             try
             {
-                var resp = firmwareApi.FirmwareManifestList(listParams.Limit, listParams.Order, listParams.After);
+                var resp = firmwareApi.FirmwareManifestList(options.Limit, options.Order, options.After);
                 ResponsePage<FirmwareManifest> respManifests = new ResponsePage<FirmwareManifest>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
                 foreach (var manifest in resp.Data)
                 {
@@ -270,6 +298,13 @@ namespace mbedCloudSDK.Update.Api
             }
         }
 
+        /// <summary>
+        /// Add Firmware Manifest.
+        /// </summary>
+        /// <param name="dataFile">Stream to the manifest file.</param>
+        /// <param name="name">Name of the firmware manifest.</param>
+        /// <param name="description">Description for the firmware manifest.</param>
+        /// <returns></returns>
         public FirmwareManifest AddFirmwareManifest(Stream dataFile, string name, string description = null )
         {
             try
@@ -282,6 +317,10 @@ namespace mbedCloudSDK.Update.Api
             }
         }
 
+        /// <summary>
+        /// Delete firmware manifest.
+        /// </summary>
+        /// <param name="manifestId">Id of the manifest to be deleted.</param>
         public void DeleteFirmwareManifest(int manifestId)
         {
             try

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace mbedCloudSDK.Update.Model.FirmwareImage
 {
+    /// <summary>
+    /// Firmware Image from Update API. 
+    /// </summary>
     public class FirmwareImage
     {
         /// <summary>

@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace mbedCloudSDK.Common
 {
+    /// <summary>
+    /// Used to access multiple pages of data., either through manually iterating pages or using iterators.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ResponsePage<T>
     {
         /// <summary>

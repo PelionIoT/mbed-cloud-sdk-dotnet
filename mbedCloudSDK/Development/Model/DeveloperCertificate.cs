@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace mbedCloudSDK.Development.Model
 {
+    /// <summary>
+    /// Represents Developer Certificate from Development API.
+    /// </summary>
     public class DeveloperCertificate
     {
         /// <summary>
@@ -60,6 +63,11 @@ namespace mbedCloudSDK.Development.Model
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Map to Developer certificate object.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static DeveloperCertificate Map(developer_certificate.Model.DeveloperCertificate data)
         {
             DeveloperCertificate certificate = new DeveloperCertificate();

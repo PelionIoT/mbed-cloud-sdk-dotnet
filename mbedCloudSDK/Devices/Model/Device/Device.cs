@@ -191,7 +191,13 @@ namespace mbedCloudSDK.Devices.Model.Device
             }
         }
 
-        public static Device Map(Endpoint endpoint, DevicesApi api)
+        /// <summary>
+        /// Map to Device object.
+        /// </summary>
+        /// <param name="endpoint">Endpoint response object.</param>
+        /// <param name="api">optional DevicesApi.</param>
+        /// <returns></returns>
+        public static Device Map(Endpoint endpoint, DevicesApi api = null)
         {
             var device = new Device(null, api);
             device.Id = endpoint.Name;
@@ -201,7 +207,13 @@ namespace mbedCloudSDK.Devices.Model.Device
             return device;
         }
 
-        public static Device Map(DeviceDetail deviceDetail, DevicesApi api)
+        /// <summary>
+        /// Map to Device object.
+        /// </summary>
+        /// <param name="deviceDetail">DeviceDetal response object.</param>
+        /// <param name="api">optional DevicesApi</param>
+        /// <returns></returns>
+        public static Device Map(DeviceDetail deviceDetail, DevicesApi api = null)
         {
             var device = new Device(null, api);
             device.BootstrappedTimestamp = deviceDetail.BootstrappedTimestamp;

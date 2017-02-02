@@ -140,11 +140,12 @@ namespace mbedCloudSDK.Devices.Api
         }
 
         /// <summary>
-        /// Lists the resources.
+        /// List Resources.
         /// </summary>
-        /// <returns>The resources.</returns>
-        /// <param name="endpointName">Endpoint name.</param>
-        public PaginatedResponse<Resource> ListResources(string endpointName, QueryOptions options = null)
+        /// <param name="deviceId">Id of the device that this resource belongs to.</param>
+        /// <param name="options">Query options.</param>
+        /// <returns></returns>
+        public PaginatedResponse<Resource> ListResources(string deviceId, QueryOptions options = null)
         {
             if (options == null)
             {
@@ -155,11 +156,11 @@ namespace mbedCloudSDK.Devices.Api
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             try
             {
-                var resourcesList = api.V2EndpointsEndpointNameGet(endpointName);
+                var resourcesList = api.V2EndpointsEndpointNameGet(deviceId);
                 List<Resource> resources = new List<Resource>();
                 foreach (var resource in resourcesList)
                 {
-                    resources.Add(Resource.Map(this, endpointName, resource));
+                    resources.Add(Resource.Map(deviceId, resource, this));
                 }
                 return new PaginatedResponse<Resource>(null, options, resources);
             }
@@ -199,7 +200,7 @@ namespace mbedCloudSDK.Devices.Api
                 var resources = new List<Resource>();
                 foreach(var resource in resp)
                 {
-                    resources.Add(Resource.Map(this, endpointName, resource));
+                    resources.Add(Resource.Map(endpointName, resource, this));
                 }
                 return resources;
             }

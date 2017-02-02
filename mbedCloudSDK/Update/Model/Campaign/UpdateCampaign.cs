@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace mbedCloudSDK.Update.Model.Campaign
 {
+    /// <summary>
+    /// Update campaign object from Update API.
+    /// </summary>
     public class UpdateCampaign
     {
-        
+
+        /// <summary>
+        /// State of the update campaign.
+        /// </summary>
         public UpdateCampaignState State { get; set; }
         
         /// <summary>
@@ -99,7 +105,10 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// <value>A name for this campaign</value>
         public string Name { get; set; }
 
-
+        /// <summary>
+        /// Create new update campaign object.
+        /// </summary>
+        /// <param name="options">Dictionary to initiate</param>
         public UpdateCampaign(IDictionary<string, object> options = null)
         {
             if (options != null)

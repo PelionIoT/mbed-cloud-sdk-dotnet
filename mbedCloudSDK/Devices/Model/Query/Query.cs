@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace mbedCloudSDK.Devices.Model.Query
 {
+    /// <summary>
+    /// Represents Query from device catalog API.
+    /// </summary>
     public class Query
     {
+        /// <summary>
+        /// Prefix for custom attributes.
+        /// </summary>
         public static readonly string CustomAttributesPrefix = "custom_attributes__";
         
         /// <summary>
@@ -127,6 +133,11 @@ namespace mbedCloudSDK.Devices.Model.Query
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Map to Query object.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static Query Map(DeviceQueryDetail data)
         {
             Query filter = new Query();
