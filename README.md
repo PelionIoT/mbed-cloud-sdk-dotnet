@@ -10,8 +10,10 @@ greatly appreciated and you can read more about the process
 
 ## Installation
 
-1. Download mbedCloudSDK library dll from [here](https://github.com/ARMmbed/mbed-cloud-sdk-dotnet/releases/tag/v1.1.0.0)
-2. Reference downloaded dll in your project.
+1. Download mbedCloudSDK library dll from [here](https://github.com/ARMmbed/mbed-cloud-sdk-dotnet/releases/tag/v1.1.0.0).
+2. Download Json.NET from [here](http://www.newtonsoft.com/json) or install it with NuGet : `Install-Package Newtonsoft.Json`
+3. Download RestSharp from [here](https://github.com/restsharp/RestSharp/downloads) or install it with NuGet : `Install-Package RestSharp`
+4. Reference downloaded dlls in your project.
 
 ## Usage
 
