@@ -186,6 +186,16 @@
     <Compile Include="Devices\Model\Resource\Resource.cs" />
     <Compile Include="Exceptions\ValueException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Update\Api\UpdateApi.cs" />
     <Compile Include="Logging\Api\LoggingApi.cs" />
     <Compile Include="Backends\FirmwareCatalog\Api\DefaultApi.cs" />
@@ -255,6 +265,10 @@
     <None Include="Backends\FactoryTool\README.md" />
     <None Include="Backends\FactoryTool\Api\.DS_Store" />
     <None Include="Backends\ProvisioningCertificate\README.md" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Manufacturing\Model\" />
@@ -262,6 +276,12 @@
   <ItemGroup>
     <Content Include="lib\Newtonsoft.Json.dll" />
     <Content Include="lib\RestSharp.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
