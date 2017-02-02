@@ -24,7 +24,7 @@ using System.ComponentModel.DataAnnotations;
 namespace iam.Model
 {
     /// <summary>
-    /// This object represents an account enrollment request.
+    /// This object represents an account creation response.
     /// </summary>
     [DataContract]
     public partial class AccountEnrollmentReq :  IEquatable<AccountEnrollmentReq>, IValidatableObject

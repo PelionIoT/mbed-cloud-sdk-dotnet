@@ -19,6 +19,6 @@ namespace provisioning_certificate.Client
     /// </summary>
     /// <param name="methodName">Method name</param>
     /// <param name="response">Response</param>
-    /// <returns>Exceptions</returns>    
+    /// <returns>Exceptions</returns>
     public delegate Exception ExceptionFactory(string methodName, IRestResponse response);
 }

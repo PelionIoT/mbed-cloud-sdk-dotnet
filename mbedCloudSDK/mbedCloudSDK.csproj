@@ -26,6 +26,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <DocumentationFile>bin\Release\mbedCloudSDK.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -63,6 +67,20 @@
     <Compile Include="Backends\DeviceCatalog\Model\DeviceUpdateDetail.cs" />
     <Compile Include="Backends\DeviceQueryService\Model\Body.cs" />
     <Compile Include="Backends\FirmwareCatalog\Model\FirmwareManifestSerializerData.cs" />
+    <Compile Include="Backends\Iam\Model\AccountCreationReq.cs" />
+    <Compile Include="Backends\Iam\Model\AccountCreationResp.cs" />
+    <Compile Include="Backends\Iam\Model\AccountInfoList.cs" />
+    <Compile Include="Backends\Iam\Model\AccountTemplateReq.cs" />
+    <Compile Include="Backends\Iam\Model\AccountTemplateResp.cs" />
+    <Compile Include="Backends\Iam\Model\AccountTemplateRespList.cs" />
+    <Compile Include="Backends\Iam\Model\Duration.cs" />
+    <Compile Include="Backends\Iam\Model\GroupCreationInfo.cs" />
+    <Compile Include="Backends\Iam\Model\LoggingLevel.cs" />
+    <Compile Include="Backends\Iam\Model\PasswordChangeReq.cs" />
+    <Compile Include="Backends\Iam\Model\RootAdminApiKeyUpdateReq.cs" />
+    <Compile Include="Backends\Iam\Model\RootAdminUpdateReq.cs" />
+    <Compile Include="Backends\Iam\Model\SubjectList.cs" />
+    <Compile Include="Backends\Iam\Model\UpdatedResponse.cs" />
     <Compile Include="Backends\Iam\Model\UserUpdateReq.cs" />
     <Compile Include="Backends\Mds\Api\DefaultApi.cs" />
     <Compile Include="Backends\Mds\Api\EndpointsApi.cs" />
@@ -167,6 +185,7 @@
     <Compile Include="Devices\Model\Device\Device.cs" />
     <Compile Include="Devices\Model\Resource\Resource.cs" />
     <Compile Include="Exceptions\ValueException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Update\Api\UpdateApi.cs" />
     <Compile Include="Logging\Api\LoggingApi.cs" />
     <Compile Include="Backends\FirmwareCatalog\Api\DefaultApi.cs" />

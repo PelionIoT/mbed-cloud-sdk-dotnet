@@ -43,6 +43,5 @@ namespace mbedCloudSDK.Access.Api
             adminApi = new AccountAdminApi();
             defaultApi = new DefaultApi();
         }
-
     }
 }

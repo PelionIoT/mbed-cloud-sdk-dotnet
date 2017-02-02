@@ -55,9 +55,9 @@ namespace mbedCloudSDK.Access.Api
         public Account UpdateAccount(Account account)
         {
             // Create Account request
-            AccountUpdateReq req = new AccountUpdateReq(account.AddressLine2, account.City, account.AddressLine1,
-                account.DisplayName, account.Country, account.Company, account.State, account.Contact,
-                account.PostalCode, null, account.PhoneNumber, account.Email, account.Aliases);
+            AccountUpdateReq req = new AccountUpdateReq(account.AddressLine2, account.City, account.AddressLine1, account.DisplayName,
+                account.Country, account.Company, null, account.Status.ToString(), account.State, account.Contact, account.PostalCode,
+                account.IsProvisioningAllowed, null, account.Tier, account.PhoneNumber, account.Email, account.Aliases);
             try
             {
                 var accountInfo = adminApi.UpdateMyAccount(req);
@@ -77,9 +77,9 @@ namespace mbedCloudSDK.Access.Api
         public async Task<Account> UpdateAccountAsync(Account account)
         {
             // Create account update request
-            AccountUpdateReq req = new AccountUpdateReq(account.AddressLine2, account.City, account.AddressLine1,
-                account.DisplayName, account.Country, account.Company, account.State, account.Contact, account.PostalCode,
-                null, account.PhoneNumber, account.Email, account.Aliases);
+            AccountUpdateReq req = new AccountUpdateReq(account.AddressLine2, account.City, account.AddressLine1, account.DisplayName,
+                account.Country, account.Company, null, account.Status.ToString(), account.State, account.Contact, account.PostalCode,
+                account.IsProvisioningAllowed, null, account.Tier, account.PhoneNumber, account.Email, account.Aliases);
             try
             {
                 var accountInfo = await adminApi.UpdateMyAccountAsync(req);
