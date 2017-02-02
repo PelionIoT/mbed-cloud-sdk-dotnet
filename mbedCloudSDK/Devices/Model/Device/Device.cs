@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using mbedCloudSDK.Devices.Model.Resource;
 using System.Text;
-using static device_catalog.Model.DeviceDetail;
 using mbedCloudSDK.Devices.Api;
 using mbedCloudSDK.Exceptions;
 using device_catalog.Model;
