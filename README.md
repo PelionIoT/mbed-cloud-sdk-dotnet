@@ -43,4 +43,4 @@ foreach (var device in devices.ListDevices(options))
 
 ## Documentation
 
-See full [documentation and API reference here]((https://s3-us-west-2.amazonaws.com/mbed-cloud-sdk-dotnet/index.html).
+See full [documentation and API reference here](https://s3-us-west-2.amazonaws.com/mbed-cloud-sdk-dotnet/index.html).
