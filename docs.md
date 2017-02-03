@@ -12,32 +12,3 @@ greatly appreciated and you can read more about the process
 2. Download Newtonsoft.Json from [here](http://www.newtonsoft.com/json) or install it with NuGet : `Install-Package Newtonsoft.Json`
 3. Download RestSharp from [here](https://github.com/restsharp/RestSharp/downloads) or install it with NuGet : `Install-Package RestSharp`
 4. Reference downloaded dlls in your project.
-
-## Usage
-
-1. Create API key in the [mbed Cloud Portal](https://portal.mbedcloud.com/).
-2. Create config object.
-
-```csharp
-	using mbedCloudSDK.Common;
-
-	Config config = new Config(apiKey);
-	config.Host = "https://api.mbedcloud.com";
-```
-
-3.Import api and you are ready to go.
-
-```csharp
-	using mbedCloudSDK.Common;
-	using mbedCloudSDK.Common.Query;
-	using mbedCloudSDK.Devices.Api;
-	using System;
-
-	DevicesApi devices = new DevicesApi(config);
-	DeviceQueryOptions options = new DeviceQueryOptions();
-	options.Limit = 10;
-	foreach (var device in devices.ListDevices(options))
-	{
-		Console.WriteLine(device.ToString());
-	}
-```
