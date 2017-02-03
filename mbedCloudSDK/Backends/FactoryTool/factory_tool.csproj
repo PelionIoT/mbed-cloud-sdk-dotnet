@@ -11,7 +11,7 @@ OpenAPI spec version: 0.8
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F97815D0-1857-4E98-BCEB-5338FA6081A2}</ProjectGuid>
+    <ProjectGuid>{2B9664D7-1723-4684-AA12-381F3724FA2F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>factory_tool</RootNamespace>

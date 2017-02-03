@@ -11,7 +11,7 @@ OpenAPI spec version: 0.8
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C187CDC8-ECF5-4B7C-88C6-F1456FBFB312}</ProjectGuid>
+    <ProjectGuid>{D415D744-E0EE-4FA2-B493-C42081B2EF68}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>production_line_certificates</RootNamespace>

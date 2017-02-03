@@ -11,7 +11,7 @@ OpenAPI spec version: 0.1
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B9C08EAC-5F11-4FD5-81EB-6FF2E783DA0A}</ProjectGuid>
+    <ProjectGuid>{540D7A18-234E-4353-BD7A-68B9A3E4B792}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>firmware_catalog</RootNamespace>
