@@ -7,7 +7,6 @@ namespace mbedCloudSDK.Devices.Model.Device
     /// <summary>
     /// The ID of the channel used to communicate with the device
     /// </summary>
-    /// <value>The ID of the channel used to communicate with the device</value>
     public enum Mechanism
     {
         /// <summary>

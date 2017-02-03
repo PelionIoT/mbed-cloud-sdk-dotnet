@@ -20,49 +20,41 @@ namespace mbedCloudSDK.Update.Model.FirmwareManifest
         /// <summary>
         /// The description of the object
         /// </summary>
-        /// <value>The description of the object</value>
         public string Description { get; set; }
         
         /// <summary>
         /// The version of the firmware manifest (as a timestamp)
         /// </summary>
-        /// <value>The version of the firmware manifest (as a timestamp)</value>
         public DateTime? Timestamp { get; set; }
         
         /// <summary>
         /// The time the object was created
         /// </summary>
-        /// <value>The time the object was created</value>
         public DateTime? CreatedAt { get; set; }
         
         /// <summary>
         /// The time the object was updated
         /// </summary>
-        /// <value>The time the object was updated</value>
         public DateTime? UpdatedAt { get; set; }
         
         /// <summary>
         /// The contents of the manifest
         /// </summary>
-        /// <value>The contents of the manifest</value>
         public Object ManifestContents { get; set; }
         
         /// <summary>
         /// The class of device
         /// </summary>
-        /// <value>The class of device</value>
         public string DeviceClass { get; set; }
         
         /// <summary>
         /// The ID of the firmware manifest
         /// </summary>
-        /// <value>The ID of the firmware manifest</value>
         public string Id { get; set; }
         
         /// <summary>
         /// The name of the object
         /// </summary>
-        /// <value>The name of the object</value>
         public string Name { get; set; }
         
         /// <summary>

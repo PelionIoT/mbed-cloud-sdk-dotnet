@@ -10,7 +10,6 @@ namespace mbedCloudSDK.Update.Model.Campaign
     /// <summary>
     /// The state of the campaign
     /// </summary>
-    /// <value>The state of the campaign</value>
     public enum UpdateCampaignState
     {
         /// <summary>

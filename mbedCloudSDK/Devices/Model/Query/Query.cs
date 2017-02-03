@@ -20,19 +20,16 @@ namespace mbedCloudSDK.Devices.Model.Query
         /// <summary>
         /// The description of the object
         /// </summary>
-        /// <value>The description of the object</value>
         public string Description { get; set; }
         
         /// <summary>
         /// The time the object was created
         /// </summary>
-        /// <value>The time the object was created</value>
         public DateTime? CreatedAt { get; set; }
         
         /// <summary>
         /// The time the object was updated
         /// </summary>
-        /// <value>The time the object was updated</value>
         public DateTime? UpdatedAt { get; set; }
 
         private string queryString;
@@ -40,7 +37,6 @@ namespace mbedCloudSDK.Devices.Model.Query
         /// <summary>
         /// The device query
         /// </summary>
-        /// <value>The device query</value>
         public string QueryString {
             get {
                 string attributes = string.Join("&", Attributes.Select(q => String.Format("{0}={1}", q.Key, q.Value)));
@@ -87,13 +83,11 @@ namespace mbedCloudSDK.Devices.Model.Query
         /// <summary>
         /// The ID of the query.
         /// </summary>
-        /// <value>The ID of the query</value>
         public string Id { get; set; }
         
         /// <summary>
         /// The name of the query.
         /// </summary>
-        /// <value>The name of the query</value>
         public string Name { get; set; }
 
         /// <summary>

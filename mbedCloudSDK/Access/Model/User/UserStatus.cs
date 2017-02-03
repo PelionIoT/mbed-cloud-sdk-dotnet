@@ -10,7 +10,6 @@ namespace mbedCloudSDK.Access.Model.User
     /// <summary>
     /// The status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately.
     /// </summary>
-    /// <value>The status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately.</value>
     public enum UserStatus
     {
         /// <summary>

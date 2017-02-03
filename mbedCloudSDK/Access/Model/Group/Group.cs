@@ -13,37 +13,31 @@ namespace mbedCloudSDK.Access.Model.Group
         /// <summary>
         /// The name of the group.
         /// </summary>
-        /// <value>The name of the group.</value>
         public string Name { get; private set; }
         
         /// <summary>
         /// A timestamp of the latest group update, in milliseconds.
         /// </summary>
-        /// <value>A timestamp of the latest group update, in milliseconds.</value>
         public long? LastUpdateTime { get; private set; }
         
         /// <summary>
         /// The number of API keys in this group.
         /// </summary>
-        /// <value>The number of API keys in this group.</value>
         public int? ApiKeyCount { get; private set; }
         
         /// <summary>
         /// Creation UTC time RFC3339.
         /// </summary>
-        /// <value>Creation UTC time RFC3339.</value>
         public string CreatedAt { get; private set; }
         
         /// <summary>
         /// A timestamp of the group creation in the storage, in milliseconds.
         /// </summary>
-        /// <value>A timestamp of the group creation in the storage, in milliseconds.</value>
         public long? CreationTime { get; set; }
         
         /// <summary>
         /// API resource entity version.
         /// </summary>
-        /// <value>API resource entity version.</value>
         public string Etag { get; set; }
         
         /// <summary>
@@ -54,13 +48,11 @@ namespace mbedCloudSDK.Access.Model.Group
         /// <summary>
         /// The UUID of the group.
         /// </summary>
-        /// <value>The UUID of the group.</value>
         public string Id { get; private set; }
         
         /// <summary>
         /// The number of users in this group.
         /// </summary>
-        /// <value>The number of users in this group.</value>
         public int? UserCount { get; private set; }
 
         /// <summary>

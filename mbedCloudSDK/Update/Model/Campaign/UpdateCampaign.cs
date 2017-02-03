@@ -20,19 +20,16 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// <summary>
         /// An optional description of the campaign
         /// </summary>
-        /// <value>An optional description of the campaign</value>
         public string Description { get; set; }
         
         /// <summary>
         /// The updating IAM user ID
         /// </summary>
-        /// <value>The updating IAM user ID</value>
         public string UpdatingUserId { get; set; }
         
         /// <summary>
         /// The time the object was created
         /// </summary>
-        /// <value>The time the object was created</value>
         public DateTime? CreatedAt { get; set; }
         
         /// <summary>
@@ -43,37 +40,31 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// <summary>
         /// DEPRECATED: The ID of the campaign
         /// </summary>
-        /// <value>DEPRECATED: The ID of the campaign</value>
         public string CampaignId { get; set; }
         
         /// <summary>
         /// The updating account ID
         /// </summary>
-        /// <value>The updating account ID</value>
         public string UpdatingAccountId { get; set; }
         
         /// <summary>
         /// The time the object was updated
         /// </summary>
-        /// <value>The time the object was updated</value>
         public DateTime? UpdatedAt { get; set; }
         
         /// <summary>
         /// The timestamp at which update campaign scheduled to start
         /// </summary>
-        /// <value>The timestamp at which update campaign scheduled to start</value>
         public DateTime? When { get; set; }
         
         /// <summary>
         /// The timestamp when the update campaign finished
         /// </summary>
-        /// <value>The timestamp when the update campaign finished</value>
         public DateTime? Finished { get; set; }
 
         /// <summary>
         /// The entity instance signature
         /// </summary>
-        /// <value>The entity instance signature</value>
         public DateTime? Etag { get; set; }
         
         /// <summary>
@@ -84,25 +75,21 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// <summary>
         /// The gateway client API key
         /// </summary>
-        /// <value>The gateway client API key</value>
         public string UpdatingApiKey { get; set; }
         
         /// <summary>
         /// The ID of the campaign
         /// </summary>
-        /// <value>The ID of the campaign</value>
         public string Id { get; set; }
         
         /// <summary>
         /// The filter for the devices the campaign will target
         /// </summary>
-        /// <value>The filter for the devices the campaign will target</value>
         public string DeviceFilter { get; set; }
         
         /// <summary>
         /// A name for this campaign
         /// </summary>
-        /// <value>A name for this campaign</value>
         public string Name { get; set; }
 
         /// <summary>

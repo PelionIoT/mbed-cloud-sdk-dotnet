@@ -19,19 +19,16 @@ namespace mbedCloudSDK.Devices.Model.Device
         /// <summary>
         /// The ID of the channel used to communicate with the device
         /// </summary>
-        /// <value>The ID of the channel used to communicate with the device</value>
         public Mechanism? Mechanism { get; set; }
 
         /// <summary>
         /// The current state of the device
         /// </summary>
-        /// <value>The current state of the device</value>
         public State? State { get; set; }
 
         /// <summary>
         /// The state of the device's deployment
         /// </summary>
-        /// <value>The state of the device's deployment</value>
         public DeployedState? DeployedState { get; set; }
 
         /// <summary>
@@ -42,132 +39,110 @@ namespace mbedCloudSDK.Devices.Model.Device
         /// <summary>
         /// The time the object was updated
         /// </summary>
-        /// <value>The time the object was updated</value>
         public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// Up to 5 custom JSON attributes
         /// </summary>
-        /// <value>Up to 5 custom JSON attributes</value>
         public Object CustomAttributes { get; set; }
 
         /// <summary>
         /// The device class
         /// </summary>
-        /// <value>The device class</value>
         public string DeviceClass { get; set; }
 
         /// <summary>
         /// The ID of the device
         /// </summary>
-        /// <value>The ID of the device</value>
         public string Id { get; set; }
 
         /// <summary>
         /// The description of the object
         /// </summary>
-        /// <value>The description of the object</value>
         public string Description { get; set; }
 
         /// <summary>
         /// Mark this device for auto firmware update
         /// </summary>
-        /// <value>Mark this device for auto firmware update</value>
         public bool? AutoUpdate { get; set; }
 
         /// <summary>
         /// The entity instance signature
         /// </summary>
-        /// <value>The entity instance signature</value>
         public DateTime? Etag { get; set; }
 
         /// <summary>
         /// The key used to provision the device
         /// </summary>
-        /// <value>The key used to provision the device</value>
         public string ProvisionKey { get; set; }
 
         /// <summary>
         /// The serial number of the device
         /// </summary>
-        /// <value>The serial number of the device</value>
         public string SerialNumber { get; set; }
 
         /// <summary>
         /// The device vendor ID
         /// </summary>
-        /// <value>The device vendor ID</value>
         public string VendorId { get; set; }
 
         /// <summary>
         /// The owning IAM account ID
         /// </summary>
-        /// <value>The owning IAM account ID</value>
         public string AccountId { get; set; }
 
         /// <summary>
         /// The device trust class
         /// </summary>
-        /// <value>The device trust class</value>
         public long? TrustClass { get; set; }
 
         /// <summary>
         /// The last deployment used on the device
         /// </summary>
-        /// <value>The last deployment used on the device</value>
         public string Deployment { get; set; }
 
         /// <summary>
         /// The address of the connector to use
         /// </summary>
-        /// <value>The address of the connector to use</value>
         public string MechanismUrl { get; set; }
 
         /// <summary>
         /// The device trust level
         /// </summary>
-        /// <value>The device trust level</value>
         public long? TrustLevel { get; set; }
 
         /// <summary>
         /// DEPRECATED: The ID of the device
         /// </summary>
-        /// <value>DEPRECATED: The ID of the device</value>
         public string DeviceId { get; set; }
 
         /// <summary>
         /// The name of the object
         /// </summary>
-        /// <value>The name of the object</value>
         public string Name { get; set; }
 
         /// <summary>
         /// The time the object was created
         /// </summary>
-        /// <value>The time the object was created</value>
         public DateTime? CreatedAt { get; set; }
 
         /// <summary>
         /// URL for the current device manifest
         /// </summary>
-        /// <value>URL for the current device manifest</value>
         public string Manifest { get; set; }
 
         /// <summary>
         /// Possible values ACTIVE, STALE.
         /// </summary>
-        /// <value>Possible values ACTIVE, STALE.</value>
         public string Status { get; set; }
 
         /// <summary>
-        /// Determines whether the device is in queue mode. &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Queue mode&lt;/b&gt;&lt;br/&gt; When an endpoint is in queue mode, messages sent to the endpoint do not wake up the physical device. The messages are queued and delivered when the device wakes up and connects to mbed Cloud Connect itself. You can also use the Queue mode when the device is behind a NAT and cannot be reached directly by mbed Cloud Connect. 
+        /// Determines whether the device is in queue mode. When an endpoint is in queue mode, messages sent to the endpoint do not wake up the physical device. The messages are queued and delivered when the device wakes up and connects to mbed Cloud Connect itself. You can also use the Queue mode when the device is behind a NAT and cannot be reached directly by mbed Cloud Connect. 
         /// </summary>
-        /// <value>Determines whether the device is in queue mode. &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Queue mode&lt;/b&gt;&lt;br/&gt; When an endpoint is in queue mode, messages sent to the endpoint do not wake up the physical device. The messages are queued and delivered when the device wakes up and connects to mbed Cloud Connect itself. You can also use the Queue mode when the device is behind a NAT and cannot be reached directly by mbed Cloud Connect. </value>
         public bool? QueueMode { get; set; }
         /// <summary>
         /// Type of endpoint. (Free text)
         /// </summary>
-        /// <value>Type of endpoint. (Free text)</value>
         public string Type { get; set; }
 
         /// <summary>
