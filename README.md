@@ -1,4 +1,4 @@
-# .Net mbed Cloud SDK
+# mbed Cloud SDK for .Net
 
 [![CircleCI](https://circleci.com/gh/ARMmbed/mbed-cloud-sdk-dotnet.svg?style=shield&circle-token=68538baa897f82e3dcc38a48315e9ba24977b183)](https://circleci.com/gh/ARMmbed/mbed-cloud-sdk-dotnet)
 
