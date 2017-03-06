@@ -24,7 +24,7 @@ using System.ComponentModel.DataAnnotations;
 namespace iam.Model
 {
     /// <summary>
-    /// This object represents an account creation response.
+    /// This object represents an account enrollment request.
     /// </summary>
     [DataContract]
     public partial class AccountEnrollmentReq :  IEquatable<AccountEnrollmentReq>, IValidatableObject
@@ -38,10 +38,12 @@ namespace iam.Model
         /// Initializes a new instance of the <see cref="AccountEnrollmentReq" /> class.
         /// </summary>
         /// <param name="Username">A username for the new account admin containing alphanumerical letters and -,._@+&#x3D; characters. (required).</param>
-        /// <param name="Password">The password for the new account admin. (required).</param>
         /// <param name="Code">Verification code. (required).</param>
+        /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted. (default to false).</param>
+        /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted. (default to false).</param>
+        /// <param name="Password">The password for the new account admin. (required).</param>
         /// <param name="Aliases">An array of aliases..</param>
-        public AccountEnrollmentReq(string Username = default(string), string Password = default(string), string Code = default(string), List<string> Aliases = default(List<string>))
+        public AccountEnrollmentReq(string Username = default(string), string Code = default(string), bool? IsGtcAccepted = false, bool? IsMarketingAccepted = false, string Password = default(string), List<string> Aliases = default(List<string>))
         {
             // to ensure "Username" is required (not null)
             if (Username == null)
@@ -52,6 +54,15 @@ namespace iam.Model
             {
                 this.Username = Username;
             }
+            // to ensure "Code" is required (not null)
+            if (Code == null)
+            {
+                throw new InvalidDataException("Code is a required property for AccountEnrollmentReq and cannot be null");
+            }
+            else
+            {
+                this.Code = Code;
+            }
             // to ensure "Password" is required (not null)
             if (Password == null)
             {
@@ -61,14 +72,23 @@ namespace iam.Model
             {
                 this.Password = Password;
             }
-            // to ensure "Code" is required (not null)
-            if (Code == null)
+            // use default value if no "IsGtcAccepted" provided
+            if (IsGtcAccepted == null)
             {
-                throw new InvalidDataException("Code is a required property for AccountEnrollmentReq and cannot be null");
+                this.IsGtcAccepted = false;
             }
             else
             {
-                this.Code = Code;
+                this.IsGtcAccepted = IsGtcAccepted;
+            }
+            // use default value if no "IsMarketingAccepted" provided
+            if (IsMarketingAccepted == null)
+            {
+                this.IsMarketingAccepted = false;
+            }
+            else
+            {
+                this.IsMarketingAccepted = IsMarketingAccepted;
             }
             this.Aliases = Aliases;
         }
@@ -80,17 +100,29 @@ namespace iam.Model
         [DataMember(Name="username", EmitDefaultValue=false)]
         public string Username { get; set; }
         /// <summary>
-        /// The password for the new account admin.
-        /// </summary>
-        /// <value>The password for the new account admin.</value>
-        [DataMember(Name="password", EmitDefaultValue=false)]
-        public string Password { get; set; }
-        /// <summary>
         /// Verification code.
         /// </summary>
         /// <value>Verification code.</value>
         [DataMember(Name="code", EmitDefaultValue=false)]
         public string Code { get; set; }
+        /// <summary>
+        /// A flag indicating that the General Terms and Conditions has been accepted.
+        /// </summary>
+        /// <value>A flag indicating that the General Terms and Conditions has been accepted.</value>
+        [DataMember(Name="is_gtc_accepted", EmitDefaultValue=false)]
+        public bool? IsGtcAccepted { get; set; }
+        /// <summary>
+        /// A flag indicating that receiving marketing information has been accepted.
+        /// </summary>
+        /// <value>A flag indicating that receiving marketing information has been accepted.</value>
+        [DataMember(Name="is_marketing_accepted", EmitDefaultValue=false)]
+        public bool? IsMarketingAccepted { get; set; }
+        /// <summary>
+        /// The password for the new account admin.
+        /// </summary>
+        /// <value>The password for the new account admin.</value>
+        [DataMember(Name="password", EmitDefaultValue=false)]
+        public string Password { get; set; }
         /// <summary>
         /// An array of aliases.
         /// </summary>
@@ -106,8 +138,10 @@ namespace iam.Model
             var sb = new StringBuilder();
             sb.Append("class AccountEnrollmentReq {\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
-            sb.Append("  Password: ").Append(Password).Append("\n");
             sb.Append("  Code: ").Append(Code).Append("\n");
+            sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
+            sb.Append("  IsMarketingAccepted: ").Append(IsMarketingAccepted).Append("\n");
+            sb.Append("  Password: ").Append(Password).Append("\n");
             sb.Append("  Aliases: ").Append(Aliases).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -151,14 +185,24 @@ namespace iam.Model
                     this.Username.Equals(other.Username)
                 ) && 
                 (
-                    this.Password == other.Password ||
-                    this.Password != null &&
-                    this.Password.Equals(other.Password)
-                ) && 
-                (
                     this.Code == other.Code ||
                     this.Code != null &&
                     this.Code.Equals(other.Code)
+                ) && 
+                (
+                    this.IsGtcAccepted == other.IsGtcAccepted ||
+                    this.IsGtcAccepted != null &&
+                    this.IsGtcAccepted.Equals(other.IsGtcAccepted)
+                ) && 
+                (
+                    this.IsMarketingAccepted == other.IsMarketingAccepted ||
+                    this.IsMarketingAccepted != null &&
+                    this.IsMarketingAccepted.Equals(other.IsMarketingAccepted)
+                ) && 
+                (
+                    this.Password == other.Password ||
+                    this.Password != null &&
+                    this.Password.Equals(other.Password)
                 ) && 
                 (
                     this.Aliases == other.Aliases ||
@@ -180,10 +224,14 @@ namespace iam.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.Username != null)
                     hash = hash * 59 + this.Username.GetHashCode();
-                if (this.Password != null)
-                    hash = hash * 59 + this.Password.GetHashCode();
                 if (this.Code != null)
                     hash = hash * 59 + this.Code.GetHashCode();
+                if (this.IsGtcAccepted != null)
+                    hash = hash * 59 + this.IsGtcAccepted.GetHashCode();
+                if (this.IsMarketingAccepted != null)
+                    hash = hash * 59 + this.IsMarketingAccepted.GetHashCode();
+                if (this.Password != null)
+                    hash = hash * 59 + this.Password.GetHashCode();
                 if (this.Aliases != null)
                     hash = hash * 59 + this.Aliases.GetHashCode();
                 return hash;

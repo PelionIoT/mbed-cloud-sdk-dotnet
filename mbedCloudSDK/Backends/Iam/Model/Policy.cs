@@ -24,7 +24,7 @@ using System.ComponentModel.DataAnnotations;
 namespace iam.Model
 {
     /// <summary>
-    /// This object represents a policy.
+    /// This object represents a policy. Either the feature or the resource must be specified.
     /// </summary>
     [DataContract]
     public partial class Policy :  IEquatable<Policy>, IValidatableObject
@@ -34,11 +34,13 @@ namespace iam.Model
         /// </summary>
         /// <param name="Action">Comma separated list of actions, empty string represents all actions..</param>
         /// <param name="Resource">Resource that is protected by this policy..</param>
+        /// <param name="Feature">Feature name corresponding to this policy..</param>
         /// <param name="Allow">True or false controlling whether an action is allowed or not. (default to false).</param>
-        public Policy(string Action = default(string), string Resource = default(string), bool? Allow = false)
+        public Policy(string Action = default(string), string Resource = default(string), string Feature = default(string), bool? Allow = false)
         {
             this.Action = Action;
             this.Resource = Resource;
+            this.Feature = Feature;
             // use default value if no "Allow" provided
             if (Allow == null)
             {
@@ -63,6 +65,12 @@ namespace iam.Model
         [DataMember(Name="resource", EmitDefaultValue=false)]
         public string Resource { get; set; }
         /// <summary>
+        /// Feature name corresponding to this policy.
+        /// </summary>
+        /// <value>Feature name corresponding to this policy.</value>
+        [DataMember(Name="feature", EmitDefaultValue=false)]
+        public string Feature { get; set; }
+        /// <summary>
         /// True or false controlling whether an action is allowed or not.
         /// </summary>
         /// <value>True or false controlling whether an action is allowed or not.</value>
@@ -78,6 +86,7 @@ namespace iam.Model
             sb.Append("class Policy {\n");
             sb.Append("  Action: ").Append(Action).Append("\n");
             sb.Append("  Resource: ").Append(Resource).Append("\n");
+            sb.Append("  Feature: ").Append(Feature).Append("\n");
             sb.Append("  Allow: ").Append(Allow).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -126,6 +135,11 @@ namespace iam.Model
                     this.Resource.Equals(other.Resource)
                 ) && 
                 (
+                    this.Feature == other.Feature ||
+                    this.Feature != null &&
+                    this.Feature.Equals(other.Feature)
+                ) && 
+                (
                     this.Allow == other.Allow ||
                     this.Allow != null &&
                     this.Allow.Equals(other.Allow)
@@ -147,6 +161,8 @@ namespace iam.Model
                     hash = hash * 59 + this.Action.GetHashCode();
                 if (this.Resource != null)
                     hash = hash * 59 + this.Resource.GetHashCode();
+                if (this.Feature != null)
+                    hash = hash * 59 + this.Feature.GetHashCode();
                 if (this.Allow != null)
                     hash = hash * 59 + this.Allow.GetHashCode();
                 return hash;

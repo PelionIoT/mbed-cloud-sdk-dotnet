@@ -42,11 +42,12 @@ namespace iam.Model
         /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted. (default to false).</param>
         /// <param name="Groups">A list of IDs of the groups this user belongs to..</param>
         /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted. (default to false).</param>
+        /// <param name="Id">ID of the user to be adopted, not used in create or invite cases. (required).</param>
         /// <param name="FullName">The full name of the user..</param>
         /// <param name="Address">Address..</param>
         /// <param name="Password">The password when creating a new user. It will will generated when not present in the request..</param>
         /// <param name="Email">The email address. (required).</param>
-        public UserInfoReq(string Username = default(string), string PhoneNumber = default(string), bool? IsMarketingAccepted = false, List<string> Groups = default(List<string>), bool? IsGtcAccepted = false, string FullName = default(string), string Address = default(string), string Password = default(string), string Email = default(string))
+        public UserInfoReq(string Username = default(string), string PhoneNumber = default(string), bool? IsMarketingAccepted = false, List<string> Groups = default(List<string>), bool? IsGtcAccepted = false, string Id = default(string), string FullName = default(string), string Address = default(string), string Password = default(string), string Email = default(string))
         {
             // to ensure "Username" is required (not null)
             if (Username == null)
@@ -56,6 +57,15 @@ namespace iam.Model
             else
             {
                 this.Username = Username;
+            }
+            // to ensure "Id" is required (not null)
+            if (Id == null)
+            {
+                throw new InvalidDataException("Id is a required property for UserInfoReq and cannot be null");
+            }
+            else
+            {
+                this.Id = Id;
             }
             // to ensure "Email" is required (not null)
             if (Email == null)
@@ -122,6 +132,12 @@ namespace iam.Model
         [DataMember(Name="is_gtc_accepted", EmitDefaultValue=false)]
         public bool? IsGtcAccepted { get; set; }
         /// <summary>
+        /// ID of the user to be adopted, not used in create or invite cases.
+        /// </summary>
+        /// <value>ID of the user to be adopted, not used in create or invite cases.</value>
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public string Id { get; set; }
+        /// <summary>
         /// The full name of the user.
         /// </summary>
         /// <value>The full name of the user.</value>
@@ -158,6 +174,7 @@ namespace iam.Model
             sb.Append("  IsMarketingAccepted: ").Append(IsMarketingAccepted).Append("\n");
             sb.Append("  Groups: ").Append(Groups).Append("\n");
             sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  FullName: ").Append(FullName).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  Password: ").Append(Password).Append("\n");
@@ -224,6 +241,11 @@ namespace iam.Model
                     this.IsGtcAccepted.Equals(other.IsGtcAccepted)
                 ) && 
                 (
+                    this.Id == other.Id ||
+                    this.Id != null &&
+                    this.Id.Equals(other.Id)
+                ) && 
+                (
                     this.FullName == other.FullName ||
                     this.FullName != null &&
                     this.FullName.Equals(other.FullName)
@@ -266,6 +288,8 @@ namespace iam.Model
                     hash = hash * 59 + this.Groups.GetHashCode();
                 if (this.IsGtcAccepted != null)
                     hash = hash * 59 + this.IsGtcAccepted.GetHashCode();
+                if (this.Id != null)
+                    hash = hash * 59 + this.Id.GetHashCode();
                 if (this.FullName != null)
                     hash = hash * 59 + this.FullName.GetHashCode();
                 if (this.Address != null)
