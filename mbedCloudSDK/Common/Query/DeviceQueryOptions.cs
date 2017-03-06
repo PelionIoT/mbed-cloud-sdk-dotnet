@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace mbedCloudSDK.Common.Query
 {
+    /// <summary>
+    /// Query options used in Devices API.
+    /// </summary>
     public class DeviceQueryOptions: QueryOptions
     {
         /// <summary>
@@ -29,6 +32,15 @@ namespace mbedCloudSDK.Common.Query
         /// </summary>
         public Dictionary<string, QueryAttribute> CustomAttributes { get; set; }
 
+        /// <summary>
+        /// Create new instance of Device query options.
+        /// </summary>
+        /// <param name="limit"></param>
+        /// <param name="order"></param>
+        /// <param name="after"></param>
+        /// <param name="include"></param>
+        /// <param name="attributes"></param>
+        /// <param name="customAttributes"></param>
         public DeviceQueryOptions(int? limit = null, string order = null, string after = null, string include = null, 
             Dictionary<string, QueryAttribute> attributes = null, Dictionary<string, QueryAttribute> customAttributes = null) : 
             base(limit, order, after, include, attributes)

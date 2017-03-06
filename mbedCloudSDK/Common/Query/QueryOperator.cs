@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace mbedCloudSDK.Common.Query
 {
+    /// <summary>
+    /// Operators used to query data.
+    /// </summary>
     public enum QueryOperator
     {
+        /// <summary>
+        /// Equal operator.
+        /// </summary>
         [EnumMember(Value = "equals")]
         Equals
     }

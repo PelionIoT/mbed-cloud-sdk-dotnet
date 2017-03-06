@@ -11,7 +11,6 @@ using mbedCloudSDK.Access.Model.ApiKey;
 using mbedCloudSDK.Common;
 using mbedCloudSDK.Exceptions;
 using mbedCloudSDK.Access.Model.Account;
-using static iam.Model.AccountInfo;
 using mbedCloudSDK.Access.Model.Group;
 using mbedCloudSDK.Access.Model.User;
 

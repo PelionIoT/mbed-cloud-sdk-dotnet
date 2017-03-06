@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace mbedCloudSDK.Update.Model.Campaign
 {
+    /// <summary>
+    /// Device state in update campaign.
+    /// </summary>
     public enum UpdateCampaignDeviceState
     {
         /// <summary>

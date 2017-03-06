@@ -11,6 +11,9 @@ namespace mbedCloudSDK.Common
     /// </summary>
 	public class BaseApi
     {
+        /// <summary>
+        /// Config used to initialize APIs. It is storing host and api key.
+        /// </summary>
         protected Config config;
         
 		/// <summary>

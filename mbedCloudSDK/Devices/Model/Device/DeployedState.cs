@@ -10,7 +10,6 @@ namespace mbedCloudSDK.Devices.Model.Device
     /// <summary>
     /// The state of the device's deployment
     /// </summary>
-    /// <value>The state of the device's deployment</value>
     public enum DeployedState
     {
         /// <summary>

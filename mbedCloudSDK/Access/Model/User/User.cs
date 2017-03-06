@@ -13,79 +13,66 @@ namespace mbedCloudSDK.Access.Model.User
         /// <summary>
         /// The status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately.
         /// </summary>
-        /// <value>The status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately.</value>
         public UserStatus? Status { get; private set; }
 
         /// <summary>
         /// A username containing alphanumerical letters and -,._@+&#x3D; characters.
         /// </summary>
-        /// <value>A username containing alphanumerical letters and -,._@+&#x3D; characters.</value>
         public string Username { get; set; }
         
         /// <summary>
         /// A flag indicating whether the user&#39;s email address has been verified or not.
         /// </summary>
-        /// <value>A flag indicating whether the user&#39;s email address has been verified or not.</value>
         public bool? EmailVerified { get; private set; }
         
         /// <summary>
         /// The UUID of the account.
         /// </summary>
-        /// <value>The UUID of the account.</value>
         public string AccountId { get; private set; }
         
         /// <summary>
         /// A timestamp of the latest change of the user password, in milliseconds.
         /// </summary>
-        /// <value>A timestamp of the latest change of the user password, in milliseconds.</value>
         public long? PasswordChangedTime { get; private set; }
         
         /// <summary>
         /// A list of IDs of the groups this user belongs to.
         /// </summary>
-        /// <value>A list of IDs of the groups this user belongs to.</value>
         public List<string> Groups { get; set; }
 
         /// <summary>
         /// Creation UTC time RFC3339.
         /// </summary>
-        /// <value>Creation UTC time RFC3339.</value>
         public string CreatedAt { get; private set; }
         
         /// <summary>
         /// A flag indicating that the General Terms and Conditions has been accepted.
         /// </summary>
-        /// <value>A flag indicating that the General Terms and Conditions has been accepted.</value>
         public bool? IsGtcAccepted { get; set; }
         
         /// <summary>
         /// The email address.
         /// </summary>
-        /// <value>The email address.</value>
         public string Email { get; set; }
         
         /// <summary>
         /// A flag indicating that receiving marketing information has been accepted.
         /// </summary>
-        /// <value>A flag indicating that receiving marketing information has been accepted.</value>
         public bool? IsMarketingAccepted { get; set; }
         
         /// <summary>
         /// API resource entity version.
         /// </summary>
-        /// <value>API resource entity version.</value>
         public string Etag { get; private set; }
         
         /// <summary>
         /// The full name of the user.
         /// </summary>
-        /// <value>The full name of the user.</value>
         public string FullName { get; set; }
         
         /// <summary>
         /// Address.
         /// </summary>
-        /// <value>Address.</value>
         public string Address { get; set; }
         
         /// <summary>
@@ -96,31 +83,26 @@ namespace mbedCloudSDK.Access.Model.User
         /// <summary>
         /// A timestamp of the user creation in the storage, in milliseconds.
         /// </summary>
-        /// <value>A timestamp of the user creation in the storage, in milliseconds.</value>
         public long? CreationTime { get; private set; }
         
         /// <summary>
         /// The password when creating a new user. It will will generated when not present in the request.
         /// </summary>
-        /// <value>The password when creating a new user. It will will generated when not present in the request.</value>
         public string Password { get; set; }
         
         /// <summary>
         /// Phone number.
         /// </summary>
-        /// <value>Phone number.</value>
         public string PhoneNumber { get; set; }
         
         /// <summary>
         /// The UUID of the user.
         /// </summary>
-        /// <value>The UUID of the user.</value>
         public string Id { get; private set; }
         
         /// <summary>
         /// A timestamp of the latest login of the user, in milliseconds.
         /// </summary>
-        /// <value>A timestamp of the latest login of the user, in milliseconds.</value>
         public long? LastLoginTime { get; private set; }
 
         /// <summary>

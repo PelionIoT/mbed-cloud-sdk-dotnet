@@ -10,7 +10,6 @@ namespace mbedCloudSDK.Access.Model.Account
     /// <summary>
     /// The status of the account.
     /// </summary>
-    /// <value>The status of the account.</value>
     public enum AccountStatus
     {
         /// <summary>

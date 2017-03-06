@@ -28,8 +28,6 @@ namespace mbedCloudSDK.Common.Query
 		/// <value>Objects after given element.</value>
 		public string After { get; set; }
 
-        private string queryString;
-        
         /// <summary>
         /// Get Query String.
         /// </summary>

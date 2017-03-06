@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace mbedCloudSDK.Logging.Model
 {
+    /// <summary>
+    /// Device log object from Device Catalog API.
+    /// </summary>
     public class DeviceLog
     {
 

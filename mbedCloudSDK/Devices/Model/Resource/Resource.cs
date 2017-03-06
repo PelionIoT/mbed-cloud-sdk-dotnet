@@ -21,40 +21,36 @@ namespace mbedCloudSDK.Devices.Model.Resource
         /// <summary>
         /// Resource&#39;s type
         /// </summary>
-        /// <value>Resource&#39;s type</value>
         public string Type { get; set; }
         
         /// <summary>
-        /// The content type of the resource. &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Important&lt;/b&gt;&lt;br/&gt; You are encouraged to use the resource types listed in the LWM2M specification: http://technical.openmobilealliance.org/Technical/technical-information/omna/lightweight-m2m-lwm2m-object-registry 
+        /// The content type of the resource. You are encouraged to use the resource types listed in the LWM2M specification: http://technical.openmobilealliance.org/Technical/technical-information/omna/lightweight-m2m-lwm2m-object-registry 
         /// </summary>
-        /// <value>The content type of the resource. &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Important&lt;/b&gt;&lt;br/&gt; You are encouraged to use the resource types listed in the LWM2M specification: http://technical.openmobilealliance.org/Technical/technical-information/omna/lightweight-m2m-lwm2m-object-registry </value>
         public string ConentType { get; set; }
         
         /// <summary>
-        /// Resource&#39;s url.
+        /// Resource url.
         /// </summary>
         /// <value>Resource&#39;s url.</value>
         public string Uri { get; set; }
         
         /// <summary>
-        /// Observable determines whether you can subscribe to changes for this resource. It can have values \&quot;true\&quot; or \&quot;false\&quot;. 
+        /// Observable determines whether you can subscribe to changes for this resource. 
         /// </summary>
-        /// <value>Observable determines whether you can subscribe to changes for this resource. It can have values \&quot;true\&quot; or \&quot;false\&quot;. </value>
         public bool? Observable { get; set; }
         
 		/// <summary>
 		/// Gets or sets the queue values.
 		/// </summary>
-		/// <value>The queue values.</value>
 		public AsyncProducerConsumerCollection<String> Queue { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Resource" /> class.
+        /// Initializes new Resource.
         /// </summary>
-        /// <param name="api"></param>
-        /// <param name="deviceID"></param>
-        /// <param name="options"></param>
-        public Resource(DevicesApi api, string deviceID, IDictionary<string, object> options = null)
+        /// <param name="deviceID">Id of the device that the resource belongs to.</param>
+        /// <param name="options">Dictionary used to initialize Resource.</param>
+        /// <param name="api">Devices API.</param>
+        public Resource(string deviceID, IDictionary<string, object> options = null, DevicesApi api = null)
         {
             this.api = api;
             if (options != null)
@@ -71,9 +67,16 @@ namespace mbedCloudSDK.Devices.Model.Resource
             
         }
 
-        public static Resource Map(DevicesApi api, string deviceID, mds.Model.Resource res)
+        /// <summary>
+        /// Map to Resource object.
+        /// </summary>
+        /// <param name="api"></param>
+        /// <param name="deviceID">Id of the devi</param>
+        /// <param name="res"></param>
+        /// <returns></returns>
+        public static Resource Map(string deviceID, mds.Model.Resource res, DevicesApi api)
         {
-            Resource resource = new Resource(api, deviceID);
+            Resource resource = new Resource(deviceID, null, api);
             resource.DeviceId = deviceID;
             resource.Type = res.Rt;
             resource.ConentType = res.Type;

@@ -20,61 +20,51 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// <summary>
         /// The description of the object
         /// </summary>
-        /// <value>The description of the object</value>
         public string Description { get; private set; }
         
         /// <summary>
         /// The update campaign to which this device belongs
         /// </summary>
-        /// <value>The update campaign to which this device belongs</value>
         public string Campaign { get; private set; }
         
         /// <summary>
         /// The time the object was created
         /// </summary>
-        /// <value>The time the object was created</value>
         public DateTime? CreatedAt { get; private set; }
         
         /// <summary>
         /// The time the object was updated
         /// </summary>
-        /// <value>The time the object was updated</value>
         public DateTime? UpdatedAt { get; private set; }
         
         /// <summary>
         /// The ID of the channel used to communicated with the device
         /// </summary>
-        /// <value>The ID of the channel used to communicated with the device</value>
         public string Mechanism { get; private set; }
         
         /// <summary>
         /// The name of the object
         /// </summary>
-        /// <value>The name of the object</value>
         public string Name { get; private set; }
         
         /// <summary>
         /// The entity instance signature
         /// </summary>
-        /// <value>The entity instance signature</value>
         public DateTime? Etag { get; private set; }
         
         /// <summary>
         /// The address of the Connector to use
         /// </summary>
-        /// <value>The address of the Connector to use</value>
         public string MechanismUrl { get; private set; }
         
         /// <summary>
         /// The ID of the metadata concerning this device/campaign
         /// </summary>
-        /// <value>The ID of the metadata concerning this device/campaign</value>
         public string Id { get; private set; }
         
         /// <summary>
         /// The ID of the device to deploy
         /// </summary>
-        /// <value>The ID of the device to deploy</value>
         public string DeviceId { get; private set; }
         
         /// <summary>

@@ -13,25 +13,21 @@ namespace mbedCloudSDK.Access.Model.ApiKey
         /// <summary>
         /// The status of the API key.
         /// </summary>
-        /// <value>The status of the API key.</value>
         public ApiKeyStatus? Status { get; private set; }
 
         /// <summary>
         /// The display name for the API key.
         /// </summary>
-        /// <value>The display name for the API key.</value>
         public string Name { get; set; }
 
         /// <summary>
         /// The owner of this API key, who is the creator by default.
         /// </summary>
-        /// <value>The owner of this API key, who is the creator by default.</value>
         public string Owner { get; set; }
 
         /// <summary>
         /// The API key.
         /// </summary>
-        /// <value>The API key.</value>
         public string Apikey { get; private set; }
         
         /// <summary>
@@ -43,7 +39,6 @@ namespace mbedCloudSDK.Access.Model.ApiKey
         /// <summary>
         /// The timestamp of the API key creation in the storage, in milliseconds.
         /// </summary>
-        /// <value>The timestamp of the API key creation in the storage, in milliseconds.</value>
         public long? CreationTime { get; private set; }
         
         /// <summary>
@@ -54,25 +49,21 @@ namespace mbedCloudSDK.Access.Model.ApiKey
         /// <summary>
         /// API resource entity version.
         /// </summary>
-        /// <value>API resource entity version.</value>
         public string Etag { get; private set; }
         
         /// <summary>
         /// A list of group IDs this API key belongs to.
         /// </summary>
-        /// <value>A list of group IDs this API key belongs to.</value>
         public List<string> Groups { get; private set; }
         
         /// <summary>
         /// The UUID of the API key.
         /// </summary>
-        /// <value>The UUID of the API key.</value>
         public string Id { get; private set; }
         
         /// <summary>
         /// The timestamp of the latest API key usage, in milliseconds.
         /// </summary>
-        /// <value>The timestamp of the latest API key usage, in milliseconds.</value>
         public long? LastLoginTime { get; private set; }
 
         /// <summary>
