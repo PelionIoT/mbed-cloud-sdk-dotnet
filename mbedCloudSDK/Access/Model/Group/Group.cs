@@ -95,6 +95,7 @@ namespace mbedCloudSDK.Access.Model.Group
             return sb.ToString();
         }
 
+        /*
         /// <summary>
         /// Map to Group object
         /// </summary>
@@ -113,7 +114,7 @@ namespace mbedCloudSDK.Access.Model.Group
             group.Id = groupInfo.Id;
             group.UserCount = groupInfo.UserCount;
             return group;
-        }
+        } */
 
     }
 }

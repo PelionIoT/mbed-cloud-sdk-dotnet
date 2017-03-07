@@ -99,8 +99,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>DeviceListResp</returns>
-        DeviceListResp DeviceDestroy (string deviceId);
+        /// <returns>DeviceDetail</returns>
+        DeviceDetail DeviceDestroy (string deviceId);
 
         /// <summary>
         /// 
@@ -110,8 +110,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>ApiResponse of DeviceListResp</returns>
-        ApiResponse<DeviceListResp> DeviceDestroyWithHttpInfo (string deviceId);
+        /// <returns>ApiResponse of DeviceDetail</returns>
+        ApiResponse<DeviceDetail> DeviceDestroyWithHttpInfo (string deviceId);
         /// <summary>
         /// 
         /// </summary>
@@ -199,8 +199,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>DeviceListResp</returns>
-        DeviceListResp DevicePartialUpdate (string deviceId);
+        /// <returns>DeviceDetail</returns>
+        DeviceDetail DevicePartialUpdate (string deviceId);
 
         /// <summary>
         /// 
@@ -210,8 +210,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>ApiResponse of DeviceListResp</returns>
-        ApiResponse<DeviceListResp> DevicePartialUpdateWithHttpInfo (string deviceId);
+        /// <returns>ApiResponse of DeviceDetail</returns>
+        ApiResponse<DeviceDetail> DevicePartialUpdateWithHttpInfo (string deviceId);
         /// <summary>
         /// 
         /// </summary>
@@ -220,8 +220,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>DeviceListResp</returns>
-        DeviceListResp DeviceRetrieve (string deviceId);
+        /// <returns>DeviceDetail</returns>
+        DeviceDetail DeviceRetrieve (string deviceId);
 
         /// <summary>
         /// 
@@ -231,8 +231,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>ApiResponse of DeviceListResp</returns>
-        ApiResponse<DeviceListResp> DeviceRetrieveWithHttpInfo (string deviceId);
+        /// <returns>ApiResponse of DeviceDetail</returns>
+        ApiResponse<DeviceDetail> DeviceRetrieveWithHttpInfo (string deviceId);
         /// <summary>
         /// 
         /// </summary>
@@ -333,8 +333,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>Task of DeviceListResp</returns>
-        System.Threading.Tasks.Task<DeviceListResp> DeviceDestroyAsync (string deviceId);
+        /// <returns>Task of DeviceDetail</returns>
+        System.Threading.Tasks.Task<DeviceDetail> DeviceDestroyAsync (string deviceId);
 
         /// <summary>
         /// 
@@ -344,8 +344,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>Task of ApiResponse (DeviceListResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceListResp>> DeviceDestroyAsyncWithHttpInfo (string deviceId);
+        /// <returns>Task of ApiResponse (DeviceDetail)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceDetail>> DeviceDestroyAsyncWithHttpInfo (string deviceId);
         /// <summary>
         /// 
         /// </summary>
@@ -433,8 +433,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>Task of DeviceListResp</returns>
-        System.Threading.Tasks.Task<DeviceListResp> DevicePartialUpdateAsync (string deviceId);
+        /// <returns>Task of DeviceDetail</returns>
+        System.Threading.Tasks.Task<DeviceDetail> DevicePartialUpdateAsync (string deviceId);
 
         /// <summary>
         /// 
@@ -444,8 +444,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>Task of ApiResponse (DeviceListResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceListResp>> DevicePartialUpdateAsyncWithHttpInfo (string deviceId);
+        /// <returns>Task of ApiResponse (DeviceDetail)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceDetail>> DevicePartialUpdateAsyncWithHttpInfo (string deviceId);
         /// <summary>
         /// 
         /// </summary>
@@ -454,8 +454,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>Task of DeviceListResp</returns>
-        System.Threading.Tasks.Task<DeviceListResp> DeviceRetrieveAsync (string deviceId);
+        /// <returns>Task of DeviceDetail</returns>
+        System.Threading.Tasks.Task<DeviceDetail> DeviceRetrieveAsync (string deviceId);
 
         /// <summary>
         /// 
@@ -465,8 +465,8 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>Task of ApiResponse (DeviceListResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceListResp>> DeviceRetrieveAsyncWithHttpInfo (string deviceId);
+        /// <returns>Task of ApiResponse (DeviceDetail)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceDetail>> DeviceRetrieveAsyncWithHttpInfo (string deviceId);
         /// <summary>
         /// 
         /// </summary>
@@ -903,10 +903,10 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>DeviceListResp</returns>
-        public DeviceListResp DeviceDestroy (string deviceId)
+        /// <returns>DeviceDetail</returns>
+        public DeviceDetail DeviceDestroy (string deviceId)
         {
-             ApiResponse<DeviceListResp> localVarResponse = DeviceDestroyWithHttpInfo(deviceId);
+             ApiResponse<DeviceDetail> localVarResponse = DeviceDestroyWithHttpInfo(deviceId);
              return localVarResponse.Data;
         }
 
@@ -915,8 +915,8 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>ApiResponse of DeviceListResp</returns>
-        public ApiResponse< DeviceListResp > DeviceDestroyWithHttpInfo (string deviceId)
+        /// <returns>ApiResponse of DeviceDetail</returns>
+        public ApiResponse< DeviceDetail > DeviceDestroyWithHttpInfo (string deviceId)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
@@ -967,9 +967,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceListResp>(localVarStatusCode,
+            return new ApiResponse<DeviceDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceListResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceListResp)));
+                (DeviceDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceDetail)));
             
         }
 
@@ -978,10 +978,10 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>Task of DeviceListResp</returns>
-        public async System.Threading.Tasks.Task<DeviceListResp> DeviceDestroyAsync (string deviceId)
+        /// <returns>Task of DeviceDetail</returns>
+        public async System.Threading.Tasks.Task<DeviceDetail> DeviceDestroyAsync (string deviceId)
         {
-             ApiResponse<DeviceListResp> localVarResponse = await DeviceDestroyAsyncWithHttpInfo(deviceId);
+             ApiResponse<DeviceDetail> localVarResponse = await DeviceDestroyAsyncWithHttpInfo(deviceId);
              return localVarResponse.Data;
 
         }
@@ -991,8 +991,8 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>Task of ApiResponse (DeviceListResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceListResp>> DeviceDestroyAsyncWithHttpInfo (string deviceId)
+        /// <returns>Task of ApiResponse (DeviceDetail)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceDetail>> DeviceDestroyAsyncWithHttpInfo (string deviceId)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
@@ -1042,9 +1042,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceListResp>(localVarStatusCode,
+            return new ApiResponse<DeviceDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceListResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceListResp)));
+                (DeviceDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceDetail)));
             
         }
 
@@ -1539,10 +1539,10 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>DeviceListResp</returns>
-        public DeviceListResp DevicePartialUpdate (string deviceId)
+        /// <returns>DeviceDetail</returns>
+        public DeviceDetail DevicePartialUpdate (string deviceId)
         {
-             ApiResponse<DeviceListResp> localVarResponse = DevicePartialUpdateWithHttpInfo(deviceId);
+             ApiResponse<DeviceDetail> localVarResponse = DevicePartialUpdateWithHttpInfo(deviceId);
              return localVarResponse.Data;
         }
 
@@ -1551,8 +1551,8 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>ApiResponse of DeviceListResp</returns>
-        public ApiResponse< DeviceListResp > DevicePartialUpdateWithHttpInfo (string deviceId)
+        /// <returns>ApiResponse of DeviceDetail</returns>
+        public ApiResponse< DeviceDetail > DevicePartialUpdateWithHttpInfo (string deviceId)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
@@ -1603,9 +1603,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceListResp>(localVarStatusCode,
+            return new ApiResponse<DeviceDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceListResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceListResp)));
+                (DeviceDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceDetail)));
             
         }
 
@@ -1614,10 +1614,10 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>Task of DeviceListResp</returns>
-        public async System.Threading.Tasks.Task<DeviceListResp> DevicePartialUpdateAsync (string deviceId)
+        /// <returns>Task of DeviceDetail</returns>
+        public async System.Threading.Tasks.Task<DeviceDetail> DevicePartialUpdateAsync (string deviceId)
         {
-             ApiResponse<DeviceListResp> localVarResponse = await DevicePartialUpdateAsyncWithHttpInfo(deviceId);
+             ApiResponse<DeviceDetail> localVarResponse = await DevicePartialUpdateAsyncWithHttpInfo(deviceId);
              return localVarResponse.Data;
 
         }
@@ -1627,8 +1627,8 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <returns>Task of ApiResponse (DeviceListResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceListResp>> DevicePartialUpdateAsyncWithHttpInfo (string deviceId)
+        /// <returns>Task of ApiResponse (DeviceDetail)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceDetail>> DevicePartialUpdateAsyncWithHttpInfo (string deviceId)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
@@ -1678,9 +1678,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceListResp>(localVarStatusCode,
+            return new ApiResponse<DeviceDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceListResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceListResp)));
+                (DeviceDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceDetail)));
             
         }
 
@@ -1689,10 +1689,10 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>DeviceListResp</returns>
-        public DeviceListResp DeviceRetrieve (string deviceId)
+        /// <returns>DeviceDetail</returns>
+        public DeviceDetail DeviceRetrieve (string deviceId)
         {
-             ApiResponse<DeviceListResp> localVarResponse = DeviceRetrieveWithHttpInfo(deviceId);
+             ApiResponse<DeviceDetail> localVarResponse = DeviceRetrieveWithHttpInfo(deviceId);
              return localVarResponse.Data;
         }
 
@@ -1701,8 +1701,8 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>ApiResponse of DeviceListResp</returns>
-        public ApiResponse< DeviceListResp > DeviceRetrieveWithHttpInfo (string deviceId)
+        /// <returns>ApiResponse of DeviceDetail</returns>
+        public ApiResponse< DeviceDetail > DeviceRetrieveWithHttpInfo (string deviceId)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
@@ -1753,9 +1753,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceListResp>(localVarStatusCode,
+            return new ApiResponse<DeviceDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceListResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceListResp)));
+                (DeviceDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceDetail)));
             
         }
 
@@ -1764,10 +1764,10 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>Task of DeviceListResp</returns>
-        public async System.Threading.Tasks.Task<DeviceListResp> DeviceRetrieveAsync (string deviceId)
+        /// <returns>Task of DeviceDetail</returns>
+        public async System.Threading.Tasks.Task<DeviceDetail> DeviceRetrieveAsync (string deviceId)
         {
-             ApiResponse<DeviceListResp> localVarResponse = await DeviceRetrieveAsyncWithHttpInfo(deviceId);
+             ApiResponse<DeviceDetail> localVarResponse = await DeviceRetrieveAsyncWithHttpInfo(deviceId);
              return localVarResponse.Data;
 
         }
@@ -1777,8 +1777,8 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId"></param>
-        /// <returns>Task of ApiResponse (DeviceListResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceListResp>> DeviceRetrieveAsyncWithHttpInfo (string deviceId)
+        /// <returns>Task of ApiResponse (DeviceDetail)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceDetail>> DeviceRetrieveAsyncWithHttpInfo (string deviceId)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
@@ -1828,9 +1828,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceListResp>(localVarStatusCode,
+            return new ApiResponse<DeviceDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceListResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceListResp)));
+                (DeviceDetail) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceDetail)));
             
         }
 

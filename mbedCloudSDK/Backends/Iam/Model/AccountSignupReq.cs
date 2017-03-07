@@ -38,13 +38,11 @@ namespace iam.Model
         /// Initializes a new instance of the <see cref="AccountSignupReq" /> class.
         /// </summary>
         /// <param name="PhoneNumber">The phone number of the user..</param>
-        /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted. (default to false).</param>
         /// <param name="Country">The country for the company. (required).</param>
         /// <param name="Company">The name of the company. (required).</param>
-        /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted. (default to false).</param>
-        /// <param name="FullName">The full name of the user. (required).</param>
         /// <param name="Email">The email address of the user. (required).</param>
-        public AccountSignupReq(string PhoneNumber = default(string), bool? IsMarketingAccepted = false, string Country = default(string), string Company = default(string), bool? IsGtcAccepted = false, string FullName = default(string), string Email = default(string))
+        /// <param name="FullName">The full name of the user. (required).</param>
+        public AccountSignupReq(string PhoneNumber = default(string), string Country = default(string), string Company = default(string), string Email = default(string), string FullName = default(string))
         {
             // to ensure "Country" is required (not null)
             if (Country == null)
@@ -64,15 +62,6 @@ namespace iam.Model
             {
                 this.Company = Company;
             }
-            // to ensure "FullName" is required (not null)
-            if (FullName == null)
-            {
-                throw new InvalidDataException("FullName is a required property for AccountSignupReq and cannot be null");
-            }
-            else
-            {
-                this.FullName = FullName;
-            }
             // to ensure "Email" is required (not null)
             if (Email == null)
             {
@@ -82,25 +71,16 @@ namespace iam.Model
             {
                 this.Email = Email;
             }
+            // to ensure "FullName" is required (not null)
+            if (FullName == null)
+            {
+                throw new InvalidDataException("FullName is a required property for AccountSignupReq and cannot be null");
+            }
+            else
+            {
+                this.FullName = FullName;
+            }
             this.PhoneNumber = PhoneNumber;
-            // use default value if no "IsMarketingAccepted" provided
-            if (IsMarketingAccepted == null)
-            {
-                this.IsMarketingAccepted = false;
-            }
-            else
-            {
-                this.IsMarketingAccepted = IsMarketingAccepted;
-            }
-            // use default value if no "IsGtcAccepted" provided
-            if (IsGtcAccepted == null)
-            {
-                this.IsGtcAccepted = false;
-            }
-            else
-            {
-                this.IsGtcAccepted = IsGtcAccepted;
-            }
         }
         
         /// <summary>
@@ -109,12 +89,6 @@ namespace iam.Model
         /// <value>The phone number of the user.</value>
         [DataMember(Name="phone_number", EmitDefaultValue=false)]
         public string PhoneNumber { get; set; }
-        /// <summary>
-        /// A flag indicating that receiving marketing information has been accepted.
-        /// </summary>
-        /// <value>A flag indicating that receiving marketing information has been accepted.</value>
-        [DataMember(Name="is_marketing_accepted", EmitDefaultValue=false)]
-        public bool? IsMarketingAccepted { get; set; }
         /// <summary>
         /// The country for the company.
         /// </summary>
@@ -128,23 +102,17 @@ namespace iam.Model
         [DataMember(Name="company", EmitDefaultValue=false)]
         public string Company { get; set; }
         /// <summary>
-        /// A flag indicating that the General Terms and Conditions has been accepted.
+        /// The email address of the user.
         /// </summary>
-        /// <value>A flag indicating that the General Terms and Conditions has been accepted.</value>
-        [DataMember(Name="is_gtc_accepted", EmitDefaultValue=false)]
-        public bool? IsGtcAccepted { get; set; }
+        /// <value>The email address of the user.</value>
+        [DataMember(Name="email", EmitDefaultValue=false)]
+        public string Email { get; set; }
         /// <summary>
         /// The full name of the user.
         /// </summary>
         /// <value>The full name of the user.</value>
         [DataMember(Name="full_name", EmitDefaultValue=false)]
         public string FullName { get; set; }
-        /// <summary>
-        /// The email address of the user.
-        /// </summary>
-        /// <value>The email address of the user.</value>
-        [DataMember(Name="email", EmitDefaultValue=false)]
-        public string Email { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -154,12 +122,10 @@ namespace iam.Model
             var sb = new StringBuilder();
             sb.Append("class AccountSignupReq {\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
-            sb.Append("  IsMarketingAccepted: ").Append(IsMarketingAccepted).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
-            sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
-            sb.Append("  FullName: ").Append(FullName).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
+            sb.Append("  FullName: ").Append(FullName).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -202,11 +168,6 @@ namespace iam.Model
                     this.PhoneNumber.Equals(other.PhoneNumber)
                 ) && 
                 (
-                    this.IsMarketingAccepted == other.IsMarketingAccepted ||
-                    this.IsMarketingAccepted != null &&
-                    this.IsMarketingAccepted.Equals(other.IsMarketingAccepted)
-                ) && 
-                (
                     this.Country == other.Country ||
                     this.Country != null &&
                     this.Country.Equals(other.Country)
@@ -217,19 +178,14 @@ namespace iam.Model
                     this.Company.Equals(other.Company)
                 ) && 
                 (
-                    this.IsGtcAccepted == other.IsGtcAccepted ||
-                    this.IsGtcAccepted != null &&
-                    this.IsGtcAccepted.Equals(other.IsGtcAccepted)
+                    this.Email == other.Email ||
+                    this.Email != null &&
+                    this.Email.Equals(other.Email)
                 ) && 
                 (
                     this.FullName == other.FullName ||
                     this.FullName != null &&
                     this.FullName.Equals(other.FullName)
-                ) && 
-                (
-                    this.Email == other.Email ||
-                    this.Email != null &&
-                    this.Email.Equals(other.Email)
                 );
         }
 
@@ -246,18 +202,14 @@ namespace iam.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.PhoneNumber != null)
                     hash = hash * 59 + this.PhoneNumber.GetHashCode();
-                if (this.IsMarketingAccepted != null)
-                    hash = hash * 59 + this.IsMarketingAccepted.GetHashCode();
                 if (this.Country != null)
                     hash = hash * 59 + this.Country.GetHashCode();
                 if (this.Company != null)
                     hash = hash * 59 + this.Company.GetHashCode();
-                if (this.IsGtcAccepted != null)
-                    hash = hash * 59 + this.IsGtcAccepted.GetHashCode();
-                if (this.FullName != null)
-                    hash = hash * 59 + this.FullName.GetHashCode();
                 if (this.Email != null)
                     hash = hash * 59 + this.Email.GetHashCode();
+                if (this.FullName != null)
+                    hash = hash * 59 + this.FullName.GetHashCode();
                 return hash;
             }
         }
