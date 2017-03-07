@@ -1,7 +1,7 @@
 /* 
- * Firmware Catalog API
+ * Device Catalog API
  *
- * This is the API Documentation for the mbed firmware catalog service which is part of the update service.
+ * This is the API Documentation for the mbed device catalog update service.
  *
  * OpenAPI spec version: 0.1
  * 
@@ -21,25 +21,25 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 
-namespace firmware_catalog.Model
+namespace device_catalog.Model
 {
     /// <summary>
-    /// FirmwareImageSerializer
+    /// DeviceLogPage
     /// </summary>
     [DataContract]
-    public partial class FirmwareImageSerializer :  IEquatable<FirmwareImageSerializer>, IValidatableObject
+    public partial class DeviceLogPage :  IEquatable<DeviceLogPage>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FirmwareImageSerializer" /> class.
+        /// Initializes a new instance of the <see cref="DeviceLogPage" /> class.
         /// </summary>
-        /// <param name="_Object">API Resource name.</param>
-        /// <param name="HasMore">Whether there are more results to display.</param>
-        /// <param name="TotalCount">Total number of records.</param>
-        /// <param name="After">Entity id for fetch after it.</param>
-        /// <param name="Limit">The number of results to return.</param>
+        /// <param name="_Object">_Object.</param>
+        /// <param name="HasMore">HasMore.</param>
+        /// <param name="TotalCount">TotalCount.</param>
+        /// <param name="After">After.</param>
+        /// <param name="Limit">Limit.</param>
         /// <param name="Data">Data.</param>
-        /// <param name="Order">Order of returned records.</param>
-        public FirmwareImageSerializer(string _Object = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), string After = default(string), int? Limit = default(int?), List<FirmwareImageSerializerData> Data = default(List<FirmwareImageSerializerData>), string Order = default(string))
+        /// <param name="Order">Order.</param>
+        public DeviceLogPage(string _Object = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), string After = default(string), int? Limit = default(int?), List<DeviceLogData> Data = default(List<DeviceLogData>), string Order = default(string))
         {
             this._Object = _Object;
             this.HasMore = HasMore;
@@ -51,44 +51,38 @@ namespace firmware_catalog.Model
         }
         
         /// <summary>
-        /// API Resource name
+        /// Gets or Sets _Object
         /// </summary>
-        /// <value>API Resource name</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
         /// <summary>
-        /// Whether there are more results to display
+        /// Gets or Sets HasMore
         /// </summary>
-        /// <value>Whether there are more results to display</value>
         [DataMember(Name="has_more", EmitDefaultValue=false)]
         public bool? HasMore { get; set; }
         /// <summary>
-        /// Total number of records
+        /// Gets or Sets TotalCount
         /// </summary>
-        /// <value>Total number of records</value>
         [DataMember(Name="total_count", EmitDefaultValue=false)]
         public int? TotalCount { get; set; }
         /// <summary>
-        /// Entity id for fetch after it
+        /// Gets or Sets After
         /// </summary>
-        /// <value>Entity id for fetch after it</value>
         [DataMember(Name="after", EmitDefaultValue=false)]
         public string After { get; set; }
         /// <summary>
-        /// The number of results to return
+        /// Gets or Sets Limit
         /// </summary>
-        /// <value>The number of results to return</value>
         [DataMember(Name="limit", EmitDefaultValue=false)]
         public int? Limit { get; set; }
         /// <summary>
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name="data", EmitDefaultValue=false)]
-        public List<FirmwareImageSerializerData> Data { get; set; }
+        public List<DeviceLogData> Data { get; set; }
         /// <summary>
-        /// Order of returned records
+        /// Gets or Sets Order
         /// </summary>
-        /// <value>Order of returned records</value>
         [DataMember(Name="order", EmitDefaultValue=false)]
         public string Order { get; set; }
         /// <summary>
@@ -98,7 +92,7 @@ namespace firmware_catalog.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class FirmwareImageSerializer {\n");
+            sb.Append("class DeviceLogPage {\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  HasMore: ").Append(HasMore).Append("\n");
             sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
@@ -127,15 +121,15 @@ namespace firmware_catalog.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as FirmwareImageSerializer);
+            return this.Equals(obj as DeviceLogPage);
         }
 
         /// <summary>
-        /// Returns true if FirmwareImageSerializer instances are equal
+        /// Returns true if DeviceLogPage instances are equal
         /// </summary>
-        /// <param name="other">Instance of FirmwareImageSerializer to be compared</param>
+        /// <param name="other">Instance of DeviceLogPage to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(FirmwareImageSerializer other)
+        public bool Equals(DeviceLogPage other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)

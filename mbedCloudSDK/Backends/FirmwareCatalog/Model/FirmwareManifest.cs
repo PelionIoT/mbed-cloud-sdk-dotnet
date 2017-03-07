@@ -24,40 +24,141 @@ using System.ComponentModel.DataAnnotations;
 namespace firmware_catalog.Model
 {
     /// <summary>
-    /// FirmwareManifestSerializerData
+    /// FirmwareManifest
     /// </summary>
     [DataContract]
-    public partial class FirmwareManifestSerializerData :  IEquatable<FirmwareManifestSerializerData>, IValidatableObject
+    public partial class FirmwareManifest :  IEquatable<FirmwareManifest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FirmwareManifestSerializerData" /> class.
+        /// Initializes a new instance of the <see cref="FirmwareManifest" /> class.
         /// </summary>
-        /// <param name="Datafile">Datafile.</param>
-        /// <param name="ManifestId">DEPRECATED: The ID of the firmware manifest.</param>
-        /// <param name="Description">The description of the object.</param>
-        /// <param name="Timestamp">The version of the firmware manifest (as a timestamp).</param>
-        /// <param name="CreatedAt">The time the object was created.</param>
-        /// <param name="_Object">The API resource entity.</param>
-        /// <param name="UpdatedAt">The time the object was updated.</param>
-        /// <param name="ManifestContents">The contents of the manifest.</param>
-        /// <param name="Etag">The entity instance signature.</param>
-        /// <param name="DeviceClass">The class of device.</param>
-        /// <param name="Id">The ID of the firmware manifest.</param>
-        /// <param name="Name">The name of the object.</param>
-        public FirmwareManifestSerializerData(string Datafile = default(string), string ManifestId = default(string), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), Object ManifestContents = default(Object), DateTime? Etag = default(DateTime?), string DeviceClass = default(string), string Id = default(string), string Name = default(string))
+        [JsonConstructorAttribute]
+        protected FirmwareManifest() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FirmwareManifest" /> class.
+        /// </summary>
+        /// <param name="Datafile">Datafile (required).</param>
+        /// <param name="ManifestId">DEPRECATED: The ID of the firmware manifest (required).</param>
+        /// <param name="Description">The description of the object (required).</param>
+        /// <param name="Timestamp">The version of the firmware manifest (as a timestamp) (required).</param>
+        /// <param name="CreatedAt">The time the object was created (required).</param>
+        /// <param name="_Object">The API resource entity (required).</param>
+        /// <param name="UpdatedAt">The time the object was updated (required).</param>
+        /// <param name="ManifestContents">The contents of the manifest (required).</param>
+        /// <param name="Etag">The entity instance signature (required).</param>
+        /// <param name="DeviceClass">The class of device (required).</param>
+        /// <param name="Id">The ID of the firmware manifest (required).</param>
+        /// <param name="Name">The name of the object (required).</param>
+        public FirmwareManifest(string Datafile = default(string), string ManifestId = default(string), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), string ManifestContents = default(string), DateTime? Etag = default(DateTime?), string DeviceClass = default(string), string Id = default(string), string Name = default(string))
         {
-            this.Datafile = Datafile;
-            this.ManifestId = ManifestId;
-            this.Description = Description;
-            this.Timestamp = Timestamp;
-            this.CreatedAt = CreatedAt;
-            this._Object = _Object;
-            this.UpdatedAt = UpdatedAt;
-            this.ManifestContents = ManifestContents;
-            this.Etag = Etag;
-            this.DeviceClass = DeviceClass;
-            this.Id = Id;
-            this.Name = Name;
+            // to ensure "Datafile" is required (not null)
+            if (Datafile == null)
+            {
+                throw new InvalidDataException("Datafile is a required property for FirmwareManifest and cannot be null");
+            }
+            else
+            {
+                this.Datafile = Datafile;
+            }
+            // to ensure "ManifestId" is required (not null)
+            if (ManifestId == null)
+            {
+                throw new InvalidDataException("ManifestId is a required property for FirmwareManifest and cannot be null");
+            }
+            else
+            {
+                this.ManifestId = ManifestId;
+            }
+            // to ensure "Description" is required (not null)
+            if (Description == null)
+            {
+                throw new InvalidDataException("Description is a required property for FirmwareManifest and cannot be null");
+            }
+            else
+            {
+                this.Description = Description;
+            }
+            // to ensure "Timestamp" is required (not null)
+            if (Timestamp == null)
+            {
+                throw new InvalidDataException("Timestamp is a required property for FirmwareManifest and cannot be null");
+            }
+            else
+            {
+                this.Timestamp = Timestamp;
+            }
+            // to ensure "CreatedAt" is required (not null)
+            if (CreatedAt == null)
+            {
+                throw new InvalidDataException("CreatedAt is a required property for FirmwareManifest and cannot be null");
+            }
+            else
+            {
+                this.CreatedAt = CreatedAt;
+            }
+            // to ensure "_Object" is required (not null)
+            if (_Object == null)
+            {
+                throw new InvalidDataException("_Object is a required property for FirmwareManifest and cannot be null");
+            }
+            else
+            {
+                this._Object = _Object;
+            }
+            // to ensure "UpdatedAt" is required (not null)
+            if (UpdatedAt == null)
+            {
+                throw new InvalidDataException("UpdatedAt is a required property for FirmwareManifest and cannot be null");
+            }
+            else
+            {
+                this.UpdatedAt = UpdatedAt;
+            }
+            // to ensure "ManifestContents" is required (not null)
+            if (ManifestContents == null)
+            {
+                throw new InvalidDataException("ManifestContents is a required property for FirmwareManifest and cannot be null");
+            }
+            else
+            {
+                this.ManifestContents = ManifestContents;
+            }
+            // to ensure "Etag" is required (not null)
+            if (Etag == null)
+            {
+                throw new InvalidDataException("Etag is a required property for FirmwareManifest and cannot be null");
+            }
+            else
+            {
+                this.Etag = Etag;
+            }
+            // to ensure "DeviceClass" is required (not null)
+            if (DeviceClass == null)
+            {
+                throw new InvalidDataException("DeviceClass is a required property for FirmwareManifest and cannot be null");
+            }
+            else
+            {
+                this.DeviceClass = DeviceClass;
+            }
+            // to ensure "Id" is required (not null)
+            if (Id == null)
+            {
+                throw new InvalidDataException("Id is a required property for FirmwareManifest and cannot be null");
+            }
+            else
+            {
+                this.Id = Id;
+            }
+            // to ensure "Name" is required (not null)
+            if (Name == null)
+            {
+                throw new InvalidDataException("Name is a required property for FirmwareManifest and cannot be null");
+            }
+            else
+            {
+                this.Name = Name;
+            }
         }
         
         /// <summary>
@@ -106,7 +207,7 @@ namespace firmware_catalog.Model
         /// </summary>
         /// <value>The contents of the manifest</value>
         [DataMember(Name="manifest_contents", EmitDefaultValue=false)]
-        public Object ManifestContents { get; set; }
+        public string ManifestContents { get; set; }
         /// <summary>
         /// The entity instance signature
         /// </summary>
@@ -138,7 +239,7 @@ namespace firmware_catalog.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class FirmwareManifestSerializerData {\n");
+            sb.Append("class FirmwareManifest {\n");
             sb.Append("  Datafile: ").Append(Datafile).Append("\n");
             sb.Append("  ManifestId: ").Append(ManifestId).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
@@ -172,15 +273,15 @@ namespace firmware_catalog.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as FirmwareManifestSerializerData);
+            return this.Equals(obj as FirmwareManifest);
         }
 
         /// <summary>
-        /// Returns true if FirmwareManifestSerializerData instances are equal
+        /// Returns true if FirmwareManifest instances are equal
         /// </summary>
-        /// <param name="other">Instance of FirmwareManifestSerializerData to be compared</param>
+        /// <param name="other">Instance of FirmwareManifest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(FirmwareManifestSerializerData other)
+        public bool Equals(FirmwareManifest other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)

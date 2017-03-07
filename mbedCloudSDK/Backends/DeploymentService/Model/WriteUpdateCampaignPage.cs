@@ -24,77 +24,47 @@ using System.ComponentModel.DataAnnotations;
 namespace deployment_service.Model
 {
     /// <summary>
-    /// UpdateCampaignPage
+    /// WriteUpdateCampaignPage
     /// </summary>
     [DataContract]
-    public partial class UpdateCampaignPage :  IEquatable<UpdateCampaignPage>, IValidatableObject
+    public partial class WriteUpdateCampaignPage :  IEquatable<WriteUpdateCampaignPage>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateCampaignPage" /> class.
+        /// Initializes a new instance of the <see cref="WriteUpdateCampaignPage" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected UpdateCampaignPage() { }
+        protected WriteUpdateCampaignPage() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateCampaignPage" /> class.
+        /// Initializes a new instance of the <see cref="WriteUpdateCampaignPage" /> class.
         /// </summary>
-        /// <param name="_Object">_Object (required).</param>
-        /// <param name="HasMore">HasMore (required).</param>
-        /// <param name="TotalCount">TotalCount (required).</param>
-        /// <param name="After">After (required).</param>
         /// <param name="Limit">Limit (required).</param>
+        /// <param name="After">After (required).</param>
         /// <param name="Data">Data (required).</param>
         /// <param name="Order">Order (required).</param>
-        public UpdateCampaignPage(string _Object = default(string), bool? HasMore = default(bool?), long? TotalCount = default(long?), string After = default(string), long? Limit = default(long?), List<UpdateCampaign> Data = default(List<UpdateCampaign>), string Order = default(string))
+        public WriteUpdateCampaignPage(long? Limit = default(long?), string After = default(string), List<UpdateCampaign> Data = default(List<UpdateCampaign>), string Order = default(string))
         {
-            // to ensure "_Object" is required (not null)
-            if (_Object == null)
-            {
-                throw new InvalidDataException("_Object is a required property for UpdateCampaignPage and cannot be null");
-            }
-            else
-            {
-                this._Object = _Object;
-            }
-            // to ensure "HasMore" is required (not null)
-            if (HasMore == null)
-            {
-                throw new InvalidDataException("HasMore is a required property for UpdateCampaignPage and cannot be null");
-            }
-            else
-            {
-                this.HasMore = HasMore;
-            }
-            // to ensure "TotalCount" is required (not null)
-            if (TotalCount == null)
-            {
-                throw new InvalidDataException("TotalCount is a required property for UpdateCampaignPage and cannot be null");
-            }
-            else
-            {
-                this.TotalCount = TotalCount;
-            }
-            // to ensure "After" is required (not null)
-            if (After == null)
-            {
-                throw new InvalidDataException("After is a required property for UpdateCampaignPage and cannot be null");
-            }
-            else
-            {
-                this.After = After;
-            }
             // to ensure "Limit" is required (not null)
             if (Limit == null)
             {
-                throw new InvalidDataException("Limit is a required property for UpdateCampaignPage and cannot be null");
+                throw new InvalidDataException("Limit is a required property for WriteUpdateCampaignPage and cannot be null");
             }
             else
             {
                 this.Limit = Limit;
             }
+            // to ensure "After" is required (not null)
+            if (After == null)
+            {
+                throw new InvalidDataException("After is a required property for WriteUpdateCampaignPage and cannot be null");
+            }
+            else
+            {
+                this.After = After;
+            }
             // to ensure "Data" is required (not null)
             if (Data == null)
             {
-                throw new InvalidDataException("Data is a required property for UpdateCampaignPage and cannot be null");
+                throw new InvalidDataException("Data is a required property for WriteUpdateCampaignPage and cannot be null");
             }
             else
             {
@@ -103,7 +73,7 @@ namespace deployment_service.Model
             // to ensure "Order" is required (not null)
             if (Order == null)
             {
-                throw new InvalidDataException("Order is a required property for UpdateCampaignPage and cannot be null");
+                throw new InvalidDataException("Order is a required property for WriteUpdateCampaignPage and cannot be null");
             }
             else
             {
@@ -112,30 +82,15 @@ namespace deployment_service.Model
         }
         
         /// <summary>
-        /// Gets or Sets _Object
+        /// Gets or Sets Limit
         /// </summary>
-        [DataMember(Name="object", EmitDefaultValue=false)]
-        public string _Object { get; set; }
-        /// <summary>
-        /// Gets or Sets HasMore
-        /// </summary>
-        [DataMember(Name="has_more", EmitDefaultValue=false)]
-        public bool? HasMore { get; set; }
-        /// <summary>
-        /// Gets or Sets TotalCount
-        /// </summary>
-        [DataMember(Name="total_count", EmitDefaultValue=false)]
-        public long? TotalCount { get; set; }
+        [DataMember(Name="limit", EmitDefaultValue=false)]
+        public long? Limit { get; set; }
         /// <summary>
         /// Gets or Sets After
         /// </summary>
         [DataMember(Name="after", EmitDefaultValue=false)]
         public string After { get; set; }
-        /// <summary>
-        /// Gets or Sets Limit
-        /// </summary>
-        [DataMember(Name="limit", EmitDefaultValue=false)]
-        public long? Limit { get; set; }
         /// <summary>
         /// Gets or Sets Data
         /// </summary>
@@ -153,12 +108,9 @@ namespace deployment_service.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class UpdateCampaignPage {\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
-            sb.Append("  HasMore: ").Append(HasMore).Append("\n");
-            sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
-            sb.Append("  After: ").Append(After).Append("\n");
+            sb.Append("class WriteUpdateCampaignPage {\n");
             sb.Append("  Limit: ").Append(Limit).Append("\n");
+            sb.Append("  After: ").Append(After).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("  Order: ").Append(Order).Append("\n");
             sb.Append("}\n");
@@ -182,15 +134,15 @@ namespace deployment_service.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as UpdateCampaignPage);
+            return this.Equals(obj as WriteUpdateCampaignPage);
         }
 
         /// <summary>
-        /// Returns true if UpdateCampaignPage instances are equal
+        /// Returns true if WriteUpdateCampaignPage instances are equal
         /// </summary>
-        /// <param name="other">Instance of UpdateCampaignPage to be compared</param>
+        /// <param name="other">Instance of WriteUpdateCampaignPage to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(UpdateCampaignPage other)
+        public bool Equals(WriteUpdateCampaignPage other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -198,29 +150,14 @@ namespace deployment_service.Model
 
             return 
                 (
-                    this._Object == other._Object ||
-                    this._Object != null &&
-                    this._Object.Equals(other._Object)
-                ) && 
-                (
-                    this.HasMore == other.HasMore ||
-                    this.HasMore != null &&
-                    this.HasMore.Equals(other.HasMore)
-                ) && 
-                (
-                    this.TotalCount == other.TotalCount ||
-                    this.TotalCount != null &&
-                    this.TotalCount.Equals(other.TotalCount)
+                    this.Limit == other.Limit ||
+                    this.Limit != null &&
+                    this.Limit.Equals(other.Limit)
                 ) && 
                 (
                     this.After == other.After ||
                     this.After != null &&
                     this.After.Equals(other.After)
-                ) && 
-                (
-                    this.Limit == other.Limit ||
-                    this.Limit != null &&
-                    this.Limit.Equals(other.Limit)
                 ) && 
                 (
                     this.Data == other.Data ||
@@ -245,16 +182,10 @@ namespace deployment_service.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this._Object != null)
-                    hash = hash * 59 + this._Object.GetHashCode();
-                if (this.HasMore != null)
-                    hash = hash * 59 + this.HasMore.GetHashCode();
-                if (this.TotalCount != null)
-                    hash = hash * 59 + this.TotalCount.GetHashCode();
-                if (this.After != null)
-                    hash = hash * 59 + this.After.GetHashCode();
                 if (this.Limit != null)
                     hash = hash * 59 + this.Limit.GetHashCode();
+                if (this.After != null)
+                    hash = hash * 59 + this.After.GetHashCode();
                 if (this.Data != null)
                     hash = hash * 59 + this.Data.GetHashCode();
                 if (this.Order != null)

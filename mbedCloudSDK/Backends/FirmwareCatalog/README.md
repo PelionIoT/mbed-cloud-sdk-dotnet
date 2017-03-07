@@ -75,15 +75,34 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
 
             var apiInstance = new DefaultApi();
+            var datafile = datafile_example;  // string | The firmware image file to upload
+            var name = name_example;  // string | The name of the object
+            var description = description_example;  // string | The description of the object (optional) 
+            var updatedAt = updatedAt_example;  // string |  (optional) 
+            var updatedAtGte = updatedAtGte_example;  // string |  (optional) 
+            var updatedAtLte = updatedAtLte_example;  // string |  (optional) 
+            var updatingIpAddress = updatingIpAddress_example;  // string |  (optional) 
+            var etag = etag_example;  // string |  (optional) 
+            var etagGte = etagGte_example;  // string |  (optional) 
+            var etagLte = etagLte_example;  // string |  (optional) 
+            var updatingRequestId = updatingRequestId_example;  // string |  (optional) 
+            var createdAt = createdAt_example;  // string |  (optional) 
+            var createdAtGte = createdAtGte_example;  // string |  (optional) 
+            var createdAtLte = createdAtLte_example;  // string |  (optional) 
+            var description2 = description_example;  // string |  (optional) 
+            var _object = _object_example;  // string |  (optional) 
+            var imageId = imageId_example;  // string |  (optional) 
+            var datafileChecksum = datafileChecksum_example;  // string |  (optional) 
+            var name2 = name_example;  // string |  (optional) 
 
             try
             {
-                Object result = apiInstance.DeployInfoGET();
+                FirmwareImage result = apiInstance.FirmwareImageCreate(datafile, name, description, updatedAt, updatedAtGte, updatedAtLte, updatingIpAddress, etag, etagGte, etagLte, updatingRequestId, createdAt, createdAtGte, createdAtLte, description2, _object, imageId, datafileChecksum, name2);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.DeployInfoGET: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.FirmwareImageCreate: " + e.Message );
             }
         }
     }
@@ -97,7 +116,6 @@ All URIs are relative to *http://api.mbedcloud.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**DeployInfoGET**](docs/DefaultApi.md#deployinfoget) | **GET** /v3/fc_deploy_info | 
 *DefaultApi* | [**FirmwareImageCreate**](docs/DefaultApi.md#firmwareimagecreate) | **POST** /v3/firmware-images/ | 
 *DefaultApi* | [**FirmwareImageDestroy**](docs/DefaultApi.md#firmwareimagedestroy) | **DELETE** /v3/firmware-images/{image_id}/ | 
 *DefaultApi* | [**FirmwareImageList**](docs/DefaultApi.md#firmwareimagelist) | **GET** /v3/firmware-images/ | 
@@ -111,10 +129,14 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
- - [Model.FirmwareImageSerializer](docs/FirmwareImageSerializer.md)
- - [Model.FirmwareImageSerializerData](docs/FirmwareImageSerializerData.md)
- - [Model.FirmwareManifestSerializerData](docs/FirmwareManifestSerializerData.md)
- - [Model.ManifestSerializer](docs/ManifestSerializer.md)
+ - [Model.FirmwareImage](docs/FirmwareImage.md)
+ - [Model.FirmwareImagePage](docs/FirmwareImagePage.md)
+ - [Model.FirmwareManifest](docs/FirmwareManifest.md)
+ - [Model.FirmwareManifestPage](docs/FirmwareManifestPage.md)
+ - [Model.WriteFirmwareImage](docs/WriteFirmwareImage.md)
+ - [Model.WriteFirmwareImagePage](docs/WriteFirmwareImagePage.md)
+ - [Model.WriteFirmwareManifest](docs/WriteFirmwareManifest.md)
+ - [Model.WriteFirmwareManifestPage](docs/WriteFirmwareManifestPage.md)
 
 
 <a name="documentation-for-authorization"></a>

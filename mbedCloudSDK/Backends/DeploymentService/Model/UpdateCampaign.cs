@@ -24,10 +24,10 @@ using System.ComponentModel.DataAnnotations;
 namespace deployment_service.Model
 {
     /// <summary>
-    /// UpdateCampaignStatusSerializer
+    /// UpdateCampaign
     /// </summary>
     [DataContract]
-    public partial class UpdateCampaignStatusSerializer :  IEquatable<UpdateCampaignStatusSerializer>, IValidatableObject
+    public partial class UpdateCampaign :  IEquatable<UpdateCampaign>, IValidatableObject
     {
         /// <summary>
         /// The state of the campaign
@@ -105,55 +105,36 @@ namespace deployment_service.Model
         [DataMember(Name="state", EmitDefaultValue=false)]
         public StateEnum? State { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateCampaignStatusSerializer" /> class.
+        /// Initializes a new instance of the <see cref="UpdateCampaign" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected UpdateCampaignStatusSerializer() { }
+        protected UpdateCampaign() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateCampaignStatusSerializer" /> class.
+        /// Initializes a new instance of the <see cref="UpdateCampaign" /> class.
         /// </summary>
-        /// <param name="DirectDevices">DirectDevices (required).</param>
-        /// <param name="ConnectorDevices">ConnectorDevices (required).</param>
         /// <param name="Description">An optional description of the campaign (required).</param>
         /// <param name="State">The state of the campaign (required).</param>
         /// <param name="UpdatingUserId">The updating IAM user ID (required).</param>
         /// <param name="CreatedAt">The time the object was created (required).</param>
-        /// <param name="TotalDevices">TotalDevices (required).</param>
-        /// <param name="CampaigndevicemetadataSet">CampaigndevicemetadataSet (required).</param>
+        /// <param name="_Object">The API resource entity (required).</param>
+        /// <param name="RootManifestId">RootManifestId (required).</param>
         /// <param name="CampaignId">DEPRECATED: The ID of the campaign (required).</param>
-        /// <param name="DeployedDevices">DeployedDevices (required).</param>
+        /// <param name="UpdatingAccountId">The updating account ID (required).</param>
         /// <param name="UpdatedAt">The time the object was updated (required).</param>
-        /// <param name="When">The timestamp at which campaign is scheduled to start.</param>
-        /// <param name="Finished">The timestamp when the update campaign finished.</param>
+        /// <param name="When">The timestamp at which update campaign scheduled to start (required).</param>
+        /// <param name="Finished">The timestamp when the update campaign finished (required).</param>
+        /// <param name="Etag">The entity instance signature (required).</param>
         /// <param name="RootManifestUrl">RootManifestUrl (required).</param>
         /// <param name="UpdatingApiKey">The gateway client API key (required).</param>
-        /// <param name="UpdatingAccountId">The updating account ID (required).</param>
+        /// <param name="Id">The ID of the campaign (required).</param>
         /// <param name="DeviceFilter">The filter for the devices the campaign will target (required).</param>
         /// <param name="Name">A name for this campaign (required).</param>
-        public UpdateCampaignStatusSerializer(int? DirectDevices = default(int?), int? ConnectorDevices = default(int?), string Description = default(string), StateEnum? State = default(StateEnum?), string UpdatingUserId = default(string), DateTime? CreatedAt = default(DateTime?), int? TotalDevices = default(int?), List<CampaignDeviceMetadataSerializer> CampaigndevicemetadataSet = default(List<CampaignDeviceMetadataSerializer>), string CampaignId = default(string), int? DeployedDevices = default(int?), DateTime? UpdatedAt = default(DateTime?), DateTime? When = default(DateTime?), DateTime? Finished = default(DateTime?), string RootManifestUrl = default(string), string UpdatingApiKey = default(string), string UpdatingAccountId = default(string), string DeviceFilter = default(string), string Name = default(string))
+        public UpdateCampaign(string Description = default(string), StateEnum? State = default(StateEnum?), string UpdatingUserId = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), string RootManifestId = default(string), string CampaignId = default(string), string UpdatingAccountId = default(string), DateTime? UpdatedAt = default(DateTime?), DateTime? When = default(DateTime?), DateTime? Finished = default(DateTime?), DateTime? Etag = default(DateTime?), string RootManifestUrl = default(string), string UpdatingApiKey = default(string), string Id = default(string), string DeviceFilter = default(string), string Name = default(string))
         {
-            // to ensure "DirectDevices" is required (not null)
-            if (DirectDevices == null)
-            {
-                throw new InvalidDataException("DirectDevices is a required property for UpdateCampaignStatusSerializer and cannot be null");
-            }
-            else
-            {
-                this.DirectDevices = DirectDevices;
-            }
-            // to ensure "ConnectorDevices" is required (not null)
-            if (ConnectorDevices == null)
-            {
-                throw new InvalidDataException("ConnectorDevices is a required property for UpdateCampaignStatusSerializer and cannot be null");
-            }
-            else
-            {
-                this.ConnectorDevices = ConnectorDevices;
-            }
             // to ensure "Description" is required (not null)
             if (Description == null)
             {
-                throw new InvalidDataException("Description is a required property for UpdateCampaignStatusSerializer and cannot be null");
+                throw new InvalidDataException("Description is a required property for UpdateCampaign and cannot be null");
             }
             else
             {
@@ -162,7 +143,7 @@ namespace deployment_service.Model
             // to ensure "State" is required (not null)
             if (State == null)
             {
-                throw new InvalidDataException("State is a required property for UpdateCampaignStatusSerializer and cannot be null");
+                throw new InvalidDataException("State is a required property for UpdateCampaign and cannot be null");
             }
             else
             {
@@ -171,7 +152,7 @@ namespace deployment_service.Model
             // to ensure "UpdatingUserId" is required (not null)
             if (UpdatingUserId == null)
             {
-                throw new InvalidDataException("UpdatingUserId is a required property for UpdateCampaignStatusSerializer and cannot be null");
+                throw new InvalidDataException("UpdatingUserId is a required property for UpdateCampaign and cannot be null");
             }
             else
             {
@@ -180,61 +161,88 @@ namespace deployment_service.Model
             // to ensure "CreatedAt" is required (not null)
             if (CreatedAt == null)
             {
-                throw new InvalidDataException("CreatedAt is a required property for UpdateCampaignStatusSerializer and cannot be null");
+                throw new InvalidDataException("CreatedAt is a required property for UpdateCampaign and cannot be null");
             }
             else
             {
                 this.CreatedAt = CreatedAt;
             }
-            // to ensure "TotalDevices" is required (not null)
-            if (TotalDevices == null)
+            // to ensure "_Object" is required (not null)
+            if (_Object == null)
             {
-                throw new InvalidDataException("TotalDevices is a required property for UpdateCampaignStatusSerializer and cannot be null");
+                throw new InvalidDataException("_Object is a required property for UpdateCampaign and cannot be null");
             }
             else
             {
-                this.TotalDevices = TotalDevices;
+                this._Object = _Object;
             }
-            // to ensure "CampaigndevicemetadataSet" is required (not null)
-            if (CampaigndevicemetadataSet == null)
+            // to ensure "RootManifestId" is required (not null)
+            if (RootManifestId == null)
             {
-                throw new InvalidDataException("CampaigndevicemetadataSet is a required property for UpdateCampaignStatusSerializer and cannot be null");
+                throw new InvalidDataException("RootManifestId is a required property for UpdateCampaign and cannot be null");
             }
             else
             {
-                this.CampaigndevicemetadataSet = CampaigndevicemetadataSet;
+                this.RootManifestId = RootManifestId;
             }
             // to ensure "CampaignId" is required (not null)
             if (CampaignId == null)
             {
-                throw new InvalidDataException("CampaignId is a required property for UpdateCampaignStatusSerializer and cannot be null");
+                throw new InvalidDataException("CampaignId is a required property for UpdateCampaign and cannot be null");
             }
             else
             {
                 this.CampaignId = CampaignId;
             }
-            // to ensure "DeployedDevices" is required (not null)
-            if (DeployedDevices == null)
+            // to ensure "UpdatingAccountId" is required (not null)
+            if (UpdatingAccountId == null)
             {
-                throw new InvalidDataException("DeployedDevices is a required property for UpdateCampaignStatusSerializer and cannot be null");
+                throw new InvalidDataException("UpdatingAccountId is a required property for UpdateCampaign and cannot be null");
             }
             else
             {
-                this.DeployedDevices = DeployedDevices;
+                this.UpdatingAccountId = UpdatingAccountId;
             }
             // to ensure "UpdatedAt" is required (not null)
             if (UpdatedAt == null)
             {
-                throw new InvalidDataException("UpdatedAt is a required property for UpdateCampaignStatusSerializer and cannot be null");
+                throw new InvalidDataException("UpdatedAt is a required property for UpdateCampaign and cannot be null");
             }
             else
             {
                 this.UpdatedAt = UpdatedAt;
             }
+            // to ensure "When" is required (not null)
+            if (When == null)
+            {
+                throw new InvalidDataException("When is a required property for UpdateCampaign and cannot be null");
+            }
+            else
+            {
+                this.When = When;
+            }
+            // to ensure "Finished" is required (not null)
+            if (Finished == null)
+            {
+                throw new InvalidDataException("Finished is a required property for UpdateCampaign and cannot be null");
+            }
+            else
+            {
+                this.Finished = Finished;
+            }
+            // to ensure "Etag" is required (not null)
+            if (Etag == null)
+            {
+                throw new InvalidDataException("Etag is a required property for UpdateCampaign and cannot be null");
+            }
+            else
+            {
+                this.Etag = Etag;
+            }
             // to ensure "RootManifestUrl" is required (not null)
             if (RootManifestUrl == null)
             {
-                throw new InvalidDataException("RootManifestUrl is a required property for UpdateCampaignStatusSerializer and cannot be null");
+                throw new InvalidDataException("RootManifestUrl is a required property for UpdateCampaign and cannot be null");
             }
             else
             {
@@ -243,25 +251,25 @@ namespace deployment_service.Model
             // to ensure "UpdatingApiKey" is required (not null)
             if (UpdatingApiKey == null)
             {
-                throw new InvalidDataException("UpdatingApiKey is a required property for UpdateCampaignStatusSerializer and cannot be null");
+                throw new InvalidDataException("UpdatingApiKey is a required property for UpdateCampaign and cannot be null");
             }
             else
             {
                 this.UpdatingApiKey = UpdatingApiKey;
             }
-            // to ensure "UpdatingAccountId" is required (not null)
-            if (UpdatingAccountId == null)
+            // to ensure "Id" is required (not null)
+            if (Id == null)
             {
-                throw new InvalidDataException("UpdatingAccountId is a required property for UpdateCampaignStatusSerializer and cannot be null");
+                throw new InvalidDataException("Id is a required property for UpdateCampaign and cannot be null");
             }
             else
             {
-                this.UpdatingAccountId = UpdatingAccountId;
+                this.Id = Id;
             }
             // to ensure "DeviceFilter" is required (not null)
             if (DeviceFilter == null)
             {
-                throw new InvalidDataException("DeviceFilter is a required property for UpdateCampaignStatusSerializer and cannot be null");
+                throw new InvalidDataException("DeviceFilter is a required property for UpdateCampaign and cannot be null");
             }
             else
             {
@@ -270,26 +278,14 @@ namespace deployment_service.Model
             // to ensure "Name" is required (not null)
             if (Name == null)
             {
-                throw new InvalidDataException("Name is a required property for UpdateCampaignStatusSerializer and cannot be null");
+                throw new InvalidDataException("Name is a required property for UpdateCampaign and cannot be null");
             }
             else
             {
                 this.Name = Name;
             }
-            this.When = When;
-            this.Finished = Finished;
         }
         
-        /// <summary>
-        /// Gets or Sets DirectDevices
-        /// </summary>
-        [DataMember(Name="direct_devices", EmitDefaultValue=false)]
-        public int? DirectDevices { get; set; }
-        /// <summary>
-        /// Gets or Sets ConnectorDevices
-        /// </summary>
-        [DataMember(Name="connector_devices", EmitDefaultValue=false)]
-        public int? ConnectorDevices { get; set; }
         /// <summary>
         /// An optional description of the campaign
         /// </summary>
@@ -309,15 +305,16 @@ namespace deployment_service.Model
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
         /// <summary>
-        /// Gets or Sets TotalDevices
+        /// The API resource entity
         /// </summary>
-        [DataMember(Name="total_devices", EmitDefaultValue=false)]
-        public int? TotalDevices { get; set; }
+        /// <value>The API resource entity</value>
+        [DataMember(Name="object", EmitDefaultValue=false)]
+        public string _Object { get; set; }
         /// <summary>
-        /// Gets or Sets CampaigndevicemetadataSet
+        /// Gets or Sets RootManifestId
         /// </summary>
-        [DataMember(Name="campaigndevicemetadata_set", EmitDefaultValue=false)]
-        public List<CampaignDeviceMetadataSerializer> CampaigndevicemetadataSet { get; set; }
+        [DataMember(Name="root_manifest_id", EmitDefaultValue=false)]
+        public string RootManifestId { get; set; }
         /// <summary>
         /// DEPRECATED: The ID of the campaign
         /// </summary>
@@ -325,10 +322,11 @@ namespace deployment_service.Model
         [DataMember(Name="campaign_id", EmitDefaultValue=false)]
         public string CampaignId { get; set; }
         /// <summary>
-        /// Gets or Sets DeployedDevices
+        /// The updating account ID
         /// </summary>
-        [DataMember(Name="deployed_devices", EmitDefaultValue=false)]
-        public int? DeployedDevices { get; set; }
+        /// <value>The updating account ID</value>
+        [DataMember(Name="updating_account_id", EmitDefaultValue=false)]
+        public string UpdatingAccountId { get; set; }
         /// <summary>
         /// The time the object was updated
         /// </summary>
@@ -336,9 +334,9 @@ namespace deployment_service.Model
         [DataMember(Name="updated_at", EmitDefaultValue=false)]
         public DateTime? UpdatedAt { get; set; }
         /// <summary>
-        /// The timestamp at which campaign is scheduled to start
+        /// The timestamp at which update campaign scheduled to start
         /// </summary>
-        /// <value>The timestamp at which campaign is scheduled to start</value>
+        /// <value>The timestamp at which update campaign scheduled to start</value>
         [DataMember(Name="when", EmitDefaultValue=false)]
         public DateTime? When { get; set; }
         /// <summary>
@@ -347,6 +345,12 @@ namespace deployment_service.Model
         /// <value>The timestamp when the update campaign finished</value>
         [DataMember(Name="finished", EmitDefaultValue=false)]
         public DateTime? Finished { get; set; }
+        /// <summary>
+        /// The entity instance signature
+        /// </summary>
+        /// <value>The entity instance signature</value>
+        [DataMember(Name="etag", EmitDefaultValue=false)]
+        public DateTime? Etag { get; set; }
         /// <summary>
         /// Gets or Sets RootManifestUrl
         /// </summary>
@@ -359,11 +363,11 @@ namespace deployment_service.Model
         [DataMember(Name="updating_api_key", EmitDefaultValue=false)]
         public string UpdatingApiKey { get; set; }
         /// <summary>
-        /// The updating account ID
+        /// The ID of the campaign
         /// </summary>
-        /// <value>The updating account ID</value>
-        [DataMember(Name="updating_account_id", EmitDefaultValue=false)]
-        public string UpdatingAccountId { get; set; }
+        /// <value>The ID of the campaign</value>
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public string Id { get; set; }
         /// <summary>
         /// The filter for the devices the campaign will target
         /// </summary>
@@ -383,23 +387,22 @@ namespace deployment_service.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class UpdateCampaignStatusSerializer {\n");
-            sb.Append("  DirectDevices: ").Append(DirectDevices).Append("\n");
-            sb.Append("  ConnectorDevices: ").Append(ConnectorDevices).Append("\n");
+            sb.Append("class UpdateCampaign {\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  UpdatingUserId: ").Append(UpdatingUserId).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  TotalDevices: ").Append(TotalDevices).Append("\n");
-            sb.Append("  CampaigndevicemetadataSet: ").Append(CampaigndevicemetadataSet).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
+            sb.Append("  RootManifestId: ").Append(RootManifestId).Append("\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
-            sb.Append("  DeployedDevices: ").Append(DeployedDevices).Append("\n");
+            sb.Append("  UpdatingAccountId: ").Append(UpdatingAccountId).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  When: ").Append(When).Append("\n");
             sb.Append("  Finished: ").Append(Finished).Append("\n");
+            sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  RootManifestUrl: ").Append(RootManifestUrl).Append("\n");
             sb.Append("  UpdatingApiKey: ").Append(UpdatingApiKey).Append("\n");
-            sb.Append("  UpdatingAccountId: ").Append(UpdatingAccountId).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  DeviceFilter: ").Append(DeviceFilter).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
@@ -423,31 +426,21 @@ namespace deployment_service.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as UpdateCampaignStatusSerializer);
+            return this.Equals(obj as UpdateCampaign);
         }
 
         /// <summary>
-        /// Returns true if UpdateCampaignStatusSerializer instances are equal
+        /// Returns true if UpdateCampaign instances are equal
         /// </summary>
-        /// <param name="other">Instance of UpdateCampaignStatusSerializer to be compared</param>
+        /// <param name="other">Instance of UpdateCampaign to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(UpdateCampaignStatusSerializer other)
+        public bool Equals(UpdateCampaign other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
                 return false;
 
             return 
-                (
-                    this.DirectDevices == other.DirectDevices ||
-                    this.DirectDevices != null &&
-                    this.DirectDevices.Equals(other.DirectDevices)
-                ) && 
-                (
-                    this.ConnectorDevices == other.ConnectorDevices ||
-                    this.ConnectorDevices != null &&
-                    this.ConnectorDevices.Equals(other.ConnectorDevices)
-                ) && 
                 (
                     this.Description == other.Description ||
                     this.Description != null &&
@@ -469,14 +462,14 @@ namespace deployment_service.Model
                     this.CreatedAt.Equals(other.CreatedAt)
                 ) && 
                 (
-                    this.TotalDevices == other.TotalDevices ||
-                    this.TotalDevices != null &&
-                    this.TotalDevices.Equals(other.TotalDevices)
+                    this._Object == other._Object ||
+                    this._Object != null &&
+                    this._Object.Equals(other._Object)
                 ) && 
                 (
-                    this.CampaigndevicemetadataSet == other.CampaigndevicemetadataSet ||
-                    this.CampaigndevicemetadataSet != null &&
-                    this.CampaigndevicemetadataSet.SequenceEqual(other.CampaigndevicemetadataSet)
+                    this.RootManifestId == other.RootManifestId ||
+                    this.RootManifestId != null &&
+                    this.RootManifestId.Equals(other.RootManifestId)
                 ) && 
                 (
                     this.CampaignId == other.CampaignId ||
@@ -484,9 +477,9 @@ namespace deployment_service.Model
                     this.CampaignId.Equals(other.CampaignId)
                 ) && 
                 (
-                    this.DeployedDevices == other.DeployedDevices ||
-                    this.DeployedDevices != null &&
-                    this.DeployedDevices.Equals(other.DeployedDevices)
+                    this.UpdatingAccountId == other.UpdatingAccountId ||
+                    this.UpdatingAccountId != null &&
+                    this.UpdatingAccountId.Equals(other.UpdatingAccountId)
                 ) && 
                 (
                     this.UpdatedAt == other.UpdatedAt ||
@@ -504,6 +497,11 @@ namespace deployment_service.Model
                     this.Finished.Equals(other.Finished)
                 ) && 
                 (
+                    this.Etag == other.Etag ||
+                    this.Etag != null &&
+                    this.Etag.Equals(other.Etag)
+                ) && 
+                (
                     this.RootManifestUrl == other.RootManifestUrl ||
                     this.RootManifestUrl != null &&
                     this.RootManifestUrl.Equals(other.RootManifestUrl)
@@ -514,9 +512,9 @@ namespace deployment_service.Model
                     this.UpdatingApiKey.Equals(other.UpdatingApiKey)
                 ) && 
                 (
-                    this.UpdatingAccountId == other.UpdatingAccountId ||
-                    this.UpdatingAccountId != null &&
-                    this.UpdatingAccountId.Equals(other.UpdatingAccountId)
+                    this.Id == other.Id ||
+                    this.Id != null &&
+                    this.Id.Equals(other.Id)
                 ) && 
                 (
                     this.DeviceFilter == other.DeviceFilter ||
@@ -541,10 +539,6 @@ namespace deployment_service.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.DirectDevices != null)
-                    hash = hash * 59 + this.DirectDevices.GetHashCode();
-                if (this.ConnectorDevices != null)
-                    hash = hash * 59 + this.ConnectorDevices.GetHashCode();
                 if (this.Description != null)
                     hash = hash * 59 + this.Description.GetHashCode();
                 if (this.State != null)
@@ -553,26 +547,28 @@ namespace deployment_service.Model
                     hash = hash * 59 + this.UpdatingUserId.GetHashCode();
                 if (this.CreatedAt != null)
                     hash = hash * 59 + this.CreatedAt.GetHashCode();
-                if (this.TotalDevices != null)
-                    hash = hash * 59 + this.TotalDevices.GetHashCode();
-                if (this.CampaigndevicemetadataSet != null)
-                    hash = hash * 59 + this.CampaigndevicemetadataSet.GetHashCode();
+                if (this._Object != null)
+                    hash = hash * 59 + this._Object.GetHashCode();
+                if (this.RootManifestId != null)
+                    hash = hash * 59 + this.RootManifestId.GetHashCode();
                 if (this.CampaignId != null)
                     hash = hash * 59 + this.CampaignId.GetHashCode();
-                if (this.DeployedDevices != null)
-                    hash = hash * 59 + this.DeployedDevices.GetHashCode();
+                if (this.UpdatingAccountId != null)
+                    hash = hash * 59 + this.UpdatingAccountId.GetHashCode();
                 if (this.UpdatedAt != null)
                     hash = hash * 59 + this.UpdatedAt.GetHashCode();
                 if (this.When != null)
                     hash = hash * 59 + this.When.GetHashCode();
                 if (this.Finished != null)
                     hash = hash * 59 + this.Finished.GetHashCode();
+                if (this.Etag != null)
+                    hash = hash * 59 + this.Etag.GetHashCode();
                 if (this.RootManifestUrl != null)
                     hash = hash * 59 + this.RootManifestUrl.GetHashCode();
                 if (this.UpdatingApiKey != null)
                     hash = hash * 59 + this.UpdatingApiKey.GetHashCode();
-                if (this.UpdatingAccountId != null)
-                    hash = hash * 59 + this.UpdatingAccountId.GetHashCode();
+                if (this.Id != null)
+                    hash = hash * 59 + this.Id.GetHashCode();
                 if (this.DeviceFilter != null)
                     hash = hash * 59 + this.DeviceFilter.GetHashCode();
                 if (this.Name != null)

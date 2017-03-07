@@ -24,28 +24,30 @@ using System.ComponentModel.DataAnnotations;
 namespace device_query_service.Model
 {
     /// <summary>
-    /// Body
+    /// WriteDeviceQuery
     /// </summary>
     [DataContract]
-    public partial class Body :  IEquatable<Body>, IValidatableObject
+    public partial class WriteDeviceQuery :  IEquatable<WriteDeviceQuery>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Body" /> class.
+        /// Initializes a new instance of the <see cref="WriteDeviceQuery" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected Body() { }
+        protected WriteDeviceQuery() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Body" /> class.
+        /// Initializes a new instance of the <see cref="WriteDeviceQuery" /> class.
         /// </summary>
-        /// <param name="Query">Query (required).</param>
-        /// <param name="Description">Description.</param>
-        /// <param name="Name">Name (required).</param>
-        public Body(string Query = default(string), string Description = default(string), string Name = default(string))
+        /// <param name="Query">The device query (required).</param>
+        /// <param name="_Object">The API resource entity.</param>
+        /// <param name="QueryId">DEPRECATED: The ID of the query.</param>
+        /// <param name="Description">The description of the object.</param>
+        /// <param name="Name">The name of the query (required).</param>
+        public WriteDeviceQuery(string Query = default(string), string _Object = default(string), string QueryId = default(string), string Description = default(string), string Name = default(string))
         {
             // to ensure "Query" is required (not null)
             if (Query == null)
             {
-                throw new InvalidDataException("Query is a required property for Body and cannot be null");
+                throw new InvalidDataException("Query is a required property for WriteDeviceQuery and cannot be null");
             }
             else
             {
@@ -54,28 +56,45 @@ namespace device_query_service.Model
             // to ensure "Name" is required (not null)
             if (Name == null)
             {
-                throw new InvalidDataException("Name is a required property for Body and cannot be null");
+                throw new InvalidDataException("Name is a required property for WriteDeviceQuery and cannot be null");
             }
             else
             {
                 this.Name = Name;
             }
+            this._Object = _Object;
+            this.QueryId = QueryId;
             this.Description = Description;
         }
         
         /// <summary>
-        /// Gets or Sets Query
+        /// The device query
         /// </summary>
+        /// <value>The device query</value>
         [DataMember(Name="query", EmitDefaultValue=false)]
         public string Query { get; set; }
         /// <summary>
-        /// Gets or Sets Description
+        /// The API resource entity
         /// </summary>
+        /// <value>The API resource entity</value>
+        [DataMember(Name="object", EmitDefaultValue=false)]
+        public string _Object { get; set; }
+        /// <summary>
+        /// DEPRECATED: The ID of the query
+        /// </summary>
+        /// <value>DEPRECATED: The ID of the query</value>
+        [DataMember(Name="query_id", EmitDefaultValue=false)]
+        public string QueryId { get; set; }
+        /// <summary>
+        /// The description of the object
+        /// </summary>
+        /// <value>The description of the object</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
         /// <summary>
-        /// Gets or Sets Name
+        /// The name of the query
         /// </summary>
+        /// <value>The name of the query</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
@@ -85,8 +104,10 @@ namespace device_query_service.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Body {\n");
+            sb.Append("class WriteDeviceQuery {\n");
             sb.Append("  Query: ").Append(Query).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
+            sb.Append("  QueryId: ").Append(QueryId).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
@@ -110,15 +131,15 @@ namespace device_query_service.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as Body);
+            return this.Equals(obj as WriteDeviceQuery);
         }
 
         /// <summary>
-        /// Returns true if Body instances are equal
+        /// Returns true if WriteDeviceQuery instances are equal
         /// </summary>
-        /// <param name="other">Instance of Body to be compared</param>
+        /// <param name="other">Instance of WriteDeviceQuery to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Body other)
+        public bool Equals(WriteDeviceQuery other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -129,6 +150,16 @@ namespace device_query_service.Model
                     this.Query == other.Query ||
                     this.Query != null &&
                     this.Query.Equals(other.Query)
+                ) && 
+                (
+                    this._Object == other._Object ||
+                    this._Object != null &&
+                    this._Object.Equals(other._Object)
+                ) && 
+                (
+                    this.QueryId == other.QueryId ||
+                    this.QueryId != null &&
+                    this.QueryId.Equals(other.QueryId)
                 ) && 
                 (
                     this.Description == other.Description ||
@@ -155,6 +186,10 @@ namespace device_query_service.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.Query != null)
                     hash = hash * 59 + this.Query.GetHashCode();
+                if (this._Object != null)
+                    hash = hash * 59 + this._Object.GetHashCode();
+                if (this.QueryId != null)
+                    hash = hash * 59 + this.QueryId.GetHashCode();
                 if (this.Description != null)
                     hash = hash * 59 + this.Description.GetHashCode();
                 if (this.Name != null)

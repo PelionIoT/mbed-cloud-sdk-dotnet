@@ -24,73 +24,18 @@ using System.ComponentModel.DataAnnotations;
 namespace device_catalog.Model
 {
     /// <summary>
-    /// DeviceLogSerializerData
+    /// DeviceLogData
     /// </summary>
     [DataContract]
-    public partial class DeviceLogSerializerData :  IEquatable<DeviceLogSerializerData>, IValidatableObject
+    public partial class DeviceLogData :  IEquatable<DeviceLogData>, IValidatableObject
     {
         /// <summary>
-        /// Gets or Sets EventType
-        /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum EventTypeEnum
-        {
-            
-            /// <summary>
-            /// Enum DeviceDevicecreated for "update.device.device-created"
-            /// </summary>
-            [EnumMember(Value = "update.device.device-created")]
-            DeviceDevicecreated,
-            
-            /// <summary>
-            /// Enum DeviceDeviceupdated for "update.device.device-updated"
-            /// </summary>
-            [EnumMember(Value = "update.device.device-updated")]
-            DeviceDeviceupdated,
-            
-            /// <summary>
-            /// Enum DeploymentCampaigndevicemetadatacreated for "update.deployment.campaign-device-metadata-created"
-            /// </summary>
-            [EnumMember(Value = "update.deployment.campaign-device-metadata-created")]
-            DeploymentCampaigndevicemetadatacreated,
-            
-            /// <summary>
-            /// Enum DeploymentCampaigndevicemetadataupdated for "update.deployment.campaign-device-metadata-updated"
-            /// </summary>
-            [EnumMember(Value = "update.deployment.campaign-device-metadata-updated")]
-            DeploymentCampaigndevicemetadataupdated,
-            
-            /// <summary>
-            /// Enum DeploymentCampaigndevicemetadataremoved for "update.deployment.campaign-device-metadata-removed"
-            /// </summary>
-            [EnumMember(Value = "update.deployment.campaign-device-metadata-removed")]
-            DeploymentCampaigndevicemetadataremoved,
-            
-            /// <summary>
-            /// Enum ConnectorConnectordeviceFirmwareupdateState for "update.connector.connector-device.firmware-update.state"
-            /// </summary>
-            [EnumMember(Value = "update.connector.connector-device.firmware-update.state")]
-            ConnectorConnectordeviceFirmwareupdateState,
-            
-            /// <summary>
-            /// Enum ConnectorConnectordeviceFirmwareupdateResult for "update.connector.connector-device.firmware-update.result"
-            /// </summary>
-            [EnumMember(Value = "update.connector.connector-device.firmware-update.result")]
-            ConnectorConnectordeviceFirmwareupdateResult
-        }
-
-        /// <summary>
-        /// Gets or Sets EventType
-        /// </summary>
-        [DataMember(Name="event_type", EmitDefaultValue=false)]
-        public EventTypeEnum? EventType { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceLogSerializerData" /> class.
+        /// Initializes a new instance of the <see cref="DeviceLogData" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected DeviceLogSerializerData() { }
+        protected DeviceLogData() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceLogSerializerData" /> class.
+        /// Initializes a new instance of the <see cref="DeviceLogData" /> class.
         /// </summary>
         /// <param name="DateTime">DateTime (required).</param>
         /// <param name="StateChange">StateChange.</param>
@@ -102,12 +47,12 @@ namespace device_catalog.Model
         /// <param name="Data">Data.</param>
         /// <param name="Id">Id.</param>
         /// <param name="DeviceId">DeviceId.</param>
-        public DeviceLogSerializerData(DateTime? DateTime = default(DateTime?), bool? StateChange = default(bool?), string Description = default(string), Object Changes = default(Object), string EventTypeDescription = default(string), string DeviceLogId = default(string), EventTypeEnum? EventType = default(EventTypeEnum?), Object Data = default(Object), string Id = default(string), string DeviceId = default(string))
+        public DeviceLogData(DateTime? DateTime = default(DateTime?), bool? StateChange = default(bool?), string Description = default(string), Object Changes = default(Object), string EventTypeDescription = default(string), string DeviceLogId = default(string), string EventType = default(string), Object Data = default(Object), string Id = default(string), string DeviceId = default(string))
         {
             // to ensure "DateTime" is required (not null)
             if (DateTime == null)
             {
-                throw new InvalidDataException("DateTime is a required property for DeviceLogSerializerData and cannot be null");
+                throw new InvalidDataException("DateTime is a required property for DeviceLogData and cannot be null");
             }
             else
             {
@@ -155,6 +100,11 @@ namespace device_catalog.Model
         [DataMember(Name="device_log_id", EmitDefaultValue=false)]
         public string DeviceLogId { get; set; }
         /// <summary>
+        /// Gets or Sets EventType
+        /// </summary>
+        [DataMember(Name="event_type", EmitDefaultValue=false)]
+        public string EventType { get; set; }
+        /// <summary>
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name="data", EmitDefaultValue=false)]
@@ -176,7 +126,7 @@ namespace device_catalog.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class DeviceLogSerializerData {\n");
+            sb.Append("class DeviceLogData {\n");
             sb.Append("  DateTime: ").Append(DateTime).Append("\n");
             sb.Append("  StateChange: ").Append(StateChange).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
@@ -208,15 +158,15 @@ namespace device_catalog.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as DeviceLogSerializerData);
+            return this.Equals(obj as DeviceLogData);
         }
 
         /// <summary>
-        /// Returns true if DeviceLogSerializerData instances are equal
+        /// Returns true if DeviceLogData instances are equal
         /// </summary>
-        /// <param name="other">Instance of DeviceLogSerializerData to be compared</param>
+        /// <param name="other">Instance of DeviceLogData to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DeviceLogSerializerData other)
+        public bool Equals(DeviceLogData other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)

@@ -24,11 +24,65 @@ using System.ComponentModel.DataAnnotations;
 namespace device_catalog.Model
 {
     /// <summary>
-    /// DeviceUpdateDetail
+    /// WriteDeviceSerializer
     /// </summary>
     [DataContract]
-    public partial class DeviceUpdateDetail :  IEquatable<DeviceUpdateDetail>, IValidatableObject
+    public partial class WriteDeviceSerializer :  IEquatable<WriteDeviceSerializer>, IValidatableObject
     {
+        /// <summary>
+        /// The state of the device's deployment
+        /// </summary>
+        /// <value>The state of the device's deployment</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum DeployedStateEnum
+        {
+            
+            /// <summary>
+            /// Enum Development for "development"
+            /// </summary>
+            [EnumMember(Value = "development")]
+            Development,
+            
+            /// <summary>
+            /// Enum Production for "production"
+            /// </summary>
+            [EnumMember(Value = "production")]
+            Production
+        }
+
+        /// <summary>
+        /// The current state of the device
+        /// </summary>
+        /// <value>The current state of the device</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StateEnum
+        {
+            
+            /// <summary>
+            /// Enum Unenrolled for "unenrolled"
+            /// </summary>
+            [EnumMember(Value = "unenrolled")]
+            Unenrolled,
+            
+            /// <summary>
+            /// Enum Cloudenrolling for "cloud_enrolling"
+            /// </summary>
+            [EnumMember(Value = "cloud_enrolling")]
+            Cloudenrolling,
+            
+            /// <summary>
+            /// Enum Bootstrapped for "bootstrapped"
+            /// </summary>
+            [EnumMember(Value = "bootstrapped")]
+            Bootstrapped,
+            
+            /// <summary>
+            /// Enum Registered for "registered"
+            /// </summary>
+            [EnumMember(Value = "registered")]
+            Registered
+        }
+
         /// <summary>
         /// The ID of the channel used to communicate with the device
         /// </summary>
@@ -51,64 +105,87 @@ namespace device_catalog.Model
         }
 
         /// <summary>
+        /// The state of the device's deployment
+        /// </summary>
+        /// <value>The state of the device's deployment</value>
+        [DataMember(Name="deployed_state", EmitDefaultValue=false)]
+        public DeployedStateEnum? DeployedState { get; set; }
+        /// <summary>
+        /// The current state of the device
+        /// </summary>
+        /// <value>The current state of the device</value>
+        [DataMember(Name="state", EmitDefaultValue=false)]
+        public StateEnum? State { get; set; }
+        /// <summary>
         /// The ID of the channel used to communicate with the device
         /// </summary>
         /// <value>The ID of the channel used to communicate with the device</value>
         [DataMember(Name="mechanism", EmitDefaultValue=false)]
         public MechanismEnum? Mechanism { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceUpdateDetail" /> class.
+        /// Initializes a new instance of the <see cref="WriteDeviceSerializer" /> class.
         /// </summary>
-        /// <param name="AccountId">The owning IAM account ID.</param>
-        /// <param name="Name">The name of the object.</param>
-        /// <param name="AutoUpdate">Mark this device for auto firmware update.</param>
+        [JsonConstructorAttribute]
+        protected WriteDeviceSerializer() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WriteDeviceSerializer" /> class.
+        /// </summary>
         /// <param name="VendorId">The device vendor ID.</param>
+        /// <param name="_Object">The API resource entity.</param>
+        /// <param name="Description">The description of the object.</param>
+        /// <param name="DeployedState">The state of the device&#39;s deployment.</param>
+        /// <param name="AutoUpdate">Mark this device for auto firmware update.</param>
+        /// <param name="Name">The name of the object.</param>
+        /// <param name="Deployment">The last deployment used on the device.</param>
         /// <param name="CustomAttributes">Up to 5 custom JSON attributes.</param>
         /// <param name="Manifest">URL for the current device manifest.</param>
         /// <param name="TrustClass">The device trust class.</param>
-        /// <param name="ProvisionKey">The key used to provision the device.</param>
-        /// <param name="Mechanism">The ID of the channel used to communicate with the device.</param>
+        /// <param name="ProvisionKey">The key used to provision the device (required).</param>
+        /// <param name="State">The current state of the device.</param>
+        /// <param name="Mechanism">The ID of the channel used to communicate with the device (required).</param>
         /// <param name="DeviceClass">The device class.</param>
         /// <param name="MechanismUrl">The address of the connector to use.</param>
         /// <param name="SerialNumber">The serial number of the device.</param>
         /// <param name="TrustLevel">The device trust level.</param>
-        /// <param name="Description">The description of the object.</param>
-        public DeviceUpdateDetail(string AccountId = default(string), string Name = default(string), bool? AutoUpdate = default(bool?), string VendorId = default(string), Object CustomAttributes = default(Object), string Manifest = default(string), long? TrustClass = default(long?), string ProvisionKey = default(string), MechanismEnum? Mechanism = default(MechanismEnum?), string DeviceClass = default(string), string MechanismUrl = default(string), string SerialNumber = default(string), long? TrustLevel = default(long?), string Description = default(string))
+        /// <param name="DeviceId">DEPRECATED: The ID of the device.</param>
+        public WriteDeviceSerializer(string VendorId = default(string), string _Object = default(string), string Description = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), bool? AutoUpdate = default(bool?), string Name = default(string), string Deployment = default(string), string CustomAttributes = default(string), string Manifest = default(string), long? TrustClass = default(long?), string ProvisionKey = default(string), StateEnum? State = default(StateEnum?), MechanismEnum? Mechanism = default(MechanismEnum?), string DeviceClass = default(string), string MechanismUrl = default(string), string SerialNumber = default(string), long? TrustLevel = default(long?), string DeviceId = default(string))
         {
-            this.AccountId = AccountId;
-            this.Name = Name;
-            this.AutoUpdate = AutoUpdate;
+            // to ensure "ProvisionKey" is required (not null)
+            if (ProvisionKey == null)
+            {
+                throw new InvalidDataException("ProvisionKey is a required property for WriteDeviceSerializer and cannot be null");
+            }
+            else
+            {
+                this.ProvisionKey = ProvisionKey;
+            }
+            // to ensure "Mechanism" is required (not null)
+            if (Mechanism == null)
+            {
+                throw new InvalidDataException("Mechanism is a required property for WriteDeviceSerializer and cannot be null");
+            }
+            else
+            {
+                this.Mechanism = Mechanism;
+            }
             this.VendorId = VendorId;
+            this._Object = _Object;
+            this.Description = Description;
+            this.DeployedState = DeployedState;
+            this.AutoUpdate = AutoUpdate;
+            this.Name = Name;
+            this.Deployment = Deployment;
             this.CustomAttributes = CustomAttributes;
             this.Manifest = Manifest;
             this.TrustClass = TrustClass;
-            this.ProvisionKey = ProvisionKey;
-            this.Mechanism = Mechanism;
+            this.State = State;
             this.DeviceClass = DeviceClass;
             this.MechanismUrl = MechanismUrl;
             this.SerialNumber = SerialNumber;
             this.TrustLevel = TrustLevel;
-            this.Description = Description;
+            this.DeviceId = DeviceId;
         }
         
-        /// <summary>
-        /// The owning IAM account ID
-        /// </summary>
-        /// <value>The owning IAM account ID</value>
-        [DataMember(Name="account_id", EmitDefaultValue=false)]
-        public string AccountId { get; set; }
-        /// <summary>
-        /// The name of the object
-        /// </summary>
-        /// <value>The name of the object</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
-        public string Name { get; set; }
-        /// <summary>
-        /// Mark this device for auto firmware update
-        /// </summary>
-        /// <value>Mark this device for auto firmware update</value>
-        [DataMember(Name="auto_update", EmitDefaultValue=false)]
-        public bool? AutoUpdate { get; set; }
         /// <summary>
         /// The device vendor ID
         /// </summary>
@@ -116,11 +193,41 @@ namespace device_catalog.Model
         [DataMember(Name="vendor_id", EmitDefaultValue=false)]
         public string VendorId { get; set; }
         /// <summary>
+        /// The API resource entity
+        /// </summary>
+        /// <value>The API resource entity</value>
+        [DataMember(Name="object", EmitDefaultValue=false)]
+        public string _Object { get; set; }
+        /// <summary>
+        /// The description of the object
+        /// </summary>
+        /// <value>The description of the object</value>
+        [DataMember(Name="description", EmitDefaultValue=false)]
+        public string Description { get; set; }
+        /// <summary>
+        /// Mark this device for auto firmware update
+        /// </summary>
+        /// <value>Mark this device for auto firmware update</value>
+        [DataMember(Name="auto_update", EmitDefaultValue=false)]
+        public bool? AutoUpdate { get; set; }
+        /// <summary>
+        /// The name of the object
+        /// </summary>
+        /// <value>The name of the object</value>
+        [DataMember(Name="name", EmitDefaultValue=false)]
+        public string Name { get; set; }
+        /// <summary>
+        /// The last deployment used on the device
+        /// </summary>
+        /// <value>The last deployment used on the device</value>
+        [DataMember(Name="deployment", EmitDefaultValue=false)]
+        public string Deployment { get; set; }
+        /// <summary>
         /// Up to 5 custom JSON attributes
         /// </summary>
         /// <value>Up to 5 custom JSON attributes</value>
         [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
-        public Object CustomAttributes { get; set; }
+        public string CustomAttributes { get; set; }
         /// <summary>
         /// URL for the current device manifest
         /// </summary>
@@ -164,11 +271,11 @@ namespace device_catalog.Model
         [DataMember(Name="trust_level", EmitDefaultValue=false)]
         public long? TrustLevel { get; set; }
         /// <summary>
-        /// The description of the object
+        /// DEPRECATED: The ID of the device
         /// </summary>
-        /// <value>The description of the object</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
-        public string Description { get; set; }
+        /// <value>DEPRECATED: The ID of the device</value>
+        [DataMember(Name="device_id", EmitDefaultValue=false)]
+        public string DeviceId { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -176,21 +283,25 @@ namespace device_catalog.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class DeviceUpdateDetail {\n");
-            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  AutoUpdate: ").Append(AutoUpdate).Append("\n");
+            sb.Append("class WriteDeviceSerializer {\n");
             sb.Append("  VendorId: ").Append(VendorId).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  DeployedState: ").Append(DeployedState).Append("\n");
+            sb.Append("  AutoUpdate: ").Append(AutoUpdate).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Deployment: ").Append(Deployment).Append("\n");
             sb.Append("  CustomAttributes: ").Append(CustomAttributes).Append("\n");
             sb.Append("  Manifest: ").Append(Manifest).Append("\n");
             sb.Append("  TrustClass: ").Append(TrustClass).Append("\n");
             sb.Append("  ProvisionKey: ").Append(ProvisionKey).Append("\n");
+            sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  Mechanism: ").Append(Mechanism).Append("\n");
             sb.Append("  DeviceClass: ").Append(DeviceClass).Append("\n");
             sb.Append("  MechanismUrl: ").Append(MechanismUrl).Append("\n");
             sb.Append("  SerialNumber: ").Append(SerialNumber).Append("\n");
             sb.Append("  TrustLevel: ").Append(TrustLevel).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -212,15 +323,15 @@ namespace device_catalog.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as DeviceUpdateDetail);
+            return this.Equals(obj as WriteDeviceSerializer);
         }
 
         /// <summary>
-        /// Returns true if DeviceUpdateDetail instances are equal
+        /// Returns true if WriteDeviceSerializer instances are equal
         /// </summary>
-        /// <param name="other">Instance of DeviceUpdateDetail to be compared</param>
+        /// <param name="other">Instance of WriteDeviceSerializer to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DeviceUpdateDetail other)
+        public bool Equals(WriteDeviceSerializer other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -228,14 +339,24 @@ namespace device_catalog.Model
 
             return 
                 (
-                    this.AccountId == other.AccountId ||
-                    this.AccountId != null &&
-                    this.AccountId.Equals(other.AccountId)
+                    this.VendorId == other.VendorId ||
+                    this.VendorId != null &&
+                    this.VendorId.Equals(other.VendorId)
                 ) && 
                 (
-                    this.Name == other.Name ||
-                    this.Name != null &&
-                    this.Name.Equals(other.Name)
+                    this._Object == other._Object ||
+                    this._Object != null &&
+                    this._Object.Equals(other._Object)
+                ) && 
+                (
+                    this.Description == other.Description ||
+                    this.Description != null &&
+                    this.Description.Equals(other.Description)
+                ) && 
+                (
+                    this.DeployedState == other.DeployedState ||
+                    this.DeployedState != null &&
+                    this.DeployedState.Equals(other.DeployedState)
                 ) && 
                 (
                     this.AutoUpdate == other.AutoUpdate ||
@@ -243,9 +364,14 @@ namespace device_catalog.Model
                     this.AutoUpdate.Equals(other.AutoUpdate)
                 ) && 
                 (
-                    this.VendorId == other.VendorId ||
-                    this.VendorId != null &&
-                    this.VendorId.Equals(other.VendorId)
+                    this.Name == other.Name ||
+                    this.Name != null &&
+                    this.Name.Equals(other.Name)
+                ) && 
+                (
+                    this.Deployment == other.Deployment ||
+                    this.Deployment != null &&
+                    this.Deployment.Equals(other.Deployment)
                 ) && 
                 (
                     this.CustomAttributes == other.CustomAttributes ||
@@ -266,6 +392,11 @@ namespace device_catalog.Model
                     this.ProvisionKey == other.ProvisionKey ||
                     this.ProvisionKey != null &&
                     this.ProvisionKey.Equals(other.ProvisionKey)
+                ) && 
+                (
+                    this.State == other.State ||
+                    this.State != null &&
+                    this.State.Equals(other.State)
                 ) && 
                 (
                     this.Mechanism == other.Mechanism ||
@@ -293,9 +424,9 @@ namespace device_catalog.Model
                     this.TrustLevel.Equals(other.TrustLevel)
                 ) && 
                 (
-                    this.Description == other.Description ||
-                    this.Description != null &&
-                    this.Description.Equals(other.Description)
+                    this.DeviceId == other.DeviceId ||
+                    this.DeviceId != null &&
+                    this.DeviceId.Equals(other.DeviceId)
                 );
         }
 
@@ -310,14 +441,20 @@ namespace device_catalog.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.AccountId != null)
-                    hash = hash * 59 + this.AccountId.GetHashCode();
-                if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
-                if (this.AutoUpdate != null)
-                    hash = hash * 59 + this.AutoUpdate.GetHashCode();
                 if (this.VendorId != null)
                     hash = hash * 59 + this.VendorId.GetHashCode();
+                if (this._Object != null)
+                    hash = hash * 59 + this._Object.GetHashCode();
+                if (this.Description != null)
+                    hash = hash * 59 + this.Description.GetHashCode();
+                if (this.DeployedState != null)
+                    hash = hash * 59 + this.DeployedState.GetHashCode();
+                if (this.AutoUpdate != null)
+                    hash = hash * 59 + this.AutoUpdate.GetHashCode();
+                if (this.Name != null)
+                    hash = hash * 59 + this.Name.GetHashCode();
+                if (this.Deployment != null)
+                    hash = hash * 59 + this.Deployment.GetHashCode();
                 if (this.CustomAttributes != null)
                     hash = hash * 59 + this.CustomAttributes.GetHashCode();
                 if (this.Manifest != null)
@@ -326,6 +463,8 @@ namespace device_catalog.Model
                     hash = hash * 59 + this.TrustClass.GetHashCode();
                 if (this.ProvisionKey != null)
                     hash = hash * 59 + this.ProvisionKey.GetHashCode();
+                if (this.State != null)
+                    hash = hash * 59 + this.State.GetHashCode();
                 if (this.Mechanism != null)
                     hash = hash * 59 + this.Mechanism.GetHashCode();
                 if (this.DeviceClass != null)
@@ -336,8 +475,8 @@ namespace device_catalog.Model
                     hash = hash * 59 + this.SerialNumber.GetHashCode();
                 if (this.TrustLevel != null)
                     hash = hash * 59 + this.TrustLevel.GetHashCode();
-                if (this.Description != null)
-                    hash = hash * 59 + this.Description.GetHashCode();
+                if (this.DeviceId != null)
+                    hash = hash * 59 + this.DeviceId.GetHashCode();
                 return hash;
             }
         }
