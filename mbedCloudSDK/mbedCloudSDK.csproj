@@ -53,10 +53,35 @@
   <ItemGroup>
     <Compile Include="Access\Api\AccessApi.Account.cs" />
     <Compile Include="Access\Api\AccessApi.ApiKey.cs" />
-    <Compile Include="Access\Api\AccessApi.Group.cs" />
     <Compile Include="Access\Api\AccessApi.User.cs" />
     <Compile Include="Access\Model\Account\AccountStatus.cs" />
     <Compile Include="Access\Model\User\UserStatus.cs" />
+    <Compile Include="Backends\ConnectorCa\Api\DeveloperCertificateApi.cs" />
+    <Compile Include="Backends\ConnectorCa\Api\ExternalAPIApi.cs" />
+    <Compile Include="Backends\ConnectorCa\Api\ServerCredentialsApi.cs" />
+    <Compile Include="Backends\ConnectorCa\Client\ApiClient.cs" />
+    <Compile Include="Backends\ConnectorCa\Client\ApiException.cs" />
+    <Compile Include="Backends\ConnectorCa\Client\ApiResponse.cs" />
+    <Compile Include="Backends\ConnectorCa\Client\Configuration.cs" />
+    <Compile Include="Backends\ConnectorCa\Client\ExceptionFactory.cs" />
+    <Compile Include="Backends\ConnectorCa\Client\IApiAccessor.cs" />
+    <Compile Include="Backends\ConnectorCa\Model\Body.cs" />
+    <Compile Include="Backends\ConnectorCa\Model\InlineResponse200.cs" />
+    <Compile Include="Backends\ConnectorCa\Model\InlineResponse2001.cs" />
+    <Compile Include="Backends\ConnectorCa\Model\InlineResponse201.cs" />
+    <Compile Include="Backends\ConnectorFrontend\Api\ResourcesApi.cs" />
+    <Compile Include="Backends\ConnectorFrontend\Client\ApiClient.cs" />
+    <Compile Include="Backends\ConnectorFrontend\Client\ApiException.cs" />
+    <Compile Include="Backends\ConnectorFrontend\Client\ApiResponse.cs" />
+    <Compile Include="Backends\ConnectorFrontend\Client\Configuration.cs" />
+    <Compile Include="Backends\ConnectorFrontend\Client\ExceptionFactory.cs" />
+    <Compile Include="Backends\ConnectorFrontend\Client\IApiAccessor.cs" />
+    <Compile Include="Backends\DeploymentService\Client\ApiClient.cs" />
+    <Compile Include="Backends\DeploymentService\Client\ApiException.cs" />
+    <Compile Include="Backends\DeploymentService\Client\ApiResponse.cs" />
+    <Compile Include="Backends\DeploymentService\Client\Configuration.cs" />
+    <Compile Include="Backends\DeploymentService\Client\ExceptionFactory.cs" />
+    <Compile Include="Backends\DeploymentService\Client\IApiAccessor.cs" />
     <Compile Include="Backends\DeploymentService\Model\UpdateCampaignPage.cs" />
     <Compile Include="Backends\DeveloperCertificate\Api\DefaultApi.cs" />
     <Compile Include="Backends\DeveloperCertificate\Client\ApiClient.cs" />
@@ -68,20 +93,9 @@
     <Compile Include="Backends\DeviceCatalog\Model\DeviceUpdateDetail.cs" />
     <Compile Include="Backends\DeviceQueryService\Model\Body.cs" />
     <Compile Include="Backends\FirmwareCatalog\Model\FirmwareManifestSerializerData.cs" />
-    <Compile Include="Backends\Iam\Model\AccountCreationReq.cs" />
-    <Compile Include="Backends\Iam\Model\AccountCreationResp.cs" />
-    <Compile Include="Backends\Iam\Model\AccountInfoList.cs" />
-    <Compile Include="Backends\Iam\Model\AccountTemplateReq.cs" />
-    <Compile Include="Backends\Iam\Model\AccountTemplateResp.cs" />
-    <Compile Include="Backends\Iam\Model\AccountTemplateRespList.cs" />
-    <Compile Include="Backends\Iam\Model\Duration.cs" />
-    <Compile Include="Backends\Iam\Model\GroupCreationInfo.cs" />
-    <Compile Include="Backends\Iam\Model\LoggingLevel.cs" />
-    <Compile Include="Backends\Iam\Model\PasswordChangeReq.cs" />
-    <Compile Include="Backends\Iam\Model\RootAdminApiKeyUpdateReq.cs" />
-    <Compile Include="Backends\Iam\Model\RootAdminUpdateReq.cs" />
-    <Compile Include="Backends\Iam\Model\SubjectList.cs" />
-    <Compile Include="Backends\Iam\Model\UpdatedResponse.cs" />
+    <Compile Include="Backends\Iam\Model\TrustedCertificateReq.cs" />
+    <Compile Include="Backends\Iam\Model\TrustedCertificateResp.cs" />
+    <Compile Include="Backends\Iam\Model\TrustedCertificateRespList.cs" />
     <Compile Include="Backends\Iam\Model\UserUpdateReq.cs" />
     <Compile Include="Backends\Mds\Api\DefaultApi.cs" />
     <Compile Include="Backends\Mds\Api\EndpointsApi.cs" />
@@ -110,6 +124,20 @@
     <Compile Include="Backends\ProvisioningCertificate\Client\ApiResponse.cs" />
     <Compile Include="Backends\ProvisioningCertificate\Client\Configuration.cs" />
     <Compile Include="Backends\ProvisioningCertificate\Model\ProvisioningCertificate.cs" />
+    <Compile Include="Backends\Statistics\Api\AccountApi.cs" />
+    <Compile Include="Backends\Statistics\Api\AdminApi.cs" />
+    <Compile Include="Backends\Statistics\Api\StatisticsApi.cs" />
+    <Compile Include="Backends\Statistics\Client\ApiClient.cs" />
+    <Compile Include="Backends\Statistics\Client\ApiException.cs" />
+    <Compile Include="Backends\Statistics\Client\ApiResponse.cs" />
+    <Compile Include="Backends\Statistics\Client\Configuration.cs" />
+    <Compile Include="Backends\Statistics\Client\ExceptionFactory.cs" />
+    <Compile Include="Backends\Statistics\Client\IApiAccessor.cs" />
+    <Compile Include="Backends\Statistics\Model\Data.cs" />
+    <Compile Include="Backends\Statistics\Model\ErrorResponse.cs" />
+    <Compile Include="Backends\Statistics\Model\Field.cs" />
+    <Compile Include="Backends\Statistics\Model\FieldsArray.cs" />
+    <Compile Include="Backends\Statistics\Model\SuccessfulResponse.cs" />
     <Compile Include="Common\Query\DeviceQueryOptions.cs" />
     <Compile Include="Common\PaginatedResponse.cs" />
     <Compile Include="Common\Query\QueryAttribute.cs" />
@@ -121,12 +149,6 @@
     <Compile Include="Development\Model\DeveloperCertificate.cs" />
     <Compile Include="Devices\Api\DevicesApi.cs" />
     <Compile Include="Backends\DeploymentService\Api\DefaultApi.cs" />
-    <Compile Include="Backends\DeploymentService\Client\ApiClient.cs" />
-    <Compile Include="Backends\DeploymentService\Client\ApiException.cs" />
-    <Compile Include="Backends\DeploymentService\Client\ApiResponse.cs" />
-    <Compile Include="Backends\DeploymentService\Client\Configuration.cs" />
-    <Compile Include="Backends\DeploymentService\Client\ExceptionFactory.cs" />
-    <Compile Include="Backends\DeploymentService\Client\IApiAccessor.cs" />
     <Compile Include="Backends\DeploymentService\Model\CampaignDeviceMetadataSerializer.cs" />
     <Compile Include="Backends\DeploymentService\Model\UpdateCampaignSerializer.cs" />
     <Compile Include="Backends\DeploymentService\Model\UpdateCampaignStatusSerializer.cs" />
@@ -186,7 +208,6 @@
     <Compile Include="Devices\Model\Device\Device.cs" />
     <Compile Include="Devices\Model\Resource\Resource.cs" />
     <Compile Include="Exceptions\ValueException.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -229,13 +250,8 @@
     <Compile Include="Backends\Iam\Model\ApiKeyInfoResp.cs" />
     <Compile Include="Backends\Iam\Model\ApiKeyInfoRespList.cs" />
     <Compile Include="Backends\Iam\Model\ApiKeyUpdateReq.cs" />
-    <Compile Include="Backends\Iam\Model\CACertificateReq.cs" />
-    <Compile Include="Backends\Iam\Model\CACertificateResp.cs" />
-    <Compile Include="Backends\Iam\Model\CACertificateRespList.cs" />
     <Compile Include="Backends\Iam\Model\ErrorResponse.cs" />
     <Compile Include="Backends\Iam\Model\Field.cs" />
-    <Compile Include="Backends\Iam\Model\GroupSummary.cs" />
-    <Compile Include="Backends\Iam\Model\GroupSummaryList.cs" />
     <Compile Include="Backends\Iam\Model\PasswordRecoveryReq.cs" />
     <Compile Include="Backends\Iam\Model\PasswordResetReq.cs" />
     <Compile Include="Backends\Iam\Model\Policy.cs" />
@@ -257,6 +273,8 @@
     <Compile Include="Update\Model\FirmwareManifest\FirmwareManifest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Backends\ConnectorCa\README.md" />
+    <None Include="Backends\ConnectorFrontend\README.md" />
     <None Include="Backends\Mds\README.md" />
     <None Include="Backends\DeploymentService\README.md" />
     <None Include="Backends\DeveloperCertificate\README.md" />
@@ -264,8 +282,8 @@
     <None Include="Backends\DeviceQueryService\README.md" />
     <None Include="Backends\FactoryTool\.DS_Store" />
     <None Include="Backends\FactoryTool\README.md" />
-    <None Include="Backends\FactoryTool\Api\.DS_Store" />
     <None Include="Backends\ProvisioningCertificate\README.md" />
+    <None Include="Backends\Statistics\README.md" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
