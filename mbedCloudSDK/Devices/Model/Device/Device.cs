@@ -188,41 +188,41 @@ namespace mbedCloudSDK.Devices.Model.Device
         /// <param name="deviceDetail">DeviceDetal response object.</param>
         /// <param name="api">optional DevicesApi</param>
         /// <returns></returns>
-        public static Device Map(DeviceDetail deviceDetail, DevicesApi api = null)
+        public static Device Map(DeviceData deviceData, DevicesApi api = null)
         {
             var device = new Device(null, api);
-            device.BootstrappedTimestamp = deviceDetail.BootstrappedTimestamp;
-            device.UpdatedAt = deviceDetail.UpdatedAt;
-            device.CustomAttributes = deviceDetail.CustomAttributes;
-            device.DeviceClass = deviceDetail.DeviceClass;
-            device.Id = deviceDetail.Id;
-            device.Description = deviceDetail.Description;
-            device.AutoUpdate = deviceDetail.AutoUpdate;
-            if (deviceDetail.Mechanism != null)
+            device.BootstrappedTimestamp = deviceData.BootstrappedTimestamp;
+            device.UpdatedAt = deviceData.UpdatedAt;
+            device.CustomAttributes = deviceData.CustomAttributes;
+            device.DeviceClass = deviceData.DeviceClass;
+            device.Id = deviceData.Id;
+            device.Description = deviceData.Description;
+            device.AutoUpdate = deviceData.AutoUpdate;
+            if (deviceData.Mechanism != null)
             {
-                device.Mechanism = (Mechanism)Enum.Parse(typeof(Mechanism), deviceDetail.Mechanism.ToString());
+                device.Mechanism = (Mechanism)Enum.Parse(typeof(Mechanism), deviceData.Mechanism.ToString());
             }
-            if (deviceDetail.State != null)
+            if (deviceData.State != null)
             {
-                device.State = (State)Enum.Parse(typeof(State), deviceDetail.State.ToString());
+                device.State = (State)Enum.Parse(typeof(State), deviceData.State.ToString());
             }
-            device.Etag = deviceDetail.Etag;
-            device.ProvisionKey = deviceDetail.ProvisionKey;
-            device.SerialNumber = deviceDetail.SerialNumber;
-            device.VendorId = deviceDetail.VendorId;
-            device.AccountId = deviceDetail.AccountId;
-            if (deviceDetail.DeployedState != null)
+            device.Etag = deviceData.Etag;
+            device.ProvisionKey = deviceData.ProvisionKey;
+            device.SerialNumber = deviceData.SerialNumber;
+            device.VendorId = deviceData.VendorId;
+            device.AccountId = deviceData.AccountId;
+            if (deviceData.DeployedState != null)
             {
-                device.DeployedState = (DeployedState)Enum.Parse(typeof(DeployedState), deviceDetail.DeployedState.ToString());
+                device.DeployedState = (DeployedState)Enum.Parse(typeof(DeployedState), deviceData.DeployedState.ToString());
             }
-            device.TrustClass = deviceDetail.TrustClass;
-            device.Deployment = deviceDetail.Deployment;
-            device.MechanismUrl = deviceDetail.MechanismUrl;
-            device.TrustLevel = deviceDetail.TrustLevel;
-            device.DeviceId = deviceDetail.DeviceId;
-            device.Name = deviceDetail.Name;
-            device.CreatedAt = deviceDetail.CreatedAt;
-            device.Manifest = deviceDetail.Manifest;
+            device.TrustClass = deviceData.TrustClass;
+            device.Deployment = deviceData.Deployment;
+            device.MechanismUrl = deviceData.MechanismUrl;
+            device.TrustLevel = deviceData.TrustLevel;
+            device.DeviceId = deviceData.DeviceId;
+            device.Name = deviceData.Name;
+            device.CreatedAt = deviceData.CreatedAt;
+            device.Manifest = deviceData.Manifest;
             return device;
         }
 
