@@ -39,15 +39,15 @@ namespace iam.Model
         /// </summary>
         /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters. (required).</param>
         /// <param name="PhoneNumber">Phone number..</param>
-        /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted. (default to false).</param>
+        /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted..</param>
         /// <param name="Groups">A list of IDs of the groups this user belongs to..</param>
-        /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted. (default to false).</param>
+        /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted..</param>
         /// <param name="Id">ID of the user to be adopted, not used in create or invite cases. (required).</param>
         /// <param name="FullName">The full name of the user..</param>
         /// <param name="Address">Address..</param>
         /// <param name="Password">The password when creating a new user. It will will generated when not present in the request..</param>
         /// <param name="Email">The email address. (required).</param>
-        public UserInfoReq(string Username = default(string), string PhoneNumber = default(string), bool? IsMarketingAccepted = false, List<string> Groups = default(List<string>), bool? IsGtcAccepted = false, string Id = default(string), string FullName = default(string), string Address = default(string), string Password = default(string), string Email = default(string))
+        public UserInfoReq(string Username = default(string), string PhoneNumber = default(string), bool? IsMarketingAccepted = default(bool?), List<string> Groups = default(List<string>), bool? IsGtcAccepted = default(bool?), string Id = default(string), string FullName = default(string), string Address = default(string), string Password = default(string), string Email = default(string))
         {
             // to ensure "Username" is required (not null)
             if (Username == null)
@@ -77,25 +77,9 @@ namespace iam.Model
                 this.Email = Email;
             }
             this.PhoneNumber = PhoneNumber;
-            // use default value if no "IsMarketingAccepted" provided
-            if (IsMarketingAccepted == null)
-            {
-                this.IsMarketingAccepted = false;
-            }
-            else
-            {
-                this.IsMarketingAccepted = IsMarketingAccepted;
-            }
+            this.IsMarketingAccepted = IsMarketingAccepted;
             this.Groups = Groups;
-            // use default value if no "IsGtcAccepted" provided
-            if (IsGtcAccepted == null)
-            {
-                this.IsGtcAccepted = false;
-            }
-            else
-            {
-                this.IsGtcAccepted = IsGtcAccepted;
-            }
+            this.IsGtcAccepted = IsGtcAccepted;
             this.FullName = FullName;
             this.Address = Address;
             this.Password = Password;

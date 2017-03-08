@@ -97,9 +97,8 @@ namespace iam.Api
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
-        /// <param name="force">A flag indicating that the user is forced to be deleted. (optional)</param>
         /// <returns></returns>
-        void DeleteUser (string userId, string force = null);
+        void DeleteUser (string userId);
 
         /// <summary>
         /// Delete a user.
@@ -109,9 +108,8 @@ namespace iam.Api
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
-        /// <param name="force">A flag indicating that the user is forced to be deleted. (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DeleteUserWithHttpInfo (string userId, string force = null);
+        ApiResponse<Object> DeleteUserWithHttpInfo (string userId);
         /// <summary>
         /// Get all trusted certificates.
         /// </summary>
@@ -240,27 +238,6 @@ namespace iam.Api
         /// <returns>ApiResponse of TrustedCertificateResp</returns>
         ApiResponse<TrustedCertificateResp> UpdateCertificateWithHttpInfo (string certId, TrustedCertificateReq body);
         /// <summary>
-        /// Updates attributes of the account.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for updating the account.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">Details of the account to be updated.</param>
-        /// <returns>AccountInfo</returns>
-        AccountInfo UpdateMyAccount (AccountUpdateReq body);
-
-        /// <summary>
-        /// Updates attributes of the account.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for updating the account.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">Details of the account to be updated.</param>
-        /// <returns>ApiResponse of AccountInfo</returns>
-        ApiResponse<AccountInfo> UpdateMyAccountWithHttpInfo (AccountUpdateReq body);
-        /// <summary>
         /// Update user details.
         /// </summary>
         /// <remarks>
@@ -358,9 +335,8 @@ namespace iam.Api
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
-        /// <param name="force">A flag indicating that the user is forced to be deleted. (optional)</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteUserAsync (string userId, string force = null);
+        System.Threading.Tasks.Task DeleteUserAsync (string userId);
 
         /// <summary>
         /// Delete a user.
@@ -370,9 +346,8 @@ namespace iam.Api
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
-        /// <param name="force">A flag indicating that the user is forced to be deleted. (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteUserAsyncWithHttpInfo (string userId, string force = null);
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteUserAsyncWithHttpInfo (string userId);
         /// <summary>
         /// Get all trusted certificates.
         /// </summary>
@@ -500,27 +475,6 @@ namespace iam.Api
         /// <param name="body">A trusted certificate object with attributes.</param>
         /// <returns>Task of ApiResponse (TrustedCertificateResp)</returns>
         System.Threading.Tasks.Task<ApiResponse<TrustedCertificateResp>> UpdateCertificateAsyncWithHttpInfo (string certId, TrustedCertificateReq body);
-        /// <summary>
-        /// Updates attributes of the account.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for updating the account.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">Details of the account to be updated.</param>
-        /// <returns>Task of AccountInfo</returns>
-        System.Threading.Tasks.Task<AccountInfo> UpdateMyAccountAsync (AccountUpdateReq body);
-
-        /// <summary>
-        /// Updates attributes of the account.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for updating the account.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">Details of the account to be updated.</param>
-        /// <returns>Task of ApiResponse (AccountInfo)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccountInfo>> UpdateMyAccountAsyncWithHttpInfo (AccountUpdateReq body);
         /// <summary>
         /// Update user details.
         /// </summary>
@@ -1153,11 +1107,10 @@ namespace iam.Api
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
-        /// <param name="force">A flag indicating that the user is forced to be deleted. (optional)</param>
         /// <returns></returns>
-        public void DeleteUser (string userId, string force = null)
+        public void DeleteUser (string userId)
         {
-             DeleteUserWithHttpInfo(userId, force);
+             DeleteUserWithHttpInfo(userId);
         }
 
         /// <summary>
@@ -1165,9 +1118,8 @@ namespace iam.Api
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
-        /// <param name="force">A flag indicating that the user is forced to be deleted. (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> DeleteUserWithHttpInfo (string userId, string force = null)
+        public ApiResponse<Object> DeleteUserWithHttpInfo (string userId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
@@ -1198,7 +1150,6 @@ namespace iam.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (userId != null) localVarPathParams.Add("user-id", Configuration.ApiClient.ParameterToString(userId)); // path parameter
-            if (force != null) localVarQueryParams.Add("force", Configuration.ApiClient.ParameterToString(force)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1231,11 +1182,10 @@ namespace iam.Api
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
-        /// <param name="force">A flag indicating that the user is forced to be deleted. (optional)</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteUserAsync (string userId, string force = null)
+        public async System.Threading.Tasks.Task DeleteUserAsync (string userId)
         {
-             await DeleteUserAsyncWithHttpInfo(userId, force);
+             await DeleteUserAsyncWithHttpInfo(userId);
 
         }
 
@@ -1244,9 +1194,8 @@ namespace iam.Api
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
-        /// <param name="force">A flag indicating that the user is forced to be deleted. (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteUserAsyncWithHttpInfo (string userId, string force = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteUserAsyncWithHttpInfo (string userId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
@@ -1277,7 +1226,6 @@ namespace iam.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (userId != null) localVarPathParams.Add("user-id", Configuration.ApiClient.ParameterToString(userId)); // path parameter
-            if (force != null) localVarQueryParams.Add("force", Configuration.ApiClient.ParameterToString(force)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2137,174 +2085,6 @@ namespace iam.Api
             return new ApiResponse<TrustedCertificateResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (TrustedCertificateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateResp)));
-            
-        }
-
-        /// <summary>
-        /// Updates attributes of the account. An endpoint for updating the account.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">Details of the account to be updated.</param>
-        /// <returns>AccountInfo</returns>
-        public AccountInfo UpdateMyAccount (AccountUpdateReq body)
-        {
-             ApiResponse<AccountInfo> localVarResponse = UpdateMyAccountWithHttpInfo(body);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Updates attributes of the account. An endpoint for updating the account.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">Details of the account to be updated.</param>
-        /// <returns>ApiResponse of AccountInfo</returns>
-        public ApiResponse< AccountInfo > UpdateMyAccountWithHttpInfo (AccountUpdateReq body)
-        {
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->UpdateMyAccount");
-
-            var localVarPath = "/v3/accounts/me";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UpdateMyAccount", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<AccountInfo>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (AccountInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountInfo)));
-            
-        }
-
-        /// <summary>
-        /// Updates attributes of the account. An endpoint for updating the account.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">Details of the account to be updated.</param>
-        /// <returns>Task of AccountInfo</returns>
-        public async System.Threading.Tasks.Task<AccountInfo> UpdateMyAccountAsync (AccountUpdateReq body)
-        {
-             ApiResponse<AccountInfo> localVarResponse = await UpdateMyAccountAsyncWithHttpInfo(body);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Updates attributes of the account. An endpoint for updating the account.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">Details of the account to be updated.</param>
-        /// <returns>Task of ApiResponse (AccountInfo)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<AccountInfo>> UpdateMyAccountAsyncWithHttpInfo (AccountUpdateReq body)
-        {
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->UpdateMyAccount");
-
-            var localVarPath = "/v3/accounts/me";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UpdateMyAccount", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<AccountInfo>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (AccountInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountInfo)));
             
         }
 

@@ -128,13 +128,13 @@ namespace iam.Model
         /// Initializes a new instance of the <see cref="UserInfoRespList" /> class.
         /// </summary>
         /// <param name="After">The entity ID to fetch after the given one..</param>
-        /// <param name="HasMore">Flag indicating whether there is more results. (required) (default to false).</param>
+        /// <param name="HasMore">Flag indicating whether there is more results. (required).</param>
         /// <param name="TotalCount">The total number or records, if requested. It might be returned also for small lists. (required).</param>
         /// <param name="_Object">Entity name: always &#39;list&#39; (required).</param>
         /// <param name="Limit">The number of results to return, (range: 2-1000), or equals to &#x60;total_count&#x60; (required).</param>
         /// <param name="Data">A list of entities. (required).</param>
         /// <param name="Order">The order of the records to return. Available values: ASC, DESC; by default ASC..</param>
-        public UserInfoRespList(string After = default(string), bool? HasMore = false, int? TotalCount = default(int?), ObjectEnum? _Object = default(ObjectEnum?), int? Limit = default(int?), List<UserInfoResp> Data = default(List<UserInfoResp>), OrderEnum? Order = default(OrderEnum?))
+        public UserInfoRespList(string After = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), ObjectEnum? _Object = default(ObjectEnum?), int? Limit = default(int?), List<UserInfoResp> Data = default(List<UserInfoResp>), OrderEnum? Order = default(OrderEnum?))
         {
             // to ensure "HasMore" is required (not null)
             if (HasMore == null)
