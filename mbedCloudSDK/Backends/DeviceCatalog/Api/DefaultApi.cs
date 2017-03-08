@@ -31,8 +31,8 @@ namespace device_catalog.Api
         /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Object</returns>
-        Object DeviceCreate ();
+        /// <returns>DeviceData</returns>
+        DeviceData DeviceCreate ();
 
         /// <summary>
         /// 
@@ -41,8 +41,8 @@ namespace device_catalog.Api
         /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object</returns>
-        ApiResponse<Object> DeviceCreateWithHttpInfo ();
+        /// <returns>ApiResponse of DeviceData</returns>
+        ApiResponse<DeviceData> DeviceCreateWithHttpInfo ();
         /// <summary>
         /// 
         /// </summary>
@@ -267,8 +267,8 @@ namespace device_catalog.Api
         /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of Object</returns>
-        System.Threading.Tasks.Task<Object> DeviceCreateAsync ();
+        /// <returns>Task of DeviceData</returns>
+        System.Threading.Tasks.Task<DeviceData> DeviceCreateAsync ();
 
         /// <summary>
         /// 
@@ -277,8 +277,8 @@ namespace device_catalog.Api
         /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (Object)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeviceCreateAsyncWithHttpInfo ();
+        /// <returns>Task of ApiResponse (DeviceData)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceCreateAsyncWithHttpInfo ();
         /// <summary>
         /// 
         /// </summary>
@@ -610,10 +610,10 @@ namespace device_catalog.Api
         ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Object</returns>
-        public Object DeviceCreate ()
+        /// <returns>DeviceData</returns>
+        public DeviceData DeviceCreate ()
         {
-             ApiResponse<Object> localVarResponse = DeviceCreateWithHttpInfo();
+             ApiResponse<DeviceData> localVarResponse = DeviceCreateWithHttpInfo();
              return localVarResponse.Data;
         }
 
@@ -621,8 +621,8 @@ namespace device_catalog.Api
         ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object</returns>
-        public ApiResponse< Object > DeviceCreateWithHttpInfo ()
+        /// <returns>ApiResponse of DeviceData</returns>
+        public ApiResponse< DeviceData > DeviceCreateWithHttpInfo ()
         {
 
             var localVarPath = "/v3/devices/";
@@ -669,9 +669,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<DeviceData>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Object) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+                (DeviceData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceData)));
             
         }
 
@@ -679,10 +679,10 @@ namespace device_catalog.Api
         ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of Object</returns>
-        public async System.Threading.Tasks.Task<Object> DeviceCreateAsync ()
+        /// <returns>Task of DeviceData</returns>
+        public async System.Threading.Tasks.Task<DeviceData> DeviceCreateAsync ()
         {
-             ApiResponse<Object> localVarResponse = await DeviceCreateAsyncWithHttpInfo();
+             ApiResponse<DeviceData> localVarResponse = await DeviceCreateAsyncWithHttpInfo();
              return localVarResponse.Data;
 
         }
@@ -691,8 +691,8 @@ namespace device_catalog.Api
         ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (Object)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeviceCreateAsyncWithHttpInfo ()
+        /// <returns>Task of ApiResponse (DeviceData)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceCreateAsyncWithHttpInfo ()
         {
 
             var localVarPath = "/v3/devices/";
@@ -738,9 +738,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<DeviceData>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Object) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+                (DeviceData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceData)));
             
         }
 

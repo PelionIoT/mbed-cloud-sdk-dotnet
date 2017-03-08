@@ -78,7 +78,7 @@ namespace Example
 
             try
             {
-                Object result = apiInstance.DeviceCreate();
+                DeviceData result = apiInstance.DeviceCreate();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
