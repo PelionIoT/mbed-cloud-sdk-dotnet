@@ -132,7 +132,7 @@ namespace mbedCloudSDK.Devices.Model.Query
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static Query Map(DeviceQueryDetail data)
+        public static Query Map(DeviceQuery data)
         {
             Query filter = new Query();
             filter.CreatedAt = data.CreatedAt;

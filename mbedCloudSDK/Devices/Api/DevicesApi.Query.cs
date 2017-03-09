@@ -71,7 +71,7 @@ namespace mbedCloudSDK.Devices.Api
             try
             {
                 var resp = api.DeviceQueryList(options.Limit, options.Order, options.After, options.Include);
-                ResponsePage<Query> respDevices = new ResponsePage<Query>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
+                ResponsePage<Query> respDevices = new ResponsePage<Query>(resp.After, resp.HasMore, (int?)resp.Limit, resp.Order, (int?)resp.TotalCount);
                 foreach (var deviceQuery in resp.Data)
                 {
                     respDevices.Data.Add(Query.Map(deviceQuery));

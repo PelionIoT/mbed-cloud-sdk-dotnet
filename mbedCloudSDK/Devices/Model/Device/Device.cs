@@ -34,7 +34,7 @@ namespace mbedCloudSDK.Devices.Model.Device
         /// <summary>
         /// Gets or Sets BootstrappedTimestamp
         /// </summary>
-        public string BootstrappedTimestamp { get; set; }
+        public DateTime? BootstrappedTimestamp { get; set; }
 
         /// <summary>
         /// The time the object was updated
@@ -195,7 +195,7 @@ namespace mbedCloudSDK.Devices.Model.Device
             device.UpdatedAt = deviceData.UpdatedAt;
             device.CustomAttributes = deviceData.CustomAttributes;
             device.DeviceClass = deviceData.DeviceClass;
-            device.Id = deviceData.Id;
+            device.Id = deviceData.CaId;
             device.Description = deviceData.Description;
             device.AutoUpdate = deviceData.AutoUpdate;
             if (deviceData.Mechanism != null)
@@ -207,7 +207,7 @@ namespace mbedCloudSDK.Devices.Model.Device
                 device.State = (State)Enum.Parse(typeof(State), deviceData.State.ToString());
             }
             device.Etag = deviceData.Etag;
-            device.ProvisionKey = deviceData.ProvisionKey;
+            device.ProvisionKey = deviceData.DeviceKey;
             device.SerialNumber = deviceData.SerialNumber;
             device.VendorId = deviceData.VendorId;
             device.AccountId = deviceData.AccountId;

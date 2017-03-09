@@ -103,7 +103,7 @@ namespace mbedCloudSDK.Logging.Model
         /// </summary>
         /// <param name="deviceLogSerializer"></param>
         /// <returns></returns>
-        public static DeviceLog Map(DeviceLogSerializerData deviceLogSerializer)
+        public static DeviceLog Map(DeviceLogData deviceLogSerializer)
         {
             var deviceLog = new DeviceLog();
             deviceLog.Changes = deviceLogSerializer.Changes;

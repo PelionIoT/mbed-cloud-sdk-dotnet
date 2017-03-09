@@ -138,7 +138,7 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static UpdateCampaignStatus Map(UpdateCampaignStatusSerializer data)
+        public static UpdateCampaignStatus Map(UpdateCampaignStatus data)
         {
             UpdateCampaignStatus u = new UpdateCampaignStatus();
             u.Metadata = new List<UpdateCampaignDeviceMetada>();

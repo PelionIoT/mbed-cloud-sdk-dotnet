@@ -75,7 +75,7 @@ namespace mbedCloudSDK.Devices.Api
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             try
             {
-                var resp = api.DeviceList(options.Limit, options.Order, options.After, options.QueryString, options.Include);
+                var resp = api.DeviceList(options.Limit, options.Order, options.After, options.QueryString);
                 ResponsePage<Device> respDevices = new ResponsePage<Device>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
                 foreach (var device in resp.Data)
                 {
