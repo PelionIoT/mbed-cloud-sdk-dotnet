@@ -185,10 +185,8 @@
     <Compile Include="Common\Query\QueryAttribute.cs" />
     <Compile Include="Common\Query\QueryOperator.cs" />
     <Compile Include="Common\ResponsePage.cs" />
-    <Compile Include="Development\Api\DevelopmentApi.cs" />
     <Compile Include="Common\BaseApi.cs" />
     <Compile Include="Common\Config.cs" />
-    <Compile Include="Development\Model\DeveloperCertificate.cs" />
     <Compile Include="Devices\Api\DevicesApi.cs" />
     <Compile Include="Backends\DeveloperCertificate\Client\ExceptionFactory.cs" />
     <Compile Include="Backends\DeveloperCertificate\Client\IApiAccessor.cs" />
