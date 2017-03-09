@@ -25,29 +25,6 @@ namespace iam.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Add API keys to a group.
-        /// </summary>
-        /// <remarks>
-        /// Ann endpoint for adding API keys to groups.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group to be updated.</param>
-        /// <param name="body">A list of API keys to be added to the group.</param>
-        /// <returns>UpdatedResponse</returns>
-        UpdatedResponse AddApiKeysToGroup (string groupID, SubjectList body);
-
-        /// <summary>
-        /// Add API keys to a group.
-        /// </summary>
-        /// <remarks>
-        /// Ann endpoint for adding API keys to groups.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group to be updated.</param>
-        /// <param name="body">A list of API keys to be added to the group.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        ApiResponse<UpdatedResponse> AddApiKeysToGroupWithHttpInfo (string groupID, SubjectList body);
-        /// <summary>
         /// Change the password of the current user.
         /// </summary>
         /// <remarks>
@@ -68,6 +45,48 @@ namespace iam.Api
         /// <param name="body">Old and new password.</param>
         /// <returns>ApiResponse of UpdatedResponse</returns>
         ApiResponse<UpdatedResponse> ChangeMyPasswordWithHttpInfo (PasswordChangeReq body);
+        /// <summary>
+        /// Create a new API key.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for creating a new API key.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">The details of the API key to be created.</param>
+        /// <returns>ApiKeyInfoResp</returns>
+        ApiKeyInfoResp CreateApiKey (ApiKeyInfoReq body);
+
+        /// <summary>
+        /// Create a new API key.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for creating a new API key.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">The details of the API key to be created.</param>
+        /// <returns>ApiResponse of ApiKeyInfoResp</returns>
+        ApiResponse<ApiKeyInfoResp> CreateApiKeyWithHttpInfo (ApiKeyInfoReq body);
+        /// <summary>
+        /// Delete API key.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for deleting the API key.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">The ID of the API key to be deleted.</param>
+        /// <returns></returns>
+        void DeleteApiKey (string apiKey);
+
+        /// <summary>
+        /// Delete API key.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for deleting the API key.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">The ID of the API key to be deleted.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> DeleteApiKeyWithHttpInfo (string apiKey);
         /// <summary>
         /// Read account attributes.
         /// </summary>
@@ -113,82 +132,139 @@ namespace iam.Api
         /// <returns>ApiResponse of List&lt;string&gt;</returns>
         ApiResponse<List<string>> GetAliasesWithHttpInfo (string accountID);
         /// <summary>
-        /// Get all group information.
+        /// Get all API keys
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving all group information.
+        /// An endpoint for retrieving API keys in an array, optionally filtered by the owner.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>GroupSummaryList</returns>
-        GroupSummaryList GetAllGroups (int? limit = null, string after = null, string order = null, string include = null);
-
-        /// <summary>
-        /// Get all group information.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for retrieving all group information.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>ApiResponse of GroupSummaryList</returns>
-        ApiResponse<GroupSummaryList> GetAllGroupsWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null);
-        /// <summary>
-        /// Get the API keys of a group.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for listing the API keys of the group with details.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">A filter for the query, for example filter&#x3D;owner%3Duuid. (optional)</param>
+        /// <param name="owner">Owner name filter. (optional)</param>
+        /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>ApiKeyInfoRespList</returns>
-        ApiKeyInfoRespList GetApiKeysOfGroup (string groupID, int? limit = null, string after = null, string order = null, string include = null);
+        ApiKeyInfoRespList GetAllApiKeys (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string owner = null, string ownerEq = null);
 
         /// <summary>
-        /// Get the API keys of a group.
+        /// Get all API keys
         /// </summary>
         /// <remarks>
-        /// An endpoint for listing the API keys of the group with details.
+        /// An endpoint for retrieving API keys in an array, optionally filtered by the owner.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">A filter for the query, for example filter&#x3D;owner%3Duuid. (optional)</param>
+        /// <param name="owner">Owner name filter. (optional)</param>
+        /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>ApiResponse of ApiKeyInfoRespList</returns>
-        ApiResponse<ApiKeyInfoRespList> GetApiKeysOfGroupWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null);
+        ApiResponse<ApiKeyInfoRespList> GetAllApiKeysWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string owner = null, string ownerEq = null);
         /// <summary>
-        /// Get group information.
+        /// Get API key details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for getting general information about the group.
+        /// An endpoint for retrieving API key details.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID or name of the group to be retrieved.</param>
-        /// <returns>GroupSummary</returns>
-        GroupSummary GetGroupSummary (string groupID);
+        /// <param name="apiKey">The ID of the API key to be retrieved.</param>
+        /// <returns>ApiKeyInfoResp</returns>
+        ApiKeyInfoResp GetApiKey (string apiKey);
 
         /// <summary>
-        /// Get group information.
+        /// Get API key details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for getting general information about the group.
+        /// An endpoint for retrieving API key details.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID or name of the group to be retrieved.</param>
-        /// <returns>ApiResponse of GroupSummary</returns>
-        ApiResponse<GroupSummary> GetGroupSummaryWithHttpInfo (string groupID);
+        /// <param name="apiKey">The ID of the API key to be retrieved.</param>
+        /// <returns>ApiResponse of ApiKeyInfoResp</returns>
+        ApiResponse<ApiKeyInfoResp> GetApiKeyWithHttpInfo (string apiKey);
+        /// <summary>
+        /// Get aliases.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves the aliases of the account as an array.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;string&gt;</returns>
+        List<string> GetMyAccountAliases ();
+
+        /// <summary>
+        /// Get aliases.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves the aliases of the account as an array.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;string&gt;</returns>
+        ApiResponse<List<string>> GetMyAccountAliasesWithHttpInfo ();
+        /// <summary>
+        /// Read account attributes.
+        /// </summary>
+        /// <remarks>
+        /// Reads all account attributes as map.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name">A comma separated list of attribute names. (optional)</param>
+        /// <returns>Dictionary&lt;string, Object&gt;</returns>
+        Dictionary<string, Object> GetMyAccountAttributes (string name = null);
+
+        /// <summary>
+        /// Read account attributes.
+        /// </summary>
+        /// <remarks>
+        /// Reads all account attributes as map.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name">A comma separated list of attribute names. (optional)</param>
+        /// <returns>ApiResponse of Dictionary&lt;string, Object&gt;</returns>
+        ApiResponse<Dictionary<string, Object>> GetMyAccountAttributesWithHttpInfo (string name = null);
+        /// <summary>
+        /// Get account info.
+        /// </summary>
+        /// <remarks>
+        /// Returns detailed information about the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
+        /// <returns>AccountInfo</returns>
+        AccountInfo GetMyAccountInfo (string include = null);
+
+        /// <summary>
+        /// Get account info.
+        /// </summary>
+        /// <remarks>
+        /// Returns detailed information about the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
+        /// <returns>ApiResponse of AccountInfo</returns>
+        ApiResponse<AccountInfo> GetMyAccountInfoWithHttpInfo (string include = null);
+        /// <summary>
+        /// Get API key details.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving API key details.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiKeyInfoResp</returns>
+        ApiKeyInfoResp GetMyApiKey ();
+
+        /// <summary>
+        /// Get API key details.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving API key details.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ApiKeyInfoResp</returns>
+        ApiResponse<ApiKeyInfoResp> GetMyApiKeyWithHttpInfo ();
         /// <summary>
         /// Details of the current user.
         /// </summary>
@@ -209,28 +285,70 @@ namespace iam.Api
         /// <returns>ApiResponse of UserInfoResp</returns>
         ApiResponse<UserInfoResp> GetMyUserWithHttpInfo ();
         /// <summary>
-        /// Remove API keys from a group.
+        /// Reset secret key.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing API keys from groups.
+        /// An endpoint for resetting the secret key of the API key. The new secret key will visible in the response.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group whose API keys are removed.</param>
-        /// <param name="body">A list of API keys to be removed from the group.</param>
-        /// <returns>UpdatedResponse</returns>
-        UpdatedResponse RemoveApiKeysFromGroup (string groupID, SubjectList body);
+        /// <param name="apiKey">The ID of the API key to be reset.</param>
+        /// <returns>ApiKeyInfoResp</returns>
+        ApiKeyInfoResp ResetSecret (string apiKey);
 
         /// <summary>
-        /// Remove API keys from a group.
+        /// Reset secret key.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing API keys from groups.
+        /// An endpoint for resetting the secret key of the API key. The new secret key will visible in the response.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group whose API keys are removed.</param>
-        /// <param name="body">A list of API keys to be removed from the group.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        ApiResponse<UpdatedResponse> RemoveApiKeysFromGroupWithHttpInfo (string groupID, SubjectList body);
+        /// <param name="apiKey">The ID of the API key to be reset.</param>
+        /// <returns>ApiResponse of ApiKeyInfoResp</returns>
+        ApiResponse<ApiKeyInfoResp> ResetSecretWithHttpInfo (string apiKey);
+        /// <summary>
+        /// Update API key details.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating API key details.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">The ID of the API key to be updated.</param>
+        /// <param name="body">New API key attributes to be stored.</param>
+        /// <returns>ApiKeyInfoResp</returns>
+        ApiKeyInfoResp UpdateApiKey (string apiKey, ApiKeyUpdateReq body);
+
+        /// <summary>
+        /// Update API key details.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating API key details.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">The ID of the API key to be updated.</param>
+        /// <param name="body">New API key attributes to be stored.</param>
+        /// <returns>ApiResponse of ApiKeyInfoResp</returns>
+        ApiResponse<ApiKeyInfoResp> UpdateApiKeyWithHttpInfo (string apiKey, ApiKeyUpdateReq body);
+        /// <summary>
+        /// Update API key details.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating API key details.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">New API key attributes to be stored.</param>
+        /// <returns>ApiKeyInfoResp</returns>
+        ApiKeyInfoResp UpdateMyApiKey (ApiKeyUpdateReq body);
+
+        /// <summary>
+        /// Update API key details.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating API key details.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">New API key attributes to be stored.</param>
+        /// <returns>ApiResponse of ApiKeyInfoResp</returns>
+        ApiResponse<ApiKeyInfoResp> UpdateMyApiKeyWithHttpInfo (ApiKeyUpdateReq body);
         /// <summary>
         /// Update user details.
         /// </summary>
@@ -255,29 +373,6 @@ namespace iam.Api
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
-        /// Add API keys to a group.
-        /// </summary>
-        /// <remarks>
-        /// Ann endpoint for adding API keys to groups.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group to be updated.</param>
-        /// <param name="body">A list of API keys to be added to the group.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        System.Threading.Tasks.Task<UpdatedResponse> AddApiKeysToGroupAsync (string groupID, SubjectList body);
-
-        /// <summary>
-        /// Add API keys to a group.
-        /// </summary>
-        /// <remarks>
-        /// Ann endpoint for adding API keys to groups.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group to be updated.</param>
-        /// <param name="body">A list of API keys to be added to the group.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> AddApiKeysToGroupAsyncWithHttpInfo (string groupID, SubjectList body);
-        /// <summary>
         /// Change the password of the current user.
         /// </summary>
         /// <remarks>
@@ -298,6 +393,48 @@ namespace iam.Api
         /// <param name="body">Old and new password.</param>
         /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> ChangeMyPasswordAsyncWithHttpInfo (PasswordChangeReq body);
+        /// <summary>
+        /// Create a new API key.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for creating a new API key.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">The details of the API key to be created.</param>
+        /// <returns>Task of ApiKeyInfoResp</returns>
+        System.Threading.Tasks.Task<ApiKeyInfoResp> CreateApiKeyAsync (ApiKeyInfoReq body);
+
+        /// <summary>
+        /// Create a new API key.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for creating a new API key.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">The details of the API key to be created.</param>
+        /// <returns>Task of ApiResponse (ApiKeyInfoResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoResp>> CreateApiKeyAsyncWithHttpInfo (ApiKeyInfoReq body);
+        /// <summary>
+        /// Delete API key.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for deleting the API key.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">The ID of the API key to be deleted.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task DeleteApiKeyAsync (string apiKey);
+
+        /// <summary>
+        /// Delete API key.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for deleting the API key.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">The ID of the API key to be deleted.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteApiKeyAsyncWithHttpInfo (string apiKey);
         /// <summary>
         /// Read account attributes.
         /// </summary>
@@ -343,82 +480,139 @@ namespace iam.Api
         /// <returns>Task of ApiResponse (List&lt;string&gt;)</returns>
         System.Threading.Tasks.Task<ApiResponse<List<string>>> GetAliasesAsyncWithHttpInfo (string accountID);
         /// <summary>
-        /// Get all group information.
+        /// Get all API keys
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving all group information.
+        /// An endpoint for retrieving API keys in an array, optionally filtered by the owner.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of GroupSummaryList</returns>
-        System.Threading.Tasks.Task<GroupSummaryList> GetAllGroupsAsync (int? limit = null, string after = null, string order = null, string include = null);
-
-        /// <summary>
-        /// Get all group information.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for retrieving all group information.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of ApiResponse (GroupSummaryList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GroupSummaryList>> GetAllGroupsAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null);
-        /// <summary>
-        /// Get the API keys of a group.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for listing the API keys of the group with details.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">A filter for the query, for example filter&#x3D;owner%3Duuid. (optional)</param>
+        /// <param name="owner">Owner name filter. (optional)</param>
+        /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>Task of ApiKeyInfoRespList</returns>
-        System.Threading.Tasks.Task<ApiKeyInfoRespList> GetApiKeysOfGroupAsync (string groupID, int? limit = null, string after = null, string order = null, string include = null);
+        System.Threading.Tasks.Task<ApiKeyInfoRespList> GetAllApiKeysAsync (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string owner = null, string ownerEq = null);
 
         /// <summary>
-        /// Get the API keys of a group.
+        /// Get all API keys
         /// </summary>
         /// <remarks>
-        /// An endpoint for listing the API keys of the group with details.
+        /// An endpoint for retrieving API keys in an array, optionally filtered by the owner.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">A filter for the query, for example filter&#x3D;owner%3Duuid. (optional)</param>
+        /// <param name="owner">Owner name filter. (optional)</param>
+        /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>Task of ApiResponse (ApiKeyInfoRespList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoRespList>> GetApiKeysOfGroupAsyncWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null);
+        System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoRespList>> GetAllApiKeysAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string owner = null, string ownerEq = null);
         /// <summary>
-        /// Get group information.
+        /// Get API key details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for getting general information about the group.
+        /// An endpoint for retrieving API key details.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID or name of the group to be retrieved.</param>
-        /// <returns>Task of GroupSummary</returns>
-        System.Threading.Tasks.Task<GroupSummary> GetGroupSummaryAsync (string groupID);
+        /// <param name="apiKey">The ID of the API key to be retrieved.</param>
+        /// <returns>Task of ApiKeyInfoResp</returns>
+        System.Threading.Tasks.Task<ApiKeyInfoResp> GetApiKeyAsync (string apiKey);
 
         /// <summary>
-        /// Get group information.
+        /// Get API key details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for getting general information about the group.
+        /// An endpoint for retrieving API key details.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID or name of the group to be retrieved.</param>
-        /// <returns>Task of ApiResponse (GroupSummary)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GroupSummary>> GetGroupSummaryAsyncWithHttpInfo (string groupID);
+        /// <param name="apiKey">The ID of the API key to be retrieved.</param>
+        /// <returns>Task of ApiResponse (ApiKeyInfoResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoResp>> GetApiKeyAsyncWithHttpInfo (string apiKey);
+        /// <summary>
+        /// Get aliases.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves the aliases of the account as an array.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of List&lt;string&gt;</returns>
+        System.Threading.Tasks.Task<List<string>> GetMyAccountAliasesAsync ();
+
+        /// <summary>
+        /// Get aliases.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves the aliases of the account as an array.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (List&lt;string&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<string>>> GetMyAccountAliasesAsyncWithHttpInfo ();
+        /// <summary>
+        /// Read account attributes.
+        /// </summary>
+        /// <remarks>
+        /// Reads all account attributes as map.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name">A comma separated list of attribute names. (optional)</param>
+        /// <returns>Task of Dictionary&lt;string, Object&gt;</returns>
+        System.Threading.Tasks.Task<Dictionary<string, Object>> GetMyAccountAttributesAsync (string name = null);
+
+        /// <summary>
+        /// Read account attributes.
+        /// </summary>
+        /// <remarks>
+        /// Reads all account attributes as map.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name">A comma separated list of attribute names. (optional)</param>
+        /// <returns>Task of ApiResponse (Dictionary&lt;string, Object&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Dictionary<string, Object>>> GetMyAccountAttributesAsyncWithHttpInfo (string name = null);
+        /// <summary>
+        /// Get account info.
+        /// </summary>
+        /// <remarks>
+        /// Returns detailed information about the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
+        /// <returns>Task of AccountInfo</returns>
+        System.Threading.Tasks.Task<AccountInfo> GetMyAccountInfoAsync (string include = null);
+
+        /// <summary>
+        /// Get account info.
+        /// </summary>
+        /// <remarks>
+        /// Returns detailed information about the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
+        /// <returns>Task of ApiResponse (AccountInfo)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AccountInfo>> GetMyAccountInfoAsyncWithHttpInfo (string include = null);
+        /// <summary>
+        /// Get API key details.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving API key details.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiKeyInfoResp</returns>
+        System.Threading.Tasks.Task<ApiKeyInfoResp> GetMyApiKeyAsync ();
+
+        /// <summary>
+        /// Get API key details.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving API key details.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (ApiKeyInfoResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoResp>> GetMyApiKeyAsyncWithHttpInfo ();
         /// <summary>
         /// Details of the current user.
         /// </summary>
@@ -439,28 +633,70 @@ namespace iam.Api
         /// <returns>Task of ApiResponse (UserInfoResp)</returns>
         System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> GetMyUserAsyncWithHttpInfo ();
         /// <summary>
-        /// Remove API keys from a group.
+        /// Reset secret key.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing API keys from groups.
+        /// An endpoint for resetting the secret key of the API key. The new secret key will visible in the response.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group whose API keys are removed.</param>
-        /// <param name="body">A list of API keys to be removed from the group.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        System.Threading.Tasks.Task<UpdatedResponse> RemoveApiKeysFromGroupAsync (string groupID, SubjectList body);
+        /// <param name="apiKey">The ID of the API key to be reset.</param>
+        /// <returns>Task of ApiKeyInfoResp</returns>
+        System.Threading.Tasks.Task<ApiKeyInfoResp> ResetSecretAsync (string apiKey);
 
         /// <summary>
-        /// Remove API keys from a group.
+        /// Reset secret key.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing API keys from groups.
+        /// An endpoint for resetting the secret key of the API key. The new secret key will visible in the response.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group whose API keys are removed.</param>
-        /// <param name="body">A list of API keys to be removed from the group.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> RemoveApiKeysFromGroupAsyncWithHttpInfo (string groupID, SubjectList body);
+        /// <param name="apiKey">The ID of the API key to be reset.</param>
+        /// <returns>Task of ApiResponse (ApiKeyInfoResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoResp>> ResetSecretAsyncWithHttpInfo (string apiKey);
+        /// <summary>
+        /// Update API key details.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating API key details.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">The ID of the API key to be updated.</param>
+        /// <param name="body">New API key attributes to be stored.</param>
+        /// <returns>Task of ApiKeyInfoResp</returns>
+        System.Threading.Tasks.Task<ApiKeyInfoResp> UpdateApiKeyAsync (string apiKey, ApiKeyUpdateReq body);
+
+        /// <summary>
+        /// Update API key details.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating API key details.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">The ID of the API key to be updated.</param>
+        /// <param name="body">New API key attributes to be stored.</param>
+        /// <returns>Task of ApiResponse (ApiKeyInfoResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoResp>> UpdateApiKeyAsyncWithHttpInfo (string apiKey, ApiKeyUpdateReq body);
+        /// <summary>
+        /// Update API key details.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating API key details.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">New API key attributes to be stored.</param>
+        /// <returns>Task of ApiKeyInfoResp</returns>
+        System.Threading.Tasks.Task<ApiKeyInfoResp> UpdateMyApiKeyAsync (ApiKeyUpdateReq body);
+
+        /// <summary>
+        /// Update API key details.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating API key details.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">New API key attributes to be stored.</param>
+        /// <returns>Task of ApiResponse (ApiKeyInfoResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoResp>> UpdateMyApiKeyAsyncWithHttpInfo (ApiKeyUpdateReq body);
         /// <summary>
         /// Update user details.
         /// </summary>
@@ -592,186 +828,6 @@ namespace iam.Api
         public void AddDefaultHeader(string key, string value)
         {
             this.Configuration.AddDefaultHeader(key, value);
-        }
-
-        /// <summary>
-        /// Add API keys to a group. Ann endpoint for adding API keys to groups.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group to be updated.</param>
-        /// <param name="body">A list of API keys to be added to the group.</param>
-        /// <returns>UpdatedResponse</returns>
-        public UpdatedResponse AddApiKeysToGroup (string groupID, SubjectList body)
-        {
-             ApiResponse<UpdatedResponse> localVarResponse = AddApiKeysToGroupWithHttpInfo(groupID, body);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Add API keys to a group. Ann endpoint for adding API keys to groups.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group to be updated.</param>
-        /// <param name="body">A list of API keys to be added to the group.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        public ApiResponse< UpdatedResponse > AddApiKeysToGroupWithHttpInfo (string groupID, SubjectList body)
-        {
-            // verify the required parameter 'groupID' is set
-            if (groupID == null)
-                throw new ApiException(400, "Missing required parameter 'groupID' when calling DeveloperApi->AddApiKeysToGroup");
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->AddApiKeysToGroup");
-
-            var localVarPath = "/v3/policy-groups/{groupID}/api-keys";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (groupID != null) localVarPathParams.Add("groupID", Configuration.ApiClient.ParameterToString(groupID)); // path parameter
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("AddApiKeysToGroup", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
-            
-        }
-
-        /// <summary>
-        /// Add API keys to a group. Ann endpoint for adding API keys to groups.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group to be updated.</param>
-        /// <param name="body">A list of API keys to be added to the group.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        public async System.Threading.Tasks.Task<UpdatedResponse> AddApiKeysToGroupAsync (string groupID, SubjectList body)
-        {
-             ApiResponse<UpdatedResponse> localVarResponse = await AddApiKeysToGroupAsyncWithHttpInfo(groupID, body);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Add API keys to a group. Ann endpoint for adding API keys to groups.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group to be updated.</param>
-        /// <param name="body">A list of API keys to be added to the group.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> AddApiKeysToGroupAsyncWithHttpInfo (string groupID, SubjectList body)
-        {
-            // verify the required parameter 'groupID' is set
-            if (groupID == null)
-                throw new ApiException(400, "Missing required parameter 'groupID' when calling DeveloperApi->AddApiKeysToGroup");
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->AddApiKeysToGroup");
-
-            var localVarPath = "/v3/policy-groups/{groupID}/api-keys";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (groupID != null) localVarPathParams.Add("groupID", Configuration.ApiClient.ParameterToString(groupID)); // path parameter
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("AddApiKeysToGroup", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
-            
         }
 
         /// <summary>
@@ -940,6 +996,324 @@ namespace iam.Api
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
             
+        }
+
+        /// <summary>
+        /// Create a new API key. An endpoint for creating a new API key.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">The details of the API key to be created.</param>
+        /// <returns>ApiKeyInfoResp</returns>
+        public ApiKeyInfoResp CreateApiKey (ApiKeyInfoReq body)
+        {
+             ApiResponse<ApiKeyInfoResp> localVarResponse = CreateApiKeyWithHttpInfo(body);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a new API key. An endpoint for creating a new API key.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">The details of the API key to be created.</param>
+        /// <returns>ApiResponse of ApiKeyInfoResp</returns>
+        public ApiResponse< ApiKeyInfoResp > CreateApiKeyWithHttpInfo (ApiKeyInfoReq body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->CreateApiKey");
+
+            var localVarPath = "/v3/api-keys";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateApiKey", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
+            
+        }
+
+        /// <summary>
+        /// Create a new API key. An endpoint for creating a new API key.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">The details of the API key to be created.</param>
+        /// <returns>Task of ApiKeyInfoResp</returns>
+        public async System.Threading.Tasks.Task<ApiKeyInfoResp> CreateApiKeyAsync (ApiKeyInfoReq body)
+        {
+             ApiResponse<ApiKeyInfoResp> localVarResponse = await CreateApiKeyAsyncWithHttpInfo(body);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Create a new API key. An endpoint for creating a new API key.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">The details of the API key to be created.</param>
+        /// <returns>Task of ApiResponse (ApiKeyInfoResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoResp>> CreateApiKeyAsyncWithHttpInfo (ApiKeyInfoReq body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->CreateApiKey");
+
+            var localVarPath = "/v3/api-keys";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateApiKey", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
+            
+        }
+
+        /// <summary>
+        /// Delete API key. An endpoint for deleting the API key.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">The ID of the API key to be deleted.</param>
+        /// <returns></returns>
+        public void DeleteApiKey (string apiKey)
+        {
+             DeleteApiKeyWithHttpInfo(apiKey);
+        }
+
+        /// <summary>
+        /// Delete API key. An endpoint for deleting the API key.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">The ID of the API key to be deleted.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> DeleteApiKeyWithHttpInfo (string apiKey)
+        {
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling DeveloperApi->DeleteApiKey");
+
+            var localVarPath = "/v3/api-keys/{apiKey}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (apiKey != null) localVarPathParams.Add("apiKey", Configuration.ApiClient.ParameterToString(apiKey)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteApiKey", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Delete API key. An endpoint for deleting the API key.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">The ID of the API key to be deleted.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task DeleteApiKeyAsync (string apiKey)
+        {
+             await DeleteApiKeyAsyncWithHttpInfo(apiKey);
+
+        }
+
+        /// <summary>
+        /// Delete API key. An endpoint for deleting the API key.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">The ID of the API key to be deleted.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteApiKeyAsyncWithHttpInfo (string apiKey)
+        {
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling DeveloperApi->DeleteApiKey");
+
+            var localVarPath = "/v3/api-keys/{apiKey}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (apiKey != null) localVarPathParams.Add("apiKey", Configuration.ApiClient.ParameterToString(apiKey)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteApiKey", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
         }
 
         /// <summary>
@@ -1253,202 +1627,39 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get all group information. An endpoint for retrieving all group information.
+        /// Get all API keys An endpoint for retrieving API keys in an array, optionally filtered by the owner.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>GroupSummaryList</returns>
-        public GroupSummaryList GetAllGroups (int? limit = null, string after = null, string order = null, string include = null)
-        {
-             ApiResponse<GroupSummaryList> localVarResponse = GetAllGroupsWithHttpInfo(limit, after, order, include);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Get all group information. An endpoint for retrieving all group information.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>ApiResponse of GroupSummaryList</returns>
-        public ApiResponse< GroupSummaryList > GetAllGroupsWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null)
-        {
-
-            var localVarPath = "/v3/policy-groups";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
-            if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
-            if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
-            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetAllGroups", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<GroupSummaryList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (GroupSummaryList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GroupSummaryList)));
-            
-        }
-
-        /// <summary>
-        /// Get all group information. An endpoint for retrieving all group information.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of GroupSummaryList</returns>
-        public async System.Threading.Tasks.Task<GroupSummaryList> GetAllGroupsAsync (int? limit = null, string after = null, string order = null, string include = null)
-        {
-             ApiResponse<GroupSummaryList> localVarResponse = await GetAllGroupsAsyncWithHttpInfo(limit, after, order, include);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Get all group information. An endpoint for retrieving all group information.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of ApiResponse (GroupSummaryList)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GroupSummaryList>> GetAllGroupsAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null)
-        {
-
-            var localVarPath = "/v3/policy-groups";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
-            if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
-            if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
-            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetAllGroups", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<GroupSummaryList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (GroupSummaryList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GroupSummaryList)));
-            
-        }
-
-        /// <summary>
-        /// Get the API keys of a group. An endpoint for listing the API keys of the group with details.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">A filter for the query, for example filter&#x3D;owner%3Duuid. (optional)</param>
+        /// <param name="owner">Owner name filter. (optional)</param>
+        /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>ApiKeyInfoRespList</returns>
-        public ApiKeyInfoRespList GetApiKeysOfGroup (string groupID, int? limit = null, string after = null, string order = null, string include = null)
+        public ApiKeyInfoRespList GetAllApiKeys (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string owner = null, string ownerEq = null)
         {
-             ApiResponse<ApiKeyInfoRespList> localVarResponse = GetApiKeysOfGroupWithHttpInfo(groupID, limit, after, order, include);
+             ApiResponse<ApiKeyInfoRespList> localVarResponse = GetAllApiKeysWithHttpInfo(limit, after, order, include, filter, owner, ownerEq);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get the API keys of a group. An endpoint for listing the API keys of the group with details.
+        /// Get all API keys An endpoint for retrieving API keys in an array, optionally filtered by the owner.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">A filter for the query, for example filter&#x3D;owner%3Duuid. (optional)</param>
+        /// <param name="owner">Owner name filter. (optional)</param>
+        /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>ApiResponse of ApiKeyInfoRespList</returns>
-        public ApiResponse< ApiKeyInfoRespList > GetApiKeysOfGroupWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null)
+        public ApiResponse< ApiKeyInfoRespList > GetAllApiKeysWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string owner = null, string ownerEq = null)
         {
-            // verify the required parameter 'groupID' is set
-            if (groupID == null)
-                throw new ApiException(400, "Missing required parameter 'groupID' when calling DeveloperApi->GetApiKeysOfGroup");
 
-            var localVarPath = "/v3/policy-groups/{groupID}/api-keys";
+            var localVarPath = "/v3/api-keys";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1472,11 +1683,13 @@ namespace iam.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (groupID != null) localVarPathParams.Add("groupID", Configuration.ApiClient.ParameterToString(groupID)); // path parameter
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (owner != null) localVarQueryParams.Add("owner", Configuration.ApiClient.ParameterToString(owner)); // query parameter
+            if (ownerEq != null) localVarQueryParams.Add("owner__eq", Configuration.ApiClient.ParameterToString(ownerEq)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1494,7 +1707,7 @@ namespace iam.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetApiKeysOfGroup", localVarResponse);
+                Exception exception = ExceptionFactory("GetAllApiKeys", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1505,39 +1718,40 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get the API keys of a group. An endpoint for listing the API keys of the group with details.
+        /// Get all API keys An endpoint for retrieving API keys in an array, optionally filtered by the owner.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">A filter for the query, for example filter&#x3D;owner%3Duuid. (optional)</param>
+        /// <param name="owner">Owner name filter. (optional)</param>
+        /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>Task of ApiKeyInfoRespList</returns>
-        public async System.Threading.Tasks.Task<ApiKeyInfoRespList> GetApiKeysOfGroupAsync (string groupID, int? limit = null, string after = null, string order = null, string include = null)
+        public async System.Threading.Tasks.Task<ApiKeyInfoRespList> GetAllApiKeysAsync (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string owner = null, string ownerEq = null)
         {
-             ApiResponse<ApiKeyInfoRespList> localVarResponse = await GetApiKeysOfGroupAsyncWithHttpInfo(groupID, limit, after, order, include);
+             ApiResponse<ApiKeyInfoRespList> localVarResponse = await GetAllApiKeysAsyncWithHttpInfo(limit, after, order, include, filter, owner, ownerEq);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Get the API keys of a group. An endpoint for listing the API keys of the group with details.
+        /// Get all API keys An endpoint for retrieving API keys in an array, optionally filtered by the owner.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">A filter for the query, for example filter&#x3D;owner%3Duuid. (optional)</param>
+        /// <param name="owner">Owner name filter. (optional)</param>
+        /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>Task of ApiResponse (ApiKeyInfoRespList)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoRespList>> GetApiKeysOfGroupAsyncWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null)
+        public async System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoRespList>> GetAllApiKeysAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string owner = null, string ownerEq = null)
         {
-            // verify the required parameter 'groupID' is set
-            if (groupID == null)
-                throw new ApiException(400, "Missing required parameter 'groupID' when calling DeveloperApi->GetApiKeysOfGroup");
 
-            var localVarPath = "/v3/policy-groups/{groupID}/api-keys";
+            var localVarPath = "/v3/api-keys";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1561,11 +1775,13 @@ namespace iam.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (groupID != null) localVarPathParams.Add("groupID", Configuration.ApiClient.ParameterToString(groupID)); // path parameter
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (owner != null) localVarQueryParams.Add("owner", Configuration.ApiClient.ParameterToString(owner)); // query parameter
+            if (ownerEq != null) localVarQueryParams.Add("owner__eq", Configuration.ApiClient.ParameterToString(ownerEq)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1582,7 +1798,7 @@ namespace iam.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetApiKeysOfGroup", localVarResponse);
+                Exception exception = ExceptionFactory("GetAllApiKeys", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1593,30 +1809,30 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get group information. An endpoint for getting general information about the group.
+        /// Get API key details. An endpoint for retrieving API key details.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID or name of the group to be retrieved.</param>
-        /// <returns>GroupSummary</returns>
-        public GroupSummary GetGroupSummary (string groupID)
+        /// <param name="apiKey">The ID of the API key to be retrieved.</param>
+        /// <returns>ApiKeyInfoResp</returns>
+        public ApiKeyInfoResp GetApiKey (string apiKey)
         {
-             ApiResponse<GroupSummary> localVarResponse = GetGroupSummaryWithHttpInfo(groupID);
+             ApiResponse<ApiKeyInfoResp> localVarResponse = GetApiKeyWithHttpInfo(apiKey);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get group information. An endpoint for getting general information about the group.
+        /// Get API key details. An endpoint for retrieving API key details.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID or name of the group to be retrieved.</param>
-        /// <returns>ApiResponse of GroupSummary</returns>
-        public ApiResponse< GroupSummary > GetGroupSummaryWithHttpInfo (string groupID)
+        /// <param name="apiKey">The ID of the API key to be retrieved.</param>
+        /// <returns>ApiResponse of ApiKeyInfoResp</returns>
+        public ApiResponse< ApiKeyInfoResp > GetApiKeyWithHttpInfo (string apiKey)
         {
-            // verify the required parameter 'groupID' is set
-            if (groupID == null)
-                throw new ApiException(400, "Missing required parameter 'groupID' when calling DeveloperApi->GetGroupSummary");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling DeveloperApi->GetApiKey");
 
-            var localVarPath = "/v3/policy-groups/{groupID}";
+            var localVarPath = "/v3/api-keys/{apiKey}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1640,7 +1856,7 @@ namespace iam.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (groupID != null) localVarPathParams.Add("groupID", Configuration.ApiClient.ParameterToString(groupID)); // path parameter
+            if (apiKey != null) localVarPathParams.Add("apiKey", Configuration.ApiClient.ParameterToString(apiKey)); // path parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1658,42 +1874,42 @@ namespace iam.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetGroupSummary", localVarResponse);
+                Exception exception = ExceptionFactory("GetApiKey", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<GroupSummary>(localVarStatusCode,
+            return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (GroupSummary) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GroupSummary)));
+                (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
             
         }
 
         /// <summary>
-        /// Get group information. An endpoint for getting general information about the group.
+        /// Get API key details. An endpoint for retrieving API key details.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID or name of the group to be retrieved.</param>
-        /// <returns>Task of GroupSummary</returns>
-        public async System.Threading.Tasks.Task<GroupSummary> GetGroupSummaryAsync (string groupID)
+        /// <param name="apiKey">The ID of the API key to be retrieved.</param>
+        /// <returns>Task of ApiKeyInfoResp</returns>
+        public async System.Threading.Tasks.Task<ApiKeyInfoResp> GetApiKeyAsync (string apiKey)
         {
-             ApiResponse<GroupSummary> localVarResponse = await GetGroupSummaryAsyncWithHttpInfo(groupID);
+             ApiResponse<ApiKeyInfoResp> localVarResponse = await GetApiKeyAsyncWithHttpInfo(apiKey);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Get group information. An endpoint for getting general information about the group.
+        /// Get API key details. An endpoint for retrieving API key details.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID or name of the group to be retrieved.</param>
-        /// <returns>Task of ApiResponse (GroupSummary)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GroupSummary>> GetGroupSummaryAsyncWithHttpInfo (string groupID)
+        /// <param name="apiKey">The ID of the API key to be retrieved.</param>
+        /// <returns>Task of ApiResponse (ApiKeyInfoResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoResp>> GetApiKeyAsyncWithHttpInfo (string apiKey)
         {
-            // verify the required parameter 'groupID' is set
-            if (groupID == null)
-                throw new ApiException(400, "Missing required parameter 'groupID' when calling DeveloperApi->GetGroupSummary");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling DeveloperApi->GetApiKey");
 
-            var localVarPath = "/v3/policy-groups/{groupID}";
+            var localVarPath = "/v3/api-keys/{apiKey}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1717,7 +1933,7 @@ namespace iam.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (groupID != null) localVarPathParams.Add("groupID", Configuration.ApiClient.ParameterToString(groupID)); // path parameter
+            if (apiKey != null) localVarPathParams.Add("apiKey", Configuration.ApiClient.ParameterToString(apiKey)); // path parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1734,13 +1950,585 @@ namespace iam.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetGroupSummary", localVarResponse);
+                Exception exception = ExceptionFactory("GetApiKey", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<GroupSummary>(localVarStatusCode,
+            return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (GroupSummary) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GroupSummary)));
+                (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
+            
+        }
+
+        /// <summary>
+        /// Get aliases. Retrieves the aliases of the account as an array.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;string&gt;</returns>
+        public List<string> GetMyAccountAliases ()
+        {
+             ApiResponse<List<string>> localVarResponse = GetMyAccountAliasesWithHttpInfo();
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get aliases. Retrieves the aliases of the account as an array.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;string&gt;</returns>
+        public ApiResponse< List<string> > GetMyAccountAliasesWithHttpInfo ()
+        {
+
+            var localVarPath = "/v3/accounts/me/alias";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetMyAccountAliases", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<string>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<string>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<string>)));
+            
+        }
+
+        /// <summary>
+        /// Get aliases. Retrieves the aliases of the account as an array.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of List&lt;string&gt;</returns>
+        public async System.Threading.Tasks.Task<List<string>> GetMyAccountAliasesAsync ()
+        {
+             ApiResponse<List<string>> localVarResponse = await GetMyAccountAliasesAsyncWithHttpInfo();
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get aliases. Retrieves the aliases of the account as an array.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (List&lt;string&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<string>>> GetMyAccountAliasesAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/v3/accounts/me/alias";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetMyAccountAliases", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<string>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<string>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<string>)));
+            
+        }
+
+        /// <summary>
+        /// Read account attributes. Reads all account attributes as map.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name">A comma separated list of attribute names. (optional)</param>
+        /// <returns>Dictionary&lt;string, Object&gt;</returns>
+        public Dictionary<string, Object> GetMyAccountAttributes (string name = null)
+        {
+             ApiResponse<Dictionary<string, Object>> localVarResponse = GetMyAccountAttributesWithHttpInfo(name);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Read account attributes. Reads all account attributes as map.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name">A comma separated list of attribute names. (optional)</param>
+        /// <returns>ApiResponse of Dictionary&lt;string, Object&gt;</returns>
+        public ApiResponse< Dictionary<string, Object> > GetMyAccountAttributesWithHttpInfo (string name = null)
+        {
+
+            var localVarPath = "/v3/accounts/me/attributes";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetMyAccountAttributes", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Dictionary<string, Object>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Dictionary<string, Object>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Dictionary<string, Object>)));
+            
+        }
+
+        /// <summary>
+        /// Read account attributes. Reads all account attributes as map.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name">A comma separated list of attribute names. (optional)</param>
+        /// <returns>Task of Dictionary&lt;string, Object&gt;</returns>
+        public async System.Threading.Tasks.Task<Dictionary<string, Object>> GetMyAccountAttributesAsync (string name = null)
+        {
+             ApiResponse<Dictionary<string, Object>> localVarResponse = await GetMyAccountAttributesAsyncWithHttpInfo(name);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Read account attributes. Reads all account attributes as map.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name">A comma separated list of attribute names. (optional)</param>
+        /// <returns>Task of ApiResponse (Dictionary&lt;string, Object&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Dictionary<string, Object>>> GetMyAccountAttributesAsyncWithHttpInfo (string name = null)
+        {
+
+            var localVarPath = "/v3/accounts/me/attributes";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetMyAccountAttributes", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Dictionary<string, Object>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Dictionary<string, Object>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Dictionary<string, Object>)));
+            
+        }
+
+        /// <summary>
+        /// Get account info. Returns detailed information about the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
+        /// <returns>AccountInfo</returns>
+        public AccountInfo GetMyAccountInfo (string include = null)
+        {
+             ApiResponse<AccountInfo> localVarResponse = GetMyAccountInfoWithHttpInfo(include);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get account info. Returns detailed information about the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
+        /// <returns>ApiResponse of AccountInfo</returns>
+        public ApiResponse< AccountInfo > GetMyAccountInfoWithHttpInfo (string include = null)
+        {
+
+            var localVarPath = "/v3/accounts/me";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetMyAccountInfo", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<AccountInfo>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (AccountInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountInfo)));
+            
+        }
+
+        /// <summary>
+        /// Get account info. Returns detailed information about the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
+        /// <returns>Task of AccountInfo</returns>
+        public async System.Threading.Tasks.Task<AccountInfo> GetMyAccountInfoAsync (string include = null)
+        {
+             ApiResponse<AccountInfo> localVarResponse = await GetMyAccountInfoAsyncWithHttpInfo(include);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get account info. Returns detailed information about the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
+        /// <returns>Task of ApiResponse (AccountInfo)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<AccountInfo>> GetMyAccountInfoAsyncWithHttpInfo (string include = null)
+        {
+
+            var localVarPath = "/v3/accounts/me";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetMyAccountInfo", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<AccountInfo>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (AccountInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountInfo)));
+            
+        }
+
+        /// <summary>
+        /// Get API key details. An endpoint for retrieving API key details.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiKeyInfoResp</returns>
+        public ApiKeyInfoResp GetMyApiKey ()
+        {
+             ApiResponse<ApiKeyInfoResp> localVarResponse = GetMyApiKeyWithHttpInfo();
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get API key details. An endpoint for retrieving API key details.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ApiKeyInfoResp</returns>
+        public ApiResponse< ApiKeyInfoResp > GetMyApiKeyWithHttpInfo ()
+        {
+
+            var localVarPath = "/v3/api-keys/me";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetMyApiKey", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
+            
+        }
+
+        /// <summary>
+        /// Get API key details. An endpoint for retrieving API key details.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiKeyInfoResp</returns>
+        public async System.Threading.Tasks.Task<ApiKeyInfoResp> GetMyApiKeyAsync ()
+        {
+             ApiResponse<ApiKeyInfoResp> localVarResponse = await GetMyApiKeyAsyncWithHttpInfo();
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get API key details. An endpoint for retrieving API key details.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (ApiKeyInfoResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoResp>> GetMyApiKeyAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/v3/api-keys/me";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetMyApiKey", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
             
         }
 
@@ -1885,35 +2673,30 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Remove API keys from a group. An endpoint for removing API keys from groups.
+        /// Reset secret key. An endpoint for resetting the secret key of the API key. The new secret key will visible in the response.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group whose API keys are removed.</param>
-        /// <param name="body">A list of API keys to be removed from the group.</param>
-        /// <returns>UpdatedResponse</returns>
-        public UpdatedResponse RemoveApiKeysFromGroup (string groupID, SubjectList body)
+        /// <param name="apiKey">The ID of the API key to be reset.</param>
+        /// <returns>ApiKeyInfoResp</returns>
+        public ApiKeyInfoResp ResetSecret (string apiKey)
         {
-             ApiResponse<UpdatedResponse> localVarResponse = RemoveApiKeysFromGroupWithHttpInfo(groupID, body);
+             ApiResponse<ApiKeyInfoResp> localVarResponse = ResetSecretWithHttpInfo(apiKey);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Remove API keys from a group. An endpoint for removing API keys from groups.
+        /// Reset secret key. An endpoint for resetting the secret key of the API key. The new secret key will visible in the response.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group whose API keys are removed.</param>
-        /// <param name="body">A list of API keys to be removed from the group.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        public ApiResponse< UpdatedResponse > RemoveApiKeysFromGroupWithHttpInfo (string groupID, SubjectList body)
+        /// <param name="apiKey">The ID of the API key to be reset.</param>
+        /// <returns>ApiResponse of ApiKeyInfoResp</returns>
+        public ApiResponse< ApiKeyInfoResp > ResetSecretWithHttpInfo (string apiKey)
         {
-            // verify the required parameter 'groupID' is set
-            if (groupID == null)
-                throw new ApiException(400, "Missing required parameter 'groupID' when calling DeveloperApi->RemoveApiKeysFromGroup");
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->RemoveApiKeysFromGroup");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling DeveloperApi->ResetSecret");
 
-            var localVarPath = "/v3/policy-groups/{groupID}/api-keys";
+            var localVarPath = "/v3/api-keys/{apiKey}/reset-secret";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1923,7 +2706,6 @@ namespace iam.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
-                "application/json"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -1938,7 +2720,164 @@ namespace iam.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (groupID != null) localVarPathParams.Add("groupID", Configuration.ApiClient.ParameterToString(groupID)); // path parameter
+            if (apiKey != null) localVarPathParams.Add("apiKey", Configuration.ApiClient.ParameterToString(apiKey)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ResetSecret", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
+            
+        }
+
+        /// <summary>
+        /// Reset secret key. An endpoint for resetting the secret key of the API key. The new secret key will visible in the response.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">The ID of the API key to be reset.</param>
+        /// <returns>Task of ApiKeyInfoResp</returns>
+        public async System.Threading.Tasks.Task<ApiKeyInfoResp> ResetSecretAsync (string apiKey)
+        {
+             ApiResponse<ApiKeyInfoResp> localVarResponse = await ResetSecretAsyncWithHttpInfo(apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Reset secret key. An endpoint for resetting the secret key of the API key. The new secret key will visible in the response.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">The ID of the API key to be reset.</param>
+        /// <returns>Task of ApiResponse (ApiKeyInfoResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoResp>> ResetSecretAsyncWithHttpInfo (string apiKey)
+        {
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling DeveloperApi->ResetSecret");
+
+            var localVarPath = "/v3/api-keys/{apiKey}/reset-secret";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (apiKey != null) localVarPathParams.Add("apiKey", Configuration.ApiClient.ParameterToString(apiKey)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ResetSecret", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
+            
+        }
+
+        /// <summary>
+        /// Update API key details. An endpoint for updating API key details.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">The ID of the API key to be updated.</param>
+        /// <param name="body">New API key attributes to be stored.</param>
+        /// <returns>ApiKeyInfoResp</returns>
+        public ApiKeyInfoResp UpdateApiKey (string apiKey, ApiKeyUpdateReq body)
+        {
+             ApiResponse<ApiKeyInfoResp> localVarResponse = UpdateApiKeyWithHttpInfo(apiKey, body);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update API key details. An endpoint for updating API key details.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">The ID of the API key to be updated.</param>
+        /// <param name="body">New API key attributes to be stored.</param>
+        /// <returns>ApiResponse of ApiKeyInfoResp</returns>
+        public ApiResponse< ApiKeyInfoResp > UpdateApiKeyWithHttpInfo (string apiKey, ApiKeyUpdateReq body)
+        {
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling DeveloperApi->UpdateApiKey");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->UpdateApiKey");
+
+            var localVarPath = "/v3/api-keys/{apiKey}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (apiKey != null) localVarPathParams.Add("apiKey", Configuration.ApiClient.ParameterToString(apiKey)); // path parameter
             if (body != null && body.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
@@ -1957,54 +2896,54 @@ namespace iam.Api
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("RemoveApiKeysFromGroup", localVarResponse);
+                Exception exception = ExceptionFactory("UpdateApiKey", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+            return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+                (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
             
         }
 
         /// <summary>
-        /// Remove API keys from a group. An endpoint for removing API keys from groups.
+        /// Update API key details. An endpoint for updating API key details.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group whose API keys are removed.</param>
-        /// <param name="body">A list of API keys to be removed from the group.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        public async System.Threading.Tasks.Task<UpdatedResponse> RemoveApiKeysFromGroupAsync (string groupID, SubjectList body)
+        /// <param name="apiKey">The ID of the API key to be updated.</param>
+        /// <param name="body">New API key attributes to be stored.</param>
+        /// <returns>Task of ApiKeyInfoResp</returns>
+        public async System.Threading.Tasks.Task<ApiKeyInfoResp> UpdateApiKeyAsync (string apiKey, ApiKeyUpdateReq body)
         {
-             ApiResponse<UpdatedResponse> localVarResponse = await RemoveApiKeysFromGroupAsyncWithHttpInfo(groupID, body);
+             ApiResponse<ApiKeyInfoResp> localVarResponse = await UpdateApiKeyAsyncWithHttpInfo(apiKey, body);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Remove API keys from a group. An endpoint for removing API keys from groups.
+        /// Update API key details. An endpoint for updating API key details.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID of the group whose API keys are removed.</param>
-        /// <param name="body">A list of API keys to be removed from the group.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> RemoveApiKeysFromGroupAsyncWithHttpInfo (string groupID, SubjectList body)
+        /// <param name="apiKey">The ID of the API key to be updated.</param>
+        /// <param name="body">New API key attributes to be stored.</param>
+        /// <returns>Task of ApiResponse (ApiKeyInfoResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoResp>> UpdateApiKeyAsyncWithHttpInfo (string apiKey, ApiKeyUpdateReq body)
         {
-            // verify the required parameter 'groupID' is set
-            if (groupID == null)
-                throw new ApiException(400, "Missing required parameter 'groupID' when calling DeveloperApi->RemoveApiKeysFromGroup");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling DeveloperApi->UpdateApiKey");
             // verify the required parameter 'body' is set
             if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->RemoveApiKeysFromGroup");
+                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->UpdateApiKey");
 
-            var localVarPath = "/v3/policy-groups/{groupID}/api-keys";
+            var localVarPath = "/v3/api-keys/{apiKey}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2014,7 +2953,6 @@ namespace iam.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
-                "application/json"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -2029,7 +2967,7 @@ namespace iam.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (groupID != null) localVarPathParams.Add("groupID", Configuration.ApiClient.ParameterToString(groupID)); // path parameter
+            if (apiKey != null) localVarPathParams.Add("apiKey", Configuration.ApiClient.ParameterToString(apiKey)); // path parameter
             if (body != null && body.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
@@ -2047,20 +2985,186 @@ namespace iam.Api
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("RemoveApiKeysFromGroup", localVarResponse);
+                Exception exception = ExceptionFactory("UpdateApiKey", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+            return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+                (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
+            
+        }
+
+        /// <summary>
+        /// Update API key details. An endpoint for updating API key details.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">New API key attributes to be stored.</param>
+        /// <returns>ApiKeyInfoResp</returns>
+        public ApiKeyInfoResp UpdateMyApiKey (ApiKeyUpdateReq body)
+        {
+             ApiResponse<ApiKeyInfoResp> localVarResponse = UpdateMyApiKeyWithHttpInfo(body);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update API key details. An endpoint for updating API key details.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">New API key attributes to be stored.</param>
+        /// <returns>ApiResponse of ApiKeyInfoResp</returns>
+        public ApiResponse< ApiKeyInfoResp > UpdateMyApiKeyWithHttpInfo (ApiKeyUpdateReq body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->UpdateMyApiKey");
+
+            var localVarPath = "/v3/api-keys/me";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UpdateMyApiKey", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
+            
+        }
+
+        /// <summary>
+        /// Update API key details. An endpoint for updating API key details.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">New API key attributes to be stored.</param>
+        /// <returns>Task of ApiKeyInfoResp</returns>
+        public async System.Threading.Tasks.Task<ApiKeyInfoResp> UpdateMyApiKeyAsync (ApiKeyUpdateReq body)
+        {
+             ApiResponse<ApiKeyInfoResp> localVarResponse = await UpdateMyApiKeyAsyncWithHttpInfo(body);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Update API key details. An endpoint for updating API key details.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">New API key attributes to be stored.</param>
+        /// <returns>Task of ApiResponse (ApiKeyInfoResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoResp>> UpdateMyApiKeyAsyncWithHttpInfo (ApiKeyUpdateReq body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->UpdateMyApiKey");
+
+            var localVarPath = "/v3/api-keys/me";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UpdateMyApiKey", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
             
         }
 

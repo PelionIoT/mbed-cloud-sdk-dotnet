@@ -113,6 +113,7 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [Model.Body](docs/Body.md)
  - [Model.DeviceQuery](docs/DeviceQuery.md)
  - [Model.DeviceQueryPage](docs/DeviceQueryPage.md)
  - [Model.WriteDeviceQuery](docs/WriteDeviceQuery.md)

@@ -40,7 +40,7 @@ namespace device_query_service.Model
         /// <param name="_Object">_Object (required).</param>
         /// <param name="HasMore">HasMore (required).</param>
         /// <param name="TotalCount">TotalCount (required).</param>
-        /// <param name="After">After (required).</param>
+        /// <param name="After">After.</param>
         /// <param name="Limit">Limit (required).</param>
         /// <param name="Data">Data (required).</param>
         /// <param name="Order">Order (required).</param>
@@ -73,15 +73,6 @@ namespace device_query_service.Model
             {
                 this.TotalCount = TotalCount;
             }
-            // to ensure "After" is required (not null)
-            if (After == null)
-            {
-                throw new InvalidDataException("After is a required property for DeviceQueryPage and cannot be null");
-            }
-            else
-            {
-                this.After = After;
-            }
             // to ensure "Limit" is required (not null)
             if (Limit == null)
             {
@@ -109,6 +100,7 @@ namespace device_query_service.Model
             {
                 this.Order = Order;
             }
+            this.After = After;
         }
         
         /// <summary>

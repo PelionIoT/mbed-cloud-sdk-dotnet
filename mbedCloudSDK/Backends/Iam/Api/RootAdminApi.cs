@@ -246,6 +246,27 @@ namespace iam.Api
         /// <returns>ApiResponse of AccountInfoList</returns>
         ApiResponse<AccountInfoList> AdminGetAllAccountsWithHttpInfo (string status = null, string tier = null, string parent = null, string statusEq = null, string tierEq = null, string parentEq = null, string filterEq = null, string templateEq = null, int? limit = null, string after = null);
         /// <summary>
+        /// Details of a user.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving the details of a user.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">The ID or name of the user whose details are retrieved.</param>
+        /// <returns>UserInfoResp</returns>
+        UserInfoResp AdminGetUser (string userId);
+
+        /// <summary>
+        /// Details of a user.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving the details of a user.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">The ID or name of the user whose details are retrieved.</param>
+        /// <returns>ApiResponse of UserInfoResp</returns>
+        ApiResponse<UserInfoResp> AdminGetUserWithHttpInfo (string userId);
+        /// <summary>
         /// Update attributes of an existing account.
         /// </summary>
         /// <remarks>
@@ -1515,6 +1536,27 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <returns>Task of ApiResponse (AccountInfoList)</returns>
         System.Threading.Tasks.Task<ApiResponse<AccountInfoList>> AdminGetAllAccountsAsyncWithHttpInfo (string status = null, string tier = null, string parent = null, string statusEq = null, string tierEq = null, string parentEq = null, string filterEq = null, string templateEq = null, int? limit = null, string after = null);
+        /// <summary>
+        /// Details of a user.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving the details of a user.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">The ID or name of the user whose details are retrieved.</param>
+        /// <returns>Task of UserInfoResp</returns>
+        System.Threading.Tasks.Task<UserInfoResp> AdminGetUserAsync (string userId);
+
+        /// <summary>
+        /// Details of a user.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving the details of a user.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">The ID or name of the user whose details are retrieved.</param>
+        /// <returns>Task of ApiResponse (UserInfoResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> AdminGetUserAsyncWithHttpInfo (string userId);
         /// <summary>
         /// Update attributes of an existing account.
         /// </summary>
@@ -4247,6 +4289,158 @@ namespace iam.Api
             return new ApiResponse<AccountInfoList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AccountInfoList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountInfoList)));
+            
+        }
+
+        /// <summary>
+        /// Details of a user. An endpoint for retrieving the details of a user.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">The ID or name of the user whose details are retrieved.</param>
+        /// <returns>UserInfoResp</returns>
+        public UserInfoResp AdminGetUser (string userId)
+        {
+             ApiResponse<UserInfoResp> localVarResponse = AdminGetUserWithHttpInfo(userId);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Details of a user. An endpoint for retrieving the details of a user.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">The ID or name of the user whose details are retrieved.</param>
+        /// <returns>ApiResponse of UserInfoResp</returns>
+        public ApiResponse< UserInfoResp > AdminGetUserWithHttpInfo (string userId)
+        {
+            // verify the required parameter 'userId' is set
+            if (userId == null)
+                throw new ApiException(400, "Missing required parameter 'userId' when calling RootAdminApi->AdminGetUser");
+
+            var localVarPath = "/admin/v3/users/{user-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (userId != null) localVarPathParams.Add("user-id", Configuration.ApiClient.ParameterToString(userId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("AdminGetUser", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UserInfoResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoResp)));
+            
+        }
+
+        /// <summary>
+        /// Details of a user. An endpoint for retrieving the details of a user.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">The ID or name of the user whose details are retrieved.</param>
+        /// <returns>Task of UserInfoResp</returns>
+        public async System.Threading.Tasks.Task<UserInfoResp> AdminGetUserAsync (string userId)
+        {
+             ApiResponse<UserInfoResp> localVarResponse = await AdminGetUserAsyncWithHttpInfo(userId);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Details of a user. An endpoint for retrieving the details of a user.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">The ID or name of the user whose details are retrieved.</param>
+        /// <returns>Task of ApiResponse (UserInfoResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> AdminGetUserAsyncWithHttpInfo (string userId)
+        {
+            // verify the required parameter 'userId' is set
+            if (userId == null)
+                throw new ApiException(400, "Missing required parameter 'userId' when calling RootAdminApi->AdminGetUser");
+
+            var localVarPath = "/admin/v3/users/{user-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (userId != null) localVarPathParams.Add("user-id", Configuration.ApiClient.ParameterToString(userId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("AdminGetUser", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UserInfoResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoResp)));
             
         }
 
