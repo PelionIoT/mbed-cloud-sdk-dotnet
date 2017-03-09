@@ -71,7 +71,7 @@ namespace mbedCloudSDK.Update.Model.FirmwareImage
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static FirmwareImage Map(FirmwareImageSerializerData data)
+        public static FirmwareImage Map(FirmwareImage data)
         {
             FirmwareImage image = new FirmwareImage();
             image.CreatedAt = data.CreatedAt;

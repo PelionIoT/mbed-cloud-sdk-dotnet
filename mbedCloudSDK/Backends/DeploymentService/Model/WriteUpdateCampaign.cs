@@ -24,10 +24,10 @@ using System.ComponentModel.DataAnnotations;
 namespace deployment_service.Model
 {
     /// <summary>
-    /// WriteUpdateCampaignSerializer
+    /// WriteUpdateCampaign
     /// </summary>
     [DataContract]
-    public partial class WriteUpdateCampaignSerializer :  IEquatable<WriteUpdateCampaignSerializer>, IValidatableObject
+    public partial class WriteUpdateCampaign :  IEquatable<WriteUpdateCampaign>, IValidatableObject
     {
         /// <summary>
         /// The state of the campaign
@@ -105,12 +105,12 @@ namespace deployment_service.Model
         [DataMember(Name="state", EmitDefaultValue=false)]
         public StateEnum? State { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="WriteUpdateCampaignSerializer" /> class.
+        /// Initializes a new instance of the <see cref="WriteUpdateCampaign" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected WriteUpdateCampaignSerializer() { }
+        protected WriteUpdateCampaign() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="WriteUpdateCampaignSerializer" /> class.
+        /// Initializes a new instance of the <see cref="WriteUpdateCampaign" /> class.
         /// </summary>
         /// <param name="Name">A name for this campaign (required).</param>
         /// <param name="State">The state of the campaign.</param>
@@ -122,18 +122,27 @@ namespace deployment_service.Model
         /// <param name="When">The timestamp at which update campaign scheduled to start.</param>
         /// <param name="Finished">The timestamp when the update campaign finished.</param>
         /// <param name="UpdatingAccountId">The updating account ID.</param>
-        /// <param name="DeviceFilter">The filter for the devices the campaign will target.</param>
+        /// <param name="DeviceFilter">The filter for the devices the campaign will target (required).</param>
         /// <param name="Description">An optional description of the campaign.</param>
-        public WriteUpdateCampaignSerializer(string Name = default(string), StateEnum? State = default(StateEnum?), string UpdatingUserId = default(string), string _Object = default(string), string RootManifestId = default(string), string CampaignId = default(string), string UpdatingApiKey = default(string), DateTime? When = default(DateTime?), DateTime? Finished = default(DateTime?), string UpdatingAccountId = default(string), string DeviceFilter = default(string), string Description = default(string))
+        public WriteUpdateCampaign(string Name = default(string), StateEnum? State = default(StateEnum?), string UpdatingUserId = default(string), string _Object = default(string), string RootManifestId = default(string), string CampaignId = default(string), string UpdatingApiKey = default(string), DateTime? When = default(DateTime?), DateTime? Finished = default(DateTime?), string UpdatingAccountId = default(string), string DeviceFilter = default(string), string Description = default(string))
         {
             // to ensure "Name" is required (not null)
             if (Name == null)
             {
-                throw new InvalidDataException("Name is a required property for WriteUpdateCampaignSerializer and cannot be null");
+                throw new InvalidDataException("Name is a required property for WriteUpdateCampaign and cannot be null");
             }
             else
             {
                 this.Name = Name;
+            }
+            // to ensure "DeviceFilter" is required (not null)
+            if (DeviceFilter == null)
+            {
+                throw new InvalidDataException("DeviceFilter is a required property for WriteUpdateCampaign and cannot be null");
+            }
+            else
+            {
+                this.DeviceFilter = DeviceFilter;
             }
             this.State = State;
             this.UpdatingUserId = UpdatingUserId;
@@ -144,7 +153,6 @@ namespace deployment_service.Model
             this.When = When;
             this.Finished = Finished;
             this.UpdatingAccountId = UpdatingAccountId;
-            this.DeviceFilter = DeviceFilter;
             this.Description = Description;
         }
         
@@ -220,7 +228,7 @@ namespace deployment_service.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class WriteUpdateCampaignSerializer {\n");
+            sb.Append("class WriteUpdateCampaign {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  UpdatingUserId: ").Append(UpdatingUserId).Append("\n");
@@ -254,15 +262,15 @@ namespace deployment_service.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as WriteUpdateCampaignSerializer);
+            return this.Equals(obj as WriteUpdateCampaign);
         }
 
         /// <summary>
-        /// Returns true if WriteUpdateCampaignSerializer instances are equal
+        /// Returns true if WriteUpdateCampaign instances are equal
         /// </summary>
-        /// <param name="other">Instance of WriteUpdateCampaignSerializer to be compared</param>
+        /// <param name="other">Instance of WriteUpdateCampaign to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(WriteUpdateCampaignSerializer other)
+        public bool Equals(WriteUpdateCampaign other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)

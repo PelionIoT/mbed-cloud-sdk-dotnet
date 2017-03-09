@@ -75,15 +75,24 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
 
             var apiInstance = new DefaultApi();
+            var deviceFilter = deviceFilter_example;  // string | The filter for the devices the campaign will target
+            var name = name_example;  // string | A name for this campaign
+            var campaignId = campaignId_example;  // string | DEPRECATED: The ID of the campaign (optional) 
+            var description = description_example;  // string | An optional description of the campaign (optional) 
+            var finished = 2013-10-20T19:20:30+01:00;  // DateTime? | The timestamp when the update campaign finished (optional) 
+            var _object = _object_example;  // string | The API resource entity (optional) 
+            var rootManifestId = rootManifestId_example;  // string |  (optional) 
+            var state = state_example;  // string | The state of the campaign (optional) 
+            var when = 2013-10-20T19:20:30+01:00;  // DateTime? | The timestamp at which update campaign scheduled to start (optional) 
 
             try
             {
-                Object result = apiInstance.DeployInfoGET();
+                UpdateCampaign result = apiInstance.UpdateCampaignCreate(deviceFilter, name, campaignId, description, finished, _object, rootManifestId, state, when);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.DeployInfoGET: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.UpdateCampaignCreate: " + e.Message );
             }
         }
     }
@@ -97,25 +106,21 @@ All URIs are relative to *http://api.mbedcloud.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**DeployInfoGET**](docs/DefaultApi.md#deployinfoget) | **GET** /v3/ds_deploy_info | 
 *DefaultApi* | [**UpdateCampaignCreate**](docs/DefaultApi.md#updatecampaigncreate) | **POST** /v3/update-campaigns/ | 
 *DefaultApi* | [**UpdateCampaignDestroy**](docs/DefaultApi.md#updatecampaigndestroy) | **DELETE** /v3/update-campaigns/{campaign_id}/ | 
 *DefaultApi* | [**UpdateCampaignList**](docs/DefaultApi.md#updatecampaignlist) | **GET** /v3/update-campaigns/ | 
 *DefaultApi* | [**UpdateCampaignPartialUpdate**](docs/DefaultApi.md#updatecampaignpartialupdate) | **PATCH** /v3/update-campaigns/{campaign_id}/ | 
 *DefaultApi* | [**UpdateCampaignRetrieve**](docs/DefaultApi.md#updatecampaignretrieve) | **GET** /v3/update-campaigns/{campaign_id}/ | 
-*DefaultApi* | [**UpdateCampaignStatus**](docs/DefaultApi.md#updatecampaignstatus) | **GET** /v3/update-campaigns/{campaign_id}/status/ | 
 *DefaultApi* | [**UpdateCampaignUpdate**](docs/DefaultApi.md#updatecampaignupdate) | **PUT** /v3/update-campaigns/{campaign_id}/ | 
 
 
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
- - [Model.CampaignDeviceMetadataSerializer](docs/CampaignDeviceMetadataSerializer.md)
+ - [Model.UpdateCampaign](docs/UpdateCampaign.md)
  - [Model.UpdateCampaignPage](docs/UpdateCampaignPage.md)
- - [Model.UpdateCampaignSerializer](docs/UpdateCampaignSerializer.md)
- - [Model.UpdateCampaignStatusSerializer](docs/UpdateCampaignStatusSerializer.md)
- - [Model.WriteCampaignDeviceMetadataSerializer](docs/WriteCampaignDeviceMetadataSerializer.md)
- - [Model.WriteUpdateCampaignSerializer](docs/WriteUpdateCampaignSerializer.md)
+ - [Model.WriteUpdateCampaign](docs/WriteUpdateCampaign.md)
+ - [Model.WriteUpdateCampaignPage](docs/WriteUpdateCampaignPage.md)
 
 
 <a name="documentation-for-authorization"></a>

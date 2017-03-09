@@ -75,34 +75,10 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var mechanism = mechanism_example;  // string | The ID of the channel used to communicate with the device
-            var provisionKey = provisionKey_example;  // string | The key used to provision the device
-            var accountId = accountId_example;  // string | The owning IAM account ID (optional) 
-            var autoUpdate = true;  // bool? | Mark this device for auto firmware update (optional) 
-            var bootstrappedTimestamp = bootstrappedTimestamp_example;  // string |  (optional) 
-            var createdAt = 2013-10-20T19:20:30+01:00;  // DateTime? |  (optional) 
-            var customAttributes = new Dictionary<string, string>(); // Dictionary<string, string> | Up to 5 custom JSON attributes (optional) 
-            var deployedState = deployedState_example;  // string | The state of the device's deployment (optional) 
-            var deployment = deployment_example;  // string | The last deployment used on the device (optional) 
-            var description = description_example;  // string | The description of the object (optional) 
-            var deviceClass = deviceClass_example;  // string |  (optional) 
-            var deviceId = deviceId_example;  // string | DEPRECATED: The ID of the device (optional) 
-            var etag = 2013-10-20T19:20:30+01:00;  // DateTime? | The entity instance signature (optional) 
-            var id = id_example;  // string | The ID of the device (optional) 
-            var manifest = manifest_example;  // string | URL for the current device manifest (optional) 
-            var mechanismUrl = mechanismUrl_example;  // string | The address of the connector to use (optional) 
-            var name = name_example;  // string | The name of the object (optional) 
-            var _object = _object_example;  // string | The API resource entity (optional) 
-            var serialNumber = serialNumber_example;  // string | The serial number of the device (optional) 
-            var state = state_example;  // string | The current state of the device (optional) 
-            var trustClass = 789;  // long? | The device trust class (optional) 
-            var trustLevel = 789;  // long? | The device trust level (optional) 
-            var updatedAt = 2013-10-20T19:20:30+01:00;  // DateTime? | The time the object was updated (optional) 
-            var vendorId = vendorId_example;  // string | The device vendor ID (optional) 
 
             try
             {
-                DeviceDetail result = apiInstance.DeviceCreate(mechanism, provisionKey, accountId, autoUpdate, bootstrappedTimestamp, createdAt, customAttributes, deployedState, deployment, description, deviceClass, deviceId, etag, id, manifest, mechanismUrl, name, _object, serialNumber, state, trustClass, trustLevel, updatedAt, vendorId);
+                DeviceData result = apiInstance.DeviceCreate();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -134,11 +110,12 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
- - [Model.DeviceDetail](docs/DeviceDetail.md)
- - [Model.DeviceListResp](docs/DeviceListResp.md)
- - [Model.DeviceLogSerializer](docs/DeviceLogSerializer.md)
- - [Model.DeviceLogSerializerData](docs/DeviceLogSerializerData.md)
- - [Model.DeviceUpdateDetail](docs/DeviceUpdateDetail.md)
+ - [Model.DeviceData](docs/DeviceData.md)
+ - [Model.DeviceLogData](docs/DeviceLogData.md)
+ - [Model.DeviceLogPage](docs/DeviceLogPage.md)
+ - [Model.DevicePage](docs/DevicePage.md)
+ - [Model.DeviceSerializer](docs/DeviceSerializer.md)
+ - [Model.WriteDeviceSerializer](docs/WriteDeviceSerializer.md)
 
 
 <a name="documentation-for-authorization"></a>

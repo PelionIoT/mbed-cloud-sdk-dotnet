@@ -83,7 +83,7 @@ namespace Example
 
             try
             {
-                DeviceQueryDetail result = apiInstance.DeviceQueryCreate(name, query, description, _object, queryId);
+                DeviceQuery result = apiInstance.DeviceQueryCreate(name, query, description, _object, queryId);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -114,8 +114,10 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [Model.Body](docs/Body.md)
- - [Model.DeviceQueryDetail](docs/DeviceQueryDetail.md)
- - [Model.DeviceQueryResp](docs/DeviceQueryResp.md)
+ - [Model.DeviceQuery](docs/DeviceQuery.md)
+ - [Model.DeviceQueryPage](docs/DeviceQueryPage.md)
+ - [Model.WriteDeviceQuery](docs/WriteDeviceQuery.md)
+ - [Model.WriteDeviceQueryPage](docs/WriteDeviceQueryPage.md)
 
 
 <a name="documentation-for-authorization"></a>

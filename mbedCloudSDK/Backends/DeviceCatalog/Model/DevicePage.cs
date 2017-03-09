@@ -24,22 +24,22 @@ using System.ComponentModel.DataAnnotations;
 namespace device_catalog.Model
 {
     /// <summary>
-    /// DeviceListResp
+    /// DevicePage
     /// </summary>
     [DataContract]
-    public partial class DeviceListResp :  IEquatable<DeviceListResp>, IValidatableObject
+    public partial class DevicePage :  IEquatable<DevicePage>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceListResp" /> class.
+        /// Initializes a new instance of the <see cref="DevicePage" /> class.
         /// </summary>
-        /// <param name="_Object">API Resource name.</param>
-        /// <param name="HasMore">Whether there are more results to display.</param>
-        /// <param name="TotalCount">Total number of records.</param>
-        /// <param name="After">Entity id for fetch after it.</param>
-        /// <param name="Limit">The number of results to return.</param>
+        /// <param name="_Object">_Object.</param>
+        /// <param name="HasMore">HasMore.</param>
+        /// <param name="TotalCount">TotalCount.</param>
+        /// <param name="After">After.</param>
+        /// <param name="Limit">Limit.</param>
         /// <param name="Data">Data.</param>
-        /// <param name="Order">Order of returned records.</param>
-        public DeviceListResp(string _Object = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), string After = default(string), int? Limit = default(int?), List<DeviceDetail> Data = default(List<DeviceDetail>), string Order = default(string))
+        /// <param name="Order">Order.</param>
+        public DevicePage(string _Object = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), string After = default(string), int? Limit = default(int?), List<DeviceData> Data = default(List<DeviceData>), string Order = default(string))
         {
             this._Object = _Object;
             this.HasMore = HasMore;
@@ -51,44 +51,38 @@ namespace device_catalog.Model
         }
         
         /// <summary>
-        /// API Resource name
+        /// Gets or Sets _Object
         /// </summary>
-        /// <value>API Resource name</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
         /// <summary>
-        /// Whether there are more results to display
+        /// Gets or Sets HasMore
         /// </summary>
-        /// <value>Whether there are more results to display</value>
         [DataMember(Name="has_more", EmitDefaultValue=false)]
         public bool? HasMore { get; set; }
         /// <summary>
-        /// Total number of records
+        /// Gets or Sets TotalCount
         /// </summary>
-        /// <value>Total number of records</value>
         [DataMember(Name="total_count", EmitDefaultValue=false)]
         public int? TotalCount { get; set; }
         /// <summary>
-        /// Entity id for fetch after it
+        /// Gets or Sets After
         /// </summary>
-        /// <value>Entity id for fetch after it</value>
         [DataMember(Name="after", EmitDefaultValue=false)]
         public string After { get; set; }
         /// <summary>
-        /// The number of results to return
+        /// Gets or Sets Limit
         /// </summary>
-        /// <value>The number of results to return</value>
         [DataMember(Name="limit", EmitDefaultValue=false)]
         public int? Limit { get; set; }
         /// <summary>
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name="data", EmitDefaultValue=false)]
-        public List<DeviceDetail> Data { get; set; }
+        public List<DeviceData> Data { get; set; }
         /// <summary>
-        /// Order of returned records
+        /// Gets or Sets Order
         /// </summary>
-        /// <value>Order of returned records</value>
         [DataMember(Name="order", EmitDefaultValue=false)]
         public string Order { get; set; }
         /// <summary>
@@ -98,7 +92,7 @@ namespace device_catalog.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class DeviceListResp {\n");
+            sb.Append("class DevicePage {\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  HasMore: ").Append(HasMore).Append("\n");
             sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
@@ -127,15 +121,15 @@ namespace device_catalog.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as DeviceListResp);
+            return this.Equals(obj as DevicePage);
         }
 
         /// <summary>
-        /// Returns true if DeviceListResp instances are equal
+        /// Returns true if DevicePage instances are equal
         /// </summary>
-        /// <param name="other">Instance of DeviceListResp to be compared</param>
+        /// <param name="other">Instance of DevicePage to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DeviceListResp other)
+        public bool Equals(DevicePage other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)

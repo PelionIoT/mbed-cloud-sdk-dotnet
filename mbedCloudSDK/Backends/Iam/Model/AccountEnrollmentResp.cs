@@ -147,16 +147,16 @@ namespace iam.Model
         /// </summary>
         /// <param name="Status">The status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately. (required).</param>
         /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters. (required).</param>
-        /// <param name="EmailVerified">A flag indicating whether the user&#39;s email address has been verified or not. (default to false).</param>
+        /// <param name="EmailVerified">A flag indicating whether the user&#39;s email address has been verified or not..</param>
         /// <param name="AccountId">The UUID of the account. (required).</param>
         /// <param name="PasswordChangedTime">A timestamp of the latest change of the user password, in milliseconds..</param>
         /// <param name="Aliases">An array of aliases. (required).</param>
         /// <param name="Groups">A list of IDs of the groups this user belongs to..</param>
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
         /// <param name="_Object">Entity name: always &#39;user&#39; (required).</param>
-        /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted. (default to false).</param>
+        /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted..</param>
         /// <param name="Email">The email address. (required).</param>
-        /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted. (default to false).</param>
+        /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted..</param>
         /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="FullName">The full name of the user..</param>
         /// <param name="Address">Address..</param>
@@ -166,7 +166,7 @@ namespace iam.Model
         /// <param name="PhoneNumber">Phone number..</param>
         /// <param name="Id">The UUID of the user. (required).</param>
         /// <param name="LastLoginTime">A timestamp of the latest login of the user, in milliseconds..</param>
-        public AccountEnrollmentResp(StatusEnum? Status = default(StatusEnum?), string Username = default(string), bool? EmailVerified = false, string AccountId = default(string), long? PasswordChangedTime = default(long?), List<string> Aliases = default(List<string>), List<string> Groups = default(List<string>), string CreatedAt = default(string), ObjectEnum? _Object = default(ObjectEnum?), bool? IsGtcAccepted = false, string Email = default(string), bool? IsMarketingAccepted = false, string Etag = default(string), string FullName = default(string), string Address = default(string), long? CreationTimeMillis = default(long?), long? CreationTime = default(long?), string Password = default(string), string PhoneNumber = default(string), string Id = default(string), long? LastLoginTime = default(long?))
+        public AccountEnrollmentResp(StatusEnum? Status = default(StatusEnum?), string Username = default(string), bool? EmailVerified = default(bool?), string AccountId = default(string), long? PasswordChangedTime = default(long?), List<string> Aliases = default(List<string>), List<string> Groups = default(List<string>), string CreatedAt = default(string), ObjectEnum? _Object = default(ObjectEnum?), bool? IsGtcAccepted = default(bool?), string Email = default(string), bool? IsMarketingAccepted = default(bool?), string Etag = default(string), string FullName = default(string), string Address = default(string), long? CreationTimeMillis = default(long?), long? CreationTime = default(long?), string Password = default(string), string PhoneNumber = default(string), string Id = default(string), long? LastLoginTime = default(long?))
         {
             // to ensure "Status" is required (not null)
             if (Status == null)
@@ -240,36 +240,12 @@ namespace iam.Model
             {
                 this.Id = Id;
             }
-            // use default value if no "EmailVerified" provided
-            if (EmailVerified == null)
-            {
-                this.EmailVerified = false;
-            }
-            else
-            {
-                this.EmailVerified = EmailVerified;
-            }
+            this.EmailVerified = EmailVerified;
             this.PasswordChangedTime = PasswordChangedTime;
             this.Groups = Groups;
             this.CreatedAt = CreatedAt;
-            // use default value if no "IsGtcAccepted" provided
-            if (IsGtcAccepted == null)
-            {
-                this.IsGtcAccepted = false;
-            }
-            else
-            {
-                this.IsGtcAccepted = IsGtcAccepted;
-            }
-            // use default value if no "IsMarketingAccepted" provided
-            if (IsMarketingAccepted == null)
-            {
-                this.IsMarketingAccepted = false;
-            }
-            else
-            {
-                this.IsMarketingAccepted = IsMarketingAccepted;
-            }
+            this.IsGtcAccepted = IsGtcAccepted;
+            this.IsMarketingAccepted = IsMarketingAccepted;
             this.FullName = FullName;
             this.Address = Address;
             this.CreationTimeMillis = CreationTimeMillis;

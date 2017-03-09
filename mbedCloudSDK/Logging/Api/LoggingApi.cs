@@ -66,7 +66,7 @@ namespace mbedCloudSDK.Logging.Api
             }
             try
             {
-                var resp = deviceCatalogApi.DeviceLogList(options.Limit, options.Order, options.After, options.QueryString, options.Include);
+                var resp = deviceCatalogApi.DeviceLogList(options.Limit, options.Order, options.After, options.QueryString);
                 ResponsePage<DeviceLog> respDeviceLogs = new ResponsePage<DeviceLog>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
                 foreach (var deviceLog in resp.Data)
                 {

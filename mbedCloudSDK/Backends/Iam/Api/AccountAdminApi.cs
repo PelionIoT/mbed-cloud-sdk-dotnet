@@ -25,6 +25,29 @@ namespace iam.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Add an alias.
+        /// </summary>
+        /// <remarks>
+        /// Adds an alias to the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="alias">The account alias to be added.</param>
+        /// <returns>UpdatedResponse</returns>
+        UpdatedResponse AddAlias (string accountID, string alias);
+
+        /// <summary>
+        /// Add an alias.
+        /// </summary>
+        /// <remarks>
+        /// Adds an alias to the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="alias">The account alias to be added.</param>
+        /// <returns>ApiResponse of UpdatedResponse</returns>
+        ApiResponse<UpdatedResponse> AddAliasWithHttpInfo (string accountID, string alias);
+        /// <summary>
         /// Upload a new trusted certificate.
         /// </summary>
         /// <remarks>
@@ -45,6 +68,27 @@ namespace iam.Api
         /// <param name="body">A trusted certificate object with attributes.</param>
         /// <returns>ApiResponse of TrustedCertificateResp</returns>
         ApiResponse<TrustedCertificateResp> AddCertificateWithHttpInfo (TrustedCertificateReq body);
+        /// <summary>
+        /// Add an alias.
+        /// </summary>
+        /// <remarks>
+        /// Adds an alias to the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="alias"></param>
+        /// <returns>UpdatedResponse</returns>
+        UpdatedResponse AddMyAccountAlias (string alias);
+
+        /// <summary>
+        /// Add an alias.
+        /// </summary>
+        /// <remarks>
+        /// Adds an alias to the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="alias"></param>
+        /// <returns>ApiResponse of UpdatedResponse</returns>
+        ApiResponse<UpdatedResponse> AddMyAccountAliasWithHttpInfo (string alias);
         /// <summary>
         /// Create a new user.
         /// </summary>
@@ -97,9 +141,8 @@ namespace iam.Api
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
-        /// <param name="force">A flag indicating that the user is forced to be deleted. (optional)</param>
         /// <returns></returns>
-        void DeleteUser (string userId, string force = null);
+        void DeleteUser (string userId);
 
         /// <summary>
         /// Delete a user.
@@ -109,9 +152,8 @@ namespace iam.Api
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
-        /// <param name="force">A flag indicating that the user is forced to be deleted. (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DeleteUserWithHttpInfo (string userId, string force = null);
+        ApiResponse<Object> DeleteUserWithHttpInfo (string userId);
         /// <summary>
         /// Get all trusted certificates.
         /// </summary>
@@ -123,11 +165,12 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter by service or expiring days, for example filter&#x3D;service%3Dlwm2m,expire%3D180,device_execution_filter%3D0 (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
         /// <returns>TrustedCertificateRespList</returns>
-        TrustedCertificateRespList GetAllCertificates (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null);
+        TrustedCertificateRespList GetAllCertificates (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null);
 
         /// <summary>
         /// Get all trusted certificates.
@@ -140,11 +183,12 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter by service or expiring days, for example filter&#x3D;service%3Dlwm2m,expire%3D180,device_execution_filter%3D0 (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
         /// <returns>ApiResponse of TrustedCertificateRespList</returns>
-        ApiResponse<TrustedCertificateRespList> GetAllCertificatesWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null);
+        ApiResponse<TrustedCertificateRespList> GetAllCertificatesWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null);
         /// <summary>
         /// Get the details of all users.
         /// </summary>
@@ -156,9 +200,10 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter for the query, for example filter&#x3D;status%3Dactive,status%3Dreset. (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
         /// <returns>UserInfoRespList</returns>
-        UserInfoRespList GetAllUsers (int? limit = null, string after = null, string order = null, string include = null, string statusEq = null);
+        UserInfoRespList GetAllUsers (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string statusEq = null);
 
         /// <summary>
         /// Get the details of all users.
@@ -171,9 +216,10 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter for the query, for example filter&#x3D;status%3Dactive,status%3Dreset. (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
         /// <returns>ApiResponse of UserInfoRespList</returns>
-        ApiResponse<UserInfoRespList> GetAllUsersWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string statusEq = null);
+        ApiResponse<UserInfoRespList> GetAllUsersWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string statusEq = null);
         /// <summary>
         /// Get trusted certificate by ID.
         /// </summary>
@@ -216,6 +262,138 @@ namespace iam.Api
         /// <param name="userId">The ID or name of the user whose details are retrieved.</param>
         /// <returns>ApiResponse of UserInfoResp</returns>
         ApiResponse<UserInfoResp> GetUserWithHttpInfo (string userId);
+        /// <summary>
+        /// Remove an alias.
+        /// </summary>
+        /// <remarks>
+        /// Removes an alias from the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="alias">The account alias to be removed.</param>
+        /// <returns>UpdatedResponse</returns>
+        UpdatedResponse RemoveAlias (string accountID, string alias);
+
+        /// <summary>
+        /// Remove an alias.
+        /// </summary>
+        /// <remarks>
+        /// Removes an alias from the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="alias">The account alias to be removed.</param>
+        /// <returns>ApiResponse of UpdatedResponse</returns>
+        ApiResponse<UpdatedResponse> RemoveAliasWithHttpInfo (string accountID, string alias);
+        /// <summary>
+        /// Remove an alias.
+        /// </summary>
+        /// <remarks>
+        /// Removes an alias from the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="alias">Account alias to be removed.</param>
+        /// <returns>UpdatedResponse</returns>
+        UpdatedResponse RemoveMyAccountAlias (string alias);
+
+        /// <summary>
+        /// Remove an alias.
+        /// </summary>
+        /// <remarks>
+        /// Removes an alias from the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="alias">Account alias to be removed.</param>
+        /// <returns>ApiResponse of UpdatedResponse</returns>
+        ApiResponse<UpdatedResponse> RemoveMyAccountAliasWithHttpInfo (string alias);
+        /// <summary>
+        /// Reset the user password.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for resetting the user password. The new password will visible in the response.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">The ID of the user whose password is reset.</param>
+        /// <returns>UserInfoResp</returns>
+        UserInfoResp ResetUserPassword (string userId);
+
+        /// <summary>
+        /// Reset the user password.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for resetting the user password. The new password will visible in the response.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">The ID of the user whose password is reset.</param>
+        /// <returns>ApiResponse of UserInfoResp</returns>
+        ApiResponse<UserInfoResp> ResetUserPasswordWithHttpInfo (string userId);
+        /// <summary>
+        /// Set aliases.
+        /// </summary>
+        /// <remarks>
+        /// Defines aliases of the account and overwrites the previous set of aliases.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">A list of aliases to be set.</param>
+        /// <returns>UpdatedResponse</returns>
+        UpdatedResponse SetAliases (string accountID, List<string> body);
+
+        /// <summary>
+        /// Set aliases.
+        /// </summary>
+        /// <remarks>
+        /// Defines aliases of the account and overwrites the previous set of aliases.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">A list of aliases to be set.</param>
+        /// <returns>ApiResponse of UpdatedResponse</returns>
+        ApiResponse<UpdatedResponse> SetAliasesWithHttpInfo (string accountID, List<string> body);
+        /// <summary>
+        /// Set aliases.
+        /// </summary>
+        /// <remarks>
+        /// Defines the aliases of the account and overwrites the previous set of aliases.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">List of aliases to be set.</param>
+        /// <returns>UpdatedResponse</returns>
+        UpdatedResponse SetMyAccountAliases (List<string> body);
+
+        /// <summary>
+        /// Set aliases.
+        /// </summary>
+        /// <remarks>
+        /// Defines the aliases of the account and overwrites the previous set of aliases.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">List of aliases to be set.</param>
+        /// <returns>ApiResponse of UpdatedResponse</returns>
+        ApiResponse<UpdatedResponse> SetMyAccountAliasesWithHttpInfo (List<string> body);
+        /// <summary>
+        /// Update attributes of an existing account.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating an account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">Details of the account to be updated.</param>
+        /// <returns>AccountInfo</returns>
+        AccountInfo UpdateAccount (string accountID, AccountUpdateRootReq body);
+
+        /// <summary>
+        /// Update attributes of an existing account.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating an account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">Details of the account to be updated.</param>
+        /// <returns>ApiResponse of AccountInfo</returns>
+        ApiResponse<AccountInfo> UpdateAccountWithHttpInfo (string accountID, AccountUpdateRootReq body);
         /// <summary>
         /// Update trusted certificate.
         /// </summary>
@@ -286,6 +464,29 @@ namespace iam.Api
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
+        /// Add an alias.
+        /// </summary>
+        /// <remarks>
+        /// Adds an alias to the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="alias">The account alias to be added.</param>
+        /// <returns>Task of UpdatedResponse</returns>
+        System.Threading.Tasks.Task<UpdatedResponse> AddAliasAsync (string accountID, string alias);
+
+        /// <summary>
+        /// Add an alias.
+        /// </summary>
+        /// <remarks>
+        /// Adds an alias to the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="alias">The account alias to be added.</param>
+        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> AddAliasAsyncWithHttpInfo (string accountID, string alias);
+        /// <summary>
         /// Upload a new trusted certificate.
         /// </summary>
         /// <remarks>
@@ -306,6 +507,27 @@ namespace iam.Api
         /// <param name="body">A trusted certificate object with attributes.</param>
         /// <returns>Task of ApiResponse (TrustedCertificateResp)</returns>
         System.Threading.Tasks.Task<ApiResponse<TrustedCertificateResp>> AddCertificateAsyncWithHttpInfo (TrustedCertificateReq body);
+        /// <summary>
+        /// Add an alias.
+        /// </summary>
+        /// <remarks>
+        /// Adds an alias to the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="alias"></param>
+        /// <returns>Task of UpdatedResponse</returns>
+        System.Threading.Tasks.Task<UpdatedResponse> AddMyAccountAliasAsync (string alias);
+
+        /// <summary>
+        /// Add an alias.
+        /// </summary>
+        /// <remarks>
+        /// Adds an alias to the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="alias"></param>
+        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> AddMyAccountAliasAsyncWithHttpInfo (string alias);
         /// <summary>
         /// Create a new user.
         /// </summary>
@@ -358,9 +580,8 @@ namespace iam.Api
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
-        /// <param name="force">A flag indicating that the user is forced to be deleted. (optional)</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteUserAsync (string userId, string force = null);
+        System.Threading.Tasks.Task DeleteUserAsync (string userId);
 
         /// <summary>
         /// Delete a user.
@@ -370,9 +591,8 @@ namespace iam.Api
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
-        /// <param name="force">A flag indicating that the user is forced to be deleted. (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteUserAsyncWithHttpInfo (string userId, string force = null);
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteUserAsyncWithHttpInfo (string userId);
         /// <summary>
         /// Get all trusted certificates.
         /// </summary>
@@ -384,11 +604,12 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter by service or expiring days, for example filter&#x3D;service%3Dlwm2m,expire%3D180,device_execution_filter%3D0 (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
         /// <returns>Task of TrustedCertificateRespList</returns>
-        System.Threading.Tasks.Task<TrustedCertificateRespList> GetAllCertificatesAsync (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null);
+        System.Threading.Tasks.Task<TrustedCertificateRespList> GetAllCertificatesAsync (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null);
 
         /// <summary>
         /// Get all trusted certificates.
@@ -401,11 +622,12 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter by service or expiring days, for example filter&#x3D;service%3Dlwm2m,expire%3D180,device_execution_filter%3D0 (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
         /// <returns>Task of ApiResponse (TrustedCertificateRespList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TrustedCertificateRespList>> GetAllCertificatesAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null);
+        System.Threading.Tasks.Task<ApiResponse<TrustedCertificateRespList>> GetAllCertificatesAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null);
         /// <summary>
         /// Get the details of all users.
         /// </summary>
@@ -417,9 +639,10 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter for the query, for example filter&#x3D;status%3Dactive,status%3Dreset. (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
         /// <returns>Task of UserInfoRespList</returns>
-        System.Threading.Tasks.Task<UserInfoRespList> GetAllUsersAsync (int? limit = null, string after = null, string order = null, string include = null, string statusEq = null);
+        System.Threading.Tasks.Task<UserInfoRespList> GetAllUsersAsync (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string statusEq = null);
 
         /// <summary>
         /// Get the details of all users.
@@ -432,9 +655,10 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter for the query, for example filter&#x3D;status%3Dactive,status%3Dreset. (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
         /// <returns>Task of ApiResponse (UserInfoRespList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetAllUsersAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string statusEq = null);
+        System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetAllUsersAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string statusEq = null);
         /// <summary>
         /// Get trusted certificate by ID.
         /// </summary>
@@ -477,6 +701,138 @@ namespace iam.Api
         /// <param name="userId">The ID or name of the user whose details are retrieved.</param>
         /// <returns>Task of ApiResponse (UserInfoResp)</returns>
         System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> GetUserAsyncWithHttpInfo (string userId);
+        /// <summary>
+        /// Remove an alias.
+        /// </summary>
+        /// <remarks>
+        /// Removes an alias from the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="alias">The account alias to be removed.</param>
+        /// <returns>Task of UpdatedResponse</returns>
+        System.Threading.Tasks.Task<UpdatedResponse> RemoveAliasAsync (string accountID, string alias);
+
+        /// <summary>
+        /// Remove an alias.
+        /// </summary>
+        /// <remarks>
+        /// Removes an alias from the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="alias">The account alias to be removed.</param>
+        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> RemoveAliasAsyncWithHttpInfo (string accountID, string alias);
+        /// <summary>
+        /// Remove an alias.
+        /// </summary>
+        /// <remarks>
+        /// Removes an alias from the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="alias">Account alias to be removed.</param>
+        /// <returns>Task of UpdatedResponse</returns>
+        System.Threading.Tasks.Task<UpdatedResponse> RemoveMyAccountAliasAsync (string alias);
+
+        /// <summary>
+        /// Remove an alias.
+        /// </summary>
+        /// <remarks>
+        /// Removes an alias from the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="alias">Account alias to be removed.</param>
+        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> RemoveMyAccountAliasAsyncWithHttpInfo (string alias);
+        /// <summary>
+        /// Reset the user password.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for resetting the user password. The new password will visible in the response.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">The ID of the user whose password is reset.</param>
+        /// <returns>Task of UserInfoResp</returns>
+        System.Threading.Tasks.Task<UserInfoResp> ResetUserPasswordAsync (string userId);
+
+        /// <summary>
+        /// Reset the user password.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for resetting the user password. The new password will visible in the response.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">The ID of the user whose password is reset.</param>
+        /// <returns>Task of ApiResponse (UserInfoResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> ResetUserPasswordAsyncWithHttpInfo (string userId);
+        /// <summary>
+        /// Set aliases.
+        /// </summary>
+        /// <remarks>
+        /// Defines aliases of the account and overwrites the previous set of aliases.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">A list of aliases to be set.</param>
+        /// <returns>Task of UpdatedResponse</returns>
+        System.Threading.Tasks.Task<UpdatedResponse> SetAliasesAsync (string accountID, List<string> body);
+
+        /// <summary>
+        /// Set aliases.
+        /// </summary>
+        /// <remarks>
+        /// Defines aliases of the account and overwrites the previous set of aliases.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">A list of aliases to be set.</param>
+        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> SetAliasesAsyncWithHttpInfo (string accountID, List<string> body);
+        /// <summary>
+        /// Set aliases.
+        /// </summary>
+        /// <remarks>
+        /// Defines the aliases of the account and overwrites the previous set of aliases.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">List of aliases to be set.</param>
+        /// <returns>Task of UpdatedResponse</returns>
+        System.Threading.Tasks.Task<UpdatedResponse> SetMyAccountAliasesAsync (List<string> body);
+
+        /// <summary>
+        /// Set aliases.
+        /// </summary>
+        /// <remarks>
+        /// Defines the aliases of the account and overwrites the previous set of aliases.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">List of aliases to be set.</param>
+        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> SetMyAccountAliasesAsyncWithHttpInfo (List<string> body);
+        /// <summary>
+        /// Update attributes of an existing account.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating an account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">Details of the account to be updated.</param>
+        /// <returns>Task of AccountInfo</returns>
+        System.Threading.Tasks.Task<AccountInfo> UpdateAccountAsync (string accountID, AccountUpdateRootReq body);
+
+        /// <summary>
+        /// Update attributes of an existing account.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating an account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">Details of the account to be updated.</param>
+        /// <returns>Task of ApiResponse (AccountInfo)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AccountInfo>> UpdateAccountAsyncWithHttpInfo (string accountID, AccountUpdateRootReq body);
         /// <summary>
         /// Update trusted certificate.
         /// </summary>
@@ -657,6 +1013,170 @@ namespace iam.Api
         }
 
         /// <summary>
+        /// Add an alias. Adds an alias to the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="alias">The account alias to be added.</param>
+        /// <returns>UpdatedResponse</returns>
+        public UpdatedResponse AddAlias (string accountID, string alias)
+        {
+             ApiResponse<UpdatedResponse> localVarResponse = AddAliasWithHttpInfo(accountID, alias);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Add an alias. Adds an alias to the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="alias">The account alias to be added.</param>
+        /// <returns>ApiResponse of UpdatedResponse</returns>
+        public ApiResponse< UpdatedResponse > AddAliasWithHttpInfo (string accountID, string alias)
+        {
+            // verify the required parameter 'accountID' is set
+            if (accountID == null)
+                throw new ApiException(400, "Missing required parameter 'accountID' when calling AccountAdminApi->AddAlias");
+            // verify the required parameter 'alias' is set
+            if (alias == null)
+                throw new ApiException(400, "Missing required parameter 'alias' when calling AccountAdminApi->AddAlias");
+
+            var localVarPath = "/v3/accounts/{accountID}/alias/{alias}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            if (alias != null) localVarPathParams.Add("alias", Configuration.ApiClient.ParameterToString(alias)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("AddAlias", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+            
+        }
+
+        /// <summary>
+        /// Add an alias. Adds an alias to the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="alias">The account alias to be added.</param>
+        /// <returns>Task of UpdatedResponse</returns>
+        public async System.Threading.Tasks.Task<UpdatedResponse> AddAliasAsync (string accountID, string alias)
+        {
+             ApiResponse<UpdatedResponse> localVarResponse = await AddAliasAsyncWithHttpInfo(accountID, alias);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Add an alias. Adds an alias to the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="alias">The account alias to be added.</param>
+        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> AddAliasAsyncWithHttpInfo (string accountID, string alias)
+        {
+            // verify the required parameter 'accountID' is set
+            if (accountID == null)
+                throw new ApiException(400, "Missing required parameter 'accountID' when calling AccountAdminApi->AddAlias");
+            // verify the required parameter 'alias' is set
+            if (alias == null)
+                throw new ApiException(400, "Missing required parameter 'alias' when calling AccountAdminApi->AddAlias");
+
+            var localVarPath = "/v3/accounts/{accountID}/alias/{alias}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            if (alias != null) localVarPathParams.Add("alias", Configuration.ApiClient.ParameterToString(alias)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("AddAlias", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+            
+        }
+
+        /// <summary>
         /// Upload a new trusted certificate. An endpoint for uploading new trusted certificates.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
@@ -821,6 +1341,158 @@ namespace iam.Api
             return new ApiResponse<TrustedCertificateResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (TrustedCertificateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateResp)));
+            
+        }
+
+        /// <summary>
+        /// Add an alias. Adds an alias to the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="alias"></param>
+        /// <returns>UpdatedResponse</returns>
+        public UpdatedResponse AddMyAccountAlias (string alias)
+        {
+             ApiResponse<UpdatedResponse> localVarResponse = AddMyAccountAliasWithHttpInfo(alias);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Add an alias. Adds an alias to the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="alias"></param>
+        /// <returns>ApiResponse of UpdatedResponse</returns>
+        public ApiResponse< UpdatedResponse > AddMyAccountAliasWithHttpInfo (string alias)
+        {
+            // verify the required parameter 'alias' is set
+            if (alias == null)
+                throw new ApiException(400, "Missing required parameter 'alias' when calling AccountAdminApi->AddMyAccountAlias");
+
+            var localVarPath = "/v3/accounts/me/alias/{alias}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (alias != null) localVarPathParams.Add("alias", Configuration.ApiClient.ParameterToString(alias)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("AddMyAccountAlias", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+            
+        }
+
+        /// <summary>
+        /// Add an alias. Adds an alias to the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="alias"></param>
+        /// <returns>Task of UpdatedResponse</returns>
+        public async System.Threading.Tasks.Task<UpdatedResponse> AddMyAccountAliasAsync (string alias)
+        {
+             ApiResponse<UpdatedResponse> localVarResponse = await AddMyAccountAliasAsyncWithHttpInfo(alias);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Add an alias. Adds an alias to the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="alias"></param>
+        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> AddMyAccountAliasAsyncWithHttpInfo (string alias)
+        {
+            // verify the required parameter 'alias' is set
+            if (alias == null)
+                throw new ApiException(400, "Missing required parameter 'alias' when calling AccountAdminApi->AddMyAccountAlias");
+
+            var localVarPath = "/v3/accounts/me/alias/{alias}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (alias != null) localVarPathParams.Add("alias", Configuration.ApiClient.ParameterToString(alias)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("AddMyAccountAlias", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
             
         }
 
@@ -1153,11 +1825,10 @@ namespace iam.Api
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
-        /// <param name="force">A flag indicating that the user is forced to be deleted. (optional)</param>
         /// <returns></returns>
-        public void DeleteUser (string userId, string force = null)
+        public void DeleteUser (string userId)
         {
-             DeleteUserWithHttpInfo(userId, force);
+             DeleteUserWithHttpInfo(userId);
         }
 
         /// <summary>
@@ -1165,9 +1836,8 @@ namespace iam.Api
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
-        /// <param name="force">A flag indicating that the user is forced to be deleted. (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> DeleteUserWithHttpInfo (string userId, string force = null)
+        public ApiResponse<Object> DeleteUserWithHttpInfo (string userId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
@@ -1198,7 +1868,6 @@ namespace iam.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (userId != null) localVarPathParams.Add("user-id", Configuration.ApiClient.ParameterToString(userId)); // path parameter
-            if (force != null) localVarQueryParams.Add("force", Configuration.ApiClient.ParameterToString(force)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1231,11 +1900,10 @@ namespace iam.Api
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
-        /// <param name="force">A flag indicating that the user is forced to be deleted. (optional)</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteUserAsync (string userId, string force = null)
+        public async System.Threading.Tasks.Task DeleteUserAsync (string userId)
         {
-             await DeleteUserAsyncWithHttpInfo(userId, force);
+             await DeleteUserAsyncWithHttpInfo(userId);
 
         }
 
@@ -1244,9 +1912,8 @@ namespace iam.Api
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
-        /// <param name="force">A flag indicating that the user is forced to be deleted. (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteUserAsyncWithHttpInfo (string userId, string force = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteUserAsyncWithHttpInfo (string userId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
@@ -1277,7 +1944,6 @@ namespace iam.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (userId != null) localVarPathParams.Add("user-id", Configuration.ApiClient.ParameterToString(userId)); // path parameter
-            if (force != null) localVarQueryParams.Add("force", Configuration.ApiClient.ParameterToString(force)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1312,13 +1978,14 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter by service or expiring days, for example filter&#x3D;service%3Dlwm2m,expire%3D180,device_execution_filter%3D0 (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
         /// <returns>TrustedCertificateRespList</returns>
-        public TrustedCertificateRespList GetAllCertificates (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null)
+        public TrustedCertificateRespList GetAllCertificates (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null)
         {
-             ApiResponse<TrustedCertificateRespList> localVarResponse = GetAllCertificatesWithHttpInfo(limit, after, order, include, serviceEq, expireEq, deviceExecutionModeEq);
+             ApiResponse<TrustedCertificateRespList> localVarResponse = GetAllCertificatesWithHttpInfo(limit, after, order, include, filter, serviceEq, expireEq, deviceExecutionModeEq);
              return localVarResponse.Data;
         }
 
@@ -1330,11 +1997,12 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter by service or expiring days, for example filter&#x3D;service%3Dlwm2m,expire%3D180,device_execution_filter%3D0 (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
         /// <returns>ApiResponse of TrustedCertificateRespList</returns>
-        public ApiResponse< TrustedCertificateRespList > GetAllCertificatesWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null)
+        public ApiResponse< TrustedCertificateRespList > GetAllCertificatesWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null)
         {
 
             var localVarPath = "/v3/trusted-certificates";
@@ -1365,6 +2033,7 @@ namespace iam.Api
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
             if (serviceEq != null) localVarQueryParams.Add("service__eq", Configuration.ApiClient.ParameterToString(serviceEq)); // query parameter
             if (expireEq != null) localVarQueryParams.Add("expire__eq", Configuration.ApiClient.ParameterToString(expireEq)); // query parameter
             if (deviceExecutionModeEq != null) localVarQueryParams.Add("device_execution_mode__eq", Configuration.ApiClient.ParameterToString(deviceExecutionModeEq)); // query parameter
@@ -1403,13 +2072,14 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter by service or expiring days, for example filter&#x3D;service%3Dlwm2m,expire%3D180,device_execution_filter%3D0 (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
         /// <returns>Task of TrustedCertificateRespList</returns>
-        public async System.Threading.Tasks.Task<TrustedCertificateRespList> GetAllCertificatesAsync (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null)
+        public async System.Threading.Tasks.Task<TrustedCertificateRespList> GetAllCertificatesAsync (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null)
         {
-             ApiResponse<TrustedCertificateRespList> localVarResponse = await GetAllCertificatesAsyncWithHttpInfo(limit, after, order, include, serviceEq, expireEq, deviceExecutionModeEq);
+             ApiResponse<TrustedCertificateRespList> localVarResponse = await GetAllCertificatesAsyncWithHttpInfo(limit, after, order, include, filter, serviceEq, expireEq, deviceExecutionModeEq);
              return localVarResponse.Data;
 
         }
@@ -1422,11 +2092,12 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter by service or expiring days, for example filter&#x3D;service%3Dlwm2m,expire%3D180,device_execution_filter%3D0 (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
         /// <returns>Task of ApiResponse (TrustedCertificateRespList)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<TrustedCertificateRespList>> GetAllCertificatesAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null)
+        public async System.Threading.Tasks.Task<ApiResponse<TrustedCertificateRespList>> GetAllCertificatesAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null)
         {
 
             var localVarPath = "/v3/trusted-certificates";
@@ -1457,6 +2128,7 @@ namespace iam.Api
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
             if (serviceEq != null) localVarQueryParams.Add("service__eq", Configuration.ApiClient.ParameterToString(serviceEq)); // query parameter
             if (expireEq != null) localVarQueryParams.Add("expire__eq", Configuration.ApiClient.ParameterToString(expireEq)); // query parameter
             if (deviceExecutionModeEq != null) localVarQueryParams.Add("device_execution_mode__eq", Configuration.ApiClient.ParameterToString(deviceExecutionModeEq)); // query parameter
@@ -1494,11 +2166,12 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter for the query, for example filter&#x3D;status%3Dactive,status%3Dreset. (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
         /// <returns>UserInfoRespList</returns>
-        public UserInfoRespList GetAllUsers (int? limit = null, string after = null, string order = null, string include = null, string statusEq = null)
+        public UserInfoRespList GetAllUsers (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string statusEq = null)
         {
-             ApiResponse<UserInfoRespList> localVarResponse = GetAllUsersWithHttpInfo(limit, after, order, include, statusEq);
+             ApiResponse<UserInfoRespList> localVarResponse = GetAllUsersWithHttpInfo(limit, after, order, include, filter, statusEq);
              return localVarResponse.Data;
         }
 
@@ -1510,9 +2183,10 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter for the query, for example filter&#x3D;status%3Dactive,status%3Dreset. (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
         /// <returns>ApiResponse of UserInfoRespList</returns>
-        public ApiResponse< UserInfoRespList > GetAllUsersWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string statusEq = null)
+        public ApiResponse< UserInfoRespList > GetAllUsersWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string statusEq = null)
         {
 
             var localVarPath = "/v3/users";
@@ -1543,6 +2217,7 @@ namespace iam.Api
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
             if (statusEq != null) localVarQueryParams.Add("status__eq", Configuration.ApiClient.ParameterToString(statusEq)); // query parameter
 
             // authentication (Bearer) required
@@ -1579,11 +2254,12 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter for the query, for example filter&#x3D;status%3Dactive,status%3Dreset. (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
         /// <returns>Task of UserInfoRespList</returns>
-        public async System.Threading.Tasks.Task<UserInfoRespList> GetAllUsersAsync (int? limit = null, string after = null, string order = null, string include = null, string statusEq = null)
+        public async System.Threading.Tasks.Task<UserInfoRespList> GetAllUsersAsync (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string statusEq = null)
         {
-             ApiResponse<UserInfoRespList> localVarResponse = await GetAllUsersAsyncWithHttpInfo(limit, after, order, include, statusEq);
+             ApiResponse<UserInfoRespList> localVarResponse = await GetAllUsersAsyncWithHttpInfo(limit, after, order, include, filter, statusEq);
              return localVarResponse.Data;
 
         }
@@ -1596,9 +2272,10 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="filter">Filter for the query, for example filter&#x3D;status%3Dactive,status%3Dreset. (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
         /// <returns>Task of ApiResponse (UserInfoRespList)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetAllUsersAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string statusEq = null)
+        public async System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetAllUsersAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string filter = null, string statusEq = null)
         {
 
             var localVarPath = "/v3/users";
@@ -1629,6 +2306,7 @@ namespace iam.Api
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
             if (statusEq != null) localVarQueryParams.Add("status__eq", Configuration.ApiClient.ParameterToString(statusEq)); // query parameter
 
             // authentication (Bearer) required
@@ -1957,6 +2635,1002 @@ namespace iam.Api
             return new ApiResponse<UserInfoResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoResp)));
+            
+        }
+
+        /// <summary>
+        /// Remove an alias. Removes an alias from the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="alias">The account alias to be removed.</param>
+        /// <returns>UpdatedResponse</returns>
+        public UpdatedResponse RemoveAlias (string accountID, string alias)
+        {
+             ApiResponse<UpdatedResponse> localVarResponse = RemoveAliasWithHttpInfo(accountID, alias);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove an alias. Removes an alias from the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="alias">The account alias to be removed.</param>
+        /// <returns>ApiResponse of UpdatedResponse</returns>
+        public ApiResponse< UpdatedResponse > RemoveAliasWithHttpInfo (string accountID, string alias)
+        {
+            // verify the required parameter 'accountID' is set
+            if (accountID == null)
+                throw new ApiException(400, "Missing required parameter 'accountID' when calling AccountAdminApi->RemoveAlias");
+            // verify the required parameter 'alias' is set
+            if (alias == null)
+                throw new ApiException(400, "Missing required parameter 'alias' when calling AccountAdminApi->RemoveAlias");
+
+            var localVarPath = "/v3/accounts/{accountID}/alias/{alias}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            if (alias != null) localVarPathParams.Add("alias", Configuration.ApiClient.ParameterToString(alias)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("RemoveAlias", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+            
+        }
+
+        /// <summary>
+        /// Remove an alias. Removes an alias from the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="alias">The account alias to be removed.</param>
+        /// <returns>Task of UpdatedResponse</returns>
+        public async System.Threading.Tasks.Task<UpdatedResponse> RemoveAliasAsync (string accountID, string alias)
+        {
+             ApiResponse<UpdatedResponse> localVarResponse = await RemoveAliasAsyncWithHttpInfo(accountID, alias);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Remove an alias. Removes an alias from the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="alias">The account alias to be removed.</param>
+        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> RemoveAliasAsyncWithHttpInfo (string accountID, string alias)
+        {
+            // verify the required parameter 'accountID' is set
+            if (accountID == null)
+                throw new ApiException(400, "Missing required parameter 'accountID' when calling AccountAdminApi->RemoveAlias");
+            // verify the required parameter 'alias' is set
+            if (alias == null)
+                throw new ApiException(400, "Missing required parameter 'alias' when calling AccountAdminApi->RemoveAlias");
+
+            var localVarPath = "/v3/accounts/{accountID}/alias/{alias}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            if (alias != null) localVarPathParams.Add("alias", Configuration.ApiClient.ParameterToString(alias)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("RemoveAlias", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+            
+        }
+
+        /// <summary>
+        /// Remove an alias. Removes an alias from the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="alias">Account alias to be removed.</param>
+        /// <returns>UpdatedResponse</returns>
+        public UpdatedResponse RemoveMyAccountAlias (string alias)
+        {
+             ApiResponse<UpdatedResponse> localVarResponse = RemoveMyAccountAliasWithHttpInfo(alias);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove an alias. Removes an alias from the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="alias">Account alias to be removed.</param>
+        /// <returns>ApiResponse of UpdatedResponse</returns>
+        public ApiResponse< UpdatedResponse > RemoveMyAccountAliasWithHttpInfo (string alias)
+        {
+            // verify the required parameter 'alias' is set
+            if (alias == null)
+                throw new ApiException(400, "Missing required parameter 'alias' when calling AccountAdminApi->RemoveMyAccountAlias");
+
+            var localVarPath = "/v3/accounts/me/alias/{alias}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (alias != null) localVarPathParams.Add("alias", Configuration.ApiClient.ParameterToString(alias)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("RemoveMyAccountAlias", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+            
+        }
+
+        /// <summary>
+        /// Remove an alias. Removes an alias from the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="alias">Account alias to be removed.</param>
+        /// <returns>Task of UpdatedResponse</returns>
+        public async System.Threading.Tasks.Task<UpdatedResponse> RemoveMyAccountAliasAsync (string alias)
+        {
+             ApiResponse<UpdatedResponse> localVarResponse = await RemoveMyAccountAliasAsyncWithHttpInfo(alias);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Remove an alias. Removes an alias from the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="alias">Account alias to be removed.</param>
+        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> RemoveMyAccountAliasAsyncWithHttpInfo (string alias)
+        {
+            // verify the required parameter 'alias' is set
+            if (alias == null)
+                throw new ApiException(400, "Missing required parameter 'alias' when calling AccountAdminApi->RemoveMyAccountAlias");
+
+            var localVarPath = "/v3/accounts/me/alias/{alias}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (alias != null) localVarPathParams.Add("alias", Configuration.ApiClient.ParameterToString(alias)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("RemoveMyAccountAlias", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+            
+        }
+
+        /// <summary>
+        /// Reset the user password. An endpoint for resetting the user password. The new password will visible in the response.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">The ID of the user whose password is reset.</param>
+        /// <returns>UserInfoResp</returns>
+        public UserInfoResp ResetUserPassword (string userId)
+        {
+             ApiResponse<UserInfoResp> localVarResponse = ResetUserPasswordWithHttpInfo(userId);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Reset the user password. An endpoint for resetting the user password. The new password will visible in the response.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">The ID of the user whose password is reset.</param>
+        /// <returns>ApiResponse of UserInfoResp</returns>
+        public ApiResponse< UserInfoResp > ResetUserPasswordWithHttpInfo (string userId)
+        {
+            // verify the required parameter 'userId' is set
+            if (userId == null)
+                throw new ApiException(400, "Missing required parameter 'userId' when calling AccountAdminApi->ResetUserPassword");
+
+            var localVarPath = "/v3/users/{user-id}/reset-password";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (userId != null) localVarPathParams.Add("user-id", Configuration.ApiClient.ParameterToString(userId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ResetUserPassword", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UserInfoResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoResp)));
+            
+        }
+
+        /// <summary>
+        /// Reset the user password. An endpoint for resetting the user password. The new password will visible in the response.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">The ID of the user whose password is reset.</param>
+        /// <returns>Task of UserInfoResp</returns>
+        public async System.Threading.Tasks.Task<UserInfoResp> ResetUserPasswordAsync (string userId)
+        {
+             ApiResponse<UserInfoResp> localVarResponse = await ResetUserPasswordAsyncWithHttpInfo(userId);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Reset the user password. An endpoint for resetting the user password. The new password will visible in the response.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">The ID of the user whose password is reset.</param>
+        /// <returns>Task of ApiResponse (UserInfoResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> ResetUserPasswordAsyncWithHttpInfo (string userId)
+        {
+            // verify the required parameter 'userId' is set
+            if (userId == null)
+                throw new ApiException(400, "Missing required parameter 'userId' when calling AccountAdminApi->ResetUserPassword");
+
+            var localVarPath = "/v3/users/{user-id}/reset-password";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (userId != null) localVarPathParams.Add("user-id", Configuration.ApiClient.ParameterToString(userId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ResetUserPassword", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UserInfoResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoResp)));
+            
+        }
+
+        /// <summary>
+        /// Set aliases. Defines aliases of the account and overwrites the previous set of aliases.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">A list of aliases to be set.</param>
+        /// <returns>UpdatedResponse</returns>
+        public UpdatedResponse SetAliases (string accountID, List<string> body)
+        {
+             ApiResponse<UpdatedResponse> localVarResponse = SetAliasesWithHttpInfo(accountID, body);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Set aliases. Defines aliases of the account and overwrites the previous set of aliases.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">A list of aliases to be set.</param>
+        /// <returns>ApiResponse of UpdatedResponse</returns>
+        public ApiResponse< UpdatedResponse > SetAliasesWithHttpInfo (string accountID, List<string> body)
+        {
+            // verify the required parameter 'accountID' is set
+            if (accountID == null)
+                throw new ApiException(400, "Missing required parameter 'accountID' when calling AccountAdminApi->SetAliases");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->SetAliases");
+
+            var localVarPath = "/v3/accounts/{accountID}/alias";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("SetAliases", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+            
+        }
+
+        /// <summary>
+        /// Set aliases. Defines aliases of the account and overwrites the previous set of aliases.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">A list of aliases to be set.</param>
+        /// <returns>Task of UpdatedResponse</returns>
+        public async System.Threading.Tasks.Task<UpdatedResponse> SetAliasesAsync (string accountID, List<string> body)
+        {
+             ApiResponse<UpdatedResponse> localVarResponse = await SetAliasesAsyncWithHttpInfo(accountID, body);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Set aliases. Defines aliases of the account and overwrites the previous set of aliases.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">A list of aliases to be set.</param>
+        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> SetAliasesAsyncWithHttpInfo (string accountID, List<string> body)
+        {
+            // verify the required parameter 'accountID' is set
+            if (accountID == null)
+                throw new ApiException(400, "Missing required parameter 'accountID' when calling AccountAdminApi->SetAliases");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->SetAliases");
+
+            var localVarPath = "/v3/accounts/{accountID}/alias";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("SetAliases", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+            
+        }
+
+        /// <summary>
+        /// Set aliases. Defines the aliases of the account and overwrites the previous set of aliases.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">List of aliases to be set.</param>
+        /// <returns>UpdatedResponse</returns>
+        public UpdatedResponse SetMyAccountAliases (List<string> body)
+        {
+             ApiResponse<UpdatedResponse> localVarResponse = SetMyAccountAliasesWithHttpInfo(body);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Set aliases. Defines the aliases of the account and overwrites the previous set of aliases.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">List of aliases to be set.</param>
+        /// <returns>ApiResponse of UpdatedResponse</returns>
+        public ApiResponse< UpdatedResponse > SetMyAccountAliasesWithHttpInfo (List<string> body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->SetMyAccountAliases");
+
+            var localVarPath = "/v3/accounts/me/alias";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("SetMyAccountAliases", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+            
+        }
+
+        /// <summary>
+        /// Set aliases. Defines the aliases of the account and overwrites the previous set of aliases.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">List of aliases to be set.</param>
+        /// <returns>Task of UpdatedResponse</returns>
+        public async System.Threading.Tasks.Task<UpdatedResponse> SetMyAccountAliasesAsync (List<string> body)
+        {
+             ApiResponse<UpdatedResponse> localVarResponse = await SetMyAccountAliasesAsyncWithHttpInfo(body);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Set aliases. Defines the aliases of the account and overwrites the previous set of aliases.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">List of aliases to be set.</param>
+        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> SetMyAccountAliasesAsyncWithHttpInfo (List<string> body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->SetMyAccountAliases");
+
+            var localVarPath = "/v3/accounts/me/alias";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("SetMyAccountAliases", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+            
+        }
+
+        /// <summary>
+        /// Update attributes of an existing account. An endpoint for updating an account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">Details of the account to be updated.</param>
+        /// <returns>AccountInfo</returns>
+        public AccountInfo UpdateAccount (string accountID, AccountUpdateRootReq body)
+        {
+             ApiResponse<AccountInfo> localVarResponse = UpdateAccountWithHttpInfo(accountID, body);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update attributes of an existing account. An endpoint for updating an account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">Details of the account to be updated.</param>
+        /// <returns>ApiResponse of AccountInfo</returns>
+        public ApiResponse< AccountInfo > UpdateAccountWithHttpInfo (string accountID, AccountUpdateRootReq body)
+        {
+            // verify the required parameter 'accountID' is set
+            if (accountID == null)
+                throw new ApiException(400, "Missing required parameter 'accountID' when calling AccountAdminApi->UpdateAccount");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->UpdateAccount");
+
+            var localVarPath = "/v3/accounts/{accountID}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UpdateAccount", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<AccountInfo>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (AccountInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountInfo)));
+            
+        }
+
+        /// <summary>
+        /// Update attributes of an existing account. An endpoint for updating an account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">Details of the account to be updated.</param>
+        /// <returns>Task of AccountInfo</returns>
+        public async System.Threading.Tasks.Task<AccountInfo> UpdateAccountAsync (string accountID, AccountUpdateRootReq body)
+        {
+             ApiResponse<AccountInfo> localVarResponse = await UpdateAccountAsyncWithHttpInfo(accountID, body);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Update attributes of an existing account. An endpoint for updating an account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">Details of the account to be updated.</param>
+        /// <returns>Task of ApiResponse (AccountInfo)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<AccountInfo>> UpdateAccountAsyncWithHttpInfo (string accountID, AccountUpdateRootReq body)
+        {
+            // verify the required parameter 'accountID' is set
+            if (accountID == null)
+                throw new ApiException(400, "Missing required parameter 'accountID' when calling AccountAdminApi->UpdateAccount");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->UpdateAccount");
+
+            var localVarPath = "/v3/accounts/{accountID}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UpdateAccount", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<AccountInfo>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (AccountInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountInfo)));
             
         }
 

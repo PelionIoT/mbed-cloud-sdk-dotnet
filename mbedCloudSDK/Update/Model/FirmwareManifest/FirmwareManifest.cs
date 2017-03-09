@@ -83,7 +83,7 @@ namespace mbedCloudSDK.Update.Model.FirmwareManifest
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static FirmwareManifest Map(FirmwareManifestSerializerData data)
+        public static FirmwareManifest Map(FirmwareManifest data)
         {
             FirmwareManifest manifest = new FirmwareManifest();
             manifest.CreatedAt = data.CreatedAt;

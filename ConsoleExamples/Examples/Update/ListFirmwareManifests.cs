@@ -1,5 +1,4 @@
 ﻿using mbedCloudSDK.Common;
-using mbedCloudSDK.Update.Api;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,13 +19,14 @@ namespace ConsoleExamples.Examples.Update
 
         public void ListManifests()
         {
+            /*
             UpdateApi api = new UpdateApi(config);
             var manifests = api.ListFirmwareManifests();
             var enumerator = manifests.GetEnumerator();
             while (enumerator.MoveNext())
             {
                 Console.WriteLine(enumerator.Current);
-            }
+            }*/
         }
     }
 }

@@ -28,66 +28,59 @@ namespace firmware_catalog.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;Reads the deploy_info.json file and returns the Build and Git ID to the caller.&lt;/p&gt; &lt;p&gt;Will return a 500 error if the file is missing, cannot be parsed or the keys are missing.&lt;/p&gt;
+        /// &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;Create firmware image&lt;/p&gt;
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Object</returns>
-        Object DeployInfoGET ();
+        /// <param name="datafile">The firmware image file to upload</param>
+        /// <param name="name">The name of the object</param>
+        /// <param name="description">The description of the object (optional)</param>
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description2"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="imageId"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name2"> (optional)</param>
+        /// <returns>FirmwareImage</returns>
+        FirmwareImage FirmwareImageCreate (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;Reads the deploy_info.json file and returns the Build and Git ID to the caller.&lt;/p&gt; &lt;p&gt;Will return a 500 error if the file is missing, cannot be parsed or the keys are missing.&lt;/p&gt;
+        /// &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;Create firmware image&lt;/p&gt;
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object</returns>
-        ApiResponse<Object> DeployInfoGETWithHttpInfo ();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;Create firmware image&lt;/p&gt;&lt;pre&gt;YAMLError:  while scanning a simple key   in \&quot;&lt;unicode string&gt;\&quot;, line 16, column 9:             Cannot validate the data used to ...              ^ could not find expected &#39;:&#39;   in \&quot;&lt;unicode string&gt;\&quot;, line 17, column 5:         - code: 401         ^&lt;/pre&gt;
-        /// </remarks>
-        /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="datafile">The binary file of firmware image</param>
+        /// <param name="datafile">The firmware image file to upload</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name2"> (optional)</param>
-        /// <param name="description2"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="imageId"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <returns>FirmwareImageSerializerData</returns>
-        FirmwareImageSerializerData FirmwareImageCreate (System.IO.Stream datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;Create firmware image&lt;/p&gt;&lt;pre&gt;YAMLError:  while scanning a simple key   in \&quot;&lt;unicode string&gt;\&quot;, line 16, column 9:             Cannot validate the data used to ...              ^ could not find expected &#39;:&#39;   in \&quot;&lt;unicode string&gt;\&quot;, line 17, column 5:         - code: 401         ^&lt;/pre&gt;
-        /// </remarks>
-        /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="datafile">The binary file of firmware image</param>
-        /// <param name="name">The name of the object</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
         /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name2"> (optional)</param>
-        /// <param name="description2"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="etag"> (optional)</param>
-        /// <param name="imageId"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description2"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>ApiResponse of FirmwareImageSerializerData</returns>
-        ApiResponse<FirmwareImageSerializerData> FirmwareImageCreateWithHttpInfo (System.IO.Stream datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null);
+        /// <param name="imageId"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name2"> (optional)</param>
+        /// <returns>ApiResponse of FirmwareImage</returns>
+        ApiResponse<FirmwareImage> FirmwareImageCreateWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null);
         /// <summary>
         /// 
         /// </summary>
@@ -96,17 +89,23 @@ namespace firmware_catalog.Api
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
         /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>FirmwareImageSerializer</returns>
-        FirmwareImageSerializer FirmwareImageDestroy (int? imageId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string _object = null);
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>FirmwareImage</returns>
+        FirmwareImage FirmwareImageDestroy (int? imageId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null);
 
         /// <summary>
         /// 
@@ -116,44 +115,50 @@ namespace firmware_catalog.Api
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
         /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>ApiResponse of FirmwareImageSerializer</returns>
-        ApiResponse<FirmwareImageSerializer> FirmwareImageDestroyWithHttpInfo (int? imageId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string _object = null);
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>ApiResponse of FirmwareImage</returns>
+        ApiResponse<FirmwareImage> FirmwareImageDestroyWithHttpInfo (int? imageId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;List all firmware images. The result will be paged into pages of 100.&lt;/p&gt;
+        /// &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;List all firmware images. The result will be paged into pages of 50.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;p&gt;&#x60;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-firmware-image-properties-all-properties-are-filterable\&quot;&gt;By firmware image properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example:&lt;/p&gt; &lt;p&gt;&lt;code&gt;name&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;name&#x3D;MyName&amp;amp;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;name%3DMyName%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="after"> (optional)</param>
-        /// <param name="include"> (optional)</param>
-        /// <returns>FirmwareImageSerializer</returns>
-        FirmwareImageSerializer FirmwareImageList (int? limit = null, string order = null, string after = null, string include = null);
+        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <returns>FirmwareImagePage</returns>
+        FirmwareImagePage FirmwareImageList (int? limit = null, string order = null, string after = null, string filter = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;List all firmware images. The result will be paged into pages of 100.&lt;/p&gt;
+        /// &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;List all firmware images. The result will be paged into pages of 50.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;p&gt;&#x60;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-firmware-image-properties-all-properties-are-filterable\&quot;&gt;By firmware image properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example:&lt;/p&gt; &lt;p&gt;&lt;code&gt;name&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;name&#x3D;MyName&amp;amp;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;name%3DMyName%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="after"> (optional)</param>
-        /// <param name="include"> (optional)</param>
-        /// <returns>ApiResponse of FirmwareImageSerializer</returns>
-        ApiResponse<FirmwareImageSerializer> FirmwareImageListWithHttpInfo (int? limit = null, string order = null, string after = null, string include = null);
+        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <returns>ApiResponse of FirmwareImagePage</returns>
+        ApiResponse<FirmwareImagePage> FirmwareImageListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null);
         /// <summary>
         /// 
         /// </summary>
@@ -162,17 +167,23 @@ namespace firmware_catalog.Api
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
         /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>FirmwareImageSerializer</returns>
-        FirmwareImageSerializer FirmwareImageRetrieve (int? imageId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string _object = null);
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>FirmwareImage</returns>
+        FirmwareImage FirmwareImageRetrieve (int? imageId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null);
 
         /// <summary>
         /// 
@@ -182,17 +193,23 @@ namespace firmware_catalog.Api
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
         /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>ApiResponse of FirmwareImageSerializer</returns>
-        ApiResponse<FirmwareImageSerializer> FirmwareImageRetrieveWithHttpInfo (int? imageId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string _object = null);
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>ApiResponse of FirmwareImage</returns>
+        ApiResponse<FirmwareImage> FirmwareImageRetrieveWithHttpInfo (int? imageId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null);
         /// <summary>
         /// 
         /// </summary>
@@ -203,8 +220,28 @@ namespace firmware_catalog.Api
         /// <param name="datafile">The manifest file to create</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
-        /// <returns>FirmwareManifestSerializerData</returns>
-        FirmwareManifestSerializerData FirmwareManifestCreate (System.IO.Stream datafile, string name, string description = null);
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="manifestId"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description2"> (optional)</param>
+        /// <param name="timestamp"> (optional)</param>
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name2"> (optional)</param>
+        /// <returns>FirmwareManifest</returns>
+        FirmwareManifest FirmwareManifestCreate (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null);
 
         /// <summary>
         /// 
@@ -216,8 +253,28 @@ namespace firmware_catalog.Api
         /// <param name="datafile">The manifest file to create</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
-        /// <returns>ApiResponse of FirmwareManifestSerializerData</returns>
-        ApiResponse<FirmwareManifestSerializerData> FirmwareManifestCreateWithHttpInfo (System.IO.Stream datafile, string name, string description = null);
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="manifestId"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description2"> (optional)</param>
+        /// <param name="timestamp"> (optional)</param>
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name2"> (optional)</param>
+        /// <returns>ApiResponse of FirmwareManifest</returns>
+        ApiResponse<FirmwareManifest> FirmwareManifestCreateWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null);
         /// <summary>
         /// 
         /// </summary>
@@ -226,8 +283,27 @@ namespace firmware_catalog.Api
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest</param>
-        /// <returns>FirmwareManifestSerializerData</returns>
-        FirmwareManifestSerializerData FirmwareManifestDestroy (int? manifestId);
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="timestamp"> (optional)</param>
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>FirmwareManifest</returns>
+        FirmwareManifest FirmwareManifestDestroy (int? manifestId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null);
 
         /// <summary>
         /// 
@@ -237,35 +313,54 @@ namespace firmware_catalog.Api
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest</param>
-        /// <returns>ApiResponse of FirmwareManifestSerializerData</returns>
-        ApiResponse<FirmwareManifestSerializerData> FirmwareManifestDestroyWithHttpInfo (int? manifestId);
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="timestamp"> (optional)</param>
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>ApiResponse of FirmwareManifest</returns>
+        ApiResponse<FirmwareManifest> FirmwareManifestDestroyWithHttpInfo (int? manifestId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests&lt;/p&gt;
+        /// &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-manifest-id\&quot;&gt;By manifest ID:&lt;/h5&gt; &lt;p&gt;&#x60; manifest_id&#x3D;{id} &#39;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-firmware-manifest-properties-all-properties-are-filterable\&quot;&gt;By firmware manifest properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;1234&amp;amp;d&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;device_class%3D1234%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="after"> (optional)</param>
-        /// <param name="include"> (optional)</param>
-        /// <returns>ManifestSerializer</returns>
-        ManifestSerializer FirmwareManifestList (int? limit = null, string order = null, string after = null, string include = null);
+        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <returns>FirmwareManifestPage</returns>
+        FirmwareManifestPage FirmwareManifestList (int? limit = null, string order = null, string after = null, string filter = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests&lt;/p&gt;
+        /// &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-manifest-id\&quot;&gt;By manifest ID:&lt;/h5&gt; &lt;p&gt;&#x60; manifest_id&#x3D;{id} &#39;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-firmware-manifest-properties-all-properties-are-filterable\&quot;&gt;By firmware manifest properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;1234&amp;amp;d&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;device_class%3D1234%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="after"> (optional)</param>
-        /// <param name="include"> (optional)</param>
-        /// <returns>ApiResponse of ManifestSerializer</returns>
-        ApiResponse<ManifestSerializer> FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null, string include = null);
+        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <returns>ApiResponse of FirmwareManifestPage</returns>
+        ApiResponse<FirmwareManifestPage> FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null);
         /// <summary>
         /// 
         /// </summary>
@@ -274,19 +369,27 @@ namespace firmware_catalog.Api
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
         /// <param name="etag"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="timestamp"> (optional)</param>
-        /// <returns>FirmwareManifestSerializerData</returns>
-        FirmwareManifestSerializerData FirmwareManifestRetrieve (int? manifestId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string deviceClass = null, string etag = null, string _object = null, string timestamp = null);
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>FirmwareManifest</returns>
+        FirmwareManifest FirmwareManifestRetrieve (int? manifestId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null);
 
         /// <summary>
         /// 
@@ -296,85 +399,86 @@ namespace firmware_catalog.Api
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
         /// <param name="etag"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="timestamp"> (optional)</param>
-        /// <returns>ApiResponse of FirmwareManifestSerializerData</returns>
-        ApiResponse<FirmwareManifestSerializerData> FirmwareManifestRetrieveWithHttpInfo (int? manifestId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string deviceClass = null, string etag = null, string _object = null, string timestamp = null);
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>ApiResponse of FirmwareManifest</returns>
+        ApiResponse<FirmwareManifest> FirmwareManifestRetrieveWithHttpInfo (int? manifestId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;Reads the deploy_info.json file and returns the Build and Git ID to the caller.&lt;/p&gt; &lt;p&gt;Will return a 500 error if the file is missing, cannot be parsed or the keys are missing.&lt;/p&gt;
+        /// &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;Create firmware image&lt;/p&gt;
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of Object</returns>
-        System.Threading.Tasks.Task<Object> DeployInfoGETAsync ();
+        /// <param name="datafile">The firmware image file to upload</param>
+        /// <param name="name">The name of the object</param>
+        /// <param name="description">The description of the object (optional)</param>
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description2"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="imageId"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name2"> (optional)</param>
+        /// <returns>Task of FirmwareImage</returns>
+        System.Threading.Tasks.Task<FirmwareImage> FirmwareImageCreateAsync (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;Reads the deploy_info.json file and returns the Build and Git ID to the caller.&lt;/p&gt; &lt;p&gt;Will return a 500 error if the file is missing, cannot be parsed or the keys are missing.&lt;/p&gt;
+        /// &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;Create firmware image&lt;/p&gt;
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (Object)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeployInfoGETAsyncWithHttpInfo ();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;Create firmware image&lt;/p&gt;&lt;pre&gt;YAMLError:  while scanning a simple key   in \&quot;&lt;unicode string&gt;\&quot;, line 16, column 9:             Cannot validate the data used to ...              ^ could not find expected &#39;:&#39;   in \&quot;&lt;unicode string&gt;\&quot;, line 17, column 5:         - code: 401         ^&lt;/pre&gt;
-        /// </remarks>
-        /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="datafile">The binary file of firmware image</param>
+        /// <param name="datafile">The firmware image file to upload</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name2"> (optional)</param>
-        /// <param name="description2"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="imageId"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <returns>Task of FirmwareImageSerializerData</returns>
-        System.Threading.Tasks.Task<FirmwareImageSerializerData> FirmwareImageCreateAsync (System.IO.Stream datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;Create firmware image&lt;/p&gt;&lt;pre&gt;YAMLError:  while scanning a simple key   in \&quot;&lt;unicode string&gt;\&quot;, line 16, column 9:             Cannot validate the data used to ...              ^ could not find expected &#39;:&#39;   in \&quot;&lt;unicode string&gt;\&quot;, line 17, column 5:         - code: 401         ^&lt;/pre&gt;
-        /// </remarks>
-        /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="datafile">The binary file of firmware image</param>
-        /// <param name="name">The name of the object</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
         /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name2"> (optional)</param>
-        /// <param name="description2"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="etag"> (optional)</param>
-        /// <param name="imageId"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description2"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>Task of ApiResponse (FirmwareImageSerializerData)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareImageSerializerData>> FirmwareImageCreateAsyncWithHttpInfo (System.IO.Stream datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null);
+        /// <param name="imageId"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name2"> (optional)</param>
+        /// <returns>Task of ApiResponse (FirmwareImage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FirmwareImage>> FirmwareImageCreateAsyncWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null);
         /// <summary>
         /// 
         /// </summary>
@@ -383,17 +487,23 @@ namespace firmware_catalog.Api
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
         /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>Task of FirmwareImageSerializer</returns>
-        System.Threading.Tasks.Task<FirmwareImageSerializer> FirmwareImageDestroyAsync (int? imageId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string _object = null);
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>Task of FirmwareImage</returns>
+        System.Threading.Tasks.Task<FirmwareImage> FirmwareImageDestroyAsync (int? imageId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null);
 
         /// <summary>
         /// 
@@ -403,44 +513,50 @@ namespace firmware_catalog.Api
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
         /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>Task of ApiResponse (FirmwareImageSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareImageSerializer>> FirmwareImageDestroyAsyncWithHttpInfo (int? imageId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string _object = null);
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>Task of ApiResponse (FirmwareImage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FirmwareImage>> FirmwareImageDestroyAsyncWithHttpInfo (int? imageId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;List all firmware images. The result will be paged into pages of 100.&lt;/p&gt;
+        /// &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;List all firmware images. The result will be paged into pages of 50.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;p&gt;&#x60;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-firmware-image-properties-all-properties-are-filterable\&quot;&gt;By firmware image properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example:&lt;/p&gt; &lt;p&gt;&lt;code&gt;name&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;name&#x3D;MyName&amp;amp;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;name%3DMyName%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="after"> (optional)</param>
-        /// <param name="include"> (optional)</param>
-        /// <returns>Task of FirmwareImageSerializer</returns>
-        System.Threading.Tasks.Task<FirmwareImageSerializer> FirmwareImageListAsync (int? limit = null, string order = null, string after = null, string include = null);
+        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <returns>Task of FirmwareImagePage</returns>
+        System.Threading.Tasks.Task<FirmwareImagePage> FirmwareImageListAsync (int? limit = null, string order = null, string after = null, string filter = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;List all firmware images. The result will be paged into pages of 100.&lt;/p&gt;
+        /// &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;List all firmware images. The result will be paged into pages of 50.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;p&gt;&#x60;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-firmware-image-properties-all-properties-are-filterable\&quot;&gt;By firmware image properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example:&lt;/p&gt; &lt;p&gt;&lt;code&gt;name&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;name&#x3D;MyName&amp;amp;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;name%3DMyName%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="after"> (optional)</param>
-        /// <param name="include"> (optional)</param>
-        /// <returns>Task of ApiResponse (FirmwareImageSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareImageSerializer>> FirmwareImageListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string include = null);
+        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <returns>Task of ApiResponse (FirmwareImagePage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FirmwareImagePage>> FirmwareImageListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null);
         /// <summary>
         /// 
         /// </summary>
@@ -449,17 +565,23 @@ namespace firmware_catalog.Api
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
         /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>Task of FirmwareImageSerializer</returns>
-        System.Threading.Tasks.Task<FirmwareImageSerializer> FirmwareImageRetrieveAsync (int? imageId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string _object = null);
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>Task of FirmwareImage</returns>
+        System.Threading.Tasks.Task<FirmwareImage> FirmwareImageRetrieveAsync (int? imageId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null);
 
         /// <summary>
         /// 
@@ -469,17 +591,23 @@ namespace firmware_catalog.Api
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
         /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>Task of ApiResponse (FirmwareImageSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareImageSerializer>> FirmwareImageRetrieveAsyncWithHttpInfo (int? imageId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string _object = null);
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>Task of ApiResponse (FirmwareImage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FirmwareImage>> FirmwareImageRetrieveAsyncWithHttpInfo (int? imageId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null);
         /// <summary>
         /// 
         /// </summary>
@@ -490,8 +618,28 @@ namespace firmware_catalog.Api
         /// <param name="datafile">The manifest file to create</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
-        /// <returns>Task of FirmwareManifestSerializerData</returns>
-        System.Threading.Tasks.Task<FirmwareManifestSerializerData> FirmwareManifestCreateAsync (System.IO.Stream datafile, string name, string description = null);
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="manifestId"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description2"> (optional)</param>
+        /// <param name="timestamp"> (optional)</param>
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name2"> (optional)</param>
+        /// <returns>Task of FirmwareManifest</returns>
+        System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestCreateAsync (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null);
 
         /// <summary>
         /// 
@@ -503,8 +651,28 @@ namespace firmware_catalog.Api
         /// <param name="datafile">The manifest file to create</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
-        /// <returns>Task of ApiResponse (FirmwareManifestSerializerData)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareManifestSerializerData>> FirmwareManifestCreateAsyncWithHttpInfo (System.IO.Stream datafile, string name, string description = null);
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="manifestId"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description2"> (optional)</param>
+        /// <param name="timestamp"> (optional)</param>
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name2"> (optional)</param>
+        /// <returns>Task of ApiResponse (FirmwareManifest)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestCreateAsyncWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null);
         /// <summary>
         /// 
         /// </summary>
@@ -513,8 +681,27 @@ namespace firmware_catalog.Api
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest</param>
-        /// <returns>Task of FirmwareManifestSerializerData</returns>
-        System.Threading.Tasks.Task<FirmwareManifestSerializerData> FirmwareManifestDestroyAsync (int? manifestId);
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="timestamp"> (optional)</param>
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>Task of FirmwareManifest</returns>
+        System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestDestroyAsync (int? manifestId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null);
 
         /// <summary>
         /// 
@@ -524,35 +711,54 @@ namespace firmware_catalog.Api
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest</param>
-        /// <returns>Task of ApiResponse (FirmwareManifestSerializerData)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareManifestSerializerData>> FirmwareManifestDestroyAsyncWithHttpInfo (int? manifestId);
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="timestamp"> (optional)</param>
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>Task of ApiResponse (FirmwareManifest)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestDestroyAsyncWithHttpInfo (int? manifestId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests&lt;/p&gt;
+        /// &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-manifest-id\&quot;&gt;By manifest ID:&lt;/h5&gt; &lt;p&gt;&#x60; manifest_id&#x3D;{id} &#39;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-firmware-manifest-properties-all-properties-are-filterable\&quot;&gt;By firmware manifest properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;1234&amp;amp;d&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;device_class%3D1234%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="after"> (optional)</param>
-        /// <param name="include"> (optional)</param>
-        /// <returns>Task of ManifestSerializer</returns>
-        System.Threading.Tasks.Task<ManifestSerializer> FirmwareManifestListAsync (int? limit = null, string order = null, string after = null, string include = null);
+        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <returns>Task of FirmwareManifestPage</returns>
+        System.Threading.Tasks.Task<FirmwareManifestPage> FirmwareManifestListAsync (int? limit = null, string order = null, string after = null, string filter = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests&lt;/p&gt;
+        /// &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-manifest-id\&quot;&gt;By manifest ID:&lt;/h5&gt; &lt;p&gt;&#x60; manifest_id&#x3D;{id} &#39;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-firmware-manifest-properties-all-properties-are-filterable\&quot;&gt;By firmware manifest properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;1234&amp;amp;d&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;device_class%3D1234%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="after"> (optional)</param>
-        /// <param name="include"> (optional)</param>
-        /// <returns>Task of ApiResponse (ManifestSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ManifestSerializer>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string include = null);
+        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <returns>Task of ApiResponse (FirmwareManifestPage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FirmwareManifestPage>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null);
         /// <summary>
         /// 
         /// </summary>
@@ -561,19 +767,27 @@ namespace firmware_catalog.Api
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
         /// <param name="etag"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="timestamp"> (optional)</param>
-        /// <returns>Task of FirmwareManifestSerializerData</returns>
-        System.Threading.Tasks.Task<FirmwareManifestSerializerData> FirmwareManifestRetrieveAsync (int? manifestId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string deviceClass = null, string etag = null, string _object = null, string timestamp = null);
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>Task of FirmwareManifest</returns>
+        System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestRetrieveAsync (int? manifestId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null);
 
         /// <summary>
         /// 
@@ -583,19 +797,27 @@ namespace firmware_catalog.Api
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
         /// <param name="etag"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="timestamp"> (optional)</param>
-        /// <returns>Task of ApiResponse (FirmwareManifestSerializerData)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareManifestSerializerData>> FirmwareManifestRetrieveAsyncWithHttpInfo (int? manifestId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string deviceClass = null, string etag = null, string _object = null, string timestamp = null);
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>Task of ApiResponse (FirmwareManifest)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestRetrieveAsyncWithHttpInfo (int? manifestId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null);
         #endregion Asynchronous Operations
     }
 
@@ -709,186 +931,60 @@ namespace firmware_catalog.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;Reads the deploy_info.json file and returns the Build and Git ID to the caller.&lt;/p&gt; &lt;p&gt;Will return a 500 error if the file is missing, cannot be parsed or the keys are missing.&lt;/p&gt;
+        ///  &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;Create firmware image&lt;/p&gt;
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Object</returns>
-        public Object DeployInfoGET ()
-        {
-             ApiResponse<Object> localVarResponse = DeployInfoGETWithHttpInfo();
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  &lt;p&gt;Reads the deploy_info.json file and returns the Build and Git ID to the caller.&lt;/p&gt; &lt;p&gt;Will return a 500 error if the file is missing, cannot be parsed or the keys are missing.&lt;/p&gt;
-        /// </summary>
-        /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object</returns>
-        public ApiResponse< Object > DeployInfoGETWithHttpInfo ()
-        {
-
-            var localVarPath = "/v3/fc_deploy_info";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DeployInfoGET", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Object) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
-            
-        }
-
-        /// <summary>
-        ///  &lt;p&gt;Reads the deploy_info.json file and returns the Build and Git ID to the caller.&lt;/p&gt; &lt;p&gt;Will return a 500 error if the file is missing, cannot be parsed or the keys are missing.&lt;/p&gt;
-        /// </summary>
-        /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of Object</returns>
-        public async System.Threading.Tasks.Task<Object> DeployInfoGETAsync ()
-        {
-             ApiResponse<Object> localVarResponse = await DeployInfoGETAsyncWithHttpInfo();
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        ///  &lt;p&gt;Reads the deploy_info.json file and returns the Build and Git ID to the caller.&lt;/p&gt; &lt;p&gt;Will return a 500 error if the file is missing, cannot be parsed or the keys are missing.&lt;/p&gt;
-        /// </summary>
-        /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (Object)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeployInfoGETAsyncWithHttpInfo ()
-        {
-
-            var localVarPath = "/v3/fc_deploy_info";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DeployInfoGET", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Object) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
-            
-        }
-
-        /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;Create firmware image&lt;/p&gt;&lt;pre&gt;YAMLError:  while scanning a simple key   in \&quot;&lt;unicode string&gt;\&quot;, line 16, column 9:             Cannot validate the data used to ...              ^ could not find expected &#39;:&#39;   in \&quot;&lt;unicode string&gt;\&quot;, line 17, column 5:         - code: 401         ^&lt;/pre&gt;
-        /// </summary>
-        /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="datafile">The binary file of firmware image</param>
+        /// <param name="datafile">The firmware image file to upload</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name2"> (optional)</param>
-        /// <param name="description2"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
         /// <param name="etag"> (optional)</param>
-        /// <param name="imageId"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description2"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>FirmwareImageSerializerData</returns>
-        public FirmwareImageSerializerData FirmwareImageCreate (System.IO.Stream datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null)
+        /// <param name="imageId"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name2"> (optional)</param>
+        /// <returns>FirmwareImage</returns>
+        public FirmwareImage FirmwareImageCreate (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null)
         {
-             ApiResponse<FirmwareImageSerializerData> localVarResponse = FirmwareImageCreateWithHttpInfo(datafile, name, description, updatingRequestId, updatingIpAddress, name2, description2, createdAt, updatedAt, datafileChecksum, etag, imageId, _object);
+             ApiResponse<FirmwareImage> localVarResponse = FirmwareImageCreateWithHttpInfo(datafile, name, description, updatedAt, updatedAtGte, updatedAtLte, updatingIpAddress, etag, etagGte, etagLte, updatingRequestId, createdAt, createdAtGte, createdAtLte, description2, _object, imageId, datafileChecksum, name2);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;Create firmware image&lt;/p&gt;&lt;pre&gt;YAMLError:  while scanning a simple key   in \&quot;&lt;unicode string&gt;\&quot;, line 16, column 9:             Cannot validate the data used to ...              ^ could not find expected &#39;:&#39;   in \&quot;&lt;unicode string&gt;\&quot;, line 17, column 5:         - code: 401         ^&lt;/pre&gt;
+        ///  &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;Create firmware image&lt;/p&gt;
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="datafile">The binary file of firmware image</param>
+        /// <param name="datafile">The firmware image file to upload</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name2"> (optional)</param>
-        /// <param name="description2"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
         /// <param name="etag"> (optional)</param>
-        /// <param name="imageId"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description2"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>ApiResponse of FirmwareImageSerializerData</returns>
-        public ApiResponse< FirmwareImageSerializerData > FirmwareImageCreateWithHttpInfo (System.IO.Stream datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null)
+        /// <param name="imageId"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name2"> (optional)</param>
+        /// <returns>ApiResponse of FirmwareImage</returns>
+        public ApiResponse< FirmwareImage > FirmwareImageCreateWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null)
         {
             // verify the required parameter 'datafile' is set
             if (datafile == null)
@@ -907,7 +1003,6 @@ namespace firmware_catalog.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
-                "multipart/form-data"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -921,17 +1016,23 @@ namespace firmware_catalog.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
-            if (name2 != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name2)); // query parameter
-            if (description2 != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description2)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
             if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
+            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
+            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
+            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
             if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (imageId != null) localVarQueryParams.Add("image_id", Configuration.ApiClient.ParameterToString(imageId)); // query parameter
+            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
+            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
+            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
+            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
+            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
+            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
+            if (description2 != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description2)); // query parameter
             if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (datafile != null) localVarFileParams.Add("datafile", Configuration.ApiClient.ParameterToFile("datafile", datafile));
+            if (imageId != null) localVarQueryParams.Add("image_id", Configuration.ApiClient.ParameterToString(imageId)); // query parameter
+            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
+            if (name2 != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name2)); // query parameter
+            if (datafile != null) localVarFormParams.Add("datafile", Configuration.ApiClient.ParameterToString(datafile)); // form parameter
             if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
             if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
 
@@ -955,56 +1056,68 @@ namespace firmware_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<FirmwareImageSerializerData>(localVarStatusCode,
+            return new ApiResponse<FirmwareImage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (FirmwareImageSerializerData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImageSerializerData)));
+                (FirmwareImage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImage)));
             
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;Create firmware image&lt;/p&gt;&lt;pre&gt;YAMLError:  while scanning a simple key   in \&quot;&lt;unicode string&gt;\&quot;, line 16, column 9:             Cannot validate the data used to ...              ^ could not find expected &#39;:&#39;   in \&quot;&lt;unicode string&gt;\&quot;, line 17, column 5:         - code: 401         ^&lt;/pre&gt;
+        ///  &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;Create firmware image&lt;/p&gt;
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="datafile">The binary file of firmware image</param>
+        /// <param name="datafile">The firmware image file to upload</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name2"> (optional)</param>
-        /// <param name="description2"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
         /// <param name="etag"> (optional)</param>
-        /// <param name="imageId"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description2"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>Task of FirmwareImageSerializerData</returns>
-        public async System.Threading.Tasks.Task<FirmwareImageSerializerData> FirmwareImageCreateAsync (System.IO.Stream datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null)
+        /// <param name="imageId"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name2"> (optional)</param>
+        /// <returns>Task of FirmwareImage</returns>
+        public async System.Threading.Tasks.Task<FirmwareImage> FirmwareImageCreateAsync (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null)
         {
-             ApiResponse<FirmwareImageSerializerData> localVarResponse = await FirmwareImageCreateAsyncWithHttpInfo(datafile, name, description, updatingRequestId, updatingIpAddress, name2, description2, createdAt, updatedAt, datafileChecksum, etag, imageId, _object);
+             ApiResponse<FirmwareImage> localVarResponse = await FirmwareImageCreateAsyncWithHttpInfo(datafile, name, description, updatedAt, updatedAtGte, updatedAtLte, updatingIpAddress, etag, etagGte, etagLte, updatingRequestId, createdAt, createdAtGte, createdAtLte, description2, _object, imageId, datafileChecksum, name2);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;Create firmware image&lt;/p&gt;&lt;pre&gt;YAMLError:  while scanning a simple key   in \&quot;&lt;unicode string&gt;\&quot;, line 16, column 9:             Cannot validate the data used to ...              ^ could not find expected &#39;:&#39;   in \&quot;&lt;unicode string&gt;\&quot;, line 17, column 5:         - code: 401         ^&lt;/pre&gt;
+        ///  &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;Create firmware image&lt;/p&gt;
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="datafile">The binary file of firmware image</param>
+        /// <param name="datafile">The firmware image file to upload</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name2"> (optional)</param>
-        /// <param name="description2"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
         /// <param name="etag"> (optional)</param>
-        /// <param name="imageId"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description2"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>Task of ApiResponse (FirmwareImageSerializerData)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareImageSerializerData>> FirmwareImageCreateAsyncWithHttpInfo (System.IO.Stream datafile, string name, string description = null, string updatingRequestId = null, string updatingIpAddress = null, string name2 = null, string description2 = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string imageId = null, string _object = null)
+        /// <param name="imageId"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name2"> (optional)</param>
+        /// <returns>Task of ApiResponse (FirmwareImage)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareImage>> FirmwareImageCreateAsyncWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null)
         {
             // verify the required parameter 'datafile' is set
             if (datafile == null)
@@ -1023,7 +1136,6 @@ namespace firmware_catalog.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
-                "multipart/form-data"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -1037,17 +1149,23 @@ namespace firmware_catalog.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
-            if (name2 != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name2)); // query parameter
-            if (description2 != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description2)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
             if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
+            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
+            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
+            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
             if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (imageId != null) localVarQueryParams.Add("image_id", Configuration.ApiClient.ParameterToString(imageId)); // query parameter
+            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
+            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
+            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
+            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
+            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
+            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
+            if (description2 != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description2)); // query parameter
             if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (datafile != null) localVarFileParams.Add("datafile", Configuration.ApiClient.ParameterToFile("datafile", datafile));
+            if (imageId != null) localVarQueryParams.Add("image_id", Configuration.ApiClient.ParameterToString(imageId)); // query parameter
+            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
+            if (name2 != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name2)); // query parameter
+            if (datafile != null) localVarFormParams.Add("datafile", Configuration.ApiClient.ParameterToString(datafile)); // form parameter
             if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
             if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
 
@@ -1070,9 +1188,9 @@ namespace firmware_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<FirmwareImageSerializerData>(localVarStatusCode,
+            return new ApiResponse<FirmwareImage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (FirmwareImageSerializerData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImageSerializerData)));
+                (FirmwareImage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImage)));
             
         }
 
@@ -1081,19 +1199,25 @@ namespace firmware_catalog.Api
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
         /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>FirmwareImageSerializer</returns>
-        public FirmwareImageSerializer FirmwareImageDestroy (int? imageId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string _object = null)
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>FirmwareImage</returns>
+        public FirmwareImage FirmwareImageDestroy (int? imageId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null)
         {
-             ApiResponse<FirmwareImageSerializer> localVarResponse = FirmwareImageDestroyWithHttpInfo(imageId, updatingRequestId, updatingIpAddress, name, description, createdAt, updatedAt, datafileChecksum, etag, _object);
+             ApiResponse<FirmwareImage> localVarResponse = FirmwareImageDestroyWithHttpInfo(imageId, updatedAt, updatedAtGte, updatedAtLte, updatingIpAddress, etag, etagGte, etagLte, updatingRequestId, createdAt, createdAtGte, createdAtLte, description, _object, datafileChecksum, name);
              return localVarResponse.Data;
         }
 
@@ -1102,17 +1226,23 @@ namespace firmware_catalog.Api
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
         /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>ApiResponse of FirmwareImageSerializer</returns>
-        public ApiResponse< FirmwareImageSerializer > FirmwareImageDestroyWithHttpInfo (int? imageId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string _object = null)
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>ApiResponse of FirmwareImage</returns>
+        public ApiResponse< FirmwareImage > FirmwareImageDestroyWithHttpInfo (int? imageId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null)
         {
             // verify the required parameter 'imageId' is set
             if (imageId == null)
@@ -1142,15 +1272,21 @@ namespace firmware_catalog.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (imageId != null) localVarPathParams.Add("image_id", Configuration.ApiClient.ParameterToString(imageId)); // path parameter
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
             if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
+            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
+            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
+            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
             if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
+            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
+            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
+            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
+            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
+            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
+            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
+            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
             if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
+            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
+            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1172,9 +1308,9 @@ namespace firmware_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<FirmwareImageSerializer>(localVarStatusCode,
+            return new ApiResponse<FirmwareImage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (FirmwareImageSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImageSerializer)));
+                (FirmwareImage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImage)));
             
         }
 
@@ -1183,19 +1319,25 @@ namespace firmware_catalog.Api
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
         /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>Task of FirmwareImageSerializer</returns>
-        public async System.Threading.Tasks.Task<FirmwareImageSerializer> FirmwareImageDestroyAsync (int? imageId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string _object = null)
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>Task of FirmwareImage</returns>
+        public async System.Threading.Tasks.Task<FirmwareImage> FirmwareImageDestroyAsync (int? imageId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null)
         {
-             ApiResponse<FirmwareImageSerializer> localVarResponse = await FirmwareImageDestroyAsyncWithHttpInfo(imageId, updatingRequestId, updatingIpAddress, name, description, createdAt, updatedAt, datafileChecksum, etag, _object);
+             ApiResponse<FirmwareImage> localVarResponse = await FirmwareImageDestroyAsyncWithHttpInfo(imageId, updatedAt, updatedAtGte, updatedAtLte, updatingIpAddress, etag, etagGte, etagLte, updatingRequestId, createdAt, createdAtGte, createdAtLte, description, _object, datafileChecksum, name);
              return localVarResponse.Data;
 
         }
@@ -1205,17 +1347,23 @@ namespace firmware_catalog.Api
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
         /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>Task of ApiResponse (FirmwareImageSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareImageSerializer>> FirmwareImageDestroyAsyncWithHttpInfo (int? imageId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string _object = null)
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>Task of ApiResponse (FirmwareImage)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareImage>> FirmwareImageDestroyAsyncWithHttpInfo (int? imageId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null)
         {
             // verify the required parameter 'imageId' is set
             if (imageId == null)
@@ -1245,15 +1393,21 @@ namespace firmware_catalog.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (imageId != null) localVarPathParams.Add("image_id", Configuration.ApiClient.ParameterToString(imageId)); // path parameter
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
             if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
+            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
+            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
+            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
             if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
+            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
+            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
+            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
+            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
+            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
+            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
+            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
             if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
+            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
+            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1274,37 +1428,37 @@ namespace firmware_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<FirmwareImageSerializer>(localVarStatusCode,
+            return new ApiResponse<FirmwareImage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (FirmwareImageSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImageSerializer)));
+                (FirmwareImage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImage)));
             
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;List all firmware images. The result will be paged into pages of 100.&lt;/p&gt;
+        ///  &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;List all firmware images. The result will be paged into pages of 50.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;p&gt;&#x60;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-firmware-image-properties-all-properties-are-filterable\&quot;&gt;By firmware image properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example:&lt;/p&gt; &lt;p&gt;&lt;code&gt;name&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;name&#x3D;MyName&amp;amp;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;name%3DMyName%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="after"> (optional)</param>
-        /// <param name="include"> (optional)</param>
-        /// <returns>FirmwareImageSerializer</returns>
-        public FirmwareImageSerializer FirmwareImageList (int? limit = null, string order = null, string after = null, string include = null)
+        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <returns>FirmwareImagePage</returns>
+        public FirmwareImagePage FirmwareImageList (int? limit = null, string order = null, string after = null, string filter = null)
         {
-             ApiResponse<FirmwareImageSerializer> localVarResponse = FirmwareImageListWithHttpInfo(limit, order, after, include);
+             ApiResponse<FirmwareImagePage> localVarResponse = FirmwareImageListWithHttpInfo(limit, order, after, filter);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;List all firmware images. The result will be paged into pages of 100.&lt;/p&gt;
+        ///  &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;List all firmware images. The result will be paged into pages of 50.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;p&gt;&#x60;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-firmware-image-properties-all-properties-are-filterable\&quot;&gt;By firmware image properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example:&lt;/p&gt; &lt;p&gt;&lt;code&gt;name&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;name&#x3D;MyName&amp;amp;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;name%3DMyName%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="after"> (optional)</param>
-        /// <param name="include"> (optional)</param>
-        /// <returns>ApiResponse of FirmwareImageSerializer</returns>
-        public ApiResponse< FirmwareImageSerializer > FirmwareImageListWithHttpInfo (int? limit = null, string order = null, string after = null, string include = null)
+        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <returns>ApiResponse of FirmwareImagePage</returns>
+        public ApiResponse< FirmwareImagePage > FirmwareImageListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null)
         {
 
             var localVarPath = "/v3/firmware-images/";
@@ -1333,7 +1487,7 @@ namespace firmware_catalog.Api
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
-            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1355,38 +1509,38 @@ namespace firmware_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<FirmwareImageSerializer>(localVarStatusCode,
+            return new ApiResponse<FirmwareImagePage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (FirmwareImageSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImageSerializer)));
+                (FirmwareImagePage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImagePage)));
             
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;List all firmware images. The result will be paged into pages of 100.&lt;/p&gt;
+        ///  &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;List all firmware images. The result will be paged into pages of 50.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;p&gt;&#x60;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-firmware-image-properties-all-properties-are-filterable\&quot;&gt;By firmware image properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example:&lt;/p&gt; &lt;p&gt;&lt;code&gt;name&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;name&#x3D;MyName&amp;amp;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;name%3DMyName%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="after"> (optional)</param>
-        /// <param name="include"> (optional)</param>
-        /// <returns>Task of FirmwareImageSerializer</returns>
-        public async System.Threading.Tasks.Task<FirmwareImageSerializer> FirmwareImageListAsync (int? limit = null, string order = null, string after = null, string include = null)
+        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <returns>Task of FirmwareImagePage</returns>
+        public async System.Threading.Tasks.Task<FirmwareImagePage> FirmwareImageListAsync (int? limit = null, string order = null, string after = null, string filter = null)
         {
-             ApiResponse<FirmwareImageSerializer> localVarResponse = await FirmwareImageListAsyncWithHttpInfo(limit, order, after, include);
+             ApiResponse<FirmwareImagePage> localVarResponse = await FirmwareImageListAsyncWithHttpInfo(limit, order, after, filter);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;List all firmware images. The result will be paged into pages of 100.&lt;/p&gt;
+        ///  &lt;p&gt;The APIs for creating and manipulating firmware images.  &lt;/p&gt; &lt;p&gt;List all firmware images. The result will be paged into pages of 50.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;p&gt;&#x60;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-firmware-image-properties-all-properties-are-filterable\&quot;&gt;By firmware image properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example:&lt;/p&gt; &lt;p&gt;&lt;code&gt;name&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;name&#x3D;MyName&amp;amp;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;name%3DMyName%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="after"> (optional)</param>
-        /// <param name="include"> (optional)</param>
-        /// <returns>Task of ApiResponse (FirmwareImageSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareImageSerializer>> FirmwareImageListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string include = null)
+        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <returns>Task of ApiResponse (FirmwareImagePage)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareImagePage>> FirmwareImageListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null)
         {
 
             var localVarPath = "/v3/firmware-images/";
@@ -1415,7 +1569,7 @@ namespace firmware_catalog.Api
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
-            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1436,9 +1590,9 @@ namespace firmware_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<FirmwareImageSerializer>(localVarStatusCode,
+            return new ApiResponse<FirmwareImagePage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (FirmwareImageSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImageSerializer)));
+                (FirmwareImagePage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImagePage)));
             
         }
 
@@ -1447,19 +1601,25 @@ namespace firmware_catalog.Api
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
         /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>FirmwareImageSerializer</returns>
-        public FirmwareImageSerializer FirmwareImageRetrieve (int? imageId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string _object = null)
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>FirmwareImage</returns>
+        public FirmwareImage FirmwareImageRetrieve (int? imageId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null)
         {
-             ApiResponse<FirmwareImageSerializer> localVarResponse = FirmwareImageRetrieveWithHttpInfo(imageId, updatingRequestId, updatingIpAddress, name, description, createdAt, updatedAt, datafileChecksum, etag, _object);
+             ApiResponse<FirmwareImage> localVarResponse = FirmwareImageRetrieveWithHttpInfo(imageId, updatedAt, updatedAtGte, updatedAtLte, updatingIpAddress, etag, etagGte, etagLte, updatingRequestId, createdAt, createdAtGte, createdAtLte, description, _object, datafileChecksum, name);
              return localVarResponse.Data;
         }
 
@@ -1468,17 +1628,23 @@ namespace firmware_catalog.Api
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
         /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>ApiResponse of FirmwareImageSerializer</returns>
-        public ApiResponse< FirmwareImageSerializer > FirmwareImageRetrieveWithHttpInfo (int? imageId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string _object = null)
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>ApiResponse of FirmwareImage</returns>
+        public ApiResponse< FirmwareImage > FirmwareImageRetrieveWithHttpInfo (int? imageId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null)
         {
             // verify the required parameter 'imageId' is set
             if (imageId == null)
@@ -1508,15 +1674,21 @@ namespace firmware_catalog.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (imageId != null) localVarPathParams.Add("image_id", Configuration.ApiClient.ParameterToString(imageId)); // path parameter
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
             if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
+            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
+            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
+            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
             if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
+            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
+            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
+            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
+            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
+            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
+            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
+            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
             if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
+            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
+            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1538,9 +1710,9 @@ namespace firmware_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<FirmwareImageSerializer>(localVarStatusCode,
+            return new ApiResponse<FirmwareImage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (FirmwareImageSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImageSerializer)));
+                (FirmwareImage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImage)));
             
         }
 
@@ -1549,19 +1721,25 @@ namespace firmware_catalog.Api
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
         /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>Task of FirmwareImageSerializer</returns>
-        public async System.Threading.Tasks.Task<FirmwareImageSerializer> FirmwareImageRetrieveAsync (int? imageId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string _object = null)
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>Task of FirmwareImage</returns>
+        public async System.Threading.Tasks.Task<FirmwareImage> FirmwareImageRetrieveAsync (int? imageId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null)
         {
-             ApiResponse<FirmwareImageSerializer> localVarResponse = await FirmwareImageRetrieveAsyncWithHttpInfo(imageId, updatingRequestId, updatingIpAddress, name, description, createdAt, updatedAt, datafileChecksum, etag, _object);
+             ApiResponse<FirmwareImage> localVarResponse = await FirmwareImageRetrieveAsyncWithHttpInfo(imageId, updatedAt, updatedAtGte, updatedAtLte, updatingIpAddress, etag, etagGte, etagLte, updatingRequestId, createdAt, createdAtGte, createdAtLte, description, _object, datafileChecksum, name);
              return localVarResponse.Data;
 
         }
@@ -1571,17 +1749,23 @@ namespace firmware_catalog.Api
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
         /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="_object"> (optional)</param>
-        /// <returns>Task of ApiResponse (FirmwareImageSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareImageSerializer>> FirmwareImageRetrieveAsyncWithHttpInfo (int? imageId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string etag = null, string _object = null)
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>Task of ApiResponse (FirmwareImage)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareImage>> FirmwareImageRetrieveAsyncWithHttpInfo (int? imageId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null)
         {
             // verify the required parameter 'imageId' is set
             if (imageId == null)
@@ -1611,15 +1795,21 @@ namespace firmware_catalog.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (imageId != null) localVarPathParams.Add("image_id", Configuration.ApiClient.ParameterToString(imageId)); // path parameter
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
             if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
+            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
+            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
+            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
             if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
+            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
+            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
+            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
+            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
+            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
+            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
+            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
             if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
+            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
+            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1640,9 +1830,9 @@ namespace firmware_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<FirmwareImageSerializer>(localVarStatusCode,
+            return new ApiResponse<FirmwareImage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (FirmwareImageSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImageSerializer)));
+                (FirmwareImage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImage)));
             
         }
 
@@ -1653,10 +1843,30 @@ namespace firmware_catalog.Api
         /// <param name="datafile">The manifest file to create</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
-        /// <returns>FirmwareManifestSerializerData</returns>
-        public FirmwareManifestSerializerData FirmwareManifestCreate (System.IO.Stream datafile, string name, string description = null)
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="manifestId"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description2"> (optional)</param>
+        /// <param name="timestamp"> (optional)</param>
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name2"> (optional)</param>
+        /// <returns>FirmwareManifest</returns>
+        public FirmwareManifest FirmwareManifestCreate (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null)
         {
-             ApiResponse<FirmwareManifestSerializerData> localVarResponse = FirmwareManifestCreateWithHttpInfo(datafile, name, description);
+             ApiResponse<FirmwareManifest> localVarResponse = FirmwareManifestCreateWithHttpInfo(datafile, name, description, updatedAt, updatedAtGte, updatedAtLte, createdAt, createdAtGte, createdAtLte, etag, etagGte, etagLte, updatingIpAddress, manifestId, updatingRequestId, description2, timestamp, timestampGte, timestampLte, _object, deviceClass, datafileChecksum, name2);
              return localVarResponse.Data;
         }
 
@@ -1667,8 +1877,28 @@ namespace firmware_catalog.Api
         /// <param name="datafile">The manifest file to create</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
-        /// <returns>ApiResponse of FirmwareManifestSerializerData</returns>
-        public ApiResponse< FirmwareManifestSerializerData > FirmwareManifestCreateWithHttpInfo (System.IO.Stream datafile, string name, string description = null)
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="manifestId"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description2"> (optional)</param>
+        /// <param name="timestamp"> (optional)</param>
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name2"> (optional)</param>
+        /// <returns>ApiResponse of FirmwareManifest</returns>
+        public ApiResponse< FirmwareManifest > FirmwareManifestCreateWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null)
         {
             // verify the required parameter 'datafile' is set
             if (datafile == null)
@@ -1687,7 +1917,6 @@ namespace firmware_catalog.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
-                "multipart/form-data"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -1701,7 +1930,27 @@ namespace firmware_catalog.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (datafile != null) localVarFileParams.Add("datafile", Configuration.ApiClient.ParameterToFile("datafile", datafile));
+            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
+            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
+            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
+            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
+            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
+            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
+            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
+            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
+            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
+            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
+            if (manifestId != null) localVarQueryParams.Add("manifest_id", Configuration.ApiClient.ParameterToString(manifestId)); // query parameter
+            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
+            if (description2 != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description2)); // query parameter
+            if (timestamp != null) localVarQueryParams.Add("timestamp", Configuration.ApiClient.ParameterToString(timestamp)); // query parameter
+            if (timestampGte != null) localVarQueryParams.Add("timestamp__gte", Configuration.ApiClient.ParameterToString(timestampGte)); // query parameter
+            if (timestampLte != null) localVarQueryParams.Add("timestamp__lte", Configuration.ApiClient.ParameterToString(timestampLte)); // query parameter
+            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
+            if (deviceClass != null) localVarQueryParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // query parameter
+            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
+            if (name2 != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name2)); // query parameter
+            if (datafile != null) localVarFormParams.Add("datafile", Configuration.ApiClient.ParameterToString(datafile)); // form parameter
             if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
             if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
 
@@ -1725,9 +1974,9 @@ namespace firmware_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<FirmwareManifestSerializerData>(localVarStatusCode,
+            return new ApiResponse<FirmwareManifest>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (FirmwareManifestSerializerData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifestSerializerData)));
+                (FirmwareManifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifest)));
             
         }
 
@@ -1738,10 +1987,30 @@ namespace firmware_catalog.Api
         /// <param name="datafile">The manifest file to create</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
-        /// <returns>Task of FirmwareManifestSerializerData</returns>
-        public async System.Threading.Tasks.Task<FirmwareManifestSerializerData> FirmwareManifestCreateAsync (System.IO.Stream datafile, string name, string description = null)
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="manifestId"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description2"> (optional)</param>
+        /// <param name="timestamp"> (optional)</param>
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name2"> (optional)</param>
+        /// <returns>Task of FirmwareManifest</returns>
+        public async System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestCreateAsync (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null)
         {
-             ApiResponse<FirmwareManifestSerializerData> localVarResponse = await FirmwareManifestCreateAsyncWithHttpInfo(datafile, name, description);
+             ApiResponse<FirmwareManifest> localVarResponse = await FirmwareManifestCreateAsyncWithHttpInfo(datafile, name, description, updatedAt, updatedAtGte, updatedAtLte, createdAt, createdAtGte, createdAtLte, etag, etagGte, etagLte, updatingIpAddress, manifestId, updatingRequestId, description2, timestamp, timestampGte, timestampLte, _object, deviceClass, datafileChecksum, name2);
              return localVarResponse.Data;
 
         }
@@ -1753,8 +2022,28 @@ namespace firmware_catalog.Api
         /// <param name="datafile">The manifest file to create</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
-        /// <returns>Task of ApiResponse (FirmwareManifestSerializerData)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifestSerializerData>> FirmwareManifestCreateAsyncWithHttpInfo (System.IO.Stream datafile, string name, string description = null)
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="manifestId"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description2"> (optional)</param>
+        /// <param name="timestamp"> (optional)</param>
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name2"> (optional)</param>
+        /// <returns>Task of ApiResponse (FirmwareManifest)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestCreateAsyncWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null)
         {
             // verify the required parameter 'datafile' is set
             if (datafile == null)
@@ -1773,7 +2062,6 @@ namespace firmware_catalog.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
-                "multipart/form-data"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -1787,7 +2075,27 @@ namespace firmware_catalog.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (datafile != null) localVarFileParams.Add("datafile", Configuration.ApiClient.ParameterToFile("datafile", datafile));
+            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
+            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
+            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
+            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
+            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
+            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
+            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
+            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
+            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
+            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
+            if (manifestId != null) localVarQueryParams.Add("manifest_id", Configuration.ApiClient.ParameterToString(manifestId)); // query parameter
+            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
+            if (description2 != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description2)); // query parameter
+            if (timestamp != null) localVarQueryParams.Add("timestamp", Configuration.ApiClient.ParameterToString(timestamp)); // query parameter
+            if (timestampGte != null) localVarQueryParams.Add("timestamp__gte", Configuration.ApiClient.ParameterToString(timestampGte)); // query parameter
+            if (timestampLte != null) localVarQueryParams.Add("timestamp__lte", Configuration.ApiClient.ParameterToString(timestampLte)); // query parameter
+            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
+            if (deviceClass != null) localVarQueryParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // query parameter
+            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
+            if (name2 != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name2)); // query parameter
+            if (datafile != null) localVarFormParams.Add("datafile", Configuration.ApiClient.ParameterToString(datafile)); // form parameter
             if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
             if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
 
@@ -1810,9 +2118,9 @@ namespace firmware_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<FirmwareManifestSerializerData>(localVarStatusCode,
+            return new ApiResponse<FirmwareManifest>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (FirmwareManifestSerializerData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifestSerializerData)));
+                (FirmwareManifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifest)));
             
         }
 
@@ -1821,10 +2129,29 @@ namespace firmware_catalog.Api
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest</param>
-        /// <returns>FirmwareManifestSerializerData</returns>
-        public FirmwareManifestSerializerData FirmwareManifestDestroy (int? manifestId)
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="timestamp"> (optional)</param>
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>FirmwareManifest</returns>
+        public FirmwareManifest FirmwareManifestDestroy (int? manifestId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null)
         {
-             ApiResponse<FirmwareManifestSerializerData> localVarResponse = FirmwareManifestDestroyWithHttpInfo(manifestId);
+             ApiResponse<FirmwareManifest> localVarResponse = FirmwareManifestDestroyWithHttpInfo(manifestId, updatedAt, updatedAtGte, updatedAtLte, createdAt, createdAtGte, createdAtLte, etag, etagGte, etagLte, updatingIpAddress, updatingRequestId, description, timestamp, timestampGte, timestampLte, _object, deviceClass, datafileChecksum, name);
              return localVarResponse.Data;
         }
 
@@ -1833,8 +2160,27 @@ namespace firmware_catalog.Api
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest</param>
-        /// <returns>ApiResponse of FirmwareManifestSerializerData</returns>
-        public ApiResponse< FirmwareManifestSerializerData > FirmwareManifestDestroyWithHttpInfo (int? manifestId)
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="timestamp"> (optional)</param>
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>ApiResponse of FirmwareManifest</returns>
+        public ApiResponse< FirmwareManifest > FirmwareManifestDestroyWithHttpInfo (int? manifestId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null)
         {
             // verify the required parameter 'manifestId' is set
             if (manifestId == null)
@@ -1864,6 +2210,25 @@ namespace firmware_catalog.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (manifestId != null) localVarPathParams.Add("manifest_id", Configuration.ApiClient.ParameterToString(manifestId)); // path parameter
+            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
+            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
+            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
+            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
+            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
+            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
+            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
+            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
+            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
+            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
+            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
+            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
+            if (timestamp != null) localVarQueryParams.Add("timestamp", Configuration.ApiClient.ParameterToString(timestamp)); // query parameter
+            if (timestampGte != null) localVarQueryParams.Add("timestamp__gte", Configuration.ApiClient.ParameterToString(timestampGte)); // query parameter
+            if (timestampLte != null) localVarQueryParams.Add("timestamp__lte", Configuration.ApiClient.ParameterToString(timestampLte)); // query parameter
+            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
+            if (deviceClass != null) localVarQueryParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // query parameter
+            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
+            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1885,9 +2250,9 @@ namespace firmware_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<FirmwareManifestSerializerData>(localVarStatusCode,
+            return new ApiResponse<FirmwareManifest>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (FirmwareManifestSerializerData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifestSerializerData)));
+                (FirmwareManifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifest)));
             
         }
 
@@ -1896,10 +2261,29 @@ namespace firmware_catalog.Api
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest</param>
-        /// <returns>Task of FirmwareManifestSerializerData</returns>
-        public async System.Threading.Tasks.Task<FirmwareManifestSerializerData> FirmwareManifestDestroyAsync (int? manifestId)
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="timestamp"> (optional)</param>
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>Task of FirmwareManifest</returns>
+        public async System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestDestroyAsync (int? manifestId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null)
         {
-             ApiResponse<FirmwareManifestSerializerData> localVarResponse = await FirmwareManifestDestroyAsyncWithHttpInfo(manifestId);
+             ApiResponse<FirmwareManifest> localVarResponse = await FirmwareManifestDestroyAsyncWithHttpInfo(manifestId, updatedAt, updatedAtGte, updatedAtLte, createdAt, createdAtGte, createdAtLte, etag, etagGte, etagLte, updatingIpAddress, updatingRequestId, description, timestamp, timestampGte, timestampLte, _object, deviceClass, datafileChecksum, name);
              return localVarResponse.Data;
 
         }
@@ -1909,8 +2293,27 @@ namespace firmware_catalog.Api
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest</param>
-        /// <returns>Task of ApiResponse (FirmwareManifestSerializerData)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifestSerializerData>> FirmwareManifestDestroyAsyncWithHttpInfo (int? manifestId)
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="timestamp"> (optional)</param>
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>Task of ApiResponse (FirmwareManifest)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestDestroyAsyncWithHttpInfo (int? manifestId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null)
         {
             // verify the required parameter 'manifestId' is set
             if (manifestId == null)
@@ -1940,6 +2343,25 @@ namespace firmware_catalog.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (manifestId != null) localVarPathParams.Add("manifest_id", Configuration.ApiClient.ParameterToString(manifestId)); // path parameter
+            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
+            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
+            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
+            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
+            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
+            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
+            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
+            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
+            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
+            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
+            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
+            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
+            if (timestamp != null) localVarQueryParams.Add("timestamp", Configuration.ApiClient.ParameterToString(timestamp)); // query parameter
+            if (timestampGte != null) localVarQueryParams.Add("timestamp__gte", Configuration.ApiClient.ParameterToString(timestampGte)); // query parameter
+            if (timestampLte != null) localVarQueryParams.Add("timestamp__lte", Configuration.ApiClient.ParameterToString(timestampLte)); // query parameter
+            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
+            if (deviceClass != null) localVarQueryParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // query parameter
+            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
+            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1960,37 +2382,37 @@ namespace firmware_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<FirmwareManifestSerializerData>(localVarStatusCode,
+            return new ApiResponse<FirmwareManifest>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (FirmwareManifestSerializerData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifestSerializerData)));
+                (FirmwareManifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifest)));
             
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests&lt;/p&gt;
+        ///  &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-manifest-id\&quot;&gt;By manifest ID:&lt;/h5&gt; &lt;p&gt;&#x60; manifest_id&#x3D;{id} &#39;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-firmware-manifest-properties-all-properties-are-filterable\&quot;&gt;By firmware manifest properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;1234&amp;amp;d&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;device_class%3D1234%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="after"> (optional)</param>
-        /// <param name="include"> (optional)</param>
-        /// <returns>ManifestSerializer</returns>
-        public ManifestSerializer FirmwareManifestList (int? limit = null, string order = null, string after = null, string include = null)
+        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <returns>FirmwareManifestPage</returns>
+        public FirmwareManifestPage FirmwareManifestList (int? limit = null, string order = null, string after = null, string filter = null)
         {
-             ApiResponse<ManifestSerializer> localVarResponse = FirmwareManifestListWithHttpInfo(limit, order, after, include);
+             ApiResponse<FirmwareManifestPage> localVarResponse = FirmwareManifestListWithHttpInfo(limit, order, after, filter);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests&lt;/p&gt;
+        ///  &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-manifest-id\&quot;&gt;By manifest ID:&lt;/h5&gt; &lt;p&gt;&#x60; manifest_id&#x3D;{id} &#39;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-firmware-manifest-properties-all-properties-are-filterable\&quot;&gt;By firmware manifest properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;1234&amp;amp;d&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;device_class%3D1234%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="after"> (optional)</param>
-        /// <param name="include"> (optional)</param>
-        /// <returns>ApiResponse of ManifestSerializer</returns>
-        public ApiResponse< ManifestSerializer > FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null, string include = null)
+        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <returns>ApiResponse of FirmwareManifestPage</returns>
+        public ApiResponse< FirmwareManifestPage > FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null)
         {
 
             var localVarPath = "/v3/firmware-manifests/";
@@ -2019,7 +2441,7 @@ namespace firmware_catalog.Api
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
-            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2041,38 +2463,38 @@ namespace firmware_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ManifestSerializer>(localVarStatusCode,
+            return new ApiResponse<FirmwareManifestPage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ManifestSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ManifestSerializer)));
+                (FirmwareManifestPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifestPage)));
             
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests&lt;/p&gt;
+        ///  &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-manifest-id\&quot;&gt;By manifest ID:&lt;/h5&gt; &lt;p&gt;&#x60; manifest_id&#x3D;{id} &#39;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-firmware-manifest-properties-all-properties-are-filterable\&quot;&gt;By firmware manifest properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;1234&amp;amp;d&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;device_class%3D1234%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="after"> (optional)</param>
-        /// <param name="include"> (optional)</param>
-        /// <returns>Task of ManifestSerializer</returns>
-        public async System.Threading.Tasks.Task<ManifestSerializer> FirmwareManifestListAsync (int? limit = null, string order = null, string after = null, string include = null)
+        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <returns>Task of FirmwareManifestPage</returns>
+        public async System.Threading.Tasks.Task<FirmwareManifestPage> FirmwareManifestListAsync (int? limit = null, string order = null, string after = null, string filter = null)
         {
-             ApiResponse<ManifestSerializer> localVarResponse = await FirmwareManifestListAsyncWithHttpInfo(limit, order, after, include);
+             ApiResponse<FirmwareManifestPage> localVarResponse = await FirmwareManifestListAsyncWithHttpInfo(limit, order, after, filter);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests&lt;/p&gt;
+        ///  &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;List all firmware manifests.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-manifest-id\&quot;&gt;By manifest ID:&lt;/h5&gt; &lt;p&gt;&#x60; manifest_id&#x3D;{id} &#39;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-firmware-manifest-properties-all-properties-are-filterable\&quot;&gt;By firmware manifest properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;1234&amp;amp;d&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;device_class%3D1234%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional)</param>
-        /// <param name="order"> (optional)</param>
-        /// <param name="after"> (optional)</param>
-        /// <param name="include"> (optional)</param>
-        /// <returns>Task of ApiResponse (ManifestSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ManifestSerializer>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string include = null)
+        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <returns>Task of ApiResponse (FirmwareManifestPage)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifestPage>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null)
         {
 
             var localVarPath = "/v3/firmware-manifests/";
@@ -2101,7 +2523,7 @@ namespace firmware_catalog.Api
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
-            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2122,9 +2544,9 @@ namespace firmware_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ManifestSerializer>(localVarStatusCode,
+            return new ApiResponse<FirmwareManifestPage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ManifestSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ManifestSerializer)));
+                (FirmwareManifestPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifestPage)));
             
         }
 
@@ -2133,21 +2555,29 @@ namespace firmware_catalog.Api
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
         /// <param name="etag"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="timestamp"> (optional)</param>
-        /// <returns>FirmwareManifestSerializerData</returns>
-        public FirmwareManifestSerializerData FirmwareManifestRetrieve (int? manifestId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string deviceClass = null, string etag = null, string _object = null, string timestamp = null)
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>FirmwareManifest</returns>
+        public FirmwareManifest FirmwareManifestRetrieve (int? manifestId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null)
         {
-             ApiResponse<FirmwareManifestSerializerData> localVarResponse = FirmwareManifestRetrieveWithHttpInfo(manifestId, updatingRequestId, updatingIpAddress, name, description, createdAt, updatedAt, datafileChecksum, deviceClass, etag, _object, timestamp);
+             ApiResponse<FirmwareManifest> localVarResponse = FirmwareManifestRetrieveWithHttpInfo(manifestId, updatedAt, updatedAtGte, updatedAtLte, createdAt, createdAtGte, createdAtLte, etag, etagGte, etagLte, updatingIpAddress, updatingRequestId, description, timestamp, timestampGte, timestampLte, _object, deviceClass, datafileChecksum, name);
              return localVarResponse.Data;
         }
 
@@ -2156,19 +2586,27 @@ namespace firmware_catalog.Api
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
         /// <param name="etag"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="timestamp"> (optional)</param>
-        /// <returns>ApiResponse of FirmwareManifestSerializerData</returns>
-        public ApiResponse< FirmwareManifestSerializerData > FirmwareManifestRetrieveWithHttpInfo (int? manifestId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string deviceClass = null, string etag = null, string _object = null, string timestamp = null)
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>ApiResponse of FirmwareManifest</returns>
+        public ApiResponse< FirmwareManifest > FirmwareManifestRetrieveWithHttpInfo (int? manifestId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null)
         {
             // verify the required parameter 'manifestId' is set
             if (manifestId == null)
@@ -2197,18 +2635,26 @@ namespace firmware_catalog.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
+            if (manifestId != null) localVarPathParams.Add("manifest_id", Configuration.ApiClient.ParameterToString(manifestId)); // path parameter
             if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
-            if (deviceClass != null) localVarQueryParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // query parameter
+            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
+            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
+            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
+            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
+            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
             if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
+            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
+            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
+            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
+            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
+            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
             if (timestamp != null) localVarQueryParams.Add("timestamp", Configuration.ApiClient.ParameterToString(timestamp)); // query parameter
-            if (manifestId != null) localVarFormParams.Add("manifest_id", Configuration.ApiClient.ParameterToString(manifestId)); // form parameter
+            if (timestampGte != null) localVarQueryParams.Add("timestamp__gte", Configuration.ApiClient.ParameterToString(timestampGte)); // query parameter
+            if (timestampLte != null) localVarQueryParams.Add("timestamp__lte", Configuration.ApiClient.ParameterToString(timestampLte)); // query parameter
+            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
+            if (deviceClass != null) localVarQueryParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // query parameter
+            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
+            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2230,9 +2676,9 @@ namespace firmware_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<FirmwareManifestSerializerData>(localVarStatusCode,
+            return new ApiResponse<FirmwareManifest>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (FirmwareManifestSerializerData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifestSerializerData)));
+                (FirmwareManifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifest)));
             
         }
 
@@ -2241,21 +2687,29 @@ namespace firmware_catalog.Api
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
         /// <param name="etag"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="timestamp"> (optional)</param>
-        /// <returns>Task of FirmwareManifestSerializerData</returns>
-        public async System.Threading.Tasks.Task<FirmwareManifestSerializerData> FirmwareManifestRetrieveAsync (int? manifestId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string deviceClass = null, string etag = null, string _object = null, string timestamp = null)
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>Task of FirmwareManifest</returns>
+        public async System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestRetrieveAsync (int? manifestId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null)
         {
-             ApiResponse<FirmwareManifestSerializerData> localVarResponse = await FirmwareManifestRetrieveAsyncWithHttpInfo(manifestId, updatingRequestId, updatingIpAddress, name, description, createdAt, updatedAt, datafileChecksum, deviceClass, etag, _object, timestamp);
+             ApiResponse<FirmwareManifest> localVarResponse = await FirmwareManifestRetrieveAsyncWithHttpInfo(manifestId, updatedAt, updatedAtGte, updatedAtLte, createdAt, createdAtGte, createdAtLte, etag, etagGte, etagLte, updatingIpAddress, updatingRequestId, description, timestamp, timestampGte, timestampLte, _object, deviceClass, datafileChecksum, name);
              return localVarResponse.Data;
 
         }
@@ -2265,19 +2719,27 @@ namespace firmware_catalog.Api
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
         /// <param name="etag"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="updatingIpAddress"> (optional)</param>
+        /// <param name="updatingRequestId"> (optional)</param>
+        /// <param name="description"> (optional)</param>
         /// <param name="timestamp"> (optional)</param>
-        /// <returns>Task of ApiResponse (FirmwareManifestSerializerData)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifestSerializerData>> FirmwareManifestRetrieveAsyncWithHttpInfo (int? manifestId, string updatingRequestId = null, string updatingIpAddress = null, string name = null, string description = null, string createdAt = null, string updatedAt = null, string datafileChecksum = null, string deviceClass = null, string etag = null, string _object = null, string timestamp = null)
+        /// <param name="timestampGte"> (optional)</param>
+        /// <param name="timestampLte"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="datafileChecksum"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <returns>Task of ApiResponse (FirmwareManifest)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestRetrieveAsyncWithHttpInfo (int? manifestId, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null)
         {
             // verify the required parameter 'manifestId' is set
             if (manifestId == null)
@@ -2306,18 +2768,26 @@ namespace firmware_catalog.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
+            if (manifestId != null) localVarPathParams.Add("manifest_id", Configuration.ApiClient.ParameterToString(manifestId)); // path parameter
             if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
-            if (deviceClass != null) localVarQueryParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // query parameter
+            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
+            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
+            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
+            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
+            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
             if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
+            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
+            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
+            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
+            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
+            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
             if (timestamp != null) localVarQueryParams.Add("timestamp", Configuration.ApiClient.ParameterToString(timestamp)); // query parameter
-            if (manifestId != null) localVarFormParams.Add("manifest_id", Configuration.ApiClient.ParameterToString(manifestId)); // form parameter
+            if (timestampGte != null) localVarQueryParams.Add("timestamp__gte", Configuration.ApiClient.ParameterToString(timestampGte)); // query parameter
+            if (timestampLte != null) localVarQueryParams.Add("timestamp__lte", Configuration.ApiClient.ParameterToString(timestampLte)); // query parameter
+            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
+            if (deviceClass != null) localVarQueryParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // query parameter
+            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
+            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2338,9 +2808,9 @@ namespace firmware_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<FirmwareManifestSerializerData>(localVarStatusCode,
+            return new ApiResponse<FirmwareManifest>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (FirmwareManifestSerializerData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifestSerializerData)));
+                (FirmwareManifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifest)));
             
         }
 

@@ -48,6 +48,27 @@ namespace iam.Api
         /// <returns>ApiResponse of UserInfoResp</returns>
         ApiResponse<UserInfoResp> ActivateUserWithHttpInfo (string invitationId, UserUpdateReq body);
         /// <summary>
+        /// Upload a new developer trusted certificate.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for uploading new developer trusted certificates via using the account admin&#39;s JWT. Signature is not needed.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A trusted certificate object with attributes.</param>
+        /// <returns>TrustedCertificateInternalResp</returns>
+        TrustedCertificateInternalResp AddDeveloperCertificate (TrustedCertificateInternalReq body);
+
+        /// <summary>
+        /// Upload a new developer trusted certificate.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for uploading new developer trusted certificates via using the account admin&#39;s JWT. Signature is not needed.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A trusted certificate object with attributes.</param>
+        /// <returns>ApiResponse of TrustedCertificateInternalResp</returns>
+        ApiResponse<TrustedCertificateInternalResp> AddDeveloperCertificateWithHttpInfo (TrustedCertificateInternalReq body);
+        /// <summary>
         /// Apply password recovery.
         /// </summary>
         /// <remarks>
@@ -70,6 +91,125 @@ namespace iam.Api
         /// <param name="xForwardedFor"> (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> ApplyPasswordRecoveryWithHttpInfo (PasswordRecoveryReq body, string xForwardedFor = null);
+        /// <summary>
+        /// Check expiring certificates
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for checking expiring certificates
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Duration in days to determine how old certificates are to be searched for. (optional)</param>
+        /// <returns></returns>
+        void CheckExpiredCertificates (Duration body = null);
+
+        /// <summary>
+        /// Check expiring certificates
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for checking expiring certificates
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Duration in days to determine how old certificates are to be searched for. (optional)</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> CheckExpiredCertificatesWithHttpInfo (Duration body = null);
+        /// <summary>
+        /// Remove unconfirmed accounts.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for removing unconfirmed accounts.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Duration in seconds to determine how old accounts are to be removed. (optional)</param>
+        /// <returns></returns>
+        void CleanUnconfirmedAccounts (Duration body = null);
+
+        /// <summary>
+        /// Remove unconfirmed accounts.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for removing unconfirmed accounts.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Duration in seconds to determine how old accounts are to be removed. (optional)</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> CleanUnconfirmedAccountsWithHttpInfo (Duration body = null);
+        /// <summary>
+        /// Get all accounts all trusted certificates.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving all accounts&#39; all trusted certificates in an array.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="serviceEq">Filter certificates by service.</param>
+        /// <param name="issuerEq">Optional filter for a certain issuer name. (optional)</param>
+        /// <param name="accountIdEq">Optional filter for a certain account ID. (optional)</param>
+        /// <param name="deviceExecutionModeEq">Optional filter for developer certificates. (optional)</param>
+        /// <returns>TrustedCertificateInternalRespList</returns>
+        TrustedCertificateInternalRespList GetAllAccountsAllCertificates (string serviceEq, string issuerEq = null, string accountIdEq = null, int? deviceExecutionModeEq = null);
+
+        /// <summary>
+        /// Get all accounts all trusted certificates.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving all accounts&#39; all trusted certificates in an array.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="serviceEq">Filter certificates by service.</param>
+        /// <param name="issuerEq">Optional filter for a certain issuer name. (optional)</param>
+        /// <param name="accountIdEq">Optional filter for a certain account ID. (optional)</param>
+        /// <param name="deviceExecutionModeEq">Optional filter for developer certificates. (optional)</param>
+        /// <returns>ApiResponse of TrustedCertificateInternalRespList</returns>
+        ApiResponse<TrustedCertificateInternalRespList> GetAllAccountsAllCertificatesWithHttpInfo (string serviceEq, string issuerEq = null, string accountIdEq = null, int? deviceExecutionModeEq = null);
+        /// <summary>
+        /// Get developer trusted certificate by ID.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving a trusted certificate by ID.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <returns>TrustedCertificateInternalResp</returns>
+        TrustedCertificateInternalResp GetDeveloperCertificate (string certId);
+
+        /// <summary>
+        /// Get developer trusted certificate by ID.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving a trusted certificate by ID.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <returns>ApiResponse of TrustedCertificateInternalResp</returns>
+        ApiResponse<TrustedCertificateInternalResp> GetDeveloperCertificateWithHttpInfo (string certId);
+        /// <summary>
+        /// Get all accounts all trusted certificates.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving all accounts&#39; all trusted certificates in an array.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="serviceEq">Filter certificates by service.</param>
+        /// <param name="ifNoneMatch"> (optional)</param>
+        /// <param name="issuerEq">Optional filter for a certain issuer name. (optional)</param>
+        /// <param name="accountIdEq">Optional filter for a certain account ID. (optional)</param>
+        /// <param name="deviceExecutionModeEq">Optional filter for developer certificates. (optional)</param>
+        /// <returns>TrustedCertificateInternalRespList</returns>
+        TrustedCertificateInternalRespList GetInternalAllAccountsAllCertificates (string serviceEq, string ifNoneMatch = null, string issuerEq = null, string accountIdEq = null, int? deviceExecutionModeEq = null);
+
+        /// <summary>
+        /// Get all accounts all trusted certificates.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving all accounts&#39; all trusted certificates in an array.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="serviceEq">Filter certificates by service.</param>
+        /// <param name="ifNoneMatch"> (optional)</param>
+        /// <param name="issuerEq">Optional filter for a certain issuer name. (optional)</param>
+        /// <param name="accountIdEq">Optional filter for a certain account ID. (optional)</param>
+        /// <param name="deviceExecutionModeEq">Optional filter for developer certificates. (optional)</param>
+        /// <returns>ApiResponse of TrustedCertificateInternalRespList</returns>
+        ApiResponse<TrustedCertificateInternalRespList> GetInternalAllAccountsAllCertificatesWithHttpInfo (string serviceEq, string ifNoneMatch = null, string issuerEq = null, string accountIdEq = null, int? deviceExecutionModeEq = null);
         /// <summary>
         /// Get invited user.
         /// </summary>
@@ -112,6 +252,234 @@ namespace iam.Api
         /// <param name="signupId">ID received while signing up.</param>
         /// <returns>ApiResponse of AccountSignupResp</returns>
         ApiResponse<AccountSignupResp> GetSelfEnrollingUserWithHttpInfo (string signupId);
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        void HeadAllAccounts ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> HeadAllAccountsWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        void HeadAllApiKeys ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> HeadAllApiKeysWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        void HeadAllCertificates ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> HeadAllCertificatesWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        void HeadAllInternalCertificates ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> HeadAllInternalCertificatesWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        void HeadAllUsers ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> HeadAllUsersWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        void HeadInternalLimits ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> HeadInternalLimitsWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        void HeadInvitations ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> HeadInvitationsWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        void HeadMyAccount ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> HeadMyAccountWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        void HeadMyApiKey ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> HeadMyApiKeyWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        void HeadMyUser ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> HeadMyUserWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        void HeadRecovery ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> HeadRecoveryWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        void HeadRegister ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> HeadRegisterWithHttpInfo ();
         /// <summary>
         /// Register a new account.
         /// </summary>
@@ -158,6 +526,27 @@ namespace iam.Api
         /// <param name="xForwardedFor"> (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> RequestPasswordRecoveryWithHttpInfo (PasswordResetReq body, string xForwardedFor = null);
+        /// <summary>
+        /// Set the logging level
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for setting the wanted level of logging.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Logging level, either &#39;debug&#39;, &#39;info&#39; or &#39;warn&#39;</param>
+        /// <returns></returns>
+        void SetLoggingLevel (LoggingLevel body);
+
+        /// <summary>
+        /// Set the logging level
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for setting the wanted level of logging.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Logging level, either &#39;debug&#39;, &#39;info&#39; or &#39;warn&#39;</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> SetLoggingLevelWithHttpInfo (LoggingLevel body);
         /// <summary>
         /// Sign up for a new account.
         /// </summary>
@@ -228,6 +617,27 @@ namespace iam.Api
         /// <returns>Task of ApiResponse (UserInfoResp)</returns>
         System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> ActivateUserAsyncWithHttpInfo (string invitationId, UserUpdateReq body);
         /// <summary>
+        /// Upload a new developer trusted certificate.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for uploading new developer trusted certificates via using the account admin&#39;s JWT. Signature is not needed.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A trusted certificate object with attributes.</param>
+        /// <returns>Task of TrustedCertificateInternalResp</returns>
+        System.Threading.Tasks.Task<TrustedCertificateInternalResp> AddDeveloperCertificateAsync (TrustedCertificateInternalReq body);
+
+        /// <summary>
+        /// Upload a new developer trusted certificate.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for uploading new developer trusted certificates via using the account admin&#39;s JWT. Signature is not needed.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A trusted certificate object with attributes.</param>
+        /// <returns>Task of ApiResponse (TrustedCertificateInternalResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TrustedCertificateInternalResp>> AddDeveloperCertificateAsyncWithHttpInfo (TrustedCertificateInternalReq body);
+        /// <summary>
         /// Apply password recovery.
         /// </summary>
         /// <remarks>
@@ -250,6 +660,125 @@ namespace iam.Api
         /// <param name="xForwardedFor"> (optional)</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> ApplyPasswordRecoveryAsyncWithHttpInfo (PasswordRecoveryReq body, string xForwardedFor = null);
+        /// <summary>
+        /// Check expiring certificates
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for checking expiring certificates
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Duration in days to determine how old certificates are to be searched for. (optional)</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task CheckExpiredCertificatesAsync (Duration body = null);
+
+        /// <summary>
+        /// Check expiring certificates
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for checking expiring certificates
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Duration in days to determine how old certificates are to be searched for. (optional)</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> CheckExpiredCertificatesAsyncWithHttpInfo (Duration body = null);
+        /// <summary>
+        /// Remove unconfirmed accounts.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for removing unconfirmed accounts.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Duration in seconds to determine how old accounts are to be removed. (optional)</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task CleanUnconfirmedAccountsAsync (Duration body = null);
+
+        /// <summary>
+        /// Remove unconfirmed accounts.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for removing unconfirmed accounts.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Duration in seconds to determine how old accounts are to be removed. (optional)</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> CleanUnconfirmedAccountsAsyncWithHttpInfo (Duration body = null);
+        /// <summary>
+        /// Get all accounts all trusted certificates.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving all accounts&#39; all trusted certificates in an array.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="serviceEq">Filter certificates by service.</param>
+        /// <param name="issuerEq">Optional filter for a certain issuer name. (optional)</param>
+        /// <param name="accountIdEq">Optional filter for a certain account ID. (optional)</param>
+        /// <param name="deviceExecutionModeEq">Optional filter for developer certificates. (optional)</param>
+        /// <returns>Task of TrustedCertificateInternalRespList</returns>
+        System.Threading.Tasks.Task<TrustedCertificateInternalRespList> GetAllAccountsAllCertificatesAsync (string serviceEq, string issuerEq = null, string accountIdEq = null, int? deviceExecutionModeEq = null);
+
+        /// <summary>
+        /// Get all accounts all trusted certificates.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving all accounts&#39; all trusted certificates in an array.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="serviceEq">Filter certificates by service.</param>
+        /// <param name="issuerEq">Optional filter for a certain issuer name. (optional)</param>
+        /// <param name="accountIdEq">Optional filter for a certain account ID. (optional)</param>
+        /// <param name="deviceExecutionModeEq">Optional filter for developer certificates. (optional)</param>
+        /// <returns>Task of ApiResponse (TrustedCertificateInternalRespList)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TrustedCertificateInternalRespList>> GetAllAccountsAllCertificatesAsyncWithHttpInfo (string serviceEq, string issuerEq = null, string accountIdEq = null, int? deviceExecutionModeEq = null);
+        /// <summary>
+        /// Get developer trusted certificate by ID.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving a trusted certificate by ID.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <returns>Task of TrustedCertificateInternalResp</returns>
+        System.Threading.Tasks.Task<TrustedCertificateInternalResp> GetDeveloperCertificateAsync (string certId);
+
+        /// <summary>
+        /// Get developer trusted certificate by ID.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving a trusted certificate by ID.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <returns>Task of ApiResponse (TrustedCertificateInternalResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TrustedCertificateInternalResp>> GetDeveloperCertificateAsyncWithHttpInfo (string certId);
+        /// <summary>
+        /// Get all accounts all trusted certificates.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving all accounts&#39; all trusted certificates in an array.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="serviceEq">Filter certificates by service.</param>
+        /// <param name="ifNoneMatch"> (optional)</param>
+        /// <param name="issuerEq">Optional filter for a certain issuer name. (optional)</param>
+        /// <param name="accountIdEq">Optional filter for a certain account ID. (optional)</param>
+        /// <param name="deviceExecutionModeEq">Optional filter for developer certificates. (optional)</param>
+        /// <returns>Task of TrustedCertificateInternalRespList</returns>
+        System.Threading.Tasks.Task<TrustedCertificateInternalRespList> GetInternalAllAccountsAllCertificatesAsync (string serviceEq, string ifNoneMatch = null, string issuerEq = null, string accountIdEq = null, int? deviceExecutionModeEq = null);
+
+        /// <summary>
+        /// Get all accounts all trusted certificates.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving all accounts&#39; all trusted certificates in an array.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="serviceEq">Filter certificates by service.</param>
+        /// <param name="ifNoneMatch"> (optional)</param>
+        /// <param name="issuerEq">Optional filter for a certain issuer name. (optional)</param>
+        /// <param name="accountIdEq">Optional filter for a certain account ID. (optional)</param>
+        /// <param name="deviceExecutionModeEq">Optional filter for developer certificates. (optional)</param>
+        /// <returns>Task of ApiResponse (TrustedCertificateInternalRespList)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TrustedCertificateInternalRespList>> GetInternalAllAccountsAllCertificatesAsyncWithHttpInfo (string serviceEq, string ifNoneMatch = null, string issuerEq = null, string accountIdEq = null, int? deviceExecutionModeEq = null);
         /// <summary>
         /// Get invited user.
         /// </summary>
@@ -292,6 +821,234 @@ namespace iam.Api
         /// <param name="signupId">ID received while signing up.</param>
         /// <returns>Task of ApiResponse (AccountSignupResp)</returns>
         System.Threading.Tasks.Task<ApiResponse<AccountSignupResp>> GetSelfEnrollingUserAsyncWithHttpInfo (string signupId);
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task HeadAllAccountsAsync ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> HeadAllAccountsAsyncWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task HeadAllApiKeysAsync ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> HeadAllApiKeysAsyncWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task HeadAllCertificatesAsync ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> HeadAllCertificatesAsyncWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task HeadAllInternalCertificatesAsync ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> HeadAllInternalCertificatesAsyncWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task HeadAllUsersAsync ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> HeadAllUsersAsyncWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task HeadInternalLimitsAsync ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> HeadInternalLimitsAsyncWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task HeadInvitationsAsync ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> HeadInvitationsAsyncWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task HeadMyAccountAsync ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> HeadMyAccountAsyncWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task HeadMyApiKeyAsync ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> HeadMyApiKeyAsyncWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task HeadMyUserAsync ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> HeadMyUserAsyncWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task HeadRecoveryAsync ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> HeadRecoveryAsyncWithHttpInfo ();
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task HeadRegisterAsync ();
+
+        /// <summary>
+        /// The heartbeat method for this API.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> HeadRegisterAsyncWithHttpInfo ();
         /// <summary>
         /// Register a new account.
         /// </summary>
@@ -338,6 +1095,27 @@ namespace iam.Api
         /// <param name="xForwardedFor"> (optional)</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> RequestPasswordRecoveryAsyncWithHttpInfo (PasswordResetReq body, string xForwardedFor = null);
+        /// <summary>
+        /// Set the logging level
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for setting the wanted level of logging.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Logging level, either &#39;debug&#39;, &#39;info&#39; or &#39;warn&#39;</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task SetLoggingLevelAsync (LoggingLevel body);
+
+        /// <summary>
+        /// Set the logging level
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for setting the wanted level of logging.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Logging level, either &#39;debug&#39;, &#39;info&#39; or &#39;warn&#39;</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> SetLoggingLevelAsyncWithHttpInfo (LoggingLevel body);
         /// <summary>
         /// Sign up for a new account.
         /// </summary>
@@ -675,6 +1453,174 @@ namespace iam.Api
         }
 
         /// <summary>
+        /// Upload a new developer trusted certificate. An endpoint for uploading new developer trusted certificates via using the account admin&#39;s JWT. Signature is not needed.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A trusted certificate object with attributes.</param>
+        /// <returns>TrustedCertificateInternalResp</returns>
+        public TrustedCertificateInternalResp AddDeveloperCertificate (TrustedCertificateInternalReq body)
+        {
+             ApiResponse<TrustedCertificateInternalResp> localVarResponse = AddDeveloperCertificateWithHttpInfo(body);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Upload a new developer trusted certificate. An endpoint for uploading new developer trusted certificates via using the account admin&#39;s JWT. Signature is not needed.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A trusted certificate object with attributes.</param>
+        /// <returns>ApiResponse of TrustedCertificateInternalResp</returns>
+        public ApiResponse< TrustedCertificateInternalResp > AddDeveloperCertificateWithHttpInfo (TrustedCertificateInternalReq body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DefaultApi->AddDeveloperCertificate");
+
+            var localVarPath = "/internal/v1/trusted-certificates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("AddDeveloperCertificate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<TrustedCertificateInternalResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (TrustedCertificateInternalResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateInternalResp)));
+            
+        }
+
+        /// <summary>
+        /// Upload a new developer trusted certificate. An endpoint for uploading new developer trusted certificates via using the account admin&#39;s JWT. Signature is not needed.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A trusted certificate object with attributes.</param>
+        /// <returns>Task of TrustedCertificateInternalResp</returns>
+        public async System.Threading.Tasks.Task<TrustedCertificateInternalResp> AddDeveloperCertificateAsync (TrustedCertificateInternalReq body)
+        {
+             ApiResponse<TrustedCertificateInternalResp> localVarResponse = await AddDeveloperCertificateAsyncWithHttpInfo(body);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Upload a new developer trusted certificate. An endpoint for uploading new developer trusted certificates via using the account admin&#39;s JWT. Signature is not needed.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A trusted certificate object with attributes.</param>
+        /// <returns>Task of ApiResponse (TrustedCertificateInternalResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<TrustedCertificateInternalResp>> AddDeveloperCertificateAsyncWithHttpInfo (TrustedCertificateInternalReq body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DefaultApi->AddDeveloperCertificate");
+
+            var localVarPath = "/internal/v1/trusted-certificates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("AddDeveloperCertificate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<TrustedCertificateInternalResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (TrustedCertificateInternalResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateInternalResp)));
+            
+        }
+
+        /// <summary>
         /// Apply password recovery. Applying password recovery by providing a secret hash code.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
@@ -844,6 +1790,824 @@ namespace iam.Api
             return new ApiResponse<Object>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
+        }
+
+        /// <summary>
+        /// Check expiring certificates An endpoint for checking expiring certificates
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Duration in days to determine how old certificates are to be searched for. (optional)</param>
+        /// <returns></returns>
+        public void CheckExpiredCertificates (Duration body = null)
+        {
+             CheckExpiredCertificatesWithHttpInfo(body);
+        }
+
+        /// <summary>
+        /// Check expiring certificates An endpoint for checking expiring certificates
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Duration in days to determine how old certificates are to be searched for. (optional)</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> CheckExpiredCertificatesWithHttpInfo (Duration body = null)
+        {
+
+            var localVarPath = "/internal/v1/gc/ca-certificates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CheckExpiredCertificates", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Check expiring certificates An endpoint for checking expiring certificates
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Duration in days to determine how old certificates are to be searched for. (optional)</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task CheckExpiredCertificatesAsync (Duration body = null)
+        {
+             await CheckExpiredCertificatesAsyncWithHttpInfo(body);
+
+        }
+
+        /// <summary>
+        /// Check expiring certificates An endpoint for checking expiring certificates
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Duration in days to determine how old certificates are to be searched for. (optional)</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> CheckExpiredCertificatesAsyncWithHttpInfo (Duration body = null)
+        {
+
+            var localVarPath = "/internal/v1/gc/ca-certificates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CheckExpiredCertificates", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Remove unconfirmed accounts. An endpoint for removing unconfirmed accounts.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Duration in seconds to determine how old accounts are to be removed. (optional)</param>
+        /// <returns></returns>
+        public void CleanUnconfirmedAccounts (Duration body = null)
+        {
+             CleanUnconfirmedAccountsWithHttpInfo(body);
+        }
+
+        /// <summary>
+        /// Remove unconfirmed accounts. An endpoint for removing unconfirmed accounts.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Duration in seconds to determine how old accounts are to be removed. (optional)</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> CleanUnconfirmedAccountsWithHttpInfo (Duration body = null)
+        {
+
+            var localVarPath = "/internal/v1/gc/register";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CleanUnconfirmedAccounts", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Remove unconfirmed accounts. An endpoint for removing unconfirmed accounts.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Duration in seconds to determine how old accounts are to be removed. (optional)</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task CleanUnconfirmedAccountsAsync (Duration body = null)
+        {
+             await CleanUnconfirmedAccountsAsyncWithHttpInfo(body);
+
+        }
+
+        /// <summary>
+        /// Remove unconfirmed accounts. An endpoint for removing unconfirmed accounts.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Duration in seconds to determine how old accounts are to be removed. (optional)</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> CleanUnconfirmedAccountsAsyncWithHttpInfo (Duration body = null)
+        {
+
+            var localVarPath = "/internal/v1/gc/register";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CleanUnconfirmedAccounts", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Get all accounts all trusted certificates. An endpoint for retrieving all accounts&#39; all trusted certificates in an array.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="serviceEq">Filter certificates by service.</param>
+        /// <param name="issuerEq">Optional filter for a certain issuer name. (optional)</param>
+        /// <param name="accountIdEq">Optional filter for a certain account ID. (optional)</param>
+        /// <param name="deviceExecutionModeEq">Optional filter for developer certificates. (optional)</param>
+        /// <returns>TrustedCertificateInternalRespList</returns>
+        public TrustedCertificateInternalRespList GetAllAccountsAllCertificates (string serviceEq, string issuerEq = null, string accountIdEq = null, int? deviceExecutionModeEq = null)
+        {
+             ApiResponse<TrustedCertificateInternalRespList> localVarResponse = GetAllAccountsAllCertificatesWithHttpInfo(serviceEq, issuerEq, accountIdEq, deviceExecutionModeEq);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get all accounts all trusted certificates. An endpoint for retrieving all accounts&#39; all trusted certificates in an array.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="serviceEq">Filter certificates by service.</param>
+        /// <param name="issuerEq">Optional filter for a certain issuer name. (optional)</param>
+        /// <param name="accountIdEq">Optional filter for a certain account ID. (optional)</param>
+        /// <param name="deviceExecutionModeEq">Optional filter for developer certificates. (optional)</param>
+        /// <returns>ApiResponse of TrustedCertificateInternalRespList</returns>
+        public ApiResponse< TrustedCertificateInternalRespList > GetAllAccountsAllCertificatesWithHttpInfo (string serviceEq, string issuerEq = null, string accountIdEq = null, int? deviceExecutionModeEq = null)
+        {
+            // verify the required parameter 'serviceEq' is set
+            if (serviceEq == null)
+                throw new ApiException(400, "Missing required parameter 'serviceEq' when calling DefaultApi->GetAllAccountsAllCertificates");
+
+            var localVarPath = "/admin/v3/trusted-certificates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (serviceEq != null) localVarQueryParams.Add("service__eq", Configuration.ApiClient.ParameterToString(serviceEq)); // query parameter
+            if (issuerEq != null) localVarQueryParams.Add("issuer__eq", Configuration.ApiClient.ParameterToString(issuerEq)); // query parameter
+            if (accountIdEq != null) localVarQueryParams.Add("account_id__eq", Configuration.ApiClient.ParameterToString(accountIdEq)); // query parameter
+            if (deviceExecutionModeEq != null) localVarQueryParams.Add("device_execution_mode__eq", Configuration.ApiClient.ParameterToString(deviceExecutionModeEq)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetAllAccountsAllCertificates", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<TrustedCertificateInternalRespList>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (TrustedCertificateInternalRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateInternalRespList)));
+            
+        }
+
+        /// <summary>
+        /// Get all accounts all trusted certificates. An endpoint for retrieving all accounts&#39; all trusted certificates in an array.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="serviceEq">Filter certificates by service.</param>
+        /// <param name="issuerEq">Optional filter for a certain issuer name. (optional)</param>
+        /// <param name="accountIdEq">Optional filter for a certain account ID. (optional)</param>
+        /// <param name="deviceExecutionModeEq">Optional filter for developer certificates. (optional)</param>
+        /// <returns>Task of TrustedCertificateInternalRespList</returns>
+        public async System.Threading.Tasks.Task<TrustedCertificateInternalRespList> GetAllAccountsAllCertificatesAsync (string serviceEq, string issuerEq = null, string accountIdEq = null, int? deviceExecutionModeEq = null)
+        {
+             ApiResponse<TrustedCertificateInternalRespList> localVarResponse = await GetAllAccountsAllCertificatesAsyncWithHttpInfo(serviceEq, issuerEq, accountIdEq, deviceExecutionModeEq);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get all accounts all trusted certificates. An endpoint for retrieving all accounts&#39; all trusted certificates in an array.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="serviceEq">Filter certificates by service.</param>
+        /// <param name="issuerEq">Optional filter for a certain issuer name. (optional)</param>
+        /// <param name="accountIdEq">Optional filter for a certain account ID. (optional)</param>
+        /// <param name="deviceExecutionModeEq">Optional filter for developer certificates. (optional)</param>
+        /// <returns>Task of ApiResponse (TrustedCertificateInternalRespList)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<TrustedCertificateInternalRespList>> GetAllAccountsAllCertificatesAsyncWithHttpInfo (string serviceEq, string issuerEq = null, string accountIdEq = null, int? deviceExecutionModeEq = null)
+        {
+            // verify the required parameter 'serviceEq' is set
+            if (serviceEq == null)
+                throw new ApiException(400, "Missing required parameter 'serviceEq' when calling DefaultApi->GetAllAccountsAllCertificates");
+
+            var localVarPath = "/admin/v3/trusted-certificates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (serviceEq != null) localVarQueryParams.Add("service__eq", Configuration.ApiClient.ParameterToString(serviceEq)); // query parameter
+            if (issuerEq != null) localVarQueryParams.Add("issuer__eq", Configuration.ApiClient.ParameterToString(issuerEq)); // query parameter
+            if (accountIdEq != null) localVarQueryParams.Add("account_id__eq", Configuration.ApiClient.ParameterToString(accountIdEq)); // query parameter
+            if (deviceExecutionModeEq != null) localVarQueryParams.Add("device_execution_mode__eq", Configuration.ApiClient.ParameterToString(deviceExecutionModeEq)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetAllAccountsAllCertificates", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<TrustedCertificateInternalRespList>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (TrustedCertificateInternalRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateInternalRespList)));
+            
+        }
+
+        /// <summary>
+        /// Get developer trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <returns>TrustedCertificateInternalResp</returns>
+        public TrustedCertificateInternalResp GetDeveloperCertificate (string certId)
+        {
+             ApiResponse<TrustedCertificateInternalResp> localVarResponse = GetDeveloperCertificateWithHttpInfo(certId);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get developer trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <returns>ApiResponse of TrustedCertificateInternalResp</returns>
+        public ApiResponse< TrustedCertificateInternalResp > GetDeveloperCertificateWithHttpInfo (string certId)
+        {
+            // verify the required parameter 'certId' is set
+            if (certId == null)
+                throw new ApiException(400, "Missing required parameter 'certId' when calling DefaultApi->GetDeveloperCertificate");
+
+            var localVarPath = "/internal/v1/trusted-certificates/{cert-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (certId != null) localVarPathParams.Add("cert-id", Configuration.ApiClient.ParameterToString(certId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetDeveloperCertificate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<TrustedCertificateInternalResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (TrustedCertificateInternalResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateInternalResp)));
+            
+        }
+
+        /// <summary>
+        /// Get developer trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <returns>Task of TrustedCertificateInternalResp</returns>
+        public async System.Threading.Tasks.Task<TrustedCertificateInternalResp> GetDeveloperCertificateAsync (string certId)
+        {
+             ApiResponse<TrustedCertificateInternalResp> localVarResponse = await GetDeveloperCertificateAsyncWithHttpInfo(certId);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get developer trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <returns>Task of ApiResponse (TrustedCertificateInternalResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<TrustedCertificateInternalResp>> GetDeveloperCertificateAsyncWithHttpInfo (string certId)
+        {
+            // verify the required parameter 'certId' is set
+            if (certId == null)
+                throw new ApiException(400, "Missing required parameter 'certId' when calling DefaultApi->GetDeveloperCertificate");
+
+            var localVarPath = "/internal/v1/trusted-certificates/{cert-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (certId != null) localVarPathParams.Add("cert-id", Configuration.ApiClient.ParameterToString(certId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetDeveloperCertificate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<TrustedCertificateInternalResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (TrustedCertificateInternalResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateInternalResp)));
+            
+        }
+
+        /// <summary>
+        /// Get all accounts all trusted certificates. An endpoint for retrieving all accounts&#39; all trusted certificates in an array.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="serviceEq">Filter certificates by service.</param>
+        /// <param name="ifNoneMatch"> (optional)</param>
+        /// <param name="issuerEq">Optional filter for a certain issuer name. (optional)</param>
+        /// <param name="accountIdEq">Optional filter for a certain account ID. (optional)</param>
+        /// <param name="deviceExecutionModeEq">Optional filter for developer certificates. (optional)</param>
+        /// <returns>TrustedCertificateInternalRespList</returns>
+        public TrustedCertificateInternalRespList GetInternalAllAccountsAllCertificates (string serviceEq, string ifNoneMatch = null, string issuerEq = null, string accountIdEq = null, int? deviceExecutionModeEq = null)
+        {
+             ApiResponse<TrustedCertificateInternalRespList> localVarResponse = GetInternalAllAccountsAllCertificatesWithHttpInfo(serviceEq, ifNoneMatch, issuerEq, accountIdEq, deviceExecutionModeEq);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get all accounts all trusted certificates. An endpoint for retrieving all accounts&#39; all trusted certificates in an array.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="serviceEq">Filter certificates by service.</param>
+        /// <param name="ifNoneMatch"> (optional)</param>
+        /// <param name="issuerEq">Optional filter for a certain issuer name. (optional)</param>
+        /// <param name="accountIdEq">Optional filter for a certain account ID. (optional)</param>
+        /// <param name="deviceExecutionModeEq">Optional filter for developer certificates. (optional)</param>
+        /// <returns>ApiResponse of TrustedCertificateInternalRespList</returns>
+        public ApiResponse< TrustedCertificateInternalRespList > GetInternalAllAccountsAllCertificatesWithHttpInfo (string serviceEq, string ifNoneMatch = null, string issuerEq = null, string accountIdEq = null, int? deviceExecutionModeEq = null)
+        {
+            // verify the required parameter 'serviceEq' is set
+            if (serviceEq == null)
+                throw new ApiException(400, "Missing required parameter 'serviceEq' when calling DefaultApi->GetInternalAllAccountsAllCertificates");
+
+            var localVarPath = "/internal/v1/trusted-certificates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (serviceEq != null) localVarQueryParams.Add("service__eq", Configuration.ApiClient.ParameterToString(serviceEq)); // query parameter
+            if (issuerEq != null) localVarQueryParams.Add("issuer__eq", Configuration.ApiClient.ParameterToString(issuerEq)); // query parameter
+            if (accountIdEq != null) localVarQueryParams.Add("account_id__eq", Configuration.ApiClient.ParameterToString(accountIdEq)); // query parameter
+            if (deviceExecutionModeEq != null) localVarQueryParams.Add("device_execution_mode__eq", Configuration.ApiClient.ParameterToString(deviceExecutionModeEq)); // query parameter
+            if (ifNoneMatch != null) localVarHeaderParams.Add("If-None-Match", Configuration.ApiClient.ParameterToString(ifNoneMatch)); // header parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetInternalAllAccountsAllCertificates", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<TrustedCertificateInternalRespList>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (TrustedCertificateInternalRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateInternalRespList)));
+            
+        }
+
+        /// <summary>
+        /// Get all accounts all trusted certificates. An endpoint for retrieving all accounts&#39; all trusted certificates in an array.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="serviceEq">Filter certificates by service.</param>
+        /// <param name="ifNoneMatch"> (optional)</param>
+        /// <param name="issuerEq">Optional filter for a certain issuer name. (optional)</param>
+        /// <param name="accountIdEq">Optional filter for a certain account ID. (optional)</param>
+        /// <param name="deviceExecutionModeEq">Optional filter for developer certificates. (optional)</param>
+        /// <returns>Task of TrustedCertificateInternalRespList</returns>
+        public async System.Threading.Tasks.Task<TrustedCertificateInternalRespList> GetInternalAllAccountsAllCertificatesAsync (string serviceEq, string ifNoneMatch = null, string issuerEq = null, string accountIdEq = null, int? deviceExecutionModeEq = null)
+        {
+             ApiResponse<TrustedCertificateInternalRespList> localVarResponse = await GetInternalAllAccountsAllCertificatesAsyncWithHttpInfo(serviceEq, ifNoneMatch, issuerEq, accountIdEq, deviceExecutionModeEq);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get all accounts all trusted certificates. An endpoint for retrieving all accounts&#39; all trusted certificates in an array.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="serviceEq">Filter certificates by service.</param>
+        /// <param name="ifNoneMatch"> (optional)</param>
+        /// <param name="issuerEq">Optional filter for a certain issuer name. (optional)</param>
+        /// <param name="accountIdEq">Optional filter for a certain account ID. (optional)</param>
+        /// <param name="deviceExecutionModeEq">Optional filter for developer certificates. (optional)</param>
+        /// <returns>Task of ApiResponse (TrustedCertificateInternalRespList)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<TrustedCertificateInternalRespList>> GetInternalAllAccountsAllCertificatesAsyncWithHttpInfo (string serviceEq, string ifNoneMatch = null, string issuerEq = null, string accountIdEq = null, int? deviceExecutionModeEq = null)
+        {
+            // verify the required parameter 'serviceEq' is set
+            if (serviceEq == null)
+                throw new ApiException(400, "Missing required parameter 'serviceEq' when calling DefaultApi->GetInternalAllAccountsAllCertificates");
+
+            var localVarPath = "/internal/v1/trusted-certificates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (serviceEq != null) localVarQueryParams.Add("service__eq", Configuration.ApiClient.ParameterToString(serviceEq)); // query parameter
+            if (issuerEq != null) localVarQueryParams.Add("issuer__eq", Configuration.ApiClient.ParameterToString(issuerEq)); // query parameter
+            if (accountIdEq != null) localVarQueryParams.Add("account_id__eq", Configuration.ApiClient.ParameterToString(accountIdEq)); // query parameter
+            if (deviceExecutionModeEq != null) localVarQueryParams.Add("device_execution_mode__eq", Configuration.ApiClient.ParameterToString(deviceExecutionModeEq)); // query parameter
+            if (ifNoneMatch != null) localVarHeaderParams.Add("If-None-Match", Configuration.ApiClient.ParameterToString(ifNoneMatch)); // header parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetInternalAllAccountsAllCertificates", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<TrustedCertificateInternalRespList>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (TrustedCertificateInternalRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateInternalRespList)));
+            
         }
 
         /// <summary>
@@ -1148,6 +2912,1662 @@ namespace iam.Api
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AccountSignupResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountSignupResp)));
             
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        public void HeadAllAccounts ()
+        {
+             HeadAllAccountsWithHttpInfo();
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> HeadAllAccountsWithHttpInfo ()
+        {
+
+            var localVarPath = "/v3/accounts";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadAllAccounts", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task HeadAllAccountsAsync ()
+        {
+             await HeadAllAccountsAsyncWithHttpInfo();
+
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> HeadAllAccountsAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/v3/accounts";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadAllAccounts", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        public void HeadAllApiKeys ()
+        {
+             HeadAllApiKeysWithHttpInfo();
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> HeadAllApiKeysWithHttpInfo ()
+        {
+
+            var localVarPath = "/v3/api-keys";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadAllApiKeys", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task HeadAllApiKeysAsync ()
+        {
+             await HeadAllApiKeysAsyncWithHttpInfo();
+
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> HeadAllApiKeysAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/v3/api-keys";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadAllApiKeys", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        public void HeadAllCertificates ()
+        {
+             HeadAllCertificatesWithHttpInfo();
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> HeadAllCertificatesWithHttpInfo ()
+        {
+
+            var localVarPath = "/v3/trusted-certificates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadAllCertificates", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task HeadAllCertificatesAsync ()
+        {
+             await HeadAllCertificatesAsyncWithHttpInfo();
+
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> HeadAllCertificatesAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/v3/trusted-certificates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadAllCertificates", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        public void HeadAllInternalCertificates ()
+        {
+             HeadAllInternalCertificatesWithHttpInfo();
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> HeadAllInternalCertificatesWithHttpInfo ()
+        {
+
+            var localVarPath = "/internal/v1/trusted-certificates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadAllInternalCertificates", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task HeadAllInternalCertificatesAsync ()
+        {
+             await HeadAllInternalCertificatesAsyncWithHttpInfo();
+
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> HeadAllInternalCertificatesAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/internal/v1/trusted-certificates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadAllInternalCertificates", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        public void HeadAllUsers ()
+        {
+             HeadAllUsersWithHttpInfo();
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> HeadAllUsersWithHttpInfo ()
+        {
+
+            var localVarPath = "/v3/users";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadAllUsers", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task HeadAllUsersAsync ()
+        {
+             await HeadAllUsersAsyncWithHttpInfo();
+
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> HeadAllUsersAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/v3/users";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadAllUsers", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        public void HeadInternalLimits ()
+        {
+             HeadInternalLimitsWithHttpInfo();
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> HeadInternalLimitsWithHttpInfo ()
+        {
+
+            var localVarPath = "/internal/v1/limits";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadInternalLimits", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task HeadInternalLimitsAsync ()
+        {
+             await HeadInternalLimitsAsyncWithHttpInfo();
+
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> HeadInternalLimitsAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/internal/v1/limits";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadInternalLimits", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        public void HeadInvitations ()
+        {
+             HeadInvitationsWithHttpInfo();
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> HeadInvitationsWithHttpInfo ()
+        {
+
+            var localVarPath = "/auth/invitations";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadInvitations", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task HeadInvitationsAsync ()
+        {
+             await HeadInvitationsAsyncWithHttpInfo();
+
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> HeadInvitationsAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/auth/invitations";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadInvitations", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        public void HeadMyAccount ()
+        {
+             HeadMyAccountWithHttpInfo();
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> HeadMyAccountWithHttpInfo ()
+        {
+
+            var localVarPath = "/v3/accounts/me";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadMyAccount", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task HeadMyAccountAsync ()
+        {
+             await HeadMyAccountAsyncWithHttpInfo();
+
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> HeadMyAccountAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/v3/accounts/me";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadMyAccount", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        public void HeadMyApiKey ()
+        {
+             HeadMyApiKeyWithHttpInfo();
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> HeadMyApiKeyWithHttpInfo ()
+        {
+
+            var localVarPath = "/v3/api-keys/me";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadMyApiKey", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task HeadMyApiKeyAsync ()
+        {
+             await HeadMyApiKeyAsyncWithHttpInfo();
+
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> HeadMyApiKeyAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/v3/api-keys/me";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadMyApiKey", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        public void HeadMyUser ()
+        {
+             HeadMyUserWithHttpInfo();
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> HeadMyUserWithHttpInfo ()
+        {
+
+            var localVarPath = "/v3/users/me";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadMyUser", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task HeadMyUserAsync ()
+        {
+             await HeadMyUserAsyncWithHttpInfo();
+
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> HeadMyUserAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/v3/users/me";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadMyUser", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        public void HeadRecovery ()
+        {
+             HeadRecoveryWithHttpInfo();
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> HeadRecoveryWithHttpInfo ()
+        {
+
+            var localVarPath = "/auth/recover";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadRecovery", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task HeadRecoveryAsync ()
+        {
+             await HeadRecoveryAsyncWithHttpInfo();
+
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> HeadRecoveryAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/auth/recover";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadRecovery", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        public void HeadRegister ()
+        {
+             HeadRegisterWithHttpInfo();
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> HeadRegisterWithHttpInfo ()
+        {
+
+            var localVarPath = "/auth/register";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadRegister", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task HeadRegisterAsync ()
+        {
+             await HeadRegisterAsyncWithHttpInfo();
+
+        }
+
+        /// <summary>
+        /// The heartbeat method for this API. 
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> HeadRegisterAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/auth/register";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("HeadRegister", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
         }
 
         /// <summary>
@@ -1493,6 +4913,172 @@ namespace iam.Api
             if (ExceptionFactory != null)
             {
                 Exception exception = ExceptionFactory("RequestPasswordRecovery", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Set the logging level An endpoint for setting the wanted level of logging.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Logging level, either &#39;debug&#39;, &#39;info&#39; or &#39;warn&#39;</param>
+        /// <returns></returns>
+        public void SetLoggingLevel (LoggingLevel body)
+        {
+             SetLoggingLevelWithHttpInfo(body);
+        }
+
+        /// <summary>
+        /// Set the logging level An endpoint for setting the wanted level of logging.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Logging level, either &#39;debug&#39;, &#39;info&#39; or &#39;warn&#39;</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> SetLoggingLevelWithHttpInfo (LoggingLevel body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DefaultApi->SetLoggingLevel");
+
+            var localVarPath = "/admin/v3/iam/logging";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("SetLoggingLevel", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Set the logging level An endpoint for setting the wanted level of logging.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Logging level, either &#39;debug&#39;, &#39;info&#39; or &#39;warn&#39;</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task SetLoggingLevelAsync (LoggingLevel body)
+        {
+             await SetLoggingLevelAsyncWithHttpInfo(body);
+
+        }
+
+        /// <summary>
+        /// Set the logging level An endpoint for setting the wanted level of logging.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Logging level, either &#39;debug&#39;, &#39;info&#39; or &#39;warn&#39;</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> SetLoggingLevelAsyncWithHttpInfo (LoggingLevel body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DefaultApi->SetLoggingLevel");
+
+            var localVarPath = "/admin/v3/iam/logging";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("SetLoggingLevel", localVarResponse);
                 if (exception != null) throw exception;
             }
 

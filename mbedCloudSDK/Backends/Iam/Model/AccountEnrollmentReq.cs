@@ -39,11 +39,11 @@ namespace iam.Model
         /// </summary>
         /// <param name="Username">A username for the new account admin containing alphanumerical letters and -,._@+&#x3D; characters. (required).</param>
         /// <param name="Code">Verification code. (required).</param>
-        /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted. (default to false).</param>
-        /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted. (default to false).</param>
+        /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted..</param>
+        /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted..</param>
         /// <param name="Password">The password for the new account admin. (required).</param>
         /// <param name="Aliases">An array of aliases..</param>
-        public AccountEnrollmentReq(string Username = default(string), string Code = default(string), bool? IsGtcAccepted = false, bool? IsMarketingAccepted = false, string Password = default(string), List<string> Aliases = default(List<string>))
+        public AccountEnrollmentReq(string Username = default(string), string Code = default(string), bool? IsGtcAccepted = default(bool?), bool? IsMarketingAccepted = default(bool?), string Password = default(string), List<string> Aliases = default(List<string>))
         {
             // to ensure "Username" is required (not null)
             if (Username == null)
@@ -72,24 +72,8 @@ namespace iam.Model
             {
                 this.Password = Password;
             }
-            // use default value if no "IsGtcAccepted" provided
-            if (IsGtcAccepted == null)
-            {
-                this.IsGtcAccepted = false;
-            }
-            else
-            {
-                this.IsGtcAccepted = IsGtcAccepted;
-            }
-            // use default value if no "IsMarketingAccepted" provided
-            if (IsMarketingAccepted == null)
-            {
-                this.IsMarketingAccepted = false;
-            }
-            else
-            {
-                this.IsMarketingAccepted = IsMarketingAccepted;
-            }
+            this.IsGtcAccepted = IsGtcAccepted;
+            this.IsMarketingAccepted = IsMarketingAccepted;
             this.Aliases = Aliases;
         }
         

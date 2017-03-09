@@ -47,13 +47,7 @@ namespace iam.Model
             /// Enum Bootstrap for "bootstrap"
             /// </summary>
             [EnumMember(Value = "bootstrap")]
-            Bootstrap,
-            
-            /// <summary>
-            /// Enum Provisioning for "provisioning"
-            /// </summary>
-            [EnumMember(Value = "provisioning")]
-            Provisioning
+            Bootstrap
         }
 
         /// <summary>

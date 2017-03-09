@@ -35,21 +35,13 @@ namespace iam.Model
         /// <param name="Action">Comma separated list of actions, empty string represents all actions..</param>
         /// <param name="Resource">Resource that is protected by this policy..</param>
         /// <param name="Feature">Feature name corresponding to this policy..</param>
-        /// <param name="Allow">True or false controlling whether an action is allowed or not. (default to false).</param>
-        public Policy(string Action = default(string), string Resource = default(string), string Feature = default(string), bool? Allow = false)
+        /// <param name="Allow">True or false controlling whether an action is allowed or not..</param>
+        public Policy(string Action = default(string), string Resource = default(string), string Feature = default(string), bool? Allow = default(bool?))
         {
             this.Action = Action;
             this.Resource = Resource;
             this.Feature = Feature;
-            // use default value if no "Allow" provided
-            if (Allow == null)
-            {
-                this.Allow = false;
-            }
-            else
-            {
-                this.Allow = Allow;
-            }
+            this.Allow = Allow;
         }
         
         /// <summary>

@@ -32,63 +32,118 @@ namespace deployment_service.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateCampaignPage" /> class.
         /// </summary>
-        /// <param name="_Object">API Resource name.</param>
-        /// <param name="HasMore">Whether there are more results to display.</param>
-        /// <param name="TotalCount">Total number of records.</param>
-        /// <param name="After">Entity id for fetch after it.</param>
-        /// <param name="Limit">The number of results to return.</param>
-        /// <param name="Data">Data.</param>
-        /// <param name="Order">Order of returned records.</param>
-        public UpdateCampaignPage(string _Object = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), string After = default(string), int? Limit = default(int?), List<UpdateCampaignSerializer> Data = default(List<UpdateCampaignSerializer>), string Order = default(string))
+        [JsonConstructorAttribute]
+        protected UpdateCampaignPage() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateCampaignPage" /> class.
+        /// </summary>
+        /// <param name="_Object">_Object (required).</param>
+        /// <param name="HasMore">HasMore (required).</param>
+        /// <param name="TotalCount">TotalCount (required).</param>
+        /// <param name="After">After (required).</param>
+        /// <param name="Limit">Limit (required).</param>
+        /// <param name="Data">Data (required).</param>
+        /// <param name="Order">Order (required).</param>
+        public UpdateCampaignPage(string _Object = default(string), bool? HasMore = default(bool?), long? TotalCount = default(long?), string After = default(string), long? Limit = default(long?), List<UpdateCampaign> Data = default(List<UpdateCampaign>), string Order = default(string))
         {
-            this._Object = _Object;
-            this.HasMore = HasMore;
-            this.TotalCount = TotalCount;
-            this.After = After;
-            this.Limit = Limit;
-            this.Data = Data;
-            this.Order = Order;
+            // to ensure "_Object" is required (not null)
+            if (_Object == null)
+            {
+                throw new InvalidDataException("_Object is a required property for UpdateCampaignPage and cannot be null");
+            }
+            else
+            {
+                this._Object = _Object;
+            }
+            // to ensure "HasMore" is required (not null)
+            if (HasMore == null)
+            {
+                throw new InvalidDataException("HasMore is a required property for UpdateCampaignPage and cannot be null");
+            }
+            else
+            {
+                this.HasMore = HasMore;
+            }
+            // to ensure "TotalCount" is required (not null)
+            if (TotalCount == null)
+            {
+                throw new InvalidDataException("TotalCount is a required property for UpdateCampaignPage and cannot be null");
+            }
+            else
+            {
+                this.TotalCount = TotalCount;
+            }
+            // to ensure "After" is required (not null)
+            if (After == null)
+            {
+                throw new InvalidDataException("After is a required property for UpdateCampaignPage and cannot be null");
+            }
+            else
+            {
+                this.After = After;
+            }
+            // to ensure "Limit" is required (not null)
+            if (Limit == null)
+            {
+                throw new InvalidDataException("Limit is a required property for UpdateCampaignPage and cannot be null");
+            }
+            else
+            {
+                this.Limit = Limit;
+            }
+            // to ensure "Data" is required (not null)
+            if (Data == null)
+            {
+                throw new InvalidDataException("Data is a required property for UpdateCampaignPage and cannot be null");
+            }
+            else
+            {
+                this.Data = Data;
+            }
+            // to ensure "Order" is required (not null)
+            if (Order == null)
+            {
+                throw new InvalidDataException("Order is a required property for UpdateCampaignPage and cannot be null");
+            }
+            else
+            {
+                this.Order = Order;
+            }
         }
         
         /// <summary>
-        /// API Resource name
+        /// Gets or Sets _Object
         /// </summary>
-        /// <value>API Resource name</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
         /// <summary>
-        /// Whether there are more results to display
+        /// Gets or Sets HasMore
         /// </summary>
-        /// <value>Whether there are more results to display</value>
         [DataMember(Name="has_more", EmitDefaultValue=false)]
         public bool? HasMore { get; set; }
         /// <summary>
-        /// Total number of records
+        /// Gets or Sets TotalCount
         /// </summary>
-        /// <value>Total number of records</value>
         [DataMember(Name="total_count", EmitDefaultValue=false)]
-        public int? TotalCount { get; set; }
+        public long? TotalCount { get; set; }
         /// <summary>
-        /// Entity id for fetch after it
+        /// Gets or Sets After
         /// </summary>
-        /// <value>Entity id for fetch after it</value>
         [DataMember(Name="after", EmitDefaultValue=false)]
         public string After { get; set; }
         /// <summary>
-        /// The number of results to return
+        /// Gets or Sets Limit
         /// </summary>
-        /// <value>The number of results to return</value>
         [DataMember(Name="limit", EmitDefaultValue=false)]
-        public int? Limit { get; set; }
+        public long? Limit { get; set; }
         /// <summary>
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name="data", EmitDefaultValue=false)]
-        public List<UpdateCampaignSerializer> Data { get; set; }
+        public List<UpdateCampaign> Data { get; set; }
         /// <summary>
-        /// Order of returned records
+        /// Gets or Sets Order
         /// </summary>
-        /// <value>Order of returned records</value>
         [DataMember(Name="order", EmitDefaultValue=false)]
         public string Order { get; set; }
         /// <summary>

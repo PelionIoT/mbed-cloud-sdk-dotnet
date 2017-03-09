@@ -1,7 +1,7 @@
 /* 
- * Firmware Catalog API
+ * Device Query Service API
  *
- * This is the API Documentation for the mbed firmware catalog service which is part of the update service.
+ * This is the API Documentation for the mbed device query service update service.
  *
  * OpenAPI spec version: 0.1
  * 
@@ -21,47 +21,37 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 
-namespace firmware_catalog.Model
+namespace device_query_service.Model
 {
     /// <summary>
-    /// FirmwareImageSerializerData
+    /// DeviceQuery
     /// </summary>
     [DataContract]
-    public partial class FirmwareImageSerializerData :  IEquatable<FirmwareImageSerializerData>, IValidatableObject
+    public partial class DeviceQuery :  IEquatable<DeviceQuery>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FirmwareImageSerializerData" /> class.
+        /// Initializes a new instance of the <see cref="DeviceQuery" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected FirmwareImageSerializerData() { }
+        protected DeviceQuery() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="FirmwareImageSerializerData" /> class.
+        /// Initializes a new instance of the <see cref="DeviceQuery" /> class.
         /// </summary>
-        /// <param name="Datafile">The binary file of firmware image (required).</param>
         /// <param name="Description">The description of the object (required).</param>
         /// <param name="CreatedAt">The time the object was created (required).</param>
         /// <param name="_Object">The API resource entity (required).</param>
         /// <param name="UpdatedAt">The time the object was updated (required).</param>
-        /// <param name="ImageId">DEPRECATED: The ID of the firmware image (required).</param>
         /// <param name="Etag">The entity instance signature (required).</param>
-        /// <param name="DatafileChecksum">Checksum generated for the datafile (required).</param>
-        /// <param name="Id">The ID of the firmware image (required).</param>
-        /// <param name="Name">The name of the object (required).</param>
-        public FirmwareImageSerializerData(string Datafile = default(string), string Description = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), string ImageId = default(string), DateTime? Etag = default(DateTime?), string DatafileChecksum = default(string), string Id = default(string), string Name = default(string))
+        /// <param name="QueryId">DEPRECATED: The ID of the query (required).</param>
+        /// <param name="Query">The device query (required).</param>
+        /// <param name="Id">The ID of the query (required).</param>
+        /// <param name="Name">The name of the query (required).</param>
+        public DeviceQuery(string Description = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), string QueryId = default(string), string Query = default(string), string Id = default(string), string Name = default(string))
         {
-            // to ensure "Datafile" is required (not null)
-            if (Datafile == null)
-            {
-                throw new InvalidDataException("Datafile is a required property for FirmwareImageSerializerData and cannot be null");
-            }
-            else
-            {
-                this.Datafile = Datafile;
-            }
             // to ensure "Description" is required (not null)
             if (Description == null)
             {
-                throw new InvalidDataException("Description is a required property for FirmwareImageSerializerData and cannot be null");
+                throw new InvalidDataException("Description is a required property for DeviceQuery and cannot be null");
             }
             else
             {
@@ -70,7 +60,7 @@ namespace firmware_catalog.Model
             // to ensure "CreatedAt" is required (not null)
             if (CreatedAt == null)
             {
-                throw new InvalidDataException("CreatedAt is a required property for FirmwareImageSerializerData and cannot be null");
+                throw new InvalidDataException("CreatedAt is a required property for DeviceQuery and cannot be null");
             }
             else
             {
@@ -79,7 +69,7 @@ namespace firmware_catalog.Model
             // to ensure "_Object" is required (not null)
             if (_Object == null)
             {
-                throw new InvalidDataException("_Object is a required property for FirmwareImageSerializerData and cannot be null");
+                throw new InvalidDataException("_Object is a required property for DeviceQuery and cannot be null");
             }
             else
             {
@@ -88,43 +78,43 @@ namespace firmware_catalog.Model
             // to ensure "UpdatedAt" is required (not null)
             if (UpdatedAt == null)
             {
-                throw new InvalidDataException("UpdatedAt is a required property for FirmwareImageSerializerData and cannot be null");
+                throw new InvalidDataException("UpdatedAt is a required property for DeviceQuery and cannot be null");
             }
             else
             {
                 this.UpdatedAt = UpdatedAt;
             }
-            // to ensure "ImageId" is required (not null)
-            if (ImageId == null)
-            {
-                throw new InvalidDataException("ImageId is a required property for FirmwareImageSerializerData and cannot be null");
-            }
-            else
-            {
-                this.ImageId = ImageId;
-            }
             // to ensure "Etag" is required (not null)
             if (Etag == null)
             {
-                throw new InvalidDataException("Etag is a required property for FirmwareImageSerializerData and cannot be null");
+                throw new InvalidDataException("Etag is a required property for DeviceQuery and cannot be null");
             }
             else
             {
                 this.Etag = Etag;
             }
-            // to ensure "DatafileChecksum" is required (not null)
-            if (DatafileChecksum == null)
+            // to ensure "QueryId" is required (not null)
+            if (QueryId == null)
             {
-                throw new InvalidDataException("DatafileChecksum is a required property for FirmwareImageSerializerData and cannot be null");
+                throw new InvalidDataException("QueryId is a required property for DeviceQuery and cannot be null");
             }
             else
             {
-                this.DatafileChecksum = DatafileChecksum;
+                this.QueryId = QueryId;
+            }
+            // to ensure "Query" is required (not null)
+            if (Query == null)
+            {
+                throw new InvalidDataException("Query is a required property for DeviceQuery and cannot be null");
+            }
+            else
+            {
+                this.Query = Query;
             }
             // to ensure "Id" is required (not null)
             if (Id == null)
             {
-                throw new InvalidDataException("Id is a required property for FirmwareImageSerializerData and cannot be null");
+                throw new InvalidDataException("Id is a required property for DeviceQuery and cannot be null");
             }
             else
             {
@@ -133,7 +123,7 @@ namespace firmware_catalog.Model
             // to ensure "Name" is required (not null)
             if (Name == null)
             {
-                throw new InvalidDataException("Name is a required property for FirmwareImageSerializerData and cannot be null");
+                throw new InvalidDataException("Name is a required property for DeviceQuery and cannot be null");
             }
             else
             {
@@ -141,12 +131,6 @@ namespace firmware_catalog.Model
             }
         }
         
-        /// <summary>
-        /// The binary file of firmware image
-        /// </summary>
-        /// <value>The binary file of firmware image</value>
-        [DataMember(Name="datafile", EmitDefaultValue=false)]
-        public string Datafile { get; set; }
         /// <summary>
         /// The description of the object
         /// </summary>
@@ -172,33 +156,33 @@ namespace firmware_catalog.Model
         [DataMember(Name="updated_at", EmitDefaultValue=false)]
         public DateTime? UpdatedAt { get; set; }
         /// <summary>
-        /// DEPRECATED: The ID of the firmware image
-        /// </summary>
-        /// <value>DEPRECATED: The ID of the firmware image</value>
-        [DataMember(Name="image_id", EmitDefaultValue=false)]
-        public string ImageId { get; set; }
-        /// <summary>
         /// The entity instance signature
         /// </summary>
         /// <value>The entity instance signature</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public DateTime? Etag { get; set; }
         /// <summary>
-        /// Checksum generated for the datafile
+        /// DEPRECATED: The ID of the query
         /// </summary>
-        /// <value>Checksum generated for the datafile</value>
-        [DataMember(Name="datafile_checksum", EmitDefaultValue=false)]
-        public string DatafileChecksum { get; set; }
+        /// <value>DEPRECATED: The ID of the query</value>
+        [DataMember(Name="query_id", EmitDefaultValue=false)]
+        public string QueryId { get; set; }
         /// <summary>
-        /// The ID of the firmware image
+        /// The device query
         /// </summary>
-        /// <value>The ID of the firmware image</value>
+        /// <value>The device query</value>
+        [DataMember(Name="query", EmitDefaultValue=false)]
+        public string Query { get; set; }
+        /// <summary>
+        /// The ID of the query
+        /// </summary>
+        /// <value>The ID of the query</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
         /// <summary>
-        /// The name of the object
+        /// The name of the query
         /// </summary>
-        /// <value>The name of the object</value>
+        /// <value>The name of the query</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
@@ -208,15 +192,14 @@ namespace firmware_catalog.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class FirmwareImageSerializerData {\n");
-            sb.Append("  Datafile: ").Append(Datafile).Append("\n");
+            sb.Append("class DeviceQuery {\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
-            sb.Append("  ImageId: ").Append(ImageId).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
-            sb.Append("  DatafileChecksum: ").Append(DatafileChecksum).Append("\n");
+            sb.Append("  QueryId: ").Append(QueryId).Append("\n");
+            sb.Append("  Query: ").Append(Query).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
@@ -240,26 +223,21 @@ namespace firmware_catalog.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as FirmwareImageSerializerData);
+            return this.Equals(obj as DeviceQuery);
         }
 
         /// <summary>
-        /// Returns true if FirmwareImageSerializerData instances are equal
+        /// Returns true if DeviceQuery instances are equal
         /// </summary>
-        /// <param name="other">Instance of FirmwareImageSerializerData to be compared</param>
+        /// <param name="other">Instance of DeviceQuery to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(FirmwareImageSerializerData other)
+        public bool Equals(DeviceQuery other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
                 return false;
 
             return 
-                (
-                    this.Datafile == other.Datafile ||
-                    this.Datafile != null &&
-                    this.Datafile.Equals(other.Datafile)
-                ) && 
                 (
                     this.Description == other.Description ||
                     this.Description != null &&
@@ -281,19 +259,19 @@ namespace firmware_catalog.Model
                     this.UpdatedAt.Equals(other.UpdatedAt)
                 ) && 
                 (
-                    this.ImageId == other.ImageId ||
-                    this.ImageId != null &&
-                    this.ImageId.Equals(other.ImageId)
-                ) && 
-                (
                     this.Etag == other.Etag ||
                     this.Etag != null &&
                     this.Etag.Equals(other.Etag)
                 ) && 
                 (
-                    this.DatafileChecksum == other.DatafileChecksum ||
-                    this.DatafileChecksum != null &&
-                    this.DatafileChecksum.Equals(other.DatafileChecksum)
+                    this.QueryId == other.QueryId ||
+                    this.QueryId != null &&
+                    this.QueryId.Equals(other.QueryId)
+                ) && 
+                (
+                    this.Query == other.Query ||
+                    this.Query != null &&
+                    this.Query.Equals(other.Query)
                 ) && 
                 (
                     this.Id == other.Id ||
@@ -318,8 +296,6 @@ namespace firmware_catalog.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Datafile != null)
-                    hash = hash * 59 + this.Datafile.GetHashCode();
                 if (this.Description != null)
                     hash = hash * 59 + this.Description.GetHashCode();
                 if (this.CreatedAt != null)
@@ -328,12 +304,12 @@ namespace firmware_catalog.Model
                     hash = hash * 59 + this._Object.GetHashCode();
                 if (this.UpdatedAt != null)
                     hash = hash * 59 + this.UpdatedAt.GetHashCode();
-                if (this.ImageId != null)
-                    hash = hash * 59 + this.ImageId.GetHashCode();
                 if (this.Etag != null)
                     hash = hash * 59 + this.Etag.GetHashCode();
-                if (this.DatafileChecksum != null)
-                    hash = hash * 59 + this.DatafileChecksum.GetHashCode();
+                if (this.QueryId != null)
+                    hash = hash * 59 + this.QueryId.GetHashCode();
+                if (this.Query != null)
+                    hash = hash * 59 + this.Query.GetHashCode();
                 if (this.Id != null)
                     hash = hash * 59 + this.Id.GetHashCode();
                 if (this.Name != null)
