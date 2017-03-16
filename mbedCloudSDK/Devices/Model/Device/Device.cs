@@ -185,7 +185,7 @@ namespace mbedCloudSDK.Devices.Model.Device
         /// <summary>
         /// Map to Device object.
         /// </summary>
-        /// <param name="deviceDetail">DeviceDetal response object.</param>
+        /// <param name="deviceData">DeviceDetal response object.</param>
         /// <param name="api">optional DevicesApi</param>
         /// <returns></returns>
         public static Device Map(DeviceData deviceData, DevicesApi api = null)
