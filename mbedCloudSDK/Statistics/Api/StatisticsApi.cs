@@ -31,8 +31,33 @@ namespace mbedCloudSDK.Statistics.Api
         /// <summary>
         /// Get Statistics Data.
         /// </summary>
-        /// <param name="options"></param>
-        /// <returns></returns>
+        /// <param name="options">Query options.</param>
+        /// <returns>List of statistics data queried using options.</returns>
+        /// <exception cref="CloudApiException">Error while getting statistics.</exception>
+        /// <example> 
+        /// This sample shows how to call the <see cref="GetStatistics"/> method.
+        /// <code>
+        /// class TestClass 
+        /// {
+        ///     static int Main() 
+        ///     {
+        ///         Config config = new Config(apiKey);
+        ///         config.Host = "https://lab-api.mbedcloudintegration.net";
+        ///         StatisticsApi api = new StatisticsApi(config);        
+        ///         try {
+        ///             var statisticsData = api.GetStatistics();
+        ///             foreach(var data in statisticsData) 
+        ///             {
+        ///                 Console.WriteLine(data);
+        ///             }
+        ///         }
+        ///         catch (CloudApiException ex) {
+        ///             Console.WriteLine(ex.Message);
+        ///         }
+        ///     }
+        /// }
+        /// </code>
+        /// </example>
         public List<StatisticsData> GetStatistics(StatisticsQueryOptions options = null)
         {
             if (options == null)

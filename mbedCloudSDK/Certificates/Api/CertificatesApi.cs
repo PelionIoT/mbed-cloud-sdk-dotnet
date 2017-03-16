@@ -148,13 +148,13 @@ namespace mbedCloudSDK.Certificates.Api
         ///     {
         ///         Config config = new Config(apiKey);
         ///         config.Host = "https://lab-api.mbedcloudintegration.net";
-        ///         CertificatesApi = new CertificatesApi(config);        
+        ///         CertificatesApi api = new CertificatesApi(config);        
         ///         Certificate certificate = new Certificate();
         ///         certificate.Type = CertificateType.Developer;
         ///         certificate.Name = "developer certificate";
         ///         certificate.Description = "This is my dev certificate";
         ///         try {
-        ///             Certificate createdCert = AddCertificate(certificate);
+        ///             Certificate createdCert = api.AddCertificate(certificate);
         ///             Console.WriteLine(createdCert);
         ///         }
         ///         catch (CloudApiException ex) {
@@ -230,11 +230,14 @@ namespace mbedCloudSDK.Certificates.Api
         ///     static int Main() 
         ///     {
         ///         String id="00000000";
+        ///         Config config = new Config(apiKey);
+        ///         config.Host = "https://lab-api.mbedcloudintegration.net";
+        ///         CertificatesApi api = new CertificatesApi(config);
         ///         try {
-        ///             DeleteCertificate(id);
+        ///             api.DeleteCertificate(id);
         ///         }
         ///         catch (CloudApiException ex) {
-        ///             
+        ///             Console.WriteLine(ex);
         ///         }
         ///     }
         /// }
