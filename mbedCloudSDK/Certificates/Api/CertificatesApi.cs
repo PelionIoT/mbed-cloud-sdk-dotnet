@@ -68,7 +68,7 @@ namespace mbedCloudSDK.Certificates.Api
         {
             if (options == null)
             {
-                options = new DeviceQueryOptions();
+                options = new QueryOptions();
             }
             try
             {

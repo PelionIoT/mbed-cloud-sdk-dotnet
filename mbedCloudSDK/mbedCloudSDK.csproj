@@ -291,7 +291,9 @@
     <Compile Include="Access\Model\ApiKey\ApiKey.cs" />
     <Compile Include="Access\Model\Account\Account.cs" />
     <Compile Include="Access\Model\ApiKey\ApiKeyStatus.cs" />
+    <Compile Include="Statistics\Api\StatisticsApi.cs" />
     <Compile Include="Statistics\Model\StatisticsData.cs" />
+    <Compile Include="Statistics\Model\StatisticsQueryOptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Backends\ConnectorCa\README.md" />
@@ -313,7 +315,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Manufacturing\Model\" />
-    <Folder Include="Statistics\Api\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="lib\Newtonsoft.Json.dll" />

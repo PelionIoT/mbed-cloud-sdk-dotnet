@@ -67,29 +67,51 @@ namespace mbedCloudSDK.Statistics.Model
         /// </summary>
         /// <value>Number of successful bootstrap full credentials get requests account has used.</value>
         public long? BootstrapFullCredentialsGet { get; set; }
+        
         /// <summary>
         /// Number of successful connector certificate create requests account has used.
         /// </summary>
         /// <value>Number of successful connector certificate create requests account has used.</value>
-
         public long? ConnectorCertificateDelete { get; set; }
+        
         /// <summary>
         /// Number of successful connector credentials get requests account has used.
         /// </summary>
         /// <value>Number of successful connector credentials get requests account has used.</value>
-
         public long? ConnectorCredentialsGet { get; set; }
+        
         /// <summary>
         /// Number of successful bootstrap credentials get requests account has used.
         /// </summary>
         /// <value>Number of successful bootstrap credentials get requests account has used.</value>
-
         public long? BootstrapCredentialsGet { get; set; }
+        
         /// <summary>
         /// Number of successful bootstraps account has used.
         /// </summary>
         /// <value>Number of successful bootstraps account has used.</value>
         public long? BootstrapsSuccessful { get; set; }
+
+        public static StatisticsData Map(statistics.Model.Data statisticsData)
+        {
+            StatisticsData statistic = new StatisticsData();
+            statistic.BootstrapCertificateCreate = statisticsData.BootstrapCertificateCreate;
+            statistic.ConnectorCaRestApiCount = statisticsData.ConnectorCaRestApiCount;
+            statistic.BootstrapsFailed = statisticsData.BootstrapsFailed;
+            statistic.ConnectorCaRestApiErrorCount = statisticsData.ConnectorCaRestApiErrorCount;
+            statistic.ConnectorFullCredentialsGet = statisticsData.ConnectorFullCredentialsGet;
+            statistic.BootstrapCertificateDelete = statisticsData.BootstrapCertificateDelete;
+            statistic.Timestamp = statisticsData.Timestamp;
+            statistic.BootstrapsPending = statisticsData.BootstrapsPending;
+            statistic.ConnectorCertificateCreate = statisticsData.ConnectorCertificateCreate;
+            statistic.BootstrapFullCredentialsGet = statisticsData.BootstrapFullCredentialsGet;
+            statistic.ConnectorCertificateDelete = statisticsData.ConnectorCertificateDelete;
+            statistic.ConnectorCredentialsGet = statisticsData.ConnectorCredentialsGet;
+            statistic.BootstrapCredentialsGet = statisticsData.BootstrapCredentialsGet;
+            statistic.BootstrapsSuccessful = statisticsData.BootstrapsSuccessful;
+            return statistic;
+        }
+        
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -97,7 +119,7 @@ namespace mbedCloudSDK.Statistics.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Data {\n");
+            sb.Append("class StatisticsData {\n");
             sb.Append("  BootstrapCertificateCreate: ").Append(BootstrapCertificateCreate).Append("\n");
             sb.Append("  ConnectorCaRestApiCount: ").Append(ConnectorCaRestApiCount).Append("\n");
             sb.Append("  BootstrapsFailed: ").Append(BootstrapsFailed).Append("\n");
