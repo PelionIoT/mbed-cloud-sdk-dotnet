@@ -1,7 +1,7 @@
 /* 
- * mbed Cloud Connect CA REST API (R1.2)
+ * Connect CA API
  *
- * mbed Cloud Connect CA REST API allows services to get device credentials.
+ * Connect CA API provides methods to create and get Developer certificate. Also Connect CA provides server-credentials for Bootstarp and LWM2M Server.
  *
  * OpenAPI spec version: 3
  * 
@@ -28,88 +28,88 @@ namespace connector_ca.Api
         /// Fetch bootstrap server credentials.
         /// </summary>
         /// <remarks>
-        /// This REST API is intended to be used by customers to fetch bootstrap server credentials that they will need to use with their clients to connect to bootstrap server. 
+        /// This REST API is intended to be used by customers to fetch bootstrap server credentials that they need to use with their clients to connect to bootstrap server. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>InlineResponse200</returns>
-        InlineResponse200 V3ServerCredentialsBootstrapGet (string authorization);
+        /// <returns>ServerCredentialsResponseData</returns>
+        ServerCredentialsResponseData V3ServerCredentialsBootstrapGet (string authorization);
 
         /// <summary>
         /// Fetch bootstrap server credentials.
         /// </summary>
         /// <remarks>
-        /// This REST API is intended to be used by customers to fetch bootstrap server credentials that they will need to use with their clients to connect to bootstrap server. 
+        /// This REST API is intended to be used by customers to fetch bootstrap server credentials that they need to use with their clients to connect to bootstrap server. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>ApiResponse of InlineResponse200</returns>
-        ApiResponse<InlineResponse200> V3ServerCredentialsBootstrapGetWithHttpInfo (string authorization);
+        /// <returns>ApiResponse of ServerCredentialsResponseData</returns>
+        ApiResponse<ServerCredentialsResponseData> V3ServerCredentialsBootstrapGetWithHttpInfo (string authorization);
         /// <summary>
         /// Fetch LWM2M server credentials.
         /// </summary>
         /// <remarks>
-        /// This REST API is intended to be used by customers to fetch LWM2M server credentials that they will need to use with their clients to connect to LWM2M server. 
+        /// This REST API is intended to be used by customers to fetch LWM2M server credentials that they need to use with their clients to connect to LWM2M server. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>InlineResponse2001</returns>
-        InlineResponse2001 V3ServerCredentialsLwm2mGet (string authorization);
+        /// <returns>ServerCredentialsResponseData</returns>
+        ServerCredentialsResponseData V3ServerCredentialsLwm2mGet (string authorization);
 
         /// <summary>
         /// Fetch LWM2M server credentials.
         /// </summary>
         /// <remarks>
-        /// This REST API is intended to be used by customers to fetch LWM2M server credentials that they will need to use with their clients to connect to LWM2M server. 
+        /// This REST API is intended to be used by customers to fetch LWM2M server credentials that they need to use with their clients to connect to LWM2M server. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>ApiResponse of InlineResponse2001</returns>
-        ApiResponse<InlineResponse2001> V3ServerCredentialsLwm2mGetWithHttpInfo (string authorization);
+        /// <returns>ApiResponse of ServerCredentialsResponseData</returns>
+        ApiResponse<ServerCredentialsResponseData> V3ServerCredentialsLwm2mGetWithHttpInfo (string authorization);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
         /// Fetch bootstrap server credentials.
         /// </summary>
         /// <remarks>
-        /// This REST API is intended to be used by customers to fetch bootstrap server credentials that they will need to use with their clients to connect to bootstrap server. 
+        /// This REST API is intended to be used by customers to fetch bootstrap server credentials that they need to use with their clients to connect to bootstrap server. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>Task of InlineResponse200</returns>
-        System.Threading.Tasks.Task<InlineResponse200> V3ServerCredentialsBootstrapGetAsync (string authorization);
+        /// <returns>Task of ServerCredentialsResponseData</returns>
+        System.Threading.Tasks.Task<ServerCredentialsResponseData> V3ServerCredentialsBootstrapGetAsync (string authorization);
 
         /// <summary>
         /// Fetch bootstrap server credentials.
         /// </summary>
         /// <remarks>
-        /// This REST API is intended to be used by customers to fetch bootstrap server credentials that they will need to use with their clients to connect to bootstrap server. 
+        /// This REST API is intended to be used by customers to fetch bootstrap server credentials that they need to use with their clients to connect to bootstrap server. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>Task of ApiResponse (InlineResponse200)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> V3ServerCredentialsBootstrapGetAsyncWithHttpInfo (string authorization);
+        /// <returns>Task of ApiResponse (ServerCredentialsResponseData)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ServerCredentialsResponseData>> V3ServerCredentialsBootstrapGetAsyncWithHttpInfo (string authorization);
         /// <summary>
         /// Fetch LWM2M server credentials.
         /// </summary>
         /// <remarks>
-        /// This REST API is intended to be used by customers to fetch LWM2M server credentials that they will need to use with their clients to connect to LWM2M server. 
+        /// This REST API is intended to be used by customers to fetch LWM2M server credentials that they need to use with their clients to connect to LWM2M server. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>Task of InlineResponse2001</returns>
-        System.Threading.Tasks.Task<InlineResponse2001> V3ServerCredentialsLwm2mGetAsync (string authorization);
+        /// <returns>Task of ServerCredentialsResponseData</returns>
+        System.Threading.Tasks.Task<ServerCredentialsResponseData> V3ServerCredentialsLwm2mGetAsync (string authorization);
 
         /// <summary>
         /// Fetch LWM2M server credentials.
         /// </summary>
         /// <remarks>
-        /// This REST API is intended to be used by customers to fetch LWM2M server credentials that they will need to use with their clients to connect to LWM2M server. 
+        /// This REST API is intended to be used by customers to fetch LWM2M server credentials that they need to use with their clients to connect to LWM2M server. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>Task of ApiResponse (InlineResponse2001)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2001>> V3ServerCredentialsLwm2mGetAsyncWithHttpInfo (string authorization);
+        /// <returns>Task of ApiResponse (ServerCredentialsResponseData)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ServerCredentialsResponseData>> V3ServerCredentialsLwm2mGetAsyncWithHttpInfo (string authorization);
         #endregion Asynchronous Operations
     }
 
@@ -223,24 +223,24 @@ namespace connector_ca.Api
         }
 
         /// <summary>
-        /// Fetch bootstrap server credentials. This REST API is intended to be used by customers to fetch bootstrap server credentials that they will need to use with their clients to connect to bootstrap server. 
+        /// Fetch bootstrap server credentials. This REST API is intended to be used by customers to fetch bootstrap server credentials that they need to use with their clients to connect to bootstrap server. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>InlineResponse200</returns>
-        public InlineResponse200 V3ServerCredentialsBootstrapGet (string authorization)
+        /// <returns>ServerCredentialsResponseData</returns>
+        public ServerCredentialsResponseData V3ServerCredentialsBootstrapGet (string authorization)
         {
-             ApiResponse<InlineResponse200> localVarResponse = V3ServerCredentialsBootstrapGetWithHttpInfo(authorization);
+             ApiResponse<ServerCredentialsResponseData> localVarResponse = V3ServerCredentialsBootstrapGetWithHttpInfo(authorization);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Fetch bootstrap server credentials. This REST API is intended to be used by customers to fetch bootstrap server credentials that they will need to use with their clients to connect to bootstrap server. 
+        /// Fetch bootstrap server credentials. This REST API is intended to be used by customers to fetch bootstrap server credentials that they need to use with their clients to connect to bootstrap server. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>ApiResponse of InlineResponse200</returns>
-        public ApiResponse< InlineResponse200 > V3ServerCredentialsBootstrapGetWithHttpInfo (string authorization)
+        /// <returns>ApiResponse of ServerCredentialsResponseData</returns>
+        public ApiResponse< ServerCredentialsResponseData > V3ServerCredentialsBootstrapGetWithHttpInfo (string authorization)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -292,32 +292,32 @@ namespace connector_ca.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<InlineResponse200>(localVarStatusCode,
+            return new ApiResponse<ServerCredentialsResponseData>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse200) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse200)));
+                (ServerCredentialsResponseData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ServerCredentialsResponseData)));
             
         }
 
         /// <summary>
-        /// Fetch bootstrap server credentials. This REST API is intended to be used by customers to fetch bootstrap server credentials that they will need to use with their clients to connect to bootstrap server. 
+        /// Fetch bootstrap server credentials. This REST API is intended to be used by customers to fetch bootstrap server credentials that they need to use with their clients to connect to bootstrap server. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>Task of InlineResponse200</returns>
-        public async System.Threading.Tasks.Task<InlineResponse200> V3ServerCredentialsBootstrapGetAsync (string authorization)
+        /// <returns>Task of ServerCredentialsResponseData</returns>
+        public async System.Threading.Tasks.Task<ServerCredentialsResponseData> V3ServerCredentialsBootstrapGetAsync (string authorization)
         {
-             ApiResponse<InlineResponse200> localVarResponse = await V3ServerCredentialsBootstrapGetAsyncWithHttpInfo(authorization);
+             ApiResponse<ServerCredentialsResponseData> localVarResponse = await V3ServerCredentialsBootstrapGetAsyncWithHttpInfo(authorization);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Fetch bootstrap server credentials. This REST API is intended to be used by customers to fetch bootstrap server credentials that they will need to use with their clients to connect to bootstrap server. 
+        /// Fetch bootstrap server credentials. This REST API is intended to be used by customers to fetch bootstrap server credentials that they need to use with their clients to connect to bootstrap server. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>Task of ApiResponse (InlineResponse200)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> V3ServerCredentialsBootstrapGetAsyncWithHttpInfo (string authorization)
+        /// <returns>Task of ApiResponse (ServerCredentialsResponseData)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ServerCredentialsResponseData>> V3ServerCredentialsBootstrapGetAsyncWithHttpInfo (string authorization)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -368,31 +368,31 @@ namespace connector_ca.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<InlineResponse200>(localVarStatusCode,
+            return new ApiResponse<ServerCredentialsResponseData>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse200) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse200)));
+                (ServerCredentialsResponseData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ServerCredentialsResponseData)));
             
         }
 
         /// <summary>
-        /// Fetch LWM2M server credentials. This REST API is intended to be used by customers to fetch LWM2M server credentials that they will need to use with their clients to connect to LWM2M server. 
+        /// Fetch LWM2M server credentials. This REST API is intended to be used by customers to fetch LWM2M server credentials that they need to use with their clients to connect to LWM2M server. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>InlineResponse2001</returns>
-        public InlineResponse2001 V3ServerCredentialsLwm2mGet (string authorization)
+        /// <returns>ServerCredentialsResponseData</returns>
+        public ServerCredentialsResponseData V3ServerCredentialsLwm2mGet (string authorization)
         {
-             ApiResponse<InlineResponse2001> localVarResponse = V3ServerCredentialsLwm2mGetWithHttpInfo(authorization);
+             ApiResponse<ServerCredentialsResponseData> localVarResponse = V3ServerCredentialsLwm2mGetWithHttpInfo(authorization);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Fetch LWM2M server credentials. This REST API is intended to be used by customers to fetch LWM2M server credentials that they will need to use with their clients to connect to LWM2M server. 
+        /// Fetch LWM2M server credentials. This REST API is intended to be used by customers to fetch LWM2M server credentials that they need to use with their clients to connect to LWM2M server. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>ApiResponse of InlineResponse2001</returns>
-        public ApiResponse< InlineResponse2001 > V3ServerCredentialsLwm2mGetWithHttpInfo (string authorization)
+        /// <returns>ApiResponse of ServerCredentialsResponseData</returns>
+        public ApiResponse< ServerCredentialsResponseData > V3ServerCredentialsLwm2mGetWithHttpInfo (string authorization)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -444,32 +444,32 @@ namespace connector_ca.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<InlineResponse2001>(localVarStatusCode,
+            return new ApiResponse<ServerCredentialsResponseData>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2001) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2001)));
+                (ServerCredentialsResponseData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ServerCredentialsResponseData)));
             
         }
 
         /// <summary>
-        /// Fetch LWM2M server credentials. This REST API is intended to be used by customers to fetch LWM2M server credentials that they will need to use with their clients to connect to LWM2M server. 
+        /// Fetch LWM2M server credentials. This REST API is intended to be used by customers to fetch LWM2M server credentials that they need to use with their clients to connect to LWM2M server. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>Task of InlineResponse2001</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2001> V3ServerCredentialsLwm2mGetAsync (string authorization)
+        /// <returns>Task of ServerCredentialsResponseData</returns>
+        public async System.Threading.Tasks.Task<ServerCredentialsResponseData> V3ServerCredentialsLwm2mGetAsync (string authorization)
         {
-             ApiResponse<InlineResponse2001> localVarResponse = await V3ServerCredentialsLwm2mGetAsyncWithHttpInfo(authorization);
+             ApiResponse<ServerCredentialsResponseData> localVarResponse = await V3ServerCredentialsLwm2mGetAsyncWithHttpInfo(authorization);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Fetch LWM2M server credentials. This REST API is intended to be used by customers to fetch LWM2M server credentials that they will need to use with their clients to connect to LWM2M server. 
+        /// Fetch LWM2M server credentials. This REST API is intended to be used by customers to fetch LWM2M server credentials that they need to use with their clients to connect to LWM2M server. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>Task of ApiResponse (InlineResponse2001)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2001>> V3ServerCredentialsLwm2mGetAsyncWithHttpInfo (string authorization)
+        /// <returns>Task of ApiResponse (ServerCredentialsResponseData)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ServerCredentialsResponseData>> V3ServerCredentialsLwm2mGetAsyncWithHttpInfo (string authorization)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -520,9 +520,9 @@ namespace connector_ca.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<InlineResponse2001>(localVarStatusCode,
+            return new ApiResponse<ServerCredentialsResponseData>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2001) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2001)));
+                (ServerCredentialsResponseData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ServerCredentialsResponseData)));
             
         }
 

@@ -1,7 +1,7 @@
 /* 
- * mbed Cloud Connect REST API
+ * Connect API
  *
- * mbed Cloud Connect REST API allows web applications to communicate with devices.
+ * mbed Cloud Connect API allows web applications to communicate with devices. You can subscribe to device resources and read/write values to them. mbed Cloud Connect makes connectivity to devices easy by queuing requests and caching resource values.
  *
  * OpenAPI spec version: 2
  * 
@@ -46,7 +46,7 @@ namespace mds.Api
         /// <returns>ApiResponse of List&lt;Resource&gt;</returns>
         ApiResponse<List<Resource>> V2EndpointsEndpointNameGetWithHttpInfo (string endpointName);
         /// <summary>
-        /// List all endpoints
+        /// List endpoints. The number of endpoints is currently limited to 200.
         /// </summary>
         /// <remarks>
         /// Endpoints are physical devices running mbed Cloud Client. 
@@ -57,7 +57,7 @@ namespace mds.Api
         List<Endpoint> V2EndpointsGet (string type = null);
 
         /// <summary>
-        /// List all endpoints
+        /// List endpoints. The number of endpoints is currently limited to 200.
         /// </summary>
         /// <remarks>
         /// Endpoints are physical devices running mbed Cloud Client. 
@@ -90,7 +90,7 @@ namespace mds.Api
         /// <returns>Task of ApiResponse (List&lt;Resource&gt;)</returns>
         System.Threading.Tasks.Task<ApiResponse<List<Resource>>> V2EndpointsEndpointNameGetAsyncWithHttpInfo (string endpointName);
         /// <summary>
-        /// List all endpoints
+        /// List endpoints. The number of endpoints is currently limited to 200.
         /// </summary>
         /// <remarks>
         /// Endpoints are physical devices running mbed Cloud Client. 
@@ -101,7 +101,7 @@ namespace mds.Api
         System.Threading.Tasks.Task<List<Endpoint>> V2EndpointsGetAsync (string type = null);
 
         /// <summary>
-        /// List all endpoints
+        /// List endpoints. The number of endpoints is currently limited to 200.
         /// </summary>
         /// <remarks>
         /// Endpoints are physical devices running mbed Cloud Client. 
@@ -377,7 +377,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// List all endpoints Endpoints are physical devices running mbed Cloud Client. 
+        /// List endpoints. The number of endpoints is currently limited to 200. Endpoints are physical devices running mbed Cloud Client. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Filter endpoints by endpoint-type. (optional)</param>
@@ -389,7 +389,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// List all endpoints Endpoints are physical devices running mbed Cloud Client. 
+        /// List endpoints. The number of endpoints is currently limited to 200. Endpoints are physical devices running mbed Cloud Client. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Filter endpoints by endpoint-type. (optional)</param>
@@ -451,7 +451,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// List all endpoints Endpoints are physical devices running mbed Cloud Client. 
+        /// List endpoints. The number of endpoints is currently limited to 200. Endpoints are physical devices running mbed Cloud Client. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Filter endpoints by endpoint-type. (optional)</param>
@@ -464,7 +464,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// List all endpoints Endpoints are physical devices running mbed Cloud Client. 
+        /// List endpoints. The number of endpoints is currently limited to 200. Endpoints are physical devices running mbed Cloud Client. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Filter endpoints by endpoint-type. (optional)</param>

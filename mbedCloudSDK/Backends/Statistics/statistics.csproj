@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-mbed Cloud Connector Statistics REST API
+Connect Statistics API
 
-mbed Cloud Connector Statistics REST API provides statistics about other cloud services through defined counters.
+mbed Cloud Connect Statistics API provides statistics about other cloud services through defined counters.
 
 OpenAPI spec version: 3
 
@@ -11,7 +11,7 @@ OpenAPI spec version: 3
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0031C84D-E21E-4325-8F23-D82DD094E9BC}</ProjectGuid>
+    <ProjectGuid>{9B1331D8-9B21-43B6-A019-FE19FF646C57}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>statistics</RootNamespace>

@@ -1,7 +1,7 @@
 /* 
- * mbed Cloud Connect CA REST API (R1.2)
+ * Connect CA API
  *
- * mbed Cloud Connect CA REST API allows services to get device credentials.
+ * Connect CA API provides methods to create and get Developer certificate. Also Connect CA provides server-credentials for Bootstarp and LWM2M Server.
  *
  * OpenAPI spec version: 3
  * 
@@ -48,17 +48,17 @@ namespace connector_ca.Client
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class
-        /// with default configuration and base path (http://localhost).
+        /// with default configuration and base path (http://api.mbedcloud.com).
         /// </summary>
         public ApiClient()
         {
             Configuration = Configuration.Default;
-            RestClient = new RestClient("http://localhost");
+            RestClient = new RestClient("http://api.mbedcloud.com");
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class
-        /// with default base path (http://localhost).
+        /// with default base path (http://api.mbedcloud.com).
         /// </summary>
         /// <param name="config">An instance of Configuration.</param>
         public ApiClient(Configuration config = null)
@@ -68,7 +68,7 @@ namespace connector_ca.Client
             else
                 Configuration = config;
 
-            RestClient = new RestClient("http://localhost");
+            RestClient = new RestClient("http://api.mbedcloud.com");
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace connector_ca.Client
         /// with default configuration.
         /// </summary>
         /// <param name="basePath">The base path.</param>
-        public ApiClient(String basePath = "http://localhost")
+        public ApiClient(String basePath = "http://api.mbedcloud.com")
         {
            if (String.IsNullOrEmpty(basePath))
                 throw new ArgumentException("basePath cannot be empty");

@@ -1,7 +1,7 @@
 /* 
- * mbed Cloud Connect REST API
+ * Connect API
  *
- * mbed Cloud Connect REST API allows web applications to communicate with devices.
+ * mbed Cloud Connect API allows web applications to communicate with devices. You can subscribe to device resources and read/write values to them. mbed Cloud Connect makes connectivity to devices easy by queuing requests and caching resource values.
  *
  * OpenAPI spec version: 2
  * 
@@ -32,12 +32,12 @@ namespace mds.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NotificationData" /> class.
         /// </summary>
-        /// <param name="Timestamp">Timestamp.</param>
-        /// <param name="Payload">Base64 encoded payload.</param>
-        /// <param name="Path">URI path.</param>
-        /// <param name="MaxAge">Max age.</param>
-        /// <param name="Ep">Endpoint name.</param>
-        /// <param name="Ct">Content type.</param>
+        /// <param name="Timestamp">Timestamp..</param>
+        /// <param name="Payload">Base64 encoded payload..</param>
+        /// <param name="Path">URI path..</param>
+        /// <param name="MaxAge">Max age value is an integer number of seconds between 0 and 2^32-1 but the actual maximum cache time is limited to 3 days. A default value of 60 seconds is assumed in the absence of the option. .</param>
+        /// <param name="Ep">Endpoint name..</param>
+        /// <param name="Ct">Content type..</param>
         public NotificationData(string Timestamp = default(string), string Payload = default(string), string Path = default(string), string MaxAge = default(string), string Ep = default(string), string Ct = default(string))
         {
             this.Timestamp = Timestamp;
@@ -49,39 +49,39 @@ namespace mds.Model
         }
         
         /// <summary>
-        /// Timestamp
+        /// Timestamp.
         /// </summary>
-        /// <value>Timestamp</value>
+        /// <value>Timestamp.</value>
         [DataMember(Name="timestamp", EmitDefaultValue=false)]
         public string Timestamp { get; set; }
         /// <summary>
-        /// Base64 encoded payload
+        /// Base64 encoded payload.
         /// </summary>
-        /// <value>Base64 encoded payload</value>
+        /// <value>Base64 encoded payload.</value>
         [DataMember(Name="payload", EmitDefaultValue=false)]
         public string Payload { get; set; }
         /// <summary>
-        /// URI path
+        /// URI path.
         /// </summary>
-        /// <value>URI path</value>
+        /// <value>URI path.</value>
         [DataMember(Name="path", EmitDefaultValue=false)]
         public string Path { get; set; }
         /// <summary>
-        /// Max age
+        /// Max age value is an integer number of seconds between 0 and 2^32-1 but the actual maximum cache time is limited to 3 days. A default value of 60 seconds is assumed in the absence of the option. 
         /// </summary>
-        /// <value>Max age</value>
+        /// <value>Max age value is an integer number of seconds between 0 and 2^32-1 but the actual maximum cache time is limited to 3 days. A default value of 60 seconds is assumed in the absence of the option. </value>
         [DataMember(Name="max-age", EmitDefaultValue=false)]
         public string MaxAge { get; set; }
         /// <summary>
-        /// Endpoint name
+        /// Endpoint name.
         /// </summary>
-        /// <value>Endpoint name</value>
+        /// <value>Endpoint name.</value>
         [DataMember(Name="ep", EmitDefaultValue=false)]
         public string Ep { get; set; }
         /// <summary>
-        /// Content type
+        /// Content type.
         /// </summary>
-        /// <value>Content type</value>
+        /// <value>Content type.</value>
         [DataMember(Name="ct", EmitDefaultValue=false)]
         public string Ct { get; set; }
         /// <summary>

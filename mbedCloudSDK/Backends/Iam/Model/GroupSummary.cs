@@ -108,9 +108,10 @@ namespace iam.Model
         /// <param name="CreationTime">A timestamp of the group creation in the storage, in milliseconds..</param>
         /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="CreationTimeMillis">CreationTimeMillis.</param>
-        /// <param name="Id">The UUID of the group. (required).</param>
         /// <param name="UserCount">The number of users in this group. (required).</param>
-        public GroupSummary(string Name = default(string), long? LastUpdateTime = default(long?), int? ApiKeyCount = default(int?), string CreatedAt = default(string), ObjectEnum? _Object = default(ObjectEnum?), long? CreationTime = default(long?), string Etag = default(string), long? CreationTimeMillis = default(long?), string Id = default(string), int? UserCount = default(int?))
+        /// <param name="Id">The UUID of the group. (required).</param>
+        /// <param name="AccountID">The UUID of the account this group belongs to. (required).</param>
+        public GroupSummary(string Name = default(string), long? LastUpdateTime = default(long?), int? ApiKeyCount = default(int?), string CreatedAt = default(string), ObjectEnum? _Object = default(ObjectEnum?), long? CreationTime = default(long?), string Etag = default(string), long? CreationTimeMillis = default(long?), int? UserCount = default(int?), string Id = default(string), string AccountID = default(string))
         {
             // to ensure "Name" is required (not null)
             if (Name == null)
@@ -148,6 +149,15 @@ namespace iam.Model
             {
                 this.Etag = Etag;
             }
+            // to ensure "UserCount" is required (not null)
+            if (UserCount == null)
+            {
+                throw new InvalidDataException("UserCount is a required property for GroupSummary and cannot be null");
+            }
+            else
+            {
+                this.UserCount = UserCount;
+            }
             // to ensure "Id" is required (not null)
             if (Id == null)
             {
@@ -157,14 +167,14 @@ namespace iam.Model
             {
                 this.Id = Id;
             }
-            // to ensure "UserCount" is required (not null)
-            if (UserCount == null)
+            // to ensure "AccountID" is required (not null)
+            if (AccountID == null)
             {
-                throw new InvalidDataException("UserCount is a required property for GroupSummary and cannot be null");
+                throw new InvalidDataException("AccountID is a required property for GroupSummary and cannot be null");
             }
             else
             {
-                this.UserCount = UserCount;
+                this.AccountID = AccountID;
             }
             this.LastUpdateTime = LastUpdateTime;
             this.CreatedAt = CreatedAt;
@@ -214,17 +224,23 @@ namespace iam.Model
         [DataMember(Name="creationTimeMillis", EmitDefaultValue=false)]
         public long? CreationTimeMillis { get; set; }
         /// <summary>
+        /// The number of users in this group.
+        /// </summary>
+        /// <value>The number of users in this group.</value>
+        [DataMember(Name="userCount", EmitDefaultValue=false)]
+        public int? UserCount { get; set; }
+        /// <summary>
         /// The UUID of the group.
         /// </summary>
         /// <value>The UUID of the group.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
         /// <summary>
-        /// The number of users in this group.
+        /// The UUID of the account this group belongs to.
         /// </summary>
-        /// <value>The number of users in this group.</value>
-        [DataMember(Name="userCount", EmitDefaultValue=false)]
-        public int? UserCount { get; set; }
+        /// <value>The UUID of the account this group belongs to.</value>
+        [DataMember(Name="accountID", EmitDefaultValue=false)]
+        public string AccountID { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -241,8 +257,9 @@ namespace iam.Model
             sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  CreationTimeMillis: ").Append(CreationTimeMillis).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  UserCount: ").Append(UserCount).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  AccountID: ").Append(AccountID).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -320,14 +337,19 @@ namespace iam.Model
                     this.CreationTimeMillis.Equals(other.CreationTimeMillis)
                 ) && 
                 (
+                    this.UserCount == other.UserCount ||
+                    this.UserCount != null &&
+                    this.UserCount.Equals(other.UserCount)
+                ) && 
+                (
                     this.Id == other.Id ||
                     this.Id != null &&
                     this.Id.Equals(other.Id)
                 ) && 
                 (
-                    this.UserCount == other.UserCount ||
-                    this.UserCount != null &&
-                    this.UserCount.Equals(other.UserCount)
+                    this.AccountID == other.AccountID ||
+                    this.AccountID != null &&
+                    this.AccountID.Equals(other.AccountID)
                 );
         }
 
@@ -358,10 +380,12 @@ namespace iam.Model
                     hash = hash * 59 + this.Etag.GetHashCode();
                 if (this.CreationTimeMillis != null)
                     hash = hash * 59 + this.CreationTimeMillis.GetHashCode();
-                if (this.Id != null)
-                    hash = hash * 59 + this.Id.GetHashCode();
                 if (this.UserCount != null)
                     hash = hash * 59 + this.UserCount.GetHashCode();
+                if (this.Id != null)
+                    hash = hash * 59 + this.Id.GetHashCode();
+                if (this.AccountID != null)
+                    hash = hash * 59 + this.AccountID.GetHashCode();
                 return hash;
             }
         }

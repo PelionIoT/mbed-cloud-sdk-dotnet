@@ -1,7 +1,7 @@
 /* 
- * mbed Cloud Connect REST API
+ * Connect API
  *
- * mbed Cloud Connect REST API allows web applications to communicate with devices.
+ * mbed Cloud Connect API allows web applications to communicate with devices. You can subscribe to device resources and read/write values to them. mbed Cloud Connect makes connectivity to devices easy by queuing requests and caching resource values.
  *
  * OpenAPI spec version: 2
  * 
@@ -32,8 +32,8 @@ namespace mds.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Webhook" /> class.
         /// </summary>
-        /// <param name="Url">The URL to which the notifications must be sent. We recommend that you serve this URL over HTTPS..</param>
-        /// <param name="Headers">Headers (key/value) that must be sent with the request. Optional..</param>
+        /// <param name="Url">The URL to which the notifications are sent. We recommend that you serve this URL over HTTPS..</param>
+        /// <param name="Headers">Headers (key/value) that are sent with the notification. Optional..</param>
         public Webhook(string Url = default(string), Object Headers = default(Object))
         {
             this.Url = Url;
@@ -41,15 +41,15 @@ namespace mds.Model
         }
         
         /// <summary>
-        /// The URL to which the notifications must be sent. We recommend that you serve this URL over HTTPS.
+        /// The URL to which the notifications are sent. We recommend that you serve this URL over HTTPS.
         /// </summary>
-        /// <value>The URL to which the notifications must be sent. We recommend that you serve this URL over HTTPS.</value>
+        /// <value>The URL to which the notifications are sent. We recommend that you serve this URL over HTTPS.</value>
         [DataMember(Name="url", EmitDefaultValue=false)]
         public string Url { get; set; }
         /// <summary>
-        /// Headers (key/value) that must be sent with the request. Optional.
+        /// Headers (key/value) that are sent with the notification. Optional.
         /// </summary>
-        /// <value>Headers (key/value) that must be sent with the request. Optional.</value>
+        /// <value>Headers (key/value) that are sent with the notification. Optional.</value>
         [DataMember(Name="headers", EmitDefaultValue=false)]
         public Object Headers { get; set; }
         /// <summary>

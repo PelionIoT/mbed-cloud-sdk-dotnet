@@ -1,7 +1,7 @@
 /* 
- * mbed Cloud Connector Statistics REST API
+ * Connect Statistics API
  *
- * mbed Cloud Connector Statistics REST API provides statistics about other cloud services through defined counters.
+ * mbed Cloud Connect Statistics API provides statistics about other cloud services through defined counters.
  *
  * OpenAPI spec version: 3
  * 
@@ -32,74 +32,42 @@ namespace statistics.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Data" /> class.
         /// </summary>
-        /// <param name="BootstrapCertificateCreate">Number of successful bootstrap certificate create requests account has used..</param>
-        /// <param name="ConnectorCaRestApiCount">Number of suuccessful connector rest API requests account has used..</param>
-        /// <param name="BootstrapsFailed">Number of failed bootstraps account has used..</param>
-        /// <param name="ConnectorCaRestApiErrorCount">Number of failed connector rest API requests account has used..</param>
-        /// <param name="ConnectorFullCredentialsGet">Number of successful connector full credentials get requests account has used..</param>
-        /// <param name="BootstrapCertificateDelete">Number of successful bootstrap certificate delete requests account has used..</param>
+        /// <param name="DeviceServerRestApiError">Number of failed device server REST API requests the account has used..</param>
+        /// <param name="BootstrapsFailed">Number of failed bootstraps the account has used..</param>
+        /// <param name="Transactions">Number of transaction events from devices linked to the account..</param>
         /// <param name="Timestamp">UTC time in RFC3339 format.</param>
-        /// <param name="BootstrapsPending">Number of pending bootstraps account has used..</param>
-        /// <param name="ConnectorCertificateCreate">Number of successful connector certificate create requests account has used..</param>
-        /// <param name="BootstrapFullCredentialsGet">Number of successful bootstrap full credentials get requests account has used..</param>
-        /// <param name="ConnectorCertificateDelete">Number of successful connector certificate create requests account has used..</param>
-        /// <param name="ConnectorCredentialsGet">Number of successful connector credentials get requests account has used..</param>
-        /// <param name="BootstrapCredentialsGet">Number of successful bootstrap credentials get requests account has used..</param>
-        /// <param name="BootstrapsSuccessful">Number of successful bootstraps account has used..</param>
-        public Data(long? BootstrapCertificateCreate = default(long?), long? ConnectorCaRestApiCount = default(long?), long? BootstrapsFailed = default(long?), long? ConnectorCaRestApiErrorCount = default(long?), long? ConnectorFullCredentialsGet = default(long?), long? BootstrapCertificateDelete = default(long?), string Timestamp = default(string), long? BootstrapsPending = default(long?), long? ConnectorCertificateCreate = default(long?), long? BootstrapFullCredentialsGet = default(long?), long? ConnectorCertificateDelete = default(long?), long? ConnectorCredentialsGet = default(long?), long? BootstrapCredentialsGet = default(long?), long? BootstrapsSuccessful = default(long?))
+        /// <param name="DeviceServerRestApiSuccess">Number of successful device server REST API requests the account has used..</param>
+        /// <param name="BootstrapsPending">Number of pending bootstraps the account has used..</param>
+        /// <param name="BootstrapsSuccessful">Number of successful bootstraps the account has used..</param>
+        public Data(long? DeviceServerRestApiError = default(long?), long? BootstrapsFailed = default(long?), long? Transactions = default(long?), string Timestamp = default(string), long? DeviceServerRestApiSuccess = default(long?), long? BootstrapsPending = default(long?), long? BootstrapsSuccessful = default(long?))
         {
-            this.BootstrapCertificateCreate = BootstrapCertificateCreate;
-            this.ConnectorCaRestApiCount = ConnectorCaRestApiCount;
+            this.DeviceServerRestApiError = DeviceServerRestApiError;
             this.BootstrapsFailed = BootstrapsFailed;
-            this.ConnectorCaRestApiErrorCount = ConnectorCaRestApiErrorCount;
-            this.ConnectorFullCredentialsGet = ConnectorFullCredentialsGet;
-            this.BootstrapCertificateDelete = BootstrapCertificateDelete;
+            this.Transactions = Transactions;
             this.Timestamp = Timestamp;
+            this.DeviceServerRestApiSuccess = DeviceServerRestApiSuccess;
             this.BootstrapsPending = BootstrapsPending;
-            this.ConnectorCertificateCreate = ConnectorCertificateCreate;
-            this.BootstrapFullCredentialsGet = BootstrapFullCredentialsGet;
-            this.ConnectorCertificateDelete = ConnectorCertificateDelete;
-            this.ConnectorCredentialsGet = ConnectorCredentialsGet;
-            this.BootstrapCredentialsGet = BootstrapCredentialsGet;
             this.BootstrapsSuccessful = BootstrapsSuccessful;
         }
         
         /// <summary>
-        /// Number of successful bootstrap certificate create requests account has used.
+        /// Number of failed device server REST API requests the account has used.
         /// </summary>
-        /// <value>Number of successful bootstrap certificate create requests account has used.</value>
-        [DataMember(Name="bootstrap_certificate_create", EmitDefaultValue=false)]
-        public long? BootstrapCertificateCreate { get; set; }
+        /// <value>Number of failed device server REST API requests the account has used.</value>
+        [DataMember(Name="device_server_rest_api_error", EmitDefaultValue=false)]
+        public long? DeviceServerRestApiError { get; set; }
         /// <summary>
-        /// Number of suuccessful connector rest API requests account has used.
+        /// Number of failed bootstraps the account has used.
         /// </summary>
-        /// <value>Number of suuccessful connector rest API requests account has used.</value>
-        [DataMember(Name="connector_ca_rest_api_count", EmitDefaultValue=false)]
-        public long? ConnectorCaRestApiCount { get; set; }
-        /// <summary>
-        /// Number of failed bootstraps account has used.
-        /// </summary>
-        /// <value>Number of failed bootstraps account has used.</value>
+        /// <value>Number of failed bootstraps the account has used.</value>
         [DataMember(Name="bootstraps_failed", EmitDefaultValue=false)]
         public long? BootstrapsFailed { get; set; }
         /// <summary>
-        /// Number of failed connector rest API requests account has used.
+        /// Number of transaction events from devices linked to the account.
         /// </summary>
-        /// <value>Number of failed connector rest API requests account has used.</value>
-        [DataMember(Name="connector_ca_rest_api_error_count", EmitDefaultValue=false)]
-        public long? ConnectorCaRestApiErrorCount { get; set; }
-        /// <summary>
-        /// Number of successful connector full credentials get requests account has used.
-        /// </summary>
-        /// <value>Number of successful connector full credentials get requests account has used.</value>
-        [DataMember(Name="connector_full_credentials_get", EmitDefaultValue=false)]
-        public long? ConnectorFullCredentialsGet { get; set; }
-        /// <summary>
-        /// Number of successful bootstrap certificate delete requests account has used.
-        /// </summary>
-        /// <value>Number of successful bootstrap certificate delete requests account has used.</value>
-        [DataMember(Name="bootstrap_certificate_delete", EmitDefaultValue=false)]
-        public long? BootstrapCertificateDelete { get; set; }
+        /// <value>Number of transaction events from devices linked to the account.</value>
+        [DataMember(Name="transactions", EmitDefaultValue=false)]
+        public long? Transactions { get; set; }
         /// <summary>
         /// UTC time in RFC3339 format
         /// </summary>
@@ -107,45 +75,21 @@ namespace statistics.Model
         [DataMember(Name="timestamp", EmitDefaultValue=false)]
         public string Timestamp { get; set; }
         /// <summary>
-        /// Number of pending bootstraps account has used.
+        /// Number of successful device server REST API requests the account has used.
         /// </summary>
-        /// <value>Number of pending bootstraps account has used.</value>
+        /// <value>Number of successful device server REST API requests the account has used.</value>
+        [DataMember(Name="device_server_rest_api_success", EmitDefaultValue=false)]
+        public long? DeviceServerRestApiSuccess { get; set; }
+        /// <summary>
+        /// Number of pending bootstraps the account has used.
+        /// </summary>
+        /// <value>Number of pending bootstraps the account has used.</value>
         [DataMember(Name="bootstraps_pending", EmitDefaultValue=false)]
         public long? BootstrapsPending { get; set; }
         /// <summary>
-        /// Number of successful connector certificate create requests account has used.
+        /// Number of successful bootstraps the account has used.
         /// </summary>
-        /// <value>Number of successful connector certificate create requests account has used.</value>
-        [DataMember(Name="connector_certificate_create", EmitDefaultValue=false)]
-        public long? ConnectorCertificateCreate { get; set; }
-        /// <summary>
-        /// Number of successful bootstrap full credentials get requests account has used.
-        /// </summary>
-        /// <value>Number of successful bootstrap full credentials get requests account has used.</value>
-        [DataMember(Name="bootstrap_full_credentials_get", EmitDefaultValue=false)]
-        public long? BootstrapFullCredentialsGet { get; set; }
-        /// <summary>
-        /// Number of successful connector certificate create requests account has used.
-        /// </summary>
-        /// <value>Number of successful connector certificate create requests account has used.</value>
-        [DataMember(Name="connector_certificate_delete", EmitDefaultValue=false)]
-        public long? ConnectorCertificateDelete { get; set; }
-        /// <summary>
-        /// Number of successful connector credentials get requests account has used.
-        /// </summary>
-        /// <value>Number of successful connector credentials get requests account has used.</value>
-        [DataMember(Name="connector_credentials_get", EmitDefaultValue=false)]
-        public long? ConnectorCredentialsGet { get; set; }
-        /// <summary>
-        /// Number of successful bootstrap credentials get requests account has used.
-        /// </summary>
-        /// <value>Number of successful bootstrap credentials get requests account has used.</value>
-        [DataMember(Name="bootstrap_credentials_get", EmitDefaultValue=false)]
-        public long? BootstrapCredentialsGet { get; set; }
-        /// <summary>
-        /// Number of successful bootstraps account has used.
-        /// </summary>
-        /// <value>Number of successful bootstraps account has used.</value>
+        /// <value>Number of successful bootstraps the account has used.</value>
         [DataMember(Name="bootstraps_successful", EmitDefaultValue=false)]
         public long? BootstrapsSuccessful { get; set; }
         /// <summary>
@@ -156,19 +100,12 @@ namespace statistics.Model
         {
             var sb = new StringBuilder();
             sb.Append("class Data {\n");
-            sb.Append("  BootstrapCertificateCreate: ").Append(BootstrapCertificateCreate).Append("\n");
-            sb.Append("  ConnectorCaRestApiCount: ").Append(ConnectorCaRestApiCount).Append("\n");
+            sb.Append("  DeviceServerRestApiError: ").Append(DeviceServerRestApiError).Append("\n");
             sb.Append("  BootstrapsFailed: ").Append(BootstrapsFailed).Append("\n");
-            sb.Append("  ConnectorCaRestApiErrorCount: ").Append(ConnectorCaRestApiErrorCount).Append("\n");
-            sb.Append("  ConnectorFullCredentialsGet: ").Append(ConnectorFullCredentialsGet).Append("\n");
-            sb.Append("  BootstrapCertificateDelete: ").Append(BootstrapCertificateDelete).Append("\n");
+            sb.Append("  Transactions: ").Append(Transactions).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
+            sb.Append("  DeviceServerRestApiSuccess: ").Append(DeviceServerRestApiSuccess).Append("\n");
             sb.Append("  BootstrapsPending: ").Append(BootstrapsPending).Append("\n");
-            sb.Append("  ConnectorCertificateCreate: ").Append(ConnectorCertificateCreate).Append("\n");
-            sb.Append("  BootstrapFullCredentialsGet: ").Append(BootstrapFullCredentialsGet).Append("\n");
-            sb.Append("  ConnectorCertificateDelete: ").Append(ConnectorCertificateDelete).Append("\n");
-            sb.Append("  ConnectorCredentialsGet: ").Append(ConnectorCredentialsGet).Append("\n");
-            sb.Append("  BootstrapCredentialsGet: ").Append(BootstrapCredentialsGet).Append("\n");
             sb.Append("  BootstrapsSuccessful: ").Append(BootstrapsSuccessful).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -207,14 +144,9 @@ namespace statistics.Model
 
             return 
                 (
-                    this.BootstrapCertificateCreate == other.BootstrapCertificateCreate ||
-                    this.BootstrapCertificateCreate != null &&
-                    this.BootstrapCertificateCreate.Equals(other.BootstrapCertificateCreate)
-                ) && 
-                (
-                    this.ConnectorCaRestApiCount == other.ConnectorCaRestApiCount ||
-                    this.ConnectorCaRestApiCount != null &&
-                    this.ConnectorCaRestApiCount.Equals(other.ConnectorCaRestApiCount)
+                    this.DeviceServerRestApiError == other.DeviceServerRestApiError ||
+                    this.DeviceServerRestApiError != null &&
+                    this.DeviceServerRestApiError.Equals(other.DeviceServerRestApiError)
                 ) && 
                 (
                     this.BootstrapsFailed == other.BootstrapsFailed ||
@@ -222,19 +154,9 @@ namespace statistics.Model
                     this.BootstrapsFailed.Equals(other.BootstrapsFailed)
                 ) && 
                 (
-                    this.ConnectorCaRestApiErrorCount == other.ConnectorCaRestApiErrorCount ||
-                    this.ConnectorCaRestApiErrorCount != null &&
-                    this.ConnectorCaRestApiErrorCount.Equals(other.ConnectorCaRestApiErrorCount)
-                ) && 
-                (
-                    this.ConnectorFullCredentialsGet == other.ConnectorFullCredentialsGet ||
-                    this.ConnectorFullCredentialsGet != null &&
-                    this.ConnectorFullCredentialsGet.Equals(other.ConnectorFullCredentialsGet)
-                ) && 
-                (
-                    this.BootstrapCertificateDelete == other.BootstrapCertificateDelete ||
-                    this.BootstrapCertificateDelete != null &&
-                    this.BootstrapCertificateDelete.Equals(other.BootstrapCertificateDelete)
+                    this.Transactions == other.Transactions ||
+                    this.Transactions != null &&
+                    this.Transactions.Equals(other.Transactions)
                 ) && 
                 (
                     this.Timestamp == other.Timestamp ||
@@ -242,34 +164,14 @@ namespace statistics.Model
                     this.Timestamp.Equals(other.Timestamp)
                 ) && 
                 (
+                    this.DeviceServerRestApiSuccess == other.DeviceServerRestApiSuccess ||
+                    this.DeviceServerRestApiSuccess != null &&
+                    this.DeviceServerRestApiSuccess.Equals(other.DeviceServerRestApiSuccess)
+                ) && 
+                (
                     this.BootstrapsPending == other.BootstrapsPending ||
                     this.BootstrapsPending != null &&
                     this.BootstrapsPending.Equals(other.BootstrapsPending)
-                ) && 
-                (
-                    this.ConnectorCertificateCreate == other.ConnectorCertificateCreate ||
-                    this.ConnectorCertificateCreate != null &&
-                    this.ConnectorCertificateCreate.Equals(other.ConnectorCertificateCreate)
-                ) && 
-                (
-                    this.BootstrapFullCredentialsGet == other.BootstrapFullCredentialsGet ||
-                    this.BootstrapFullCredentialsGet != null &&
-                    this.BootstrapFullCredentialsGet.Equals(other.BootstrapFullCredentialsGet)
-                ) && 
-                (
-                    this.ConnectorCertificateDelete == other.ConnectorCertificateDelete ||
-                    this.ConnectorCertificateDelete != null &&
-                    this.ConnectorCertificateDelete.Equals(other.ConnectorCertificateDelete)
-                ) && 
-                (
-                    this.ConnectorCredentialsGet == other.ConnectorCredentialsGet ||
-                    this.ConnectorCredentialsGet != null &&
-                    this.ConnectorCredentialsGet.Equals(other.ConnectorCredentialsGet)
-                ) && 
-                (
-                    this.BootstrapCredentialsGet == other.BootstrapCredentialsGet ||
-                    this.BootstrapCredentialsGet != null &&
-                    this.BootstrapCredentialsGet.Equals(other.BootstrapCredentialsGet)
                 ) && 
                 (
                     this.BootstrapsSuccessful == other.BootstrapsSuccessful ||
@@ -289,32 +191,18 @@ namespace statistics.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.BootstrapCertificateCreate != null)
-                    hash = hash * 59 + this.BootstrapCertificateCreate.GetHashCode();
-                if (this.ConnectorCaRestApiCount != null)
-                    hash = hash * 59 + this.ConnectorCaRestApiCount.GetHashCode();
+                if (this.DeviceServerRestApiError != null)
+                    hash = hash * 59 + this.DeviceServerRestApiError.GetHashCode();
                 if (this.BootstrapsFailed != null)
                     hash = hash * 59 + this.BootstrapsFailed.GetHashCode();
-                if (this.ConnectorCaRestApiErrorCount != null)
-                    hash = hash * 59 + this.ConnectorCaRestApiErrorCount.GetHashCode();
-                if (this.ConnectorFullCredentialsGet != null)
-                    hash = hash * 59 + this.ConnectorFullCredentialsGet.GetHashCode();
-                if (this.BootstrapCertificateDelete != null)
-                    hash = hash * 59 + this.BootstrapCertificateDelete.GetHashCode();
+                if (this.Transactions != null)
+                    hash = hash * 59 + this.Transactions.GetHashCode();
                 if (this.Timestamp != null)
                     hash = hash * 59 + this.Timestamp.GetHashCode();
+                if (this.DeviceServerRestApiSuccess != null)
+                    hash = hash * 59 + this.DeviceServerRestApiSuccess.GetHashCode();
                 if (this.BootstrapsPending != null)
                     hash = hash * 59 + this.BootstrapsPending.GetHashCode();
-                if (this.ConnectorCertificateCreate != null)
-                    hash = hash * 59 + this.ConnectorCertificateCreate.GetHashCode();
-                if (this.BootstrapFullCredentialsGet != null)
-                    hash = hash * 59 + this.BootstrapFullCredentialsGet.GetHashCode();
-                if (this.ConnectorCertificateDelete != null)
-                    hash = hash * 59 + this.ConnectorCertificateDelete.GetHashCode();
-                if (this.ConnectorCredentialsGet != null)
-                    hash = hash * 59 + this.ConnectorCredentialsGet.GetHashCode();
-                if (this.BootstrapCredentialsGet != null)
-                    hash = hash * 59 + this.BootstrapCredentialsGet.GetHashCode();
                 if (this.BootstrapsSuccessful != null)
                     hash = hash * 59 + this.BootstrapsSuccessful.GetHashCode();
                 return hash;

@@ -166,7 +166,7 @@ namespace iam.Model
         /// <param name="Contact">The name of the contact person for this account..</param>
         /// <param name="Policies">List of policies if requested..</param>
         /// <param name="TemplateId">Account template ID..</param>
-        public AccountInfo(StatusEnum? Status = default(StatusEnum?), string PostalCode = default(string), string Id = default(string), List<string> Aliases = default(List<string>), string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string ParentId = default(string), string State = default(string), string Etag = default(string), bool? IsProvisioningAllowed = default(bool?), long? CreationTimeMillis = default(long?), string Email = default(string), string PhoneNumber = default(string), string Company = default(string), ObjectEnum? _Object = default(ObjectEnum?), string Reason = default(string), string UpgradedAt = default(string), string Tier = default(string), List<AccountInfo> SubAccounts = default(List<AccountInfo>), Dictionary<string, string> Limits = default(Dictionary<string, string>), string Country = default(string), string CreatedAt = default(string), string Contact = default(string), List<Policy> Policies = default(List<Policy>), string TemplateId = default(string))
+        public AccountInfo(StatusEnum? Status = default(StatusEnum?), string PostalCode = default(string), string Id = default(string), List<string> Aliases = default(List<string>), string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string ParentId = default(string), string State = default(string), string Etag = default(string), bool? IsProvisioningAllowed = default(bool?), long? CreationTimeMillis = default(long?), string Email = default(string), string PhoneNumber = default(string), string Company = default(string), ObjectEnum? _Object = default(ObjectEnum?), string Reason = default(string), string UpgradedAt = default(string), string Tier = default(string), List<AccountInfo> SubAccounts = default(List<AccountInfo>), Dictionary<string, string> Limits = default(Dictionary<string, string>), string Country = default(string), string CreatedAt = default(string), string Contact = default(string), List<FeaturePolicy> Policies = default(List<FeaturePolicy>), string TemplateId = default(string))
         {
             // to ensure "Status" is required (not null)
             if (Status == null)
@@ -395,7 +395,7 @@ namespace iam.Model
         /// </summary>
         /// <value>List of policies if requested.</value>
         [DataMember(Name="policies", EmitDefaultValue=false)]
-        public List<Policy> Policies { get; set; }
+        public List<FeaturePolicy> Policies { get; set; }
         /// <summary>
         /// Account template ID.
         /// </summary>

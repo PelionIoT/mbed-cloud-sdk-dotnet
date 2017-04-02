@@ -1,7 +1,7 @@
 /* 
- * mbed Cloud Connect REST API
+ * Connect API
  *
- * mbed Cloud Connect REST API allows web applications to communicate with devices.
+ * mbed Cloud Connect API allows web applications to communicate with devices. You can subscribe to device resources and read/write values to them. mbed Cloud Connect makes connectivity to devices easy by queuing requests and caching resource values.
  *
  * OpenAPI spec version: 2
  * 
@@ -46,7 +46,7 @@ namespace mds.Api
         /// Check callback URL
         /// </summary>
         /// <remarks>
-        /// Shows the current callback URL if exists.
+        /// Shows the current callback URL if it exists.
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
@@ -56,7 +56,7 @@ namespace mds.Api
         /// Check callback URL
         /// </summary>
         /// <remarks>
-        /// Shows the current callback URL if exists.
+        /// Shows the current callback URL if it exists.
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -86,7 +86,7 @@ namespace mds.Api
         /// Check callback URL
         /// </summary>
         /// <remarks>
-        /// Shows the current callback URL if exists.
+        /// Shows the current callback URL if it exists.
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of void</returns>
@@ -96,7 +96,7 @@ namespace mds.Api
         /// Check callback URL
         /// </summary>
         /// <remarks>
-        /// Shows the current callback URL if exists.
+        /// Shows the current callback URL if it exists.
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse</returns>
@@ -352,7 +352,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Check callback URL Shows the current callback URL if exists.
+        /// Check callback URL Shows the current callback URL if it exists.
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
@@ -362,7 +362,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Check callback URL Shows the current callback URL if exists.
+        /// Check callback URL Shows the current callback URL if it exists.
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -421,7 +421,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Check callback URL Shows the current callback URL if exists.
+        /// Check callback URL Shows the current callback URL if it exists.
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of void</returns>
@@ -432,7 +432,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Check callback URL Shows the current callback URL if exists.
+        /// Check callback URL Shows the current callback URL if it exists.
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse</returns>
