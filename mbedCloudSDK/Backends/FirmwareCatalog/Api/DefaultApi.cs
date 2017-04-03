@@ -51,7 +51,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>FirmwareImage</returns>
-        FirmwareImage FirmwareImageCreate (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null);
+        FirmwareImage FirmwareImageCreate (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null);
 
         /// <summary>
         /// 
@@ -80,7 +80,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>ApiResponse of FirmwareImage</returns>
-        ApiResponse<FirmwareImage> FirmwareImageCreateWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null);
+        ApiResponse<FirmwareImage> FirmwareImageCreateWithHttpInfo (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null);
         /// <summary>
         /// 
         /// </summary>
@@ -143,8 +143,9 @@ namespace firmware_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>FirmwareImagePage</returns>
-        FirmwareImagePage FirmwareImageList (int? limit = null, string order = null, string after = null, string filter = null);
+        FirmwareImagePage FirmwareImageList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
@@ -157,8 +158,9 @@ namespace firmware_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of FirmwareImagePage</returns>
-        ApiResponse<FirmwareImagePage> FirmwareImageListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null);
+        ApiResponse<FirmwareImagePage> FirmwareImageListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -241,7 +243,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>FirmwareManifest</returns>
-        FirmwareManifest FirmwareManifestCreate (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null);
+        FirmwareManifest FirmwareManifestCreate (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null);
 
         /// <summary>
         /// 
@@ -274,7 +276,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>ApiResponse of FirmwareManifest</returns>
-        ApiResponse<FirmwareManifest> FirmwareManifestCreateWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null);
+        ApiResponse<FirmwareManifest> FirmwareManifestCreateWithHttpInfo (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null);
         /// <summary>
         /// 
         /// </summary>
@@ -345,8 +347,9 @@ namespace firmware_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>FirmwareManifestPage</returns>
-        FirmwareManifestPage FirmwareManifestList (int? limit = null, string order = null, string after = null, string filter = null);
+        FirmwareManifestPage FirmwareManifestList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
@@ -359,8 +362,9 @@ namespace firmware_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of FirmwareManifestPage</returns>
-        ApiResponse<FirmwareManifestPage> FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null);
+        ApiResponse<FirmwareManifestPage> FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -449,7 +453,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>Task of FirmwareImage</returns>
-        System.Threading.Tasks.Task<FirmwareImage> FirmwareImageCreateAsync (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null);
+        System.Threading.Tasks.Task<FirmwareImage> FirmwareImageCreateAsync (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null);
 
         /// <summary>
         /// 
@@ -478,7 +482,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareImage)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareImage>> FirmwareImageCreateAsyncWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null);
+        System.Threading.Tasks.Task<ApiResponse<FirmwareImage>> FirmwareImageCreateAsyncWithHttpInfo (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null);
         /// <summary>
         /// 
         /// </summary>
@@ -541,8 +545,9 @@ namespace firmware_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of FirmwareImagePage</returns>
-        System.Threading.Tasks.Task<FirmwareImagePage> FirmwareImageListAsync (int? limit = null, string order = null, string after = null, string filter = null);
+        System.Threading.Tasks.Task<FirmwareImagePage> FirmwareImageListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
@@ -555,8 +560,9 @@ namespace firmware_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareImagePage)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareImagePage>> FirmwareImageListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null);
+        System.Threading.Tasks.Task<ApiResponse<FirmwareImagePage>> FirmwareImageListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -639,7 +645,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>Task of FirmwareManifest</returns>
-        System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestCreateAsync (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null);
+        System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestCreateAsync (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null);
 
         /// <summary>
         /// 
@@ -672,7 +678,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareManifest)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestCreateAsyncWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null);
+        System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestCreateAsyncWithHttpInfo (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null);
         /// <summary>
         /// 
         /// </summary>
@@ -743,8 +749,9 @@ namespace firmware_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of FirmwareManifestPage</returns>
-        System.Threading.Tasks.Task<FirmwareManifestPage> FirmwareManifestListAsync (int? limit = null, string order = null, string after = null, string filter = null);
+        System.Threading.Tasks.Task<FirmwareManifestPage> FirmwareManifestListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
@@ -757,8 +764,9 @@ namespace firmware_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareManifestPage)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareManifestPage>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null);
+        System.Threading.Tasks.Task<ApiResponse<FirmwareManifestPage>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -954,7 +962,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>FirmwareImage</returns>
-        public FirmwareImage FirmwareImageCreate (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null)
+        public FirmwareImage FirmwareImageCreate (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null)
         {
              ApiResponse<FirmwareImage> localVarResponse = FirmwareImageCreateWithHttpInfo(datafile, name, description, updatedAt, updatedAtGte, updatedAtLte, updatingIpAddress, etag, etagGte, etagLte, updatingRequestId, createdAt, createdAtGte, createdAtLte, description2, _object, imageId, datafileChecksum, name2);
              return localVarResponse.Data;
@@ -984,7 +992,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>ApiResponse of FirmwareImage</returns>
-        public ApiResponse< FirmwareImage > FirmwareImageCreateWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null)
+        public ApiResponse< FirmwareImage > FirmwareImageCreateWithHttpInfo (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null)
         {
             // verify the required parameter 'datafile' is set
             if (datafile == null)
@@ -1003,6 +1011,7 @@ namespace firmware_catalog.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "multipart/form-data"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -1086,7 +1095,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>Task of FirmwareImage</returns>
-        public async System.Threading.Tasks.Task<FirmwareImage> FirmwareImageCreateAsync (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null)
+        public async System.Threading.Tasks.Task<FirmwareImage> FirmwareImageCreateAsync (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null)
         {
              ApiResponse<FirmwareImage> localVarResponse = await FirmwareImageCreateAsyncWithHttpInfo(datafile, name, description, updatedAt, updatedAtGte, updatedAtLte, updatingIpAddress, etag, etagGte, etagLte, updatingRequestId, createdAt, createdAtGte, createdAtLte, description2, _object, imageId, datafileChecksum, name2);
              return localVarResponse.Data;
@@ -1117,7 +1126,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareImage)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareImage>> FirmwareImageCreateAsyncWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null)
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareImage>> FirmwareImageCreateAsyncWithHttpInfo (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null)
         {
             // verify the required parameter 'datafile' is set
             if (datafile == null)
@@ -1136,6 +1145,7 @@ namespace firmware_catalog.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "multipart/form-data"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -1442,10 +1452,11 @@ namespace firmware_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>FirmwareImagePage</returns>
-        public FirmwareImagePage FirmwareImageList (int? limit = null, string order = null, string after = null, string filter = null)
+        public FirmwareImagePage FirmwareImageList (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<FirmwareImagePage> localVarResponse = FirmwareImageListWithHttpInfo(limit, order, after, filter);
+             ApiResponse<FirmwareImagePage> localVarResponse = FirmwareImageListWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
         }
 
@@ -1457,8 +1468,9 @@ namespace firmware_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of FirmwareImagePage</returns>
-        public ApiResponse< FirmwareImagePage > FirmwareImageListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null)
+        public ApiResponse< FirmwareImagePage > FirmwareImageListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/firmware-images/";
@@ -1488,6 +1500,7 @@ namespace firmware_catalog.Api
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1523,10 +1536,11 @@ namespace firmware_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of FirmwareImagePage</returns>
-        public async System.Threading.Tasks.Task<FirmwareImagePage> FirmwareImageListAsync (int? limit = null, string order = null, string after = null, string filter = null)
+        public async System.Threading.Tasks.Task<FirmwareImagePage> FirmwareImageListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<FirmwareImagePage> localVarResponse = await FirmwareImageListAsyncWithHttpInfo(limit, order, after, filter);
+             ApiResponse<FirmwareImagePage> localVarResponse = await FirmwareImageListAsyncWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
 
         }
@@ -1539,8 +1553,9 @@ namespace firmware_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareImagePage)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareImagePage>> FirmwareImageListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null)
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareImagePage>> FirmwareImageListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/firmware-images/";
@@ -1570,6 +1585,7 @@ namespace firmware_catalog.Api
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1864,7 +1880,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>FirmwareManifest</returns>
-        public FirmwareManifest FirmwareManifestCreate (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null)
+        public FirmwareManifest FirmwareManifestCreate (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null)
         {
              ApiResponse<FirmwareManifest> localVarResponse = FirmwareManifestCreateWithHttpInfo(datafile, name, description, updatedAt, updatedAtGte, updatedAtLte, createdAt, createdAtGte, createdAtLte, etag, etagGte, etagLte, updatingIpAddress, manifestId, updatingRequestId, description2, timestamp, timestampGte, timestampLte, _object, deviceClass, datafileChecksum, name2);
              return localVarResponse.Data;
@@ -1898,7 +1914,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>ApiResponse of FirmwareManifest</returns>
-        public ApiResponse< FirmwareManifest > FirmwareManifestCreateWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null)
+        public ApiResponse< FirmwareManifest > FirmwareManifestCreateWithHttpInfo (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null)
         {
             // verify the required parameter 'datafile' is set
             if (datafile == null)
@@ -1917,6 +1933,7 @@ namespace firmware_catalog.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "multipart/form-data"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -2008,7 +2025,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>Task of FirmwareManifest</returns>
-        public async System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestCreateAsync (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null)
+        public async System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestCreateAsync (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null)
         {
              ApiResponse<FirmwareManifest> localVarResponse = await FirmwareManifestCreateAsyncWithHttpInfo(datafile, name, description, updatedAt, updatedAtGte, updatedAtLte, createdAt, createdAtGte, createdAtLte, etag, etagGte, etagLte, updatingIpAddress, manifestId, updatingRequestId, description2, timestamp, timestampGte, timestampLte, _object, deviceClass, datafileChecksum, name2);
              return localVarResponse.Data;
@@ -2043,7 +2060,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareManifest)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestCreateAsyncWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null)
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestCreateAsyncWithHttpInfo (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null)
         {
             // verify the required parameter 'datafile' is set
             if (datafile == null)
@@ -2062,6 +2079,7 @@ namespace firmware_catalog.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "multipart/form-data"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -2396,10 +2414,11 @@ namespace firmware_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>FirmwareManifestPage</returns>
-        public FirmwareManifestPage FirmwareManifestList (int? limit = null, string order = null, string after = null, string filter = null)
+        public FirmwareManifestPage FirmwareManifestList (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<FirmwareManifestPage> localVarResponse = FirmwareManifestListWithHttpInfo(limit, order, after, filter);
+             ApiResponse<FirmwareManifestPage> localVarResponse = FirmwareManifestListWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
         }
 
@@ -2411,8 +2430,9 @@ namespace firmware_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of FirmwareManifestPage</returns>
-        public ApiResponse< FirmwareManifestPage > FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null)
+        public ApiResponse< FirmwareManifestPage > FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/firmware-manifests/";
@@ -2442,6 +2462,7 @@ namespace firmware_catalog.Api
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2477,10 +2498,11 @@ namespace firmware_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of FirmwareManifestPage</returns>
-        public async System.Threading.Tasks.Task<FirmwareManifestPage> FirmwareManifestListAsync (int? limit = null, string order = null, string after = null, string filter = null)
+        public async System.Threading.Tasks.Task<FirmwareManifestPage> FirmwareManifestListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<FirmwareManifestPage> localVarResponse = await FirmwareManifestListAsyncWithHttpInfo(limit, order, after, filter);
+             ApiResponse<FirmwareManifestPage> localVarResponse = await FirmwareManifestListAsyncWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
 
         }
@@ -2493,8 +2515,9 @@ namespace firmware_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareManifestPage)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifestPage>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null)
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifestPage>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/firmware-manifests/";
@@ -2524,6 +2547,7 @@ namespace firmware_catalog.Api
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))

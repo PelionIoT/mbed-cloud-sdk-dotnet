@@ -41,7 +41,7 @@ namespace firmware_catalog.Model
         /// <param name="After">After (required).</param>
         /// <param name="Data">Data (required).</param>
         /// <param name="Order">Order (required).</param>
-        public WriteFirmwareManifestPage(long? Limit = default(long?), string After = default(string), List<FirmwareManifest> Data = default(List<FirmwareManifest>), string Order = default(string))
+        public WriteFirmwareManifestPage(int? Limit = default(int?), string After = default(string), List<FirmwareManifest> Data = default(List<FirmwareManifest>), string Order = default(string))
         {
             // to ensure "Limit" is required (not null)
             if (Limit == null)
@@ -85,7 +85,7 @@ namespace firmware_catalog.Model
         /// Gets or Sets Limit
         /// </summary>
         [DataMember(Name="limit", EmitDefaultValue=false)]
-        public long? Limit { get; set; }
+        public int? Limit { get; set; }
         /// <summary>
         /// Gets or Sets After
         /// </summary>

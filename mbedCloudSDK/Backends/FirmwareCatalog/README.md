@@ -75,7 +75,7 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var datafile = datafile_example;  // string | The firmware image file to upload
+            var datafile = B;  // byte[] | The firmware image file to upload
             var name = name_example;  // string | The name of the object
             var description = description_example;  // string | The description of the object (optional) 
             var updatedAt = updatedAt_example;  // string |  (optional) 

@@ -40,7 +40,7 @@ namespace firmware_catalog.Model
         /// <param name="Datafile">The binary file of firmware image (required).</param>
         /// <param name="Description">The description of the object.</param>
         /// <param name="Name">The name of the object (required).</param>
-        public WriteFirmwareImage(string Datafile = default(string), string Description = default(string), string Name = default(string))
+        public WriteFirmwareImage(byte[] Datafile = default(byte[]), string Description = default(string), string Name = default(string))
         {
             // to ensure "Datafile" is required (not null)
             if (Datafile == null)
@@ -68,7 +68,7 @@ namespace firmware_catalog.Model
         /// </summary>
         /// <value>The binary file of firmware image</value>
         [DataMember(Name="datafile", EmitDefaultValue=false)]
-        public string Datafile { get; set; }
+        public byte[] Datafile { get; set; }
         /// <summary>
         /// The description of the object
         /// </summary>

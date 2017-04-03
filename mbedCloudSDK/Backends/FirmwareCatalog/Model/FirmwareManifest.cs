@@ -49,7 +49,7 @@ namespace firmware_catalog.Model
         /// <param name="DeviceClass">The class of device (required).</param>
         /// <param name="Id">The ID of the firmware manifest (required).</param>
         /// <param name="Name">The name of the object (required).</param>
-        public FirmwareManifest(string Datafile = default(string), string ManifestId = default(string), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), string ManifestContents = default(string), DateTime? Etag = default(DateTime?), string DeviceClass = default(string), string Id = default(string), string Name = default(string))
+        public FirmwareManifest(byte[] Datafile = default(byte[]), string ManifestId = default(string), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), string ManifestContents = default(string), DateTime? Etag = default(DateTime?), string DeviceClass = default(string), string Id = default(string), string Name = default(string))
         {
             // to ensure "Datafile" is required (not null)
             if (Datafile == null)
@@ -165,7 +165,7 @@ namespace firmware_catalog.Model
         /// Gets or Sets Datafile
         /// </summary>
         [DataMember(Name="datafile", EmitDefaultValue=false)]
-        public string Datafile { get; set; }
+        public byte[] Datafile { get; set; }
         /// <summary>
         /// DEPRECATED: The ID of the firmware manifest
         /// </summary>

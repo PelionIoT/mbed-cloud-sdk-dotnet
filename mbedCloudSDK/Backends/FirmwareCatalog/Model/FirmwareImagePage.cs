@@ -44,7 +44,7 @@ namespace firmware_catalog.Model
         /// <param name="Limit">Limit (required).</param>
         /// <param name="Data">Data (required).</param>
         /// <param name="Order">Order (required).</param>
-        public FirmwareImagePage(string _Object = default(string), bool? HasMore = default(bool?), long? TotalCount = default(long?), string After = default(string), long? Limit = default(long?), List<FirmwareImage> Data = default(List<FirmwareImage>), string Order = default(string))
+        public FirmwareImagePage(string _Object = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), string After = default(string), int? Limit = default(int?), List<FirmwareImage> Data = default(List<FirmwareImage>), string Order = default(string))
         {
             // to ensure "_Object" is required (not null)
             if (_Object == null)
@@ -125,7 +125,7 @@ namespace firmware_catalog.Model
         /// Gets or Sets TotalCount
         /// </summary>
         [DataMember(Name="total_count", EmitDefaultValue=false)]
-        public long? TotalCount { get; set; }
+        public int? TotalCount { get; set; }
         /// <summary>
         /// Gets or Sets After
         /// </summary>
@@ -135,7 +135,7 @@ namespace firmware_catalog.Model
         /// Gets or Sets Limit
         /// </summary>
         [DataMember(Name="limit", EmitDefaultValue=false)]
-        public long? Limit { get; set; }
+        public int? Limit { get; set; }
         /// <summary>
         /// Gets or Sets Data
         /// </summary>
