@@ -49,7 +49,7 @@ namespace firmware_catalog.Model
         /// <param name="DeviceClass">The class of device (required).</param>
         /// <param name="Id">The ID of the firmware manifest (required).</param>
         /// <param name="Name">The name of the object (required).</param>
-        public FirmwareManifest(byte[] Datafile = default(byte[]), string ManifestId = default(string), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), byte[] ManifestContents = default(byte[]), DateTime? Etag = default(DateTime?), string DeviceClass = default(string), string Id = default(string), string Name = default(string))
+        public FirmwareManifest(byte[] Datafile = default(byte[]), string ManifestId = default(string), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), Object ManifestContents = default(Object), DateTime? Etag = default(DateTime?), string DeviceClass = default(string), string Id = default(string), string Name = default(string))
         {
             // to ensure "Datafile" is required (not null)
             if (Datafile == null)
@@ -207,7 +207,7 @@ namespace firmware_catalog.Model
         /// </summary>
         /// <value>The contents of the manifest</value>
         [DataMember(Name="manifest_contents", EmitDefaultValue=false)]
-        public byte[] ManifestContents { get; set; }
+        public Object ManifestContents { get; set; }
         /// <summary>
         /// The entity instance signature
         /// </summary>
