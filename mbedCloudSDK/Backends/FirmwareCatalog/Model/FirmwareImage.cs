@@ -37,6 +37,7 @@ namespace firmware_catalog.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="FirmwareImage" /> class.
         /// </summary>
+        /// <param name="Datafile">The binary file of firmware image (required).</param>
         /// <param name="Description">The description of the object (required).</param>
         /// <param name="CreatedAt">The time the object was created (required).</param>
         /// <param name="_Object">The API resource entity (required).</param>
@@ -46,8 +47,17 @@ namespace firmware_catalog.Model
         /// <param name="DatafileChecksum">Checksum generated for the datafile (required).</param>
         /// <param name="Id">The ID of the firmware image (required).</param>
         /// <param name="Name">The name of the object (required).</param>
-        public FirmwareImage(string Description = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), string ImageId = default(string), DateTime? Etag = default(DateTime?), string DatafileChecksum = default(string), string Id = default(string), string Name = default(string))
+        public FirmwareImage(byte[] Datafile = default(byte[]), string Description = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), string ImageId = default(string), DateTime? Etag = default(DateTime?), string DatafileChecksum = default(string), string Id = default(string), string Name = default(string))
         {
+            // to ensure "Datafile" is required (not null)
+            if (Datafile == null)
+            {
+                throw new InvalidDataException("Datafile is a required property for FirmwareImage and cannot be null");
+            }
+            else
+            {
+                this.Datafile = Datafile;
+            }
             // to ensure "Description" is required (not null)
             if (Description == null)
             {
@@ -132,6 +142,12 @@ namespace firmware_catalog.Model
         }
         
         /// <summary>
+        /// The binary file of firmware image
+        /// </summary>
+        /// <value>The binary file of firmware image</value>
+        [DataMember(Name="datafile", EmitDefaultValue=false)]
+        public byte[] Datafile { get; set; }
+        /// <summary>
         /// The description of the object
         /// </summary>
         /// <value>The description of the object</value>
@@ -193,6 +209,7 @@ namespace firmware_catalog.Model
         {
             var sb = new StringBuilder();
             sb.Append("class FirmwareImage {\n");
+            sb.Append("  Datafile: ").Append(Datafile).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
@@ -238,6 +255,11 @@ namespace firmware_catalog.Model
                 return false;
 
             return 
+                (
+                    this.Datafile == other.Datafile ||
+                    this.Datafile != null &&
+                    this.Datafile.Equals(other.Datafile)
+                ) && 
                 (
                     this.Description == other.Description ||
                     this.Description != null &&
@@ -296,6 +318,8 @@ namespace firmware_catalog.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
+                if (this.Datafile != null)
+                    hash = hash * 59 + this.Datafile.GetHashCode();
                 if (this.Description != null)
                     hash = hash * 59 + this.Description.GetHashCode();
                 if (this.CreatedAt != null)

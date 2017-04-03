@@ -37,10 +37,20 @@ namespace firmware_catalog.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="WriteFirmwareImage" /> class.
         /// </summary>
+        /// <param name="Datafile">The binary file of firmware image (required).</param>
         /// <param name="Description">The description of the object.</param>
         /// <param name="Name">The name of the object (required).</param>
-        public WriteFirmwareImage(string Description = default(string), string Name = default(string))
+        public WriteFirmwareImage(byte[] Datafile = default(byte[]), string Description = default(string), string Name = default(string))
         {
+            // to ensure "Datafile" is required (not null)
+            if (Datafile == null)
+            {
+                throw new InvalidDataException("Datafile is a required property for WriteFirmwareImage and cannot be null");
+            }
+            else
+            {
+                this.Datafile = Datafile;
+            }
             // to ensure "Name" is required (not null)
             if (Name == null)
             {
@@ -53,6 +63,12 @@ namespace firmware_catalog.Model
             this.Description = Description;
         }
         
+        /// <summary>
+        /// The binary file of firmware image
+        /// </summary>
+        /// <value>The binary file of firmware image</value>
+        [DataMember(Name="datafile", EmitDefaultValue=false)]
+        public byte[] Datafile { get; set; }
         /// <summary>
         /// The description of the object
         /// </summary>
@@ -73,6 +89,7 @@ namespace firmware_catalog.Model
         {
             var sb = new StringBuilder();
             sb.Append("class WriteFirmwareImage {\n");
+            sb.Append("  Datafile: ").Append(Datafile).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
@@ -112,6 +129,11 @@ namespace firmware_catalog.Model
 
             return 
                 (
+                    this.Datafile == other.Datafile ||
+                    this.Datafile != null &&
+                    this.Datafile.Equals(other.Datafile)
+                ) && 
+                (
                     this.Description == other.Description ||
                     this.Description != null &&
                     this.Description.Equals(other.Description)
@@ -134,6 +156,8 @@ namespace firmware_catalog.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
+                if (this.Datafile != null)
+                    hash = hash * 59 + this.Datafile.GetHashCode();
                 if (this.Description != null)
                     hash = hash * 59 + this.Description.GetHashCode();
                 if (this.Name != null)

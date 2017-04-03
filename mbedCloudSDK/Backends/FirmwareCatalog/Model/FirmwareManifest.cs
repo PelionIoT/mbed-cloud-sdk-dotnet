@@ -37,18 +37,29 @@ namespace firmware_catalog.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="FirmwareManifest" /> class.
         /// </summary>
+        /// <param name="Datafile">Datafile (required).</param>
         /// <param name="ManifestId">DEPRECATED: The ID of the firmware manifest (required).</param>
         /// <param name="Description">The description of the object (required).</param>
         /// <param name="Timestamp">The version of the firmware manifest (as a timestamp) (required).</param>
         /// <param name="CreatedAt">The time the object was created (required).</param>
         /// <param name="_Object">The API resource entity (required).</param>
         /// <param name="UpdatedAt">The time the object was updated (required).</param>
+        /// <param name="ManifestContents">The contents of the manifest (required).</param>
         /// <param name="Etag">The entity instance signature (required).</param>
         /// <param name="DeviceClass">The class of device (required).</param>
         /// <param name="Id">The ID of the firmware manifest (required).</param>
         /// <param name="Name">The name of the object (required).</param>
-        public FirmwareManifest(string ManifestId = default(string), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), string DeviceClass = default(string), string Id = default(string), string Name = default(string))
+        public FirmwareManifest(byte[] Datafile = default(byte[]), string ManifestId = default(string), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), byte[] ManifestContents = default(byte[]), DateTime? Etag = default(DateTime?), string DeviceClass = default(string), string Id = default(string), string Name = default(string))
         {
+            // to ensure "Datafile" is required (not null)
+            if (Datafile == null)
+            {
+                throw new InvalidDataException("Datafile is a required property for FirmwareManifest and cannot be null");
+            }
+            else
+            {
+                this.Datafile = Datafile;
+            }
             // to ensure "ManifestId" is required (not null)
             if (ManifestId == null)
             {
@@ -103,6 +114,15 @@ namespace firmware_catalog.Model
             {
                 this.UpdatedAt = UpdatedAt;
             }
+            // to ensure "ManifestContents" is required (not null)
+            if (ManifestContents == null)
+            {
+                throw new InvalidDataException("ManifestContents is a required property for FirmwareManifest and cannot be null");
+            }
+            else
+            {
+                this.ManifestContents = ManifestContents;
+            }
             // to ensure "Etag" is required (not null)
             if (Etag == null)
             {
@@ -142,6 +162,11 @@ namespace firmware_catalog.Model
         }
         
         /// <summary>
+        /// Gets or Sets Datafile
+        /// </summary>
+        [DataMember(Name="datafile", EmitDefaultValue=false)]
+        public byte[] Datafile { get; set; }
+        /// <summary>
         /// DEPRECATED: The ID of the firmware manifest
         /// </summary>
         /// <value>DEPRECATED: The ID of the firmware manifest</value>
@@ -178,6 +203,12 @@ namespace firmware_catalog.Model
         [DataMember(Name="updated_at", EmitDefaultValue=false)]
         public DateTime? UpdatedAt { get; set; }
         /// <summary>
+        /// The contents of the manifest
+        /// </summary>
+        /// <value>The contents of the manifest</value>
+        [DataMember(Name="manifest_contents", EmitDefaultValue=false)]
+        public byte[] ManifestContents { get; set; }
+        /// <summary>
         /// The entity instance signature
         /// </summary>
         /// <value>The entity instance signature</value>
@@ -209,12 +240,14 @@ namespace firmware_catalog.Model
         {
             var sb = new StringBuilder();
             sb.Append("class FirmwareManifest {\n");
+            sb.Append("  Datafile: ").Append(Datafile).Append("\n");
             sb.Append("  ManifestId: ").Append(ManifestId).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
+            sb.Append("  ManifestContents: ").Append(ManifestContents).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  DeviceClass: ").Append(DeviceClass).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
@@ -256,6 +289,11 @@ namespace firmware_catalog.Model
 
             return 
                 (
+                    this.Datafile == other.Datafile ||
+                    this.Datafile != null &&
+                    this.Datafile.Equals(other.Datafile)
+                ) && 
+                (
                     this.ManifestId == other.ManifestId ||
                     this.ManifestId != null &&
                     this.ManifestId.Equals(other.ManifestId)
@@ -284,6 +322,11 @@ namespace firmware_catalog.Model
                     this.UpdatedAt == other.UpdatedAt ||
                     this.UpdatedAt != null &&
                     this.UpdatedAt.Equals(other.UpdatedAt)
+                ) && 
+                (
+                    this.ManifestContents == other.ManifestContents ||
+                    this.ManifestContents != null &&
+                    this.ManifestContents.Equals(other.ManifestContents)
                 ) && 
                 (
                     this.Etag == other.Etag ||
@@ -318,6 +361,8 @@ namespace firmware_catalog.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
+                if (this.Datafile != null)
+                    hash = hash * 59 + this.Datafile.GetHashCode();
                 if (this.ManifestId != null)
                     hash = hash * 59 + this.ManifestId.GetHashCode();
                 if (this.Description != null)
@@ -330,6 +375,8 @@ namespace firmware_catalog.Model
                     hash = hash * 59 + this._Object.GetHashCode();
                 if (this.UpdatedAt != null)
                     hash = hash * 59 + this.UpdatedAt.GetHashCode();
+                if (this.ManifestContents != null)
+                    hash = hash * 59 + this.ManifestContents.GetHashCode();
                 if (this.Etag != null)
                     hash = hash * 59 + this.Etag.GetHashCode();
                 if (this.DeviceClass != null)
