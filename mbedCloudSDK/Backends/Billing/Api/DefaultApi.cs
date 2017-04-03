@@ -85,12 +85,12 @@ namespace billing.Api
         /// Active devices per account
         /// </summary>
         /// <remarks>
-        /// Get active devices for an account with specified from and to timestamp
+        /// Get active devices for an account with specified from and to timestamp. Can be used to fetch active device data for a single month (full or partial) (for example: between 01.04.2017 00:00:00.000Z (inclusive) - 01.05.2017 00:00:00.000Z (exclusive) or between 15.04.2017 15:00:00.000Z (inclusive) - 15.04.2017 16:00.00.000Z (exclusive)).
         /// </remarks>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="account">account id</param>
-        /// <param name="from">in epoch millis, inclusive</param>
-        /// <param name="to">in epoch millis, exclusive</param>
+        /// <param name="from">in epoch milliseconds, inclusive.</param>
+        /// <param name="to">in epoch milliseconds, exclusive. Must be greater than &#39;from&#39; parameter and be on the same calendar month as &#39;from&#39; parameter (can be also the absolute beginning of the next month as this parameter is exclusive).</param>
         /// <returns>List&lt;ActiveDevice&gt;</returns>
         List<ActiveDevice> V1ActivedevicesGet (string account, long? from, long? to);
 
@@ -98,12 +98,12 @@ namespace billing.Api
         /// Active devices per account
         /// </summary>
         /// <remarks>
-        /// Get active devices for an account with specified from and to timestamp
+        /// Get active devices for an account with specified from and to timestamp. Can be used to fetch active device data for a single month (full or partial) (for example: between 01.04.2017 00:00:00.000Z (inclusive) - 01.05.2017 00:00:00.000Z (exclusive) or between 15.04.2017 15:00:00.000Z (inclusive) - 15.04.2017 16:00.00.000Z (exclusive)).
         /// </remarks>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="account">account id</param>
-        /// <param name="from">in epoch millis, inclusive</param>
-        /// <param name="to">in epoch millis, exclusive</param>
+        /// <param name="from">in epoch milliseconds, inclusive.</param>
+        /// <param name="to">in epoch milliseconds, exclusive. Must be greater than &#39;from&#39; parameter and be on the same calendar month as &#39;from&#39; parameter (can be also the absolute beginning of the next month as this parameter is exclusive).</param>
         /// <returns>ApiResponse of List&lt;ActiveDevice&gt;</returns>
         ApiResponse<List<ActiveDevice>> V1ActivedevicesGetWithHttpInfo (string account, long? from, long? to);
         /// <summary>
@@ -316,12 +316,12 @@ namespace billing.Api
         /// Active devices per account
         /// </summary>
         /// <remarks>
-        /// Get active devices for an account with specified from and to timestamp
+        /// Get active devices for an account with specified from and to timestamp. Can be used to fetch active device data for a single month (full or partial) (for example: between 01.04.2017 00:00:00.000Z (inclusive) - 01.05.2017 00:00:00.000Z (exclusive) or between 15.04.2017 15:00:00.000Z (inclusive) - 15.04.2017 16:00.00.000Z (exclusive)).
         /// </remarks>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="account">account id</param>
-        /// <param name="from">in epoch millis, inclusive</param>
-        /// <param name="to">in epoch millis, exclusive</param>
+        /// <param name="from">in epoch milliseconds, inclusive.</param>
+        /// <param name="to">in epoch milliseconds, exclusive. Must be greater than &#39;from&#39; parameter and be on the same calendar month as &#39;from&#39; parameter (can be also the absolute beginning of the next month as this parameter is exclusive).</param>
         /// <returns>Task of List&lt;ActiveDevice&gt;</returns>
         System.Threading.Tasks.Task<List<ActiveDevice>> V1ActivedevicesGetAsync (string account, long? from, long? to);
 
@@ -329,12 +329,12 @@ namespace billing.Api
         /// Active devices per account
         /// </summary>
         /// <remarks>
-        /// Get active devices for an account with specified from and to timestamp
+        /// Get active devices for an account with specified from and to timestamp. Can be used to fetch active device data for a single month (full or partial) (for example: between 01.04.2017 00:00:00.000Z (inclusive) - 01.05.2017 00:00:00.000Z (exclusive) or between 15.04.2017 15:00:00.000Z (inclusive) - 15.04.2017 16:00.00.000Z (exclusive)).
         /// </remarks>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="account">account id</param>
-        /// <param name="from">in epoch millis, inclusive</param>
-        /// <param name="to">in epoch millis, exclusive</param>
+        /// <param name="from">in epoch milliseconds, inclusive.</param>
+        /// <param name="to">in epoch milliseconds, exclusive. Must be greater than &#39;from&#39; parameter and be on the same calendar month as &#39;from&#39; parameter (can be also the absolute beginning of the next month as this parameter is exclusive).</param>
         /// <returns>Task of ApiResponse (List&lt;ActiveDevice&gt;)</returns>
         System.Threading.Tasks.Task<ApiResponse<List<ActiveDevice>>> V1ActivedevicesGetAsyncWithHttpInfo (string account, long? from, long? to);
         /// <summary>
@@ -1017,12 +1017,12 @@ namespace billing.Api
         }
 
         /// <summary>
-        /// Active devices per account Get active devices for an account with specified from and to timestamp
+        /// Active devices per account Get active devices for an account with specified from and to timestamp. Can be used to fetch active device data for a single month (full or partial) (for example: between 01.04.2017 00:00:00.000Z (inclusive) - 01.05.2017 00:00:00.000Z (exclusive) or between 15.04.2017 15:00:00.000Z (inclusive) - 15.04.2017 16:00.00.000Z (exclusive)).
         /// </summary>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="account">account id</param>
-        /// <param name="from">in epoch millis, inclusive</param>
-        /// <param name="to">in epoch millis, exclusive</param>
+        /// <param name="from">in epoch milliseconds, inclusive.</param>
+        /// <param name="to">in epoch milliseconds, exclusive. Must be greater than &#39;from&#39; parameter and be on the same calendar month as &#39;from&#39; parameter (can be also the absolute beginning of the next month as this parameter is exclusive).</param>
         /// <returns>List&lt;ActiveDevice&gt;</returns>
         public List<ActiveDevice> V1ActivedevicesGet (string account, long? from, long? to)
         {
@@ -1031,12 +1031,12 @@ namespace billing.Api
         }
 
         /// <summary>
-        /// Active devices per account Get active devices for an account with specified from and to timestamp
+        /// Active devices per account Get active devices for an account with specified from and to timestamp. Can be used to fetch active device data for a single month (full or partial) (for example: between 01.04.2017 00:00:00.000Z (inclusive) - 01.05.2017 00:00:00.000Z (exclusive) or between 15.04.2017 15:00:00.000Z (inclusive) - 15.04.2017 16:00.00.000Z (exclusive)).
         /// </summary>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="account">account id</param>
-        /// <param name="from">in epoch millis, inclusive</param>
-        /// <param name="to">in epoch millis, exclusive</param>
+        /// <param name="from">in epoch milliseconds, inclusive.</param>
+        /// <param name="to">in epoch milliseconds, exclusive. Must be greater than &#39;from&#39; parameter and be on the same calendar month as &#39;from&#39; parameter (can be also the absolute beginning of the next month as this parameter is exclusive).</param>
         /// <returns>ApiResponse of List&lt;ActiveDevice&gt;</returns>
         public ApiResponse< List<ActiveDevice> > V1ActivedevicesGetWithHttpInfo (string account, long? from, long? to)
         {
@@ -1105,12 +1105,12 @@ namespace billing.Api
         }
 
         /// <summary>
-        /// Active devices per account Get active devices for an account with specified from and to timestamp
+        /// Active devices per account Get active devices for an account with specified from and to timestamp. Can be used to fetch active device data for a single month (full or partial) (for example: between 01.04.2017 00:00:00.000Z (inclusive) - 01.05.2017 00:00:00.000Z (exclusive) or between 15.04.2017 15:00:00.000Z (inclusive) - 15.04.2017 16:00.00.000Z (exclusive)).
         /// </summary>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="account">account id</param>
-        /// <param name="from">in epoch millis, inclusive</param>
-        /// <param name="to">in epoch millis, exclusive</param>
+        /// <param name="from">in epoch milliseconds, inclusive.</param>
+        /// <param name="to">in epoch milliseconds, exclusive. Must be greater than &#39;from&#39; parameter and be on the same calendar month as &#39;from&#39; parameter (can be also the absolute beginning of the next month as this parameter is exclusive).</param>
         /// <returns>Task of List&lt;ActiveDevice&gt;</returns>
         public async System.Threading.Tasks.Task<List<ActiveDevice>> V1ActivedevicesGetAsync (string account, long? from, long? to)
         {
@@ -1120,12 +1120,12 @@ namespace billing.Api
         }
 
         /// <summary>
-        /// Active devices per account Get active devices for an account with specified from and to timestamp
+        /// Active devices per account Get active devices for an account with specified from and to timestamp. Can be used to fetch active device data for a single month (full or partial) (for example: between 01.04.2017 00:00:00.000Z (inclusive) - 01.05.2017 00:00:00.000Z (exclusive) or between 15.04.2017 15:00:00.000Z (inclusive) - 15.04.2017 16:00.00.000Z (exclusive)).
         /// </summary>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="account">account id</param>
-        /// <param name="from">in epoch millis, inclusive</param>
-        /// <param name="to">in epoch millis, exclusive</param>
+        /// <param name="from">in epoch milliseconds, inclusive.</param>
+        /// <param name="to">in epoch milliseconds, exclusive. Must be greater than &#39;from&#39; parameter and be on the same calendar month as &#39;from&#39; parameter (can be also the absolute beginning of the next month as this parameter is exclusive).</param>
         /// <returns>Task of ApiResponse (List&lt;ActiveDevice&gt;)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<List<ActiveDevice>>> V1ActivedevicesGetAsyncWithHttpInfo (string account, long? from, long? to)
         {

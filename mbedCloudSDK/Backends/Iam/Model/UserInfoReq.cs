@@ -1,7 +1,7 @@
 /* 
- * IAM Identities REST API
+ * Account Management API
  *
- * REST API to manage accounts, groups, users and API keys
+ * API for managing accounts, users, creating API keys, uploading trusted certificates
  *
  * OpenAPI spec version: v3
  * 
@@ -37,8 +37,8 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UserInfoReq" /> class.
         /// </summary>
-        /// <param name="PhoneNumber">Phone number..</param>
         /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters..</param>
+        /// <param name="PhoneNumber">Phone number..</param>
         /// <param name="Groups">A list of IDs of the groups this user belongs to..</param>
         /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted..</param>
         /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted..</param>
@@ -46,7 +46,7 @@ namespace iam.Model
         /// <param name="Address">Address..</param>
         /// <param name="Password">The password when creating a new user. It will will generated when not present in the request..</param>
         /// <param name="Email">The email address. (required).</param>
-        public UserInfoReq(string PhoneNumber = default(string), string Username = default(string), List<string> Groups = default(List<string>), bool? IsGtcAccepted = default(bool?), bool? IsMarketingAccepted = default(bool?), string FullName = default(string), string Address = default(string), string Password = default(string), string Email = default(string))
+        public UserInfoReq(string Username = default(string), string PhoneNumber = default(string), List<string> Groups = default(List<string>), bool? IsGtcAccepted = default(bool?), bool? IsMarketingAccepted = default(bool?), string FullName = default(string), string Address = default(string), string Password = default(string), string Email = default(string))
         {
             // to ensure "Email" is required (not null)
             if (Email == null)
@@ -57,8 +57,8 @@ namespace iam.Model
             {
                 this.Email = Email;
             }
-            this.PhoneNumber = PhoneNumber;
             this.Username = Username;
+            this.PhoneNumber = PhoneNumber;
             this.Groups = Groups;
             this.IsGtcAccepted = IsGtcAccepted;
             this.IsMarketingAccepted = IsMarketingAccepted;
@@ -68,17 +68,17 @@ namespace iam.Model
         }
         
         /// <summary>
-        /// Phone number.
-        /// </summary>
-        /// <value>Phone number.</value>
-        [DataMember(Name="phone_number", EmitDefaultValue=false)]
-        public string PhoneNumber { get; set; }
-        /// <summary>
         /// A username containing alphanumerical letters and -,._@+&#x3D; characters.
         /// </summary>
         /// <value>A username containing alphanumerical letters and -,._@+&#x3D; characters.</value>
         [DataMember(Name="username", EmitDefaultValue=false)]
         public string Username { get; set; }
+        /// <summary>
+        /// Phone number.
+        /// </summary>
+        /// <value>Phone number.</value>
+        [DataMember(Name="phone_number", EmitDefaultValue=false)]
+        public string PhoneNumber { get; set; }
         /// <summary>
         /// A list of IDs of the groups this user belongs to.
         /// </summary>
@@ -129,8 +129,8 @@ namespace iam.Model
         {
             var sb = new StringBuilder();
             sb.Append("class UserInfoReq {\n");
-            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
+            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Groups: ").Append(Groups).Append("\n");
             sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
             sb.Append("  IsMarketingAccepted: ").Append(IsMarketingAccepted).Append("\n");
@@ -175,14 +175,14 @@ namespace iam.Model
 
             return 
                 (
-                    this.PhoneNumber == other.PhoneNumber ||
-                    this.PhoneNumber != null &&
-                    this.PhoneNumber.Equals(other.PhoneNumber)
-                ) && 
-                (
                     this.Username == other.Username ||
                     this.Username != null &&
                     this.Username.Equals(other.Username)
+                ) && 
+                (
+                    this.PhoneNumber == other.PhoneNumber ||
+                    this.PhoneNumber != null &&
+                    this.PhoneNumber.Equals(other.PhoneNumber)
                 ) && 
                 (
                     this.Groups == other.Groups ||
@@ -232,10 +232,10 @@ namespace iam.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.PhoneNumber != null)
-                    hash = hash * 59 + this.PhoneNumber.GetHashCode();
                 if (this.Username != null)
                     hash = hash * 59 + this.Username.GetHashCode();
+                if (this.PhoneNumber != null)
+                    hash = hash * 59 + this.PhoneNumber.GetHashCode();
                 if (this.Groups != null)
                     hash = hash * 59 + this.Groups.GetHashCode();
                 if (this.IsGtcAccepted != null)

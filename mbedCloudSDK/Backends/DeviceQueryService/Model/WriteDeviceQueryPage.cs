@@ -38,10 +38,10 @@ namespace device_query_service.Model
         /// Initializes a new instance of the <see cref="WriteDeviceQueryPage" /> class.
         /// </summary>
         /// <param name="Limit">Limit (required).</param>
-        /// <param name="After">After (required).</param>
+        /// <param name="After">After.</param>
         /// <param name="Data">Data (required).</param>
         /// <param name="Order">Order (required).</param>
-        public WriteDeviceQueryPage(long? Limit = default(long?), string After = default(string), List<DeviceQuery> Data = default(List<DeviceQuery>), string Order = default(string))
+        public WriteDeviceQueryPage(int? Limit = default(int?), string After = default(string), List<DeviceQuery> Data = default(List<DeviceQuery>), string Order = default(string))
         {
             // to ensure "Limit" is required (not null)
             if (Limit == null)
@@ -51,15 +51,6 @@ namespace device_query_service.Model
             else
             {
                 this.Limit = Limit;
-            }
-            // to ensure "After" is required (not null)
-            if (After == null)
-            {
-                throw new InvalidDataException("After is a required property for WriteDeviceQueryPage and cannot be null");
-            }
-            else
-            {
-                this.After = After;
             }
             // to ensure "Data" is required (not null)
             if (Data == null)
@@ -79,13 +70,14 @@ namespace device_query_service.Model
             {
                 this.Order = Order;
             }
+            this.After = After;
         }
         
         /// <summary>
         /// Gets or Sets Limit
         /// </summary>
         [DataMember(Name="limit", EmitDefaultValue=false)]
-        public long? Limit { get; set; }
+        public int? Limit { get; set; }
         /// <summary>
         /// Gets or Sets After
         /// </summary>

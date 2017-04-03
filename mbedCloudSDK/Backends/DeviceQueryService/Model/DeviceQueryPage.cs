@@ -44,7 +44,7 @@ namespace device_query_service.Model
         /// <param name="Limit">Limit (required).</param>
         /// <param name="Data">Data (required).</param>
         /// <param name="Order">Order (required).</param>
-        public DeviceQueryPage(string _Object = default(string), bool? HasMore = default(bool?), long? TotalCount = default(long?), string After = default(string), long? Limit = default(long?), List<DeviceQuery> Data = default(List<DeviceQuery>), string Order = default(string))
+        public DeviceQueryPage(string _Object = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), string After = default(string), int? Limit = default(int?), List<DeviceQuery> Data = default(List<DeviceQuery>), string Order = default(string))
         {
             // to ensure "_Object" is required (not null)
             if (_Object == null)
@@ -117,7 +117,7 @@ namespace device_query_service.Model
         /// Gets or Sets TotalCount
         /// </summary>
         [DataMember(Name="total_count", EmitDefaultValue=false)]
-        public long? TotalCount { get; set; }
+        public int? TotalCount { get; set; }
         /// <summary>
         /// Gets or Sets After
         /// </summary>
@@ -127,7 +127,7 @@ namespace device_query_service.Model
         /// Gets or Sets Limit
         /// </summary>
         [DataMember(Name="limit", EmitDefaultValue=false)]
-        public long? Limit { get; set; }
+        public int? Limit { get; set; }
         /// <summary>
         /// Gets or Sets Data
         /// </summary>
