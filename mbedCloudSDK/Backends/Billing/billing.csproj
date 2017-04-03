@@ -11,7 +11,7 @@ OpenAPI spec version: 1.3.4-SNAPSHOT
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DAE3DFD6-EFD1-447A-9962-BC831DB5B544}</ProjectGuid>
+    <ProjectGuid>{AE9FE3C1-3396-41E9-A690-E54F17821175}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>billing</RootNamespace>

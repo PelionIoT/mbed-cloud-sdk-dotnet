@@ -51,7 +51,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>FirmwareImage</returns>
-        FirmwareImage FirmwareImageCreate (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null);
+        FirmwareImage FirmwareImageCreate (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null);
 
         /// <summary>
         /// 
@@ -80,7 +80,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>ApiResponse of FirmwareImage</returns>
-        ApiResponse<FirmwareImage> FirmwareImageCreateWithHttpInfo (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null);
+        ApiResponse<FirmwareImage> FirmwareImageCreateWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null);
         /// <summary>
         /// 
         /// </summary>
@@ -243,7 +243,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>FirmwareManifest</returns>
-        FirmwareManifest FirmwareManifestCreate (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null);
+        FirmwareManifest FirmwareManifestCreate (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null);
 
         /// <summary>
         /// 
@@ -276,7 +276,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>ApiResponse of FirmwareManifest</returns>
-        ApiResponse<FirmwareManifest> FirmwareManifestCreateWithHttpInfo (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null);
+        ApiResponse<FirmwareManifest> FirmwareManifestCreateWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null);
         /// <summary>
         /// 
         /// </summary>
@@ -453,7 +453,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>Task of FirmwareImage</returns>
-        System.Threading.Tasks.Task<FirmwareImage> FirmwareImageCreateAsync (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null);
+        System.Threading.Tasks.Task<FirmwareImage> FirmwareImageCreateAsync (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null);
 
         /// <summary>
         /// 
@@ -482,7 +482,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareImage)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareImage>> FirmwareImageCreateAsyncWithHttpInfo (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null);
+        System.Threading.Tasks.Task<ApiResponse<FirmwareImage>> FirmwareImageCreateAsyncWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null);
         /// <summary>
         /// 
         /// </summary>
@@ -645,7 +645,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>Task of FirmwareManifest</returns>
-        System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestCreateAsync (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null);
+        System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestCreateAsync (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null);
 
         /// <summary>
         /// 
@@ -678,7 +678,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareManifest)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestCreateAsyncWithHttpInfo (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null);
+        System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestCreateAsyncWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null);
         /// <summary>
         /// 
         /// </summary>
@@ -962,7 +962,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>FirmwareImage</returns>
-        public FirmwareImage FirmwareImageCreate (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null)
+        public FirmwareImage FirmwareImageCreate (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null)
         {
              ApiResponse<FirmwareImage> localVarResponse = FirmwareImageCreateWithHttpInfo(datafile, name, description, updatedAt, updatedAtGte, updatedAtLte, updatingIpAddress, etag, etagGte, etagLte, updatingRequestId, createdAt, createdAtGte, createdAtLte, description2, _object, imageId, datafileChecksum, name2);
              return localVarResponse.Data;
@@ -992,7 +992,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>ApiResponse of FirmwareImage</returns>
-        public ApiResponse< FirmwareImage > FirmwareImageCreateWithHttpInfo (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null)
+        public ApiResponse< FirmwareImage > FirmwareImageCreateWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null)
         {
             // verify the required parameter 'datafile' is set
             if (datafile == null)
@@ -1095,7 +1095,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>Task of FirmwareImage</returns>
-        public async System.Threading.Tasks.Task<FirmwareImage> FirmwareImageCreateAsync (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null)
+        public async System.Threading.Tasks.Task<FirmwareImage> FirmwareImageCreateAsync (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null)
         {
              ApiResponse<FirmwareImage> localVarResponse = await FirmwareImageCreateAsyncWithHttpInfo(datafile, name, description, updatedAt, updatedAtGte, updatedAtLte, updatingIpAddress, etag, etagGte, etagLte, updatingRequestId, createdAt, createdAtGte, createdAtLte, description2, _object, imageId, datafileChecksum, name2);
              return localVarResponse.Data;
@@ -1126,7 +1126,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareImage)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareImage>> FirmwareImageCreateAsyncWithHttpInfo (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null)
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareImage>> FirmwareImageCreateAsyncWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string updatingRequestId = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description2 = null, string _object = null, string imageId = null, string datafileChecksum = null, string name2 = null)
         {
             // verify the required parameter 'datafile' is set
             if (datafile == null)
@@ -1880,7 +1880,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>FirmwareManifest</returns>
-        public FirmwareManifest FirmwareManifestCreate (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null)
+        public FirmwareManifest FirmwareManifestCreate (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null)
         {
              ApiResponse<FirmwareManifest> localVarResponse = FirmwareManifestCreateWithHttpInfo(datafile, name, description, updatedAt, updatedAtGte, updatedAtLte, createdAt, createdAtGte, createdAtLte, etag, etagGte, etagLte, updatingIpAddress, manifestId, updatingRequestId, description2, timestamp, timestampGte, timestampLte, _object, deviceClass, datafileChecksum, name2);
              return localVarResponse.Data;
@@ -1914,7 +1914,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>ApiResponse of FirmwareManifest</returns>
-        public ApiResponse< FirmwareManifest > FirmwareManifestCreateWithHttpInfo (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null)
+        public ApiResponse< FirmwareManifest > FirmwareManifestCreateWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null)
         {
             // verify the required parameter 'datafile' is set
             if (datafile == null)
@@ -2025,7 +2025,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>Task of FirmwareManifest</returns>
-        public async System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestCreateAsync (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null)
+        public async System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestCreateAsync (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null)
         {
              ApiResponse<FirmwareManifest> localVarResponse = await FirmwareManifestCreateAsyncWithHttpInfo(datafile, name, description, updatedAt, updatedAtGte, updatedAtLte, createdAt, createdAtGte, createdAtLte, etag, etagGte, etagLte, updatingIpAddress, manifestId, updatingRequestId, description2, timestamp, timestampGte, timestampLte, _object, deviceClass, datafileChecksum, name2);
              return localVarResponse.Data;
@@ -2060,7 +2060,7 @@ namespace firmware_catalog.Api
         /// <param name="datafileChecksum"> (optional)</param>
         /// <param name="name2"> (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareManifest)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestCreateAsyncWithHttpInfo (byte[] datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null)
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestCreateAsyncWithHttpInfo (string datafile, string name, string description = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string updatingIpAddress = null, string manifestId = null, string updatingRequestId = null, string description2 = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name2 = null)
         {
             // verify the required parameter 'datafile' is set
             if (datafile == null)
