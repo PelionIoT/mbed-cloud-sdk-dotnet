@@ -31,8 +31,9 @@ namespace device_catalog.Api
         /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="device"></param>
         /// <returns>DeviceData</returns>
-        DeviceData DeviceCreate ();
+        DeviceData DeviceCreate (DeviceData device);
 
         /// <summary>
         /// 
@@ -41,8 +42,9 @@ namespace device_catalog.Api
         /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceData</returns>
-        ApiResponse<DeviceData> DeviceCreateWithHttpInfo ();
+        ApiResponse<DeviceData> DeviceCreateWithHttpInfo (DeviceData device);
         /// <summary>
         /// 
         /// </summary>
@@ -75,8 +77,53 @@ namespace device_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
+        /// <param name="accountId"> (optional)</param>
+        /// <param name="attestationMethod"> (optional)</param>
+        /// <param name="autoUpdate"> (optional)</param>
+        /// <param name="bootstrapExpirationDate"> (optional)</param>
+        /// <param name="bootstrapExpirationDateLte"> (optional)</param>
+        /// <param name="bootstrapExpirationDateGte"> (optional)</param>
+        /// <param name="bootstrappedTimestamp"> (optional)</param>
+        /// <param name="bootstrappedTimestampLte"> (optional)</param>
+        /// <param name="bootstrappedTimestampGte"> (optional)</param>
+        /// <param name="caId"> (optional)</param>
+        /// <param name="connectorExpirationDate"> (optional)</param>
+        /// <param name="connectorExpirationDateLte"> (optional)</param>
+        /// <param name="connectorExpirationDateGte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="customAttributes"> (optional)</param>
+        /// <param name="deployedState"> (optional)</param>
+        /// <param name="deployment"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="deviceId"> (optional)</param>
+        /// <param name="deviceKey"> (optional)</param>
+        /// <param name="endpointName"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="firmwareChecksum"> (optional)</param>
+        /// <param name="manifest"> (optional)</param>
+        /// <param name="manifestTimestamp"> (optional)</param>
+        /// <param name="manifestTimestampLte"> (optional)</param>
+        /// <param name="manifestTimestampGte"> (optional)</param>
+        /// <param name="mechanism"> (optional)</param>
+        /// <param name="mechanismUrl"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="serialNumber"> (optional)</param>
+        /// <param name="state"> (optional)</param>
+        /// <param name="trustClass"> (optional)</param>
+        /// <param name="trustLevel"> (optional)</param>
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="vendorId"> (optional)</param>
         /// <returns>DevicePage</returns>
-        DevicePage DeviceList (int? limit = null, string order = null, string after = null, string filter = null);
+        DevicePage DeviceList (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string accountId = null, int? attestationMethod = null, bool? autoUpdate = null, string bootstrapExpirationDate = null, string bootstrapExpirationDateLte = null, string bootstrapExpirationDateGte = null, string bootstrappedTimestamp = null, string bootstrappedTimestampLte = null, string bootstrappedTimestampGte = null, string caId = null, string connectorExpirationDate = null, string connectorExpirationDateLte = null, string connectorExpirationDateGte = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, string deviceKey = null, string endpointName = null, string etag = null, string etagLte = null, string etagGte = null, string firmwareChecksum = null, string manifest = null, string manifestTimestamp = null, string manifestTimestampLte = null, string manifestTimestampGte = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string trustClass = null, string trustLevel = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string vendorId = null);
 
         /// <summary>
         /// 
@@ -89,8 +136,53 @@ namespace device_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
+        /// <param name="accountId"> (optional)</param>
+        /// <param name="attestationMethod"> (optional)</param>
+        /// <param name="autoUpdate"> (optional)</param>
+        /// <param name="bootstrapExpirationDate"> (optional)</param>
+        /// <param name="bootstrapExpirationDateLte"> (optional)</param>
+        /// <param name="bootstrapExpirationDateGte"> (optional)</param>
+        /// <param name="bootstrappedTimestamp"> (optional)</param>
+        /// <param name="bootstrappedTimestampLte"> (optional)</param>
+        /// <param name="bootstrappedTimestampGte"> (optional)</param>
+        /// <param name="caId"> (optional)</param>
+        /// <param name="connectorExpirationDate"> (optional)</param>
+        /// <param name="connectorExpirationDateLte"> (optional)</param>
+        /// <param name="connectorExpirationDateGte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="customAttributes"> (optional)</param>
+        /// <param name="deployedState"> (optional)</param>
+        /// <param name="deployment"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="deviceId"> (optional)</param>
+        /// <param name="deviceKey"> (optional)</param>
+        /// <param name="endpointName"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="firmwareChecksum"> (optional)</param>
+        /// <param name="manifest"> (optional)</param>
+        /// <param name="manifestTimestamp"> (optional)</param>
+        /// <param name="manifestTimestampLte"> (optional)</param>
+        /// <param name="manifestTimestampGte"> (optional)</param>
+        /// <param name="mechanism"> (optional)</param>
+        /// <param name="mechanismUrl"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="serialNumber"> (optional)</param>
+        /// <param name="state"> (optional)</param>
+        /// <param name="trustClass"> (optional)</param>
+        /// <param name="trustLevel"> (optional)</param>
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="vendorId"> (optional)</param>
         /// <returns>ApiResponse of DevicePage</returns>
-        ApiResponse<DevicePage> DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null);
+        ApiResponse<DevicePage> DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string accountId = null, int? attestationMethod = null, bool? autoUpdate = null, string bootstrapExpirationDate = null, string bootstrapExpirationDateLte = null, string bootstrapExpirationDateGte = null, string bootstrappedTimestamp = null, string bootstrappedTimestampLte = null, string bootstrappedTimestampGte = null, string caId = null, string connectorExpirationDate = null, string connectorExpirationDateLte = null, string connectorExpirationDateGte = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, string deviceKey = null, string endpointName = null, string etag = null, string etagLte = null, string etagGte = null, string firmwareChecksum = null, string manifest = null, string manifestTimestamp = null, string manifestTimestampLte = null, string manifestTimestampGte = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string trustClass = null, string trustLevel = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string vendorId = null);
         /// <summary>
         /// 
         /// </summary>
@@ -102,8 +194,9 @@ namespace device_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>DeviceLogPage</returns>
-        DeviceLogPage DeviceLogList (int? limit = null, string order = null, string after = null, string filter = null);
+        DeviceLogPage DeviceLogList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
@@ -116,8 +209,9 @@ namespace device_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of DeviceLogPage</returns>
-        ApiResponse<DeviceLogPage> DeviceLogListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null);
+        ApiResponse<DeviceLogPage> DeviceLogListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -147,22 +241,9 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="provisionKey">The key used to provision the device (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <param name="device"></param>
         /// <returns>DeviceSerializer</returns>
-        DeviceSerializer DevicePartialUpdate (string deviceId, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string provisionKey = null, string serialNumber = null, string state = null, string vendorId = null);
+        DeviceSerializer DevicePartialUpdate (string deviceId, DeviceData device);
 
         /// <summary>
         /// 
@@ -172,22 +253,9 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="provisionKey">The key used to provision the device (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceSerializer</returns>
-        ApiResponse<DeviceSerializer> DevicePartialUpdateWithHttpInfo (string deviceId, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string provisionKey = null, string serialNumber = null, string state = null, string vendorId = null);
+        ApiResponse<DeviceSerializer> DevicePartialUpdateWithHttpInfo (string deviceId, DeviceData device);
         /// <summary>
         /// 
         /// </summary>
@@ -217,22 +285,9 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
-        /// <param name="provisionKey">The key used to provision the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <param name="device"></param>
         /// <returns>DeviceSerializer</returns>
-        DeviceSerializer DeviceUpdate (string deviceId, string mechanism, string provisionKey, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string vendorId = null);
+        DeviceSerializer DeviceUpdate (string deviceId, DeviceData device);
 
         /// <summary>
         /// 
@@ -242,22 +297,9 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
-        /// <param name="provisionKey">The key used to provision the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceSerializer</returns>
-        ApiResponse<DeviceSerializer> DeviceUpdateWithHttpInfo (string deviceId, string mechanism, string provisionKey, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string vendorId = null);
+        ApiResponse<DeviceSerializer> DeviceUpdateWithHttpInfo (string deviceId, DeviceData device);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -267,8 +309,9 @@ namespace device_catalog.Api
         /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="device"></param>
         /// <returns>Task of DeviceData</returns>
-        System.Threading.Tasks.Task<DeviceData> DeviceCreateAsync ();
+        System.Threading.Tasks.Task<DeviceData> DeviceCreateAsync (DeviceData device);
 
         /// <summary>
         /// 
@@ -277,8 +320,9 @@ namespace device_catalog.Api
         /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceData)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceCreateAsyncWithHttpInfo ();
+        System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceCreateAsyncWithHttpInfo (DeviceData device);
         /// <summary>
         /// 
         /// </summary>
@@ -311,8 +355,53 @@ namespace device_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
+        /// <param name="accountId"> (optional)</param>
+        /// <param name="attestationMethod"> (optional)</param>
+        /// <param name="autoUpdate"> (optional)</param>
+        /// <param name="bootstrapExpirationDate"> (optional)</param>
+        /// <param name="bootstrapExpirationDateLte"> (optional)</param>
+        /// <param name="bootstrapExpirationDateGte"> (optional)</param>
+        /// <param name="bootstrappedTimestamp"> (optional)</param>
+        /// <param name="bootstrappedTimestampLte"> (optional)</param>
+        /// <param name="bootstrappedTimestampGte"> (optional)</param>
+        /// <param name="caId"> (optional)</param>
+        /// <param name="connectorExpirationDate"> (optional)</param>
+        /// <param name="connectorExpirationDateLte"> (optional)</param>
+        /// <param name="connectorExpirationDateGte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="customAttributes"> (optional)</param>
+        /// <param name="deployedState"> (optional)</param>
+        /// <param name="deployment"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="deviceId"> (optional)</param>
+        /// <param name="deviceKey"> (optional)</param>
+        /// <param name="endpointName"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="firmwareChecksum"> (optional)</param>
+        /// <param name="manifest"> (optional)</param>
+        /// <param name="manifestTimestamp"> (optional)</param>
+        /// <param name="manifestTimestampLte"> (optional)</param>
+        /// <param name="manifestTimestampGte"> (optional)</param>
+        /// <param name="mechanism"> (optional)</param>
+        /// <param name="mechanismUrl"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="serialNumber"> (optional)</param>
+        /// <param name="state"> (optional)</param>
+        /// <param name="trustClass"> (optional)</param>
+        /// <param name="trustLevel"> (optional)</param>
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="vendorId"> (optional)</param>
         /// <returns>Task of DevicePage</returns>
-        System.Threading.Tasks.Task<DevicePage> DeviceListAsync (int? limit = null, string order = null, string after = null, string filter = null);
+        System.Threading.Tasks.Task<DevicePage> DeviceListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string accountId = null, int? attestationMethod = null, bool? autoUpdate = null, string bootstrapExpirationDate = null, string bootstrapExpirationDateLte = null, string bootstrapExpirationDateGte = null, string bootstrappedTimestamp = null, string bootstrappedTimestampLte = null, string bootstrappedTimestampGte = null, string caId = null, string connectorExpirationDate = null, string connectorExpirationDateLte = null, string connectorExpirationDateGte = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, string deviceKey = null, string endpointName = null, string etag = null, string etagLte = null, string etagGte = null, string firmwareChecksum = null, string manifest = null, string manifestTimestamp = null, string manifestTimestampLte = null, string manifestTimestampGte = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string trustClass = null, string trustLevel = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string vendorId = null);
 
         /// <summary>
         /// 
@@ -325,8 +414,53 @@ namespace device_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
+        /// <param name="accountId"> (optional)</param>
+        /// <param name="attestationMethod"> (optional)</param>
+        /// <param name="autoUpdate"> (optional)</param>
+        /// <param name="bootstrapExpirationDate"> (optional)</param>
+        /// <param name="bootstrapExpirationDateLte"> (optional)</param>
+        /// <param name="bootstrapExpirationDateGte"> (optional)</param>
+        /// <param name="bootstrappedTimestamp"> (optional)</param>
+        /// <param name="bootstrappedTimestampLte"> (optional)</param>
+        /// <param name="bootstrappedTimestampGte"> (optional)</param>
+        /// <param name="caId"> (optional)</param>
+        /// <param name="connectorExpirationDate"> (optional)</param>
+        /// <param name="connectorExpirationDateLte"> (optional)</param>
+        /// <param name="connectorExpirationDateGte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="customAttributes"> (optional)</param>
+        /// <param name="deployedState"> (optional)</param>
+        /// <param name="deployment"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="deviceId"> (optional)</param>
+        /// <param name="deviceKey"> (optional)</param>
+        /// <param name="endpointName"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="firmwareChecksum"> (optional)</param>
+        /// <param name="manifest"> (optional)</param>
+        /// <param name="manifestTimestamp"> (optional)</param>
+        /// <param name="manifestTimestampLte"> (optional)</param>
+        /// <param name="manifestTimestampGte"> (optional)</param>
+        /// <param name="mechanism"> (optional)</param>
+        /// <param name="mechanismUrl"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="serialNumber"> (optional)</param>
+        /// <param name="state"> (optional)</param>
+        /// <param name="trustClass"> (optional)</param>
+        /// <param name="trustLevel"> (optional)</param>
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="vendorId"> (optional)</param>
         /// <returns>Task of ApiResponse (DevicePage)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DevicePage>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null);
+        System.Threading.Tasks.Task<ApiResponse<DevicePage>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string accountId = null, int? attestationMethod = null, bool? autoUpdate = null, string bootstrapExpirationDate = null, string bootstrapExpirationDateLte = null, string bootstrapExpirationDateGte = null, string bootstrappedTimestamp = null, string bootstrappedTimestampLte = null, string bootstrappedTimestampGte = null, string caId = null, string connectorExpirationDate = null, string connectorExpirationDateLte = null, string connectorExpirationDateGte = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, string deviceKey = null, string endpointName = null, string etag = null, string etagLte = null, string etagGte = null, string firmwareChecksum = null, string manifest = null, string manifestTimestamp = null, string manifestTimestampLte = null, string manifestTimestampGte = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string trustClass = null, string trustLevel = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string vendorId = null);
         /// <summary>
         /// 
         /// </summary>
@@ -338,8 +472,9 @@ namespace device_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of DeviceLogPage</returns>
-        System.Threading.Tasks.Task<DeviceLogPage> DeviceLogListAsync (int? limit = null, string order = null, string after = null, string filter = null);
+        System.Threading.Tasks.Task<DeviceLogPage> DeviceLogListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
@@ -352,8 +487,9 @@ namespace device_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (DeviceLogPage)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceLogPage>> DeviceLogListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null);
+        System.Threading.Tasks.Task<ApiResponse<DeviceLogPage>> DeviceLogListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -383,22 +519,9 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="provisionKey">The key used to provision the device (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <param name="device"></param>
         /// <returns>Task of DeviceSerializer</returns>
-        System.Threading.Tasks.Task<DeviceSerializer> DevicePartialUpdateAsync (string deviceId, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string provisionKey = null, string serialNumber = null, string state = null, string vendorId = null);
+        System.Threading.Tasks.Task<DeviceSerializer> DevicePartialUpdateAsync (string deviceId, DeviceData device);
 
         /// <summary>
         /// 
@@ -408,22 +531,9 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="provisionKey">The key used to provision the device (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DevicePartialUpdateAsyncWithHttpInfo (string deviceId, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string provisionKey = null, string serialNumber = null, string state = null, string vendorId = null);
+        System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DevicePartialUpdateAsyncWithHttpInfo (string deviceId, DeviceData device);
         /// <summary>
         /// 
         /// </summary>
@@ -453,22 +563,9 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
-        /// <param name="provisionKey">The key used to provision the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <param name="device"></param>
         /// <returns>Task of DeviceSerializer</returns>
-        System.Threading.Tasks.Task<DeviceSerializer> DeviceUpdateAsync (string deviceId, string mechanism, string provisionKey, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string vendorId = null);
+        System.Threading.Tasks.Task<DeviceSerializer> DeviceUpdateAsync (string deviceId, DeviceData device);
 
         /// <summary>
         /// 
@@ -478,22 +575,9 @@ namespace device_catalog.Api
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
-        /// <param name="provisionKey">The key used to provision the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceUpdateAsyncWithHttpInfo (string deviceId, string mechanism, string provisionKey, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string vendorId = null);
+        System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceUpdateAsyncWithHttpInfo (string deviceId, DeviceData device);
         #endregion Asynchronous Operations
     }
 
@@ -610,10 +694,11 @@ namespace device_catalog.Api
         ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="device"></param>
         /// <returns>DeviceData</returns>
-        public DeviceData DeviceCreate ()
+        public DeviceData DeviceCreate (DeviceData device)
         {
-             ApiResponse<DeviceData> localVarResponse = DeviceCreateWithHttpInfo();
+             ApiResponse<DeviceData> localVarResponse = DeviceCreateWithHttpInfo(device);
              return localVarResponse.Data;
         }
 
@@ -621,9 +706,13 @@ namespace device_catalog.Api
         ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceData</returns>
-        public ApiResponse< DeviceData > DeviceCreateWithHttpInfo ()
+        public ApiResponse< DeviceData > DeviceCreateWithHttpInfo (DeviceData device)
         {
+            // verify the required parameter 'device' is set
+            if (device == null)
+                throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DeviceCreate");
 
             var localVarPath = "/v3/devices/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -648,6 +737,14 @@ namespace device_catalog.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
+            if (device != null && device.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(device); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = device; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -679,10 +776,11 @@ namespace device_catalog.Api
         ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="device"></param>
         /// <returns>Task of DeviceData</returns>
-        public async System.Threading.Tasks.Task<DeviceData> DeviceCreateAsync ()
+        public async System.Threading.Tasks.Task<DeviceData> DeviceCreateAsync (DeviceData device)
         {
-             ApiResponse<DeviceData> localVarResponse = await DeviceCreateAsyncWithHttpInfo();
+             ApiResponse<DeviceData> localVarResponse = await DeviceCreateAsyncWithHttpInfo(device);
              return localVarResponse.Data;
 
         }
@@ -691,9 +789,13 @@ namespace device_catalog.Api
         ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceData)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceCreateAsyncWithHttpInfo ()
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceCreateAsyncWithHttpInfo (DeviceData device)
         {
+            // verify the required parameter 'device' is set
+            if (device == null)
+                throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DeviceCreate");
 
             var localVarPath = "/v3/devices/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -718,6 +820,14 @@ namespace device_catalog.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
+            if (device != null && device.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(device); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = device; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -902,10 +1012,55 @@ namespace device_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
+        /// <param name="accountId"> (optional)</param>
+        /// <param name="attestationMethod"> (optional)</param>
+        /// <param name="autoUpdate"> (optional)</param>
+        /// <param name="bootstrapExpirationDate"> (optional)</param>
+        /// <param name="bootstrapExpirationDateLte"> (optional)</param>
+        /// <param name="bootstrapExpirationDateGte"> (optional)</param>
+        /// <param name="bootstrappedTimestamp"> (optional)</param>
+        /// <param name="bootstrappedTimestampLte"> (optional)</param>
+        /// <param name="bootstrappedTimestampGte"> (optional)</param>
+        /// <param name="caId"> (optional)</param>
+        /// <param name="connectorExpirationDate"> (optional)</param>
+        /// <param name="connectorExpirationDateLte"> (optional)</param>
+        /// <param name="connectorExpirationDateGte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="customAttributes"> (optional)</param>
+        /// <param name="deployedState"> (optional)</param>
+        /// <param name="deployment"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="deviceId"> (optional)</param>
+        /// <param name="deviceKey"> (optional)</param>
+        /// <param name="endpointName"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="firmwareChecksum"> (optional)</param>
+        /// <param name="manifest"> (optional)</param>
+        /// <param name="manifestTimestamp"> (optional)</param>
+        /// <param name="manifestTimestampLte"> (optional)</param>
+        /// <param name="manifestTimestampGte"> (optional)</param>
+        /// <param name="mechanism"> (optional)</param>
+        /// <param name="mechanismUrl"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="serialNumber"> (optional)</param>
+        /// <param name="state"> (optional)</param>
+        /// <param name="trustClass"> (optional)</param>
+        /// <param name="trustLevel"> (optional)</param>
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="vendorId"> (optional)</param>
         /// <returns>DevicePage</returns>
-        public DevicePage DeviceList (int? limit = null, string order = null, string after = null, string filter = null)
+        public DevicePage DeviceList (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string accountId = null, int? attestationMethod = null, bool? autoUpdate = null, string bootstrapExpirationDate = null, string bootstrapExpirationDateLte = null, string bootstrapExpirationDateGte = null, string bootstrappedTimestamp = null, string bootstrappedTimestampLte = null, string bootstrappedTimestampGte = null, string caId = null, string connectorExpirationDate = null, string connectorExpirationDateLte = null, string connectorExpirationDateGte = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, string deviceKey = null, string endpointName = null, string etag = null, string etagLte = null, string etagGte = null, string firmwareChecksum = null, string manifest = null, string manifestTimestamp = null, string manifestTimestampLte = null, string manifestTimestampGte = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string trustClass = null, string trustLevel = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string vendorId = null)
         {
-             ApiResponse<DevicePage> localVarResponse = DeviceListWithHttpInfo(limit, order, after, filter);
+             ApiResponse<DevicePage> localVarResponse = DeviceListWithHttpInfo(limit, order, after, filter, include, accountId, attestationMethod, autoUpdate, bootstrapExpirationDate, bootstrapExpirationDateLte, bootstrapExpirationDateGte, bootstrappedTimestamp, bootstrappedTimestampLte, bootstrappedTimestampGte, caId, connectorExpirationDate, connectorExpirationDateLte, connectorExpirationDateGte, createdAt, createdAtLte, createdAtGte, customAttributes, deployedState, deployment, description, deviceClass, deviceId, deviceKey, endpointName, etag, etagLte, etagGte, firmwareChecksum, manifest, manifestTimestamp, manifestTimestampLte, manifestTimestampGte, mechanism, mechanismUrl, name, _object, serialNumber, state, trustClass, trustLevel, updatedAt, updatedAtLte, updatedAtGte, vendorId);
              return localVarResponse.Data;
         }
 
@@ -917,8 +1072,53 @@ namespace device_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
+        /// <param name="accountId"> (optional)</param>
+        /// <param name="attestationMethod"> (optional)</param>
+        /// <param name="autoUpdate"> (optional)</param>
+        /// <param name="bootstrapExpirationDate"> (optional)</param>
+        /// <param name="bootstrapExpirationDateLte"> (optional)</param>
+        /// <param name="bootstrapExpirationDateGte"> (optional)</param>
+        /// <param name="bootstrappedTimestamp"> (optional)</param>
+        /// <param name="bootstrappedTimestampLte"> (optional)</param>
+        /// <param name="bootstrappedTimestampGte"> (optional)</param>
+        /// <param name="caId"> (optional)</param>
+        /// <param name="connectorExpirationDate"> (optional)</param>
+        /// <param name="connectorExpirationDateLte"> (optional)</param>
+        /// <param name="connectorExpirationDateGte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="customAttributes"> (optional)</param>
+        /// <param name="deployedState"> (optional)</param>
+        /// <param name="deployment"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="deviceId"> (optional)</param>
+        /// <param name="deviceKey"> (optional)</param>
+        /// <param name="endpointName"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="firmwareChecksum"> (optional)</param>
+        /// <param name="manifest"> (optional)</param>
+        /// <param name="manifestTimestamp"> (optional)</param>
+        /// <param name="manifestTimestampLte"> (optional)</param>
+        /// <param name="manifestTimestampGte"> (optional)</param>
+        /// <param name="mechanism"> (optional)</param>
+        /// <param name="mechanismUrl"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="serialNumber"> (optional)</param>
+        /// <param name="state"> (optional)</param>
+        /// <param name="trustClass"> (optional)</param>
+        /// <param name="trustLevel"> (optional)</param>
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="vendorId"> (optional)</param>
         /// <returns>ApiResponse of DevicePage</returns>
-        public ApiResponse< DevicePage > DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null)
+        public ApiResponse< DevicePage > DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string accountId = null, int? attestationMethod = null, bool? autoUpdate = null, string bootstrapExpirationDate = null, string bootstrapExpirationDateLte = null, string bootstrapExpirationDateGte = null, string bootstrappedTimestamp = null, string bootstrappedTimestampLte = null, string bootstrappedTimestampGte = null, string caId = null, string connectorExpirationDate = null, string connectorExpirationDateLte = null, string connectorExpirationDateGte = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, string deviceKey = null, string endpointName = null, string etag = null, string etagLte = null, string etagGte = null, string firmwareChecksum = null, string manifest = null, string manifestTimestamp = null, string manifestTimestampLte = null, string manifestTimestampGte = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string trustClass = null, string trustLevel = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string vendorId = null)
         {
 
             var localVarPath = "/v3/devices/";
@@ -948,6 +1148,51 @@ namespace device_catalog.Api
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (accountId != null) localVarQueryParams.Add("account_id", Configuration.ApiClient.ParameterToString(accountId)); // query parameter
+            if (attestationMethod != null) localVarQueryParams.Add("attestation_method", Configuration.ApiClient.ParameterToString(attestationMethod)); // query parameter
+            if (autoUpdate != null) localVarQueryParams.Add("auto_update", Configuration.ApiClient.ParameterToString(autoUpdate)); // query parameter
+            if (bootstrapExpirationDate != null) localVarQueryParams.Add("bootstrap_expiration_date", Configuration.ApiClient.ParameterToString(bootstrapExpirationDate)); // query parameter
+            if (bootstrapExpirationDateLte != null) localVarQueryParams.Add("bootstrap_expiration_date__lte", Configuration.ApiClient.ParameterToString(bootstrapExpirationDateLte)); // query parameter
+            if (bootstrapExpirationDateGte != null) localVarQueryParams.Add("bootstrap_expiration_date__gte", Configuration.ApiClient.ParameterToString(bootstrapExpirationDateGte)); // query parameter
+            if (bootstrappedTimestamp != null) localVarQueryParams.Add("bootstrapped_timestamp", Configuration.ApiClient.ParameterToString(bootstrappedTimestamp)); // query parameter
+            if (bootstrappedTimestampLte != null) localVarQueryParams.Add("bootstrapped_timestamp__lte", Configuration.ApiClient.ParameterToString(bootstrappedTimestampLte)); // query parameter
+            if (bootstrappedTimestampGte != null) localVarQueryParams.Add("bootstrapped_timestamp__gte", Configuration.ApiClient.ParameterToString(bootstrappedTimestampGte)); // query parameter
+            if (caId != null) localVarQueryParams.Add("ca_id", Configuration.ApiClient.ParameterToString(caId)); // query parameter
+            if (connectorExpirationDate != null) localVarQueryParams.Add("connector_expiration_date", Configuration.ApiClient.ParameterToString(connectorExpirationDate)); // query parameter
+            if (connectorExpirationDateLte != null) localVarQueryParams.Add("connector_expiration_date__lte", Configuration.ApiClient.ParameterToString(connectorExpirationDateLte)); // query parameter
+            if (connectorExpirationDateGte != null) localVarQueryParams.Add("connector_expiration_date__gte", Configuration.ApiClient.ParameterToString(connectorExpirationDateGte)); // query parameter
+            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
+            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
+            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
+            if (customAttributes != null) localVarQueryParams.Add("custom_attributes", Configuration.ApiClient.ParameterToString(customAttributes)); // query parameter
+            if (deployedState != null) localVarQueryParams.Add("deployed_state", Configuration.ApiClient.ParameterToString(deployedState)); // query parameter
+            if (deployment != null) localVarQueryParams.Add("deployment", Configuration.ApiClient.ParameterToString(deployment)); // query parameter
+            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
+            if (deviceClass != null) localVarQueryParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // query parameter
+            if (deviceId != null) localVarQueryParams.Add("device_id", Configuration.ApiClient.ParameterToString(deviceId)); // query parameter
+            if (deviceKey != null) localVarQueryParams.Add("device_key", Configuration.ApiClient.ParameterToString(deviceKey)); // query parameter
+            if (endpointName != null) localVarQueryParams.Add("endpoint_name", Configuration.ApiClient.ParameterToString(endpointName)); // query parameter
+            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
+            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
+            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
+            if (firmwareChecksum != null) localVarQueryParams.Add("firmware_checksum", Configuration.ApiClient.ParameterToString(firmwareChecksum)); // query parameter
+            if (manifest != null) localVarQueryParams.Add("manifest", Configuration.ApiClient.ParameterToString(manifest)); // query parameter
+            if (manifestTimestamp != null) localVarQueryParams.Add("manifest_timestamp", Configuration.ApiClient.ParameterToString(manifestTimestamp)); // query parameter
+            if (manifestTimestampLte != null) localVarQueryParams.Add("manifest_timestamp__lte", Configuration.ApiClient.ParameterToString(manifestTimestampLte)); // query parameter
+            if (manifestTimestampGte != null) localVarQueryParams.Add("manifest_timestamp__gte", Configuration.ApiClient.ParameterToString(manifestTimestampGte)); // query parameter
+            if (mechanism != null) localVarQueryParams.Add("mechanism", Configuration.ApiClient.ParameterToString(mechanism)); // query parameter
+            if (mechanismUrl != null) localVarQueryParams.Add("mechanism_url", Configuration.ApiClient.ParameterToString(mechanismUrl)); // query parameter
+            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
+            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
+            if (serialNumber != null) localVarQueryParams.Add("serial_number", Configuration.ApiClient.ParameterToString(serialNumber)); // query parameter
+            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
+            if (trustClass != null) localVarQueryParams.Add("trust_class", Configuration.ApiClient.ParameterToString(trustClass)); // query parameter
+            if (trustLevel != null) localVarQueryParams.Add("trust_level", Configuration.ApiClient.ParameterToString(trustLevel)); // query parameter
+            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
+            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
+            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
+            if (vendorId != null) localVarQueryParams.Add("vendor_id", Configuration.ApiClient.ParameterToString(vendorId)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -983,10 +1228,55 @@ namespace device_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
+        /// <param name="accountId"> (optional)</param>
+        /// <param name="attestationMethod"> (optional)</param>
+        /// <param name="autoUpdate"> (optional)</param>
+        /// <param name="bootstrapExpirationDate"> (optional)</param>
+        /// <param name="bootstrapExpirationDateLte"> (optional)</param>
+        /// <param name="bootstrapExpirationDateGte"> (optional)</param>
+        /// <param name="bootstrappedTimestamp"> (optional)</param>
+        /// <param name="bootstrappedTimestampLte"> (optional)</param>
+        /// <param name="bootstrappedTimestampGte"> (optional)</param>
+        /// <param name="caId"> (optional)</param>
+        /// <param name="connectorExpirationDate"> (optional)</param>
+        /// <param name="connectorExpirationDateLte"> (optional)</param>
+        /// <param name="connectorExpirationDateGte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="customAttributes"> (optional)</param>
+        /// <param name="deployedState"> (optional)</param>
+        /// <param name="deployment"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="deviceId"> (optional)</param>
+        /// <param name="deviceKey"> (optional)</param>
+        /// <param name="endpointName"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="firmwareChecksum"> (optional)</param>
+        /// <param name="manifest"> (optional)</param>
+        /// <param name="manifestTimestamp"> (optional)</param>
+        /// <param name="manifestTimestampLte"> (optional)</param>
+        /// <param name="manifestTimestampGte"> (optional)</param>
+        /// <param name="mechanism"> (optional)</param>
+        /// <param name="mechanismUrl"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="serialNumber"> (optional)</param>
+        /// <param name="state"> (optional)</param>
+        /// <param name="trustClass"> (optional)</param>
+        /// <param name="trustLevel"> (optional)</param>
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="vendorId"> (optional)</param>
         /// <returns>Task of DevicePage</returns>
-        public async System.Threading.Tasks.Task<DevicePage> DeviceListAsync (int? limit = null, string order = null, string after = null, string filter = null)
+        public async System.Threading.Tasks.Task<DevicePage> DeviceListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string accountId = null, int? attestationMethod = null, bool? autoUpdate = null, string bootstrapExpirationDate = null, string bootstrapExpirationDateLte = null, string bootstrapExpirationDateGte = null, string bootstrappedTimestamp = null, string bootstrappedTimestampLte = null, string bootstrappedTimestampGte = null, string caId = null, string connectorExpirationDate = null, string connectorExpirationDateLte = null, string connectorExpirationDateGte = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, string deviceKey = null, string endpointName = null, string etag = null, string etagLte = null, string etagGte = null, string firmwareChecksum = null, string manifest = null, string manifestTimestamp = null, string manifestTimestampLte = null, string manifestTimestampGte = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string trustClass = null, string trustLevel = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string vendorId = null)
         {
-             ApiResponse<DevicePage> localVarResponse = await DeviceListAsyncWithHttpInfo(limit, order, after, filter);
+             ApiResponse<DevicePage> localVarResponse = await DeviceListAsyncWithHttpInfo(limit, order, after, filter, include, accountId, attestationMethod, autoUpdate, bootstrapExpirationDate, bootstrapExpirationDateLte, bootstrapExpirationDateGte, bootstrappedTimestamp, bootstrappedTimestampLte, bootstrappedTimestampGte, caId, connectorExpirationDate, connectorExpirationDateLte, connectorExpirationDateGte, createdAt, createdAtLte, createdAtGte, customAttributes, deployedState, deployment, description, deviceClass, deviceId, deviceKey, endpointName, etag, etagLte, etagGte, firmwareChecksum, manifest, manifestTimestamp, manifestTimestampLte, manifestTimestampGte, mechanism, mechanismUrl, name, _object, serialNumber, state, trustClass, trustLevel, updatedAt, updatedAtLte, updatedAtGte, vendorId);
              return localVarResponse.Data;
 
         }
@@ -999,8 +1289,53 @@ namespace device_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
+        /// <param name="accountId"> (optional)</param>
+        /// <param name="attestationMethod"> (optional)</param>
+        /// <param name="autoUpdate"> (optional)</param>
+        /// <param name="bootstrapExpirationDate"> (optional)</param>
+        /// <param name="bootstrapExpirationDateLte"> (optional)</param>
+        /// <param name="bootstrapExpirationDateGte"> (optional)</param>
+        /// <param name="bootstrappedTimestamp"> (optional)</param>
+        /// <param name="bootstrappedTimestampLte"> (optional)</param>
+        /// <param name="bootstrappedTimestampGte"> (optional)</param>
+        /// <param name="caId"> (optional)</param>
+        /// <param name="connectorExpirationDate"> (optional)</param>
+        /// <param name="connectorExpirationDateLte"> (optional)</param>
+        /// <param name="connectorExpirationDateGte"> (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="customAttributes"> (optional)</param>
+        /// <param name="deployedState"> (optional)</param>
+        /// <param name="deployment"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="deviceClass"> (optional)</param>
+        /// <param name="deviceId"> (optional)</param>
+        /// <param name="deviceKey"> (optional)</param>
+        /// <param name="endpointName"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="firmwareChecksum"> (optional)</param>
+        /// <param name="manifest"> (optional)</param>
+        /// <param name="manifestTimestamp"> (optional)</param>
+        /// <param name="manifestTimestampLte"> (optional)</param>
+        /// <param name="manifestTimestampGte"> (optional)</param>
+        /// <param name="mechanism"> (optional)</param>
+        /// <param name="mechanismUrl"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="serialNumber"> (optional)</param>
+        /// <param name="state"> (optional)</param>
+        /// <param name="trustClass"> (optional)</param>
+        /// <param name="trustLevel"> (optional)</param>
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="vendorId"> (optional)</param>
         /// <returns>Task of ApiResponse (DevicePage)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DevicePage>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DevicePage>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string accountId = null, int? attestationMethod = null, bool? autoUpdate = null, string bootstrapExpirationDate = null, string bootstrapExpirationDateLte = null, string bootstrapExpirationDateGte = null, string bootstrappedTimestamp = null, string bootstrappedTimestampLte = null, string bootstrappedTimestampGte = null, string caId = null, string connectorExpirationDate = null, string connectorExpirationDateLte = null, string connectorExpirationDateGte = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string deviceId = null, string deviceKey = null, string endpointName = null, string etag = null, string etagLte = null, string etagGte = null, string firmwareChecksum = null, string manifest = null, string manifestTimestamp = null, string manifestTimestampLte = null, string manifestTimestampGte = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string trustClass = null, string trustLevel = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string vendorId = null)
         {
 
             var localVarPath = "/v3/devices/";
@@ -1030,6 +1365,51 @@ namespace device_catalog.Api
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (accountId != null) localVarQueryParams.Add("account_id", Configuration.ApiClient.ParameterToString(accountId)); // query parameter
+            if (attestationMethod != null) localVarQueryParams.Add("attestation_method", Configuration.ApiClient.ParameterToString(attestationMethod)); // query parameter
+            if (autoUpdate != null) localVarQueryParams.Add("auto_update", Configuration.ApiClient.ParameterToString(autoUpdate)); // query parameter
+            if (bootstrapExpirationDate != null) localVarQueryParams.Add("bootstrap_expiration_date", Configuration.ApiClient.ParameterToString(bootstrapExpirationDate)); // query parameter
+            if (bootstrapExpirationDateLte != null) localVarQueryParams.Add("bootstrap_expiration_date__lte", Configuration.ApiClient.ParameterToString(bootstrapExpirationDateLte)); // query parameter
+            if (bootstrapExpirationDateGte != null) localVarQueryParams.Add("bootstrap_expiration_date__gte", Configuration.ApiClient.ParameterToString(bootstrapExpirationDateGte)); // query parameter
+            if (bootstrappedTimestamp != null) localVarQueryParams.Add("bootstrapped_timestamp", Configuration.ApiClient.ParameterToString(bootstrappedTimestamp)); // query parameter
+            if (bootstrappedTimestampLte != null) localVarQueryParams.Add("bootstrapped_timestamp__lte", Configuration.ApiClient.ParameterToString(bootstrappedTimestampLte)); // query parameter
+            if (bootstrappedTimestampGte != null) localVarQueryParams.Add("bootstrapped_timestamp__gte", Configuration.ApiClient.ParameterToString(bootstrappedTimestampGte)); // query parameter
+            if (caId != null) localVarQueryParams.Add("ca_id", Configuration.ApiClient.ParameterToString(caId)); // query parameter
+            if (connectorExpirationDate != null) localVarQueryParams.Add("connector_expiration_date", Configuration.ApiClient.ParameterToString(connectorExpirationDate)); // query parameter
+            if (connectorExpirationDateLte != null) localVarQueryParams.Add("connector_expiration_date__lte", Configuration.ApiClient.ParameterToString(connectorExpirationDateLte)); // query parameter
+            if (connectorExpirationDateGte != null) localVarQueryParams.Add("connector_expiration_date__gte", Configuration.ApiClient.ParameterToString(connectorExpirationDateGte)); // query parameter
+            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
+            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
+            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
+            if (customAttributes != null) localVarQueryParams.Add("custom_attributes", Configuration.ApiClient.ParameterToString(customAttributes)); // query parameter
+            if (deployedState != null) localVarQueryParams.Add("deployed_state", Configuration.ApiClient.ParameterToString(deployedState)); // query parameter
+            if (deployment != null) localVarQueryParams.Add("deployment", Configuration.ApiClient.ParameterToString(deployment)); // query parameter
+            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
+            if (deviceClass != null) localVarQueryParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // query parameter
+            if (deviceId != null) localVarQueryParams.Add("device_id", Configuration.ApiClient.ParameterToString(deviceId)); // query parameter
+            if (deviceKey != null) localVarQueryParams.Add("device_key", Configuration.ApiClient.ParameterToString(deviceKey)); // query parameter
+            if (endpointName != null) localVarQueryParams.Add("endpoint_name", Configuration.ApiClient.ParameterToString(endpointName)); // query parameter
+            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
+            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
+            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
+            if (firmwareChecksum != null) localVarQueryParams.Add("firmware_checksum", Configuration.ApiClient.ParameterToString(firmwareChecksum)); // query parameter
+            if (manifest != null) localVarQueryParams.Add("manifest", Configuration.ApiClient.ParameterToString(manifest)); // query parameter
+            if (manifestTimestamp != null) localVarQueryParams.Add("manifest_timestamp", Configuration.ApiClient.ParameterToString(manifestTimestamp)); // query parameter
+            if (manifestTimestampLte != null) localVarQueryParams.Add("manifest_timestamp__lte", Configuration.ApiClient.ParameterToString(manifestTimestampLte)); // query parameter
+            if (manifestTimestampGte != null) localVarQueryParams.Add("manifest_timestamp__gte", Configuration.ApiClient.ParameterToString(manifestTimestampGte)); // query parameter
+            if (mechanism != null) localVarQueryParams.Add("mechanism", Configuration.ApiClient.ParameterToString(mechanism)); // query parameter
+            if (mechanismUrl != null) localVarQueryParams.Add("mechanism_url", Configuration.ApiClient.ParameterToString(mechanismUrl)); // query parameter
+            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
+            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
+            if (serialNumber != null) localVarQueryParams.Add("serial_number", Configuration.ApiClient.ParameterToString(serialNumber)); // query parameter
+            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
+            if (trustClass != null) localVarQueryParams.Add("trust_class", Configuration.ApiClient.ParameterToString(trustClass)); // query parameter
+            if (trustLevel != null) localVarQueryParams.Add("trust_level", Configuration.ApiClient.ParameterToString(trustLevel)); // query parameter
+            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
+            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
+            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
+            if (vendorId != null) localVarQueryParams.Add("vendor_id", Configuration.ApiClient.ParameterToString(vendorId)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1064,10 +1444,11 @@ namespace device_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>DeviceLogPage</returns>
-        public DeviceLogPage DeviceLogList (int? limit = null, string order = null, string after = null, string filter = null)
+        public DeviceLogPage DeviceLogList (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<DeviceLogPage> localVarResponse = DeviceLogListWithHttpInfo(limit, order, after, filter);
+             ApiResponse<DeviceLogPage> localVarResponse = DeviceLogListWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
         }
 
@@ -1079,8 +1460,9 @@ namespace device_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of DeviceLogPage</returns>
-        public ApiResponse< DeviceLogPage > DeviceLogListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null)
+        public ApiResponse< DeviceLogPage > DeviceLogListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/devicelog/";
@@ -1110,6 +1492,7 @@ namespace device_catalog.Api
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1145,10 +1528,11 @@ namespace device_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of DeviceLogPage</returns>
-        public async System.Threading.Tasks.Task<DeviceLogPage> DeviceLogListAsync (int? limit = null, string order = null, string after = null, string filter = null)
+        public async System.Threading.Tasks.Task<DeviceLogPage> DeviceLogListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<DeviceLogPage> localVarResponse = await DeviceLogListAsyncWithHttpInfo(limit, order, after, filter);
+             ApiResponse<DeviceLogPage> localVarResponse = await DeviceLogListAsyncWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
 
         }
@@ -1161,8 +1545,9 @@ namespace device_catalog.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (DeviceLogPage)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceLogPage>> DeviceLogListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceLogPage>> DeviceLogListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/devicelog/";
@@ -1192,6 +1577,7 @@ namespace device_catalog.Api
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1373,24 +1759,11 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="provisionKey">The key used to provision the device (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <param name="device"></param>
         /// <returns>DeviceSerializer</returns>
-        public DeviceSerializer DevicePartialUpdate (string deviceId, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string provisionKey = null, string serialNumber = null, string state = null, string vendorId = null)
+        public DeviceSerializer DevicePartialUpdate (string deviceId, DeviceData device)
         {
-             ApiResponse<DeviceSerializer> localVarResponse = DevicePartialUpdateWithHttpInfo(deviceId, autoUpdate, customAttributes, deployment, description, deviceClass, manifest, mechanism, mechanismUrl, name, _object, provisionKey, serialNumber, state, vendorId);
+             ApiResponse<DeviceSerializer> localVarResponse = DevicePartialUpdateWithHttpInfo(deviceId, device);
              return localVarResponse.Data;
         }
 
@@ -1399,26 +1772,16 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="provisionKey">The key used to provision the device (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceSerializer</returns>
-        public ApiResponse< DeviceSerializer > DevicePartialUpdateWithHttpInfo (string deviceId, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string provisionKey = null, string serialNumber = null, string state = null, string vendorId = null)
+        public ApiResponse< DeviceSerializer > DevicePartialUpdateWithHttpInfo (string deviceId, DeviceData device)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DevicePartialUpdate");
+            // verify the required parameter 'device' is set
+            if (device == null)
+                throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DevicePartialUpdate");
 
             var localVarPath = "/v3/devices/{device_id}/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1444,20 +1807,14 @@ namespace device_catalog.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (deviceId != null) localVarPathParams.Add("device_id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
-            if (autoUpdate != null) localVarFormParams.Add("auto_update", Configuration.ApiClient.ParameterToString(autoUpdate)); // form parameter
-            if (customAttributes != null) localVarFormParams.Add("custom_attributes", Configuration.ApiClient.ParameterToString(customAttributes)); // form parameter
-            if (deployment != null) localVarFormParams.Add("deployment", Configuration.ApiClient.ParameterToString(deployment)); // form parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (deviceClass != null) localVarFormParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // form parameter
-            if (manifest != null) localVarFormParams.Add("manifest", Configuration.ApiClient.ParameterToString(manifest)); // form parameter
-            if (mechanism != null) localVarFormParams.Add("mechanism", Configuration.ApiClient.ParameterToString(mechanism)); // form parameter
-            if (mechanismUrl != null) localVarFormParams.Add("mechanism_url", Configuration.ApiClient.ParameterToString(mechanismUrl)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (provisionKey != null) localVarFormParams.Add("provision_key", Configuration.ApiClient.ParameterToString(provisionKey)); // form parameter
-            if (serialNumber != null) localVarFormParams.Add("serial_number", Configuration.ApiClient.ParameterToString(serialNumber)); // form parameter
-            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
-            if (vendorId != null) localVarFormParams.Add("vendor_id", Configuration.ApiClient.ParameterToString(vendorId)); // form parameter
+            if (device != null && device.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(device); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = device; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1490,24 +1847,11 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="provisionKey">The key used to provision the device (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <param name="device"></param>
         /// <returns>Task of DeviceSerializer</returns>
-        public async System.Threading.Tasks.Task<DeviceSerializer> DevicePartialUpdateAsync (string deviceId, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string provisionKey = null, string serialNumber = null, string state = null, string vendorId = null)
+        public async System.Threading.Tasks.Task<DeviceSerializer> DevicePartialUpdateAsync (string deviceId, DeviceData device)
         {
-             ApiResponse<DeviceSerializer> localVarResponse = await DevicePartialUpdateAsyncWithHttpInfo(deviceId, autoUpdate, customAttributes, deployment, description, deviceClass, manifest, mechanism, mechanismUrl, name, _object, provisionKey, serialNumber, state, vendorId);
+             ApiResponse<DeviceSerializer> localVarResponse = await DevicePartialUpdateAsyncWithHttpInfo(deviceId, device);
              return localVarResponse.Data;
 
         }
@@ -1517,26 +1861,16 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="provisionKey">The key used to provision the device (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DevicePartialUpdateAsyncWithHttpInfo (string deviceId, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string provisionKey = null, string serialNumber = null, string state = null, string vendorId = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DevicePartialUpdateAsyncWithHttpInfo (string deviceId, DeviceData device)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DevicePartialUpdate");
+            // verify the required parameter 'device' is set
+            if (device == null)
+                throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DevicePartialUpdate");
 
             var localVarPath = "/v3/devices/{device_id}/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1562,20 +1896,14 @@ namespace device_catalog.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (deviceId != null) localVarPathParams.Add("device_id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
-            if (autoUpdate != null) localVarFormParams.Add("auto_update", Configuration.ApiClient.ParameterToString(autoUpdate)); // form parameter
-            if (customAttributes != null) localVarFormParams.Add("custom_attributes", Configuration.ApiClient.ParameterToString(customAttributes)); // form parameter
-            if (deployment != null) localVarFormParams.Add("deployment", Configuration.ApiClient.ParameterToString(deployment)); // form parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (deviceClass != null) localVarFormParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // form parameter
-            if (manifest != null) localVarFormParams.Add("manifest", Configuration.ApiClient.ParameterToString(manifest)); // form parameter
-            if (mechanism != null) localVarFormParams.Add("mechanism", Configuration.ApiClient.ParameterToString(mechanism)); // form parameter
-            if (mechanismUrl != null) localVarFormParams.Add("mechanism_url", Configuration.ApiClient.ParameterToString(mechanismUrl)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (provisionKey != null) localVarFormParams.Add("provision_key", Configuration.ApiClient.ParameterToString(provisionKey)); // form parameter
-            if (serialNumber != null) localVarFormParams.Add("serial_number", Configuration.ApiClient.ParameterToString(serialNumber)); // form parameter
-            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
-            if (vendorId != null) localVarFormParams.Add("vendor_id", Configuration.ApiClient.ParameterToString(vendorId)); // form parameter
+            if (device != null && device.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(device); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = device; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1757,24 +2085,11 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
-        /// <param name="provisionKey">The key used to provision the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <param name="device"></param>
         /// <returns>DeviceSerializer</returns>
-        public DeviceSerializer DeviceUpdate (string deviceId, string mechanism, string provisionKey, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string vendorId = null)
+        public DeviceSerializer DeviceUpdate (string deviceId, DeviceData device)
         {
-             ApiResponse<DeviceSerializer> localVarResponse = DeviceUpdateWithHttpInfo(deviceId, mechanism, provisionKey, autoUpdate, customAttributes, deployment, description, deviceClass, manifest, mechanismUrl, name, _object, serialNumber, state, vendorId);
+             ApiResponse<DeviceSerializer> localVarResponse = DeviceUpdateWithHttpInfo(deviceId, device);
              return localVarResponse.Data;
         }
 
@@ -1783,32 +2098,16 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
-        /// <param name="provisionKey">The key used to provision the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceSerializer</returns>
-        public ApiResponse< DeviceSerializer > DeviceUpdateWithHttpInfo (string deviceId, string mechanism, string provisionKey, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string vendorId = null)
+        public ApiResponse< DeviceSerializer > DeviceUpdateWithHttpInfo (string deviceId, DeviceData device)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DeviceUpdate");
-            // verify the required parameter 'mechanism' is set
-            if (mechanism == null)
-                throw new ApiException(400, "Missing required parameter 'mechanism' when calling DefaultApi->DeviceUpdate");
-            // verify the required parameter 'provisionKey' is set
-            if (provisionKey == null)
-                throw new ApiException(400, "Missing required parameter 'provisionKey' when calling DefaultApi->DeviceUpdate");
+            // verify the required parameter 'device' is set
+            if (device == null)
+                throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DeviceUpdate");
 
             var localVarPath = "/v3/devices/{device_id}/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1834,20 +2133,14 @@ namespace device_catalog.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (deviceId != null) localVarPathParams.Add("device_id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
-            if (autoUpdate != null) localVarFormParams.Add("auto_update", Configuration.ApiClient.ParameterToString(autoUpdate)); // form parameter
-            if (customAttributes != null) localVarFormParams.Add("custom_attributes", Configuration.ApiClient.ParameterToString(customAttributes)); // form parameter
-            if (deployment != null) localVarFormParams.Add("deployment", Configuration.ApiClient.ParameterToString(deployment)); // form parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (deviceClass != null) localVarFormParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // form parameter
-            if (manifest != null) localVarFormParams.Add("manifest", Configuration.ApiClient.ParameterToString(manifest)); // form parameter
-            if (mechanism != null) localVarFormParams.Add("mechanism", Configuration.ApiClient.ParameterToString(mechanism)); // form parameter
-            if (mechanismUrl != null) localVarFormParams.Add("mechanism_url", Configuration.ApiClient.ParameterToString(mechanismUrl)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (provisionKey != null) localVarFormParams.Add("provision_key", Configuration.ApiClient.ParameterToString(provisionKey)); // form parameter
-            if (serialNumber != null) localVarFormParams.Add("serial_number", Configuration.ApiClient.ParameterToString(serialNumber)); // form parameter
-            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
-            if (vendorId != null) localVarFormParams.Add("vendor_id", Configuration.ApiClient.ParameterToString(vendorId)); // form parameter
+            if (device != null && device.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(device); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = device; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1880,24 +2173,11 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
-        /// <param name="provisionKey">The key used to provision the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <param name="device"></param>
         /// <returns>Task of DeviceSerializer</returns>
-        public async System.Threading.Tasks.Task<DeviceSerializer> DeviceUpdateAsync (string deviceId, string mechanism, string provisionKey, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string vendorId = null)
+        public async System.Threading.Tasks.Task<DeviceSerializer> DeviceUpdateAsync (string deviceId, DeviceData device)
         {
-             ApiResponse<DeviceSerializer> localVarResponse = await DeviceUpdateAsyncWithHttpInfo(deviceId, mechanism, provisionKey, autoUpdate, customAttributes, deployment, description, deviceClass, manifest, mechanismUrl, name, _object, serialNumber, state, vendorId);
+             ApiResponse<DeviceSerializer> localVarResponse = await DeviceUpdateAsyncWithHttpInfo(deviceId, device);
              return localVarResponse.Data;
 
         }
@@ -1907,32 +2187,16 @@ namespace device_catalog.Api
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">The ID of the device</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
-        /// <param name="provisionKey">The key used to provision the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
+        /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceUpdateAsyncWithHttpInfo (string deviceId, string mechanism, string provisionKey, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string vendorId = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceUpdateAsyncWithHttpInfo (string deviceId, DeviceData device)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DeviceUpdate");
-            // verify the required parameter 'mechanism' is set
-            if (mechanism == null)
-                throw new ApiException(400, "Missing required parameter 'mechanism' when calling DefaultApi->DeviceUpdate");
-            // verify the required parameter 'provisionKey' is set
-            if (provisionKey == null)
-                throw new ApiException(400, "Missing required parameter 'provisionKey' when calling DefaultApi->DeviceUpdate");
+            // verify the required parameter 'device' is set
+            if (device == null)
+                throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DeviceUpdate");
 
             var localVarPath = "/v3/devices/{device_id}/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1958,20 +2222,14 @@ namespace device_catalog.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (deviceId != null) localVarPathParams.Add("device_id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
-            if (autoUpdate != null) localVarFormParams.Add("auto_update", Configuration.ApiClient.ParameterToString(autoUpdate)); // form parameter
-            if (customAttributes != null) localVarFormParams.Add("custom_attributes", Configuration.ApiClient.ParameterToString(customAttributes)); // form parameter
-            if (deployment != null) localVarFormParams.Add("deployment", Configuration.ApiClient.ParameterToString(deployment)); // form parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (deviceClass != null) localVarFormParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // form parameter
-            if (manifest != null) localVarFormParams.Add("manifest", Configuration.ApiClient.ParameterToString(manifest)); // form parameter
-            if (mechanism != null) localVarFormParams.Add("mechanism", Configuration.ApiClient.ParameterToString(mechanism)); // form parameter
-            if (mechanismUrl != null) localVarFormParams.Add("mechanism_url", Configuration.ApiClient.ParameterToString(mechanismUrl)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (provisionKey != null) localVarFormParams.Add("provision_key", Configuration.ApiClient.ParameterToString(provisionKey)); // form parameter
-            if (serialNumber != null) localVarFormParams.Add("serial_number", Configuration.ApiClient.ParameterToString(serialNumber)); // form parameter
-            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
-            if (vendorId != null) localVarFormParams.Add("vendor_id", Configuration.ApiClient.ParameterToString(vendorId)); // form parameter
+            if (device != null && device.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(device); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = device; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))

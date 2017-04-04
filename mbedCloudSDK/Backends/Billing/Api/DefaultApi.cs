@@ -173,7 +173,7 @@ namespace billing.Api
         /// Billing report
         /// </summary>
         /// <remarks>
-        /// Generate billing report for all accounts.
+        /// Generate billing report for all commercial accounts.
         /// </remarks>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">year and month</param>
@@ -185,7 +185,7 @@ namespace billing.Api
         /// Billing report
         /// </summary>
         /// <remarks>
-        /// Generate billing report for all accounts.
+        /// Generate billing report for all commercial accounts.
         /// </remarks>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">year and month</param>
@@ -404,7 +404,7 @@ namespace billing.Api
         /// Billing report
         /// </summary>
         /// <remarks>
-        /// Generate billing report for all accounts.
+        /// Generate billing report for all commercial accounts.
         /// </remarks>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">year and month</param>
@@ -416,7 +416,7 @@ namespace billing.Api
         /// Billing report
         /// </summary>
         /// <remarks>
-        /// Generate billing report for all accounts.
+        /// Generate billing report for all commercial accounts.
         /// </remarks>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">year and month</param>
@@ -1649,7 +1649,7 @@ namespace billing.Api
         }
 
         /// <summary>
-        /// Billing report Generate billing report for all accounts.
+        /// Billing report Generate billing report for all commercial accounts.
         /// </summary>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">year and month</param>
@@ -1662,7 +1662,7 @@ namespace billing.Api
         }
 
         /// <summary>
-        /// Billing report Generate billing report for all accounts.
+        /// Billing report Generate billing report for all commercial accounts.
         /// </summary>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">year and month</param>
@@ -1729,7 +1729,7 @@ namespace billing.Api
         }
 
         /// <summary>
-        /// Billing report Generate billing report for all accounts.
+        /// Billing report Generate billing report for all commercial accounts.
         /// </summary>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">year and month</param>
@@ -1743,7 +1743,7 @@ namespace billing.Api
         }
 
         /// <summary>
-        /// Billing report Generate billing report for all accounts.
+        /// Billing report Generate billing report for all commercial accounts.
         /// </summary>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">year and month</param>

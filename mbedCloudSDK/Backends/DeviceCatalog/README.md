@@ -75,10 +75,11 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
 
             var apiInstance = new DefaultApi();
+            var device = new DeviceData(); // DeviceData | 
 
             try
             {
-                DeviceData result = apiInstance.DeviceCreate();
+                DeviceData result = apiInstance.DeviceCreate(device);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
