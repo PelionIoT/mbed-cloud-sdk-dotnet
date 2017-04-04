@@ -4,14 +4,14 @@ mbed-billing REST API documentation for API-server
 
 This document contains the public REST API definitions of the mbed-billing service's API server component.
 
-OpenAPI spec version: 1.3.4-SNAPSHOT
+OpenAPI spec version: 1.3.5-SNAPSHOT
 
 -->
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F4F95F27-0CB6-4D6B-B29A-F1D062B1B733}</ProjectGuid>
+    <ProjectGuid>{62312871-3814-42D7-8ACC-DDC9D6511392}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>billing</RootNamespace>
