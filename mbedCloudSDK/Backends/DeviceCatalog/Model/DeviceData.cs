@@ -37,16 +37,16 @@ namespace device_catalog.Model
         {
             
             /// <summary>
-            /// Enum Development for "Development"
+            /// Enum Development for "development"
             /// </summary>
-            [EnumMember(Value = "Development")]
+            [EnumMember(Value = "development")]
             Development,
             
             /// <summary>
-            /// Enum Deployment for "Deployment"
+            /// Enum Production for "production"
             /// </summary>
-            [EnumMember(Value = "Deployment")]
-            Deployment
+            [EnumMember(Value = "production")]
+            Production
         }
 
         /// <summary>
