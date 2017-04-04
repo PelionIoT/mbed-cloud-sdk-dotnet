@@ -63,6 +63,7 @@ namespace device_catalog.Model
         /// <param name="UpdatedAt">UpdatedAt.</param>
         /// <param name="Mechanism">Mechanism.</param>
         /// <param name="DeviceClass">DeviceClass.</param>
+        /// <param name="Id">Id.</param>
         /// <param name="Description">Description.</param>
         /// <param name="EndpointName">EndpointName.</param>
         /// <param name="AutoUpdate">AutoUpdate.</param>
@@ -80,14 +81,13 @@ namespace device_catalog.Model
         /// <param name="Deployment">Deployment.</param>
         /// <param name="MechanismUrl">MechanismUrl.</param>
         /// <param name="TrustLevel">TrustLevel.</param>
-        /// <param name="DeviceId">DeviceId.</param>
         /// <param name="Name">Name.</param>
         /// <param name="DeviceKey">DeviceKey.</param>
         /// <param name="CreatedAt">CreatedAt.</param>
         /// <param name="Manifest">Manifest.</param>
         /// <param name="AttestationMethod">AttestationMethod.</param>
         /// <param name="CaId">CaId.</param>
-        public DeviceData(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), string Mechanism = default(string), string DeviceClass = default(string), string Description = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), Object CustomAttributes = default(Object), string State = default(string), DateTime? Etag = default(DateTime?), string SerialNumber = default(string), string FirmwareChecksum = default(string), DateTime? ManifestTimestamp = default(DateTime?), string VendorId = default(string), string AccountId = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string _Object = default(string), int? TrustClass = default(int?), string Deployment = default(string), string MechanismUrl = default(string), int? TrustLevel = default(int?), string DeviceId = default(string), string Name = default(string), string DeviceKey = default(string), DateTime? CreatedAt = default(DateTime?), string Manifest = default(string), int? AttestationMethod = default(int?), string CaId = default(string))
+        public DeviceData(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), string Mechanism = default(string), string DeviceClass = default(string), string Id = default(string), string Description = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), Object CustomAttributes = default(Object), string State = default(string), DateTime? Etag = default(DateTime?), string SerialNumber = default(string), string FirmwareChecksum = default(string), DateTime? ManifestTimestamp = default(DateTime?), string VendorId = default(string), string AccountId = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string _Object = default(string), int? TrustClass = default(int?), string Deployment = default(string), string MechanismUrl = default(string), int? TrustLevel = default(int?), string Name = default(string), string DeviceKey = default(string), DateTime? CreatedAt = default(DateTime?), string Manifest = default(string), int? AttestationMethod = default(int?), string CaId = default(string))
         {
             this.BootstrapExpirationDate = BootstrapExpirationDate;
             this.BootstrappedTimestamp = BootstrappedTimestamp;
@@ -95,6 +95,7 @@ namespace device_catalog.Model
             this.UpdatedAt = UpdatedAt;
             this.Mechanism = Mechanism;
             this.DeviceClass = DeviceClass;
+            this.Id = Id;
             this.Description = Description;
             this.EndpointName = EndpointName;
             this.AutoUpdate = AutoUpdate;
@@ -112,7 +113,6 @@ namespace device_catalog.Model
             this.Deployment = Deployment;
             this.MechanismUrl = MechanismUrl;
             this.TrustLevel = TrustLevel;
-            this.DeviceId = DeviceId;
             this.Name = Name;
             this.DeviceKey = DeviceKey;
             this.CreatedAt = CreatedAt;
@@ -151,6 +151,11 @@ namespace device_catalog.Model
         /// </summary>
         [DataMember(Name="device_class", EmitDefaultValue=false)]
         public string DeviceClass { get; set; }
+        /// <summary>
+        /// Gets or Sets Id
+        /// </summary>
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public string Id { get; set; }
         /// <summary>
         /// Gets or Sets Description
         /// </summary>
@@ -232,11 +237,6 @@ namespace device_catalog.Model
         [DataMember(Name="trust_level", EmitDefaultValue=false)]
         public int? TrustLevel { get; set; }
         /// <summary>
-        /// Gets or Sets DeviceId
-        /// </summary>
-        [DataMember(Name="device_id", EmitDefaultValue=false)]
-        public string DeviceId { get; set; }
-        /// <summary>
         /// Gets or Sets Name
         /// </summary>
         [DataMember(Name="name", EmitDefaultValue=false)]
@@ -280,6 +280,7 @@ namespace device_catalog.Model
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  Mechanism: ").Append(Mechanism).Append("\n");
             sb.Append("  DeviceClass: ").Append(DeviceClass).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  EndpointName: ").Append(EndpointName).Append("\n");
             sb.Append("  AutoUpdate: ").Append(AutoUpdate).Append("\n");
@@ -297,7 +298,6 @@ namespace device_catalog.Model
             sb.Append("  Deployment: ").Append(Deployment).Append("\n");
             sb.Append("  MechanismUrl: ").Append(MechanismUrl).Append("\n");
             sb.Append("  TrustLevel: ").Append(TrustLevel).Append("\n");
-            sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  DeviceKey: ").Append(DeviceKey).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
@@ -369,6 +369,11 @@ namespace device_catalog.Model
                     this.DeviceClass == other.DeviceClass ||
                     this.DeviceClass != null &&
                     this.DeviceClass.Equals(other.DeviceClass)
+                ) && 
+                (
+                    this.Id == other.Id ||
+                    this.Id != null &&
+                    this.Id.Equals(other.Id)
                 ) && 
                 (
                     this.Description == other.Description ||
@@ -456,11 +461,6 @@ namespace device_catalog.Model
                     this.TrustLevel.Equals(other.TrustLevel)
                 ) && 
                 (
-                    this.DeviceId == other.DeviceId ||
-                    this.DeviceId != null &&
-                    this.DeviceId.Equals(other.DeviceId)
-                ) && 
-                (
                     this.Name == other.Name ||
                     this.Name != null &&
                     this.Name.Equals(other.Name)
@@ -515,6 +515,8 @@ namespace device_catalog.Model
                     hash = hash * 59 + this.Mechanism.GetHashCode();
                 if (this.DeviceClass != null)
                     hash = hash * 59 + this.DeviceClass.GetHashCode();
+                if (this.Id != null)
+                    hash = hash * 59 + this.Id.GetHashCode();
                 if (this.Description != null)
                     hash = hash * 59 + this.Description.GetHashCode();
                 if (this.EndpointName != null)
@@ -549,8 +551,6 @@ namespace device_catalog.Model
                     hash = hash * 59 + this.MechanismUrl.GetHashCode();
                 if (this.TrustLevel != null)
                     hash = hash * 59 + this.TrustLevel.GetHashCode();
-                if (this.DeviceId != null)
-                    hash = hash * 59 + this.DeviceId.GetHashCode();
                 if (this.Name != null)
                     hash = hash * 59 + this.Name.GetHashCode();
                 if (this.DeviceKey != null)
