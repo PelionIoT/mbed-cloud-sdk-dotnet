@@ -146,7 +146,7 @@ namespace iam.Model
         /// Initializes a new instance of the <see cref="UserInfoResp" /> class.
         /// </summary>
         /// <param name="Status">The status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately. (required).</param>
-        /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters. (required).</param>
+        /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters..</param>
         /// <param name="Groups">A list of IDs of the groups this user belongs to..</param>
         /// <param name="PasswordChangedTime">A timestamp of the latest change of the user password, in milliseconds..</param>
         /// <param name="EmailVerified">A flag indicating whether the user&#39;s email address has been verified or not..</param>
@@ -175,15 +175,6 @@ namespace iam.Model
             else
             {
                 this.Status = Status;
-            }
-            // to ensure "Username" is required (not null)
-            if (Username == null)
-            {
-                throw new InvalidDataException("Username is a required property for UserInfoResp and cannot be null");
-            }
-            else
-            {
-                this.Username = Username;
             }
             // to ensure "_Object" is required (not null)
             if (_Object == null)
@@ -230,6 +221,7 @@ namespace iam.Model
             {
                 this.Id = Id;
             }
+            this.Username = Username;
             this.Groups = Groups;
             this.PasswordChangedTime = PasswordChangedTime;
             this.EmailVerified = EmailVerified;
