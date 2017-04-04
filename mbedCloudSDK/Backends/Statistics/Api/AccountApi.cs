@@ -32,13 +32,13 @@ namespace statistics.Api
         /// </remarks>
         /// <exception cref="statistics.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">A comma-separated list of requested metrics. Supported values are:  - &#x60;transactions&#x60; - &#x60;bootstraps_successful&#x60; - &#x60;bootstraps_failed&#x60; - &#x60;bootstraps_pending&#x60; - &#x60;device_server_rest_api_success&#x60; - &#x60;device_server_rest_api_error&#x60; </param>
-        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified. </param>
-        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified. </param>
-        /// <param name="period">Period. Fetch the data for the period in days, weeks or hours. Sample values: 2h, 3w, 4d. The parameter is not mandatory, if the start and end time are specified. </param>
         /// <param name="interval">Group data by this interval in days, weeks or hours. Sample values: 2h, 3w, 4d. </param>
         /// <param name="authorization">Bearer {Access Token}. A valid API Gateway access token. The token is validated and the associated account identifier is used to retrieve account-specific statistics. </param>
+        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="period">Period. Fetch the data for the period in days, weeks or hours. Sample values: 2h, 3w, 4d. The parameter is not mandatory, if the start and end time are specified.  (optional)</param>
         /// <returns>SuccessfulResponse</returns>
-        SuccessfulResponse V3MetricsGet (string include, string start, string end, string period, string interval, string authorization);
+        SuccessfulResponse V3MetricsGet (string include, string interval, string authorization, string start = null, string end = null, string period = null);
 
         /// <summary>
         /// Provides account-specific statistics for other cloud services.
@@ -48,13 +48,13 @@ namespace statistics.Api
         /// </remarks>
         /// <exception cref="statistics.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">A comma-separated list of requested metrics. Supported values are:  - &#x60;transactions&#x60; - &#x60;bootstraps_successful&#x60; - &#x60;bootstraps_failed&#x60; - &#x60;bootstraps_pending&#x60; - &#x60;device_server_rest_api_success&#x60; - &#x60;device_server_rest_api_error&#x60; </param>
-        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified. </param>
-        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified. </param>
-        /// <param name="period">Period. Fetch the data for the period in days, weeks or hours. Sample values: 2h, 3w, 4d. The parameter is not mandatory, if the start and end time are specified. </param>
         /// <param name="interval">Group data by this interval in days, weeks or hours. Sample values: 2h, 3w, 4d. </param>
         /// <param name="authorization">Bearer {Access Token}. A valid API Gateway access token. The token is validated and the associated account identifier is used to retrieve account-specific statistics. </param>
+        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="period">Period. Fetch the data for the period in days, weeks or hours. Sample values: 2h, 3w, 4d. The parameter is not mandatory, if the start and end time are specified.  (optional)</param>
         /// <returns>ApiResponse of SuccessfulResponse</returns>
-        ApiResponse<SuccessfulResponse> V3MetricsGetWithHttpInfo (string include, string start, string end, string period, string interval, string authorization);
+        ApiResponse<SuccessfulResponse> V3MetricsGetWithHttpInfo (string include, string interval, string authorization, string start = null, string end = null, string period = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -65,13 +65,13 @@ namespace statistics.Api
         /// </remarks>
         /// <exception cref="statistics.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">A comma-separated list of requested metrics. Supported values are:  - &#x60;transactions&#x60; - &#x60;bootstraps_successful&#x60; - &#x60;bootstraps_failed&#x60; - &#x60;bootstraps_pending&#x60; - &#x60;device_server_rest_api_success&#x60; - &#x60;device_server_rest_api_error&#x60; </param>
-        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified. </param>
-        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified. </param>
-        /// <param name="period">Period. Fetch the data for the period in days, weeks or hours. Sample values: 2h, 3w, 4d. The parameter is not mandatory, if the start and end time are specified. </param>
         /// <param name="interval">Group data by this interval in days, weeks or hours. Sample values: 2h, 3w, 4d. </param>
         /// <param name="authorization">Bearer {Access Token}. A valid API Gateway access token. The token is validated and the associated account identifier is used to retrieve account-specific statistics. </param>
+        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="period">Period. Fetch the data for the period in days, weeks or hours. Sample values: 2h, 3w, 4d. The parameter is not mandatory, if the start and end time are specified.  (optional)</param>
         /// <returns>Task of SuccessfulResponse</returns>
-        System.Threading.Tasks.Task<SuccessfulResponse> V3MetricsGetAsync (string include, string start, string end, string period, string interval, string authorization);
+        System.Threading.Tasks.Task<SuccessfulResponse> V3MetricsGetAsync (string include, string interval, string authorization, string start = null, string end = null, string period = null);
 
         /// <summary>
         /// Provides account-specific statistics for other cloud services.
@@ -81,13 +81,13 @@ namespace statistics.Api
         /// </remarks>
         /// <exception cref="statistics.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">A comma-separated list of requested metrics. Supported values are:  - &#x60;transactions&#x60; - &#x60;bootstraps_successful&#x60; - &#x60;bootstraps_failed&#x60; - &#x60;bootstraps_pending&#x60; - &#x60;device_server_rest_api_success&#x60; - &#x60;device_server_rest_api_error&#x60; </param>
-        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified. </param>
-        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified. </param>
-        /// <param name="period">Period. Fetch the data for the period in days, weeks or hours. Sample values: 2h, 3w, 4d. The parameter is not mandatory, if the start and end time are specified. </param>
         /// <param name="interval">Group data by this interval in days, weeks or hours. Sample values: 2h, 3w, 4d. </param>
         /// <param name="authorization">Bearer {Access Token}. A valid API Gateway access token. The token is validated and the associated account identifier is used to retrieve account-specific statistics. </param>
+        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="period">Period. Fetch the data for the period in days, weeks or hours. Sample values: 2h, 3w, 4d. The parameter is not mandatory, if the start and end time are specified.  (optional)</param>
         /// <returns>Task of ApiResponse (SuccessfulResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SuccessfulResponse>> V3MetricsGetAsyncWithHttpInfo (string include, string start, string end, string period, string interval, string authorization);
+        System.Threading.Tasks.Task<ApiResponse<SuccessfulResponse>> V3MetricsGetAsyncWithHttpInfo (string include, string interval, string authorization, string start = null, string end = null, string period = null);
         #endregion Asynchronous Operations
     }
 
@@ -205,15 +205,15 @@ namespace statistics.Api
         /// </summary>
         /// <exception cref="statistics.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">A comma-separated list of requested metrics. Supported values are:  - &#x60;transactions&#x60; - &#x60;bootstraps_successful&#x60; - &#x60;bootstraps_failed&#x60; - &#x60;bootstraps_pending&#x60; - &#x60;device_server_rest_api_success&#x60; - &#x60;device_server_rest_api_error&#x60; </param>
-        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified. </param>
-        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified. </param>
-        /// <param name="period">Period. Fetch the data for the period in days, weeks or hours. Sample values: 2h, 3w, 4d. The parameter is not mandatory, if the start and end time are specified. </param>
         /// <param name="interval">Group data by this interval in days, weeks or hours. Sample values: 2h, 3w, 4d. </param>
         /// <param name="authorization">Bearer {Access Token}. A valid API Gateway access token. The token is validated and the associated account identifier is used to retrieve account-specific statistics. </param>
+        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="period">Period. Fetch the data for the period in days, weeks or hours. Sample values: 2h, 3w, 4d. The parameter is not mandatory, if the start and end time are specified.  (optional)</param>
         /// <returns>SuccessfulResponse</returns>
-        public SuccessfulResponse V3MetricsGet (string include, string start, string end, string period, string interval, string authorization)
+        public SuccessfulResponse V3MetricsGet (string include, string interval, string authorization, string start = null, string end = null, string period = null)
         {
-             ApiResponse<SuccessfulResponse> localVarResponse = V3MetricsGetWithHttpInfo(include, start, end, period, interval, authorization);
+             ApiResponse<SuccessfulResponse> localVarResponse = V3MetricsGetWithHttpInfo(include, interval, authorization, start, end, period);
              return localVarResponse.Data;
         }
 
@@ -222,26 +222,17 @@ namespace statistics.Api
         /// </summary>
         /// <exception cref="statistics.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">A comma-separated list of requested metrics. Supported values are:  - &#x60;transactions&#x60; - &#x60;bootstraps_successful&#x60; - &#x60;bootstraps_failed&#x60; - &#x60;bootstraps_pending&#x60; - &#x60;device_server_rest_api_success&#x60; - &#x60;device_server_rest_api_error&#x60; </param>
-        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified. </param>
-        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified. </param>
-        /// <param name="period">Period. Fetch the data for the period in days, weeks or hours. Sample values: 2h, 3w, 4d. The parameter is not mandatory, if the start and end time are specified. </param>
         /// <param name="interval">Group data by this interval in days, weeks or hours. Sample values: 2h, 3w, 4d. </param>
         /// <param name="authorization">Bearer {Access Token}. A valid API Gateway access token. The token is validated and the associated account identifier is used to retrieve account-specific statistics. </param>
+        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="period">Period. Fetch the data for the period in days, weeks or hours. Sample values: 2h, 3w, 4d. The parameter is not mandatory, if the start and end time are specified.  (optional)</param>
         /// <returns>ApiResponse of SuccessfulResponse</returns>
-        public ApiResponse< SuccessfulResponse > V3MetricsGetWithHttpInfo (string include, string start, string end, string period, string interval, string authorization)
+        public ApiResponse< SuccessfulResponse > V3MetricsGetWithHttpInfo (string include, string interval, string authorization, string start = null, string end = null, string period = null)
         {
             // verify the required parameter 'include' is set
             if (include == null)
                 throw new ApiException(400, "Missing required parameter 'include' when calling AccountApi->V3MetricsGet");
-            // verify the required parameter 'start' is set
-            if (start == null)
-                throw new ApiException(400, "Missing required parameter 'start' when calling AccountApi->V3MetricsGet");
-            // verify the required parameter 'end' is set
-            if (end == null)
-                throw new ApiException(400, "Missing required parameter 'end' when calling AccountApi->V3MetricsGet");
-            // verify the required parameter 'period' is set
-            if (period == null)
-                throw new ApiException(400, "Missing required parameter 'period' when calling AccountApi->V3MetricsGet");
             // verify the required parameter 'interval' is set
             if (interval == null)
                 throw new ApiException(400, "Missing required parameter 'interval' when calling AccountApi->V3MetricsGet");
@@ -311,15 +302,15 @@ namespace statistics.Api
         /// </summary>
         /// <exception cref="statistics.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">A comma-separated list of requested metrics. Supported values are:  - &#x60;transactions&#x60; - &#x60;bootstraps_successful&#x60; - &#x60;bootstraps_failed&#x60; - &#x60;bootstraps_pending&#x60; - &#x60;device_server_rest_api_success&#x60; - &#x60;device_server_rest_api_error&#x60; </param>
-        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified. </param>
-        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified. </param>
-        /// <param name="period">Period. Fetch the data for the period in days, weeks or hours. Sample values: 2h, 3w, 4d. The parameter is not mandatory, if the start and end time are specified. </param>
         /// <param name="interval">Group data by this interval in days, weeks or hours. Sample values: 2h, 3w, 4d. </param>
         /// <param name="authorization">Bearer {Access Token}. A valid API Gateway access token. The token is validated and the associated account identifier is used to retrieve account-specific statistics. </param>
+        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="period">Period. Fetch the data for the period in days, weeks or hours. Sample values: 2h, 3w, 4d. The parameter is not mandatory, if the start and end time are specified.  (optional)</param>
         /// <returns>Task of SuccessfulResponse</returns>
-        public async System.Threading.Tasks.Task<SuccessfulResponse> V3MetricsGetAsync (string include, string start, string end, string period, string interval, string authorization)
+        public async System.Threading.Tasks.Task<SuccessfulResponse> V3MetricsGetAsync (string include, string interval, string authorization, string start = null, string end = null, string period = null)
         {
-             ApiResponse<SuccessfulResponse> localVarResponse = await V3MetricsGetAsyncWithHttpInfo(include, start, end, period, interval, authorization);
+             ApiResponse<SuccessfulResponse> localVarResponse = await V3MetricsGetAsyncWithHttpInfo(include, interval, authorization, start, end, period);
              return localVarResponse.Data;
 
         }
@@ -329,26 +320,17 @@ namespace statistics.Api
         /// </summary>
         /// <exception cref="statistics.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">A comma-separated list of requested metrics. Supported values are:  - &#x60;transactions&#x60; - &#x60;bootstraps_successful&#x60; - &#x60;bootstraps_failed&#x60; - &#x60;bootstraps_pending&#x60; - &#x60;device_server_rest_api_success&#x60; - &#x60;device_server_rest_api_error&#x60; </param>
-        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified. </param>
-        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified. </param>
-        /// <param name="period">Period. Fetch the data for the period in days, weeks or hours. Sample values: 2h, 3w, 4d. The parameter is not mandatory, if the start and end time are specified. </param>
         /// <param name="interval">Group data by this interval in days, weeks or hours. Sample values: 2h, 3w, 4d. </param>
         /// <param name="authorization">Bearer {Access Token}. A valid API Gateway access token. The token is validated and the associated account identifier is used to retrieve account-specific statistics. </param>
+        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="period">Period. Fetch the data for the period in days, weeks or hours. Sample values: 2h, 3w, 4d. The parameter is not mandatory, if the start and end time are specified.  (optional)</param>
         /// <returns>Task of ApiResponse (SuccessfulResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SuccessfulResponse>> V3MetricsGetAsyncWithHttpInfo (string include, string start, string end, string period, string interval, string authorization)
+        public async System.Threading.Tasks.Task<ApiResponse<SuccessfulResponse>> V3MetricsGetAsyncWithHttpInfo (string include, string interval, string authorization, string start = null, string end = null, string period = null)
         {
             // verify the required parameter 'include' is set
             if (include == null)
                 throw new ApiException(400, "Missing required parameter 'include' when calling AccountApi->V3MetricsGet");
-            // verify the required parameter 'start' is set
-            if (start == null)
-                throw new ApiException(400, "Missing required parameter 'start' when calling AccountApi->V3MetricsGet");
-            // verify the required parameter 'end' is set
-            if (end == null)
-                throw new ApiException(400, "Missing required parameter 'end' when calling AccountApi->V3MetricsGet");
-            // verify the required parameter 'period' is set
-            if (period == null)
-                throw new ApiException(400, "Missing required parameter 'period' when calling AccountApi->V3MetricsGet");
             // verify the required parameter 'interval' is set
             if (interval == null)
                 throw new ApiException(400, "Missing required parameter 'interval' when calling AccountApi->V3MetricsGet");
