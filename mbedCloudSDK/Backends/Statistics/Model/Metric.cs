@@ -24,13 +24,13 @@ using System.ComponentModel.DataAnnotations;
 namespace statistics.Model
 {
     /// <summary>
-    /// Data
+    /// Metric
     /// </summary>
     [DataContract]
-    public partial class Data :  IEquatable<Data>, IValidatableObject
+    public partial class Metric :  IEquatable<Metric>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Data" /> class.
+        /// Initializes a new instance of the <see cref="Metric" /> class.
         /// </summary>
         /// <param name="DeviceServerRestApiError">Number of failed device server REST API requests the account has used..</param>
         /// <param name="BootstrapsFailed">Number of failed bootstraps the account has used..</param>
@@ -39,7 +39,7 @@ namespace statistics.Model
         /// <param name="DeviceServerRestApiSuccess">Number of successful device server REST API requests the account has used..</param>
         /// <param name="BootstrapsPending">Number of pending bootstraps the account has used..</param>
         /// <param name="BootstrapsSuccessful">Number of successful bootstraps the account has used..</param>
-        public Data(long? DeviceServerRestApiError = default(long?), long? BootstrapsFailed = default(long?), long? Transactions = default(long?), string Timestamp = default(string), long? DeviceServerRestApiSuccess = default(long?), long? BootstrapsPending = default(long?), long? BootstrapsSuccessful = default(long?))
+        public Metric(long? DeviceServerRestApiError = default(long?), long? BootstrapsFailed = default(long?), long? Transactions = default(long?), string Timestamp = default(string), long? DeviceServerRestApiSuccess = default(long?), long? BootstrapsPending = default(long?), long? BootstrapsSuccessful = default(long?))
         {
             this.DeviceServerRestApiError = DeviceServerRestApiError;
             this.BootstrapsFailed = BootstrapsFailed;
@@ -99,7 +99,7 @@ namespace statistics.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Data {\n");
+            sb.Append("class Metric {\n");
             sb.Append("  DeviceServerRestApiError: ").Append(DeviceServerRestApiError).Append("\n");
             sb.Append("  BootstrapsFailed: ").Append(BootstrapsFailed).Append("\n");
             sb.Append("  Transactions: ").Append(Transactions).Append("\n");
@@ -128,15 +128,15 @@ namespace statistics.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as Data);
+            return this.Equals(obj as Metric);
         }
 
         /// <summary>
-        /// Returns true if Data instances are equal
+        /// Returns true if Metric instances are equal
         /// </summary>
-        /// <param name="other">Instance of Data to be compared</param>
+        /// <param name="other">Instance of Metric to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Data other)
+        public bool Equals(Metric other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)

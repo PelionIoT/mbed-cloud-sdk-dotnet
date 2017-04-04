@@ -111,10 +111,10 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
- - [Model.Data](docs/Data.md)
  - [Model.ErrorResponse](docs/ErrorResponse.md)
  - [Model.Field](docs/Field.md)
  - [Model.FieldsArray](docs/FieldsArray.md)
+ - [Model.Metric](docs/Metric.md)
  - [Model.SuccessfulResponse](docs/SuccessfulResponse.md)
 
 
