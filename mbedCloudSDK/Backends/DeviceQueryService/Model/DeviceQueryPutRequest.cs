@@ -24,58 +24,69 @@ using System.ComponentModel.DataAnnotations;
 namespace device_query_service.Model
 {
     /// <summary>
-    /// Body
+    /// DeviceQueryPutRequest
     /// </summary>
     [DataContract]
-    public partial class Body :  IEquatable<Body>, IValidatableObject
+    public partial class DeviceQueryPutRequest :  IEquatable<DeviceQueryPutRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Body" /> class.
+        /// Initializes a new instance of the <see cref="DeviceQueryPutRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected Body() { }
+        protected DeviceQueryPutRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Body" /> class.
+        /// Initializes a new instance of the <see cref="DeviceQueryPutRequest" /> class.
         /// </summary>
-        /// <param name="Query">Query (required).</param>
-        /// <param name="Description">Description.</param>
-        /// <param name="Name">Name (required).</param>
-        public Body(string Query = default(string), string Description = default(string), string Name = default(string))
+        /// <param name="Query">The device query (required).</param>
+        /// <param name="Description">The description of the object (required).</param>
+        /// <param name="Name">The name of the query (required).</param>
+        public DeviceQueryPutRequest(string Query = default(string), string Description = default(string), string Name = default(string))
         {
             // to ensure "Query" is required (not null)
             if (Query == null)
             {
-                throw new InvalidDataException("Query is a required property for Body and cannot be null");
+                throw new InvalidDataException("Query is a required property for DeviceQueryPutRequest and cannot be null");
             }
             else
             {
                 this.Query = Query;
             }
+            // to ensure "Description" is required (not null)
+            if (Description == null)
+            {
+                throw new InvalidDataException("Description is a required property for DeviceQueryPutRequest and cannot be null");
+            }
+            else
+            {
+                this.Description = Description;
+            }
             // to ensure "Name" is required (not null)
             if (Name == null)
             {
-                throw new InvalidDataException("Name is a required property for Body and cannot be null");
+                throw new InvalidDataException("Name is a required property for DeviceQueryPutRequest and cannot be null");
             }
             else
             {
                 this.Name = Name;
             }
-            this.Description = Description;
         }
         
         /// <summary>
-        /// Gets or Sets Query
+        /// The device query
         /// </summary>
+        /// <value>The device query</value>
         [DataMember(Name="query", EmitDefaultValue=false)]
         public string Query { get; set; }
         /// <summary>
-        /// Gets or Sets Description
+        /// The description of the object
         /// </summary>
+        /// <value>The description of the object</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
         /// <summary>
-        /// Gets or Sets Name
+        /// The name of the query
         /// </summary>
+        /// <value>The name of the query</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
@@ -85,7 +96,7 @@ namespace device_query_service.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Body {\n");
+            sb.Append("class DeviceQueryPutRequest {\n");
             sb.Append("  Query: ").Append(Query).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
@@ -110,15 +121,15 @@ namespace device_query_service.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as Body);
+            return this.Equals(obj as DeviceQueryPutRequest);
         }
 
         /// <summary>
-        /// Returns true if Body instances are equal
+        /// Returns true if DeviceQueryPutRequest instances are equal
         /// </summary>
-        /// <param name="other">Instance of Body to be compared</param>
+        /// <param name="other">Instance of DeviceQueryPutRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Body other)
+        public bool Equals(DeviceQueryPutRequest other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)

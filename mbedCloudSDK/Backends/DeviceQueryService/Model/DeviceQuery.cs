@@ -42,11 +42,10 @@ namespace device_query_service.Model
         /// <param name="_Object">The API resource entity (required).</param>
         /// <param name="UpdatedAt">The time the object was updated (required).</param>
         /// <param name="Etag">The entity instance signature (required).</param>
-        /// <param name="QueryId">DEPRECATED: The ID of the query (required).</param>
         /// <param name="Query">The device query (required).</param>
         /// <param name="Id">The ID of the query (required).</param>
         /// <param name="Name">The name of the query (required).</param>
-        public DeviceQuery(string Description = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), string QueryId = default(string), string Query = default(string), string Id = default(string), string Name = default(string))
+        public DeviceQuery(string Description = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), string Query = default(string), string Id = default(string), string Name = default(string))
         {
             // to ensure "Description" is required (not null)
             if (Description == null)
@@ -92,15 +91,6 @@ namespace device_query_service.Model
             else
             {
                 this.Etag = Etag;
-            }
-            // to ensure "QueryId" is required (not null)
-            if (QueryId == null)
-            {
-                throw new InvalidDataException("QueryId is a required property for DeviceQuery and cannot be null");
-            }
-            else
-            {
-                this.QueryId = QueryId;
             }
             // to ensure "Query" is required (not null)
             if (Query == null)
@@ -162,12 +152,6 @@ namespace device_query_service.Model
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public DateTime? Etag { get; set; }
         /// <summary>
-        /// DEPRECATED: The ID of the query
-        /// </summary>
-        /// <value>DEPRECATED: The ID of the query</value>
-        [DataMember(Name="query_id", EmitDefaultValue=false)]
-        public string QueryId { get; set; }
-        /// <summary>
         /// The device query
         /// </summary>
         /// <value>The device query</value>
@@ -198,7 +182,6 @@ namespace device_query_service.Model
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
-            sb.Append("  QueryId: ").Append(QueryId).Append("\n");
             sb.Append("  Query: ").Append(Query).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
@@ -264,11 +247,6 @@ namespace device_query_service.Model
                     this.Etag.Equals(other.Etag)
                 ) && 
                 (
-                    this.QueryId == other.QueryId ||
-                    this.QueryId != null &&
-                    this.QueryId.Equals(other.QueryId)
-                ) && 
-                (
                     this.Query == other.Query ||
                     this.Query != null &&
                     this.Query.Equals(other.Query)
@@ -306,8 +284,6 @@ namespace device_query_service.Model
                     hash = hash * 59 + this.UpdatedAt.GetHashCode();
                 if (this.Etag != null)
                     hash = hash * 59 + this.Etag.GetHashCode();
-                if (this.QueryId != null)
-                    hash = hash * 59 + this.QueryId.GetHashCode();
                 if (this.Query != null)
                     hash = hash * 59 + this.Query.GetHashCode();
                 if (this.Id != null)

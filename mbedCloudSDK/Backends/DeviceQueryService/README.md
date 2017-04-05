@@ -109,11 +109,10 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
- - [Model.Body](docs/Body.md)
  - [Model.DeviceQuery](docs/DeviceQuery.md)
  - [Model.DeviceQueryPage](docs/DeviceQueryPage.md)
- - [Model.WriteDeviceQuery](docs/WriteDeviceQuery.md)
- - [Model.WriteDeviceQueryPage](docs/WriteDeviceQueryPage.md)
+ - [Model.DeviceQueryPatchRequest](docs/DeviceQueryPatchRequest.md)
+ - [Model.DeviceQueryPutRequest](docs/DeviceQueryPutRequest.md)
 
 
 <a name="documentation-for-authorization"></a>

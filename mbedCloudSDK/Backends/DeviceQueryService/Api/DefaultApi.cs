@@ -53,8 +53,8 @@ namespace device_query_service.Api
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>DeviceQuery</returns>
-        DeviceQuery DeviceQueryDestroy (string queryId);
+        /// <returns></returns>
+        void DeviceQueryDestroy (string queryId);
 
         /// <summary>
         /// 
@@ -64,8 +64,8 @@ namespace device_query_service.Api
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>ApiResponse of DeviceQuery</returns>
-        ApiResponse<DeviceQuery> DeviceQueryDestroyWithHttpInfo (string queryId);
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> DeviceQueryDestroyWithHttpInfo (string queryId);
         /// <summary>
         /// 
         /// </summary>
@@ -89,12 +89,11 @@ namespace device_query_service.Api
         /// <param name="name"> (optional)</param>
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
-        /// <param name="queryId"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
         /// <param name="updatedAtGte"> (optional)</param>
         /// <param name="updatedAtLte"> (optional)</param>
         /// <returns>DeviceQueryPage</returns>
-        DeviceQueryPage DeviceQueryList (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string queryId = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null);
+        DeviceQueryPage DeviceQueryList (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null);
 
         /// <summary>
         /// 
@@ -119,12 +118,11 @@ namespace device_query_service.Api
         /// <param name="name"> (optional)</param>
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
-        /// <param name="queryId"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
         /// <param name="updatedAtGte"> (optional)</param>
         /// <param name="updatedAtLte"> (optional)</param>
         /// <returns>ApiResponse of DeviceQueryPage</returns>
-        ApiResponse<DeviceQueryPage> DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string queryId = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null);
+        ApiResponse<DeviceQueryPage> DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null);
         /// <summary>
         /// 
         /// </summary>
@@ -135,7 +133,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="deviceQuery"></param>
         /// <returns>DeviceQuery</returns>
-        DeviceQuery DeviceQueryPartialUpdate (string queryId, DeviceQuery deviceQuery);
+        DeviceQuery DeviceQueryPartialUpdate (string queryId, DeviceQueryPatchRequest deviceQuery);
 
         /// <summary>
         /// 
@@ -147,7 +145,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="deviceQuery"></param>
         /// <returns>ApiResponse of DeviceQuery</returns>
-        ApiResponse<DeviceQuery> DeviceQueryPartialUpdateWithHttpInfo (string queryId, DeviceQuery deviceQuery);
+        ApiResponse<DeviceQuery> DeviceQueryPartialUpdateWithHttpInfo (string queryId, DeviceQueryPatchRequest deviceQuery);
         /// <summary>
         /// 
         /// </summary>
@@ -179,7 +177,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="body">Device query update object</param>
         /// <returns>DeviceQuery</returns>
-        DeviceQuery DeviceQueryUpdate (string queryId, Body body);
+        DeviceQuery DeviceQueryUpdate (string queryId, DeviceQueryPutRequest body);
 
         /// <summary>
         /// 
@@ -191,7 +189,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="body">Device query update object</param>
         /// <returns>ApiResponse of DeviceQuery</returns>
-        ApiResponse<DeviceQuery> DeviceQueryUpdateWithHttpInfo (string queryId, Body body);
+        ApiResponse<DeviceQuery> DeviceQueryUpdateWithHttpInfo (string queryId, DeviceQueryPutRequest body);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -223,8 +221,8 @@ namespace device_query_service.Api
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>Task of DeviceQuery</returns>
-        System.Threading.Tasks.Task<DeviceQuery> DeviceQueryDestroyAsync (string queryId);
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task DeviceQueryDestroyAsync (string queryId);
 
         /// <summary>
         /// 
@@ -234,8 +232,8 @@ namespace device_query_service.Api
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>Task of ApiResponse (DeviceQuery)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryDestroyAsyncWithHttpInfo (string queryId);
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeviceQueryDestroyAsyncWithHttpInfo (string queryId);
         /// <summary>
         /// 
         /// </summary>
@@ -259,12 +257,11 @@ namespace device_query_service.Api
         /// <param name="name"> (optional)</param>
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
-        /// <param name="queryId"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
         /// <param name="updatedAtGte"> (optional)</param>
         /// <param name="updatedAtLte"> (optional)</param>
         /// <returns>Task of DeviceQueryPage</returns>
-        System.Threading.Tasks.Task<DeviceQueryPage> DeviceQueryListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string queryId = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null);
+        System.Threading.Tasks.Task<DeviceQueryPage> DeviceQueryListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null);
 
         /// <summary>
         /// 
@@ -289,12 +286,11 @@ namespace device_query_service.Api
         /// <param name="name"> (optional)</param>
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
-        /// <param name="queryId"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
         /// <param name="updatedAtGte"> (optional)</param>
         /// <param name="updatedAtLte"> (optional)</param>
         /// <returns>Task of ApiResponse (DeviceQueryPage)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQueryPage>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string queryId = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null);
+        System.Threading.Tasks.Task<ApiResponse<DeviceQueryPage>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null);
         /// <summary>
         /// 
         /// </summary>
@@ -305,7 +301,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="deviceQuery"></param>
         /// <returns>Task of DeviceQuery</returns>
-        System.Threading.Tasks.Task<DeviceQuery> DeviceQueryPartialUpdateAsync (string queryId, DeviceQuery deviceQuery);
+        System.Threading.Tasks.Task<DeviceQuery> DeviceQueryPartialUpdateAsync (string queryId, DeviceQueryPatchRequest deviceQuery);
 
         /// <summary>
         /// 
@@ -317,7 +313,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="deviceQuery"></param>
         /// <returns>Task of ApiResponse (DeviceQuery)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryPartialUpdateAsyncWithHttpInfo (string queryId, DeviceQuery deviceQuery);
+        System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryPartialUpdateAsyncWithHttpInfo (string queryId, DeviceQueryPatchRequest deviceQuery);
         /// <summary>
         /// 
         /// </summary>
@@ -349,7 +345,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="body">Device query update object</param>
         /// <returns>Task of DeviceQuery</returns>
-        System.Threading.Tasks.Task<DeviceQuery> DeviceQueryUpdateAsync (string queryId, Body body);
+        System.Threading.Tasks.Task<DeviceQuery> DeviceQueryUpdateAsync (string queryId, DeviceQueryPutRequest body);
 
         /// <summary>
         /// 
@@ -361,7 +357,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="body">Device query update object</param>
         /// <returns>Task of ApiResponse (DeviceQuery)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryUpdateAsyncWithHttpInfo (string queryId, Body body);
+        System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryUpdateAsyncWithHttpInfo (string queryId, DeviceQueryPutRequest body);
         #endregion Asynchronous Operations
     }
 
@@ -643,11 +639,10 @@ namespace device_query_service.Api
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>DeviceQuery</returns>
-        public DeviceQuery DeviceQueryDestroy (string queryId)
+        /// <returns></returns>
+        public void DeviceQueryDestroy (string queryId)
         {
-             ApiResponse<DeviceQuery> localVarResponse = DeviceQueryDestroyWithHttpInfo(queryId);
-             return localVarResponse.Data;
+             DeviceQueryDestroyWithHttpInfo(queryId);
         }
 
         /// <summary>
@@ -655,8 +650,8 @@ namespace device_query_service.Api
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>ApiResponse of DeviceQuery</returns>
-        public ApiResponse< DeviceQuery > DeviceQueryDestroyWithHttpInfo (string queryId)
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> DeviceQueryDestroyWithHttpInfo (string queryId)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)
@@ -707,10 +702,10 @@ namespace device_query_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceQuery>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceQuery) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuery)));
             
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
         }
 
         /// <summary>
@@ -718,11 +713,10 @@ namespace device_query_service.Api
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>Task of DeviceQuery</returns>
-        public async System.Threading.Tasks.Task<DeviceQuery> DeviceQueryDestroyAsync (string queryId)
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task DeviceQueryDestroyAsync (string queryId)
         {
-             ApiResponse<DeviceQuery> localVarResponse = await DeviceQueryDestroyAsyncWithHttpInfo(queryId);
-             return localVarResponse.Data;
+             await DeviceQueryDestroyAsyncWithHttpInfo(queryId);
 
         }
 
@@ -731,8 +725,8 @@ namespace device_query_service.Api
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>Task of ApiResponse (DeviceQuery)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryDestroyAsyncWithHttpInfo (string queryId)
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeviceQueryDestroyAsyncWithHttpInfo (string queryId)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)
@@ -782,10 +776,10 @@ namespace device_query_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceQuery>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceQuery) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuery)));
             
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
         }
 
         /// <summary>
@@ -808,14 +802,13 @@ namespace device_query_service.Api
         /// <param name="name"> (optional)</param>
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
-        /// <param name="queryId"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
         /// <param name="updatedAtGte"> (optional)</param>
         /// <param name="updatedAtLte"> (optional)</param>
         /// <returns>DeviceQueryPage</returns>
-        public DeviceQueryPage DeviceQueryList (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string queryId = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null)
+        public DeviceQueryPage DeviceQueryList (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null)
         {
-             ApiResponse<DeviceQueryPage> localVarResponse = DeviceQueryListWithHttpInfo(limit, order, after, filter, include, createdAt, createdAtGte, createdAtLte, description, etag, etagAtGte, etagAtLte, id, name, _object, query, queryId, updatedAt, updatedAtGte, updatedAtLte);
+             ApiResponse<DeviceQueryPage> localVarResponse = DeviceQueryListWithHttpInfo(limit, order, after, filter, include, createdAt, createdAtGte, createdAtLte, description, etag, etagAtGte, etagAtLte, id, name, _object, query, updatedAt, updatedAtGte, updatedAtLte);
              return localVarResponse.Data;
         }
 
@@ -839,12 +832,11 @@ namespace device_query_service.Api
         /// <param name="name"> (optional)</param>
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
-        /// <param name="queryId"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
         /// <param name="updatedAtGte"> (optional)</param>
         /// <param name="updatedAtLte"> (optional)</param>
         /// <returns>ApiResponse of DeviceQueryPage</returns>
-        public ApiResponse< DeviceQueryPage > DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string queryId = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null)
+        public ApiResponse< DeviceQueryPage > DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null)
         {
 
             var localVarPath = "/v3/device-queries/";
@@ -886,7 +878,6 @@ namespace device_query_service.Api
             if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
             if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
             if (query != null) localVarQueryParams.Add("query", Configuration.ApiClient.ParameterToString(query)); // query parameter
-            if (queryId != null) localVarQueryParams.Add("query_id", Configuration.ApiClient.ParameterToString(queryId)); // query parameter
             if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
             if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
             if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
@@ -937,14 +928,13 @@ namespace device_query_service.Api
         /// <param name="name"> (optional)</param>
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
-        /// <param name="queryId"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
         /// <param name="updatedAtGte"> (optional)</param>
         /// <param name="updatedAtLte"> (optional)</param>
         /// <returns>Task of DeviceQueryPage</returns>
-        public async System.Threading.Tasks.Task<DeviceQueryPage> DeviceQueryListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string queryId = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null)
+        public async System.Threading.Tasks.Task<DeviceQueryPage> DeviceQueryListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null)
         {
-             ApiResponse<DeviceQueryPage> localVarResponse = await DeviceQueryListAsyncWithHttpInfo(limit, order, after, filter, include, createdAt, createdAtGte, createdAtLte, description, etag, etagAtGte, etagAtLte, id, name, _object, query, queryId, updatedAt, updatedAtGte, updatedAtLte);
+             ApiResponse<DeviceQueryPage> localVarResponse = await DeviceQueryListAsyncWithHttpInfo(limit, order, after, filter, include, createdAt, createdAtGte, createdAtLte, description, etag, etagAtGte, etagAtLte, id, name, _object, query, updatedAt, updatedAtGte, updatedAtLte);
              return localVarResponse.Data;
 
         }
@@ -969,12 +959,11 @@ namespace device_query_service.Api
         /// <param name="name"> (optional)</param>
         /// <param name="_object"> (optional)</param>
         /// <param name="query"> (optional)</param>
-        /// <param name="queryId"> (optional)</param>
         /// <param name="updatedAt"> (optional)</param>
         /// <param name="updatedAtGte"> (optional)</param>
         /// <param name="updatedAtLte"> (optional)</param>
         /// <returns>Task of ApiResponse (DeviceQueryPage)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryPage>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string queryId = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryPage>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null)
         {
 
             var localVarPath = "/v3/device-queries/";
@@ -1016,7 +1005,6 @@ namespace device_query_service.Api
             if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
             if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
             if (query != null) localVarQueryParams.Add("query", Configuration.ApiClient.ParameterToString(query)); // query parameter
-            if (queryId != null) localVarQueryParams.Add("query_id", Configuration.ApiClient.ParameterToString(queryId)); // query parameter
             if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
             if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
             if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
@@ -1053,7 +1041,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="deviceQuery"></param>
         /// <returns>DeviceQuery</returns>
-        public DeviceQuery DeviceQueryPartialUpdate (string queryId, DeviceQuery deviceQuery)
+        public DeviceQuery DeviceQueryPartialUpdate (string queryId, DeviceQueryPatchRequest deviceQuery)
         {
              ApiResponse<DeviceQuery> localVarResponse = DeviceQueryPartialUpdateWithHttpInfo(queryId, deviceQuery);
              return localVarResponse.Data;
@@ -1066,7 +1054,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="deviceQuery"></param>
         /// <returns>ApiResponse of DeviceQuery</returns>
-        public ApiResponse< DeviceQuery > DeviceQueryPartialUpdateWithHttpInfo (string queryId, DeviceQuery deviceQuery)
+        public ApiResponse< DeviceQuery > DeviceQueryPartialUpdateWithHttpInfo (string queryId, DeviceQueryPatchRequest deviceQuery)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)
@@ -1141,7 +1129,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="deviceQuery"></param>
         /// <returns>Task of DeviceQuery</returns>
-        public async System.Threading.Tasks.Task<DeviceQuery> DeviceQueryPartialUpdateAsync (string queryId, DeviceQuery deviceQuery)
+        public async System.Threading.Tasks.Task<DeviceQuery> DeviceQueryPartialUpdateAsync (string queryId, DeviceQueryPatchRequest deviceQuery)
         {
              ApiResponse<DeviceQuery> localVarResponse = await DeviceQueryPartialUpdateAsyncWithHttpInfo(queryId, deviceQuery);
              return localVarResponse.Data;
@@ -1155,7 +1143,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="deviceQuery"></param>
         /// <returns>Task of ApiResponse (DeviceQuery)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryPartialUpdateAsyncWithHttpInfo (string queryId, DeviceQuery deviceQuery)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryPartialUpdateAsyncWithHttpInfo (string queryId, DeviceQueryPatchRequest deviceQuery)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)
@@ -1379,7 +1367,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="body">Device query update object</param>
         /// <returns>DeviceQuery</returns>
-        public DeviceQuery DeviceQueryUpdate (string queryId, Body body)
+        public DeviceQuery DeviceQueryUpdate (string queryId, DeviceQueryPutRequest body)
         {
              ApiResponse<DeviceQuery> localVarResponse = DeviceQueryUpdateWithHttpInfo(queryId, body);
              return localVarResponse.Data;
@@ -1392,7 +1380,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="body">Device query update object</param>
         /// <returns>ApiResponse of DeviceQuery</returns>
-        public ApiResponse< DeviceQuery > DeviceQueryUpdateWithHttpInfo (string queryId, Body body)
+        public ApiResponse< DeviceQuery > DeviceQueryUpdateWithHttpInfo (string queryId, DeviceQueryPutRequest body)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)
@@ -1467,7 +1455,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="body">Device query update object</param>
         /// <returns>Task of DeviceQuery</returns>
-        public async System.Threading.Tasks.Task<DeviceQuery> DeviceQueryUpdateAsync (string queryId, Body body)
+        public async System.Threading.Tasks.Task<DeviceQuery> DeviceQueryUpdateAsync (string queryId, DeviceQueryPutRequest body)
         {
              ApiResponse<DeviceQuery> localVarResponse = await DeviceQueryUpdateAsyncWithHttpInfo(queryId, body);
              return localVarResponse.Data;
@@ -1481,7 +1469,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="body">Device query update object</param>
         /// <returns>Task of ApiResponse (DeviceQuery)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryUpdateAsyncWithHttpInfo (string queryId, Body body)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryUpdateAsyncWithHttpInfo (string queryId, DeviceQueryPutRequest body)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)

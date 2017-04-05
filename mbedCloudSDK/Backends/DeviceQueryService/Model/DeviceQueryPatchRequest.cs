@@ -24,47 +24,22 @@ using System.ComponentModel.DataAnnotations;
 namespace device_query_service.Model
 {
     /// <summary>
-    /// WriteDeviceQuery
+    /// DeviceQueryPatchRequest
     /// </summary>
     [DataContract]
-    public partial class WriteDeviceQuery :  IEquatable<WriteDeviceQuery>, IValidatableObject
+    public partial class DeviceQueryPatchRequest :  IEquatable<DeviceQueryPatchRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WriteDeviceQuery" /> class.
+        /// Initializes a new instance of the <see cref="DeviceQueryPatchRequest" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected WriteDeviceQuery() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WriteDeviceQuery" /> class.
-        /// </summary>
-        /// <param name="Query">The device query (required).</param>
-        /// <param name="_Object">The API resource entity.</param>
-        /// <param name="QueryId">DEPRECATED: The ID of the query.</param>
+        /// <param name="Query">The device query.</param>
         /// <param name="Description">The description of the object.</param>
-        /// <param name="Name">The name of the query (required).</param>
-        public WriteDeviceQuery(string Query = default(string), string _Object = default(string), string QueryId = default(string), string Description = default(string), string Name = default(string))
+        /// <param name="Name">The name of the query.</param>
+        public DeviceQueryPatchRequest(string Query = default(string), string Description = default(string), string Name = default(string))
         {
-            // to ensure "Query" is required (not null)
-            if (Query == null)
-            {
-                throw new InvalidDataException("Query is a required property for WriteDeviceQuery and cannot be null");
-            }
-            else
-            {
-                this.Query = Query;
-            }
-            // to ensure "Name" is required (not null)
-            if (Name == null)
-            {
-                throw new InvalidDataException("Name is a required property for WriteDeviceQuery and cannot be null");
-            }
-            else
-            {
-                this.Name = Name;
-            }
-            this._Object = _Object;
-            this.QueryId = QueryId;
+            this.Query = Query;
             this.Description = Description;
+            this.Name = Name;
         }
         
         /// <summary>
@@ -73,18 +48,6 @@ namespace device_query_service.Model
         /// <value>The device query</value>
         [DataMember(Name="query", EmitDefaultValue=false)]
         public string Query { get; set; }
-        /// <summary>
-        /// The API resource entity
-        /// </summary>
-        /// <value>The API resource entity</value>
-        [DataMember(Name="object", EmitDefaultValue=false)]
-        public string _Object { get; set; }
-        /// <summary>
-        /// DEPRECATED: The ID of the query
-        /// </summary>
-        /// <value>DEPRECATED: The ID of the query</value>
-        [DataMember(Name="query_id", EmitDefaultValue=false)]
-        public string QueryId { get; set; }
         /// <summary>
         /// The description of the object
         /// </summary>
@@ -104,10 +67,8 @@ namespace device_query_service.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class WriteDeviceQuery {\n");
+            sb.Append("class DeviceQueryPatchRequest {\n");
             sb.Append("  Query: ").Append(Query).Append("\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
-            sb.Append("  QueryId: ").Append(QueryId).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
@@ -131,15 +92,15 @@ namespace device_query_service.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as WriteDeviceQuery);
+            return this.Equals(obj as DeviceQueryPatchRequest);
         }
 
         /// <summary>
-        /// Returns true if WriteDeviceQuery instances are equal
+        /// Returns true if DeviceQueryPatchRequest instances are equal
         /// </summary>
-        /// <param name="other">Instance of WriteDeviceQuery to be compared</param>
+        /// <param name="other">Instance of DeviceQueryPatchRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(WriteDeviceQuery other)
+        public bool Equals(DeviceQueryPatchRequest other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -150,16 +111,6 @@ namespace device_query_service.Model
                     this.Query == other.Query ||
                     this.Query != null &&
                     this.Query.Equals(other.Query)
-                ) && 
-                (
-                    this._Object == other._Object ||
-                    this._Object != null &&
-                    this._Object.Equals(other._Object)
-                ) && 
-                (
-                    this.QueryId == other.QueryId ||
-                    this.QueryId != null &&
-                    this.QueryId.Equals(other.QueryId)
                 ) && 
                 (
                     this.Description == other.Description ||
@@ -186,10 +137,6 @@ namespace device_query_service.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.Query != null)
                     hash = hash * 59 + this.Query.GetHashCode();
-                if (this._Object != null)
-                    hash = hash * 59 + this._Object.GetHashCode();
-                if (this.QueryId != null)
-                    hash = hash * 59 + this.QueryId.GetHashCode();
                 if (this.Description != null)
                     hash = hash * 59 + this.Description.GetHashCode();
                 if (this.Name != null)
