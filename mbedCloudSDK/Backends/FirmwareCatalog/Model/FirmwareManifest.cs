@@ -38,7 +38,6 @@ namespace firmware_catalog.Model
         /// Initializes a new instance of the <see cref="FirmwareManifest" /> class.
         /// </summary>
         /// <param name="Datafile">Datafile (required).</param>
-        /// <param name="ManifestId">DEPRECATED: The ID of the firmware manifest (required).</param>
         /// <param name="Description">The description of the object (required).</param>
         /// <param name="Timestamp">The version of the firmware manifest (as a timestamp) (required).</param>
         /// <param name="CreatedAt">The time the object was created (required).</param>
@@ -49,7 +48,7 @@ namespace firmware_catalog.Model
         /// <param name="DeviceClass">The class of device (required).</param>
         /// <param name="Id">The ID of the firmware manifest (required).</param>
         /// <param name="Name">The name of the object (required).</param>
-        public FirmwareManifest(byte[] Datafile = default(byte[]), string ManifestId = default(string), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), Object ManifestContents = default(Object), DateTime? Etag = default(DateTime?), string DeviceClass = default(string), string Id = default(string), string Name = default(string))
+        public FirmwareManifest(byte[] Datafile = default(byte[]), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), Object ManifestContents = default(Object), DateTime? Etag = default(DateTime?), string DeviceClass = default(string), string Id = default(string), string Name = default(string))
         {
             // to ensure "Datafile" is required (not null)
             if (Datafile == null)
@@ -59,15 +58,6 @@ namespace firmware_catalog.Model
             else
             {
                 this.Datafile = Datafile;
-            }
-            // to ensure "ManifestId" is required (not null)
-            if (ManifestId == null)
-            {
-                throw new InvalidDataException("ManifestId is a required property for FirmwareManifest and cannot be null");
-            }
-            else
-            {
-                this.ManifestId = ManifestId;
             }
             // to ensure "Description" is required (not null)
             if (Description == null)
@@ -167,12 +157,6 @@ namespace firmware_catalog.Model
         [DataMember(Name="datafile", EmitDefaultValue=false)]
         public byte[] Datafile { get; set; }
         /// <summary>
-        /// DEPRECATED: The ID of the firmware manifest
-        /// </summary>
-        /// <value>DEPRECATED: The ID of the firmware manifest</value>
-        [DataMember(Name="manifest_id", EmitDefaultValue=false)]
-        public string ManifestId { get; set; }
-        /// <summary>
         /// The description of the object
         /// </summary>
         /// <value>The description of the object</value>
@@ -241,7 +225,6 @@ namespace firmware_catalog.Model
             var sb = new StringBuilder();
             sb.Append("class FirmwareManifest {\n");
             sb.Append("  Datafile: ").Append(Datafile).Append("\n");
-            sb.Append("  ManifestId: ").Append(ManifestId).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
@@ -292,11 +275,6 @@ namespace firmware_catalog.Model
                     this.Datafile == other.Datafile ||
                     this.Datafile != null &&
                     this.Datafile.Equals(other.Datafile)
-                ) && 
-                (
-                    this.ManifestId == other.ManifestId ||
-                    this.ManifestId != null &&
-                    this.ManifestId.Equals(other.ManifestId)
                 ) && 
                 (
                     this.Description == other.Description ||
@@ -363,8 +341,6 @@ namespace firmware_catalog.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.Datafile != null)
                     hash = hash * 59 + this.Datafile.GetHashCode();
-                if (this.ManifestId != null)
-                    hash = hash * 59 + this.ManifestId.GetHashCode();
                 if (this.Description != null)
                     hash = hash * 59 + this.Description.GetHashCode();
                 if (this.Timestamp != null)

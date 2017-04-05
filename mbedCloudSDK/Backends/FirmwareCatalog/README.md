@@ -78,26 +78,10 @@ namespace Example
             var datafile = new System.IO.Stream(); // System.IO.Stream | The firmware image file to upload
             var name = name_example;  // string | The name of the object
             var description = description_example;  // string | The description of the object (optional) 
-            var updatedAt = updatedAt_example;  // string |  (optional) 
-            var updatedAtGte = updatedAtGte_example;  // string |  (optional) 
-            var updatedAtLte = updatedAtLte_example;  // string |  (optional) 
-            var updatingIpAddress = updatingIpAddress_example;  // string |  (optional) 
-            var etag = etag_example;  // string |  (optional) 
-            var etagGte = etagGte_example;  // string |  (optional) 
-            var etagLte = etagLte_example;  // string |  (optional) 
-            var updatingRequestId = updatingRequestId_example;  // string |  (optional) 
-            var createdAt = createdAt_example;  // string |  (optional) 
-            var createdAtGte = createdAtGte_example;  // string |  (optional) 
-            var createdAtLte = createdAtLte_example;  // string |  (optional) 
-            var description2 = description_example;  // string |  (optional) 
-            var _object = _object_example;  // string |  (optional) 
-            var imageId = imageId_example;  // string |  (optional) 
-            var datafileChecksum = datafileChecksum_example;  // string |  (optional) 
-            var name2 = name_example;  // string |  (optional) 
 
             try
             {
-                FirmwareImage result = apiInstance.FirmwareImageCreate(datafile, name, description, updatedAt, updatedAtGte, updatedAtLte, updatingIpAddress, etag, etagGte, etagLte, updatingRequestId, createdAt, createdAtGte, createdAtLte, description2, _object, imageId, datafileChecksum, name2);
+                FirmwareImage result = apiInstance.FirmwareImageCreate(datafile, name, description);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -133,10 +117,6 @@ Class | Method | HTTP request | Description
  - [Model.FirmwareImagePage](docs/FirmwareImagePage.md)
  - [Model.FirmwareManifest](docs/FirmwareManifest.md)
  - [Model.FirmwareManifestPage](docs/FirmwareManifestPage.md)
- - [Model.WriteFirmwareImage](docs/WriteFirmwareImage.md)
- - [Model.WriteFirmwareImagePage](docs/WriteFirmwareImagePage.md)
- - [Model.WriteFirmwareManifest](docs/WriteFirmwareManifest.md)
- - [Model.WriteFirmwareManifestPage](docs/WriteFirmwareManifestPage.md)
 
 
 <a name="documentation-for-authorization"></a>

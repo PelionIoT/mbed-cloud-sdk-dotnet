@@ -11,7 +11,7 @@ OpenAPI spec version: 3
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6F86F9B8-4E18-4E03-87A6-89DD25B71759}</ProjectGuid>
+    <ProjectGuid>{75A09121-89B3-4D61-9C93-81CC382C78E1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>connector_frontend</RootNamespace>

@@ -32,22 +32,83 @@ namespace firmware_catalog.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="FirmwareManifestPage" /> class.
         /// </summary>
-        /// <param name="_Object">_Object.</param>
-        /// <param name="HasMore">HasMore.</param>
-        /// <param name="TotalCount">TotalCount.</param>
-        /// <param name="After">After.</param>
-        /// <param name="Limit">Limit.</param>
-        /// <param name="Data">Data.</param>
-        /// <param name="Order">Order.</param>
+        [JsonConstructorAttribute]
+        protected FirmwareManifestPage() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FirmwareManifestPage" /> class.
+        /// </summary>
+        /// <param name="_Object">_Object (required).</param>
+        /// <param name="HasMore">HasMore (required).</param>
+        /// <param name="TotalCount">TotalCount (required).</param>
+        /// <param name="After">After (required).</param>
+        /// <param name="Limit">Limit (required).</param>
+        /// <param name="Data">Data (required).</param>
+        /// <param name="Order">Order (required).</param>
         public FirmwareManifestPage(string _Object = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), string After = default(string), int? Limit = default(int?), List<FirmwareManifest> Data = default(List<FirmwareManifest>), string Order = default(string))
         {
-            this._Object = _Object;
-            this.HasMore = HasMore;
-            this.TotalCount = TotalCount;
-            this.After = After;
-            this.Limit = Limit;
-            this.Data = Data;
-            this.Order = Order;
+            // to ensure "_Object" is required (not null)
+            if (_Object == null)
+            {
+                throw new InvalidDataException("_Object is a required property for FirmwareManifestPage and cannot be null");
+            }
+            else
+            {
+                this._Object = _Object;
+            }
+            // to ensure "HasMore" is required (not null)
+            if (HasMore == null)
+            {
+                throw new InvalidDataException("HasMore is a required property for FirmwareManifestPage and cannot be null");
+            }
+            else
+            {
+                this.HasMore = HasMore;
+            }
+            // to ensure "TotalCount" is required (not null)
+            if (TotalCount == null)
+            {
+                throw new InvalidDataException("TotalCount is a required property for FirmwareManifestPage and cannot be null");
+            }
+            else
+            {
+                this.TotalCount = TotalCount;
+            }
+            // to ensure "After" is required (not null)
+            if (After == null)
+            {
+                throw new InvalidDataException("After is a required property for FirmwareManifestPage and cannot be null");
+            }
+            else
+            {
+                this.After = After;
+            }
+            // to ensure "Limit" is required (not null)
+            if (Limit == null)
+            {
+                throw new InvalidDataException("Limit is a required property for FirmwareManifestPage and cannot be null");
+            }
+            else
+            {
+                this.Limit = Limit;
+            }
+            // to ensure "Data" is required (not null)
+            if (Data == null)
+            {
+                throw new InvalidDataException("Data is a required property for FirmwareManifestPage and cannot be null");
+            }
+            else
+            {
+                this.Data = Data;
+            }
+            // to ensure "Order" is required (not null)
+            if (Order == null)
+            {
+                throw new InvalidDataException("Order is a required property for FirmwareManifestPage and cannot be null");
+            }
+            else
+            {
+                this.Order = Order;
+            }
         }
         
         /// <summary>

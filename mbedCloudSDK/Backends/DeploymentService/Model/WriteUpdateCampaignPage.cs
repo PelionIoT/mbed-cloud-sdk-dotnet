@@ -32,53 +32,16 @@ namespace deployment_service.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="WriteUpdateCampaignPage" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected WriteUpdateCampaignPage() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WriteUpdateCampaignPage" /> class.
-        /// </summary>
-        /// <param name="Limit">Limit (required).</param>
-        /// <param name="After">After (required).</param>
-        /// <param name="Data">Data (required).</param>
-        /// <param name="Order">Order (required).</param>
+        /// <param name="Limit">Limit.</param>
+        /// <param name="After">After.</param>
+        /// <param name="Data">Data.</param>
+        /// <param name="Order">Order.</param>
         public WriteUpdateCampaignPage(long? Limit = default(long?), string After = default(string), List<UpdateCampaign> Data = default(List<UpdateCampaign>), string Order = default(string))
         {
-            // to ensure "Limit" is required (not null)
-            if (Limit == null)
-            {
-                throw new InvalidDataException("Limit is a required property for WriteUpdateCampaignPage and cannot be null");
-            }
-            else
-            {
-                this.Limit = Limit;
-            }
-            // to ensure "After" is required (not null)
-            if (After == null)
-            {
-                throw new InvalidDataException("After is a required property for WriteUpdateCampaignPage and cannot be null");
-            }
-            else
-            {
-                this.After = After;
-            }
-            // to ensure "Data" is required (not null)
-            if (Data == null)
-            {
-                throw new InvalidDataException("Data is a required property for WriteUpdateCampaignPage and cannot be null");
-            }
-            else
-            {
-                this.Data = Data;
-            }
-            // to ensure "Order" is required (not null)
-            if (Order == null)
-            {
-                throw new InvalidDataException("Order is a required property for WriteUpdateCampaignPage and cannot be null");
-            }
-            else
-            {
-                this.Order = Order;
-            }
+            this.Limit = Limit;
+            this.After = After;
+            this.Data = Data;
+            this.Order = Order;
         }
         
         /// <summary>
