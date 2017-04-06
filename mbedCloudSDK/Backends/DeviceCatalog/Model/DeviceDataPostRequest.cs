@@ -30,6 +30,64 @@ namespace device_catalog.Model
     public partial class DeviceDataPostRequest :  IEquatable<DeviceDataPostRequest>, IValidatableObject
     {
         /// <summary>
+        /// Gets or Sets Mechanism
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum MechanismEnum
+        {
+            
+            /// <summary>
+            /// Enum Connector for "connector"
+            /// </summary>
+            [EnumMember(Value = "connector")]
+            Connector,
+            
+            /// <summary>
+            /// Enum Direct for "direct"
+            /// </summary>
+            [EnumMember(Value = "direct")]
+            Direct
+        }
+
+        /// <summary>
+        /// Gets or Sets State
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StateEnum
+        {
+            
+            /// <summary>
+            /// Enum Unenrolled for "unenrolled"
+            /// </summary>
+            [EnumMember(Value = "unenrolled")]
+            Unenrolled,
+            
+            /// <summary>
+            /// Enum Cloudenrolling for "cloud_enrolling"
+            /// </summary>
+            [EnumMember(Value = "cloud_enrolling")]
+            Cloudenrolling,
+            
+            /// <summary>
+            /// Enum Bootstrapped for "bootstrapped"
+            /// </summary>
+            [EnumMember(Value = "bootstrapped")]
+            Bootstrapped,
+            
+            /// <summary>
+            /// Enum Registered for "registered"
+            /// </summary>
+            [EnumMember(Value = "registered")]
+            Registered,
+            
+            /// <summary>
+            /// Enum Deregistered for "deregistered"
+            /// </summary>
+            [EnumMember(Value = "deregistered")]
+            Deregistered
+        }
+
+        /// <summary>
         /// Gets or Sets DeployedState
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
@@ -49,6 +107,16 @@ namespace device_catalog.Model
             Production
         }
 
+        /// <summary>
+        /// Gets or Sets Mechanism
+        /// </summary>
+        [DataMember(Name="mechanism", EmitDefaultValue=false)]
+        public MechanismEnum? Mechanism { get; set; }
+        /// <summary>
+        /// Gets or Sets State
+        /// </summary>
+        [DataMember(Name="state", EmitDefaultValue=false)]
+        public StateEnum? State { get; set; }
         /// <summary>
         /// Gets or Sets DeployedState
         /// </summary>
@@ -85,7 +153,7 @@ namespace device_catalog.Model
         /// <param name="DeviceKey">DeviceKey (required).</param>
         /// <param name="Manifest">Manifest.</param>
         /// <param name="CaId">CaId (required).</param>
-        public DeviceDataPostRequest(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), string Mechanism = default(string), string DeviceClass = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), int? DeviceExecutionMode = default(int?), Object CustomAttributes = default(Object), string State = default(string), string SerialNumber = default(string), string FirmwareChecksum = default(string), string VendorId = default(string), string Description = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string _Object = default(string), string Deployment = default(string), string MechanismUrl = default(string), int? TrustLevel = default(int?), string Name = default(string), string DeviceKey = default(string), string Manifest = default(string), string CaId = default(string))
+        public DeviceDataPostRequest(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), MechanismEnum? Mechanism = default(MechanismEnum?), string DeviceClass = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), int? DeviceExecutionMode = default(int?), Object CustomAttributes = default(Object), StateEnum? State = default(StateEnum?), string SerialNumber = default(string), string FirmwareChecksum = default(string), string VendorId = default(string), string Description = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string _Object = default(string), string Deployment = default(string), string MechanismUrl = default(string), int? TrustLevel = default(int?), string Name = default(string), string DeviceKey = default(string), string Manifest = default(string), string CaId = default(string))
         {
             // to ensure "DeviceKey" is required (not null)
             if (DeviceKey == null)
@@ -144,11 +212,6 @@ namespace device_catalog.Model
         [DataMember(Name="connector_expiration_date", EmitDefaultValue=false)]
         public DateTime? ConnectorExpirationDate { get; set; }
         /// <summary>
-        /// Gets or Sets Mechanism
-        /// </summary>
-        [DataMember(Name="mechanism", EmitDefaultValue=false)]
-        public string Mechanism { get; set; }
-        /// <summary>
         /// Gets or Sets DeviceClass
         /// </summary>
         [DataMember(Name="device_class", EmitDefaultValue=false)]
@@ -173,11 +236,6 @@ namespace device_catalog.Model
         /// </summary>
         [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
         public Object CustomAttributes { get; set; }
-        /// <summary>
-        /// Gets or Sets State
-        /// </summary>
-        [DataMember(Name="state", EmitDefaultValue=false)]
-        public string State { get; set; }
         /// <summary>
         /// Gets or Sets SerialNumber
         /// </summary>
