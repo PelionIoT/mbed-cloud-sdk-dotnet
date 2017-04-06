@@ -31,17 +31,9 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target</param>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>UpdateCampaign</returns>
-        UpdateCampaign UpdateCampaignCreate (string deviceFilter, string name, string campaignId = null, string description = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        UpdateCampaign UpdateCampaignCreate (UpdateCampaignRequest updateCampaign);
 
         /// <summary>
         /// 
@@ -50,17 +42,9 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target</param>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>ApiResponse of UpdateCampaign</returns>
-        ApiResponse<UpdateCampaign> UpdateCampaignCreateWithHttpInfo (string deviceFilter, string name, string campaignId = null, string description = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        ApiResponse<UpdateCampaign> UpdateCampaignCreateWithHttpInfo (UpdateCampaignRequest updateCampaign);
         /// <summary>
         /// 
         /// </summary>
@@ -69,33 +53,8 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="finishedGte"> (optional)</param>
-        /// <param name="finishedLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="whenGte"> (optional)</param>
-        /// <param name="whenLte"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="campaigndevicemetadata"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
         /// <returns>UpdateCampaign</returns>
-        UpdateCampaign UpdateCampaignDestroy (string campaignId, string rootManifestId = null, string updatingRequestId = null, string finished = null, string finishedGte = null, string finishedLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string when = null, string whenGte = null, string whenLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string _object = null, string state = null, string name = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string deviceFilter = null, string campaigndevicemetadata = null, string description = null, string attempts = null);
+        UpdateCampaign UpdateCampaignDestroy (string campaignId);
 
         /// <summary>
         /// 
@@ -105,33 +64,8 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="finishedGte"> (optional)</param>
-        /// <param name="finishedLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="whenGte"> (optional)</param>
-        /// <param name="whenLte"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="campaigndevicemetadata"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
         /// <returns>ApiResponse of UpdateCampaign</returns>
-        ApiResponse<UpdateCampaign> UpdateCampaignDestroyWithHttpInfo (string campaignId, string rootManifestId = null, string updatingRequestId = null, string finished = null, string finishedGte = null, string finishedLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string when = null, string whenGte = null, string whenLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string _object = null, string state = null, string name = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string deviceFilter = null, string campaigndevicemetadata = null, string description = null, string attempts = null);
+        ApiResponse<UpdateCampaign> UpdateCampaignDestroyWithHttpInfo (string campaignId);
         /// <summary>
         /// 
         /// </summary>
@@ -143,8 +77,29 @@ namespace deployment_service.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="deviceFilter"> (optional)</param>
+        /// <param name="id"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="rootManifestId"> (optional)</param>
+        /// <param name="rootManifestUrl"> (optional)</param>
+        /// <param name="startedAt"> (optional)</param>
+        /// <param name="startedAtLte"> (optional)</param>
+        /// <param name="statedAtGte"> (optional)</param>
+        /// <param name="state"> (optional)</param>
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="when"> (optional)</param>
+        /// <param name="whenLte"> (optional)</param>
+        /// <param name="whenGte"> (optional)</param>
         /// <returns>UpdateCampaignPage</returns>
-        UpdateCampaignPage UpdateCampaignList (int? limit = null, string order = null, string after = null, string filter = null);
+        UpdateCampaignPage UpdateCampaignList (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string when = null, string whenLte = null, string whenGte = null);
 
         /// <summary>
         /// 
@@ -157,8 +112,29 @@ namespace deployment_service.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="deviceFilter"> (optional)</param>
+        /// <param name="id"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="rootManifestId"> (optional)</param>
+        /// <param name="rootManifestUrl"> (optional)</param>
+        /// <param name="startedAt"> (optional)</param>
+        /// <param name="startedAtLte"> (optional)</param>
+        /// <param name="statedAtGte"> (optional)</param>
+        /// <param name="state"> (optional)</param>
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="when"> (optional)</param>
+        /// <param name="whenLte"> (optional)</param>
+        /// <param name="whenGte"> (optional)</param>
         /// <returns>ApiResponse of UpdateCampaignPage</returns>
-        ApiResponse<UpdateCampaignPage> UpdateCampaignListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null);
+        ApiResponse<UpdateCampaignPage> UpdateCampaignListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string when = null, string whenLte = null, string whenGte = null);
         /// <summary>
         /// 
         /// </summary>
@@ -167,17 +143,9 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="campaignId2">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="name">A name for this campaign (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>UpdateCampaign</returns>
-        UpdateCampaign UpdateCampaignPartialUpdate (string campaignId, string campaignId2 = null, string description = null, string deviceFilter = null, DateTime? finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        UpdateCampaign UpdateCampaignPartialUpdate (string campaignId, UpdateCampaignRequest updateCampaign);
 
         /// <summary>
         /// 
@@ -187,17 +155,9 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="campaignId2">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="name">A name for this campaign (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>ApiResponse of UpdateCampaign</returns>
-        ApiResponse<UpdateCampaign> UpdateCampaignPartialUpdateWithHttpInfo (string campaignId, string campaignId2 = null, string description = null, string deviceFilter = null, DateTime? finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        ApiResponse<UpdateCampaign> UpdateCampaignPartialUpdateWithHttpInfo (string campaignId, UpdateCampaignRequest updateCampaign);
         /// <summary>
         /// 
         /// </summary>
@@ -227,17 +187,9 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target</param>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId2">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>UpdateCampaign</returns>
-        UpdateCampaign UpdateCampaignUpdate (string campaignId, string deviceFilter, string name, string campaignId2 = null, string description = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        UpdateCampaign UpdateCampaignUpdate (string campaignId, UpdateCampaignRequest updateCampaign);
 
         /// <summary>
         /// 
@@ -247,17 +199,9 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target</param>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId2">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>ApiResponse of UpdateCampaign</returns>
-        ApiResponse<UpdateCampaign> UpdateCampaignUpdateWithHttpInfo (string campaignId, string deviceFilter, string name, string campaignId2 = null, string description = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        ApiResponse<UpdateCampaign> UpdateCampaignUpdateWithHttpInfo (string campaignId, UpdateCampaignRequest updateCampaign);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -267,17 +211,9 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target</param>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>Task of UpdateCampaign</returns>
-        System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignCreateAsync (string deviceFilter, string name, string campaignId = null, string description = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignCreateAsync (UpdateCampaignRequest updateCampaign);
 
         /// <summary>
         /// 
@@ -286,17 +222,9 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target</param>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignCreateAsyncWithHttpInfo (string deviceFilter, string name, string campaignId = null, string description = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignCreateAsyncWithHttpInfo (UpdateCampaignRequest updateCampaign);
         /// <summary>
         /// 
         /// </summary>
@@ -305,33 +233,8 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="finishedGte"> (optional)</param>
-        /// <param name="finishedLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="whenGte"> (optional)</param>
-        /// <param name="whenLte"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="campaigndevicemetadata"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
         /// <returns>Task of UpdateCampaign</returns>
-        System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignDestroyAsync (string campaignId, string rootManifestId = null, string updatingRequestId = null, string finished = null, string finishedGte = null, string finishedLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string when = null, string whenGte = null, string whenLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string _object = null, string state = null, string name = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string deviceFilter = null, string campaigndevicemetadata = null, string description = null, string attempts = null);
+        System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignDestroyAsync (string campaignId);
 
         /// <summary>
         /// 
@@ -341,33 +244,8 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="finishedGte"> (optional)</param>
-        /// <param name="finishedLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="whenGte"> (optional)</param>
-        /// <param name="whenLte"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="campaigndevicemetadata"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
         /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignDestroyAsyncWithHttpInfo (string campaignId, string rootManifestId = null, string updatingRequestId = null, string finished = null, string finishedGte = null, string finishedLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string when = null, string whenGte = null, string whenLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string _object = null, string state = null, string name = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string deviceFilter = null, string campaigndevicemetadata = null, string description = null, string attempts = null);
+        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignDestroyAsyncWithHttpInfo (string campaignId);
         /// <summary>
         /// 
         /// </summary>
@@ -379,8 +257,29 @@ namespace deployment_service.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="deviceFilter"> (optional)</param>
+        /// <param name="id"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="rootManifestId"> (optional)</param>
+        /// <param name="rootManifestUrl"> (optional)</param>
+        /// <param name="startedAt"> (optional)</param>
+        /// <param name="startedAtLte"> (optional)</param>
+        /// <param name="statedAtGte"> (optional)</param>
+        /// <param name="state"> (optional)</param>
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="when"> (optional)</param>
+        /// <param name="whenLte"> (optional)</param>
+        /// <param name="whenGte"> (optional)</param>
         /// <returns>Task of UpdateCampaignPage</returns>
-        System.Threading.Tasks.Task<UpdateCampaignPage> UpdateCampaignListAsync (int? limit = null, string order = null, string after = null, string filter = null);
+        System.Threading.Tasks.Task<UpdateCampaignPage> UpdateCampaignListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string when = null, string whenLte = null, string whenGte = null);
 
         /// <summary>
         /// 
@@ -393,8 +292,29 @@ namespace deployment_service.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="deviceFilter"> (optional)</param>
+        /// <param name="id"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="rootManifestId"> (optional)</param>
+        /// <param name="rootManifestUrl"> (optional)</param>
+        /// <param name="startedAt"> (optional)</param>
+        /// <param name="startedAtLte"> (optional)</param>
+        /// <param name="statedAtGte"> (optional)</param>
+        /// <param name="state"> (optional)</param>
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="when"> (optional)</param>
+        /// <param name="whenLte"> (optional)</param>
+        /// <param name="whenGte"> (optional)</param>
         /// <returns>Task of ApiResponse (UpdateCampaignPage)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPage>> UpdateCampaignListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null);
+        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPage>> UpdateCampaignListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string when = null, string whenLte = null, string whenGte = null);
         /// <summary>
         /// 
         /// </summary>
@@ -403,17 +323,9 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="campaignId2">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="name">A name for this campaign (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>Task of UpdateCampaign</returns>
-        System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignPartialUpdateAsync (string campaignId, string campaignId2 = null, string description = null, string deviceFilter = null, DateTime? finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignPartialUpdateAsync (string campaignId, UpdateCampaignRequest updateCampaign);
 
         /// <summary>
         /// 
@@ -423,17 +335,9 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="campaignId2">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="name">A name for this campaign (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignPartialUpdateAsyncWithHttpInfo (string campaignId, string campaignId2 = null, string description = null, string deviceFilter = null, DateTime? finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignPartialUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignRequest updateCampaign);
         /// <summary>
         /// 
         /// </summary>
@@ -463,17 +367,9 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target</param>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId2">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>Task of UpdateCampaign</returns>
-        System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignUpdateAsync (string campaignId, string deviceFilter, string name, string campaignId2 = null, string description = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignUpdateAsync (string campaignId, UpdateCampaignRequest updateCampaign);
 
         /// <summary>
         /// 
@@ -483,17 +379,9 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target</param>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId2">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignUpdateAsyncWithHttpInfo (string campaignId, string deviceFilter, string name, string campaignId2 = null, string description = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null);
+        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignRequest updateCampaign);
         #endregion Asynchronous Operations
     }
 
@@ -610,19 +498,11 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target</param>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>UpdateCampaign</returns>
-        public UpdateCampaign UpdateCampaignCreate (string deviceFilter, string name, string campaignId = null, string description = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public UpdateCampaign UpdateCampaignCreate (UpdateCampaignRequest updateCampaign)
         {
-             ApiResponse<UpdateCampaign> localVarResponse = UpdateCampaignCreateWithHttpInfo(deviceFilter, name, campaignId, description, finished, _object, rootManifestId, state, when);
+             ApiResponse<UpdateCampaign> localVarResponse = UpdateCampaignCreateWithHttpInfo(updateCampaign);
              return localVarResponse.Data;
         }
 
@@ -630,24 +510,13 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target</param>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>ApiResponse of UpdateCampaign</returns>
-        public ApiResponse< UpdateCampaign > UpdateCampaignCreateWithHttpInfo (string deviceFilter, string name, string campaignId = null, string description = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public ApiResponse< UpdateCampaign > UpdateCampaignCreateWithHttpInfo (UpdateCampaignRequest updateCampaign)
         {
-            // verify the required parameter 'deviceFilter' is set
-            if (deviceFilter == null)
-                throw new ApiException(400, "Missing required parameter 'deviceFilter' when calling DefaultApi->UpdateCampaignCreate");
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->UpdateCampaignCreate");
+            // verify the required parameter 'updateCampaign' is set
+            if (updateCampaign == null)
+                throw new ApiException(400, "Missing required parameter 'updateCampaign' when calling DefaultApi->UpdateCampaignCreate");
 
             var localVarPath = "/v3/update-campaigns/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -672,15 +541,14 @@ namespace deployment_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (campaignId != null) localVarFormParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // form parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (deviceFilter != null) localVarFormParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // form parameter
-            if (finished != null) localVarFormParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (rootManifestId != null) localVarFormParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // form parameter
-            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
-            if (when != null) localVarFormParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // form parameter
+            if (updateCampaign != null && updateCampaign.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(updateCampaign); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = updateCampaign; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -712,19 +580,11 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target</param>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>Task of UpdateCampaign</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignCreateAsync (string deviceFilter, string name, string campaignId = null, string description = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public async System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignCreateAsync (UpdateCampaignRequest updateCampaign)
         {
-             ApiResponse<UpdateCampaign> localVarResponse = await UpdateCampaignCreateAsyncWithHttpInfo(deviceFilter, name, campaignId, description, finished, _object, rootManifestId, state, when);
+             ApiResponse<UpdateCampaign> localVarResponse = await UpdateCampaignCreateAsyncWithHttpInfo(updateCampaign);
              return localVarResponse.Data;
 
         }
@@ -733,24 +593,13 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target</param>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignCreateAsyncWithHttpInfo (string deviceFilter, string name, string campaignId = null, string description = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignCreateAsyncWithHttpInfo (UpdateCampaignRequest updateCampaign)
         {
-            // verify the required parameter 'deviceFilter' is set
-            if (deviceFilter == null)
-                throw new ApiException(400, "Missing required parameter 'deviceFilter' when calling DefaultApi->UpdateCampaignCreate");
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->UpdateCampaignCreate");
+            // verify the required parameter 'updateCampaign' is set
+            if (updateCampaign == null)
+                throw new ApiException(400, "Missing required parameter 'updateCampaign' when calling DefaultApi->UpdateCampaignCreate");
 
             var localVarPath = "/v3/update-campaigns/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -775,15 +624,14 @@ namespace deployment_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (campaignId != null) localVarFormParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // form parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (deviceFilter != null) localVarFormParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // form parameter
-            if (finished != null) localVarFormParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (rootManifestId != null) localVarFormParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // form parameter
-            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
-            if (when != null) localVarFormParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // form parameter
+            if (updateCampaign != null && updateCampaign.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(updateCampaign); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = updateCampaign; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -815,35 +663,10 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="finishedGte"> (optional)</param>
-        /// <param name="finishedLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="whenGte"> (optional)</param>
-        /// <param name="whenLte"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="campaigndevicemetadata"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
         /// <returns>UpdateCampaign</returns>
-        public UpdateCampaign UpdateCampaignDestroy (string campaignId, string rootManifestId = null, string updatingRequestId = null, string finished = null, string finishedGte = null, string finishedLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string when = null, string whenGte = null, string whenLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string _object = null, string state = null, string name = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string deviceFilter = null, string campaigndevicemetadata = null, string description = null, string attempts = null)
+        public UpdateCampaign UpdateCampaignDestroy (string campaignId)
         {
-             ApiResponse<UpdateCampaign> localVarResponse = UpdateCampaignDestroyWithHttpInfo(campaignId, rootManifestId, updatingRequestId, finished, finishedGte, finishedLte, createdAt, createdAtGte, createdAtLte, when, whenGte, whenLte, updatingIpAddress, etag, etagGte, etagLte, _object, state, name, updatedAt, updatedAtGte, updatedAtLte, deviceFilter, campaigndevicemetadata, description, attempts);
+             ApiResponse<UpdateCampaign> localVarResponse = UpdateCampaignDestroyWithHttpInfo(campaignId);
              return localVarResponse.Data;
         }
 
@@ -852,33 +675,8 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="finishedGte"> (optional)</param>
-        /// <param name="finishedLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="whenGte"> (optional)</param>
-        /// <param name="whenLte"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="campaigndevicemetadata"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
         /// <returns>ApiResponse of UpdateCampaign</returns>
-        public ApiResponse< UpdateCampaign > UpdateCampaignDestroyWithHttpInfo (string campaignId, string rootManifestId = null, string updatingRequestId = null, string finished = null, string finishedGte = null, string finishedLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string when = null, string whenGte = null, string whenLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string _object = null, string state = null, string name = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string deviceFilter = null, string campaigndevicemetadata = null, string description = null, string attempts = null)
+        public ApiResponse< UpdateCampaign > UpdateCampaignDestroyWithHttpInfo (string campaignId)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -908,31 +706,6 @@ namespace deployment_service.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-            if (rootManifestId != null) localVarQueryParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // query parameter
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (finished != null) localVarQueryParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // query parameter
-            if (finishedGte != null) localVarQueryParams.Add("finished__gte", Configuration.ApiClient.ParameterToString(finishedGte)); // query parameter
-            if (finishedLte != null) localVarQueryParams.Add("finished__lte", Configuration.ApiClient.ParameterToString(finishedLte)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
-            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
-            if (when != null) localVarQueryParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // query parameter
-            if (whenGte != null) localVarQueryParams.Add("when__gte", Configuration.ApiClient.ParameterToString(whenGte)); // query parameter
-            if (whenLte != null) localVarQueryParams.Add("when__lte", Configuration.ApiClient.ParameterToString(whenLte)); // query parameter
-            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
-            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
-            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
-            if (deviceFilter != null) localVarQueryParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // query parameter
-            if (campaigndevicemetadata != null) localVarQueryParams.Add("campaigndevicemetadata", Configuration.ApiClient.ParameterToString(campaigndevicemetadata)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (attempts != null) localVarQueryParams.Add("attempts", Configuration.ApiClient.ParameterToString(attempts)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -965,35 +738,10 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="finishedGte"> (optional)</param>
-        /// <param name="finishedLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="whenGte"> (optional)</param>
-        /// <param name="whenLte"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="campaigndevicemetadata"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
         /// <returns>Task of UpdateCampaign</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignDestroyAsync (string campaignId, string rootManifestId = null, string updatingRequestId = null, string finished = null, string finishedGte = null, string finishedLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string when = null, string whenGte = null, string whenLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string _object = null, string state = null, string name = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string deviceFilter = null, string campaigndevicemetadata = null, string description = null, string attempts = null)
+        public async System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignDestroyAsync (string campaignId)
         {
-             ApiResponse<UpdateCampaign> localVarResponse = await UpdateCampaignDestroyAsyncWithHttpInfo(campaignId, rootManifestId, updatingRequestId, finished, finishedGte, finishedLte, createdAt, createdAtGte, createdAtLte, when, whenGte, whenLte, updatingIpAddress, etag, etagGte, etagLte, _object, state, name, updatedAt, updatedAtGte, updatedAtLte, deviceFilter, campaigndevicemetadata, description, attempts);
+             ApiResponse<UpdateCampaign> localVarResponse = await UpdateCampaignDestroyAsyncWithHttpInfo(campaignId);
              return localVarResponse.Data;
 
         }
@@ -1003,33 +751,8 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="finished"> (optional)</param>
-        /// <param name="finishedGte"> (optional)</param>
-        /// <param name="finishedLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="when"> (optional)</param>
-        /// <param name="whenGte"> (optional)</param>
-        /// <param name="whenLte"> (optional)</param>
-        /// <param name="updatingIpAddress"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="deviceFilter"> (optional)</param>
-        /// <param name="campaigndevicemetadata"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="attempts"> (optional)</param>
         /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignDestroyAsyncWithHttpInfo (string campaignId, string rootManifestId = null, string updatingRequestId = null, string finished = null, string finishedGte = null, string finishedLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string when = null, string whenGte = null, string whenLte = null, string updatingIpAddress = null, string etag = null, string etagGte = null, string etagLte = null, string _object = null, string state = null, string name = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string deviceFilter = null, string campaigndevicemetadata = null, string description = null, string attempts = null)
+        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignDestroyAsyncWithHttpInfo (string campaignId)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -1059,31 +782,6 @@ namespace deployment_service.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-            if (rootManifestId != null) localVarQueryParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // query parameter
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (finished != null) localVarQueryParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // query parameter
-            if (finishedGte != null) localVarQueryParams.Add("finished__gte", Configuration.ApiClient.ParameterToString(finishedGte)); // query parameter
-            if (finishedLte != null) localVarQueryParams.Add("finished__lte", Configuration.ApiClient.ParameterToString(finishedLte)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
-            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
-            if (when != null) localVarQueryParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // query parameter
-            if (whenGte != null) localVarQueryParams.Add("when__gte", Configuration.ApiClient.ParameterToString(whenGte)); // query parameter
-            if (whenLte != null) localVarQueryParams.Add("when__lte", Configuration.ApiClient.ParameterToString(whenLte)); // query parameter
-            if (updatingIpAddress != null) localVarQueryParams.Add("updating_ip_address", Configuration.ApiClient.ParameterToString(updatingIpAddress)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
-            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
-            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
-            if (deviceFilter != null) localVarQueryParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // query parameter
-            if (campaigndevicemetadata != null) localVarQueryParams.Add("campaigndevicemetadata", Configuration.ApiClient.ParameterToString(campaigndevicemetadata)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (attempts != null) localVarQueryParams.Add("attempts", Configuration.ApiClient.ParameterToString(attempts)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1118,10 +816,31 @@ namespace deployment_service.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="deviceFilter"> (optional)</param>
+        /// <param name="id"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="rootManifestId"> (optional)</param>
+        /// <param name="rootManifestUrl"> (optional)</param>
+        /// <param name="startedAt"> (optional)</param>
+        /// <param name="startedAtLte"> (optional)</param>
+        /// <param name="statedAtGte"> (optional)</param>
+        /// <param name="state"> (optional)</param>
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="when"> (optional)</param>
+        /// <param name="whenLte"> (optional)</param>
+        /// <param name="whenGte"> (optional)</param>
         /// <returns>UpdateCampaignPage</returns>
-        public UpdateCampaignPage UpdateCampaignList (int? limit = null, string order = null, string after = null, string filter = null)
+        public UpdateCampaignPage UpdateCampaignList (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string when = null, string whenLte = null, string whenGte = null)
         {
-             ApiResponse<UpdateCampaignPage> localVarResponse = UpdateCampaignListWithHttpInfo(limit, order, after, filter);
+             ApiResponse<UpdateCampaignPage> localVarResponse = UpdateCampaignListWithHttpInfo(limit, order, after, filter, include, createdAt, createdAtLte, createdAtGte, description, deviceFilter, id, name, _object, rootManifestId, rootManifestUrl, startedAt, startedAtLte, statedAtGte, state, updatedAt, updatedAtLte, updatedAtGte, when, whenLte, whenGte);
              return localVarResponse.Data;
         }
 
@@ -1133,8 +852,29 @@ namespace deployment_service.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="deviceFilter"> (optional)</param>
+        /// <param name="id"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="rootManifestId"> (optional)</param>
+        /// <param name="rootManifestUrl"> (optional)</param>
+        /// <param name="startedAt"> (optional)</param>
+        /// <param name="startedAtLte"> (optional)</param>
+        /// <param name="statedAtGte"> (optional)</param>
+        /// <param name="state"> (optional)</param>
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="when"> (optional)</param>
+        /// <param name="whenLte"> (optional)</param>
+        /// <param name="whenGte"> (optional)</param>
         /// <returns>ApiResponse of UpdateCampaignPage</returns>
-        public ApiResponse< UpdateCampaignPage > UpdateCampaignListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null)
+        public ApiResponse< UpdateCampaignPage > UpdateCampaignListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string when = null, string whenLte = null, string whenGte = null)
         {
 
             var localVarPath = "/v3/update-campaigns/";
@@ -1164,6 +904,27 @@ namespace deployment_service.Api
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
+            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
+            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
+            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
+            if (deviceFilter != null) localVarQueryParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // query parameter
+            if (id != null) localVarQueryParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // query parameter
+            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
+            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
+            if (rootManifestId != null) localVarQueryParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // query parameter
+            if (rootManifestUrl != null) localVarQueryParams.Add("root_manifest_url", Configuration.ApiClient.ParameterToString(rootManifestUrl)); // query parameter
+            if (startedAt != null) localVarQueryParams.Add("started_at", Configuration.ApiClient.ParameterToString(startedAt)); // query parameter
+            if (startedAtLte != null) localVarQueryParams.Add("started_at__lte", Configuration.ApiClient.ParameterToString(startedAtLte)); // query parameter
+            if (statedAtGte != null) localVarQueryParams.Add("stated_at__gte", Configuration.ApiClient.ParameterToString(statedAtGte)); // query parameter
+            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
+            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
+            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
+            if (updatedAtGte != null) localVarQueryParams.Add("updated_at_gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
+            if (when != null) localVarQueryParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // query parameter
+            if (whenLte != null) localVarQueryParams.Add("when__lte", Configuration.ApiClient.ParameterToString(whenLte)); // query parameter
+            if (whenGte != null) localVarQueryParams.Add("when_gte", Configuration.ApiClient.ParameterToString(whenGte)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1199,10 +960,31 @@ namespace deployment_service.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="deviceFilter"> (optional)</param>
+        /// <param name="id"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="rootManifestId"> (optional)</param>
+        /// <param name="rootManifestUrl"> (optional)</param>
+        /// <param name="startedAt"> (optional)</param>
+        /// <param name="startedAtLte"> (optional)</param>
+        /// <param name="statedAtGte"> (optional)</param>
+        /// <param name="state"> (optional)</param>
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="when"> (optional)</param>
+        /// <param name="whenLte"> (optional)</param>
+        /// <param name="whenGte"> (optional)</param>
         /// <returns>Task of UpdateCampaignPage</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaignPage> UpdateCampaignListAsync (int? limit = null, string order = null, string after = null, string filter = null)
+        public async System.Threading.Tasks.Task<UpdateCampaignPage> UpdateCampaignListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string when = null, string whenLte = null, string whenGte = null)
         {
-             ApiResponse<UpdateCampaignPage> localVarResponse = await UpdateCampaignListAsyncWithHttpInfo(limit, order, after, filter);
+             ApiResponse<UpdateCampaignPage> localVarResponse = await UpdateCampaignListAsyncWithHttpInfo(limit, order, after, filter, include, createdAt, createdAtLte, createdAtGte, description, deviceFilter, id, name, _object, rootManifestId, rootManifestUrl, startedAt, startedAtLte, statedAtGte, state, updatedAt, updatedAtLte, updatedAtGte, when, whenLte, whenGte);
              return localVarResponse.Data;
 
         }
@@ -1215,8 +997,29 @@ namespace deployment_service.Api
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
+        /// <param name="createdAt"> (optional)</param>
+        /// <param name="createdAtLte"> (optional)</param>
+        /// <param name="createdAtGte"> (optional)</param>
+        /// <param name="description"> (optional)</param>
+        /// <param name="deviceFilter"> (optional)</param>
+        /// <param name="id"> (optional)</param>
+        /// <param name="name"> (optional)</param>
+        /// <param name="_object"> (optional)</param>
+        /// <param name="rootManifestId"> (optional)</param>
+        /// <param name="rootManifestUrl"> (optional)</param>
+        /// <param name="startedAt"> (optional)</param>
+        /// <param name="startedAtLte"> (optional)</param>
+        /// <param name="statedAtGte"> (optional)</param>
+        /// <param name="state"> (optional)</param>
+        /// <param name="updatedAt"> (optional)</param>
+        /// <param name="updatedAtLte"> (optional)</param>
+        /// <param name="updatedAtGte"> (optional)</param>
+        /// <param name="when"> (optional)</param>
+        /// <param name="whenLte"> (optional)</param>
+        /// <param name="whenGte"> (optional)</param>
         /// <returns>Task of ApiResponse (UpdateCampaignPage)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPage>> UpdateCampaignListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null)
+        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPage>> UpdateCampaignListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string when = null, string whenLte = null, string whenGte = null)
         {
 
             var localVarPath = "/v3/update-campaigns/";
@@ -1246,6 +1049,27 @@ namespace deployment_service.Api
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
+            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
+            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
+            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
+            if (deviceFilter != null) localVarQueryParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // query parameter
+            if (id != null) localVarQueryParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // query parameter
+            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
+            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
+            if (rootManifestId != null) localVarQueryParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // query parameter
+            if (rootManifestUrl != null) localVarQueryParams.Add("root_manifest_url", Configuration.ApiClient.ParameterToString(rootManifestUrl)); // query parameter
+            if (startedAt != null) localVarQueryParams.Add("started_at", Configuration.ApiClient.ParameterToString(startedAt)); // query parameter
+            if (startedAtLte != null) localVarQueryParams.Add("started_at__lte", Configuration.ApiClient.ParameterToString(startedAtLte)); // query parameter
+            if (statedAtGte != null) localVarQueryParams.Add("stated_at__gte", Configuration.ApiClient.ParameterToString(statedAtGte)); // query parameter
+            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
+            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
+            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
+            if (updatedAtGte != null) localVarQueryParams.Add("updated_at_gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
+            if (when != null) localVarQueryParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // query parameter
+            if (whenLte != null) localVarQueryParams.Add("when__lte", Configuration.ApiClient.ParameterToString(whenLte)); // query parameter
+            if (whenGte != null) localVarQueryParams.Add("when_gte", Configuration.ApiClient.ParameterToString(whenGte)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1277,19 +1101,11 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="campaignId2">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="name">A name for this campaign (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>UpdateCampaign</returns>
-        public UpdateCampaign UpdateCampaignPartialUpdate (string campaignId, string campaignId2 = null, string description = null, string deviceFilter = null, DateTime? finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public UpdateCampaign UpdateCampaignPartialUpdate (string campaignId, UpdateCampaignRequest updateCampaign)
         {
-             ApiResponse<UpdateCampaign> localVarResponse = UpdateCampaignPartialUpdateWithHttpInfo(campaignId, campaignId2, description, deviceFilter, finished, name, _object, rootManifestId, state, when);
+             ApiResponse<UpdateCampaign> localVarResponse = UpdateCampaignPartialUpdateWithHttpInfo(campaignId, updateCampaign);
              return localVarResponse.Data;
         }
 
@@ -1298,21 +1114,16 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="campaignId2">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="name">A name for this campaign (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>ApiResponse of UpdateCampaign</returns>
-        public ApiResponse< UpdateCampaign > UpdateCampaignPartialUpdateWithHttpInfo (string campaignId, string campaignId2 = null, string description = null, string deviceFilter = null, DateTime? finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public ApiResponse< UpdateCampaign > UpdateCampaignPartialUpdateWithHttpInfo (string campaignId, UpdateCampaignRequest updateCampaign)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
                 throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->UpdateCampaignPartialUpdate");
+            // verify the required parameter 'updateCampaign' is set
+            if (updateCampaign == null)
+                throw new ApiException(400, "Missing required parameter 'updateCampaign' when calling DefaultApi->UpdateCampaignPartialUpdate");
 
             var localVarPath = "/v3/update-campaigns/{campaign_id}/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1338,15 +1149,14 @@ namespace deployment_service.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-            if (campaignId2 != null) localVarFormParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId2)); // form parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (deviceFilter != null) localVarFormParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // form parameter
-            if (finished != null) localVarFormParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (rootManifestId != null) localVarFormParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // form parameter
-            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
-            if (when != null) localVarFormParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // form parameter
+            if (updateCampaign != null && updateCampaign.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(updateCampaign); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = updateCampaign; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1379,19 +1189,11 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="campaignId2">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="name">A name for this campaign (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>Task of UpdateCampaign</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignPartialUpdateAsync (string campaignId, string campaignId2 = null, string description = null, string deviceFilter = null, DateTime? finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public async System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignPartialUpdateAsync (string campaignId, UpdateCampaignRequest updateCampaign)
         {
-             ApiResponse<UpdateCampaign> localVarResponse = await UpdateCampaignPartialUpdateAsyncWithHttpInfo(campaignId, campaignId2, description, deviceFilter, finished, name, _object, rootManifestId, state, when);
+             ApiResponse<UpdateCampaign> localVarResponse = await UpdateCampaignPartialUpdateAsyncWithHttpInfo(campaignId, updateCampaign);
              return localVarResponse.Data;
 
         }
@@ -1401,21 +1203,16 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="campaignId2">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="name">A name for this campaign (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignPartialUpdateAsyncWithHttpInfo (string campaignId, string campaignId2 = null, string description = null, string deviceFilter = null, DateTime? finished = null, string name = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignPartialUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignRequest updateCampaign)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
                 throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->UpdateCampaignPartialUpdate");
+            // verify the required parameter 'updateCampaign' is set
+            if (updateCampaign == null)
+                throw new ApiException(400, "Missing required parameter 'updateCampaign' when calling DefaultApi->UpdateCampaignPartialUpdate");
 
             var localVarPath = "/v3/update-campaigns/{campaign_id}/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1441,15 +1238,14 @@ namespace deployment_service.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-            if (campaignId2 != null) localVarFormParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId2)); // form parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (deviceFilter != null) localVarFormParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // form parameter
-            if (finished != null) localVarFormParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (rootManifestId != null) localVarFormParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // form parameter
-            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
-            if (when != null) localVarFormParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // form parameter
+            if (updateCampaign != null && updateCampaign.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(updateCampaign); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = updateCampaign; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1631,19 +1427,11 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target</param>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId2">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>UpdateCampaign</returns>
-        public UpdateCampaign UpdateCampaignUpdate (string campaignId, string deviceFilter, string name, string campaignId2 = null, string description = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public UpdateCampaign UpdateCampaignUpdate (string campaignId, UpdateCampaignRequest updateCampaign)
         {
-             ApiResponse<UpdateCampaign> localVarResponse = UpdateCampaignUpdateWithHttpInfo(campaignId, deviceFilter, name, campaignId2, description, finished, _object, rootManifestId, state, when);
+             ApiResponse<UpdateCampaign> localVarResponse = UpdateCampaignUpdateWithHttpInfo(campaignId, updateCampaign);
              return localVarResponse.Data;
         }
 
@@ -1652,27 +1440,16 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target</param>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId2">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>ApiResponse of UpdateCampaign</returns>
-        public ApiResponse< UpdateCampaign > UpdateCampaignUpdateWithHttpInfo (string campaignId, string deviceFilter, string name, string campaignId2 = null, string description = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public ApiResponse< UpdateCampaign > UpdateCampaignUpdateWithHttpInfo (string campaignId, UpdateCampaignRequest updateCampaign)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
                 throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->UpdateCampaignUpdate");
-            // verify the required parameter 'deviceFilter' is set
-            if (deviceFilter == null)
-                throw new ApiException(400, "Missing required parameter 'deviceFilter' when calling DefaultApi->UpdateCampaignUpdate");
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->UpdateCampaignUpdate");
+            // verify the required parameter 'updateCampaign' is set
+            if (updateCampaign == null)
+                throw new ApiException(400, "Missing required parameter 'updateCampaign' when calling DefaultApi->UpdateCampaignUpdate");
 
             var localVarPath = "/v3/update-campaigns/{campaign_id}/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1698,15 +1475,14 @@ namespace deployment_service.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-            if (campaignId2 != null) localVarFormParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId2)); // form parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (deviceFilter != null) localVarFormParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // form parameter
-            if (finished != null) localVarFormParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (rootManifestId != null) localVarFormParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // form parameter
-            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
-            if (when != null) localVarFormParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // form parameter
+            if (updateCampaign != null && updateCampaign.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(updateCampaign); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = updateCampaign; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1739,19 +1515,11 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target</param>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId2">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>Task of UpdateCampaign</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignUpdateAsync (string campaignId, string deviceFilter, string name, string campaignId2 = null, string description = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public async System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignUpdateAsync (string campaignId, UpdateCampaignRequest updateCampaign)
         {
-             ApiResponse<UpdateCampaign> localVarResponse = await UpdateCampaignUpdateAsyncWithHttpInfo(campaignId, deviceFilter, name, campaignId2, description, finished, _object, rootManifestId, state, when);
+             ApiResponse<UpdateCampaign> localVarResponse = await UpdateCampaignUpdateAsyncWithHttpInfo(campaignId, updateCampaign);
              return localVarResponse.Data;
 
         }
@@ -1761,27 +1529,16 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="deviceFilter">The filter for the devices the campaign will target</param>
-        /// <param name="name">A name for this campaign</param>
-        /// <param name="campaignId2">DEPRECATED: The ID of the campaign (optional)</param>
-        /// <param name="description">An optional description of the campaign (optional)</param>
-        /// <param name="finished">The timestamp when the update campaign finished (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="rootManifestId"> (optional)</param>
-        /// <param name="state">The state of the campaign (optional)</param>
-        /// <param name="when">The timestamp at which update campaign scheduled to start (optional)</param>
+        /// <param name="updateCampaign">Update campaign</param>
         /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignUpdateAsyncWithHttpInfo (string campaignId, string deviceFilter, string name, string campaignId2 = null, string description = null, DateTime? finished = null, string _object = null, string rootManifestId = null, string state = null, DateTime? when = null)
+        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignRequest updateCampaign)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
                 throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->UpdateCampaignUpdate");
-            // verify the required parameter 'deviceFilter' is set
-            if (deviceFilter == null)
-                throw new ApiException(400, "Missing required parameter 'deviceFilter' when calling DefaultApi->UpdateCampaignUpdate");
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->UpdateCampaignUpdate");
+            // verify the required parameter 'updateCampaign' is set
+            if (updateCampaign == null)
+                throw new ApiException(400, "Missing required parameter 'updateCampaign' when calling DefaultApi->UpdateCampaignUpdate");
 
             var localVarPath = "/v3/update-campaigns/{campaign_id}/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1807,15 +1564,14 @@ namespace deployment_service.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-            if (campaignId2 != null) localVarFormParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId2)); // form parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (deviceFilter != null) localVarFormParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // form parameter
-            if (finished != null) localVarFormParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (rootManifestId != null) localVarFormParams.Add("root_manifest_id", Configuration.ApiClient.ParameterToString(rootManifestId)); // form parameter
-            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
-            if (when != null) localVarFormParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // form parameter
+            if (updateCampaign != null && updateCampaign.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(updateCampaign); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = updateCampaign; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))

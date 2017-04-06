@@ -48,17 +48,17 @@ namespace deployment_service.Client
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class
-        /// with default configuration and base path (http://api.mbedcloud.com).
+        /// with default configuration and base path (https://api.mbedcloud.com).
         /// </summary>
         public ApiClient()
         {
             Configuration = Configuration.Default;
-            RestClient = new RestClient("http://api.mbedcloud.com");
+            RestClient = new RestClient("https://api.mbedcloud.com");
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class
-        /// with default base path (http://api.mbedcloud.com).
+        /// with default base path (https://api.mbedcloud.com).
         /// </summary>
         /// <param name="config">An instance of Configuration.</param>
         public ApiClient(Configuration config = null)
@@ -68,7 +68,7 @@ namespace deployment_service.Client
             else
                 Configuration = config;
 
-            RestClient = new RestClient("http://api.mbedcloud.com");
+            RestClient = new RestClient("https://api.mbedcloud.com");
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace deployment_service.Client
         /// with default configuration.
         /// </summary>
         /// <param name="basePath">The base path.</param>
-        public ApiClient(String basePath = "http://api.mbedcloud.com")
+        public ApiClient(String basePath = "https://api.mbedcloud.com")
         {
            if (String.IsNullOrEmpty(basePath))
                 throw new ArgumentException("basePath cannot be empty");
