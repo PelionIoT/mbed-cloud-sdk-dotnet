@@ -75,7 +75,7 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var device = new DeviceDataRequest(); // DeviceDataRequest | 
+            var device = new DeviceDataWriteRequest(); // DeviceDataWriteRequest | 
 
             try
             {
@@ -113,7 +113,7 @@ Class | Method | HTTP request | Description
 
  - [Model.DeviceData](docs/DeviceData.md)
  - [Model.DeviceDataPatchRequest](docs/DeviceDataPatchRequest.md)
- - [Model.DeviceDataPutRequest](docs/DeviceDataPutRequest.md)
+ - [Model.DeviceDataWriteRequest](docs/DeviceDataWriteRequest.md)
  - [Model.DeviceLogData](docs/DeviceLogData.md)
  - [Model.DeviceLogPage](docs/DeviceLogPage.md)
  - [Model.DevicePage](docs/DevicePage.md)

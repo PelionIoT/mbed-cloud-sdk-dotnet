@@ -33,7 +33,7 @@ namespace device_catalog.Api
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
         /// <returns>DeviceData</returns>
-        DeviceData DeviceCreate (DeviceDataRequest device);
+        DeviceData DeviceCreate (DeviceDataWriteRequest device);
 
         /// <summary>
         /// 
@@ -44,7 +44,7 @@ namespace device_catalog.Api
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceData</returns>
-        ApiResponse<DeviceData> DeviceCreateWithHttpInfo (DeviceDataRequest device);
+        ApiResponse<DeviceData> DeviceCreateWithHttpInfo (DeviceDataWriteRequest device);
         /// <summary>
         /// 
         /// </summary>
@@ -287,7 +287,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>DeviceData</returns>
-        DeviceData DeviceUpdate (string id, DeviceDataPutRequest device);
+        DeviceData DeviceUpdate (string id, DeviceDataWriteRequest device);
 
         /// <summary>
         /// 
@@ -299,7 +299,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceData</returns>
-        ApiResponse<DeviceData> DeviceUpdateWithHttpInfo (string id, DeviceDataPutRequest device);
+        ApiResponse<DeviceData> DeviceUpdateWithHttpInfo (string id, DeviceDataWriteRequest device);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -311,7 +311,7 @@ namespace device_catalog.Api
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
         /// <returns>Task of DeviceData</returns>
-        System.Threading.Tasks.Task<DeviceData> DeviceCreateAsync (DeviceDataRequest device);
+        System.Threading.Tasks.Task<DeviceData> DeviceCreateAsync (DeviceDataWriteRequest device);
 
         /// <summary>
         /// 
@@ -322,7 +322,7 @@ namespace device_catalog.Api
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceData)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceCreateAsyncWithHttpInfo (DeviceDataRequest device);
+        System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceCreateAsyncWithHttpInfo (DeviceDataWriteRequest device);
         /// <summary>
         /// 
         /// </summary>
@@ -565,7 +565,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>Task of DeviceData</returns>
-        System.Threading.Tasks.Task<DeviceData> DeviceUpdateAsync (string id, DeviceDataPutRequest device);
+        System.Threading.Tasks.Task<DeviceData> DeviceUpdateAsync (string id, DeviceDataWriteRequest device);
 
         /// <summary>
         /// 
@@ -577,7 +577,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceData)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceUpdateAsyncWithHttpInfo (string id, DeviceDataPutRequest device);
+        System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceUpdateAsyncWithHttpInfo (string id, DeviceDataWriteRequest device);
         #endregion Asynchronous Operations
     }
 
@@ -696,7 +696,7 @@ namespace device_catalog.Api
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
         /// <returns>DeviceData</returns>
-        public DeviceData DeviceCreate (DeviceDataRequest device)
+        public DeviceData DeviceCreate (DeviceDataWriteRequest device)
         {
              ApiResponse<DeviceData> localVarResponse = DeviceCreateWithHttpInfo(device);
              return localVarResponse.Data;
@@ -708,7 +708,7 @@ namespace device_catalog.Api
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceData</returns>
-        public ApiResponse< DeviceData > DeviceCreateWithHttpInfo (DeviceDataRequest device)
+        public ApiResponse< DeviceData > DeviceCreateWithHttpInfo (DeviceDataWriteRequest device)
         {
             // verify the required parameter 'device' is set
             if (device == null)
@@ -778,7 +778,7 @@ namespace device_catalog.Api
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
         /// <returns>Task of DeviceData</returns>
-        public async System.Threading.Tasks.Task<DeviceData> DeviceCreateAsync (DeviceDataRequest device)
+        public async System.Threading.Tasks.Task<DeviceData> DeviceCreateAsync (DeviceDataWriteRequest device)
         {
              ApiResponse<DeviceData> localVarResponse = await DeviceCreateAsyncWithHttpInfo(device);
              return localVarResponse.Data;
@@ -791,7 +791,7 @@ namespace device_catalog.Api
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceData)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceCreateAsyncWithHttpInfo (DeviceDataRequest device)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceCreateAsyncWithHttpInfo (DeviceDataWriteRequest device)
         {
             // verify the required parameter 'device' is set
             if (device == null)
@@ -2087,7 +2087,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>DeviceData</returns>
-        public DeviceData DeviceUpdate (string id, DeviceDataPutRequest device)
+        public DeviceData DeviceUpdate (string id, DeviceDataWriteRequest device)
         {
              ApiResponse<DeviceData> localVarResponse = DeviceUpdateWithHttpInfo(id, device);
              return localVarResponse.Data;
@@ -2100,7 +2100,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceData</returns>
-        public ApiResponse< DeviceData > DeviceUpdateWithHttpInfo (string id, DeviceDataPutRequest device)
+        public ApiResponse< DeviceData > DeviceUpdateWithHttpInfo (string id, DeviceDataWriteRequest device)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2175,7 +2175,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>Task of DeviceData</returns>
-        public async System.Threading.Tasks.Task<DeviceData> DeviceUpdateAsync (string id, DeviceDataPutRequest device)
+        public async System.Threading.Tasks.Task<DeviceData> DeviceUpdateAsync (string id, DeviceDataWriteRequest device)
         {
              ApiResponse<DeviceData> localVarResponse = await DeviceUpdateAsyncWithHttpInfo(id, device);
              return localVarResponse.Data;
@@ -2189,7 +2189,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceData)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceUpdateAsyncWithHttpInfo (string id, DeviceDataPutRequest device)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceUpdateAsyncWithHttpInfo (string id, DeviceDataWriteRequest device)
         {
             // verify the required parameter 'id' is set
             if (id == null)

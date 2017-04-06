@@ -24,10 +24,10 @@ using System.ComponentModel.DataAnnotations;
 namespace device_catalog.Model
 {
     /// <summary>
-    /// DeviceDataPutRequest
+    /// DeviceDataWriteRequest
     /// </summary>
     [DataContract]
-    public partial class DeviceDataPutRequest :  IEquatable<DeviceDataPutRequest>, IValidatableObject
+    public partial class DeviceDataWriteRequest :  IEquatable<DeviceDataWriteRequest>, IValidatableObject
     {
         /// <summary>
         /// Gets or Sets DeployedState
@@ -55,12 +55,12 @@ namespace device_catalog.Model
         [DataMember(Name="deployed_state", EmitDefaultValue=false)]
         public DeployedStateEnum? DeployedState { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceDataPutRequest" /> class.
+        /// Initializes a new instance of the <see cref="DeviceDataWriteRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected DeviceDataPutRequest() { }
+        protected DeviceDataWriteRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceDataPutRequest" /> class.
+        /// Initializes a new instance of the <see cref="DeviceDataWriteRequest" /> class.
         /// </summary>
         /// <param name="ManifestTimestamp">ManifestTimestamp (required).</param>
         /// <param name="VendorId">VendorId (required).</param>
@@ -82,12 +82,12 @@ namespace device_catalog.Model
         /// <param name="SerialNumber">SerialNumber (required).</param>
         /// <param name="EndpointName">EndpointName (required).</param>
         /// <param name="Name">Name (required).</param>
-        public DeviceDataPutRequest(DateTime? ManifestTimestamp = default(DateTime?), string VendorId = default(string), string Description = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string FirmwareChecksum = default(string), bool? AutoUpdate = default(bool?), string Mechanism = default(string), string DeviceClass = default(string), int? TrustLevel = default(int?), Object CustomAttributes = default(Object), string Manifest = default(string), int? TrustClass = default(int?), string DeviceKey = default(string), string State = default(string), string CaId = default(string), string Deployment = default(string), string MechanismUrl = default(string), string SerialNumber = default(string), string EndpointName = default(string), string Name = default(string))
+        public DeviceDataWriteRequest(DateTime? ManifestTimestamp = default(DateTime?), string VendorId = default(string), string Description = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string FirmwareChecksum = default(string), bool? AutoUpdate = default(bool?), string Mechanism = default(string), string DeviceClass = default(string), int? TrustLevel = default(int?), Object CustomAttributes = default(Object), string Manifest = default(string), int? TrustClass = default(int?), string DeviceKey = default(string), string State = default(string), string CaId = default(string), string Deployment = default(string), string MechanismUrl = default(string), string SerialNumber = default(string), string EndpointName = default(string), string Name = default(string))
         {
             // to ensure "ManifestTimestamp" is required (not null)
             if (ManifestTimestamp == null)
             {
-                throw new InvalidDataException("ManifestTimestamp is a required property for DeviceDataPutRequest and cannot be null");
+                throw new InvalidDataException("ManifestTimestamp is a required property for DeviceDataWriteRequest and cannot be null");
             }
             else
             {
@@ -96,7 +96,7 @@ namespace device_catalog.Model
             // to ensure "VendorId" is required (not null)
             if (VendorId == null)
             {
-                throw new InvalidDataException("VendorId is a required property for DeviceDataPutRequest and cannot be null");
+                throw new InvalidDataException("VendorId is a required property for DeviceDataWriteRequest and cannot be null");
             }
             else
             {
@@ -105,7 +105,7 @@ namespace device_catalog.Model
             // to ensure "Description" is required (not null)
             if (Description == null)
             {
-                throw new InvalidDataException("Description is a required property for DeviceDataPutRequest and cannot be null");
+                throw new InvalidDataException("Description is a required property for DeviceDataWriteRequest and cannot be null");
             }
             else
             {
@@ -114,7 +114,7 @@ namespace device_catalog.Model
             // to ensure "DeployedState" is required (not null)
             if (DeployedState == null)
             {
-                throw new InvalidDataException("DeployedState is a required property for DeviceDataPutRequest and cannot be null");
+                throw new InvalidDataException("DeployedState is a required property for DeviceDataWriteRequest and cannot be null");
             }
             else
             {
@@ -123,7 +123,7 @@ namespace device_catalog.Model
             // to ensure "FirmwareChecksum" is required (not null)
             if (FirmwareChecksum == null)
             {
-                throw new InvalidDataException("FirmwareChecksum is a required property for DeviceDataPutRequest and cannot be null");
+                throw new InvalidDataException("FirmwareChecksum is a required property for DeviceDataWriteRequest and cannot be null");
             }
             else
             {
@@ -132,7 +132,7 @@ namespace device_catalog.Model
             // to ensure "AutoUpdate" is required (not null)
             if (AutoUpdate == null)
             {
-                throw new InvalidDataException("AutoUpdate is a required property for DeviceDataPutRequest and cannot be null");
+                throw new InvalidDataException("AutoUpdate is a required property for DeviceDataWriteRequest and cannot be null");
             }
             else
             {
@@ -141,7 +141,7 @@ namespace device_catalog.Model
             // to ensure "Mechanism" is required (not null)
             if (Mechanism == null)
             {
-                throw new InvalidDataException("Mechanism is a required property for DeviceDataPutRequest and cannot be null");
+                throw new InvalidDataException("Mechanism is a required property for DeviceDataWriteRequest and cannot be null");
             }
             else
             {
@@ -150,7 +150,7 @@ namespace device_catalog.Model
             // to ensure "DeviceClass" is required (not null)
             if (DeviceClass == null)
             {
-                throw new InvalidDataException("DeviceClass is a required property for DeviceDataPutRequest and cannot be null");
+                throw new InvalidDataException("DeviceClass is a required property for DeviceDataWriteRequest and cannot be null");
             }
             else
             {
@@ -159,7 +159,7 @@ namespace device_catalog.Model
             // to ensure "TrustLevel" is required (not null)
             if (TrustLevel == null)
             {
-                throw new InvalidDataException("TrustLevel is a required property for DeviceDataPutRequest and cannot be null");
+                throw new InvalidDataException("TrustLevel is a required property for DeviceDataWriteRequest and cannot be null");
             }
             else
             {
@@ -168,7 +168,7 @@ namespace device_catalog.Model
             // to ensure "CustomAttributes" is required (not null)
             if (CustomAttributes == null)
             {
-                throw new InvalidDataException("CustomAttributes is a required property for DeviceDataPutRequest and cannot be null");
+                throw new InvalidDataException("CustomAttributes is a required property for DeviceDataWriteRequest and cannot be null");
             }
             else
             {
@@ -177,7 +177,7 @@ namespace device_catalog.Model
             // to ensure "Manifest" is required (not null)
             if (Manifest == null)
             {
-                throw new InvalidDataException("Manifest is a required property for DeviceDataPutRequest and cannot be null");
+                throw new InvalidDataException("Manifest is a required property for DeviceDataWriteRequest and cannot be null");
             }
             else
             {
@@ -186,7 +186,7 @@ namespace device_catalog.Model
             // to ensure "TrustClass" is required (not null)
             if (TrustClass == null)
             {
-                throw new InvalidDataException("TrustClass is a required property for DeviceDataPutRequest and cannot be null");
+                throw new InvalidDataException("TrustClass is a required property for DeviceDataWriteRequest and cannot be null");
             }
             else
             {
@@ -195,7 +195,7 @@ namespace device_catalog.Model
             // to ensure "DeviceKey" is required (not null)
             if (DeviceKey == null)
             {
-                throw new InvalidDataException("DeviceKey is a required property for DeviceDataPutRequest and cannot be null");
+                throw new InvalidDataException("DeviceKey is a required property for DeviceDataWriteRequest and cannot be null");
             }
             else
             {
@@ -204,7 +204,7 @@ namespace device_catalog.Model
             // to ensure "State" is required (not null)
             if (State == null)
             {
-                throw new InvalidDataException("State is a required property for DeviceDataPutRequest and cannot be null");
+                throw new InvalidDataException("State is a required property for DeviceDataWriteRequest and cannot be null");
             }
             else
             {
@@ -213,7 +213,7 @@ namespace device_catalog.Model
             // to ensure "CaId" is required (not null)
             if (CaId == null)
             {
-                throw new InvalidDataException("CaId is a required property for DeviceDataPutRequest and cannot be null");
+                throw new InvalidDataException("CaId is a required property for DeviceDataWriteRequest and cannot be null");
             }
             else
             {
@@ -222,7 +222,7 @@ namespace device_catalog.Model
             // to ensure "Deployment" is required (not null)
             if (Deployment == null)
             {
-                throw new InvalidDataException("Deployment is a required property for DeviceDataPutRequest and cannot be null");
+                throw new InvalidDataException("Deployment is a required property for DeviceDataWriteRequest and cannot be null");
             }
             else
             {
@@ -231,7 +231,7 @@ namespace device_catalog.Model
             // to ensure "MechanismUrl" is required (not null)
             if (MechanismUrl == null)
             {
-                throw new InvalidDataException("MechanismUrl is a required property for DeviceDataPutRequest and cannot be null");
+                throw new InvalidDataException("MechanismUrl is a required property for DeviceDataWriteRequest and cannot be null");
             }
             else
             {
@@ -240,7 +240,7 @@ namespace device_catalog.Model
             // to ensure "SerialNumber" is required (not null)
             if (SerialNumber == null)
             {
-                throw new InvalidDataException("SerialNumber is a required property for DeviceDataPutRequest and cannot be null");
+                throw new InvalidDataException("SerialNumber is a required property for DeviceDataWriteRequest and cannot be null");
             }
             else
             {
@@ -249,7 +249,7 @@ namespace device_catalog.Model
             // to ensure "EndpointName" is required (not null)
             if (EndpointName == null)
             {
-                throw new InvalidDataException("EndpointName is a required property for DeviceDataPutRequest and cannot be null");
+                throw new InvalidDataException("EndpointName is a required property for DeviceDataWriteRequest and cannot be null");
             }
             else
             {
@@ -258,7 +258,7 @@ namespace device_catalog.Model
             // to ensure "Name" is required (not null)
             if (Name == null)
             {
-                throw new InvalidDataException("Name is a required property for DeviceDataPutRequest and cannot be null");
+                throw new InvalidDataException("Name is a required property for DeviceDataWriteRequest and cannot be null");
             }
             else
             {
@@ -368,7 +368,7 @@ namespace device_catalog.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class DeviceDataPutRequest {\n");
+            sb.Append("class DeviceDataWriteRequest {\n");
             sb.Append("  ManifestTimestamp: ").Append(ManifestTimestamp).Append("\n");
             sb.Append("  VendorId: ").Append(VendorId).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
@@ -410,15 +410,15 @@ namespace device_catalog.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as DeviceDataPutRequest);
+            return this.Equals(obj as DeviceDataWriteRequest);
         }
 
         /// <summary>
-        /// Returns true if DeviceDataPutRequest instances are equal
+        /// Returns true if DeviceDataWriteRequest instances are equal
         /// </summary>
-        /// <param name="other">Instance of DeviceDataPutRequest to be compared</param>
+        /// <param name="other">Instance of DeviceDataWriteRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DeviceDataPutRequest other)
+        public bool Equals(DeviceDataWriteRequest other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
