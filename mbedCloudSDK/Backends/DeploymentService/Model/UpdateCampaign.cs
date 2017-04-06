@@ -113,15 +113,15 @@ namespace deployment_service.Model
         /// Initializes a new instance of the <see cref="UpdateCampaign" /> class.
         /// </summary>
         /// <param name="Description">An optional description of the campaign (required).</param>
-        /// <param name="When">The timestamp at which update campaign scheduled to start (required).</param>
+        /// <param name="When">The timestamp at which update campaign scheduled to start.</param>
         /// <param name="CreatedAt">The time the object was created (required).</param>
         /// <param name="_Object">The API resource entity (required).</param>
         /// <param name="RootManifestId">RootManifestId (required).</param>
         /// <param name="State">The state of the campaign (required).</param>
-        /// <param name="Finished">The timestamp when the update campaign finished (required).</param>
+        /// <param name="Finished">The timestamp when the update campaign finished.</param>
         /// <param name="Etag">The entity instance signature (required).</param>
         /// <param name="RootManifestUrl">RootManifestUrl (required).</param>
-        /// <param name="StartedAt">StartedAt (required).</param>
+        /// <param name="StartedAt">StartedAt.</param>
         /// <param name="Id">The ID of the campaign (required).</param>
         /// <param name="DeviceFilter">The filter for the devices the campaign will target (required).</param>
         /// <param name="Name">A name for this campaign (required).</param>
@@ -135,15 +135,6 @@ namespace deployment_service.Model
             else
             {
                 this.Description = Description;
-            }
-            // to ensure "When" is required (not null)
-            if (When == null)
-            {
-                throw new InvalidDataException("When is a required property for UpdateCampaign and cannot be null");
-            }
-            else
-            {
-                this.When = When;
             }
             // to ensure "CreatedAt" is required (not null)
             if (CreatedAt == null)
@@ -181,15 +172,6 @@ namespace deployment_service.Model
             {
                 this.State = State;
             }
-            // to ensure "Finished" is required (not null)
-            if (Finished == null)
-            {
-                throw new InvalidDataException("Finished is a required property for UpdateCampaign and cannot be null");
-            }
-            else
-            {
-                this.Finished = Finished;
-            }
             // to ensure "Etag" is required (not null)
             if (Etag == null)
             {
@@ -207,15 +189,6 @@ namespace deployment_service.Model
             else
             {
                 this.RootManifestUrl = RootManifestUrl;
-            }
-            // to ensure "StartedAt" is required (not null)
-            if (StartedAt == null)
-            {
-                throw new InvalidDataException("StartedAt is a required property for UpdateCampaign and cannot be null");
-            }
-            else
-            {
-                this.StartedAt = StartedAt;
             }
             // to ensure "Id" is required (not null)
             if (Id == null)
@@ -244,6 +217,9 @@ namespace deployment_service.Model
             {
                 this.Name = Name;
             }
+            this.When = When;
+            this.Finished = Finished;
+            this.StartedAt = StartedAt;
         }
         
         /// <summary>
