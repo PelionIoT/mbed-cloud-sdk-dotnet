@@ -24,31 +24,52 @@ using System.ComponentModel.DataAnnotations;
 namespace device_catalog.Model
 {
     /// <summary>
-    /// DeviceDataPatchRequest
+    /// DeviceDataPutRequest
     /// </summary>
     [DataContract]
-    public partial class DeviceDataPatchRequest :  IEquatable<DeviceDataPatchRequest>, IValidatableObject
+    public partial class DeviceDataPutRequest :  IEquatable<DeviceDataPutRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceDataPatchRequest" /> class.
+        /// Initializes a new instance of the <see cref="DeviceDataPutRequest" /> class.
+        /// </summary>
+        [JsonConstructorAttribute]
+        protected DeviceDataPutRequest() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DeviceDataPutRequest" /> class.
         /// </summary>
         /// <param name="Description">Description.</param>
         /// <param name="EndpointName">EndpointName.</param>
         /// <param name="AutoUpdate">AutoUpdate.</param>
         /// <param name="_Object">_Object.</param>
         /// <param name="CustomAttributes">CustomAttributes.</param>
-        /// <param name="DeviceKey">DeviceKey.</param>
-        /// <param name="CaId">CaId.</param>
+        /// <param name="DeviceKey">DeviceKey (required).</param>
+        /// <param name="CaId">CaId (required).</param>
         /// <param name="Name">Name.</param>
-        public DeviceDataPatchRequest(string Description = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string _Object = default(string), Object CustomAttributes = default(Object), string DeviceKey = default(string), string CaId = default(string), string Name = default(string))
+        public DeviceDataPutRequest(string Description = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string _Object = default(string), Object CustomAttributes = default(Object), string DeviceKey = default(string), string CaId = default(string), string Name = default(string))
         {
+            // to ensure "DeviceKey" is required (not null)
+            if (DeviceKey == null)
+            {
+                throw new InvalidDataException("DeviceKey is a required property for DeviceDataPutRequest and cannot be null");
+            }
+            else
+            {
+                this.DeviceKey = DeviceKey;
+            }
+            // to ensure "CaId" is required (not null)
+            if (CaId == null)
+            {
+                throw new InvalidDataException("CaId is a required property for DeviceDataPutRequest and cannot be null");
+            }
+            else
+            {
+                this.CaId = CaId;
+            }
             this.Description = Description;
             this.EndpointName = EndpointName;
             this.AutoUpdate = AutoUpdate;
             this._Object = _Object;
             this.CustomAttributes = CustomAttributes;
-            this.DeviceKey = DeviceKey;
-            this.CaId = CaId;
             this.Name = Name;
         }
         
@@ -99,7 +120,7 @@ namespace device_catalog.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class DeviceDataPatchRequest {\n");
+            sb.Append("class DeviceDataPutRequest {\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  EndpointName: ").Append(EndpointName).Append("\n");
             sb.Append("  AutoUpdate: ").Append(AutoUpdate).Append("\n");
@@ -129,15 +150,15 @@ namespace device_catalog.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as DeviceDataPatchRequest);
+            return this.Equals(obj as DeviceDataPutRequest);
         }
 
         /// <summary>
-        /// Returns true if DeviceDataPatchRequest instances are equal
+        /// Returns true if DeviceDataPutRequest instances are equal
         /// </summary>
-        /// <param name="other">Instance of DeviceDataPatchRequest to be compared</param>
+        /// <param name="other">Instance of DeviceDataPutRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DeviceDataPatchRequest other)
+        public bool Equals(DeviceDataPutRequest other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)

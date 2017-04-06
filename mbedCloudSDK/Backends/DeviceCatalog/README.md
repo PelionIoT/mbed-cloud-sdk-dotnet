@@ -113,7 +113,8 @@ Class | Method | HTTP request | Description
 
  - [Model.DeviceData](docs/DeviceData.md)
  - [Model.DeviceDataPatchRequest](docs/DeviceDataPatchRequest.md)
- - [Model.DeviceDataWriteRequest](docs/DeviceDataWriteRequest.md)
+ - [Model.DeviceDataPostRequest](docs/DeviceDataPostRequest.md)
+ - [Model.DeviceDataPutRequest](docs/DeviceDataPutRequest.md)
  - [Model.DeviceLogData](docs/DeviceLogData.md)
  - [Model.DeviceLogPage](docs/DeviceLogPage.md)
  - [Model.DevicePage](docs/DevicePage.md)

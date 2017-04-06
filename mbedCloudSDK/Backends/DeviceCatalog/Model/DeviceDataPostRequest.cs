@@ -24,10 +24,10 @@ using System.ComponentModel.DataAnnotations;
 namespace device_catalog.Model
 {
     /// <summary>
-    /// DeviceData
+    /// DeviceDataPostRequest
     /// </summary>
     [DataContract]
-    public partial class DeviceData :  IEquatable<DeviceData>, IValidatableObject
+    public partial class DeviceDataPostRequest :  IEquatable<DeviceDataPostRequest>, IValidatableObject
     {
         /// <summary>
         /// Gets or Sets DeployedState
@@ -55,70 +55,77 @@ namespace device_catalog.Model
         [DataMember(Name="deployed_state", EmitDefaultValue=false)]
         public DeployedStateEnum? DeployedState { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceData" /> class.
+        /// Initializes a new instance of the <see cref="DeviceDataPostRequest" /> class.
+        /// </summary>
+        [JsonConstructorAttribute]
+        protected DeviceDataPostRequest() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DeviceDataPostRequest" /> class.
         /// </summary>
         /// <param name="BootstrapExpirationDate">BootstrapExpirationDate.</param>
         /// <param name="BootstrappedTimestamp">BootstrappedTimestamp.</param>
         /// <param name="ConnectorExpirationDate">ConnectorExpirationDate.</param>
-        /// <param name="UpdatedAt">UpdatedAt.</param>
         /// <param name="Mechanism">Mechanism.</param>
         /// <param name="DeviceClass">DeviceClass.</param>
-        /// <param name="Id">Id.</param>
-        /// <param name="Description">Description.</param>
         /// <param name="EndpointName">EndpointName.</param>
         /// <param name="AutoUpdate">AutoUpdate.</param>
         /// <param name="DeviceExecutionMode">DeviceExecutionMode.</param>
         /// <param name="CustomAttributes">CustomAttributes.</param>
         /// <param name="State">State.</param>
-        /// <param name="Etag">Etag.</param>
         /// <param name="SerialNumber">SerialNumber.</param>
         /// <param name="FirmwareChecksum">FirmwareChecksum.</param>
-        /// <param name="ManifestTimestamp">ManifestTimestamp.</param>
         /// <param name="VendorId">VendorId.</param>
-        /// <param name="AccountId">AccountId.</param>
+        /// <param name="Description">Description.</param>
         /// <param name="DeployedState">DeployedState.</param>
         /// <param name="_Object">_Object.</param>
-        /// <param name="TrustClass">TrustClass.</param>
         /// <param name="Deployment">Deployment.</param>
         /// <param name="MechanismUrl">MechanismUrl.</param>
         /// <param name="TrustLevel">TrustLevel.</param>
         /// <param name="Name">Name.</param>
-        /// <param name="DeviceKey">DeviceKey.</param>
-        /// <param name="CreatedAt">CreatedAt.</param>
+        /// <param name="DeviceKey">DeviceKey (required).</param>
         /// <param name="Manifest">Manifest.</param>
-        /// <param name="CaId">CaId.</param>
-        public DeviceData(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), string Mechanism = default(string), string DeviceClass = default(string), string Id = default(string), string Description = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), int? DeviceExecutionMode = default(int?), Object CustomAttributes = default(Object), string State = default(string), DateTime? Etag = default(DateTime?), string SerialNumber = default(string), string FirmwareChecksum = default(string), DateTime? ManifestTimestamp = default(DateTime?), string VendorId = default(string), string AccountId = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string _Object = default(string), int? TrustClass = default(int?), string Deployment = default(string), string MechanismUrl = default(string), int? TrustLevel = default(int?), string Name = default(string), string DeviceKey = default(string), DateTime? CreatedAt = default(DateTime?), string Manifest = default(string), string CaId = default(string))
+        /// <param name="CaId">CaId (required).</param>
+        public DeviceDataPostRequest(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), string Mechanism = default(string), string DeviceClass = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), int? DeviceExecutionMode = default(int?), Object CustomAttributes = default(Object), string State = default(string), string SerialNumber = default(string), string FirmwareChecksum = default(string), string VendorId = default(string), string Description = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string _Object = default(string), string Deployment = default(string), string MechanismUrl = default(string), int? TrustLevel = default(int?), string Name = default(string), string DeviceKey = default(string), string Manifest = default(string), string CaId = default(string))
         {
+            // to ensure "DeviceKey" is required (not null)
+            if (DeviceKey == null)
+            {
+                throw new InvalidDataException("DeviceKey is a required property for DeviceDataPostRequest and cannot be null");
+            }
+            else
+            {
+                this.DeviceKey = DeviceKey;
+            }
+            // to ensure "CaId" is required (not null)
+            if (CaId == null)
+            {
+                throw new InvalidDataException("CaId is a required property for DeviceDataPostRequest and cannot be null");
+            }
+            else
+            {
+                this.CaId = CaId;
+            }
             this.BootstrapExpirationDate = BootstrapExpirationDate;
             this.BootstrappedTimestamp = BootstrappedTimestamp;
             this.ConnectorExpirationDate = ConnectorExpirationDate;
-            this.UpdatedAt = UpdatedAt;
             this.Mechanism = Mechanism;
             this.DeviceClass = DeviceClass;
-            this.Id = Id;
-            this.Description = Description;
             this.EndpointName = EndpointName;
             this.AutoUpdate = AutoUpdate;
             this.DeviceExecutionMode = DeviceExecutionMode;
             this.CustomAttributes = CustomAttributes;
             this.State = State;
-            this.Etag = Etag;
             this.SerialNumber = SerialNumber;
             this.FirmwareChecksum = FirmwareChecksum;
-            this.ManifestTimestamp = ManifestTimestamp;
             this.VendorId = VendorId;
-            this.AccountId = AccountId;
+            this.Description = Description;
             this.DeployedState = DeployedState;
             this._Object = _Object;
-            this.TrustClass = TrustClass;
             this.Deployment = Deployment;
             this.MechanismUrl = MechanismUrl;
             this.TrustLevel = TrustLevel;
             this.Name = Name;
-            this.DeviceKey = DeviceKey;
-            this.CreatedAt = CreatedAt;
             this.Manifest = Manifest;
-            this.CaId = CaId;
         }
         
         /// <summary>
@@ -137,11 +144,6 @@ namespace device_catalog.Model
         [DataMember(Name="connector_expiration_date", EmitDefaultValue=false)]
         public DateTime? ConnectorExpirationDate { get; set; }
         /// <summary>
-        /// Gets or Sets UpdatedAt
-        /// </summary>
-        [DataMember(Name="updated_at", EmitDefaultValue=false)]
-        public DateTime? UpdatedAt { get; set; }
-        /// <summary>
         /// Gets or Sets Mechanism
         /// </summary>
         [DataMember(Name="mechanism", EmitDefaultValue=false)]
@@ -151,16 +153,6 @@ namespace device_catalog.Model
         /// </summary>
         [DataMember(Name="device_class", EmitDefaultValue=false)]
         public string DeviceClass { get; set; }
-        /// <summary>
-        /// Gets or Sets Id
-        /// </summary>
-        [DataMember(Name="id", EmitDefaultValue=false)]
-        public string Id { get; set; }
-        /// <summary>
-        /// Gets or Sets Description
-        /// </summary>
-        [DataMember(Name="description", EmitDefaultValue=false)]
-        public string Description { get; set; }
         /// <summary>
         /// Gets or Sets EndpointName
         /// </summary>
@@ -187,11 +179,6 @@ namespace device_catalog.Model
         [DataMember(Name="state", EmitDefaultValue=false)]
         public string State { get; set; }
         /// <summary>
-        /// Gets or Sets Etag
-        /// </summary>
-        [DataMember(Name="etag", EmitDefaultValue=false)]
-        public DateTime? Etag { get; set; }
-        /// <summary>
         /// Gets or Sets SerialNumber
         /// </summary>
         [DataMember(Name="serial_number", EmitDefaultValue=false)]
@@ -202,30 +189,20 @@ namespace device_catalog.Model
         [DataMember(Name="firmware_checksum", EmitDefaultValue=false)]
         public string FirmwareChecksum { get; set; }
         /// <summary>
-        /// Gets or Sets ManifestTimestamp
-        /// </summary>
-        [DataMember(Name="manifest_timestamp", EmitDefaultValue=false)]
-        public DateTime? ManifestTimestamp { get; set; }
-        /// <summary>
         /// Gets or Sets VendorId
         /// </summary>
         [DataMember(Name="vendor_id", EmitDefaultValue=false)]
         public string VendorId { get; set; }
         /// <summary>
-        /// Gets or Sets AccountId
+        /// Gets or Sets Description
         /// </summary>
-        [DataMember(Name="account_id", EmitDefaultValue=false)]
-        public string AccountId { get; set; }
+        [DataMember(Name="description", EmitDefaultValue=false)]
+        public string Description { get; set; }
         /// <summary>
         /// Gets or Sets _Object
         /// </summary>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
-        /// <summary>
-        /// Gets or Sets TrustClass
-        /// </summary>
-        [DataMember(Name="trust_class", EmitDefaultValue=false)]
-        public int? TrustClass { get; set; }
         /// <summary>
         /// Gets or Sets Deployment
         /// </summary>
@@ -252,11 +229,6 @@ namespace device_catalog.Model
         [DataMember(Name="device_key", EmitDefaultValue=false)]
         public string DeviceKey { get; set; }
         /// <summary>
-        /// Gets or Sets CreatedAt
-        /// </summary>
-        [DataMember(Name="created_at", EmitDefaultValue=false)]
-        public DateTime? CreatedAt { get; set; }
-        /// <summary>
         /// Gets or Sets Manifest
         /// </summary>
         [DataMember(Name="manifest", EmitDefaultValue=false)]
@@ -273,35 +245,28 @@ namespace device_catalog.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class DeviceData {\n");
+            sb.Append("class DeviceDataPostRequest {\n");
             sb.Append("  BootstrapExpirationDate: ").Append(BootstrapExpirationDate).Append("\n");
             sb.Append("  BootstrappedTimestamp: ").Append(BootstrappedTimestamp).Append("\n");
             sb.Append("  ConnectorExpirationDate: ").Append(ConnectorExpirationDate).Append("\n");
-            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  Mechanism: ").Append(Mechanism).Append("\n");
             sb.Append("  DeviceClass: ").Append(DeviceClass).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  EndpointName: ").Append(EndpointName).Append("\n");
             sb.Append("  AutoUpdate: ").Append(AutoUpdate).Append("\n");
             sb.Append("  DeviceExecutionMode: ").Append(DeviceExecutionMode).Append("\n");
             sb.Append("  CustomAttributes: ").Append(CustomAttributes).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
-            sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  SerialNumber: ").Append(SerialNumber).Append("\n");
             sb.Append("  FirmwareChecksum: ").Append(FirmwareChecksum).Append("\n");
-            sb.Append("  ManifestTimestamp: ").Append(ManifestTimestamp).Append("\n");
             sb.Append("  VendorId: ").Append(VendorId).Append("\n");
-            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DeployedState: ").Append(DeployedState).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
-            sb.Append("  TrustClass: ").Append(TrustClass).Append("\n");
             sb.Append("  Deployment: ").Append(Deployment).Append("\n");
             sb.Append("  MechanismUrl: ").Append(MechanismUrl).Append("\n");
             sb.Append("  TrustLevel: ").Append(TrustLevel).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  DeviceKey: ").Append(DeviceKey).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Manifest: ").Append(Manifest).Append("\n");
             sb.Append("  CaId: ").Append(CaId).Append("\n");
             sb.Append("}\n");
@@ -325,15 +290,15 @@ namespace device_catalog.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as DeviceData);
+            return this.Equals(obj as DeviceDataPostRequest);
         }
 
         /// <summary>
-        /// Returns true if DeviceData instances are equal
+        /// Returns true if DeviceDataPostRequest instances are equal
         /// </summary>
-        /// <param name="other">Instance of DeviceData to be compared</param>
+        /// <param name="other">Instance of DeviceDataPostRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DeviceData other)
+        public bool Equals(DeviceDataPostRequest other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -356,11 +321,6 @@ namespace device_catalog.Model
                     this.ConnectorExpirationDate.Equals(other.ConnectorExpirationDate)
                 ) && 
                 (
-                    this.UpdatedAt == other.UpdatedAt ||
-                    this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(other.UpdatedAt)
-                ) && 
-                (
                     this.Mechanism == other.Mechanism ||
                     this.Mechanism != null &&
                     this.Mechanism.Equals(other.Mechanism)
@@ -369,16 +329,6 @@ namespace device_catalog.Model
                     this.DeviceClass == other.DeviceClass ||
                     this.DeviceClass != null &&
                     this.DeviceClass.Equals(other.DeviceClass)
-                ) && 
-                (
-                    this.Id == other.Id ||
-                    this.Id != null &&
-                    this.Id.Equals(other.Id)
-                ) && 
-                (
-                    this.Description == other.Description ||
-                    this.Description != null &&
-                    this.Description.Equals(other.Description)
                 ) && 
                 (
                     this.EndpointName == other.EndpointName ||
@@ -406,11 +356,6 @@ namespace device_catalog.Model
                     this.State.Equals(other.State)
                 ) && 
                 (
-                    this.Etag == other.Etag ||
-                    this.Etag != null &&
-                    this.Etag.Equals(other.Etag)
-                ) && 
-                (
                     this.SerialNumber == other.SerialNumber ||
                     this.SerialNumber != null &&
                     this.SerialNumber.Equals(other.SerialNumber)
@@ -421,19 +366,14 @@ namespace device_catalog.Model
                     this.FirmwareChecksum.Equals(other.FirmwareChecksum)
                 ) && 
                 (
-                    this.ManifestTimestamp == other.ManifestTimestamp ||
-                    this.ManifestTimestamp != null &&
-                    this.ManifestTimestamp.Equals(other.ManifestTimestamp)
-                ) && 
-                (
                     this.VendorId == other.VendorId ||
                     this.VendorId != null &&
                     this.VendorId.Equals(other.VendorId)
                 ) && 
                 (
-                    this.AccountId == other.AccountId ||
-                    this.AccountId != null &&
-                    this.AccountId.Equals(other.AccountId)
+                    this.Description == other.Description ||
+                    this.Description != null &&
+                    this.Description.Equals(other.Description)
                 ) && 
                 (
                     this.DeployedState == other.DeployedState ||
@@ -444,11 +384,6 @@ namespace device_catalog.Model
                     this._Object == other._Object ||
                     this._Object != null &&
                     this._Object.Equals(other._Object)
-                ) && 
-                (
-                    this.TrustClass == other.TrustClass ||
-                    this.TrustClass != null &&
-                    this.TrustClass.Equals(other.TrustClass)
                 ) && 
                 (
                     this.Deployment == other.Deployment ||
@@ -474,11 +409,6 @@ namespace device_catalog.Model
                     this.DeviceKey == other.DeviceKey ||
                     this.DeviceKey != null &&
                     this.DeviceKey.Equals(other.DeviceKey)
-                ) && 
-                (
-                    this.CreatedAt == other.CreatedAt ||
-                    this.CreatedAt != null &&
-                    this.CreatedAt.Equals(other.CreatedAt)
                 ) && 
                 (
                     this.Manifest == other.Manifest ||
@@ -509,16 +439,10 @@ namespace device_catalog.Model
                     hash = hash * 59 + this.BootstrappedTimestamp.GetHashCode();
                 if (this.ConnectorExpirationDate != null)
                     hash = hash * 59 + this.ConnectorExpirationDate.GetHashCode();
-                if (this.UpdatedAt != null)
-                    hash = hash * 59 + this.UpdatedAt.GetHashCode();
                 if (this.Mechanism != null)
                     hash = hash * 59 + this.Mechanism.GetHashCode();
                 if (this.DeviceClass != null)
                     hash = hash * 59 + this.DeviceClass.GetHashCode();
-                if (this.Id != null)
-                    hash = hash * 59 + this.Id.GetHashCode();
-                if (this.Description != null)
-                    hash = hash * 59 + this.Description.GetHashCode();
                 if (this.EndpointName != null)
                     hash = hash * 59 + this.EndpointName.GetHashCode();
                 if (this.AutoUpdate != null)
@@ -529,24 +453,18 @@ namespace device_catalog.Model
                     hash = hash * 59 + this.CustomAttributes.GetHashCode();
                 if (this.State != null)
                     hash = hash * 59 + this.State.GetHashCode();
-                if (this.Etag != null)
-                    hash = hash * 59 + this.Etag.GetHashCode();
                 if (this.SerialNumber != null)
                     hash = hash * 59 + this.SerialNumber.GetHashCode();
                 if (this.FirmwareChecksum != null)
                     hash = hash * 59 + this.FirmwareChecksum.GetHashCode();
-                if (this.ManifestTimestamp != null)
-                    hash = hash * 59 + this.ManifestTimestamp.GetHashCode();
                 if (this.VendorId != null)
                     hash = hash * 59 + this.VendorId.GetHashCode();
-                if (this.AccountId != null)
-                    hash = hash * 59 + this.AccountId.GetHashCode();
+                if (this.Description != null)
+                    hash = hash * 59 + this.Description.GetHashCode();
                 if (this.DeployedState != null)
                     hash = hash * 59 + this.DeployedState.GetHashCode();
                 if (this._Object != null)
                     hash = hash * 59 + this._Object.GetHashCode();
-                if (this.TrustClass != null)
-                    hash = hash * 59 + this.TrustClass.GetHashCode();
                 if (this.Deployment != null)
                     hash = hash * 59 + this.Deployment.GetHashCode();
                 if (this.MechanismUrl != null)
@@ -557,8 +475,6 @@ namespace device_catalog.Model
                     hash = hash * 59 + this.Name.GetHashCode();
                 if (this.DeviceKey != null)
                     hash = hash * 59 + this.DeviceKey.GetHashCode();
-                if (this.CreatedAt != null)
-                    hash = hash * 59 + this.CreatedAt.GetHashCode();
                 if (this.Manifest != null)
                     hash = hash * 59 + this.Manifest.GetHashCode();
                 if (this.CaId != null)
