@@ -243,7 +243,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>DeviceData</returns>
-        DeviceData DevicePartialUpdate (string id, DeviceDataRequest device);
+        DeviceData DevicePartialUpdate (string id, DeviceDataPatchRequest device);
 
         /// <summary>
         /// 
@@ -255,7 +255,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceData</returns>
-        ApiResponse<DeviceData> DevicePartialUpdateWithHttpInfo (string id, DeviceDataRequest device);
+        ApiResponse<DeviceData> DevicePartialUpdateWithHttpInfo (string id, DeviceDataPatchRequest device);
         /// <summary>
         /// 
         /// </summary>
@@ -287,7 +287,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>DeviceData</returns>
-        DeviceData DeviceUpdate (string id, DeviceDataRequest device);
+        DeviceData DeviceUpdate (string id, DeviceDataPutRequest device);
 
         /// <summary>
         /// 
@@ -299,7 +299,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceData</returns>
-        ApiResponse<DeviceData> DeviceUpdateWithHttpInfo (string id, DeviceDataRequest device);
+        ApiResponse<DeviceData> DeviceUpdateWithHttpInfo (string id, DeviceDataPutRequest device);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -521,7 +521,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>Task of DeviceData</returns>
-        System.Threading.Tasks.Task<DeviceData> DevicePartialUpdateAsync (string id, DeviceDataRequest device);
+        System.Threading.Tasks.Task<DeviceData> DevicePartialUpdateAsync (string id, DeviceDataPatchRequest device);
 
         /// <summary>
         /// 
@@ -533,7 +533,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceData)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceData>> DevicePartialUpdateAsyncWithHttpInfo (string id, DeviceDataRequest device);
+        System.Threading.Tasks.Task<ApiResponse<DeviceData>> DevicePartialUpdateAsyncWithHttpInfo (string id, DeviceDataPatchRequest device);
         /// <summary>
         /// 
         /// </summary>
@@ -565,7 +565,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>Task of DeviceData</returns>
-        System.Threading.Tasks.Task<DeviceData> DeviceUpdateAsync (string id, DeviceDataRequest device);
+        System.Threading.Tasks.Task<DeviceData> DeviceUpdateAsync (string id, DeviceDataPutRequest device);
 
         /// <summary>
         /// 
@@ -577,7 +577,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceData)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceUpdateAsyncWithHttpInfo (string id, DeviceDataRequest device);
+        System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceUpdateAsyncWithHttpInfo (string id, DeviceDataPutRequest device);
         #endregion Asynchronous Operations
     }
 
@@ -1761,7 +1761,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>DeviceData</returns>
-        public DeviceData DevicePartialUpdate (string id, DeviceDataRequest device)
+        public DeviceData DevicePartialUpdate (string id, DeviceDataPatchRequest device)
         {
              ApiResponse<DeviceData> localVarResponse = DevicePartialUpdateWithHttpInfo(id, device);
              return localVarResponse.Data;
@@ -1774,7 +1774,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceData</returns>
-        public ApiResponse< DeviceData > DevicePartialUpdateWithHttpInfo (string id, DeviceDataRequest device)
+        public ApiResponse< DeviceData > DevicePartialUpdateWithHttpInfo (string id, DeviceDataPatchRequest device)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1849,7 +1849,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>Task of DeviceData</returns>
-        public async System.Threading.Tasks.Task<DeviceData> DevicePartialUpdateAsync (string id, DeviceDataRequest device)
+        public async System.Threading.Tasks.Task<DeviceData> DevicePartialUpdateAsync (string id, DeviceDataPatchRequest device)
         {
              ApiResponse<DeviceData> localVarResponse = await DevicePartialUpdateAsyncWithHttpInfo(id, device);
              return localVarResponse.Data;
@@ -1863,7 +1863,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceData)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceData>> DevicePartialUpdateAsyncWithHttpInfo (string id, DeviceDataRequest device)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceData>> DevicePartialUpdateAsyncWithHttpInfo (string id, DeviceDataPatchRequest device)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2087,7 +2087,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>DeviceData</returns>
-        public DeviceData DeviceUpdate (string id, DeviceDataRequest device)
+        public DeviceData DeviceUpdate (string id, DeviceDataPutRequest device)
         {
              ApiResponse<DeviceData> localVarResponse = DeviceUpdateWithHttpInfo(id, device);
              return localVarResponse.Data;
@@ -2100,7 +2100,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceData</returns>
-        public ApiResponse< DeviceData > DeviceUpdateWithHttpInfo (string id, DeviceDataRequest device)
+        public ApiResponse< DeviceData > DeviceUpdateWithHttpInfo (string id, DeviceDataPutRequest device)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2175,7 +2175,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>Task of DeviceData</returns>
-        public async System.Threading.Tasks.Task<DeviceData> DeviceUpdateAsync (string id, DeviceDataRequest device)
+        public async System.Threading.Tasks.Task<DeviceData> DeviceUpdateAsync (string id, DeviceDataPutRequest device)
         {
              ApiResponse<DeviceData> localVarResponse = await DeviceUpdateAsyncWithHttpInfo(id, device);
              return localVarResponse.Data;
@@ -2189,7 +2189,7 @@ namespace device_catalog.Api
         /// <param name="id">The ID of the device</param>
         /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceData)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceUpdateAsyncWithHttpInfo (string id, DeviceDataRequest device)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceUpdateAsyncWithHttpInfo (string id, DeviceDataPutRequest device)
         {
             // verify the required parameter 'id' is set
             if (id == null)
