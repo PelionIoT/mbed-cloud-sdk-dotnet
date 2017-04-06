@@ -66,9 +66,9 @@ namespace iam.Model
         /// </summary>
         /// <param name="Signature">Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. (required).</param>
         /// <param name="CertData">X509.v3 trusted certificate in PEM or base64 encoded DER format. (required).</param>
-        /// <param name="Name">Certificate name. (required).</param>
+        /// <param name="Name">Certificate name, not longer than 100 characters. (required).</param>
         /// <param name="Service">Service name where the certificate must be used. (required).</param>
-        /// <param name="Description">Human readable description of this certificate..</param>
+        /// <param name="Description">Human readable description of this certificate, not longer than 500 characters..</param>
         public TrustedCertificateReq(string Signature = default(string), string CertData = default(string), string Name = default(string), ServiceEnum? Service = default(ServiceEnum?), string Description = default(string))
         {
             // to ensure "Signature" is required (not null)
@@ -123,15 +123,15 @@ namespace iam.Model
         [DataMember(Name="cert_data", EmitDefaultValue=false)]
         public string CertData { get; set; }
         /// <summary>
-        /// Certificate name.
+        /// Certificate name, not longer than 100 characters.
         /// </summary>
-        /// <value>Certificate name.</value>
+        /// <value>Certificate name, not longer than 100 characters.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
-        /// Human readable description of this certificate.
+        /// Human readable description of this certificate, not longer than 500 characters.
         /// </summary>
-        /// <value>Human readable description of this certificate.</value>
+        /// <value>Human readable description of this certificate, not longer than 500 characters.</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
         /// <summary>

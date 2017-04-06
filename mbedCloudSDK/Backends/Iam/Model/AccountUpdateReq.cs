@@ -32,14 +32,14 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountUpdateReq" /> class.
         /// </summary>
-        /// <param name="AddressLine2">Postal address line 2..</param>
-        /// <param name="City">The city part of the postal address..</param>
-        /// <param name="AddressLine1">Postal address line 1..</param>
-        /// <param name="DisplayName">The display name for the account..</param>
-        /// <param name="Country">The country part of the postal address..</param>
-        /// <param name="Company">The name of the company..</param>
-        /// <param name="State">The state part of the postal address..</param>
-        /// <param name="Contact">The name of the contact person for this account..</param>
+        /// <param name="AddressLine2">Postal address line 2, not longer than 100 characters..</param>
+        /// <param name="City">The city part of the postal address, not longer than 100 characters..</param>
+        /// <param name="AddressLine1">Postal address line 1, not longer than 100 characters..</param>
+        /// <param name="DisplayName">The display name for the account, not longer than 100 characters..</param>
+        /// <param name="Country">The country part of the postal address, not longer than 100 characters..</param>
+        /// <param name="Company">The name of the company, not longer than 100 characters..</param>
+        /// <param name="State">The state part of the postal address, not longer than 100 characters..</param>
+        /// <param name="Contact">The name of the contact person for this account, not longer than 100 characters..</param>
         /// <param name="PostalCode">The postal code part of the postal address..</param>
         /// <param name="ParentID">The ID of the parent account, if it has any..</param>
         /// <param name="PhoneNumber">The phone number of the company..</param>
@@ -63,51 +63,51 @@ namespace iam.Model
         }
         
         /// <summary>
-        /// Postal address line 2.
+        /// Postal address line 2, not longer than 100 characters.
         /// </summary>
-        /// <value>Postal address line 2.</value>
+        /// <value>Postal address line 2, not longer than 100 characters.</value>
         [DataMember(Name="address_line2", EmitDefaultValue=false)]
         public string AddressLine2 { get; set; }
         /// <summary>
-        /// The city part of the postal address.
+        /// The city part of the postal address, not longer than 100 characters.
         /// </summary>
-        /// <value>The city part of the postal address.</value>
+        /// <value>The city part of the postal address, not longer than 100 characters.</value>
         [DataMember(Name="city", EmitDefaultValue=false)]
         public string City { get; set; }
         /// <summary>
-        /// Postal address line 1.
+        /// Postal address line 1, not longer than 100 characters.
         /// </summary>
-        /// <value>Postal address line 1.</value>
+        /// <value>Postal address line 1, not longer than 100 characters.</value>
         [DataMember(Name="address_line1", EmitDefaultValue=false)]
         public string AddressLine1 { get; set; }
         /// <summary>
-        /// The display name for the account.
+        /// The display name for the account, not longer than 100 characters.
         /// </summary>
-        /// <value>The display name for the account.</value>
+        /// <value>The display name for the account, not longer than 100 characters.</value>
         [DataMember(Name="display_name", EmitDefaultValue=false)]
         public string DisplayName { get; set; }
         /// <summary>
-        /// The country part of the postal address.
+        /// The country part of the postal address, not longer than 100 characters.
         /// </summary>
-        /// <value>The country part of the postal address.</value>
+        /// <value>The country part of the postal address, not longer than 100 characters.</value>
         [DataMember(Name="country", EmitDefaultValue=false)]
         public string Country { get; set; }
         /// <summary>
-        /// The name of the company.
+        /// The name of the company, not longer than 100 characters.
         /// </summary>
-        /// <value>The name of the company.</value>
+        /// <value>The name of the company, not longer than 100 characters.</value>
         [DataMember(Name="company", EmitDefaultValue=false)]
         public string Company { get; set; }
         /// <summary>
-        /// The state part of the postal address.
+        /// The state part of the postal address, not longer than 100 characters.
         /// </summary>
-        /// <value>The state part of the postal address.</value>
+        /// <value>The state part of the postal address, not longer than 100 characters.</value>
         [DataMember(Name="state", EmitDefaultValue=false)]
         public string State { get; set; }
         /// <summary>
-        /// The name of the contact person for this account.
+        /// The name of the contact person for this account, not longer than 100 characters.
         /// </summary>
-        /// <value>The name of the contact person for this account.</value>
+        /// <value>The name of the contact person for this account, not longer than 100 characters.</value>
         [DataMember(Name="contact", EmitDefaultValue=false)]
         public string Contact { get; set; }
         /// <summary>

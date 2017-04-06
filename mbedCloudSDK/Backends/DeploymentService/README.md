@@ -75,7 +75,7 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var updateCampaign = new UpdateCampaignRequest(); // UpdateCampaignRequest | Update campaign
+            var updateCampaign = new UpdateCampaignPostRequest(); // UpdateCampaignPostRequest | Update campaign
 
             try
             {
@@ -111,7 +111,9 @@ Class | Method | HTTP request | Description
 
  - [Model.UpdateCampaign](docs/UpdateCampaign.md)
  - [Model.UpdateCampaignPage](docs/UpdateCampaignPage.md)
- - [Model.UpdateCampaignRequest](docs/UpdateCampaignRequest.md)
+ - [Model.UpdateCampaignPatchRequest](docs/UpdateCampaignPatchRequest.md)
+ - [Model.UpdateCampaignPostRequest](docs/UpdateCampaignPostRequest.md)
+ - [Model.UpdateCampaignPutRequest](docs/UpdateCampaignPutRequest.md)
 
 
 <a name="documentation-for-authorization"></a>

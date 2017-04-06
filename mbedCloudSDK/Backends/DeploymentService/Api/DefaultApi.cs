@@ -33,7 +33,7 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateCampaign">Update campaign</param>
         /// <returns>UpdateCampaign</returns>
-        UpdateCampaign UpdateCampaignCreate (UpdateCampaignRequest updateCampaign);
+        UpdateCampaign UpdateCampaignCreate (UpdateCampaignPostRequest updateCampaign);
 
         /// <summary>
         /// 
@@ -44,7 +44,7 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateCampaign">Update campaign</param>
         /// <returns>ApiResponse of UpdateCampaign</returns>
-        ApiResponse<UpdateCampaign> UpdateCampaignCreateWithHttpInfo (UpdateCampaignRequest updateCampaign);
+        ApiResponse<UpdateCampaign> UpdateCampaignCreateWithHttpInfo (UpdateCampaignPostRequest updateCampaign);
         /// <summary>
         /// 
         /// </summary>
@@ -83,6 +83,12 @@ namespace deployment_service.Api
         /// <param name="createdAtGte"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="deviceFilter"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="finished"> (optional)</param>
+        /// <param name="finishedLte"> (optional)</param>
+        /// <param name="finishedGte"> (optional)</param>
         /// <param name="id"> (optional)</param>
         /// <param name="name"> (optional)</param>
         /// <param name="_object"> (optional)</param>
@@ -92,14 +98,11 @@ namespace deployment_service.Api
         /// <param name="startedAtLte"> (optional)</param>
         /// <param name="statedAtGte"> (optional)</param>
         /// <param name="state"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
         /// <param name="when"> (optional)</param>
         /// <param name="whenLte"> (optional)</param>
         /// <param name="whenGte"> (optional)</param>
         /// <returns>UpdateCampaignPage</returns>
-        UpdateCampaignPage UpdateCampaignList (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string when = null, string whenLte = null, string whenGte = null);
+        UpdateCampaignPage UpdateCampaignList (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string etag = null, string etagLte = null, string etagGte = null, string finished = null, string finishedLte = null, string finishedGte = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string when = null, string whenLte = null, string whenGte = null);
 
         /// <summary>
         /// 
@@ -118,6 +121,12 @@ namespace deployment_service.Api
         /// <param name="createdAtGte"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="deviceFilter"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="finished"> (optional)</param>
+        /// <param name="finishedLte"> (optional)</param>
+        /// <param name="finishedGte"> (optional)</param>
         /// <param name="id"> (optional)</param>
         /// <param name="name"> (optional)</param>
         /// <param name="_object"> (optional)</param>
@@ -127,14 +136,11 @@ namespace deployment_service.Api
         /// <param name="startedAtLte"> (optional)</param>
         /// <param name="statedAtGte"> (optional)</param>
         /// <param name="state"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
         /// <param name="when"> (optional)</param>
         /// <param name="whenLte"> (optional)</param>
         /// <param name="whenGte"> (optional)</param>
         /// <returns>ApiResponse of UpdateCampaignPage</returns>
-        ApiResponse<UpdateCampaignPage> UpdateCampaignListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string when = null, string whenLte = null, string whenGte = null);
+        ApiResponse<UpdateCampaignPage> UpdateCampaignListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string etag = null, string etagLte = null, string etagGte = null, string finished = null, string finishedLte = null, string finishedGte = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string when = null, string whenLte = null, string whenGte = null);
         /// <summary>
         /// 
         /// </summary>
@@ -144,8 +150,8 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="updateCampaign">Update campaign</param>
-        /// <returns>UpdateCampaign</returns>
-        UpdateCampaign UpdateCampaignPartialUpdate (string campaignId, UpdateCampaignRequest updateCampaign);
+        /// <returns>UpdateCampaignPatchRequest</returns>
+        UpdateCampaignPatchRequest UpdateCampaignPartialUpdate (string campaignId, UpdateCampaignPatchRequest updateCampaign);
 
         /// <summary>
         /// 
@@ -156,8 +162,8 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="updateCampaign">Update campaign</param>
-        /// <returns>ApiResponse of UpdateCampaign</returns>
-        ApiResponse<UpdateCampaign> UpdateCampaignPartialUpdateWithHttpInfo (string campaignId, UpdateCampaignRequest updateCampaign);
+        /// <returns>ApiResponse of UpdateCampaignPatchRequest</returns>
+        ApiResponse<UpdateCampaignPatchRequest> UpdateCampaignPartialUpdateWithHttpInfo (string campaignId, UpdateCampaignPatchRequest updateCampaign);
         /// <summary>
         /// 
         /// </summary>
@@ -189,7 +195,7 @@ namespace deployment_service.Api
         /// <param name="campaignId"></param>
         /// <param name="updateCampaign">Update campaign</param>
         /// <returns>UpdateCampaign</returns>
-        UpdateCampaign UpdateCampaignUpdate (string campaignId, UpdateCampaignRequest updateCampaign);
+        UpdateCampaign UpdateCampaignUpdate (string campaignId, UpdateCampaignPutRequest updateCampaign);
 
         /// <summary>
         /// 
@@ -201,7 +207,7 @@ namespace deployment_service.Api
         /// <param name="campaignId"></param>
         /// <param name="updateCampaign">Update campaign</param>
         /// <returns>ApiResponse of UpdateCampaign</returns>
-        ApiResponse<UpdateCampaign> UpdateCampaignUpdateWithHttpInfo (string campaignId, UpdateCampaignRequest updateCampaign);
+        ApiResponse<UpdateCampaign> UpdateCampaignUpdateWithHttpInfo (string campaignId, UpdateCampaignPutRequest updateCampaign);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -213,7 +219,7 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateCampaign">Update campaign</param>
         /// <returns>Task of UpdateCampaign</returns>
-        System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignCreateAsync (UpdateCampaignRequest updateCampaign);
+        System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignCreateAsync (UpdateCampaignPostRequest updateCampaign);
 
         /// <summary>
         /// 
@@ -224,7 +230,7 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateCampaign">Update campaign</param>
         /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignCreateAsyncWithHttpInfo (UpdateCampaignRequest updateCampaign);
+        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignCreateAsyncWithHttpInfo (UpdateCampaignPostRequest updateCampaign);
         /// <summary>
         /// 
         /// </summary>
@@ -263,6 +269,12 @@ namespace deployment_service.Api
         /// <param name="createdAtGte"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="deviceFilter"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="finished"> (optional)</param>
+        /// <param name="finishedLte"> (optional)</param>
+        /// <param name="finishedGte"> (optional)</param>
         /// <param name="id"> (optional)</param>
         /// <param name="name"> (optional)</param>
         /// <param name="_object"> (optional)</param>
@@ -272,14 +284,11 @@ namespace deployment_service.Api
         /// <param name="startedAtLte"> (optional)</param>
         /// <param name="statedAtGte"> (optional)</param>
         /// <param name="state"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
         /// <param name="when"> (optional)</param>
         /// <param name="whenLte"> (optional)</param>
         /// <param name="whenGte"> (optional)</param>
         /// <returns>Task of UpdateCampaignPage</returns>
-        System.Threading.Tasks.Task<UpdateCampaignPage> UpdateCampaignListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string when = null, string whenLte = null, string whenGte = null);
+        System.Threading.Tasks.Task<UpdateCampaignPage> UpdateCampaignListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string etag = null, string etagLte = null, string etagGte = null, string finished = null, string finishedLte = null, string finishedGte = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string when = null, string whenLte = null, string whenGte = null);
 
         /// <summary>
         /// 
@@ -298,6 +307,12 @@ namespace deployment_service.Api
         /// <param name="createdAtGte"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="deviceFilter"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="finished"> (optional)</param>
+        /// <param name="finishedLte"> (optional)</param>
+        /// <param name="finishedGte"> (optional)</param>
         /// <param name="id"> (optional)</param>
         /// <param name="name"> (optional)</param>
         /// <param name="_object"> (optional)</param>
@@ -307,14 +322,11 @@ namespace deployment_service.Api
         /// <param name="startedAtLte"> (optional)</param>
         /// <param name="statedAtGte"> (optional)</param>
         /// <param name="state"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
         /// <param name="when"> (optional)</param>
         /// <param name="whenLte"> (optional)</param>
         /// <param name="whenGte"> (optional)</param>
         /// <returns>Task of ApiResponse (UpdateCampaignPage)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPage>> UpdateCampaignListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string when = null, string whenLte = null, string whenGte = null);
+        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPage>> UpdateCampaignListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string etag = null, string etagLte = null, string etagGte = null, string finished = null, string finishedLte = null, string finishedGte = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string when = null, string whenLte = null, string whenGte = null);
         /// <summary>
         /// 
         /// </summary>
@@ -324,8 +336,8 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="updateCampaign">Update campaign</param>
-        /// <returns>Task of UpdateCampaign</returns>
-        System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignPartialUpdateAsync (string campaignId, UpdateCampaignRequest updateCampaign);
+        /// <returns>Task of UpdateCampaignPatchRequest</returns>
+        System.Threading.Tasks.Task<UpdateCampaignPatchRequest> UpdateCampaignPartialUpdateAsync (string campaignId, UpdateCampaignPatchRequest updateCampaign);
 
         /// <summary>
         /// 
@@ -336,8 +348,8 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="updateCampaign">Update campaign</param>
-        /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignPartialUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignRequest updateCampaign);
+        /// <returns>Task of ApiResponse (UpdateCampaignPatchRequest)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPatchRequest>> UpdateCampaignPartialUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignPatchRequest updateCampaign);
         /// <summary>
         /// 
         /// </summary>
@@ -369,7 +381,7 @@ namespace deployment_service.Api
         /// <param name="campaignId"></param>
         /// <param name="updateCampaign">Update campaign</param>
         /// <returns>Task of UpdateCampaign</returns>
-        System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignUpdateAsync (string campaignId, UpdateCampaignRequest updateCampaign);
+        System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignUpdateAsync (string campaignId, UpdateCampaignPutRequest updateCampaign);
 
         /// <summary>
         /// 
@@ -381,7 +393,7 @@ namespace deployment_service.Api
         /// <param name="campaignId"></param>
         /// <param name="updateCampaign">Update campaign</param>
         /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignRequest updateCampaign);
+        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignPutRequest updateCampaign);
         #endregion Asynchronous Operations
     }
 
@@ -500,7 +512,7 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateCampaign">Update campaign</param>
         /// <returns>UpdateCampaign</returns>
-        public UpdateCampaign UpdateCampaignCreate (UpdateCampaignRequest updateCampaign)
+        public UpdateCampaign UpdateCampaignCreate (UpdateCampaignPostRequest updateCampaign)
         {
              ApiResponse<UpdateCampaign> localVarResponse = UpdateCampaignCreateWithHttpInfo(updateCampaign);
              return localVarResponse.Data;
@@ -512,7 +524,7 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateCampaign">Update campaign</param>
         /// <returns>ApiResponse of UpdateCampaign</returns>
-        public ApiResponse< UpdateCampaign > UpdateCampaignCreateWithHttpInfo (UpdateCampaignRequest updateCampaign)
+        public ApiResponse< UpdateCampaign > UpdateCampaignCreateWithHttpInfo (UpdateCampaignPostRequest updateCampaign)
         {
             // verify the required parameter 'updateCampaign' is set
             if (updateCampaign == null)
@@ -582,7 +594,7 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateCampaign">Update campaign</param>
         /// <returns>Task of UpdateCampaign</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignCreateAsync (UpdateCampaignRequest updateCampaign)
+        public async System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignCreateAsync (UpdateCampaignPostRequest updateCampaign)
         {
              ApiResponse<UpdateCampaign> localVarResponse = await UpdateCampaignCreateAsyncWithHttpInfo(updateCampaign);
              return localVarResponse.Data;
@@ -595,7 +607,7 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateCampaign">Update campaign</param>
         /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignCreateAsyncWithHttpInfo (UpdateCampaignRequest updateCampaign)
+        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignCreateAsyncWithHttpInfo (UpdateCampaignPostRequest updateCampaign)
         {
             // verify the required parameter 'updateCampaign' is set
             if (updateCampaign == null)
@@ -822,6 +834,12 @@ namespace deployment_service.Api
         /// <param name="createdAtGte"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="deviceFilter"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="finished"> (optional)</param>
+        /// <param name="finishedLte"> (optional)</param>
+        /// <param name="finishedGte"> (optional)</param>
         /// <param name="id"> (optional)</param>
         /// <param name="name"> (optional)</param>
         /// <param name="_object"> (optional)</param>
@@ -831,16 +849,13 @@ namespace deployment_service.Api
         /// <param name="startedAtLte"> (optional)</param>
         /// <param name="statedAtGte"> (optional)</param>
         /// <param name="state"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
         /// <param name="when"> (optional)</param>
         /// <param name="whenLte"> (optional)</param>
         /// <param name="whenGte"> (optional)</param>
         /// <returns>UpdateCampaignPage</returns>
-        public UpdateCampaignPage UpdateCampaignList (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string when = null, string whenLte = null, string whenGte = null)
+        public UpdateCampaignPage UpdateCampaignList (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string etag = null, string etagLte = null, string etagGte = null, string finished = null, string finishedLte = null, string finishedGte = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string when = null, string whenLte = null, string whenGte = null)
         {
-             ApiResponse<UpdateCampaignPage> localVarResponse = UpdateCampaignListWithHttpInfo(limit, order, after, filter, include, createdAt, createdAtLte, createdAtGte, description, deviceFilter, id, name, _object, rootManifestId, rootManifestUrl, startedAt, startedAtLte, statedAtGte, state, updatedAt, updatedAtLte, updatedAtGte, when, whenLte, whenGte);
+             ApiResponse<UpdateCampaignPage> localVarResponse = UpdateCampaignListWithHttpInfo(limit, order, after, filter, include, createdAt, createdAtLte, createdAtGte, description, deviceFilter, etag, etagLte, etagGte, finished, finishedLte, finishedGte, id, name, _object, rootManifestId, rootManifestUrl, startedAt, startedAtLte, statedAtGte, state, when, whenLte, whenGte);
              return localVarResponse.Data;
         }
 
@@ -858,6 +873,12 @@ namespace deployment_service.Api
         /// <param name="createdAtGte"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="deviceFilter"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="finished"> (optional)</param>
+        /// <param name="finishedLte"> (optional)</param>
+        /// <param name="finishedGte"> (optional)</param>
         /// <param name="id"> (optional)</param>
         /// <param name="name"> (optional)</param>
         /// <param name="_object"> (optional)</param>
@@ -867,14 +888,11 @@ namespace deployment_service.Api
         /// <param name="startedAtLte"> (optional)</param>
         /// <param name="statedAtGte"> (optional)</param>
         /// <param name="state"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
         /// <param name="when"> (optional)</param>
         /// <param name="whenLte"> (optional)</param>
         /// <param name="whenGte"> (optional)</param>
         /// <returns>ApiResponse of UpdateCampaignPage</returns>
-        public ApiResponse< UpdateCampaignPage > UpdateCampaignListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string when = null, string whenLte = null, string whenGte = null)
+        public ApiResponse< UpdateCampaignPage > UpdateCampaignListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string etag = null, string etagLte = null, string etagGte = null, string finished = null, string finishedLte = null, string finishedGte = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string when = null, string whenLte = null, string whenGte = null)
         {
 
             var localVarPath = "/v3/update-campaigns/";
@@ -910,6 +928,12 @@ namespace deployment_service.Api
             if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
             if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
             if (deviceFilter != null) localVarQueryParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // query parameter
+            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
+            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
+            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
+            if (finished != null) localVarQueryParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // query parameter
+            if (finishedLte != null) localVarQueryParams.Add("finished__lte", Configuration.ApiClient.ParameterToString(finishedLte)); // query parameter
+            if (finishedGte != null) localVarQueryParams.Add("finished__gte", Configuration.ApiClient.ParameterToString(finishedGte)); // query parameter
             if (id != null) localVarQueryParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // query parameter
             if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
             if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
@@ -919,9 +943,6 @@ namespace deployment_service.Api
             if (startedAtLte != null) localVarQueryParams.Add("started_at__lte", Configuration.ApiClient.ParameterToString(startedAtLte)); // query parameter
             if (statedAtGte != null) localVarQueryParams.Add("stated_at__gte", Configuration.ApiClient.ParameterToString(statedAtGte)); // query parameter
             if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
-            if (updatedAtGte != null) localVarQueryParams.Add("updated_at_gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
             if (when != null) localVarQueryParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // query parameter
             if (whenLte != null) localVarQueryParams.Add("when__lte", Configuration.ApiClient.ParameterToString(whenLte)); // query parameter
             if (whenGte != null) localVarQueryParams.Add("when_gte", Configuration.ApiClient.ParameterToString(whenGte)); // query parameter
@@ -966,6 +987,12 @@ namespace deployment_service.Api
         /// <param name="createdAtGte"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="deviceFilter"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="finished"> (optional)</param>
+        /// <param name="finishedLte"> (optional)</param>
+        /// <param name="finishedGte"> (optional)</param>
         /// <param name="id"> (optional)</param>
         /// <param name="name"> (optional)</param>
         /// <param name="_object"> (optional)</param>
@@ -975,16 +1002,13 @@ namespace deployment_service.Api
         /// <param name="startedAtLte"> (optional)</param>
         /// <param name="statedAtGte"> (optional)</param>
         /// <param name="state"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
         /// <param name="when"> (optional)</param>
         /// <param name="whenLte"> (optional)</param>
         /// <param name="whenGte"> (optional)</param>
         /// <returns>Task of UpdateCampaignPage</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaignPage> UpdateCampaignListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string when = null, string whenLte = null, string whenGte = null)
+        public async System.Threading.Tasks.Task<UpdateCampaignPage> UpdateCampaignListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string etag = null, string etagLte = null, string etagGte = null, string finished = null, string finishedLte = null, string finishedGte = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string when = null, string whenLte = null, string whenGte = null)
         {
-             ApiResponse<UpdateCampaignPage> localVarResponse = await UpdateCampaignListAsyncWithHttpInfo(limit, order, after, filter, include, createdAt, createdAtLte, createdAtGte, description, deviceFilter, id, name, _object, rootManifestId, rootManifestUrl, startedAt, startedAtLte, statedAtGte, state, updatedAt, updatedAtLte, updatedAtGte, when, whenLte, whenGte);
+             ApiResponse<UpdateCampaignPage> localVarResponse = await UpdateCampaignListAsyncWithHttpInfo(limit, order, after, filter, include, createdAt, createdAtLte, createdAtGte, description, deviceFilter, etag, etagLte, etagGte, finished, finishedLte, finishedGte, id, name, _object, rootManifestId, rootManifestUrl, startedAt, startedAtLte, statedAtGte, state, when, whenLte, whenGte);
              return localVarResponse.Data;
 
         }
@@ -1003,6 +1027,12 @@ namespace deployment_service.Api
         /// <param name="createdAtGte"> (optional)</param>
         /// <param name="description"> (optional)</param>
         /// <param name="deviceFilter"> (optional)</param>
+        /// <param name="etag"> (optional)</param>
+        /// <param name="etagLte"> (optional)</param>
+        /// <param name="etagGte"> (optional)</param>
+        /// <param name="finished"> (optional)</param>
+        /// <param name="finishedLte"> (optional)</param>
+        /// <param name="finishedGte"> (optional)</param>
         /// <param name="id"> (optional)</param>
         /// <param name="name"> (optional)</param>
         /// <param name="_object"> (optional)</param>
@@ -1012,14 +1042,11 @@ namespace deployment_service.Api
         /// <param name="startedAtLte"> (optional)</param>
         /// <param name="statedAtGte"> (optional)</param>
         /// <param name="state"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
         /// <param name="when"> (optional)</param>
         /// <param name="whenLte"> (optional)</param>
         /// <param name="whenGte"> (optional)</param>
         /// <returns>Task of ApiResponse (UpdateCampaignPage)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPage>> UpdateCampaignListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string when = null, string whenLte = null, string whenGte = null)
+        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPage>> UpdateCampaignListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string description = null, string deviceFilter = null, string etag = null, string etagLte = null, string etagGte = null, string finished = null, string finishedLte = null, string finishedGte = null, string id = null, string name = null, string _object = null, string rootManifestId = null, string rootManifestUrl = null, string startedAt = null, string startedAtLte = null, string statedAtGte = null, string state = null, string when = null, string whenLte = null, string whenGte = null)
         {
 
             var localVarPath = "/v3/update-campaigns/";
@@ -1055,6 +1082,12 @@ namespace deployment_service.Api
             if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
             if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
             if (deviceFilter != null) localVarQueryParams.Add("device_filter", Configuration.ApiClient.ParameterToString(deviceFilter)); // query parameter
+            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
+            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
+            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
+            if (finished != null) localVarQueryParams.Add("finished", Configuration.ApiClient.ParameterToString(finished)); // query parameter
+            if (finishedLte != null) localVarQueryParams.Add("finished__lte", Configuration.ApiClient.ParameterToString(finishedLte)); // query parameter
+            if (finishedGte != null) localVarQueryParams.Add("finished__gte", Configuration.ApiClient.ParameterToString(finishedGte)); // query parameter
             if (id != null) localVarQueryParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // query parameter
             if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
             if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
@@ -1064,9 +1097,6 @@ namespace deployment_service.Api
             if (startedAtLte != null) localVarQueryParams.Add("started_at__lte", Configuration.ApiClient.ParameterToString(startedAtLte)); // query parameter
             if (statedAtGte != null) localVarQueryParams.Add("stated_at__gte", Configuration.ApiClient.ParameterToString(statedAtGte)); // query parameter
             if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
-            if (updatedAtGte != null) localVarQueryParams.Add("updated_at_gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
             if (when != null) localVarQueryParams.Add("when", Configuration.ApiClient.ParameterToString(when)); // query parameter
             if (whenLte != null) localVarQueryParams.Add("when__lte", Configuration.ApiClient.ParameterToString(whenLte)); // query parameter
             if (whenGte != null) localVarQueryParams.Add("when_gte", Configuration.ApiClient.ParameterToString(whenGte)); // query parameter
@@ -1102,10 +1132,10 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="updateCampaign">Update campaign</param>
-        /// <returns>UpdateCampaign</returns>
-        public UpdateCampaign UpdateCampaignPartialUpdate (string campaignId, UpdateCampaignRequest updateCampaign)
+        /// <returns>UpdateCampaignPatchRequest</returns>
+        public UpdateCampaignPatchRequest UpdateCampaignPartialUpdate (string campaignId, UpdateCampaignPatchRequest updateCampaign)
         {
-             ApiResponse<UpdateCampaign> localVarResponse = UpdateCampaignPartialUpdateWithHttpInfo(campaignId, updateCampaign);
+             ApiResponse<UpdateCampaignPatchRequest> localVarResponse = UpdateCampaignPartialUpdateWithHttpInfo(campaignId, updateCampaign);
              return localVarResponse.Data;
         }
 
@@ -1115,8 +1145,8 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="updateCampaign">Update campaign</param>
-        /// <returns>ApiResponse of UpdateCampaign</returns>
-        public ApiResponse< UpdateCampaign > UpdateCampaignPartialUpdateWithHttpInfo (string campaignId, UpdateCampaignRequest updateCampaign)
+        /// <returns>ApiResponse of UpdateCampaignPatchRequest</returns>
+        public ApiResponse< UpdateCampaignPatchRequest > UpdateCampaignPartialUpdateWithHttpInfo (string campaignId, UpdateCampaignPatchRequest updateCampaign)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -1178,9 +1208,9 @@ namespace deployment_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<UpdateCampaign>(localVarStatusCode,
+            return new ApiResponse<UpdateCampaignPatchRequest>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
+                (UpdateCampaignPatchRequest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaignPatchRequest)));
             
         }
 
@@ -1190,10 +1220,10 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="updateCampaign">Update campaign</param>
-        /// <returns>Task of UpdateCampaign</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignPartialUpdateAsync (string campaignId, UpdateCampaignRequest updateCampaign)
+        /// <returns>Task of UpdateCampaignPatchRequest</returns>
+        public async System.Threading.Tasks.Task<UpdateCampaignPatchRequest> UpdateCampaignPartialUpdateAsync (string campaignId, UpdateCampaignPatchRequest updateCampaign)
         {
-             ApiResponse<UpdateCampaign> localVarResponse = await UpdateCampaignPartialUpdateAsyncWithHttpInfo(campaignId, updateCampaign);
+             ApiResponse<UpdateCampaignPatchRequest> localVarResponse = await UpdateCampaignPartialUpdateAsyncWithHttpInfo(campaignId, updateCampaign);
              return localVarResponse.Data;
 
         }
@@ -1204,8 +1234,8 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="updateCampaign">Update campaign</param>
-        /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignPartialUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignRequest updateCampaign)
+        /// <returns>Task of ApiResponse (UpdateCampaignPatchRequest)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPatchRequest>> UpdateCampaignPartialUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignPatchRequest updateCampaign)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -1266,9 +1296,9 @@ namespace deployment_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<UpdateCampaign>(localVarStatusCode,
+            return new ApiResponse<UpdateCampaignPatchRequest>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
+                (UpdateCampaignPatchRequest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaignPatchRequest)));
             
         }
 
@@ -1429,7 +1459,7 @@ namespace deployment_service.Api
         /// <param name="campaignId"></param>
         /// <param name="updateCampaign">Update campaign</param>
         /// <returns>UpdateCampaign</returns>
-        public UpdateCampaign UpdateCampaignUpdate (string campaignId, UpdateCampaignRequest updateCampaign)
+        public UpdateCampaign UpdateCampaignUpdate (string campaignId, UpdateCampaignPutRequest updateCampaign)
         {
              ApiResponse<UpdateCampaign> localVarResponse = UpdateCampaignUpdateWithHttpInfo(campaignId, updateCampaign);
              return localVarResponse.Data;
@@ -1442,7 +1472,7 @@ namespace deployment_service.Api
         /// <param name="campaignId"></param>
         /// <param name="updateCampaign">Update campaign</param>
         /// <returns>ApiResponse of UpdateCampaign</returns>
-        public ApiResponse< UpdateCampaign > UpdateCampaignUpdateWithHttpInfo (string campaignId, UpdateCampaignRequest updateCampaign)
+        public ApiResponse< UpdateCampaign > UpdateCampaignUpdateWithHttpInfo (string campaignId, UpdateCampaignPutRequest updateCampaign)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -1517,7 +1547,7 @@ namespace deployment_service.Api
         /// <param name="campaignId"></param>
         /// <param name="updateCampaign">Update campaign</param>
         /// <returns>Task of UpdateCampaign</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignUpdateAsync (string campaignId, UpdateCampaignRequest updateCampaign)
+        public async System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignUpdateAsync (string campaignId, UpdateCampaignPutRequest updateCampaign)
         {
              ApiResponse<UpdateCampaign> localVarResponse = await UpdateCampaignUpdateAsyncWithHttpInfo(campaignId, updateCampaign);
              return localVarResponse.Data;
@@ -1531,7 +1561,7 @@ namespace deployment_service.Api
         /// <param name="campaignId"></param>
         /// <param name="updateCampaign">Update campaign</param>
         /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignRequest updateCampaign)
+        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignPutRequest updateCampaign)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)

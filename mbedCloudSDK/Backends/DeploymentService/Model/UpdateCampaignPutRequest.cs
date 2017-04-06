@@ -24,10 +24,10 @@ using System.ComponentModel.DataAnnotations;
 namespace deployment_service.Model
 {
     /// <summary>
-    /// UpdateCampaignRequest
+    /// UpdateCampaignPutRequest
     /// </summary>
     [DataContract]
-    public partial class UpdateCampaignRequest :  IEquatable<UpdateCampaignRequest>, IValidatableObject
+    public partial class UpdateCampaignPutRequest :  IEquatable<UpdateCampaignPutRequest>, IValidatableObject
     {
         /// <summary>
         /// The state of the campaign
@@ -105,26 +105,71 @@ namespace deployment_service.Model
         [DataMember(Name="state", EmitDefaultValue=false)]
         public StateEnum? State { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateCampaignRequest" /> class.
+        /// Initializes a new instance of the <see cref="UpdateCampaignPutRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected UpdateCampaignRequest() { }
+        protected UpdateCampaignPutRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateCampaignRequest" /> class.
+        /// Initializes a new instance of the <see cref="UpdateCampaignPutRequest" /> class.
         /// </summary>
-        /// <param name="Description">An optional description of the campaign.</param>
-        /// <param name="When">The timestamp at which update campaign scheduled to start.</param>
-        /// <param name="RootManifestId">RootManifestId.</param>
-        /// <param name="State">The state of the campaign.</param>
-        /// <param name="Finished">The timestamp when the update campaign finished.</param>
+        /// <param name="Description">An optional description of the campaign (required).</param>
+        /// <param name="When">The timestamp at which update campaign scheduled to start (required).</param>
+        /// <param name="_Object">The API resource entity (required).</param>
+        /// <param name="RootManifestId">RootManifestId (required).</param>
+        /// <param name="State">The state of the campaign (required).</param>
         /// <param name="DeviceFilter">The filter for the devices the campaign will target (required).</param>
         /// <param name="Name">A name for this campaign (required).</param>
-        public UpdateCampaignRequest(string Description = default(string), string When = default(string), string RootManifestId = default(string), StateEnum? State = default(StateEnum?), string Finished = default(string), string DeviceFilter = default(string), string Name = default(string))
+        public UpdateCampaignPutRequest(string Description = default(string), string When = default(string), string _Object = default(string), string RootManifestId = default(string), StateEnum? State = default(StateEnum?), string DeviceFilter = default(string), string Name = default(string))
         {
+            // to ensure "Description" is required (not null)
+            if (Description == null)
+            {
+                throw new InvalidDataException("Description is a required property for UpdateCampaignPutRequest and cannot be null");
+            }
+            else
+            {
+                this.Description = Description;
+            }
+            // to ensure "When" is required (not null)
+            if (When == null)
+            {
+                throw new InvalidDataException("When is a required property for UpdateCampaignPutRequest and cannot be null");
+            }
+            else
+            {
+                this.When = When;
+            }
+            // to ensure "_Object" is required (not null)
+            if (_Object == null)
+            {
+                throw new InvalidDataException("_Object is a required property for UpdateCampaignPutRequest and cannot be null");
+            }
+            else
+            {
+                this._Object = _Object;
+            }
+            // to ensure "RootManifestId" is required (not null)
+            if (RootManifestId == null)
+            {
+                throw new InvalidDataException("RootManifestId is a required property for UpdateCampaignPutRequest and cannot be null");
+            }
+            else
+            {
+                this.RootManifestId = RootManifestId;
+            }
+            // to ensure "State" is required (not null)
+            if (State == null)
+            {
+                throw new InvalidDataException("State is a required property for UpdateCampaignPutRequest and cannot be null");
+            }
+            else
+            {
+                this.State = State;
+            }
             // to ensure "DeviceFilter" is required (not null)
             if (DeviceFilter == null)
             {
-                throw new InvalidDataException("DeviceFilter is a required property for UpdateCampaignRequest and cannot be null");
+                throw new InvalidDataException("DeviceFilter is a required property for UpdateCampaignPutRequest and cannot be null");
             }
             else
             {
@@ -133,17 +178,12 @@ namespace deployment_service.Model
             // to ensure "Name" is required (not null)
             if (Name == null)
             {
-                throw new InvalidDataException("Name is a required property for UpdateCampaignRequest and cannot be null");
+                throw new InvalidDataException("Name is a required property for UpdateCampaignPutRequest and cannot be null");
             }
             else
             {
                 this.Name = Name;
             }
-            this.Description = Description;
-            this.When = When;
-            this.RootManifestId = RootManifestId;
-            this.State = State;
-            this.Finished = Finished;
         }
         
         /// <summary>
@@ -159,16 +199,16 @@ namespace deployment_service.Model
         [DataMember(Name="when", EmitDefaultValue=false)]
         public string When { get; set; }
         /// <summary>
+        /// The API resource entity
+        /// </summary>
+        /// <value>The API resource entity</value>
+        [DataMember(Name="object", EmitDefaultValue=false)]
+        public string _Object { get; set; }
+        /// <summary>
         /// Gets or Sets RootManifestId
         /// </summary>
         [DataMember(Name="root_manifest_id", EmitDefaultValue=false)]
         public string RootManifestId { get; set; }
-        /// <summary>
-        /// The timestamp when the update campaign finished
-        /// </summary>
-        /// <value>The timestamp when the update campaign finished</value>
-        [DataMember(Name="finished", EmitDefaultValue=false)]
-        public string Finished { get; set; }
         /// <summary>
         /// The filter for the devices the campaign will target
         /// </summary>
@@ -188,12 +228,12 @@ namespace deployment_service.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class UpdateCampaignRequest {\n");
+            sb.Append("class UpdateCampaignPutRequest {\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  When: ").Append(When).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  RootManifestId: ").Append(RootManifestId).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
-            sb.Append("  Finished: ").Append(Finished).Append("\n");
             sb.Append("  DeviceFilter: ").Append(DeviceFilter).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
@@ -217,15 +257,15 @@ namespace deployment_service.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as UpdateCampaignRequest);
+            return this.Equals(obj as UpdateCampaignPutRequest);
         }
 
         /// <summary>
-        /// Returns true if UpdateCampaignRequest instances are equal
+        /// Returns true if UpdateCampaignPutRequest instances are equal
         /// </summary>
-        /// <param name="other">Instance of UpdateCampaignRequest to be compared</param>
+        /// <param name="other">Instance of UpdateCampaignPutRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(UpdateCampaignRequest other)
+        public bool Equals(UpdateCampaignPutRequest other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -243,6 +283,11 @@ namespace deployment_service.Model
                     this.When.Equals(other.When)
                 ) && 
                 (
+                    this._Object == other._Object ||
+                    this._Object != null &&
+                    this._Object.Equals(other._Object)
+                ) && 
+                (
                     this.RootManifestId == other.RootManifestId ||
                     this.RootManifestId != null &&
                     this.RootManifestId.Equals(other.RootManifestId)
@@ -251,11 +296,6 @@ namespace deployment_service.Model
                     this.State == other.State ||
                     this.State != null &&
                     this.State.Equals(other.State)
-                ) && 
-                (
-                    this.Finished == other.Finished ||
-                    this.Finished != null &&
-                    this.Finished.Equals(other.Finished)
                 ) && 
                 (
                     this.DeviceFilter == other.DeviceFilter ||
@@ -284,12 +324,12 @@ namespace deployment_service.Model
                     hash = hash * 59 + this.Description.GetHashCode();
                 if (this.When != null)
                     hash = hash * 59 + this.When.GetHashCode();
+                if (this._Object != null)
+                    hash = hash * 59 + this._Object.GetHashCode();
                 if (this.RootManifestId != null)
                     hash = hash * 59 + this.RootManifestId.GetHashCode();
                 if (this.State != null)
                     hash = hash * 59 + this.State.GetHashCode();
-                if (this.Finished != null)
-                    hash = hash * 59 + this.Finished.GetHashCode();
                 if (this.DeviceFilter != null)
                     hash = hash * 59 + this.DeviceFilter.GetHashCode();
                 if (this.Name != null)
