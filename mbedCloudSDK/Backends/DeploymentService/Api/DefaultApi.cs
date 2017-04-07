@@ -31,9 +31,9 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>UpdateCampaign</returns>
-        UpdateCampaign UpdateCampaignCreate (UpdateCampaignPostRequest updateCampaign);
+        UpdateCampaign UpdateCampaignCreate (UpdateCampaignPostRequest campaign);
 
         /// <summary>
         /// 
@@ -42,9 +42,9 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>ApiResponse of UpdateCampaign</returns>
-        ApiResponse<UpdateCampaign> UpdateCampaignCreateWithHttpInfo (UpdateCampaignPostRequest updateCampaign);
+        ApiResponse<UpdateCampaign> UpdateCampaignCreateWithHttpInfo (UpdateCampaignPostRequest campaign);
         /// <summary>
         /// 
         /// </summary>
@@ -217,9 +217,9 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>Task of UpdateCampaign</returns>
-        System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignCreateAsync (UpdateCampaignPostRequest updateCampaign);
+        System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignCreateAsync (UpdateCampaignPostRequest campaign);
 
         /// <summary>
         /// 
@@ -228,9 +228,9 @@ namespace deployment_service.Api
         /// &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignCreateAsyncWithHttpInfo (UpdateCampaignPostRequest updateCampaign);
+        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignCreateAsyncWithHttpInfo (UpdateCampaignPostRequest campaign);
         /// <summary>
         /// 
         /// </summary>
@@ -510,11 +510,11 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>UpdateCampaign</returns>
-        public UpdateCampaign UpdateCampaignCreate (UpdateCampaignPostRequest updateCampaign)
+        public UpdateCampaign UpdateCampaignCreate (UpdateCampaignPostRequest campaign)
         {
-             ApiResponse<UpdateCampaign> localVarResponse = UpdateCampaignCreateWithHttpInfo(updateCampaign);
+             ApiResponse<UpdateCampaign> localVarResponse = UpdateCampaignCreateWithHttpInfo(campaign);
              return localVarResponse.Data;
         }
 
@@ -522,13 +522,13 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>ApiResponse of UpdateCampaign</returns>
-        public ApiResponse< UpdateCampaign > UpdateCampaignCreateWithHttpInfo (UpdateCampaignPostRequest updateCampaign)
+        public ApiResponse< UpdateCampaign > UpdateCampaignCreateWithHttpInfo (UpdateCampaignPostRequest campaign)
         {
-            // verify the required parameter 'updateCampaign' is set
-            if (updateCampaign == null)
-                throw new ApiException(400, "Missing required parameter 'updateCampaign' when calling DefaultApi->UpdateCampaignCreate");
+            // verify the required parameter 'campaign' is set
+            if (campaign == null)
+                throw new ApiException(400, "Missing required parameter 'campaign' when calling DefaultApi->UpdateCampaignCreate");
 
             var localVarPath = "/v3/update-campaigns/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -553,13 +553,13 @@ namespace deployment_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (updateCampaign != null && updateCampaign.GetType() != typeof(byte[]))
+            if (campaign != null && campaign.GetType() != typeof(byte[]))
             {
-                localVarPostBody = Configuration.ApiClient.Serialize(updateCampaign); // http body (model) parameter
+                localVarPostBody = Configuration.ApiClient.Serialize(campaign); // http body (model) parameter
             }
             else
             {
-                localVarPostBody = updateCampaign; // byte array
+                localVarPostBody = campaign; // byte array
             }
 
             // authentication (Bearer) required
@@ -592,11 +592,11 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>Task of UpdateCampaign</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignCreateAsync (UpdateCampaignPostRequest updateCampaign)
+        public async System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignCreateAsync (UpdateCampaignPostRequest campaign)
         {
-             ApiResponse<UpdateCampaign> localVarResponse = await UpdateCampaignCreateAsyncWithHttpInfo(updateCampaign);
+             ApiResponse<UpdateCampaign> localVarResponse = await UpdateCampaignCreateAsyncWithHttpInfo(campaign);
              return localVarResponse.Data;
 
         }
@@ -605,13 +605,13 @@ namespace deployment_service.Api
         ///  &lt;p&gt;The APIs for creating and manipulating update campaigns. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;Create update campaign&lt;/p&gt;
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignCreateAsyncWithHttpInfo (UpdateCampaignPostRequest updateCampaign)
+        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignCreateAsyncWithHttpInfo (UpdateCampaignPostRequest campaign)
         {
-            // verify the required parameter 'updateCampaign' is set
-            if (updateCampaign == null)
-                throw new ApiException(400, "Missing required parameter 'updateCampaign' when calling DefaultApi->UpdateCampaignCreate");
+            // verify the required parameter 'campaign' is set
+            if (campaign == null)
+                throw new ApiException(400, "Missing required parameter 'campaign' when calling DefaultApi->UpdateCampaignCreate");
 
             var localVarPath = "/v3/update-campaigns/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -636,13 +636,13 @@ namespace deployment_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (updateCampaign != null && updateCampaign.GetType() != typeof(byte[]))
+            if (campaign != null && campaign.GetType() != typeof(byte[]))
             {
-                localVarPostBody = Configuration.ApiClient.Serialize(updateCampaign); // http body (model) parameter
+                localVarPostBody = Configuration.ApiClient.Serialize(campaign); // http body (model) parameter
             }
             else
             {
-                localVarPostBody = updateCampaign; // byte array
+                localVarPostBody = campaign; // byte array
             }
 
             // authentication (Bearer) required

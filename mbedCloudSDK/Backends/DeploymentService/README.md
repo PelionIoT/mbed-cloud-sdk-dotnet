@@ -75,11 +75,11 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var updateCampaign = new UpdateCampaignPostRequest(); // UpdateCampaignPostRequest | Update campaign
+            var campaign = new UpdateCampaignPostRequest(); // UpdateCampaignPostRequest | Update campaign
 
             try
             {
-                UpdateCampaign result = apiInstance.UpdateCampaignCreate(updateCampaign);
+                UpdateCampaign result = apiInstance.UpdateCampaignCreate(campaign);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
