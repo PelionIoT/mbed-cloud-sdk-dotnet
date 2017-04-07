@@ -150,8 +150,8 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="campaign">Update campaign</param>
-        /// <returns>UpdateCampaignPatchRequest</returns>
-        UpdateCampaignPatchRequest UpdateCampaignPartialUpdate (string campaignId, UpdateCampaignPatchRequest campaign);
+        /// <returns>UpdateCampaign</returns>
+        UpdateCampaign UpdateCampaignPartialUpdate (string campaignId, UpdateCampaignPatchRequest campaign);
 
         /// <summary>
         /// 
@@ -162,8 +162,8 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="campaign">Update campaign</param>
-        /// <returns>ApiResponse of UpdateCampaignPatchRequest</returns>
-        ApiResponse<UpdateCampaignPatchRequest> UpdateCampaignPartialUpdateWithHttpInfo (string campaignId, UpdateCampaignPatchRequest campaign);
+        /// <returns>ApiResponse of UpdateCampaign</returns>
+        ApiResponse<UpdateCampaign> UpdateCampaignPartialUpdateWithHttpInfo (string campaignId, UpdateCampaignPatchRequest campaign);
         /// <summary>
         /// 
         /// </summary>
@@ -336,8 +336,8 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="campaign">Update campaign</param>
-        /// <returns>Task of UpdateCampaignPatchRequest</returns>
-        System.Threading.Tasks.Task<UpdateCampaignPatchRequest> UpdateCampaignPartialUpdateAsync (string campaignId, UpdateCampaignPatchRequest campaign);
+        /// <returns>Task of UpdateCampaign</returns>
+        System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignPartialUpdateAsync (string campaignId, UpdateCampaignPatchRequest campaign);
 
         /// <summary>
         /// 
@@ -348,8 +348,8 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="campaign">Update campaign</param>
-        /// <returns>Task of ApiResponse (UpdateCampaignPatchRequest)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPatchRequest>> UpdateCampaignPartialUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignPatchRequest campaign);
+        /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignPartialUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignPatchRequest campaign);
         /// <summary>
         /// 
         /// </summary>
@@ -1132,10 +1132,10 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="campaign">Update campaign</param>
-        /// <returns>UpdateCampaignPatchRequest</returns>
-        public UpdateCampaignPatchRequest UpdateCampaignPartialUpdate (string campaignId, UpdateCampaignPatchRequest campaign)
+        /// <returns>UpdateCampaign</returns>
+        public UpdateCampaign UpdateCampaignPartialUpdate (string campaignId, UpdateCampaignPatchRequest campaign)
         {
-             ApiResponse<UpdateCampaignPatchRequest> localVarResponse = UpdateCampaignPartialUpdateWithHttpInfo(campaignId, campaign);
+             ApiResponse<UpdateCampaign> localVarResponse = UpdateCampaignPartialUpdateWithHttpInfo(campaignId, campaign);
              return localVarResponse.Data;
         }
 
@@ -1145,8 +1145,8 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="campaign">Update campaign</param>
-        /// <returns>ApiResponse of UpdateCampaignPatchRequest</returns>
-        public ApiResponse< UpdateCampaignPatchRequest > UpdateCampaignPartialUpdateWithHttpInfo (string campaignId, UpdateCampaignPatchRequest campaign)
+        /// <returns>ApiResponse of UpdateCampaign</returns>
+        public ApiResponse< UpdateCampaign > UpdateCampaignPartialUpdateWithHttpInfo (string campaignId, UpdateCampaignPatchRequest campaign)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -1208,9 +1208,9 @@ namespace deployment_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<UpdateCampaignPatchRequest>(localVarStatusCode,
+            return new ApiResponse<UpdateCampaign>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdateCampaignPatchRequest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaignPatchRequest)));
+                (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
             
         }
 
@@ -1220,10 +1220,10 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="campaign">Update campaign</param>
-        /// <returns>Task of UpdateCampaignPatchRequest</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaignPatchRequest> UpdateCampaignPartialUpdateAsync (string campaignId, UpdateCampaignPatchRequest campaign)
+        /// <returns>Task of UpdateCampaign</returns>
+        public async System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignPartialUpdateAsync (string campaignId, UpdateCampaignPatchRequest campaign)
         {
-             ApiResponse<UpdateCampaignPatchRequest> localVarResponse = await UpdateCampaignPartialUpdateAsyncWithHttpInfo(campaignId, campaign);
+             ApiResponse<UpdateCampaign> localVarResponse = await UpdateCampaignPartialUpdateAsyncWithHttpInfo(campaignId, campaign);
              return localVarResponse.Data;
 
         }
@@ -1234,8 +1234,8 @@ namespace deployment_service.Api
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
         /// <param name="campaign">Update campaign</param>
-        /// <returns>Task of ApiResponse (UpdateCampaignPatchRequest)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPatchRequest>> UpdateCampaignPartialUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignPatchRequest campaign)
+        /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignPartialUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignPatchRequest campaign)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -1296,9 +1296,9 @@ namespace deployment_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<UpdateCampaignPatchRequest>(localVarStatusCode,
+            return new ApiResponse<UpdateCampaign>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdateCampaignPatchRequest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaignPatchRequest)));
+                (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
             
         }
 
