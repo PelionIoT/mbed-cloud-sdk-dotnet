@@ -149,9 +149,9 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>UpdateCampaignPatchRequest</returns>
-        UpdateCampaignPatchRequest UpdateCampaignPartialUpdate (string campaignId, UpdateCampaignPatchRequest updateCampaign);
+        UpdateCampaignPatchRequest UpdateCampaignPartialUpdate (string campaignId, UpdateCampaignPatchRequest campaign);
 
         /// <summary>
         /// 
@@ -161,9 +161,9 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>ApiResponse of UpdateCampaignPatchRequest</returns>
-        ApiResponse<UpdateCampaignPatchRequest> UpdateCampaignPartialUpdateWithHttpInfo (string campaignId, UpdateCampaignPatchRequest updateCampaign);
+        ApiResponse<UpdateCampaignPatchRequest> UpdateCampaignPartialUpdateWithHttpInfo (string campaignId, UpdateCampaignPatchRequest campaign);
         /// <summary>
         /// 
         /// </summary>
@@ -193,9 +193,9 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>UpdateCampaign</returns>
-        UpdateCampaign UpdateCampaignUpdate (string campaignId, UpdateCampaignPutRequest updateCampaign);
+        UpdateCampaign UpdateCampaignUpdate (string campaignId, UpdateCampaignPutRequest campaign);
 
         /// <summary>
         /// 
@@ -205,9 +205,9 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>ApiResponse of UpdateCampaign</returns>
-        ApiResponse<UpdateCampaign> UpdateCampaignUpdateWithHttpInfo (string campaignId, UpdateCampaignPutRequest updateCampaign);
+        ApiResponse<UpdateCampaign> UpdateCampaignUpdateWithHttpInfo (string campaignId, UpdateCampaignPutRequest campaign);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -335,9 +335,9 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>Task of UpdateCampaignPatchRequest</returns>
-        System.Threading.Tasks.Task<UpdateCampaignPatchRequest> UpdateCampaignPartialUpdateAsync (string campaignId, UpdateCampaignPatchRequest updateCampaign);
+        System.Threading.Tasks.Task<UpdateCampaignPatchRequest> UpdateCampaignPartialUpdateAsync (string campaignId, UpdateCampaignPatchRequest campaign);
 
         /// <summary>
         /// 
@@ -347,9 +347,9 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>Task of ApiResponse (UpdateCampaignPatchRequest)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPatchRequest>> UpdateCampaignPartialUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignPatchRequest updateCampaign);
+        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPatchRequest>> UpdateCampaignPartialUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignPatchRequest campaign);
         /// <summary>
         /// 
         /// </summary>
@@ -379,9 +379,9 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>Task of UpdateCampaign</returns>
-        System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignUpdateAsync (string campaignId, UpdateCampaignPutRequest updateCampaign);
+        System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignUpdateAsync (string campaignId, UpdateCampaignPutRequest campaign);
 
         /// <summary>
         /// 
@@ -391,9 +391,9 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignPutRequest updateCampaign);
+        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignPutRequest campaign);
         #endregion Asynchronous Operations
     }
 
@@ -1131,11 +1131,11 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>UpdateCampaignPatchRequest</returns>
-        public UpdateCampaignPatchRequest UpdateCampaignPartialUpdate (string campaignId, UpdateCampaignPatchRequest updateCampaign)
+        public UpdateCampaignPatchRequest UpdateCampaignPartialUpdate (string campaignId, UpdateCampaignPatchRequest campaign)
         {
-             ApiResponse<UpdateCampaignPatchRequest> localVarResponse = UpdateCampaignPartialUpdateWithHttpInfo(campaignId, updateCampaign);
+             ApiResponse<UpdateCampaignPatchRequest> localVarResponse = UpdateCampaignPartialUpdateWithHttpInfo(campaignId, campaign);
              return localVarResponse.Data;
         }
 
@@ -1144,16 +1144,16 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>ApiResponse of UpdateCampaignPatchRequest</returns>
-        public ApiResponse< UpdateCampaignPatchRequest > UpdateCampaignPartialUpdateWithHttpInfo (string campaignId, UpdateCampaignPatchRequest updateCampaign)
+        public ApiResponse< UpdateCampaignPatchRequest > UpdateCampaignPartialUpdateWithHttpInfo (string campaignId, UpdateCampaignPatchRequest campaign)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
                 throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->UpdateCampaignPartialUpdate");
-            // verify the required parameter 'updateCampaign' is set
-            if (updateCampaign == null)
-                throw new ApiException(400, "Missing required parameter 'updateCampaign' when calling DefaultApi->UpdateCampaignPartialUpdate");
+            // verify the required parameter 'campaign' is set
+            if (campaign == null)
+                throw new ApiException(400, "Missing required parameter 'campaign' when calling DefaultApi->UpdateCampaignPartialUpdate");
 
             var localVarPath = "/v3/update-campaigns/{campaign_id}/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1179,13 +1179,13 @@ namespace deployment_service.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-            if (updateCampaign != null && updateCampaign.GetType() != typeof(byte[]))
+            if (campaign != null && campaign.GetType() != typeof(byte[]))
             {
-                localVarPostBody = Configuration.ApiClient.Serialize(updateCampaign); // http body (model) parameter
+                localVarPostBody = Configuration.ApiClient.Serialize(campaign); // http body (model) parameter
             }
             else
             {
-                localVarPostBody = updateCampaign; // byte array
+                localVarPostBody = campaign; // byte array
             }
 
             // authentication (Bearer) required
@@ -1219,11 +1219,11 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>Task of UpdateCampaignPatchRequest</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaignPatchRequest> UpdateCampaignPartialUpdateAsync (string campaignId, UpdateCampaignPatchRequest updateCampaign)
+        public async System.Threading.Tasks.Task<UpdateCampaignPatchRequest> UpdateCampaignPartialUpdateAsync (string campaignId, UpdateCampaignPatchRequest campaign)
         {
-             ApiResponse<UpdateCampaignPatchRequest> localVarResponse = await UpdateCampaignPartialUpdateAsyncWithHttpInfo(campaignId, updateCampaign);
+             ApiResponse<UpdateCampaignPatchRequest> localVarResponse = await UpdateCampaignPartialUpdateAsyncWithHttpInfo(campaignId, campaign);
              return localVarResponse.Data;
 
         }
@@ -1233,16 +1233,16 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>Task of ApiResponse (UpdateCampaignPatchRequest)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPatchRequest>> UpdateCampaignPartialUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignPatchRequest updateCampaign)
+        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPatchRequest>> UpdateCampaignPartialUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignPatchRequest campaign)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
                 throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->UpdateCampaignPartialUpdate");
-            // verify the required parameter 'updateCampaign' is set
-            if (updateCampaign == null)
-                throw new ApiException(400, "Missing required parameter 'updateCampaign' when calling DefaultApi->UpdateCampaignPartialUpdate");
+            // verify the required parameter 'campaign' is set
+            if (campaign == null)
+                throw new ApiException(400, "Missing required parameter 'campaign' when calling DefaultApi->UpdateCampaignPartialUpdate");
 
             var localVarPath = "/v3/update-campaigns/{campaign_id}/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1268,13 +1268,13 @@ namespace deployment_service.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-            if (updateCampaign != null && updateCampaign.GetType() != typeof(byte[]))
+            if (campaign != null && campaign.GetType() != typeof(byte[]))
             {
-                localVarPostBody = Configuration.ApiClient.Serialize(updateCampaign); // http body (model) parameter
+                localVarPostBody = Configuration.ApiClient.Serialize(campaign); // http body (model) parameter
             }
             else
             {
-                localVarPostBody = updateCampaign; // byte array
+                localVarPostBody = campaign; // byte array
             }
 
             // authentication (Bearer) required
@@ -1457,11 +1457,11 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>UpdateCampaign</returns>
-        public UpdateCampaign UpdateCampaignUpdate (string campaignId, UpdateCampaignPutRequest updateCampaign)
+        public UpdateCampaign UpdateCampaignUpdate (string campaignId, UpdateCampaignPutRequest campaign)
         {
-             ApiResponse<UpdateCampaign> localVarResponse = UpdateCampaignUpdateWithHttpInfo(campaignId, updateCampaign);
+             ApiResponse<UpdateCampaign> localVarResponse = UpdateCampaignUpdateWithHttpInfo(campaignId, campaign);
              return localVarResponse.Data;
         }
 
@@ -1470,16 +1470,16 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>ApiResponse of UpdateCampaign</returns>
-        public ApiResponse< UpdateCampaign > UpdateCampaignUpdateWithHttpInfo (string campaignId, UpdateCampaignPutRequest updateCampaign)
+        public ApiResponse< UpdateCampaign > UpdateCampaignUpdateWithHttpInfo (string campaignId, UpdateCampaignPutRequest campaign)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
                 throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->UpdateCampaignUpdate");
-            // verify the required parameter 'updateCampaign' is set
-            if (updateCampaign == null)
-                throw new ApiException(400, "Missing required parameter 'updateCampaign' when calling DefaultApi->UpdateCampaignUpdate");
+            // verify the required parameter 'campaign' is set
+            if (campaign == null)
+                throw new ApiException(400, "Missing required parameter 'campaign' when calling DefaultApi->UpdateCampaignUpdate");
 
             var localVarPath = "/v3/update-campaigns/{campaign_id}/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1505,13 +1505,13 @@ namespace deployment_service.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-            if (updateCampaign != null && updateCampaign.GetType() != typeof(byte[]))
+            if (campaign != null && campaign.GetType() != typeof(byte[]))
             {
-                localVarPostBody = Configuration.ApiClient.Serialize(updateCampaign); // http body (model) parameter
+                localVarPostBody = Configuration.ApiClient.Serialize(campaign); // http body (model) parameter
             }
             else
             {
-                localVarPostBody = updateCampaign; // byte array
+                localVarPostBody = campaign; // byte array
             }
 
             // authentication (Bearer) required
@@ -1545,11 +1545,11 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>Task of UpdateCampaign</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignUpdateAsync (string campaignId, UpdateCampaignPutRequest updateCampaign)
+        public async System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignUpdateAsync (string campaignId, UpdateCampaignPutRequest campaign)
         {
-             ApiResponse<UpdateCampaign> localVarResponse = await UpdateCampaignUpdateAsyncWithHttpInfo(campaignId, updateCampaign);
+             ApiResponse<UpdateCampaign> localVarResponse = await UpdateCampaignUpdateAsyncWithHttpInfo(campaignId, campaign);
              return localVarResponse.Data;
 
         }
@@ -1559,16 +1559,16 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
-        /// <param name="updateCampaign">Update campaign</param>
+        /// <param name="campaign">Update campaign</param>
         /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignPutRequest updateCampaign)
+        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignPutRequest campaign)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
                 throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->UpdateCampaignUpdate");
-            // verify the required parameter 'updateCampaign' is set
-            if (updateCampaign == null)
-                throw new ApiException(400, "Missing required parameter 'updateCampaign' when calling DefaultApi->UpdateCampaignUpdate");
+            // verify the required parameter 'campaign' is set
+            if (campaign == null)
+                throw new ApiException(400, "Missing required parameter 'campaign' when calling DefaultApi->UpdateCampaignUpdate");
 
             var localVarPath = "/v3/update-campaigns/{campaign_id}/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1594,13 +1594,13 @@ namespace deployment_service.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-            if (updateCampaign != null && updateCampaign.GetType() != typeof(byte[]))
+            if (campaign != null && campaign.GetType() != typeof(byte[]))
             {
-                localVarPostBody = Configuration.ApiClient.Serialize(updateCampaign); // http body (model) parameter
+                localVarPostBody = Configuration.ApiClient.Serialize(campaign); // http body (model) parameter
             }
             else
             {
-                localVarPostBody = updateCampaign; // byte array
+                localVarPostBody = campaign; // byte array
             }
 
             // authentication (Bearer) required
