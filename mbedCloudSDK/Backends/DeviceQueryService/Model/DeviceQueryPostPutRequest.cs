@@ -24,28 +24,28 @@ using System.ComponentModel.DataAnnotations;
 namespace device_query_service.Model
 {
     /// <summary>
-    /// DeviceQueryPutRequest
+    /// DeviceQueryPostPutRequest
     /// </summary>
     [DataContract]
-    public partial class DeviceQueryPutRequest :  IEquatable<DeviceQueryPutRequest>, IValidatableObject
+    public partial class DeviceQueryPostPutRequest :  IEquatable<DeviceQueryPostPutRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceQueryPutRequest" /> class.
+        /// Initializes a new instance of the <see cref="DeviceQueryPostPutRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected DeviceQueryPutRequest() { }
+        protected DeviceQueryPostPutRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceQueryPutRequest" /> class.
+        /// Initializes a new instance of the <see cref="DeviceQueryPostPutRequest" /> class.
         /// </summary>
         /// <param name="Query">The device query (required).</param>
         /// <param name="Description">The description of the object (required).</param>
         /// <param name="Name">The name of the query (required).</param>
-        public DeviceQueryPutRequest(string Query = default(string), string Description = default(string), string Name = default(string))
+        public DeviceQueryPostPutRequest(string Query = default(string), string Description = default(string), string Name = default(string))
         {
             // to ensure "Query" is required (not null)
             if (Query == null)
             {
-                throw new InvalidDataException("Query is a required property for DeviceQueryPutRequest and cannot be null");
+                throw new InvalidDataException("Query is a required property for DeviceQueryPostPutRequest and cannot be null");
             }
             else
             {
@@ -54,7 +54,7 @@ namespace device_query_service.Model
             // to ensure "Description" is required (not null)
             if (Description == null)
             {
-                throw new InvalidDataException("Description is a required property for DeviceQueryPutRequest and cannot be null");
+                throw new InvalidDataException("Description is a required property for DeviceQueryPostPutRequest and cannot be null");
             }
             else
             {
@@ -63,7 +63,7 @@ namespace device_query_service.Model
             // to ensure "Name" is required (not null)
             if (Name == null)
             {
-                throw new InvalidDataException("Name is a required property for DeviceQueryPutRequest and cannot be null");
+                throw new InvalidDataException("Name is a required property for DeviceQueryPostPutRequest and cannot be null");
             }
             else
             {
@@ -96,7 +96,7 @@ namespace device_query_service.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class DeviceQueryPutRequest {\n");
+            sb.Append("class DeviceQueryPostPutRequest {\n");
             sb.Append("  Query: ").Append(Query).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
@@ -121,15 +121,15 @@ namespace device_query_service.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as DeviceQueryPutRequest);
+            return this.Equals(obj as DeviceQueryPostPutRequest);
         }
 
         /// <summary>
-        /// Returns true if DeviceQueryPutRequest instances are equal
+        /// Returns true if DeviceQueryPostPutRequest instances are equal
         /// </summary>
-        /// <param name="other">Instance of DeviceQueryPutRequest to be compared</param>
+        /// <param name="other">Instance of DeviceQueryPostPutRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DeviceQueryPutRequest other)
+        public bool Equals(DeviceQueryPostPutRequest other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)

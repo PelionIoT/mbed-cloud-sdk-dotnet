@@ -33,7 +33,7 @@ namespace device_query_service.Api
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
         /// <returns>DeviceQuery</returns>
-        DeviceQuery DeviceQueryCreate (DeviceQuery device);
+        DeviceQuery DeviceQueryCreate (DeviceQueryPostPutRequest device);
 
         /// <summary>
         /// 
@@ -44,7 +44,7 @@ namespace device_query_service.Api
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceQuery</returns>
-        ApiResponse<DeviceQuery> DeviceQueryCreateWithHttpInfo (DeviceQuery device);
+        ApiResponse<DeviceQuery> DeviceQueryCreateWithHttpInfo (DeviceQueryPostPutRequest device);
         /// <summary>
         /// 
         /// </summary>
@@ -177,7 +177,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="body">Device query update object</param>
         /// <returns>DeviceQuery</returns>
-        DeviceQuery DeviceQueryUpdate (string queryId, DeviceQueryPutRequest body);
+        DeviceQuery DeviceQueryUpdate (string queryId, DeviceQueryPostPutRequest body);
 
         /// <summary>
         /// 
@@ -189,7 +189,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="body">Device query update object</param>
         /// <returns>ApiResponse of DeviceQuery</returns>
-        ApiResponse<DeviceQuery> DeviceQueryUpdateWithHttpInfo (string queryId, DeviceQueryPutRequest body);
+        ApiResponse<DeviceQuery> DeviceQueryUpdateWithHttpInfo (string queryId, DeviceQueryPostPutRequest body);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -201,7 +201,7 @@ namespace device_query_service.Api
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
         /// <returns>Task of DeviceQuery</returns>
-        System.Threading.Tasks.Task<DeviceQuery> DeviceQueryCreateAsync (DeviceQuery device);
+        System.Threading.Tasks.Task<DeviceQuery> DeviceQueryCreateAsync (DeviceQueryPostPutRequest device);
 
         /// <summary>
         /// 
@@ -212,7 +212,7 @@ namespace device_query_service.Api
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceQuery)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryCreateAsyncWithHttpInfo (DeviceQuery device);
+        System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryCreateAsyncWithHttpInfo (DeviceQueryPostPutRequest device);
         /// <summary>
         /// 
         /// </summary>
@@ -345,7 +345,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="body">Device query update object</param>
         /// <returns>Task of DeviceQuery</returns>
-        System.Threading.Tasks.Task<DeviceQuery> DeviceQueryUpdateAsync (string queryId, DeviceQueryPutRequest body);
+        System.Threading.Tasks.Task<DeviceQuery> DeviceQueryUpdateAsync (string queryId, DeviceQueryPostPutRequest body);
 
         /// <summary>
         /// 
@@ -357,7 +357,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="body">Device query update object</param>
         /// <returns>Task of ApiResponse (DeviceQuery)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryUpdateAsyncWithHttpInfo (string queryId, DeviceQueryPutRequest body);
+        System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryUpdateAsyncWithHttpInfo (string queryId, DeviceQueryPostPutRequest body);
         #endregion Asynchronous Operations
     }
 
@@ -476,7 +476,7 @@ namespace device_query_service.Api
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
         /// <returns>DeviceQuery</returns>
-        public DeviceQuery DeviceQueryCreate (DeviceQuery device)
+        public DeviceQuery DeviceQueryCreate (DeviceQueryPostPutRequest device)
         {
              ApiResponse<DeviceQuery> localVarResponse = DeviceQueryCreateWithHttpInfo(device);
              return localVarResponse.Data;
@@ -488,7 +488,7 @@ namespace device_query_service.Api
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceQuery</returns>
-        public ApiResponse< DeviceQuery > DeviceQueryCreateWithHttpInfo (DeviceQuery device)
+        public ApiResponse< DeviceQuery > DeviceQueryCreateWithHttpInfo (DeviceQueryPostPutRequest device)
         {
             // verify the required parameter 'device' is set
             if (device == null)
@@ -558,7 +558,7 @@ namespace device_query_service.Api
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
         /// <returns>Task of DeviceQuery</returns>
-        public async System.Threading.Tasks.Task<DeviceQuery> DeviceQueryCreateAsync (DeviceQuery device)
+        public async System.Threading.Tasks.Task<DeviceQuery> DeviceQueryCreateAsync (DeviceQueryPostPutRequest device)
         {
              ApiResponse<DeviceQuery> localVarResponse = await DeviceQueryCreateAsyncWithHttpInfo(device);
              return localVarResponse.Data;
@@ -571,7 +571,7 @@ namespace device_query_service.Api
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceQuery)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryCreateAsyncWithHttpInfo (DeviceQuery device)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryCreateAsyncWithHttpInfo (DeviceQueryPostPutRequest device)
         {
             // verify the required parameter 'device' is set
             if (device == null)
@@ -1367,7 +1367,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="body">Device query update object</param>
         /// <returns>DeviceQuery</returns>
-        public DeviceQuery DeviceQueryUpdate (string queryId, DeviceQueryPutRequest body)
+        public DeviceQuery DeviceQueryUpdate (string queryId, DeviceQueryPostPutRequest body)
         {
              ApiResponse<DeviceQuery> localVarResponse = DeviceQueryUpdateWithHttpInfo(queryId, body);
              return localVarResponse.Data;
@@ -1380,7 +1380,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="body">Device query update object</param>
         /// <returns>ApiResponse of DeviceQuery</returns>
-        public ApiResponse< DeviceQuery > DeviceQueryUpdateWithHttpInfo (string queryId, DeviceQueryPutRequest body)
+        public ApiResponse< DeviceQuery > DeviceQueryUpdateWithHttpInfo (string queryId, DeviceQueryPostPutRequest body)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)
@@ -1455,7 +1455,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="body">Device query update object</param>
         /// <returns>Task of DeviceQuery</returns>
-        public async System.Threading.Tasks.Task<DeviceQuery> DeviceQueryUpdateAsync (string queryId, DeviceQueryPutRequest body)
+        public async System.Threading.Tasks.Task<DeviceQuery> DeviceQueryUpdateAsync (string queryId, DeviceQueryPostPutRequest body)
         {
              ApiResponse<DeviceQuery> localVarResponse = await DeviceQueryUpdateAsyncWithHttpInfo(queryId, body);
              return localVarResponse.Data;
@@ -1469,7 +1469,7 @@ namespace device_query_service.Api
         /// <param name="queryId"></param>
         /// <param name="body">Device query update object</param>
         /// <returns>Task of ApiResponse (DeviceQuery)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryUpdateAsyncWithHttpInfo (string queryId, DeviceQueryPutRequest body)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryUpdateAsyncWithHttpInfo (string queryId, DeviceQueryPostPutRequest body)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)

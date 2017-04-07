@@ -75,7 +75,7 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var device = new DeviceQuery(); // DeviceQuery | 
+            var device = new DeviceQueryPostPutRequest(); // DeviceQueryPostPutRequest | 
 
             try
             {
@@ -112,7 +112,7 @@ Class | Method | HTTP request | Description
  - [Model.DeviceQuery](docs/DeviceQuery.md)
  - [Model.DeviceQueryPage](docs/DeviceQueryPage.md)
  - [Model.DeviceQueryPatchRequest](docs/DeviceQueryPatchRequest.md)
- - [Model.DeviceQueryPutRequest](docs/DeviceQueryPutRequest.md)
+ - [Model.DeviceQueryPostPutRequest](docs/DeviceQueryPostPutRequest.md)
 
 
 <a name="documentation-for-authorization"></a>
