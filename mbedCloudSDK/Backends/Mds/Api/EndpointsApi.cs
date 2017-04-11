@@ -25,27 +25,6 @@ namespace mds.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// List the resources on an endpoint
-        /// </summary>
-        /// <remarks>
-        /// The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="endpointName">A unique identifier for an endpoint. Note that the endpoint name needs to be an exact match. You cannot use wildcards here. </param>
-        /// <returns>List&lt;Resource&gt;</returns>
-        List<Resource> V2EndpointsEndpointNameGet (string endpointName);
-
-        /// <summary>
-        /// List the resources on an endpoint
-        /// </summary>
-        /// <remarks>
-        /// The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="endpointName">A unique identifier for an endpoint. Note that the endpoint name needs to be an exact match. You cannot use wildcards here. </param>
-        /// <returns>ApiResponse of List&lt;Resource&gt;</returns>
-        ApiResponse<List<Resource>> V2EndpointsEndpointNameGetWithHttpInfo (string endpointName);
-        /// <summary>
         /// List endpoints. The number of endpoints is currently limited to 200.
         /// </summary>
         /// <remarks>
@@ -66,8 +45,6 @@ namespace mds.Api
         /// <param name="type">Filter endpoints by endpoint-type. (optional)</param>
         /// <returns>ApiResponse of List&lt;Endpoint&gt;</returns>
         ApiResponse<List<Endpoint>> V2EndpointsGetWithHttpInfo (string type = null);
-        #endregion Synchronous Operations
-        #region Asynchronous Operations
         /// <summary>
         /// List the resources on an endpoint
         /// </summary>
@@ -75,9 +52,9 @@ namespace mds.Api
         /// The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="endpointName">A unique identifier for an endpoint. Note that the endpoint name needs to be an exact match. You cannot use wildcards here. </param>
-        /// <returns>Task of List&lt;Resource&gt;</returns>
-        System.Threading.Tasks.Task<List<Resource>> V2EndpointsEndpointNameGetAsync (string endpointName);
+        /// <param name="deviceID">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <returns>List&lt;Resource&gt;</returns>
+        List<Resource> V2EndpointsIdGet (string deviceID);
 
         /// <summary>
         /// List the resources on an endpoint
@@ -86,9 +63,11 @@ namespace mds.Api
         /// The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="endpointName">A unique identifier for an endpoint. Note that the endpoint name needs to be an exact match. You cannot use wildcards here. </param>
-        /// <returns>Task of ApiResponse (List&lt;Resource&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Resource>>> V2EndpointsEndpointNameGetAsyncWithHttpInfo (string endpointName);
+        /// <param name="deviceID">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <returns>ApiResponse of List&lt;Resource&gt;</returns>
+        ApiResponse<List<Resource>> V2EndpointsIdGetWithHttpInfo (string deviceID);
+        #endregion Synchronous Operations
+        #region Asynchronous Operations
         /// <summary>
         /// List endpoints. The number of endpoints is currently limited to 200.
         /// </summary>
@@ -110,6 +89,27 @@ namespace mds.Api
         /// <param name="type">Filter endpoints by endpoint-type. (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Endpoint&gt;)</returns>
         System.Threading.Tasks.Task<ApiResponse<List<Endpoint>>> V2EndpointsGetAsyncWithHttpInfo (string type = null);
+        /// <summary>
+        /// List the resources on an endpoint
+        /// </summary>
+        /// <remarks>
+        /// The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceID">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <returns>Task of List&lt;Resource&gt;</returns>
+        System.Threading.Tasks.Task<List<Resource>> V2EndpointsIdGetAsync (string deviceID);
+
+        /// <summary>
+        /// List the resources on an endpoint
+        /// </summary>
+        /// <remarks>
+        /// The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceID">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <returns>Task of ApiResponse (List&lt;Resource&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<Resource>>> V2EndpointsIdGetAsyncWithHttpInfo (string deviceID);
         #endregion Asynchronous Operations
     }
 
@@ -220,160 +220,6 @@ namespace mds.Api
         public void AddDefaultHeader(string key, string value)
         {
             this.Configuration.AddDefaultHeader(key, value);
-        }
-
-        /// <summary>
-        /// List the resources on an endpoint The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="endpointName">A unique identifier for an endpoint. Note that the endpoint name needs to be an exact match. You cannot use wildcards here. </param>
-        /// <returns>List&lt;Resource&gt;</returns>
-        public List<Resource> V2EndpointsEndpointNameGet (string endpointName)
-        {
-             ApiResponse<List<Resource>> localVarResponse = V2EndpointsEndpointNameGetWithHttpInfo(endpointName);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// List the resources on an endpoint The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="endpointName">A unique identifier for an endpoint. Note that the endpoint name needs to be an exact match. You cannot use wildcards here. </param>
-        /// <returns>ApiResponse of List&lt;Resource&gt;</returns>
-        public ApiResponse< List<Resource> > V2EndpointsEndpointNameGetWithHttpInfo (string endpointName)
-        {
-            // verify the required parameter 'endpointName' is set
-            if (endpointName == null)
-                throw new ApiException(400, "Missing required parameter 'endpointName' when calling EndpointsApi->V2EndpointsEndpointNameGet");
-
-            var localVarPath = "/v2/endpoints/{endpointName}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json", 
-                "application/link-format"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (endpointName != null) localVarPathParams.Add("endpointName", Configuration.ApiClient.ParameterToString(endpointName)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2EndpointsEndpointNameGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<List<Resource>>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<Resource>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Resource>)));
-            
-        }
-
-        /// <summary>
-        /// List the resources on an endpoint The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="endpointName">A unique identifier for an endpoint. Note that the endpoint name needs to be an exact match. You cannot use wildcards here. </param>
-        /// <returns>Task of List&lt;Resource&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Resource>> V2EndpointsEndpointNameGetAsync (string endpointName)
-        {
-             ApiResponse<List<Resource>> localVarResponse = await V2EndpointsEndpointNameGetAsyncWithHttpInfo(endpointName);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// List the resources on an endpoint The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="endpointName">A unique identifier for an endpoint. Note that the endpoint name needs to be an exact match. You cannot use wildcards here. </param>
-        /// <returns>Task of ApiResponse (List&lt;Resource&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Resource>>> V2EndpointsEndpointNameGetAsyncWithHttpInfo (string endpointName)
-        {
-            // verify the required parameter 'endpointName' is set
-            if (endpointName == null)
-                throw new ApiException(400, "Missing required parameter 'endpointName' when calling EndpointsApi->V2EndpointsEndpointNameGet");
-
-            var localVarPath = "/v2/endpoints/{endpointName}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json", 
-                "application/link-format"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (endpointName != null) localVarPathParams.Add("endpointName", Configuration.ApiClient.ParameterToString(endpointName)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2EndpointsEndpointNameGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<List<Resource>>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<Resource>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Resource>)));
-            
         }
 
         /// <summary>
@@ -521,6 +367,160 @@ namespace mds.Api
             return new ApiResponse<List<Endpoint>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<Endpoint>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Endpoint>)));
+            
+        }
+
+        /// <summary>
+        /// List the resources on an endpoint The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceID">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <returns>List&lt;Resource&gt;</returns>
+        public List<Resource> V2EndpointsIdGet (string deviceID)
+        {
+             ApiResponse<List<Resource>> localVarResponse = V2EndpointsIdGetWithHttpInfo(deviceID);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List the resources on an endpoint The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceID">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <returns>ApiResponse of List&lt;Resource&gt;</returns>
+        public ApiResponse< List<Resource> > V2EndpointsIdGetWithHttpInfo (string deviceID)
+        {
+            // verify the required parameter 'deviceID' is set
+            if (deviceID == null)
+                throw new ApiException(400, "Missing required parameter 'deviceID' when calling EndpointsApi->V2EndpointsIdGet");
+
+            var localVarPath = "/v2/endpoints/{id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json", 
+                "application/link-format"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (deviceID != null) localVarPathParams.Add("Device ID", Configuration.ApiClient.ParameterToString(deviceID)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("V2EndpointsIdGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<Resource>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<Resource>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Resource>)));
+            
+        }
+
+        /// <summary>
+        /// List the resources on an endpoint The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceID">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <returns>Task of List&lt;Resource&gt;</returns>
+        public async System.Threading.Tasks.Task<List<Resource>> V2EndpointsIdGetAsync (string deviceID)
+        {
+             ApiResponse<List<Resource>> localVarResponse = await V2EndpointsIdGetAsyncWithHttpInfo(deviceID);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// List the resources on an endpoint The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceID">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <returns>Task of ApiResponse (List&lt;Resource&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<Resource>>> V2EndpointsIdGetAsyncWithHttpInfo (string deviceID)
+        {
+            // verify the required parameter 'deviceID' is set
+            if (deviceID == null)
+                throw new ApiException(400, "Missing required parameter 'deviceID' when calling EndpointsApi->V2EndpointsIdGet");
+
+            var localVarPath = "/v2/endpoints/{id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json", 
+                "application/link-format"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (deviceID != null) localVarPathParams.Add("Device ID", Configuration.ApiClient.ParameterToString(deviceID)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("V2EndpointsIdGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<Resource>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<Resource>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Resource>)));
             
         }
 

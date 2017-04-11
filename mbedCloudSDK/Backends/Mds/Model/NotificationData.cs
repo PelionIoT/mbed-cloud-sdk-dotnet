@@ -36,7 +36,7 @@ namespace mds.Model
         /// <param name="Payload">Base64 encoded payload..</param>
         /// <param name="Path">URI path..</param>
         /// <param name="MaxAge">Max age value is an integer number of seconds between 0 and 2^32-1 but the actual maximum cache time is limited to 3 days. A default value of 60 seconds is assumed in the absence of the option. .</param>
-        /// <param name="Ep">Endpoint name..</param>
+        /// <param name="Ep">Device ID..</param>
         /// <param name="Ct">Content type..</param>
         public NotificationData(string Timestamp = default(string), string Payload = default(string), string Path = default(string), string MaxAge = default(string), string Ep = default(string), string Ct = default(string))
         {
@@ -73,9 +73,9 @@ namespace mds.Model
         [DataMember(Name="max-age", EmitDefaultValue=false)]
         public string MaxAge { get; set; }
         /// <summary>
-        /// Endpoint name.
+        /// Device ID.
         /// </summary>
-        /// <value>Endpoint name.</value>
+        /// <value>Device ID.</value>
         [DataMember(Name="ep", EmitDefaultValue=false)]
         public string Ep { get; set; }
         /// <summary>

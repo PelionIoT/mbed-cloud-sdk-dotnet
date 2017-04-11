@@ -37,7 +37,7 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UserUpdateReq" /> class.
         /// </summary>
-        /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters..</param>
+        /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long..</param>
         /// <param name="PhoneNumber">Phone number, not longer than 100 characters..</param>
         /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted..</param>
         /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted..</param>
@@ -66,9 +66,9 @@ namespace iam.Model
         }
         
         /// <summary>
-        /// A username containing alphanumerical letters and -,._@+&#x3D; characters.
+        /// A username containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long.
         /// </summary>
-        /// <value>A username containing alphanumerical letters and -,._@+&#x3D; characters.</value>
+        /// <value>A username containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long.</value>
         [DataMember(Name="username", EmitDefaultValue=false)]
         public string Username { get; set; }
         /// <summary>

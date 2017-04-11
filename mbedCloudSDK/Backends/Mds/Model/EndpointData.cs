@@ -34,9 +34,9 @@ namespace mds.Model
         /// </summary>
         /// <param name="Q">Queue mode (default value is false)..</param>
         /// <param name="Ept">Endpoint type..</param>
-        /// <param name="OriginalEp">In case of a self-provided endpoint name that is used to initiate the device registration, mbed Cloud provides a new device name to be used from that point on. The new mbed-Cloud-provided name is forwarded as the &#39;ep&#39; property and the original self-provided one as the optional &#39;original-ep&#39; property in a registration notification. The names can then be mapped accordingly. mbed Cloud saves the original endpoint name for future device registrations so there is no need to do the mapping again. .</param>
+        /// <param name="OriginalEp">In case of a self-provided endpoint name that is used to initiate the device registration, mbed Cloud provides a new Device ID to be used from that point on. The new mbed-Cloud-provided Device ID is forwarded as the &#39;ep&#39; property and the original self-provided one as the optional &#39;original-ep&#39; property in a registration notification. The name and ID can then be mapped accordingly. mbed Cloud saves the original endpoint name in Device Catalog for future device registrations so there is no need to do the mapping again.  .</param>
         /// <param name="Resources">Resources.</param>
-        /// <param name="Ep">Endpoint name..</param>
+        /// <param name="Ep">Unique mbed Cloud Device ID..</param>
         public EndpointData(bool? Q = default(bool?), string Ept = default(string), string OriginalEp = default(string), List<ResourcesData> Resources = default(List<ResourcesData>), string Ep = default(string))
         {
             this.Q = Q;
@@ -59,9 +59,9 @@ namespace mds.Model
         [DataMember(Name="ept", EmitDefaultValue=false)]
         public string Ept { get; set; }
         /// <summary>
-        /// In case of a self-provided endpoint name that is used to initiate the device registration, mbed Cloud provides a new device name to be used from that point on. The new mbed-Cloud-provided name is forwarded as the &#39;ep&#39; property and the original self-provided one as the optional &#39;original-ep&#39; property in a registration notification. The names can then be mapped accordingly. mbed Cloud saves the original endpoint name for future device registrations so there is no need to do the mapping again. 
+        /// In case of a self-provided endpoint name that is used to initiate the device registration, mbed Cloud provides a new Device ID to be used from that point on. The new mbed-Cloud-provided Device ID is forwarded as the &#39;ep&#39; property and the original self-provided one as the optional &#39;original-ep&#39; property in a registration notification. The name and ID can then be mapped accordingly. mbed Cloud saves the original endpoint name in Device Catalog for future device registrations so there is no need to do the mapping again.  
         /// </summary>
-        /// <value>In case of a self-provided endpoint name that is used to initiate the device registration, mbed Cloud provides a new device name to be used from that point on. The new mbed-Cloud-provided name is forwarded as the &#39;ep&#39; property and the original self-provided one as the optional &#39;original-ep&#39; property in a registration notification. The names can then be mapped accordingly. mbed Cloud saves the original endpoint name for future device registrations so there is no need to do the mapping again. </value>
+        /// <value>In case of a self-provided endpoint name that is used to initiate the device registration, mbed Cloud provides a new Device ID to be used from that point on. The new mbed-Cloud-provided Device ID is forwarded as the &#39;ep&#39; property and the original self-provided one as the optional &#39;original-ep&#39; property in a registration notification. The name and ID can then be mapped accordingly. mbed Cloud saves the original endpoint name in Device Catalog for future device registrations so there is no need to do the mapping again.  </value>
         [DataMember(Name="original-ep", EmitDefaultValue=false)]
         public string OriginalEp { get; set; }
         /// <summary>
@@ -70,9 +70,9 @@ namespace mds.Model
         [DataMember(Name="resources", EmitDefaultValue=false)]
         public List<ResourcesData> Resources { get; set; }
         /// <summary>
-        /// Endpoint name.
+        /// Unique mbed Cloud Device ID.
         /// </summary>
-        /// <value>Endpoint name.</value>
+        /// <value>Unique mbed Cloud Device ID.</value>
         [DataMember(Name="ep", EmitDefaultValue=false)]
         public string Ep { get; set; }
         /// <summary>

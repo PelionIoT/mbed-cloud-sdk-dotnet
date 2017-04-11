@@ -99,22 +99,22 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**V2NotificationCallbackDelete**](docs/DefaultApi.md#v2notificationcallbackdelete) | **DELETE** /v2/notification/callback | Delete callback URL
 *DefaultApi* | [**V2NotificationCallbackGet**](docs/DefaultApi.md#v2notificationcallbackget) | **GET** /v2/notification/callback | Check callback URL
-*EndpointsApi* | [**V2EndpointsEndpointNameGet**](docs/EndpointsApi.md#v2endpointsendpointnameget) | **GET** /v2/endpoints/{endpointName} | List the resources on an endpoint
 *EndpointsApi* | [**V2EndpointsGet**](docs/EndpointsApi.md#v2endpointsget) | **GET** /v2/endpoints | List endpoints. The number of endpoints is currently limited to 200.
+*EndpointsApi* | [**V2EndpointsIdGet**](docs/EndpointsApi.md#v2endpointsidget) | **GET** /v2/endpoints/{id} | List the resources on an endpoint
 *NotificationsApi* | [**V2NotificationCallbackPut**](docs/NotificationsApi.md#v2notificationcallbackput) | **PUT** /v2/notification/callback | Register a callback URL
 *NotificationsApi* | [**V2NotificationPullDelete**](docs/NotificationsApi.md#v2notificationpulldelete) | **DELETE** /v2/notification/pull | Delete notification Long Poll channel
 *NotificationsApi* | [**V2NotificationPullGet**](docs/NotificationsApi.md#v2notificationpullget) | **GET** /v2/notification/pull | Get notifications using Long Poll
-*ResourcesApi* | [**V2EndpointsEndpointNameResourcePathDelete**](docs/ResourcesApi.md#v2endpointsendpointnameresourcepathdelete) | **DELETE** /v2/endpoints/{endpointName}/{resourcePath} | Delete a resource
-*ResourcesApi* | [**V2EndpointsEndpointNameResourcePathGet**](docs/ResourcesApi.md#v2endpointsendpointnameresourcepathget) | **GET** /v2/endpoints/{endpointName}/{resourcePath} | Read from a resource
-*ResourcesApi* | [**V2EndpointsEndpointNameResourcePathPost**](docs/ResourcesApi.md#v2endpointsendpointnameresourcepathpost) | **POST** /v2/endpoints/{endpointName}/{resourcePath} | Execute a function on a resource
-*ResourcesApi* | [**V2EndpointsEndpointNameResourcePathPut**](docs/ResourcesApi.md#v2endpointsendpointnameresourcepathput) | **PUT** /v2/endpoints/{endpointName}/{resourcePath} | Write to a resource
+*ResourcesApi* | [**V2EndpointsIdResourcePathDelete**](docs/ResourcesApi.md#v2endpointsidresourcepathdelete) | **DELETE** /v2/endpoints/{id}/{resourcePath} | Delete a resource
+*ResourcesApi* | [**V2EndpointsIdResourcePathGet**](docs/ResourcesApi.md#v2endpointsidresourcepathget) | **GET** /v2/endpoints/{id}/{resourcePath} | Read from a resource
+*ResourcesApi* | [**V2EndpointsIdResourcePathPost**](docs/ResourcesApi.md#v2endpointsidresourcepathpost) | **POST** /v2/endpoints/{id}/{resourcePath} | Execute a function on a resource
+*ResourcesApi* | [**V2EndpointsIdResourcePathPut**](docs/ResourcesApi.md#v2endpointsidresourcepathput) | **PUT** /v2/endpoints/{id}/{resourcePath} | Write to a resource
 *SubscriptionsApi* | [**V2SubscriptionsDelete**](docs/SubscriptionsApi.md#v2subscriptionsdelete) | **DELETE** /v2/subscriptions | Remove all subscriptions
-*SubscriptionsApi* | [**V2SubscriptionsEndpointNameDelete**](docs/SubscriptionsApi.md#v2subscriptionsendpointnamedelete) | **DELETE** /v2/subscriptions/{endpointName} | Delete subscriptions from an endpoint
-*SubscriptionsApi* | [**V2SubscriptionsEndpointNameGet**](docs/SubscriptionsApi.md#v2subscriptionsendpointnameget) | **GET** /v2/subscriptions/{endpointName} | Read endpoints subscriptions
-*SubscriptionsApi* | [**V2SubscriptionsEndpointNameResourcePathDelete**](docs/SubscriptionsApi.md#v2subscriptionsendpointnameresourcepathdelete) | **DELETE** /v2/subscriptions/{endpointName}/{resourcePath} | Remove a subscription
-*SubscriptionsApi* | [**V2SubscriptionsEndpointNameResourcePathGet**](docs/SubscriptionsApi.md#v2subscriptionsendpointnameresourcepathget) | **GET** /v2/subscriptions/{endpointName}/{resourcePath} | Read subscription status
-*SubscriptionsApi* | [**V2SubscriptionsEndpointNameResourcePathPut**](docs/SubscriptionsApi.md#v2subscriptionsendpointnameresourcepathput) | **PUT** /v2/subscriptions/{endpointName}/{resourcePath} | Subscribe to a resource path
 *SubscriptionsApi* | [**V2SubscriptionsGet**](docs/SubscriptionsApi.md#v2subscriptionsget) | **GET** /v2/subscriptions | Get pre-subscriptions
+*SubscriptionsApi* | [**V2SubscriptionsIdDelete**](docs/SubscriptionsApi.md#v2subscriptionsiddelete) | **DELETE** /v2/subscriptions/{id} | Delete subscriptions from an endpoint
+*SubscriptionsApi* | [**V2SubscriptionsIdGet**](docs/SubscriptionsApi.md#v2subscriptionsidget) | **GET** /v2/subscriptions/{id} | Read endpoints subscriptions
+*SubscriptionsApi* | [**V2SubscriptionsIdResourcePathDelete**](docs/SubscriptionsApi.md#v2subscriptionsidresourcepathdelete) | **DELETE** /v2/subscriptions/{id}/{resourcePath} | Remove a subscription
+*SubscriptionsApi* | [**V2SubscriptionsIdResourcePathGet**](docs/SubscriptionsApi.md#v2subscriptionsidresourcepathget) | **GET** /v2/subscriptions/{id}/{resourcePath} | Read subscription status
+*SubscriptionsApi* | [**V2SubscriptionsIdResourcePathPut**](docs/SubscriptionsApi.md#v2subscriptionsidresourcepathput) | **PUT** /v2/subscriptions/{id}/{resourcePath} | Subscribe to a resource path
 *SubscriptionsApi* | [**V2SubscriptionsPut**](docs/SubscriptionsApi.md#v2subscriptionsput) | **PUT** /v2/subscriptions | Set pre-subscriptions
 
 

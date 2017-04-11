@@ -129,7 +129,7 @@ namespace iam.Model
         /// </summary>
         /// <param name="Description">Human readable description of this certificate..</param>
         /// <param name="Service">Service name where the certificate is to be used. (required).</param>
-        /// <param name="DeviceExecutionMode">Device execution mode where 1 means a developer certificate. (required).</param>
+        /// <param name="DeviceExecutionMode">Device execution mode where 1 means a developer certificate..</param>
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
         /// <param name="_Object">Entity name: always &#39;trusted-cert&#39; (required).</param>
         /// <param name="Subject">Subject of the certificate. (required).</param>
@@ -151,15 +151,6 @@ namespace iam.Model
             else
             {
                 this.Service = Service;
-            }
-            // to ensure "DeviceExecutionMode" is required (not null)
-            if (DeviceExecutionMode == null)
-            {
-                throw new InvalidDataException("DeviceExecutionMode is a required property for TrustedCertificateResp and cannot be null");
-            }
-            else
-            {
-                this.DeviceExecutionMode = DeviceExecutionMode;
             }
             // to ensure "_Object" is required (not null)
             if (_Object == null)
@@ -243,6 +234,7 @@ namespace iam.Model
                 this.Name = Name;
             }
             this.Description = Description;
+            this.DeviceExecutionMode = DeviceExecutionMode;
             this.CreatedAt = CreatedAt;
             this.CreationTimeMillis = CreationTimeMillis;
         }

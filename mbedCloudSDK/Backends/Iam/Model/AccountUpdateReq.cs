@@ -40,11 +40,11 @@ namespace iam.Model
         /// <param name="Company">The name of the company, not longer than 100 characters..</param>
         /// <param name="State">The state part of the postal address, not longer than 100 characters..</param>
         /// <param name="Contact">The name of the contact person for this account, not longer than 100 characters..</param>
-        /// <param name="PostalCode">The postal code part of the postal address..</param>
+        /// <param name="PostalCode">The postal code part of the postal address, not longer than 100 characters..</param>
         /// <param name="ParentID">The ID of the parent account, if it has any..</param>
-        /// <param name="PhoneNumber">The phone number of the company..</param>
-        /// <param name="Email">The company email address for this account..</param>
-        /// <param name="Aliases">An array of aliases..</param>
+        /// <param name="PhoneNumber">The phone number of the company, not longer than 100 characters..</param>
+        /// <param name="Email">The company email address for this account, not longer than 100 characters..</param>
+        /// <param name="Aliases">An array of aliases, not more than 10..</param>
         public AccountUpdateReq(string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string Country = default(string), string Company = default(string), string State = default(string), string Contact = default(string), string PostalCode = default(string), string ParentID = default(string), string PhoneNumber = default(string), string Email = default(string), List<string> Aliases = default(List<string>))
         {
             this.AddressLine2 = AddressLine2;
@@ -111,9 +111,9 @@ namespace iam.Model
         [DataMember(Name="contact", EmitDefaultValue=false)]
         public string Contact { get; set; }
         /// <summary>
-        /// The postal code part of the postal address.
+        /// The postal code part of the postal address, not longer than 100 characters.
         /// </summary>
-        /// <value>The postal code part of the postal address.</value>
+        /// <value>The postal code part of the postal address, not longer than 100 characters.</value>
         [DataMember(Name="postal_code", EmitDefaultValue=false)]
         public string PostalCode { get; set; }
         /// <summary>
@@ -123,21 +123,21 @@ namespace iam.Model
         [DataMember(Name="parentID", EmitDefaultValue=false)]
         public string ParentID { get; set; }
         /// <summary>
-        /// The phone number of the company.
+        /// The phone number of the company, not longer than 100 characters.
         /// </summary>
-        /// <value>The phone number of the company.</value>
+        /// <value>The phone number of the company, not longer than 100 characters.</value>
         [DataMember(Name="phone_number", EmitDefaultValue=false)]
         public string PhoneNumber { get; set; }
         /// <summary>
-        /// The company email address for this account.
+        /// The company email address for this account, not longer than 100 characters.
         /// </summary>
-        /// <value>The company email address for this account.</value>
+        /// <value>The company email address for this account, not longer than 100 characters.</value>
         [DataMember(Name="email", EmitDefaultValue=false)]
         public string Email { get; set; }
         /// <summary>
-        /// An array of aliases.
+        /// An array of aliases, not more than 10.
         /// </summary>
-        /// <value>An array of aliases.</value>
+        /// <value>An array of aliases, not more than 10.</value>
         [DataMember(Name="aliases", EmitDefaultValue=false)]
         public List<string> Aliases { get; set; }
         /// <summary>
