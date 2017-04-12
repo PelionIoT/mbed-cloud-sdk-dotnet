@@ -52,9 +52,9 @@ namespace mds.Api
         /// The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceID">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <returns>List&lt;Resource&gt;</returns>
-        List<Resource> V2EndpointsIdGet (string deviceID);
+        List<Resource> V2EndpointsIdGet (string deviceId);
 
         /// <summary>
         /// List the resources on an endpoint
@@ -63,9 +63,9 @@ namespace mds.Api
         /// The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceID">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <returns>ApiResponse of List&lt;Resource&gt;</returns>
-        ApiResponse<List<Resource>> V2EndpointsIdGetWithHttpInfo (string deviceID);
+        ApiResponse<List<Resource>> V2EndpointsIdGetWithHttpInfo (string deviceId);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -96,9 +96,9 @@ namespace mds.Api
         /// The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceID">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of List&lt;Resource&gt;</returns>
-        System.Threading.Tasks.Task<List<Resource>> V2EndpointsIdGetAsync (string deviceID);
+        System.Threading.Tasks.Task<List<Resource>> V2EndpointsIdGetAsync (string deviceId);
 
         /// <summary>
         /// List the resources on an endpoint
@@ -107,9 +107,9 @@ namespace mds.Api
         /// The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceID">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of ApiResponse (List&lt;Resource&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Resource>>> V2EndpointsIdGetAsyncWithHttpInfo (string deviceID);
+        System.Threading.Tasks.Task<ApiResponse<List<Resource>>> V2EndpointsIdGetAsyncWithHttpInfo (string deviceId);
         #endregion Asynchronous Operations
     }
 
@@ -374,11 +374,11 @@ namespace mds.Api
         /// List the resources on an endpoint The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceID">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <returns>List&lt;Resource&gt;</returns>
-        public List<Resource> V2EndpointsIdGet (string deviceID)
+        public List<Resource> V2EndpointsIdGet (string deviceId)
         {
-             ApiResponse<List<Resource>> localVarResponse = V2EndpointsIdGetWithHttpInfo(deviceID);
+             ApiResponse<List<Resource>> localVarResponse = V2EndpointsIdGetWithHttpInfo(deviceId);
              return localVarResponse.Data;
         }
 
@@ -386,13 +386,13 @@ namespace mds.Api
         /// List the resources on an endpoint The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceID">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <returns>ApiResponse of List&lt;Resource&gt;</returns>
-        public ApiResponse< List<Resource> > V2EndpointsIdGetWithHttpInfo (string deviceID)
+        public ApiResponse< List<Resource> > V2EndpointsIdGetWithHttpInfo (string deviceId)
         {
-            // verify the required parameter 'deviceID' is set
-            if (deviceID == null)
-                throw new ApiException(400, "Missing required parameter 'deviceID' when calling EndpointsApi->V2EndpointsIdGet");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling EndpointsApi->V2EndpointsIdGet");
 
             var localVarPath = "/v2/endpoints/{id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -419,7 +419,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (deviceID != null) localVarPathParams.Add("Device ID", Configuration.ApiClient.ParameterToString(deviceID)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("deviceId", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -451,11 +451,11 @@ namespace mds.Api
         /// List the resources on an endpoint The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceID">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of List&lt;Resource&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Resource>> V2EndpointsIdGetAsync (string deviceID)
+        public async System.Threading.Tasks.Task<List<Resource>> V2EndpointsIdGetAsync (string deviceId)
         {
-             ApiResponse<List<Resource>> localVarResponse = await V2EndpointsIdGetAsyncWithHttpInfo(deviceID);
+             ApiResponse<List<Resource>> localVarResponse = await V2EndpointsIdGetAsyncWithHttpInfo(deviceId);
              return localVarResponse.Data;
 
         }
@@ -464,13 +464,13 @@ namespace mds.Api
         /// List the resources on an endpoint The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceID">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud identifier for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of ApiResponse (List&lt;Resource&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Resource>>> V2EndpointsIdGetAsyncWithHttpInfo (string deviceID)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Resource>>> V2EndpointsIdGetAsyncWithHttpInfo (string deviceId)
         {
-            // verify the required parameter 'deviceID' is set
-            if (deviceID == null)
-                throw new ApiException(400, "Missing required parameter 'deviceID' when calling EndpointsApi->V2EndpointsIdGet");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling EndpointsApi->V2EndpointsIdGet");
 
             var localVarPath = "/v2/endpoints/{id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -497,7 +497,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (deviceID != null) localVarPathParams.Add("Device ID", Configuration.ApiClient.ParameterToString(deviceID)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("deviceId", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
