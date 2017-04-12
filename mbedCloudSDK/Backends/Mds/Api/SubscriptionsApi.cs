@@ -69,9 +69,9 @@ namespace mds.Api
         /// Deletes all resource subscriptions in a single endpoint.
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns></returns>
-        void V2SubscriptionsIdDelete (string deviceId);
+        void V2SubscriptionsIdDelete (string id);
 
         /// <summary>
         /// Delete subscriptions from an endpoint
@@ -80,9 +80,9 @@ namespace mds.Api
         /// Deletes all resource subscriptions in a single endpoint.
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V2SubscriptionsIdDeleteWithHttpInfo (string deviceId);
+        ApiResponse<Object> V2SubscriptionsIdDeleteWithHttpInfo (string id);
         /// <summary>
         /// Read endpoints subscriptions
         /// </summary>
@@ -90,9 +90,9 @@ namespace mds.Api
         /// Lists all subscribed resources from a single endpoint.
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns></returns>
-        void V2SubscriptionsIdGet (string deviceId);
+        void V2SubscriptionsIdGet (string id);
 
         /// <summary>
         /// Read endpoints subscriptions
@@ -101,9 +101,9 @@ namespace mds.Api
         /// Lists all subscribed resources from a single endpoint.
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V2SubscriptionsIdGetWithHttpInfo (string deviceId);
+        ApiResponse<Object> V2SubscriptionsIdGetWithHttpInfo (string id);
         /// <summary>
         /// Remove a subscription
         /// </summary>
@@ -111,10 +111,10 @@ namespace mds.Api
         /// To remove an existing subscription from a resource path. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns></returns>
-        void V2SubscriptionsIdResourcePathDelete (string deviceId, string resourcePath);
+        void V2SubscriptionsIdResourcePathDelete (string id, string resourcePath);
 
         /// <summary>
         /// Remove a subscription
@@ -123,10 +123,10 @@ namespace mds.Api
         /// To remove an existing subscription from a resource path. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V2SubscriptionsIdResourcePathDeleteWithHttpInfo (string deviceId, string resourcePath);
+        ApiResponse<Object> V2SubscriptionsIdResourcePathDeleteWithHttpInfo (string id, string resourcePath);
         /// <summary>
         /// Read subscription status
         /// </summary>
@@ -134,10 +134,10 @@ namespace mds.Api
         /// 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns></returns>
-        void V2SubscriptionsIdResourcePathGet (string deviceId, string resourcePath);
+        void V2SubscriptionsIdResourcePathGet (string id, string resourcePath);
 
         /// <summary>
         /// Read subscription status
@@ -146,10 +146,10 @@ namespace mds.Api
         /// 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V2SubscriptionsIdResourcePathGetWithHttpInfo (string deviceId, string resourcePath);
+        ApiResponse<Object> V2SubscriptionsIdResourcePathGetWithHttpInfo (string id, string resourcePath);
         /// <summary>
         /// Subscribe to a resource path
         /// </summary>
@@ -157,10 +157,10 @@ namespace mds.Api
         /// The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns></returns>
-        void V2SubscriptionsIdResourcePathPut (string deviceId, string resourcePath);
+        void V2SubscriptionsIdResourcePathPut (string id, string resourcePath);
 
         /// <summary>
         /// Subscribe to a resource path
@@ -169,10 +169,10 @@ namespace mds.Api
         /// The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V2SubscriptionsIdResourcePathPutWithHttpInfo (string deviceId, string resourcePath);
+        ApiResponse<Object> V2SubscriptionsIdResourcePathPutWithHttpInfo (string id, string resourcePath);
         /// <summary>
         /// Set pre-subscriptions
         /// </summary>
@@ -241,9 +241,9 @@ namespace mds.Api
         /// Deletes all resource subscriptions in a single endpoint.
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V2SubscriptionsIdDeleteAsync (string deviceId);
+        System.Threading.Tasks.Task V2SubscriptionsIdDeleteAsync (string id);
 
         /// <summary>
         /// Delete subscriptions from an endpoint
@@ -252,9 +252,9 @@ namespace mds.Api
         /// Deletes all resource subscriptions in a single endpoint.
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdDeleteAsyncWithHttpInfo (string deviceId);
+        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdDeleteAsyncWithHttpInfo (string id);
         /// <summary>
         /// Read endpoints subscriptions
         /// </summary>
@@ -262,9 +262,9 @@ namespace mds.Api
         /// Lists all subscribed resources from a single endpoint.
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V2SubscriptionsIdGetAsync (string deviceId);
+        System.Threading.Tasks.Task V2SubscriptionsIdGetAsync (string id);
 
         /// <summary>
         /// Read endpoints subscriptions
@@ -273,9 +273,9 @@ namespace mds.Api
         /// Lists all subscribed resources from a single endpoint.
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdGetAsyncWithHttpInfo (string deviceId);
+        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdGetAsyncWithHttpInfo (string id);
         /// <summary>
         /// Remove a subscription
         /// </summary>
@@ -283,10 +283,10 @@ namespace mds.Api
         /// To remove an existing subscription from a resource path. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V2SubscriptionsIdResourcePathDeleteAsync (string deviceId, string resourcePath);
+        System.Threading.Tasks.Task V2SubscriptionsIdResourcePathDeleteAsync (string id, string resourcePath);
 
         /// <summary>
         /// Remove a subscription
@@ -295,10 +295,10 @@ namespace mds.Api
         /// To remove an existing subscription from a resource path. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdResourcePathDeleteAsyncWithHttpInfo (string deviceId, string resourcePath);
+        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdResourcePathDeleteAsyncWithHttpInfo (string id, string resourcePath);
         /// <summary>
         /// Read subscription status
         /// </summary>
@@ -306,10 +306,10 @@ namespace mds.Api
         /// 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V2SubscriptionsIdResourcePathGetAsync (string deviceId, string resourcePath);
+        System.Threading.Tasks.Task V2SubscriptionsIdResourcePathGetAsync (string id, string resourcePath);
 
         /// <summary>
         /// Read subscription status
@@ -318,10 +318,10 @@ namespace mds.Api
         /// 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdResourcePathGetAsyncWithHttpInfo (string deviceId, string resourcePath);
+        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdResourcePathGetAsyncWithHttpInfo (string id, string resourcePath);
         /// <summary>
         /// Subscribe to a resource path
         /// </summary>
@@ -329,10 +329,10 @@ namespace mds.Api
         /// The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V2SubscriptionsIdResourcePathPutAsync (string deviceId, string resourcePath);
+        System.Threading.Tasks.Task V2SubscriptionsIdResourcePathPutAsync (string id, string resourcePath);
 
         /// <summary>
         /// Subscribe to a resource path
@@ -341,10 +341,10 @@ namespace mds.Api
         /// The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdResourcePathPutAsyncWithHttpInfo (string deviceId, string resourcePath);
+        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdResourcePathPutAsyncWithHttpInfo (string id, string resourcePath);
         /// <summary>
         /// Set pre-subscriptions
         /// </summary>
@@ -758,24 +758,24 @@ namespace mds.Api
         /// Delete subscriptions from an endpoint Deletes all resource subscriptions in a single endpoint.
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns></returns>
-        public void V2SubscriptionsIdDelete (string deviceId)
+        public void V2SubscriptionsIdDelete (string id)
         {
-             V2SubscriptionsIdDeleteWithHttpInfo(deviceId);
+             V2SubscriptionsIdDeleteWithHttpInfo(id);
         }
 
         /// <summary>
         /// Delete subscriptions from an endpoint Deletes all resource subscriptions in a single endpoint.
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V2SubscriptionsIdDeleteWithHttpInfo (string deviceId)
+        public ApiResponse<Object> V2SubscriptionsIdDeleteWithHttpInfo (string id)
         {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsIdDelete");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling SubscriptionsApi->V2SubscriptionsIdDelete");
 
             var localVarPath = "/v2/subscriptions/{id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -801,7 +801,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (deviceId != null) localVarPathParams.Add("deviceId", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -833,11 +833,11 @@ namespace mds.Api
         /// Delete subscriptions from an endpoint Deletes all resource subscriptions in a single endpoint.
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V2SubscriptionsIdDeleteAsync (string deviceId)
+        public async System.Threading.Tasks.Task V2SubscriptionsIdDeleteAsync (string id)
         {
-             await V2SubscriptionsIdDeleteAsyncWithHttpInfo(deviceId);
+             await V2SubscriptionsIdDeleteAsyncWithHttpInfo(id);
 
         }
 
@@ -845,13 +845,13 @@ namespace mds.Api
         /// Delete subscriptions from an endpoint Deletes all resource subscriptions in a single endpoint.
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdDeleteAsyncWithHttpInfo (string deviceId)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdDeleteAsyncWithHttpInfo (string id)
         {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsIdDelete");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling SubscriptionsApi->V2SubscriptionsIdDelete");
 
             var localVarPath = "/v2/subscriptions/{id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -877,7 +877,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (deviceId != null) localVarPathParams.Add("deviceId", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -908,24 +908,24 @@ namespace mds.Api
         /// Read endpoints subscriptions Lists all subscribed resources from a single endpoint.
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns></returns>
-        public void V2SubscriptionsIdGet (string deviceId)
+        public void V2SubscriptionsIdGet (string id)
         {
-             V2SubscriptionsIdGetWithHttpInfo(deviceId);
+             V2SubscriptionsIdGetWithHttpInfo(id);
         }
 
         /// <summary>
         /// Read endpoints subscriptions Lists all subscribed resources from a single endpoint.
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V2SubscriptionsIdGetWithHttpInfo (string deviceId)
+        public ApiResponse<Object> V2SubscriptionsIdGetWithHttpInfo (string id)
         {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsIdGet");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling SubscriptionsApi->V2SubscriptionsIdGet");
 
             var localVarPath = "/v2/subscriptions/{id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -951,7 +951,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (deviceId != null) localVarPathParams.Add("deviceId", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -983,11 +983,11 @@ namespace mds.Api
         /// Read endpoints subscriptions Lists all subscribed resources from a single endpoint.
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V2SubscriptionsIdGetAsync (string deviceId)
+        public async System.Threading.Tasks.Task V2SubscriptionsIdGetAsync (string id)
         {
-             await V2SubscriptionsIdGetAsyncWithHttpInfo(deviceId);
+             await V2SubscriptionsIdGetAsyncWithHttpInfo(id);
 
         }
 
@@ -995,13 +995,13 @@ namespace mds.Api
         /// Read endpoints subscriptions Lists all subscribed resources from a single endpoint.
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdGetAsyncWithHttpInfo (string deviceId)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdGetAsyncWithHttpInfo (string id)
         {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsIdGet");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling SubscriptionsApi->V2SubscriptionsIdGet");
 
             var localVarPath = "/v2/subscriptions/{id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1027,7 +1027,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (deviceId != null) localVarPathParams.Add("deviceId", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1058,26 +1058,26 @@ namespace mds.Api
         /// Remove a subscription To remove an existing subscription from a resource path. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns></returns>
-        public void V2SubscriptionsIdResourcePathDelete (string deviceId, string resourcePath)
+        public void V2SubscriptionsIdResourcePathDelete (string id, string resourcePath)
         {
-             V2SubscriptionsIdResourcePathDeleteWithHttpInfo(deviceId, resourcePath);
+             V2SubscriptionsIdResourcePathDeleteWithHttpInfo(id, resourcePath);
         }
 
         /// <summary>
         /// Remove a subscription To remove an existing subscription from a resource path. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V2SubscriptionsIdResourcePathDeleteWithHttpInfo (string deviceId, string resourcePath)
+        public ApiResponse<Object> V2SubscriptionsIdResourcePathDeleteWithHttpInfo (string id, string resourcePath)
         {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathDelete");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathDelete");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
                 throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathDelete");
@@ -1106,7 +1106,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (deviceId != null) localVarPathParams.Add("deviceId", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
 
             // authentication (Bearer) required
@@ -1139,12 +1139,12 @@ namespace mds.Api
         /// Remove a subscription To remove an existing subscription from a resource path. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V2SubscriptionsIdResourcePathDeleteAsync (string deviceId, string resourcePath)
+        public async System.Threading.Tasks.Task V2SubscriptionsIdResourcePathDeleteAsync (string id, string resourcePath)
         {
-             await V2SubscriptionsIdResourcePathDeleteAsyncWithHttpInfo(deviceId, resourcePath);
+             await V2SubscriptionsIdResourcePathDeleteAsyncWithHttpInfo(id, resourcePath);
 
         }
 
@@ -1152,14 +1152,14 @@ namespace mds.Api
         /// Remove a subscription To remove an existing subscription from a resource path. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdResourcePathDeleteAsyncWithHttpInfo (string deviceId, string resourcePath)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdResourcePathDeleteAsyncWithHttpInfo (string id, string resourcePath)
         {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathDelete");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathDelete");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
                 throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathDelete");
@@ -1188,7 +1188,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (deviceId != null) localVarPathParams.Add("deviceId", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
 
             // authentication (Bearer) required
@@ -1220,26 +1220,26 @@ namespace mds.Api
         /// Read subscription status 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns></returns>
-        public void V2SubscriptionsIdResourcePathGet (string deviceId, string resourcePath)
+        public void V2SubscriptionsIdResourcePathGet (string id, string resourcePath)
         {
-             V2SubscriptionsIdResourcePathGetWithHttpInfo(deviceId, resourcePath);
+             V2SubscriptionsIdResourcePathGetWithHttpInfo(id, resourcePath);
         }
 
         /// <summary>
         /// Read subscription status 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V2SubscriptionsIdResourcePathGetWithHttpInfo (string deviceId, string resourcePath)
+        public ApiResponse<Object> V2SubscriptionsIdResourcePathGetWithHttpInfo (string id, string resourcePath)
         {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathGet");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathGet");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
                 throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathGet");
@@ -1268,7 +1268,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (deviceId != null) localVarPathParams.Add("deviceId", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
 
             // authentication (Bearer) required
@@ -1301,12 +1301,12 @@ namespace mds.Api
         /// Read subscription status 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V2SubscriptionsIdResourcePathGetAsync (string deviceId, string resourcePath)
+        public async System.Threading.Tasks.Task V2SubscriptionsIdResourcePathGetAsync (string id, string resourcePath)
         {
-             await V2SubscriptionsIdResourcePathGetAsyncWithHttpInfo(deviceId, resourcePath);
+             await V2SubscriptionsIdResourcePathGetAsyncWithHttpInfo(id, resourcePath);
 
         }
 
@@ -1314,14 +1314,14 @@ namespace mds.Api
         /// Read subscription status 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdResourcePathGetAsyncWithHttpInfo (string deviceId, string resourcePath)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdResourcePathGetAsyncWithHttpInfo (string id, string resourcePath)
         {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathGet");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathGet");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
                 throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathGet");
@@ -1350,7 +1350,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (deviceId != null) localVarPathParams.Add("deviceId", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
 
             // authentication (Bearer) required
@@ -1382,26 +1382,26 @@ namespace mds.Api
         /// Subscribe to a resource path The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns></returns>
-        public void V2SubscriptionsIdResourcePathPut (string deviceId, string resourcePath)
+        public void V2SubscriptionsIdResourcePathPut (string id, string resourcePath)
         {
-             V2SubscriptionsIdResourcePathPutWithHttpInfo(deviceId, resourcePath);
+             V2SubscriptionsIdResourcePathPutWithHttpInfo(id, resourcePath);
         }
 
         /// <summary>
         /// Subscribe to a resource path The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V2SubscriptionsIdResourcePathPutWithHttpInfo (string deviceId, string resourcePath)
+        public ApiResponse<Object> V2SubscriptionsIdResourcePathPutWithHttpInfo (string id, string resourcePath)
         {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathPut");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathPut");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
                 throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathPut");
@@ -1430,7 +1430,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (deviceId != null) localVarPathParams.Add("deviceId", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
 
             // authentication (Bearer) required
@@ -1463,12 +1463,12 @@ namespace mds.Api
         /// Subscribe to a resource path The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V2SubscriptionsIdResourcePathPutAsync (string deviceId, string resourcePath)
+        public async System.Threading.Tasks.Task V2SubscriptionsIdResourcePathPutAsync (string id, string resourcePath)
         {
-             await V2SubscriptionsIdResourcePathPutAsyncWithHttpInfo(deviceId, resourcePath);
+             await V2SubscriptionsIdResourcePathPutAsyncWithHttpInfo(id, resourcePath);
 
         }
 
@@ -1476,14 +1476,14 @@ namespace mds.Api
         /// Subscribe to a resource path The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique mbed Cloud identifier for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdResourcePathPutAsyncWithHttpInfo (string deviceId, string resourcePath)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdResourcePathPutAsyncWithHttpInfo (string id, string resourcePath)
         {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathPut");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathPut");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
                 throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathPut");
@@ -1512,7 +1512,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (deviceId != null) localVarPathParams.Add("deviceId", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
 
             // authentication (Bearer) required
