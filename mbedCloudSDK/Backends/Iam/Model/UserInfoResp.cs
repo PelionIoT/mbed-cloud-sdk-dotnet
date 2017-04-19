@@ -159,13 +159,12 @@ namespace iam.Model
         /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="FullName">The full name of the user..</param>
         /// <param name="Address">Address..</param>
-        /// <param name="CreationTimeMillis">CreationTimeMillis.</param>
         /// <param name="CreationTime">A timestamp of the user creation in the storage, in milliseconds..</param>
         /// <param name="Password">The password when creating a new user. It will will generated when not present in the request..</param>
         /// <param name="PhoneNumber">Phone number..</param>
         /// <param name="Id">The UUID of the user. (required).</param>
         /// <param name="LastLoginTime">A timestamp of the latest login of the user, in milliseconds..</param>
-        public UserInfoResp(StatusEnum? Status = default(StatusEnum?), string Username = default(string), List<string> Groups = default(List<string>), long? PasswordChangedTime = default(long?), bool? EmailVerified = default(bool?), string CreatedAt = default(string), ObjectEnum? _Object = default(ObjectEnum?), bool? IsGtcAccepted = default(bool?), string AccountId = default(string), string Email = default(string), bool? IsMarketingAccepted = default(bool?), string Etag = default(string), string FullName = default(string), string Address = default(string), long? CreationTimeMillis = default(long?), long? CreationTime = default(long?), string Password = default(string), string PhoneNumber = default(string), string Id = default(string), long? LastLoginTime = default(long?))
+        public UserInfoResp(StatusEnum? Status = default(StatusEnum?), string Username = default(string), List<string> Groups = default(List<string>), long? PasswordChangedTime = default(long?), bool? EmailVerified = default(bool?), string CreatedAt = default(string), ObjectEnum? _Object = default(ObjectEnum?), bool? IsGtcAccepted = default(bool?), string AccountId = default(string), string Email = default(string), bool? IsMarketingAccepted = default(bool?), string Etag = default(string), string FullName = default(string), string Address = default(string), long? CreationTime = default(long?), string Password = default(string), string PhoneNumber = default(string), string Id = default(string), long? LastLoginTime = default(long?))
         {
             // to ensure "Status" is required (not null)
             if (Status == null)
@@ -230,7 +229,6 @@ namespace iam.Model
             this.IsMarketingAccepted = IsMarketingAccepted;
             this.FullName = FullName;
             this.Address = Address;
-            this.CreationTimeMillis = CreationTimeMillis;
             this.CreationTime = CreationTime;
             this.Password = Password;
             this.PhoneNumber = PhoneNumber;
@@ -310,11 +308,6 @@ namespace iam.Model
         [DataMember(Name="address", EmitDefaultValue=false)]
         public string Address { get; set; }
         /// <summary>
-        /// Gets or Sets CreationTimeMillis
-        /// </summary>
-        [DataMember(Name="creationTimeMillis", EmitDefaultValue=false)]
-        public long? CreationTimeMillis { get; set; }
-        /// <summary>
         /// A timestamp of the user creation in the storage, in milliseconds.
         /// </summary>
         /// <value>A timestamp of the user creation in the storage, in milliseconds.</value>
@@ -366,7 +359,6 @@ namespace iam.Model
             sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  FullName: ").Append(FullName).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
-            sb.Append("  CreationTimeMillis: ").Append(CreationTimeMillis).Append("\n");
             sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
             sb.Append("  Password: ").Append(Password).Append("\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
@@ -479,11 +471,6 @@ namespace iam.Model
                     this.Address.Equals(other.Address)
                 ) && 
                 (
-                    this.CreationTimeMillis == other.CreationTimeMillis ||
-                    this.CreationTimeMillis != null &&
-                    this.CreationTimeMillis.Equals(other.CreationTimeMillis)
-                ) && 
-                (
                     this.CreationTime == other.CreationTime ||
                     this.CreationTime != null &&
                     this.CreationTime.Equals(other.CreationTime)
@@ -549,8 +536,6 @@ namespace iam.Model
                     hash = hash * 59 + this.FullName.GetHashCode();
                 if (this.Address != null)
                     hash = hash * 59 + this.Address.GetHashCode();
-                if (this.CreationTimeMillis != null)
-                    hash = hash * 59 + this.CreationTimeMillis.GetHashCode();
                 if (this.CreationTime != null)
                     hash = hash * 59 + this.CreationTime.GetHashCode();
                 if (this.Password != null)

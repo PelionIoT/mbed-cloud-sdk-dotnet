@@ -300,6 +300,18 @@ namespace deployment_service.Model
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         { 
+            // RootManifestId (string) maxLength
+            if(this.RootManifestId != null && this.RootManifestId.Length > 32)
+            {
+                yield return new ValidationResult("Invalid value for RootManifestId, length must be less than 32.", new [] { "RootManifestId" });
+            }
+
+            // Name (string) maxLength
+            if(this.Name != null && this.Name.Length > 128)
+            {
+                yield return new ValidationResult("Invalid value for Name, length must be less than 128.", new [] { "Name" });
+            }
+
             yield break;
         }
     }

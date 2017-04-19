@@ -41,11 +41,10 @@ namespace iam.Model
         /// <param name="State">The state part of the postal address, not longer than 100 characters..</param>
         /// <param name="Contact">The name of the contact person for this account, not longer than 100 characters..</param>
         /// <param name="PostalCode">The postal code part of the postal address, not longer than 100 characters..</param>
-        /// <param name="ParentID">The ID of the parent account, if it has any..</param>
         /// <param name="PhoneNumber">The phone number of the company, not longer than 100 characters..</param>
         /// <param name="Email">The company email address for this account, not longer than 100 characters..</param>
         /// <param name="Aliases">An array of aliases, not more than 10..</param>
-        public AccountUpdateReq(string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string Country = default(string), string Company = default(string), string State = default(string), string Contact = default(string), string PostalCode = default(string), string ParentID = default(string), string PhoneNumber = default(string), string Email = default(string), List<string> Aliases = default(List<string>))
+        public AccountUpdateReq(string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string Country = default(string), string Company = default(string), string State = default(string), string Contact = default(string), string PostalCode = default(string), string PhoneNumber = default(string), string Email = default(string), List<string> Aliases = default(List<string>))
         {
             this.AddressLine2 = AddressLine2;
             this.City = City;
@@ -56,7 +55,6 @@ namespace iam.Model
             this.State = State;
             this.Contact = Contact;
             this.PostalCode = PostalCode;
-            this.ParentID = ParentID;
             this.PhoneNumber = PhoneNumber;
             this.Email = Email;
             this.Aliases = Aliases;
@@ -117,12 +115,6 @@ namespace iam.Model
         [DataMember(Name="postal_code", EmitDefaultValue=false)]
         public string PostalCode { get; set; }
         /// <summary>
-        /// The ID of the parent account, if it has any.
-        /// </summary>
-        /// <value>The ID of the parent account, if it has any.</value>
-        [DataMember(Name="parentID", EmitDefaultValue=false)]
-        public string ParentID { get; set; }
-        /// <summary>
         /// The phone number of the company, not longer than 100 characters.
         /// </summary>
         /// <value>The phone number of the company, not longer than 100 characters.</value>
@@ -157,7 +149,6 @@ namespace iam.Model
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");
-            sb.Append("  ParentID: ").Append(ParentID).Append("\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  Aliases: ").Append(Aliases).Append("\n");
@@ -243,11 +234,6 @@ namespace iam.Model
                     this.PostalCode.Equals(other.PostalCode)
                 ) && 
                 (
-                    this.ParentID == other.ParentID ||
-                    this.ParentID != null &&
-                    this.ParentID.Equals(other.ParentID)
-                ) && 
-                (
                     this.PhoneNumber == other.PhoneNumber ||
                     this.PhoneNumber != null &&
                     this.PhoneNumber.Equals(other.PhoneNumber)
@@ -293,8 +279,6 @@ namespace iam.Model
                     hash = hash * 59 + this.Contact.GetHashCode();
                 if (this.PostalCode != null)
                     hash = hash * 59 + this.PostalCode.GetHashCode();
-                if (this.ParentID != null)
-                    hash = hash * 59 + this.ParentID.GetHashCode();
                 if (this.PhoneNumber != null)
                     hash = hash * 59 + this.PhoneNumber.GetHashCode();
                 if (this.Email != null)

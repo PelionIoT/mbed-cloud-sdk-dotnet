@@ -78,52 +78,8 @@ namespace device_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="accountId"> (optional)</param>
-        /// <param name="attestationMethod"> (optional)</param>
-        /// <param name="autoUpdate"> (optional)</param>
-        /// <param name="bootstrapExpirationDate"> (optional)</param>
-        /// <param name="bootstrapExpirationDateLte"> (optional)</param>
-        /// <param name="bootstrapExpirationDateGte"> (optional)</param>
-        /// <param name="bootstrappedTimestamp"> (optional)</param>
-        /// <param name="bootstrappedTimestampLte"> (optional)</param>
-        /// <param name="bootstrappedTimestampGte"> (optional)</param>
-        /// <param name="caId"> (optional)</param>
-        /// <param name="connectorExpirationDate"> (optional)</param>
-        /// <param name="connectorExpirationDateLte"> (optional)</param>
-        /// <param name="connectorExpirationDateGte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="customAttributes"> (optional)</param>
-        /// <param name="deployedState"> (optional)</param>
-        /// <param name="deployment"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="id"> (optional)</param>
-        /// <param name="deviceKey"> (optional)</param>
-        /// <param name="endpointName"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="firmwareChecksum"> (optional)</param>
-        /// <param name="manifest"> (optional)</param>
-        /// <param name="manifestTimestamp"> (optional)</param>
-        /// <param name="manifestTimestampLte"> (optional)</param>
-        /// <param name="manifestTimestampGte"> (optional)</param>
-        /// <param name="mechanism"> (optional)</param>
-        /// <param name="mechanismUrl"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="serialNumber"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="trustClass"> (optional)</param>
-        /// <param name="trustLevel"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="vendorId"> (optional)</param>
         /// <returns>DevicePage</returns>
-        DevicePage DeviceList (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string accountId = null, int? attestationMethod = null, bool? autoUpdate = null, string bootstrapExpirationDate = null, string bootstrapExpirationDateLte = null, string bootstrapExpirationDateGte = null, string bootstrappedTimestamp = null, string bootstrappedTimestampLte = null, string bootstrappedTimestampGte = null, string caId = null, string connectorExpirationDate = null, string connectorExpirationDateLte = null, string connectorExpirationDateGte = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string id = null, string deviceKey = null, string endpointName = null, string etag = null, string etagLte = null, string etagGte = null, string firmwareChecksum = null, string manifest = null, string manifestTimestamp = null, string manifestTimestampLte = null, string manifestTimestampGte = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string trustClass = null, string trustLevel = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string vendorId = null);
+        DevicePage DeviceList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
@@ -137,52 +93,8 @@ namespace device_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="accountId"> (optional)</param>
-        /// <param name="attestationMethod"> (optional)</param>
-        /// <param name="autoUpdate"> (optional)</param>
-        /// <param name="bootstrapExpirationDate"> (optional)</param>
-        /// <param name="bootstrapExpirationDateLte"> (optional)</param>
-        /// <param name="bootstrapExpirationDateGte"> (optional)</param>
-        /// <param name="bootstrappedTimestamp"> (optional)</param>
-        /// <param name="bootstrappedTimestampLte"> (optional)</param>
-        /// <param name="bootstrappedTimestampGte"> (optional)</param>
-        /// <param name="caId"> (optional)</param>
-        /// <param name="connectorExpirationDate"> (optional)</param>
-        /// <param name="connectorExpirationDateLte"> (optional)</param>
-        /// <param name="connectorExpirationDateGte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="customAttributes"> (optional)</param>
-        /// <param name="deployedState"> (optional)</param>
-        /// <param name="deployment"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="id"> (optional)</param>
-        /// <param name="deviceKey"> (optional)</param>
-        /// <param name="endpointName"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="firmwareChecksum"> (optional)</param>
-        /// <param name="manifest"> (optional)</param>
-        /// <param name="manifestTimestamp"> (optional)</param>
-        /// <param name="manifestTimestampLte"> (optional)</param>
-        /// <param name="manifestTimestampGte"> (optional)</param>
-        /// <param name="mechanism"> (optional)</param>
-        /// <param name="mechanismUrl"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="serialNumber"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="trustClass"> (optional)</param>
-        /// <param name="trustLevel"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="vendorId"> (optional)</param>
         /// <returns>ApiResponse of DevicePage</returns>
-        ApiResponse<DevicePage> DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string accountId = null, int? attestationMethod = null, bool? autoUpdate = null, string bootstrapExpirationDate = null, string bootstrapExpirationDateLte = null, string bootstrapExpirationDateGte = null, string bootstrappedTimestamp = null, string bootstrappedTimestampLte = null, string bootstrappedTimestampGte = null, string caId = null, string connectorExpirationDate = null, string connectorExpirationDateLte = null, string connectorExpirationDateGte = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string id = null, string deviceKey = null, string endpointName = null, string etag = null, string etagLte = null, string etagGte = null, string firmwareChecksum = null, string manifest = null, string manifestTimestamp = null, string manifestTimestampLte = null, string manifestTimestampGte = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string trustClass = null, string trustLevel = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string vendorId = null);
+        ApiResponse<DevicePage> DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -356,52 +268,8 @@ namespace device_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="accountId"> (optional)</param>
-        /// <param name="attestationMethod"> (optional)</param>
-        /// <param name="autoUpdate"> (optional)</param>
-        /// <param name="bootstrapExpirationDate"> (optional)</param>
-        /// <param name="bootstrapExpirationDateLte"> (optional)</param>
-        /// <param name="bootstrapExpirationDateGte"> (optional)</param>
-        /// <param name="bootstrappedTimestamp"> (optional)</param>
-        /// <param name="bootstrappedTimestampLte"> (optional)</param>
-        /// <param name="bootstrappedTimestampGte"> (optional)</param>
-        /// <param name="caId"> (optional)</param>
-        /// <param name="connectorExpirationDate"> (optional)</param>
-        /// <param name="connectorExpirationDateLte"> (optional)</param>
-        /// <param name="connectorExpirationDateGte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="customAttributes"> (optional)</param>
-        /// <param name="deployedState"> (optional)</param>
-        /// <param name="deployment"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="id"> (optional)</param>
-        /// <param name="deviceKey"> (optional)</param>
-        /// <param name="endpointName"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="firmwareChecksum"> (optional)</param>
-        /// <param name="manifest"> (optional)</param>
-        /// <param name="manifestTimestamp"> (optional)</param>
-        /// <param name="manifestTimestampLte"> (optional)</param>
-        /// <param name="manifestTimestampGte"> (optional)</param>
-        /// <param name="mechanism"> (optional)</param>
-        /// <param name="mechanismUrl"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="serialNumber"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="trustClass"> (optional)</param>
-        /// <param name="trustLevel"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="vendorId"> (optional)</param>
         /// <returns>Task of DevicePage</returns>
-        System.Threading.Tasks.Task<DevicePage> DeviceListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string accountId = null, int? attestationMethod = null, bool? autoUpdate = null, string bootstrapExpirationDate = null, string bootstrapExpirationDateLte = null, string bootstrapExpirationDateGte = null, string bootstrappedTimestamp = null, string bootstrappedTimestampLte = null, string bootstrappedTimestampGte = null, string caId = null, string connectorExpirationDate = null, string connectorExpirationDateLte = null, string connectorExpirationDateGte = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string id = null, string deviceKey = null, string endpointName = null, string etag = null, string etagLte = null, string etagGte = null, string firmwareChecksum = null, string manifest = null, string manifestTimestamp = null, string manifestTimestampLte = null, string manifestTimestampGte = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string trustClass = null, string trustLevel = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string vendorId = null);
+        System.Threading.Tasks.Task<DevicePage> DeviceListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
@@ -415,52 +283,8 @@ namespace device_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="accountId"> (optional)</param>
-        /// <param name="attestationMethod"> (optional)</param>
-        /// <param name="autoUpdate"> (optional)</param>
-        /// <param name="bootstrapExpirationDate"> (optional)</param>
-        /// <param name="bootstrapExpirationDateLte"> (optional)</param>
-        /// <param name="bootstrapExpirationDateGte"> (optional)</param>
-        /// <param name="bootstrappedTimestamp"> (optional)</param>
-        /// <param name="bootstrappedTimestampLte"> (optional)</param>
-        /// <param name="bootstrappedTimestampGte"> (optional)</param>
-        /// <param name="caId"> (optional)</param>
-        /// <param name="connectorExpirationDate"> (optional)</param>
-        /// <param name="connectorExpirationDateLte"> (optional)</param>
-        /// <param name="connectorExpirationDateGte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="customAttributes"> (optional)</param>
-        /// <param name="deployedState"> (optional)</param>
-        /// <param name="deployment"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="id"> (optional)</param>
-        /// <param name="deviceKey"> (optional)</param>
-        /// <param name="endpointName"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="firmwareChecksum"> (optional)</param>
-        /// <param name="manifest"> (optional)</param>
-        /// <param name="manifestTimestamp"> (optional)</param>
-        /// <param name="manifestTimestampLte"> (optional)</param>
-        /// <param name="manifestTimestampGte"> (optional)</param>
-        /// <param name="mechanism"> (optional)</param>
-        /// <param name="mechanismUrl"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="serialNumber"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="trustClass"> (optional)</param>
-        /// <param name="trustLevel"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="vendorId"> (optional)</param>
         /// <returns>Task of ApiResponse (DevicePage)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DevicePage>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string accountId = null, int? attestationMethod = null, bool? autoUpdate = null, string bootstrapExpirationDate = null, string bootstrapExpirationDateLte = null, string bootstrapExpirationDateGte = null, string bootstrappedTimestamp = null, string bootstrappedTimestampLte = null, string bootstrappedTimestampGte = null, string caId = null, string connectorExpirationDate = null, string connectorExpirationDateLte = null, string connectorExpirationDateGte = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string id = null, string deviceKey = null, string endpointName = null, string etag = null, string etagLte = null, string etagGte = null, string firmwareChecksum = null, string manifest = null, string manifestTimestamp = null, string manifestTimestampLte = null, string manifestTimestampGte = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string trustClass = null, string trustLevel = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string vendorId = null);
+        System.Threading.Tasks.Task<ApiResponse<DevicePage>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -1013,54 +837,10 @@ namespace device_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="accountId"> (optional)</param>
-        /// <param name="attestationMethod"> (optional)</param>
-        /// <param name="autoUpdate"> (optional)</param>
-        /// <param name="bootstrapExpirationDate"> (optional)</param>
-        /// <param name="bootstrapExpirationDateLte"> (optional)</param>
-        /// <param name="bootstrapExpirationDateGte"> (optional)</param>
-        /// <param name="bootstrappedTimestamp"> (optional)</param>
-        /// <param name="bootstrappedTimestampLte"> (optional)</param>
-        /// <param name="bootstrappedTimestampGte"> (optional)</param>
-        /// <param name="caId"> (optional)</param>
-        /// <param name="connectorExpirationDate"> (optional)</param>
-        /// <param name="connectorExpirationDateLte"> (optional)</param>
-        /// <param name="connectorExpirationDateGte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="customAttributes"> (optional)</param>
-        /// <param name="deployedState"> (optional)</param>
-        /// <param name="deployment"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="id"> (optional)</param>
-        /// <param name="deviceKey"> (optional)</param>
-        /// <param name="endpointName"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="firmwareChecksum"> (optional)</param>
-        /// <param name="manifest"> (optional)</param>
-        /// <param name="manifestTimestamp"> (optional)</param>
-        /// <param name="manifestTimestampLte"> (optional)</param>
-        /// <param name="manifestTimestampGte"> (optional)</param>
-        /// <param name="mechanism"> (optional)</param>
-        /// <param name="mechanismUrl"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="serialNumber"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="trustClass"> (optional)</param>
-        /// <param name="trustLevel"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="vendorId"> (optional)</param>
         /// <returns>DevicePage</returns>
-        public DevicePage DeviceList (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string accountId = null, int? attestationMethod = null, bool? autoUpdate = null, string bootstrapExpirationDate = null, string bootstrapExpirationDateLte = null, string bootstrapExpirationDateGte = null, string bootstrappedTimestamp = null, string bootstrappedTimestampLte = null, string bootstrappedTimestampGte = null, string caId = null, string connectorExpirationDate = null, string connectorExpirationDateLte = null, string connectorExpirationDateGte = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string id = null, string deviceKey = null, string endpointName = null, string etag = null, string etagLte = null, string etagGte = null, string firmwareChecksum = null, string manifest = null, string manifestTimestamp = null, string manifestTimestampLte = null, string manifestTimestampGte = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string trustClass = null, string trustLevel = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string vendorId = null)
+        public DevicePage DeviceList (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<DevicePage> localVarResponse = DeviceListWithHttpInfo(limit, order, after, filter, include, accountId, attestationMethod, autoUpdate, bootstrapExpirationDate, bootstrapExpirationDateLte, bootstrapExpirationDateGte, bootstrappedTimestamp, bootstrappedTimestampLte, bootstrappedTimestampGte, caId, connectorExpirationDate, connectorExpirationDateLte, connectorExpirationDateGte, createdAt, createdAtLte, createdAtGte, customAttributes, deployedState, deployment, description, deviceClass, id, deviceKey, endpointName, etag, etagLte, etagGte, firmwareChecksum, manifest, manifestTimestamp, manifestTimestampLte, manifestTimestampGte, mechanism, mechanismUrl, name, _object, serialNumber, state, trustClass, trustLevel, updatedAt, updatedAtLte, updatedAtGte, vendorId);
+             ApiResponse<DevicePage> localVarResponse = DeviceListWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
         }
 
@@ -1073,52 +853,8 @@ namespace device_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="accountId"> (optional)</param>
-        /// <param name="attestationMethod"> (optional)</param>
-        /// <param name="autoUpdate"> (optional)</param>
-        /// <param name="bootstrapExpirationDate"> (optional)</param>
-        /// <param name="bootstrapExpirationDateLte"> (optional)</param>
-        /// <param name="bootstrapExpirationDateGte"> (optional)</param>
-        /// <param name="bootstrappedTimestamp"> (optional)</param>
-        /// <param name="bootstrappedTimestampLte"> (optional)</param>
-        /// <param name="bootstrappedTimestampGte"> (optional)</param>
-        /// <param name="caId"> (optional)</param>
-        /// <param name="connectorExpirationDate"> (optional)</param>
-        /// <param name="connectorExpirationDateLte"> (optional)</param>
-        /// <param name="connectorExpirationDateGte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="customAttributes"> (optional)</param>
-        /// <param name="deployedState"> (optional)</param>
-        /// <param name="deployment"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="id"> (optional)</param>
-        /// <param name="deviceKey"> (optional)</param>
-        /// <param name="endpointName"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="firmwareChecksum"> (optional)</param>
-        /// <param name="manifest"> (optional)</param>
-        /// <param name="manifestTimestamp"> (optional)</param>
-        /// <param name="manifestTimestampLte"> (optional)</param>
-        /// <param name="manifestTimestampGte"> (optional)</param>
-        /// <param name="mechanism"> (optional)</param>
-        /// <param name="mechanismUrl"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="serialNumber"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="trustClass"> (optional)</param>
-        /// <param name="trustLevel"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="vendorId"> (optional)</param>
         /// <returns>ApiResponse of DevicePage</returns>
-        public ApiResponse< DevicePage > DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string accountId = null, int? attestationMethod = null, bool? autoUpdate = null, string bootstrapExpirationDate = null, string bootstrapExpirationDateLte = null, string bootstrapExpirationDateGte = null, string bootstrappedTimestamp = null, string bootstrappedTimestampLte = null, string bootstrappedTimestampGte = null, string caId = null, string connectorExpirationDate = null, string connectorExpirationDateLte = null, string connectorExpirationDateGte = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string id = null, string deviceKey = null, string endpointName = null, string etag = null, string etagLte = null, string etagGte = null, string firmwareChecksum = null, string manifest = null, string manifestTimestamp = null, string manifestTimestampLte = null, string manifestTimestampGte = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string trustClass = null, string trustLevel = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string vendorId = null)
+        public ApiResponse< DevicePage > DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/devices/";
@@ -1149,50 +885,6 @@ namespace device_catalog.Api
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
             if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
-            if (accountId != null) localVarQueryParams.Add("account_id", Configuration.ApiClient.ParameterToString(accountId)); // query parameter
-            if (attestationMethod != null) localVarQueryParams.Add("attestation_method", Configuration.ApiClient.ParameterToString(attestationMethod)); // query parameter
-            if (autoUpdate != null) localVarQueryParams.Add("auto_update", Configuration.ApiClient.ParameterToString(autoUpdate)); // query parameter
-            if (bootstrapExpirationDate != null) localVarQueryParams.Add("bootstrap_expiration_date", Configuration.ApiClient.ParameterToString(bootstrapExpirationDate)); // query parameter
-            if (bootstrapExpirationDateLte != null) localVarQueryParams.Add("bootstrap_expiration_date__lte", Configuration.ApiClient.ParameterToString(bootstrapExpirationDateLte)); // query parameter
-            if (bootstrapExpirationDateGte != null) localVarQueryParams.Add("bootstrap_expiration_date__gte", Configuration.ApiClient.ParameterToString(bootstrapExpirationDateGte)); // query parameter
-            if (bootstrappedTimestamp != null) localVarQueryParams.Add("bootstrapped_timestamp", Configuration.ApiClient.ParameterToString(bootstrappedTimestamp)); // query parameter
-            if (bootstrappedTimestampLte != null) localVarQueryParams.Add("bootstrapped_timestamp__lte", Configuration.ApiClient.ParameterToString(bootstrappedTimestampLte)); // query parameter
-            if (bootstrappedTimestampGte != null) localVarQueryParams.Add("bootstrapped_timestamp__gte", Configuration.ApiClient.ParameterToString(bootstrappedTimestampGte)); // query parameter
-            if (caId != null) localVarQueryParams.Add("ca_id", Configuration.ApiClient.ParameterToString(caId)); // query parameter
-            if (connectorExpirationDate != null) localVarQueryParams.Add("connector_expiration_date", Configuration.ApiClient.ParameterToString(connectorExpirationDate)); // query parameter
-            if (connectorExpirationDateLte != null) localVarQueryParams.Add("connector_expiration_date__lte", Configuration.ApiClient.ParameterToString(connectorExpirationDateLte)); // query parameter
-            if (connectorExpirationDateGte != null) localVarQueryParams.Add("connector_expiration_date__gte", Configuration.ApiClient.ParameterToString(connectorExpirationDateGte)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
-            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
-            if (customAttributes != null) localVarQueryParams.Add("custom_attributes", Configuration.ApiClient.ParameterToString(customAttributes)); // query parameter
-            if (deployedState != null) localVarQueryParams.Add("deployed_state", Configuration.ApiClient.ParameterToString(deployedState)); // query parameter
-            if (deployment != null) localVarQueryParams.Add("deployment", Configuration.ApiClient.ParameterToString(deployment)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (deviceClass != null) localVarQueryParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // query parameter
-            if (id != null) localVarQueryParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // query parameter
-            if (deviceKey != null) localVarQueryParams.Add("device_key", Configuration.ApiClient.ParameterToString(deviceKey)); // query parameter
-            if (endpointName != null) localVarQueryParams.Add("endpoint_name", Configuration.ApiClient.ParameterToString(endpointName)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
-            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
-            if (firmwareChecksum != null) localVarQueryParams.Add("firmware_checksum", Configuration.ApiClient.ParameterToString(firmwareChecksum)); // query parameter
-            if (manifest != null) localVarQueryParams.Add("manifest", Configuration.ApiClient.ParameterToString(manifest)); // query parameter
-            if (manifestTimestamp != null) localVarQueryParams.Add("manifest_timestamp", Configuration.ApiClient.ParameterToString(manifestTimestamp)); // query parameter
-            if (manifestTimestampLte != null) localVarQueryParams.Add("manifest_timestamp__lte", Configuration.ApiClient.ParameterToString(manifestTimestampLte)); // query parameter
-            if (manifestTimestampGte != null) localVarQueryParams.Add("manifest_timestamp__gte", Configuration.ApiClient.ParameterToString(manifestTimestampGte)); // query parameter
-            if (mechanism != null) localVarQueryParams.Add("mechanism", Configuration.ApiClient.ParameterToString(mechanism)); // query parameter
-            if (mechanismUrl != null) localVarQueryParams.Add("mechanism_url", Configuration.ApiClient.ParameterToString(mechanismUrl)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (serialNumber != null) localVarQueryParams.Add("serial_number", Configuration.ApiClient.ParameterToString(serialNumber)); // query parameter
-            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
-            if (trustClass != null) localVarQueryParams.Add("trust_class", Configuration.ApiClient.ParameterToString(trustClass)); // query parameter
-            if (trustLevel != null) localVarQueryParams.Add("trust_level", Configuration.ApiClient.ParameterToString(trustLevel)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
-            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
-            if (vendorId != null) localVarQueryParams.Add("vendor_id", Configuration.ApiClient.ParameterToString(vendorId)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1229,54 +921,10 @@ namespace device_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="accountId"> (optional)</param>
-        /// <param name="attestationMethod"> (optional)</param>
-        /// <param name="autoUpdate"> (optional)</param>
-        /// <param name="bootstrapExpirationDate"> (optional)</param>
-        /// <param name="bootstrapExpirationDateLte"> (optional)</param>
-        /// <param name="bootstrapExpirationDateGte"> (optional)</param>
-        /// <param name="bootstrappedTimestamp"> (optional)</param>
-        /// <param name="bootstrappedTimestampLte"> (optional)</param>
-        /// <param name="bootstrappedTimestampGte"> (optional)</param>
-        /// <param name="caId"> (optional)</param>
-        /// <param name="connectorExpirationDate"> (optional)</param>
-        /// <param name="connectorExpirationDateLte"> (optional)</param>
-        /// <param name="connectorExpirationDateGte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="customAttributes"> (optional)</param>
-        /// <param name="deployedState"> (optional)</param>
-        /// <param name="deployment"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="id"> (optional)</param>
-        /// <param name="deviceKey"> (optional)</param>
-        /// <param name="endpointName"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="firmwareChecksum"> (optional)</param>
-        /// <param name="manifest"> (optional)</param>
-        /// <param name="manifestTimestamp"> (optional)</param>
-        /// <param name="manifestTimestampLte"> (optional)</param>
-        /// <param name="manifestTimestampGte"> (optional)</param>
-        /// <param name="mechanism"> (optional)</param>
-        /// <param name="mechanismUrl"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="serialNumber"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="trustClass"> (optional)</param>
-        /// <param name="trustLevel"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="vendorId"> (optional)</param>
         /// <returns>Task of DevicePage</returns>
-        public async System.Threading.Tasks.Task<DevicePage> DeviceListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string accountId = null, int? attestationMethod = null, bool? autoUpdate = null, string bootstrapExpirationDate = null, string bootstrapExpirationDateLte = null, string bootstrapExpirationDateGte = null, string bootstrappedTimestamp = null, string bootstrappedTimestampLte = null, string bootstrappedTimestampGte = null, string caId = null, string connectorExpirationDate = null, string connectorExpirationDateLte = null, string connectorExpirationDateGte = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string id = null, string deviceKey = null, string endpointName = null, string etag = null, string etagLte = null, string etagGte = null, string firmwareChecksum = null, string manifest = null, string manifestTimestamp = null, string manifestTimestampLte = null, string manifestTimestampGte = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string trustClass = null, string trustLevel = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string vendorId = null)
+        public async System.Threading.Tasks.Task<DevicePage> DeviceListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<DevicePage> localVarResponse = await DeviceListAsyncWithHttpInfo(limit, order, after, filter, include, accountId, attestationMethod, autoUpdate, bootstrapExpirationDate, bootstrapExpirationDateLte, bootstrapExpirationDateGte, bootstrappedTimestamp, bootstrappedTimestampLte, bootstrappedTimestampGte, caId, connectorExpirationDate, connectorExpirationDateLte, connectorExpirationDateGte, createdAt, createdAtLte, createdAtGte, customAttributes, deployedState, deployment, description, deviceClass, id, deviceKey, endpointName, etag, etagLte, etagGte, firmwareChecksum, manifest, manifestTimestamp, manifestTimestampLte, manifestTimestampGte, mechanism, mechanismUrl, name, _object, serialNumber, state, trustClass, trustLevel, updatedAt, updatedAtLte, updatedAtGte, vendorId);
+             ApiResponse<DevicePage> localVarResponse = await DeviceListAsyncWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
 
         }
@@ -1290,52 +938,8 @@ namespace device_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="accountId"> (optional)</param>
-        /// <param name="attestationMethod"> (optional)</param>
-        /// <param name="autoUpdate"> (optional)</param>
-        /// <param name="bootstrapExpirationDate"> (optional)</param>
-        /// <param name="bootstrapExpirationDateLte"> (optional)</param>
-        /// <param name="bootstrapExpirationDateGte"> (optional)</param>
-        /// <param name="bootstrappedTimestamp"> (optional)</param>
-        /// <param name="bootstrappedTimestampLte"> (optional)</param>
-        /// <param name="bootstrappedTimestampGte"> (optional)</param>
-        /// <param name="caId"> (optional)</param>
-        /// <param name="connectorExpirationDate"> (optional)</param>
-        /// <param name="connectorExpirationDateLte"> (optional)</param>
-        /// <param name="connectorExpirationDateGte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="customAttributes"> (optional)</param>
-        /// <param name="deployedState"> (optional)</param>
-        /// <param name="deployment"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="id"> (optional)</param>
-        /// <param name="deviceKey"> (optional)</param>
-        /// <param name="endpointName"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="firmwareChecksum"> (optional)</param>
-        /// <param name="manifest"> (optional)</param>
-        /// <param name="manifestTimestamp"> (optional)</param>
-        /// <param name="manifestTimestampLte"> (optional)</param>
-        /// <param name="manifestTimestampGte"> (optional)</param>
-        /// <param name="mechanism"> (optional)</param>
-        /// <param name="mechanismUrl"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="serialNumber"> (optional)</param>
-        /// <param name="state"> (optional)</param>
-        /// <param name="trustClass"> (optional)</param>
-        /// <param name="trustLevel"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="vendorId"> (optional)</param>
         /// <returns>Task of ApiResponse (DevicePage)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DevicePage>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string accountId = null, int? attestationMethod = null, bool? autoUpdate = null, string bootstrapExpirationDate = null, string bootstrapExpirationDateLte = null, string bootstrapExpirationDateGte = null, string bootstrappedTimestamp = null, string bootstrappedTimestampLte = null, string bootstrappedTimestampGte = null, string caId = null, string connectorExpirationDate = null, string connectorExpirationDateLte = null, string connectorExpirationDateGte = null, string createdAt = null, string createdAtLte = null, string createdAtGte = null, string customAttributes = null, string deployedState = null, string deployment = null, string description = null, string deviceClass = null, string id = null, string deviceKey = null, string endpointName = null, string etag = null, string etagLte = null, string etagGte = null, string firmwareChecksum = null, string manifest = null, string manifestTimestamp = null, string manifestTimestampLte = null, string manifestTimestampGte = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string trustClass = null, string trustLevel = null, string updatedAt = null, string updatedAtLte = null, string updatedAtGte = null, string vendorId = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DevicePage>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/devices/";
@@ -1366,50 +970,6 @@ namespace device_catalog.Api
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
             if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
-            if (accountId != null) localVarQueryParams.Add("account_id", Configuration.ApiClient.ParameterToString(accountId)); // query parameter
-            if (attestationMethod != null) localVarQueryParams.Add("attestation_method", Configuration.ApiClient.ParameterToString(attestationMethod)); // query parameter
-            if (autoUpdate != null) localVarQueryParams.Add("auto_update", Configuration.ApiClient.ParameterToString(autoUpdate)); // query parameter
-            if (bootstrapExpirationDate != null) localVarQueryParams.Add("bootstrap_expiration_date", Configuration.ApiClient.ParameterToString(bootstrapExpirationDate)); // query parameter
-            if (bootstrapExpirationDateLte != null) localVarQueryParams.Add("bootstrap_expiration_date__lte", Configuration.ApiClient.ParameterToString(bootstrapExpirationDateLte)); // query parameter
-            if (bootstrapExpirationDateGte != null) localVarQueryParams.Add("bootstrap_expiration_date__gte", Configuration.ApiClient.ParameterToString(bootstrapExpirationDateGte)); // query parameter
-            if (bootstrappedTimestamp != null) localVarQueryParams.Add("bootstrapped_timestamp", Configuration.ApiClient.ParameterToString(bootstrappedTimestamp)); // query parameter
-            if (bootstrappedTimestampLte != null) localVarQueryParams.Add("bootstrapped_timestamp__lte", Configuration.ApiClient.ParameterToString(bootstrappedTimestampLte)); // query parameter
-            if (bootstrappedTimestampGte != null) localVarQueryParams.Add("bootstrapped_timestamp__gte", Configuration.ApiClient.ParameterToString(bootstrappedTimestampGte)); // query parameter
-            if (caId != null) localVarQueryParams.Add("ca_id", Configuration.ApiClient.ParameterToString(caId)); // query parameter
-            if (connectorExpirationDate != null) localVarQueryParams.Add("connector_expiration_date", Configuration.ApiClient.ParameterToString(connectorExpirationDate)); // query parameter
-            if (connectorExpirationDateLte != null) localVarQueryParams.Add("connector_expiration_date__lte", Configuration.ApiClient.ParameterToString(connectorExpirationDateLte)); // query parameter
-            if (connectorExpirationDateGte != null) localVarQueryParams.Add("connector_expiration_date__gte", Configuration.ApiClient.ParameterToString(connectorExpirationDateGte)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
-            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
-            if (customAttributes != null) localVarQueryParams.Add("custom_attributes", Configuration.ApiClient.ParameterToString(customAttributes)); // query parameter
-            if (deployedState != null) localVarQueryParams.Add("deployed_state", Configuration.ApiClient.ParameterToString(deployedState)); // query parameter
-            if (deployment != null) localVarQueryParams.Add("deployment", Configuration.ApiClient.ParameterToString(deployment)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (deviceClass != null) localVarQueryParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // query parameter
-            if (id != null) localVarQueryParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // query parameter
-            if (deviceKey != null) localVarQueryParams.Add("device_key", Configuration.ApiClient.ParameterToString(deviceKey)); // query parameter
-            if (endpointName != null) localVarQueryParams.Add("endpoint_name", Configuration.ApiClient.ParameterToString(endpointName)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
-            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
-            if (firmwareChecksum != null) localVarQueryParams.Add("firmware_checksum", Configuration.ApiClient.ParameterToString(firmwareChecksum)); // query parameter
-            if (manifest != null) localVarQueryParams.Add("manifest", Configuration.ApiClient.ParameterToString(manifest)); // query parameter
-            if (manifestTimestamp != null) localVarQueryParams.Add("manifest_timestamp", Configuration.ApiClient.ParameterToString(manifestTimestamp)); // query parameter
-            if (manifestTimestampLte != null) localVarQueryParams.Add("manifest_timestamp__lte", Configuration.ApiClient.ParameterToString(manifestTimestampLte)); // query parameter
-            if (manifestTimestampGte != null) localVarQueryParams.Add("manifest_timestamp__gte", Configuration.ApiClient.ParameterToString(manifestTimestampGte)); // query parameter
-            if (mechanism != null) localVarQueryParams.Add("mechanism", Configuration.ApiClient.ParameterToString(mechanism)); // query parameter
-            if (mechanismUrl != null) localVarQueryParams.Add("mechanism_url", Configuration.ApiClient.ParameterToString(mechanismUrl)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (serialNumber != null) localVarQueryParams.Add("serial_number", Configuration.ApiClient.ParameterToString(serialNumber)); // query parameter
-            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
-            if (trustClass != null) localVarQueryParams.Add("trust_class", Configuration.ApiClient.ParameterToString(trustClass)); // query parameter
-            if (trustLevel != null) localVarQueryParams.Add("trust_level", Configuration.ApiClient.ParameterToString(trustLevel)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
-            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
-            if (vendorId != null) localVarQueryParams.Add("vendor_id", Configuration.ApiClient.ParameterToString(vendorId)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))

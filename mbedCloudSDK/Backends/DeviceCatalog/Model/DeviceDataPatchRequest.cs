@@ -219,6 +219,30 @@ namespace device_catalog.Model
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         { 
+            // EndpointName (string) maxLength
+            if(this.EndpointName != null && this.EndpointName.Length > 64)
+            {
+                yield return new ValidationResult("Invalid value for EndpointName, length must be less than 64.", new [] { "EndpointName" });
+            }
+
+            // DeviceKey (string) maxLength
+            if(this.DeviceKey != null && this.DeviceKey.Length > 512)
+            {
+                yield return new ValidationResult("Invalid value for DeviceKey, length must be less than 512.", new [] { "DeviceKey" });
+            }
+
+            // CaId (string) maxLength
+            if(this.CaId != null && this.CaId.Length > 500)
+            {
+                yield return new ValidationResult("Invalid value for CaId, length must be less than 500.", new [] { "CaId" });
+            }
+
+            // Name (string) maxLength
+            if(this.Name != null && this.Name.Length > 128)
+            {
+                yield return new ValidationResult("Invalid value for Name, length must be less than 128.", new [] { "Name" });
+            }
+
             yield break;
         }
     }

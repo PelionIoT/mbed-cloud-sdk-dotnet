@@ -136,12 +136,11 @@ namespace iam.Model
         /// <param name="AccountId">The UUID of the account. (required).</param>
         /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="Validity">Expiration time in UTC formatted as RFC3339. (required).</param>
-        /// <param name="CreationTimeMillis">CreationTimeMillis.</param>
         /// <param name="Issuer">Issuer of the certificate. (required).</param>
         /// <param name="CertData">X509.v3 trusted certificate in PEM or base64 encoded DER format. (required).</param>
         /// <param name="Id">Entity ID. (required).</param>
         /// <param name="Name">Certificate name. (required).</param>
-        public TrustedCertificateResp(string Description = default(string), ServiceEnum? Service = default(ServiceEnum?), int? DeviceExecutionMode = default(int?), string CreatedAt = default(string), ObjectEnum? _Object = default(ObjectEnum?), string Subject = default(string), string AccountId = default(string), string Etag = default(string), string Validity = default(string), long? CreationTimeMillis = default(long?), string Issuer = default(string), string CertData = default(string), string Id = default(string), string Name = default(string))
+        public TrustedCertificateResp(string Description = default(string), ServiceEnum? Service = default(ServiceEnum?), int? DeviceExecutionMode = default(int?), string CreatedAt = default(string), ObjectEnum? _Object = default(ObjectEnum?), string Subject = default(string), string AccountId = default(string), string Etag = default(string), string Validity = default(string), string Issuer = default(string), string CertData = default(string), string Id = default(string), string Name = default(string))
         {
             // to ensure "Service" is required (not null)
             if (Service == null)
@@ -236,7 +235,6 @@ namespace iam.Model
             this.Description = Description;
             this.DeviceExecutionMode = DeviceExecutionMode;
             this.CreatedAt = CreatedAt;
-            this.CreationTimeMillis = CreationTimeMillis;
         }
         
         /// <summary>
@@ -282,11 +280,6 @@ namespace iam.Model
         [DataMember(Name="validity", EmitDefaultValue=false)]
         public string Validity { get; set; }
         /// <summary>
-        /// Gets or Sets CreationTimeMillis
-        /// </summary>
-        [DataMember(Name="creationTimeMillis", EmitDefaultValue=false)]
-        public long? CreationTimeMillis { get; set; }
-        /// <summary>
         /// Issuer of the certificate.
         /// </summary>
         /// <value>Issuer of the certificate.</value>
@@ -327,7 +320,6 @@ namespace iam.Model
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  Validity: ").Append(Validity).Append("\n");
-            sb.Append("  CreationTimeMillis: ").Append(CreationTimeMillis).Append("\n");
             sb.Append("  Issuer: ").Append(Issuer).Append("\n");
             sb.Append("  CertData: ").Append(CertData).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
@@ -414,11 +406,6 @@ namespace iam.Model
                     this.Validity.Equals(other.Validity)
                 ) && 
                 (
-                    this.CreationTimeMillis == other.CreationTimeMillis ||
-                    this.CreationTimeMillis != null &&
-                    this.CreationTimeMillis.Equals(other.CreationTimeMillis)
-                ) && 
-                (
                     this.Issuer == other.Issuer ||
                     this.Issuer != null &&
                     this.Issuer.Equals(other.Issuer)
@@ -469,8 +456,6 @@ namespace iam.Model
                     hash = hash * 59 + this.Etag.GetHashCode();
                 if (this.Validity != null)
                     hash = hash * 59 + this.Validity.GetHashCode();
-                if (this.CreationTimeMillis != null)
-                    hash = hash * 59 + this.CreationTimeMillis.GetHashCode();
                 if (this.Issuer != null)
                     hash = hash * 59 + this.Issuer.GetHashCode();
                 if (this.CertData != null)

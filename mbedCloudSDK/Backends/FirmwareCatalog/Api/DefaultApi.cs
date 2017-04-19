@@ -82,21 +82,8 @@ namespace firmware_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="name"> (optional)</param>
         /// <returns>FirmwareImagePage</returns>
-        FirmwareImagePage FirmwareImageList (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null);
+        FirmwareImagePage FirmwareImageList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
@@ -110,21 +97,8 @@ namespace firmware_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="name"> (optional)</param>
         /// <returns>ApiResponse of FirmwareImagePage</returns>
-        ApiResponse<FirmwareImagePage> FirmwareImageListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null);
+        ApiResponse<FirmwareImagePage> FirmwareImageListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -153,7 +127,7 @@ namespace firmware_catalog.Api
         /// &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;Create firmware manifest&lt;/p&gt;
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="datafile">The manifest file to create</param>
+        /// <param name="datafile">The manifest file to create. The size of the file is account specific and enforced by the api gateway</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
         /// <returns>FirmwareManifest</returns>
@@ -166,7 +140,7 @@ namespace firmware_catalog.Api
         /// &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;Create firmware manifest&lt;/p&gt;
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="datafile">The manifest file to create</param>
+        /// <param name="datafile">The manifest file to create. The size of the file is account specific and enforced by the api gateway</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
         /// <returns>ApiResponse of FirmwareManifest</returns>
@@ -204,27 +178,8 @@ namespace firmware_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="manifestId"> (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="timestamp"> (optional)</param>
-        /// <param name="timestampGte"> (optional)</param>
-        /// <param name="timestampLte"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="name"> (optional)</param>
         /// <returns>FirmwareManifestPage</returns>
-        FirmwareManifestPage FirmwareManifestList (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string manifestId = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null);
+        FirmwareManifestPage FirmwareManifestList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
@@ -238,27 +193,8 @@ namespace firmware_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="manifestId"> (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="timestamp"> (optional)</param>
-        /// <param name="timestampGte"> (optional)</param>
-        /// <param name="timestampLte"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="name"> (optional)</param>
         /// <returns>ApiResponse of FirmwareManifestPage</returns>
-        ApiResponse<FirmwareManifestPage> FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string manifestId = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null);
+        ApiResponse<FirmwareManifestPage> FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -340,21 +276,8 @@ namespace firmware_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="name"> (optional)</param>
         /// <returns>Task of FirmwareImagePage</returns>
-        System.Threading.Tasks.Task<FirmwareImagePage> FirmwareImageListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null);
+        System.Threading.Tasks.Task<FirmwareImagePage> FirmwareImageListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
@@ -368,21 +291,8 @@ namespace firmware_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="name"> (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareImagePage)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareImagePage>> FirmwareImageListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null);
+        System.Threading.Tasks.Task<ApiResponse<FirmwareImagePage>> FirmwareImageListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -411,7 +321,7 @@ namespace firmware_catalog.Api
         /// &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;Create firmware manifest&lt;/p&gt;
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="datafile">The manifest file to create</param>
+        /// <param name="datafile">The manifest file to create. The size of the file is account specific and enforced by the api gateway</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
         /// <returns>Task of FirmwareManifest</returns>
@@ -424,7 +334,7 @@ namespace firmware_catalog.Api
         /// &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;Create firmware manifest&lt;/p&gt;
         /// </remarks>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="datafile">The manifest file to create</param>
+        /// <param name="datafile">The manifest file to create. The size of the file is account specific and enforced by the api gateway</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareManifest)</returns>
@@ -462,27 +372,8 @@ namespace firmware_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="manifestId"> (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="timestamp"> (optional)</param>
-        /// <param name="timestampGte"> (optional)</param>
-        /// <param name="timestampLte"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="name"> (optional)</param>
         /// <returns>Task of FirmwareManifestPage</returns>
-        System.Threading.Tasks.Task<FirmwareManifestPage> FirmwareManifestListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string manifestId = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null);
+        System.Threading.Tasks.Task<FirmwareManifestPage> FirmwareManifestListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
@@ -496,27 +387,8 @@ namespace firmware_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="manifestId"> (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="timestamp"> (optional)</param>
-        /// <param name="timestampGte"> (optional)</param>
-        /// <param name="timestampLte"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="name"> (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareManifestPage)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareManifestPage>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string manifestId = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null);
+        System.Threading.Tasks.Task<ApiResponse<FirmwareManifestPage>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -979,23 +851,10 @@ namespace firmware_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="name"> (optional)</param>
         /// <returns>FirmwareImagePage</returns>
-        public FirmwareImagePage FirmwareImageList (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null)
+        public FirmwareImagePage FirmwareImageList (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<FirmwareImagePage> localVarResponse = FirmwareImageListWithHttpInfo(limit, order, after, filter, include, updatedAt, updatedAtGte, updatedAtLte, etag, etagGte, etagLte, createdAt, createdAtGte, createdAtLte, description, _object, datafileChecksum, name);
+             ApiResponse<FirmwareImagePage> localVarResponse = FirmwareImageListWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
         }
 
@@ -1008,21 +867,8 @@ namespace firmware_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="name"> (optional)</param>
         /// <returns>ApiResponse of FirmwareImagePage</returns>
-        public ApiResponse< FirmwareImagePage > FirmwareImageListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null)
+        public ApiResponse< FirmwareImagePage > FirmwareImageListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/firmware-images/";
@@ -1053,19 +899,6 @@ namespace firmware_catalog.Api
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
             if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
-            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
-            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
-            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1102,23 +935,10 @@ namespace firmware_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="name"> (optional)</param>
         /// <returns>Task of FirmwareImagePage</returns>
-        public async System.Threading.Tasks.Task<FirmwareImagePage> FirmwareImageListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null)
+        public async System.Threading.Tasks.Task<FirmwareImagePage> FirmwareImageListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<FirmwareImagePage> localVarResponse = await FirmwareImageListAsyncWithHttpInfo(limit, order, after, filter, include, updatedAt, updatedAtGte, updatedAtLte, etag, etagGte, etagLte, createdAt, createdAtGte, createdAtLte, description, _object, datafileChecksum, name);
+             ApiResponse<FirmwareImagePage> localVarResponse = await FirmwareImageListAsyncWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
 
         }
@@ -1132,21 +952,8 @@ namespace firmware_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="name"> (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareImagePage)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareImagePage>> FirmwareImageListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string _object = null, string datafileChecksum = null, string name = null)
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareImagePage>> FirmwareImageListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/firmware-images/";
@@ -1177,19 +984,6 @@ namespace firmware_catalog.Api
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
             if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
-            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
-            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
-            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1370,7 +1164,7 @@ namespace firmware_catalog.Api
         ///  &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;Create firmware manifest&lt;/p&gt;
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="datafile">The manifest file to create</param>
+        /// <param name="datafile">The manifest file to create. The size of the file is account specific and enforced by the api gateway</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
         /// <returns>FirmwareManifest</returns>
@@ -1384,7 +1178,7 @@ namespace firmware_catalog.Api
         ///  &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;Create firmware manifest&lt;/p&gt;
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="datafile">The manifest file to create</param>
+        /// <param name="datafile">The manifest file to create. The size of the file is account specific and enforced by the api gateway</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
         /// <returns>ApiResponse of FirmwareManifest</returns>
@@ -1455,7 +1249,7 @@ namespace firmware_catalog.Api
         ///  &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;Create firmware manifest&lt;/p&gt;
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="datafile">The manifest file to create</param>
+        /// <param name="datafile">The manifest file to create. The size of the file is account specific and enforced by the api gateway</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
         /// <returns>Task of FirmwareManifest</returns>
@@ -1470,7 +1264,7 @@ namespace firmware_catalog.Api
         ///  &lt;p&gt;The APIs for creating and manipulating firmware manifests.  &lt;/p&gt; &lt;p&gt;Create firmware manifest&lt;/p&gt;
         /// </summary>
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="datafile">The manifest file to create</param>
+        /// <param name="datafile">The manifest file to create. The size of the file is account specific and enforced by the api gateway</param>
         /// <param name="name">The name of the object</param>
         /// <param name="description">The description of the object (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareManifest)</returns>
@@ -1695,29 +1489,10 @@ namespace firmware_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="manifestId"> (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="timestamp"> (optional)</param>
-        /// <param name="timestampGte"> (optional)</param>
-        /// <param name="timestampLte"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="name"> (optional)</param>
         /// <returns>FirmwareManifestPage</returns>
-        public FirmwareManifestPage FirmwareManifestList (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string manifestId = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null)
+        public FirmwareManifestPage FirmwareManifestList (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<FirmwareManifestPage> localVarResponse = FirmwareManifestListWithHttpInfo(limit, order, after, filter, include, updatedAt, updatedAtGte, updatedAtLte, createdAt, createdAtGte, createdAtLte, etag, etagGte, etagLte, manifestId, updatingRequestId, description, timestamp, timestampGte, timestampLte, _object, deviceClass, datafileChecksum, name);
+             ApiResponse<FirmwareManifestPage> localVarResponse = FirmwareManifestListWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
         }
 
@@ -1730,27 +1505,8 @@ namespace firmware_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="manifestId"> (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="timestamp"> (optional)</param>
-        /// <param name="timestampGte"> (optional)</param>
-        /// <param name="timestampLte"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="name"> (optional)</param>
         /// <returns>ApiResponse of FirmwareManifestPage</returns>
-        public ApiResponse< FirmwareManifestPage > FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string manifestId = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null)
+        public ApiResponse< FirmwareManifestPage > FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/firmware-manifests/";
@@ -1781,25 +1537,6 @@ namespace firmware_catalog.Api
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
             if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
-            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
-            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
-            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
-            if (manifestId != null) localVarQueryParams.Add("manifest_id", Configuration.ApiClient.ParameterToString(manifestId)); // query parameter
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (timestamp != null) localVarQueryParams.Add("timestamp", Configuration.ApiClient.ParameterToString(timestamp)); // query parameter
-            if (timestampGte != null) localVarQueryParams.Add("timestamp__gte", Configuration.ApiClient.ParameterToString(timestampGte)); // query parameter
-            if (timestampLte != null) localVarQueryParams.Add("timestamp__lte", Configuration.ApiClient.ParameterToString(timestampLte)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (deviceClass != null) localVarQueryParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // query parameter
-            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1836,29 +1573,10 @@ namespace firmware_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="manifestId"> (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="timestamp"> (optional)</param>
-        /// <param name="timestampGte"> (optional)</param>
-        /// <param name="timestampLte"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="name"> (optional)</param>
         /// <returns>Task of FirmwareManifestPage</returns>
-        public async System.Threading.Tasks.Task<FirmwareManifestPage> FirmwareManifestListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string manifestId = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null)
+        public async System.Threading.Tasks.Task<FirmwareManifestPage> FirmwareManifestListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<FirmwareManifestPage> localVarResponse = await FirmwareManifestListAsyncWithHttpInfo(limit, order, after, filter, include, updatedAt, updatedAtGte, updatedAtLte, createdAt, createdAtGte, createdAtLte, etag, etagGte, etagLte, manifestId, updatingRequestId, description, timestamp, timestampGte, timestampLte, _object, deviceClass, datafileChecksum, name);
+             ApiResponse<FirmwareManifestPage> localVarResponse = await FirmwareManifestListAsyncWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
 
         }
@@ -1872,27 +1590,8 @@ namespace firmware_catalog.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagGte"> (optional)</param>
-        /// <param name="etagLte"> (optional)</param>
-        /// <param name="manifestId"> (optional)</param>
-        /// <param name="updatingRequestId"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="timestamp"> (optional)</param>
-        /// <param name="timestampGte"> (optional)</param>
-        /// <param name="timestampLte"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="deviceClass"> (optional)</param>
-        /// <param name="datafileChecksum"> (optional)</param>
-        /// <param name="name"> (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareManifestPage)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifestPage>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string etag = null, string etagGte = null, string etagLte = null, string manifestId = null, string updatingRequestId = null, string description = null, string timestamp = null, string timestampGte = null, string timestampLte = null, string _object = null, string deviceClass = null, string datafileChecksum = null, string name = null)
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifestPage>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/firmware-manifests/";
@@ -1923,25 +1622,6 @@ namespace firmware_catalog.Api
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
             if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
-            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
-            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (etagGte != null) localVarQueryParams.Add("etag__gte", Configuration.ApiClient.ParameterToString(etagGte)); // query parameter
-            if (etagLte != null) localVarQueryParams.Add("etag__lte", Configuration.ApiClient.ParameterToString(etagLte)); // query parameter
-            if (manifestId != null) localVarQueryParams.Add("manifest_id", Configuration.ApiClient.ParameterToString(manifestId)); // query parameter
-            if (updatingRequestId != null) localVarQueryParams.Add("updating_request_id", Configuration.ApiClient.ParameterToString(updatingRequestId)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (timestamp != null) localVarQueryParams.Add("timestamp", Configuration.ApiClient.ParameterToString(timestamp)); // query parameter
-            if (timestampGte != null) localVarQueryParams.Add("timestamp__gte", Configuration.ApiClient.ParameterToString(timestampGte)); // query parameter
-            if (timestampLte != null) localVarQueryParams.Add("timestamp__lte", Configuration.ApiClient.ParameterToString(timestampLte)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (deviceClass != null) localVarQueryParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // query parameter
-            if (datafileChecksum != null) localVarQueryParams.Add("datafile_checksum", Configuration.ApiClient.ParameterToString(datafileChecksum)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))

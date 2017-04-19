@@ -543,6 +543,54 @@ namespace device_catalog.Model
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         { 
+            // DeviceClass (string) maxLength
+            if(this.DeviceClass != null && this.DeviceClass.Length > 500)
+            {
+                yield return new ValidationResult("Invalid value for DeviceClass, length must be less than 500.", new [] { "DeviceClass" });
+            }
+
+            // EndpointName (string) maxLength
+            if(this.EndpointName != null && this.EndpointName.Length > 64)
+            {
+                yield return new ValidationResult("Invalid value for EndpointName, length must be less than 64.", new [] { "EndpointName" });
+            }
+
+            // SerialNumber (string) maxLength
+            if(this.SerialNumber != null && this.SerialNumber.Length > 64)
+            {
+                yield return new ValidationResult("Invalid value for SerialNumber, length must be less than 64.", new [] { "SerialNumber" });
+            }
+
+            // FirmwareChecksum (string) maxLength
+            if(this.FirmwareChecksum != null && this.FirmwareChecksum.Length > 64)
+            {
+                yield return new ValidationResult("Invalid value for FirmwareChecksum, length must be less than 64.", new [] { "FirmwareChecksum" });
+            }
+
+            // VendorId (string) maxLength
+            if(this.VendorId != null && this.VendorId.Length > 255)
+            {
+                yield return new ValidationResult("Invalid value for VendorId, length must be less than 255.", new [] { "VendorId" });
+            }
+
+            // Name (string) maxLength
+            if(this.Name != null && this.Name.Length > 128)
+            {
+                yield return new ValidationResult("Invalid value for Name, length must be less than 128.", new [] { "Name" });
+            }
+
+            // DeviceKey (string) maxLength
+            if(this.DeviceKey != null && this.DeviceKey.Length > 512)
+            {
+                yield return new ValidationResult("Invalid value for DeviceKey, length must be less than 512.", new [] { "DeviceKey" });
+            }
+
+            // CaId (string) maxLength
+            if(this.CaId != null && this.CaId.Length > 500)
+            {
+                yield return new ValidationResult("Invalid value for CaId, length must be less than 500.", new [] { "CaId" });
+            }
+
             yield break;
         }
     }

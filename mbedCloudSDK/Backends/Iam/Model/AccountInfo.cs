@@ -151,7 +151,6 @@ namespace iam.Model
         /// <param name="State">The state part of the postal address..</param>
         /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="IsProvisioningAllowed">Flag (true/false) indicating whether Factory Tool is allowed to download or not. (required).</param>
-        /// <param name="CreationTimeMillis">CreationTimeMillis.</param>
         /// <param name="Email">The company email address for this account..</param>
         /// <param name="PhoneNumber">The phone number of the company..</param>
         /// <param name="Company">The name of the company..</param>
@@ -166,7 +165,7 @@ namespace iam.Model
         /// <param name="Contact">The name of the contact person for this account..</param>
         /// <param name="Policies">List of policies if requested..</param>
         /// <param name="TemplateId">Account template ID..</param>
-        public AccountInfo(StatusEnum? Status = default(StatusEnum?), string PostalCode = default(string), string Id = default(string), List<string> Aliases = default(List<string>), string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string ParentId = default(string), string State = default(string), string Etag = default(string), bool? IsProvisioningAllowed = default(bool?), long? CreationTimeMillis = default(long?), string Email = default(string), string PhoneNumber = default(string), string Company = default(string), ObjectEnum? _Object = default(ObjectEnum?), string Reason = default(string), string UpgradedAt = default(string), string Tier = default(string), List<AccountInfo> SubAccounts = default(List<AccountInfo>), Dictionary<string, string> Limits = default(Dictionary<string, string>), string Country = default(string), string CreatedAt = default(string), string Contact = default(string), List<FeaturePolicy> Policies = default(List<FeaturePolicy>), string TemplateId = default(string))
+        public AccountInfo(StatusEnum? Status = default(StatusEnum?), string PostalCode = default(string), string Id = default(string), List<string> Aliases = default(List<string>), string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string ParentId = default(string), string State = default(string), string Etag = default(string), bool? IsProvisioningAllowed = default(bool?), string Email = default(string), string PhoneNumber = default(string), string Company = default(string), ObjectEnum? _Object = default(ObjectEnum?), string Reason = default(string), string UpgradedAt = default(string), string Tier = default(string), List<AccountInfo> SubAccounts = default(List<AccountInfo>), Dictionary<string, string> Limits = default(Dictionary<string, string>), string Country = default(string), string CreatedAt = default(string), string Contact = default(string), List<FeaturePolicy> Policies = default(List<FeaturePolicy>), string TemplateId = default(string))
         {
             // to ensure "Status" is required (not null)
             if (Status == null)
@@ -238,7 +237,6 @@ namespace iam.Model
             this.DisplayName = DisplayName;
             this.ParentId = ParentId;
             this.State = State;
-            this.CreationTimeMillis = CreationTimeMillis;
             this.Email = Email;
             this.PhoneNumber = PhoneNumber;
             this.Company = Company;
@@ -319,11 +317,6 @@ namespace iam.Model
         /// <value>Flag (true/false) indicating whether Factory Tool is allowed to download or not.</value>
         [DataMember(Name="is_provisioning_allowed", EmitDefaultValue=false)]
         public bool? IsProvisioningAllowed { get; set; }
-        /// <summary>
-        /// Gets or Sets CreationTimeMillis
-        /// </summary>
-        [DataMember(Name="creationTimeMillis", EmitDefaultValue=false)]
-        public long? CreationTimeMillis { get; set; }
         /// <summary>
         /// The company email address for this account.
         /// </summary>
@@ -422,7 +415,6 @@ namespace iam.Model
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  IsProvisioningAllowed: ").Append(IsProvisioningAllowed).Append("\n");
-            sb.Append("  CreationTimeMillis: ").Append(CreationTimeMillis).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
@@ -534,11 +526,6 @@ namespace iam.Model
                     this.IsProvisioningAllowed.Equals(other.IsProvisioningAllowed)
                 ) && 
                 (
-                    this.CreationTimeMillis == other.CreationTimeMillis ||
-                    this.CreationTimeMillis != null &&
-                    this.CreationTimeMillis.Equals(other.CreationTimeMillis)
-                ) && 
-                (
                     this.Email == other.Email ||
                     this.Email != null &&
                     this.Email.Equals(other.Email)
@@ -645,8 +632,6 @@ namespace iam.Model
                     hash = hash * 59 + this.Etag.GetHashCode();
                 if (this.IsProvisioningAllowed != null)
                     hash = hash * 59 + this.IsProvisioningAllowed.GetHashCode();
-                if (this.CreationTimeMillis != null)
-                    hash = hash * 59 + this.CreationTimeMillis.GetHashCode();
                 if (this.Email != null)
                     hash = hash * 59 + this.Email.GetHashCode();
                 if (this.PhoneNumber != null)

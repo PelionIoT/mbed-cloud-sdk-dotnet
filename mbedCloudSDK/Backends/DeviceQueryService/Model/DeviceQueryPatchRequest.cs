@@ -33,12 +33,10 @@ namespace device_query_service.Model
         /// Initializes a new instance of the <see cref="DeviceQueryPatchRequest" /> class.
         /// </summary>
         /// <param name="Query">The device query.</param>
-        /// <param name="Description">The description of the object.</param>
         /// <param name="Name">The name of the query.</param>
-        public DeviceQueryPatchRequest(string Query = default(string), string Description = default(string), string Name = default(string))
+        public DeviceQueryPatchRequest(string Query = default(string), string Name = default(string))
         {
             this.Query = Query;
-            this.Description = Description;
             this.Name = Name;
         }
         
@@ -48,12 +46,6 @@ namespace device_query_service.Model
         /// <value>The device query</value>
         [DataMember(Name="query", EmitDefaultValue=false)]
         public string Query { get; set; }
-        /// <summary>
-        /// The description of the object
-        /// </summary>
-        /// <value>The description of the object</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
-        public string Description { get; set; }
         /// <summary>
         /// The name of the query
         /// </summary>
@@ -69,7 +61,6 @@ namespace device_query_service.Model
             var sb = new StringBuilder();
             sb.Append("class DeviceQueryPatchRequest {\n");
             sb.Append("  Query: ").Append(Query).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -113,11 +104,6 @@ namespace device_query_service.Model
                     this.Query.Equals(other.Query)
                 ) && 
                 (
-                    this.Description == other.Description ||
-                    this.Description != null &&
-                    this.Description.Equals(other.Description)
-                ) && 
-                (
                     this.Name == other.Name ||
                     this.Name != null &&
                     this.Name.Equals(other.Name)
@@ -137,8 +123,6 @@ namespace device_query_service.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.Query != null)
                     hash = hash * 59 + this.Query.GetHashCode();
-                if (this.Description != null)
-                    hash = hash * 59 + this.Description.GetHashCode();
                 if (this.Name != null)
                     hash = hash * 59 + this.Name.GetHashCode();
                 return hash;
@@ -147,6 +131,18 @@ namespace device_query_service.Model
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         { 
+            // Query (string) maxLength
+            if(this.Query != null && this.Query.Length > 1000)
+            {
+                yield return new ValidationResult("Invalid value for Query, length must be less than 1000.", new [] { "Query" });
+            }
+
+            // Name (string) maxLength
+            if(this.Name != null && this.Name.Length > 200)
+            {
+                yield return new ValidationResult("Invalid value for Name, length must be less than 200.", new [] { "Name" });
+            }
+
             yield break;
         }
     }

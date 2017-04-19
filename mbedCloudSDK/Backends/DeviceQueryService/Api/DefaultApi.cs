@@ -78,22 +78,8 @@ namespace device_query_service.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagAtGte"> (optional)</param>
-        /// <param name="etagAtLte"> (optional)</param>
-        /// <param name="id"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="query"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
         /// <returns>DeviceQueryPage</returns>
-        DeviceQueryPage DeviceQueryList (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null);
+        DeviceQueryPage DeviceQueryList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
@@ -107,22 +93,8 @@ namespace device_query_service.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagAtGte"> (optional)</param>
-        /// <param name="etagAtLte"> (optional)</param>
-        /// <param name="id"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="query"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
         /// <returns>ApiResponse of DeviceQueryPage</returns>
-        ApiResponse<DeviceQueryPage> DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null);
+        ApiResponse<DeviceQueryPage> DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -246,22 +218,8 @@ namespace device_query_service.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagAtGte"> (optional)</param>
-        /// <param name="etagAtLte"> (optional)</param>
-        /// <param name="id"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="query"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
         /// <returns>Task of DeviceQueryPage</returns>
-        System.Threading.Tasks.Task<DeviceQueryPage> DeviceQueryListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null);
+        System.Threading.Tasks.Task<DeviceQueryPage> DeviceQueryListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
@@ -275,22 +233,8 @@ namespace device_query_service.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagAtGte"> (optional)</param>
-        /// <param name="etagAtLte"> (optional)</param>
-        /// <param name="id"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="query"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
         /// <returns>Task of ApiResponse (DeviceQueryPage)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQueryPage>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null);
+        System.Threading.Tasks.Task<ApiResponse<DeviceQueryPage>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
@@ -791,24 +735,10 @@ namespace device_query_service.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagAtGte"> (optional)</param>
-        /// <param name="etagAtLte"> (optional)</param>
-        /// <param name="id"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="query"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
         /// <returns>DeviceQueryPage</returns>
-        public DeviceQueryPage DeviceQueryList (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null)
+        public DeviceQueryPage DeviceQueryList (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<DeviceQueryPage> localVarResponse = DeviceQueryListWithHttpInfo(limit, order, after, filter, include, createdAt, createdAtGte, createdAtLte, description, etag, etagAtGte, etagAtLte, id, name, _object, query, updatedAt, updatedAtGte, updatedAtLte);
+             ApiResponse<DeviceQueryPage> localVarResponse = DeviceQueryListWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
         }
 
@@ -821,22 +751,8 @@ namespace device_query_service.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagAtGte"> (optional)</param>
-        /// <param name="etagAtLte"> (optional)</param>
-        /// <param name="id"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="query"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
         /// <returns>ApiResponse of DeviceQueryPage</returns>
-        public ApiResponse< DeviceQueryPage > DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null)
+        public ApiResponse< DeviceQueryPage > DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/device-queries/";
@@ -867,20 +783,6 @@ namespace device_query_service.Api
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
             if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
-            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (etagAtGte != null) localVarQueryParams.Add("etag_at__gte", Configuration.ApiClient.ParameterToString(etagAtGte)); // query parameter
-            if (etagAtLte != null) localVarQueryParams.Add("etag_at__lte", Configuration.ApiClient.ParameterToString(etagAtLte)); // query parameter
-            if (id != null) localVarQueryParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (query != null) localVarQueryParams.Add("query", Configuration.ApiClient.ParameterToString(query)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
-            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -917,24 +819,10 @@ namespace device_query_service.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagAtGte"> (optional)</param>
-        /// <param name="etagAtLte"> (optional)</param>
-        /// <param name="id"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="query"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
         /// <returns>Task of DeviceQueryPage</returns>
-        public async System.Threading.Tasks.Task<DeviceQueryPage> DeviceQueryListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null)
+        public async System.Threading.Tasks.Task<DeviceQueryPage> DeviceQueryListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<DeviceQueryPage> localVarResponse = await DeviceQueryListAsyncWithHttpInfo(limit, order, after, filter, include, createdAt, createdAtGte, createdAtLte, description, etag, etagAtGte, etagAtLte, id, name, _object, query, updatedAt, updatedAtGte, updatedAtLte);
+             ApiResponse<DeviceQueryPage> localVarResponse = await DeviceQueryListAsyncWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
 
         }
@@ -948,22 +836,8 @@ namespace device_query_service.Api
         /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <param name="createdAt"> (optional)</param>
-        /// <param name="createdAtGte"> (optional)</param>
-        /// <param name="createdAtLte"> (optional)</param>
-        /// <param name="description"> (optional)</param>
-        /// <param name="etag"> (optional)</param>
-        /// <param name="etagAtGte"> (optional)</param>
-        /// <param name="etagAtLte"> (optional)</param>
-        /// <param name="id"> (optional)</param>
-        /// <param name="name"> (optional)</param>
-        /// <param name="_object"> (optional)</param>
-        /// <param name="query"> (optional)</param>
-        /// <param name="updatedAt"> (optional)</param>
-        /// <param name="updatedAtGte"> (optional)</param>
-        /// <param name="updatedAtLte"> (optional)</param>
         /// <returns>Task of ApiResponse (DeviceQueryPage)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryPage>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null, string createdAt = null, string createdAtGte = null, string createdAtLte = null, string description = null, string etag = null, string etagAtGte = null, string etagAtLte = null, string id = null, string name = null, string _object = null, string query = null, string updatedAt = null, string updatedAtGte = null, string updatedAtLte = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryPage>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/device-queries/";
@@ -994,20 +868,6 @@ namespace device_query_service.Api
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
             if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
-            if (createdAt != null) localVarQueryParams.Add("created_at", Configuration.ApiClient.ParameterToString(createdAt)); // query parameter
-            if (createdAtGte != null) localVarQueryParams.Add("created_at__gte", Configuration.ApiClient.ParameterToString(createdAtGte)); // query parameter
-            if (createdAtLte != null) localVarQueryParams.Add("created_at__lte", Configuration.ApiClient.ParameterToString(createdAtLte)); // query parameter
-            if (description != null) localVarQueryParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // query parameter
-            if (etag != null) localVarQueryParams.Add("etag", Configuration.ApiClient.ParameterToString(etag)); // query parameter
-            if (etagAtGte != null) localVarQueryParams.Add("etag_at__gte", Configuration.ApiClient.ParameterToString(etagAtGte)); // query parameter
-            if (etagAtLte != null) localVarQueryParams.Add("etag_at__lte", Configuration.ApiClient.ParameterToString(etagAtLte)); // query parameter
-            if (id != null) localVarQueryParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // query parameter
-            if (name != null) localVarQueryParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // query parameter
-            if (_object != null) localVarQueryParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // query parameter
-            if (query != null) localVarQueryParams.Add("query", Configuration.ApiClient.ParameterToString(query)); // query parameter
-            if (updatedAt != null) localVarQueryParams.Add("updated_at", Configuration.ApiClient.ParameterToString(updatedAt)); // query parameter
-            if (updatedAtGte != null) localVarQueryParams.Add("updated_at__gte", Configuration.ApiClient.ParameterToString(updatedAtGte)); // query parameter
-            if (updatedAtLte != null) localVarQueryParams.Add("updated_at__lte", Configuration.ApiClient.ParameterToString(updatedAtLte)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))

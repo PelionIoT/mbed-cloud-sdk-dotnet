@@ -107,11 +107,10 @@ namespace iam.Model
         /// <param name="_Object">Entity name: always &#39;group&#39; (required).</param>
         /// <param name="CreationTime">A timestamp of the group creation in the storage, in milliseconds..</param>
         /// <param name="Etag">API resource entity version. (required).</param>
-        /// <param name="CreationTimeMillis">CreationTimeMillis.</param>
         /// <param name="UserCount">The number of users in this group. (required).</param>
         /// <param name="Id">The UUID of the group. (required).</param>
         /// <param name="AccountID">The UUID of the account this group belongs to. (required).</param>
-        public GroupSummary(string Name = default(string), long? LastUpdateTime = default(long?), int? ApiKeyCount = default(int?), string CreatedAt = default(string), ObjectEnum? _Object = default(ObjectEnum?), long? CreationTime = default(long?), string Etag = default(string), long? CreationTimeMillis = default(long?), int? UserCount = default(int?), string Id = default(string), string AccountID = default(string))
+        public GroupSummary(string Name = default(string), long? LastUpdateTime = default(long?), int? ApiKeyCount = default(int?), string CreatedAt = default(string), ObjectEnum? _Object = default(ObjectEnum?), long? CreationTime = default(long?), string Etag = default(string), int? UserCount = default(int?), string Id = default(string), string AccountID = default(string))
         {
             // to ensure "Name" is required (not null)
             if (Name == null)
@@ -179,7 +178,6 @@ namespace iam.Model
             this.LastUpdateTime = LastUpdateTime;
             this.CreatedAt = CreatedAt;
             this.CreationTime = CreationTime;
-            this.CreationTimeMillis = CreationTimeMillis;
         }
         
         /// <summary>
@@ -219,11 +217,6 @@ namespace iam.Model
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public string Etag { get; set; }
         /// <summary>
-        /// Gets or Sets CreationTimeMillis
-        /// </summary>
-        [DataMember(Name="creationTimeMillis", EmitDefaultValue=false)]
-        public long? CreationTimeMillis { get; set; }
-        /// <summary>
         /// The number of users in this group.
         /// </summary>
         /// <value>The number of users in this group.</value>
@@ -256,7 +249,6 @@ namespace iam.Model
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
-            sb.Append("  CreationTimeMillis: ").Append(CreationTimeMillis).Append("\n");
             sb.Append("  UserCount: ").Append(UserCount).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  AccountID: ").Append(AccountID).Append("\n");
@@ -332,11 +324,6 @@ namespace iam.Model
                     this.Etag.Equals(other.Etag)
                 ) && 
                 (
-                    this.CreationTimeMillis == other.CreationTimeMillis ||
-                    this.CreationTimeMillis != null &&
-                    this.CreationTimeMillis.Equals(other.CreationTimeMillis)
-                ) && 
-                (
                     this.UserCount == other.UserCount ||
                     this.UserCount != null &&
                     this.UserCount.Equals(other.UserCount)
@@ -378,8 +365,6 @@ namespace iam.Model
                     hash = hash * 59 + this.CreationTime.GetHashCode();
                 if (this.Etag != null)
                     hash = hash * 59 + this.Etag.GetHashCode();
-                if (this.CreationTimeMillis != null)
-                    hash = hash * 59 + this.CreationTimeMillis.GetHashCode();
                 if (this.UserCount != null)
                     hash = hash * 59 + this.UserCount.GetHashCode();
                 if (this.Id != null)

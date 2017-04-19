@@ -133,13 +133,12 @@ namespace iam.Model
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
         /// <param name="_Object">Entity name: always &#39;api-key&#39; (required).</param>
         /// <param name="CreationTime">The timestamp of the API key creation in the storage, in milliseconds..</param>
-        /// <param name="CreationTimeMillis">CreationTimeMillis.</param>
         /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="Key">The API key. (required).</param>
         /// <param name="Owner">The owner of this API key, who is the creator by default..</param>
         /// <param name="Id">The UUID of the API key. (required).</param>
         /// <param name="LastLoginTime">The timestamp of the latest API key usage, in milliseconds..</param>
-        public ApiKeyInfoResp(List<string> Groups = default(List<string>), StatusEnum? Status = default(StatusEnum?), string Name = default(string), string CreatedAt = default(string), ObjectEnum? _Object = default(ObjectEnum?), long? CreationTime = default(long?), long? CreationTimeMillis = default(long?), string Etag = default(string), string Key = default(string), string Owner = default(string), string Id = default(string), long? LastLoginTime = default(long?))
+        public ApiKeyInfoResp(List<string> Groups = default(List<string>), StatusEnum? Status = default(StatusEnum?), string Name = default(string), string CreatedAt = default(string), ObjectEnum? _Object = default(ObjectEnum?), long? CreationTime = default(long?), string Etag = default(string), string Key = default(string), string Owner = default(string), string Id = default(string), long? LastLoginTime = default(long?))
         {
             // to ensure "Name" is required (not null)
             if (Name == null)
@@ -190,7 +189,6 @@ namespace iam.Model
             this.Status = Status;
             this.CreatedAt = CreatedAt;
             this.CreationTime = CreationTime;
-            this.CreationTimeMillis = CreationTimeMillis;
             this.Owner = Owner;
             this.LastLoginTime = LastLoginTime;
         }
@@ -219,11 +217,6 @@ namespace iam.Model
         /// <value>The timestamp of the API key creation in the storage, in milliseconds.</value>
         [DataMember(Name="creation_time", EmitDefaultValue=false)]
         public long? CreationTime { get; set; }
-        /// <summary>
-        /// Gets or Sets CreationTimeMillis
-        /// </summary>
-        [DataMember(Name="creationTimeMillis", EmitDefaultValue=false)]
-        public long? CreationTimeMillis { get; set; }
         /// <summary>
         /// API resource entity version.
         /// </summary>
@@ -268,7 +261,6 @@ namespace iam.Model
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
-            sb.Append("  CreationTimeMillis: ").Append(CreationTimeMillis).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  Key: ").Append(Key).Append("\n");
             sb.Append("  Owner: ").Append(Owner).Append("\n");
@@ -341,11 +333,6 @@ namespace iam.Model
                     this.CreationTime.Equals(other.CreationTime)
                 ) && 
                 (
-                    this.CreationTimeMillis == other.CreationTimeMillis ||
-                    this.CreationTimeMillis != null &&
-                    this.CreationTimeMillis.Equals(other.CreationTimeMillis)
-                ) && 
-                (
                     this.Etag == other.Etag ||
                     this.Etag != null &&
                     this.Etag.Equals(other.Etag)
@@ -395,8 +382,6 @@ namespace iam.Model
                     hash = hash * 59 + this._Object.GetHashCode();
                 if (this.CreationTime != null)
                     hash = hash * 59 + this.CreationTime.GetHashCode();
-                if (this.CreationTimeMillis != null)
-                    hash = hash * 59 + this.CreationTimeMillis.GetHashCode();
                 if (this.Etag != null)
                     hash = hash * 59 + this.Etag.GetHashCode();
                 if (this.Key != null)
