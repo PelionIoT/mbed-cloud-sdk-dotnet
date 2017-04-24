@@ -170,6 +170,29 @@ namespace billing.Api
         /// <returns>ApiResponse of Metrics</returns>
         ApiResponse<Metrics> V1MetricsGetWithHttpInfo ();
         /// <summary>
+        /// Active devices per account in reporting
+        /// </summary>
+        /// <remarks>
+        /// Get active devices for a commercial account with specified month.
+        /// </remarks>
+        /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="account">account id</param>
+        /// <param name="month">year and month</param>
+        /// <returns>List&lt;ActiveDevice&gt;</returns>
+        List<ActiveDevice> V1ReportActivedevicesGet (string account, string month);
+
+        /// <summary>
+        /// Active devices per account in reporting
+        /// </summary>
+        /// <remarks>
+        /// Get active devices for a commercial account with specified month.
+        /// </remarks>
+        /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="account">account id</param>
+        /// <param name="month">year and month</param>
+        /// <returns>ApiResponse of List&lt;ActiveDevice&gt;</returns>
+        ApiResponse<List<ActiveDevice>> V1ReportActivedevicesGetWithHttpInfo (string account, string month);
+        /// <summary>
         /// Billing report
         /// </summary>
         /// <remarks>
@@ -400,6 +423,29 @@ namespace billing.Api
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse (Metrics)</returns>
         System.Threading.Tasks.Task<ApiResponse<Metrics>> V1MetricsGetAsyncWithHttpInfo ();
+        /// <summary>
+        /// Active devices per account in reporting
+        /// </summary>
+        /// <remarks>
+        /// Get active devices for a commercial account with specified month.
+        /// </remarks>
+        /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="account">account id</param>
+        /// <param name="month">year and month</param>
+        /// <returns>Task of List&lt;ActiveDevice&gt;</returns>
+        System.Threading.Tasks.Task<List<ActiveDevice>> V1ReportActivedevicesGetAsync (string account, string month);
+
+        /// <summary>
+        /// Active devices per account in reporting
+        /// </summary>
+        /// <remarks>
+        /// Get active devices for a commercial account with specified month.
+        /// </remarks>
+        /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="account">account id</param>
+        /// <param name="month">year and month</param>
+        /// <returns>Task of ApiResponse (List&lt;ActiveDevice&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ActiveDevice>>> V1ReportActivedevicesGetAsyncWithHttpInfo (string account, string month);
         /// <summary>
         /// Billing report
         /// </summary>
@@ -1645,6 +1691,170 @@ namespace billing.Api
             return new ApiResponse<Metrics>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Metrics) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Metrics)));
+            
+        }
+
+        /// <summary>
+        /// Active devices per account in reporting Get active devices for a commercial account with specified month.
+        /// </summary>
+        /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="account">account id</param>
+        /// <param name="month">year and month</param>
+        /// <returns>List&lt;ActiveDevice&gt;</returns>
+        public List<ActiveDevice> V1ReportActivedevicesGet (string account, string month)
+        {
+             ApiResponse<List<ActiveDevice>> localVarResponse = V1ReportActivedevicesGetWithHttpInfo(account, month);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Active devices per account in reporting Get active devices for a commercial account with specified month.
+        /// </summary>
+        /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="account">account id</param>
+        /// <param name="month">year and month</param>
+        /// <returns>ApiResponse of List&lt;ActiveDevice&gt;</returns>
+        public ApiResponse< List<ActiveDevice> > V1ReportActivedevicesGetWithHttpInfo (string account, string month)
+        {
+            // verify the required parameter 'account' is set
+            if (account == null)
+                throw new ApiException(400, "Missing required parameter 'account' when calling DefaultApi->V1ReportActivedevicesGet");
+            // verify the required parameter 'month' is set
+            if (month == null)
+                throw new ApiException(400, "Missing required parameter 'month' when calling DefaultApi->V1ReportActivedevicesGet");
+
+            var localVarPath = "/v1/report/activedevices";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (account != null) localVarQueryParams.Add("account", Configuration.ApiClient.ParameterToString(account)); // query parameter
+            if (month != null) localVarQueryParams.Add("month", Configuration.ApiClient.ParameterToString(month)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("V1ReportActivedevicesGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<ActiveDevice>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<ActiveDevice>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<ActiveDevice>)));
+            
+        }
+
+        /// <summary>
+        /// Active devices per account in reporting Get active devices for a commercial account with specified month.
+        /// </summary>
+        /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="account">account id</param>
+        /// <param name="month">year and month</param>
+        /// <returns>Task of List&lt;ActiveDevice&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ActiveDevice>> V1ReportActivedevicesGetAsync (string account, string month)
+        {
+             ApiResponse<List<ActiveDevice>> localVarResponse = await V1ReportActivedevicesGetAsyncWithHttpInfo(account, month);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Active devices per account in reporting Get active devices for a commercial account with specified month.
+        /// </summary>
+        /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="account">account id</param>
+        /// <param name="month">year and month</param>
+        /// <returns>Task of ApiResponse (List&lt;ActiveDevice&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<ActiveDevice>>> V1ReportActivedevicesGetAsyncWithHttpInfo (string account, string month)
+        {
+            // verify the required parameter 'account' is set
+            if (account == null)
+                throw new ApiException(400, "Missing required parameter 'account' when calling DefaultApi->V1ReportActivedevicesGet");
+            // verify the required parameter 'month' is set
+            if (month == null)
+                throw new ApiException(400, "Missing required parameter 'month' when calling DefaultApi->V1ReportActivedevicesGet");
+
+            var localVarPath = "/v1/report/activedevices";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (account != null) localVarQueryParams.Add("account", Configuration.ApiClient.ParameterToString(account)); // query parameter
+            if (month != null) localVarQueryParams.Add("month", Configuration.ApiClient.ParameterToString(month)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("V1ReportActivedevicesGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<ActiveDevice>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<ActiveDevice>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<ActiveDevice>)));
             
         }
 

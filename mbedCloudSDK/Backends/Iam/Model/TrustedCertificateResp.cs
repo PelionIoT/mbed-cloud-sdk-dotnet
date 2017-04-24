@@ -137,7 +137,7 @@ namespace iam.Model
         /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="Validity">Expiration time in UTC formatted as RFC3339. (required).</param>
         /// <param name="Issuer">Issuer of the certificate. (required).</param>
-        /// <param name="CertData">X509.v3 trusted certificate in PEM or base64 encoded DER format. (required).</param>
+        /// <param name="CertData">X509.v3 trusted certificate in base64 encoded DER format. (required).</param>
         /// <param name="Id">Entity ID. (required).</param>
         /// <param name="Name">Certificate name. (required).</param>
         public TrustedCertificateResp(string Description = default(string), ServiceEnum? Service = default(ServiceEnum?), int? DeviceExecutionMode = default(int?), string CreatedAt = default(string), ObjectEnum? _Object = default(ObjectEnum?), string Subject = default(string), string AccountId = default(string), string Etag = default(string), string Validity = default(string), string Issuer = default(string), string CertData = default(string), string Id = default(string), string Name = default(string))
@@ -286,9 +286,9 @@ namespace iam.Model
         [DataMember(Name="issuer", EmitDefaultValue=false)]
         public string Issuer { get; set; }
         /// <summary>
-        /// X509.v3 trusted certificate in PEM or base64 encoded DER format.
+        /// X509.v3 trusted certificate in base64 encoded DER format.
         /// </summary>
-        /// <value>X509.v3 trusted certificate in PEM or base64 encoded DER format.</value>
+        /// <value>X509.v3 trusted certificate in base64 encoded DER format.</value>
         [DataMember(Name="cert_data", EmitDefaultValue=false)]
         public string CertData { get; set; }
         /// <summary>

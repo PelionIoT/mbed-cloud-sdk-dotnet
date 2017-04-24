@@ -30,9 +30,9 @@ namespace deployment_service.Model
     public partial class UpdateCampaign :  IEquatable<UpdateCampaign>, IValidatableObject
     {
         /// <summary>
-        /// The state of the campaign
+        /// The state of the campaign.
         /// </summary>
-        /// <value>The state of the campaign</value>
+        /// <value>The state of the campaign.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StateEnum
         {
@@ -99,9 +99,9 @@ namespace deployment_service.Model
         }
 
         /// <summary>
-        /// The state of the campaign
+        /// The state of the campaign.
         /// </summary>
-        /// <value>The state of the campaign</value>
+        /// <value>The state of the campaign.</value>
         [DataMember(Name="state", EmitDefaultValue=false)]
         public StateEnum? State { get; set; }
         /// <summary>
@@ -112,19 +112,19 @@ namespace deployment_service.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateCampaign" /> class.
         /// </summary>
-        /// <param name="Description">An optional description of the campaign (required).</param>
-        /// <param name="When">The timestamp at which update campaign scheduled to start.</param>
-        /// <param name="CreatedAt">The time the object was created (required).</param>
-        /// <param name="_Object">The API resource entity (required).</param>
+        /// <param name="Description">An optional description of the campaign. (required).</param>
+        /// <param name="When">The timestamp at which update campaign scheduled to start..</param>
+        /// <param name="CreatedAt">The time the object was created. (required).</param>
+        /// <param name="_Object">The API resource entity. (required).</param>
         /// <param name="RootManifestId">RootManifestId (required).</param>
-        /// <param name="State">The state of the campaign (required).</param>
-        /// <param name="Finished">The timestamp when the update campaign finished.</param>
-        /// <param name="Etag">The entity instance signature (required).</param>
+        /// <param name="State">The state of the campaign. (required).</param>
+        /// <param name="Finished">The timestamp when the update campaign finished..</param>
+        /// <param name="Etag">The entity instance signature. (required).</param>
         /// <param name="RootManifestUrl">RootManifestUrl (required).</param>
         /// <param name="StartedAt">StartedAt.</param>
-        /// <param name="Id">The ID of the campaign (required).</param>
-        /// <param name="DeviceFilter">The filter for the devices the campaign will target (required).</param>
-        /// <param name="Name">A name for this campaign (required).</param>
+        /// <param name="Id">The ID of the campaign. (required).</param>
+        /// <param name="DeviceFilter">The filter for the devices the campaign will target. (required).</param>
+        /// <param name="Name">A name for this campaign. (required).</param>
         public UpdateCampaign(string Description = default(string), string When = default(string), string CreatedAt = default(string), string _Object = default(string), string RootManifestId = default(string), StateEnum? State = default(StateEnum?), string Finished = default(string), string Etag = default(string), string RootManifestUrl = default(string), DateTime? StartedAt = default(DateTime?), string Id = default(string), string DeviceFilter = default(string), string Name = default(string))
         {
             // to ensure "Description" is required (not null)
@@ -223,27 +223,27 @@ namespace deployment_service.Model
         }
         
         /// <summary>
-        /// An optional description of the campaign
+        /// An optional description of the campaign.
         /// </summary>
-        /// <value>An optional description of the campaign</value>
+        /// <value>An optional description of the campaign.</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
         /// <summary>
-        /// The timestamp at which update campaign scheduled to start
+        /// The timestamp at which update campaign scheduled to start.
         /// </summary>
-        /// <value>The timestamp at which update campaign scheduled to start</value>
+        /// <value>The timestamp at which update campaign scheduled to start.</value>
         [DataMember(Name="when", EmitDefaultValue=false)]
         public string When { get; set; }
         /// <summary>
-        /// The time the object was created
+        /// The time the object was created.
         /// </summary>
-        /// <value>The time the object was created</value>
+        /// <value>The time the object was created.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public string CreatedAt { get; set; }
         /// <summary>
-        /// The API resource entity
+        /// The API resource entity.
         /// </summary>
-        /// <value>The API resource entity</value>
+        /// <value>The API resource entity.</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
         /// <summary>
@@ -252,15 +252,15 @@ namespace deployment_service.Model
         [DataMember(Name="root_manifest_id", EmitDefaultValue=false)]
         public string RootManifestId { get; set; }
         /// <summary>
-        /// The timestamp when the update campaign finished
+        /// The timestamp when the update campaign finished.
         /// </summary>
-        /// <value>The timestamp when the update campaign finished</value>
+        /// <value>The timestamp when the update campaign finished.</value>
         [DataMember(Name="finished", EmitDefaultValue=false)]
         public string Finished { get; set; }
         /// <summary>
-        /// The entity instance signature
+        /// The entity instance signature.
         /// </summary>
-        /// <value>The entity instance signature</value>
+        /// <value>The entity instance signature.</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public string Etag { get; set; }
         /// <summary>
@@ -274,21 +274,21 @@ namespace deployment_service.Model
         [DataMember(Name="started_at", EmitDefaultValue=false)]
         public DateTime? StartedAt { get; set; }
         /// <summary>
-        /// The ID of the campaign
+        /// The ID of the campaign.
         /// </summary>
-        /// <value>The ID of the campaign</value>
+        /// <value>The ID of the campaign.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
         /// <summary>
-        /// The filter for the devices the campaign will target
+        /// The filter for the devices the campaign will target.
         /// </summary>
-        /// <value>The filter for the devices the campaign will target</value>
+        /// <value>The filter for the devices the campaign will target.</value>
         [DataMember(Name="device_filter", EmitDefaultValue=false)]
         public string DeviceFilter { get; set; }
         /// <summary>
-        /// A name for this campaign
+        /// A name for this campaign.
         /// </summary>
-        /// <value>A name for this campaign</value>
+        /// <value>A name for this campaign.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>

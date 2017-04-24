@@ -37,15 +37,15 @@ namespace firmware_catalog.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="FirmwareImage" /> class.
         /// </summary>
-        /// <param name="Datafile">The binary file of firmware image (required).</param>
-        /// <param name="Description">The description of the object (required).</param>
-        /// <param name="CreatedAt">The time the object was created (required).</param>
-        /// <param name="_Object">The API resource entity (required).</param>
-        /// <param name="UpdatedAt">The time the object was updated (required).</param>
-        /// <param name="Etag">The entity instance signature (required).</param>
-        /// <param name="DatafileChecksum">Checksum generated for the datafile (required).</param>
-        /// <param name="Id">The ID of the firmware image (required).</param>
-        /// <param name="Name">The name of the object (required).</param>
+        /// <param name="Datafile">The binary file of firmware image. (required).</param>
+        /// <param name="Description">The description of the object. (required).</param>
+        /// <param name="CreatedAt">The time the object was created. (required).</param>
+        /// <param name="_Object">The API resource entity. (required).</param>
+        /// <param name="UpdatedAt">The time the object was updated. (required).</param>
+        /// <param name="Etag">The entity instance signature. (required).</param>
+        /// <param name="DatafileChecksum">Checksum generated for the datafile. (required).</param>
+        /// <param name="Id">The ID of the firmware image. (required).</param>
+        /// <param name="Name">The name of the object. (required).</param>
         public FirmwareImage(byte[] Datafile = default(byte[]), string Description = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), string DatafileChecksum = default(string), string Id = default(string), string Name = default(string))
         {
             // to ensure "Datafile" is required (not null)
@@ -132,57 +132,57 @@ namespace firmware_catalog.Model
         }
         
         /// <summary>
-        /// The binary file of firmware image
+        /// The binary file of firmware image.
         /// </summary>
-        /// <value>The binary file of firmware image</value>
+        /// <value>The binary file of firmware image.</value>
         [DataMember(Name="datafile", EmitDefaultValue=false)]
         public byte[] Datafile { get; set; }
         /// <summary>
-        /// The description of the object
+        /// The description of the object.
         /// </summary>
-        /// <value>The description of the object</value>
+        /// <value>The description of the object.</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
         /// <summary>
-        /// The time the object was created
+        /// The time the object was created.
         /// </summary>
-        /// <value>The time the object was created</value>
+        /// <value>The time the object was created.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
         /// <summary>
-        /// The API resource entity
+        /// The API resource entity.
         /// </summary>
-        /// <value>The API resource entity</value>
+        /// <value>The API resource entity.</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
         /// <summary>
-        /// The time the object was updated
+        /// The time the object was updated.
         /// </summary>
-        /// <value>The time the object was updated</value>
+        /// <value>The time the object was updated.</value>
         [DataMember(Name="updated_at", EmitDefaultValue=false)]
         public DateTime? UpdatedAt { get; set; }
         /// <summary>
-        /// The entity instance signature
+        /// The entity instance signature.
         /// </summary>
-        /// <value>The entity instance signature</value>
+        /// <value>The entity instance signature.</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public DateTime? Etag { get; set; }
         /// <summary>
-        /// Checksum generated for the datafile
+        /// Checksum generated for the datafile.
         /// </summary>
-        /// <value>Checksum generated for the datafile</value>
+        /// <value>Checksum generated for the datafile.</value>
         [DataMember(Name="datafile_checksum", EmitDefaultValue=false)]
         public string DatafileChecksum { get; set; }
         /// <summary>
-        /// The ID of the firmware image
+        /// The ID of the firmware image.
         /// </summary>
-        /// <value>The ID of the firmware image</value>
+        /// <value>The ID of the firmware image.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
         /// <summary>
-        /// The name of the object
+        /// The name of the object.
         /// </summary>
-        /// <value>The name of the object</value>
+        /// <value>The name of the object.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>

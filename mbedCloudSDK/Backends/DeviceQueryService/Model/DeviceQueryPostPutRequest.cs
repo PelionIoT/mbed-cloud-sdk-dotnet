@@ -37,8 +37,8 @@ namespace device_query_service.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceQueryPostPutRequest" /> class.
         /// </summary>
-        /// <param name="Query">The device query (required).</param>
-        /// <param name="Name">The name of the query (required).</param>
+        /// <param name="Query">The device query. (required).</param>
+        /// <param name="Name">The name of the query. (required).</param>
         public DeviceQueryPostPutRequest(string Query = default(string), string Name = default(string))
         {
             // to ensure "Query" is required (not null)
@@ -62,15 +62,15 @@ namespace device_query_service.Model
         }
         
         /// <summary>
-        /// The device query
+        /// The device query.
         /// </summary>
-        /// <value>The device query</value>
+        /// <value>The device query.</value>
         [DataMember(Name="query", EmitDefaultValue=false)]
         public string Query { get; set; }
         /// <summary>
-        /// The name of the query
+        /// The name of the query.
         /// </summary>
-        /// <value>The name of the query</value>
+        /// <value>The name of the query.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>

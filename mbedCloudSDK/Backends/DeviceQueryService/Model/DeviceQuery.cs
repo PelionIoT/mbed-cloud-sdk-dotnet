@@ -37,13 +37,13 @@ namespace device_query_service.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceQuery" /> class.
         /// </summary>
-        /// <param name="Name">The name of the query (required).</param>
-        /// <param name="CreatedAt">The time the object was created (required).</param>
-        /// <param name="_Object">The API resource entity (required).</param>
-        /// <param name="UpdatedAt">The time the object was updated (required).</param>
-        /// <param name="Etag">The entity instance signature (required).</param>
-        /// <param name="Query">The device query (required).</param>
-        /// <param name="Id">The ID of the query (required).</param>
+        /// <param name="Name">The name of the query. (required).</param>
+        /// <param name="CreatedAt">The time the object was created. (required).</param>
+        /// <param name="_Object">The API resource entity. (required).</param>
+        /// <param name="UpdatedAt">The time the object was updated. (required).</param>
+        /// <param name="Etag">The entity instance signature. (required).</param>
+        /// <param name="Query">The device query. (required).</param>
+        /// <param name="Id">The ID of the query. (required).</param>
         public DeviceQuery(string Name = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), string Query = default(string), string Id = default(string))
         {
             // to ensure "Name" is required (not null)
@@ -112,45 +112,45 @@ namespace device_query_service.Model
         }
         
         /// <summary>
-        /// The name of the query
+        /// The name of the query.
         /// </summary>
-        /// <value>The name of the query</value>
+        /// <value>The name of the query.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
-        /// The time the object was created
+        /// The time the object was created.
         /// </summary>
-        /// <value>The time the object was created</value>
+        /// <value>The time the object was created.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
         /// <summary>
-        /// The API resource entity
+        /// The API resource entity.
         /// </summary>
-        /// <value>The API resource entity</value>
+        /// <value>The API resource entity.</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
         /// <summary>
-        /// The time the object was updated
+        /// The time the object was updated.
         /// </summary>
-        /// <value>The time the object was updated</value>
+        /// <value>The time the object was updated.</value>
         [DataMember(Name="updated_at", EmitDefaultValue=false)]
         public DateTime? UpdatedAt { get; set; }
         /// <summary>
-        /// The entity instance signature
+        /// The entity instance signature.
         /// </summary>
-        /// <value>The entity instance signature</value>
+        /// <value>The entity instance signature.</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public DateTime? Etag { get; set; }
         /// <summary>
-        /// The device query
+        /// The device query.
         /// </summary>
-        /// <value>The device query</value>
+        /// <value>The device query.</value>
         [DataMember(Name="query", EmitDefaultValue=false)]
         public string Query { get; set; }
         /// <summary>
-        /// The ID of the query
+        /// The ID of the query.
         /// </summary>
-        /// <value>The ID of the query</value>
+        /// <value>The ID of the query.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
         /// <summary>

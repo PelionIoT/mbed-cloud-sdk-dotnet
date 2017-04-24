@@ -53,8 +53,8 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <returns>UpdateCampaign</returns>
-        UpdateCampaign UpdateCampaignDestroy (string campaignId);
+        /// <returns></returns>
+        void UpdateCampaignDestroy (string campaignId);
 
         /// <summary>
         /// 
@@ -64,8 +64,8 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <returns>ApiResponse of UpdateCampaign</returns>
-        ApiResponse<UpdateCampaign> UpdateCampaignDestroyWithHttpInfo (string campaignId);
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> UpdateCampaignDestroyWithHttpInfo (string campaignId);
         /// <summary>
         /// 
         /// </summary>
@@ -73,9 +73,9 @@ namespace deployment_service.Api
         /// The APIs for creating and manipulating update campaigns.
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;List all update campaigns.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-campaign-properties-all-properties-are-filterable\&quot;&gt;By campaign properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example: &lt;code&gt;state&#x3D;[draft|scheduled|devicefectch|devicecopy|devicecopycomplete|publishing|deploying|deployed|manifestremoved|expired]&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;state&#x3D;deployed&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;state%3Ddeployed%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt; (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>UpdateCampaignPage</returns>
@@ -88,9 +88,9 @@ namespace deployment_service.Api
         /// The APIs for creating and manipulating update campaigns.
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;List all update campaigns.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-campaign-properties-all-properties-are-filterable\&quot;&gt;By campaign properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example: &lt;code&gt;state&#x3D;[draft|scheduled|devicefectch|devicecopy|devicecopycomplete|publishing|deploying|deployed|manifestremoved|expired]&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;state&#x3D;deployed&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;state%3Ddeployed%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt; (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of UpdateCampaignPage</returns>
@@ -193,8 +193,8 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <returns>Task of UpdateCampaign</returns>
-        System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignDestroyAsync (string campaignId);
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task UpdateCampaignDestroyAsync (string campaignId);
 
         /// <summary>
         /// 
@@ -204,8 +204,8 @@ namespace deployment_service.Api
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignDestroyAsyncWithHttpInfo (string campaignId);
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> UpdateCampaignDestroyAsyncWithHttpInfo (string campaignId);
         /// <summary>
         /// 
         /// </summary>
@@ -213,9 +213,9 @@ namespace deployment_service.Api
         /// The APIs for creating and manipulating update campaigns.
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;List all update campaigns.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-campaign-properties-all-properties-are-filterable\&quot;&gt;By campaign properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example: &lt;code&gt;state&#x3D;[draft|scheduled|devicefectch|devicecopy|devicecopycomplete|publishing|deploying|deployed|manifestremoved|expired]&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;state&#x3D;deployed&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;state%3Ddeployed%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt; (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of UpdateCampaignPage</returns>
@@ -228,9 +228,9 @@ namespace deployment_service.Api
         /// The APIs for creating and manipulating update campaigns.
         /// </remarks>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;List all update campaigns.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-campaign-properties-all-properties-are-filterable\&quot;&gt;By campaign properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example: &lt;code&gt;state&#x3D;[draft|scheduled|devicefectch|devicecopy|devicecopycomplete|publishing|deploying|deployed|manifestremoved|expired]&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;state&#x3D;deployed&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;state%3Ddeployed%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt; (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (UpdateCampaignPage)</returns>
@@ -583,11 +583,10 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <returns>UpdateCampaign</returns>
-        public UpdateCampaign UpdateCampaignDestroy (string campaignId)
+        /// <returns></returns>
+        public void UpdateCampaignDestroy (string campaignId)
         {
-             ApiResponse<UpdateCampaign> localVarResponse = UpdateCampaignDestroyWithHttpInfo(campaignId);
-             return localVarResponse.Data;
+             UpdateCampaignDestroyWithHttpInfo(campaignId);
         }
 
         /// <summary>
@@ -595,8 +594,8 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <returns>ApiResponse of UpdateCampaign</returns>
-        public ApiResponse< UpdateCampaign > UpdateCampaignDestroyWithHttpInfo (string campaignId)
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> UpdateCampaignDestroyWithHttpInfo (string campaignId)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -647,10 +646,10 @@ namespace deployment_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<UpdateCampaign>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
             
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
         }
 
         /// <summary>
@@ -658,11 +657,10 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <returns>Task of UpdateCampaign</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignDestroyAsync (string campaignId)
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task UpdateCampaignDestroyAsync (string campaignId)
         {
-             ApiResponse<UpdateCampaign> localVarResponse = await UpdateCampaignDestroyAsyncWithHttpInfo(campaignId);
-             return localVarResponse.Data;
+             await UpdateCampaignDestroyAsyncWithHttpInfo(campaignId);
 
         }
 
@@ -671,8 +669,8 @@ namespace deployment_service.Api
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignDestroyAsyncWithHttpInfo (string campaignId)
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> UpdateCampaignDestroyAsyncWithHttpInfo (string campaignId)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -722,19 +720,19 @@ namespace deployment_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<UpdateCampaign>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
             
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
         }
 
         /// <summary>
         ///  The APIs for creating and manipulating update campaigns.
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;List all update campaigns.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-campaign-properties-all-properties-are-filterable\&quot;&gt;By campaign properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example: &lt;code&gt;state&#x3D;[draft|scheduled|devicefectch|devicecopy|devicecopycomplete|publishing|deploying|deployed|manifestremoved|expired]&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;state&#x3D;deployed&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;state%3Ddeployed%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt; (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>UpdateCampaignPage</returns>
@@ -748,9 +746,9 @@ namespace deployment_service.Api
         ///  The APIs for creating and manipulating update campaigns.
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;List all update campaigns.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-campaign-properties-all-properties-are-filterable\&quot;&gt;By campaign properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example: &lt;code&gt;state&#x3D;[draft|scheduled|devicefectch|devicecopy|devicecopycomplete|publishing|deploying|deployed|manifestremoved|expired]&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;state&#x3D;deployed&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;state%3Ddeployed%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt; (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of UpdateCampaignPage</returns>
@@ -816,9 +814,9 @@ namespace deployment_service.Api
         ///  The APIs for creating and manipulating update campaigns.
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;List all update campaigns.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-campaign-properties-all-properties-are-filterable\&quot;&gt;By campaign properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example: &lt;code&gt;state&#x3D;[draft|scheduled|devicefectch|devicecopy|devicecopycomplete|publishing|deploying|deployed|manifestremoved|expired]&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;state&#x3D;deployed&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;state%3Ddeployed%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt; (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of UpdateCampaignPage</returns>
@@ -833,9 +831,9 @@ namespace deployment_service.Api
         ///  The APIs for creating and manipulating update campaigns.
         /// </summary>
         /// <exception cref="deployment_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
         /// <param name="filter">URL encoded query string parameter to filter returned data. Update campaigns are used to control firmware update to a list of devices specified by a filter.  &lt;/p&gt; &lt;p&gt;List all update campaigns.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-campaign-properties-all-properties-are-filterable\&quot;&gt;By campaign properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example: &lt;code&gt;state&#x3D;[draft|scheduled|devicefectch|devicecopy|devicecopycomplete|publishing|deploying|deployed|manifestremoved|expired]&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;state&#x3D;deployed&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;state%3Ddeployed%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt; (optional)</param>
         /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (UpdateCampaignPage)</returns>

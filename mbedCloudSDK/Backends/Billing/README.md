@@ -105,6 +105,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**V1ImportsActivedevicesGet**](docs/DefaultApi.md#v1importsactivedevicesget) | **GET** /v1/imports/activedevices | Active devices
 *DefaultApi* | [**V1ImportsGet**](docs/DefaultApi.md#v1importsget) | **GET** /v1/imports | Import log
 *DefaultApi* | [**V1MetricsGet**](docs/DefaultApi.md#v1metricsget) | **GET** /v1/metrics | System metrics
+*DefaultApi* | [**V1ReportActivedevicesGet**](docs/DefaultApi.md#v1reportactivedevicesget) | **GET** /v1/report/activedevices | Active devices per account in reporting
 *DefaultApi* | [**V1ReportGet**](docs/DefaultApi.md#v1reportget) | **GET** /v1/report | Billing report
 *DefaultApi* | [**V1ServicesGet**](docs/DefaultApi.md#v1servicesget) | **GET** /v1/services | Known services
 *DefaultApi* | [**V1StatsGet**](docs/DefaultApi.md#v1statsget) | **GET** /v1/stats | Account billing data

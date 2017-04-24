@@ -30,9 +30,9 @@ namespace deployment_service.Model
     public partial class UpdateCampaignPostRequest :  IEquatable<UpdateCampaignPostRequest>, IValidatableObject
     {
         /// <summary>
-        /// The state of the campaign
+        /// The state of the campaign.
         /// </summary>
-        /// <value>The state of the campaign</value>
+        /// <value>The state of the campaign.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StateEnum
         {
@@ -99,9 +99,9 @@ namespace deployment_service.Model
         }
 
         /// <summary>
-        /// The state of the campaign
+        /// The state of the campaign.
         /// </summary>
-        /// <value>The state of the campaign</value>
+        /// <value>The state of the campaign.</value>
         [DataMember(Name="state", EmitDefaultValue=false)]
         public StateEnum? State { get; set; }
         /// <summary>
@@ -112,13 +112,13 @@ namespace deployment_service.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateCampaignPostRequest" /> class.
         /// </summary>
-        /// <param name="Description">An optional description of the campaign.</param>
-        /// <param name="When">The timestamp at which update campaign scheduled to start.</param>
-        /// <param name="_Object">The API resource entity.</param>
+        /// <param name="Description">An optional description of the campaign..</param>
+        /// <param name="When">The timestamp at which update campaign scheduled to start..</param>
+        /// <param name="_Object">The API resource entity..</param>
         /// <param name="RootManifestId">RootManifestId.</param>
-        /// <param name="State">The state of the campaign.</param>
-        /// <param name="DeviceFilter">The filter for the devices the campaign will target (required).</param>
-        /// <param name="Name">A name for this campaign (required).</param>
+        /// <param name="State">The state of the campaign..</param>
+        /// <param name="DeviceFilter">The filter for the devices the campaign will target. (required).</param>
+        /// <param name="Name">A name for this campaign. (required).</param>
         public UpdateCampaignPostRequest(string Description = default(string), string When = default(string), string _Object = default(string), string RootManifestId = default(string), StateEnum? State = default(StateEnum?), string DeviceFilter = default(string), string Name = default(string))
         {
             // to ensure "DeviceFilter" is required (not null)
@@ -147,21 +147,21 @@ namespace deployment_service.Model
         }
         
         /// <summary>
-        /// An optional description of the campaign
+        /// An optional description of the campaign.
         /// </summary>
-        /// <value>An optional description of the campaign</value>
+        /// <value>An optional description of the campaign.</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
         /// <summary>
-        /// The timestamp at which update campaign scheduled to start
+        /// The timestamp at which update campaign scheduled to start.
         /// </summary>
-        /// <value>The timestamp at which update campaign scheduled to start</value>
+        /// <value>The timestamp at which update campaign scheduled to start.</value>
         [DataMember(Name="when", EmitDefaultValue=false)]
         public string When { get; set; }
         /// <summary>
-        /// The API resource entity
+        /// The API resource entity.
         /// </summary>
-        /// <value>The API resource entity</value>
+        /// <value>The API resource entity.</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
         /// <summary>
@@ -170,15 +170,15 @@ namespace deployment_service.Model
         [DataMember(Name="root_manifest_id", EmitDefaultValue=false)]
         public string RootManifestId { get; set; }
         /// <summary>
-        /// The filter for the devices the campaign will target
+        /// The filter for the devices the campaign will target.
         /// </summary>
-        /// <value>The filter for the devices the campaign will target</value>
+        /// <value>The filter for the devices the campaign will target.</value>
         [DataMember(Name="device_filter", EmitDefaultValue=false)]
         public string DeviceFilter { get; set; }
         /// <summary>
-        /// A name for this campaign
+        /// A name for this campaign.
         /// </summary>
-        /// <value>A name for this campaign</value>
+        /// <value>A name for this campaign.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
