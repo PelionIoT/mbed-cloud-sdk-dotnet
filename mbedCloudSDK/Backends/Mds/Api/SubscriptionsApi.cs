@@ -44,6 +44,117 @@ namespace mds.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> V2SubscriptionsDeleteWithHttpInfo ();
         /// <summary>
+        /// Delete subscriptions from an endpoint
+        /// </summary>
+        /// <remarks>
+        /// Deletes all resource subscriptions in a single endpoint.
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <returns></returns>
+        void V2SubscriptionsDeviceIdDelete (string deviceId);
+
+        /// <summary>
+        /// Delete subscriptions from an endpoint
+        /// </summary>
+        /// <remarks>
+        /// Deletes all resource subscriptions in a single endpoint.
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> V2SubscriptionsDeviceIdDeleteWithHttpInfo (string deviceId);
+        /// <summary>
+        /// Read endpoints subscriptions
+        /// </summary>
+        /// <remarks>
+        /// Lists all subscribed resources from a single endpoint.
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
+        /// <returns></returns>
+        void V2SubscriptionsDeviceIdGet (string deviceId);
+
+        /// <summary>
+        /// Read endpoints subscriptions
+        /// </summary>
+        /// <remarks>
+        /// Lists all subscribed resources from a single endpoint.
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> V2SubscriptionsDeviceIdGetWithHttpInfo (string deviceId);
+        /// <summary>
+        /// Remove a subscription
+        /// </summary>
+        /// <remarks>
+        /// To remove an existing subscription from a resource path. 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns></returns>
+        void V2SubscriptionsDeviceIdResourcePathDelete (string deviceId, string resourcePath);
+
+        /// <summary>
+        /// Remove a subscription
+        /// </summary>
+        /// <remarks>
+        /// To remove an existing subscription from a resource path. 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> V2SubscriptionsDeviceIdResourcePathDeleteWithHttpInfo (string deviceId, string resourcePath);
+        /// <summary>
+        /// Read subscription status
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns></returns>
+        void V2SubscriptionsDeviceIdResourcePathGet (string deviceId, string resourcePath);
+
+        /// <summary>
+        /// Read subscription status
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> V2SubscriptionsDeviceIdResourcePathGetWithHttpInfo (string deviceId, string resourcePath);
+        /// <summary>
+        /// Subscribe to a resource path
+        /// </summary>
+        /// <remarks>
+        /// The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns></returns>
+        void V2SubscriptionsDeviceIdResourcePathPut (string deviceId, string resourcePath);
+
+        /// <summary>
+        /// Subscribe to a resource path
+        /// </summary>
+        /// <remarks>
+        /// The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> V2SubscriptionsDeviceIdResourcePathPutWithHttpInfo (string deviceId, string resourcePath);
+        /// <summary>
         /// Get pre-subscriptions
         /// </summary>
         /// <remarks>
@@ -62,117 +173,6 @@ namespace mds.Api
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> V2SubscriptionsGetWithHttpInfo ();
-        /// <summary>
-        /// Delete subscriptions from an endpoint
-        /// </summary>
-        /// <remarks>
-        /// Deletes all resource subscriptions in a single endpoint.
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns></returns>
-        void V2SubscriptionsIdDelete (string id);
-
-        /// <summary>
-        /// Delete subscriptions from an endpoint
-        /// </summary>
-        /// <remarks>
-        /// Deletes all resource subscriptions in a single endpoint.
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V2SubscriptionsIdDeleteWithHttpInfo (string id);
-        /// <summary>
-        /// Read endpoints subscriptions
-        /// </summary>
-        /// <remarks>
-        /// Lists all subscribed resources from a single endpoint.
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns></returns>
-        void V2SubscriptionsIdGet (string id);
-
-        /// <summary>
-        /// Read endpoints subscriptions
-        /// </summary>
-        /// <remarks>
-        /// Lists all subscribed resources from a single endpoint.
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V2SubscriptionsIdGetWithHttpInfo (string id);
-        /// <summary>
-        /// Remove a subscription
-        /// </summary>
-        /// <remarks>
-        /// To remove an existing subscription from a resource path. 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns></returns>
-        void V2SubscriptionsIdResourcePathDelete (string id, string resourcePath);
-
-        /// <summary>
-        /// Remove a subscription
-        /// </summary>
-        /// <remarks>
-        /// To remove an existing subscription from a resource path. 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V2SubscriptionsIdResourcePathDeleteWithHttpInfo (string id, string resourcePath);
-        /// <summary>
-        /// Read subscription status
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns></returns>
-        void V2SubscriptionsIdResourcePathGet (string id, string resourcePath);
-
-        /// <summary>
-        /// Read subscription status
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V2SubscriptionsIdResourcePathGetWithHttpInfo (string id, string resourcePath);
-        /// <summary>
-        /// Subscribe to a resource path
-        /// </summary>
-        /// <remarks>
-        /// The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns></returns>
-        void V2SubscriptionsIdResourcePathPut (string id, string resourcePath);
-
-        /// <summary>
-        /// Subscribe to a resource path
-        /// </summary>
-        /// <remarks>
-        /// The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V2SubscriptionsIdResourcePathPutWithHttpInfo (string id, string resourcePath);
         /// <summary>
         /// Set pre-subscriptions
         /// </summary>
@@ -216,6 +216,117 @@ namespace mds.Api
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeleteAsyncWithHttpInfo ();
         /// <summary>
+        /// Delete subscriptions from an endpoint
+        /// </summary>
+        /// <remarks>
+        /// Deletes all resource subscriptions in a single endpoint.
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task V2SubscriptionsDeviceIdDeleteAsync (string deviceId);
+
+        /// <summary>
+        /// Delete subscriptions from an endpoint
+        /// </summary>
+        /// <remarks>
+        /// Deletes all resource subscriptions in a single endpoint.
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeviceIdDeleteAsyncWithHttpInfo (string deviceId);
+        /// <summary>
+        /// Read endpoints subscriptions
+        /// </summary>
+        /// <remarks>
+        /// Lists all subscribed resources from a single endpoint.
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task V2SubscriptionsDeviceIdGetAsync (string deviceId);
+
+        /// <summary>
+        /// Read endpoints subscriptions
+        /// </summary>
+        /// <remarks>
+        /// Lists all subscribed resources from a single endpoint.
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeviceIdGetAsyncWithHttpInfo (string deviceId);
+        /// <summary>
+        /// Remove a subscription
+        /// </summary>
+        /// <remarks>
+        /// To remove an existing subscription from a resource path. 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task V2SubscriptionsDeviceIdResourcePathDeleteAsync (string deviceId, string resourcePath);
+
+        /// <summary>
+        /// Remove a subscription
+        /// </summary>
+        /// <remarks>
+        /// To remove an existing subscription from a resource path. 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeviceIdResourcePathDeleteAsyncWithHttpInfo (string deviceId, string resourcePath);
+        /// <summary>
+        /// Read subscription status
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task V2SubscriptionsDeviceIdResourcePathGetAsync (string deviceId, string resourcePath);
+
+        /// <summary>
+        /// Read subscription status
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeviceIdResourcePathGetAsyncWithHttpInfo (string deviceId, string resourcePath);
+        /// <summary>
+        /// Subscribe to a resource path
+        /// </summary>
+        /// <remarks>
+        /// The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task V2SubscriptionsDeviceIdResourcePathPutAsync (string deviceId, string resourcePath);
+
+        /// <summary>
+        /// Subscribe to a resource path
+        /// </summary>
+        /// <remarks>
+        /// The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeviceIdResourcePathPutAsyncWithHttpInfo (string deviceId, string resourcePath);
+        /// <summary>
         /// Get pre-subscriptions
         /// </summary>
         /// <remarks>
@@ -234,117 +345,6 @@ namespace mds.Api
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsGetAsyncWithHttpInfo ();
-        /// <summary>
-        /// Delete subscriptions from an endpoint
-        /// </summary>
-        /// <remarks>
-        /// Deletes all resource subscriptions in a single endpoint.
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V2SubscriptionsIdDeleteAsync (string id);
-
-        /// <summary>
-        /// Delete subscriptions from an endpoint
-        /// </summary>
-        /// <remarks>
-        /// Deletes all resource subscriptions in a single endpoint.
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdDeleteAsyncWithHttpInfo (string id);
-        /// <summary>
-        /// Read endpoints subscriptions
-        /// </summary>
-        /// <remarks>
-        /// Lists all subscribed resources from a single endpoint.
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V2SubscriptionsIdGetAsync (string id);
-
-        /// <summary>
-        /// Read endpoints subscriptions
-        /// </summary>
-        /// <remarks>
-        /// Lists all subscribed resources from a single endpoint.
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdGetAsyncWithHttpInfo (string id);
-        /// <summary>
-        /// Remove a subscription
-        /// </summary>
-        /// <remarks>
-        /// To remove an existing subscription from a resource path. 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V2SubscriptionsIdResourcePathDeleteAsync (string id, string resourcePath);
-
-        /// <summary>
-        /// Remove a subscription
-        /// </summary>
-        /// <remarks>
-        /// To remove an existing subscription from a resource path. 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdResourcePathDeleteAsyncWithHttpInfo (string id, string resourcePath);
-        /// <summary>
-        /// Read subscription status
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V2SubscriptionsIdResourcePathGetAsync (string id, string resourcePath);
-
-        /// <summary>
-        /// Read subscription status
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdResourcePathGetAsyncWithHttpInfo (string id, string resourcePath);
-        /// <summary>
-        /// Subscribe to a resource path
-        /// </summary>
-        /// <remarks>
-        /// The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V2SubscriptionsIdResourcePathPutAsync (string id, string resourcePath);
-
-        /// <summary>
-        /// Subscribe to a resource path
-        /// </summary>
-        /// <remarks>
-        /// The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdResourcePathPutAsyncWithHttpInfo (string id, string resourcePath);
         /// <summary>
         /// Set pre-subscriptions
         /// </summary>
@@ -617,6 +617,792 @@ namespace mds.Api
         }
 
         /// <summary>
+        /// Delete subscriptions from an endpoint Deletes all resource subscriptions in a single endpoint.
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <returns></returns>
+        public void V2SubscriptionsDeviceIdDelete (string deviceId)
+        {
+             V2SubscriptionsDeviceIdDeleteWithHttpInfo(deviceId);
+        }
+
+        /// <summary>
+        /// Delete subscriptions from an endpoint Deletes all resource subscriptions in a single endpoint.
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> V2SubscriptionsDeviceIdDeleteWithHttpInfo (string deviceId)
+        {
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdDelete");
+
+            var localVarPath = "/v2/subscriptions/{device-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("V2SubscriptionsDeviceIdDelete", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Delete subscriptions from an endpoint Deletes all resource subscriptions in a single endpoint.
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task V2SubscriptionsDeviceIdDeleteAsync (string deviceId)
+        {
+             await V2SubscriptionsDeviceIdDeleteAsyncWithHttpInfo(deviceId);
+
+        }
+
+        /// <summary>
+        /// Delete subscriptions from an endpoint Deletes all resource subscriptions in a single endpoint.
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeviceIdDeleteAsyncWithHttpInfo (string deviceId)
+        {
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdDelete");
+
+            var localVarPath = "/v2/subscriptions/{device-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("V2SubscriptionsDeviceIdDelete", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Read endpoints subscriptions Lists all subscribed resources from a single endpoint.
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
+        /// <returns></returns>
+        public void V2SubscriptionsDeviceIdGet (string deviceId)
+        {
+             V2SubscriptionsDeviceIdGetWithHttpInfo(deviceId);
+        }
+
+        /// <summary>
+        /// Read endpoints subscriptions Lists all subscribed resources from a single endpoint.
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> V2SubscriptionsDeviceIdGetWithHttpInfo (string deviceId)
+        {
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdGet");
+
+            var localVarPath = "/v2/subscriptions/{device-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "text/uri-list"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("V2SubscriptionsDeviceIdGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Read endpoints subscriptions Lists all subscribed resources from a single endpoint.
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task V2SubscriptionsDeviceIdGetAsync (string deviceId)
+        {
+             await V2SubscriptionsDeviceIdGetAsyncWithHttpInfo(deviceId);
+
+        }
+
+        /// <summary>
+        /// Read endpoints subscriptions Lists all subscribed resources from a single endpoint.
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeviceIdGetAsyncWithHttpInfo (string deviceId)
+        {
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdGet");
+
+            var localVarPath = "/v2/subscriptions/{device-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "text/uri-list"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("V2SubscriptionsDeviceIdGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Remove a subscription To remove an existing subscription from a resource path. 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns></returns>
+        public void V2SubscriptionsDeviceIdResourcePathDelete (string deviceId, string resourcePath)
+        {
+             V2SubscriptionsDeviceIdResourcePathDeleteWithHttpInfo(deviceId, resourcePath);
+        }
+
+        /// <summary>
+        /// Remove a subscription To remove an existing subscription from a resource path. 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> V2SubscriptionsDeviceIdResourcePathDeleteWithHttpInfo (string deviceId, string resourcePath)
+        {
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathDelete");
+            // verify the required parameter 'resourcePath' is set
+            if (resourcePath == null)
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathDelete");
+
+            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("V2SubscriptionsDeviceIdResourcePathDelete", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Remove a subscription To remove an existing subscription from a resource path. 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task V2SubscriptionsDeviceIdResourcePathDeleteAsync (string deviceId, string resourcePath)
+        {
+             await V2SubscriptionsDeviceIdResourcePathDeleteAsyncWithHttpInfo(deviceId, resourcePath);
+
+        }
+
+        /// <summary>
+        /// Remove a subscription To remove an existing subscription from a resource path. 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeviceIdResourcePathDeleteAsyncWithHttpInfo (string deviceId, string resourcePath)
+        {
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathDelete");
+            // verify the required parameter 'resourcePath' is set
+            if (resourcePath == null)
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathDelete");
+
+            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("V2SubscriptionsDeviceIdResourcePathDelete", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Read subscription status 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns></returns>
+        public void V2SubscriptionsDeviceIdResourcePathGet (string deviceId, string resourcePath)
+        {
+             V2SubscriptionsDeviceIdResourcePathGetWithHttpInfo(deviceId, resourcePath);
+        }
+
+        /// <summary>
+        /// Read subscription status 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> V2SubscriptionsDeviceIdResourcePathGetWithHttpInfo (string deviceId, string resourcePath)
+        {
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathGet");
+            // verify the required parameter 'resourcePath' is set
+            if (resourcePath == null)
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathGet");
+
+            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("V2SubscriptionsDeviceIdResourcePathGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Read subscription status 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task V2SubscriptionsDeviceIdResourcePathGetAsync (string deviceId, string resourcePath)
+        {
+             await V2SubscriptionsDeviceIdResourcePathGetAsyncWithHttpInfo(deviceId, resourcePath);
+
+        }
+
+        /// <summary>
+        /// Read subscription status 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeviceIdResourcePathGetAsyncWithHttpInfo (string deviceId, string resourcePath)
+        {
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathGet");
+            // verify the required parameter 'resourcePath' is set
+            if (resourcePath == null)
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathGet");
+
+            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("V2SubscriptionsDeviceIdResourcePathGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Subscribe to a resource path The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns></returns>
+        public void V2SubscriptionsDeviceIdResourcePathPut (string deviceId, string resourcePath)
+        {
+             V2SubscriptionsDeviceIdResourcePathPutWithHttpInfo(deviceId, resourcePath);
+        }
+
+        /// <summary>
+        /// Subscribe to a resource path The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> V2SubscriptionsDeviceIdResourcePathPutWithHttpInfo (string deviceId, string resourcePath)
+        {
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathPut");
+            // verify the required parameter 'resourcePath' is set
+            if (resourcePath == null)
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathPut");
+
+            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("V2SubscriptionsDeviceIdResourcePathPut", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Subscribe to a resource path The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task V2SubscriptionsDeviceIdResourcePathPutAsync (string deviceId, string resourcePath)
+        {
+             await V2SubscriptionsDeviceIdResourcePathPutAsyncWithHttpInfo(deviceId, resourcePath);
+
+        }
+
+        /// <summary>
+        /// Subscribe to a resource path The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeviceIdResourcePathPutAsyncWithHttpInfo (string deviceId, string resourcePath)
+        {
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathPut");
+            // verify the required parameter 'resourcePath' is set
+            if (resourcePath == null)
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathPut");
+
+            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("V2SubscriptionsDeviceIdResourcePathPut", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
         /// Get pre-subscriptions You can retrieve the pre-subscription data by using a GET operation. The server returns with the same JSON structure  as described above. If there are no pre-subscribed resources, it returns with an empty array. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
@@ -745,792 +1531,6 @@ namespace mds.Api
             if (ExceptionFactory != null)
             {
                 Exception exception = ExceptionFactory("V2SubscriptionsGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        /// Delete subscriptions from an endpoint Deletes all resource subscriptions in a single endpoint.
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns></returns>
-        public void V2SubscriptionsIdDelete (string id)
-        {
-             V2SubscriptionsIdDeleteWithHttpInfo(id);
-        }
-
-        /// <summary>
-        /// Delete subscriptions from an endpoint Deletes all resource subscriptions in a single endpoint.
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V2SubscriptionsIdDeleteWithHttpInfo (string id)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling SubscriptionsApi->V2SubscriptionsIdDelete");
-
-            var localVarPath = "/v2/subscriptions/{id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2SubscriptionsIdDelete", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        /// Delete subscriptions from an endpoint Deletes all resource subscriptions in a single endpoint.
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V2SubscriptionsIdDeleteAsync (string id)
-        {
-             await V2SubscriptionsIdDeleteAsyncWithHttpInfo(id);
-
-        }
-
-        /// <summary>
-        /// Delete subscriptions from an endpoint Deletes all resource subscriptions in a single endpoint.
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdDeleteAsyncWithHttpInfo (string id)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling SubscriptionsApi->V2SubscriptionsIdDelete");
-
-            var localVarPath = "/v2/subscriptions/{id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2SubscriptionsIdDelete", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        /// Read endpoints subscriptions Lists all subscribed resources from a single endpoint.
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns></returns>
-        public void V2SubscriptionsIdGet (string id)
-        {
-             V2SubscriptionsIdGetWithHttpInfo(id);
-        }
-
-        /// <summary>
-        /// Read endpoints subscriptions Lists all subscribed resources from a single endpoint.
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V2SubscriptionsIdGetWithHttpInfo (string id)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling SubscriptionsApi->V2SubscriptionsIdGet");
-
-            var localVarPath = "/v2/subscriptions/{id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "text/uri-list"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2SubscriptionsIdGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        /// Read endpoints subscriptions Lists all subscribed resources from a single endpoint.
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V2SubscriptionsIdGetAsync (string id)
-        {
-             await V2SubscriptionsIdGetAsyncWithHttpInfo(id);
-
-        }
-
-        /// <summary>
-        /// Read endpoints subscriptions Lists all subscribed resources from a single endpoint.
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdGetAsyncWithHttpInfo (string id)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling SubscriptionsApi->V2SubscriptionsIdGet");
-
-            var localVarPath = "/v2/subscriptions/{id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "text/uri-list"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2SubscriptionsIdGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        /// Remove a subscription To remove an existing subscription from a resource path. 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns></returns>
-        public void V2SubscriptionsIdResourcePathDelete (string id, string resourcePath)
-        {
-             V2SubscriptionsIdResourcePathDeleteWithHttpInfo(id, resourcePath);
-        }
-
-        /// <summary>
-        /// Remove a subscription To remove an existing subscription from a resource path. 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V2SubscriptionsIdResourcePathDeleteWithHttpInfo (string id, string resourcePath)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathDelete");
-            // verify the required parameter 'resourcePath' is set
-            if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathDelete");
-
-            var localVarPath = "/v2/subscriptions/{id}/{resourcePath}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
-            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2SubscriptionsIdResourcePathDelete", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        /// Remove a subscription To remove an existing subscription from a resource path. 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V2SubscriptionsIdResourcePathDeleteAsync (string id, string resourcePath)
-        {
-             await V2SubscriptionsIdResourcePathDeleteAsyncWithHttpInfo(id, resourcePath);
-
-        }
-
-        /// <summary>
-        /// Remove a subscription To remove an existing subscription from a resource path. 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdResourcePathDeleteAsyncWithHttpInfo (string id, string resourcePath)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathDelete");
-            // verify the required parameter 'resourcePath' is set
-            if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathDelete");
-
-            var localVarPath = "/v2/subscriptions/{id}/{resourcePath}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
-            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2SubscriptionsIdResourcePathDelete", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        /// Read subscription status 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns></returns>
-        public void V2SubscriptionsIdResourcePathGet (string id, string resourcePath)
-        {
-             V2SubscriptionsIdResourcePathGetWithHttpInfo(id, resourcePath);
-        }
-
-        /// <summary>
-        /// Read subscription status 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V2SubscriptionsIdResourcePathGetWithHttpInfo (string id, string resourcePath)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathGet");
-            // verify the required parameter 'resourcePath' is set
-            if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathGet");
-
-            var localVarPath = "/v2/subscriptions/{id}/{resourcePath}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
-            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2SubscriptionsIdResourcePathGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        /// Read subscription status 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V2SubscriptionsIdResourcePathGetAsync (string id, string resourcePath)
-        {
-             await V2SubscriptionsIdResourcePathGetAsyncWithHttpInfo(id, resourcePath);
-
-        }
-
-        /// <summary>
-        /// Read subscription status 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdResourcePathGetAsyncWithHttpInfo (string id, string resourcePath)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathGet");
-            // verify the required parameter 'resourcePath' is set
-            if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathGet");
-
-            var localVarPath = "/v2/subscriptions/{id}/{resourcePath}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
-            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2SubscriptionsIdResourcePathGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        /// Subscribe to a resource path The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns></returns>
-        public void V2SubscriptionsIdResourcePathPut (string id, string resourcePath)
-        {
-             V2SubscriptionsIdResourcePathPutWithHttpInfo(id, resourcePath);
-        }
-
-        /// <summary>
-        /// Subscribe to a resource path The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V2SubscriptionsIdResourcePathPutWithHttpInfo (string id, string resourcePath)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathPut");
-            // verify the required parameter 'resourcePath' is set
-            if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathPut");
-
-            var localVarPath = "/v2/subscriptions/{id}/{resourcePath}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
-            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2SubscriptionsIdResourcePathPut", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        /// Subscribe to a resource path The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V2SubscriptionsIdResourcePathPutAsync (string id, string resourcePath)
-        {
-             await V2SubscriptionsIdResourcePathPutAsyncWithHttpInfo(id, resourcePath);
-
-        }
-
-        /// <summary>
-        /// Subscribe to a resource path The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsIdResourcePathPutAsyncWithHttpInfo (string id, string resourcePath)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathPut");
-            // verify the required parameter 'resourcePath' is set
-            if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsIdResourcePathPut");
-
-            var localVarPath = "/v2/subscriptions/{id}/{resourcePath}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
-            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2SubscriptionsIdResourcePathPut", localVarResponse);
                 if (exception != null) throw exception;
             }
 

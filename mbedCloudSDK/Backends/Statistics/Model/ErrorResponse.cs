@@ -33,12 +33,12 @@ namespace statistics.Model
         /// Initializes a new instance of the <see cref="ErrorResponse" /> class.
         /// </summary>
         /// <param name="Code">HTTP response code..</param>
-        /// <param name="Fields">Fields.</param>
+        /// <param name="Fields">Details of the error fields..</param>
         /// <param name="_Object">Response type, always \&quot;error\&quot;..</param>
         /// <param name="RequestId">Request ID..</param>
         /// <param name="Message">Description of the error..</param>
         /// <param name="Type">Type of error..</param>
-        public ErrorResponse(int? Code = default(int?), FieldsArray Fields = default(FieldsArray), string _Object = default(string), string RequestId = default(string), string Message = default(string), string Type = default(string))
+        public ErrorResponse(int? Code = default(int?), List<Field> Fields = default(List<Field>), string _Object = default(string), string RequestId = default(string), string Message = default(string), string Type = default(string))
         {
             this.Code = Code;
             this.Fields = Fields;
@@ -55,10 +55,11 @@ namespace statistics.Model
         [DataMember(Name="code", EmitDefaultValue=false)]
         public int? Code { get; set; }
         /// <summary>
-        /// Gets or Sets Fields
+        /// Details of the error fields.
         /// </summary>
+        /// <value>Details of the error fields.</value>
         [DataMember(Name="fields", EmitDefaultValue=false)]
-        public FieldsArray Fields { get; set; }
+        public List<Field> Fields { get; set; }
         /// <summary>
         /// Response type, always \&quot;error\&quot;.
         /// </summary>
@@ -141,7 +142,7 @@ namespace statistics.Model
                 (
                     this.Fields == other.Fields ||
                     this.Fields != null &&
-                    this.Fields.Equals(other.Fields)
+                    this.Fields.SequenceEqual(other.Fields)
                 ) && 
                 (
                     this._Object == other._Object ||

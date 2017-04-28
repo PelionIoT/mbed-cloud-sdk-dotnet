@@ -72,7 +72,7 @@ namespace iam.Api
         /// Create a new user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for creating a new user.
+        /// An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
@@ -84,7 +84,7 @@ namespace iam.Api
         /// Create a new user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for creating a new user.
+        /// An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
@@ -406,7 +406,7 @@ namespace iam.Api
         /// Create a new user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for creating a new user.
+        /// An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
@@ -418,7 +418,7 @@ namespace iam.Api
         /// Create a new user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for creating a new user.
+        /// An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
@@ -1151,7 +1151,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Create a new user. An endpoint for creating a new user.
+        /// Create a new user. An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
@@ -1164,7 +1164,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Create a new user. An endpoint for creating a new user.
+        /// Create a new user. An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
@@ -1238,7 +1238,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Create a new user. An endpoint for creating a new user.
+        /// Create a new user. An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
@@ -1252,7 +1252,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Create a new user. An endpoint for creating a new user.
+        /// Create a new user. An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>

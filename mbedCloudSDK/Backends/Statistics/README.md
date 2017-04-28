@@ -75,12 +75,12 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
 
             var apiInstance = new AccountApi();
-            var include = include_example;  // string | A comma-separated list of requested metrics. Supported values are:  - `transactions` - `bootstraps_successful` - `bootstraps_failed` - `bootstraps_pending` - `device_server_rest_api_success` - `device_server_rest_api_error` 
-            var interval = interval_example;  // string | Group data by this interval in days, weeks or hours. Sample values: 2h, 3w, 4d. 
+            var include = include_example;  // string | A comma-separated list of requested metrics. Supported values are:  - `transactions` - `registered_devices` - `bootstraps_successful` - `bootstraps_failed` - `bootstraps_pending` - `handshakes_successful` - `handshakes_failed` - `device_server_rest_api_success` - `device_server_rest_api_error` 
+            var interval = interval_example;  // string | Group data by this interval in days, weeks or hours. Sample values: 2h, 3w, 4d. Maximum allowed interval is 9999[h/w/d]. 
             var authorization = authorization_example;  // string | Bearer {Access Token}. A valid API Gateway access token. The token is validated and the associated account identifier is used to retrieve account-specific statistics. 
             var start = start_example;  // string | UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified.  (optional) 
             var end = end_example;  // string | UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified.  (optional) 
-            var period = period_example;  // string | Period. Fetch the data for the period in days, weeks or hours. Sample values: 2h, 3w, 4d. The parameter is not mandatory, if the start and end time are specified.  (optional) 
+            var period = period_example;  // string | Period. Fetch the data for the period in days, weeks or hours. Sample values: 2h, 3w, 4d. The parameter is not mandatory, if the start and end time are specified. Maximum allowed period is 9999[h/w/d].  (optional) 
 
             try
             {
@@ -113,7 +113,6 @@ Class | Method | HTTP request | Description
 
  - [Model.ErrorResponse](docs/ErrorResponse.md)
  - [Model.Field](docs/Field.md)
- - [Model.FieldsArray](docs/FieldsArray.md)
  - [Model.Metric](docs/Metric.md)
  - [Model.SuccessfulResponse](docs/SuccessfulResponse.md)
 

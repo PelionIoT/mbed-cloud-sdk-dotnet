@@ -113,10 +113,10 @@ namespace deployment_service.Model
         /// Initializes a new instance of the <see cref="UpdateCampaign" /> class.
         /// </summary>
         /// <param name="Description">An optional description of the campaign. (required).</param>
-        /// <param name="When">The timestamp at which update campaign scheduled to start..</param>
+        /// <param name="RootManifestId">RootManifestId (required).</param>
         /// <param name="CreatedAt">The time the object was created. (required).</param>
         /// <param name="_Object">The API resource entity. (required).</param>
-        /// <param name="RootManifestId">RootManifestId (required).</param>
+        /// <param name="When">The timestamp at which update campaign scheduled to start..</param>
         /// <param name="State">The state of the campaign. (required).</param>
         /// <param name="Finished">The timestamp when the update campaign finished..</param>
         /// <param name="Etag">The entity instance signature. (required).</param>
@@ -125,7 +125,7 @@ namespace deployment_service.Model
         /// <param name="Id">The ID of the campaign. (required).</param>
         /// <param name="DeviceFilter">The filter for the devices the campaign will target. (required).</param>
         /// <param name="Name">A name for this campaign. (required).</param>
-        public UpdateCampaign(string Description = default(string), string When = default(string), string CreatedAt = default(string), string _Object = default(string), string RootManifestId = default(string), StateEnum? State = default(StateEnum?), string Finished = default(string), string Etag = default(string), string RootManifestUrl = default(string), DateTime? StartedAt = default(DateTime?), string Id = default(string), string DeviceFilter = default(string), string Name = default(string))
+        public UpdateCampaign(string Description = default(string), string RootManifestId = default(string), string CreatedAt = default(string), string _Object = default(string), string When = default(string), StateEnum? State = default(StateEnum?), string Finished = default(string), string Etag = default(string), string RootManifestUrl = default(string), DateTime? StartedAt = default(DateTime?), string Id = default(string), string DeviceFilter = default(string), string Name = default(string))
         {
             // to ensure "Description" is required (not null)
             if (Description == null)
@@ -135,6 +135,15 @@ namespace deployment_service.Model
             else
             {
                 this.Description = Description;
+            }
+            // to ensure "RootManifestId" is required (not null)
+            if (RootManifestId == null)
+            {
+                throw new InvalidDataException("RootManifestId is a required property for UpdateCampaign and cannot be null");
+            }
+            else
+            {
+                this.RootManifestId = RootManifestId;
             }
             // to ensure "CreatedAt" is required (not null)
             if (CreatedAt == null)
@@ -153,15 +162,6 @@ namespace deployment_service.Model
             else
             {
                 this._Object = _Object;
-            }
-            // to ensure "RootManifestId" is required (not null)
-            if (RootManifestId == null)
-            {
-                throw new InvalidDataException("RootManifestId is a required property for UpdateCampaign and cannot be null");
-            }
-            else
-            {
-                this.RootManifestId = RootManifestId;
             }
             // to ensure "State" is required (not null)
             if (State == null)
@@ -229,11 +229,10 @@ namespace deployment_service.Model
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
         /// <summary>
-        /// The timestamp at which update campaign scheduled to start.
+        /// Gets or Sets RootManifestId
         /// </summary>
-        /// <value>The timestamp at which update campaign scheduled to start.</value>
-        [DataMember(Name="when", EmitDefaultValue=false)]
-        public string When { get; set; }
+        [DataMember(Name="root_manifest_id", EmitDefaultValue=false)]
+        public string RootManifestId { get; set; }
         /// <summary>
         /// The time the object was created.
         /// </summary>
@@ -247,10 +246,11 @@ namespace deployment_service.Model
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
         /// <summary>
-        /// Gets or Sets RootManifestId
+        /// The timestamp at which update campaign scheduled to start.
         /// </summary>
-        [DataMember(Name="root_manifest_id", EmitDefaultValue=false)]
-        public string RootManifestId { get; set; }
+        /// <value>The timestamp at which update campaign scheduled to start.</value>
+        [DataMember(Name="when", EmitDefaultValue=false)]
+        public string When { get; set; }
         /// <summary>
         /// The timestamp when the update campaign finished.
         /// </summary>
@@ -300,10 +300,10 @@ namespace deployment_service.Model
             var sb = new StringBuilder();
             sb.Append("class UpdateCampaign {\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  When: ").Append(When).Append("\n");
+            sb.Append("  RootManifestId: ").Append(RootManifestId).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
-            sb.Append("  RootManifestId: ").Append(RootManifestId).Append("\n");
+            sb.Append("  When: ").Append(When).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  Finished: ").Append(Finished).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
@@ -354,9 +354,9 @@ namespace deployment_service.Model
                     this.Description.Equals(other.Description)
                 ) && 
                 (
-                    this.When == other.When ||
-                    this.When != null &&
-                    this.When.Equals(other.When)
+                    this.RootManifestId == other.RootManifestId ||
+                    this.RootManifestId != null &&
+                    this.RootManifestId.Equals(other.RootManifestId)
                 ) && 
                 (
                     this.CreatedAt == other.CreatedAt ||
@@ -369,9 +369,9 @@ namespace deployment_service.Model
                     this._Object.Equals(other._Object)
                 ) && 
                 (
-                    this.RootManifestId == other.RootManifestId ||
-                    this.RootManifestId != null &&
-                    this.RootManifestId.Equals(other.RootManifestId)
+                    this.When == other.When ||
+                    this.When != null &&
+                    this.When.Equals(other.When)
                 ) && 
                 (
                     this.State == other.State ||
@@ -428,14 +428,14 @@ namespace deployment_service.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.Description != null)
                     hash = hash * 59 + this.Description.GetHashCode();
-                if (this.When != null)
-                    hash = hash * 59 + this.When.GetHashCode();
+                if (this.RootManifestId != null)
+                    hash = hash * 59 + this.RootManifestId.GetHashCode();
                 if (this.CreatedAt != null)
                     hash = hash * 59 + this.CreatedAt.GetHashCode();
                 if (this._Object != null)
                     hash = hash * 59 + this._Object.GetHashCode();
-                if (this.RootManifestId != null)
-                    hash = hash * 59 + this.RootManifestId.GetHashCode();
+                if (this.When != null)
+                    hash = hash * 59 + this.When.GetHashCode();
                 if (this.State != null)
                     hash = hash * 59 + this.State.GetHashCode();
                 if (this.Finished != null)

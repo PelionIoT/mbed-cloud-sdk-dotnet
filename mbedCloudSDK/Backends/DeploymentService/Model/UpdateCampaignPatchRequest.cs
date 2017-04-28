@@ -108,18 +108,18 @@ namespace deployment_service.Model
         /// Initializes a new instance of the <see cref="UpdateCampaignPatchRequest" /> class.
         /// </summary>
         /// <param name="Description">An optional description of the campaign..</param>
-        /// <param name="When">The timestamp at which update campaign scheduled to start..</param>
-        /// <param name="_Object">The API resource entity..</param>
         /// <param name="RootManifestId">RootManifestId.</param>
+        /// <param name="_Object">The API resource entity..</param>
+        /// <param name="When">The timestamp at which update campaign scheduled to start..</param>
         /// <param name="State">The state of the campaign..</param>
         /// <param name="DeviceFilter">The filter for the devices the campaign will target..</param>
         /// <param name="Name">A name for this campaign..</param>
-        public UpdateCampaignPatchRequest(string Description = default(string), string When = default(string), string _Object = default(string), string RootManifestId = default(string), StateEnum? State = default(StateEnum?), string DeviceFilter = default(string), string Name = default(string))
+        public UpdateCampaignPatchRequest(string Description = default(string), string RootManifestId = default(string), string _Object = default(string), string When = default(string), StateEnum? State = default(StateEnum?), string DeviceFilter = default(string), string Name = default(string))
         {
             this.Description = Description;
-            this.When = When;
-            this._Object = _Object;
             this.RootManifestId = RootManifestId;
+            this._Object = _Object;
+            this.When = When;
             this.State = State;
             this.DeviceFilter = DeviceFilter;
             this.Name = Name;
@@ -132,11 +132,10 @@ namespace deployment_service.Model
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
         /// <summary>
-        /// The timestamp at which update campaign scheduled to start.
+        /// Gets or Sets RootManifestId
         /// </summary>
-        /// <value>The timestamp at which update campaign scheduled to start.</value>
-        [DataMember(Name="when", EmitDefaultValue=false)]
-        public string When { get; set; }
+        [DataMember(Name="root_manifest_id", EmitDefaultValue=false)]
+        public string RootManifestId { get; set; }
         /// <summary>
         /// The API resource entity.
         /// </summary>
@@ -144,10 +143,11 @@ namespace deployment_service.Model
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
         /// <summary>
-        /// Gets or Sets RootManifestId
+        /// The timestamp at which update campaign scheduled to start.
         /// </summary>
-        [DataMember(Name="root_manifest_id", EmitDefaultValue=false)]
-        public string RootManifestId { get; set; }
+        /// <value>The timestamp at which update campaign scheduled to start.</value>
+        [DataMember(Name="when", EmitDefaultValue=false)]
+        public string When { get; set; }
         /// <summary>
         /// The filter for the devices the campaign will target.
         /// </summary>
@@ -169,9 +169,9 @@ namespace deployment_service.Model
             var sb = new StringBuilder();
             sb.Append("class UpdateCampaignPatchRequest {\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  When: ").Append(When).Append("\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  RootManifestId: ").Append(RootManifestId).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
+            sb.Append("  When: ").Append(When).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  DeviceFilter: ").Append(DeviceFilter).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
@@ -217,9 +217,9 @@ namespace deployment_service.Model
                     this.Description.Equals(other.Description)
                 ) && 
                 (
-                    this.When == other.When ||
-                    this.When != null &&
-                    this.When.Equals(other.When)
+                    this.RootManifestId == other.RootManifestId ||
+                    this.RootManifestId != null &&
+                    this.RootManifestId.Equals(other.RootManifestId)
                 ) && 
                 (
                     this._Object == other._Object ||
@@ -227,9 +227,9 @@ namespace deployment_service.Model
                     this._Object.Equals(other._Object)
                 ) && 
                 (
-                    this.RootManifestId == other.RootManifestId ||
-                    this.RootManifestId != null &&
-                    this.RootManifestId.Equals(other.RootManifestId)
+                    this.When == other.When ||
+                    this.When != null &&
+                    this.When.Equals(other.When)
                 ) && 
                 (
                     this.State == other.State ||
@@ -261,12 +261,12 @@ namespace deployment_service.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.Description != null)
                     hash = hash * 59 + this.Description.GetHashCode();
-                if (this.When != null)
-                    hash = hash * 59 + this.When.GetHashCode();
-                if (this._Object != null)
-                    hash = hash * 59 + this._Object.GetHashCode();
                 if (this.RootManifestId != null)
                     hash = hash * 59 + this.RootManifestId.GetHashCode();
+                if (this._Object != null)
+                    hash = hash * 59 + this._Object.GetHashCode();
+                if (this.When != null)
+                    hash = hash * 59 + this.When.GetHashCode();
                 if (this.State != null)
                     hash = hash * 59 + this.State.GetHashCode();
                 if (this.DeviceFilter != null)

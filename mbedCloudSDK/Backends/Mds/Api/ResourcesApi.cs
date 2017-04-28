@@ -31,11 +31,11 @@ namespace mds.Api
         /// A request to delete a resource must be handled by both mbed Cloud Client and mbed Cloud Connect. The resource is not deleted from mbed Cloud Connect until the delete is handled by mbed Cloud Client.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>AsyncID</returns>
-        AsyncID V2EndpointsIdResourcePathDelete (string id, string resourcePath, bool? noResp = null);
+        AsyncID V2EndpointsDeviceIdResourcePathDelete (string deviceId, string resourcePath, bool? noResp = null);
 
         /// <summary>
         /// Delete a resource
@@ -44,11 +44,11 @@ namespace mds.Api
         /// A request to delete a resource must be handled by both mbed Cloud Client and mbed Cloud Connect. The resource is not deleted from mbed Cloud Connect until the delete is handled by mbed Cloud Client.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>ApiResponse of AsyncID</returns>
-        ApiResponse<AsyncID> V2EndpointsIdResourcePathDeleteWithHttpInfo (string id, string resourcePath, bool? noResp = null);
+        ApiResponse<AsyncID> V2EndpointsDeviceIdResourcePathDeleteWithHttpInfo (string deviceId, string resourcePath, bool? noResp = null);
         /// <summary>
         /// Read from a resource
         /// </summary>
@@ -56,12 +56,12 @@ namespace mds.Api
         /// Requests the resource value and when the response is available, a json AsycResponse  object (AsyncIDResponse object) is received in the notification channel. Note that you can also  receive notifications when a resource changes. The preferred way to get resource values is to use subscribe  and callback methods.  All resource APIs are asynchronous. These APIs will only respond  if the device is turned on and connected to mbed Cloud Connect. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**   All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  409 Conflict.  (optional)</param>
         /// <returns>AsyncID</returns>
-        AsyncID V2EndpointsIdResourcePathGet (string id, string resourcePath, bool? cacheOnly = null, bool? noResp = null);
+        AsyncID V2EndpointsDeviceIdResourcePathGet (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null);
 
         /// <summary>
         /// Read from a resource
@@ -70,12 +70,12 @@ namespace mds.Api
         /// Requests the resource value and when the response is available, a json AsycResponse  object (AsyncIDResponse object) is received in the notification channel. Note that you can also  receive notifications when a resource changes. The preferred way to get resource values is to use subscribe  and callback methods.  All resource APIs are asynchronous. These APIs will only respond  if the device is turned on and connected to mbed Cloud Connect. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**   All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  409 Conflict.  (optional)</param>
         /// <returns>ApiResponse of AsyncID</returns>
-        ApiResponse<AsyncID> V2EndpointsIdResourcePathGetWithHttpInfo (string id, string resourcePath, bool? cacheOnly = null, bool? noResp = null);
+        ApiResponse<AsyncID> V2EndpointsDeviceIdResourcePathGetWithHttpInfo (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null);
         /// <summary>
         /// Execute a function on a resource
         /// </summary>
@@ -83,12 +83,12 @@ namespace mds.Api
         /// With this API, you can execute a function on an existing resource.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource.</param>
         /// <param name="resourceFunction">This value is not needed. Most of the time resources do not accept a function but they have their own functions predefined. You can use this to trigger them.  If a function is included, the body of this request is passed as a char* to the function in mbed Cloud Client.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>AsyncID</returns>
-        AsyncID V2EndpointsIdResourcePathPost (string id, string resourcePath, string resourceFunction = null, bool? noResp = null);
+        AsyncID V2EndpointsDeviceIdResourcePathPost (string deviceId, string resourcePath, string resourceFunction = null, bool? noResp = null);
 
         /// <summary>
         /// Execute a function on a resource
@@ -97,12 +97,12 @@ namespace mds.Api
         /// With this API, you can execute a function on an existing resource.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource.</param>
         /// <param name="resourceFunction">This value is not needed. Most of the time resources do not accept a function but they have their own functions predefined. You can use this to trigger them.  If a function is included, the body of this request is passed as a char* to the function in mbed Cloud Client.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>ApiResponse of AsyncID</returns>
-        ApiResponse<AsyncID> V2EndpointsIdResourcePathPostWithHttpInfo (string id, string resourcePath, string resourceFunction = null, bool? noResp = null);
+        ApiResponse<AsyncID> V2EndpointsDeviceIdResourcePathPostWithHttpInfo (string deviceId, string resourcePath, string resourceFunction = null, bool? noResp = null);
         /// <summary>
         /// Write to a resource
         /// </summary>
@@ -110,12 +110,12 @@ namespace mds.Api
         /// With this API, you can write new values to existing resources, or create new  resources on the device. The resource-path does not have to exist - it can be  created by the call. The maximum length of resource-path is 255 characters.  This API can also be used to transfer files to the device. mbed Cloud Connect LWM2M server implements the Option 1 from RFC7959. The maximum block size is 1024 bytes. The block size versus transferred file size is something to note in low quality networks. The customer application needs to know what type of file is transferred (for example txt) and the payload can be encrypted by the customer. The maximum size of payload is 1048576 bytes.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">Resource URL.</param>
         /// <param name="resourceValue">The value to be set to the resource. (Check accceptable content-types) </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>AsyncID</returns>
-        AsyncID V2EndpointsIdResourcePathPut (string id, string resourcePath, string resourceValue, bool? noResp = null);
+        AsyncID V2EndpointsDeviceIdResourcePathPut (string deviceId, string resourcePath, string resourceValue, bool? noResp = null);
 
         /// <summary>
         /// Write to a resource
@@ -124,12 +124,12 @@ namespace mds.Api
         /// With this API, you can write new values to existing resources, or create new  resources on the device. The resource-path does not have to exist - it can be  created by the call. The maximum length of resource-path is 255 characters.  This API can also be used to transfer files to the device. mbed Cloud Connect LWM2M server implements the Option 1 from RFC7959. The maximum block size is 1024 bytes. The block size versus transferred file size is something to note in low quality networks. The customer application needs to know what type of file is transferred (for example txt) and the payload can be encrypted by the customer. The maximum size of payload is 1048576 bytes.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">Resource URL.</param>
         /// <param name="resourceValue">The value to be set to the resource. (Check accceptable content-types) </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>ApiResponse of AsyncID</returns>
-        ApiResponse<AsyncID> V2EndpointsIdResourcePathPutWithHttpInfo (string id, string resourcePath, string resourceValue, bool? noResp = null);
+        ApiResponse<AsyncID> V2EndpointsDeviceIdResourcePathPutWithHttpInfo (string deviceId, string resourcePath, string resourceValue, bool? noResp = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -139,11 +139,11 @@ namespace mds.Api
         /// A request to delete a resource must be handled by both mbed Cloud Client and mbed Cloud Connect. The resource is not deleted from mbed Cloud Connect until the delete is handled by mbed Cloud Client.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>Task of AsyncID</returns>
-        System.Threading.Tasks.Task<AsyncID> V2EndpointsIdResourcePathDeleteAsync (string id, string resourcePath, bool? noResp = null);
+        System.Threading.Tasks.Task<AsyncID> V2EndpointsDeviceIdResourcePathDeleteAsync (string deviceId, string resourcePath, bool? noResp = null);
 
         /// <summary>
         /// Delete a resource
@@ -152,11 +152,11 @@ namespace mds.Api
         /// A request to delete a resource must be handled by both mbed Cloud Client and mbed Cloud Connect. The resource is not deleted from mbed Cloud Connect until the delete is handled by mbed Cloud Client.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>Task of ApiResponse (AsyncID)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsIdResourcePathDeleteAsyncWithHttpInfo (string id, string resourcePath, bool? noResp = null);
+        System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsDeviceIdResourcePathDeleteAsyncWithHttpInfo (string deviceId, string resourcePath, bool? noResp = null);
         /// <summary>
         /// Read from a resource
         /// </summary>
@@ -164,12 +164,12 @@ namespace mds.Api
         /// Requests the resource value and when the response is available, a json AsycResponse  object (AsyncIDResponse object) is received in the notification channel. Note that you can also  receive notifications when a resource changes. The preferred way to get resource values is to use subscribe  and callback methods.  All resource APIs are asynchronous. These APIs will only respond  if the device is turned on and connected to mbed Cloud Connect. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**   All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  409 Conflict.  (optional)</param>
         /// <returns>Task of AsyncID</returns>
-        System.Threading.Tasks.Task<AsyncID> V2EndpointsIdResourcePathGetAsync (string id, string resourcePath, bool? cacheOnly = null, bool? noResp = null);
+        System.Threading.Tasks.Task<AsyncID> V2EndpointsDeviceIdResourcePathGetAsync (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null);
 
         /// <summary>
         /// Read from a resource
@@ -178,12 +178,12 @@ namespace mds.Api
         /// Requests the resource value and when the response is available, a json AsycResponse  object (AsyncIDResponse object) is received in the notification channel. Note that you can also  receive notifications when a resource changes. The preferred way to get resource values is to use subscribe  and callback methods.  All resource APIs are asynchronous. These APIs will only respond  if the device is turned on and connected to mbed Cloud Connect. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**   All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  409 Conflict.  (optional)</param>
         /// <returns>Task of ApiResponse (AsyncID)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsIdResourcePathGetAsyncWithHttpInfo (string id, string resourcePath, bool? cacheOnly = null, bool? noResp = null);
+        System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsDeviceIdResourcePathGetAsyncWithHttpInfo (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null);
         /// <summary>
         /// Execute a function on a resource
         /// </summary>
@@ -191,12 +191,12 @@ namespace mds.Api
         /// With this API, you can execute a function on an existing resource.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource.</param>
         /// <param name="resourceFunction">This value is not needed. Most of the time resources do not accept a function but they have their own functions predefined. You can use this to trigger them.  If a function is included, the body of this request is passed as a char* to the function in mbed Cloud Client.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>Task of AsyncID</returns>
-        System.Threading.Tasks.Task<AsyncID> V2EndpointsIdResourcePathPostAsync (string id, string resourcePath, string resourceFunction = null, bool? noResp = null);
+        System.Threading.Tasks.Task<AsyncID> V2EndpointsDeviceIdResourcePathPostAsync (string deviceId, string resourcePath, string resourceFunction = null, bool? noResp = null);
 
         /// <summary>
         /// Execute a function on a resource
@@ -205,12 +205,12 @@ namespace mds.Api
         /// With this API, you can execute a function on an existing resource.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource.</param>
         /// <param name="resourceFunction">This value is not needed. Most of the time resources do not accept a function but they have their own functions predefined. You can use this to trigger them.  If a function is included, the body of this request is passed as a char* to the function in mbed Cloud Client.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>Task of ApiResponse (AsyncID)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsIdResourcePathPostAsyncWithHttpInfo (string id, string resourcePath, string resourceFunction = null, bool? noResp = null);
+        System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsDeviceIdResourcePathPostAsyncWithHttpInfo (string deviceId, string resourcePath, string resourceFunction = null, bool? noResp = null);
         /// <summary>
         /// Write to a resource
         /// </summary>
@@ -218,12 +218,12 @@ namespace mds.Api
         /// With this API, you can write new values to existing resources, or create new  resources on the device. The resource-path does not have to exist - it can be  created by the call. The maximum length of resource-path is 255 characters.  This API can also be used to transfer files to the device. mbed Cloud Connect LWM2M server implements the Option 1 from RFC7959. The maximum block size is 1024 bytes. The block size versus transferred file size is something to note in low quality networks. The customer application needs to know what type of file is transferred (for example txt) and the payload can be encrypted by the customer. The maximum size of payload is 1048576 bytes.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">Resource URL.</param>
         /// <param name="resourceValue">The value to be set to the resource. (Check accceptable content-types) </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>Task of AsyncID</returns>
-        System.Threading.Tasks.Task<AsyncID> V2EndpointsIdResourcePathPutAsync (string id, string resourcePath, string resourceValue, bool? noResp = null);
+        System.Threading.Tasks.Task<AsyncID> V2EndpointsDeviceIdResourcePathPutAsync (string deviceId, string resourcePath, string resourceValue, bool? noResp = null);
 
         /// <summary>
         /// Write to a resource
@@ -232,12 +232,12 @@ namespace mds.Api
         /// With this API, you can write new values to existing resources, or create new  resources on the device. The resource-path does not have to exist - it can be  created by the call. The maximum length of resource-path is 255 characters.  This API can also be used to transfer files to the device. mbed Cloud Connect LWM2M server implements the Option 1 from RFC7959. The maximum block size is 1024 bytes. The block size versus transferred file size is something to note in low quality networks. The customer application needs to know what type of file is transferred (for example txt) and the payload can be encrypted by the customer. The maximum size of payload is 1048576 bytes.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">Resource URL.</param>
         /// <param name="resourceValue">The value to be set to the resource. (Check accceptable content-types) </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>Task of ApiResponse (AsyncID)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsIdResourcePathPutAsyncWithHttpInfo (string id, string resourcePath, string resourceValue, bool? noResp = null);
+        System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsDeviceIdResourcePathPutAsyncWithHttpInfo (string deviceId, string resourcePath, string resourceValue, bool? noResp = null);
         #endregion Asynchronous Operations
     }
 
@@ -354,13 +354,13 @@ namespace mds.Api
         /// Delete a resource A request to delete a resource must be handled by both mbed Cloud Client and mbed Cloud Connect. The resource is not deleted from mbed Cloud Connect until the delete is handled by mbed Cloud Client.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>AsyncID</returns>
-        public AsyncID V2EndpointsIdResourcePathDelete (string id, string resourcePath, bool? noResp = null)
+        public AsyncID V2EndpointsDeviceIdResourcePathDelete (string deviceId, string resourcePath, bool? noResp = null)
         {
-             ApiResponse<AsyncID> localVarResponse = V2EndpointsIdResourcePathDeleteWithHttpInfo(id, resourcePath, noResp);
+             ApiResponse<AsyncID> localVarResponse = V2EndpointsDeviceIdResourcePathDeleteWithHttpInfo(deviceId, resourcePath, noResp);
              return localVarResponse.Data;
         }
 
@@ -368,20 +368,20 @@ namespace mds.Api
         /// Delete a resource A request to delete a resource must be handled by both mbed Cloud Client and mbed Cloud Connect. The resource is not deleted from mbed Cloud Connect until the delete is handled by mbed Cloud Client.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>ApiResponse of AsyncID</returns>
-        public ApiResponse< AsyncID > V2EndpointsIdResourcePathDeleteWithHttpInfo (string id, string resourcePath, bool? noResp = null)
+        public ApiResponse< AsyncID > V2EndpointsDeviceIdResourcePathDeleteWithHttpInfo (string deviceId, string resourcePath, bool? noResp = null)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling ResourcesApi->V2EndpointsIdResourcePathDelete");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathDelete");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsIdResourcePathDelete");
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathDelete");
 
-            var localVarPath = "/v2/endpoints/{id}/{resourcePath}";
+            var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -405,7 +405,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
             if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
 
@@ -425,7 +425,7 @@ namespace mds.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2EndpointsIdResourcePathDelete", localVarResponse);
+                Exception exception = ExceptionFactory("V2EndpointsDeviceIdResourcePathDelete", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -439,13 +439,13 @@ namespace mds.Api
         /// Delete a resource A request to delete a resource must be handled by both mbed Cloud Client and mbed Cloud Connect. The resource is not deleted from mbed Cloud Connect until the delete is handled by mbed Cloud Client.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>Task of AsyncID</returns>
-        public async System.Threading.Tasks.Task<AsyncID> V2EndpointsIdResourcePathDeleteAsync (string id, string resourcePath, bool? noResp = null)
+        public async System.Threading.Tasks.Task<AsyncID> V2EndpointsDeviceIdResourcePathDeleteAsync (string deviceId, string resourcePath, bool? noResp = null)
         {
-             ApiResponse<AsyncID> localVarResponse = await V2EndpointsIdResourcePathDeleteAsyncWithHttpInfo(id, resourcePath, noResp);
+             ApiResponse<AsyncID> localVarResponse = await V2EndpointsDeviceIdResourcePathDeleteAsyncWithHttpInfo(deviceId, resourcePath, noResp);
              return localVarResponse.Data;
 
         }
@@ -454,20 +454,20 @@ namespace mds.Api
         /// Delete a resource A request to delete a resource must be handled by both mbed Cloud Client and mbed Cloud Connect. The resource is not deleted from mbed Cloud Connect until the delete is handled by mbed Cloud Client.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>Task of ApiResponse (AsyncID)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsIdResourcePathDeleteAsyncWithHttpInfo (string id, string resourcePath, bool? noResp = null)
+        public async System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsDeviceIdResourcePathDeleteAsyncWithHttpInfo (string deviceId, string resourcePath, bool? noResp = null)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling ResourcesApi->V2EndpointsIdResourcePathDelete");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathDelete");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsIdResourcePathDelete");
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathDelete");
 
-            var localVarPath = "/v2/endpoints/{id}/{resourcePath}";
+            var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -491,7 +491,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
             if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
 
@@ -510,7 +510,7 @@ namespace mds.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2EndpointsIdResourcePathDelete", localVarResponse);
+                Exception exception = ExceptionFactory("V2EndpointsDeviceIdResourcePathDelete", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -524,14 +524,14 @@ namespace mds.Api
         /// Read from a resource Requests the resource value and when the response is available, a json AsycResponse  object (AsyncIDResponse object) is received in the notification channel. Note that you can also  receive notifications when a resource changes. The preferred way to get resource values is to use subscribe  and callback methods.  All resource APIs are asynchronous. These APIs will only respond  if the device is turned on and connected to mbed Cloud Connect. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**   All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  409 Conflict.  (optional)</param>
         /// <returns>AsyncID</returns>
-        public AsyncID V2EndpointsIdResourcePathGet (string id, string resourcePath, bool? cacheOnly = null, bool? noResp = null)
+        public AsyncID V2EndpointsDeviceIdResourcePathGet (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null)
         {
-             ApiResponse<AsyncID> localVarResponse = V2EndpointsIdResourcePathGetWithHttpInfo(id, resourcePath, cacheOnly, noResp);
+             ApiResponse<AsyncID> localVarResponse = V2EndpointsDeviceIdResourcePathGetWithHttpInfo(deviceId, resourcePath, cacheOnly, noResp);
              return localVarResponse.Data;
         }
 
@@ -539,21 +539,21 @@ namespace mds.Api
         /// Read from a resource Requests the resource value and when the response is available, a json AsycResponse  object (AsyncIDResponse object) is received in the notification channel. Note that you can also  receive notifications when a resource changes. The preferred way to get resource values is to use subscribe  and callback methods.  All resource APIs are asynchronous. These APIs will only respond  if the device is turned on and connected to mbed Cloud Connect. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**   All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  409 Conflict.  (optional)</param>
         /// <returns>ApiResponse of AsyncID</returns>
-        public ApiResponse< AsyncID > V2EndpointsIdResourcePathGetWithHttpInfo (string id, string resourcePath, bool? cacheOnly = null, bool? noResp = null)
+        public ApiResponse< AsyncID > V2EndpointsDeviceIdResourcePathGetWithHttpInfo (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling ResourcesApi->V2EndpointsIdResourcePathGet");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathGet");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsIdResourcePathGet");
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathGet");
 
-            var localVarPath = "/v2/endpoints/{id}/{resourcePath}";
+            var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -577,7 +577,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
             if (cacheOnly != null) localVarQueryParams.Add("cacheOnly", Configuration.ApiClient.ParameterToString(cacheOnly)); // query parameter
             if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
@@ -598,7 +598,7 @@ namespace mds.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2EndpointsIdResourcePathGet", localVarResponse);
+                Exception exception = ExceptionFactory("V2EndpointsDeviceIdResourcePathGet", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -612,14 +612,14 @@ namespace mds.Api
         /// Read from a resource Requests the resource value and when the response is available, a json AsycResponse  object (AsyncIDResponse object) is received in the notification channel. Note that you can also  receive notifications when a resource changes. The preferred way to get resource values is to use subscribe  and callback methods.  All resource APIs are asynchronous. These APIs will only respond  if the device is turned on and connected to mbed Cloud Connect. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**   All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  409 Conflict.  (optional)</param>
         /// <returns>Task of AsyncID</returns>
-        public async System.Threading.Tasks.Task<AsyncID> V2EndpointsIdResourcePathGetAsync (string id, string resourcePath, bool? cacheOnly = null, bool? noResp = null)
+        public async System.Threading.Tasks.Task<AsyncID> V2EndpointsDeviceIdResourcePathGetAsync (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null)
         {
-             ApiResponse<AsyncID> localVarResponse = await V2EndpointsIdResourcePathGetAsyncWithHttpInfo(id, resourcePath, cacheOnly, noResp);
+             ApiResponse<AsyncID> localVarResponse = await V2EndpointsDeviceIdResourcePathGetAsyncWithHttpInfo(deviceId, resourcePath, cacheOnly, noResp);
              return localVarResponse.Data;
 
         }
@@ -628,21 +628,21 @@ namespace mds.Api
         /// Read from a resource Requests the resource value and when the response is available, a json AsycResponse  object (AsyncIDResponse object) is received in the notification channel. Note that you can also  receive notifications when a resource changes. The preferred way to get resource values is to use subscribe  and callback methods.  All resource APIs are asynchronous. These APIs will only respond  if the device is turned on and connected to mbed Cloud Connect. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**   All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  409 Conflict.  (optional)</param>
         /// <returns>Task of ApiResponse (AsyncID)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsIdResourcePathGetAsyncWithHttpInfo (string id, string resourcePath, bool? cacheOnly = null, bool? noResp = null)
+        public async System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsDeviceIdResourcePathGetAsyncWithHttpInfo (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling ResourcesApi->V2EndpointsIdResourcePathGet");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathGet");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsIdResourcePathGet");
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathGet");
 
-            var localVarPath = "/v2/endpoints/{id}/{resourcePath}";
+            var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -666,7 +666,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
             if (cacheOnly != null) localVarQueryParams.Add("cacheOnly", Configuration.ApiClient.ParameterToString(cacheOnly)); // query parameter
             if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
@@ -686,7 +686,7 @@ namespace mds.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2EndpointsIdResourcePathGet", localVarResponse);
+                Exception exception = ExceptionFactory("V2EndpointsDeviceIdResourcePathGet", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -700,14 +700,14 @@ namespace mds.Api
         /// Execute a function on a resource With this API, you can execute a function on an existing resource.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource.</param>
         /// <param name="resourceFunction">This value is not needed. Most of the time resources do not accept a function but they have their own functions predefined. You can use this to trigger them.  If a function is included, the body of this request is passed as a char* to the function in mbed Cloud Client.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>AsyncID</returns>
-        public AsyncID V2EndpointsIdResourcePathPost (string id, string resourcePath, string resourceFunction = null, bool? noResp = null)
+        public AsyncID V2EndpointsDeviceIdResourcePathPost (string deviceId, string resourcePath, string resourceFunction = null, bool? noResp = null)
         {
-             ApiResponse<AsyncID> localVarResponse = V2EndpointsIdResourcePathPostWithHttpInfo(id, resourcePath, resourceFunction, noResp);
+             ApiResponse<AsyncID> localVarResponse = V2EndpointsDeviceIdResourcePathPostWithHttpInfo(deviceId, resourcePath, resourceFunction, noResp);
              return localVarResponse.Data;
         }
 
@@ -715,21 +715,21 @@ namespace mds.Api
         /// Execute a function on a resource With this API, you can execute a function on an existing resource.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource.</param>
         /// <param name="resourceFunction">This value is not needed. Most of the time resources do not accept a function but they have their own functions predefined. You can use this to trigger them.  If a function is included, the body of this request is passed as a char* to the function in mbed Cloud Client.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>ApiResponse of AsyncID</returns>
-        public ApiResponse< AsyncID > V2EndpointsIdResourcePathPostWithHttpInfo (string id, string resourcePath, string resourceFunction = null, bool? noResp = null)
+        public ApiResponse< AsyncID > V2EndpointsDeviceIdResourcePathPostWithHttpInfo (string deviceId, string resourcePath, string resourceFunction = null, bool? noResp = null)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling ResourcesApi->V2EndpointsIdResourcePathPost");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathPost");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsIdResourcePathPost");
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathPost");
 
-            var localVarPath = "/v2/endpoints/{id}/{resourcePath}";
+            var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -765,7 +765,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
             if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
             if (resourceFunction != null && resourceFunction.GetType() != typeof(byte[]))
@@ -793,7 +793,7 @@ namespace mds.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2EndpointsIdResourcePathPost", localVarResponse);
+                Exception exception = ExceptionFactory("V2EndpointsDeviceIdResourcePathPost", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -807,14 +807,14 @@ namespace mds.Api
         /// Execute a function on a resource With this API, you can execute a function on an existing resource.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource.</param>
         /// <param name="resourceFunction">This value is not needed. Most of the time resources do not accept a function but they have their own functions predefined. You can use this to trigger them.  If a function is included, the body of this request is passed as a char* to the function in mbed Cloud Client.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>Task of AsyncID</returns>
-        public async System.Threading.Tasks.Task<AsyncID> V2EndpointsIdResourcePathPostAsync (string id, string resourcePath, string resourceFunction = null, bool? noResp = null)
+        public async System.Threading.Tasks.Task<AsyncID> V2EndpointsDeviceIdResourcePathPostAsync (string deviceId, string resourcePath, string resourceFunction = null, bool? noResp = null)
         {
-             ApiResponse<AsyncID> localVarResponse = await V2EndpointsIdResourcePathPostAsyncWithHttpInfo(id, resourcePath, resourceFunction, noResp);
+             ApiResponse<AsyncID> localVarResponse = await V2EndpointsDeviceIdResourcePathPostAsyncWithHttpInfo(deviceId, resourcePath, resourceFunction, noResp);
              return localVarResponse.Data;
 
         }
@@ -823,21 +823,21 @@ namespace mds.Api
         /// Execute a function on a resource With this API, you can execute a function on an existing resource.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource.</param>
         /// <param name="resourceFunction">This value is not needed. Most of the time resources do not accept a function but they have their own functions predefined. You can use this to trigger them.  If a function is included, the body of this request is passed as a char* to the function in mbed Cloud Client.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>Task of ApiResponse (AsyncID)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsIdResourcePathPostAsyncWithHttpInfo (string id, string resourcePath, string resourceFunction = null, bool? noResp = null)
+        public async System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsDeviceIdResourcePathPostAsyncWithHttpInfo (string deviceId, string resourcePath, string resourceFunction = null, bool? noResp = null)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling ResourcesApi->V2EndpointsIdResourcePathPost");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathPost");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsIdResourcePathPost");
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathPost");
 
-            var localVarPath = "/v2/endpoints/{id}/{resourcePath}";
+            var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -873,7 +873,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
             if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
             if (resourceFunction != null && resourceFunction.GetType() != typeof(byte[]))
@@ -900,7 +900,7 @@ namespace mds.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2EndpointsIdResourcePathPost", localVarResponse);
+                Exception exception = ExceptionFactory("V2EndpointsDeviceIdResourcePathPost", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -914,14 +914,14 @@ namespace mds.Api
         /// Write to a resource With this API, you can write new values to existing resources, or create new  resources on the device. The resource-path does not have to exist - it can be  created by the call. The maximum length of resource-path is 255 characters.  This API can also be used to transfer files to the device. mbed Cloud Connect LWM2M server implements the Option 1 from RFC7959. The maximum block size is 1024 bytes. The block size versus transferred file size is something to note in low quality networks. The customer application needs to know what type of file is transferred (for example txt) and the payload can be encrypted by the customer. The maximum size of payload is 1048576 bytes.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">Resource URL.</param>
         /// <param name="resourceValue">The value to be set to the resource. (Check accceptable content-types) </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>AsyncID</returns>
-        public AsyncID V2EndpointsIdResourcePathPut (string id, string resourcePath, string resourceValue, bool? noResp = null)
+        public AsyncID V2EndpointsDeviceIdResourcePathPut (string deviceId, string resourcePath, string resourceValue, bool? noResp = null)
         {
-             ApiResponse<AsyncID> localVarResponse = V2EndpointsIdResourcePathPutWithHttpInfo(id, resourcePath, resourceValue, noResp);
+             ApiResponse<AsyncID> localVarResponse = V2EndpointsDeviceIdResourcePathPutWithHttpInfo(deviceId, resourcePath, resourceValue, noResp);
              return localVarResponse.Data;
         }
 
@@ -929,24 +929,24 @@ namespace mds.Api
         /// Write to a resource With this API, you can write new values to existing resources, or create new  resources on the device. The resource-path does not have to exist - it can be  created by the call. The maximum length of resource-path is 255 characters.  This API can also be used to transfer files to the device. mbed Cloud Connect LWM2M server implements the Option 1 from RFC7959. The maximum block size is 1024 bytes. The block size versus transferred file size is something to note in low quality networks. The customer application needs to know what type of file is transferred (for example txt) and the payload can be encrypted by the customer. The maximum size of payload is 1048576 bytes.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">Resource URL.</param>
         /// <param name="resourceValue">The value to be set to the resource. (Check accceptable content-types) </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>ApiResponse of AsyncID</returns>
-        public ApiResponse< AsyncID > V2EndpointsIdResourcePathPutWithHttpInfo (string id, string resourcePath, string resourceValue, bool? noResp = null)
+        public ApiResponse< AsyncID > V2EndpointsDeviceIdResourcePathPutWithHttpInfo (string deviceId, string resourcePath, string resourceValue, bool? noResp = null)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling ResourcesApi->V2EndpointsIdResourcePathPut");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathPut");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsIdResourcePathPut");
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathPut");
             // verify the required parameter 'resourceValue' is set
             if (resourceValue == null)
-                throw new ApiException(400, "Missing required parameter 'resourceValue' when calling ResourcesApi->V2EndpointsIdResourcePathPut");
+                throw new ApiException(400, "Missing required parameter 'resourceValue' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathPut");
 
-            var localVarPath = "/v2/endpoints/{id}/{resourcePath}";
+            var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -982,7 +982,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
             if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
             if (resourceValue != null && resourceValue.GetType() != typeof(byte[]))
@@ -1010,7 +1010,7 @@ namespace mds.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2EndpointsIdResourcePathPut", localVarResponse);
+                Exception exception = ExceptionFactory("V2EndpointsDeviceIdResourcePathPut", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1024,14 +1024,14 @@ namespace mds.Api
         /// Write to a resource With this API, you can write new values to existing resources, or create new  resources on the device. The resource-path does not have to exist - it can be  created by the call. The maximum length of resource-path is 255 characters.  This API can also be used to transfer files to the device. mbed Cloud Connect LWM2M server implements the Option 1 from RFC7959. The maximum block size is 1024 bytes. The block size versus transferred file size is something to note in low quality networks. The customer application needs to know what type of file is transferred (for example txt) and the payload can be encrypted by the customer. The maximum size of payload is 1048576 bytes.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">Resource URL.</param>
         /// <param name="resourceValue">The value to be set to the resource. (Check accceptable content-types) </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>Task of AsyncID</returns>
-        public async System.Threading.Tasks.Task<AsyncID> V2EndpointsIdResourcePathPutAsync (string id, string resourcePath, string resourceValue, bool? noResp = null)
+        public async System.Threading.Tasks.Task<AsyncID> V2EndpointsDeviceIdResourcePathPutAsync (string deviceId, string resourcePath, string resourceValue, bool? noResp = null)
         {
-             ApiResponse<AsyncID> localVarResponse = await V2EndpointsIdResourcePathPutAsyncWithHttpInfo(id, resourcePath, resourceValue, noResp);
+             ApiResponse<AsyncID> localVarResponse = await V2EndpointsDeviceIdResourcePathPutAsyncWithHttpInfo(deviceId, resourcePath, resourceValue, noResp);
              return localVarResponse.Data;
 
         }
@@ -1040,24 +1040,24 @@ namespace mds.Api
         /// Write to a resource With this API, you can write new values to existing resources, or create new  resources on the device. The resource-path does not have to exist - it can be  created by the call. The maximum length of resource-path is 255 characters.  This API can also be used to transfer files to the device. mbed Cloud Connect LWM2M server implements the Option 1 from RFC7959. The maximum block size is 1024 bytes. The block size versus transferred file size is something to note in low quality networks. The customer application needs to know what type of file is transferred (for example txt) and the payload can be encrypted by the customer. The maximum size of payload is 1048576 bytes.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to mbed Cloud Connect. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">Resource URL.</param>
         /// <param name="resourceValue">The value to be set to the resource. (Check accceptable content-types) </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>Task of ApiResponse (AsyncID)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsIdResourcePathPutAsyncWithHttpInfo (string id, string resourcePath, string resourceValue, bool? noResp = null)
+        public async System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsDeviceIdResourcePathPutAsyncWithHttpInfo (string deviceId, string resourcePath, string resourceValue, bool? noResp = null)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling ResourcesApi->V2EndpointsIdResourcePathPut");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathPut");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsIdResourcePathPut");
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathPut");
             // verify the required parameter 'resourceValue' is set
             if (resourceValue == null)
-                throw new ApiException(400, "Missing required parameter 'resourceValue' when calling ResourcesApi->V2EndpointsIdResourcePathPut");
+                throw new ApiException(400, "Missing required parameter 'resourceValue' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathPut");
 
-            var localVarPath = "/v2/endpoints/{id}/{resourcePath}";
+            var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1093,7 +1093,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
             if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
             if (resourceValue != null && resourceValue.GetType() != typeof(byte[]))
@@ -1120,7 +1120,7 @@ namespace mds.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2EndpointsIdResourcePathPut", localVarResponse);
+                Exception exception = ExceptionFactory("V2EndpointsDeviceIdResourcePathPut", localVarResponse);
                 if (exception != null) throw exception;
             }
 
