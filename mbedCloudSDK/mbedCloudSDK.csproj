@@ -158,15 +158,16 @@
     <Compile Include="Backends\Statistics\Model\Field.cs" />
     <Compile Include="Backends\Statistics\Model\Metric.cs" />
     <Compile Include="Backends\Statistics\Model\SuccessfulResponse.cs" />
+    <Compile Include="Certificates\Api\CertificatesApi.cs" />
+    <Compile Include="Certificates\Model\Certificate.cs" />
+    <Compile Include="Certificates\Model\CertificateType.cs" />
     <Compile Include="Common\Query\DeviceQueryOptions.cs" />
     <Compile Include="Common\PaginatedResponse.cs" />
     <Compile Include="Common\Query\QueryAttribute.cs" />
     <Compile Include="Common\Query\QueryOperator.cs" />
     <Compile Include="Common\ResponsePage.cs" />
-    <Compile Include="Development\Api\DevelopmentApi.cs" />
     <Compile Include="Common\BaseApi.cs" />
     <Compile Include="Common\Config.cs" />
-    <Compile Include="Development\Model\DeveloperCertificate.cs" />
     <Compile Include="Devices\Api\DevicesApi.cs" />
     <Compile Include="Backends\DeveloperCertificate\Client\ExceptionFactory.cs" />
     <Compile Include="Backends\DeveloperCertificate\Client\IApiAccessor.cs" />
@@ -259,6 +260,9 @@
     <Compile Include="AccountManagement\Model\ApiKey\ApiKey.cs" />
     <Compile Include="AccountManagement\Model\Account\Account.cs" />
     <Compile Include="AccountManagement\Model\ApiKey\ApiKeyStatus.cs" />
+    <Compile Include="Statistics\Api\StatisticsApi.cs" />
+    <Compile Include="Statistics\Model\StatisticsData.cs" />
+    <Compile Include="Statistics\Model\StatisticsQueryOptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Backends\ConnectorCa\README.md" />
