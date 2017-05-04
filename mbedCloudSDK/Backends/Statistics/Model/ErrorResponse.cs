@@ -1,7 +1,7 @@
 /* 
- * mbed Cloud Connector Statistics REST API
+ * Connect Statistics API
  *
- * mbed Cloud Connector Statistics REST API provides statistics about other cloud services through defined counters.
+ * mbed Cloud Connect Statistics API provides statistics about other cloud services through defined counters.
  *
  * OpenAPI spec version: 3
  * 
@@ -32,13 +32,13 @@ namespace statistics.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ErrorResponse" /> class.
         /// </summary>
-        /// <param name="Code">http response code..</param>
-        /// <param name="Fields">Fields.</param>
-        /// <param name="_Object">response type, always \&quot;error\&quot;.</param>
-        /// <param name="RequestId">request id for the request..</param>
-        /// <param name="Message">description of the error..</param>
-        /// <param name="Type">type of error..</param>
-        public ErrorResponse(int? Code = default(int?), FieldsArray Fields = default(FieldsArray), string _Object = default(string), string RequestId = default(string), string Message = default(string), string Type = default(string))
+        /// <param name="Code">HTTP response code..</param>
+        /// <param name="Fields">Details of the error fields..</param>
+        /// <param name="_Object">Response type, always \&quot;error\&quot;..</param>
+        /// <param name="RequestId">Request ID..</param>
+        /// <param name="Message">Description of the error..</param>
+        /// <param name="Type">Type of error..</param>
+        public ErrorResponse(int? Code = default(int?), List<Field> Fields = default(List<Field>), string _Object = default(string), string RequestId = default(string), string Message = default(string), string Type = default(string))
         {
             this.Code = Code;
             this.Fields = Fields;
@@ -49,38 +49,39 @@ namespace statistics.Model
         }
         
         /// <summary>
-        /// http response code.
+        /// HTTP response code.
         /// </summary>
-        /// <value>http response code.</value>
+        /// <value>HTTP response code.</value>
         [DataMember(Name="code", EmitDefaultValue=false)]
         public int? Code { get; set; }
         /// <summary>
-        /// Gets or Sets Fields
+        /// Details of the error fields.
         /// </summary>
+        /// <value>Details of the error fields.</value>
         [DataMember(Name="fields", EmitDefaultValue=false)]
-        public FieldsArray Fields { get; set; }
+        public List<Field> Fields { get; set; }
         /// <summary>
-        /// response type, always \&quot;error\&quot;
+        /// Response type, always \&quot;error\&quot;.
         /// </summary>
-        /// <value>response type, always \&quot;error\&quot;</value>
+        /// <value>Response type, always \&quot;error\&quot;.</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
         /// <summary>
-        /// request id for the request.
+        /// Request ID.
         /// </summary>
-        /// <value>request id for the request.</value>
+        /// <value>Request ID.</value>
         [DataMember(Name="request_id", EmitDefaultValue=false)]
         public string RequestId { get; set; }
         /// <summary>
-        /// description of the error.
+        /// Description of the error.
         /// </summary>
-        /// <value>description of the error.</value>
+        /// <value>Description of the error.</value>
         [DataMember(Name="message", EmitDefaultValue=false)]
         public string Message { get; set; }
         /// <summary>
-        /// type of error.
+        /// Type of error.
         /// </summary>
-        /// <value>type of error.</value>
+        /// <value>Type of error.</value>
         [DataMember(Name="type", EmitDefaultValue=false)]
         public string Type { get; set; }
         /// <summary>
@@ -141,7 +142,7 @@ namespace statistics.Model
                 (
                     this.Fields == other.Fields ||
                     this.Fields != null &&
-                    this.Fields.Equals(other.Fields)
+                    this.Fields.SequenceEqual(other.Fields)
                 ) && 
                 (
                     this._Object == other._Object ||

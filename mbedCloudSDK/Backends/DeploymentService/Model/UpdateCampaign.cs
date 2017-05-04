@@ -30,9 +30,9 @@ namespace deployment_service.Model
     public partial class UpdateCampaign :  IEquatable<UpdateCampaign>, IValidatableObject
     {
         /// <summary>
-        /// The state of the campaign
+        /// The state of the campaign.
         /// </summary>
-        /// <value>The state of the campaign</value>
+        /// <value>The state of the campaign.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StateEnum
         {
@@ -99,9 +99,9 @@ namespace deployment_service.Model
         }
 
         /// <summary>
-        /// The state of the campaign
+        /// The state of the campaign.
         /// </summary>
-        /// <value>The state of the campaign</value>
+        /// <value>The state of the campaign.</value>
         [DataMember(Name="state", EmitDefaultValue=false)]
         public StateEnum? State { get; set; }
         /// <summary>
@@ -112,24 +112,20 @@ namespace deployment_service.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateCampaign" /> class.
         /// </summary>
-        /// <param name="Description">An optional description of the campaign (required).</param>
-        /// <param name="State">The state of the campaign (required).</param>
-        /// <param name="UpdatingUserId">The updating IAM user ID (required).</param>
-        /// <param name="CreatedAt">The time the object was created (required).</param>
-        /// <param name="_Object">The API resource entity (required).</param>
+        /// <param name="Description">An optional description of the campaign. (required).</param>
         /// <param name="RootManifestId">RootManifestId (required).</param>
-        /// <param name="CampaignId">DEPRECATED: The ID of the campaign (required).</param>
-        /// <param name="UpdatingAccountId">The updating account ID (required).</param>
-        /// <param name="UpdatedAt">The time the object was updated (required).</param>
-        /// <param name="When">The timestamp at which update campaign scheduled to start (required).</param>
-        /// <param name="Finished">The timestamp when the update campaign finished (required).</param>
-        /// <param name="Etag">The entity instance signature (required).</param>
+        /// <param name="CreatedAt">The time the object was created. (required).</param>
+        /// <param name="_Object">The API resource entity. (required).</param>
+        /// <param name="When">The timestamp at which update campaign scheduled to start..</param>
+        /// <param name="State">The state of the campaign. (required).</param>
+        /// <param name="Finished">The timestamp when the update campaign finished..</param>
+        /// <param name="Etag">The entity instance signature. (required).</param>
         /// <param name="RootManifestUrl">RootManifestUrl (required).</param>
-        /// <param name="UpdatingApiKey">The gateway client API key (required).</param>
-        /// <param name="Id">The ID of the campaign (required).</param>
-        /// <param name="DeviceFilter">The filter for the devices the campaign will target (required).</param>
-        /// <param name="Name">A name for this campaign (required).</param>
-        public UpdateCampaign(string Description = default(string), StateEnum? State = default(StateEnum?), string UpdatingUserId = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), string RootManifestId = default(string), string CampaignId = default(string), string UpdatingAccountId = default(string), DateTime? UpdatedAt = default(DateTime?), DateTime? When = default(DateTime?), DateTime? Finished = default(DateTime?), DateTime? Etag = default(DateTime?), string RootManifestUrl = default(string), string UpdatingApiKey = default(string), string Id = default(string), string DeviceFilter = default(string), string Name = default(string))
+        /// <param name="StartedAt">StartedAt.</param>
+        /// <param name="Id">The ID of the campaign. (required).</param>
+        /// <param name="DeviceFilter">The filter for the devices the campaign will target. (required).</param>
+        /// <param name="Name">A name for this campaign. (required).</param>
+        public UpdateCampaign(string Description = default(string), string RootManifestId = default(string), string CreatedAt = default(string), string _Object = default(string), string When = default(string), StateEnum? State = default(StateEnum?), string Finished = default(string), string Etag = default(string), string RootManifestUrl = default(string), DateTime? StartedAt = default(DateTime?), string Id = default(string), string DeviceFilter = default(string), string Name = default(string))
         {
             // to ensure "Description" is required (not null)
             if (Description == null)
@@ -140,23 +136,14 @@ namespace deployment_service.Model
             {
                 this.Description = Description;
             }
-            // to ensure "State" is required (not null)
-            if (State == null)
+            // to ensure "RootManifestId" is required (not null)
+            if (RootManifestId == null)
             {
-                throw new InvalidDataException("State is a required property for UpdateCampaign and cannot be null");
+                throw new InvalidDataException("RootManifestId is a required property for UpdateCampaign and cannot be null");
             }
             else
             {
-                this.State = State;
-            }
-            // to ensure "UpdatingUserId" is required (not null)
-            if (UpdatingUserId == null)
-            {
-                throw new InvalidDataException("UpdatingUserId is a required property for UpdateCampaign and cannot be null");
-            }
-            else
-            {
-                this.UpdatingUserId = UpdatingUserId;
+                this.RootManifestId = RootManifestId;
             }
             // to ensure "CreatedAt" is required (not null)
             if (CreatedAt == null)
@@ -176,59 +163,14 @@ namespace deployment_service.Model
             {
                 this._Object = _Object;
             }
-            // to ensure "RootManifestId" is required (not null)
-            if (RootManifestId == null)
+            // to ensure "State" is required (not null)
+            if (State == null)
             {
-                throw new InvalidDataException("RootManifestId is a required property for UpdateCampaign and cannot be null");
+                throw new InvalidDataException("State is a required property for UpdateCampaign and cannot be null");
             }
             else
             {
-                this.RootManifestId = RootManifestId;
-            }
-            // to ensure "CampaignId" is required (not null)
-            if (CampaignId == null)
-            {
-                throw new InvalidDataException("CampaignId is a required property for UpdateCampaign and cannot be null");
-            }
-            else
-            {
-                this.CampaignId = CampaignId;
-            }
-            // to ensure "UpdatingAccountId" is required (not null)
-            if (UpdatingAccountId == null)
-            {
-                throw new InvalidDataException("UpdatingAccountId is a required property for UpdateCampaign and cannot be null");
-            }
-            else
-            {
-                this.UpdatingAccountId = UpdatingAccountId;
-            }
-            // to ensure "UpdatedAt" is required (not null)
-            if (UpdatedAt == null)
-            {
-                throw new InvalidDataException("UpdatedAt is a required property for UpdateCampaign and cannot be null");
-            }
-            else
-            {
-                this.UpdatedAt = UpdatedAt;
-            }
-            // to ensure "When" is required (not null)
-            if (When == null)
-            {
-                throw new InvalidDataException("When is a required property for UpdateCampaign and cannot be null");
-            }
-            else
-            {
-                this.When = When;
-            }
-            // to ensure "Finished" is required (not null)
-            if (Finished == null)
-            {
-                throw new InvalidDataException("Finished is a required property for UpdateCampaign and cannot be null");
-            }
-            else
-            {
-                this.Finished = Finished;
+                this.State = State;
             }
             // to ensure "Etag" is required (not null)
             if (Etag == null)
@@ -247,15 +189,6 @@ namespace deployment_service.Model
             else
             {
                 this.RootManifestUrl = RootManifestUrl;
-            }
-            // to ensure "UpdatingApiKey" is required (not null)
-            if (UpdatingApiKey == null)
-            {
-                throw new InvalidDataException("UpdatingApiKey is a required property for UpdateCampaign and cannot be null");
-            }
-            else
-            {
-                this.UpdatingApiKey = UpdatingApiKey;
             }
             // to ensure "Id" is required (not null)
             if (Id == null)
@@ -284,100 +217,78 @@ namespace deployment_service.Model
             {
                 this.Name = Name;
             }
+            this.When = When;
+            this.Finished = Finished;
+            this.StartedAt = StartedAt;
         }
         
         /// <summary>
-        /// An optional description of the campaign
+        /// An optional description of the campaign.
         /// </summary>
-        /// <value>An optional description of the campaign</value>
+        /// <value>An optional description of the campaign.</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
-        /// <summary>
-        /// The updating IAM user ID
-        /// </summary>
-        /// <value>The updating IAM user ID</value>
-        [DataMember(Name="updating_user_id", EmitDefaultValue=false)]
-        public string UpdatingUserId { get; set; }
-        /// <summary>
-        /// The time the object was created
-        /// </summary>
-        /// <value>The time the object was created</value>
-        [DataMember(Name="created_at", EmitDefaultValue=false)]
-        public DateTime? CreatedAt { get; set; }
-        /// <summary>
-        /// The API resource entity
-        /// </summary>
-        /// <value>The API resource entity</value>
-        [DataMember(Name="object", EmitDefaultValue=false)]
-        public string _Object { get; set; }
         /// <summary>
         /// Gets or Sets RootManifestId
         /// </summary>
         [DataMember(Name="root_manifest_id", EmitDefaultValue=false)]
         public string RootManifestId { get; set; }
         /// <summary>
-        /// DEPRECATED: The ID of the campaign
+        /// The time the object was created.
         /// </summary>
-        /// <value>DEPRECATED: The ID of the campaign</value>
-        [DataMember(Name="campaign_id", EmitDefaultValue=false)]
-        public string CampaignId { get; set; }
+        /// <value>The time the object was created.</value>
+        [DataMember(Name="created_at", EmitDefaultValue=false)]
+        public string CreatedAt { get; set; }
         /// <summary>
-        /// The updating account ID
+        /// The API resource entity.
         /// </summary>
-        /// <value>The updating account ID</value>
-        [DataMember(Name="updating_account_id", EmitDefaultValue=false)]
-        public string UpdatingAccountId { get; set; }
+        /// <value>The API resource entity.</value>
+        [DataMember(Name="object", EmitDefaultValue=false)]
+        public string _Object { get; set; }
         /// <summary>
-        /// The time the object was updated
+        /// The timestamp at which update campaign scheduled to start.
         /// </summary>
-        /// <value>The time the object was updated</value>
-        [DataMember(Name="updated_at", EmitDefaultValue=false)]
-        public DateTime? UpdatedAt { get; set; }
-        /// <summary>
-        /// The timestamp at which update campaign scheduled to start
-        /// </summary>
-        /// <value>The timestamp at which update campaign scheduled to start</value>
+        /// <value>The timestamp at which update campaign scheduled to start.</value>
         [DataMember(Name="when", EmitDefaultValue=false)]
-        public DateTime? When { get; set; }
+        public string When { get; set; }
         /// <summary>
-        /// The timestamp when the update campaign finished
+        /// The timestamp when the update campaign finished.
         /// </summary>
-        /// <value>The timestamp when the update campaign finished</value>
+        /// <value>The timestamp when the update campaign finished.</value>
         [DataMember(Name="finished", EmitDefaultValue=false)]
-        public DateTime? Finished { get; set; }
+        public string Finished { get; set; }
         /// <summary>
-        /// The entity instance signature
+        /// The entity instance signature.
         /// </summary>
-        /// <value>The entity instance signature</value>
+        /// <value>The entity instance signature.</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
-        public DateTime? Etag { get; set; }
+        public string Etag { get; set; }
         /// <summary>
         /// Gets or Sets RootManifestUrl
         /// </summary>
         [DataMember(Name="root_manifest_url", EmitDefaultValue=false)]
         public string RootManifestUrl { get; set; }
         /// <summary>
-        /// The gateway client API key
+        /// Gets or Sets StartedAt
         /// </summary>
-        /// <value>The gateway client API key</value>
-        [DataMember(Name="updating_api_key", EmitDefaultValue=false)]
-        public string UpdatingApiKey { get; set; }
+        [DataMember(Name="started_at", EmitDefaultValue=false)]
+        public DateTime? StartedAt { get; set; }
         /// <summary>
-        /// The ID of the campaign
+        /// The ID of the campaign.
         /// </summary>
-        /// <value>The ID of the campaign</value>
+        /// <value>The ID of the campaign.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
         /// <summary>
-        /// The filter for the devices the campaign will target
+        /// The filter for the devices the campaign will target.
         /// </summary>
-        /// <value>The filter for the devices the campaign will target</value>
+        /// <value>The filter for the devices the campaign will target.</value>
         [DataMember(Name="device_filter", EmitDefaultValue=false)]
         public string DeviceFilter { get; set; }
         /// <summary>
-        /// A name for this campaign
+        /// A name for this campaign.
         /// </summary>
-        /// <value>A name for this campaign</value>
+        /// <value>A name for this campaign.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
@@ -389,19 +300,15 @@ namespace deployment_service.Model
             var sb = new StringBuilder();
             sb.Append("class UpdateCampaign {\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  State: ").Append(State).Append("\n");
-            sb.Append("  UpdatingUserId: ").Append(UpdatingUserId).Append("\n");
+            sb.Append("  RootManifestId: ").Append(RootManifestId).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
-            sb.Append("  RootManifestId: ").Append(RootManifestId).Append("\n");
-            sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
-            sb.Append("  UpdatingAccountId: ").Append(UpdatingAccountId).Append("\n");
-            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  When: ").Append(When).Append("\n");
+            sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  Finished: ").Append(Finished).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  RootManifestUrl: ").Append(RootManifestUrl).Append("\n");
-            sb.Append("  UpdatingApiKey: ").Append(UpdatingApiKey).Append("\n");
+            sb.Append("  StartedAt: ").Append(StartedAt).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  DeviceFilter: ").Append(DeviceFilter).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
@@ -447,14 +354,9 @@ namespace deployment_service.Model
                     this.Description.Equals(other.Description)
                 ) && 
                 (
-                    this.State == other.State ||
-                    this.State != null &&
-                    this.State.Equals(other.State)
-                ) && 
-                (
-                    this.UpdatingUserId == other.UpdatingUserId ||
-                    this.UpdatingUserId != null &&
-                    this.UpdatingUserId.Equals(other.UpdatingUserId)
+                    this.RootManifestId == other.RootManifestId ||
+                    this.RootManifestId != null &&
+                    this.RootManifestId.Equals(other.RootManifestId)
                 ) && 
                 (
                     this.CreatedAt == other.CreatedAt ||
@@ -467,29 +369,14 @@ namespace deployment_service.Model
                     this._Object.Equals(other._Object)
                 ) && 
                 (
-                    this.RootManifestId == other.RootManifestId ||
-                    this.RootManifestId != null &&
-                    this.RootManifestId.Equals(other.RootManifestId)
-                ) && 
-                (
-                    this.CampaignId == other.CampaignId ||
-                    this.CampaignId != null &&
-                    this.CampaignId.Equals(other.CampaignId)
-                ) && 
-                (
-                    this.UpdatingAccountId == other.UpdatingAccountId ||
-                    this.UpdatingAccountId != null &&
-                    this.UpdatingAccountId.Equals(other.UpdatingAccountId)
-                ) && 
-                (
-                    this.UpdatedAt == other.UpdatedAt ||
-                    this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(other.UpdatedAt)
-                ) && 
-                (
                     this.When == other.When ||
                     this.When != null &&
                     this.When.Equals(other.When)
+                ) && 
+                (
+                    this.State == other.State ||
+                    this.State != null &&
+                    this.State.Equals(other.State)
                 ) && 
                 (
                     this.Finished == other.Finished ||
@@ -507,9 +394,9 @@ namespace deployment_service.Model
                     this.RootManifestUrl.Equals(other.RootManifestUrl)
                 ) && 
                 (
-                    this.UpdatingApiKey == other.UpdatingApiKey ||
-                    this.UpdatingApiKey != null &&
-                    this.UpdatingApiKey.Equals(other.UpdatingApiKey)
+                    this.StartedAt == other.StartedAt ||
+                    this.StartedAt != null &&
+                    this.StartedAt.Equals(other.StartedAt)
                 ) && 
                 (
                     this.Id == other.Id ||
@@ -541,32 +428,24 @@ namespace deployment_service.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.Description != null)
                     hash = hash * 59 + this.Description.GetHashCode();
-                if (this.State != null)
-                    hash = hash * 59 + this.State.GetHashCode();
-                if (this.UpdatingUserId != null)
-                    hash = hash * 59 + this.UpdatingUserId.GetHashCode();
+                if (this.RootManifestId != null)
+                    hash = hash * 59 + this.RootManifestId.GetHashCode();
                 if (this.CreatedAt != null)
                     hash = hash * 59 + this.CreatedAt.GetHashCode();
                 if (this._Object != null)
                     hash = hash * 59 + this._Object.GetHashCode();
-                if (this.RootManifestId != null)
-                    hash = hash * 59 + this.RootManifestId.GetHashCode();
-                if (this.CampaignId != null)
-                    hash = hash * 59 + this.CampaignId.GetHashCode();
-                if (this.UpdatingAccountId != null)
-                    hash = hash * 59 + this.UpdatingAccountId.GetHashCode();
-                if (this.UpdatedAt != null)
-                    hash = hash * 59 + this.UpdatedAt.GetHashCode();
                 if (this.When != null)
                     hash = hash * 59 + this.When.GetHashCode();
+                if (this.State != null)
+                    hash = hash * 59 + this.State.GetHashCode();
                 if (this.Finished != null)
                     hash = hash * 59 + this.Finished.GetHashCode();
                 if (this.Etag != null)
                     hash = hash * 59 + this.Etag.GetHashCode();
                 if (this.RootManifestUrl != null)
                     hash = hash * 59 + this.RootManifestUrl.GetHashCode();
-                if (this.UpdatingApiKey != null)
-                    hash = hash * 59 + this.UpdatingApiKey.GetHashCode();
+                if (this.StartedAt != null)
+                    hash = hash * 59 + this.StartedAt.GetHashCode();
                 if (this.Id != null)
                     hash = hash * 59 + this.Id.GetHashCode();
                 if (this.DeviceFilter != null)

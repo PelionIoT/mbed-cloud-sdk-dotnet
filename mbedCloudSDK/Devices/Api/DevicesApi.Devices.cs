@@ -113,7 +113,7 @@ namespace mbedCloudSDK.Devices.Api
             var api = new mds.Api.ResourcesApi(config.Host);
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            var asyncID = api.V2EndpointsEndpointNameResourcePathGet(endpointName, resourcePath);
+            var asyncID = api.V2EndpointsDeviceIdResourcePathGet(endpointName, resourcePath);
             AsyncProducerConsumerCollection<string> collection = new AsyncProducerConsumerCollection<string>();
             asyncResponses.Add(asyncID.AsyncResponseId, collection);
             return new AsyncConsumer<string>(collection);
@@ -133,7 +133,7 @@ namespace mbedCloudSDK.Devices.Api
             var api = new mds.Api.ResourcesApi(config.Host);
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            var asyncID = api.V2EndpointsEndpointNameResourcePathPut(deviceName, resourcePath, resourceValue, noResponse);
+            var asyncID = api.V2EndpointsDeviceIdResourcePathPut(deviceName, resourcePath, resourceValue, noResponse);
             AsyncProducerConsumerCollection<string> collection = new AsyncProducerConsumerCollection<string>();
             asyncResponses.Add(asyncID.AsyncResponseId, collection);
             return new AsyncConsumer<string>(collection);
@@ -156,7 +156,7 @@ namespace mbedCloudSDK.Devices.Api
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             try
             {
-                var resourcesList = api.V2EndpointsEndpointNameGet(deviceId);
+                var resourcesList = api.V2EndpointsDeviceIdGet(deviceId);
                 List<Resource> resources = new List<Resource>();
                 foreach (var resource in resourcesList)
                 {
@@ -181,7 +181,7 @@ namespace mbedCloudSDK.Devices.Api
             var api = new mds.Api.ResourcesApi(config.Host);
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            api.V2EndpointsEndpointNameResourcePathDelete(deviceName, resourcePath, noResponse);
+            api.V2EndpointsDeviceIdResourcePathDelete(deviceName, resourcePath, noResponse);
         }
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace mbedCloudSDK.Devices.Api
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             try
             {
-                var resp = api.V2EndpointsEndpointNameGet(endpointName);
+                var resp = api.V2EndpointsDeviceIdGet(endpointName);
                 var resources = new List<Resource>();
                 foreach(var resource in resp)
                 {

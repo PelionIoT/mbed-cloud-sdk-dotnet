@@ -75,15 +75,11 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var name = name_example;  // string | The name of the query
-            var query = query_example;  // string | The device query
-            var description = description_example;  // string | The description of the object (optional) 
-            var _object = _object_example;  // string | The API resource entity (optional) 
-            var queryId = queryId_example;  // string | DEPRECATED: The ID of the query (optional) 
+            var device = new DeviceQueryPostPutRequest(); // DeviceQueryPostPutRequest | 
 
             try
             {
-                DeviceQuery result = apiInstance.DeviceQueryCreate(name, query, description, _object, queryId);
+                DeviceQuery result = apiInstance.DeviceQueryCreate(device);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -113,11 +109,10 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
- - [Model.Body](docs/Body.md)
  - [Model.DeviceQuery](docs/DeviceQuery.md)
  - [Model.DeviceQueryPage](docs/DeviceQueryPage.md)
- - [Model.WriteDeviceQuery](docs/WriteDeviceQuery.md)
- - [Model.WriteDeviceQueryPage](docs/WriteDeviceQueryPage.md)
+ - [Model.DeviceQueryPatchRequest](docs/DeviceQueryPatchRequest.md)
+ - [Model.DeviceQueryPostPutRequest](docs/DeviceQueryPostPutRequest.md)
 
 
 <a name="documentation-for-authorization"></a>

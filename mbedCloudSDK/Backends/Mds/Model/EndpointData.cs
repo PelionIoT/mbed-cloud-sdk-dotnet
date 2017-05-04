@@ -1,7 +1,7 @@
 /* 
- * mbed Cloud Connect REST API
+ * Connect API
  *
- * mbed Cloud Connect REST API allows web applications to communicate with devices.
+ * mbed Cloud Connect API allows web applications to communicate with devices. You can subscribe to device resources and read/write values to them. mbed Cloud Connect makes connectivity to devices easy by queuing requests and caching resource values.
  *
  * OpenAPI spec version: 2
  * 
@@ -32,41 +32,49 @@ namespace mds.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EndpointData" /> class.
         /// </summary>
-        /// <param name="Q">Queue mode (default value is false).</param>
-        /// <param name="Ept">Endpoint type.</param>
-        /// <param name="Ep">Endpoint name.</param>
+        /// <param name="Q">Queue mode (default value is false)..</param>
+        /// <param name="Ept">Endpoint type..</param>
+        /// <param name="OriginalEp">In case of a self-provided endpoint name that is used to initiate the device registration, mbed Cloud provides a new Device ID to be used from that point on. The new mbed-Cloud-provided Device ID is forwarded as the &#39;ep&#39; property and the original self-provided one as the optional &#39;original-ep&#39; property in a registration notification. The name and ID can then be mapped accordingly. mbed Cloud saves the original endpoint name in Device Catalog for future device registrations so there is no need to do the mapping again.  .</param>
         /// <param name="Resources">Resources.</param>
-        public EndpointData(bool? Q = default(bool?), string Ept = default(string), string Ep = default(string), List<ResourcesData> Resources = default(List<ResourcesData>))
+        /// <param name="Ep">Unique mbed Cloud Device ID..</param>
+        public EndpointData(bool? Q = default(bool?), string Ept = default(string), string OriginalEp = default(string), List<ResourcesData> Resources = default(List<ResourcesData>), string Ep = default(string))
         {
             this.Q = Q;
             this.Ept = Ept;
-            this.Ep = Ep;
+            this.OriginalEp = OriginalEp;
             this.Resources = Resources;
+            this.Ep = Ep;
         }
         
         /// <summary>
-        /// Queue mode (default value is false)
+        /// Queue mode (default value is false).
         /// </summary>
-        /// <value>Queue mode (default value is false)</value>
+        /// <value>Queue mode (default value is false).</value>
         [DataMember(Name="q", EmitDefaultValue=false)]
         public bool? Q { get; set; }
         /// <summary>
-        /// Endpoint type
+        /// Endpoint type.
         /// </summary>
-        /// <value>Endpoint type</value>
+        /// <value>Endpoint type.</value>
         [DataMember(Name="ept", EmitDefaultValue=false)]
         public string Ept { get; set; }
         /// <summary>
-        /// Endpoint name
+        /// In case of a self-provided endpoint name that is used to initiate the device registration, mbed Cloud provides a new Device ID to be used from that point on. The new mbed-Cloud-provided Device ID is forwarded as the &#39;ep&#39; property and the original self-provided one as the optional &#39;original-ep&#39; property in a registration notification. The name and ID can then be mapped accordingly. mbed Cloud saves the original endpoint name in Device Catalog for future device registrations so there is no need to do the mapping again.  
         /// </summary>
-        /// <value>Endpoint name</value>
-        [DataMember(Name="ep", EmitDefaultValue=false)]
-        public string Ep { get; set; }
+        /// <value>In case of a self-provided endpoint name that is used to initiate the device registration, mbed Cloud provides a new Device ID to be used from that point on. The new mbed-Cloud-provided Device ID is forwarded as the &#39;ep&#39; property and the original self-provided one as the optional &#39;original-ep&#39; property in a registration notification. The name and ID can then be mapped accordingly. mbed Cloud saves the original endpoint name in Device Catalog for future device registrations so there is no need to do the mapping again.  </value>
+        [DataMember(Name="original-ep", EmitDefaultValue=false)]
+        public string OriginalEp { get; set; }
         /// <summary>
         /// Gets or Sets Resources
         /// </summary>
         [DataMember(Name="resources", EmitDefaultValue=false)]
         public List<ResourcesData> Resources { get; set; }
+        /// <summary>
+        /// Unique mbed Cloud Device ID.
+        /// </summary>
+        /// <value>Unique mbed Cloud Device ID.</value>
+        [DataMember(Name="ep", EmitDefaultValue=false)]
+        public string Ep { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -77,8 +85,9 @@ namespace mds.Model
             sb.Append("class EndpointData {\n");
             sb.Append("  Q: ").Append(Q).Append("\n");
             sb.Append("  Ept: ").Append(Ept).Append("\n");
-            sb.Append("  Ep: ").Append(Ep).Append("\n");
+            sb.Append("  OriginalEp: ").Append(OriginalEp).Append("\n");
             sb.Append("  Resources: ").Append(Resources).Append("\n");
+            sb.Append("  Ep: ").Append(Ep).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -126,14 +135,19 @@ namespace mds.Model
                     this.Ept.Equals(other.Ept)
                 ) && 
                 (
-                    this.Ep == other.Ep ||
-                    this.Ep != null &&
-                    this.Ep.Equals(other.Ep)
+                    this.OriginalEp == other.OriginalEp ||
+                    this.OriginalEp != null &&
+                    this.OriginalEp.Equals(other.OriginalEp)
                 ) && 
                 (
                     this.Resources == other.Resources ||
                     this.Resources != null &&
                     this.Resources.SequenceEqual(other.Resources)
+                ) && 
+                (
+                    this.Ep == other.Ep ||
+                    this.Ep != null &&
+                    this.Ep.Equals(other.Ep)
                 );
         }
 
@@ -152,10 +166,12 @@ namespace mds.Model
                     hash = hash * 59 + this.Q.GetHashCode();
                 if (this.Ept != null)
                     hash = hash * 59 + this.Ept.GetHashCode();
-                if (this.Ep != null)
-                    hash = hash * 59 + this.Ep.GetHashCode();
+                if (this.OriginalEp != null)
+                    hash = hash * 59 + this.OriginalEp.GetHashCode();
                 if (this.Resources != null)
                     hash = hash * 59 + this.Resources.GetHashCode();
+                if (this.Ep != null)
+                    hash = hash * 59 + this.Ep.GetHashCode();
                 return hash;
             }
         }

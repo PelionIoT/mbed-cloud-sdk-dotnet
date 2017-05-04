@@ -28,115 +28,101 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Create device query&lt;/p&gt;
+        /// Create device query
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">The name of the query</param>
-        /// <param name="query">The device query</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="queryId">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="device"></param>
         /// <returns>DeviceQuery</returns>
-        DeviceQuery DeviceQueryCreate (string name, string query, string description = null, string _object = null, string queryId = null);
+        DeviceQuery DeviceQueryCreate (DeviceQueryPostPutRequest device);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Create device query&lt;/p&gt;
+        /// Create device query
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">The name of the query</param>
-        /// <param name="query">The device query</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="queryId">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceQuery</returns>
-        ApiResponse<DeviceQuery> DeviceQueryCreateWithHttpInfo (string name, string query, string description = null, string _object = null, string queryId = null);
+        ApiResponse<DeviceQuery> DeviceQueryCreateWithHttpInfo (DeviceQueryPostPutRequest device);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Delete device query&lt;/p&gt;
+        /// Delete device query
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>DeviceQuery</returns>
-        DeviceQuery DeviceQueryDestroy (string queryId);
+        /// <returns></returns>
+        void DeviceQueryDestroy (string queryId);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Delete device query&lt;/p&gt;
+        /// Delete device query
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>ApiResponse of DeviceQuery</returns>
-        ApiResponse<DeviceQuery> DeviceQueryDestroyWithHttpInfo (string queryId);
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> DeviceQueryDestroyWithHttpInfo (string queryId);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;List all device queries. The result will be paged into pages of 100.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-query-properties-all-properties-are-filterable\&quot;&gt;By device query properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example: &lt;code&gt;description&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;query_id&#x3D;0158d38771f70000000000010010038c&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;query_id%3D0158d38771f70000000000010010038c%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
+        /// List all device queries. The result will be paged into pages of 100.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By device query properties (all properties are filterable): For example: &#x60;&#x60;&#x60;description&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;query_id&#x3D;0158d38771f70000000000010010038c&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;filter&#x3D;query_id%3D0158d38771f70000000000010010038c%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>DeviceQueryPage</returns>
-        DeviceQueryPage DeviceQueryList (int? limit = null, string order = null, string after = null, string filter = null);
+        DeviceQueryPage DeviceQueryList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;List all device queries. The result will be paged into pages of 100.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-query-properties-all-properties-are-filterable\&quot;&gt;By device query properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example: &lt;code&gt;description&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;query_id&#x3D;0158d38771f70000000000010010038c&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;query_id%3D0158d38771f70000000000010010038c%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
+        /// List all device queries. The result will be paged into pages of 100.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By device query properties (all properties are filterable): For example: &#x60;&#x60;&#x60;description&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;query_id&#x3D;0158d38771f70000000000010010038c&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;filter&#x3D;query_id%3D0158d38771f70000000000010010038c%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of DeviceQueryPage</returns>
-        ApiResponse<DeviceQueryPage> DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null);
+        ApiResponse<DeviceQueryPage> DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Update device query fields&lt;/p&gt;
+        /// Update device query fields
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="name">The name of the query (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="query">The device query (optional)</param>
-        /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="deviceQuery"></param>
         /// <returns>DeviceQuery</returns>
-        DeviceQuery DeviceQueryPartialUpdate (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null);
+        DeviceQuery DeviceQueryPartialUpdate (string queryId, DeviceQueryPatchRequest deviceQuery);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Update device query fields&lt;/p&gt;
+        /// Update device query fields
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="name">The name of the query (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="query">The device query (optional)</param>
-        /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="deviceQuery"></param>
         /// <returns>ApiResponse of DeviceQuery</returns>
-        ApiResponse<DeviceQuery> DeviceQueryPartialUpdateWithHttpInfo (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null);
+        ApiResponse<DeviceQuery> DeviceQueryPartialUpdateWithHttpInfo (string queryId, DeviceQueryPatchRequest deviceQuery);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Retrieve device query.&lt;/p&gt;
+        /// Retrieve device query
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -147,7 +133,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Retrieve device query.&lt;/p&gt;
+        /// Retrieve device query
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -157,140 +143,126 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Update device query.&lt;/p&gt;
+        /// Update device query
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="body">Device query update object</param>
+        /// <param name="body">Device query update object.</param>
         /// <returns>DeviceQuery</returns>
-        DeviceQuery DeviceQueryUpdate (string queryId, Body body);
+        DeviceQuery DeviceQueryUpdate (string queryId, DeviceQueryPostPutRequest body);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Update device query.&lt;/p&gt;
+        /// Update device query
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="body">Device query update object</param>
+        /// <param name="body">Device query update object.</param>
         /// <returns>ApiResponse of DeviceQuery</returns>
-        ApiResponse<DeviceQuery> DeviceQueryUpdateWithHttpInfo (string queryId, Body body);
+        ApiResponse<DeviceQuery> DeviceQueryUpdateWithHttpInfo (string queryId, DeviceQueryPostPutRequest body);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Create device query&lt;/p&gt;
+        /// Create device query
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">The name of the query</param>
-        /// <param name="query">The device query</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="queryId">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="device"></param>
         /// <returns>Task of DeviceQuery</returns>
-        System.Threading.Tasks.Task<DeviceQuery> DeviceQueryCreateAsync (string name, string query, string description = null, string _object = null, string queryId = null);
+        System.Threading.Tasks.Task<DeviceQuery> DeviceQueryCreateAsync (DeviceQueryPostPutRequest device);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Create device query&lt;/p&gt;
+        /// Create device query
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">The name of the query</param>
-        /// <param name="query">The device query</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="queryId">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceQuery)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryCreateAsyncWithHttpInfo (string name, string query, string description = null, string _object = null, string queryId = null);
+        System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryCreateAsyncWithHttpInfo (DeviceQueryPostPutRequest device);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Delete device query&lt;/p&gt;
+        /// Delete device query
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>Task of DeviceQuery</returns>
-        System.Threading.Tasks.Task<DeviceQuery> DeviceQueryDestroyAsync (string queryId);
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task DeviceQueryDestroyAsync (string queryId);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Delete device query&lt;/p&gt;
+        /// Delete device query
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>Task of ApiResponse (DeviceQuery)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryDestroyAsyncWithHttpInfo (string queryId);
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeviceQueryDestroyAsyncWithHttpInfo (string queryId);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;List all device queries. The result will be paged into pages of 100.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-query-properties-all-properties-are-filterable\&quot;&gt;By device query properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example: &lt;code&gt;description&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;query_id&#x3D;0158d38771f70000000000010010038c&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;query_id%3D0158d38771f70000000000010010038c%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
+        /// List all device queries. The result will be paged into pages of 100.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By device query properties (all properties are filterable): For example: &#x60;&#x60;&#x60;description&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;query_id&#x3D;0158d38771f70000000000010010038c&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;filter&#x3D;query_id%3D0158d38771f70000000000010010038c%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of DeviceQueryPage</returns>
-        System.Threading.Tasks.Task<DeviceQueryPage> DeviceQueryListAsync (int? limit = null, string order = null, string after = null, string filter = null);
+        System.Threading.Tasks.Task<DeviceQueryPage> DeviceQueryListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;List all device queries. The result will be paged into pages of 100.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-query-properties-all-properties-are-filterable\&quot;&gt;By device query properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example: &lt;code&gt;description&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;query_id&#x3D;0158d38771f70000000000010010038c&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;query_id%3D0158d38771f70000000000010010038c%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
+        /// List all device queries. The result will be paged into pages of 100.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By device query properties (all properties are filterable): For example: &#x60;&#x60;&#x60;description&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;query_id&#x3D;0158d38771f70000000000010010038c&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;filter&#x3D;query_id%3D0158d38771f70000000000010010038c%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (DeviceQueryPage)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQueryPage>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null);
+        System.Threading.Tasks.Task<ApiResponse<DeviceQueryPage>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Update device query fields&lt;/p&gt;
+        /// Update device query fields
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="name">The name of the query (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="query">The device query (optional)</param>
-        /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="deviceQuery"></param>
         /// <returns>Task of DeviceQuery</returns>
-        System.Threading.Tasks.Task<DeviceQuery> DeviceQueryPartialUpdateAsync (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null);
+        System.Threading.Tasks.Task<DeviceQuery> DeviceQueryPartialUpdateAsync (string queryId, DeviceQueryPatchRequest deviceQuery);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Update device query fields&lt;/p&gt;
+        /// Update device query fields
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="name">The name of the query (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="query">The device query (optional)</param>
-        /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="deviceQuery"></param>
         /// <returns>Task of ApiResponse (DeviceQuery)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryPartialUpdateAsyncWithHttpInfo (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null);
+        System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryPartialUpdateAsyncWithHttpInfo (string queryId, DeviceQueryPatchRequest deviceQuery);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Retrieve device query.&lt;/p&gt;
+        /// Retrieve device query
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -301,7 +273,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Retrieve device query.&lt;/p&gt;
+        /// Retrieve device query
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -311,25 +283,25 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Update device query.&lt;/p&gt;
+        /// Update device query
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="body">Device query update object</param>
+        /// <param name="body">Device query update object.</param>
         /// <returns>Task of DeviceQuery</returns>
-        System.Threading.Tasks.Task<DeviceQuery> DeviceQueryUpdateAsync (string queryId, Body body);
+        System.Threading.Tasks.Task<DeviceQuery> DeviceQueryUpdateAsync (string queryId, DeviceQueryPostPutRequest body);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Update device query.&lt;/p&gt;
+        /// Update device query
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="body">Device query update object</param>
+        /// <param name="body">Device query update object.</param>
         /// <returns>Task of ApiResponse (DeviceQuery)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryUpdateAsyncWithHttpInfo (string queryId, Body body);
+        System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryUpdateAsyncWithHttpInfo (string queryId, DeviceQueryPostPutRequest body);
         #endregion Asynchronous Operations
     }
 
@@ -443,39 +415,28 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Create device query&lt;/p&gt;
+        ///  Create device query
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">The name of the query</param>
-        /// <param name="query">The device query</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="queryId">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="device"></param>
         /// <returns>DeviceQuery</returns>
-        public DeviceQuery DeviceQueryCreate (string name, string query, string description = null, string _object = null, string queryId = null)
+        public DeviceQuery DeviceQueryCreate (DeviceQueryPostPutRequest device)
         {
-             ApiResponse<DeviceQuery> localVarResponse = DeviceQueryCreateWithHttpInfo(name, query, description, _object, queryId);
+             ApiResponse<DeviceQuery> localVarResponse = DeviceQueryCreateWithHttpInfo(device);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Create device query&lt;/p&gt;
+        ///  Create device query
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">The name of the query</param>
-        /// <param name="query">The device query</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="queryId">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceQuery</returns>
-        public ApiResponse< DeviceQuery > DeviceQueryCreateWithHttpInfo (string name, string query, string description = null, string _object = null, string queryId = null)
+        public ApiResponse< DeviceQuery > DeviceQueryCreateWithHttpInfo (DeviceQueryPostPutRequest device)
         {
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->DeviceQueryCreate");
-            // verify the required parameter 'query' is set
-            if (query == null)
-                throw new ApiException(400, "Missing required parameter 'query' when calling DefaultApi->DeviceQueryCreate");
+            // verify the required parameter 'device' is set
+            if (device == null)
+                throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DeviceQueryCreate");
 
             var localVarPath = "/v3/device-queries/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -487,7 +448,6 @@ namespace device_query_service.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
-                "application/x-www-form-urlencoded"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -501,11 +461,14 @@ namespace device_query_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (query != null) localVarFormParams.Add("query", Configuration.ApiClient.ParameterToString(query)); // form parameter
-            if (queryId != null) localVarFormParams.Add("query_id", Configuration.ApiClient.ParameterToString(queryId)); // form parameter
+            if (device != null && device.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(device); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = device; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -534,40 +497,29 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Create device query&lt;/p&gt;
+        ///  Create device query
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">The name of the query</param>
-        /// <param name="query">The device query</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="queryId">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="device"></param>
         /// <returns>Task of DeviceQuery</returns>
-        public async System.Threading.Tasks.Task<DeviceQuery> DeviceQueryCreateAsync (string name, string query, string description = null, string _object = null, string queryId = null)
+        public async System.Threading.Tasks.Task<DeviceQuery> DeviceQueryCreateAsync (DeviceQueryPostPutRequest device)
         {
-             ApiResponse<DeviceQuery> localVarResponse = await DeviceQueryCreateAsyncWithHttpInfo(name, query, description, _object, queryId);
+             ApiResponse<DeviceQuery> localVarResponse = await DeviceQueryCreateAsyncWithHttpInfo(device);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Create device query&lt;/p&gt;
+        ///  Create device query
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name">The name of the query</param>
-        /// <param name="query">The device query</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="queryId">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceQuery)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryCreateAsyncWithHttpInfo (string name, string query, string description = null, string _object = null, string queryId = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryCreateAsyncWithHttpInfo (DeviceQueryPostPutRequest device)
         {
-            // verify the required parameter 'name' is set
-            if (name == null)
-                throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->DeviceQueryCreate");
-            // verify the required parameter 'query' is set
-            if (query == null)
-                throw new ApiException(400, "Missing required parameter 'query' when calling DefaultApi->DeviceQueryCreate");
+            // verify the required parameter 'device' is set
+            if (device == null)
+                throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DeviceQueryCreate");
 
             var localVarPath = "/v3/device-queries/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -579,7 +531,6 @@ namespace device_query_service.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
-                "application/x-www-form-urlencoded"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -593,11 +544,14 @@ namespace device_query_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (query != null) localVarFormParams.Add("query", Configuration.ApiClient.ParameterToString(query)); // form parameter
-            if (queryId != null) localVarFormParams.Add("query_id", Configuration.ApiClient.ParameterToString(queryId)); // form parameter
+            if (device != null && device.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(device); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = device; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -625,24 +579,23 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Delete device query&lt;/p&gt;
+        ///  Delete device query
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>DeviceQuery</returns>
-        public DeviceQuery DeviceQueryDestroy (string queryId)
+        /// <returns></returns>
+        public void DeviceQueryDestroy (string queryId)
         {
-             ApiResponse<DeviceQuery> localVarResponse = DeviceQueryDestroyWithHttpInfo(queryId);
-             return localVarResponse.Data;
+             DeviceQueryDestroyWithHttpInfo(queryId);
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Delete device query&lt;/p&gt;
+        ///  Delete device query
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>ApiResponse of DeviceQuery</returns>
-        public ApiResponse< DeviceQuery > DeviceQueryDestroyWithHttpInfo (string queryId)
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> DeviceQueryDestroyWithHttpInfo (string queryId)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)
@@ -693,32 +646,31 @@ namespace device_query_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceQuery>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceQuery) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuery)));
             
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Delete device query&lt;/p&gt;
+        ///  Delete device query
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>Task of DeviceQuery</returns>
-        public async System.Threading.Tasks.Task<DeviceQuery> DeviceQueryDestroyAsync (string queryId)
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task DeviceQueryDestroyAsync (string queryId)
         {
-             ApiResponse<DeviceQuery> localVarResponse = await DeviceQueryDestroyAsyncWithHttpInfo(queryId);
-             return localVarResponse.Data;
+             await DeviceQueryDestroyAsyncWithHttpInfo(queryId);
 
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Delete device query&lt;/p&gt;
+        ///  Delete device query
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <returns>Task of ApiResponse (DeviceQuery)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryDestroyAsyncWithHttpInfo (string queryId)
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeviceQueryDestroyAsyncWithHttpInfo (string queryId)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)
@@ -768,37 +720,39 @@ namespace device_query_service.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceQuery>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceQuery) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuery)));
             
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;List all device queries. The result will be paged into pages of 100.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-query-properties-all-properties-are-filterable\&quot;&gt;By device query properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example: &lt;code&gt;description&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;query_id&#x3D;0158d38771f70000000000010010038c&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;query_id%3D0158d38771f70000000000010010038c%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
+        ///  List all device queries. The result will be paged into pages of 100.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By device query properties (all properties are filterable): For example: &#x60;&#x60;&#x60;description&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;query_id&#x3D;0158d38771f70000000000010010038c&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;filter&#x3D;query_id%3D0158d38771f70000000000010010038c%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>DeviceQueryPage</returns>
-        public DeviceQueryPage DeviceQueryList (int? limit = null, string order = null, string after = null, string filter = null)
+        public DeviceQueryPage DeviceQueryList (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<DeviceQueryPage> localVarResponse = DeviceQueryListWithHttpInfo(limit, order, after, filter);
+             ApiResponse<DeviceQueryPage> localVarResponse = DeviceQueryListWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;List all device queries. The result will be paged into pages of 100.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-query-properties-all-properties-are-filterable\&quot;&gt;By device query properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example: &lt;code&gt;description&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;query_id&#x3D;0158d38771f70000000000010010038c&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;query_id%3D0158d38771f70000000000010010038c%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
+        ///  List all device queries. The result will be paged into pages of 100.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By device query properties (all properties are filterable): For example: &#x60;&#x60;&#x60;description&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;query_id&#x3D;0158d38771f70000000000010010038c&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;filter&#x3D;query_id%3D0158d38771f70000000000010010038c%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of DeviceQueryPage</returns>
-        public ApiResponse< DeviceQueryPage > DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null)
+        public ApiResponse< DeviceQueryPage > DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/device-queries/";
@@ -828,6 +782,7 @@ namespace device_query_service.Api
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -856,31 +811,33 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;List all device queries. The result will be paged into pages of 100.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-query-properties-all-properties-are-filterable\&quot;&gt;By device query properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example: &lt;code&gt;description&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;query_id&#x3D;0158d38771f70000000000010010038c&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;query_id%3D0158d38771f70000000000010010038c%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
+        ///  List all device queries. The result will be paged into pages of 100.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By device query properties (all properties are filterable): For example: &#x60;&#x60;&#x60;description&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;query_id&#x3D;0158d38771f70000000000010010038c&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;filter&#x3D;query_id%3D0158d38771f70000000000010010038c%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of DeviceQueryPage</returns>
-        public async System.Threading.Tasks.Task<DeviceQueryPage> DeviceQueryListAsync (int? limit = null, string order = null, string after = null, string filter = null)
+        public async System.Threading.Tasks.Task<DeviceQueryPage> DeviceQueryListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<DeviceQueryPage> localVarResponse = await DeviceQueryListAsyncWithHttpInfo(limit, order, after, filter);
+             ApiResponse<DeviceQueryPage> localVarResponse = await DeviceQueryListAsyncWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;List all device queries. The result will be paged into pages of 100.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-query-properties-all-properties-are-filterable\&quot;&gt;By device query properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;For example: &lt;code&gt;description&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;query_id&#x3D;0158d38771f70000000000010010038c&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;query_id%3D0158d38771f70000000000010010038c%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
+        ///  List all device queries. The result will be paged into pages of 100.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By device query properties (all properties are filterable): For example: &#x60;&#x60;&#x60;description&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;query_id&#x3D;0158d38771f70000000000010010038c&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;filter&#x3D;query_id%3D0158d38771f70000000000010010038c%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (DeviceQueryPage)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryPage>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryPage>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/device-queries/";
@@ -910,6 +867,7 @@ namespace device_query_service.Api
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -937,38 +895,33 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Update device query fields&lt;/p&gt;
+        ///  Update device query fields
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="name">The name of the query (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="query">The device query (optional)</param>
-        /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="deviceQuery"></param>
         /// <returns>DeviceQuery</returns>
-        public DeviceQuery DeviceQueryPartialUpdate (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null)
+        public DeviceQuery DeviceQueryPartialUpdate (string queryId, DeviceQueryPatchRequest deviceQuery)
         {
-             ApiResponse<DeviceQuery> localVarResponse = DeviceQueryPartialUpdateWithHttpInfo(queryId, description, name, _object, query, queryId2);
+             ApiResponse<DeviceQuery> localVarResponse = DeviceQueryPartialUpdateWithHttpInfo(queryId, deviceQuery);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Update device query fields&lt;/p&gt;
+        ///  Update device query fields
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="name">The name of the query (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="query">The device query (optional)</param>
-        /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="deviceQuery"></param>
         /// <returns>ApiResponse of DeviceQuery</returns>
-        public ApiResponse< DeviceQuery > DeviceQueryPartialUpdateWithHttpInfo (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null)
+        public ApiResponse< DeviceQuery > DeviceQueryPartialUpdateWithHttpInfo (string queryId, DeviceQueryPatchRequest deviceQuery)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)
                 throw new ApiException(400, "Missing required parameter 'queryId' when calling DefaultApi->DeviceQueryPartialUpdate");
+            // verify the required parameter 'deviceQuery' is set
+            if (deviceQuery == null)
+                throw new ApiException(400, "Missing required parameter 'deviceQuery' when calling DefaultApi->DeviceQueryPartialUpdate");
 
             var localVarPath = "/v3/device-queries/{query_id}/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -994,11 +947,14 @@ namespace device_query_service.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (queryId != null) localVarPathParams.Add("query_id", Configuration.ApiClient.ParameterToString(queryId)); // path parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (query != null) localVarFormParams.Add("query", Configuration.ApiClient.ParameterToString(query)); // form parameter
-            if (queryId2 != null) localVarFormParams.Add("query_id", Configuration.ApiClient.ParameterToString(queryId2)); // form parameter
+            if (deviceQuery != null && deviceQuery.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(deviceQuery); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = deviceQuery; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1027,39 +983,34 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Update device query fields&lt;/p&gt;
+        ///  Update device query fields
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="name">The name of the query (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="query">The device query (optional)</param>
-        /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="deviceQuery"></param>
         /// <returns>Task of DeviceQuery</returns>
-        public async System.Threading.Tasks.Task<DeviceQuery> DeviceQueryPartialUpdateAsync (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null)
+        public async System.Threading.Tasks.Task<DeviceQuery> DeviceQueryPartialUpdateAsync (string queryId, DeviceQueryPatchRequest deviceQuery)
         {
-             ApiResponse<DeviceQuery> localVarResponse = await DeviceQueryPartialUpdateAsyncWithHttpInfo(queryId, description, name, _object, query, queryId2);
+             ApiResponse<DeviceQuery> localVarResponse = await DeviceQueryPartialUpdateAsyncWithHttpInfo(queryId, deviceQuery);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Update device query fields&lt;/p&gt;
+        ///  Update device query fields
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="name">The name of the query (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="query">The device query (optional)</param>
-        /// <param name="queryId2">DEPRECATED: The ID of the query (optional)</param>
+        /// <param name="deviceQuery"></param>
         /// <returns>Task of ApiResponse (DeviceQuery)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryPartialUpdateAsyncWithHttpInfo (string queryId, string description = null, string name = null, string _object = null, string query = null, string queryId2 = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryPartialUpdateAsyncWithHttpInfo (string queryId, DeviceQueryPatchRequest deviceQuery)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)
                 throw new ApiException(400, "Missing required parameter 'queryId' when calling DefaultApi->DeviceQueryPartialUpdate");
+            // verify the required parameter 'deviceQuery' is set
+            if (deviceQuery == null)
+                throw new ApiException(400, "Missing required parameter 'deviceQuery' when calling DefaultApi->DeviceQueryPartialUpdate");
 
             var localVarPath = "/v3/device-queries/{query_id}/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1085,11 +1036,14 @@ namespace device_query_service.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (queryId != null) localVarPathParams.Add("query_id", Configuration.ApiClient.ParameterToString(queryId)); // path parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (query != null) localVarFormParams.Add("query", Configuration.ApiClient.ParameterToString(query)); // form parameter
-            if (queryId2 != null) localVarFormParams.Add("query_id", Configuration.ApiClient.ParameterToString(queryId2)); // form parameter
+            if (deviceQuery != null && deviceQuery.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(deviceQuery); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = deviceQuery; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1117,7 +1071,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Retrieve device query.&lt;/p&gt;
+        ///  Retrieve device query
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -1129,7 +1083,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Retrieve device query.&lt;/p&gt;
+        ///  Retrieve device query
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -1192,7 +1146,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Retrieve device query.&lt;/p&gt;
+        ///  Retrieve device query
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -1205,7 +1159,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Retrieve device query.&lt;/p&gt;
+        ///  Retrieve device query
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -1267,26 +1221,26 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Update device query.&lt;/p&gt;
+        ///  Update device query
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="body">Device query update object</param>
+        /// <param name="body">Device query update object.</param>
         /// <returns>DeviceQuery</returns>
-        public DeviceQuery DeviceQueryUpdate (string queryId, Body body)
+        public DeviceQuery DeviceQueryUpdate (string queryId, DeviceQueryPostPutRequest body)
         {
              ApiResponse<DeviceQuery> localVarResponse = DeviceQueryUpdateWithHttpInfo(queryId, body);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Update device query.&lt;/p&gt;
+        ///  Update device query
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="body">Device query update object</param>
+        /// <param name="body">Device query update object.</param>
         /// <returns>ApiResponse of DeviceQuery</returns>
-        public ApiResponse< DeviceQuery > DeviceQueryUpdateWithHttpInfo (string queryId, Body body)
+        public ApiResponse< DeviceQuery > DeviceQueryUpdateWithHttpInfo (string queryId, DeviceQueryPostPutRequest body)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)
@@ -1355,13 +1309,13 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Update device query.&lt;/p&gt;
+        ///  Update device query
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="body">Device query update object</param>
+        /// <param name="body">Device query update object.</param>
         /// <returns>Task of DeviceQuery</returns>
-        public async System.Threading.Tasks.Task<DeviceQuery> DeviceQueryUpdateAsync (string queryId, Body body)
+        public async System.Threading.Tasks.Task<DeviceQuery> DeviceQueryUpdateAsync (string queryId, DeviceQueryPostPutRequest body)
         {
              ApiResponse<DeviceQuery> localVarResponse = await DeviceQueryUpdateAsyncWithHttpInfo(queryId, body);
              return localVarResponse.Data;
@@ -1369,13 +1323,13 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating device queries.  &lt;/p&gt; &lt;p&gt;Update device query.&lt;/p&gt;
+        ///  Update device query
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
-        /// <param name="body">Device query update object</param>
+        /// <param name="body">Device query update object.</param>
         /// <returns>Task of ApiResponse (DeviceQuery)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryUpdateAsyncWithHttpInfo (string queryId, Body body)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryUpdateAsyncWithHttpInfo (string queryId, DeviceQueryPostPutRequest body)
         {
             // verify the required parameter 'queryId' is set
             if (queryId == null)

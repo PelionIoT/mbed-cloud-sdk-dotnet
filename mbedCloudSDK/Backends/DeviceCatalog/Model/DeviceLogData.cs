@@ -262,6 +262,12 @@ namespace device_catalog.Model
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         { 
+            // EventType (string) maxLength
+            if(this.EventType != null && this.EventType.Length > 100)
+            {
+                yield return new ValidationResult("Invalid value for EventType, length must be less than 100.", new [] { "EventType" });
+            }
+
             yield break;
         }
     }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-IAM Identities REST API
+Account Management API
 
-REST API to manage accounts, groups, users and API keys
+API for managing accounts, users, creating API keys, uploading trusted certificates
 
 OpenAPI spec version: v3
 
@@ -11,7 +11,7 @@ OpenAPI spec version: v3
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D2389960-2597-403D-B433-671703FD46ED}</ProjectGuid>
+    <ProjectGuid>{93456865-0E18-4362-9DC5-2902F29623F3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>iam</RootNamespace>

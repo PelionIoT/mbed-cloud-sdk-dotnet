@@ -1,7 +1,7 @@
 /* 
- * mbed Cloud Connector Statistics REST API
+ * Connect Statistics API
  *
- * mbed Cloud Connector Statistics REST API provides statistics about other cloud services through defined counters.
+ * mbed Cloud Connect Statistics API provides statistics about other cloud services through defined counters.
  *
  * OpenAPI spec version: 3
  * 
@@ -27,16 +27,22 @@ namespace statistics.Model
     /// SuccessfulResponse
     /// </summary>
     [DataContract]
-    public partial class SuccessfulResponse : List<Data>,  IEquatable<SuccessfulResponse>, IValidatableObject
+    public partial class SuccessfulResponse :  IEquatable<SuccessfulResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SuccessfulResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        public SuccessfulResponse()
+        /// <param name="Data">Data.</param>
+        public SuccessfulResponse(List<Metric> Data = default(List<Metric>))
         {
+            this.Data = Data;
         }
         
+        /// <summary>
+        /// Gets or Sets Data
+        /// </summary>
+        [DataMember(Name="data", EmitDefaultValue=false)]
+        public List<Metric> Data { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -45,6 +51,7 @@ namespace statistics.Model
         {
             var sb = new StringBuilder();
             sb.Append("class SuccessfulResponse {\n");
+            sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -53,7 +60,7 @@ namespace statistics.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public  new string ToJson()
+        public string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -80,7 +87,12 @@ namespace statistics.Model
             if (other == null)
                 return false;
 
-            return false;
+            return 
+                (
+                    this.Data == other.Data ||
+                    this.Data != null &&
+                    this.Data.SequenceEqual(other.Data)
+                );
         }
 
         /// <summary>
@@ -94,6 +106,8 @@ namespace statistics.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
+                if (this.Data != null)
+                    hash = hash * 59 + this.Data.GetHashCode();
                 return hash;
             }
         }

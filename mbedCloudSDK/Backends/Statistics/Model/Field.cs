@@ -1,7 +1,7 @@
 /* 
- * mbed Cloud Connector Statistics REST API
+ * Connect Statistics API
  *
- * mbed Cloud Connector Statistics REST API provides statistics about other cloud services through defined counters.
+ * mbed Cloud Connect Statistics API provides statistics about other cloud services through defined counters.
  *
  * OpenAPI spec version: 3
  * 
@@ -32,8 +32,8 @@ namespace statistics.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Field" /> class.
         /// </summary>
-        /// <param name="Message">error description.</param>
-        /// <param name="Name">field name in the request for which validation is failed.</param>
+        /// <param name="Message">Error description..</param>
+        /// <param name="Name">The field name in the request for which the validation has failed.</param>
         public Field(string Message = default(string), string Name = default(string))
         {
             this.Message = Message;
@@ -41,15 +41,15 @@ namespace statistics.Model
         }
         
         /// <summary>
-        /// error description
+        /// Error description.
         /// </summary>
-        /// <value>error description</value>
+        /// <value>Error description.</value>
         [DataMember(Name="message", EmitDefaultValue=false)]
         public string Message { get; set; }
         /// <summary>
-        /// field name in the request for which validation is failed
+        /// The field name in the request for which the validation has failed
         /// </summary>
-        /// <value>field name in the request for which validation is failed</value>
+        /// <value>The field name in the request for which the validation has failed</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>

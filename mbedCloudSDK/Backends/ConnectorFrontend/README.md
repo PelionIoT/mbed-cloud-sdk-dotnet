@@ -83,11 +83,11 @@ namespace Example
             try
             {
                 // Delete a resource
-                apiInstance.V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathDelete(endpointName, resourcePath, noResp, pri);
+                apiInstance.V3DevicesDeviceIdCachedResourcesResourcePathDelete(endpointName, resourcePath, noResp, pri);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling ResourcesApi.V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathDelete: " + e.Message );
+                Debug.Print("Exception when calling ResourcesApi.V3DevicesDeviceIdCachedResourcesResourcePathDelete: " + e.Message );
             }
         }
     }
@@ -101,10 +101,10 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ResourcesApi* | [**V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathDelete**](docs/ResourcesApi.md#v3connectsynchronizerproxyendpointendpointnameresourcepathdelete) | **DELETE** /v3/connect-synchronizer/proxy/endpoint/{endpointName}/{resourcePath} | Delete a resource
-*ResourcesApi* | [**V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathGet**](docs/ResourcesApi.md#v3connectsynchronizerproxyendpointendpointnameresourcepathget) | **GET** /v3/connect-synchronizer/proxy/endpoint/{endpointName}/{resourcePath} | Read from a resource
-*ResourcesApi* | [**V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPost**](docs/ResourcesApi.md#v3connectsynchronizerproxyendpointendpointnameresourcepathpost) | **POST** /v3/connect-synchronizer/proxy/endpoint/{endpointName}/{resourcePath} | Execute a function on a resource
-*ResourcesApi* | [**V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPut**](docs/ResourcesApi.md#v3connectsynchronizerproxyendpointendpointnameresourcepathput) | **PUT** /v3/connect-synchronizer/proxy/endpoint/{endpointName}/{resourcePath} | Write to a resource
+*ResourcesApi* | [**V3DevicesDeviceIdCachedResourcesResourcePathDelete**](docs/ResourcesApi.md#v3devicesdeviceidcachedresourcesresourcepathdelete) | **DELETE** /v3/devices/{deviceId}/cached-resources/{resourcePath} | Delete a resource
+*ResourcesApi* | [**V3DevicesDeviceIdCachedResourcesResourcePathGet**](docs/ResourcesApi.md#v3devicesdeviceidcachedresourcesresourcepathget) | **GET** /v3/devices/{deviceId}/cached-resources/{resourcePath} | Read from a resource
+*ResourcesApi* | [**V3DevicesDeviceIdCachedResourcesResourcePathPost**](docs/ResourcesApi.md#v3devicesdeviceidcachedresourcesresourcepathpost) | **POST** /v3/devices/{deviceId}/cached-resources/{resourcePath} | Execute a function on a resource
+*ResourcesApi* | [**V3DevicesDeviceIdCachedResourcesResourcePathPut**](docs/ResourcesApi.md#v3devicesdeviceidcachedresourcesresourcepathput) | **PUT** /v3/devices/{deviceId}/cached-resources/{resourcePath} | Write to a resource
 
 
 <a name="documentation-for-models"></a>

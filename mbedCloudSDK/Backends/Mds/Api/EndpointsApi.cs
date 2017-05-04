@@ -1,7 +1,7 @@
 /* 
- * mbed Cloud Connect REST API
+ * Connect API
  *
- * mbed Cloud Connect REST API allows web applications to communicate with devices.
+ * mbed Cloud Connect API allows web applications to communicate with devices. You can subscribe to device resources and read/write values to them. mbed Cloud Connect makes connectivity to devices easy by queuing requests and caching resource values.
  *
  * OpenAPI spec version: 2
  * 
@@ -31,9 +31,9 @@ namespace mds.Api
         /// The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="endpointName">A unique identifier for an endpoint. Note that the endpoint name needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <returns>List&lt;Resource&gt;</returns>
-        List<Resource> V2EndpointsEndpointNameGet (string endpointName);
+        List<Resource> V2EndpointsDeviceIdGet (string deviceId);
 
         /// <summary>
         /// List the resources on an endpoint
@@ -42,11 +42,11 @@ namespace mds.Api
         /// The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="endpointName">A unique identifier for an endpoint. Note that the endpoint name needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <returns>ApiResponse of List&lt;Resource&gt;</returns>
-        ApiResponse<List<Resource>> V2EndpointsEndpointNameGetWithHttpInfo (string endpointName);
+        ApiResponse<List<Resource>> V2EndpointsDeviceIdGetWithHttpInfo (string deviceId);
         /// <summary>
-        /// List all endpoints
+        /// List endpoints. The number of endpoints is currently limited to 200.
         /// </summary>
         /// <remarks>
         /// Endpoints are physical devices running mbed Cloud Client. 
@@ -57,7 +57,7 @@ namespace mds.Api
         List<Endpoint> V2EndpointsGet (string type = null);
 
         /// <summary>
-        /// List all endpoints
+        /// List endpoints. The number of endpoints is currently limited to 200.
         /// </summary>
         /// <remarks>
         /// Endpoints are physical devices running mbed Cloud Client. 
@@ -75,9 +75,9 @@ namespace mds.Api
         /// The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="endpointName">A unique identifier for an endpoint. Note that the endpoint name needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of List&lt;Resource&gt;</returns>
-        System.Threading.Tasks.Task<List<Resource>> V2EndpointsEndpointNameGetAsync (string endpointName);
+        System.Threading.Tasks.Task<List<Resource>> V2EndpointsDeviceIdGetAsync (string deviceId);
 
         /// <summary>
         /// List the resources on an endpoint
@@ -86,11 +86,11 @@ namespace mds.Api
         /// The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="endpointName">A unique identifier for an endpoint. Note that the endpoint name needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of ApiResponse (List&lt;Resource&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Resource>>> V2EndpointsEndpointNameGetAsyncWithHttpInfo (string endpointName);
+        System.Threading.Tasks.Task<ApiResponse<List<Resource>>> V2EndpointsDeviceIdGetAsyncWithHttpInfo (string deviceId);
         /// <summary>
-        /// List all endpoints
+        /// List endpoints. The number of endpoints is currently limited to 200.
         /// </summary>
         /// <remarks>
         /// Endpoints are physical devices running mbed Cloud Client. 
@@ -101,7 +101,7 @@ namespace mds.Api
         System.Threading.Tasks.Task<List<Endpoint>> V2EndpointsGetAsync (string type = null);
 
         /// <summary>
-        /// List all endpoints
+        /// List endpoints. The number of endpoints is currently limited to 200.
         /// </summary>
         /// <remarks>
         /// Endpoints are physical devices running mbed Cloud Client. 
@@ -226,11 +226,11 @@ namespace mds.Api
         /// List the resources on an endpoint The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="endpointName">A unique identifier for an endpoint. Note that the endpoint name needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <returns>List&lt;Resource&gt;</returns>
-        public List<Resource> V2EndpointsEndpointNameGet (string endpointName)
+        public List<Resource> V2EndpointsDeviceIdGet (string deviceId)
         {
-             ApiResponse<List<Resource>> localVarResponse = V2EndpointsEndpointNameGetWithHttpInfo(endpointName);
+             ApiResponse<List<Resource>> localVarResponse = V2EndpointsDeviceIdGetWithHttpInfo(deviceId);
              return localVarResponse.Data;
         }
 
@@ -238,15 +238,15 @@ namespace mds.Api
         /// List the resources on an endpoint The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="endpointName">A unique identifier for an endpoint. Note that the endpoint name needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <returns>ApiResponse of List&lt;Resource&gt;</returns>
-        public ApiResponse< List<Resource> > V2EndpointsEndpointNameGetWithHttpInfo (string endpointName)
+        public ApiResponse< List<Resource> > V2EndpointsDeviceIdGetWithHttpInfo (string deviceId)
         {
-            // verify the required parameter 'endpointName' is set
-            if (endpointName == null)
-                throw new ApiException(400, "Missing required parameter 'endpointName' when calling EndpointsApi->V2EndpointsEndpointNameGet");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling EndpointsApi->V2EndpointsDeviceIdGet");
 
-            var localVarPath = "/v2/endpoints/{endpointName}";
+            var localVarPath = "/v2/endpoints/{device-id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -271,7 +271,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (endpointName != null) localVarPathParams.Add("endpointName", Configuration.ApiClient.ParameterToString(endpointName)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -289,7 +289,7 @@ namespace mds.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2EndpointsEndpointNameGet", localVarResponse);
+                Exception exception = ExceptionFactory("V2EndpointsDeviceIdGet", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -303,11 +303,11 @@ namespace mds.Api
         /// List the resources on an endpoint The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="endpointName">A unique identifier for an endpoint. Note that the endpoint name needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of List&lt;Resource&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Resource>> V2EndpointsEndpointNameGetAsync (string endpointName)
+        public async System.Threading.Tasks.Task<List<Resource>> V2EndpointsDeviceIdGetAsync (string deviceId)
         {
-             ApiResponse<List<Resource>> localVarResponse = await V2EndpointsEndpointNameGetAsyncWithHttpInfo(endpointName);
+             ApiResponse<List<Resource>> localVarResponse = await V2EndpointsDeviceIdGetAsyncWithHttpInfo(deviceId);
              return localVarResponse.Data;
 
         }
@@ -316,15 +316,15 @@ namespace mds.Api
         /// List the resources on an endpoint The list of resources is cached by mbed Cloud Connect, so this call does not create a message to the device. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="endpointName">A unique identifier for an endpoint. Note that the endpoint name needs to be an exact match. You cannot use wildcards here. </param>
+        /// <param name="deviceId">A unique mbed Cloud device ID for an endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of ApiResponse (List&lt;Resource&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Resource>>> V2EndpointsEndpointNameGetAsyncWithHttpInfo (string endpointName)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Resource>>> V2EndpointsDeviceIdGetAsyncWithHttpInfo (string deviceId)
         {
-            // verify the required parameter 'endpointName' is set
-            if (endpointName == null)
-                throw new ApiException(400, "Missing required parameter 'endpointName' when calling EndpointsApi->V2EndpointsEndpointNameGet");
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling EndpointsApi->V2EndpointsDeviceIdGet");
 
-            var localVarPath = "/v2/endpoints/{endpointName}";
+            var localVarPath = "/v2/endpoints/{device-id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -349,7 +349,7 @@ namespace mds.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (endpointName != null) localVarPathParams.Add("endpointName", Configuration.ApiClient.ParameterToString(endpointName)); // path parameter
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -366,7 +366,7 @@ namespace mds.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2EndpointsEndpointNameGet", localVarResponse);
+                Exception exception = ExceptionFactory("V2EndpointsDeviceIdGet", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -377,7 +377,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// List all endpoints Endpoints are physical devices running mbed Cloud Client. 
+        /// List endpoints. The number of endpoints is currently limited to 200. Endpoints are physical devices running mbed Cloud Client. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Filter endpoints by endpoint-type. (optional)</param>
@@ -389,7 +389,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// List all endpoints Endpoints are physical devices running mbed Cloud Client. 
+        /// List endpoints. The number of endpoints is currently limited to 200. Endpoints are physical devices running mbed Cloud Client. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Filter endpoints by endpoint-type. (optional)</param>
@@ -451,7 +451,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// List all endpoints Endpoints are physical devices running mbed Cloud Client. 
+        /// List endpoints. The number of endpoints is currently limited to 200. Endpoints are physical devices running mbed Cloud Client. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Filter endpoints by endpoint-type. (optional)</param>
@@ -464,7 +464,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// List all endpoints Endpoints are physical devices running mbed Cloud Client. 
+        /// List endpoints. The number of endpoints is currently limited to 200. Endpoints are physical devices running mbed Cloud Client. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Filter endpoints by endpoint-type. (optional)</param>

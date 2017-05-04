@@ -1,7 +1,7 @@
 /* 
- * mbed Cloud Connect CA REST API (R1.2)
+ * Connect CA API
  *
- * mbed Cloud Connect CA REST API allows services to get device credentials.
+ * Connect CA API provides methods to create and get Developer certificate. Also Connect CA provides server-credentials for Bootstarp and LWM2M Server.
  *
  * OpenAPI spec version: 3
  * 
@@ -33,8 +33,8 @@ namespace connector_ca.Api
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for the developer certificate. </param>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>InlineResponse201</returns>
-        InlineResponse201 V3DeveloperCertificatesIdGet (string id, string authorization);
+        /// <returns>DeveloperCertificateResponseData</returns>
+        DeveloperCertificateResponseData V3DeveloperCertificatesIdGet (string id, string authorization);
 
         /// <summary>
         /// Fetch an existing developer certificate to connect to the bootstrap server.
@@ -45,31 +45,31 @@ namespace connector_ca.Api
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for the developer certificate. </param>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>ApiResponse of InlineResponse201</returns>
-        ApiResponse<InlineResponse201> V3DeveloperCertificatesIdGetWithHttpInfo (string id, string authorization);
+        /// <returns>ApiResponse of DeveloperCertificateResponseData</returns>
+        ApiResponse<DeveloperCertificateResponseData> V3DeveloperCertificatesIdGetWithHttpInfo (string id, string authorization);
         /// <summary>
         /// Create a new developer certificate to connect to the bootstrap server.
         /// </summary>
         /// <remarks>
-        /// This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:   - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account 
+        /// This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:    - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
         /// <param name="body"></param>
-        /// <returns>InlineResponse201</returns>
-        InlineResponse201 V3DeveloperCertificatesPost (string authorization, Body body);
+        /// <returns>DeveloperCertificateResponseData</returns>
+        DeveloperCertificateResponseData V3DeveloperCertificatesPost (string authorization, DeveloperCertificateRequestData body);
 
         /// <summary>
         /// Create a new developer certificate to connect to the bootstrap server.
         /// </summary>
         /// <remarks>
-        /// This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:   - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account 
+        /// This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:    - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
         /// <param name="body"></param>
-        /// <returns>ApiResponse of InlineResponse201</returns>
-        ApiResponse<InlineResponse201> V3DeveloperCertificatesPostWithHttpInfo (string authorization, Body body);
+        /// <returns>ApiResponse of DeveloperCertificateResponseData</returns>
+        ApiResponse<DeveloperCertificateResponseData> V3DeveloperCertificatesPostWithHttpInfo (string authorization, DeveloperCertificateRequestData body);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -81,8 +81,8 @@ namespace connector_ca.Api
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for the developer certificate. </param>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>Task of InlineResponse201</returns>
-        System.Threading.Tasks.Task<InlineResponse201> V3DeveloperCertificatesIdGetAsync (string id, string authorization);
+        /// <returns>Task of DeveloperCertificateResponseData</returns>
+        System.Threading.Tasks.Task<DeveloperCertificateResponseData> V3DeveloperCertificatesIdGetAsync (string id, string authorization);
 
         /// <summary>
         /// Fetch an existing developer certificate to connect to the bootstrap server.
@@ -93,31 +93,31 @@ namespace connector_ca.Api
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for the developer certificate. </param>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>Task of ApiResponse (InlineResponse201)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse201>> V3DeveloperCertificatesIdGetAsyncWithHttpInfo (string id, string authorization);
+        /// <returns>Task of ApiResponse (DeveloperCertificateResponseData)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeveloperCertificateResponseData>> V3DeveloperCertificatesIdGetAsyncWithHttpInfo (string id, string authorization);
         /// <summary>
         /// Create a new developer certificate to connect to the bootstrap server.
         /// </summary>
         /// <remarks>
-        /// This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:   - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account 
+        /// This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:    - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
         /// <param name="body"></param>
-        /// <returns>Task of InlineResponse201</returns>
-        System.Threading.Tasks.Task<InlineResponse201> V3DeveloperCertificatesPostAsync (string authorization, Body body);
+        /// <returns>Task of DeveloperCertificateResponseData</returns>
+        System.Threading.Tasks.Task<DeveloperCertificateResponseData> V3DeveloperCertificatesPostAsync (string authorization, DeveloperCertificateRequestData body);
 
         /// <summary>
         /// Create a new developer certificate to connect to the bootstrap server.
         /// </summary>
         /// <remarks>
-        /// This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:   - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account 
+        /// This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:    - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
         /// <param name="body"></param>
-        /// <returns>Task of ApiResponse (InlineResponse201)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse201>> V3DeveloperCertificatesPostAsyncWithHttpInfo (string authorization, Body body);
+        /// <returns>Task of ApiResponse (DeveloperCertificateResponseData)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeveloperCertificateResponseData>> V3DeveloperCertificatesPostAsyncWithHttpInfo (string authorization, DeveloperCertificateRequestData body);
         #endregion Asynchronous Operations
     }
 
@@ -236,10 +236,10 @@ namespace connector_ca.Api
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for the developer certificate. </param>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>InlineResponse201</returns>
-        public InlineResponse201 V3DeveloperCertificatesIdGet (string id, string authorization)
+        /// <returns>DeveloperCertificateResponseData</returns>
+        public DeveloperCertificateResponseData V3DeveloperCertificatesIdGet (string id, string authorization)
         {
-             ApiResponse<InlineResponse201> localVarResponse = V3DeveloperCertificatesIdGetWithHttpInfo(id, authorization);
+             ApiResponse<DeveloperCertificateResponseData> localVarResponse = V3DeveloperCertificatesIdGetWithHttpInfo(id, authorization);
              return localVarResponse.Data;
         }
 
@@ -249,8 +249,8 @@ namespace connector_ca.Api
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for the developer certificate. </param>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>ApiResponse of InlineResponse201</returns>
-        public ApiResponse< InlineResponse201 > V3DeveloperCertificatesIdGetWithHttpInfo (string id, string authorization)
+        /// <returns>ApiResponse of DeveloperCertificateResponseData</returns>
+        public ApiResponse< DeveloperCertificateResponseData > V3DeveloperCertificatesIdGetWithHttpInfo (string id, string authorization)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -306,9 +306,9 @@ namespace connector_ca.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<InlineResponse201>(localVarStatusCode,
+            return new ApiResponse<DeveloperCertificateResponseData>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse201) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse201)));
+                (DeveloperCertificateResponseData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeveloperCertificateResponseData)));
             
         }
 
@@ -318,10 +318,10 @@ namespace connector_ca.Api
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for the developer certificate. </param>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>Task of InlineResponse201</returns>
-        public async System.Threading.Tasks.Task<InlineResponse201> V3DeveloperCertificatesIdGetAsync (string id, string authorization)
+        /// <returns>Task of DeveloperCertificateResponseData</returns>
+        public async System.Threading.Tasks.Task<DeveloperCertificateResponseData> V3DeveloperCertificatesIdGetAsync (string id, string authorization)
         {
-             ApiResponse<InlineResponse201> localVarResponse = await V3DeveloperCertificatesIdGetAsyncWithHttpInfo(id, authorization);
+             ApiResponse<DeveloperCertificateResponseData> localVarResponse = await V3DeveloperCertificatesIdGetAsyncWithHttpInfo(id, authorization);
              return localVarResponse.Data;
 
         }
@@ -332,8 +332,8 @@ namespace connector_ca.Api
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for the developer certificate. </param>
         /// <param name="authorization">Bearer {Access Token}. </param>
-        /// <returns>Task of ApiResponse (InlineResponse201)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse201>> V3DeveloperCertificatesIdGetAsyncWithHttpInfo (string id, string authorization)
+        /// <returns>Task of ApiResponse (DeveloperCertificateResponseData)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeveloperCertificateResponseData>> V3DeveloperCertificatesIdGetAsyncWithHttpInfo (string id, string authorization)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -388,33 +388,33 @@ namespace connector_ca.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<InlineResponse201>(localVarStatusCode,
+            return new ApiResponse<DeveloperCertificateResponseData>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse201) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse201)));
+                (DeveloperCertificateResponseData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeveloperCertificateResponseData)));
             
         }
 
         /// <summary>
-        /// Create a new developer certificate to connect to the bootstrap server. This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:   - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account 
+        /// Create a new developer certificate to connect to the bootstrap server. This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:    - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
         /// <param name="body"></param>
-        /// <returns>InlineResponse201</returns>
-        public InlineResponse201 V3DeveloperCertificatesPost (string authorization, Body body)
+        /// <returns>DeveloperCertificateResponseData</returns>
+        public DeveloperCertificateResponseData V3DeveloperCertificatesPost (string authorization, DeveloperCertificateRequestData body)
         {
-             ApiResponse<InlineResponse201> localVarResponse = V3DeveloperCertificatesPostWithHttpInfo(authorization, body);
+             ApiResponse<DeveloperCertificateResponseData> localVarResponse = V3DeveloperCertificatesPostWithHttpInfo(authorization, body);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Create a new developer certificate to connect to the bootstrap server. This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:   - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account 
+        /// Create a new developer certificate to connect to the bootstrap server. This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:    - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
         /// <param name="body"></param>
-        /// <returns>ApiResponse of InlineResponse201</returns>
-        public ApiResponse< InlineResponse201 > V3DeveloperCertificatesPostWithHttpInfo (string authorization, Body body)
+        /// <returns>ApiResponse of DeveloperCertificateResponseData</returns>
+        public ApiResponse< DeveloperCertificateResponseData > V3DeveloperCertificatesPostWithHttpInfo (string authorization, DeveloperCertificateRequestData body)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -477,34 +477,34 @@ namespace connector_ca.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<InlineResponse201>(localVarStatusCode,
+            return new ApiResponse<DeveloperCertificateResponseData>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse201) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse201)));
+                (DeveloperCertificateResponseData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeveloperCertificateResponseData)));
             
         }
 
         /// <summary>
-        /// Create a new developer certificate to connect to the bootstrap server. This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:   - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account 
+        /// Create a new developer certificate to connect to the bootstrap server. This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:    - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
         /// <param name="body"></param>
-        /// <returns>Task of InlineResponse201</returns>
-        public async System.Threading.Tasks.Task<InlineResponse201> V3DeveloperCertificatesPostAsync (string authorization, Body body)
+        /// <returns>Task of DeveloperCertificateResponseData</returns>
+        public async System.Threading.Tasks.Task<DeveloperCertificateResponseData> V3DeveloperCertificatesPostAsync (string authorization, DeveloperCertificateRequestData body)
         {
-             ApiResponse<InlineResponse201> localVarResponse = await V3DeveloperCertificatesPostAsyncWithHttpInfo(authorization, body);
+             ApiResponse<DeveloperCertificateResponseData> localVarResponse = await V3DeveloperCertificatesPostAsyncWithHttpInfo(authorization, body);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Create a new developer certificate to connect to the bootstrap server. This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:   - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account 
+        /// Create a new developer certificate to connect to the bootstrap server. This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:    - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">Bearer {Access Token}. </param>
         /// <param name="body"></param>
-        /// <returns>Task of ApiResponse (InlineResponse201)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse201>> V3DeveloperCertificatesPostAsyncWithHttpInfo (string authorization, Body body)
+        /// <returns>Task of ApiResponse (DeveloperCertificateResponseData)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeveloperCertificateResponseData>> V3DeveloperCertificatesPostAsyncWithHttpInfo (string authorization, DeveloperCertificateRequestData body)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -566,9 +566,9 @@ namespace connector_ca.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<InlineResponse201>(localVarStatusCode,
+            return new ApiResponse<DeveloperCertificateResponseData>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse201) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse201)));
+                (DeveloperCertificateResponseData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeveloperCertificateResponseData)));
             
         }
 

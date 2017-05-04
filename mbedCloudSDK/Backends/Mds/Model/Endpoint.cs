@@ -1,7 +1,7 @@
 /* 
- * mbed Cloud Connect REST API
+ * Connect API
  *
- * mbed Cloud Connect REST API allows web applications to communicate with devices.
+ * mbed Cloud Connect API allows web applications to communicate with devices. You can subscribe to device resources and read/write values to them. mbed Cloud Connect makes connectivity to devices easy by queuing requests and caching resource values.
  *
  * OpenAPI spec version: 2
  * 
@@ -33,9 +33,9 @@ namespace mds.Model
         /// Initializes a new instance of the <see cref="Endpoint" /> class.
         /// </summary>
         /// <param name="Status">Possible values ACTIVE, STALE..</param>
-        /// <param name="Q">Determines whether the device is in queue mode. &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Queue mode&lt;/b&gt;&lt;br/&gt; When an endpoint is in queue mode, messages sent to the endpoint do not wake up the physical device. The messages are queued and delivered when the device wakes up and connects to mbed Cloud Connect itself. You can also use the Queue mode when the device is behind a NAT and cannot be reached directly by mbed Cloud Connect. .</param>
+        /// <param name="Q">Determines whether the device is in queue mode.  &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Queue mode&lt;/b&gt;&lt;br/&gt; When an endpoint is in Queue mode, messages sent to the endpoint do not wake up the physical device. The messages are queued  and delivered when the device wakes up and connects to mbed Cloud Connect itself. You can also use the Queue mode when  the device is behind a NAT and cannot be reached directly by mbed Cloud Connect. .</param>
         /// <param name="Type">Type of endpoint. (Free text).</param>
-        /// <param name="Name">Unique identifier representing the endpoint..</param>
+        /// <param name="Name">Unique mbed Cloud Device ID representing the endpoint..</param>
         public Endpoint(string Status = default(string), bool? Q = default(bool?), string Type = default(string), string Name = default(string))
         {
             this.Status = Status;
@@ -51,9 +51,9 @@ namespace mds.Model
         [DataMember(Name="status", EmitDefaultValue=false)]
         public string Status { get; set; }
         /// <summary>
-        /// Determines whether the device is in queue mode. &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Queue mode&lt;/b&gt;&lt;br/&gt; When an endpoint is in queue mode, messages sent to the endpoint do not wake up the physical device. The messages are queued and delivered when the device wakes up and connects to mbed Cloud Connect itself. You can also use the Queue mode when the device is behind a NAT and cannot be reached directly by mbed Cloud Connect. 
+        /// Determines whether the device is in queue mode.  &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Queue mode&lt;/b&gt;&lt;br/&gt; When an endpoint is in Queue mode, messages sent to the endpoint do not wake up the physical device. The messages are queued  and delivered when the device wakes up and connects to mbed Cloud Connect itself. You can also use the Queue mode when  the device is behind a NAT and cannot be reached directly by mbed Cloud Connect. 
         /// </summary>
-        /// <value>Determines whether the device is in queue mode. &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Queue mode&lt;/b&gt;&lt;br/&gt; When an endpoint is in queue mode, messages sent to the endpoint do not wake up the physical device. The messages are queued and delivered when the device wakes up and connects to mbed Cloud Connect itself. You can also use the Queue mode when the device is behind a NAT and cannot be reached directly by mbed Cloud Connect. </value>
+        /// <value>Determines whether the device is in queue mode.  &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Queue mode&lt;/b&gt;&lt;br/&gt; When an endpoint is in Queue mode, messages sent to the endpoint do not wake up the physical device. The messages are queued  and delivered when the device wakes up and connects to mbed Cloud Connect itself. You can also use the Queue mode when  the device is behind a NAT and cannot be reached directly by mbed Cloud Connect. </value>
         [DataMember(Name="q", EmitDefaultValue=false)]
         public bool? Q { get; set; }
         /// <summary>
@@ -63,9 +63,9 @@ namespace mds.Model
         [DataMember(Name="type", EmitDefaultValue=false)]
         public string Type { get; set; }
         /// <summary>
-        /// Unique identifier representing the endpoint.
+        /// Unique mbed Cloud Device ID representing the endpoint.
         /// </summary>
-        /// <value>Unique identifier representing the endpoint.</value>
+        /// <value>Unique mbed Cloud Device ID representing the endpoint.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>

@@ -1,7 +1,7 @@
 /* 
- * IAM Identities REST API
+ * Account Management API
  *
- * REST API to manage accounts, groups, users and API keys
+ * API for managing accounts, users, creating API keys, uploading trusted certificates
  *
  * OpenAPI spec version: v3
  * 
@@ -37,25 +37,16 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UserUpdateReq" /> class.
         /// </summary>
-        /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters. (required).</param>
-        /// <param name="PhoneNumber">Phone number..</param>
+        /// <param name="PhoneNumber">Phone number, not longer than 100 characters..</param>
+        /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long..</param>
         /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted..</param>
         /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted..</param>
-        /// <param name="FullName">The full name of the user..</param>
-        /// <param name="Address">Address..</param>
+        /// <param name="FullName">The full name of the user, not longer than 100 characters..</param>
+        /// <param name="Address">Address, not longer than 100 characters..</param>
         /// <param name="Password">The password when creating a new user. It will will generated when not present in the request..</param>
-        /// <param name="Email">The email address. (required).</param>
-        public UserUpdateReq(string Username = default(string), string PhoneNumber = default(string), bool? IsMarketingAccepted = default(bool?), bool? IsGtcAccepted = default(bool?), string FullName = default(string), string Address = default(string), string Password = default(string), string Email = default(string))
+        /// <param name="Email">The email address, not longer than 100 characters. (required).</param>
+        public UserUpdateReq(string PhoneNumber = default(string), string Username = default(string), bool? IsMarketingAccepted = default(bool?), bool? IsGtcAccepted = default(bool?), string FullName = default(string), string Address = default(string), string Password = default(string), string Email = default(string))
         {
-            // to ensure "Username" is required (not null)
-            if (Username == null)
-            {
-                throw new InvalidDataException("Username is a required property for UserUpdateReq and cannot be null");
-            }
-            else
-            {
-                this.Username = Username;
-            }
             // to ensure "Email" is required (not null)
             if (Email == null)
             {
@@ -66,6 +57,7 @@ namespace iam.Model
                 this.Email = Email;
             }
             this.PhoneNumber = PhoneNumber;
+            this.Username = Username;
             this.IsMarketingAccepted = IsMarketingAccepted;
             this.IsGtcAccepted = IsGtcAccepted;
             this.FullName = FullName;
@@ -74,17 +66,17 @@ namespace iam.Model
         }
         
         /// <summary>
-        /// A username containing alphanumerical letters and -,._@+&#x3D; characters.
+        /// Phone number, not longer than 100 characters.
         /// </summary>
-        /// <value>A username containing alphanumerical letters and -,._@+&#x3D; characters.</value>
-        [DataMember(Name="username", EmitDefaultValue=false)]
-        public string Username { get; set; }
-        /// <summary>
-        /// Phone number.
-        /// </summary>
-        /// <value>Phone number.</value>
+        /// <value>Phone number, not longer than 100 characters.</value>
         [DataMember(Name="phone_number", EmitDefaultValue=false)]
         public string PhoneNumber { get; set; }
+        /// <summary>
+        /// A username containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long.
+        /// </summary>
+        /// <value>A username containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long.</value>
+        [DataMember(Name="username", EmitDefaultValue=false)]
+        public string Username { get; set; }
         /// <summary>
         /// A flag indicating that receiving marketing information has been accepted.
         /// </summary>
@@ -98,15 +90,15 @@ namespace iam.Model
         [DataMember(Name="is_gtc_accepted", EmitDefaultValue=false)]
         public bool? IsGtcAccepted { get; set; }
         /// <summary>
-        /// The full name of the user.
+        /// The full name of the user, not longer than 100 characters.
         /// </summary>
-        /// <value>The full name of the user.</value>
+        /// <value>The full name of the user, not longer than 100 characters.</value>
         [DataMember(Name="full_name", EmitDefaultValue=false)]
         public string FullName { get; set; }
         /// <summary>
-        /// Address.
+        /// Address, not longer than 100 characters.
         /// </summary>
-        /// <value>Address.</value>
+        /// <value>Address, not longer than 100 characters.</value>
         [DataMember(Name="address", EmitDefaultValue=false)]
         public string Address { get; set; }
         /// <summary>
@@ -116,9 +108,9 @@ namespace iam.Model
         [DataMember(Name="password", EmitDefaultValue=false)]
         public string Password { get; set; }
         /// <summary>
-        /// The email address.
+        /// The email address, not longer than 100 characters.
         /// </summary>
-        /// <value>The email address.</value>
+        /// <value>The email address, not longer than 100 characters.</value>
         [DataMember(Name="email", EmitDefaultValue=false)]
         public string Email { get; set; }
         /// <summary>
@@ -129,8 +121,8 @@ namespace iam.Model
         {
             var sb = new StringBuilder();
             sb.Append("class UserUpdateReq {\n");
-            sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
+            sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("  IsMarketingAccepted: ").Append(IsMarketingAccepted).Append("\n");
             sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
             sb.Append("  FullName: ").Append(FullName).Append("\n");
@@ -174,14 +166,14 @@ namespace iam.Model
 
             return 
                 (
-                    this.Username == other.Username ||
-                    this.Username != null &&
-                    this.Username.Equals(other.Username)
-                ) && 
-                (
                     this.PhoneNumber == other.PhoneNumber ||
                     this.PhoneNumber != null &&
                     this.PhoneNumber.Equals(other.PhoneNumber)
+                ) && 
+                (
+                    this.Username == other.Username ||
+                    this.Username != null &&
+                    this.Username.Equals(other.Username)
                 ) && 
                 (
                     this.IsMarketingAccepted == other.IsMarketingAccepted ||
@@ -226,10 +218,10 @@ namespace iam.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Username != null)
-                    hash = hash * 59 + this.Username.GetHashCode();
                 if (this.PhoneNumber != null)
                     hash = hash * 59 + this.PhoneNumber.GetHashCode();
+                if (this.Username != null)
+                    hash = hash * 59 + this.Username.GetHashCode();
                 if (this.IsMarketingAccepted != null)
                     hash = hash * 59 + this.IsMarketingAccepted.GetHashCode();
                 if (this.IsGtcAccepted != null)

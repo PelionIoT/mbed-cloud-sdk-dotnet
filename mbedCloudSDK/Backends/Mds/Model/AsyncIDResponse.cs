@@ -1,7 +1,7 @@
 /* 
- * mbed Cloud Connect REST API
+ * Connect API
  *
- * mbed Cloud Connect REST API allows web applications to communicate with devices.
+ * mbed Cloud Connect API allows web applications to communicate with devices. You can subscribe to device resources and read/write values to them. mbed Cloud Connect makes connectivity to devices easy by queuing requests and caching resource values.
  *
  * OpenAPI spec version: 2
  * 
@@ -34,8 +34,8 @@ namespace mds.Model
         /// </summary>
         /// <param name="Status">HTTP status code, for example 200 for OK..</param>
         /// <param name="Payload">Requested data, base64 encoded..</param>
-        /// <param name="MaxAge">Determines how long this value will be valid in cache, in seconds. 0 means that value won&#39;t be stored in cache..</param>
-        /// <param name="Error">Optional error message, describing error..</param>
+        /// <param name="MaxAge">Determines how long this value will be valid in cache, in seconds. 0 means that value is not stored in cache..</param>
+        /// <param name="Error">Optional error message, describing the error..</param>
         /// <param name="Id">Asynchronous response unique ID..</param>
         /// <param name="Ct">Content type.</param>
         public AsyncIDResponse(int? Status = default(int?), string Payload = default(string), string MaxAge = default(string), string Error = default(string), string Id = default(string), string Ct = default(string))
@@ -61,15 +61,15 @@ namespace mds.Model
         [DataMember(Name="payload", EmitDefaultValue=false)]
         public string Payload { get; set; }
         /// <summary>
-        /// Determines how long this value will be valid in cache, in seconds. 0 means that value won&#39;t be stored in cache.
+        /// Determines how long this value will be valid in cache, in seconds. 0 means that value is not stored in cache.
         /// </summary>
-        /// <value>Determines how long this value will be valid in cache, in seconds. 0 means that value won&#39;t be stored in cache.</value>
+        /// <value>Determines how long this value will be valid in cache, in seconds. 0 means that value is not stored in cache.</value>
         [DataMember(Name="max-age", EmitDefaultValue=false)]
         public string MaxAge { get; set; }
         /// <summary>
-        /// Optional error message, describing error.
+        /// Optional error message, describing the error.
         /// </summary>
-        /// <value>Optional error message, describing error.</value>
+        /// <value>Optional error message, describing the error.</value>
         [DataMember(Name="error", EmitDefaultValue=false)]
         public string Error { get; set; }
         /// <summary>

@@ -1,7 +1,7 @@
 /* 
- * mbed Cloud Connector Statistics REST API
+ * Connect Statistics API
  *
- * mbed Cloud Connector Statistics REST API provides statistics about other cloud services through defined counters.
+ * mbed Cloud Connect Statistics API provides statistics about other cloud services through defined counters.
  *
  * OpenAPI spec version: 3
  * 
@@ -48,17 +48,17 @@ namespace statistics.Client
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class
-        /// with default configuration and base path (http://localhost).
+        /// with default configuration and base path (http://api.mbedcloud.com).
         /// </summary>
         public ApiClient()
         {
             Configuration = Configuration.Default;
-            RestClient = new RestClient("http://localhost");
+            RestClient = new RestClient("http://api.mbedcloud.com");
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class
-        /// with default base path (http://localhost).
+        /// with default base path (http://api.mbedcloud.com).
         /// </summary>
         /// <param name="config">An instance of Configuration.</param>
         public ApiClient(Configuration config = null)
@@ -68,7 +68,7 @@ namespace statistics.Client
             else
                 Configuration = config;
 
-            RestClient = new RestClient("http://localhost");
+            RestClient = new RestClient("http://api.mbedcloud.com");
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace statistics.Client
         /// with default configuration.
         /// </summary>
         /// <param name="basePath">The base path.</param>
-        public ApiClient(String basePath = "http://localhost")
+        public ApiClient(String basePath = "http://api.mbedcloud.com")
         {
            if (String.IsNullOrEmpty(basePath))
                 throw new ArgumentException("basePath cannot be empty");

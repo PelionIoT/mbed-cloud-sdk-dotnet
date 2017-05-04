@@ -92,22 +92,12 @@ namespace mbedCloudSDK.Statistics.Model
         /// <value>Number of successful bootstraps account has used.</value>
         public long? BootstrapsSuccessful { get; set; }
 
-        public static StatisticsData Map(statistics.Model.Data statisticsData)
+        public static StatisticsData Map(statistics.Model.Metric statisticsData)
         {
             StatisticsData statistic = new StatisticsData();
-            statistic.BootstrapCertificateCreate = statisticsData.BootstrapCertificateCreate;
-            statistic.ConnectorCaRestApiCount = statisticsData.ConnectorCaRestApiCount;
             statistic.BootstrapsFailed = statisticsData.BootstrapsFailed;
-            statistic.ConnectorCaRestApiErrorCount = statisticsData.ConnectorCaRestApiErrorCount;
-            statistic.ConnectorFullCredentialsGet = statisticsData.ConnectorFullCredentialsGet;
-            statistic.BootstrapCertificateDelete = statisticsData.BootstrapCertificateDelete;
             statistic.Timestamp = statisticsData.Timestamp;
             statistic.BootstrapsPending = statisticsData.BootstrapsPending;
-            statistic.ConnectorCertificateCreate = statisticsData.ConnectorCertificateCreate;
-            statistic.BootstrapFullCredentialsGet = statisticsData.BootstrapFullCredentialsGet;
-            statistic.ConnectorCertificateDelete = statisticsData.ConnectorCertificateDelete;
-            statistic.ConnectorCredentialsGet = statisticsData.ConnectorCredentialsGet;
-            statistic.BootstrapCredentialsGet = statisticsData.BootstrapCredentialsGet;
             statistic.BootstrapsSuccessful = statisticsData.BootstrapsSuccessful;
             return statistic;
         }

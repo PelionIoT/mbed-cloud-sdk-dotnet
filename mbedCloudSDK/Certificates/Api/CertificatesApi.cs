@@ -172,7 +172,7 @@ namespace mbedCloudSDK.Certificates.Api
                 {
                     throw new ArgumentException("certificateData and signatureData are not required when creating developer certificate.");
                 }
-                connector_ca.Model.Body body = new connector_ca.Model.Body();
+                connector_ca.Model.DeveloperCertificateRequestData body = new connector_ca.Model.DeveloperCertificateRequestData();
                 body.Name = certificate.Name;
                 body.Description = certificate.Description;
                 try
@@ -192,7 +192,7 @@ namespace mbedCloudSDK.Certificates.Api
                     throw new ArgumentException("certificateData and signatureData are required when creating non developer certificate.");
                 }
                 TrustedCertificateReq trustedCertificate = new TrustedCertificateReq();
-                trustedCertificate.CertData = certificateData;
+                trustedCertificate.Certificate = certificateData;
                 trustedCertificate.Description = certificate.Description;
                 trustedCertificate.Name = certificate.Name;
                 switch (certificate.Type)

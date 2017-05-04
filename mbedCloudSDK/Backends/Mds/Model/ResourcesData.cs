@@ -1,7 +1,7 @@
 /* 
- * mbed Cloud Connect REST API
+ * Connect API
  *
- * mbed Cloud Connect REST API allows web applications to communicate with devices.
+ * mbed Cloud Connect API allows web applications to communicate with devices. You can subscribe to device resources and read/write values to them. mbed Cloud Connect makes connectivity to devices easy by queuing requests and caching resource values.
  *
  * OpenAPI spec version: 2
  * 
@@ -32,11 +32,11 @@ namespace mds.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ResourcesData" /> class.
         /// </summary>
-        /// <param name="Path">Resource&#39;s URI path.</param>
-        /// <param name="Rf">Resource type.</param>
-        /// <param name="Ct">Content type.</param>
-        /// <param name="Obs">Whether the resource is observable or not (true/false).</param>
-        /// <param name="_If">Interface description.</param>
+        /// <param name="Path">Resource&#39;s URI path..</param>
+        /// <param name="Rf">Resource type..</param>
+        /// <param name="Ct">Content type..</param>
+        /// <param name="Obs">Whether the resource is observable or not (true/false)..</param>
+        /// <param name="_If">Interface description..</param>
         public ResourcesData(string Path = default(string), string Rf = default(string), string Ct = default(string), bool? Obs = default(bool?), string _If = default(string))
         {
             this.Path = Path;
@@ -47,33 +47,33 @@ namespace mds.Model
         }
         
         /// <summary>
-        /// Resource&#39;s URI path
+        /// Resource&#39;s URI path.
         /// </summary>
-        /// <value>Resource&#39;s URI path</value>
+        /// <value>Resource&#39;s URI path.</value>
         [DataMember(Name="path", EmitDefaultValue=false)]
         public string Path { get; set; }
         /// <summary>
-        /// Resource type
+        /// Resource type.
         /// </summary>
-        /// <value>Resource type</value>
+        /// <value>Resource type.</value>
         [DataMember(Name="rf", EmitDefaultValue=false)]
         public string Rf { get; set; }
         /// <summary>
-        /// Content type
+        /// Content type.
         /// </summary>
-        /// <value>Content type</value>
+        /// <value>Content type.</value>
         [DataMember(Name="ct", EmitDefaultValue=false)]
         public string Ct { get; set; }
         /// <summary>
-        /// Whether the resource is observable or not (true/false)
+        /// Whether the resource is observable or not (true/false).
         /// </summary>
-        /// <value>Whether the resource is observable or not (true/false)</value>
+        /// <value>Whether the resource is observable or not (true/false).</value>
         [DataMember(Name="obs", EmitDefaultValue=false)]
         public bool? Obs { get; set; }
         /// <summary>
-        /// Interface description
+        /// Interface description.
         /// </summary>
-        /// <value>Interface description</value>
+        /// <value>Interface description.</value>
         [DataMember(Name="if", EmitDefaultValue=false)]
         public string _If { get; set; }
         /// <summary>

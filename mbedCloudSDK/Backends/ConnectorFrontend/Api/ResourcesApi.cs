@@ -35,7 +35,7 @@ namespace connector_frontend.Api
         /// <param name="noResp">** Non-confirmable requests **  All resource APIs have the parameter noResp. If you make a request with noResp&#x3D;true, mbed Device Connector makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns></returns>
-        void V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathDelete (string endpointName, string resourcePath, bool? noResp = null, string pri = null);
+        void V3DevicesDeviceIdCachedResourcesResourcePathDelete (string endpointName, string resourcePath, bool? noResp = null, string pri = null);
 
         /// <summary>
         /// Delete a resource
@@ -49,7 +49,7 @@ namespace connector_frontend.Api
         /// <param name="noResp">** Non-confirmable requests **  All resource APIs have the parameter noResp. If you make a request with noResp&#x3D;true, mbed Device Connector makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathDeleteWithHttpInfo (string endpointName, string resourcePath, bool? noResp = null, string pri = null);
+        ApiResponse<Object> V3DevicesDeviceIdCachedResourcesResourcePathDeleteWithHttpInfo (string endpointName, string resourcePath, bool? noResp = null, string pri = null);
         /// <summary>
         /// Read from a resource
         /// </summary>
@@ -62,7 +62,7 @@ namespace connector_frontend.Api
         /// <param name="cacheOnly">Decides if the response comes only from the cache or from the device. Default value is false. (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values [0 - 7 ] are interpreted as matching to the corresponding CS value. This is an optional field.  (optional)</param>
         /// <returns>string</returns>
-        string V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathGet (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null);
+        string V3DevicesDeviceIdCachedResourcesResourcePathGet (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null);
 
         /// <summary>
         /// Read from a resource
@@ -76,7 +76,7 @@ namespace connector_frontend.Api
         /// <param name="cacheOnly">Decides if the response comes only from the cache or from the device. Default value is false. (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values [0 - 7 ] are interpreted as matching to the corresponding CS value. This is an optional field.  (optional)</param>
         /// <returns>ApiResponse of string</returns>
-        ApiResponse<string> V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathGetWithHttpInfo (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null);
+        ApiResponse<string> V3DevicesDeviceIdCachedResourcesResourcePathGetWithHttpInfo (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null);
         /// <summary>
         /// Execute a function on a resource
         /// </summary>
@@ -90,7 +90,7 @@ namespace connector_frontend.Api
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with noResp&#x3D;true,mbed Device Connector makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns></returns>
-        void V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPost (string endpointName, string resourcePath, string resourceFunction = null, bool? noResp = null, string pri = null);
+        void V3DevicesDeviceIdCachedResourcesResourcePathPost (string endpointName, string resourcePath, string resourceFunction = null, bool? noResp = null, string pri = null);
 
         /// <summary>
         /// Execute a function on a resource
@@ -105,7 +105,7 @@ namespace connector_frontend.Api
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with noResp&#x3D;true,mbed Device Connector makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPostWithHttpInfo (string endpointName, string resourcePath, string resourceFunction = null, bool? noResp = null, string pri = null);
+        ApiResponse<Object> V3DevicesDeviceIdCachedResourcesResourcePathPostWithHttpInfo (string endpointName, string resourcePath, string resourceFunction = null, bool? noResp = null, string pri = null);
         /// <summary>
         /// Write to a resource
         /// </summary>
@@ -118,7 +118,7 @@ namespace connector_frontend.Api
         /// <param name="resourceValue">Value to be set to the resource. (Check accceptable content-types)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns></returns>
-        void V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPut (string endpointName, string resourcePath, string resourceValue, string pri = null);
+        void V3DevicesDeviceIdCachedResourcesResourcePathPut (string endpointName, string resourcePath, string resourceValue, string pri = null);
 
         /// <summary>
         /// Write to a resource
@@ -132,7 +132,7 @@ namespace connector_frontend.Api
         /// <param name="resourceValue">Value to be set to the resource. (Check accceptable content-types)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPutWithHttpInfo (string endpointName, string resourcePath, string resourceValue, string pri = null);
+        ApiResponse<Object> V3DevicesDeviceIdCachedResourcesResourcePathPutWithHttpInfo (string endpointName, string resourcePath, string resourceValue, string pri = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -147,7 +147,7 @@ namespace connector_frontend.Api
         /// <param name="noResp">** Non-confirmable requests **  All resource APIs have the parameter noResp. If you make a request with noResp&#x3D;true, mbed Device Connector makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathDeleteAsync (string endpointName, string resourcePath, bool? noResp = null, string pri = null);
+        System.Threading.Tasks.Task V3DevicesDeviceIdCachedResourcesResourcePathDeleteAsync (string endpointName, string resourcePath, bool? noResp = null, string pri = null);
 
         /// <summary>
         /// Delete a resource
@@ -161,7 +161,7 @@ namespace connector_frontend.Api
         /// <param name="noResp">** Non-confirmable requests **  All resource APIs have the parameter noResp. If you make a request with noResp&#x3D;true, mbed Device Connector makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathDeleteAsyncWithHttpInfo (string endpointName, string resourcePath, bool? noResp = null, string pri = null);
+        System.Threading.Tasks.Task<ApiResponse<Object>> V3DevicesDeviceIdCachedResourcesResourcePathDeleteAsyncWithHttpInfo (string endpointName, string resourcePath, bool? noResp = null, string pri = null);
         /// <summary>
         /// Read from a resource
         /// </summary>
@@ -174,7 +174,7 @@ namespace connector_frontend.Api
         /// <param name="cacheOnly">Decides if the response comes only from the cache or from the device. Default value is false. (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values [0 - 7 ] are interpreted as matching to the corresponding CS value. This is an optional field.  (optional)</param>
         /// <returns>Task of string</returns>
-        System.Threading.Tasks.Task<string> V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathGetAsync (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null);
+        System.Threading.Tasks.Task<string> V3DevicesDeviceIdCachedResourcesResourcePathGetAsync (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null);
 
         /// <summary>
         /// Read from a resource
@@ -188,7 +188,7 @@ namespace connector_frontend.Api
         /// <param name="cacheOnly">Decides if the response comes only from the cache or from the device. Default value is false. (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values [0 - 7 ] are interpreted as matching to the corresponding CS value. This is an optional field.  (optional)</param>
         /// <returns>Task of ApiResponse (string)</returns>
-        System.Threading.Tasks.Task<ApiResponse<string>> V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathGetAsyncWithHttpInfo (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null);
+        System.Threading.Tasks.Task<ApiResponse<string>> V3DevicesDeviceIdCachedResourcesResourcePathGetAsyncWithHttpInfo (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null);
         /// <summary>
         /// Execute a function on a resource
         /// </summary>
@@ -202,7 +202,7 @@ namespace connector_frontend.Api
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with noResp&#x3D;true,mbed Device Connector makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPostAsync (string endpointName, string resourcePath, string resourceFunction = null, bool? noResp = null, string pri = null);
+        System.Threading.Tasks.Task V3DevicesDeviceIdCachedResourcesResourcePathPostAsync (string endpointName, string resourcePath, string resourceFunction = null, bool? noResp = null, string pri = null);
 
         /// <summary>
         /// Execute a function on a resource
@@ -217,7 +217,7 @@ namespace connector_frontend.Api
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with noResp&#x3D;true,mbed Device Connector makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPostAsyncWithHttpInfo (string endpointName, string resourcePath, string resourceFunction = null, bool? noResp = null, string pri = null);
+        System.Threading.Tasks.Task<ApiResponse<Object>> V3DevicesDeviceIdCachedResourcesResourcePathPostAsyncWithHttpInfo (string endpointName, string resourcePath, string resourceFunction = null, bool? noResp = null, string pri = null);
         /// <summary>
         /// Write to a resource
         /// </summary>
@@ -230,7 +230,7 @@ namespace connector_frontend.Api
         /// <param name="resourceValue">Value to be set to the resource. (Check accceptable content-types)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPutAsync (string endpointName, string resourcePath, string resourceValue, string pri = null);
+        System.Threading.Tasks.Task V3DevicesDeviceIdCachedResourcesResourcePathPutAsync (string endpointName, string resourcePath, string resourceValue, string pri = null);
 
         /// <summary>
         /// Write to a resource
@@ -244,7 +244,7 @@ namespace connector_frontend.Api
         /// <param name="resourceValue">Value to be set to the resource. (Check accceptable content-types)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPutAsyncWithHttpInfo (string endpointName, string resourcePath, string resourceValue, string pri = null);
+        System.Threading.Tasks.Task<ApiResponse<Object>> V3DevicesDeviceIdCachedResourcesResourcePathPutAsyncWithHttpInfo (string endpointName, string resourcePath, string resourceValue, string pri = null);
         #endregion Asynchronous Operations
     }
 
@@ -366,9 +366,9 @@ namespace connector_frontend.Api
         /// <param name="noResp">** Non-confirmable requests **  All resource APIs have the parameter noResp. If you make a request with noResp&#x3D;true, mbed Device Connector makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns></returns>
-        public void V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathDelete (string endpointName, string resourcePath, bool? noResp = null, string pri = null)
+        public void V3DevicesDeviceIdCachedResourcesResourcePathDelete (string endpointName, string resourcePath, bool? noResp = null, string pri = null)
         {
-             V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathDeleteWithHttpInfo(endpointName, resourcePath, noResp, pri);
+             V3DevicesDeviceIdCachedResourcesResourcePathDeleteWithHttpInfo(endpointName, resourcePath, noResp, pri);
         }
 
         /// <summary>
@@ -380,16 +380,16 @@ namespace connector_frontend.Api
         /// <param name="noResp">** Non-confirmable requests **  All resource APIs have the parameter noResp. If you make a request with noResp&#x3D;true, mbed Device Connector makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathDeleteWithHttpInfo (string endpointName, string resourcePath, bool? noResp = null, string pri = null)
+        public ApiResponse<Object> V3DevicesDeviceIdCachedResourcesResourcePathDeleteWithHttpInfo (string endpointName, string resourcePath, bool? noResp = null, string pri = null)
         {
             // verify the required parameter 'endpointName' is set
             if (endpointName == null)
-                throw new ApiException(400, "Missing required parameter 'endpointName' when calling ResourcesApi->V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathDelete");
+                throw new ApiException(400, "Missing required parameter 'endpointName' when calling ResourcesApi->V3DevicesDeviceIdCachedResourcesResourcePathDelete");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathDelete");
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V3DevicesDeviceIdCachedResourcesResourcePathDelete");
 
-            var localVarPath = "/v3/connect-synchronizer/proxy/endpoint/{endpointName}/{resourcePath}";
+            var localVarPath = "/v3/devices/{deviceId}/cached-resources/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -434,7 +434,7 @@ namespace connector_frontend.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathDelete", localVarResponse);
+                Exception exception = ExceptionFactory("V3DevicesDeviceIdCachedResourcesResourcePathDelete", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -453,9 +453,9 @@ namespace connector_frontend.Api
         /// <param name="noResp">** Non-confirmable requests **  All resource APIs have the parameter noResp. If you make a request with noResp&#x3D;true, mbed Device Connector makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathDeleteAsync (string endpointName, string resourcePath, bool? noResp = null, string pri = null)
+        public async System.Threading.Tasks.Task V3DevicesDeviceIdCachedResourcesResourcePathDeleteAsync (string endpointName, string resourcePath, bool? noResp = null, string pri = null)
         {
-             await V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathDeleteAsyncWithHttpInfo(endpointName, resourcePath, noResp, pri);
+             await V3DevicesDeviceIdCachedResourcesResourcePathDeleteAsyncWithHttpInfo(endpointName, resourcePath, noResp, pri);
 
         }
 
@@ -468,16 +468,16 @@ namespace connector_frontend.Api
         /// <param name="noResp">** Non-confirmable requests **  All resource APIs have the parameter noResp. If you make a request with noResp&#x3D;true, mbed Device Connector makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathDeleteAsyncWithHttpInfo (string endpointName, string resourcePath, bool? noResp = null, string pri = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> V3DevicesDeviceIdCachedResourcesResourcePathDeleteAsyncWithHttpInfo (string endpointName, string resourcePath, bool? noResp = null, string pri = null)
         {
             // verify the required parameter 'endpointName' is set
             if (endpointName == null)
-                throw new ApiException(400, "Missing required parameter 'endpointName' when calling ResourcesApi->V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathDelete");
+                throw new ApiException(400, "Missing required parameter 'endpointName' when calling ResourcesApi->V3DevicesDeviceIdCachedResourcesResourcePathDelete");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathDelete");
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V3DevicesDeviceIdCachedResourcesResourcePathDelete");
 
-            var localVarPath = "/v3/connect-synchronizer/proxy/endpoint/{endpointName}/{resourcePath}";
+            var localVarPath = "/v3/devices/{deviceId}/cached-resources/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -521,7 +521,7 @@ namespace connector_frontend.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathDelete", localVarResponse);
+                Exception exception = ExceptionFactory("V3DevicesDeviceIdCachedResourcesResourcePathDelete", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -540,9 +540,9 @@ namespace connector_frontend.Api
         /// <param name="cacheOnly">Decides if the response comes only from the cache or from the device. Default value is false. (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values [0 - 7 ] are interpreted as matching to the corresponding CS value. This is an optional field.  (optional)</param>
         /// <returns>string</returns>
-        public string V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathGet (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null)
+        public string V3DevicesDeviceIdCachedResourcesResourcePathGet (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null)
         {
-             ApiResponse<string> localVarResponse = V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathGetWithHttpInfo(endpointName, resourcePath, cacheOnly, pri);
+             ApiResponse<string> localVarResponse = V3DevicesDeviceIdCachedResourcesResourcePathGetWithHttpInfo(endpointName, resourcePath, cacheOnly, pri);
              return localVarResponse.Data;
         }
 
@@ -555,16 +555,16 @@ namespace connector_frontend.Api
         /// <param name="cacheOnly">Decides if the response comes only from the cache or from the device. Default value is false. (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values [0 - 7 ] are interpreted as matching to the corresponding CS value. This is an optional field.  (optional)</param>
         /// <returns>ApiResponse of string</returns>
-        public ApiResponse< string > V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathGetWithHttpInfo (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null)
+        public ApiResponse< string > V3DevicesDeviceIdCachedResourcesResourcePathGetWithHttpInfo (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null)
         {
             // verify the required parameter 'endpointName' is set
             if (endpointName == null)
-                throw new ApiException(400, "Missing required parameter 'endpointName' when calling ResourcesApi->V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathGet");
+                throw new ApiException(400, "Missing required parameter 'endpointName' when calling ResourcesApi->V3DevicesDeviceIdCachedResourcesResourcePathGet");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathGet");
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V3DevicesDeviceIdCachedResourcesResourcePathGet");
 
-            var localVarPath = "/v3/connect-synchronizer/proxy/endpoint/{endpointName}/{resourcePath}";
+            var localVarPath = "/v3/devices/{deviceId}/cached-resources/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -609,7 +609,7 @@ namespace connector_frontend.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathGet", localVarResponse);
+                Exception exception = ExceptionFactory("V3DevicesDeviceIdCachedResourcesResourcePathGet", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -628,9 +628,9 @@ namespace connector_frontend.Api
         /// <param name="cacheOnly">Decides if the response comes only from the cache or from the device. Default value is false. (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values [0 - 7 ] are interpreted as matching to the corresponding CS value. This is an optional field.  (optional)</param>
         /// <returns>Task of string</returns>
-        public async System.Threading.Tasks.Task<string> V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathGetAsync (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null)
+        public async System.Threading.Tasks.Task<string> V3DevicesDeviceIdCachedResourcesResourcePathGetAsync (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null)
         {
-             ApiResponse<string> localVarResponse = await V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathGetAsyncWithHttpInfo(endpointName, resourcePath, cacheOnly, pri);
+             ApiResponse<string> localVarResponse = await V3DevicesDeviceIdCachedResourcesResourcePathGetAsyncWithHttpInfo(endpointName, resourcePath, cacheOnly, pri);
              return localVarResponse.Data;
 
         }
@@ -644,16 +644,16 @@ namespace connector_frontend.Api
         /// <param name="cacheOnly">Decides if the response comes only from the cache or from the device. Default value is false. (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values [0 - 7 ] are interpreted as matching to the corresponding CS value. This is an optional field.  (optional)</param>
         /// <returns>Task of ApiResponse (string)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<string>> V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathGetAsyncWithHttpInfo (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null)
+        public async System.Threading.Tasks.Task<ApiResponse<string>> V3DevicesDeviceIdCachedResourcesResourcePathGetAsyncWithHttpInfo (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null)
         {
             // verify the required parameter 'endpointName' is set
             if (endpointName == null)
-                throw new ApiException(400, "Missing required parameter 'endpointName' when calling ResourcesApi->V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathGet");
+                throw new ApiException(400, "Missing required parameter 'endpointName' when calling ResourcesApi->V3DevicesDeviceIdCachedResourcesResourcePathGet");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathGet");
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V3DevicesDeviceIdCachedResourcesResourcePathGet");
 
-            var localVarPath = "/v3/connect-synchronizer/proxy/endpoint/{endpointName}/{resourcePath}";
+            var localVarPath = "/v3/devices/{deviceId}/cached-resources/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -697,7 +697,7 @@ namespace connector_frontend.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathGet", localVarResponse);
+                Exception exception = ExceptionFactory("V3DevicesDeviceIdCachedResourcesResourcePathGet", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -717,9 +717,9 @@ namespace connector_frontend.Api
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with noResp&#x3D;true,mbed Device Connector makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns></returns>
-        public void V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPost (string endpointName, string resourcePath, string resourceFunction = null, bool? noResp = null, string pri = null)
+        public void V3DevicesDeviceIdCachedResourcesResourcePathPost (string endpointName, string resourcePath, string resourceFunction = null, bool? noResp = null, string pri = null)
         {
-             V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPostWithHttpInfo(endpointName, resourcePath, resourceFunction, noResp, pri);
+             V3DevicesDeviceIdCachedResourcesResourcePathPostWithHttpInfo(endpointName, resourcePath, resourceFunction, noResp, pri);
         }
 
         /// <summary>
@@ -732,16 +732,16 @@ namespace connector_frontend.Api
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with noResp&#x3D;true,mbed Device Connector makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPostWithHttpInfo (string endpointName, string resourcePath, string resourceFunction = null, bool? noResp = null, string pri = null)
+        public ApiResponse<Object> V3DevicesDeviceIdCachedResourcesResourcePathPostWithHttpInfo (string endpointName, string resourcePath, string resourceFunction = null, bool? noResp = null, string pri = null)
         {
             // verify the required parameter 'endpointName' is set
             if (endpointName == null)
-                throw new ApiException(400, "Missing required parameter 'endpointName' when calling ResourcesApi->V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPost");
+                throw new ApiException(400, "Missing required parameter 'endpointName' when calling ResourcesApi->V3DevicesDeviceIdCachedResourcesResourcePathPost");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPost");
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V3DevicesDeviceIdCachedResourcesResourcePathPost");
 
-            var localVarPath = "/v3/connect-synchronizer/proxy/endpoint/{endpointName}/{resourcePath}";
+            var localVarPath = "/v3/devices/{deviceId}/cached-resources/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -806,7 +806,7 @@ namespace connector_frontend.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPost", localVarResponse);
+                Exception exception = ExceptionFactory("V3DevicesDeviceIdCachedResourcesResourcePathPost", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -826,9 +826,9 @@ namespace connector_frontend.Api
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with noResp&#x3D;true,mbed Device Connector makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPostAsync (string endpointName, string resourcePath, string resourceFunction = null, bool? noResp = null, string pri = null)
+        public async System.Threading.Tasks.Task V3DevicesDeviceIdCachedResourcesResourcePathPostAsync (string endpointName, string resourcePath, string resourceFunction = null, bool? noResp = null, string pri = null)
         {
-             await V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPostAsyncWithHttpInfo(endpointName, resourcePath, resourceFunction, noResp, pri);
+             await V3DevicesDeviceIdCachedResourcesResourcePathPostAsyncWithHttpInfo(endpointName, resourcePath, resourceFunction, noResp, pri);
 
         }
 
@@ -842,16 +842,16 @@ namespace connector_frontend.Api
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with noResp&#x3D;true,mbed Device Connector makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPostAsyncWithHttpInfo (string endpointName, string resourcePath, string resourceFunction = null, bool? noResp = null, string pri = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> V3DevicesDeviceIdCachedResourcesResourcePathPostAsyncWithHttpInfo (string endpointName, string resourcePath, string resourceFunction = null, bool? noResp = null, string pri = null)
         {
             // verify the required parameter 'endpointName' is set
             if (endpointName == null)
-                throw new ApiException(400, "Missing required parameter 'endpointName' when calling ResourcesApi->V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPost");
+                throw new ApiException(400, "Missing required parameter 'endpointName' when calling ResourcesApi->V3DevicesDeviceIdCachedResourcesResourcePathPost");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPost");
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V3DevicesDeviceIdCachedResourcesResourcePathPost");
 
-            var localVarPath = "/v3/connect-synchronizer/proxy/endpoint/{endpointName}/{resourcePath}";
+            var localVarPath = "/v3/devices/{deviceId}/cached-resources/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -915,7 +915,7 @@ namespace connector_frontend.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPost", localVarResponse);
+                Exception exception = ExceptionFactory("V3DevicesDeviceIdCachedResourcesResourcePathPost", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -934,9 +934,9 @@ namespace connector_frontend.Api
         /// <param name="resourceValue">Value to be set to the resource. (Check accceptable content-types)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns></returns>
-        public void V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPut (string endpointName, string resourcePath, string resourceValue, string pri = null)
+        public void V3DevicesDeviceIdCachedResourcesResourcePathPut (string endpointName, string resourcePath, string resourceValue, string pri = null)
         {
-             V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPutWithHttpInfo(endpointName, resourcePath, resourceValue, pri);
+             V3DevicesDeviceIdCachedResourcesResourcePathPutWithHttpInfo(endpointName, resourcePath, resourceValue, pri);
         }
 
         /// <summary>
@@ -948,19 +948,19 @@ namespace connector_frontend.Api
         /// <param name="resourceValue">Value to be set to the resource. (Check accceptable content-types)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPutWithHttpInfo (string endpointName, string resourcePath, string resourceValue, string pri = null)
+        public ApiResponse<Object> V3DevicesDeviceIdCachedResourcesResourcePathPutWithHttpInfo (string endpointName, string resourcePath, string resourceValue, string pri = null)
         {
             // verify the required parameter 'endpointName' is set
             if (endpointName == null)
-                throw new ApiException(400, "Missing required parameter 'endpointName' when calling ResourcesApi->V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPut");
+                throw new ApiException(400, "Missing required parameter 'endpointName' when calling ResourcesApi->V3DevicesDeviceIdCachedResourcesResourcePathPut");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPut");
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V3DevicesDeviceIdCachedResourcesResourcePathPut");
             // verify the required parameter 'resourceValue' is set
             if (resourceValue == null)
-                throw new ApiException(400, "Missing required parameter 'resourceValue' when calling ResourcesApi->V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPut");
+                throw new ApiException(400, "Missing required parameter 'resourceValue' when calling ResourcesApi->V3DevicesDeviceIdCachedResourcesResourcePathPut");
 
-            var localVarPath = "/v3/connect-synchronizer/proxy/endpoint/{endpointName}/{resourcePath}";
+            var localVarPath = "/v3/devices/{deviceId}/cached-resources/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1024,7 +1024,7 @@ namespace connector_frontend.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPut", localVarResponse);
+                Exception exception = ExceptionFactory("V3DevicesDeviceIdCachedResourcesResourcePathPut", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1043,9 +1043,9 @@ namespace connector_frontend.Api
         /// <param name="resourceValue">Value to be set to the resource. (Check accceptable content-types)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPutAsync (string endpointName, string resourcePath, string resourceValue, string pri = null)
+        public async System.Threading.Tasks.Task V3DevicesDeviceIdCachedResourcesResourcePathPutAsync (string endpointName, string resourcePath, string resourceValue, string pri = null)
         {
-             await V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPutAsyncWithHttpInfo(endpointName, resourcePath, resourceValue, pri);
+             await V3DevicesDeviceIdCachedResourcesResourcePathPutAsyncWithHttpInfo(endpointName, resourcePath, resourceValue, pri);
 
         }
 
@@ -1058,19 +1058,19 @@ namespace connector_frontend.Api
         /// <param name="resourceValue">Value to be set to the resource. (Check accceptable content-types)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values 0-7 are interpreted as matching to the corresponding CS value. Optional. Default: 0  (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPutAsyncWithHttpInfo (string endpointName, string resourcePath, string resourceValue, string pri = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> V3DevicesDeviceIdCachedResourcesResourcePathPutAsyncWithHttpInfo (string endpointName, string resourcePath, string resourceValue, string pri = null)
         {
             // verify the required parameter 'endpointName' is set
             if (endpointName == null)
-                throw new ApiException(400, "Missing required parameter 'endpointName' when calling ResourcesApi->V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPut");
+                throw new ApiException(400, "Missing required parameter 'endpointName' when calling ResourcesApi->V3DevicesDeviceIdCachedResourcesResourcePathPut");
             // verify the required parameter 'resourcePath' is set
             if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPut");
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V3DevicesDeviceIdCachedResourcesResourcePathPut");
             // verify the required parameter 'resourceValue' is set
             if (resourceValue == null)
-                throw new ApiException(400, "Missing required parameter 'resourceValue' when calling ResourcesApi->V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPut");
+                throw new ApiException(400, "Missing required parameter 'resourceValue' when calling ResourcesApi->V3DevicesDeviceIdCachedResourcesResourcePathPut");
 
-            var localVarPath = "/v3/connect-synchronizer/proxy/endpoint/{endpointName}/{resourcePath}";
+            var localVarPath = "/v3/devices/{deviceId}/cached-resources/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1133,7 +1133,7 @@ namespace connector_frontend.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V3ConnectSynchronizerProxyEndpointEndpointNameResourcePathPut", localVarResponse);
+                Exception exception = ExceptionFactory("V3DevicesDeviceIdCachedResourcesResourcePathPut", localVarResponse);
                 if (exception != null) throw exception;
             }
 

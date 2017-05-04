@@ -28,101 +28,107 @@ namespace device_catalog.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
+        /// Create device
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="device"></param>
         /// <returns>DeviceData</returns>
-        DeviceData DeviceCreate ();
+        DeviceData DeviceCreate (DeviceDataPostRequest device);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
+        /// Create device
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceData</returns>
-        ApiResponse<DeviceData> DeviceCreateWithHttpInfo ();
+        ApiResponse<DeviceData> DeviceCreateWithHttpInfo (DeviceDataPostRequest device);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Delete device&lt;/p&gt;
+        /// Delete device
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId"></param>
-        /// <returns>Object</returns>
-        Object DeviceDestroy (string deviceId);
+        /// <param name="id"></param>
+        /// <returns></returns>
+        void DeviceDestroy (string id);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Delete device&lt;/p&gt;
+        /// Delete device
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId"></param>
-        /// <returns>ApiResponse of Object</returns>
-        ApiResponse<Object> DeviceDestroyWithHttpInfo (string deviceId);
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> DeviceDestroyWithHttpInfo (string id);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;List all update devices.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-properties-all-properties-are-filterable\&quot;&gt;By device properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;&lt;code&gt;state&#x3D;[unenrolled|cloud_enrolling|bootstrapped|registered]&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-device-custom-attributes\&quot;&gt;On device custom attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;custom_attributes__{param}&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;custom_attributes__tag&#x3D;TAG1&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;state&#x3D;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;state%3Dbootstrapped%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
+        /// List all devices.
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By device properties (all properties are filterable): &#x60;&#x60;&#x60;state&#x3D;[unenrolled|cloud_enrolling|bootstrapped|registered]&#x60;&#x60;&#x60;  &#x60;&#x60;&#x60;device_class&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ###### On device custom attributes:  &#x60;&#x60;&#x60;custom_attributes__{param}&#x3D;{value}&#x60;&#x60;&#x60; &#x60;&#x60;&#x60;custom_attributes__tag&#x3D;TAG1&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;state&#x3D;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;?filter&#x3D;state%3Dbootstrapped%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>DevicePage</returns>
-        DevicePage DeviceList (int? limit = null, string order = null, string after = null, string filter = null);
+        DevicePage DeviceList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;List all update devices.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-properties-all-properties-are-filterable\&quot;&gt;By device properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;&lt;code&gt;state&#x3D;[unenrolled|cloud_enrolling|bootstrapped|registered]&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-device-custom-attributes\&quot;&gt;On device custom attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;custom_attributes__{param}&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;custom_attributes__tag&#x3D;TAG1&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;state&#x3D;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;state%3Dbootstrapped%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
+        /// List all devices.
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By device properties (all properties are filterable): &#x60;&#x60;&#x60;state&#x3D;[unenrolled|cloud_enrolling|bootstrapped|registered]&#x60;&#x60;&#x60;  &#x60;&#x60;&#x60;device_class&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ###### On device custom attributes:  &#x60;&#x60;&#x60;custom_attributes__{param}&#x3D;{value}&#x60;&#x60;&#x60; &#x60;&#x60;&#x60;custom_attributes__tag&#x3D;TAG1&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;state&#x3D;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;?filter&#x3D;state%3Dbootstrapped%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of DevicePage</returns>
-        ApiResponse<DevicePage> DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null);
+        ApiResponse<DevicePage> DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;List all device logs.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device95id\&quot;&gt;By device_id:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device_id&#x3D;{id}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-state-change\&quot;&gt;By state change:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;state_change&#x3D;[True|False]&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-event-type\&quot;&gt;By event type:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;event_type&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-device-custom-attributes\&quot;&gt;On device custom attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device__custom_attributes__{param}&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__custom_attributes__tag&#x3D;TAG1&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-attributes\&quot;&gt;By Device attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device__deployed_state&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__name&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;device_id&#x3D;0158d38771f70000000000010010038c&amp;amp;state_change&#x3D;True&amp;amp;date_time__gte&#x3D;2016-11-30T16:25:12.1234Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;device_id%3D0158d38771f70000000000010010038c%26state_change%3DTrue%26date_time__gte%3D2016-11-30T16%3A25%3A12.1234Z&lt;/code&gt;&lt;/p&gt;
+        /// List all device logs.
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By id: &#x60;&#x60;&#x60;id&#x3D;{id}&#x60;&#x60;&#x60;  ###### By state change: &#x60;&#x60;&#x60;state_change&#x3D;[True|False]&#x60;&#x60;&#x60;  ###### By event type: &#x60;&#x60;&#x60;event_type&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;id&#x3D;0158d38771f70000000000010010038c&amp;amp;state_change&#x3D;True&amp;amp;date_time__gte&#x3D;2016-11-30T16:25:12.1234Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;?filter&#x3D;id%3D0158d38771f70000000000010010038c%26state_change%3DTrue%26date_time__gte%3D2016-11-30T16%3A25%3A12.1234Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>DeviceLogPage</returns>
-        DeviceLogPage DeviceLogList (int? limit = null, string order = null, string after = null, string filter = null);
+        DeviceLogPage DeviceLogList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;List all device logs.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device95id\&quot;&gt;By device_id:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device_id&#x3D;{id}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-state-change\&quot;&gt;By state change:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;state_change&#x3D;[True|False]&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-event-type\&quot;&gt;By event type:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;event_type&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-device-custom-attributes\&quot;&gt;On device custom attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device__custom_attributes__{param}&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__custom_attributes__tag&#x3D;TAG1&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-attributes\&quot;&gt;By Device attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device__deployed_state&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__name&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;device_id&#x3D;0158d38771f70000000000010010038c&amp;amp;state_change&#x3D;True&amp;amp;date_time__gte&#x3D;2016-11-30T16:25:12.1234Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;device_id%3D0158d38771f70000000000010010038c%26state_change%3DTrue%26date_time__gte%3D2016-11-30T16%3A25%3A12.1234Z&lt;/code&gt;&lt;/p&gt;
+        /// List all device logs.
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By id: &#x60;&#x60;&#x60;id&#x3D;{id}&#x60;&#x60;&#x60;  ###### By state change: &#x60;&#x60;&#x60;state_change&#x3D;[True|False]&#x60;&#x60;&#x60;  ###### By event type: &#x60;&#x60;&#x60;event_type&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;id&#x3D;0158d38771f70000000000010010038c&amp;amp;state_change&#x3D;True&amp;amp;date_time__gte&#x3D;2016-11-30T16:25:12.1234Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;?filter&#x3D;id%3D0158d38771f70000000000010010038c%26state_change%3DTrue%26date_time__gte%3D2016-11-30T16%3A25%3A12.1234Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of DeviceLogPage</returns>
-        ApiResponse<DeviceLogPage> DeviceLogListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null);
+        ApiResponse<DeviceLogPage> DeviceLogListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Retrieve device log.&lt;/p&gt;
+        /// Retrieve device log
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceLogId"></param>
@@ -133,7 +139,7 @@ namespace device_catalog.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Retrieve device log.&lt;/p&gt;
+        /// Retrieve device log
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceLogId"></param>
@@ -143,222 +149,176 @@ namespace device_catalog.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Update device fields&lt;/p&gt;
+        /// Update device fields
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">The ID of the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="provisionKey">The key used to provision the device (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>DeviceSerializer</returns>
-        DeviceSerializer DevicePartialUpdate (string deviceId, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string provisionKey = null, string serialNumber = null, string state = null, string vendorId = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Update device fields&lt;/p&gt;
-        /// </remarks>
-        /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">The ID of the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="provisionKey">The key used to provision the device (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>ApiResponse of DeviceSerializer</returns>
-        ApiResponse<DeviceSerializer> DevicePartialUpdateWithHttpInfo (string deviceId, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string provisionKey = null, string serialNumber = null, string state = null, string vendorId = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Retrieve device.&lt;/p&gt;
-        /// </remarks>
-        /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId"></param>
+        /// <param name="id">The ID of the device.</param>
+        /// <param name="device"></param>
         /// <returns>DeviceData</returns>
-        DeviceData DeviceRetrieve (string deviceId);
+        DeviceData DevicePartialUpdate (string id, DeviceDataPatchRequest device);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Retrieve device.&lt;/p&gt;
+        /// Update device fields
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId"></param>
+        /// <param name="id">The ID of the device.</param>
+        /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceData</returns>
-        ApiResponse<DeviceData> DeviceRetrieveWithHttpInfo (string deviceId);
+        ApiResponse<DeviceData> DevicePartialUpdateWithHttpInfo (string id, DeviceDataPatchRequest device);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Update device.&lt;/p&gt;
+        /// Retrieve device
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">The ID of the device</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
-        /// <param name="provisionKey">The key used to provision the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>DeviceSerializer</returns>
-        DeviceSerializer DeviceUpdate (string deviceId, string mechanism, string provisionKey, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string vendorId = null);
+        /// <param name="id"></param>
+        /// <returns>DeviceData</returns>
+        DeviceData DeviceRetrieve (string id);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Update device.&lt;/p&gt;
+        /// Retrieve device
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">The ID of the device</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
-        /// <param name="provisionKey">The key used to provision the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>ApiResponse of DeviceSerializer</returns>
-        ApiResponse<DeviceSerializer> DeviceUpdateWithHttpInfo (string deviceId, string mechanism, string provisionKey, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string vendorId = null);
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of DeviceData</returns>
+        ApiResponse<DeviceData> DeviceRetrieveWithHttpInfo (string id);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Update device
+        /// </remarks>
+        /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The ID of the device.</param>
+        /// <param name="device"></param>
+        /// <returns>DeviceData</returns>
+        DeviceData DeviceUpdate (string id, DeviceDataPutRequest device);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Update device
+        /// </remarks>
+        /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The ID of the device.</param>
+        /// <param name="device"></param>
+        /// <returns>ApiResponse of DeviceData</returns>
+        ApiResponse<DeviceData> DeviceUpdateWithHttpInfo (string id, DeviceDataPutRequest device);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
+        /// Create device
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="device"></param>
         /// <returns>Task of DeviceData</returns>
-        System.Threading.Tasks.Task<DeviceData> DeviceCreateAsync ();
+        System.Threading.Tasks.Task<DeviceData> DeviceCreateAsync (DeviceDataPostRequest device);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
+        /// Create device
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceData)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceCreateAsyncWithHttpInfo ();
+        System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceCreateAsyncWithHttpInfo (DeviceDataPostRequest device);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Delete device&lt;/p&gt;
+        /// Delete device
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId"></param>
-        /// <returns>Task of Object</returns>
-        System.Threading.Tasks.Task<Object> DeviceDestroyAsync (string deviceId);
+        /// <param name="id"></param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task DeviceDestroyAsync (string id);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Delete device&lt;/p&gt;
+        /// Delete device
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId"></param>
-        /// <returns>Task of ApiResponse (Object)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeviceDestroyAsyncWithHttpInfo (string deviceId);
+        /// <param name="id"></param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeviceDestroyAsyncWithHttpInfo (string id);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;List all update devices.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-properties-all-properties-are-filterable\&quot;&gt;By device properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;&lt;code&gt;state&#x3D;[unenrolled|cloud_enrolling|bootstrapped|registered]&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-device-custom-attributes\&quot;&gt;On device custom attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;custom_attributes__{param}&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;custom_attributes__tag&#x3D;TAG1&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;state&#x3D;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;state%3Dbootstrapped%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
+        /// List all devices.
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By device properties (all properties are filterable): &#x60;&#x60;&#x60;state&#x3D;[unenrolled|cloud_enrolling|bootstrapped|registered]&#x60;&#x60;&#x60;  &#x60;&#x60;&#x60;device_class&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ###### On device custom attributes:  &#x60;&#x60;&#x60;custom_attributes__{param}&#x3D;{value}&#x60;&#x60;&#x60; &#x60;&#x60;&#x60;custom_attributes__tag&#x3D;TAG1&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;state&#x3D;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;?filter&#x3D;state%3Dbootstrapped%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of DevicePage</returns>
-        System.Threading.Tasks.Task<DevicePage> DeviceListAsync (int? limit = null, string order = null, string after = null, string filter = null);
+        System.Threading.Tasks.Task<DevicePage> DeviceListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;List all update devices.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-properties-all-properties-are-filterable\&quot;&gt;By device properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;&lt;code&gt;state&#x3D;[unenrolled|cloud_enrolling|bootstrapped|registered]&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-device-custom-attributes\&quot;&gt;On device custom attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;custom_attributes__{param}&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;custom_attributes__tag&#x3D;TAG1&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;state&#x3D;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;state%3Dbootstrapped%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
+        /// List all devices.
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By device properties (all properties are filterable): &#x60;&#x60;&#x60;state&#x3D;[unenrolled|cloud_enrolling|bootstrapped|registered]&#x60;&#x60;&#x60;  &#x60;&#x60;&#x60;device_class&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ###### On device custom attributes:  &#x60;&#x60;&#x60;custom_attributes__{param}&#x3D;{value}&#x60;&#x60;&#x60; &#x60;&#x60;&#x60;custom_attributes__tag&#x3D;TAG1&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;state&#x3D;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;?filter&#x3D;state%3Dbootstrapped%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (DevicePage)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DevicePage>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null);
+        System.Threading.Tasks.Task<ApiResponse<DevicePage>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;List all device logs.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device95id\&quot;&gt;By device_id:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device_id&#x3D;{id}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-state-change\&quot;&gt;By state change:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;state_change&#x3D;[True|False]&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-event-type\&quot;&gt;By event type:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;event_type&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-device-custom-attributes\&quot;&gt;On device custom attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device__custom_attributes__{param}&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__custom_attributes__tag&#x3D;TAG1&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-attributes\&quot;&gt;By Device attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device__deployed_state&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__name&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;device_id&#x3D;0158d38771f70000000000010010038c&amp;amp;state_change&#x3D;True&amp;amp;date_time__gte&#x3D;2016-11-30T16:25:12.1234Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;device_id%3D0158d38771f70000000000010010038c%26state_change%3DTrue%26date_time__gte%3D2016-11-30T16%3A25%3A12.1234Z&lt;/code&gt;&lt;/p&gt;
+        /// List all device logs.
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By id: &#x60;&#x60;&#x60;id&#x3D;{id}&#x60;&#x60;&#x60;  ###### By state change: &#x60;&#x60;&#x60;state_change&#x3D;[True|False]&#x60;&#x60;&#x60;  ###### By event type: &#x60;&#x60;&#x60;event_type&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;id&#x3D;0158d38771f70000000000010010038c&amp;amp;state_change&#x3D;True&amp;amp;date_time__gte&#x3D;2016-11-30T16:25:12.1234Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;?filter&#x3D;id%3D0158d38771f70000000000010010038c%26state_change%3DTrue%26date_time__gte%3D2016-11-30T16%3A25%3A12.1234Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of DeviceLogPage</returns>
-        System.Threading.Tasks.Task<DeviceLogPage> DeviceLogListAsync (int? limit = null, string order = null, string after = null, string filter = null);
+        System.Threading.Tasks.Task<DeviceLogPage> DeviceLogListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;List all device logs.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device95id\&quot;&gt;By device_id:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device_id&#x3D;{id}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-state-change\&quot;&gt;By state change:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;state_change&#x3D;[True|False]&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-event-type\&quot;&gt;By event type:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;event_type&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-device-custom-attributes\&quot;&gt;On device custom attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device__custom_attributes__{param}&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__custom_attributes__tag&#x3D;TAG1&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-attributes\&quot;&gt;By Device attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device__deployed_state&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__name&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;device_id&#x3D;0158d38771f70000000000010010038c&amp;amp;state_change&#x3D;True&amp;amp;date_time__gte&#x3D;2016-11-30T16:25:12.1234Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;device_id%3D0158d38771f70000000000010010038c%26state_change%3DTrue%26date_time__gte%3D2016-11-30T16%3A25%3A12.1234Z&lt;/code&gt;&lt;/p&gt;
+        /// List all device logs.
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By id: &#x60;&#x60;&#x60;id&#x3D;{id}&#x60;&#x60;&#x60;  ###### By state change: &#x60;&#x60;&#x60;state_change&#x3D;[True|False]&#x60;&#x60;&#x60;  ###### By event type: &#x60;&#x60;&#x60;event_type&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;id&#x3D;0158d38771f70000000000010010038c&amp;amp;state_change&#x3D;True&amp;amp;date_time__gte&#x3D;2016-11-30T16:25:12.1234Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;?filter&#x3D;id%3D0158d38771f70000000000010010038c%26state_change%3DTrue%26date_time__gte%3D2016-11-30T16%3A25%3A12.1234Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (DeviceLogPage)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceLogPage>> DeviceLogListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null);
+        System.Threading.Tasks.Task<ApiResponse<DeviceLogPage>> DeviceLogListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Retrieve device log.&lt;/p&gt;
+        /// Retrieve device log
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceLogId"></param>
@@ -369,7 +329,7 @@ namespace device_catalog.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Retrieve device log.&lt;/p&gt;
+        /// Retrieve device log
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceLogId"></param>
@@ -379,121 +339,69 @@ namespace device_catalog.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Update device fields&lt;/p&gt;
+        /// Update device fields
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">The ID of the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="provisionKey">The key used to provision the device (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>Task of DeviceSerializer</returns>
-        System.Threading.Tasks.Task<DeviceSerializer> DevicePartialUpdateAsync (string deviceId, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string provisionKey = null, string serialNumber = null, string state = null, string vendorId = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Update device fields&lt;/p&gt;
-        /// </remarks>
-        /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">The ID of the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="provisionKey">The key used to provision the device (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DevicePartialUpdateAsyncWithHttpInfo (string deviceId, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string provisionKey = null, string serialNumber = null, string state = null, string vendorId = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Retrieve device.&lt;/p&gt;
-        /// </remarks>
-        /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId"></param>
+        /// <param name="id">The ID of the device.</param>
+        /// <param name="device"></param>
         /// <returns>Task of DeviceData</returns>
-        System.Threading.Tasks.Task<DeviceData> DeviceRetrieveAsync (string deviceId);
+        System.Threading.Tasks.Task<DeviceData> DevicePartialUpdateAsync (string id, DeviceDataPatchRequest device);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Retrieve device.&lt;/p&gt;
+        /// Update device fields
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId"></param>
+        /// <param name="id">The ID of the device.</param>
+        /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceData)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceRetrieveAsyncWithHttpInfo (string deviceId);
+        System.Threading.Tasks.Task<ApiResponse<DeviceData>> DevicePartialUpdateAsyncWithHttpInfo (string id, DeviceDataPatchRequest device);
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Update device.&lt;/p&gt;
+        /// Retrieve device
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">The ID of the device</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
-        /// <param name="provisionKey">The key used to provision the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>Task of DeviceSerializer</returns>
-        System.Threading.Tasks.Task<DeviceSerializer> DeviceUpdateAsync (string deviceId, string mechanism, string provisionKey, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string vendorId = null);
+        /// <param name="id"></param>
+        /// <returns>Task of DeviceData</returns>
+        System.Threading.Tasks.Task<DeviceData> DeviceRetrieveAsync (string id);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Update device.&lt;/p&gt;
+        /// Retrieve device
         /// </remarks>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">The ID of the device</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
-        /// <param name="provisionKey">The key used to provision the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceUpdateAsyncWithHttpInfo (string deviceId, string mechanism, string provisionKey, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string vendorId = null);
+        /// <param name="id"></param>
+        /// <returns>Task of ApiResponse (DeviceData)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceRetrieveAsyncWithHttpInfo (string id);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Update device
+        /// </remarks>
+        /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The ID of the device.</param>
+        /// <param name="device"></param>
+        /// <returns>Task of DeviceData</returns>
+        System.Threading.Tasks.Task<DeviceData> DeviceUpdateAsync (string id, DeviceDataPutRequest device);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Update device
+        /// </remarks>
+        /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The ID of the device.</param>
+        /// <param name="device"></param>
+        /// <returns>Task of ApiResponse (DeviceData)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceUpdateAsyncWithHttpInfo (string id, DeviceDataPutRequest device);
         #endregion Asynchronous Operations
     }
 
@@ -607,23 +515,28 @@ namespace device_catalog.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
+        ///  Create device
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="device"></param>
         /// <returns>DeviceData</returns>
-        public DeviceData DeviceCreate ()
+        public DeviceData DeviceCreate (DeviceDataPostRequest device)
         {
-             ApiResponse<DeviceData> localVarResponse = DeviceCreateWithHttpInfo();
+             ApiResponse<DeviceData> localVarResponse = DeviceCreateWithHttpInfo(device);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
+        ///  Create device
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceData</returns>
-        public ApiResponse< DeviceData > DeviceCreateWithHttpInfo ()
+        public ApiResponse< DeviceData > DeviceCreateWithHttpInfo (DeviceDataPostRequest device)
         {
+            // verify the required parameter 'device' is set
+            if (device == null)
+                throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DeviceCreate");
 
             var localVarPath = "/v3/devices/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -648,6 +561,14 @@ namespace device_catalog.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
+            if (device != null && device.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(device); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = device; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -676,24 +597,29 @@ namespace device_catalog.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
+        ///  Create device
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="device"></param>
         /// <returns>Task of DeviceData</returns>
-        public async System.Threading.Tasks.Task<DeviceData> DeviceCreateAsync ()
+        public async System.Threading.Tasks.Task<DeviceData> DeviceCreateAsync (DeviceDataPostRequest device)
         {
-             ApiResponse<DeviceData> localVarResponse = await DeviceCreateAsyncWithHttpInfo();
+             ApiResponse<DeviceData> localVarResponse = await DeviceCreateAsyncWithHttpInfo(device);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Create device&lt;/p&gt;
+        ///  Create device
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceData)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceCreateAsyncWithHttpInfo ()
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceCreateAsyncWithHttpInfo (DeviceDataPostRequest device)
         {
+            // verify the required parameter 'device' is set
+            if (device == null)
+                throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DeviceCreate");
 
             var localVarPath = "/v3/devices/";
             var localVarPathParams = new Dictionary<String, String>();
@@ -718,6 +644,14 @@ namespace device_catalog.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
+            if (device != null && device.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(device); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = device; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -745,30 +679,29 @@ namespace device_catalog.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Delete device&lt;/p&gt;
+        ///  Delete device
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId"></param>
-        /// <returns>Object</returns>
-        public Object DeviceDestroy (string deviceId)
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public void DeviceDestroy (string id)
         {
-             ApiResponse<Object> localVarResponse = DeviceDestroyWithHttpInfo(deviceId);
-             return localVarResponse.Data;
+             DeviceDestroyWithHttpInfo(id);
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Delete device&lt;/p&gt;
+        ///  Delete device
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId"></param>
-        /// <returns>ApiResponse of Object</returns>
-        public ApiResponse< Object > DeviceDestroyWithHttpInfo (string deviceId)
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> DeviceDestroyWithHttpInfo (string id)
         {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DeviceDestroy");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->DeviceDestroy");
 
-            var localVarPath = "/v3/devices/{device_id}/";
+            var localVarPath = "/v3/devices/{id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -791,7 +724,7 @@ namespace device_catalog.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (deviceId != null) localVarPathParams.Add("device_id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -813,38 +746,37 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
+            
             return new ApiResponse<Object>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Object) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
-            
+                null);
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Delete device&lt;/p&gt;
+        ///  Delete device
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId"></param>
-        /// <returns>Task of Object</returns>
-        public async System.Threading.Tasks.Task<Object> DeviceDestroyAsync (string deviceId)
+        /// <param name="id"></param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task DeviceDestroyAsync (string id)
         {
-             ApiResponse<Object> localVarResponse = await DeviceDestroyAsyncWithHttpInfo(deviceId);
-             return localVarResponse.Data;
+             await DeviceDestroyAsyncWithHttpInfo(id);
 
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Delete device&lt;/p&gt;
+        ///  Delete device
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId"></param>
-        /// <returns>Task of ApiResponse (Object)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeviceDestroyAsyncWithHttpInfo (string deviceId)
+        /// <param name="id"></param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeviceDestroyAsyncWithHttpInfo (string id)
         {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DeviceDestroy");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->DeviceDestroy");
 
-            var localVarPath = "/v3/devices/{device_id}/";
+            var localVarPath = "/v3/devices/{id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -867,7 +799,7 @@ namespace device_catalog.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (deviceId != null) localVarPathParams.Add("device_id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -888,37 +820,39 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
+            
             return new ApiResponse<Object>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Object) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
-            
+                null);
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;List all update devices.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-properties-all-properties-are-filterable\&quot;&gt;By device properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;&lt;code&gt;state&#x3D;[unenrolled|cloud_enrolling|bootstrapped|registered]&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-device-custom-attributes\&quot;&gt;On device custom attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;custom_attributes__{param}&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;custom_attributes__tag&#x3D;TAG1&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;state&#x3D;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;state%3Dbootstrapped%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
+        ///  List all devices.
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By device properties (all properties are filterable): &#x60;&#x60;&#x60;state&#x3D;[unenrolled|cloud_enrolling|bootstrapped|registered]&#x60;&#x60;&#x60;  &#x60;&#x60;&#x60;device_class&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ###### On device custom attributes:  &#x60;&#x60;&#x60;custom_attributes__{param}&#x3D;{value}&#x60;&#x60;&#x60; &#x60;&#x60;&#x60;custom_attributes__tag&#x3D;TAG1&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;state&#x3D;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;?filter&#x3D;state%3Dbootstrapped%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>DevicePage</returns>
-        public DevicePage DeviceList (int? limit = null, string order = null, string after = null, string filter = null)
+        public DevicePage DeviceList (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<DevicePage> localVarResponse = DeviceListWithHttpInfo(limit, order, after, filter);
+             ApiResponse<DevicePage> localVarResponse = DeviceListWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;List all update devices.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-properties-all-properties-are-filterable\&quot;&gt;By device properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;&lt;code&gt;state&#x3D;[unenrolled|cloud_enrolling|bootstrapped|registered]&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-device-custom-attributes\&quot;&gt;On device custom attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;custom_attributes__{param}&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;custom_attributes__tag&#x3D;TAG1&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;state&#x3D;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;state%3Dbootstrapped%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
+        ///  List all devices.
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By device properties (all properties are filterable): &#x60;&#x60;&#x60;state&#x3D;[unenrolled|cloud_enrolling|bootstrapped|registered]&#x60;&#x60;&#x60;  &#x60;&#x60;&#x60;device_class&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ###### On device custom attributes:  &#x60;&#x60;&#x60;custom_attributes__{param}&#x3D;{value}&#x60;&#x60;&#x60; &#x60;&#x60;&#x60;custom_attributes__tag&#x3D;TAG1&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;state&#x3D;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;?filter&#x3D;state%3Dbootstrapped%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of DevicePage</returns>
-        public ApiResponse< DevicePage > DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null)
+        public ApiResponse< DevicePage > DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/devices/";
@@ -948,6 +882,7 @@ namespace device_catalog.Api
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -976,31 +911,33 @@ namespace device_catalog.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;List all update devices.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-properties-all-properties-are-filterable\&quot;&gt;By device properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;&lt;code&gt;state&#x3D;[unenrolled|cloud_enrolling|bootstrapped|registered]&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-device-custom-attributes\&quot;&gt;On device custom attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;custom_attributes__{param}&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;custom_attributes__tag&#x3D;TAG1&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;state&#x3D;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;state%3Dbootstrapped%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
+        ///  List all devices.
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By device properties (all properties are filterable): &#x60;&#x60;&#x60;state&#x3D;[unenrolled|cloud_enrolling|bootstrapped|registered]&#x60;&#x60;&#x60;  &#x60;&#x60;&#x60;device_class&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ###### On device custom attributes:  &#x60;&#x60;&#x60;custom_attributes__{param}&#x3D;{value}&#x60;&#x60;&#x60; &#x60;&#x60;&#x60;custom_attributes__tag&#x3D;TAG1&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;state&#x3D;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;?filter&#x3D;state%3Dbootstrapped%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of DevicePage</returns>
-        public async System.Threading.Tasks.Task<DevicePage> DeviceListAsync (int? limit = null, string order = null, string after = null, string filter = null)
+        public async System.Threading.Tasks.Task<DevicePage> DeviceListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<DevicePage> localVarResponse = await DeviceListAsyncWithHttpInfo(limit, order, after, filter);
+             ApiResponse<DevicePage> localVarResponse = await DeviceListAsyncWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;List all update devices.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-properties-all-properties-are-filterable\&quot;&gt;By device properties (all properties are filterable):&lt;/h5&gt; &lt;p&gt;&lt;code&gt;state&#x3D;[unenrolled|cloud_enrolling|bootstrapped|registered]&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-device-custom-attributes\&quot;&gt;On device custom attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;custom_attributes__{param}&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;custom_attributes__tag&#x3D;TAG1&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;state&#x3D;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;state%3Dbootstrapped%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&lt;/code&gt;&lt;/p&gt;
+        ///  List all devices.
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By device properties (all properties are filterable): &#x60;&#x60;&#x60;state&#x3D;[unenrolled|cloud_enrolling|bootstrapped|registered]&#x60;&#x60;&#x60;  &#x60;&#x60;&#x60;device_class&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ###### On device custom attributes:  &#x60;&#x60;&#x60;custom_attributes__{param}&#x3D;{value}&#x60;&#x60;&#x60; &#x60;&#x60;&#x60;custom_attributes__tag&#x3D;TAG1&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;state&#x3D;bootstrapped&amp;amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;?filter&#x3D;state%3Dbootstrapped%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (DevicePage)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DevicePage>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DevicePage>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/devices/";
@@ -1030,6 +967,7 @@ namespace device_catalog.Api
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1057,30 +995,32 @@ namespace device_catalog.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;List all device logs.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device95id\&quot;&gt;By device_id:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device_id&#x3D;{id}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-state-change\&quot;&gt;By state change:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;state_change&#x3D;[True|False]&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-event-type\&quot;&gt;By event type:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;event_type&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-device-custom-attributes\&quot;&gt;On device custom attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device__custom_attributes__{param}&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__custom_attributes__tag&#x3D;TAG1&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-attributes\&quot;&gt;By Device attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device__deployed_state&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__name&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;device_id&#x3D;0158d38771f70000000000010010038c&amp;amp;state_change&#x3D;True&amp;amp;date_time__gte&#x3D;2016-11-30T16:25:12.1234Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;device_id%3D0158d38771f70000000000010010038c%26state_change%3DTrue%26date_time__gte%3D2016-11-30T16%3A25%3A12.1234Z&lt;/code&gt;&lt;/p&gt;
+        ///  List all device logs.
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By id: &#x60;&#x60;&#x60;id&#x3D;{id}&#x60;&#x60;&#x60;  ###### By state change: &#x60;&#x60;&#x60;state_change&#x3D;[True|False]&#x60;&#x60;&#x60;  ###### By event type: &#x60;&#x60;&#x60;event_type&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;id&#x3D;0158d38771f70000000000010010038c&amp;amp;state_change&#x3D;True&amp;amp;date_time__gte&#x3D;2016-11-30T16:25:12.1234Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;?filter&#x3D;id%3D0158d38771f70000000000010010038c%26state_change%3DTrue%26date_time__gte%3D2016-11-30T16%3A25%3A12.1234Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>DeviceLogPage</returns>
-        public DeviceLogPage DeviceLogList (int? limit = null, string order = null, string after = null, string filter = null)
+        public DeviceLogPage DeviceLogList (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<DeviceLogPage> localVarResponse = DeviceLogListWithHttpInfo(limit, order, after, filter);
+             ApiResponse<DeviceLogPage> localVarResponse = DeviceLogListWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;List all device logs.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device95id\&quot;&gt;By device_id:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device_id&#x3D;{id}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-state-change\&quot;&gt;By state change:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;state_change&#x3D;[True|False]&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-event-type\&quot;&gt;By event type:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;event_type&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-device-custom-attributes\&quot;&gt;On device custom attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device__custom_attributes__{param}&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__custom_attributes__tag&#x3D;TAG1&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-attributes\&quot;&gt;By Device attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device__deployed_state&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__name&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;device_id&#x3D;0158d38771f70000000000010010038c&amp;amp;state_change&#x3D;True&amp;amp;date_time__gte&#x3D;2016-11-30T16:25:12.1234Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;device_id%3D0158d38771f70000000000010010038c%26state_change%3DTrue%26date_time__gte%3D2016-11-30T16%3A25%3A12.1234Z&lt;/code&gt;&lt;/p&gt;
+        ///  List all device logs.
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By id: &#x60;&#x60;&#x60;id&#x3D;{id}&#x60;&#x60;&#x60;  ###### By state change: &#x60;&#x60;&#x60;state_change&#x3D;[True|False]&#x60;&#x60;&#x60;  ###### By event type: &#x60;&#x60;&#x60;event_type&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;id&#x3D;0158d38771f70000000000010010038c&amp;amp;state_change&#x3D;True&amp;amp;date_time__gte&#x3D;2016-11-30T16:25:12.1234Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;?filter&#x3D;id%3D0158d38771f70000000000010010038c%26state_change%3DTrue%26date_time__gte%3D2016-11-30T16%3A25%3A12.1234Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of DeviceLogPage</returns>
-        public ApiResponse< DeviceLogPage > DeviceLogListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null)
+        public ApiResponse< DeviceLogPage > DeviceLogListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/devicelog/";
@@ -1110,6 +1050,7 @@ namespace device_catalog.Api
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1138,31 +1079,33 @@ namespace device_catalog.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;List all device logs.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device95id\&quot;&gt;By device_id:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device_id&#x3D;{id}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-state-change\&quot;&gt;By state change:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;state_change&#x3D;[True|False]&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-event-type\&quot;&gt;By event type:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;event_type&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-device-custom-attributes\&quot;&gt;On device custom attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device__custom_attributes__{param}&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__custom_attributes__tag&#x3D;TAG1&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-attributes\&quot;&gt;By Device attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device__deployed_state&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__name&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;device_id&#x3D;0158d38771f70000000000010010038c&amp;amp;state_change&#x3D;True&amp;amp;date_time__gte&#x3D;2016-11-30T16:25:12.1234Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;device_id%3D0158d38771f70000000000010010038c%26state_change%3DTrue%26date_time__gte%3D2016-11-30T16%3A25%3A12.1234Z&lt;/code&gt;&lt;/p&gt;
+        ///  List all device logs.
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By id: &#x60;&#x60;&#x60;id&#x3D;{id}&#x60;&#x60;&#x60;  ###### By state change: &#x60;&#x60;&#x60;state_change&#x3D;[True|False]&#x60;&#x60;&#x60;  ###### By event type: &#x60;&#x60;&#x60;event_type&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;id&#x3D;0158d38771f70000000000010010038c&amp;amp;state_change&#x3D;True&amp;amp;date_time__gte&#x3D;2016-11-30T16:25:12.1234Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;?filter&#x3D;id%3D0158d38771f70000000000010010038c%26state_change%3DTrue%26date_time__gte%3D2016-11-30T16%3A25%3A12.1234Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of DeviceLogPage</returns>
-        public async System.Threading.Tasks.Task<DeviceLogPage> DeviceLogListAsync (int? limit = null, string order = null, string after = null, string filter = null)
+        public async System.Threading.Tasks.Task<DeviceLogPage> DeviceLogListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
-             ApiResponse<DeviceLogPage> localVarResponse = await DeviceLogListAsyncWithHttpInfo(limit, order, after, filter);
+             ApiResponse<DeviceLogPage> localVarResponse = await DeviceLogListAsyncWithHttpInfo(limit, order, after, filter, include);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;List all device logs.&lt;/p&gt; &lt;h4 id&#x3D;\&quot;filtering\&quot;&gt;Filtering:&lt;/h4&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;{URL encoded query string}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The query string is made up of key/value pairs separated by ampersands. So for a query of &lt;code&gt;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&lt;/code&gt; this would be encoded as follows:&lt;/p&gt; &lt;p&gt;&lt;code&gt;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&lt;/code&gt;&lt;/p&gt; &lt;p&gt;The examples below show the queries in &lt;em&gt;unencoded&lt;/em&gt; form.&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device95id\&quot;&gt;By device_id:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device_id&#x3D;{id}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-state-change\&quot;&gt;By state change:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;state_change&#x3D;[True|False]&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-event-type\&quot;&gt;By event type:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;event_type&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-date-time-fields\&quot;&gt;On date-time fields:&lt;/h5&gt; &lt;p&gt;Date-time fields should be specified in UTC RFC3339 format &lt;code&gt;YYYY-MM-DDThh:mm:ss.msZ&lt;/code&gt;. There are three permitted variations:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z&lt;/li&gt; &lt;li&gt;UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Date-time filtering supports three operators:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;equality&lt;/li&gt; &lt;li&gt;greater than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__gte&lt;/code&gt;&lt;/li&gt; &lt;li&gt;less than or equal to &amp;ndash; field name suffixed with &lt;code&gt;__lte&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Lower and upper limits to a date-time range may be specified by including both the &lt;code&gt;__gte&lt;/code&gt; and &lt;code&gt;__lte&lt;/code&gt; forms in the filter.&lt;/p&gt; &lt;p&gt;&lt;code&gt;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;on-device-custom-attributes\&quot;&gt;On device custom attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device__custom_attributes__{param}&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__custom_attributes__tag&#x3D;TAG1&lt;/code&gt;&lt;/p&gt; &lt;h5 id&#x3D;\&quot;by-device-attributes\&quot;&gt;By Device attributes:&lt;/h5&gt; &lt;p&gt;&lt;code&gt;device__deployed_state&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__device_class&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code&gt;device__name&#x3D;{value}&lt;/code&gt;&lt;/p&gt; &lt;h4 id&#x3D;\&quot;multi-field-example\&quot;&gt;Multi-field example&lt;/h4&gt; &lt;p&gt;&lt;code&gt;device_id&#x3D;0158d38771f70000000000010010038c&amp;amp;state_change&#x3D;True&amp;amp;date_time__gte&#x3D;2016-11-30T16:25:12.1234Z&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Encoded: &lt;code&gt;?filter&#x3D;device_id%3D0158d38771f70000000000010010038c%26state_change%3DTrue%26date_time__gte%3D2016-11-30T16%3A25%3A12.1234Z&lt;/code&gt;&lt;/p&gt;
+        ///  List all device logs.
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">how many objects to retrieve in the page (optional)</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">the ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL encoded query string parameter to filter returned data (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="filter">URL encoded query string parameter to filter returned data.  ##### Filtering &#x60;&#x60;&#x60;?filter&#x3D;{URL encoded query string}&#x60;&#x60;&#x60;  The query string is made up of key/value pairs separated by ampersands. So for a query of &#x60;&#x60;&#x60;key1&#x3D;value1&amp;amp;key2&#x3D;value2&amp;amp;key3&#x3D;value3&#x60;&#x60;&#x60; this would be encoded as follows: &#x60;&#x60;&#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;&#x60;&#x60; The examples below show the queries in *unencoded* form.  ###### By id: &#x60;&#x60;&#x60;id&#x3D;{id}&#x60;&#x60;&#x60;  ###### By state change: &#x60;&#x60;&#x60;state_change&#x3D;[True|False]&#x60;&#x60;&#x60;  ###### By event type: &#x60;&#x60;&#x60;event_type&#x3D;{value}&#x60;&#x60;&#x60;  ###### On date-time fields: Date-time fields should be specified in UTC RFC3339 format &#x60;&#x60;&#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;&#x60;&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z * UTC RFC3339 shortened - without milliseconds and punctuation e.g. 20161130T162512Z  Date-time filtering supports three operators:  * equality * greater than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; * less than or equal to &amp;ndash; field name suffixed with &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60;  Lower and upper limits to a date-time range may be specified by including both the &#x60;&#x60;&#x60;__gte&#x60;&#x60;&#x60; and &#x60;&#x60;&#x60;__lte&#x60;&#x60;&#x60; forms in the filter.  &#x60;&#x60;&#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;&#x60;&#x60;  ##### Multi-field example  &#x60;&#x60;&#x60;id&#x3D;0158d38771f70000000000010010038c&amp;amp;state_change&#x3D;True&amp;amp;date_time__gte&#x3D;2016-11-30T16:25:12.1234Z&#x60;&#x60;&#x60;  Encoded:  &#x60;&#x60;&#x60;?filter&#x3D;id%3D0158d38771f70000000000010010038c%26state_change%3DTrue%26date_time__gte%3D2016-11-30T16%3A25%3A12.1234Z&#x60;&#x60;&#x60; (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (DeviceLogPage)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceLogPage>> DeviceLogListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceLogPage>> DeviceLogListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
             var localVarPath = "/v3/devicelog/";
@@ -1192,6 +1135,7 @@ namespace device_catalog.Api
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
             if (filter != null) localVarQueryParams.Add("filter", Configuration.ApiClient.ParameterToString(filter)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1219,7 +1163,7 @@ namespace device_catalog.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Retrieve device log.&lt;/p&gt;
+        ///  Retrieve device log
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceLogId"></param>
@@ -1231,7 +1175,7 @@ namespace device_catalog.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Retrieve device log.&lt;/p&gt;
+        ///  Retrieve device log
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceLogId"></param>
@@ -1294,7 +1238,7 @@ namespace device_catalog.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Retrieve device log.&lt;/p&gt;
+        ///  Retrieve device log
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceLogId"></param>
@@ -1307,7 +1251,7 @@ namespace device_catalog.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Retrieve device log.&lt;/p&gt;
+        ///  Retrieve device log
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceLogId"></param>
@@ -1369,264 +1313,35 @@ namespace device_catalog.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Update device fields&lt;/p&gt;
+        ///  Update device fields
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">The ID of the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="provisionKey">The key used to provision the device (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>DeviceSerializer</returns>
-        public DeviceSerializer DevicePartialUpdate (string deviceId, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string provisionKey = null, string serialNumber = null, string state = null, string vendorId = null)
-        {
-             ApiResponse<DeviceSerializer> localVarResponse = DevicePartialUpdateWithHttpInfo(deviceId, autoUpdate, customAttributes, deployment, description, deviceClass, manifest, mechanism, mechanismUrl, name, _object, provisionKey, serialNumber, state, vendorId);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Update device fields&lt;/p&gt;
-        /// </summary>
-        /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">The ID of the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="provisionKey">The key used to provision the device (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>ApiResponse of DeviceSerializer</returns>
-        public ApiResponse< DeviceSerializer > DevicePartialUpdateWithHttpInfo (string deviceId, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string provisionKey = null, string serialNumber = null, string state = null, string vendorId = null)
-        {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DevicePartialUpdate");
-
-            var localVarPath = "/v3/devices/{device_id}/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (deviceId != null) localVarPathParams.Add("device_id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
-            if (autoUpdate != null) localVarFormParams.Add("auto_update", Configuration.ApiClient.ParameterToString(autoUpdate)); // form parameter
-            if (customAttributes != null) localVarFormParams.Add("custom_attributes", Configuration.ApiClient.ParameterToString(customAttributes)); // form parameter
-            if (deployment != null) localVarFormParams.Add("deployment", Configuration.ApiClient.ParameterToString(deployment)); // form parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (deviceClass != null) localVarFormParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // form parameter
-            if (manifest != null) localVarFormParams.Add("manifest", Configuration.ApiClient.ParameterToString(manifest)); // form parameter
-            if (mechanism != null) localVarFormParams.Add("mechanism", Configuration.ApiClient.ParameterToString(mechanism)); // form parameter
-            if (mechanismUrl != null) localVarFormParams.Add("mechanism_url", Configuration.ApiClient.ParameterToString(mechanismUrl)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (provisionKey != null) localVarFormParams.Add("provision_key", Configuration.ApiClient.ParameterToString(provisionKey)); // form parameter
-            if (serialNumber != null) localVarFormParams.Add("serial_number", Configuration.ApiClient.ParameterToString(serialNumber)); // form parameter
-            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
-            if (vendorId != null) localVarFormParams.Add("vendor_id", Configuration.ApiClient.ParameterToString(vendorId)); // form parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DevicePartialUpdate", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<DeviceSerializer>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceSerializer)));
-            
-        }
-
-        /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Update device fields&lt;/p&gt;
-        /// </summary>
-        /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">The ID of the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="provisionKey">The key used to provision the device (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>Task of DeviceSerializer</returns>
-        public async System.Threading.Tasks.Task<DeviceSerializer> DevicePartialUpdateAsync (string deviceId, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string provisionKey = null, string serialNumber = null, string state = null, string vendorId = null)
-        {
-             ApiResponse<DeviceSerializer> localVarResponse = await DevicePartialUpdateAsyncWithHttpInfo(deviceId, autoUpdate, customAttributes, deployment, description, deviceClass, manifest, mechanism, mechanismUrl, name, _object, provisionKey, serialNumber, state, vendorId);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Update device fields&lt;/p&gt;
-        /// </summary>
-        /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">The ID of the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="provisionKey">The key used to provision the device (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DevicePartialUpdateAsyncWithHttpInfo (string deviceId, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanism = null, string mechanismUrl = null, string name = null, string _object = null, string provisionKey = null, string serialNumber = null, string state = null, string vendorId = null)
-        {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DevicePartialUpdate");
-
-            var localVarPath = "/v3/devices/{device_id}/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (deviceId != null) localVarPathParams.Add("device_id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
-            if (autoUpdate != null) localVarFormParams.Add("auto_update", Configuration.ApiClient.ParameterToString(autoUpdate)); // form parameter
-            if (customAttributes != null) localVarFormParams.Add("custom_attributes", Configuration.ApiClient.ParameterToString(customAttributes)); // form parameter
-            if (deployment != null) localVarFormParams.Add("deployment", Configuration.ApiClient.ParameterToString(deployment)); // form parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (deviceClass != null) localVarFormParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // form parameter
-            if (manifest != null) localVarFormParams.Add("manifest", Configuration.ApiClient.ParameterToString(manifest)); // form parameter
-            if (mechanism != null) localVarFormParams.Add("mechanism", Configuration.ApiClient.ParameterToString(mechanism)); // form parameter
-            if (mechanismUrl != null) localVarFormParams.Add("mechanism_url", Configuration.ApiClient.ParameterToString(mechanismUrl)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (provisionKey != null) localVarFormParams.Add("provision_key", Configuration.ApiClient.ParameterToString(provisionKey)); // form parameter
-            if (serialNumber != null) localVarFormParams.Add("serial_number", Configuration.ApiClient.ParameterToString(serialNumber)); // form parameter
-            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
-            if (vendorId != null) localVarFormParams.Add("vendor_id", Configuration.ApiClient.ParameterToString(vendorId)); // form parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DevicePartialUpdate", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<DeviceSerializer>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceSerializer)));
-            
-        }
-
-        /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Retrieve device.&lt;/p&gt;
-        /// </summary>
-        /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId"></param>
+        /// <param name="id">The ID of the device.</param>
+        /// <param name="device"></param>
         /// <returns>DeviceData</returns>
-        public DeviceData DeviceRetrieve (string deviceId)
+        public DeviceData DevicePartialUpdate (string id, DeviceDataPatchRequest device)
         {
-             ApiResponse<DeviceData> localVarResponse = DeviceRetrieveWithHttpInfo(deviceId);
+             ApiResponse<DeviceData> localVarResponse = DevicePartialUpdateWithHttpInfo(id, device);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Retrieve device.&lt;/p&gt;
+        ///  Update device fields
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId"></param>
+        /// <param name="id">The ID of the device.</param>
+        /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceData</returns>
-        public ApiResponse< DeviceData > DeviceRetrieveWithHttpInfo (string deviceId)
+        public ApiResponse< DeviceData > DevicePartialUpdateWithHttpInfo (string id, DeviceDataPatchRequest device)
         {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DeviceRetrieve");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->DevicePartialUpdate");
+            // verify the required parameter 'device' is set
+            if (device == null)
+                throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DevicePartialUpdate");
 
-            var localVarPath = "/v3/devices/{device_id}/";
+            var localVarPath = "/v3/devices/{id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1649,7 +1364,15 @@ namespace device_catalog.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (deviceId != null) localVarPathParams.Add("device_id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (device != null && device.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(device); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = device; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1660,14 +1383,14 @@ namespace device_catalog.Api
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("DeviceRetrieve", localVarResponse);
+                Exception exception = ExceptionFactory("DevicePartialUpdate", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1678,31 +1401,36 @@ namespace device_catalog.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Retrieve device.&lt;/p&gt;
+        ///  Update device fields
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId"></param>
+        /// <param name="id">The ID of the device.</param>
+        /// <param name="device"></param>
         /// <returns>Task of DeviceData</returns>
-        public async System.Threading.Tasks.Task<DeviceData> DeviceRetrieveAsync (string deviceId)
+        public async System.Threading.Tasks.Task<DeviceData> DevicePartialUpdateAsync (string id, DeviceDataPatchRequest device)
         {
-             ApiResponse<DeviceData> localVarResponse = await DeviceRetrieveAsyncWithHttpInfo(deviceId);
+             ApiResponse<DeviceData> localVarResponse = await DevicePartialUpdateAsyncWithHttpInfo(id, device);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Retrieve device.&lt;/p&gt;
+        ///  Update device fields
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId"></param>
+        /// <param name="id">The ID of the device.</param>
+        /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceData)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceRetrieveAsyncWithHttpInfo (string deviceId)
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceData>> DevicePartialUpdateAsyncWithHttpInfo (string id, DeviceDataPatchRequest device)
         {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DeviceRetrieve");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->DevicePartialUpdate");
+            // verify the required parameter 'device' is set
+            if (device == null)
+                throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DevicePartialUpdate");
 
-            var localVarPath = "/v3/devices/{device_id}/";
+            var localVarPath = "/v3/devices/{id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1725,7 +1453,165 @@ namespace device_catalog.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (deviceId != null) localVarPathParams.Add("device_id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (device != null && device.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(device); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = device; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DevicePartialUpdate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<DeviceData>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (DeviceData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceData)));
+            
+        }
+
+        /// <summary>
+        ///  Retrieve device
+        /// </summary>
+        /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>DeviceData</returns>
+        public DeviceData DeviceRetrieve (string id)
+        {
+             ApiResponse<DeviceData> localVarResponse = DeviceRetrieveWithHttpInfo(id);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Retrieve device
+        /// </summary>
+        /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of DeviceData</returns>
+        public ApiResponse< DeviceData > DeviceRetrieveWithHttpInfo (string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->DeviceRetrieve");
+
+            var localVarPath = "/v3/devices/{id}/";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeviceRetrieve", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<DeviceData>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (DeviceData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceData)));
+            
+        }
+
+        /// <summary>
+        ///  Retrieve device
+        /// </summary>
+        /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>Task of DeviceData</returns>
+        public async System.Threading.Tasks.Task<DeviceData> DeviceRetrieveAsync (string id)
+        {
+             ApiResponse<DeviceData> localVarResponse = await DeviceRetrieveAsyncWithHttpInfo(id);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  Retrieve device
+        /// </summary>
+        /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>Task of ApiResponse (DeviceData)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceRetrieveAsyncWithHttpInfo (string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->DeviceRetrieve");
+
+            var localVarPath = "/v3/devices/{id}/";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1753,64 +1639,35 @@ namespace device_catalog.Api
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Update device.&lt;/p&gt;
+        ///  Update device
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">The ID of the device</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
-        /// <param name="provisionKey">The key used to provision the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>DeviceSerializer</returns>
-        public DeviceSerializer DeviceUpdate (string deviceId, string mechanism, string provisionKey, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string vendorId = null)
+        /// <param name="id">The ID of the device.</param>
+        /// <param name="device"></param>
+        /// <returns>DeviceData</returns>
+        public DeviceData DeviceUpdate (string id, DeviceDataPutRequest device)
         {
-             ApiResponse<DeviceSerializer> localVarResponse = DeviceUpdateWithHttpInfo(deviceId, mechanism, provisionKey, autoUpdate, customAttributes, deployment, description, deviceClass, manifest, mechanismUrl, name, _object, serialNumber, state, vendorId);
+             ApiResponse<DeviceData> localVarResponse = DeviceUpdateWithHttpInfo(id, device);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Update device.&lt;/p&gt;
+        ///  Update device
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">The ID of the device</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
-        /// <param name="provisionKey">The key used to provision the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>ApiResponse of DeviceSerializer</returns>
-        public ApiResponse< DeviceSerializer > DeviceUpdateWithHttpInfo (string deviceId, string mechanism, string provisionKey, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string vendorId = null)
+        /// <param name="id">The ID of the device.</param>
+        /// <param name="device"></param>
+        /// <returns>ApiResponse of DeviceData</returns>
+        public ApiResponse< DeviceData > DeviceUpdateWithHttpInfo (string id, DeviceDataPutRequest device)
         {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DeviceUpdate");
-            // verify the required parameter 'mechanism' is set
-            if (mechanism == null)
-                throw new ApiException(400, "Missing required parameter 'mechanism' when calling DefaultApi->DeviceUpdate");
-            // verify the required parameter 'provisionKey' is set
-            if (provisionKey == null)
-                throw new ApiException(400, "Missing required parameter 'provisionKey' when calling DefaultApi->DeviceUpdate");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->DeviceUpdate");
+            // verify the required parameter 'device' is set
+            if (device == null)
+                throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DeviceUpdate");
 
-            var localVarPath = "/v3/devices/{device_id}/";
+            var localVarPath = "/v3/devices/{id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1833,21 +1690,15 @@ namespace device_catalog.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (deviceId != null) localVarPathParams.Add("device_id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
-            if (autoUpdate != null) localVarFormParams.Add("auto_update", Configuration.ApiClient.ParameterToString(autoUpdate)); // form parameter
-            if (customAttributes != null) localVarFormParams.Add("custom_attributes", Configuration.ApiClient.ParameterToString(customAttributes)); // form parameter
-            if (deployment != null) localVarFormParams.Add("deployment", Configuration.ApiClient.ParameterToString(deployment)); // form parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (deviceClass != null) localVarFormParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // form parameter
-            if (manifest != null) localVarFormParams.Add("manifest", Configuration.ApiClient.ParameterToString(manifest)); // form parameter
-            if (mechanism != null) localVarFormParams.Add("mechanism", Configuration.ApiClient.ParameterToString(mechanism)); // form parameter
-            if (mechanismUrl != null) localVarFormParams.Add("mechanism_url", Configuration.ApiClient.ParameterToString(mechanismUrl)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (provisionKey != null) localVarFormParams.Add("provision_key", Configuration.ApiClient.ParameterToString(provisionKey)); // form parameter
-            if (serialNumber != null) localVarFormParams.Add("serial_number", Configuration.ApiClient.ParameterToString(serialNumber)); // form parameter
-            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
-            if (vendorId != null) localVarFormParams.Add("vendor_id", Configuration.ApiClient.ParameterToString(vendorId)); // form parameter
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (device != null && device.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(device); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = device; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1869,72 +1720,43 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceSerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceData>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceSerializer)));
+                (DeviceData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceData)));
             
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Update device.&lt;/p&gt;
+        ///  Update device
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">The ID of the device</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
-        /// <param name="provisionKey">The key used to provision the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>Task of DeviceSerializer</returns>
-        public async System.Threading.Tasks.Task<DeviceSerializer> DeviceUpdateAsync (string deviceId, string mechanism, string provisionKey, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string vendorId = null)
+        /// <param name="id">The ID of the device.</param>
+        /// <param name="device"></param>
+        /// <returns>Task of DeviceData</returns>
+        public async System.Threading.Tasks.Task<DeviceData> DeviceUpdateAsync (string id, DeviceDataPutRequest device)
         {
-             ApiResponse<DeviceSerializer> localVarResponse = await DeviceUpdateAsyncWithHttpInfo(deviceId, mechanism, provisionKey, autoUpdate, customAttributes, deployment, description, deviceClass, manifest, mechanismUrl, name, _object, serialNumber, state, vendorId);
+             ApiResponse<DeviceData> localVarResponse = await DeviceUpdateAsyncWithHttpInfo(id, device);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  &lt;p&gt;The APIs for creating and manipulating devices.  &lt;/p&gt; &lt;p&gt;Update device.&lt;/p&gt;
+        ///  Update device
         /// </summary>
         /// <exception cref="device_catalog.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">The ID of the device</param>
-        /// <param name="mechanism">The ID of the channel used to communicate with the device</param>
-        /// <param name="provisionKey">The key used to provision the device</param>
-        /// <param name="autoUpdate">Mark this device for auto firmware update (optional)</param>
-        /// <param name="customAttributes">Up to 5 custom JSON attributes (optional)</param>
-        /// <param name="deployment">The last deployment used on the device (optional)</param>
-        /// <param name="description">The description of the object (optional)</param>
-        /// <param name="deviceClass">The device class (optional)</param>
-        /// <param name="manifest">URL for the current device manifest (optional)</param>
-        /// <param name="mechanismUrl">The address of the connector to use (optional)</param>
-        /// <param name="name">The name of the object (optional)</param>
-        /// <param name="_object">The API resource entity (optional)</param>
-        /// <param name="serialNumber">The serial number of the device (optional)</param>
-        /// <param name="state">The current state of the device (optional)</param>
-        /// <param name="vendorId">The device vendor ID (optional)</param>
-        /// <returns>Task of ApiResponse (DeviceSerializer)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceSerializer>> DeviceUpdateAsyncWithHttpInfo (string deviceId, string mechanism, string provisionKey, bool? autoUpdate = null, string customAttributes = null, string deployment = null, string description = null, string deviceClass = null, string manifest = null, string mechanismUrl = null, string name = null, string _object = null, string serialNumber = null, string state = null, string vendorId = null)
+        /// <param name="id">The ID of the device.</param>
+        /// <param name="device"></param>
+        /// <returns>Task of ApiResponse (DeviceData)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceUpdateAsyncWithHttpInfo (string id, DeviceDataPutRequest device)
         {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DefaultApi->DeviceUpdate");
-            // verify the required parameter 'mechanism' is set
-            if (mechanism == null)
-                throw new ApiException(400, "Missing required parameter 'mechanism' when calling DefaultApi->DeviceUpdate");
-            // verify the required parameter 'provisionKey' is set
-            if (provisionKey == null)
-                throw new ApiException(400, "Missing required parameter 'provisionKey' when calling DefaultApi->DeviceUpdate");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->DeviceUpdate");
+            // verify the required parameter 'device' is set
+            if (device == null)
+                throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DeviceUpdate");
 
-            var localVarPath = "/v3/devices/{device_id}/";
+            var localVarPath = "/v3/devices/{id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1957,21 +1779,15 @@ namespace device_catalog.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (deviceId != null) localVarPathParams.Add("device_id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
-            if (autoUpdate != null) localVarFormParams.Add("auto_update", Configuration.ApiClient.ParameterToString(autoUpdate)); // form parameter
-            if (customAttributes != null) localVarFormParams.Add("custom_attributes", Configuration.ApiClient.ParameterToString(customAttributes)); // form parameter
-            if (deployment != null) localVarFormParams.Add("deployment", Configuration.ApiClient.ParameterToString(deployment)); // form parameter
-            if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
-            if (deviceClass != null) localVarFormParams.Add("device_class", Configuration.ApiClient.ParameterToString(deviceClass)); // form parameter
-            if (manifest != null) localVarFormParams.Add("manifest", Configuration.ApiClient.ParameterToString(manifest)); // form parameter
-            if (mechanism != null) localVarFormParams.Add("mechanism", Configuration.ApiClient.ParameterToString(mechanism)); // form parameter
-            if (mechanismUrl != null) localVarFormParams.Add("mechanism_url", Configuration.ApiClient.ParameterToString(mechanismUrl)); // form parameter
-            if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (_object != null) localVarFormParams.Add("object", Configuration.ApiClient.ParameterToString(_object)); // form parameter
-            if (provisionKey != null) localVarFormParams.Add("provision_key", Configuration.ApiClient.ParameterToString(provisionKey)); // form parameter
-            if (serialNumber != null) localVarFormParams.Add("serial_number", Configuration.ApiClient.ParameterToString(serialNumber)); // form parameter
-            if (state != null) localVarFormParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // form parameter
-            if (vendorId != null) localVarFormParams.Add("vendor_id", Configuration.ApiClient.ParameterToString(vendorId)); // form parameter
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (device != null && device.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(device); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = device; // byte array
+            }
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1992,9 +1808,9 @@ namespace device_catalog.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DeviceSerializer>(localVarStatusCode,
+            return new ApiResponse<DeviceData>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DeviceSerializer) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceSerializer)));
+                (DeviceData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceData)));
             
         }
 

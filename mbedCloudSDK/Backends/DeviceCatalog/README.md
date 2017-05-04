@@ -75,10 +75,11 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
 
             var apiInstance = new DefaultApi();
+            var device = new DeviceDataPostRequest(); // DeviceDataPostRequest | 
 
             try
             {
-                DeviceData result = apiInstance.DeviceCreate();
+                DeviceData result = apiInstance.DeviceCreate(device);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -93,29 +94,30 @@ namespace Example
 <a name="documentation-for-api-endpoints"></a>
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://api.mbedcloud.com*
+All URIs are relative to *https://api.mbedcloud.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**DeviceCreate**](docs/DefaultApi.md#devicecreate) | **POST** /v3/devices/ | 
-*DefaultApi* | [**DeviceDestroy**](docs/DefaultApi.md#devicedestroy) | **DELETE** /v3/devices/{device_id}/ | 
+*DefaultApi* | [**DeviceDestroy**](docs/DefaultApi.md#devicedestroy) | **DELETE** /v3/devices/{id}/ | 
 *DefaultApi* | [**DeviceList**](docs/DefaultApi.md#devicelist) | **GET** /v3/devices/ | 
 *DefaultApi* | [**DeviceLogList**](docs/DefaultApi.md#deviceloglist) | **GET** /v3/devicelog/ | 
 *DefaultApi* | [**DeviceLogRetrieve**](docs/DefaultApi.md#devicelogretrieve) | **GET** /v3/devicelog/{device_log_id}/ | 
-*DefaultApi* | [**DevicePartialUpdate**](docs/DefaultApi.md#devicepartialupdate) | **PATCH** /v3/devices/{device_id}/ | 
-*DefaultApi* | [**DeviceRetrieve**](docs/DefaultApi.md#deviceretrieve) | **GET** /v3/devices/{device_id}/ | 
-*DefaultApi* | [**DeviceUpdate**](docs/DefaultApi.md#deviceupdate) | **PUT** /v3/devices/{device_id}/ | 
+*DefaultApi* | [**DevicePartialUpdate**](docs/DefaultApi.md#devicepartialupdate) | **PATCH** /v3/devices/{id}/ | 
+*DefaultApi* | [**DeviceRetrieve**](docs/DefaultApi.md#deviceretrieve) | **GET** /v3/devices/{id}/ | 
+*DefaultApi* | [**DeviceUpdate**](docs/DefaultApi.md#deviceupdate) | **PUT** /v3/devices/{id}/ | 
 
 
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
  - [Model.DeviceData](docs/DeviceData.md)
+ - [Model.DeviceDataPatchRequest](docs/DeviceDataPatchRequest.md)
+ - [Model.DeviceDataPostRequest](docs/DeviceDataPostRequest.md)
+ - [Model.DeviceDataPutRequest](docs/DeviceDataPutRequest.md)
  - [Model.DeviceLogData](docs/DeviceLogData.md)
  - [Model.DeviceLogPage](docs/DeviceLogPage.md)
  - [Model.DevicePage](docs/DevicePage.md)
- - [Model.DeviceSerializer](docs/DeviceSerializer.md)
- - [Model.WriteDeviceSerializer](docs/WriteDeviceSerializer.md)
 
 
 <a name="documentation-for-authorization"></a>

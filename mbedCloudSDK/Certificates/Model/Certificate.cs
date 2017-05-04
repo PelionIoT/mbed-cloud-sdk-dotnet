@@ -47,11 +47,6 @@ namespace mbedCloudSDK.Certificates.Model
         public string Validity { get; private set; }
         
         /// <summary>
-        /// Gets or Sets CreationTimeMillis
-        /// </summary>
-        public long? CreationTimeMillis { get; private set; }
-        
-        /// <summary>
         /// Issuer of the certificate.
         /// </summary>
         /// <value>Issuer of the certificate.</value>
@@ -119,7 +114,6 @@ namespace mbedCloudSDK.Certificates.Model
             sb.Append("  Subject: ").Append(Subject).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Validity: ").Append(Validity).Append("\n");
-            sb.Append("  CreationTimeMillis: ").Append(CreationTimeMillis).Append("\n");
             sb.Append("  Issuer: ").Append(Issuer).Append("\n");
             sb.Append("  CertData: ").Append(CertData).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
@@ -171,12 +165,11 @@ namespace mbedCloudSDK.Certificates.Model
             certificate.AccountId = trustedCertificate.AccountId;
             certificate.Validity = trustedCertificate.Validity;
             certificate.Issuer = trustedCertificate.Issuer;
-            certificate.CertData = trustedCertificate.CertData;
+            certificate.CertData = trustedCertificate.Certificate;
             certificate.Id = trustedCertificate.Id;
             certificate.Name = trustedCertificate.Name;
             certificate.Description = trustedCertificate.Description;
             certificate.CreatedAt = trustedCertificate.CreatedAt;
-            certificate.CreationTimeMillis = trustedCertificate.CreationTimeMillis;
             return certificate;
         }
 
@@ -186,7 +179,7 @@ namespace mbedCloudSDK.Certificates.Model
         /// <param name="developerCertificateData">Developer certificate data</param>
         /// <param name="certificate">Certificate to be updated</param>
         /// <returns></returns>
-        public static Certificate Map(connector_ca.Model.InlineResponse201 developerCertificateData, Certificate certificate = null)
+        public static Certificate Map(connector_ca.Model.DeveloperCertificateResponseData developerCertificateData, Certificate certificate = null)
         {
             if (certificate == null)
             {

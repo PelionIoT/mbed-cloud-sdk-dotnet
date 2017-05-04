@@ -1,7 +1,7 @@
 /* 
- * mbed Cloud Connect REST API
+ * Connect API
  *
- * mbed Cloud Connect REST API allows web applications to communicate with devices.
+ * mbed Cloud Connect API allows web applications to communicate with devices. You can subscribe to device resources and read/write values to them. mbed Cloud Connect makes connectivity to devices easy by queuing requests and caching resource values.
  *
  * OpenAPI spec version: 2
  * 
@@ -14,6 +14,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using RestSharp;
 using mds.Client;
+using mds.Model;
 
 namespace mds.Api
 {
@@ -46,21 +47,21 @@ namespace mds.Api
         /// Check callback URL
         /// </summary>
         /// <remarks>
-        /// Shows the current callback URL if exists.
+        /// Shows the current callback URL if it exists.
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void V2NotificationCallbackGet ();
+        /// <returns>Webhook</returns>
+        Webhook V2NotificationCallbackGet ();
 
         /// <summary>
         /// Check callback URL
         /// </summary>
         /// <remarks>
-        /// Shows the current callback URL if exists.
+        /// Shows the current callback URL if it exists.
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V2NotificationCallbackGetWithHttpInfo ();
+        /// <returns>ApiResponse of Webhook</returns>
+        ApiResponse<Webhook> V2NotificationCallbackGetWithHttpInfo ();
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -86,21 +87,21 @@ namespace mds.Api
         /// Check callback URL
         /// </summary>
         /// <remarks>
-        /// Shows the current callback URL if exists.
+        /// Shows the current callback URL if it exists.
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V2NotificationCallbackGetAsync ();
+        /// <returns>Task of Webhook</returns>
+        System.Threading.Tasks.Task<Webhook> V2NotificationCallbackGetAsync ();
 
         /// <summary>
         /// Check callback URL
         /// </summary>
         /// <remarks>
-        /// Shows the current callback URL if exists.
+        /// Shows the current callback URL if it exists.
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V2NotificationCallbackGetAsyncWithHttpInfo ();
+        /// <returns>Task of ApiResponse (Webhook)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Webhook>> V2NotificationCallbackGetAsyncWithHttpInfo ();
         #endregion Asynchronous Operations
     }
 
@@ -352,21 +353,22 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Check callback URL Shows the current callback URL if exists.
+        /// Check callback URL Shows the current callback URL if it exists.
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void V2NotificationCallbackGet ()
+        /// <returns>Webhook</returns>
+        public Webhook V2NotificationCallbackGet ()
         {
-             V2NotificationCallbackGetWithHttpInfo();
+             ApiResponse<Webhook> localVarResponse = V2NotificationCallbackGetWithHttpInfo();
+             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Check callback URL Shows the current callback URL if exists.
+        /// Check callback URL Shows the current callback URL if it exists.
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V2NotificationCallbackGetWithHttpInfo ()
+        /// <returns>ApiResponse of Webhook</returns>
+        public ApiResponse< Webhook > V2NotificationCallbackGetWithHttpInfo ()
         {
 
             var localVarPath = "/v2/notification/callback";
@@ -414,29 +416,30 @@ namespace mds.Api
                 if (exception != null) throw exception;
             }
 
-            
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<Webhook>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (Webhook) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Webhook)));
+            
         }
 
         /// <summary>
-        /// Check callback URL Shows the current callback URL if exists.
+        /// Check callback URL Shows the current callback URL if it exists.
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V2NotificationCallbackGetAsync ()
+        /// <returns>Task of Webhook</returns>
+        public async System.Threading.Tasks.Task<Webhook> V2NotificationCallbackGetAsync ()
         {
-             await V2NotificationCallbackGetAsyncWithHttpInfo();
+             ApiResponse<Webhook> localVarResponse = await V2NotificationCallbackGetAsyncWithHttpInfo();
+             return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Check callback URL Shows the current callback URL if exists.
+        /// Check callback URL Shows the current callback URL if it exists.
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2NotificationCallbackGetAsyncWithHttpInfo ()
+        /// <returns>Task of ApiResponse (Webhook)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Webhook>> V2NotificationCallbackGetAsyncWithHttpInfo ()
         {
 
             var localVarPath = "/v2/notification/callback";
@@ -483,10 +486,10 @@ namespace mds.Api
                 if (exception != null) throw exception;
             }
 
-            
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<Webhook>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (Webhook) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Webhook)));
+            
         }
 
     }

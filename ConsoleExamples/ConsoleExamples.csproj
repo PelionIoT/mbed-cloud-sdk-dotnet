@@ -48,7 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Examples\Access\ListApiKeys.cs" />
+    <Compile Include="Examples\AccountManagement\GetAccount.cs" />
+    <Compile Include="Examples\AccountManagement\ListApiKeys.cs" />
     <Compile Include="Examples\Devices\ListDevices.cs" />
     <Compile Include="Examples\Devices\DeviceQuery.cs" />
     <Compile Include="Examples\Devices\Resource.cs" />

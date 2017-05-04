@@ -75,19 +75,11 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var deviceFilter = deviceFilter_example;  // string | The filter for the devices the campaign will target
-            var name = name_example;  // string | A name for this campaign
-            var campaignId = campaignId_example;  // string | DEPRECATED: The ID of the campaign (optional) 
-            var description = description_example;  // string | An optional description of the campaign (optional) 
-            var finished = 2013-10-20T19:20:30+01:00;  // DateTime? | The timestamp when the update campaign finished (optional) 
-            var _object = _object_example;  // string | The API resource entity (optional) 
-            var rootManifestId = rootManifestId_example;  // string |  (optional) 
-            var state = state_example;  // string | The state of the campaign (optional) 
-            var when = 2013-10-20T19:20:30+01:00;  // DateTime? | The timestamp at which update campaign scheduled to start (optional) 
+            var campaign = new UpdateCampaignPostRequest(); // UpdateCampaignPostRequest | Update campaign
 
             try
             {
-                UpdateCampaign result = apiInstance.UpdateCampaignCreate(deviceFilter, name, campaignId, description, finished, _object, rootManifestId, state, when);
+                UpdateCampaign result = apiInstance.UpdateCampaignCreate(campaign);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -102,7 +94,7 @@ namespace Example
 <a name="documentation-for-api-endpoints"></a>
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://api.mbedcloud.com*
+All URIs are relative to *https://api.mbedcloud.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -119,8 +111,9 @@ Class | Method | HTTP request | Description
 
  - [Model.UpdateCampaign](docs/UpdateCampaign.md)
  - [Model.UpdateCampaignPage](docs/UpdateCampaignPage.md)
- - [Model.WriteUpdateCampaign](docs/WriteUpdateCampaign.md)
- - [Model.WriteUpdateCampaignPage](docs/WriteUpdateCampaignPage.md)
+ - [Model.UpdateCampaignPatchRequest](docs/UpdateCampaignPatchRequest.md)
+ - [Model.UpdateCampaignPostRequest](docs/UpdateCampaignPostRequest.md)
+ - [Model.UpdateCampaignPutRequest](docs/UpdateCampaignPutRequest.md)
 
 
 <a name="documentation-for-authorization"></a>

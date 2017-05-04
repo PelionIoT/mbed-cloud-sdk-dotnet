@@ -22,7 +22,7 @@ namespace mbedCloudSDK.Devices.Api
             var api = new device_query_service.Api.DefaultApi();
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            return Query.Map(api.DeviceQueryCreate(query.Name, query.QueryString, query.Description));
+            return Query.Map(api.DeviceQueryCreate(new device_query_service.Model.DeviceQueryPostPutRequest(query.QueryString, query.Name)));
         }
 
         /// <summary>
@@ -30,12 +30,12 @@ namespace mbedCloudSDK.Devices.Api
         /// </summary>
         /// <returns>The query.</returns>
         /// <param name="queryID">Query identifier.</param>
-        public Query DeleteQuery(string queryID)
+        public void DeleteQuery(string queryID)
         {
             var api = new device_query_service.Api.DefaultApi();
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            return Query.Map(api.DeviceQueryDestroy(queryID));
+            api.DeviceQueryDestroy(queryID);
         }
 
         /// <summary>

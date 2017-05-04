@@ -1,7 +1,7 @@
 /* 
- * IAM Identities REST API
+ * Account Management API
  *
- * REST API to manage accounts, groups, users and API keys
+ * API for managing accounts, users, creating API keys, uploading trusted certificates
  *
  * OpenAPI spec version: v3
  * 
@@ -64,13 +64,22 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TrustedCertificateReq" /> class.
         /// </summary>
-        /// <param name="Signature">Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. (required).</param>
-        /// <param name="CertData">X509.v3 trusted certificate in PEM or base64 encoded DER format. (required).</param>
-        /// <param name="Name">Certificate name. (required).</param>
         /// <param name="Service">Service name where the certificate must be used. (required).</param>
-        /// <param name="Description">Human readable description of this certificate..</param>
-        public TrustedCertificateReq(string Signature = default(string), string CertData = default(string), string Name = default(string), ServiceEnum? Service = default(ServiceEnum?), string Description = default(string))
+        /// <param name="Signature">Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. (required).</param>
+        /// <param name="Name">Certificate name, not longer than 100 characters. (required).</param>
+        /// <param name="Certificate">X509.v3 trusted certificate in PEM format. (required).</param>
+        /// <param name="Description">Human readable description of this certificate, not longer than 500 characters..</param>
+        public TrustedCertificateReq(ServiceEnum? Service = default(ServiceEnum?), string Signature = default(string), string Name = default(string), string Certificate = default(string), string Description = default(string))
         {
+            // to ensure "Service" is required (not null)
+            if (Service == null)
+            {
+                throw new InvalidDataException("Service is a required property for TrustedCertificateReq and cannot be null");
+            }
+            else
+            {
+                this.Service = Service;
+            }
             // to ensure "Signature" is required (not null)
             if (Signature == null)
             {
@@ -79,15 +88,6 @@ namespace iam.Model
             else
             {
                 this.Signature = Signature;
-            }
-            // to ensure "CertData" is required (not null)
-            if (CertData == null)
-            {
-                throw new InvalidDataException("CertData is a required property for TrustedCertificateReq and cannot be null");
-            }
-            else
-            {
-                this.CertData = CertData;
             }
             // to ensure "Name" is required (not null)
             if (Name == null)
@@ -98,14 +98,14 @@ namespace iam.Model
             {
                 this.Name = Name;
             }
-            // to ensure "Service" is required (not null)
-            if (Service == null)
+            // to ensure "Certificate" is required (not null)
+            if (Certificate == null)
             {
-                throw new InvalidDataException("Service is a required property for TrustedCertificateReq and cannot be null");
+                throw new InvalidDataException("Certificate is a required property for TrustedCertificateReq and cannot be null");
             }
             else
             {
-                this.Service = Service;
+                this.Certificate = Certificate;
             }
             this.Description = Description;
         }
@@ -117,21 +117,21 @@ namespace iam.Model
         [DataMember(Name="signature", EmitDefaultValue=false)]
         public string Signature { get; set; }
         /// <summary>
-        /// X509.v3 trusted certificate in PEM or base64 encoded DER format.
+        /// Certificate name, not longer than 100 characters.
         /// </summary>
-        /// <value>X509.v3 trusted certificate in PEM or base64 encoded DER format.</value>
-        [DataMember(Name="cert_data", EmitDefaultValue=false)]
-        public string CertData { get; set; }
-        /// <summary>
-        /// Certificate name.
-        /// </summary>
-        /// <value>Certificate name.</value>
+        /// <value>Certificate name, not longer than 100 characters.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
-        /// Human readable description of this certificate.
+        /// X509.v3 trusted certificate in PEM format.
         /// </summary>
-        /// <value>Human readable description of this certificate.</value>
+        /// <value>X509.v3 trusted certificate in PEM format.</value>
+        [DataMember(Name="certificate", EmitDefaultValue=false)]
+        public string Certificate { get; set; }
+        /// <summary>
+        /// Human readable description of this certificate, not longer than 500 characters.
+        /// </summary>
+        /// <value>Human readable description of this certificate, not longer than 500 characters.</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
         /// <summary>
@@ -142,10 +142,10 @@ namespace iam.Model
         {
             var sb = new StringBuilder();
             sb.Append("class TrustedCertificateReq {\n");
-            sb.Append("  Signature: ").Append(Signature).Append("\n");
-            sb.Append("  CertData: ").Append(CertData).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Service: ").Append(Service).Append("\n");
+            sb.Append("  Signature: ").Append(Signature).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Certificate: ").Append(Certificate).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -184,14 +184,14 @@ namespace iam.Model
 
             return 
                 (
+                    this.Service == other.Service ||
+                    this.Service != null &&
+                    this.Service.Equals(other.Service)
+                ) && 
+                (
                     this.Signature == other.Signature ||
                     this.Signature != null &&
                     this.Signature.Equals(other.Signature)
-                ) && 
-                (
-                    this.CertData == other.CertData ||
-                    this.CertData != null &&
-                    this.CertData.Equals(other.CertData)
                 ) && 
                 (
                     this.Name == other.Name ||
@@ -199,9 +199,9 @@ namespace iam.Model
                     this.Name.Equals(other.Name)
                 ) && 
                 (
-                    this.Service == other.Service ||
-                    this.Service != null &&
-                    this.Service.Equals(other.Service)
+                    this.Certificate == other.Certificate ||
+                    this.Certificate != null &&
+                    this.Certificate.Equals(other.Certificate)
                 ) && 
                 (
                     this.Description == other.Description ||
@@ -221,14 +221,14 @@ namespace iam.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Signature != null)
-                    hash = hash * 59 + this.Signature.GetHashCode();
-                if (this.CertData != null)
-                    hash = hash * 59 + this.CertData.GetHashCode();
-                if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
                 if (this.Service != null)
                     hash = hash * 59 + this.Service.GetHashCode();
+                if (this.Signature != null)
+                    hash = hash * 59 + this.Signature.GetHashCode();
+                if (this.Name != null)
+                    hash = hash * 59 + this.Name.GetHashCode();
+                if (this.Certificate != null)
+                    hash = hash * 59 + this.Certificate.GetHashCode();
                 if (this.Description != null)
                     hash = hash * 59 + this.Description.GetHashCode();
                 return hash;

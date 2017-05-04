@@ -38,18 +38,17 @@ namespace firmware_catalog.Model
         /// Initializes a new instance of the <see cref="FirmwareManifest" /> class.
         /// </summary>
         /// <param name="Datafile">Datafile (required).</param>
-        /// <param name="ManifestId">DEPRECATED: The ID of the firmware manifest (required).</param>
-        /// <param name="Description">The description of the object (required).</param>
-        /// <param name="Timestamp">The version of the firmware manifest (as a timestamp) (required).</param>
-        /// <param name="CreatedAt">The time the object was created (required).</param>
-        /// <param name="_Object">The API resource entity (required).</param>
-        /// <param name="UpdatedAt">The time the object was updated (required).</param>
-        /// <param name="ManifestContents">The contents of the manifest (required).</param>
-        /// <param name="Etag">The entity instance signature (required).</param>
-        /// <param name="DeviceClass">The class of device (required).</param>
-        /// <param name="Id">The ID of the firmware manifest (required).</param>
-        /// <param name="Name">The name of the object (required).</param>
-        public FirmwareManifest(string Datafile = default(string), string ManifestId = default(string), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), string ManifestContents = default(string), DateTime? Etag = default(DateTime?), string DeviceClass = default(string), string Id = default(string), string Name = default(string))
+        /// <param name="Description">The description of the object. (required).</param>
+        /// <param name="Timestamp">The version of the firmware manifest (as a timestamp). (required).</param>
+        /// <param name="CreatedAt">The time the object was created. (required).</param>
+        /// <param name="_Object">The API resource entity. (required).</param>
+        /// <param name="UpdatedAt">The time the object was updated. (required).</param>
+        /// <param name="ManifestContents">The contents of the manifest. (required).</param>
+        /// <param name="Etag">The entity instance signature. (required).</param>
+        /// <param name="DeviceClass">The class of device. (required).</param>
+        /// <param name="Id">The ID of the firmware manifest. (required).</param>
+        /// <param name="Name">The name of the object. (required).</param>
+        public FirmwareManifest(byte[] Datafile = default(byte[]), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), Object ManifestContents = default(Object), DateTime? Etag = default(DateTime?), string DeviceClass = default(string), string Id = default(string), string Name = default(string))
         {
             // to ensure "Datafile" is required (not null)
             if (Datafile == null)
@@ -59,15 +58,6 @@ namespace firmware_catalog.Model
             else
             {
                 this.Datafile = Datafile;
-            }
-            // to ensure "ManifestId" is required (not null)
-            if (ManifestId == null)
-            {
-                throw new InvalidDataException("ManifestId is a required property for FirmwareManifest and cannot be null");
-            }
-            else
-            {
-                this.ManifestId = ManifestId;
             }
             // to ensure "Description" is required (not null)
             if (Description == null)
@@ -165,71 +155,65 @@ namespace firmware_catalog.Model
         /// Gets or Sets Datafile
         /// </summary>
         [DataMember(Name="datafile", EmitDefaultValue=false)]
-        public string Datafile { get; set; }
+        public byte[] Datafile { get; set; }
         /// <summary>
-        /// DEPRECATED: The ID of the firmware manifest
+        /// The description of the object.
         /// </summary>
-        /// <value>DEPRECATED: The ID of the firmware manifest</value>
-        [DataMember(Name="manifest_id", EmitDefaultValue=false)]
-        public string ManifestId { get; set; }
-        /// <summary>
-        /// The description of the object
-        /// </summary>
-        /// <value>The description of the object</value>
+        /// <value>The description of the object.</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
         /// <summary>
-        /// The version of the firmware manifest (as a timestamp)
+        /// The version of the firmware manifest (as a timestamp).
         /// </summary>
-        /// <value>The version of the firmware manifest (as a timestamp)</value>
+        /// <value>The version of the firmware manifest (as a timestamp).</value>
         [DataMember(Name="timestamp", EmitDefaultValue=false)]
         public DateTime? Timestamp { get; set; }
         /// <summary>
-        /// The time the object was created
+        /// The time the object was created.
         /// </summary>
-        /// <value>The time the object was created</value>
+        /// <value>The time the object was created.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
         /// <summary>
-        /// The API resource entity
+        /// The API resource entity.
         /// </summary>
-        /// <value>The API resource entity</value>
+        /// <value>The API resource entity.</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
         /// <summary>
-        /// The time the object was updated
+        /// The time the object was updated.
         /// </summary>
-        /// <value>The time the object was updated</value>
+        /// <value>The time the object was updated.</value>
         [DataMember(Name="updated_at", EmitDefaultValue=false)]
         public DateTime? UpdatedAt { get; set; }
         /// <summary>
-        /// The contents of the manifest
+        /// The contents of the manifest.
         /// </summary>
-        /// <value>The contents of the manifest</value>
+        /// <value>The contents of the manifest.</value>
         [DataMember(Name="manifest_contents", EmitDefaultValue=false)]
-        public string ManifestContents { get; set; }
+        public Object ManifestContents { get; set; }
         /// <summary>
-        /// The entity instance signature
+        /// The entity instance signature.
         /// </summary>
-        /// <value>The entity instance signature</value>
+        /// <value>The entity instance signature.</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public DateTime? Etag { get; set; }
         /// <summary>
-        /// The class of device
+        /// The class of device.
         /// </summary>
-        /// <value>The class of device</value>
+        /// <value>The class of device.</value>
         [DataMember(Name="device_class", EmitDefaultValue=false)]
         public string DeviceClass { get; set; }
         /// <summary>
-        /// The ID of the firmware manifest
+        /// The ID of the firmware manifest.
         /// </summary>
-        /// <value>The ID of the firmware manifest</value>
+        /// <value>The ID of the firmware manifest.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
         /// <summary>
-        /// The name of the object
+        /// The name of the object.
         /// </summary>
-        /// <value>The name of the object</value>
+        /// <value>The name of the object.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
@@ -241,7 +225,6 @@ namespace firmware_catalog.Model
             var sb = new StringBuilder();
             sb.Append("class FirmwareManifest {\n");
             sb.Append("  Datafile: ").Append(Datafile).Append("\n");
-            sb.Append("  ManifestId: ").Append(ManifestId).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
@@ -292,11 +275,6 @@ namespace firmware_catalog.Model
                     this.Datafile == other.Datafile ||
                     this.Datafile != null &&
                     this.Datafile.Equals(other.Datafile)
-                ) && 
-                (
-                    this.ManifestId == other.ManifestId ||
-                    this.ManifestId != null &&
-                    this.ManifestId.Equals(other.ManifestId)
                 ) && 
                 (
                     this.Description == other.Description ||
@@ -363,8 +341,6 @@ namespace firmware_catalog.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.Datafile != null)
                     hash = hash * 59 + this.Datafile.GetHashCode();
-                if (this.ManifestId != null)
-                    hash = hash * 59 + this.ManifestId.GetHashCode();
                 if (this.Description != null)
                     hash = hash * 59 + this.Description.GetHashCode();
                 if (this.Timestamp != null)

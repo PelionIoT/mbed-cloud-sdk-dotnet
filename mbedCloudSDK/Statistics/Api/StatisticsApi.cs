@@ -68,7 +68,7 @@ namespace mbedCloudSDK.Statistics.Api
             {
                 var response = statisticsApi.V3MetricsGet(options.Include, options.Start, options.End, options.Period, options.Interval, this.auth);
                 List<StatisticsData> statisticsList = new List<StatisticsData>();
-                foreach(var data in response)
+                foreach(var data in response.Data)
                 {
                     statisticsList.Add(StatisticsData.Map(data));
                 }

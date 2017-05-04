@@ -1,7 +1,7 @@
 /* 
- * IAM Identities REST API
+ * Account Management API
  *
- * REST API to manage accounts, groups, users and API keys
+ * API for managing accounts, users, creating API keys, uploading trusted certificates
  *
  * OpenAPI spec version: v3
  * 
@@ -38,7 +38,7 @@ namespace iam.Model
         /// Initializes a new instance of the <see cref="ApiKeyUpdateReq" /> class.
         /// </summary>
         /// <param name="Owner">The owner of this API key, who is the creator by default..</param>
-        /// <param name="Name">The display name for the API key. (required).</param>
+        /// <param name="Name">The display name for the API key, not longer than 100 characters. (required).</param>
         public ApiKeyUpdateReq(string Owner = default(string), string Name = default(string))
         {
             // to ensure "Name" is required (not null)
@@ -60,9 +60,9 @@ namespace iam.Model
         [DataMember(Name="owner", EmitDefaultValue=false)]
         public string Owner { get; set; }
         /// <summary>
-        /// The display name for the API key.
+        /// The display name for the API key, not longer than 100 characters.
         /// </summary>
-        /// <value>The display name for the API key.</value>
+        /// <value>The display name for the API key, not longer than 100 characters.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
