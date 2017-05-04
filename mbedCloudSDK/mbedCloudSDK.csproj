@@ -211,7 +211,6 @@
     <Compile Include="Common\Query\QueryOptions.cs" />
     <Compile Include="Logging\Model\DeviceLog.cs" />
     <Compile Include="Logging\Model\EventType.cs" />
-    <Compile Include="Manufacturing\Api\ManufacturingApi.cs" />
     <Compile Include="Devices\Model\Device\AsyncProducerConsumerCollection.cs" />
     <Compile Include="Devices\Model\Device\AsyncConsumer.cs" />
     <Compile Include="Devices\Model\Device\Device.cs" />
@@ -282,9 +281,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Manufacturing\Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="lib\Newtonsoft.Json.dll" />
     <Content Include="lib\RestSharp.dll" />
