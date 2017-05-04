@@ -32,7 +32,7 @@ namespace connector_ca.Api
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for the developer certificate. </param>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>DeveloperCertificateResponseData</returns>
         DeveloperCertificateResponseData V3DeveloperCertificatesIdGet (string id, string authorization);
 
@@ -44,7 +44,7 @@ namespace connector_ca.Api
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for the developer certificate. </param>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>ApiResponse of DeveloperCertificateResponseData</returns>
         ApiResponse<DeveloperCertificateResponseData> V3DeveloperCertificatesIdGetWithHttpInfo (string id, string authorization);
         /// <summary>
@@ -54,7 +54,7 @@ namespace connector_ca.Api
         /// This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:    - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <param name="body"></param>
         /// <returns>DeveloperCertificateResponseData</returns>
         DeveloperCertificateResponseData V3DeveloperCertificatesPost (string authorization, DeveloperCertificateRequestData body);
@@ -66,7 +66,7 @@ namespace connector_ca.Api
         /// This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:    - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of DeveloperCertificateResponseData</returns>
         ApiResponse<DeveloperCertificateResponseData> V3DeveloperCertificatesPostWithHttpInfo (string authorization, DeveloperCertificateRequestData body);
@@ -77,7 +77,7 @@ namespace connector_ca.Api
         /// This REST API is intended to be used by customers to fetch bootstrap server credentials that they need to use with their clients to connect to bootstrap server. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>ServerCredentialsResponseData</returns>
         ServerCredentialsResponseData V3ServerCredentialsBootstrapGet (string authorization);
 
@@ -88,7 +88,7 @@ namespace connector_ca.Api
         /// This REST API is intended to be used by customers to fetch bootstrap server credentials that they need to use with their clients to connect to bootstrap server. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>ApiResponse of ServerCredentialsResponseData</returns>
         ApiResponse<ServerCredentialsResponseData> V3ServerCredentialsBootstrapGetWithHttpInfo (string authorization);
         /// <summary>
@@ -98,7 +98,7 @@ namespace connector_ca.Api
         /// This REST API is intended to be used by customers to fetch LWM2M server credentials that they need to use with their clients to connect to LWM2M server. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>ServerCredentialsResponseData</returns>
         ServerCredentialsResponseData V3ServerCredentialsLwm2mGet (string authorization);
 
@@ -109,7 +109,7 @@ namespace connector_ca.Api
         /// This REST API is intended to be used by customers to fetch LWM2M server credentials that they need to use with their clients to connect to LWM2M server. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>ApiResponse of ServerCredentialsResponseData</returns>
         ApiResponse<ServerCredentialsResponseData> V3ServerCredentialsLwm2mGetWithHttpInfo (string authorization);
         #endregion Synchronous Operations
@@ -122,7 +122,7 @@ namespace connector_ca.Api
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for the developer certificate. </param>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>Task of DeveloperCertificateResponseData</returns>
         System.Threading.Tasks.Task<DeveloperCertificateResponseData> V3DeveloperCertificatesIdGetAsync (string id, string authorization);
 
@@ -134,7 +134,7 @@ namespace connector_ca.Api
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for the developer certificate. </param>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>Task of ApiResponse (DeveloperCertificateResponseData)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeveloperCertificateResponseData>> V3DeveloperCertificatesIdGetAsyncWithHttpInfo (string id, string authorization);
         /// <summary>
@@ -144,7 +144,7 @@ namespace connector_ca.Api
         /// This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:    - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <param name="body"></param>
         /// <returns>Task of DeveloperCertificateResponseData</returns>
         System.Threading.Tasks.Task<DeveloperCertificateResponseData> V3DeveloperCertificatesPostAsync (string authorization, DeveloperCertificateRequestData body);
@@ -156,7 +156,7 @@ namespace connector_ca.Api
         /// This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:    - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <param name="body"></param>
         /// <returns>Task of ApiResponse (DeveloperCertificateResponseData)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeveloperCertificateResponseData>> V3DeveloperCertificatesPostAsyncWithHttpInfo (string authorization, DeveloperCertificateRequestData body);
@@ -167,7 +167,7 @@ namespace connector_ca.Api
         /// This REST API is intended to be used by customers to fetch bootstrap server credentials that they need to use with their clients to connect to bootstrap server. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>Task of ServerCredentialsResponseData</returns>
         System.Threading.Tasks.Task<ServerCredentialsResponseData> V3ServerCredentialsBootstrapGetAsync (string authorization);
 
@@ -178,7 +178,7 @@ namespace connector_ca.Api
         /// This REST API is intended to be used by customers to fetch bootstrap server credentials that they need to use with their clients to connect to bootstrap server. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>Task of ApiResponse (ServerCredentialsResponseData)</returns>
         System.Threading.Tasks.Task<ApiResponse<ServerCredentialsResponseData>> V3ServerCredentialsBootstrapGetAsyncWithHttpInfo (string authorization);
         /// <summary>
@@ -188,7 +188,7 @@ namespace connector_ca.Api
         /// This REST API is intended to be used by customers to fetch LWM2M server credentials that they need to use with their clients to connect to LWM2M server. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>Task of ServerCredentialsResponseData</returns>
         System.Threading.Tasks.Task<ServerCredentialsResponseData> V3ServerCredentialsLwm2mGetAsync (string authorization);
 
@@ -199,7 +199,7 @@ namespace connector_ca.Api
         /// This REST API is intended to be used by customers to fetch LWM2M server credentials that they need to use with their clients to connect to LWM2M server. 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>Task of ApiResponse (ServerCredentialsResponseData)</returns>
         System.Threading.Tasks.Task<ApiResponse<ServerCredentialsResponseData>> V3ServerCredentialsLwm2mGetAsyncWithHttpInfo (string authorization);
         #endregion Asynchronous Operations
@@ -319,7 +319,7 @@ namespace connector_ca.Api
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for the developer certificate. </param>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>DeveloperCertificateResponseData</returns>
         public DeveloperCertificateResponseData V3DeveloperCertificatesIdGet (string id, string authorization)
         {
@@ -332,7 +332,7 @@ namespace connector_ca.Api
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for the developer certificate. </param>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>ApiResponse of DeveloperCertificateResponseData</returns>
         public ApiResponse< DeveloperCertificateResponseData > V3DeveloperCertificatesIdGetWithHttpInfo (string id, string authorization)
         {
@@ -401,7 +401,7 @@ namespace connector_ca.Api
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for the developer certificate. </param>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>Task of DeveloperCertificateResponseData</returns>
         public async System.Threading.Tasks.Task<DeveloperCertificateResponseData> V3DeveloperCertificatesIdGetAsync (string id, string authorization)
         {
@@ -415,7 +415,7 @@ namespace connector_ca.Api
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for the developer certificate. </param>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>Task of ApiResponse (DeveloperCertificateResponseData)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<DeveloperCertificateResponseData>> V3DeveloperCertificatesIdGetAsyncWithHttpInfo (string id, string authorization)
         {
@@ -482,7 +482,7 @@ namespace connector_ca.Api
         /// Create a new developer certificate to connect to the bootstrap server. This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:    - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <param name="body"></param>
         /// <returns>DeveloperCertificateResponseData</returns>
         public DeveloperCertificateResponseData V3DeveloperCertificatesPost (string authorization, DeveloperCertificateRequestData body)
@@ -495,7 +495,7 @@ namespace connector_ca.Api
         /// Create a new developer certificate to connect to the bootstrap server. This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:    - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of DeveloperCertificateResponseData</returns>
         public ApiResponse< DeveloperCertificateResponseData > V3DeveloperCertificatesPostWithHttpInfo (string authorization, DeveloperCertificateRequestData body)
@@ -571,7 +571,7 @@ namespace connector_ca.Api
         /// Create a new developer certificate to connect to the bootstrap server. This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:    - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <param name="body"></param>
         /// <returns>Task of DeveloperCertificateResponseData</returns>
         public async System.Threading.Tasks.Task<DeveloperCertificateResponseData> V3DeveloperCertificatesPostAsync (string authorization, DeveloperCertificateRequestData body)
@@ -585,7 +585,7 @@ namespace connector_ca.Api
         /// Create a new developer certificate to connect to the bootstrap server. This REST API is intended to be used by customers to get a developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server).  Limitations:    - One developer certificate allows up to 100 devices to connect to bootstrap server.   - Only 10 developer certificates are allowed per account. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <param name="body"></param>
         /// <returns>Task of ApiResponse (DeveloperCertificateResponseData)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<DeveloperCertificateResponseData>> V3DeveloperCertificatesPostAsyncWithHttpInfo (string authorization, DeveloperCertificateRequestData body)
@@ -660,7 +660,7 @@ namespace connector_ca.Api
         /// Fetch bootstrap server credentials. This REST API is intended to be used by customers to fetch bootstrap server credentials that they need to use with their clients to connect to bootstrap server. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>ServerCredentialsResponseData</returns>
         public ServerCredentialsResponseData V3ServerCredentialsBootstrapGet (string authorization)
         {
@@ -672,7 +672,7 @@ namespace connector_ca.Api
         /// Fetch bootstrap server credentials. This REST API is intended to be used by customers to fetch bootstrap server credentials that they need to use with their clients to connect to bootstrap server. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>ApiResponse of ServerCredentialsResponseData</returns>
         public ApiResponse< ServerCredentialsResponseData > V3ServerCredentialsBootstrapGetWithHttpInfo (string authorization)
         {
@@ -736,7 +736,7 @@ namespace connector_ca.Api
         /// Fetch bootstrap server credentials. This REST API is intended to be used by customers to fetch bootstrap server credentials that they need to use with their clients to connect to bootstrap server. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>Task of ServerCredentialsResponseData</returns>
         public async System.Threading.Tasks.Task<ServerCredentialsResponseData> V3ServerCredentialsBootstrapGetAsync (string authorization)
         {
@@ -749,7 +749,7 @@ namespace connector_ca.Api
         /// Fetch bootstrap server credentials. This REST API is intended to be used by customers to fetch bootstrap server credentials that they need to use with their clients to connect to bootstrap server. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>Task of ApiResponse (ServerCredentialsResponseData)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<ServerCredentialsResponseData>> V3ServerCredentialsBootstrapGetAsyncWithHttpInfo (string authorization)
         {
@@ -812,7 +812,7 @@ namespace connector_ca.Api
         /// Fetch LWM2M server credentials. This REST API is intended to be used by customers to fetch LWM2M server credentials that they need to use with their clients to connect to LWM2M server. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>ServerCredentialsResponseData</returns>
         public ServerCredentialsResponseData V3ServerCredentialsLwm2mGet (string authorization)
         {
@@ -824,7 +824,7 @@ namespace connector_ca.Api
         /// Fetch LWM2M server credentials. This REST API is intended to be used by customers to fetch LWM2M server credentials that they need to use with their clients to connect to LWM2M server. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>ApiResponse of ServerCredentialsResponseData</returns>
         public ApiResponse< ServerCredentialsResponseData > V3ServerCredentialsLwm2mGetWithHttpInfo (string authorization)
         {
@@ -888,7 +888,7 @@ namespace connector_ca.Api
         /// Fetch LWM2M server credentials. This REST API is intended to be used by customers to fetch LWM2M server credentials that they need to use with their clients to connect to LWM2M server. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>Task of ServerCredentialsResponseData</returns>
         public async System.Threading.Tasks.Task<ServerCredentialsResponseData> V3ServerCredentialsLwm2mGetAsync (string authorization)
         {
@@ -901,7 +901,7 @@ namespace connector_ca.Api
         /// Fetch LWM2M server credentials. This REST API is intended to be used by customers to fetch LWM2M server credentials that they need to use with their clients to connect to LWM2M server. 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">Bearer {AccountManagement Token}. </param>
+        /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>Task of ApiResponse (ServerCredentialsResponseData)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<ServerCredentialsResponseData>> V3ServerCredentialsLwm2mGetAsyncWithHttpInfo (string authorization)
         {
