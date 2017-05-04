@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.Access.Model.Account
+namespace mbedCloudSDK.AccountManagement.Model.Account
 {
     /// <summary>
     /// The status of the account.

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace mbedCloudSDK.Access.Model.User
+namespace mbedCloudSDK.AccountManagement.Model.User
 {
     /// <summary>
     /// This object represents a user in mbed Cloud.
@@ -61,11 +61,6 @@ namespace mbedCloudSDK.Access.Model.User
         public bool? IsMarketingAccepted { get; set; }
         
         /// <summary>
-        /// API resource entity version.
-        /// </summary>
-        public string Etag { get; private set; }
-        
-        /// <summary>
         /// The full name of the user.
         /// </summary>
         public string FullName { get; set; }
@@ -74,11 +69,6 @@ namespace mbedCloudSDK.Access.Model.User
         /// Address.
         /// </summary>
         public string Address { get; set; }
-        
-        /// <summary>
-        /// Gets or Sets CreationTimeMillis
-        /// </summary>
-        public long? CreationTimeMillis { get; private set; }
         
         /// <summary>
         /// A timestamp of the user creation in the storage, in milliseconds.
@@ -142,10 +132,8 @@ namespace mbedCloudSDK.Access.Model.User
             sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  IsMarketingAccepted: ").Append(IsMarketingAccepted).Append("\n");
-            sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  FullName: ").Append(FullName).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
-            sb.Append("  CreationTimeMillis: ").Append(CreationTimeMillis).Append("\n");
             sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
             sb.Append("  Password: ").Append(Password).Append("\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
@@ -174,10 +162,8 @@ namespace mbedCloudSDK.Access.Model.User
             user.IsGtcAccepted = userInfo.IsGtcAccepted;
             user.Email = userInfo.Email;
             user.IsMarketingAccepted = userInfo.IsMarketingAccepted;
-            user.Etag = userInfo.Etag;
             user.FullName = userInfo.FullName;
             user.Address = userInfo.Address;
-            user.CreationTimeMillis = userInfo.CreationTimeMillis;
             user.CreationTime = userInfo.CreationTime;
             user.Password = userInfo.Password;
             user.PhoneNumber = userInfo.PhoneNumber;

@@ -1,6 +1,6 @@
 ﻿using iam.Api;
 using iam.Model;
-using mbedCloudSDK.Access.Model.User;
+using mbedCloudSDK.AccountManagement.Model.User;
 using mbedCloudSDK.Common;
 using mbedCloudSDK.Common.Query;
 using mbedCloudSDK.Exceptions;
@@ -10,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.Access.Api
+namespace mbedCloudSDK.AccountManagement.Api
 {
-    public partial class AccessApi
+    public partial class AccountManagementApi
     {
         /// <summary>
         /// List users.
@@ -105,8 +105,9 @@ namespace mbedCloudSDK.Access.Api
         {
             try
             {
-                UserInfoReq req = new UserInfoReq(body.Username, body.PhoneNumber, body.IsMarketingAccepted, body.Groups, body.IsGtcAccepted,
-                    body.FullName, body.Address, body.Password, body.Email);
+                UserInfoReq req = new UserInfoReq(body.PhoneNumber, body.Username, body.Groups, 
+                    body.IsGtcAccepted, body.FullName, body.IsMarketingAccepted,
+                    body.Address, body.Password, body.Email);
                 return User.Map(adminApi.CreateUser(req));
             }
             catch (iam.Client.ApiException e)
@@ -124,8 +125,9 @@ namespace mbedCloudSDK.Access.Api
         {
             try
             {
-                UserInfoReq req = new UserInfoReq(body.Username, body.PhoneNumber, body.IsMarketingAccepted, body.Groups, body.IsGtcAccepted,
-                    body.FullName, body.Address, body.Password, body.Email);
+                UserInfoReq req = new UserInfoReq(body.PhoneNumber, body.Username, body.Groups,
+                    body.IsGtcAccepted, body.FullName, body.IsMarketingAccepted,
+                    body.Address, body.Password, body.Email);
                 return User.Map(await adminApi.CreateUserAsync(req));
             }
             catch (iam.Client.ApiException e)

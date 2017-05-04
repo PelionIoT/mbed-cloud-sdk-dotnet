@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace mbedCloudSDK.Access.Model.ApiKey
+namespace mbedCloudSDK.AccountManagement.Model.ApiKey
 {
     /// <summary>
     /// The status of the API key.

@@ -1,6 +1,6 @@
 ﻿using iam.Api;
 using iam.Model;
-using mbedCloudSDK.Access.Model.ApiKey;
+using mbedCloudSDK.AccountManagement.Model.ApiKey;
 using mbedCloudSDK.Common;
 using mbedCloudSDK.Common.Query;
 using mbedCloudSDK.Exceptions;
@@ -10,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.Access.Api
+namespace mbedCloudSDK.AccountManagement.Api
 {
-    public partial class AccessApi
+    public partial class AccountManagementApi
     {
         /// <summary>
         /// Lists API keys.

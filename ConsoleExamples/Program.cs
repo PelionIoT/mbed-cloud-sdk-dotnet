@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Text;
 using mbedCloudSDK.Common;
-using mbedCloudSDK.Access.Model.ApiKey;
-using mbedCloudSDK.Access.Api;
-using mbedCloudSDK.Access.Model.User;
-using ConsoleExamples.Examples.Access;
+using mbedCloudSDK.AccountManagement.Model.ApiKey;
+using mbedCloudSDK.AccountManagement.Api;
+using mbedCloudSDK.AccountManagement.Model.User;
+using ConsoleExamples.Examples.AccountManagement;
 using ConsoleExamples.Examples.Devices;
 using ConsoleExamples.Examples.Logging;
 using ConsoleExamples.Examples.Update;
@@ -32,7 +32,7 @@ namespace ConsoleExamples
             {
                 example = ShowMenu();
                 int exampleNumber = 0;
-                if (Int32.TryParse(example, out exampleNumber) && exampleNumber >=1 && exampleNumber<=14)
+                if (Int32.TryParse(example, out exampleNumber) && exampleNumber >=1 && exampleNumber<=15)
                     RunExample(config, Convert.ToInt32(exampleNumber));
                 else
                     break;
@@ -57,6 +57,7 @@ namespace ConsoleExamples
             Console.WriteLine("12. Run update campaign example");
             Console.WriteLine("13. Get resource value example");
             Console.WriteLine("14. Set resource value example");
+            Console.WriteLine("15. Get account details");
             Console.WriteLine("---Press any other key to exit---");
             Console.WriteLine();
             return Console.ReadLine();
@@ -121,6 +122,10 @@ namespace ConsoleExamples
                 case 14:
                     Resource setRes = new Resource(config);
                     setRes.SetResourceValue();
+                    break;
+                case 15:
+                    GetAccount acc = new GetAccount(config);
+                    acc.GetAccountDetails();
                     break;
             }
         }

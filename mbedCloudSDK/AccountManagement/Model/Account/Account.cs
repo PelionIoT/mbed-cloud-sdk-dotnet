@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace mbedCloudSDK.Access.Model.Account
+namespace mbedCloudSDK.AccountManagement.Model.Account
 {
     /// <summary>
     /// 
@@ -62,19 +63,9 @@ namespace mbedCloudSDK.Access.Model.Account
         public string State { get; set; }
         
         /// <summary>
-        /// API resource entity version.
-        /// </summary>
-        public string Etag { get; set; }
-        
-        /// <summary>
         /// Flag (true/false) indicating whether Factory Tool is allowed to download or not.
         /// </summary>
         public bool? IsProvisioningAllowed { get; set; }
-        
-        /// <summary>
-        /// Gets or Sets CreationTimeMillis
-        /// </summary>
-        public long? CreationTimeMillis { get; set; }
         
         /// <summary>
         /// The company email address for this account.
@@ -122,6 +113,12 @@ namespace mbedCloudSDK.Access.Model.Account
         public string TemplateId { get; set; }
 
         /// <summary>
+        /// List of policies.
+        /// </summary>
+        /// <value>List of policies.</value>
+        public List<Policy.Policy> Policies { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Account" /> class.
         /// </summary>
         public Account(IDictionary<string, object> options = null)
@@ -156,19 +153,18 @@ namespace mbedCloudSDK.Access.Model.Account
             sb.Append("  AddressLine1: ").Append(AddressLine1).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
-            sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  IsProvisioningAllowed: ").Append(IsProvisioningAllowed).Append("\n");
-            sb.Append("  CreationTimeMillis: ").Append(CreationTimeMillis).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  UpgradedAt: ").Append(UpgradedAt).Append("\n");
             sb.Append("  Tier: ").Append(Tier).Append("\n");
-            sb.Append("  Limits: ").Append(Limits).Append("\n");
+            sb.Append("  Limits: ").Append(string.Join(", ", Limits)).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
+            sb.Append("  Policies: ").Append(string.Join(", ", Policies.Select(p => { return p.ToString(); }))).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -191,9 +187,7 @@ namespace mbedCloudSDK.Access.Model.Account
             account.AddressLine1 = accountInfo.AddressLine1;
             account.DisplayName = accountInfo.DisplayName;
             account.State = accountInfo.State;
-            account.Etag = accountInfo.Etag;
             account.IsProvisioningAllowed = accountInfo.IsProvisioningAllowed;
-            account.CreationTimeMillis = accountInfo.CreationTimeMillis;
             account.Email = accountInfo.Email;
             account.Status = accountStatus;
             account.Company = accountInfo.Company;
@@ -204,6 +198,7 @@ namespace mbedCloudSDK.Access.Model.Account
             account.CreatedAt = accountInfo.CreatedAt;
             account.Contact = account.Contact;
             account.TemplateId = accountInfo.TemplateId;
+            account.Policies = accountInfo.Policies.Select(p => { return Policy.Policy.Map(p); }).ToList();
             return account;
         }
     }

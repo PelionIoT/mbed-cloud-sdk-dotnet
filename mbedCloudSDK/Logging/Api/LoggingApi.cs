@@ -12,7 +12,7 @@ namespace mbedCloudSDK.Logging.Api
     /// Describing the public logging Api
     /// Exposes functionality from the following services:
     /// - Device logging
-    /// - Access logging
+    /// - AccountManagement logging
     /// - Update campaign logging
     /// </summary>
     public class LoggingApi: BaseApi

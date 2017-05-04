@@ -219,7 +219,7 @@ namespace mbedCloudSDK.Devices.Model.Device
             device.Deployment = deviceData.Deployment;
             device.MechanismUrl = deviceData.MechanismUrl;
             device.TrustLevel = deviceData.TrustLevel;
-            device.DeviceId = deviceData.DeviceId;
+            device.DeviceId = deviceData.Id;
             device.Name = deviceData.Name;
             device.CreatedAt = deviceData.CreatedAt;
             device.Manifest = deviceData.Manifest;

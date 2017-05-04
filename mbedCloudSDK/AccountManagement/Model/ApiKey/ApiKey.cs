@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace mbedCloudSDK.Access.Model.ApiKey
+namespace mbedCloudSDK.AccountManagement.Model.ApiKey
 {
     /// <summary>
     /// This object represents an API key in mbed Cloud.
@@ -42,16 +42,6 @@ namespace mbedCloudSDK.Access.Model.ApiKey
         public long? CreationTime { get; private set; }
         
         /// <summary>
-        /// Gets or Sets CreationTimeMillis
-        /// </summary>
-        public long? CreationTimeMillis { get; private set; }
-        
-        /// <summary>
-        /// API resource entity version.
-        /// </summary>
-        public string Etag { get; private set; }
-        
-        /// <summary>
         /// A list of group IDs this API key belongs to.
         /// </summary>
         public List<string> Groups { get; private set; }
@@ -86,9 +76,9 @@ namespace mbedCloudSDK.Access.Model.ApiKey
         }
         
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:mbedCloudSDK.Access.Model.ApiKey.ApiKey"/>.
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:mbedCloudSDK.AccountManagement.Model.ApiKey.ApiKey"/>.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:mbedCloudSDK.Access.Model.ApiKey.ApiKey"/>.</returns>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:mbedCloudSDK.AccountManagement.Model.ApiKey.ApiKey"/>.</returns>
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -98,8 +88,6 @@ namespace mbedCloudSDK.Access.Model.ApiKey
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
-            sb.Append("  CreationTimeMillis: ").Append(CreationTimeMillis).Append("\n");
-            sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  Groups: ").Append(Groups).Append("\n");
             sb.Append("  Owner: ").Append(Owner).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
@@ -122,8 +110,6 @@ namespace mbedCloudSDK.Access.Model.ApiKey
             apiKey.Name = apiKeyInfo.Name;
             apiKey.CreatedAt = apiKeyInfo.CreatedAt;
             apiKey.CreationTime = apiKeyInfo.CreationTime;
-            apiKey.CreationTimeMillis = apiKeyInfo.CreationTimeMillis;
-            apiKey.Etag = apiKeyInfo.Etag;
             apiKey.Groups = apiKeyInfo.Groups;
             apiKey.Owner = apiKeyInfo.Owner;
             apiKey.Id = apiKeyInfo.Id;

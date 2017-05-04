@@ -1,5 +1,5 @@
-﻿using mbedCloudSDK.Access.Api;
-using mbedCloudSDK.Access.Model.ApiKey;
+﻿using mbedCloudSDK.AccountManagement.Api;
+using mbedCloudSDK.AccountManagement.Model.ApiKey;
 using mbedCloudSDK.Common;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleExamples.Examples.Access
+namespace ConsoleExamples.Examples.AccountManagement
 {
     /// @example
     public class ListApiKeys
@@ -24,7 +24,7 @@ namespace ConsoleExamples.Examples.Access
 
         public void GetApiKeys()
         {
-            AccessApi access = new AccessApi(config);
+            AccountManagementApi access = new AccountManagementApi(config);
             var keys = access.ListApiKeys();
             foreach (var key in keys)
             {
@@ -34,7 +34,7 @@ namespace ConsoleExamples.Examples.Access
 
         public void ListApiKeysAsync()
         {
-            AccessApi access = new AccessApi(config);
+            AccountManagementApi access = new AccountManagementApi(config);
             //List Api Keys asynchronously
             var keysTask = access.ListApiKeysAsync();
             Console.WriteLine("Print without waiting for response");

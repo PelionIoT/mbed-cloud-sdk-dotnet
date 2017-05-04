@@ -18,11 +18,6 @@ namespace mbedCloudSDK.Devices.Model.Query
         public static readonly string CustomAttributesPrefix = "custom_attributes__";
         
         /// <summary>
-        /// The description of the object
-        /// </summary>
-        public string Description { get; set; }
-        
-        /// <summary>
         /// The time the object was created
         /// </summary>
         public DateTime? CreatedAt { get; set; }
@@ -117,7 +112,6 @@ namespace mbedCloudSDK.Devices.Model.Query
         {
             var sb = new StringBuilder();
             sb.Append("class DeviceQueryDetail {\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  Query: ").Append(QueryString).Append("\n");
@@ -136,7 +130,6 @@ namespace mbedCloudSDK.Devices.Model.Query
         {
             Query filter = new Query();
             filter.CreatedAt = data.CreatedAt;
-            filter.Description = data.Description;
             filter.Id = data.Id;
             filter.Name = data.Name;
             filter.QueryString = data.Query;

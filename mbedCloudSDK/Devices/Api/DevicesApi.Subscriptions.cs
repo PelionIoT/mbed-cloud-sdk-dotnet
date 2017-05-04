@@ -21,7 +21,7 @@ namespace mbedCloudSDK.Devices.Api
             var api = new mds.Api.SubscriptionsApi(config.Host);
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            api.V2SubscriptionsEndpointNameResourcePathPut(endpointName, fixedPath);
+            api.V2SubscriptionsDeviceIdResourcePathPut(endpointName, fixedPath);
             string subscribePath = endpointName + resource.Uri;
             if (!DevicesApi.resourceSubscribtions.ContainsKey(subscribePath))
             {
@@ -76,7 +76,7 @@ namespace mbedCloudSDK.Devices.Api
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             string subscribePath = deviceName + resource.Uri;
-            api.V2SubscriptionsEndpointNameResourcePathDelete(deviceName, fixedPath);
+            api.V2SubscriptionsDeviceIdResourcePathDelete(deviceName, fixedPath);
             if (resourceSubscribtions.ContainsKey(subscribePath))
             {
                 resourceSubscribtions.Remove(subscribePath);
@@ -95,7 +95,7 @@ namespace mbedCloudSDK.Devices.Api
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             string subscribePath = deviceName + resource.Uri;
-            await api.V2SubscriptionsEndpointNameResourcePathDeleteAsync(deviceName, fixedPath);
+            await api.V2SubscriptionsDeviceIdResourcePathDeleteAsync(deviceName, fixedPath);
             if (resourceSubscribtions.ContainsKey(subscribePath))
             {
                 resourceSubscribtions.Remove(subscribePath);
