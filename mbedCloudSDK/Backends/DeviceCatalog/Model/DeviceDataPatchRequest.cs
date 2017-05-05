@@ -32,14 +32,14 @@ namespace device_catalog.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceDataPatchRequest" /> class.
         /// </summary>
-        /// <param name="Description">Description.</param>
-        /// <param name="EndpointName">EndpointName.</param>
-        /// <param name="AutoUpdate">AutoUpdate.</param>
-        /// <param name="_Object">_Object.</param>
-        /// <param name="CustomAttributes">CustomAttributes.</param>
-        /// <param name="DeviceKey">DeviceKey.</param>
-        /// <param name="CaId">CaId.</param>
-        /// <param name="Name">Name.</param>
+        /// <param name="Description">The description of the object..</param>
+        /// <param name="EndpointName">The endpoint name given to the device..</param>
+        /// <param name="AutoUpdate">Mark this device for auto firmware update..</param>
+        /// <param name="_Object">The API resource entity..</param>
+        /// <param name="CustomAttributes">Up to 5 custom JSON attributes.</param>
+        /// <param name="DeviceKey">Fingerprint of the device certificate..</param>
+        /// <param name="CaId">ID of the issuer of the certificate..</param>
+        /// <param name="Name">The name of the object..</param>
         public DeviceDataPatchRequest(string Description = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string _Object = default(string), Object CustomAttributes = default(Object), string DeviceKey = default(string), string CaId = default(string), string Name = default(string))
         {
             this.Description = Description;
@@ -53,43 +53,51 @@ namespace device_catalog.Model
         }
         
         /// <summary>
-        /// Gets or Sets Description
+        /// The description of the object.
         /// </summary>
+        /// <value>The description of the object.</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
         /// <summary>
-        /// Gets or Sets EndpointName
+        /// The endpoint name given to the device.
         /// </summary>
+        /// <value>The endpoint name given to the device.</value>
         [DataMember(Name="endpoint_name", EmitDefaultValue=false)]
         public string EndpointName { get; set; }
         /// <summary>
-        /// Gets or Sets AutoUpdate
+        /// Mark this device for auto firmware update.
         /// </summary>
+        /// <value>Mark this device for auto firmware update.</value>
         [DataMember(Name="auto_update", EmitDefaultValue=false)]
         public bool? AutoUpdate { get; set; }
         /// <summary>
-        /// Gets or Sets _Object
+        /// The API resource entity.
         /// </summary>
+        /// <value>The API resource entity.</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
         /// <summary>
-        /// Gets or Sets CustomAttributes
+        /// Up to 5 custom JSON attributes
         /// </summary>
+        /// <value>Up to 5 custom JSON attributes</value>
         [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
         public Object CustomAttributes { get; set; }
         /// <summary>
-        /// Gets or Sets DeviceKey
+        /// Fingerprint of the device certificate.
         /// </summary>
+        /// <value>Fingerprint of the device certificate.</value>
         [DataMember(Name="device_key", EmitDefaultValue=false)]
         public string DeviceKey { get; set; }
         /// <summary>
-        /// Gets or Sets CaId
+        /// ID of the issuer of the certificate.
         /// </summary>
+        /// <value>ID of the issuer of the certificate.</value>
         [DataMember(Name="ca_id", EmitDefaultValue=false)]
         public string CaId { get; set; }
         /// <summary>
-        /// Gets or Sets Name
+        /// The name of the object.
         /// </summary>
+        /// <value>The name of the object.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
