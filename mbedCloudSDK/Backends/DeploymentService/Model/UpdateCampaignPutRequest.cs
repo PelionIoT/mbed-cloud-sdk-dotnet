@@ -62,12 +62,6 @@ namespace deployment_service.Model
             Devicecopy,
             
             /// <summary>
-            /// Enum Devicecopycomplete for "devicecopycomplete"
-            /// </summary>
-            [EnumMember(Value = "devicecopycomplete")]
-            Devicecopycomplete,
-            
-            /// <summary>
             /// Enum Publishing for "publishing"
             /// </summary>
             [EnumMember(Value = "publishing")]

@@ -1,7 +1,7 @@
 /* 
- * Device Catalog API
+ * Device Directory API
  *
- * This is the API Documentation for the mbed device catalog update service.
+ * This is the API Documentation for the mbed device directory update service.
  *
  * OpenAPI spec version: 0.1
  * 
@@ -30,8 +30,9 @@ namespace device_catalog.Model
     public partial class DeviceData :  IEquatable<DeviceData>, IValidatableObject
     {
         /// <summary>
-        /// Gets or Sets Mechanism
+        /// The ID of the channel used to communicate with the device.
         /// </summary>
+        /// <value>The ID of the channel used to communicate with the device.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum MechanismEnum
         {
@@ -50,8 +51,9 @@ namespace device_catalog.Model
         }
 
         /// <summary>
-        /// Gets or Sets State
+        /// The current state of the device.
         /// </summary>
+        /// <value>The current state of the device.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StateEnum
         {
@@ -88,8 +90,9 @@ namespace device_catalog.Model
         }
 
         /// <summary>
-        /// Gets or Sets DeployedState
+        /// DEPRECATED The state of the device's deployment.
         /// </summary>
+        /// <value>DEPRECATED The state of the device's deployment.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum DeployedStateEnum
         {
@@ -108,54 +111,56 @@ namespace device_catalog.Model
         }
 
         /// <summary>
-        /// Gets or Sets Mechanism
+        /// The ID of the channel used to communicate with the device.
         /// </summary>
+        /// <value>The ID of the channel used to communicate with the device.</value>
         [DataMember(Name="mechanism", EmitDefaultValue=false)]
         public MechanismEnum? Mechanism { get; set; }
         /// <summary>
-        /// Gets or Sets State
+        /// The current state of the device.
         /// </summary>
+        /// <value>The current state of the device.</value>
         [DataMember(Name="state", EmitDefaultValue=false)]
         public StateEnum? State { get; set; }
         /// <summary>
-        /// Gets or Sets DeployedState
+        /// DEPRECATED The state of the device's deployment.
         /// </summary>
+        /// <value>DEPRECATED The state of the device's deployment.</value>
         [DataMember(Name="deployed_state", EmitDefaultValue=false)]
         public DeployedStateEnum? DeployedState { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceData" /> class.
         /// </summary>
-        /// <param name="BootstrapExpirationDate">BootstrapExpirationDate.</param>
-        /// <param name="BootstrappedTimestamp">BootstrappedTimestamp.</param>
-        /// <param name="ConnectorExpirationDate">ConnectorExpirationDate.</param>
-        /// <param name="UpdatedAt">UpdatedAt.</param>
-        /// <param name="Mechanism">Mechanism.</param>
-        /// <param name="DeviceClass">DeviceClass.</param>
-        /// <param name="Id">Id.</param>
-        /// <param name="AccountId">AccountId.</param>
-        /// <param name="EndpointName">EndpointName.</param>
-        /// <param name="AutoUpdate">AutoUpdate.</param>
-        /// <param name="DeviceExecutionMode">DeviceExecutionMode.</param>
-        /// <param name="CustomAttributes">CustomAttributes.</param>
-        /// <param name="State">State.</param>
-        /// <param name="Etag">Etag.</param>
-        /// <param name="SerialNumber">SerialNumber.</param>
-        /// <param name="FirmwareChecksum">FirmwareChecksum.</param>
-        /// <param name="ManifestTimestamp">ManifestTimestamp.</param>
-        /// <param name="VendorId">VendorId.</param>
-        /// <param name="Description">Description.</param>
-        /// <param name="DeployedState">DeployedState.</param>
-        /// <param name="_Object">_Object.</param>
-        /// <param name="TrustClass">TrustClass.</param>
-        /// <param name="Deployment">Deployment.</param>
-        /// <param name="MechanismUrl">MechanismUrl.</param>
-        /// <param name="TrustLevel">TrustLevel.</param>
-        /// <param name="Name">Name.</param>
-        /// <param name="DeviceKey">DeviceKey.</param>
-        /// <param name="CreatedAt">CreatedAt.</param>
-        /// <param name="Manifest">Manifest.</param>
-        /// <param name="CaId">CaId.</param>
-        public DeviceData(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), MechanismEnum? Mechanism = default(MechanismEnum?), string DeviceClass = default(string), string Id = default(string), string AccountId = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), int? DeviceExecutionMode = default(int?), Object CustomAttributes = default(Object), StateEnum? State = default(StateEnum?), DateTime? Etag = default(DateTime?), string SerialNumber = default(string), string FirmwareChecksum = default(string), DateTime? ManifestTimestamp = default(DateTime?), string VendorId = default(string), string Description = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string _Object = default(string), int? TrustClass = default(int?), string Deployment = default(string), string MechanismUrl = default(string), int? TrustLevel = default(int?), string Name = default(string), string DeviceKey = default(string), DateTime? CreatedAt = default(DateTime?), string Manifest = default(string), string CaId = default(string))
+        /// <param name="BootstrapExpirationDate">Expiration date of the certificate used to connect to bootstrap server..</param>
+        /// <param name="BootstrappedTimestamp">Timestamp of when the device was bootstrapped..</param>
+        /// <param name="ConnectorExpirationDate">Expiration date of the certificate used to connect to connector server..</param>
+        /// <param name="UpdatedAt">The time the object was updated..</param>
+        /// <param name="Mechanism">The ID of the channel used to communicate with the device..</param>
+        /// <param name="DeviceClass">The device class..</param>
+        /// <param name="Id">The ID of the device..</param>
+        /// <param name="AccountId">The owning IAM account ID..</param>
+        /// <param name="EndpointName">The endpoint name given to the device..</param>
+        /// <param name="AutoUpdate">Mark this device for auto firmware update..</param>
+        /// <param name="DeviceExecutionMode">Defines the type of certificate used..</param>
+        /// <param name="CustomAttributes">Up to 5 custom JSON attributes.</param>
+        /// <param name="State">The current state of the device..</param>
+        /// <param name="Etag">The entity instance signature..</param>
+        /// <param name="SerialNumber">The serial number of the device..</param>
+        /// <param name="FirmwareChecksum">The SHA256 checksum of the current firmware image..</param>
+        /// <param name="ManifestTimestamp">The timestamp of the current manifest version..</param>
+        /// <param name="VendorId">The device vendor ID..</param>
+        /// <param name="Description">The description of the object..</param>
+        /// <param name="DeployedState">DEPRECATED The state of the device&#39;s deployment..</param>
+        /// <param name="_Object">The API resource entity..</param>
+        /// <param name="Deployment">DEPRECATED The last deployment used on the device..</param>
+        /// <param name="MechanismUrl">The address of the connector to use..</param>
+        /// <param name="TrustLevel">The device trust level..</param>
+        /// <param name="Name">The name of the object..</param>
+        /// <param name="DeviceKey">Fingerprint of the device certificate..</param>
+        /// <param name="CreatedAt">The time the object was created..</param>
+        /// <param name="Manifest">DEPRECATED The URL for the current device manifest..</param>
+        /// <param name="CaId">ID of the issuer of the certificate..</param>
+        public DeviceData(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), MechanismEnum? Mechanism = default(MechanismEnum?), string DeviceClass = default(string), string Id = default(string), string AccountId = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), int? DeviceExecutionMode = default(int?), Object CustomAttributes = default(Object), StateEnum? State = default(StateEnum?), DateTime? Etag = default(DateTime?), string SerialNumber = default(string), string FirmwareChecksum = default(string), DateTime? ManifestTimestamp = default(DateTime?), string VendorId = default(string), string Description = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string _Object = default(string), string Deployment = default(string), string MechanismUrl = default(string), int? TrustLevel = default(int?), string Name = default(string), string DeviceKey = default(string), DateTime? CreatedAt = default(DateTime?), string Manifest = default(string), string CaId = default(string))
         {
             this.BootstrapExpirationDate = BootstrapExpirationDate;
             this.BootstrappedTimestamp = BootstrappedTimestamp;
@@ -178,7 +183,6 @@ namespace device_catalog.Model
             this.Description = Description;
             this.DeployedState = DeployedState;
             this._Object = _Object;
-            this.TrustClass = TrustClass;
             this.Deployment = Deployment;
             this.MechanismUrl = MechanismUrl;
             this.TrustLevel = TrustLevel;
@@ -190,138 +194,159 @@ namespace device_catalog.Model
         }
         
         /// <summary>
-        /// Gets or Sets BootstrapExpirationDate
+        /// Expiration date of the certificate used to connect to bootstrap server.
         /// </summary>
+        /// <value>Expiration date of the certificate used to connect to bootstrap server.</value>
         [DataMember(Name="bootstrap_expiration_date", EmitDefaultValue=false)]
         public DateTime? BootstrapExpirationDate { get; set; }
         /// <summary>
-        /// Gets or Sets BootstrappedTimestamp
+        /// Timestamp of when the device was bootstrapped.
         /// </summary>
+        /// <value>Timestamp of when the device was bootstrapped.</value>
         [DataMember(Name="bootstrapped_timestamp", EmitDefaultValue=false)]
         public DateTime? BootstrappedTimestamp { get; set; }
         /// <summary>
-        /// Gets or Sets ConnectorExpirationDate
+        /// Expiration date of the certificate used to connect to connector server.
         /// </summary>
+        /// <value>Expiration date of the certificate used to connect to connector server.</value>
         [DataMember(Name="connector_expiration_date", EmitDefaultValue=false)]
         public DateTime? ConnectorExpirationDate { get; set; }
         /// <summary>
-        /// Gets or Sets UpdatedAt
+        /// The time the object was updated.
         /// </summary>
+        /// <value>The time the object was updated.</value>
         [DataMember(Name="updated_at", EmitDefaultValue=false)]
         public DateTime? UpdatedAt { get; set; }
         /// <summary>
-        /// Gets or Sets DeviceClass
+        /// The device class.
         /// </summary>
+        /// <value>The device class.</value>
         [DataMember(Name="device_class", EmitDefaultValue=false)]
         public string DeviceClass { get; set; }
         /// <summary>
-        /// Gets or Sets Id
+        /// The ID of the device.
         /// </summary>
+        /// <value>The ID of the device.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
         /// <summary>
-        /// Gets or Sets AccountId
+        /// The owning IAM account ID.
         /// </summary>
+        /// <value>The owning IAM account ID.</value>
         [DataMember(Name="account_id", EmitDefaultValue=false)]
         public string AccountId { get; set; }
         /// <summary>
-        /// Gets or Sets EndpointName
+        /// The endpoint name given to the device.
         /// </summary>
+        /// <value>The endpoint name given to the device.</value>
         [DataMember(Name="endpoint_name", EmitDefaultValue=false)]
         public string EndpointName { get; set; }
         /// <summary>
-        /// Gets or Sets AutoUpdate
+        /// Mark this device for auto firmware update.
         /// </summary>
+        /// <value>Mark this device for auto firmware update.</value>
         [DataMember(Name="auto_update", EmitDefaultValue=false)]
         public bool? AutoUpdate { get; set; }
         /// <summary>
-        /// Gets or Sets DeviceExecutionMode
+        /// Defines the type of certificate used.
         /// </summary>
+        /// <value>Defines the type of certificate used.</value>
         [DataMember(Name="device_execution_mode", EmitDefaultValue=false)]
         public int? DeviceExecutionMode { get; set; }
         /// <summary>
-        /// Gets or Sets CustomAttributes
+        /// Up to 5 custom JSON attributes
         /// </summary>
+        /// <value>Up to 5 custom JSON attributes</value>
         [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
         public Object CustomAttributes { get; set; }
         /// <summary>
-        /// Gets or Sets Etag
+        /// The entity instance signature.
         /// </summary>
+        /// <value>The entity instance signature.</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public DateTime? Etag { get; set; }
         /// <summary>
-        /// Gets or Sets SerialNumber
+        /// The serial number of the device.
         /// </summary>
+        /// <value>The serial number of the device.</value>
         [DataMember(Name="serial_number", EmitDefaultValue=false)]
         public string SerialNumber { get; set; }
         /// <summary>
-        /// Gets or Sets FirmwareChecksum
+        /// The SHA256 checksum of the current firmware image.
         /// </summary>
+        /// <value>The SHA256 checksum of the current firmware image.</value>
         [DataMember(Name="firmware_checksum", EmitDefaultValue=false)]
         public string FirmwareChecksum { get; set; }
         /// <summary>
-        /// Gets or Sets ManifestTimestamp
+        /// The timestamp of the current manifest version.
         /// </summary>
+        /// <value>The timestamp of the current manifest version.</value>
         [DataMember(Name="manifest_timestamp", EmitDefaultValue=false)]
         public DateTime? ManifestTimestamp { get; set; }
         /// <summary>
-        /// Gets or Sets VendorId
+        /// The device vendor ID.
         /// </summary>
+        /// <value>The device vendor ID.</value>
         [DataMember(Name="vendor_id", EmitDefaultValue=false)]
         public string VendorId { get; set; }
         /// <summary>
-        /// Gets or Sets Description
+        /// The description of the object.
         /// </summary>
+        /// <value>The description of the object.</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
         /// <summary>
-        /// Gets or Sets _Object
+        /// The API resource entity.
         /// </summary>
+        /// <value>The API resource entity.</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
         /// <summary>
-        /// Gets or Sets TrustClass
+        /// DEPRECATED The last deployment used on the device.
         /// </summary>
-        [DataMember(Name="trust_class", EmitDefaultValue=false)]
-        public int? TrustClass { get; set; }
-        /// <summary>
-        /// Gets or Sets Deployment
-        /// </summary>
+        /// <value>DEPRECATED The last deployment used on the device.</value>
         [DataMember(Name="deployment", EmitDefaultValue=false)]
         public string Deployment { get; set; }
         /// <summary>
-        /// Gets or Sets MechanismUrl
+        /// The address of the connector to use.
         /// </summary>
+        /// <value>The address of the connector to use.</value>
         [DataMember(Name="mechanism_url", EmitDefaultValue=false)]
         public string MechanismUrl { get; set; }
         /// <summary>
-        /// Gets or Sets TrustLevel
+        /// The device trust level.
         /// </summary>
+        /// <value>The device trust level.</value>
         [DataMember(Name="trust_level", EmitDefaultValue=false)]
         public int? TrustLevel { get; set; }
         /// <summary>
-        /// Gets or Sets Name
+        /// The name of the object.
         /// </summary>
+        /// <value>The name of the object.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
-        /// Gets or Sets DeviceKey
+        /// Fingerprint of the device certificate.
         /// </summary>
+        /// <value>Fingerprint of the device certificate.</value>
         [DataMember(Name="device_key", EmitDefaultValue=false)]
         public string DeviceKey { get; set; }
         /// <summary>
-        /// Gets or Sets CreatedAt
+        /// The time the object was created.
         /// </summary>
+        /// <value>The time the object was created.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
         /// <summary>
-        /// Gets or Sets Manifest
+        /// DEPRECATED The URL for the current device manifest.
         /// </summary>
+        /// <value>DEPRECATED The URL for the current device manifest.</value>
         [DataMember(Name="manifest", EmitDefaultValue=false)]
         public string Manifest { get; set; }
         /// <summary>
-        /// Gets or Sets CaId
+        /// ID of the issuer of the certificate.
         /// </summary>
+        /// <value>ID of the issuer of the certificate.</value>
         [DataMember(Name="ca_id", EmitDefaultValue=false)]
         public string CaId { get; set; }
         /// <summary>
@@ -353,7 +378,6 @@ namespace device_catalog.Model
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DeployedState: ").Append(DeployedState).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
-            sb.Append("  TrustClass: ").Append(TrustClass).Append("\n");
             sb.Append("  Deployment: ").Append(Deployment).Append("\n");
             sb.Append("  MechanismUrl: ").Append(MechanismUrl).Append("\n");
             sb.Append("  TrustLevel: ").Append(TrustLevel).Append("\n");
@@ -504,11 +528,6 @@ namespace device_catalog.Model
                     this._Object.Equals(other._Object)
                 ) && 
                 (
-                    this.TrustClass == other.TrustClass ||
-                    this.TrustClass != null &&
-                    this.TrustClass.Equals(other.TrustClass)
-                ) && 
-                (
                     this.Deployment == other.Deployment ||
                     this.Deployment != null &&
                     this.Deployment.Equals(other.Deployment)
@@ -603,8 +622,6 @@ namespace device_catalog.Model
                     hash = hash * 59 + this.DeployedState.GetHashCode();
                 if (this._Object != null)
                     hash = hash * 59 + this._Object.GetHashCode();
-                if (this.TrustClass != null)
-                    hash = hash * 59 + this.TrustClass.GetHashCode();
                 if (this.Deployment != null)
                     hash = hash * 59 + this.Deployment.GetHashCode();
                 if (this.MechanismUrl != null)

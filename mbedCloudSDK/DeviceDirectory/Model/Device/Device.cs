@@ -66,11 +66,6 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Device
         public bool? AutoUpdate { get; set; }
 
         /// <summary>
-        /// The entity instance signature
-        /// </summary>
-        public DateTime? Etag { get; set; }
-
-        /// <summary>
         /// The key used to provision the device
         /// </summary>
         public string ProvisionKey { get; set; }
@@ -89,11 +84,6 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Device
         /// The owning IAM account ID
         /// </summary>
         public string AccountId { get; set; }
-
-        /// <summary>
-        /// The device trust class
-        /// </summary>
-        public long? TrustClass { get; set; }
 
         /// <summary>
         /// The last deployment used on the device
@@ -175,7 +165,6 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Device
             {
                 device.State = (State)Enum.Parse(typeof(State), deviceData.State.ToString());
             }
-            device.Etag = deviceData.Etag;
             device.ProvisionKey = deviceData.DeviceKey;
             device.SerialNumber = deviceData.SerialNumber;
             device.VendorId = deviceData.VendorId;
@@ -184,7 +173,6 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Device
             {
                 device.DeployedState = (DeployedState)Enum.Parse(typeof(DeployedState), deviceData.DeployedState.ToString());
             }
-            device.TrustClass = deviceData.TrustClass;
             device.Deployment = deviceData.Deployment;
             device.MechanismUrl = deviceData.MechanismUrl;
             device.TrustLevel = deviceData.TrustLevel;
@@ -212,13 +200,11 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Device
             sb.Append("  AutoUpdate: ").Append(AutoUpdate).Append("\n");
             sb.Append("  Mechanism: ").Append(Mechanism).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
-            sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  ProvisionKey: ").Append(ProvisionKey).Append("\n");
             sb.Append("  SerialNumber: ").Append(SerialNumber).Append("\n");
             sb.Append("  VendorId: ").Append(VendorId).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  DeployedState: ").Append(DeployedState).Append("\n");
-            sb.Append("  TrustClass: ").Append(TrustClass).Append("\n");
             sb.Append("  Deployment: ").Append(Deployment).Append("\n");
             sb.Append("  MechanismUrl: ").Append(MechanismUrl).Append("\n");
             sb.Append("  TrustLevel: ").Append(TrustLevel).Append("\n");
