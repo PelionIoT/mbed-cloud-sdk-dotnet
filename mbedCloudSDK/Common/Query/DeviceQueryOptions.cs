@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace mbedCloudSDK.Common.Query
 {
     /// <summary>
-    /// Query options used in Devices API.
+    /// Query options used in DeviceDirectory API.
     /// </summary>
     public class DeviceQueryOptions: QueryOptions
     {

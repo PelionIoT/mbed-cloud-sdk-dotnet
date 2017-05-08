@@ -1,4 +1,5 @@
 ﻿using mbedCloudSDK.Common;
+using mbedCloudSDK.Update.Api;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,14 +20,13 @@ namespace ConsoleExamples.Examples.Update
 
         public void listCampaigns()
         {
-            /*
             UpdateApi api = new UpdateApi(config);
             var updateCampaigns = api.ListUpdateCampaigns();
             var enumerator = updateCampaigns.GetEnumerator();
             while (enumerator.MoveNext())
             {
                 Console.WriteLine(enumerator.Current);
-            }*/
+            }
         }
     }
 }

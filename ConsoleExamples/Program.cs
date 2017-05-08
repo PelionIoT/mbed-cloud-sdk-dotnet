@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Text;
 using mbedCloudSDK.Common;
-using mbedCloudSDK.AccountManagement.Model.ApiKey;
-using mbedCloudSDK.AccountManagement.Api;
-using mbedCloudSDK.AccountManagement.Model.User;
 using ConsoleExamples.Examples.AccountManagement;
-using ConsoleExamples.Examples.Devices;
-using ConsoleExamples.Examples.Logging;
 using ConsoleExamples.Examples.Update;
+using ConsoleExamples.Examples.Connect;
+using ConsoleExamples.Examples.DeviceDirectory;
 
 namespace ConsoleExamples
 {

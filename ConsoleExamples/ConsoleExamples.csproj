@@ -50,12 +50,12 @@
   <ItemGroup>
     <Compile Include="Examples\AccountManagement\GetAccount.cs" />
     <Compile Include="Examples\AccountManagement\ListApiKeys.cs" />
-    <Compile Include="Examples\Devices\ListDevices.cs" />
-    <Compile Include="Examples\Devices\DeviceQuery.cs" />
-    <Compile Include="Examples\Devices\Resource.cs" />
-    <Compile Include="Examples\Devices\Subscription.cs" />
-    <Compile Include="Examples\Devices\Webhook.cs" />
-    <Compile Include="Examples\Logging\ListLogs.cs" />
+    <Compile Include="Examples\Connect\ListDevices.cs" />
+    <Compile Include="Examples\DeviceDirectory\DeviceQuery.cs" />
+    <Compile Include="Examples\Connect\Resource.cs" />
+    <Compile Include="Examples\Connect\Subscription.cs" />
+    <Compile Include="Examples\Connect\Webhook.cs" />
+    <Compile Include="Examples\DeviceDirectory\ListLogs.cs" />
     <Compile Include="Examples\Update\CreateUpdateCampaign.cs" />
     <Compile Include="Examples\Update\ListFirmwareImages.cs" />
     <Compile Include="Examples\Update\ListFirmwareManifests.cs" />

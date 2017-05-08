@@ -48,7 +48,7 @@ namespace mbedCloudSDK.AccountManagement.Model.User
         /// <summary>
         /// A flag indicating that the General Terms and Conditions has been accepted.
         /// </summary>
-        public bool? IsGtcAccepted { get; set; }
+        public bool? TermsAccepted { get; set; }
         
         /// <summary>
         /// The email address.
@@ -58,7 +58,7 @@ namespace mbedCloudSDK.AccountManagement.Model.User
         /// <summary>
         /// A flag indicating that receiving marketing information has been accepted.
         /// </summary>
-        public bool? IsMarketingAccepted { get; set; }
+        public bool? MarketingAccepted { get; set; }
         
         /// <summary>
         /// The full name of the user.
@@ -129,9 +129,9 @@ namespace mbedCloudSDK.AccountManagement.Model.User
             sb.Append("  PasswordChangedTime: ").Append(PasswordChangedTime).Append("\n");
             sb.Append("  Groups: ").Append(Groups).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
+            sb.Append("  TermsAccepted: ").Append(TermsAccepted).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
-            sb.Append("  IsMarketingAccepted: ").Append(IsMarketingAccepted).Append("\n");
+            sb.Append("  MarketingAccepted: ").Append(MarketingAccepted).Append("\n");
             sb.Append("  FullName: ").Append(FullName).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
@@ -159,9 +159,9 @@ namespace mbedCloudSDK.AccountManagement.Model.User
             user.PasswordChangedTime = userInfo.PasswordChangedTime;
             user.Groups = userInfo.Groups;
             user.CreatedAt = userInfo.CreatedAt;
-            user.IsGtcAccepted = userInfo.IsGtcAccepted;
+            user.TermsAccepted = userInfo.IsGtcAccepted;
             user.Email = userInfo.Email;
-            user.IsMarketingAccepted = userInfo.IsMarketingAccepted;
+            user.MarketingAccepted = userInfo.IsMarketingAccepted;
             user.FullName = userInfo.FullName;
             user.Address = userInfo.Address;
             user.CreationTime = userInfo.CreationTime;
@@ -170,6 +170,34 @@ namespace mbedCloudSDK.AccountManagement.Model.User
             user.Id = userInfo.Id;
             user.LastLoginTime = userInfo.LastLoginTime;
             return user; 
+        }
+
+        public iam.Model.UserInfoReq CreatePostRequest()
+        {
+            iam.Model.UserInfoReq request = new iam.Model.UserInfoReq();
+            request.Username = this.Username;
+            request.Email = this.Email;
+            request.FullName = this.FullName;
+            request.Address = this.Address;
+            request.Password = this.Password;
+            request.PhoneNumber = this.PhoneNumber;
+            request.IsGtcAccepted = this.TermsAccepted;
+            request.IsMarketingAccepted = this.MarketingAccepted;
+            return request;
+        }
+
+        public iam.Model.UserUpdateReq CreatePutRequest()
+        {
+            iam.Model.UserUpdateReq request = new iam.Model.UserUpdateReq();
+            request.Username = this.Username;
+            request.Email = this.Email;
+            request.FullName = this.FullName;
+            request.Address = this.Address;
+            request.Password = this.Password;
+            request.PhoneNumber = this.PhoneNumber;
+            request.IsGtcAccepted = this.TermsAccepted;
+            request.IsMarketingAccepted = this.MarketingAccepted;
+            return request;
         }
     }
 }

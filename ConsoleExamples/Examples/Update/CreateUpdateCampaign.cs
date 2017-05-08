@@ -1,7 +1,10 @@
 ﻿using mbedCloudSDK.Common;
 using mbedCloudSDK.Common.Query;
-using mbedCloudSDK.Devices.Api;
+using mbedCloudSDK.DeviceDirectory.Api;
 using mbedCloudSDK.Exceptions;
+using mbedCloudSDK.Update.Api;
+using mbedCloudSDK.Update.Model.Campaign;
+using mbedCloudSDK.Update.Model.FirmwareManifest;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,7 +32,6 @@ namespace ConsoleExamples.Examples.Update
 
         public void CreateCampaign()
         {
-            /*
             UpdateApi api = new UpdateApi(config);
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.RestoreDirectory = true;
@@ -75,7 +77,7 @@ namespace ConsoleExamples.Examples.Update
 
             // List all queries
 
-            var devicesApi = new DevicesApi(config);
+            var devicesApi = new DeviceDirectoryApi(config);
             var queries = devicesApi.ListQueries();
 
             var enumeratorQueries = queries.GetEnumerator();
@@ -99,6 +101,7 @@ namespace ConsoleExamples.Examples.Update
             campaign = api.StartUpdateCampaign(campaign);
 
             // Print status of update campaign
+            /*
             int countdown = 10;
             while (countdown >= 0)
             {

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 
 namespace mbedCloudSDK.AccountManagement.Model.Group
@@ -9,6 +8,11 @@ namespace mbedCloudSDK.AccountManagement.Model.Group
     /// </summary>
     public class Group
     {
+
+        /// <summary>
+        /// The id of the account.
+        /// </summary>
+        public string AccountId { get; private set; }
 
         /// <summary>
         /// The name of the group.
@@ -34,16 +38,6 @@ namespace mbedCloudSDK.AccountManagement.Model.Group
         /// A timestamp of the group creation in the storage, in milliseconds.
         /// </summary>
         public long? CreationTime { get; set; }
-        
-        /// <summary>
-        /// API resource entity version.
-        /// </summary>
-        public string Etag { get; set; }
-        
-        /// <summary>
-        /// Gets or Sets CreationTimeMillis
-        /// </summary>
-        public long? CreationTimeMillis { get; set; }
         
         /// <summary>
         /// The UUID of the group.
@@ -87,15 +81,12 @@ namespace mbedCloudSDK.AccountManagement.Model.Group
             sb.Append("  ApiKeyCount: ").Append(ApiKeyCount).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
-            sb.Append("  Etag: ").Append(Etag).Append("\n");
-            sb.Append("  CreationTimeMillis: ").Append(CreationTimeMillis).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  UserCount: ").Append(UserCount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
 
-        /*
         /// <summary>
         /// Map to Group object
         /// </summary>
@@ -109,12 +100,11 @@ namespace mbedCloudSDK.AccountManagement.Model.Group
             group.ApiKeyCount = groupInfo.ApiKeyCount;
             group.CreatedAt = groupInfo.CreatedAt;
             group.CreationTime = groupInfo.CreationTime;
-            group.Etag = groupInfo.Etag;
-            group.CreationTimeMillis = groupInfo.CreationTimeMillis;
+            group.AccountId = groupInfo.AccountID;
             group.Id = groupInfo.Id;
             group.UserCount = groupInfo.UserCount;
             return group;
-        } */
+        }
 
     }
 }

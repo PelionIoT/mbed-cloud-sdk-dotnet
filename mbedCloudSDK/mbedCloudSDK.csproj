@@ -53,10 +53,38 @@
   <ItemGroup>
     <Compile Include="AccountManagement\Api\AccountManagementApi.Account.cs" />
     <Compile Include="AccountManagement\Api\AccountManagementApi.ApiKey.cs" />
+    <Compile Include="AccountManagement\Api\AccountManagementApi.Group.cs" />
     <Compile Include="AccountManagement\Api\AccountManagementApi.User.cs" />
     <Compile Include="AccountManagement\Model\Account\AccountStatus.cs" />
     <Compile Include="AccountManagement\Model\Policy\Policy.cs" />
     <Compile Include="AccountManagement\Model\User\UserStatus.cs" />
+    <Compile Include="Backends\Billing\Api\DefaultApi.cs" />
+    <Compile Include="Backends\Billing\Client\ApiClient.cs" />
+    <Compile Include="Backends\Billing\Client\ApiException.cs" />
+    <Compile Include="Backends\Billing\Client\ApiResponse.cs" />
+    <Compile Include="Backends\Billing\Client\Configuration.cs" />
+    <Compile Include="Backends\Billing\Client\ExceptionFactory.cs" />
+    <Compile Include="Backends\Billing\Client\IApiAccessor.cs" />
+    <Compile Include="Backends\Billing\Model\Account.cs" />
+    <Compile Include="Backends\Billing\Model\AccountBillingData.cs" />
+    <Compile Include="Backends\Billing\Model\AccountReport.cs" />
+    <Compile Include="Backends\Billing\Model\ActiveDevice.cs" />
+    <Compile Include="Backends\Billing\Model\BillingData.cs" />
+    <Compile Include="Backends\Billing\Model\BuildInfo.cs" />
+    <Compile Include="Backends\Billing\Model\ChildAccountReport.cs" />
+    <Compile Include="Backends\Billing\Model\Health.cs" />
+    <Compile Include="Backends\Billing\Model\ImportLog.cs" />
+    <Compile Include="Backends\Billing\Model\MetricCounter.cs" />
+    <Compile Include="Backends\Billing\Model\MetricGauge.cs" />
+    <Compile Include="Backends\Billing\Model\MetricHistogram.cs" />
+    <Compile Include="Backends\Billing\Model\MetricHostCounter.cs" />
+    <Compile Include="Backends\Billing\Model\MetricMeter.cs" />
+    <Compile Include="Backends\Billing\Model\Metrics.cs" />
+    <Compile Include="Backends\Billing\Model\MetricTimer.cs" />
+    <Compile Include="Backends\Billing\Model\Report.cs" />
+    <Compile Include="Backends\Billing\Model\Service.cs" />
+    <Compile Include="Backends\Billing\Model\ServiceTimeSeries.cs" />
+    <Compile Include="Backends\Billing\Model\TimeSeries.cs" />
     <Compile Include="Backends\ConnectorCa\Api\DeveloperCertificateApi.cs" />
     <Compile Include="Backends\ConnectorCa\Api\ExternalAPIApi.cs" />
     <Compile Include="Backends\ConnectorCa\Api\ServerCredentialsApi.cs" />
@@ -168,7 +196,8 @@
     <Compile Include="Common\ResponsePage.cs" />
     <Compile Include="Common\BaseApi.cs" />
     <Compile Include="Common\Config.cs" />
-    <Compile Include="Devices\Api\DevicesApi.cs" />
+    <Compile Include="Connect\Api\ConnectApi.ConnectedDevices.cs" />
+    <Compile Include="Connect\Api\ConnectApi.cs" />
     <Compile Include="Backends\DeveloperCertificate\Client\ExceptionFactory.cs" />
     <Compile Include="Backends\DeveloperCertificate\Client\IApiAccessor.cs" />
     <Compile Include="Backends\DeviceCatalog\Api\DefaultApi.cs" />
@@ -198,23 +227,27 @@
     <Compile Include="Backends\Mds\Client\IApiAccessor.cs" />
     <Compile Include="Backends\ProvisioningCertificate\Client\ExceptionFactory.cs" />
     <Compile Include="Backends\ProvisioningCertificate\Client\IApiAccessor.cs" />
-    <Compile Include="Devices\Api\DevicesApi.Devices.cs" />
-    <Compile Include="Devices\Api\DevicesApi.LongPolling.cs" />
-    <Compile Include="Devices\Api\DevicesApi.Notifications.cs" />
-    <Compile Include="Devices\Api\DevicesApi.Query.cs" />
-    <Compile Include="Devices\Api\DevicesApi.Subscriptions.cs" />
-    <Compile Include="Devices\Model\Device\DeployedState.cs" />
-    <Compile Include="Devices\Model\Device\Mechanism.cs" />
-    <Compile Include="Devices\Model\Device\State.cs" />
-    <Compile Include="Devices\Model\Query\Query.cs" />
+    <Compile Include="Connect\Api\ConnectApi.LongPolling.cs" />
+    <Compile Include="Connect\Api\ConnectApi.Statistics.cs" />
+    <Compile Include="Connect\Model\ConnectedDevice\ConnectedDevice.cs" />
+    <Compile Include="DeviceDirectory\Api\DeviceDirectoryApi.cs" />
+    <Compile Include="DeviceDirectory\Api\DeviceDirectoryApi.Devices.cs" />
+    <Compile Include="Connect\Api\ConnectApi.Notifications.cs" />
+    <Compile Include="DeviceDirectory\Api\DeviceDirectoryApi.Logging.cs" />
+    <Compile Include="DeviceDirectory\Api\DeviceDirectoryApi.Query.cs" />
+    <Compile Include="Connect\Api\ConnectApi.Subscriptions.cs" />
+    <Compile Include="DeviceDirectory\Model\Device\DeployedState.cs" />
+    <Compile Include="DeviceDirectory\Model\Device\Mechanism.cs" />
+    <Compile Include="DeviceDirectory\Model\Device\State.cs" />
+    <Compile Include="DeviceDirectory\Model\Query\Query.cs" />
     <Compile Include="Exceptions\CloudApiException.cs" />
     <Compile Include="Common\Query\QueryOptions.cs" />
-    <Compile Include="Logging\Model\DeviceLog.cs" />
-    <Compile Include="Logging\Model\EventType.cs" />
-    <Compile Include="Devices\Model\Device\AsyncProducerConsumerCollection.cs" />
-    <Compile Include="Devices\Model\Device\AsyncConsumer.cs" />
-    <Compile Include="Devices\Model\Device\Device.cs" />
-    <Compile Include="Devices\Model\Resource\Resource.cs" />
+    <Compile Include="DeviceDirectory\Model\Logging\DeviceLog.cs" />
+    <Compile Include="DeviceDirectory\Model\Logging\EventType.cs" />
+    <Compile Include="Connect\Model\ConnectedDevice\AsyncProducerConsumerCollection.cs" />
+    <Compile Include="Connect\Model\ConnectedDevice\AsyncConsumer.cs" />
+    <Compile Include="DeviceDirectory\Model\Device\Device.cs" />
+    <Compile Include="Connect\Model\Resource\Resource.cs" />
     <Compile Include="Exceptions\ValueException.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -226,7 +259,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Logging\Api\LoggingApi.cs" />
     <Compile Include="Backends\FirmwareCatalog\Api\DefaultApi.cs" />
     <Compile Include="Backends\FirmwareCatalog\Client\ApiClient.cs" />
     <Compile Include="Backends\FirmwareCatalog\Client\ApiException.cs" />
@@ -259,11 +291,20 @@
     <Compile Include="AccountManagement\Model\ApiKey\ApiKey.cs" />
     <Compile Include="AccountManagement\Model\Account\Account.cs" />
     <Compile Include="AccountManagement\Model\ApiKey\ApiKeyStatus.cs" />
-    <Compile Include="Statistics\Api\StatisticsApi.cs" />
-    <Compile Include="Statistics\Model\StatisticsData.cs" />
-    <Compile Include="Statistics\Model\StatisticsQueryOptions.cs" />
+    <Compile Include="Connect\Model\Metric\Metric.cs" />
+    <Compile Include="Connect\Model\Metric\MetricQueryOptions.cs" />
+    <Compile Include="Update\Api\UpdateApi.Campaign.cs" />
+    <Compile Include="Update\Api\UpdateApi.cs" />
+    <Compile Include="Update\Api\UpdateApi.FirmwareImage.cs" />
+    <Compile Include="Update\Api\UpdateApi.FirmwareManifest.cs" />
+    <Compile Include="Update\Model\Campaign\UpdateCampaign.cs" />
+    <Compile Include="Update\Model\Campaign\UpdateCampaignDeviceState.cs" />
+    <Compile Include="Update\Model\Campaign\UpdateCampaignState.cs" />
+    <Compile Include="Update\Model\FirmwareImage\FirmwareImage.cs" />
+    <Compile Include="Update\Model\FirmwareManifest\FirmwareManifest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Backends\Billing\README.md" />
     <None Include="Backends\ConnectorCa\README.md" />
     <None Include="Backends\ConnectorFrontend\README.md" />
     <None Include="Backends\DeploymentService\README.md" />
@@ -281,7 +322,10 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Connect\Model\Subscription\" />
+    <Folder Include="Connect\Model\Webhook\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="lib\Newtonsoft.Json.dll" />
     <Content Include="lib\RestSharp.dll" />

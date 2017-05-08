@@ -10,7 +10,8 @@ namespace mbedCloudSDK.Common.Query
 	/// </summary>
 	public class QueryOptions
 	{
-		/// <summary>
+        
+        /// <summary>
 		/// Gets or sets the limit of objects in response.
 		/// </summary>
 		/// <value>The limit.</value>
@@ -27,6 +28,11 @@ namespace mbedCloudSDK.Common.Query
 		/// </summary>
 		/// <value>Objects after given element.</value>
 		public string After { get; set; }
+
+        /// <summary>
+        /// Id of the resource.
+        /// </summary>
+        public string Id { get; set; }
 
         /// <summary>
         /// Get Query String.

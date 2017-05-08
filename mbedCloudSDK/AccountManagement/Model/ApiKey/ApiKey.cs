@@ -116,5 +116,21 @@ namespace mbedCloudSDK.AccountManagement.Model.ApiKey
             apiKey.LastLoginTime = apiKeyInfo.LastLoginTime;
             return apiKey;
         }
+
+        public ApiKeyInfoReq CreatePostRequest()
+        {
+            ApiKeyInfoReq request = new ApiKeyInfoReq();
+            request.Name = this.Name;
+            request.Owner = this.Owner;
+            return request;
+        }
+
+        public ApiKeyUpdateReq CreatePutRequest()
+        {
+            ApiKeyUpdateReq request = new ApiKeyUpdateReq();
+            request.Name = this.Name;
+            request.Owner = this.Owner;
+            return request;
+        }
     }
 }
