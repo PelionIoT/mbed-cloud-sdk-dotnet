@@ -1,4 +1,5 @@
-﻿using System;
+﻿using deployment_service.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,14 +24,9 @@ namespace mbedCloudSDK.Update.Model.Campaign
         public string Description { get; set; }
         
         /// <summary>
-        /// The updating IAM user ID
-        /// </summary>
-        public string UpdatingUserId { get; set; }
-        
-        /// <summary>
         /// The time the object was created
         /// </summary>
-        public DateTime? CreatedAt { get; set; }
+        public string CreatedAt { get; set; }
         
         /// <summary>
         /// Gets or Sets RootManifestId
@@ -43,39 +39,19 @@ namespace mbedCloudSDK.Update.Model.Campaign
         public string CampaignId { get; set; }
         
         /// <summary>
-        /// The updating account ID
-        /// </summary>
-        public string UpdatingAccountId { get; set; }
-        
-        /// <summary>
-        /// The time the object was updated
-        /// </summary>
-        public DateTime? UpdatedAt { get; set; }
-        
-        /// <summary>
         /// The timestamp at which update campaign scheduled to start
         /// </summary>
-        public DateTime? When { get; set; }
+        public string ScheduledAt { get; set; }
         
         /// <summary>
         /// The timestamp when the update campaign finished
         /// </summary>
-        public DateTime? Finished { get; set; }
+        public string FinishedAt { get; set; }
 
-        /// <summary>
-        /// The entity instance signature
-        /// </summary>
-        public DateTime? Etag { get; set; }
-        
         /// <summary>
         /// Gets or Sets RootManifestUrl
         /// </summary>
         public string RootManifestUrl { get; set; }
-        
-        /// <summary>
-        /// The gateway client API key
-        /// </summary>
-        public string UpdatingApiKey { get; set; }
         
         /// <summary>
         /// The ID of the campaign
@@ -121,17 +97,12 @@ namespace mbedCloudSDK.Update.Model.Campaign
             sb.Append("class UpdateCampaignSerializer {\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
-            sb.Append("  UpdatingUserId: ").Append(UpdatingUserId).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  RootManifestId: ").Append(RootManifestId).Append("\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
-            sb.Append("  UpdatingAccountId: ").Append(UpdatingAccountId).Append("\n");
-            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
-            sb.Append("  When: ").Append(When).Append("\n");
-            sb.Append("  Finished: ").Append(Finished).Append("\n");
-            sb.Append("  Etag: ").Append(Etag).Append("\n");
+            sb.Append("  ScheduledAt: ").Append(ScheduledAt).Append("\n");
+            sb.Append("  FinishedAt: ").Append(FinishedAt).Append("\n");
             sb.Append("  RootManifestUrl: ").Append(RootManifestUrl).Append("\n");
-            sb.Append("  UpdatingApiKey: ").Append(UpdatingApiKey).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  DeviceFilter: ").Append(DeviceFilter).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
@@ -144,27 +115,47 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static UpdateCampaign Map(deployment_service.Model.UpdateCampaignSerializer data)
+        public static UpdateCampaign Map(deployment_service.Model.UpdateCampaign data)
         {
             var updateCampaignStatus = (UpdateCampaignState)Enum.Parse(typeof(UpdateCampaignState), data.State.ToString());
             var campaign = new UpdateCampaign();
-            campaign.CampaignId = data.CampaignId;
             campaign.CreatedAt = data.CreatedAt;
             campaign.Description = data.Description;
             campaign.DeviceFilter = data.DeviceFilter;
-            campaign.Etag = data.Etag;
-            campaign.Finished = data.Finished;
+            campaign.FinishedAt = data.Finished;
             campaign.Id = data.Id;
             campaign.Name = data.Name;
             campaign.RootManifestId = data.RootManifestId;
             campaign.RootManifestUrl = data.RootManifestUrl;
             campaign.State = updateCampaignStatus;
-            campaign.UpdatedAt = data.UpdatedAt;
-            campaign.UpdatingAccountId = data.UpdatingAccountId;
-            campaign.UpdatingApiKey = data.UpdatingApiKey;
-            campaign.UpdatingUserId = data.UpdatingUserId;
-            campaign.When = data.When;
+            campaign.ScheduledAt = data.When;
             return campaign;
+        }
+
+        public UpdateCampaignPostRequest CreatePostRequest()
+        {
+            UpdateCampaignPostRequest request = new UpdateCampaignPostRequest();
+            request.Description = this.Description;
+            request.DeviceFilter = this.DeviceFilter;
+            request.Name = this.Name;
+            request.RootManifestId = this.RootManifestId;
+            var updateCampaignStatus = (UpdateCampaignPostRequest.StateEnum)Enum.Parse(typeof(UpdateCampaignPostRequest.StateEnum), this.State.ToString());
+            request.State = updateCampaignStatus;
+            request.When = this.ScheduledAt;
+            return request;
+        }
+
+        public UpdateCampaignPutRequest CreatePutRequest()
+        {
+            UpdateCampaignPutRequest request = new UpdateCampaignPutRequest();
+            request.Description = this.Description;
+            request.DeviceFilter = this.DeviceFilter;
+            request.Name = this.Name;
+            request.RootManifestId = this.RootManifestId;
+            var updateCampaignStatus = (UpdateCampaignPutRequest.StateEnum)Enum.Parse(typeof(UpdateCampaignPutRequest.StateEnum), this.State.ToString());
+            request.State = updateCampaignStatus;
+            request.When = this.ScheduledAt;
+            return request;
         }
     }
 }

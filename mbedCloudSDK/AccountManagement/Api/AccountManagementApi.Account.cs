@@ -1,5 +1,4 @@
-﻿using iam.Api;
-using iam.Client;
+﻿using iam.Client;
 using iam.Model;
 using mbedCloudSDK.AccountManagement.Model.Account;
 using mbedCloudSDK.Exceptions;
@@ -56,10 +55,7 @@ namespace mbedCloudSDK.AccountManagement.Api
         public Account UpdateAccount(Account account)
         {
             // Create Account request
-            AccountUpdateReq req = new AccountUpdateReq(account.AddressLine2, account.City, 
-                account.AddressLine1, account.DisplayName, account.Country, account.Company, 
-                account.State, account.Contact, account.PostalCode, account.PhoneNumber,
-                account.Email, account.Aliases);
+            AccountUpdateReq req = account.CreateUpdateRequest();
             try
             {
                 var accountInfo = adminApi.UpdateMyAccount(req);
@@ -79,10 +75,7 @@ namespace mbedCloudSDK.AccountManagement.Api
         public async Task<Account> UpdateAccountAsync(Account account)
         {
             // Create account update request
-            AccountUpdateReq req = new AccountUpdateReq(account.AddressLine2, account.City,
-                account.AddressLine1, account.DisplayName, account.Country, account.Company,
-                account.State, account.Contact, account.PostalCode, account.PhoneNumber,
-                account.Email, account.Aliases);
+            AccountUpdateReq req = account.CreateUpdateRequest();
             try
             {
                 var accountInfo = await adminApi.UpdateMyAccountAsync(req);

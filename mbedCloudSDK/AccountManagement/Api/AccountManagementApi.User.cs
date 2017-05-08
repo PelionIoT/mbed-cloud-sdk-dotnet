@@ -5,9 +5,6 @@ using mbedCloudSDK.Common;
 using mbedCloudSDK.Common.Query;
 using mbedCloudSDK.Exceptions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace mbedCloudSDK.AccountManagement.Api
@@ -99,15 +96,13 @@ namespace mbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Create user
         /// </summary>
-        /// <param name="body"></param>
+        /// <param name="user"></param>
         /// <returns></returns>
-        public User AddUser(User body)
+        public User AddUser(User user)
         {
             try
             {
-                UserInfoReq req = new UserInfoReq(body.PhoneNumber, body.Username, body.Groups, 
-                    body.IsGtcAccepted, body.FullName, body.IsMarketingAccepted,
-                    body.Address, body.Password, body.Email);
+                UserInfoReq req = user.CreatePostRequest();
                 return User.Map(adminApi.CreateUser(req));
             }
             catch (iam.Client.ApiException e)
@@ -119,15 +114,13 @@ namespace mbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Create user
         /// </summary>
-        /// <param name="body"></param>
+        /// <param name="user"></param>
         /// <returns></returns>
-        public async Task<User> AddUserAsync(User body)
+        public async Task<User> AddUserAsync(User user)
         {
             try
             {
-                UserInfoReq req = new UserInfoReq(body.PhoneNumber, body.Username, body.Groups,
-                    body.IsGtcAccepted, body.FullName, body.IsMarketingAccepted,
-                    body.Address, body.Password, body.Email);
+                UserInfoReq req = user.CreatePostRequest();
                 return User.Map(await adminApi.CreateUserAsync(req));
             }
             catch (iam.Client.ApiException e)
@@ -139,15 +132,14 @@ namespace mbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Update user
         /// </summary>
-        /// <param name="body"></param>
+        /// <param name="user"></param>
         /// <returns></returns>
-        public User UpdateUser(User body)
+        public User UpdateUser(User user)
         {
             try
             {
-                UserUpdateReq req = new UserUpdateReq(body.Username, body.PhoneNumber, body.IsMarketingAccepted, body.IsGtcAccepted,
-                    body.FullName, body.Address, body.Password, body.Email);
-                return User.Map(adminApi.UpdateUser(body.Id, req));
+                UserUpdateReq req = user.CreatePutRequest();
+                return User.Map(adminApi.UpdateUser(user.Id, req));
             }
             catch (iam.Client.ApiException e)
             {
@@ -158,16 +150,15 @@ namespace mbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Update user asynchronously.
         /// </summary>
-        /// <param name="body"></param>
+        /// <param name="user"></param>
         /// <returns></returns>
-        public async Task<User> UpdateUserAsync(User body)
+        public async Task<User> UpdateUserAsync(User user)
         {
             try
             {
-                UserUpdateReq req = new UserUpdateReq(body.Username, body.PhoneNumber, body.IsMarketingAccepted, body.IsGtcAccepted,
-                    body.FullName, body.Address, body.Password, body.Email);
-                var user = await adminApi.UpdateUserAsync(body.Id, req);
-                return User.Map(user);
+                UserUpdateReq req = user.CreatePutRequest();
+                var userData = await adminApi.UpdateUserAsync(user.Id, req);
+                return User.Map(userData);
             }
             catch (iam.Client.ApiException e)
             {

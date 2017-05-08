@@ -15,7 +15,7 @@ namespace mbedCloudSDK.Update.Model.FirmwareManifest
         /// <summary>
         /// Gets or Sets Datafile
         /// </summary>
-        public string Datafile { get; set; }
+        public byte[] Datafile { get; set; }
         
         /// <summary>
         /// The description of the object
@@ -83,7 +83,7 @@ namespace mbedCloudSDK.Update.Model.FirmwareManifest
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static FirmwareManifest Map(FirmwareManifest data)
+        public static FirmwareManifest Map(firmware_catalog.Model.FirmwareManifest data)
         {
             FirmwareManifest manifest = new FirmwareManifest();
             manifest.CreatedAt = data.CreatedAt;

@@ -143,7 +143,7 @@ namespace mbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                var keyBody = new ApiKeyInfoReq(key.Owner, key.Name, key.Groups);
+                var keyBody = key.CreatePostRequest();
                 return ApiKey.Map(developerApi.CreateApiKey(keyBody));
             }
             catch (iam.Client.ApiException e)
@@ -161,7 +161,7 @@ namespace mbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                var keyBody = new ApiKeyInfoReq(key.Owner, key.Name, key.Groups);
+                var keyBody = key.CreatePostRequest();
                 return ApiKey.Map(await developerApi.CreateApiKeyAsync(keyBody));
             }
             catch (iam.Client.ApiException e)
@@ -180,7 +180,7 @@ namespace mbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                ApiKeyUpdateReq req = new ApiKeyUpdateReq(key.Owner, key.Name);
+                ApiKeyUpdateReq req = key.CreatePutRequest();
                 return ApiKey.Map(developerApi.UpdateApiKey(apiKey, req));
             }
             catch (iam.Client.ApiException e)
@@ -199,7 +199,7 @@ namespace mbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                ApiKeyUpdateReq req = new ApiKeyUpdateReq(key.Owner, key.Name);
+                ApiKeyUpdateReq req = key.CreatePutRequest();
                 return ApiKey.Map(await developerApi.UpdateApiKeyAsync(apiKey, req));
             }
             catch (iam.Client.ApiException e)

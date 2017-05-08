@@ -15,7 +15,7 @@ namespace mbedCloudSDK.Update.Model.FirmwareImage
         /// <summary>
         /// The binary file of firmware image
         /// </summary>
-        public string Datafile { get; set; }
+        public byte[] Datafile { get; set; }
         
         /// <summary>
         /// The description of the object
@@ -71,7 +71,7 @@ namespace mbedCloudSDK.Update.Model.FirmwareImage
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static FirmwareImage Map(FirmwareImage data)
+        public static FirmwareImage Map(firmware_catalog.Model.FirmwareImage data)
         {
             FirmwareImage image = new FirmwareImage();
             image.CreatedAt = data.CreatedAt;

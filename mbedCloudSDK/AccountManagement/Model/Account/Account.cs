@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
 
 namespace mbedCloudSDK.AccountManagement.Model.Account
@@ -25,7 +24,7 @@ namespace mbedCloudSDK.AccountManagement.Model.Account
         /// <summary>
         /// The postal code part of the postal address.
         /// </summary>
-        public string PostalCode { get; set; }
+        public string Postcode { get; set; }
        
         /// <summary>
         /// Account ID.
@@ -65,7 +64,7 @@ namespace mbedCloudSDK.AccountManagement.Model.Account
         /// <summary>
         /// Flag (true/false) indicating whether Factory Tool is allowed to download or not.
         /// </summary>
-        public bool? IsProvisioningAllowed { get; set; }
+        public bool? ProvisisioningAllowed { get; set; }
         
         /// <summary>
         /// The company email address for this account.
@@ -145,7 +144,7 @@ namespace mbedCloudSDK.AccountManagement.Model.Account
             var sb = new StringBuilder();
             sb.Append("class Account {\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
-            sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");
+            sb.Append("  Postcode: ").Append(Postcode).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Aliases: ").Append(Aliases).Append("\n");
             sb.Append("  AddressLine2: ").Append(AddressLine2).Append("\n");
@@ -153,7 +152,7 @@ namespace mbedCloudSDK.AccountManagement.Model.Account
             sb.Append("  AddressLine1: ").Append(AddressLine1).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
-            sb.Append("  IsProvisioningAllowed: ").Append(IsProvisioningAllowed).Append("\n");
+            sb.Append("  ProvisisioningAllowed: ").Append(ProvisisioningAllowed).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
@@ -179,7 +178,7 @@ namespace mbedCloudSDK.AccountManagement.Model.Account
             var accountStatus = (AccountStatus)Enum.Parse(typeof(AccountStatus), accountInfo.Status.ToString());
             var account = new Account();
             account.PhoneNumber = accountInfo.PhoneNumber;
-            account.PostalCode = accountInfo.PostalCode;
+            account.Postcode = accountInfo.PostalCode;
             account.Id = accountInfo.Id;
             account.Aliases = accountInfo.Aliases;
             account.AddressLine2 = accountInfo.AddressLine2;
@@ -187,7 +186,7 @@ namespace mbedCloudSDK.AccountManagement.Model.Account
             account.AddressLine1 = accountInfo.AddressLine1;
             account.DisplayName = accountInfo.DisplayName;
             account.State = accountInfo.State;
-            account.IsProvisioningAllowed = accountInfo.IsProvisioningAllowed;
+            account.ProvisisioningAllowed = accountInfo.IsProvisioningAllowed;
             account.Email = accountInfo.Email;
             account.Status = accountStatus;
             account.Company = accountInfo.Company;
@@ -200,6 +199,24 @@ namespace mbedCloudSDK.AccountManagement.Model.Account
             account.TemplateId = accountInfo.TemplateId;
             account.Policies = accountInfo.Policies.Select(p => { return Policy.Policy.Map(p); }).ToList();
             return account;
+        }
+
+        public iam.Model.AccountUpdateReq CreateUpdateRequest()
+        {
+            iam.Model.AccountUpdateReq request = new iam.Model.AccountUpdateReq();
+            request.PhoneNumber = this.PhoneNumber;
+            request.PostalCode = this.Postcode;
+            request.Aliases = this.Aliases;
+            request.AddressLine2 = this.AddressLine2;
+            request.City = this.City;
+            request.AddressLine1 = this.AddressLine1;
+            request.DisplayName = this.DisplayName;
+            request.State = this.State;
+            request.Email = this.Email;
+            request.Company = this.Company;
+            request.Country = this.Country;
+            request.Contact = this.Contact;
+            return request;
         }
     }
 }
