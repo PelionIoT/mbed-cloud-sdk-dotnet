@@ -36,7 +36,7 @@ namespace statistics.Model
         /// <param name="BootstrapsFailed">Number of failed bootstraps the account has used..</param>
         /// <param name="Transactions">Number of transaction events from devices linked to the account..</param>
         /// <param name="Timestamp">UTC time in RFC3339 format.</param>
-        /// <param name="RegisteredDevices">Number of registered devices linked to the account..</param>
+        /// <param name="RegisteredDevices">Maximum number of registered devices linked to the account..</param>
         /// <param name="BootstrapsPending">Number of pending bootstraps the account has used..</param>
         /// <param name="HandshakesFailed">Number of failed handshakes the account has used..</param>
         /// <param name="HandshakesSuccessful">Number of successful handshakes the account has used..</param>
@@ -81,9 +81,9 @@ namespace statistics.Model
         [DataMember(Name="timestamp", EmitDefaultValue=false)]
         public string Timestamp { get; set; }
         /// <summary>
-        /// Number of registered devices linked to the account.
+        /// Maximum number of registered devices linked to the account.
         /// </summary>
-        /// <value>Number of registered devices linked to the account.</value>
+        /// <value>Maximum number of registered devices linked to the account.</value>
         [DataMember(Name="registered_devices", EmitDefaultValue=false)]
         public long? RegisteredDevices { get; set; }
         /// <summary>
