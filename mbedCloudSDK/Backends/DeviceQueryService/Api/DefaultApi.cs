@@ -28,7 +28,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Create device query
+        /// Create device query.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
@@ -39,7 +39,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Create device query
+        /// Create device query.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
@@ -49,7 +49,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Delete device query
+        /// Delete device query.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -60,7 +60,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Delete device query
+        /// Delete device query.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -99,7 +99,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Update device query fields
+        /// Update device query fields.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -111,7 +111,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Update device query fields
+        /// Update device query fields.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -122,7 +122,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve device query
+        /// Retrieve device query.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -133,7 +133,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve device query
+        /// Retrieve device query.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -143,7 +143,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Update device query
+        /// Update device query.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -155,7 +155,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Update device query
+        /// Update device query.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -168,7 +168,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Create device query
+        /// Create device query.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
@@ -179,7 +179,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Create device query
+        /// Create device query.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
@@ -189,7 +189,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Delete device query
+        /// Delete device query.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -200,7 +200,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Delete device query
+        /// Delete device query.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -239,7 +239,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Update device query fields
+        /// Update device query fields.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -251,7 +251,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Update device query fields
+        /// Update device query fields.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -262,7 +262,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve device query
+        /// Retrieve device query.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -273,7 +273,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Retrieve device query
+        /// Retrieve device query.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -283,7 +283,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Update device query
+        /// Update device query.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -295,7 +295,7 @@ namespace device_query_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Update device query
+        /// Update device query.
         /// </remarks>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -415,7 +415,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  Create device query
+        ///  Create device query.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
@@ -427,7 +427,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  Create device query
+        ///  Create device query.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
@@ -497,7 +497,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  Create device query
+        ///  Create device query.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
@@ -510,7 +510,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  Create device query
+        ///  Create device query.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
@@ -579,7 +579,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  Delete device query
+        ///  Delete device query.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -590,7 +590,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  Delete device query
+        ///  Delete device query.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -653,7 +653,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  Delete device query
+        ///  Delete device query.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -665,7 +665,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  Delete device query
+        ///  Delete device query.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -895,7 +895,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  Update device query fields
+        ///  Update device query fields.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -908,7 +908,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  Update device query fields
+        ///  Update device query fields.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -983,7 +983,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  Update device query fields
+        ///  Update device query fields.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -997,7 +997,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  Update device query fields
+        ///  Update device query fields.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -1071,7 +1071,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  Retrieve device query
+        ///  Retrieve device query.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -1083,7 +1083,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  Retrieve device query
+        ///  Retrieve device query.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -1146,7 +1146,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  Retrieve device query
+        ///  Retrieve device query.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -1159,7 +1159,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  Retrieve device query
+        ///  Retrieve device query.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -1221,7 +1221,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  Update device query
+        ///  Update device query.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -1234,7 +1234,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  Update device query
+        ///  Update device query.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -1309,7 +1309,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  Update device query
+        ///  Update device query.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -1323,7 +1323,7 @@ namespace device_query_service.Api
         }
 
         /// <summary>
-        ///  Update device query
+        ///  Update device query.
         /// </summary>
         /// <exception cref="device_query_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>

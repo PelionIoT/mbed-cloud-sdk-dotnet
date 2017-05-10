@@ -230,6 +230,7 @@
     <Compile Include="Connect\Api\ConnectApi.LongPolling.cs" />
     <Compile Include="Connect\Api\ConnectApi.Statistics.cs" />
     <Compile Include="Connect\Model\ConnectedDevice\ConnectedDevice.cs" />
+    <Compile Include="Connect\Model\Subscription\Subscription.cs" />
     <Compile Include="DeviceDirectory\Api\DeviceDirectoryApi.cs" />
     <Compile Include="DeviceDirectory\Api\DeviceDirectoryApi.Devices.cs" />
     <Compile Include="Connect\Api\ConnectApi.Notifications.cs" />
@@ -323,7 +324,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Connect\Model\Subscription\" />
     <Folder Include="Connect\Model\Webhook\" />
   </ItemGroup>
   <ItemGroup>
