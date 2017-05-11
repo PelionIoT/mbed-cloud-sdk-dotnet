@@ -4,14 +4,14 @@ Deployment Service API
 
 This is the API Documentation for the mbed deployment service which is part of the update service.
 
-OpenAPI spec version: 0.1
+OpenAPI spec version: 3
 
 -->
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2D76F9FD-36AC-4F95-9F09-2FBF8C3312A9}</ProjectGuid>
+    <ProjectGuid>{2E75E3EE-83CD-46A3-8CAE-A6BF60E67CFD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>deployment_service</RootNamespace>

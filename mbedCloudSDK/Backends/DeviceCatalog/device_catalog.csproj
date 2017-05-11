@@ -4,14 +4,14 @@ Device Directory API
 
 This is the API Documentation for the mbed device directory update service.
 
-OpenAPI spec version: 0.1
+OpenAPI spec version: 3
 
 -->
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3A54B171-7BE2-462F-AE97-30402ECED4FE}</ProjectGuid>
+    <ProjectGuid>{7B36E711-BCDA-4DB2-9EAB-11076106B6C4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>device_catalog</RootNamespace>
