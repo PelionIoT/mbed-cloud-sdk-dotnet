@@ -58,7 +58,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image.</param>
         /// <returns></returns>
-        void FirmwareImageDestroy (int? imageId);
+        void FirmwareImageDestroy (string imageId);
 
         /// <summary>
         /// 
@@ -69,7 +69,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> FirmwareImageDestroyWithHttpInfo (int? imageId);
+        ApiResponse<Object> FirmwareImageDestroyWithHttpInfo (string imageId);
         /// <summary>
         /// 
         /// </summary>
@@ -108,7 +108,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image.</param>
         /// <returns>FirmwareImage</returns>
-        FirmwareImage FirmwareImageRetrieve (int? imageId);
+        FirmwareImage FirmwareImageRetrieve (string imageId);
 
         /// <summary>
         /// 
@@ -119,7 +119,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image.</param>
         /// <returns>ApiResponse of FirmwareImage</returns>
-        ApiResponse<FirmwareImage> FirmwareImageRetrieveWithHttpInfo (int? imageId);
+        ApiResponse<FirmwareImage> FirmwareImageRetrieveWithHttpInfo (string imageId);
         /// <summary>
         /// 
         /// </summary>
@@ -154,7 +154,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest.</param>
         /// <returns></returns>
-        void FirmwareManifestDestroy (int? manifestId);
+        void FirmwareManifestDestroy (string manifestId);
 
         /// <summary>
         /// 
@@ -165,7 +165,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> FirmwareManifestDestroyWithHttpInfo (int? manifestId);
+        ApiResponse<Object> FirmwareManifestDestroyWithHttpInfo (string manifestId);
         /// <summary>
         /// 
         /// </summary>
@@ -204,7 +204,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest.</param>
         /// <returns>FirmwareManifest</returns>
-        FirmwareManifest FirmwareManifestRetrieve (int? manifestId);
+        FirmwareManifest FirmwareManifestRetrieve (string manifestId);
 
         /// <summary>
         /// 
@@ -215,7 +215,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest.</param>
         /// <returns>ApiResponse of FirmwareManifest</returns>
-        ApiResponse<FirmwareManifest> FirmwareManifestRetrieveWithHttpInfo (int? manifestId);
+        ApiResponse<FirmwareManifest> FirmwareManifestRetrieveWithHttpInfo (string manifestId);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -252,7 +252,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task FirmwareImageDestroyAsync (int? imageId);
+        System.Threading.Tasks.Task FirmwareImageDestroyAsync (string imageId);
 
         /// <summary>
         /// 
@@ -263,7 +263,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> FirmwareImageDestroyAsyncWithHttpInfo (int? imageId);
+        System.Threading.Tasks.Task<ApiResponse<Object>> FirmwareImageDestroyAsyncWithHttpInfo (string imageId);
         /// <summary>
         /// 
         /// </summary>
@@ -302,7 +302,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image.</param>
         /// <returns>Task of FirmwareImage</returns>
-        System.Threading.Tasks.Task<FirmwareImage> FirmwareImageRetrieveAsync (int? imageId);
+        System.Threading.Tasks.Task<FirmwareImage> FirmwareImageRetrieveAsync (string imageId);
 
         /// <summary>
         /// 
@@ -313,7 +313,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image.</param>
         /// <returns>Task of ApiResponse (FirmwareImage)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareImage>> FirmwareImageRetrieveAsyncWithHttpInfo (int? imageId);
+        System.Threading.Tasks.Task<ApiResponse<FirmwareImage>> FirmwareImageRetrieveAsyncWithHttpInfo (string imageId);
         /// <summary>
         /// 
         /// </summary>
@@ -348,7 +348,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task FirmwareManifestDestroyAsync (int? manifestId);
+        System.Threading.Tasks.Task FirmwareManifestDestroyAsync (string manifestId);
 
         /// <summary>
         /// 
@@ -359,7 +359,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> FirmwareManifestDestroyAsyncWithHttpInfo (int? manifestId);
+        System.Threading.Tasks.Task<ApiResponse<Object>> FirmwareManifestDestroyAsyncWithHttpInfo (string manifestId);
         /// <summary>
         /// 
         /// </summary>
@@ -398,7 +398,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest.</param>
         /// <returns>Task of FirmwareManifest</returns>
-        System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestRetrieveAsync (int? manifestId);
+        System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestRetrieveAsync (string manifestId);
 
         /// <summary>
         /// 
@@ -409,7 +409,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest.</param>
         /// <returns>Task of ApiResponse (FirmwareManifest)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestRetrieveAsyncWithHttpInfo (int? manifestId);
+        System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestRetrieveAsyncWithHttpInfo (string manifestId);
         #endregion Asynchronous Operations
     }
 
@@ -698,7 +698,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image.</param>
         /// <returns></returns>
-        public void FirmwareImageDestroy (int? imageId)
+        public void FirmwareImageDestroy (string imageId)
         {
              FirmwareImageDestroyWithHttpInfo(imageId);
         }
@@ -709,7 +709,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> FirmwareImageDestroyWithHttpInfo (int? imageId)
+        public ApiResponse<Object> FirmwareImageDestroyWithHttpInfo (string imageId)
         {
             // verify the required parameter 'imageId' is set
             if (imageId == null)
@@ -772,7 +772,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task FirmwareImageDestroyAsync (int? imageId)
+        public async System.Threading.Tasks.Task FirmwareImageDestroyAsync (string imageId)
         {
              await FirmwareImageDestroyAsyncWithHttpInfo(imageId);
 
@@ -784,7 +784,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> FirmwareImageDestroyAsyncWithHttpInfo (int? imageId)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> FirmwareImageDestroyAsyncWithHttpInfo (string imageId)
         {
             // verify the required parameter 'imageId' is set
             if (imageId == null)
@@ -1014,7 +1014,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image.</param>
         /// <returns>FirmwareImage</returns>
-        public FirmwareImage FirmwareImageRetrieve (int? imageId)
+        public FirmwareImage FirmwareImageRetrieve (string imageId)
         {
              ApiResponse<FirmwareImage> localVarResponse = FirmwareImageRetrieveWithHttpInfo(imageId);
              return localVarResponse.Data;
@@ -1026,7 +1026,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image.</param>
         /// <returns>ApiResponse of FirmwareImage</returns>
-        public ApiResponse< FirmwareImage > FirmwareImageRetrieveWithHttpInfo (int? imageId)
+        public ApiResponse< FirmwareImage > FirmwareImageRetrieveWithHttpInfo (string imageId)
         {
             // verify the required parameter 'imageId' is set
             if (imageId == null)
@@ -1089,7 +1089,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image.</param>
         /// <returns>Task of FirmwareImage</returns>
-        public async System.Threading.Tasks.Task<FirmwareImage> FirmwareImageRetrieveAsync (int? imageId)
+        public async System.Threading.Tasks.Task<FirmwareImage> FirmwareImageRetrieveAsync (string imageId)
         {
              ApiResponse<FirmwareImage> localVarResponse = await FirmwareImageRetrieveAsyncWithHttpInfo(imageId);
              return localVarResponse.Data;
@@ -1102,7 +1102,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The ID of the firmware image.</param>
         /// <returns>Task of ApiResponse (FirmwareImage)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareImage>> FirmwareImageRetrieveAsyncWithHttpInfo (int? imageId)
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareImage>> FirmwareImageRetrieveAsyncWithHttpInfo (string imageId)
         {
             // verify the required parameter 'imageId' is set
             if (imageId == null)
@@ -1334,7 +1334,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest.</param>
         /// <returns></returns>
-        public void FirmwareManifestDestroy (int? manifestId)
+        public void FirmwareManifestDestroy (string manifestId)
         {
              FirmwareManifestDestroyWithHttpInfo(manifestId);
         }
@@ -1345,7 +1345,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> FirmwareManifestDestroyWithHttpInfo (int? manifestId)
+        public ApiResponse<Object> FirmwareManifestDestroyWithHttpInfo (string manifestId)
         {
             // verify the required parameter 'manifestId' is set
             if (manifestId == null)
@@ -1408,7 +1408,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task FirmwareManifestDestroyAsync (int? manifestId)
+        public async System.Threading.Tasks.Task FirmwareManifestDestroyAsync (string manifestId)
         {
              await FirmwareManifestDestroyAsyncWithHttpInfo(manifestId);
 
@@ -1420,7 +1420,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> FirmwareManifestDestroyAsyncWithHttpInfo (int? manifestId)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> FirmwareManifestDestroyAsyncWithHttpInfo (string manifestId)
         {
             // verify the required parameter 'manifestId' is set
             if (manifestId == null)
@@ -1650,7 +1650,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest.</param>
         /// <returns>FirmwareManifest</returns>
-        public FirmwareManifest FirmwareManifestRetrieve (int? manifestId)
+        public FirmwareManifest FirmwareManifestRetrieve (string manifestId)
         {
              ApiResponse<FirmwareManifest> localVarResponse = FirmwareManifestRetrieveWithHttpInfo(manifestId);
              return localVarResponse.Data;
@@ -1662,7 +1662,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest.</param>
         /// <returns>ApiResponse of FirmwareManifest</returns>
-        public ApiResponse< FirmwareManifest > FirmwareManifestRetrieveWithHttpInfo (int? manifestId)
+        public ApiResponse< FirmwareManifest > FirmwareManifestRetrieveWithHttpInfo (string manifestId)
         {
             // verify the required parameter 'manifestId' is set
             if (manifestId == null)
@@ -1725,7 +1725,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest.</param>
         /// <returns>Task of FirmwareManifest</returns>
-        public async System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestRetrieveAsync (int? manifestId)
+        public async System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestRetrieveAsync (string manifestId)
         {
              ApiResponse<FirmwareManifest> localVarResponse = await FirmwareManifestRetrieveAsyncWithHttpInfo(manifestId);
              return localVarResponse.Data;
@@ -1738,7 +1738,7 @@ namespace firmware_catalog.Api
         /// <exception cref="firmware_catalog.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The ID of the firmware manifest.</param>
         /// <returns>Task of ApiResponse (FirmwareManifest)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestRetrieveAsyncWithHttpInfo (int? manifestId)
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestRetrieveAsyncWithHttpInfo (string manifestId)
         {
             // verify the required parameter 'manifestId' is set
             if (manifestId == null)
