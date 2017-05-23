@@ -24,13 +24,13 @@ using System.ComponentModel.DataAnnotations;
 namespace device_catalog.Model
 {
     /// <summary>
-    /// DeviceLogPage
+    /// DeviceEventPage
     /// </summary>
     [DataContract]
-    public partial class DeviceLogPage :  IEquatable<DeviceLogPage>, IValidatableObject
+    public partial class DeviceEventPage :  IEquatable<DeviceEventPage>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceLogPage" /> class.
+        /// Initializes a new instance of the <see cref="DeviceEventPage" /> class.
         /// </summary>
         /// <param name="_Object">_Object.</param>
         /// <param name="HasMore">HasMore.</param>
@@ -39,7 +39,7 @@ namespace device_catalog.Model
         /// <param name="Limit">Limit.</param>
         /// <param name="Data">Data.</param>
         /// <param name="Order">Order.</param>
-        public DeviceLogPage(string _Object = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), string After = default(string), int? Limit = default(int?), List<DeviceLogData> Data = default(List<DeviceLogData>), string Order = default(string))
+        public DeviceEventPage(string _Object = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), string After = default(string), int? Limit = default(int?), List<DeviceEventData> Data = default(List<DeviceEventData>), string Order = default(string))
         {
             this._Object = _Object;
             this.HasMore = HasMore;
@@ -79,7 +79,7 @@ namespace device_catalog.Model
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name="data", EmitDefaultValue=false)]
-        public List<DeviceLogData> Data { get; set; }
+        public List<DeviceEventData> Data { get; set; }
         /// <summary>
         /// Gets or Sets Order
         /// </summary>
@@ -92,7 +92,7 @@ namespace device_catalog.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class DeviceLogPage {\n");
+            sb.Append("class DeviceEventPage {\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  HasMore: ").Append(HasMore).Append("\n");
             sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
@@ -121,15 +121,15 @@ namespace device_catalog.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as DeviceLogPage);
+            return this.Equals(obj as DeviceEventPage);
         }
 
         /// <summary>
-        /// Returns true if DeviceLogPage instances are equal
+        /// Returns true if DeviceEventPage instances are equal
         /// </summary>
-        /// <param name="other">Instance of DeviceLogPage to be compared</param>
+        /// <param name="other">Instance of DeviceEventPage to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DeviceLogPage other)
+        public bool Equals(DeviceEventPage other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)

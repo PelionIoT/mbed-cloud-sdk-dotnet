@@ -100,9 +100,11 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**DeviceCreate**](docs/DefaultApi.md#devicecreate) | **POST** /v3/devices/ | 
 *DefaultApi* | [**DeviceDestroy**](docs/DefaultApi.md#devicedestroy) | **DELETE** /v3/devices/{id}/ | 
+*DefaultApi* | [**DeviceEventList**](docs/DefaultApi.md#deviceeventlist) | **GET** /v3/device-events/ | 
+*DefaultApi* | [**DeviceEventList_0**](docs/DefaultApi.md#deviceeventlist_0) | **GET** /v3/devicelog/ | 
+*DefaultApi* | [**DeviceEventRetrieve**](docs/DefaultApi.md#deviceeventretrieve) | **GET** /v3/devicelog/{device_event_id}/ | 
+*DefaultApi* | [**DeviceEventRetrieve_0**](docs/DefaultApi.md#deviceeventretrieve_0) | **GET** /v3/device-events/{device_event_id}/ | 
 *DefaultApi* | [**DeviceList**](docs/DefaultApi.md#devicelist) | **GET** /v3/devices/ | 
-*DefaultApi* | [**DeviceLogList**](docs/DefaultApi.md#deviceloglist) | **GET** /v3/devicelog/ | 
-*DefaultApi* | [**DeviceLogRetrieve**](docs/DefaultApi.md#devicelogretrieve) | **GET** /v3/devicelog/{device_log_id}/ | 
 *DefaultApi* | [**DevicePartialUpdate**](docs/DefaultApi.md#devicepartialupdate) | **PATCH** /v3/devices/{id}/ | 
 *DefaultApi* | [**DeviceRetrieve**](docs/DefaultApi.md#deviceretrieve) | **GET** /v3/devices/{id}/ | 
 *DefaultApi* | [**DeviceUpdate**](docs/DefaultApi.md#deviceupdate) | **PUT** /v3/devices/{id}/ | 
@@ -115,8 +117,8 @@ Class | Method | HTTP request | Description
  - [Model.DeviceDataPatchRequest](docs/DeviceDataPatchRequest.md)
  - [Model.DeviceDataPostRequest](docs/DeviceDataPostRequest.md)
  - [Model.DeviceDataPutRequest](docs/DeviceDataPutRequest.md)
- - [Model.DeviceLogData](docs/DeviceLogData.md)
- - [Model.DeviceLogPage](docs/DeviceLogPage.md)
+ - [Model.DeviceEventData](docs/DeviceEventData.md)
+ - [Model.DeviceEventPage](docs/DeviceEventPage.md)
  - [Model.DevicePage](docs/DevicePage.md)
 
 

@@ -24,35 +24,34 @@ using System.ComponentModel.DataAnnotations;
 namespace device_catalog.Model
 {
     /// <summary>
-    /// DeviceLogData
+    /// DeviceEventData
     /// </summary>
     [DataContract]
-    public partial class DeviceLogData :  IEquatable<DeviceLogData>, IValidatableObject
+    public partial class DeviceEventData :  IEquatable<DeviceEventData>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceLogData" /> class.
+        /// Initializes a new instance of the <see cref="DeviceEventData" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected DeviceLogData() { }
+        protected DeviceEventData() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceLogData" /> class.
+        /// Initializes a new instance of the <see cref="DeviceEventData" /> class.
         /// </summary>
         /// <param name="DateTime">DateTime (required).</param>
         /// <param name="StateChange">StateChange.</param>
         /// <param name="Description">Description.</param>
         /// <param name="Changes">Changes.</param>
         /// <param name="EventTypeDescription">EventTypeDescription.</param>
-        /// <param name="DeviceLogId">DeviceLogId.</param>
         /// <param name="EventType">EventType.</param>
         /// <param name="Data">Data.</param>
         /// <param name="Id">Id.</param>
         /// <param name="DeviceId">DeviceId.</param>
-        public DeviceLogData(DateTime? DateTime = default(DateTime?), bool? StateChange = default(bool?), string Description = default(string), Object Changes = default(Object), string EventTypeDescription = default(string), string DeviceLogId = default(string), string EventType = default(string), Object Data = default(Object), string Id = default(string), string DeviceId = default(string))
+        public DeviceEventData(DateTime? DateTime = default(DateTime?), bool? StateChange = default(bool?), string Description = default(string), Object Changes = default(Object), string EventTypeDescription = default(string), string EventType = default(string), Object Data = default(Object), string Id = default(string), string DeviceId = default(string))
         {
             // to ensure "DateTime" is required (not null)
             if (DateTime == null)
             {
-                throw new InvalidDataException("DateTime is a required property for DeviceLogData and cannot be null");
+                throw new InvalidDataException("DateTime is a required property for DeviceEventData and cannot be null");
             }
             else
             {
@@ -62,7 +61,6 @@ namespace device_catalog.Model
             this.Description = Description;
             this.Changes = Changes;
             this.EventTypeDescription = EventTypeDescription;
-            this.DeviceLogId = DeviceLogId;
             this.EventType = EventType;
             this.Data = Data;
             this.Id = Id;
@@ -95,11 +93,6 @@ namespace device_catalog.Model
         [DataMember(Name="event_type_description", EmitDefaultValue=false)]
         public string EventTypeDescription { get; set; }
         /// <summary>
-        /// Gets or Sets DeviceLogId
-        /// </summary>
-        [DataMember(Name="device_log_id", EmitDefaultValue=false)]
-        public string DeviceLogId { get; set; }
-        /// <summary>
         /// Gets or Sets EventType
         /// </summary>
         [DataMember(Name="event_type", EmitDefaultValue=false)]
@@ -126,13 +119,12 @@ namespace device_catalog.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class DeviceLogData {\n");
+            sb.Append("class DeviceEventData {\n");
             sb.Append("  DateTime: ").Append(DateTime).Append("\n");
             sb.Append("  StateChange: ").Append(StateChange).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Changes: ").Append(Changes).Append("\n");
             sb.Append("  EventTypeDescription: ").Append(EventTypeDescription).Append("\n");
-            sb.Append("  DeviceLogId: ").Append(DeviceLogId).Append("\n");
             sb.Append("  EventType: ").Append(EventType).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
@@ -158,15 +150,15 @@ namespace device_catalog.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as DeviceLogData);
+            return this.Equals(obj as DeviceEventData);
         }
 
         /// <summary>
-        /// Returns true if DeviceLogData instances are equal
+        /// Returns true if DeviceEventData instances are equal
         /// </summary>
-        /// <param name="other">Instance of DeviceLogData to be compared</param>
+        /// <param name="other">Instance of DeviceEventData to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DeviceLogData other)
+        public bool Equals(DeviceEventData other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -197,11 +189,6 @@ namespace device_catalog.Model
                     this.EventTypeDescription == other.EventTypeDescription ||
                     this.EventTypeDescription != null &&
                     this.EventTypeDescription.Equals(other.EventTypeDescription)
-                ) && 
-                (
-                    this.DeviceLogId == other.DeviceLogId ||
-                    this.DeviceLogId != null &&
-                    this.DeviceLogId.Equals(other.DeviceLogId)
                 ) && 
                 (
                     this.EventType == other.EventType ||
@@ -246,8 +233,6 @@ namespace device_catalog.Model
                     hash = hash * 59 + this.Changes.GetHashCode();
                 if (this.EventTypeDescription != null)
                     hash = hash * 59 + this.EventTypeDescription.GetHashCode();
-                if (this.DeviceLogId != null)
-                    hash = hash * 59 + this.DeviceLogId.GetHashCode();
                 if (this.EventType != null)
                     hash = hash * 59 + this.EventType.GetHashCode();
                 if (this.Data != null)
