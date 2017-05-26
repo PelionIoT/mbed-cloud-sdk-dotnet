@@ -135,14 +135,15 @@ namespace device_catalog.Model
         /// <param name="BootstrappedTimestamp">Timestamp of when the device was bootstrapped..</param>
         /// <param name="ConnectorExpirationDate">Expiration date of the certificate used to connect to connector server..</param>
         /// <param name="UpdatedAt">The time the object was updated..</param>
-        /// <param name="Mechanism">The ID of the channel used to communicate with the device..</param>
+        /// <param name="CaId">ID of the issuer of the certificate..</param>
         /// <param name="DeviceClass">The device class..</param>
         /// <param name="Id">The ID of the device..</param>
         /// <param name="AccountId">The owning IAM account ID..</param>
         /// <param name="EndpointName">The endpoint name given to the device..</param>
         /// <param name="AutoUpdate">Mark this device for auto firmware update..</param>
+        /// <param name="HostGateway">The endpoint_name of the host gateway, if appropriate..</param>
         /// <param name="DeviceExecutionMode">Defines the type of certificate used..</param>
-        /// <param name="CustomAttributes">Up to 5 custom JSON attributes.</param>
+        /// <param name="Mechanism">The ID of the channel used to communicate with the device..</param>
         /// <param name="State">The current state of the device..</param>
         /// <param name="Etag">The entity instance signature..</param>
         /// <param name="SerialNumber">The serial number of the device..</param>
@@ -152,6 +153,7 @@ namespace device_catalog.Model
         /// <param name="Description">The description of the object..</param>
         /// <param name="DeployedState">DEPRECATED The state of the device&#39;s deployment..</param>
         /// <param name="_Object">The API resource entity..</param>
+        /// <param name="EndpointType">The endpoint type of the device - e.g. if the device is a gateway..</param>
         /// <param name="Deployment">DEPRECATED The last deployment used on the device..</param>
         /// <param name="MechanismUrl">The address of the connector to use..</param>
         /// <param name="TrustLevel">The device trust level..</param>
@@ -159,21 +161,22 @@ namespace device_catalog.Model
         /// <param name="DeviceKey">Fingerprint of the device certificate..</param>
         /// <param name="CreatedAt">The time the object was created..</param>
         /// <param name="Manifest">DEPRECATED The URL for the current device manifest..</param>
-        /// <param name="CaId">ID of the issuer of the certificate..</param>
-        public DeviceData(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), MechanismEnum? Mechanism = default(MechanismEnum?), string DeviceClass = default(string), string Id = default(string), string AccountId = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), int? DeviceExecutionMode = default(int?), Object CustomAttributes = default(Object), StateEnum? State = default(StateEnum?), DateTime? Etag = default(DateTime?), string SerialNumber = default(string), string FirmwareChecksum = default(string), DateTime? ManifestTimestamp = default(DateTime?), string VendorId = default(string), string Description = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string _Object = default(string), string Deployment = default(string), string MechanismUrl = default(string), int? TrustLevel = default(int?), string Name = default(string), string DeviceKey = default(string), DateTime? CreatedAt = default(DateTime?), string Manifest = default(string), string CaId = default(string))
+        /// <param name="CustomAttributes">Up to 5 custom JSON attributes.</param>
+        public DeviceData(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), string CaId = default(string), string DeviceClass = default(string), string Id = default(string), string AccountId = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), int? DeviceExecutionMode = default(int?), MechanismEnum? Mechanism = default(MechanismEnum?), StateEnum? State = default(StateEnum?), DateTime? Etag = default(DateTime?), string SerialNumber = default(string), string FirmwareChecksum = default(string), DateTime? ManifestTimestamp = default(DateTime?), string VendorId = default(string), string Description = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string _Object = default(string), string EndpointType = default(string), string Deployment = default(string), string MechanismUrl = default(string), int? TrustLevel = default(int?), string Name = default(string), string DeviceKey = default(string), DateTime? CreatedAt = default(DateTime?), string Manifest = default(string), Object CustomAttributes = default(Object))
         {
             this.BootstrapExpirationDate = BootstrapExpirationDate;
             this.BootstrappedTimestamp = BootstrappedTimestamp;
             this.ConnectorExpirationDate = ConnectorExpirationDate;
             this.UpdatedAt = UpdatedAt;
-            this.Mechanism = Mechanism;
+            this.CaId = CaId;
             this.DeviceClass = DeviceClass;
             this.Id = Id;
             this.AccountId = AccountId;
             this.EndpointName = EndpointName;
             this.AutoUpdate = AutoUpdate;
+            this.HostGateway = HostGateway;
             this.DeviceExecutionMode = DeviceExecutionMode;
-            this.CustomAttributes = CustomAttributes;
+            this.Mechanism = Mechanism;
             this.State = State;
             this.Etag = Etag;
             this.SerialNumber = SerialNumber;
@@ -183,6 +186,7 @@ namespace device_catalog.Model
             this.Description = Description;
             this.DeployedState = DeployedState;
             this._Object = _Object;
+            this.EndpointType = EndpointType;
             this.Deployment = Deployment;
             this.MechanismUrl = MechanismUrl;
             this.TrustLevel = TrustLevel;
@@ -190,7 +194,7 @@ namespace device_catalog.Model
             this.DeviceKey = DeviceKey;
             this.CreatedAt = CreatedAt;
             this.Manifest = Manifest;
-            this.CaId = CaId;
+            this.CustomAttributes = CustomAttributes;
         }
         
         /// <summary>
@@ -217,6 +221,12 @@ namespace device_catalog.Model
         /// <value>The time the object was updated.</value>
         [DataMember(Name="updated_at", EmitDefaultValue=false)]
         public DateTime? UpdatedAt { get; set; }
+        /// <summary>
+        /// ID of the issuer of the certificate.
+        /// </summary>
+        /// <value>ID of the issuer of the certificate.</value>
+        [DataMember(Name="ca_id", EmitDefaultValue=false)]
+        public string CaId { get; set; }
         /// <summary>
         /// The device class.
         /// </summary>
@@ -248,17 +258,17 @@ namespace device_catalog.Model
         [DataMember(Name="auto_update", EmitDefaultValue=false)]
         public bool? AutoUpdate { get; set; }
         /// <summary>
+        /// The endpoint_name of the host gateway, if appropriate.
+        /// </summary>
+        /// <value>The endpoint_name of the host gateway, if appropriate.</value>
+        [DataMember(Name="host_gateway", EmitDefaultValue=false)]
+        public string HostGateway { get; set; }
+        /// <summary>
         /// Defines the type of certificate used.
         /// </summary>
         /// <value>Defines the type of certificate used.</value>
         [DataMember(Name="device_execution_mode", EmitDefaultValue=false)]
         public int? DeviceExecutionMode { get; set; }
-        /// <summary>
-        /// Up to 5 custom JSON attributes
-        /// </summary>
-        /// <value>Up to 5 custom JSON attributes</value>
-        [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
-        public Object CustomAttributes { get; set; }
         /// <summary>
         /// The entity instance signature.
         /// </summary>
@@ -302,6 +312,12 @@ namespace device_catalog.Model
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
         /// <summary>
+        /// The endpoint type of the device - e.g. if the device is a gateway.
+        /// </summary>
+        /// <value>The endpoint type of the device - e.g. if the device is a gateway.</value>
+        [DataMember(Name="endpoint_type", EmitDefaultValue=false)]
+        public string EndpointType { get; set; }
+        /// <summary>
         /// DEPRECATED The last deployment used on the device.
         /// </summary>
         /// <value>DEPRECATED The last deployment used on the device.</value>
@@ -344,11 +360,11 @@ namespace device_catalog.Model
         [DataMember(Name="manifest", EmitDefaultValue=false)]
         public string Manifest { get; set; }
         /// <summary>
-        /// ID of the issuer of the certificate.
+        /// Up to 5 custom JSON attributes
         /// </summary>
-        /// <value>ID of the issuer of the certificate.</value>
-        [DataMember(Name="ca_id", EmitDefaultValue=false)]
-        public string CaId { get; set; }
+        /// <value>Up to 5 custom JSON attributes</value>
+        [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
+        public Object CustomAttributes { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -361,14 +377,15 @@ namespace device_catalog.Model
             sb.Append("  BootstrappedTimestamp: ").Append(BootstrappedTimestamp).Append("\n");
             sb.Append("  ConnectorExpirationDate: ").Append(ConnectorExpirationDate).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
-            sb.Append("  Mechanism: ").Append(Mechanism).Append("\n");
+            sb.Append("  CaId: ").Append(CaId).Append("\n");
             sb.Append("  DeviceClass: ").Append(DeviceClass).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  EndpointName: ").Append(EndpointName).Append("\n");
             sb.Append("  AutoUpdate: ").Append(AutoUpdate).Append("\n");
+            sb.Append("  HostGateway: ").Append(HostGateway).Append("\n");
             sb.Append("  DeviceExecutionMode: ").Append(DeviceExecutionMode).Append("\n");
-            sb.Append("  CustomAttributes: ").Append(CustomAttributes).Append("\n");
+            sb.Append("  Mechanism: ").Append(Mechanism).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  SerialNumber: ").Append(SerialNumber).Append("\n");
@@ -378,6 +395,7 @@ namespace device_catalog.Model
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DeployedState: ").Append(DeployedState).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
+            sb.Append("  EndpointType: ").Append(EndpointType).Append("\n");
             sb.Append("  Deployment: ").Append(Deployment).Append("\n");
             sb.Append("  MechanismUrl: ").Append(MechanismUrl).Append("\n");
             sb.Append("  TrustLevel: ").Append(TrustLevel).Append("\n");
@@ -385,7 +403,7 @@ namespace device_catalog.Model
             sb.Append("  DeviceKey: ").Append(DeviceKey).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Manifest: ").Append(Manifest).Append("\n");
-            sb.Append("  CaId: ").Append(CaId).Append("\n");
+            sb.Append("  CustomAttributes: ").Append(CustomAttributes).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -443,9 +461,9 @@ namespace device_catalog.Model
                     this.UpdatedAt.Equals(other.UpdatedAt)
                 ) && 
                 (
-                    this.Mechanism == other.Mechanism ||
-                    this.Mechanism != null &&
-                    this.Mechanism.Equals(other.Mechanism)
+                    this.CaId == other.CaId ||
+                    this.CaId != null &&
+                    this.CaId.Equals(other.CaId)
                 ) && 
                 (
                     this.DeviceClass == other.DeviceClass ||
@@ -473,14 +491,19 @@ namespace device_catalog.Model
                     this.AutoUpdate.Equals(other.AutoUpdate)
                 ) && 
                 (
+                    this.HostGateway == other.HostGateway ||
+                    this.HostGateway != null &&
+                    this.HostGateway.Equals(other.HostGateway)
+                ) && 
+                (
                     this.DeviceExecutionMode == other.DeviceExecutionMode ||
                     this.DeviceExecutionMode != null &&
                     this.DeviceExecutionMode.Equals(other.DeviceExecutionMode)
                 ) && 
                 (
-                    this.CustomAttributes == other.CustomAttributes ||
-                    this.CustomAttributes != null &&
-                    this.CustomAttributes.Equals(other.CustomAttributes)
+                    this.Mechanism == other.Mechanism ||
+                    this.Mechanism != null &&
+                    this.Mechanism.Equals(other.Mechanism)
                 ) && 
                 (
                     this.State == other.State ||
@@ -528,6 +551,11 @@ namespace device_catalog.Model
                     this._Object.Equals(other._Object)
                 ) && 
                 (
+                    this.EndpointType == other.EndpointType ||
+                    this.EndpointType != null &&
+                    this.EndpointType.Equals(other.EndpointType)
+                ) && 
+                (
                     this.Deployment == other.Deployment ||
                     this.Deployment != null &&
                     this.Deployment.Equals(other.Deployment)
@@ -563,9 +591,9 @@ namespace device_catalog.Model
                     this.Manifest.Equals(other.Manifest)
                 ) && 
                 (
-                    this.CaId == other.CaId ||
-                    this.CaId != null &&
-                    this.CaId.Equals(other.CaId)
+                    this.CustomAttributes == other.CustomAttributes ||
+                    this.CustomAttributes != null &&
+                    this.CustomAttributes.Equals(other.CustomAttributes)
                 );
         }
 
@@ -588,8 +616,8 @@ namespace device_catalog.Model
                     hash = hash * 59 + this.ConnectorExpirationDate.GetHashCode();
                 if (this.UpdatedAt != null)
                     hash = hash * 59 + this.UpdatedAt.GetHashCode();
-                if (this.Mechanism != null)
-                    hash = hash * 59 + this.Mechanism.GetHashCode();
+                if (this.CaId != null)
+                    hash = hash * 59 + this.CaId.GetHashCode();
                 if (this.DeviceClass != null)
                     hash = hash * 59 + this.DeviceClass.GetHashCode();
                 if (this.Id != null)
@@ -600,10 +628,12 @@ namespace device_catalog.Model
                     hash = hash * 59 + this.EndpointName.GetHashCode();
                 if (this.AutoUpdate != null)
                     hash = hash * 59 + this.AutoUpdate.GetHashCode();
+                if (this.HostGateway != null)
+                    hash = hash * 59 + this.HostGateway.GetHashCode();
                 if (this.DeviceExecutionMode != null)
                     hash = hash * 59 + this.DeviceExecutionMode.GetHashCode();
-                if (this.CustomAttributes != null)
-                    hash = hash * 59 + this.CustomAttributes.GetHashCode();
+                if (this.Mechanism != null)
+                    hash = hash * 59 + this.Mechanism.GetHashCode();
                 if (this.State != null)
                     hash = hash * 59 + this.State.GetHashCode();
                 if (this.Etag != null)
@@ -622,6 +652,8 @@ namespace device_catalog.Model
                     hash = hash * 59 + this.DeployedState.GetHashCode();
                 if (this._Object != null)
                     hash = hash * 59 + this._Object.GetHashCode();
+                if (this.EndpointType != null)
+                    hash = hash * 59 + this.EndpointType.GetHashCode();
                 if (this.Deployment != null)
                     hash = hash * 59 + this.Deployment.GetHashCode();
                 if (this.MechanismUrl != null)
@@ -636,8 +668,8 @@ namespace device_catalog.Model
                     hash = hash * 59 + this.CreatedAt.GetHashCode();
                 if (this.Manifest != null)
                     hash = hash * 59 + this.Manifest.GetHashCode();
-                if (this.CaId != null)
-                    hash = hash * 59 + this.CaId.GetHashCode();
+                if (this.CustomAttributes != null)
+                    hash = hash * 59 + this.CustomAttributes.GetHashCode();
                 return hash;
             }
         }
