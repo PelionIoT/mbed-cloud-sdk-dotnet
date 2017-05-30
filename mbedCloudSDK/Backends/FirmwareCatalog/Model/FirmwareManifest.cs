@@ -43,12 +43,12 @@ namespace firmware_catalog.Model
         /// <param name="CreatedAt">The time the object was created. (required).</param>
         /// <param name="_Object">The API resource entity. (required).</param>
         /// <param name="UpdatedAt">The time the object was updated. (required).</param>
-        /// <param name="ManifestContents">The contents of the manifest. (required).</param>
+        /// <param name="ManifestContents">ManifestContents (required).</param>
         /// <param name="Etag">The entity instance signature. (required).</param>
         /// <param name="DeviceClass">The class of device. (required).</param>
         /// <param name="Id">The ID of the firmware manifest. (required).</param>
         /// <param name="Name">The name of the object. (required).</param>
-        public FirmwareManifest(byte[] Datafile = default(byte[]), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), Object ManifestContents = default(Object), DateTime? Etag = default(DateTime?), string DeviceClass = default(string), string Id = default(string), string Name = default(string))
+        public FirmwareManifest(byte[] Datafile = default(byte[]), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), ManifestContents ManifestContents = default(ManifestContents), DateTime? Etag = default(DateTime?), string DeviceClass = default(string), string Id = default(string), string Name = default(string))
         {
             // to ensure "Datafile" is required (not null)
             if (Datafile == null)
@@ -187,11 +187,10 @@ namespace firmware_catalog.Model
         [DataMember(Name="updated_at", EmitDefaultValue=false)]
         public DateTime? UpdatedAt { get; set; }
         /// <summary>
-        /// The contents of the manifest.
+        /// Gets or Sets ManifestContents
         /// </summary>
-        /// <value>The contents of the manifest.</value>
         [DataMember(Name="manifest_contents", EmitDefaultValue=false)]
-        public Object ManifestContents { get; set; }
+        public ManifestContents ManifestContents { get; set; }
         /// <summary>
         /// The entity instance signature.
         /// </summary>
