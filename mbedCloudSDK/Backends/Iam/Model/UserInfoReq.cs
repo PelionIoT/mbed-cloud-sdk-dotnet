@@ -45,7 +45,7 @@ namespace iam.Model
         /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted..</param>
         /// <param name="Address">Address, not longer than 100 characters..</param>
         /// <param name="Password">The password when creating a new user. It will will generated when not present in the request..</param>
-        /// <param name="Email">The email address, not longer than 100 characters. (required).</param>
+        /// <param name="Email">The email address, not longer than 254 characters. (required).</param>
         public UserInfoReq(string PhoneNumber = default(string), string Username = default(string), List<string> Groups = default(List<string>), bool? IsGtcAccepted = default(bool?), string FullName = default(string), bool? IsMarketingAccepted = default(bool?), string Address = default(string), string Password = default(string), string Email = default(string))
         {
             // to ensure "Email" is required (not null)
@@ -116,9 +116,9 @@ namespace iam.Model
         [DataMember(Name="password", EmitDefaultValue=false)]
         public string Password { get; set; }
         /// <summary>
-        /// The email address, not longer than 100 characters.
+        /// The email address, not longer than 254 characters.
         /// </summary>
-        /// <value>The email address, not longer than 100 characters.</value>
+        /// <value>The email address, not longer than 254 characters.</value>
         [DataMember(Name="email", EmitDefaultValue=false)]
         public string Email { get; set; }
         /// <summary>

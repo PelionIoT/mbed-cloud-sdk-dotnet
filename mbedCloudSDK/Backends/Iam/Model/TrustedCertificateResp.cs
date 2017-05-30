@@ -51,6 +51,27 @@ namespace iam.Model
         }
 
         /// <summary>
+        /// Status of the certificate.
+        /// </summary>
+        /// <value>Status of the certificate.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StatusEnum
+        {
+            
+            /// <summary>
+            /// Enum ACTIVE for "ACTIVE"
+            /// </summary>
+            [EnumMember(Value = "ACTIVE")]
+            ACTIVE,
+            
+            /// <summary>
+            /// Enum INACTIVE for "INACTIVE"
+            /// </summary>
+            [EnumMember(Value = "INACTIVE")]
+            INACTIVE
+        }
+
+        /// <summary>
         /// Entity name: always 'trusted-cert'
         /// </summary>
         /// <value>Entity name: always 'trusted-cert'</value>
@@ -114,6 +135,12 @@ namespace iam.Model
         [DataMember(Name="service", EmitDefaultValue=false)]
         public ServiceEnum? Service { get; set; }
         /// <summary>
+        /// Status of the certificate.
+        /// </summary>
+        /// <value>Status of the certificate.</value>
+        [DataMember(Name="status", EmitDefaultValue=false)]
+        public StatusEnum? Status { get; set; }
+        /// <summary>
         /// Entity name: always 'trusted-cert'
         /// </summary>
         /// <value>Entity name: always 'trusted-cert'</value>
@@ -128,8 +155,10 @@ namespace iam.Model
         /// Initializes a new instance of the <see cref="TrustedCertificateResp" /> class.
         /// </summary>
         /// <param name="Service">Service name where the certificate is to be used. (required).</param>
+        /// <param name="Status">Status of the certificate..</param>
         /// <param name="Description">Human readable description of this certificate..</param>
         /// <param name="Certificate">X509.v3 trusted certificate in PEM format. (required).</param>
+        /// <param name="Issuer">Issuer of the certificate. (required).</param>
         /// <param name="DeviceExecutionMode">Device execution mode where 1 means a developer certificate..</param>
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
         /// <param name="_Object">Entity name: always &#39;trusted-cert&#39; (required).</param>
@@ -137,10 +166,10 @@ namespace iam.Model
         /// <param name="AccountId">The UUID of the account. (required).</param>
         /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="Validity">Expiration time in UTC formatted as RFC3339. (required).</param>
-        /// <param name="Issuer">Issuer of the certificate. (required).</param>
+        /// <param name="OwnerId">The UUID of the owner..</param>
         /// <param name="Id">Entity ID. (required).</param>
         /// <param name="Name">Certificate name. (required).</param>
-        public TrustedCertificateResp(ServiceEnum? Service = default(ServiceEnum?), string Description = default(string), string Certificate = default(string), int? DeviceExecutionMode = default(int?), string CreatedAt = default(string), ObjectEnum? _Object = default(ObjectEnum?), string Subject = default(string), string AccountId = default(string), string Etag = default(string), string Validity = default(string), string Issuer = default(string), string Id = default(string), string Name = default(string))
+        public TrustedCertificateResp(ServiceEnum? Service = default(ServiceEnum?), StatusEnum? Status = default(StatusEnum?), string Description = default(string), string Certificate = default(string), string Issuer = default(string), int? DeviceExecutionMode = default(int?), string CreatedAt = default(string), ObjectEnum? _Object = default(ObjectEnum?), string Subject = default(string), string AccountId = default(string), string Etag = default(string), string Validity = default(string), string OwnerId = default(string), string Id = default(string), string Name = default(string))
         {
             // to ensure "Service" is required (not null)
             if (Service == null)
@@ -159,6 +188,15 @@ namespace iam.Model
             else
             {
                 this.Certificate = Certificate;
+            }
+            // to ensure "Issuer" is required (not null)
+            if (Issuer == null)
+            {
+                throw new InvalidDataException("Issuer is a required property for TrustedCertificateResp and cannot be null");
+            }
+            else
+            {
+                this.Issuer = Issuer;
             }
             // to ensure "_Object" is required (not null)
             if (_Object == null)
@@ -205,15 +243,6 @@ namespace iam.Model
             {
                 this.Validity = Validity;
             }
-            // to ensure "Issuer" is required (not null)
-            if (Issuer == null)
-            {
-                throw new InvalidDataException("Issuer is a required property for TrustedCertificateResp and cannot be null");
-            }
-            else
-            {
-                this.Issuer = Issuer;
-            }
             // to ensure "Id" is required (not null)
             if (Id == null)
             {
@@ -232,9 +261,11 @@ namespace iam.Model
             {
                 this.Name = Name;
             }
+            this.Status = Status;
             this.Description = Description;
             this.DeviceExecutionMode = DeviceExecutionMode;
             this.CreatedAt = CreatedAt;
+            this.OwnerId = OwnerId;
         }
         
         /// <summary>
@@ -249,6 +280,12 @@ namespace iam.Model
         /// <value>X509.v3 trusted certificate in PEM format.</value>
         [DataMember(Name="certificate", EmitDefaultValue=false)]
         public string Certificate { get; set; }
+        /// <summary>
+        /// Issuer of the certificate.
+        /// </summary>
+        /// <value>Issuer of the certificate.</value>
+        [DataMember(Name="issuer", EmitDefaultValue=false)]
+        public string Issuer { get; set; }
         /// <summary>
         /// Device execution mode where 1 means a developer certificate.
         /// </summary>
@@ -286,11 +323,11 @@ namespace iam.Model
         [DataMember(Name="validity", EmitDefaultValue=false)]
         public string Validity { get; set; }
         /// <summary>
-        /// Issuer of the certificate.
+        /// The UUID of the owner.
         /// </summary>
-        /// <value>Issuer of the certificate.</value>
-        [DataMember(Name="issuer", EmitDefaultValue=false)]
-        public string Issuer { get; set; }
+        /// <value>The UUID of the owner.</value>
+        [DataMember(Name="owner_id", EmitDefaultValue=false)]
+        public string OwnerId { get; set; }
         /// <summary>
         /// Entity ID.
         /// </summary>
@@ -312,8 +349,10 @@ namespace iam.Model
             var sb = new StringBuilder();
             sb.Append("class TrustedCertificateResp {\n");
             sb.Append("  Service: ").Append(Service).Append("\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Certificate: ").Append(Certificate).Append("\n");
+            sb.Append("  Issuer: ").Append(Issuer).Append("\n");
             sb.Append("  DeviceExecutionMode: ").Append(DeviceExecutionMode).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
@@ -321,7 +360,7 @@ namespace iam.Model
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  Validity: ").Append(Validity).Append("\n");
-            sb.Append("  Issuer: ").Append(Issuer).Append("\n");
+            sb.Append("  OwnerId: ").Append(OwnerId).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
@@ -366,6 +405,11 @@ namespace iam.Model
                     this.Service.Equals(other.Service)
                 ) && 
                 (
+                    this.Status == other.Status ||
+                    this.Status != null &&
+                    this.Status.Equals(other.Status)
+                ) && 
+                (
                     this.Description == other.Description ||
                     this.Description != null &&
                     this.Description.Equals(other.Description)
@@ -374,6 +418,11 @@ namespace iam.Model
                     this.Certificate == other.Certificate ||
                     this.Certificate != null &&
                     this.Certificate.Equals(other.Certificate)
+                ) && 
+                (
+                    this.Issuer == other.Issuer ||
+                    this.Issuer != null &&
+                    this.Issuer.Equals(other.Issuer)
                 ) && 
                 (
                     this.DeviceExecutionMode == other.DeviceExecutionMode ||
@@ -411,9 +460,9 @@ namespace iam.Model
                     this.Validity.Equals(other.Validity)
                 ) && 
                 (
-                    this.Issuer == other.Issuer ||
-                    this.Issuer != null &&
-                    this.Issuer.Equals(other.Issuer)
+                    this.OwnerId == other.OwnerId ||
+                    this.OwnerId != null &&
+                    this.OwnerId.Equals(other.OwnerId)
                 ) && 
                 (
                     this.Id == other.Id ||
@@ -440,10 +489,14 @@ namespace iam.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.Service != null)
                     hash = hash * 59 + this.Service.GetHashCode();
+                if (this.Status != null)
+                    hash = hash * 59 + this.Status.GetHashCode();
                 if (this.Description != null)
                     hash = hash * 59 + this.Description.GetHashCode();
                 if (this.Certificate != null)
                     hash = hash * 59 + this.Certificate.GetHashCode();
+                if (this.Issuer != null)
+                    hash = hash * 59 + this.Issuer.GetHashCode();
                 if (this.DeviceExecutionMode != null)
                     hash = hash * 59 + this.DeviceExecutionMode.GetHashCode();
                 if (this.CreatedAt != null)
@@ -458,8 +511,8 @@ namespace iam.Model
                     hash = hash * 59 + this.Etag.GetHashCode();
                 if (this.Validity != null)
                     hash = hash * 59 + this.Validity.GetHashCode();
-                if (this.Issuer != null)
-                    hash = hash * 59 + this.Issuer.GetHashCode();
+                if (this.OwnerId != null)
+                    hash = hash * 59 + this.OwnerId.GetHashCode();
                 if (this.Id != null)
                     hash = hash * 59 + this.Id.GetHashCode();
                 if (this.Name != null)

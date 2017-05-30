@@ -30,6 +30,27 @@ namespace iam.Model
     public partial class TrustedCertificateReq :  IEquatable<TrustedCertificateReq>, IValidatableObject
     {
         /// <summary>
+        /// Status of the certificate.
+        /// </summary>
+        /// <value>Status of the certificate.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StatusEnum
+        {
+            
+            /// <summary>
+            /// Enum ACTIVE for "ACTIVE"
+            /// </summary>
+            [EnumMember(Value = "ACTIVE")]
+            ACTIVE,
+            
+            /// <summary>
+            /// Enum INACTIVE for "INACTIVE"
+            /// </summary>
+            [EnumMember(Value = "INACTIVE")]
+            INACTIVE
+        }
+
+        /// <summary>
         /// Service name where the certificate must be used.
         /// </summary>
         /// <value>Service name where the certificate must be used.</value>
@@ -51,6 +72,12 @@ namespace iam.Model
         }
 
         /// <summary>
+        /// Status of the certificate.
+        /// </summary>
+        /// <value>Status of the certificate.</value>
+        [DataMember(Name="status", EmitDefaultValue=false)]
+        public StatusEnum? Status { get; set; }
+        /// <summary>
         /// Service name where the certificate must be used.
         /// </summary>
         /// <value>Service name where the certificate must be used.</value>
@@ -64,13 +91,32 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TrustedCertificateReq" /> class.
         /// </summary>
+        /// <param name="Status">Status of the certificate..</param>
+        /// <param name="Certificate">X509.v3 trusted certificate in PEM format. (required).</param>
+        /// <param name="Name">Certificate name, not longer than 100 characters. (required).</param>
         /// <param name="Service">Service name where the certificate must be used. (required).</param>
         /// <param name="Signature">Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. (required).</param>
-        /// <param name="Name">Certificate name, not longer than 100 characters. (required).</param>
-        /// <param name="Certificate">X509.v3 trusted certificate in PEM format. (required).</param>
         /// <param name="Description">Human readable description of this certificate, not longer than 500 characters..</param>
-        public TrustedCertificateReq(ServiceEnum? Service = default(ServiceEnum?), string Signature = default(string), string Name = default(string), string Certificate = default(string), string Description = default(string))
+        public TrustedCertificateReq(StatusEnum? Status = default(StatusEnum?), string Certificate = default(string), string Name = default(string), ServiceEnum? Service = default(ServiceEnum?), string Signature = default(string), string Description = default(string))
         {
+            // to ensure "Certificate" is required (not null)
+            if (Certificate == null)
+            {
+                throw new InvalidDataException("Certificate is a required property for TrustedCertificateReq and cannot be null");
+            }
+            else
+            {
+                this.Certificate = Certificate;
+            }
+            // to ensure "Name" is required (not null)
+            if (Name == null)
+            {
+                throw new InvalidDataException("Name is a required property for TrustedCertificateReq and cannot be null");
+            }
+            else
+            {
+                this.Name = Name;
+            }
             // to ensure "Service" is required (not null)
             if (Service == null)
             {
@@ -89,33 +135,16 @@ namespace iam.Model
             {
                 this.Signature = Signature;
             }
-            // to ensure "Name" is required (not null)
-            if (Name == null)
-            {
-                throw new InvalidDataException("Name is a required property for TrustedCertificateReq and cannot be null");
-            }
-            else
-            {
-                this.Name = Name;
-            }
-            // to ensure "Certificate" is required (not null)
-            if (Certificate == null)
-            {
-                throw new InvalidDataException("Certificate is a required property for TrustedCertificateReq and cannot be null");
-            }
-            else
-            {
-                this.Certificate = Certificate;
-            }
+            this.Status = Status;
             this.Description = Description;
         }
         
         /// <summary>
-        /// Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256.
+        /// X509.v3 trusted certificate in PEM format.
         /// </summary>
-        /// <value>Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256.</value>
-        [DataMember(Name="signature", EmitDefaultValue=false)]
-        public string Signature { get; set; }
+        /// <value>X509.v3 trusted certificate in PEM format.</value>
+        [DataMember(Name="certificate", EmitDefaultValue=false)]
+        public string Certificate { get; set; }
         /// <summary>
         /// Certificate name, not longer than 100 characters.
         /// </summary>
@@ -123,11 +152,11 @@ namespace iam.Model
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
-        /// X509.v3 trusted certificate in PEM format.
+        /// Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256.
         /// </summary>
-        /// <value>X509.v3 trusted certificate in PEM format.</value>
-        [DataMember(Name="certificate", EmitDefaultValue=false)]
-        public string Certificate { get; set; }
+        /// <value>Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256.</value>
+        [DataMember(Name="signature", EmitDefaultValue=false)]
+        public string Signature { get; set; }
         /// <summary>
         /// Human readable description of this certificate, not longer than 500 characters.
         /// </summary>
@@ -142,10 +171,11 @@ namespace iam.Model
         {
             var sb = new StringBuilder();
             sb.Append("class TrustedCertificateReq {\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  Certificate: ").Append(Certificate).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Service: ").Append(Service).Append("\n");
             sb.Append("  Signature: ").Append(Signature).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Certificate: ").Append(Certificate).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -184,6 +214,21 @@ namespace iam.Model
 
             return 
                 (
+                    this.Status == other.Status ||
+                    this.Status != null &&
+                    this.Status.Equals(other.Status)
+                ) && 
+                (
+                    this.Certificate == other.Certificate ||
+                    this.Certificate != null &&
+                    this.Certificate.Equals(other.Certificate)
+                ) && 
+                (
+                    this.Name == other.Name ||
+                    this.Name != null &&
+                    this.Name.Equals(other.Name)
+                ) && 
+                (
                     this.Service == other.Service ||
                     this.Service != null &&
                     this.Service.Equals(other.Service)
@@ -192,16 +237,6 @@ namespace iam.Model
                     this.Signature == other.Signature ||
                     this.Signature != null &&
                     this.Signature.Equals(other.Signature)
-                ) && 
-                (
-                    this.Name == other.Name ||
-                    this.Name != null &&
-                    this.Name.Equals(other.Name)
-                ) && 
-                (
-                    this.Certificate == other.Certificate ||
-                    this.Certificate != null &&
-                    this.Certificate.Equals(other.Certificate)
                 ) && 
                 (
                     this.Description == other.Description ||
@@ -221,14 +256,16 @@ namespace iam.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
+                if (this.Status != null)
+                    hash = hash * 59 + this.Status.GetHashCode();
+                if (this.Certificate != null)
+                    hash = hash * 59 + this.Certificate.GetHashCode();
+                if (this.Name != null)
+                    hash = hash * 59 + this.Name.GetHashCode();
                 if (this.Service != null)
                     hash = hash * 59 + this.Service.GetHashCode();
                 if (this.Signature != null)
                     hash = hash * 59 + this.Signature.GetHashCode();
-                if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
-                if (this.Certificate != null)
-                    hash = hash * 59 + this.Certificate.GetHashCode();
                 if (this.Description != null)
                     hash = hash * 59 + this.Description.GetHashCode();
                 return hash;
