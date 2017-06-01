@@ -138,7 +138,7 @@ namespace device_catalog.Model
         /// <param name="CaId">ID of the issuer of the certificate..</param>
         /// <param name="DeviceClass">The device class..</param>
         /// <param name="Id">The ID of the device..</param>
-        /// <param name="AccountId">The owning IAM account ID..</param>
+        /// <param name="AccountId">The ID of the associated account..</param>
         /// <param name="EndpointName">The endpoint name given to the device..</param>
         /// <param name="AutoUpdate">Mark this device for auto firmware update..</param>
         /// <param name="HostGateway">The endpoint_name of the host gateway, if appropriate..</param>
@@ -240,9 +240,9 @@ namespace device_catalog.Model
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
         /// <summary>
-        /// The owning IAM account ID.
+        /// The ID of the associated account.
         /// </summary>
-        /// <value>The owning IAM account ID.</value>
+        /// <value>The ID of the associated account.</value>
         [DataMember(Name="account_id", EmitDefaultValue=false)]
         public string AccountId { get; set; }
         /// <summary>
