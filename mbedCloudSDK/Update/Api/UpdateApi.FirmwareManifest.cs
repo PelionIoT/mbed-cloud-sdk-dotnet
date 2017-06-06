@@ -79,7 +79,7 @@ namespace mbedCloudSDK.Update.Api
         /// Delete firmware manifest.
         /// </summary>
         /// <param name="manifestId">Id of the manifest to be deleted.</param>
-        public void DeleteFirmwareManifest(int manifestId)
+        public void DeleteFirmwareManifest(string manifestId)
         {
             try
             {

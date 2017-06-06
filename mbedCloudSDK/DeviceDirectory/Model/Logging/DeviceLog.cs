@@ -103,7 +103,7 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Logging
         /// </summary>
         /// <param name="deviceLogSerializer"></param>
         /// <returns></returns>
-        public static DeviceLog Map(DeviceLogData deviceLogSerializer)
+        public static DeviceLog Map(DeviceEventData deviceLogSerializer)
         {
             var deviceLog = new DeviceLog();
             deviceLog.Changes = deviceLogSerializer.Changes;
@@ -111,7 +111,7 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Logging
             deviceLog.DateTime = deviceLogSerializer.DateTime;
             deviceLog.Description = deviceLogSerializer.Description;
             deviceLog.DeviceId = deviceLogSerializer.DeviceId;
-            deviceLog.DeviceLogId = deviceLogSerializer.DeviceLogId;
+            deviceLog.DeviceLogId = deviceLogSerializer.Id;
             deviceLog.EventTypeDescription = deviceLogSerializer.EventTypeDescription;
             deviceLogSerializer.StateChange = deviceLogSerializer.StateChange;
             if (deviceLogSerializer.EventType != null)

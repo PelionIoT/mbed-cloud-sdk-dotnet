@@ -79,7 +79,7 @@ namespace mbedCloudSDK.Update.Api
         /// Delete firmware image.
         /// </summary>
         /// <param name="firmwareImageId">Id of the firmware image.</param>
-        public void DeleteFirmwareImage(int firmwareImageId)
+        public void DeleteFirmwareImage(string firmwareImageId)
         {
             try
             {

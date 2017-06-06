@@ -97,10 +97,10 @@ namespace mbedCloudSDK.AccountManagement.Model.Group
             var group = new Group();
             group.Name = groupInfo.Name;
             group.LastUpdateTime = groupInfo.LastUpdateTime;
-            group.ApiKeyCount = groupInfo.ApiKeyCount;
+            group.ApiKeyCount = groupInfo.ApikeyCount;
             group.CreatedAt = groupInfo.CreatedAt;
             group.CreationTime = groupInfo.CreationTime;
-            group.AccountId = groupInfo.AccountID;
+            group.AccountId = groupInfo.AccountId;
             group.Id = groupInfo.Id;
             group.UserCount = groupInfo.UserCount;
             return group;
