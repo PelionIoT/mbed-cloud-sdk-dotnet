@@ -21,8 +21,8 @@ namespace ConsoleExamples
             }
             string apiKey = args[0];
             Config config = new Config(apiKey);
-            //config.Host = "https://api.mbedcloud.com";
 
+            //Change default host
             config.Host = "https://lab-api.mbedcloudintegration.net";
             string example;
             while(true)

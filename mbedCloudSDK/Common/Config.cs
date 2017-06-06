@@ -11,7 +11,7 @@ namespace mbedCloudSDK.Common
     /// </summary>
 	public class Config
     {
-        private string host;
+        private string host = "https://api.us-east-1.mbedcloud.com";
         private string apiKey;
         private string authorizationPrefix = "Bearer";
 
