@@ -135,7 +135,7 @@ namespace mds.Api
         /// Subscribe to a resource path
         /// </summary>
         /// <remarks>
-        /// The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
+        /// The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push notifications of the resource changes.  The manual subscriptions are removed during a full device registration and applications need to  re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
@@ -147,7 +147,7 @@ namespace mds.Api
         /// Subscribe to a resource path
         /// </summary>
         /// <remarks>
-        /// The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
+        /// The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push notifications of the resource changes.  The manual subscriptions are removed during a full device registration and applications need to  re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
@@ -161,8 +161,8 @@ namespace mds.Api
         /// You can retrieve the pre-subscription data by using a GET operation. The server returns with the same JSON structure  as described above. If there are no pre-subscribed resources, it returns with an empty array. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void V2SubscriptionsGet ();
+        /// <returns>PresubscriptionArray</returns>
+        PresubscriptionArray V2SubscriptionsGet ();
 
         /// <summary>
         /// Get pre-subscriptions
@@ -171,8 +171,8 @@ namespace mds.Api
         /// You can retrieve the pre-subscription data by using a GET operation. The server returns with the same JSON structure  as described above. If there are no pre-subscribed resources, it returns with an empty array. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V2SubscriptionsGetWithHttpInfo ();
+        /// <returns>ApiResponse of PresubscriptionArray</returns>
+        ApiResponse<PresubscriptionArray> V2SubscriptionsGetWithHttpInfo ();
         /// <summary>
         /// Set pre-subscriptions
         /// </summary>
@@ -307,7 +307,7 @@ namespace mds.Api
         /// Subscribe to a resource path
         /// </summary>
         /// <remarks>
-        /// The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
+        /// The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push notifications of the resource changes.  The manual subscriptions are removed during a full device registration and applications need to  re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
@@ -319,7 +319,7 @@ namespace mds.Api
         /// Subscribe to a resource path
         /// </summary>
         /// <remarks>
-        /// The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
+        /// The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push notifications of the resource changes.  The manual subscriptions are removed during a full device registration and applications need to  re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
@@ -333,8 +333,8 @@ namespace mds.Api
         /// You can retrieve the pre-subscription data by using a GET operation. The server returns with the same JSON structure  as described above. If there are no pre-subscribed resources, it returns with an empty array. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V2SubscriptionsGetAsync ();
+        /// <returns>Task of PresubscriptionArray</returns>
+        System.Threading.Tasks.Task<PresubscriptionArray> V2SubscriptionsGetAsync ();
 
         /// <summary>
         /// Get pre-subscriptions
@@ -343,8 +343,8 @@ namespace mds.Api
         /// You can retrieve the pre-subscription data by using a GET operation. The server returns with the same JSON structure  as described above. If there are no pre-subscribed resources, it returns with an empty array. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsGetAsyncWithHttpInfo ();
+        /// <returns>Task of ApiResponse (PresubscriptionArray)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PresubscriptionArray>> V2SubscriptionsGetAsyncWithHttpInfo ();
         /// <summary>
         /// Set pre-subscriptions
         /// </summary>
@@ -1241,7 +1241,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Subscribe to a resource path The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
+        /// Subscribe to a resource path The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push notifications of the resource changes.  The manual subscriptions are removed during a full device registration and applications need to  re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
@@ -1253,7 +1253,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Subscribe to a resource path The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
+        /// Subscribe to a resource path The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push notifications of the resource changes.  The manual subscriptions are removed during a full device registration and applications need to  re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
@@ -1322,7 +1322,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Subscribe to a resource path The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
+        /// Subscribe to a resource path The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push notifications of the resource changes.  The manual subscriptions are removed during a full device registration and applications need to  re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
@@ -1335,7 +1335,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Subscribe to a resource path The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push a notification of the resource changes.  You can also use &#x60;/subscriptions&#x60; to set a pre-subscription. 
+        /// Subscribe to a resource path The mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LWM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get mbed Cloud Connect to push notifications of the resource changes.  The manual subscriptions are removed during a full device registration and applications need to  re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
@@ -1406,18 +1406,19 @@ namespace mds.Api
         /// Get pre-subscriptions You can retrieve the pre-subscription data by using a GET operation. The server returns with the same JSON structure  as described above. If there are no pre-subscribed resources, it returns with an empty array. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void V2SubscriptionsGet ()
+        /// <returns>PresubscriptionArray</returns>
+        public PresubscriptionArray V2SubscriptionsGet ()
         {
-             V2SubscriptionsGetWithHttpInfo();
+             ApiResponse<PresubscriptionArray> localVarResponse = V2SubscriptionsGetWithHttpInfo();
+             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get pre-subscriptions You can retrieve the pre-subscription data by using a GET operation. The server returns with the same JSON structure  as described above. If there are no pre-subscribed resources, it returns with an empty array. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V2SubscriptionsGetWithHttpInfo ()
+        /// <returns>ApiResponse of PresubscriptionArray</returns>
+        public ApiResponse< PresubscriptionArray > V2SubscriptionsGetWithHttpInfo ()
         {
 
             var localVarPath = "/v2/subscriptions";
@@ -1465,20 +1466,21 @@ namespace mds.Api
                 if (exception != null) throw exception;
             }
 
-            
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<PresubscriptionArray>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (PresubscriptionArray) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PresubscriptionArray)));
+            
         }
 
         /// <summary>
         /// Get pre-subscriptions You can retrieve the pre-subscription data by using a GET operation. The server returns with the same JSON structure  as described above. If there are no pre-subscribed resources, it returns with an empty array. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V2SubscriptionsGetAsync ()
+        /// <returns>Task of PresubscriptionArray</returns>
+        public async System.Threading.Tasks.Task<PresubscriptionArray> V2SubscriptionsGetAsync ()
         {
-             await V2SubscriptionsGetAsyncWithHttpInfo();
+             ApiResponse<PresubscriptionArray> localVarResponse = await V2SubscriptionsGetAsyncWithHttpInfo();
+             return localVarResponse.Data;
 
         }
 
@@ -1486,8 +1488,8 @@ namespace mds.Api
         /// Get pre-subscriptions You can retrieve the pre-subscription data by using a GET operation. The server returns with the same JSON structure  as described above. If there are no pre-subscribed resources, it returns with an empty array. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsGetAsyncWithHttpInfo ()
+        /// <returns>Task of ApiResponse (PresubscriptionArray)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<PresubscriptionArray>> V2SubscriptionsGetAsyncWithHttpInfo ()
         {
 
             var localVarPath = "/v2/subscriptions";
@@ -1534,10 +1536,10 @@ namespace mds.Api
                 if (exception != null) throw exception;
             }
 
-            
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<PresubscriptionArray>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (PresubscriptionArray) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PresubscriptionArray)));
+            
         }
 
         /// <summary>

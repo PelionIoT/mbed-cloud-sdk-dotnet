@@ -33,16 +33,16 @@ namespace iam.Model
         /// Initializes a new instance of the <see cref="AccountUpdateReq" /> class.
         /// </summary>
         /// <param name="AddressLine2">Postal address line 2, not longer than 100 characters..</param>
-        /// <param name="City">The city part of the postal address, not longer than 100 characters..</param>
-        /// <param name="AddressLine1">Postal address line 1, not longer than 100 characters..</param>
+        /// <param name="City">The city part of the postal address, not longer than 100 characters. Required for commercial accounts only..</param>
+        /// <param name="AddressLine1">Postal address line 1, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="DisplayName">The display name for the account, not longer than 100 characters..</param>
-        /// <param name="Country">The country part of the postal address, not longer than 100 characters..</param>
-        /// <param name="Company">The name of the company, not longer than 100 characters..</param>
+        /// <param name="Country">The country part of the postal address, not longer than 100 characters. Required for commercial accounts only..</param>
+        /// <param name="Company">The name of the company, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="State">The state part of the postal address, not longer than 100 characters..</param>
-        /// <param name="Contact">The name of the contact person for this account, not longer than 100 characters..</param>
+        /// <param name="Contact">The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="PostalCode">The postal code part of the postal address, not longer than 100 characters..</param>
         /// <param name="PhoneNumber">The phone number of the company, not longer than 100 characters..</param>
-        /// <param name="Email">The company email address for this account, not longer than 100 characters..</param>
+        /// <param name="Email">The company email address for this account, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="Aliases">An array of aliases, not more than 10..</param>
         public AccountUpdateReq(string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string Country = default(string), string Company = default(string), string State = default(string), string Contact = default(string), string PostalCode = default(string), string PhoneNumber = default(string), string Email = default(string), List<string> Aliases = default(List<string>))
         {
@@ -67,15 +67,15 @@ namespace iam.Model
         [DataMember(Name="address_line2", EmitDefaultValue=false)]
         public string AddressLine2 { get; set; }
         /// <summary>
-        /// The city part of the postal address, not longer than 100 characters.
+        /// The city part of the postal address, not longer than 100 characters. Required for commercial accounts only.
         /// </summary>
-        /// <value>The city part of the postal address, not longer than 100 characters.</value>
+        /// <value>The city part of the postal address, not longer than 100 characters. Required for commercial accounts only.</value>
         [DataMember(Name="city", EmitDefaultValue=false)]
         public string City { get; set; }
         /// <summary>
-        /// Postal address line 1, not longer than 100 characters.
+        /// Postal address line 1, not longer than 100 characters. Required for commercial accounts only.
         /// </summary>
-        /// <value>Postal address line 1, not longer than 100 characters.</value>
+        /// <value>Postal address line 1, not longer than 100 characters. Required for commercial accounts only.</value>
         [DataMember(Name="address_line1", EmitDefaultValue=false)]
         public string AddressLine1 { get; set; }
         /// <summary>
@@ -85,15 +85,15 @@ namespace iam.Model
         [DataMember(Name="display_name", EmitDefaultValue=false)]
         public string DisplayName { get; set; }
         /// <summary>
-        /// The country part of the postal address, not longer than 100 characters.
+        /// The country part of the postal address, not longer than 100 characters. Required for commercial accounts only.
         /// </summary>
-        /// <value>The country part of the postal address, not longer than 100 characters.</value>
+        /// <value>The country part of the postal address, not longer than 100 characters. Required for commercial accounts only.</value>
         [DataMember(Name="country", EmitDefaultValue=false)]
         public string Country { get; set; }
         /// <summary>
-        /// The name of the company, not longer than 100 characters.
+        /// The name of the company, not longer than 100 characters. Required for commercial accounts only.
         /// </summary>
-        /// <value>The name of the company, not longer than 100 characters.</value>
+        /// <value>The name of the company, not longer than 100 characters. Required for commercial accounts only.</value>
         [DataMember(Name="company", EmitDefaultValue=false)]
         public string Company { get; set; }
         /// <summary>
@@ -103,9 +103,9 @@ namespace iam.Model
         [DataMember(Name="state", EmitDefaultValue=false)]
         public string State { get; set; }
         /// <summary>
-        /// The name of the contact person for this account, not longer than 100 characters.
+        /// The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only.
         /// </summary>
-        /// <value>The name of the contact person for this account, not longer than 100 characters.</value>
+        /// <value>The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only.</value>
         [DataMember(Name="contact", EmitDefaultValue=false)]
         public string Contact { get; set; }
         /// <summary>
@@ -121,9 +121,9 @@ namespace iam.Model
         [DataMember(Name="phone_number", EmitDefaultValue=false)]
         public string PhoneNumber { get; set; }
         /// <summary>
-        /// The company email address for this account, not longer than 100 characters.
+        /// The company email address for this account, not longer than 100 characters. Required for commercial accounts only.
         /// </summary>
-        /// <value>The company email address for this account, not longer than 100 characters.</value>
+        /// <value>The company email address for this account, not longer than 100 characters. Required for commercial accounts only.</value>
         [DataMember(Name="email", EmitDefaultValue=false)]
         public string Email { get; set; }
         /// <summary>

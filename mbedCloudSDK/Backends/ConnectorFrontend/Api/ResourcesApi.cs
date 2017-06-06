@@ -61,8 +61,8 @@ namespace connector_frontend.Api
         /// <param name="resourcePath">Resource&#39;s url.</param>
         /// <param name="cacheOnly">Decides if the response comes only from the cache or from the device. Default value is false. (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values [0 - 7 ] are interpreted as matching to the corresponding CS value. This is an optional field.  (optional)</param>
-        /// <returns>string</returns>
-        string V3DevicesDeviceIdCachedResourcesResourcePathGet (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null);
+        /// <returns></returns>
+        void V3DevicesDeviceIdCachedResourcesResourcePathGet (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null);
 
         /// <summary>
         /// Read from a resource
@@ -75,8 +75,8 @@ namespace connector_frontend.Api
         /// <param name="resourcePath">Resource&#39;s url.</param>
         /// <param name="cacheOnly">Decides if the response comes only from the cache or from the device. Default value is false. (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values [0 - 7 ] are interpreted as matching to the corresponding CS value. This is an optional field.  (optional)</param>
-        /// <returns>ApiResponse of string</returns>
-        ApiResponse<string> V3DevicesDeviceIdCachedResourcesResourcePathGetWithHttpInfo (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null);
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> V3DevicesDeviceIdCachedResourcesResourcePathGetWithHttpInfo (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null);
         /// <summary>
         /// Execute a function on a resource
         /// </summary>
@@ -173,8 +173,8 @@ namespace connector_frontend.Api
         /// <param name="resourcePath">Resource&#39;s url.</param>
         /// <param name="cacheOnly">Decides if the response comes only from the cache or from the device. Default value is false. (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values [0 - 7 ] are interpreted as matching to the corresponding CS value. This is an optional field.  (optional)</param>
-        /// <returns>Task of string</returns>
-        System.Threading.Tasks.Task<string> V3DevicesDeviceIdCachedResourcesResourcePathGetAsync (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null);
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task V3DevicesDeviceIdCachedResourcesResourcePathGetAsync (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null);
 
         /// <summary>
         /// Read from a resource
@@ -187,8 +187,8 @@ namespace connector_frontend.Api
         /// <param name="resourcePath">Resource&#39;s url.</param>
         /// <param name="cacheOnly">Decides if the response comes only from the cache or from the device. Default value is false. (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values [0 - 7 ] are interpreted as matching to the corresponding CS value. This is an optional field.  (optional)</param>
-        /// <returns>Task of ApiResponse (string)</returns>
-        System.Threading.Tasks.Task<ApiResponse<string>> V3DevicesDeviceIdCachedResourcesResourcePathGetAsyncWithHttpInfo (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null);
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> V3DevicesDeviceIdCachedResourcesResourcePathGetAsyncWithHttpInfo (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null);
         /// <summary>
         /// Execute a function on a resource
         /// </summary>
@@ -539,11 +539,10 @@ namespace connector_frontend.Api
         /// <param name="resourcePath">Resource&#39;s url.</param>
         /// <param name="cacheOnly">Decides if the response comes only from the cache or from the device. Default value is false. (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values [0 - 7 ] are interpreted as matching to the corresponding CS value. This is an optional field.  (optional)</param>
-        /// <returns>string</returns>
-        public string V3DevicesDeviceIdCachedResourcesResourcePathGet (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null)
+        /// <returns></returns>
+        public void V3DevicesDeviceIdCachedResourcesResourcePathGet (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null)
         {
-             ApiResponse<string> localVarResponse = V3DevicesDeviceIdCachedResourcesResourcePathGetWithHttpInfo(endpointName, resourcePath, cacheOnly, pri);
-             return localVarResponse.Data;
+             V3DevicesDeviceIdCachedResourcesResourcePathGetWithHttpInfo(endpointName, resourcePath, cacheOnly, pri);
         }
 
         /// <summary>
@@ -554,8 +553,8 @@ namespace connector_frontend.Api
         /// <param name="resourcePath">Resource&#39;s url.</param>
         /// <param name="cacheOnly">Decides if the response comes only from the cache or from the device. Default value is false. (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values [0 - 7 ] are interpreted as matching to the corresponding CS value. This is an optional field.  (optional)</param>
-        /// <returns>ApiResponse of string</returns>
-        public ApiResponse< string > V3DevicesDeviceIdCachedResourcesResourcePathGetWithHttpInfo (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null)
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> V3DevicesDeviceIdCachedResourcesResourcePathGetWithHttpInfo (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null)
         {
             // verify the required parameter 'endpointName' is set
             if (endpointName == null)
@@ -579,7 +578,7 @@ namespace connector_frontend.Api
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
-                "text/plain"
+                "application/json"
             };
             String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
@@ -613,10 +612,10 @@ namespace connector_frontend.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<string>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (string) Configuration.ApiClient.Deserialize(localVarResponse, typeof(string)));
             
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
         }
 
         /// <summary>
@@ -627,11 +626,10 @@ namespace connector_frontend.Api
         /// <param name="resourcePath">Resource&#39;s url.</param>
         /// <param name="cacheOnly">Decides if the response comes only from the cache or from the device. Default value is false. (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values [0 - 7 ] are interpreted as matching to the corresponding CS value. This is an optional field.  (optional)</param>
-        /// <returns>Task of string</returns>
-        public async System.Threading.Tasks.Task<string> V3DevicesDeviceIdCachedResourcesResourcePathGetAsync (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null)
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task V3DevicesDeviceIdCachedResourcesResourcePathGetAsync (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null)
         {
-             ApiResponse<string> localVarResponse = await V3DevicesDeviceIdCachedResourcesResourcePathGetAsyncWithHttpInfo(endpointName, resourcePath, cacheOnly, pri);
-             return localVarResponse.Data;
+             await V3DevicesDeviceIdCachedResourcesResourcePathGetAsyncWithHttpInfo(endpointName, resourcePath, cacheOnly, pri);
 
         }
 
@@ -643,8 +641,8 @@ namespace connector_frontend.Api
         /// <param name="resourcePath">Resource&#39;s url.</param>
         /// <param name="cacheOnly">Decides if the response comes only from the cache or from the device. Default value is false. (optional)</param>
         /// <param name="pri">Priority message. Adds traffic-class for outgoing IPv6 message (only UDP). Network should this header and  Accepted values are AF11, AF12, AF13, AF21, AF22, AF23, AF31, AF32, AF33, AF41, AF42, AF43, VA, EF, CS0, CS1, CS2,CS3, CS4, CS5, CS6, CS7 and DF. Numeric values [0 - 7 ] are interpreted as matching to the corresponding CS value. This is an optional field.  (optional)</param>
-        /// <returns>Task of ApiResponse (string)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<string>> V3DevicesDeviceIdCachedResourcesResourcePathGetAsyncWithHttpInfo (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null)
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> V3DevicesDeviceIdCachedResourcesResourcePathGetAsyncWithHttpInfo (string endpointName, string resourcePath, bool? cacheOnly = null, string pri = null)
         {
             // verify the required parameter 'endpointName' is set
             if (endpointName == null)
@@ -668,7 +666,7 @@ namespace connector_frontend.Api
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
-                "text/plain"
+                "application/json"
             };
             String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
@@ -701,10 +699,10 @@ namespace connector_frontend.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<string>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (string) Configuration.ApiClient.Deserialize(localVarResponse, typeof(string)));
             
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
         }
 
         /// <summary>

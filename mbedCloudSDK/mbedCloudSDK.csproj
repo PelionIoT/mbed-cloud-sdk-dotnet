@@ -127,8 +127,8 @@
     <Compile Include="Backends\DeviceCatalog\Model\DeviceDataPatchRequest.cs" />
     <Compile Include="Backends\DeviceCatalog\Model\DeviceDataPostRequest.cs" />
     <Compile Include="Backends\DeviceCatalog\Model\DeviceDataPutRequest.cs" />
-    <Compile Include="Backends\DeviceCatalog\Model\DeviceLogData.cs" />
-    <Compile Include="Backends\DeviceCatalog\Model\DeviceLogPage.cs" />
+    <Compile Include="Backends\DeviceCatalog\Model\DeviceEventData.cs" />
+    <Compile Include="Backends\DeviceCatalog\Model\DeviceEventPage.cs" />
     <Compile Include="Backends\DeviceCatalog\Model\DevicePage.cs" />
     <Compile Include="Backends\DeviceQueryService\Model\DeviceQuery.cs" />
     <Compile Include="Backends\DeviceQueryService\Model\DeviceQueryPage.cs" />
@@ -138,6 +138,11 @@
     <Compile Include="Backends\FirmwareCatalog\Model\FirmwareImagePage.cs" />
     <Compile Include="Backends\FirmwareCatalog\Model\FirmwareManifest.cs" />
     <Compile Include="Backends\FirmwareCatalog\Model\FirmwareManifestPage.cs" />
+    <Compile Include="Backends\FirmwareCatalog\Model\ManifestContents.cs" />
+    <Compile Include="Backends\FirmwareCatalog\Model\ManifestContentsEncryptionMode.cs" />
+    <Compile Include="Backends\FirmwareCatalog\Model\ManifestContentsPayload.cs" />
+    <Compile Include="Backends\FirmwareCatalog\Model\ManifestContentsPayloadFormat.cs" />
+    <Compile Include="Backends\FirmwareCatalog\Model\ManifestContentsPayloadReference.cs" />
     <Compile Include="Backends\Iam\Model\FeaturePolicy.cs" />
     <Compile Include="Backends\Iam\Model\GroupSummary.cs" />
     <Compile Include="Backends\Iam\Model\GroupSummaryList.cs" />
