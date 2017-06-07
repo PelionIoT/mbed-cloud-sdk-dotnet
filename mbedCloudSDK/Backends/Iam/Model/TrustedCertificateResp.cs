@@ -169,7 +169,7 @@ namespace iam.Model
         /// <param name="OwnerId">The UUID of the owner..</param>
         /// <param name="Id">Entity ID. (required).</param>
         /// <param name="Name">Certificate name. (required).</param>
-        public TrustedCertificateResp(ServiceEnum? Service = default(ServiceEnum?), StatusEnum? Status = default(StatusEnum?), string Description = default(string), string Certificate = default(string), string Issuer = default(string), int? DeviceExecutionMode = default(int?), string CreatedAt = default(string), ObjectEnum? _Object = default(ObjectEnum?), string Subject = default(string), string AccountId = default(string), string Etag = default(string), string Validity = default(string), string OwnerId = default(string), string Id = default(string), string Name = default(string))
+        public TrustedCertificateResp(ServiceEnum? Service = default(ServiceEnum?), StatusEnum? Status = default(StatusEnum?), string Description = default(string), string Certificate = default(string), string Issuer = default(string), int? DeviceExecutionMode = default(int?), DateTime? CreatedAt = default(DateTime?), ObjectEnum? _Object = default(ObjectEnum?), string Subject = default(string), string AccountId = default(string), string Etag = default(string), DateTime? Validity = default(DateTime?), string OwnerId = default(string), string Id = default(string), string Name = default(string))
         {
             // to ensure "Service" is required (not null)
             if (Service == null)
@@ -297,7 +297,7 @@ namespace iam.Model
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
-        public string CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
         /// <summary>
         /// Subject of the certificate.
         /// </summary>
@@ -321,7 +321,7 @@ namespace iam.Model
         /// </summary>
         /// <value>Expiration time in UTC formatted as RFC3339.</value>
         [DataMember(Name="validity", EmitDefaultValue=false)]
-        public string Validity { get; set; }
+        public DateTime? Validity { get; set; }
         /// <summary>
         /// The UUID of the owner.
         /// </summary>

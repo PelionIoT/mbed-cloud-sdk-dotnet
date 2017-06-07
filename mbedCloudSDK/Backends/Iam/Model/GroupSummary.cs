@@ -110,7 +110,7 @@ namespace iam.Model
         /// <param name="ApikeyCount">The number of API keys in this group. (required).</param>
         /// <param name="Id">The UUID of the group. (required).</param>
         /// <param name="AccountId">The UUID of the account this group belongs to. (required).</param>
-        public GroupSummary(long? LastUpdateTime = default(long?), int? UserCount = default(int?), string Name = default(string), string CreatedAt = default(string), ObjectEnum? _Object = default(ObjectEnum?), long? CreationTime = default(long?), string Etag = default(string), int? ApikeyCount = default(int?), string Id = default(string), string AccountId = default(string))
+        public GroupSummary(long? LastUpdateTime = default(long?), int? UserCount = default(int?), string Name = default(string), DateTime? CreatedAt = default(DateTime?), ObjectEnum? _Object = default(ObjectEnum?), long? CreationTime = default(long?), string Etag = default(string), int? ApikeyCount = default(int?), string Id = default(string), string AccountId = default(string))
         {
             // to ensure "UserCount" is required (not null)
             if (UserCount == null)
@@ -203,7 +203,7 @@ namespace iam.Model
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
-        public string CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
         /// <summary>
         /// A timestamp of the group creation in the storage, in milliseconds.
         /// </summary>

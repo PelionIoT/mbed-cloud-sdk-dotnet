@@ -164,7 +164,7 @@ namespace iam.Model
         /// <param name="PhoneNumber">Phone number..</param>
         /// <param name="Id">The UUID of the user. (required).</param>
         /// <param name="LastLoginTime">A timestamp of the latest login of the user, in milliseconds..</param>
-        public UserInfoResp(StatusEnum? Status = default(StatusEnum?), string Username = default(string), List<string> Groups = default(List<string>), long? PasswordChangedTime = default(long?), bool? EmailVerified = default(bool?), string CreatedAt = default(string), ObjectEnum? _Object = default(ObjectEnum?), bool? IsGtcAccepted = default(bool?), string AccountId = default(string), string Email = default(string), bool? IsMarketingAccepted = default(bool?), string Etag = default(string), string FullName = default(string), string Address = default(string), long? CreationTime = default(long?), string Password = default(string), string PhoneNumber = default(string), string Id = default(string), long? LastLoginTime = default(long?))
+        public UserInfoResp(StatusEnum? Status = default(StatusEnum?), string Username = default(string), List<string> Groups = default(List<string>), long? PasswordChangedTime = default(long?), bool? EmailVerified = default(bool?), DateTime? CreatedAt = default(DateTime?), ObjectEnum? _Object = default(ObjectEnum?), bool? IsGtcAccepted = default(bool?), string AccountId = default(string), string Email = default(string), bool? IsMarketingAccepted = default(bool?), string Etag = default(string), string FullName = default(string), string Address = default(string), long? CreationTime = default(long?), string Password = default(string), string PhoneNumber = default(string), string Id = default(string), long? LastLoginTime = default(long?))
         {
             // to ensure "Status" is required (not null)
             if (Status == null)
@@ -264,7 +264,7 @@ namespace iam.Model
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
-        public string CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
         /// <summary>
         /// A flag indicating that the General Terms and Conditions has been accepted.
         /// </summary>
