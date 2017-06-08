@@ -35,16 +35,18 @@ namespace device_catalog.Model
         /// <param name="Description">The description of the object..</param>
         /// <param name="EndpointName">The endpoint name given to the device..</param>
         /// <param name="AutoUpdate">Mark this device for auto firmware update..</param>
+        /// <param name="HostGateway">The endpoint_name of the host gateway, if appropriate..</param>
         /// <param name="_Object">The API resource entity..</param>
         /// <param name="CustomAttributes">Up to 5 custom JSON attributes.</param>
         /// <param name="DeviceKey">Fingerprint of the device certificate..</param>
         /// <param name="CaId">ID of the issuer of the certificate..</param>
         /// <param name="Name">The name of the object..</param>
-        public DeviceDataPatchRequest(string Description = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string _Object = default(string), Object CustomAttributes = default(Object), string DeviceKey = default(string), string CaId = default(string), string Name = default(string))
+        public DeviceDataPatchRequest(string Description = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), string _Object = default(string), Object CustomAttributes = default(Object), string DeviceKey = default(string), string CaId = default(string), string Name = default(string))
         {
             this.Description = Description;
             this.EndpointName = EndpointName;
             this.AutoUpdate = AutoUpdate;
+            this.HostGateway = HostGateway;
             this._Object = _Object;
             this.CustomAttributes = CustomAttributes;
             this.DeviceKey = DeviceKey;
@@ -70,6 +72,12 @@ namespace device_catalog.Model
         /// <value>Mark this device for auto firmware update.</value>
         [DataMember(Name="auto_update", EmitDefaultValue=false)]
         public bool? AutoUpdate { get; set; }
+        /// <summary>
+        /// The endpoint_name of the host gateway, if appropriate.
+        /// </summary>
+        /// <value>The endpoint_name of the host gateway, if appropriate.</value>
+        [DataMember(Name="host_gateway", EmitDefaultValue=false)]
+        public string HostGateway { get; set; }
         /// <summary>
         /// The API resource entity.
         /// </summary>
@@ -111,6 +119,7 @@ namespace device_catalog.Model
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  EndpointName: ").Append(EndpointName).Append("\n");
             sb.Append("  AutoUpdate: ").Append(AutoUpdate).Append("\n");
+            sb.Append("  HostGateway: ").Append(HostGateway).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  CustomAttributes: ").Append(CustomAttributes).Append("\n");
             sb.Append("  DeviceKey: ").Append(DeviceKey).Append("\n");
@@ -168,6 +177,11 @@ namespace device_catalog.Model
                     this.AutoUpdate.Equals(other.AutoUpdate)
                 ) && 
                 (
+                    this.HostGateway == other.HostGateway ||
+                    this.HostGateway != null &&
+                    this.HostGateway.Equals(other.HostGateway)
+                ) && 
+                (
                     this._Object == other._Object ||
                     this._Object != null &&
                     this._Object.Equals(other._Object)
@@ -211,6 +225,8 @@ namespace device_catalog.Model
                     hash = hash * 59 + this.EndpointName.GetHashCode();
                 if (this.AutoUpdate != null)
                     hash = hash * 59 + this.AutoUpdate.GetHashCode();
+                if (this.HostGateway != null)
+                    hash = hash * 59 + this.HostGateway.GetHashCode();
                 if (this._Object != null)
                     hash = hash * 59 + this._Object.GetHashCode();
                 if (this.CustomAttributes != null)
