@@ -48,17 +48,17 @@ namespace firmware_catalog.Client
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class
-        /// with default configuration and base path (http://api.mbedcloud.com).
+        /// with default configuration and base path (http://api.us-east-1.mbedcloud.com).
         /// </summary>
         public ApiClient()
         {
             Configuration = Configuration.Default;
-            RestClient = new RestClient("http://api.mbedcloud.com");
+            RestClient = new RestClient("http://api.us-east-1.mbedcloud.com");
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class
-        /// with default base path (http://api.mbedcloud.com).
+        /// with default base path (http://api.us-east-1.mbedcloud.com).
         /// </summary>
         /// <param name="config">An instance of Configuration.</param>
         public ApiClient(Configuration config = null)
@@ -68,7 +68,7 @@ namespace firmware_catalog.Client
             else
                 Configuration = config;
 
-            RestClient = new RestClient("http://api.mbedcloud.com");
+            RestClient = new RestClient("http://api.us-east-1.mbedcloud.com");
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace firmware_catalog.Client
         /// with default configuration.
         /// </summary>
         /// <param name="basePath">The base path.</param>
-        public ApiClient(String basePath = "http://api.mbedcloud.com")
+        public ApiClient(String basePath = "http://api.us-east-1.mbedcloud.com")
         {
            if (String.IsNullOrEmpty(basePath))
                 throw new ArgumentException("basePath cannot be empty");
