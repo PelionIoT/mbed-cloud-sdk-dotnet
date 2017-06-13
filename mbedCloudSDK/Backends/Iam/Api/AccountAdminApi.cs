@@ -147,8 +147,9 @@ namespace iam.Api
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
+        /// <param name="ownerEq">Owner ID filter (optional)</param>
         /// <returns>TrustedCertificateRespList</returns>
-        TrustedCertificateRespList GetAllCertificates (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null);
+        TrustedCertificateRespList GetAllCertificates (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null);
 
         /// <summary>
         /// Get all trusted certificates.
@@ -164,8 +165,9 @@ namespace iam.Api
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
+        /// <param name="ownerEq">Owner ID filter (optional)</param>
         /// <returns>ApiResponse of TrustedCertificateRespList</returns>
-        ApiResponse<TrustedCertificateRespList> GetAllCertificatesWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null);
+        ApiResponse<TrustedCertificateRespList> GetAllCertificatesWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null);
         /// <summary>
         /// Get the details of all users.
         /// </summary>
@@ -481,8 +483,9 @@ namespace iam.Api
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
+        /// <param name="ownerEq">Owner ID filter (optional)</param>
         /// <returns>Task of TrustedCertificateRespList</returns>
-        System.Threading.Tasks.Task<TrustedCertificateRespList> GetAllCertificatesAsync (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null);
+        System.Threading.Tasks.Task<TrustedCertificateRespList> GetAllCertificatesAsync (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null);
 
         /// <summary>
         /// Get all trusted certificates.
@@ -498,8 +501,9 @@ namespace iam.Api
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
+        /// <param name="ownerEq">Owner ID filter (optional)</param>
         /// <returns>Task of ApiResponse (TrustedCertificateRespList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TrustedCertificateRespList>> GetAllCertificatesAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null);
+        System.Threading.Tasks.Task<ApiResponse<TrustedCertificateRespList>> GetAllCertificatesAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null);
         /// <summary>
         /// Get the details of all users.
         /// </summary>
@@ -1635,10 +1639,11 @@ namespace iam.Api
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
+        /// <param name="ownerEq">Owner ID filter (optional)</param>
         /// <returns>TrustedCertificateRespList</returns>
-        public TrustedCertificateRespList GetAllCertificates (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null)
+        public TrustedCertificateRespList GetAllCertificates (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null)
         {
-             ApiResponse<TrustedCertificateRespList> localVarResponse = GetAllCertificatesWithHttpInfo(limit, after, order, include, serviceEq, expireEq, deviceExecutionModeEq);
+             ApiResponse<TrustedCertificateRespList> localVarResponse = GetAllCertificatesWithHttpInfo(limit, after, order, include, serviceEq, expireEq, deviceExecutionModeEq, ownerEq);
              return localVarResponse.Data;
         }
 
@@ -1653,8 +1658,9 @@ namespace iam.Api
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
+        /// <param name="ownerEq">Owner ID filter (optional)</param>
         /// <returns>ApiResponse of TrustedCertificateRespList</returns>
-        public ApiResponse< TrustedCertificateRespList > GetAllCertificatesWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null)
+        public ApiResponse< TrustedCertificateRespList > GetAllCertificatesWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null)
         {
 
             var localVarPath = "/v3/trusted-certificates";
@@ -1688,6 +1694,7 @@ namespace iam.Api
             if (serviceEq != null) localVarQueryParams.Add("service__eq", Configuration.ApiClient.ParameterToString(serviceEq)); // query parameter
             if (expireEq != null) localVarQueryParams.Add("expire__eq", Configuration.ApiClient.ParameterToString(expireEq)); // query parameter
             if (deviceExecutionModeEq != null) localVarQueryParams.Add("device_execution_mode__eq", Configuration.ApiClient.ParameterToString(deviceExecutionModeEq)); // query parameter
+            if (ownerEq != null) localVarQueryParams.Add("owner__eq", Configuration.ApiClient.ParameterToString(ownerEq)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1726,10 +1733,11 @@ namespace iam.Api
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
+        /// <param name="ownerEq">Owner ID filter (optional)</param>
         /// <returns>Task of TrustedCertificateRespList</returns>
-        public async System.Threading.Tasks.Task<TrustedCertificateRespList> GetAllCertificatesAsync (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null)
+        public async System.Threading.Tasks.Task<TrustedCertificateRespList> GetAllCertificatesAsync (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null)
         {
-             ApiResponse<TrustedCertificateRespList> localVarResponse = await GetAllCertificatesAsyncWithHttpInfo(limit, after, order, include, serviceEq, expireEq, deviceExecutionModeEq);
+             ApiResponse<TrustedCertificateRespList> localVarResponse = await GetAllCertificatesAsyncWithHttpInfo(limit, after, order, include, serviceEq, expireEq, deviceExecutionModeEq, ownerEq);
              return localVarResponse.Data;
 
         }
@@ -1745,8 +1753,9 @@ namespace iam.Api
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
+        /// <param name="ownerEq">Owner ID filter (optional)</param>
         /// <returns>Task of ApiResponse (TrustedCertificateRespList)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<TrustedCertificateRespList>> GetAllCertificatesAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null)
+        public async System.Threading.Tasks.Task<ApiResponse<TrustedCertificateRespList>> GetAllCertificatesAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null)
         {
 
             var localVarPath = "/v3/trusted-certificates";
@@ -1780,6 +1789,7 @@ namespace iam.Api
             if (serviceEq != null) localVarQueryParams.Add("service__eq", Configuration.ApiClient.ParameterToString(serviceEq)); // query parameter
             if (expireEq != null) localVarQueryParams.Add("expire__eq", Configuration.ApiClient.ParameterToString(expireEq)); // query parameter
             if (deviceExecutionModeEq != null) localVarQueryParams.Add("device_execution_mode__eq", Configuration.ApiClient.ParameterToString(deviceExecutionModeEq)); // query parameter
+            if (ownerEq != null) localVarQueryParams.Add("owner__eq", Configuration.ApiClient.ParameterToString(ownerEq)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
