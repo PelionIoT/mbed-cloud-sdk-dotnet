@@ -44,9 +44,10 @@ namespace device_catalog.Model
         /// <param name="_Object">The API resource entity..</param>
         /// <param name="CustomAttributes">Up to 5 custom JSON attributes.</param>
         /// <param name="DeviceKey">Fingerprint of the device certificate. (required).</param>
+        /// <param name="EndpointType">The endpoint type of the device - e.g. if the device is a gateway..</param>
         /// <param name="CaId">ID of the issuer of the certificate. (required).</param>
         /// <param name="Name">The name of the object..</param>
-        public DeviceDataPutRequest(string Description = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), string _Object = default(string), Object CustomAttributes = default(Object), string DeviceKey = default(string), string CaId = default(string), string Name = default(string))
+        public DeviceDataPutRequest(string Description = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), string _Object = default(string), Object CustomAttributes = default(Object), string DeviceKey = default(string), string EndpointType = default(string), string CaId = default(string), string Name = default(string))
         {
             // to ensure "DeviceKey" is required (not null)
             if (DeviceKey == null)
@@ -72,6 +73,7 @@ namespace device_catalog.Model
             this.HostGateway = HostGateway;
             this._Object = _Object;
             this.CustomAttributes = CustomAttributes;
+            this.EndpointType = EndpointType;
             this.Name = Name;
         }
         
@@ -118,6 +120,12 @@ namespace device_catalog.Model
         [DataMember(Name="device_key", EmitDefaultValue=false)]
         public string DeviceKey { get; set; }
         /// <summary>
+        /// The endpoint type of the device - e.g. if the device is a gateway.
+        /// </summary>
+        /// <value>The endpoint type of the device - e.g. if the device is a gateway.</value>
+        [DataMember(Name="endpoint_type", EmitDefaultValue=false)]
+        public string EndpointType { get; set; }
+        /// <summary>
         /// ID of the issuer of the certificate.
         /// </summary>
         /// <value>ID of the issuer of the certificate.</value>
@@ -144,6 +152,7 @@ namespace device_catalog.Model
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  CustomAttributes: ").Append(CustomAttributes).Append("\n");
             sb.Append("  DeviceKey: ").Append(DeviceKey).Append("\n");
+            sb.Append("  EndpointType: ").Append(EndpointType).Append("\n");
             sb.Append("  CaId: ").Append(CaId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
@@ -218,6 +227,11 @@ namespace device_catalog.Model
                     this.DeviceKey.Equals(other.DeviceKey)
                 ) && 
                 (
+                    this.EndpointType == other.EndpointType ||
+                    this.EndpointType != null &&
+                    this.EndpointType.Equals(other.EndpointType)
+                ) && 
+                (
                     this.CaId == other.CaId ||
                     this.CaId != null &&
                     this.CaId.Equals(other.CaId)
@@ -254,6 +268,8 @@ namespace device_catalog.Model
                     hash = hash * 59 + this.CustomAttributes.GetHashCode();
                 if (this.DeviceKey != null)
                     hash = hash * 59 + this.DeviceKey.GetHashCode();
+                if (this.EndpointType != null)
+                    hash = hash * 59 + this.EndpointType.GetHashCode();
                 if (this.CaId != null)
                     hash = hash * 59 + this.CaId.GetHashCode();
                 if (this.Name != null)
