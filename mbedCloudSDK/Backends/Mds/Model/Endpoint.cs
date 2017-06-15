@@ -32,7 +32,7 @@ namespace mds.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Endpoint" /> class.
         /// </summary>
-        /// <param name="Status">Possible values ACTIVE, STALE..</param>
+        /// <param name="Status">Deprecated and the value is always ACTIVE. Only used for API backwards compatibility reasons..</param>
         /// <param name="Q">Determines whether the device is in queue mode.  &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Queue mode&lt;/b&gt;&lt;br/&gt; When an endpoint is in Queue mode, messages sent to the endpoint do not wake up the physical device. The messages are queued  and delivered when the device wakes up and connects to mbed Cloud Connect itself. You can also use the Queue mode when  the device is behind a NAT and cannot be reached directly by mbed Cloud Connect. .</param>
         /// <param name="Type">Type of endpoint. (Free text).</param>
         /// <param name="Name">Unique mbed Cloud Device ID representing the endpoint..</param>
@@ -45,9 +45,9 @@ namespace mds.Model
         }
         
         /// <summary>
-        /// Possible values ACTIVE, STALE.
+        /// Deprecated and the value is always ACTIVE. Only used for API backwards compatibility reasons.
         /// </summary>
-        /// <value>Possible values ACTIVE, STALE.</value>
+        /// <value>Deprecated and the value is always ACTIVE. Only used for API backwards compatibility reasons.</value>
         [DataMember(Name="status", EmitDefaultValue=false)]
         public string Status { get; set; }
         /// <summary>
