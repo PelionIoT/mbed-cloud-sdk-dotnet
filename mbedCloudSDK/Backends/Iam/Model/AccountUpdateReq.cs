@@ -43,7 +43,7 @@ namespace iam.Model
         /// <param name="PostalCode">The postal code part of the postal address, not longer than 100 characters..</param>
         /// <param name="PhoneNumber">The phone number of the company, not longer than 100 characters..</param>
         /// <param name="Email">The company email address for this account, not longer than 100 characters. Required for commercial accounts only..</param>
-        /// <param name="Aliases">An array of aliases, not more than 10..</param>
+        /// <param name="Aliases">An array of aliases, not more than 10. An alias is not shorter than 8 and not longer than 100 characters..</param>
         public AccountUpdateReq(string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string Country = default(string), string Company = default(string), string State = default(string), string Contact = default(string), string PostalCode = default(string), string PhoneNumber = default(string), string Email = default(string), List<string> Aliases = default(List<string>))
         {
             this.AddressLine2 = AddressLine2;
@@ -127,9 +127,9 @@ namespace iam.Model
         [DataMember(Name="email", EmitDefaultValue=false)]
         public string Email { get; set; }
         /// <summary>
-        /// An array of aliases, not more than 10.
+        /// An array of aliases, not more than 10. An alias is not shorter than 8 and not longer than 100 characters.
         /// </summary>
-        /// <value>An array of aliases, not more than 10.</value>
+        /// <value>An array of aliases, not more than 10. An alias is not shorter than 8 and not longer than 100 characters.</value>
         [DataMember(Name="aliases", EmitDefaultValue=false)]
         public List<string> Aliases { get; set; }
         /// <summary>
