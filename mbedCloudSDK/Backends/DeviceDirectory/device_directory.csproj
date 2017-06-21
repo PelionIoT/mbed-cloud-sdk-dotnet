@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Connect Statistics API
+Device Directory API
 
-mbed Cloud Connect Statistics API provides statistics about other cloud services through defined counters.
+This is the API Documentation for the mbed device directory update service.
 
 OpenAPI spec version: 3
 
@@ -11,11 +11,11 @@ OpenAPI spec version: 3
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{78EBF10B-4A21-4F33-A7F2-435BB4BD33C7}</ProjectGuid>
+    <ProjectGuid>{407E6D2A-2CBA-4737-A4E6-79627014DCE8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>statistics</RootNamespace>
-    <AssemblyName>statistics</AssemblyName>
+    <RootNamespace>device_directory</RootNamespace>
+    <AssemblyName>device_directory</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
