@@ -39,7 +39,7 @@ namespace device_catalog.Model
         /// </summary>
         /// <param name="Description">The description of the object..</param>
         /// <param name="EndpointName">The endpoint name given to the device..</param>
-        /// <param name="AutoUpdate">Mark this device for auto firmware update..</param>
+        /// <param name="AutoUpdate">DEPRECATED Mark this device for auto firmware update..</param>
         /// <param name="HostGateway">The endpoint_name of the host gateway, if appropriate..</param>
         /// <param name="_Object">The API resource entity..</param>
         /// <param name="CustomAttributes">Up to 5 custom JSON attributes.</param>
@@ -90,9 +90,9 @@ namespace device_catalog.Model
         [DataMember(Name="endpoint_name", EmitDefaultValue=false)]
         public string EndpointName { get; set; }
         /// <summary>
-        /// Mark this device for auto firmware update.
+        /// DEPRECATED Mark this device for auto firmware update.
         /// </summary>
-        /// <value>Mark this device for auto firmware update.</value>
+        /// <value>DEPRECATED Mark this device for auto firmware update.</value>
         [DataMember(Name="auto_update", EmitDefaultValue=false)]
         public bool? AutoUpdate { get; set; }
         /// <summary>
