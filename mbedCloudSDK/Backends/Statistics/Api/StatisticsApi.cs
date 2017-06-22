@@ -32,13 +32,16 @@ namespace statistics.Api
         /// </remarks>
         /// <exception cref="statistics.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">A comma-separated list of requested metrics. Supported values are:  - &#x60;transactions&#x60; - &#x60;registered_devices&#x60; - &#x60;bootstraps_successful&#x60; - &#x60;bootstraps_failed&#x60; - &#x60;bootstraps_pending&#x60; - &#x60;handshakes_successful&#x60; - &#x60;handshakes_failed&#x60; - &#x60;device_server_rest_api_success&#x60; - &#x60;device_server_rest_api_error&#x60; </param>
-        /// <param name="interval">Group data by this interval in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. Allowed range is 1[h/d/w] - 9999[h/d/w] or 5[m] - 9999[m]. </param>
+        /// <param name="interval">Group data by this interval in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The maximum interval cannot exceed more than one year ( 365 days ) and so the allowed ranges are 5m - 525600m / 1h - 8760h / 1d - 365d / 1w - 53w. </param>
         /// <param name="authorization">Bearer {Access Token}. A valid API Gateway access token. The token is validated and the associated account identifier is used to retrieve account-specific statistics. </param>
-        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified.  (optional)</param>
-        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified.  (optional)</param>
-        /// <param name="period">Period. Fetch the data for the period in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The parameter is not mandatory, if the start and end time are specified. Allowed range is 1[h/d/w] - 9999[h/d/w] or 5[m] - 9999[m].  (optional)</param>
+        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207. The maximum time between start and end parameters cannot exceed more than one year (365 days). The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207. The maximum time between start and end parameters cannot exceed more than one year ( 365 days ). The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="period">Period. Fetch the data for the period in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The parameter is not mandatory, if the start and end time are specified. The maximum period cannot exceed more than one year ( 365 days ) and so the allowed ranges are 5m - 525600m / 1h - 8760h / 1d - 365d / 1w - 53w.  (optional)</param>
+        /// <param name="limit">Limit the number of results returned. Default value is 50, minimum value is 2 and maximum value is 1000.  (optional)</param>
+        /// <param name="after">The continuous_token included in the previous response to retrieve the next page of results.  (optional)</param>
+        /// <param name="order">The order to sort the results. Default value is ASC. Allowed values are ASC / DESC.  (optional)</param>
         /// <returns>SuccessfulResponse</returns>
-        SuccessfulResponse V3MetricsGet (string include, string interval, string authorization, string start = null, string end = null, string period = null);
+        SuccessfulResponse V3MetricsGet (string include, string interval, string authorization, string start = null, string end = null, string period = null, int? limit = null, string after = null, string order = null);
 
         /// <summary>
         /// Provides account-specific statistics for other cloud services.
@@ -48,13 +51,16 @@ namespace statistics.Api
         /// </remarks>
         /// <exception cref="statistics.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">A comma-separated list of requested metrics. Supported values are:  - &#x60;transactions&#x60; - &#x60;registered_devices&#x60; - &#x60;bootstraps_successful&#x60; - &#x60;bootstraps_failed&#x60; - &#x60;bootstraps_pending&#x60; - &#x60;handshakes_successful&#x60; - &#x60;handshakes_failed&#x60; - &#x60;device_server_rest_api_success&#x60; - &#x60;device_server_rest_api_error&#x60; </param>
-        /// <param name="interval">Group data by this interval in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. Allowed range is 1[h/d/w] - 9999[h/d/w] or 5[m] - 9999[m]. </param>
+        /// <param name="interval">Group data by this interval in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The maximum interval cannot exceed more than one year ( 365 days ) and so the allowed ranges are 5m - 525600m / 1h - 8760h / 1d - 365d / 1w - 53w. </param>
         /// <param name="authorization">Bearer {Access Token}. A valid API Gateway access token. The token is validated and the associated account identifier is used to retrieve account-specific statistics. </param>
-        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified.  (optional)</param>
-        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified.  (optional)</param>
-        /// <param name="period">Period. Fetch the data for the period in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The parameter is not mandatory, if the start and end time are specified. Allowed range is 1[h/d/w] - 9999[h/d/w] or 5[m] - 9999[m].  (optional)</param>
+        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207. The maximum time between start and end parameters cannot exceed more than one year (365 days). The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207. The maximum time between start and end parameters cannot exceed more than one year ( 365 days ). The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="period">Period. Fetch the data for the period in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The parameter is not mandatory, if the start and end time are specified. The maximum period cannot exceed more than one year ( 365 days ) and so the allowed ranges are 5m - 525600m / 1h - 8760h / 1d - 365d / 1w - 53w.  (optional)</param>
+        /// <param name="limit">Limit the number of results returned. Default value is 50, minimum value is 2 and maximum value is 1000.  (optional)</param>
+        /// <param name="after">The continuous_token included in the previous response to retrieve the next page of results.  (optional)</param>
+        /// <param name="order">The order to sort the results. Default value is ASC. Allowed values are ASC / DESC.  (optional)</param>
         /// <returns>ApiResponse of SuccessfulResponse</returns>
-        ApiResponse<SuccessfulResponse> V3MetricsGetWithHttpInfo (string include, string interval, string authorization, string start = null, string end = null, string period = null);
+        ApiResponse<SuccessfulResponse> V3MetricsGetWithHttpInfo (string include, string interval, string authorization, string start = null, string end = null, string period = null, int? limit = null, string after = null, string order = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -65,13 +71,16 @@ namespace statistics.Api
         /// </remarks>
         /// <exception cref="statistics.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">A comma-separated list of requested metrics. Supported values are:  - &#x60;transactions&#x60; - &#x60;registered_devices&#x60; - &#x60;bootstraps_successful&#x60; - &#x60;bootstraps_failed&#x60; - &#x60;bootstraps_pending&#x60; - &#x60;handshakes_successful&#x60; - &#x60;handshakes_failed&#x60; - &#x60;device_server_rest_api_success&#x60; - &#x60;device_server_rest_api_error&#x60; </param>
-        /// <param name="interval">Group data by this interval in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. Allowed range is 1[h/d/w] - 9999[h/d/w] or 5[m] - 9999[m]. </param>
+        /// <param name="interval">Group data by this interval in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The maximum interval cannot exceed more than one year ( 365 days ) and so the allowed ranges are 5m - 525600m / 1h - 8760h / 1d - 365d / 1w - 53w. </param>
         /// <param name="authorization">Bearer {Access Token}. A valid API Gateway access token. The token is validated and the associated account identifier is used to retrieve account-specific statistics. </param>
-        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified.  (optional)</param>
-        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified.  (optional)</param>
-        /// <param name="period">Period. Fetch the data for the period in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The parameter is not mandatory, if the start and end time are specified. Allowed range is 1[h/d/w] - 9999[h/d/w] or 5[m] - 9999[m].  (optional)</param>
+        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207. The maximum time between start and end parameters cannot exceed more than one year (365 days). The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207. The maximum time between start and end parameters cannot exceed more than one year ( 365 days ). The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="period">Period. Fetch the data for the period in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The parameter is not mandatory, if the start and end time are specified. The maximum period cannot exceed more than one year ( 365 days ) and so the allowed ranges are 5m - 525600m / 1h - 8760h / 1d - 365d / 1w - 53w.  (optional)</param>
+        /// <param name="limit">Limit the number of results returned. Default value is 50, minimum value is 2 and maximum value is 1000.  (optional)</param>
+        /// <param name="after">The continuous_token included in the previous response to retrieve the next page of results.  (optional)</param>
+        /// <param name="order">The order to sort the results. Default value is ASC. Allowed values are ASC / DESC.  (optional)</param>
         /// <returns>Task of SuccessfulResponse</returns>
-        System.Threading.Tasks.Task<SuccessfulResponse> V3MetricsGetAsync (string include, string interval, string authorization, string start = null, string end = null, string period = null);
+        System.Threading.Tasks.Task<SuccessfulResponse> V3MetricsGetAsync (string include, string interval, string authorization, string start = null, string end = null, string period = null, int? limit = null, string after = null, string order = null);
 
         /// <summary>
         /// Provides account-specific statistics for other cloud services.
@@ -81,13 +90,16 @@ namespace statistics.Api
         /// </remarks>
         /// <exception cref="statistics.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">A comma-separated list of requested metrics. Supported values are:  - &#x60;transactions&#x60; - &#x60;registered_devices&#x60; - &#x60;bootstraps_successful&#x60; - &#x60;bootstraps_failed&#x60; - &#x60;bootstraps_pending&#x60; - &#x60;handshakes_successful&#x60; - &#x60;handshakes_failed&#x60; - &#x60;device_server_rest_api_success&#x60; - &#x60;device_server_rest_api_error&#x60; </param>
-        /// <param name="interval">Group data by this interval in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. Allowed range is 1[h/d/w] - 9999[h/d/w] or 5[m] - 9999[m]. </param>
+        /// <param name="interval">Group data by this interval in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The maximum interval cannot exceed more than one year ( 365 days ) and so the allowed ranges are 5m - 525600m / 1h - 8760h / 1d - 365d / 1w - 53w. </param>
         /// <param name="authorization">Bearer {Access Token}. A valid API Gateway access token. The token is validated and the associated account identifier is used to retrieve account-specific statistics. </param>
-        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified.  (optional)</param>
-        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified.  (optional)</param>
-        /// <param name="period">Period. Fetch the data for the period in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The parameter is not mandatory, if the start and end time are specified. Allowed range is 1[h/d/w] - 9999[h/d/w] or 5[m] - 9999[m].  (optional)</param>
+        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207. The maximum time between start and end parameters cannot exceed more than one year (365 days). The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207. The maximum time between start and end parameters cannot exceed more than one year ( 365 days ). The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="period">Period. Fetch the data for the period in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The parameter is not mandatory, if the start and end time are specified. The maximum period cannot exceed more than one year ( 365 days ) and so the allowed ranges are 5m - 525600m / 1h - 8760h / 1d - 365d / 1w - 53w.  (optional)</param>
+        /// <param name="limit">Limit the number of results returned. Default value is 50, minimum value is 2 and maximum value is 1000.  (optional)</param>
+        /// <param name="after">The continuous_token included in the previous response to retrieve the next page of results.  (optional)</param>
+        /// <param name="order">The order to sort the results. Default value is ASC. Allowed values are ASC / DESC.  (optional)</param>
         /// <returns>Task of ApiResponse (SuccessfulResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SuccessfulResponse>> V3MetricsGetAsyncWithHttpInfo (string include, string interval, string authorization, string start = null, string end = null, string period = null);
+        System.Threading.Tasks.Task<ApiResponse<SuccessfulResponse>> V3MetricsGetAsyncWithHttpInfo (string include, string interval, string authorization, string start = null, string end = null, string period = null, int? limit = null, string after = null, string order = null);
         #endregion Asynchronous Operations
     }
 
@@ -205,15 +217,18 @@ namespace statistics.Api
         /// </summary>
         /// <exception cref="statistics.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">A comma-separated list of requested metrics. Supported values are:  - &#x60;transactions&#x60; - &#x60;registered_devices&#x60; - &#x60;bootstraps_successful&#x60; - &#x60;bootstraps_failed&#x60; - &#x60;bootstraps_pending&#x60; - &#x60;handshakes_successful&#x60; - &#x60;handshakes_failed&#x60; - &#x60;device_server_rest_api_success&#x60; - &#x60;device_server_rest_api_error&#x60; </param>
-        /// <param name="interval">Group data by this interval in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. Allowed range is 1[h/d/w] - 9999[h/d/w] or 5[m] - 9999[m]. </param>
+        /// <param name="interval">Group data by this interval in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The maximum interval cannot exceed more than one year ( 365 days ) and so the allowed ranges are 5m - 525600m / 1h - 8760h / 1d - 365d / 1w - 53w. </param>
         /// <param name="authorization">Bearer {Access Token}. A valid API Gateway access token. The token is validated and the associated account identifier is used to retrieve account-specific statistics. </param>
-        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified.  (optional)</param>
-        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified.  (optional)</param>
-        /// <param name="period">Period. Fetch the data for the period in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The parameter is not mandatory, if the start and end time are specified. Allowed range is 1[h/d/w] - 9999[h/d/w] or 5[m] - 9999[m].  (optional)</param>
+        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207. The maximum time between start and end parameters cannot exceed more than one year (365 days). The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207. The maximum time between start and end parameters cannot exceed more than one year ( 365 days ). The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="period">Period. Fetch the data for the period in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The parameter is not mandatory, if the start and end time are specified. The maximum period cannot exceed more than one year ( 365 days ) and so the allowed ranges are 5m - 525600m / 1h - 8760h / 1d - 365d / 1w - 53w.  (optional)</param>
+        /// <param name="limit">Limit the number of results returned. Default value is 50, minimum value is 2 and maximum value is 1000.  (optional)</param>
+        /// <param name="after">The continuous_token included in the previous response to retrieve the next page of results.  (optional)</param>
+        /// <param name="order">The order to sort the results. Default value is ASC. Allowed values are ASC / DESC.  (optional)</param>
         /// <returns>SuccessfulResponse</returns>
-        public SuccessfulResponse V3MetricsGet (string include, string interval, string authorization, string start = null, string end = null, string period = null)
+        public SuccessfulResponse V3MetricsGet (string include, string interval, string authorization, string start = null, string end = null, string period = null, int? limit = null, string after = null, string order = null)
         {
-             ApiResponse<SuccessfulResponse> localVarResponse = V3MetricsGetWithHttpInfo(include, interval, authorization, start, end, period);
+             ApiResponse<SuccessfulResponse> localVarResponse = V3MetricsGetWithHttpInfo(include, interval, authorization, start, end, period, limit, after, order);
              return localVarResponse.Data;
         }
 
@@ -222,13 +237,16 @@ namespace statistics.Api
         /// </summary>
         /// <exception cref="statistics.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">A comma-separated list of requested metrics. Supported values are:  - &#x60;transactions&#x60; - &#x60;registered_devices&#x60; - &#x60;bootstraps_successful&#x60; - &#x60;bootstraps_failed&#x60; - &#x60;bootstraps_pending&#x60; - &#x60;handshakes_successful&#x60; - &#x60;handshakes_failed&#x60; - &#x60;device_server_rest_api_success&#x60; - &#x60;device_server_rest_api_error&#x60; </param>
-        /// <param name="interval">Group data by this interval in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. Allowed range is 1[h/d/w] - 9999[h/d/w] or 5[m] - 9999[m]. </param>
+        /// <param name="interval">Group data by this interval in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The maximum interval cannot exceed more than one year ( 365 days ) and so the allowed ranges are 5m - 525600m / 1h - 8760h / 1d - 365d / 1w - 53w. </param>
         /// <param name="authorization">Bearer {Access Token}. A valid API Gateway access token. The token is validated and the associated account identifier is used to retrieve account-specific statistics. </param>
-        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified.  (optional)</param>
-        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified.  (optional)</param>
-        /// <param name="period">Period. Fetch the data for the period in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The parameter is not mandatory, if the start and end time are specified. Allowed range is 1[h/d/w] - 9999[h/d/w] or 5[m] - 9999[m].  (optional)</param>
+        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207. The maximum time between start and end parameters cannot exceed more than one year (365 days). The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207. The maximum time between start and end parameters cannot exceed more than one year ( 365 days ). The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="period">Period. Fetch the data for the period in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The parameter is not mandatory, if the start and end time are specified. The maximum period cannot exceed more than one year ( 365 days ) and so the allowed ranges are 5m - 525600m / 1h - 8760h / 1d - 365d / 1w - 53w.  (optional)</param>
+        /// <param name="limit">Limit the number of results returned. Default value is 50, minimum value is 2 and maximum value is 1000.  (optional)</param>
+        /// <param name="after">The continuous_token included in the previous response to retrieve the next page of results.  (optional)</param>
+        /// <param name="order">The order to sort the results. Default value is ASC. Allowed values are ASC / DESC.  (optional)</param>
         /// <returns>ApiResponse of SuccessfulResponse</returns>
-        public ApiResponse< SuccessfulResponse > V3MetricsGetWithHttpInfo (string include, string interval, string authorization, string start = null, string end = null, string period = null)
+        public ApiResponse< SuccessfulResponse > V3MetricsGetWithHttpInfo (string include, string interval, string authorization, string start = null, string end = null, string period = null, int? limit = null, string after = null, string order = null)
         {
             // verify the required parameter 'include' is set
             if (include == null)
@@ -269,6 +287,9 @@ namespace statistics.Api
             if (end != null) localVarQueryParams.Add("end", Configuration.ApiClient.ParameterToString(end)); // query parameter
             if (period != null) localVarQueryParams.Add("period", Configuration.ApiClient.ParameterToString(period)); // query parameter
             if (interval != null) localVarQueryParams.Add("interval", Configuration.ApiClient.ParameterToString(interval)); // query parameter
+            if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
+            if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
             // authentication (Bearer) required
@@ -302,15 +323,18 @@ namespace statistics.Api
         /// </summary>
         /// <exception cref="statistics.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">A comma-separated list of requested metrics. Supported values are:  - &#x60;transactions&#x60; - &#x60;registered_devices&#x60; - &#x60;bootstraps_successful&#x60; - &#x60;bootstraps_failed&#x60; - &#x60;bootstraps_pending&#x60; - &#x60;handshakes_successful&#x60; - &#x60;handshakes_failed&#x60; - &#x60;device_server_rest_api_success&#x60; - &#x60;device_server_rest_api_error&#x60; </param>
-        /// <param name="interval">Group data by this interval in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. Allowed range is 1[h/d/w] - 9999[h/d/w] or 5[m] - 9999[m]. </param>
+        /// <param name="interval">Group data by this interval in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The maximum interval cannot exceed more than one year ( 365 days ) and so the allowed ranges are 5m - 525600m / 1h - 8760h / 1d - 365d / 1w - 53w. </param>
         /// <param name="authorization">Bearer {Access Token}. A valid API Gateway access token. The token is validated and the associated account identifier is used to retrieve account-specific statistics. </param>
-        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified.  (optional)</param>
-        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified.  (optional)</param>
-        /// <param name="period">Period. Fetch the data for the period in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The parameter is not mandatory, if the start and end time are specified. Allowed range is 1[h/d/w] - 9999[h/d/w] or 5[m] - 9999[m].  (optional)</param>
+        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207. The maximum time between start and end parameters cannot exceed more than one year (365 days). The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207. The maximum time between start and end parameters cannot exceed more than one year ( 365 days ). The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="period">Period. Fetch the data for the period in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The parameter is not mandatory, if the start and end time are specified. The maximum period cannot exceed more than one year ( 365 days ) and so the allowed ranges are 5m - 525600m / 1h - 8760h / 1d - 365d / 1w - 53w.  (optional)</param>
+        /// <param name="limit">Limit the number of results returned. Default value is 50, minimum value is 2 and maximum value is 1000.  (optional)</param>
+        /// <param name="after">The continuous_token included in the previous response to retrieve the next page of results.  (optional)</param>
+        /// <param name="order">The order to sort the results. Default value is ASC. Allowed values are ASC / DESC.  (optional)</param>
         /// <returns>Task of SuccessfulResponse</returns>
-        public async System.Threading.Tasks.Task<SuccessfulResponse> V3MetricsGetAsync (string include, string interval, string authorization, string start = null, string end = null, string period = null)
+        public async System.Threading.Tasks.Task<SuccessfulResponse> V3MetricsGetAsync (string include, string interval, string authorization, string start = null, string end = null, string period = null, int? limit = null, string after = null, string order = null)
         {
-             ApiResponse<SuccessfulResponse> localVarResponse = await V3MetricsGetAsyncWithHttpInfo(include, interval, authorization, start, end, period);
+             ApiResponse<SuccessfulResponse> localVarResponse = await V3MetricsGetAsyncWithHttpInfo(include, interval, authorization, start, end, period, limit, after, order);
              return localVarResponse.Data;
 
         }
@@ -320,13 +344,16 @@ namespace statistics.Api
         /// </summary>
         /// <exception cref="statistics.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">A comma-separated list of requested metrics. Supported values are:  - &#x60;transactions&#x60; - &#x60;registered_devices&#x60; - &#x60;bootstraps_successful&#x60; - &#x60;bootstraps_failed&#x60; - &#x60;bootstraps_pending&#x60; - &#x60;handshakes_successful&#x60; - &#x60;handshakes_failed&#x60; - &#x60;device_server_rest_api_success&#x60; - &#x60;device_server_rest_api_error&#x60; </param>
-        /// <param name="interval">Group data by this interval in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. Allowed range is 1[h/d/w] - 9999[h/d/w] or 5[m] - 9999[m]. </param>
+        /// <param name="interval">Group data by this interval in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The maximum interval cannot exceed more than one year ( 365 days ) and so the allowed ranges are 5m - 525600m / 1h - 8760h / 1d - 365d / 1w - 53w. </param>
         /// <param name="authorization">Bearer {Access Token}. A valid API Gateway access token. The token is validated and the associated account identifier is used to retrieve account-specific statistics. </param>
-        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207. The parameter is not mandatory, if the period is specified.  (optional)</param>
-        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z/2017-02-07T09:20:56.990Z/2017/20170207.The parameter is not mandatory, if the period is specified.  (optional)</param>
-        /// <param name="period">Period. Fetch the data for the period in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The parameter is not mandatory, if the start and end time are specified. Allowed range is 1[h/d/w] - 9999[h/d/w] or 5[m] - 9999[m].  (optional)</param>
+        /// <param name="start">UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207. The maximum time between start and end parameters cannot exceed more than one year (365 days). The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="end">UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207. The maximum time between start and end parameters cannot exceed more than one year ( 365 days ). The parameter is not mandatory, if the period is specified.  (optional)</param>
+        /// <param name="period">Period. Fetch the data for the period in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The parameter is not mandatory, if the start and end time are specified. The maximum period cannot exceed more than one year ( 365 days ) and so the allowed ranges are 5m - 525600m / 1h - 8760h / 1d - 365d / 1w - 53w.  (optional)</param>
+        /// <param name="limit">Limit the number of results returned. Default value is 50, minimum value is 2 and maximum value is 1000.  (optional)</param>
+        /// <param name="after">The continuous_token included in the previous response to retrieve the next page of results.  (optional)</param>
+        /// <param name="order">The order to sort the results. Default value is ASC. Allowed values are ASC / DESC.  (optional)</param>
         /// <returns>Task of ApiResponse (SuccessfulResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SuccessfulResponse>> V3MetricsGetAsyncWithHttpInfo (string include, string interval, string authorization, string start = null, string end = null, string period = null)
+        public async System.Threading.Tasks.Task<ApiResponse<SuccessfulResponse>> V3MetricsGetAsyncWithHttpInfo (string include, string interval, string authorization, string start = null, string end = null, string period = null, int? limit = null, string after = null, string order = null)
         {
             // verify the required parameter 'include' is set
             if (include == null)
@@ -367,6 +394,9 @@ namespace statistics.Api
             if (end != null) localVarQueryParams.Add("end", Configuration.ApiClient.ParameterToString(end)); // query parameter
             if (period != null) localVarQueryParams.Add("period", Configuration.ApiClient.ParameterToString(period)); // query parameter
             if (interval != null) localVarQueryParams.Add("interval", Configuration.ApiClient.ParameterToString(interval)); // query parameter
+            if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
+            if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
             // authentication (Bearer) required
