@@ -67,6 +67,27 @@ namespace iam.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> DeleteApiKeyWithHttpInfo (string apiKey);
         /// <summary>
+        /// Delete a trusted certificate by ID.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for deleting a trusted certificate.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID of the trusted certificate to be deleted.</param>
+        /// <returns></returns>
+        void DeleteCertificate (string certId);
+
+        /// <summary>
+        /// Delete a trusted certificate by ID.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for deleting a trusted certificate.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID of the trusted certificate to be deleted.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> DeleteCertificateWithHttpInfo (string certId);
+        /// <summary>
         /// Get all API keys
         /// </summary>
         /// <remarks>
@@ -95,6 +116,41 @@ namespace iam.Api
         /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>ApiResponse of ApiKeyInfoRespList</returns>
         ApiResponse<ApiKeyInfoRespList> GetAllApiKeysWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string ownerEq = null);
+        /// <summary>
+        /// Get all trusted certificates.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving trusted certificates in an array.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
+        /// <param name="expireEq">Expire filter in days (optional)</param>
+        /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
+        /// <param name="ownerEq">Owner ID filter (optional)</param>
+        /// <returns>TrustedCertificateRespList</returns>
+        TrustedCertificateRespList GetAllCertificates (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null);
+
+        /// <summary>
+        /// Get all trusted certificates.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving trusted certificates in an array.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
+        /// <param name="expireEq">Expire filter in days (optional)</param>
+        /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
+        /// <param name="ownerEq">Owner ID filter (optional)</param>
+        /// <returns>ApiResponse of TrustedCertificateRespList</returns>
+        ApiResponse<TrustedCertificateRespList> GetAllCertificatesWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null);
         /// <summary>
         /// Get all group information.
         /// </summary>
@@ -172,6 +228,27 @@ namespace iam.Api
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of ApiKeyInfoRespList</returns>
         ApiResponse<ApiKeyInfoRespList> GetApiKeysOfGroupWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null);
+        /// <summary>
+        /// Get trusted certificate by ID.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving a trusted certificate by ID.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <returns>TrustedCertificateResp</returns>
+        TrustedCertificateResp GetCertificate (string certId);
+
+        /// <summary>
+        /// Get trusted certificate by ID.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving a trusted certificate by ID.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <returns>ApiResponse of TrustedCertificateResp</returns>
+        ApiResponse<TrustedCertificateResp> GetCertificateWithHttpInfo (string certId);
         /// <summary>
         /// Get group information.
         /// </summary>
@@ -299,6 +376,29 @@ namespace iam.Api
         /// <returns>ApiResponse of ApiKeyInfoResp</returns>
         ApiResponse<ApiKeyInfoResp> UpdateApiKeyWithHttpInfo (string apiKey, ApiKeyUpdateReq body);
         /// <summary>
+        /// Update trusted certificate.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating existing trusted certificates.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID of the trusted certificate to be updated.</param>
+        /// <param name="body">A trusted certificate object with attributes.</param>
+        /// <returns>TrustedCertificateResp</returns>
+        TrustedCertificateResp UpdateCertificate (string certId, TrustedCertificateReq body);
+
+        /// <summary>
+        /// Update trusted certificate.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating existing trusted certificates.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID of the trusted certificate to be updated.</param>
+        /// <param name="body">A trusted certificate object with attributes.</param>
+        /// <returns>ApiResponse of TrustedCertificateResp</returns>
+        ApiResponse<TrustedCertificateResp> UpdateCertificateWithHttpInfo (string certId, TrustedCertificateReq body);
+        /// <summary>
         /// Update API key details.
         /// </summary>
         /// <remarks>
@@ -385,6 +485,27 @@ namespace iam.Api
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> DeleteApiKeyAsyncWithHttpInfo (string apiKey);
         /// <summary>
+        /// Delete a trusted certificate by ID.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for deleting a trusted certificate.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID of the trusted certificate to be deleted.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task DeleteCertificateAsync (string certId);
+
+        /// <summary>
+        /// Delete a trusted certificate by ID.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for deleting a trusted certificate.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID of the trusted certificate to be deleted.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteCertificateAsyncWithHttpInfo (string certId);
+        /// <summary>
         /// Get all API keys
         /// </summary>
         /// <remarks>
@@ -413,6 +534,41 @@ namespace iam.Api
         /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>Task of ApiResponse (ApiKeyInfoRespList)</returns>
         System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoRespList>> GetAllApiKeysAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string ownerEq = null);
+        /// <summary>
+        /// Get all trusted certificates.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving trusted certificates in an array.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
+        /// <param name="expireEq">Expire filter in days (optional)</param>
+        /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
+        /// <param name="ownerEq">Owner ID filter (optional)</param>
+        /// <returns>Task of TrustedCertificateRespList</returns>
+        System.Threading.Tasks.Task<TrustedCertificateRespList> GetAllCertificatesAsync (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null);
+
+        /// <summary>
+        /// Get all trusted certificates.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving trusted certificates in an array.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
+        /// <param name="expireEq">Expire filter in days (optional)</param>
+        /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
+        /// <param name="ownerEq">Owner ID filter (optional)</param>
+        /// <returns>Task of ApiResponse (TrustedCertificateRespList)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TrustedCertificateRespList>> GetAllCertificatesAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null);
         /// <summary>
         /// Get all group information.
         /// </summary>
@@ -490,6 +646,27 @@ namespace iam.Api
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (ApiKeyInfoRespList)</returns>
         System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoRespList>> GetApiKeysOfGroupAsyncWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null);
+        /// <summary>
+        /// Get trusted certificate by ID.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving a trusted certificate by ID.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <returns>Task of TrustedCertificateResp</returns>
+        System.Threading.Tasks.Task<TrustedCertificateResp> GetCertificateAsync (string certId);
+
+        /// <summary>
+        /// Get trusted certificate by ID.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving a trusted certificate by ID.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <returns>Task of ApiResponse (TrustedCertificateResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TrustedCertificateResp>> GetCertificateAsyncWithHttpInfo (string certId);
         /// <summary>
         /// Get group information.
         /// </summary>
@@ -616,6 +793,29 @@ namespace iam.Api
         /// <param name="body">New API key attributes to be stored.</param>
         /// <returns>Task of ApiResponse (ApiKeyInfoResp)</returns>
         System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoResp>> UpdateApiKeyAsyncWithHttpInfo (string apiKey, ApiKeyUpdateReq body);
+        /// <summary>
+        /// Update trusted certificate.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating existing trusted certificates.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID of the trusted certificate to be updated.</param>
+        /// <param name="body">A trusted certificate object with attributes.</param>
+        /// <returns>Task of TrustedCertificateResp</returns>
+        System.Threading.Tasks.Task<TrustedCertificateResp> UpdateCertificateAsync (string certId, TrustedCertificateReq body);
+
+        /// <summary>
+        /// Update trusted certificate.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating existing trusted certificates.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID of the trusted certificate to be updated.</param>
+        /// <param name="body">A trusted certificate object with attributes.</param>
+        /// <returns>Task of ApiResponse (TrustedCertificateResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TrustedCertificateResp>> UpdateCertificateAsyncWithHttpInfo (string certId, TrustedCertificateReq body);
         /// <summary>
         /// Update API key details.
         /// </summary>
@@ -1089,6 +1289,156 @@ namespace iam.Api
         }
 
         /// <summary>
+        /// Delete a trusted certificate by ID. An endpoint for deleting a trusted certificate.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID of the trusted certificate to be deleted.</param>
+        /// <returns></returns>
+        public void DeleteCertificate (string certId)
+        {
+             DeleteCertificateWithHttpInfo(certId);
+        }
+
+        /// <summary>
+        /// Delete a trusted certificate by ID. An endpoint for deleting a trusted certificate.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID of the trusted certificate to be deleted.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> DeleteCertificateWithHttpInfo (string certId)
+        {
+            // verify the required parameter 'certId' is set
+            if (certId == null)
+                throw new ApiException(400, "Missing required parameter 'certId' when calling DeveloperApi->DeleteCertificate");
+
+            var localVarPath = "/v3/trusted-certificates/{cert-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (certId != null) localVarPathParams.Add("cert-id", Configuration.ApiClient.ParameterToString(certId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteCertificate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Delete a trusted certificate by ID. An endpoint for deleting a trusted certificate.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID of the trusted certificate to be deleted.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task DeleteCertificateAsync (string certId)
+        {
+             await DeleteCertificateAsyncWithHttpInfo(certId);
+
+        }
+
+        /// <summary>
+        /// Delete a trusted certificate by ID. An endpoint for deleting a trusted certificate.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID of the trusted certificate to be deleted.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteCertificateAsyncWithHttpInfo (string certId)
+        {
+            // verify the required parameter 'certId' is set
+            if (certId == null)
+                throw new ApiException(400, "Missing required parameter 'certId' when calling DeveloperApi->DeleteCertificate");
+
+            var localVarPath = "/v3/trusted-certificates/{cert-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (certId != null) localVarPathParams.Add("cert-id", Configuration.ApiClient.ParameterToString(certId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteCertificate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
         /// Get all API keys An endpoint for retrieving API keys in an array, optionally filtered by the owner.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1255,6 +1605,194 @@ namespace iam.Api
             return new ApiResponse<ApiKeyInfoRespList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ApiKeyInfoRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoRespList)));
+            
+        }
+
+        /// <summary>
+        /// Get all trusted certificates. An endpoint for retrieving trusted certificates in an array.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
+        /// <param name="expireEq">Expire filter in days (optional)</param>
+        /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
+        /// <param name="ownerEq">Owner ID filter (optional)</param>
+        /// <returns>TrustedCertificateRespList</returns>
+        public TrustedCertificateRespList GetAllCertificates (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null)
+        {
+             ApiResponse<TrustedCertificateRespList> localVarResponse = GetAllCertificatesWithHttpInfo(limit, after, order, include, serviceEq, expireEq, deviceExecutionModeEq, ownerEq);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get all trusted certificates. An endpoint for retrieving trusted certificates in an array.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
+        /// <param name="expireEq">Expire filter in days (optional)</param>
+        /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
+        /// <param name="ownerEq">Owner ID filter (optional)</param>
+        /// <returns>ApiResponse of TrustedCertificateRespList</returns>
+        public ApiResponse< TrustedCertificateRespList > GetAllCertificatesWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null)
+        {
+
+            var localVarPath = "/v3/trusted-certificates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
+            if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (serviceEq != null) localVarQueryParams.Add("service__eq", Configuration.ApiClient.ParameterToString(serviceEq)); // query parameter
+            if (expireEq != null) localVarQueryParams.Add("expire__eq", Configuration.ApiClient.ParameterToString(expireEq)); // query parameter
+            if (deviceExecutionModeEq != null) localVarQueryParams.Add("device_execution_mode__eq", Configuration.ApiClient.ParameterToString(deviceExecutionModeEq)); // query parameter
+            if (ownerEq != null) localVarQueryParams.Add("owner__eq", Configuration.ApiClient.ParameterToString(ownerEq)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetAllCertificates", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<TrustedCertificateRespList>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (TrustedCertificateRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateRespList)));
+            
+        }
+
+        /// <summary>
+        /// Get all trusted certificates. An endpoint for retrieving trusted certificates in an array.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
+        /// <param name="expireEq">Expire filter in days (optional)</param>
+        /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
+        /// <param name="ownerEq">Owner ID filter (optional)</param>
+        /// <returns>Task of TrustedCertificateRespList</returns>
+        public async System.Threading.Tasks.Task<TrustedCertificateRespList> GetAllCertificatesAsync (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null)
+        {
+             ApiResponse<TrustedCertificateRespList> localVarResponse = await GetAllCertificatesAsyncWithHttpInfo(limit, after, order, include, serviceEq, expireEq, deviceExecutionModeEq, ownerEq);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get all trusted certificates. An endpoint for retrieving trusted certificates in an array.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
+        /// <param name="expireEq">Expire filter in days (optional)</param>
+        /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
+        /// <param name="ownerEq">Owner ID filter (optional)</param>
+        /// <returns>Task of ApiResponse (TrustedCertificateRespList)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<TrustedCertificateRespList>> GetAllCertificatesAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null)
+        {
+
+            var localVarPath = "/v3/trusted-certificates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
+            if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (serviceEq != null) localVarQueryParams.Add("service__eq", Configuration.ApiClient.ParameterToString(serviceEq)); // query parameter
+            if (expireEq != null) localVarQueryParams.Add("expire__eq", Configuration.ApiClient.ParameterToString(expireEq)); // query parameter
+            if (deviceExecutionModeEq != null) localVarQueryParams.Add("device_execution_mode__eq", Configuration.ApiClient.ParameterToString(deviceExecutionModeEq)); // query parameter
+            if (ownerEq != null) localVarQueryParams.Add("owner__eq", Configuration.ApiClient.ParameterToString(ownerEq)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetAllCertificates", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<TrustedCertificateRespList>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (TrustedCertificateRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateRespList)));
             
         }
 
@@ -1747,6 +2285,158 @@ namespace iam.Api
             return new ApiResponse<ApiKeyInfoRespList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ApiKeyInfoRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoRespList)));
+            
+        }
+
+        /// <summary>
+        /// Get trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <returns>TrustedCertificateResp</returns>
+        public TrustedCertificateResp GetCertificate (string certId)
+        {
+             ApiResponse<TrustedCertificateResp> localVarResponse = GetCertificateWithHttpInfo(certId);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <returns>ApiResponse of TrustedCertificateResp</returns>
+        public ApiResponse< TrustedCertificateResp > GetCertificateWithHttpInfo (string certId)
+        {
+            // verify the required parameter 'certId' is set
+            if (certId == null)
+                throw new ApiException(400, "Missing required parameter 'certId' when calling DeveloperApi->GetCertificate");
+
+            var localVarPath = "/v3/trusted-certificates/{cert-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (certId != null) localVarPathParams.Add("cert-id", Configuration.ApiClient.ParameterToString(certId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetCertificate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<TrustedCertificateResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (TrustedCertificateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateResp)));
+            
+        }
+
+        /// <summary>
+        /// Get trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <returns>Task of TrustedCertificateResp</returns>
+        public async System.Threading.Tasks.Task<TrustedCertificateResp> GetCertificateAsync (string certId)
+        {
+             ApiResponse<TrustedCertificateResp> localVarResponse = await GetCertificateAsyncWithHttpInfo(certId);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <returns>Task of ApiResponse (TrustedCertificateResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<TrustedCertificateResp>> GetCertificateAsyncWithHttpInfo (string certId)
+        {
+            // verify the required parameter 'certId' is set
+            if (certId == null)
+                throw new ApiException(400, "Missing required parameter 'certId' when calling DeveloperApi->GetCertificate");
+
+            var localVarPath = "/v3/trusted-certificates/{cert-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (certId != null) localVarPathParams.Add("cert-id", Configuration.ApiClient.ParameterToString(certId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetCertificate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<TrustedCertificateResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (TrustedCertificateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateResp)));
             
         }
 
@@ -2683,6 +3373,186 @@ namespace iam.Api
             return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
+            
+        }
+
+        /// <summary>
+        /// Update trusted certificate. An endpoint for updating existing trusted certificates.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID of the trusted certificate to be updated.</param>
+        /// <param name="body">A trusted certificate object with attributes.</param>
+        /// <returns>TrustedCertificateResp</returns>
+        public TrustedCertificateResp UpdateCertificate (string certId, TrustedCertificateReq body)
+        {
+             ApiResponse<TrustedCertificateResp> localVarResponse = UpdateCertificateWithHttpInfo(certId, body);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update trusted certificate. An endpoint for updating existing trusted certificates.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID of the trusted certificate to be updated.</param>
+        /// <param name="body">A trusted certificate object with attributes.</param>
+        /// <returns>ApiResponse of TrustedCertificateResp</returns>
+        public ApiResponse< TrustedCertificateResp > UpdateCertificateWithHttpInfo (string certId, TrustedCertificateReq body)
+        {
+            // verify the required parameter 'certId' is set
+            if (certId == null)
+                throw new ApiException(400, "Missing required parameter 'certId' when calling DeveloperApi->UpdateCertificate");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->UpdateCertificate");
+
+            var localVarPath = "/v3/trusted-certificates/{cert-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (certId != null) localVarPathParams.Add("cert-id", Configuration.ApiClient.ParameterToString(certId)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UpdateCertificate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<TrustedCertificateResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (TrustedCertificateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateResp)));
+            
+        }
+
+        /// <summary>
+        /// Update trusted certificate. An endpoint for updating existing trusted certificates.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID of the trusted certificate to be updated.</param>
+        /// <param name="body">A trusted certificate object with attributes.</param>
+        /// <returns>Task of TrustedCertificateResp</returns>
+        public async System.Threading.Tasks.Task<TrustedCertificateResp> UpdateCertificateAsync (string certId, TrustedCertificateReq body)
+        {
+             ApiResponse<TrustedCertificateResp> localVarResponse = await UpdateCertificateAsyncWithHttpInfo(certId, body);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Update trusted certificate. An endpoint for updating existing trusted certificates.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="certId">The ID of the trusted certificate to be updated.</param>
+        /// <param name="body">A trusted certificate object with attributes.</param>
+        /// <returns>Task of ApiResponse (TrustedCertificateResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<TrustedCertificateResp>> UpdateCertificateAsyncWithHttpInfo (string certId, TrustedCertificateReq body)
+        {
+            // verify the required parameter 'certId' is set
+            if (certId == null)
+                throw new ApiException(400, "Missing required parameter 'certId' when calling DeveloperApi->UpdateCertificate");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->UpdateCertificate");
+
+            var localVarPath = "/v3/trusted-certificates/{cert-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (certId != null) localVarPathParams.Add("cert-id", Configuration.ApiClient.ParameterToString(certId)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UpdateCertificate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<TrustedCertificateResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (TrustedCertificateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateResp)));
             
         }
 
