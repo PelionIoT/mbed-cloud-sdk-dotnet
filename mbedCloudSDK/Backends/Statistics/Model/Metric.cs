@@ -35,14 +35,15 @@ namespace statistics.Model
         /// <param name="DeviceServerRestApiError">Number of failed device server REST API requests the account has used..</param>
         /// <param name="BootstrapsFailed">Number of failed bootstraps the account has used..</param>
         /// <param name="Transactions">Number of transaction events from devices linked to the account..</param>
-        /// <param name="Timestamp">UTC time in RFC3339 format.</param>
+        /// <param name="Timestamp">UTC time in RFC3339 format..</param>
         /// <param name="RegisteredDevices">Maximum number of registered devices linked to the account..</param>
         /// <param name="BootstrapsPending">Number of pending bootstraps the account has used..</param>
+        /// <param name="DeviceServerRestApiSuccess">Number of successful device server REST API requests the account has used..</param>
         /// <param name="HandshakesFailed">Number of failed handshakes the account has used..</param>
         /// <param name="HandshakesSuccessful">Number of successful handshakes the account has used..</param>
         /// <param name="BootstrapsSuccessful">Number of successful bootstraps the account has used..</param>
-        /// <param name="DeviceServerRestApiSuccess">Number of successful device server REST API requests the account has used..</param>
-        public Metric(long? DeviceServerRestApiError = default(long?), long? BootstrapsFailed = default(long?), long? Transactions = default(long?), string Timestamp = default(string), long? RegisteredDevices = default(long?), long? BootstrapsPending = default(long?), long? HandshakesFailed = default(long?), long? HandshakesSuccessful = default(long?), long? BootstrapsSuccessful = default(long?), long? DeviceServerRestApiSuccess = default(long?))
+        /// <param name="Id">unique metric ID..</param>
+        public Metric(long? DeviceServerRestApiError = default(long?), long? BootstrapsFailed = default(long?), long? Transactions = default(long?), string Timestamp = default(string), long? RegisteredDevices = default(long?), long? BootstrapsPending = default(long?), long? DeviceServerRestApiSuccess = default(long?), long? HandshakesFailed = default(long?), long? HandshakesSuccessful = default(long?), long? BootstrapsSuccessful = default(long?), string Id = default(string))
         {
             this.DeviceServerRestApiError = DeviceServerRestApiError;
             this.BootstrapsFailed = BootstrapsFailed;
@@ -50,10 +51,11 @@ namespace statistics.Model
             this.Timestamp = Timestamp;
             this.RegisteredDevices = RegisteredDevices;
             this.BootstrapsPending = BootstrapsPending;
+            this.DeviceServerRestApiSuccess = DeviceServerRestApiSuccess;
             this.HandshakesFailed = HandshakesFailed;
             this.HandshakesSuccessful = HandshakesSuccessful;
             this.BootstrapsSuccessful = BootstrapsSuccessful;
-            this.DeviceServerRestApiSuccess = DeviceServerRestApiSuccess;
+            this.Id = Id;
         }
         
         /// <summary>
@@ -75,9 +77,9 @@ namespace statistics.Model
         [DataMember(Name="transactions", EmitDefaultValue=false)]
         public long? Transactions { get; set; }
         /// <summary>
-        /// UTC time in RFC3339 format
+        /// UTC time in RFC3339 format.
         /// </summary>
-        /// <value>UTC time in RFC3339 format</value>
+        /// <value>UTC time in RFC3339 format.</value>
         [DataMember(Name="timestamp", EmitDefaultValue=false)]
         public string Timestamp { get; set; }
         /// <summary>
@@ -92,6 +94,12 @@ namespace statistics.Model
         /// <value>Number of pending bootstraps the account has used.</value>
         [DataMember(Name="bootstraps_pending", EmitDefaultValue=false)]
         public long? BootstrapsPending { get; set; }
+        /// <summary>
+        /// Number of successful device server REST API requests the account has used.
+        /// </summary>
+        /// <value>Number of successful device server REST API requests the account has used.</value>
+        [DataMember(Name="device_server_rest_api_success", EmitDefaultValue=false)]
+        public long? DeviceServerRestApiSuccess { get; set; }
         /// <summary>
         /// Number of failed handshakes the account has used.
         /// </summary>
@@ -111,11 +119,11 @@ namespace statistics.Model
         [DataMember(Name="bootstraps_successful", EmitDefaultValue=false)]
         public long? BootstrapsSuccessful { get; set; }
         /// <summary>
-        /// Number of successful device server REST API requests the account has used.
+        /// unique metric ID.
         /// </summary>
-        /// <value>Number of successful device server REST API requests the account has used.</value>
-        [DataMember(Name="device_server_rest_api_success", EmitDefaultValue=false)]
-        public long? DeviceServerRestApiSuccess { get; set; }
+        /// <value>unique metric ID.</value>
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public string Id { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -130,10 +138,11 @@ namespace statistics.Model
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("  RegisteredDevices: ").Append(RegisteredDevices).Append("\n");
             sb.Append("  BootstrapsPending: ").Append(BootstrapsPending).Append("\n");
+            sb.Append("  DeviceServerRestApiSuccess: ").Append(DeviceServerRestApiSuccess).Append("\n");
             sb.Append("  HandshakesFailed: ").Append(HandshakesFailed).Append("\n");
             sb.Append("  HandshakesSuccessful: ").Append(HandshakesSuccessful).Append("\n");
             sb.Append("  BootstrapsSuccessful: ").Append(BootstrapsSuccessful).Append("\n");
-            sb.Append("  DeviceServerRestApiSuccess: ").Append(DeviceServerRestApiSuccess).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -201,6 +210,11 @@ namespace statistics.Model
                     this.BootstrapsPending.Equals(other.BootstrapsPending)
                 ) && 
                 (
+                    this.DeviceServerRestApiSuccess == other.DeviceServerRestApiSuccess ||
+                    this.DeviceServerRestApiSuccess != null &&
+                    this.DeviceServerRestApiSuccess.Equals(other.DeviceServerRestApiSuccess)
+                ) && 
+                (
                     this.HandshakesFailed == other.HandshakesFailed ||
                     this.HandshakesFailed != null &&
                     this.HandshakesFailed.Equals(other.HandshakesFailed)
@@ -216,9 +230,9 @@ namespace statistics.Model
                     this.BootstrapsSuccessful.Equals(other.BootstrapsSuccessful)
                 ) && 
                 (
-                    this.DeviceServerRestApiSuccess == other.DeviceServerRestApiSuccess ||
-                    this.DeviceServerRestApiSuccess != null &&
-                    this.DeviceServerRestApiSuccess.Equals(other.DeviceServerRestApiSuccess)
+                    this.Id == other.Id ||
+                    this.Id != null &&
+                    this.Id.Equals(other.Id)
                 );
         }
 
@@ -245,14 +259,16 @@ namespace statistics.Model
                     hash = hash * 59 + this.RegisteredDevices.GetHashCode();
                 if (this.BootstrapsPending != null)
                     hash = hash * 59 + this.BootstrapsPending.GetHashCode();
+                if (this.DeviceServerRestApiSuccess != null)
+                    hash = hash * 59 + this.DeviceServerRestApiSuccess.GetHashCode();
                 if (this.HandshakesFailed != null)
                     hash = hash * 59 + this.HandshakesFailed.GetHashCode();
                 if (this.HandshakesSuccessful != null)
                     hash = hash * 59 + this.HandshakesSuccessful.GetHashCode();
                 if (this.BootstrapsSuccessful != null)
                     hash = hash * 59 + this.BootstrapsSuccessful.GetHashCode();
-                if (this.DeviceServerRestApiSuccess != null)
-                    hash = hash * 59 + this.DeviceServerRestApiSuccess.GetHashCode();
+                if (this.Id != null)
+                    hash = hash * 59 + this.Id.GetHashCode();
                 return hash;
             }
         }

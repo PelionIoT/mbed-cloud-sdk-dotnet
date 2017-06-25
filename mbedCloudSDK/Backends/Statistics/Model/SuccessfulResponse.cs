@@ -32,34 +32,31 @@ namespace statistics.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SuccessfulResponse" /> class.
         /// </summary>
-        /// <param name="After">continuation_token included in the request or null..</param>
-        /// <param name="HasMore">true when there are more results to fetch using the included continuation_token..</param>
+        /// <param name="HasMore">Indicates whether there are more results for you to fetch in the next page..</param>
+        /// <param name="Data">Data.</param>
         /// <param name="_Object">API resource name..</param>
         /// <param name="Limit">limit used in the request to retrieve the results..</param>
-        /// <param name="ContinuationToken">token to use in after request parameter to fetch more results..</param>
-        /// <param name="Data">Data.</param>
-        public SuccessfulResponse(string After = default(string), bool? HasMore = default(bool?), string _Object = default(string), int? Limit = default(int?), string ContinuationToken = default(string), List<Metric> Data = default(List<Metric>))
+        /// <param name="After">metric ID included in the request or null..</param>
+        public SuccessfulResponse(bool? HasMore = default(bool?), List<Metric> Data = default(List<Metric>), string _Object = default(string), int? Limit = default(int?), string After = default(string))
         {
-            this.After = After;
             this.HasMore = HasMore;
+            this.Data = Data;
             this._Object = _Object;
             this.Limit = Limit;
-            this.ContinuationToken = ContinuationToken;
-            this.Data = Data;
+            this.After = After;
         }
         
         /// <summary>
-        /// continuation_token included in the request or null.
+        /// Indicates whether there are more results for you to fetch in the next page.
         /// </summary>
-        /// <value>continuation_token included in the request or null.</value>
-        [DataMember(Name="after", EmitDefaultValue=false)]
-        public string After { get; set; }
-        /// <summary>
-        /// true when there are more results to fetch using the included continuation_token.
-        /// </summary>
-        /// <value>true when there are more results to fetch using the included continuation_token.</value>
+        /// <value>Indicates whether there are more results for you to fetch in the next page.</value>
         [DataMember(Name="has_more", EmitDefaultValue=false)]
         public bool? HasMore { get; set; }
+        /// <summary>
+        /// Gets or Sets Data
+        /// </summary>
+        [DataMember(Name="data", EmitDefaultValue=false)]
+        public List<Metric> Data { get; set; }
         /// <summary>
         /// API resource name.
         /// </summary>
@@ -73,16 +70,11 @@ namespace statistics.Model
         [DataMember(Name="limit", EmitDefaultValue=false)]
         public int? Limit { get; set; }
         /// <summary>
-        /// token to use in after request parameter to fetch more results.
+        /// metric ID included in the request or null.
         /// </summary>
-        /// <value>token to use in after request parameter to fetch more results.</value>
-        [DataMember(Name="continuation_token", EmitDefaultValue=false)]
-        public string ContinuationToken { get; set; }
-        /// <summary>
-        /// Gets or Sets Data
-        /// </summary>
-        [DataMember(Name="data", EmitDefaultValue=false)]
-        public List<Metric> Data { get; set; }
+        /// <value>metric ID included in the request or null.</value>
+        [DataMember(Name="after", EmitDefaultValue=false)]
+        public string After { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -91,12 +83,11 @@ namespace statistics.Model
         {
             var sb = new StringBuilder();
             sb.Append("class SuccessfulResponse {\n");
-            sb.Append("  After: ").Append(After).Append("\n");
             sb.Append("  HasMore: ").Append(HasMore).Append("\n");
+            sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  Limit: ").Append(Limit).Append("\n");
-            sb.Append("  ContinuationToken: ").Append(ContinuationToken).Append("\n");
-            sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  After: ").Append(After).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -134,14 +125,14 @@ namespace statistics.Model
 
             return 
                 (
-                    this.After == other.After ||
-                    this.After != null &&
-                    this.After.Equals(other.After)
-                ) && 
-                (
                     this.HasMore == other.HasMore ||
                     this.HasMore != null &&
                     this.HasMore.Equals(other.HasMore)
+                ) && 
+                (
+                    this.Data == other.Data ||
+                    this.Data != null &&
+                    this.Data.SequenceEqual(other.Data)
                 ) && 
                 (
                     this._Object == other._Object ||
@@ -154,14 +145,9 @@ namespace statistics.Model
                     this.Limit.Equals(other.Limit)
                 ) && 
                 (
-                    this.ContinuationToken == other.ContinuationToken ||
-                    this.ContinuationToken != null &&
-                    this.ContinuationToken.Equals(other.ContinuationToken)
-                ) && 
-                (
-                    this.Data == other.Data ||
-                    this.Data != null &&
-                    this.Data.SequenceEqual(other.Data)
+                    this.After == other.After ||
+                    this.After != null &&
+                    this.After.Equals(other.After)
                 );
         }
 
@@ -176,18 +162,16 @@ namespace statistics.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.After != null)
-                    hash = hash * 59 + this.After.GetHashCode();
                 if (this.HasMore != null)
                     hash = hash * 59 + this.HasMore.GetHashCode();
+                if (this.Data != null)
+                    hash = hash * 59 + this.Data.GetHashCode();
                 if (this._Object != null)
                     hash = hash * 59 + this._Object.GetHashCode();
                 if (this.Limit != null)
                     hash = hash * 59 + this.Limit.GetHashCode();
-                if (this.ContinuationToken != null)
-                    hash = hash * 59 + this.ContinuationToken.GetHashCode();
-                if (this.Data != null)
-                    hash = hash * 59 + this.Data.GetHashCode();
+                if (this.After != null)
+                    hash = hash * 59 + this.After.GetHashCode();
                 return hash;
             }
         }
