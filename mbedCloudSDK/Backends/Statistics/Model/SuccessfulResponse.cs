@@ -32,20 +32,28 @@ namespace statistics.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SuccessfulResponse" /> class.
         /// </summary>
+        /// <param name="After">metric ID included in the request or null..</param>
         /// <param name="HasMore">Indicates whether there are more results for you to fetch in the next page..</param>
-        /// <param name="Data">Data.</param>
+        /// <param name="TotalCount">total number of records available..</param>
         /// <param name="_Object">API resource name..</param>
         /// <param name="Limit">limit used in the request to retrieve the results..</param>
-        /// <param name="After">metric ID included in the request or null..</param>
-        public SuccessfulResponse(bool? HasMore = default(bool?), List<Metric> Data = default(List<Metric>), string _Object = default(string), int? Limit = default(int?), string After = default(string))
+        /// <param name="Data">Data.</param>
+        public SuccessfulResponse(string After = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), string _Object = default(string), int? Limit = default(int?), List<Metric> Data = default(List<Metric>))
         {
+            this.After = After;
             this.HasMore = HasMore;
-            this.Data = Data;
+            this.TotalCount = TotalCount;
             this._Object = _Object;
             this.Limit = Limit;
-            this.After = After;
+            this.Data = Data;
         }
         
+        /// <summary>
+        /// metric ID included in the request or null.
+        /// </summary>
+        /// <value>metric ID included in the request or null.</value>
+        [DataMember(Name="after", EmitDefaultValue=false)]
+        public string After { get; set; }
         /// <summary>
         /// Indicates whether there are more results for you to fetch in the next page.
         /// </summary>
@@ -53,10 +61,11 @@ namespace statistics.Model
         [DataMember(Name="has_more", EmitDefaultValue=false)]
         public bool? HasMore { get; set; }
         /// <summary>
-        /// Gets or Sets Data
+        /// total number of records available.
         /// </summary>
-        [DataMember(Name="data", EmitDefaultValue=false)]
-        public List<Metric> Data { get; set; }
+        /// <value>total number of records available.</value>
+        [DataMember(Name="total_count", EmitDefaultValue=false)]
+        public int? TotalCount { get; set; }
         /// <summary>
         /// API resource name.
         /// </summary>
@@ -70,11 +79,10 @@ namespace statistics.Model
         [DataMember(Name="limit", EmitDefaultValue=false)]
         public int? Limit { get; set; }
         /// <summary>
-        /// metric ID included in the request or null.
+        /// Gets or Sets Data
         /// </summary>
-        /// <value>metric ID included in the request or null.</value>
-        [DataMember(Name="after", EmitDefaultValue=false)]
-        public string After { get; set; }
+        [DataMember(Name="data", EmitDefaultValue=false)]
+        public List<Metric> Data { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -83,11 +91,12 @@ namespace statistics.Model
         {
             var sb = new StringBuilder();
             sb.Append("class SuccessfulResponse {\n");
+            sb.Append("  After: ").Append(After).Append("\n");
             sb.Append("  HasMore: ").Append(HasMore).Append("\n");
-            sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  Limit: ").Append(Limit).Append("\n");
-            sb.Append("  After: ").Append(After).Append("\n");
+            sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -125,14 +134,19 @@ namespace statistics.Model
 
             return 
                 (
+                    this.After == other.After ||
+                    this.After != null &&
+                    this.After.Equals(other.After)
+                ) && 
+                (
                     this.HasMore == other.HasMore ||
                     this.HasMore != null &&
                     this.HasMore.Equals(other.HasMore)
                 ) && 
                 (
-                    this.Data == other.Data ||
-                    this.Data != null &&
-                    this.Data.SequenceEqual(other.Data)
+                    this.TotalCount == other.TotalCount ||
+                    this.TotalCount != null &&
+                    this.TotalCount.Equals(other.TotalCount)
                 ) && 
                 (
                     this._Object == other._Object ||
@@ -145,9 +159,9 @@ namespace statistics.Model
                     this.Limit.Equals(other.Limit)
                 ) && 
                 (
-                    this.After == other.After ||
-                    this.After != null &&
-                    this.After.Equals(other.After)
+                    this.Data == other.Data ||
+                    this.Data != null &&
+                    this.Data.SequenceEqual(other.Data)
                 );
         }
 
@@ -162,16 +176,18 @@ namespace statistics.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
+                if (this.After != null)
+                    hash = hash * 59 + this.After.GetHashCode();
                 if (this.HasMore != null)
                     hash = hash * 59 + this.HasMore.GetHashCode();
-                if (this.Data != null)
-                    hash = hash * 59 + this.Data.GetHashCode();
+                if (this.TotalCount != null)
+                    hash = hash * 59 + this.TotalCount.GetHashCode();
                 if (this._Object != null)
                     hash = hash * 59 + this._Object.GetHashCode();
                 if (this.Limit != null)
                     hash = hash * 59 + this.Limit.GetHashCode();
-                if (this.After != null)
-                    hash = hash * 59 + this.After.GetHashCode();
+                if (this.Data != null)
+                    hash = hash * 59 + this.Data.GetHashCode();
                 return hash;
             }
         }
