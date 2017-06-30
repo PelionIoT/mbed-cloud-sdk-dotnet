@@ -1,7 +1,0 @@
-var searchData=
-[
-  ['setresourcevalue',['SetResourceValue',['../classmbed_cloud_s_d_k_1_1_devices_1_1_api_1_1_devices_api.html#a287426845d461a8f2bb351a41a786e78',1,'mbedCloudSDK.Devices.Api.DevicesApi.SetResourceValue()'],['../classmbed_cloud_s_d_k_1_1_devices_1_1_model_1_1_resource_1_1_resource.html#a1cc8925f72dbfe0830e4bb6a81082aae',1,'mbedCloudSDK.Devices.Model.Resource.Resource.SetResourceValue()'],['../class_console_examples_1_1_examples_1_1_devices_1_1_resource.html#ac421e845dc9859a7f09bdce9ff169195',1,'ConsoleExamples.Examples.Devices.Resource.SetResourceValue()']]],
-  ['startlongpolling',['StartLongPolling',['../classmbed_cloud_s_d_k_1_1_devices_1_1_api_1_1_devices_api.html#a429a0ab17a35513f8db7c7589645ea77',1,'mbedCloudSDK::Devices::Api::DevicesApi']]],
-  ['stoplongpolling',['StopLongPolling',['../classmbed_cloud_s_d_k_1_1_devices_1_1_api_1_1_devices_api.html#af6b80b555d54f8528f619720c7591459',1,'mbedCloudSDK::Devices::Api::DevicesApi']]],
-  ['subscribe',['Subscribe',['../classmbed_cloud_s_d_k_1_1_devices_1_1_api_1_1_devices_api.html#ad345c7f2aae649143e813017a0116152',1,'mbedCloudSDK.Devices.Api.DevicesApi.Subscribe()'],['../classmbed_cloud_s_d_k_1_1_devices_1_1_model_1_1_resource_1_1_resource.html#abdce5acd47bdd7061ef25e59e91e1aae',1,'mbedCloudSDK.Devices.Model.Resource.Resource.Subscribe()'],['../class_console_examples_1_1_examples_1_1_devices_1_1_subscription.html#af32fe0589c7fa7e345efb499894394bd',1,'ConsoleExamples.Examples.Devices.Subscription.Subscribe()']]]
-];
