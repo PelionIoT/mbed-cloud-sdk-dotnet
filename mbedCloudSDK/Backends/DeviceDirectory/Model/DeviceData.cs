@@ -132,12 +132,12 @@ namespace device_directory.Model
         /// Initializes a new instance of the <see cref="DeviceData" /> class.
         /// </summary>
         /// <param name="BootstrapExpirationDate">Expiration date of the certificate used to connect to bootstrap server..</param>
-        /// <param name="BootstrappedTimestamp">Timestamp of when the device was bootstrapped..</param>
-        /// <param name="ConnectorExpirationDate">Expiration date of the certificate used to connect to connector server..</param>
+        /// <param name="BootstrappedTimestamp">Timestamp of when the device last went through the bootstrap process..</param>
+        /// <param name="ConnectorExpirationDate">Expiration date of the certificate used to connect to the lwm2m server..</param>
         /// <param name="UpdatedAt">The time the object was updated..</param>
         /// <param name="CaId">ID of the issuer of the certificate..</param>
-        /// <param name="DeviceClass">The device class..</param>
-        /// <param name="Id">The ID of the device..</param>
+        /// <param name="DeviceClass">An id representing the model and hardware revision of the device..</param>
+        /// <param name="Id">The id of the device. The device id is used to manage a device across all mbed cloud apis..</param>
         /// <param name="AccountId">The ID of the associated account..</param>
         /// <param name="EndpointName">The endpoint name given to the device..</param>
         /// <param name="AutoUpdate">DEPRECATED Mark this device for auto firmware update..</param>
@@ -150,16 +150,16 @@ namespace device_directory.Model
         /// <param name="FirmwareChecksum">The SHA256 checksum of the current firmware image..</param>
         /// <param name="ManifestTimestamp">The timestamp of the current manifest version..</param>
         /// <param name="VendorId">The device vendor ID..</param>
-        /// <param name="Description">The description of the object..</param>
+        /// <param name="Description">The description of the device..</param>
         /// <param name="DeployedState">DEPRECATED The state of the device&#39;s deployment..</param>
         /// <param name="_Object">The API resource entity..</param>
         /// <param name="EndpointType">The endpoint type of the device - e.g. if the device is a gateway..</param>
         /// <param name="Deployment">DEPRECATED The last deployment used on the device..</param>
         /// <param name="MechanismUrl">The address of the connector to use..</param>
         /// <param name="TrustLevel">The device trust level..</param>
-        /// <param name="Name">The name of the object..</param>
+        /// <param name="Name">The name of the device..</param>
         /// <param name="DeviceKey">Fingerprint of the device certificate..</param>
-        /// <param name="CreatedAt">The time the object was created..</param>
+        /// <param name="CreatedAt">Timestamp of when the device was created in the device directory..</param>
         /// <param name="Manifest">DEPRECATED The URL for the current device manifest..</param>
         /// <param name="CustomAttributes">Up to 5 custom JSON attributes.</param>
         public DeviceData(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), string CaId = default(string), string DeviceClass = default(string), string Id = default(string), string AccountId = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), int? DeviceExecutionMode = default(int?), MechanismEnum? Mechanism = default(MechanismEnum?), StateEnum? State = default(StateEnum?), DateTime? Etag = default(DateTime?), string SerialNumber = default(string), string FirmwareChecksum = default(string), DateTime? ManifestTimestamp = default(DateTime?), string VendorId = default(string), string Description = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string _Object = default(string), string EndpointType = default(string), string Deployment = default(string), string MechanismUrl = default(string), int? TrustLevel = default(int?), string Name = default(string), string DeviceKey = default(string), DateTime? CreatedAt = default(DateTime?), string Manifest = default(string), Object CustomAttributes = default(Object))
@@ -204,15 +204,15 @@ namespace device_directory.Model
         [DataMember(Name="bootstrap_expiration_date", EmitDefaultValue=false)]
         public DateTime? BootstrapExpirationDate { get; set; }
         /// <summary>
-        /// Timestamp of when the device was bootstrapped.
+        /// Timestamp of when the device last went through the bootstrap process.
         /// </summary>
-        /// <value>Timestamp of when the device was bootstrapped.</value>
+        /// <value>Timestamp of when the device last went through the bootstrap process.</value>
         [DataMember(Name="bootstrapped_timestamp", EmitDefaultValue=false)]
         public DateTime? BootstrappedTimestamp { get; set; }
         /// <summary>
-        /// Expiration date of the certificate used to connect to connector server.
+        /// Expiration date of the certificate used to connect to the lwm2m server.
         /// </summary>
-        /// <value>Expiration date of the certificate used to connect to connector server.</value>
+        /// <value>Expiration date of the certificate used to connect to the lwm2m server.</value>
         [DataMember(Name="connector_expiration_date", EmitDefaultValue=false)]
         public DateTime? ConnectorExpirationDate { get; set; }
         /// <summary>
@@ -228,15 +228,15 @@ namespace device_directory.Model
         [DataMember(Name="ca_id", EmitDefaultValue=false)]
         public string CaId { get; set; }
         /// <summary>
-        /// The device class.
+        /// An id representing the model and hardware revision of the device.
         /// </summary>
-        /// <value>The device class.</value>
+        /// <value>An id representing the model and hardware revision of the device.</value>
         [DataMember(Name="device_class", EmitDefaultValue=false)]
         public string DeviceClass { get; set; }
         /// <summary>
-        /// The ID of the device.
+        /// The id of the device. The device id is used to manage a device across all mbed cloud apis.
         /// </summary>
-        /// <value>The ID of the device.</value>
+        /// <value>The id of the device. The device id is used to manage a device across all mbed cloud apis.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
         /// <summary>
@@ -300,9 +300,9 @@ namespace device_directory.Model
         [DataMember(Name="vendor_id", EmitDefaultValue=false)]
         public string VendorId { get; set; }
         /// <summary>
-        /// The description of the object.
+        /// The description of the device.
         /// </summary>
-        /// <value>The description of the object.</value>
+        /// <value>The description of the device.</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
         /// <summary>
@@ -336,9 +336,9 @@ namespace device_directory.Model
         [DataMember(Name="trust_level", EmitDefaultValue=false)]
         public int? TrustLevel { get; set; }
         /// <summary>
-        /// The name of the object.
+        /// The name of the device.
         /// </summary>
-        /// <value>The name of the object.</value>
+        /// <value>The name of the device.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
@@ -348,9 +348,9 @@ namespace device_directory.Model
         [DataMember(Name="device_key", EmitDefaultValue=false)]
         public string DeviceKey { get; set; }
         /// <summary>
-        /// The time the object was created.
+        /// Timestamp of when the device was created in the device directory.
         /// </summary>
-        /// <value>The time the object was created.</value>
+        /// <value>Timestamp of when the device was created in the device directory.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
         /// <summary>
@@ -676,6 +676,24 @@ namespace device_directory.Model
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         { 
+            // CaId (string) maxLength
+            if(this.CaId != null && this.CaId.Length > 500)
+            {
+                yield return new ValidationResult("Invalid value for CaId, length must be less than 500.", new [] { "CaId" });
+            }
+
+            // DeviceClass (string) maxLength
+            if(this.DeviceClass != null && this.DeviceClass.Length > 500)
+            {
+                yield return new ValidationResult("Invalid value for DeviceClass, length must be less than 500.", new [] { "DeviceClass" });
+            }
+
+            // DeviceKey (string) maxLength
+            if(this.DeviceKey != null && this.DeviceKey.Length > 512)
+            {
+                yield return new ValidationResult("Invalid value for DeviceKey, length must be less than 512.", new [] { "DeviceKey" });
+            }
+
             yield break;
         }
     }

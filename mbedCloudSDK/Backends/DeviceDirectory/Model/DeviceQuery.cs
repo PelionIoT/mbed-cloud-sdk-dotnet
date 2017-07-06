@@ -38,7 +38,7 @@ namespace device_directory.Model
         /// Initializes a new instance of the <see cref="DeviceQuery" /> class.
         /// </summary>
         /// <param name="Name">The name of the query. (required).</param>
-        /// <param name="CreatedAt">The time the object was created. (required).</param>
+        /// <param name="CreatedAt">Timestamp of when the device was created in the device directory. (required).</param>
         /// <param name="_Object">The API resource entity. (required).</param>
         /// <param name="UpdatedAt">The time the object was updated. (required).</param>
         /// <param name="Etag">The entity instance signature. (required).</param>
@@ -118,9 +118,9 @@ namespace device_directory.Model
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
-        /// The time the object was created.
+        /// Timestamp of when the device was created in the device directory.
         /// </summary>
-        /// <value>The time the object was created.</value>
+        /// <value>Timestamp of when the device was created in the device directory.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
         /// <summary>

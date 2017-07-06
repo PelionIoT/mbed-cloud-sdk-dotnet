@@ -32,7 +32,7 @@ namespace device_directory.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceDataPatchRequest" /> class.
         /// </summary>
-        /// <param name="Description">The description of the object..</param>
+        /// <param name="Description">The description of the device..</param>
         /// <param name="EndpointName">The endpoint name given to the device..</param>
         /// <param name="AutoUpdate">DEPRECATED Mark this device for auto firmware update..</param>
         /// <param name="HostGateway">The endpoint_name of the host gateway, if appropriate..</param>
@@ -41,7 +41,7 @@ namespace device_directory.Model
         /// <param name="DeviceKey">Fingerprint of the device certificate..</param>
         /// <param name="EndpointType">The endpoint type of the device - e.g. if the device is a gateway..</param>
         /// <param name="CaId">ID of the issuer of the certificate..</param>
-        /// <param name="Name">The name of the object..</param>
+        /// <param name="Name">The name of the device..</param>
         public DeviceDataPatchRequest(string Description = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), string _Object = default(string), Object CustomAttributes = default(Object), string DeviceKey = default(string), string EndpointType = default(string), string CaId = default(string), string Name = default(string))
         {
             this.Description = Description;
@@ -57,9 +57,9 @@ namespace device_directory.Model
         }
         
         /// <summary>
-        /// The description of the object.
+        /// The description of the device.
         /// </summary>
-        /// <value>The description of the object.</value>
+        /// <value>The description of the device.</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
         /// <summary>
@@ -111,9 +111,9 @@ namespace device_directory.Model
         [DataMember(Name="ca_id", EmitDefaultValue=false)]
         public string CaId { get; set; }
         /// <summary>
-        /// The name of the object.
+        /// The name of the device.
         /// </summary>
-        /// <value>The name of the object.</value>
+        /// <value>The name of the device.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
