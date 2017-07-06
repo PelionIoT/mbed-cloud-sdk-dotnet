@@ -137,10 +137,10 @@ namespace device_directory.Model
         /// Initializes a new instance of the <see cref="DeviceDataPostRequest" /> class.
         /// </summary>
         /// <param name="BootstrapExpirationDate">Expiration date of the certificate used to connect to bootstrap server..</param>
-        /// <param name="BootstrappedTimestamp">Timestamp of when the device was bootstrapped..</param>
-        /// <param name="ConnectorExpirationDate">Expiration date of the certificate used to connect to connector server..</param>
+        /// <param name="BootstrappedTimestamp">Timestamp of when the device last went through the bootstrap process..</param>
+        /// <param name="ConnectorExpirationDate">Expiration date of the certificate used to connect to the lwm2m server..</param>
         /// <param name="Mechanism">The ID of the channel used to communicate with the device..</param>
-        /// <param name="DeviceClass">The device class..</param>
+        /// <param name="DeviceClass">An id representing the model and hardware revision of the device..</param>
         /// <param name="EndpointName">The endpoint name given to the device..</param>
         /// <param name="AutoUpdate">DEPRECATED Mark this device for auto firmware update..</param>
         /// <param name="HostGateway">The endpoint_name of the host gateway, if appropriate..</param>
@@ -150,14 +150,14 @@ namespace device_directory.Model
         /// <param name="SerialNumber">The serial number of the device..</param>
         /// <param name="FirmwareChecksum">The SHA256 checksum of the current firmware image..</param>
         /// <param name="VendorId">The device vendor ID..</param>
-        /// <param name="Description">The description of the object..</param>
+        /// <param name="Description">The description of the device..</param>
         /// <param name="DeployedState">DEPRECATED The state of the device&#39;s deployment..</param>
         /// <param name="_Object">The API resource entity..</param>
         /// <param name="EndpointType">The endpoint type of the device - e.g. if the device is a gateway..</param>
         /// <param name="Deployment">DEPRECATED The last deployment used on the device..</param>
         /// <param name="MechanismUrl">The address of the connector to use..</param>
         /// <param name="TrustLevel">The device trust level..</param>
-        /// <param name="Name">The name of the object..</param>
+        /// <param name="Name">The name of the device..</param>
         /// <param name="DeviceKey">Fingerprint of the device certificate. (required).</param>
         /// <param name="Manifest">DEPRECATED The URL for the current device manifest..</param>
         /// <param name="CaId">ID of the issuer of the certificate. (required).</param>
@@ -213,21 +213,21 @@ namespace device_directory.Model
         [DataMember(Name="bootstrap_expiration_date", EmitDefaultValue=false)]
         public DateTime? BootstrapExpirationDate { get; set; }
         /// <summary>
-        /// Timestamp of when the device was bootstrapped.
+        /// Timestamp of when the device last went through the bootstrap process.
         /// </summary>
-        /// <value>Timestamp of when the device was bootstrapped.</value>
+        /// <value>Timestamp of when the device last went through the bootstrap process.</value>
         [DataMember(Name="bootstrapped_timestamp", EmitDefaultValue=false)]
         public DateTime? BootstrappedTimestamp { get; set; }
         /// <summary>
-        /// Expiration date of the certificate used to connect to connector server.
+        /// Expiration date of the certificate used to connect to the lwm2m server.
         /// </summary>
-        /// <value>Expiration date of the certificate used to connect to connector server.</value>
+        /// <value>Expiration date of the certificate used to connect to the lwm2m server.</value>
         [DataMember(Name="connector_expiration_date", EmitDefaultValue=false)]
         public DateTime? ConnectorExpirationDate { get; set; }
         /// <summary>
-        /// The device class.
+        /// An id representing the model and hardware revision of the device.
         /// </summary>
-        /// <value>The device class.</value>
+        /// <value>An id representing the model and hardware revision of the device.</value>
         [DataMember(Name="device_class", EmitDefaultValue=false)]
         public string DeviceClass { get; set; }
         /// <summary>
@@ -279,9 +279,9 @@ namespace device_directory.Model
         [DataMember(Name="vendor_id", EmitDefaultValue=false)]
         public string VendorId { get; set; }
         /// <summary>
-        /// The description of the object.
+        /// The description of the device.
         /// </summary>
-        /// <value>The description of the object.</value>
+        /// <value>The description of the device.</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
         /// <summary>
@@ -315,9 +315,9 @@ namespace device_directory.Model
         [DataMember(Name="trust_level", EmitDefaultValue=false)]
         public int? TrustLevel { get; set; }
         /// <summary>
-        /// The name of the object.
+        /// The name of the device.
         /// </summary>
-        /// <value>The name of the object.</value>
+        /// <value>The name of the device.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
