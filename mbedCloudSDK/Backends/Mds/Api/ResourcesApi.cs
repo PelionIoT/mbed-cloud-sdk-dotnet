@@ -53,12 +53,12 @@ namespace mds.Api
         /// Read from a resource
         /// </summary>
         /// <remarks>
-        /// Requests the resource value and when the response is available, a json AsyncResponse  object (AsyncIDResponse object) is received in the notification channel. Make sure that you have notification channel available.  If there is no notification channel, the response cannot be forwarded but the request is still made.  **Note:** You can also receive notifications when a resource changes. The preferred way to get resource values is to use subscribe and callback methods.  All resource APIs are asynchronous. These APIs only respond if the device is turned on and connected to mbed Cloud Connect. 
+        /// Requests the resource value and when the response is available, a json AsyncIDResponse object is received in the notification channel. The preferred way to get resource values is to use [subscribe](/docs/v1.2/api-references/connect-api.html#v2-subscriptions-device-id-resourcepath) and [callback](/docs/v1.2/api-references/connect-api.html#v2-notification-callback) methods.  All resource APIs are asynchronous. These APIs only respond if the device is turned on and connected to mbed Cloud Connect. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
-        /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false.  (optional)</param>
+        /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false. mbed Cloud Connect caches the received resource values for the time of [max_age](/docs/v1.2/device-dev/connecting-devices-to-the-cloud-with-mbed-cloud-client.html#use-mbed-cloud-client-data-types) defined in the client side.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**   All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  409 Conflict.  (optional)</param>
         /// <returns>AsyncID</returns>
         AsyncID V2EndpointsDeviceIdResourcePathGet (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null);
@@ -67,12 +67,12 @@ namespace mds.Api
         /// Read from a resource
         /// </summary>
         /// <remarks>
-        /// Requests the resource value and when the response is available, a json AsyncResponse  object (AsyncIDResponse object) is received in the notification channel. Make sure that you have notification channel available.  If there is no notification channel, the response cannot be forwarded but the request is still made.  **Note:** You can also receive notifications when a resource changes. The preferred way to get resource values is to use subscribe and callback methods.  All resource APIs are asynchronous. These APIs only respond if the device is turned on and connected to mbed Cloud Connect. 
+        /// Requests the resource value and when the response is available, a json AsyncIDResponse object is received in the notification channel. The preferred way to get resource values is to use [subscribe](/docs/v1.2/api-references/connect-api.html#v2-subscriptions-device-id-resourcepath) and [callback](/docs/v1.2/api-references/connect-api.html#v2-notification-callback) methods.  All resource APIs are asynchronous. These APIs only respond if the device is turned on and connected to mbed Cloud Connect. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
-        /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false.  (optional)</param>
+        /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false. mbed Cloud Connect caches the received resource values for the time of [max_age](/docs/v1.2/device-dev/connecting-devices-to-the-cloud-with-mbed-cloud-client.html#use-mbed-cloud-client-data-types) defined in the client side.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**   All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  409 Conflict.  (optional)</param>
         /// <returns>ApiResponse of AsyncID</returns>
         ApiResponse<AsyncID> V2EndpointsDeviceIdResourcePathGetWithHttpInfo (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null);
@@ -161,12 +161,12 @@ namespace mds.Api
         /// Read from a resource
         /// </summary>
         /// <remarks>
-        /// Requests the resource value and when the response is available, a json AsyncResponse  object (AsyncIDResponse object) is received in the notification channel. Make sure that you have notification channel available.  If there is no notification channel, the response cannot be forwarded but the request is still made.  **Note:** You can also receive notifications when a resource changes. The preferred way to get resource values is to use subscribe and callback methods.  All resource APIs are asynchronous. These APIs only respond if the device is turned on and connected to mbed Cloud Connect. 
+        /// Requests the resource value and when the response is available, a json AsyncIDResponse object is received in the notification channel. The preferred way to get resource values is to use [subscribe](/docs/v1.2/api-references/connect-api.html#v2-subscriptions-device-id-resourcepath) and [callback](/docs/v1.2/api-references/connect-api.html#v2-notification-callback) methods.  All resource APIs are asynchronous. These APIs only respond if the device is turned on and connected to mbed Cloud Connect. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
-        /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false.  (optional)</param>
+        /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false. mbed Cloud Connect caches the received resource values for the time of [max_age](/docs/v1.2/device-dev/connecting-devices-to-the-cloud-with-mbed-cloud-client.html#use-mbed-cloud-client-data-types) defined in the client side.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**   All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  409 Conflict.  (optional)</param>
         /// <returns>Task of AsyncID</returns>
         System.Threading.Tasks.Task<AsyncID> V2EndpointsDeviceIdResourcePathGetAsync (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null);
@@ -175,12 +175,12 @@ namespace mds.Api
         /// Read from a resource
         /// </summary>
         /// <remarks>
-        /// Requests the resource value and when the response is available, a json AsyncResponse  object (AsyncIDResponse object) is received in the notification channel. Make sure that you have notification channel available.  If there is no notification channel, the response cannot be forwarded but the request is still made.  **Note:** You can also receive notifications when a resource changes. The preferred way to get resource values is to use subscribe and callback methods.  All resource APIs are asynchronous. These APIs only respond if the device is turned on and connected to mbed Cloud Connect. 
+        /// Requests the resource value and when the response is available, a json AsyncIDResponse object is received in the notification channel. The preferred way to get resource values is to use [subscribe](/docs/v1.2/api-references/connect-api.html#v2-subscriptions-device-id-resourcepath) and [callback](/docs/v1.2/api-references/connect-api.html#v2-notification-callback) methods.  All resource APIs are asynchronous. These APIs only respond if the device is turned on and connected to mbed Cloud Connect. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
-        /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false.  (optional)</param>
+        /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false. mbed Cloud Connect caches the received resource values for the time of [max_age](/docs/v1.2/device-dev/connecting-devices-to-the-cloud-with-mbed-cloud-client.html#use-mbed-cloud-client-data-types) defined in the client side.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**   All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  409 Conflict.  (optional)</param>
         /// <returns>Task of ApiResponse (AsyncID)</returns>
         System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsDeviceIdResourcePathGetAsyncWithHttpInfo (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null);
@@ -521,12 +521,12 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Read from a resource Requests the resource value and when the response is available, a json AsyncResponse  object (AsyncIDResponse object) is received in the notification channel. Make sure that you have notification channel available.  If there is no notification channel, the response cannot be forwarded but the request is still made.  **Note:** You can also receive notifications when a resource changes. The preferred way to get resource values is to use subscribe and callback methods.  All resource APIs are asynchronous. These APIs only respond if the device is turned on and connected to mbed Cloud Connect. 
+        /// Read from a resource Requests the resource value and when the response is available, a json AsyncIDResponse object is received in the notification channel. The preferred way to get resource values is to use [subscribe](/docs/v1.2/api-references/connect-api.html#v2-subscriptions-device-id-resourcepath) and [callback](/docs/v1.2/api-references/connect-api.html#v2-notification-callback) methods.  All resource APIs are asynchronous. These APIs only respond if the device is turned on and connected to mbed Cloud Connect. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
-        /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false.  (optional)</param>
+        /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false. mbed Cloud Connect caches the received resource values for the time of [max_age](/docs/v1.2/device-dev/connecting-devices-to-the-cloud-with-mbed-cloud-client.html#use-mbed-cloud-client-data-types) defined in the client side.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**   All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  409 Conflict.  (optional)</param>
         /// <returns>AsyncID</returns>
         public AsyncID V2EndpointsDeviceIdResourcePathGet (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null)
@@ -536,12 +536,12 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Read from a resource Requests the resource value and when the response is available, a json AsyncResponse  object (AsyncIDResponse object) is received in the notification channel. Make sure that you have notification channel available.  If there is no notification channel, the response cannot be forwarded but the request is still made.  **Note:** You can also receive notifications when a resource changes. The preferred way to get resource values is to use subscribe and callback methods.  All resource APIs are asynchronous. These APIs only respond if the device is turned on and connected to mbed Cloud Connect. 
+        /// Read from a resource Requests the resource value and when the response is available, a json AsyncIDResponse object is received in the notification channel. The preferred way to get resource values is to use [subscribe](/docs/v1.2/api-references/connect-api.html#v2-subscriptions-device-id-resourcepath) and [callback](/docs/v1.2/api-references/connect-api.html#v2-notification-callback) methods.  All resource APIs are asynchronous. These APIs only respond if the device is turned on and connected to mbed Cloud Connect. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
-        /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false.  (optional)</param>
+        /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false. mbed Cloud Connect caches the received resource values for the time of [max_age](/docs/v1.2/device-dev/connecting-devices-to-the-cloud-with-mbed-cloud-client.html#use-mbed-cloud-client-data-types) defined in the client side.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**   All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  409 Conflict.  (optional)</param>
         /// <returns>ApiResponse of AsyncID</returns>
         public ApiResponse< AsyncID > V2EndpointsDeviceIdResourcePathGetWithHttpInfo (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null)
@@ -609,12 +609,12 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Read from a resource Requests the resource value and when the response is available, a json AsyncResponse  object (AsyncIDResponse object) is received in the notification channel. Make sure that you have notification channel available.  If there is no notification channel, the response cannot be forwarded but the request is still made.  **Note:** You can also receive notifications when a resource changes. The preferred way to get resource values is to use subscribe and callback methods.  All resource APIs are asynchronous. These APIs only respond if the device is turned on and connected to mbed Cloud Connect. 
+        /// Read from a resource Requests the resource value and when the response is available, a json AsyncIDResponse object is received in the notification channel. The preferred way to get resource values is to use [subscribe](/docs/v1.2/api-references/connect-api.html#v2-subscriptions-device-id-resourcepath) and [callback](/docs/v1.2/api-references/connect-api.html#v2-notification-callback) methods.  All resource APIs are asynchronous. These APIs only respond if the device is turned on and connected to mbed Cloud Connect. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
-        /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false.  (optional)</param>
+        /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false. mbed Cloud Connect caches the received resource values for the time of [max_age](/docs/v1.2/device-dev/connecting-devices-to-the-cloud-with-mbed-cloud-client.html#use-mbed-cloud-client-data-types) defined in the client side.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**   All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  409 Conflict.  (optional)</param>
         /// <returns>Task of AsyncID</returns>
         public async System.Threading.Tasks.Task<AsyncID> V2EndpointsDeviceIdResourcePathGetAsync (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null)
@@ -625,12 +625,12 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Read from a resource Requests the resource value and when the response is available, a json AsyncResponse  object (AsyncIDResponse object) is received in the notification channel. Make sure that you have notification channel available.  If there is no notification channel, the response cannot be forwarded but the request is still made.  **Note:** You can also receive notifications when a resource changes. The preferred way to get resource values is to use subscribe and callback methods.  All resource APIs are asynchronous. These APIs only respond if the device is turned on and connected to mbed Cloud Connect. 
+        /// Read from a resource Requests the resource value and when the response is available, a json AsyncIDResponse object is received in the notification channel. The preferred way to get resource values is to use [subscribe](/docs/v1.2/api-references/connect-api.html#v2-subscriptions-device-id-resourcepath) and [callback](/docs/v1.2/api-references/connect-api.html#v2-notification-callback) methods.  All resource APIs are asynchronous. These APIs only respond if the device is turned on and connected to mbed Cloud Connect. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">Unique mbed Cloud device ID for the endpoint. Note that the ID needs to be an exact match. You cannot use wildcards here. </param>
         /// <param name="resourcePath">The URL of the resource. </param>
-        /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false.  (optional)</param>
+        /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false. mbed Cloud Connect caches the received resource values for the time of [max_age](/docs/v1.2/device-dev/connecting-devices-to-the-cloud-with-mbed-cloud-client.html#use-mbed-cloud-client-data-types) defined in the client side.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**   All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  409 Conflict.  (optional)</param>
         /// <returns>Task of ApiResponse (AsyncID)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsDeviceIdResourcePathGetAsyncWithHttpInfo (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null)

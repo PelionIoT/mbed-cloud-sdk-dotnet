@@ -46,10 +46,10 @@ namespace mds.Api
         /// <returns>ApiResponse of List&lt;Resource&gt;</returns>
         ApiResponse<List<Resource>> V2EndpointsDeviceIdGetWithHttpInfo (string deviceId);
         /// <summary>
-        /// List endpoints. The number of endpoints is currently limited to 200.
+        /// List registered endpoints. The number of endpoints is currently limited to 200.
         /// </summary>
         /// <remarks>
-        /// Endpoints are physical devices running mbed Cloud Client. 
+        /// Endpoints are physical devices having valid registration to mbed Cloud Connect. All devices despite the registration status can be requested from Device Directory API [&#39;/v3/devices/ ](/docs/v1.2/api-references/device-directory-api.html#v3-devices) 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Filter endpoints by endpoint-type. (optional)</param>
@@ -57,10 +57,10 @@ namespace mds.Api
         List<Endpoint> V2EndpointsGet (string type = null);
 
         /// <summary>
-        /// List endpoints. The number of endpoints is currently limited to 200.
+        /// List registered endpoints. The number of endpoints is currently limited to 200.
         /// </summary>
         /// <remarks>
-        /// Endpoints are physical devices running mbed Cloud Client. 
+        /// Endpoints are physical devices having valid registration to mbed Cloud Connect. All devices despite the registration status can be requested from Device Directory API [&#39;/v3/devices/ ](/docs/v1.2/api-references/device-directory-api.html#v3-devices) 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Filter endpoints by endpoint-type. (optional)</param>
@@ -90,10 +90,10 @@ namespace mds.Api
         /// <returns>Task of ApiResponse (List&lt;Resource&gt;)</returns>
         System.Threading.Tasks.Task<ApiResponse<List<Resource>>> V2EndpointsDeviceIdGetAsyncWithHttpInfo (string deviceId);
         /// <summary>
-        /// List endpoints. The number of endpoints is currently limited to 200.
+        /// List registered endpoints. The number of endpoints is currently limited to 200.
         /// </summary>
         /// <remarks>
-        /// Endpoints are physical devices running mbed Cloud Client. 
+        /// Endpoints are physical devices having valid registration to mbed Cloud Connect. All devices despite the registration status can be requested from Device Directory API [&#39;/v3/devices/ ](/docs/v1.2/api-references/device-directory-api.html#v3-devices) 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Filter endpoints by endpoint-type. (optional)</param>
@@ -101,10 +101,10 @@ namespace mds.Api
         System.Threading.Tasks.Task<List<Endpoint>> V2EndpointsGetAsync (string type = null);
 
         /// <summary>
-        /// List endpoints. The number of endpoints is currently limited to 200.
+        /// List registered endpoints. The number of endpoints is currently limited to 200.
         /// </summary>
         /// <remarks>
-        /// Endpoints are physical devices running mbed Cloud Client. 
+        /// Endpoints are physical devices having valid registration to mbed Cloud Connect. All devices despite the registration status can be requested from Device Directory API [&#39;/v3/devices/ ](/docs/v1.2/api-references/device-directory-api.html#v3-devices) 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Filter endpoints by endpoint-type. (optional)</param>
@@ -377,7 +377,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// List endpoints. The number of endpoints is currently limited to 200. Endpoints are physical devices running mbed Cloud Client. 
+        /// List registered endpoints. The number of endpoints is currently limited to 200. Endpoints are physical devices having valid registration to mbed Cloud Connect. All devices despite the registration status can be requested from Device Directory API [&#39;/v3/devices/ ](/docs/v1.2/api-references/device-directory-api.html#v3-devices) 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Filter endpoints by endpoint-type. (optional)</param>
@@ -389,7 +389,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// List endpoints. The number of endpoints is currently limited to 200. Endpoints are physical devices running mbed Cloud Client. 
+        /// List registered endpoints. The number of endpoints is currently limited to 200. Endpoints are physical devices having valid registration to mbed Cloud Connect. All devices despite the registration status can be requested from Device Directory API [&#39;/v3/devices/ ](/docs/v1.2/api-references/device-directory-api.html#v3-devices) 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Filter endpoints by endpoint-type. (optional)</param>
@@ -451,7 +451,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// List endpoints. The number of endpoints is currently limited to 200. Endpoints are physical devices running mbed Cloud Client. 
+        /// List registered endpoints. The number of endpoints is currently limited to 200. Endpoints are physical devices having valid registration to mbed Cloud Connect. All devices despite the registration status can be requested from Device Directory API [&#39;/v3/devices/ ](/docs/v1.2/api-references/device-directory-api.html#v3-devices) 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Filter endpoints by endpoint-type. (optional)</param>
@@ -464,7 +464,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// List endpoints. The number of endpoints is currently limited to 200. Endpoints are physical devices running mbed Cloud Client. 
+        /// List registered endpoints. The number of endpoints is currently limited to 200. Endpoints are physical devices having valid registration to mbed Cloud Connect. All devices despite the registration status can be requested from Device Directory API [&#39;/v3/devices/ ](/docs/v1.2/api-references/device-directory-api.html#v3-devices) 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Filter endpoints by endpoint-type. (optional)</param>
