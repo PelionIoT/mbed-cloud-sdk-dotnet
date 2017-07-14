@@ -32,7 +32,7 @@ namespace mds.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AsyncIDResponse" /> class.
         /// </summary>
-        /// <param name="Status">HTTP status code, for example 200 for OK..</param>
+        /// <param name="Status">Asynchronous response status code for a device operation related to a proxy request or manual subscription..</param>
         /// <param name="Payload">Requested data, base64 encoded..</param>
         /// <param name="MaxAge">Determines how long this value will be valid in cache, in seconds. 0 means that value is not stored in cache..</param>
         /// <param name="Error">Optional error message, describing the error..</param>
@@ -49,9 +49,9 @@ namespace mds.Model
         }
         
         /// <summary>
-        /// HTTP status code, for example 200 for OK.
+        /// Asynchronous response status code for a device operation related to a proxy request or manual subscription.
         /// </summary>
-        /// <value>HTTP status code, for example 200 for OK.</value>
+        /// <value>Asynchronous response status code for a device operation related to a proxy request or manual subscription.</value>
         [DataMember(Name="status", EmitDefaultValue=false)]
         public int? Status { get; set; }
         /// <summary>
