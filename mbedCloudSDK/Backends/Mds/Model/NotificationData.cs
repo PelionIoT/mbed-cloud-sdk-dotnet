@@ -32,34 +32,20 @@ namespace mds.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NotificationData" /> class.
         /// </summary>
-        /// <param name="Timestamp">Timestamp..</param>
-        /// <param name="Payload">Base64 encoded payload..</param>
         /// <param name="Path">URI path..</param>
         /// <param name="MaxAge">Max age value is an integer number of seconds between 0 and 2^32-1 but the actual maximum cache time is limited to 3 days. A default value of 60 seconds is assumed in the absence of the option. .</param>
+        /// <param name="Payload">Base64 encoded payload..</param>
         /// <param name="Ep">mbed Cloud Device ID..</param>
         /// <param name="Ct">Content type..</param>
-        public NotificationData(string Timestamp = default(string), string Payload = default(string), string Path = default(string), string MaxAge = default(string), string Ep = default(string), string Ct = default(string))
+        public NotificationData(string Path = default(string), string MaxAge = default(string), string Payload = default(string), string Ep = default(string), string Ct = default(string))
         {
-            this.Timestamp = Timestamp;
-            this.Payload = Payload;
             this.Path = Path;
             this.MaxAge = MaxAge;
+            this.Payload = Payload;
             this.Ep = Ep;
             this.Ct = Ct;
         }
         
-        /// <summary>
-        /// Timestamp.
-        /// </summary>
-        /// <value>Timestamp.</value>
-        [DataMember(Name="timestamp", EmitDefaultValue=false)]
-        public string Timestamp { get; set; }
-        /// <summary>
-        /// Base64 encoded payload.
-        /// </summary>
-        /// <value>Base64 encoded payload.</value>
-        [DataMember(Name="payload", EmitDefaultValue=false)]
-        public string Payload { get; set; }
         /// <summary>
         /// URI path.
         /// </summary>
@@ -72,6 +58,12 @@ namespace mds.Model
         /// <value>Max age value is an integer number of seconds between 0 and 2^32-1 but the actual maximum cache time is limited to 3 days. A default value of 60 seconds is assumed in the absence of the option. </value>
         [DataMember(Name="max-age", EmitDefaultValue=false)]
         public string MaxAge { get; set; }
+        /// <summary>
+        /// Base64 encoded payload.
+        /// </summary>
+        /// <value>Base64 encoded payload.</value>
+        [DataMember(Name="payload", EmitDefaultValue=false)]
+        public string Payload { get; set; }
         /// <summary>
         /// mbed Cloud Device ID.
         /// </summary>
@@ -92,10 +84,9 @@ namespace mds.Model
         {
             var sb = new StringBuilder();
             sb.Append("class NotificationData {\n");
-            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
-            sb.Append("  Payload: ").Append(Payload).Append("\n");
             sb.Append("  Path: ").Append(Path).Append("\n");
             sb.Append("  MaxAge: ").Append(MaxAge).Append("\n");
+            sb.Append("  Payload: ").Append(Payload).Append("\n");
             sb.Append("  Ep: ").Append(Ep).Append("\n");
             sb.Append("  Ct: ").Append(Ct).Append("\n");
             sb.Append("}\n");
@@ -135,16 +126,6 @@ namespace mds.Model
 
             return 
                 (
-                    this.Timestamp == other.Timestamp ||
-                    this.Timestamp != null &&
-                    this.Timestamp.Equals(other.Timestamp)
-                ) && 
-                (
-                    this.Payload == other.Payload ||
-                    this.Payload != null &&
-                    this.Payload.Equals(other.Payload)
-                ) && 
-                (
                     this.Path == other.Path ||
                     this.Path != null &&
                     this.Path.Equals(other.Path)
@@ -153,6 +134,11 @@ namespace mds.Model
                     this.MaxAge == other.MaxAge ||
                     this.MaxAge != null &&
                     this.MaxAge.Equals(other.MaxAge)
+                ) && 
+                (
+                    this.Payload == other.Payload ||
+                    this.Payload != null &&
+                    this.Payload.Equals(other.Payload)
                 ) && 
                 (
                     this.Ep == other.Ep ||
@@ -177,14 +163,12 @@ namespace mds.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Timestamp != null)
-                    hash = hash * 59 + this.Timestamp.GetHashCode();
-                if (this.Payload != null)
-                    hash = hash * 59 + this.Payload.GetHashCode();
                 if (this.Path != null)
                     hash = hash * 59 + this.Path.GetHashCode();
                 if (this.MaxAge != null)
                     hash = hash * 59 + this.MaxAge.GetHashCode();
+                if (this.Payload != null)
+                    hash = hash * 59 + this.Payload.GetHashCode();
                 if (this.Ep != null)
                     hash = hash * 59 + this.Ep.GetHashCode();
                 if (this.Ct != null)
