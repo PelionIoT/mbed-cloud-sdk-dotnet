@@ -45,10 +45,11 @@ namespace update_service.Model
         /// <param name="UpdatedAt">The time the object was updated. (required).</param>
         /// <param name="ManifestContents">ManifestContents (required).</param>
         /// <param name="Etag">The entity instance signature. (required).</param>
+        /// <param name="Version">The format version of the manifest. (required).</param>
         /// <param name="DeviceClass">The class of device. (required).</param>
         /// <param name="Id">The ID of the firmware manifest. (required).</param>
         /// <param name="Name">The name of the object. (required).</param>
-        public FirmwareManifest(byte[] Datafile = default(byte[]), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), ManifestContents ManifestContents = default(ManifestContents), DateTime? Etag = default(DateTime?), string DeviceClass = default(string), string Id = default(string), string Name = default(string))
+        public FirmwareManifest(byte[] Datafile = default(byte[]), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), ManifestContents ManifestContents = default(ManifestContents), DateTime? Etag = default(DateTime?), string Version = default(string), string DeviceClass = default(string), string Id = default(string), string Name = default(string))
         {
             // to ensure "Datafile" is required (not null)
             if (Datafile == null)
@@ -121,6 +122,15 @@ namespace update_service.Model
             else
             {
                 this.Etag = Etag;
+            }
+            // to ensure "Version" is required (not null)
+            if (Version == null)
+            {
+                throw new InvalidDataException("Version is a required property for FirmwareManifest and cannot be null");
+            }
+            else
+            {
+                this.Version = Version;
             }
             // to ensure "DeviceClass" is required (not null)
             if (DeviceClass == null)
@@ -198,6 +208,12 @@ namespace update_service.Model
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public DateTime? Etag { get; set; }
         /// <summary>
+        /// The format version of the manifest.
+        /// </summary>
+        /// <value>The format version of the manifest.</value>
+        [DataMember(Name="version", EmitDefaultValue=false)]
+        public string Version { get; set; }
+        /// <summary>
         /// The class of device.
         /// </summary>
         /// <value>The class of device.</value>
@@ -231,6 +247,7 @@ namespace update_service.Model
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  ManifestContents: ").Append(ManifestContents).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
+            sb.Append("  Version: ").Append(Version).Append("\n");
             sb.Append("  DeviceClass: ").Append(DeviceClass).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
@@ -311,6 +328,11 @@ namespace update_service.Model
                     this.Etag.Equals(other.Etag)
                 ) && 
                 (
+                    this.Version == other.Version ||
+                    this.Version != null &&
+                    this.Version.Equals(other.Version)
+                ) && 
+                (
                     this.DeviceClass == other.DeviceClass ||
                     this.DeviceClass != null &&
                     this.DeviceClass.Equals(other.DeviceClass)
@@ -354,6 +376,8 @@ namespace update_service.Model
                     hash = hash * 59 + this.ManifestContents.GetHashCode();
                 if (this.Etag != null)
                     hash = hash * 59 + this.Etag.GetHashCode();
+                if (this.Version != null)
+                    hash = hash * 59 + this.Version.GetHashCode();
                 if (this.DeviceClass != null)
                     hash = hash * 59 + this.DeviceClass.GetHashCode();
                 if (this.Id != null)
