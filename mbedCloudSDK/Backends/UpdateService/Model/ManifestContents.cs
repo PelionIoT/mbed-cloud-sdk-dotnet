@@ -42,7 +42,7 @@ namespace update_service.Model
         /// <param name="ApplyImmediately">A flag that indicates that the update described by the manifest should be applied as soon as possible..</param>
         /// <param name="DeviceId">Hex representation of the 128-bit RFC4122 GUID that uniquely identifies the device. Each device has a single, unique device ID..</param>
         /// <param name="Payload">Payload.</param>
-        public ManifestContents(string ClassId = default(string), string VendorId = default(string), int? ManifestVersion = default(int?), string Description = default(string), string Nonce = default(string), int? Timestamp = default(int?), ManifestContentsEncryptionMode EncryptionMode = default(ManifestContentsEncryptionMode), bool? ApplyImmediately = default(bool?), string DeviceId = default(string), ManifestContentsPayload Payload = default(ManifestContentsPayload))
+        public ManifestContents(string ClassId = default(string), string VendorId = default(string), string ManifestVersion = default(string), string Description = default(string), string Nonce = default(string), int? Timestamp = default(int?), ManifestContentsEncryptionMode EncryptionMode = default(ManifestContentsEncryptionMode), bool? ApplyImmediately = default(bool?), string DeviceId = default(string), ManifestContentsPayload Payload = default(ManifestContentsPayload))
         {
             this.ClassId = ClassId;
             this.VendorId = VendorId;
@@ -73,7 +73,7 @@ namespace update_service.Model
         /// </summary>
         /// <value>The version of the manifest format being used.</value>
         [DataMember(Name="manifestVersion", EmitDefaultValue=false)]
-        public int? ManifestVersion { get; set; }
+        public string ManifestVersion { get; set; }
         /// <summary>
         /// A short description of the update.
         /// </summary>
