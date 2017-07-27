@@ -24,26 +24,32 @@ using System.ComponentModel.DataAnnotations;
 namespace update_service.Model
 {
     /// <summary>
-    /// ManifestContentsEncryptionMode
+    /// ManifestContentsPayloadInfoFormat
     /// </summary>
     [DataContract]
-    public partial class ManifestContentsEncryptionMode :  IEquatable<ManifestContentsEncryptionMode>, IValidatableObject
+    public partial class ManifestContentsPayloadInfoFormat :  IEquatable<ManifestContentsPayloadInfoFormat>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ManifestContentsEncryptionMode" /> class.
+        /// Initializes a new instance of the <see cref="ManifestContentsPayloadInfoFormat" /> class.
         /// </summary>
-        /// <param name="_Enum">The encryption mode describing the kind of hashing, signing and, encryption in use. The following modes are available: 1: none-ecc-secp256r1-sha256: SHA-256 hashing, ECDSA signatures, using the secp256r1 curve. No payload encryption is used. 2: aes-128-ctr-ecc-secp256r1-sha256: SHA-256 hashing, ECDSA signatures, using the secp256r1 curve. The payload is encrypted with AES-128 in CTR-mode. 3: none-none-sha256: SHA-256 hashing. No signature is used. No payload encryption is used. This mode is not recommended except over existing, trusted connections. .</param>
-        public ManifestContentsEncryptionMode(int? _Enum = default(int?))
+        /// <param name="_Enum">_Enum.</param>
+        /// <param name="ObjectId">ObjectId.</param>
+        public ManifestContentsPayloadInfoFormat(string _Enum = default(string), string ObjectId = default(string))
         {
             this._Enum = _Enum;
+            this.ObjectId = ObjectId;
         }
         
         /// <summary>
-        /// The encryption mode describing the kind of hashing, signing and, encryption in use. The following modes are available: 1: none-ecc-secp256r1-sha256: SHA-256 hashing, ECDSA signatures, using the secp256r1 curve. No payload encryption is used. 2: aes-128-ctr-ecc-secp256r1-sha256: SHA-256 hashing, ECDSA signatures, using the secp256r1 curve. The payload is encrypted with AES-128 in CTR-mode. 3: none-none-sha256: SHA-256 hashing. No signature is used. No payload encryption is used. This mode is not recommended except over existing, trusted connections. 
+        /// Gets or Sets _Enum
         /// </summary>
-        /// <value>The encryption mode describing the kind of hashing, signing and, encryption in use. The following modes are available: 1: none-ecc-secp256r1-sha256: SHA-256 hashing, ECDSA signatures, using the secp256r1 curve. No payload encryption is used. 2: aes-128-ctr-ecc-secp256r1-sha256: SHA-256 hashing, ECDSA signatures, using the secp256r1 curve. The payload is encrypted with AES-128 in CTR-mode. 3: none-none-sha256: SHA-256 hashing. No signature is used. No payload encryption is used. This mode is not recommended except over existing, trusted connections. </value>
         [DataMember(Name="enum", EmitDefaultValue=false)]
-        public int? _Enum { get; set; }
+        public string _Enum { get; set; }
+        /// <summary>
+        /// Gets or Sets ObjectId
+        /// </summary>
+        [DataMember(Name="objectId", EmitDefaultValue=false)]
+        public string ObjectId { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -51,8 +57,9 @@ namespace update_service.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ManifestContentsEncryptionMode {\n");
+            sb.Append("class ManifestContentsPayloadInfoFormat {\n");
             sb.Append("  _Enum: ").Append(_Enum).Append("\n");
+            sb.Append("  ObjectId: ").Append(ObjectId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -74,15 +81,15 @@ namespace update_service.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as ManifestContentsEncryptionMode);
+            return this.Equals(obj as ManifestContentsPayloadInfoFormat);
         }
 
         /// <summary>
-        /// Returns true if ManifestContentsEncryptionMode instances are equal
+        /// Returns true if ManifestContentsPayloadInfoFormat instances are equal
         /// </summary>
-        /// <param name="other">Instance of ManifestContentsEncryptionMode to be compared</param>
+        /// <param name="other">Instance of ManifestContentsPayloadInfoFormat to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ManifestContentsEncryptionMode other)
+        public bool Equals(ManifestContentsPayloadInfoFormat other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -93,6 +100,11 @@ namespace update_service.Model
                     this._Enum == other._Enum ||
                     this._Enum != null &&
                     this._Enum.Equals(other._Enum)
+                ) && 
+                (
+                    this.ObjectId == other.ObjectId ||
+                    this.ObjectId != null &&
+                    this.ObjectId.Equals(other.ObjectId)
                 );
         }
 
@@ -109,6 +121,8 @@ namespace update_service.Model
                 // Suitable nullity checks etc, of course :)
                 if (this._Enum != null)
                     hash = hash * 59 + this._Enum.GetHashCode();
+                if (this.ObjectId != null)
+                    hash = hash * 59 + this.ObjectId.GetHashCode();
                 return hash;
             }
         }

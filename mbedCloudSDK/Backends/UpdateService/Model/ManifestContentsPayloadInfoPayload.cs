@@ -24,40 +24,32 @@ using System.ComponentModel.DataAnnotations;
 namespace update_service.Model
 {
     /// <summary>
-    /// ManifestContentsPayload
+    /// ManifestContentsPayloadInfoPayload
     /// </summary>
     [DataContract]
-    public partial class ManifestContentsPayload :  IEquatable<ManifestContentsPayload>, IValidatableObject
+    public partial class ManifestContentsPayloadInfoPayload :  IEquatable<ManifestContentsPayloadInfoPayload>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ManifestContentsPayload" /> class.
+        /// Initializes a new instance of the <see cref="ManifestContentsPayloadInfoPayload" /> class.
         /// </summary>
-        /// <param name="Format">Format.</param>
+        /// <param name="Integrated">Integrated.</param>
         /// <param name="Reference">Reference.</param>
-        /// <param name="StorageIdentifier">An identifier for where the payload is to be located..</param>
-        public ManifestContentsPayload(ManifestContentsPayloadFormat Format = default(ManifestContentsPayloadFormat), ManifestContentsPayloadReference Reference = default(ManifestContentsPayloadReference), string StorageIdentifier = default(string))
+        public ManifestContentsPayloadInfoPayload(string Integrated = default(string), ManifestContentsPayloadInfoPayloadReference Reference = default(ManifestContentsPayloadInfoPayloadReference))
         {
-            this.Format = Format;
+            this.Integrated = Integrated;
             this.Reference = Reference;
-            this.StorageIdentifier = StorageIdentifier;
         }
         
         /// <summary>
-        /// Gets or Sets Format
+        /// Gets or Sets Integrated
         /// </summary>
-        [DataMember(Name="format", EmitDefaultValue=false)]
-        public ManifestContentsPayloadFormat Format { get; set; }
+        [DataMember(Name="integrated", EmitDefaultValue=false)]
+        public string Integrated { get; set; }
         /// <summary>
         /// Gets or Sets Reference
         /// </summary>
         [DataMember(Name="reference", EmitDefaultValue=false)]
-        public ManifestContentsPayloadReference Reference { get; set; }
-        /// <summary>
-        /// An identifier for where the payload is to be located.
-        /// </summary>
-        /// <value>An identifier for where the payload is to be located.</value>
-        [DataMember(Name="storageIdentifier", EmitDefaultValue=false)]
-        public string StorageIdentifier { get; set; }
+        public ManifestContentsPayloadInfoPayloadReference Reference { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -65,10 +57,9 @@ namespace update_service.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ManifestContentsPayload {\n");
-            sb.Append("  Format: ").Append(Format).Append("\n");
+            sb.Append("class ManifestContentsPayloadInfoPayload {\n");
+            sb.Append("  Integrated: ").Append(Integrated).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
-            sb.Append("  StorageIdentifier: ").Append(StorageIdentifier).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -90,15 +81,15 @@ namespace update_service.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as ManifestContentsPayload);
+            return this.Equals(obj as ManifestContentsPayloadInfoPayload);
         }
 
         /// <summary>
-        /// Returns true if ManifestContentsPayload instances are equal
+        /// Returns true if ManifestContentsPayloadInfoPayload instances are equal
         /// </summary>
-        /// <param name="other">Instance of ManifestContentsPayload to be compared</param>
+        /// <param name="other">Instance of ManifestContentsPayloadInfoPayload to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ManifestContentsPayload other)
+        public bool Equals(ManifestContentsPayloadInfoPayload other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -106,19 +97,14 @@ namespace update_service.Model
 
             return 
                 (
-                    this.Format == other.Format ||
-                    this.Format != null &&
-                    this.Format.Equals(other.Format)
+                    this.Integrated == other.Integrated ||
+                    this.Integrated != null &&
+                    this.Integrated.Equals(other.Integrated)
                 ) && 
                 (
                     this.Reference == other.Reference ||
                     this.Reference != null &&
                     this.Reference.Equals(other.Reference)
-                ) && 
-                (
-                    this.StorageIdentifier == other.StorageIdentifier ||
-                    this.StorageIdentifier != null &&
-                    this.StorageIdentifier.Equals(other.StorageIdentifier)
                 );
         }
 
@@ -133,12 +119,10 @@ namespace update_service.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Format != null)
-                    hash = hash * 59 + this.Format.GetHashCode();
+                if (this.Integrated != null)
+                    hash = hash * 59 + this.Integrated.GetHashCode();
                 if (this.Reference != null)
                     hash = hash * 59 + this.Reference.GetHashCode();
-                if (this.StorageIdentifier != null)
-                    hash = hash * 59 + this.StorageIdentifier.GetHashCode();
                 return hash;
             }
         }
