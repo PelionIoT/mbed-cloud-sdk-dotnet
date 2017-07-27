@@ -24,42 +24,32 @@ using System.ComponentModel.DataAnnotations;
 namespace update_service.Model
 {
     /// <summary>
-    /// ManifestContentsPayloadReference
+    /// ManifestContentsDirectives
     /// </summary>
     [DataContract]
-    public partial class ManifestContentsPayloadReference :  IEquatable<ManifestContentsPayloadReference>, IValidatableObject
+    public partial class ManifestContentsDirectives :  IEquatable<ManifestContentsDirectives>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ManifestContentsPayloadReference" /> class.
+        /// Initializes a new instance of the <see cref="ManifestContentsDirectives" /> class.
         /// </summary>
-        /// <param name="Hash">Hex representation of the SHA-256 hash of the payload.</param>
-        /// <param name="Uri">The URI of the payload..</param>
-        /// <param name="Size">Size of the payload in bytes.</param>
-        public ManifestContentsPayloadReference(string Hash = default(string), string Uri = default(string), int? Size = default(int?))
+        /// <param name="Type">Type.</param>
+        /// <param name="Rule">Rule.</param>
+        public ManifestContentsDirectives(string Type = default(string), ManifestContentsRule Rule = default(ManifestContentsRule))
         {
-            this.Hash = Hash;
-            this.Uri = Uri;
-            this.Size = Size;
+            this.Type = Type;
+            this.Rule = Rule;
         }
         
         /// <summary>
-        /// Hex representation of the SHA-256 hash of the payload
+        /// Gets or Sets Type
         /// </summary>
-        /// <value>Hex representation of the SHA-256 hash of the payload</value>
-        [DataMember(Name="hash", EmitDefaultValue=false)]
-        public string Hash { get; set; }
+        [DataMember(Name="type", EmitDefaultValue=false)]
+        public string Type { get; set; }
         /// <summary>
-        /// The URI of the payload.
+        /// Gets or Sets Rule
         /// </summary>
-        /// <value>The URI of the payload.</value>
-        [DataMember(Name="uri", EmitDefaultValue=false)]
-        public string Uri { get; set; }
-        /// <summary>
-        /// Size of the payload in bytes
-        /// </summary>
-        /// <value>Size of the payload in bytes</value>
-        [DataMember(Name="size", EmitDefaultValue=false)]
-        public int? Size { get; set; }
+        [DataMember(Name="rule", EmitDefaultValue=false)]
+        public ManifestContentsRule Rule { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -67,10 +57,9 @@ namespace update_service.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ManifestContentsPayloadReference {\n");
-            sb.Append("  Hash: ").Append(Hash).Append("\n");
-            sb.Append("  Uri: ").Append(Uri).Append("\n");
-            sb.Append("  Size: ").Append(Size).Append("\n");
+            sb.Append("class ManifestContentsDirectives {\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Rule: ").Append(Rule).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -92,15 +81,15 @@ namespace update_service.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as ManifestContentsPayloadReference);
+            return this.Equals(obj as ManifestContentsDirectives);
         }
 
         /// <summary>
-        /// Returns true if ManifestContentsPayloadReference instances are equal
+        /// Returns true if ManifestContentsDirectives instances are equal
         /// </summary>
-        /// <param name="other">Instance of ManifestContentsPayloadReference to be compared</param>
+        /// <param name="other">Instance of ManifestContentsDirectives to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ManifestContentsPayloadReference other)
+        public bool Equals(ManifestContentsDirectives other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -108,19 +97,14 @@ namespace update_service.Model
 
             return 
                 (
-                    this.Hash == other.Hash ||
-                    this.Hash != null &&
-                    this.Hash.Equals(other.Hash)
+                    this.Type == other.Type ||
+                    this.Type != null &&
+                    this.Type.Equals(other.Type)
                 ) && 
                 (
-                    this.Uri == other.Uri ||
-                    this.Uri != null &&
-                    this.Uri.Equals(other.Uri)
-                ) && 
-                (
-                    this.Size == other.Size ||
-                    this.Size != null &&
-                    this.Size.Equals(other.Size)
+                    this.Rule == other.Rule ||
+                    this.Rule != null &&
+                    this.Rule.Equals(other.Rule)
                 );
         }
 
@@ -135,12 +119,10 @@ namespace update_service.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Hash != null)
-                    hash = hash * 59 + this.Hash.GetHashCode();
-                if (this.Uri != null)
-                    hash = hash * 59 + this.Uri.GetHashCode();
-                if (this.Size != null)
-                    hash = hash * 59 + this.Size.GetHashCode();
+                if (this.Type != null)
+                    hash = hash * 59 + this.Type.GetHashCode();
+                if (this.Rule != null)
+                    hash = hash * 59 + this.Rule.GetHashCode();
                 return hash;
             }
         }
