@@ -34,7 +34,7 @@ namespace update_service.Model
         /// </summary>
         /// <param name="Format">Format.</param>
         /// <param name="Reference">Reference.</param>
-        /// <param name="StorageIdentifier">An identifier for where the payload is to be located..</param>
+        /// <param name="StorageIdentifier">An identifier for where the payload is to be located. This identifier indicates where the image should be placed on the device. For example, when an IoT device contains multiple microcontrollers (MCUs) and the decision needs to be made to which MCU to send which firmware image..</param>
         public ManifestContentsPayload(ManifestContentsPayloadFormat Format = default(ManifestContentsPayloadFormat), ManifestContentsPayloadReference Reference = default(ManifestContentsPayloadReference), string StorageIdentifier = default(string))
         {
             this.Format = Format;
@@ -53,9 +53,9 @@ namespace update_service.Model
         [DataMember(Name="reference", EmitDefaultValue=false)]
         public ManifestContentsPayloadReference Reference { get; set; }
         /// <summary>
-        /// An identifier for where the payload is to be located.
+        /// An identifier for where the payload is to be located. This identifier indicates where the image should be placed on the device. For example, when an IoT device contains multiple microcontrollers (MCUs) and the decision needs to be made to which MCU to send which firmware image.
         /// </summary>
-        /// <value>An identifier for where the payload is to be located.</value>
+        /// <value>An identifier for where the payload is to be located. This identifier indicates where the image should be placed on the device. For example, when an IoT device contains multiple microcontrollers (MCUs) and the decision needs to be made to which MCU to send which firmware image.</value>
         [DataMember(Name="storageIdentifier", EmitDefaultValue=false)]
         public string StorageIdentifier { get; set; }
         /// <summary>

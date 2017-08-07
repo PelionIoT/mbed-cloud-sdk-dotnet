@@ -36,7 +36,7 @@ namespace update_service.Model
         /// <param name="VendorId">Hex representation of the 128-bit RFC4122 GUID that represents the vendor..</param>
         /// <param name="ManifestVersion">The version of the manifest format being used..</param>
         /// <param name="Description">A short description of the update..</param>
-        /// <param name="Nonce">A 128-bit random field.</param>
+        /// <param name="Nonce">A 128-bit random field. This is provided by the manifest tool to ensure that the signing algorithm is safe from timing side-channel attacks..</param>
         /// <param name="Timestamp">The time the manifest was created. The timestamp is stored as Unix time..</param>
         /// <param name="EncryptionMode">EncryptionMode.</param>
         /// <param name="ApplyImmediately">A flag that indicates that the update described by the manifest should be applied as soon as possible..</param>
@@ -81,9 +81,9 @@ namespace update_service.Model
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
         /// <summary>
-        /// A 128-bit random field
+        /// A 128-bit random field. This is provided by the manifest tool to ensure that the signing algorithm is safe from timing side-channel attacks.
         /// </summary>
-        /// <value>A 128-bit random field</value>
+        /// <value>A 128-bit random field. This is provided by the manifest tool to ensure that the signing algorithm is safe from timing side-channel attacks.</value>
         [DataMember(Name="nonce", EmitDefaultValue=false)]
         public string Nonce { get; set; }
         /// <summary>

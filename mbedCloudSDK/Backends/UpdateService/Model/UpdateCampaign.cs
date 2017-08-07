@@ -101,119 +101,34 @@ namespace update_service.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateCampaign" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected UpdateCampaign() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateCampaign" /> class.
-        /// </summary>
-        /// <param name="Description">An optional description of the campaign. (required).</param>
-        /// <param name="RootManifestId">RootManifestId (required).</param>
-        /// <param name="CreatedAt">The time the object was created. (required).</param>
-        /// <param name="_Object">The API resource entity. (required).</param>
+        /// <param name="Description">An optional description of the campaign..</param>
+        /// <param name="RootManifestId">RootManifestId.</param>
+        /// <param name="CreatedAt">The time the object was created..</param>
+        /// <param name="_Object">The API resource entity..</param>
         /// <param name="When">The timestamp at which update campaign scheduled to start..</param>
-        /// <param name="State">The state of the campaign. (required).</param>
+        /// <param name="State">The state of the campaign..</param>
         /// <param name="Finished">The timestamp when the update campaign finished..</param>
-        /// <param name="Etag">The entity instance signature. (required).</param>
-        /// <param name="RootManifestUrl">RootManifestUrl (required).</param>
+        /// <param name="Etag">The entity instance signature..</param>
+        /// <param name="RootManifestUrl">RootManifestUrl.</param>
         /// <param name="StartedAt">StartedAt.</param>
-        /// <param name="Id">The ID of the campaign. (required).</param>
-        /// <param name="DeviceFilter">The filter for the devices the campaign will target. (required).</param>
-        /// <param name="Name">A name for this campaign. (required).</param>
+        /// <param name="Id">The ID of the campaign..</param>
+        /// <param name="DeviceFilter">The filter for the devices the campaign will target..</param>
+        /// <param name="Name">A name for this campaign..</param>
         public UpdateCampaign(string Description = default(string), string RootManifestId = default(string), string CreatedAt = default(string), string _Object = default(string), string When = default(string), StateEnum? State = default(StateEnum?), string Finished = default(string), string Etag = default(string), string RootManifestUrl = default(string), DateTime? StartedAt = default(DateTime?), string Id = default(string), string DeviceFilter = default(string), string Name = default(string))
         {
-            // to ensure "Description" is required (not null)
-            if (Description == null)
-            {
-                throw new InvalidDataException("Description is a required property for UpdateCampaign and cannot be null");
-            }
-            else
-            {
-                this.Description = Description;
-            }
-            // to ensure "RootManifestId" is required (not null)
-            if (RootManifestId == null)
-            {
-                throw new InvalidDataException("RootManifestId is a required property for UpdateCampaign and cannot be null");
-            }
-            else
-            {
-                this.RootManifestId = RootManifestId;
-            }
-            // to ensure "CreatedAt" is required (not null)
-            if (CreatedAt == null)
-            {
-                throw new InvalidDataException("CreatedAt is a required property for UpdateCampaign and cannot be null");
-            }
-            else
-            {
-                this.CreatedAt = CreatedAt;
-            }
-            // to ensure "_Object" is required (not null)
-            if (_Object == null)
-            {
-                throw new InvalidDataException("_Object is a required property for UpdateCampaign and cannot be null");
-            }
-            else
-            {
-                this._Object = _Object;
-            }
-            // to ensure "State" is required (not null)
-            if (State == null)
-            {
-                throw new InvalidDataException("State is a required property for UpdateCampaign and cannot be null");
-            }
-            else
-            {
-                this.State = State;
-            }
-            // to ensure "Etag" is required (not null)
-            if (Etag == null)
-            {
-                throw new InvalidDataException("Etag is a required property for UpdateCampaign and cannot be null");
-            }
-            else
-            {
-                this.Etag = Etag;
-            }
-            // to ensure "RootManifestUrl" is required (not null)
-            if (RootManifestUrl == null)
-            {
-                throw new InvalidDataException("RootManifestUrl is a required property for UpdateCampaign and cannot be null");
-            }
-            else
-            {
-                this.RootManifestUrl = RootManifestUrl;
-            }
-            // to ensure "Id" is required (not null)
-            if (Id == null)
-            {
-                throw new InvalidDataException("Id is a required property for UpdateCampaign and cannot be null");
-            }
-            else
-            {
-                this.Id = Id;
-            }
-            // to ensure "DeviceFilter" is required (not null)
-            if (DeviceFilter == null)
-            {
-                throw new InvalidDataException("DeviceFilter is a required property for UpdateCampaign and cannot be null");
-            }
-            else
-            {
-                this.DeviceFilter = DeviceFilter;
-            }
-            // to ensure "Name" is required (not null)
-            if (Name == null)
-            {
-                throw new InvalidDataException("Name is a required property for UpdateCampaign and cannot be null");
-            }
-            else
-            {
-                this.Name = Name;
-            }
+            this.Description = Description;
+            this.RootManifestId = RootManifestId;
+            this.CreatedAt = CreatedAt;
+            this._Object = _Object;
             this.When = When;
+            this.State = State;
             this.Finished = Finished;
+            this.Etag = Etag;
+            this.RootManifestUrl = RootManifestUrl;
             this.StartedAt = StartedAt;
+            this.Id = Id;
+            this.DeviceFilter = DeviceFilter;
+            this.Name = Name;
         }
         
         /// <summary>
