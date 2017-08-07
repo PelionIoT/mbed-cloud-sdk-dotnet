@@ -33,10 +33,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Build.Tasks.v4.0" />
-    <Reference Include="System" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>lib\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="RestSharp">
       <HintPath>lib\RestSharp.dll</HintPath>
     </Reference>
@@ -323,6 +325,7 @@
     <None Include="Backends\FactoryTool\README.md" />
     <None Include="Backends\ProvisioningCertificate\README.md" />
     <None Include="Backends\Statistics\README.md" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -332,7 +335,6 @@
     <Folder Include="Connect\Model\Webhook\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="lib\Newtonsoft.Json.dll" />
     <Content Include="lib\RestSharp.dll" />
   </ItemGroup>
   <ItemGroup>

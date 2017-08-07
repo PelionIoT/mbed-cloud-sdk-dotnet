@@ -49,23 +49,30 @@ namespace iam.Client
                              string userAgent = "Swagger-Codegen/1.0.0/csharp"
                             )
         {
-            setApiClientUsingDefault(apiClient);
+            try
+            {
+                setApiClientUsingDefault(apiClient);
 
-            Username = username;
-            Password = password;
-            AccessToken = accessToken;
-            UserAgent = userAgent;
+                Username = username;
+                Password = password;
+                AccessToken = accessToken;
+                UserAgent = userAgent;
 
-            if (defaultHeader != null)
-                DefaultHeader = defaultHeader;
-            if (apiKey != null)
-                ApiKey = apiKey;
-            if (apiKeyPrefix != null)
-                ApiKeyPrefix = apiKeyPrefix;
+                if (defaultHeader != null)
+                    DefaultHeader = defaultHeader;
+                if (apiKey != null)
+                    ApiKey = apiKey;
+                if (apiKeyPrefix != null)
+                    ApiKeyPrefix = apiKeyPrefix;
 
-            TempFolderPath = tempFolderPath;
-            DateTimeFormat = dateTimeFormat;
-            Timeout = timeout;
+                TempFolderPath = tempFolderPath;
+                DateTimeFormat = dateTimeFormat;
+                Timeout = timeout;
+            }
+            catch(Exception e)
+            {
+                var a = "";
+            }
         }
 
         /// <summary>
