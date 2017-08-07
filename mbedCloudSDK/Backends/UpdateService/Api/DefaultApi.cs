@@ -354,6 +354,46 @@ namespace update_service.Api
         /// <param name="campaign">Update campaign</param>
         /// <returns>ApiResponse of UpdateCampaign</returns>
         ApiResponse<UpdateCampaign> UpdateCampaignUpdateWithHttpInfo (string campaignId, UpdateCampaignPutRequest campaign);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
+        /// <returns>CampaignDeviceMetadata</returns>
+        CampaignDeviceMetadata V3CampaignDeviceMetadataCampaignDeviceMetadataIdGet (string campaignDeviceMetadataId);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
+        /// <returns>ApiResponse of CampaignDeviceMetadata</returns>
+        ApiResponse<CampaignDeviceMetadata> V3CampaignDeviceMetadataCampaignDeviceMetadataIdGetWithHttpInfo (string campaignDeviceMetadataId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        void V3CampaignDeviceMetadataGet ();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> V3CampaignDeviceMetadataGetWithHttpInfo ();
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -686,6 +726,46 @@ namespace update_service.Api
         /// <param name="campaign">Update campaign</param>
         /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignPutRequest campaign);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
+        /// <returns>Task of CampaignDeviceMetadata</returns>
+        System.Threading.Tasks.Task<CampaignDeviceMetadata> V3CampaignDeviceMetadataCampaignDeviceMetadataIdGetAsync (string campaignDeviceMetadataId);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
+        /// <returns>Task of ApiResponse (CampaignDeviceMetadata)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadata>> V3CampaignDeviceMetadataCampaignDeviceMetadataIdGetAsyncWithHttpInfo (string campaignDeviceMetadataId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task V3CampaignDeviceMetadataGetAsync ();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> V3CampaignDeviceMetadataGetAsyncWithHttpInfo ();
         #endregion Asynchronous Operations
     }
 
@@ -3050,6 +3130,292 @@ namespace update_service.Api
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
             
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
+        /// <returns>CampaignDeviceMetadata</returns>
+        public CampaignDeviceMetadata V3CampaignDeviceMetadataCampaignDeviceMetadataIdGet (string campaignDeviceMetadataId)
+        {
+             ApiResponse<CampaignDeviceMetadata> localVarResponse = V3CampaignDeviceMetadataCampaignDeviceMetadataIdGetWithHttpInfo(campaignDeviceMetadataId);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
+        /// <returns>ApiResponse of CampaignDeviceMetadata</returns>
+        public ApiResponse< CampaignDeviceMetadata > V3CampaignDeviceMetadataCampaignDeviceMetadataIdGetWithHttpInfo (string campaignDeviceMetadataId)
+        {
+            // verify the required parameter 'campaignDeviceMetadataId' is set
+            if (campaignDeviceMetadataId == null)
+                throw new ApiException(400, "Missing required parameter 'campaignDeviceMetadataId' when calling DefaultApi->V3CampaignDeviceMetadataCampaignDeviceMetadataIdGet");
+
+            var localVarPath = "/v3/campaign-device-metadata/{campaign_device_metadata_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (campaignDeviceMetadataId != null) localVarPathParams.Add("campaign_device_metadata_id", Configuration.ApiClient.ParameterToString(campaignDeviceMetadataId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("V3CampaignDeviceMetadataCampaignDeviceMetadataIdGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CampaignDeviceMetadata>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CampaignDeviceMetadata) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CampaignDeviceMetadata)));
+            
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
+        /// <returns>Task of CampaignDeviceMetadata</returns>
+        public async System.Threading.Tasks.Task<CampaignDeviceMetadata> V3CampaignDeviceMetadataCampaignDeviceMetadataIdGetAsync (string campaignDeviceMetadataId)
+        {
+             ApiResponse<CampaignDeviceMetadata> localVarResponse = await V3CampaignDeviceMetadataCampaignDeviceMetadataIdGetAsyncWithHttpInfo(campaignDeviceMetadataId);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
+        /// <returns>Task of ApiResponse (CampaignDeviceMetadata)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadata>> V3CampaignDeviceMetadataCampaignDeviceMetadataIdGetAsyncWithHttpInfo (string campaignDeviceMetadataId)
+        {
+            // verify the required parameter 'campaignDeviceMetadataId' is set
+            if (campaignDeviceMetadataId == null)
+                throw new ApiException(400, "Missing required parameter 'campaignDeviceMetadataId' when calling DefaultApi->V3CampaignDeviceMetadataCampaignDeviceMetadataIdGet");
+
+            var localVarPath = "/v3/campaign-device-metadata/{campaign_device_metadata_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (campaignDeviceMetadataId != null) localVarPathParams.Add("campaign_device_metadata_id", Configuration.ApiClient.ParameterToString(campaignDeviceMetadataId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("V3CampaignDeviceMetadataCampaignDeviceMetadataIdGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CampaignDeviceMetadata>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CampaignDeviceMetadata) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CampaignDeviceMetadata)));
+            
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        public void V3CampaignDeviceMetadataGet ()
+        {
+             V3CampaignDeviceMetadataGetWithHttpInfo();
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> V3CampaignDeviceMetadataGetWithHttpInfo ()
+        {
+
+            var localVarPath = "/v3/campaign-device-metadata";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("V3CampaignDeviceMetadataGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task V3CampaignDeviceMetadataGetAsync ()
+        {
+             await V3CampaignDeviceMetadataGetAsyncWithHttpInfo();
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> V3CampaignDeviceMetadataGetAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/v3/campaign-device-metadata";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("V3CampaignDeviceMetadataGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
         }
 
     }

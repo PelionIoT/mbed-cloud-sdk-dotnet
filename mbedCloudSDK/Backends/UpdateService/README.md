@@ -114,11 +114,15 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**UpdateCampaignPartialUpdate**](docs/DefaultApi.md#updatecampaignpartialupdate) | **PATCH** /v3/update-campaigns/{campaign_id}/ | 
 *DefaultApi* | [**UpdateCampaignRetrieve**](docs/DefaultApi.md#updatecampaignretrieve) | **GET** /v3/update-campaigns/{campaign_id}/ | 
 *DefaultApi* | [**UpdateCampaignUpdate**](docs/DefaultApi.md#updatecampaignupdate) | **PUT** /v3/update-campaigns/{campaign_id}/ | 
+*DefaultApi* | [**V3CampaignDeviceMetadataCampaignDeviceMetadataIdGet**](docs/DefaultApi.md#v3campaigndevicemetadatacampaigndevicemetadataidget) | **GET** /v3/campaign-device-metadata/{campaign_device_metadata_id} | 
+*DefaultApi* | [**V3CampaignDeviceMetadataGet**](docs/DefaultApi.md#v3campaigndevicemetadataget) | **GET** /v3/campaign-device-metadata | 
 
 
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [Model.CampaignDeviceMetadata](docs/CampaignDeviceMetadata.md)
+ - [Model.CampaignDeviceMetadataPage](docs/CampaignDeviceMetadataPage.md)
  - [Model.FirmwareImage](docs/FirmwareImage.md)
  - [Model.FirmwareImagePage](docs/FirmwareImagePage.md)
  - [Model.FirmwareManifest](docs/FirmwareManifest.md)
