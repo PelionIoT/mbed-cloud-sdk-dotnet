@@ -382,8 +382,8 @@ namespace update_service.Api
         /// 
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        void V3CampaignDeviceMetadataGet ();
+        /// <returns>CampaignDeviceMetadataPage</returns>
+        CampaignDeviceMetadataPage V3CampaignDeviceMetadataGet ();
 
         /// <summary>
         /// 
@@ -392,8 +392,8 @@ namespace update_service.Api
         /// 
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V3CampaignDeviceMetadataGetWithHttpInfo ();
+        /// <returns>ApiResponse of CampaignDeviceMetadataPage</returns>
+        ApiResponse<CampaignDeviceMetadataPage> V3CampaignDeviceMetadataGetWithHttpInfo ();
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -754,8 +754,8 @@ namespace update_service.Api
         /// 
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V3CampaignDeviceMetadataGetAsync ();
+        /// <returns>Task of CampaignDeviceMetadataPage</returns>
+        System.Threading.Tasks.Task<CampaignDeviceMetadataPage> V3CampaignDeviceMetadataGetAsync ();
 
         /// <summary>
         /// 
@@ -764,8 +764,8 @@ namespace update_service.Api
         /// 
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V3CampaignDeviceMetadataGetAsyncWithHttpInfo ();
+        /// <returns>Task of ApiResponse (CampaignDeviceMetadataPage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadataPage>> V3CampaignDeviceMetadataGetAsyncWithHttpInfo ();
         #endregion Asynchronous Operations
     }
 
@@ -3286,18 +3286,19 @@ namespace update_service.Api
         ///  
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns></returns>
-        public void V3CampaignDeviceMetadataGet ()
+        /// <returns>CampaignDeviceMetadataPage</returns>
+        public CampaignDeviceMetadataPage V3CampaignDeviceMetadataGet ()
         {
-             V3CampaignDeviceMetadataGetWithHttpInfo();
+             ApiResponse<CampaignDeviceMetadataPage> localVarResponse = V3CampaignDeviceMetadataGetWithHttpInfo();
+             return localVarResponse.Data;
         }
 
         /// <summary>
         ///  
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V3CampaignDeviceMetadataGetWithHttpInfo ()
+        /// <returns>ApiResponse of CampaignDeviceMetadataPage</returns>
+        public ApiResponse< CampaignDeviceMetadataPage > V3CampaignDeviceMetadataGetWithHttpInfo ()
         {
 
             var localVarPath = "/v3/campaign-device-metadata";
@@ -3344,20 +3345,21 @@ namespace update_service.Api
                 if (exception != null) throw exception;
             }
 
-            
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<CampaignDeviceMetadataPage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (CampaignDeviceMetadataPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CampaignDeviceMetadataPage)));
+            
         }
 
         /// <summary>
         ///  
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V3CampaignDeviceMetadataGetAsync ()
+        /// <returns>Task of CampaignDeviceMetadataPage</returns>
+        public async System.Threading.Tasks.Task<CampaignDeviceMetadataPage> V3CampaignDeviceMetadataGetAsync ()
         {
-             await V3CampaignDeviceMetadataGetAsyncWithHttpInfo();
+             ApiResponse<CampaignDeviceMetadataPage> localVarResponse = await V3CampaignDeviceMetadataGetAsyncWithHttpInfo();
+             return localVarResponse.Data;
 
         }
 
@@ -3365,8 +3367,8 @@ namespace update_service.Api
         ///  
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V3CampaignDeviceMetadataGetAsyncWithHttpInfo ()
+        /// <returns>Task of ApiResponse (CampaignDeviceMetadataPage)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadataPage>> V3CampaignDeviceMetadataGetAsyncWithHttpInfo ()
         {
 
             var localVarPath = "/v3/campaign-device-metadata";
@@ -3412,10 +3414,10 @@ namespace update_service.Api
                 if (exception != null) throw exception;
             }
 
-            
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<CampaignDeviceMetadataPage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (CampaignDeviceMetadataPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CampaignDeviceMetadataPage)));
+            
         }
 
     }
