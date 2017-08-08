@@ -127,5 +127,7 @@ namespace mbedCloudSDK.Common
         {
             return GetEnumerator();
         }
+
+
     }
 }

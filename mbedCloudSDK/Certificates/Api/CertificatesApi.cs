@@ -172,7 +172,7 @@ namespace mbedCloudSDK.Certificates.Api
                 {
                     throw new ArgumentException("certificateData and signatureData are not required when creating developer certificate.");
                 }
-                connector_ca.Model.DeveloperCertificateRequestData body = new connector_ca.Model.DeveloperCertificateRequestData();
+                connector_ca.Model.DeveloperCertificateRequestData body = new connector_ca.Model.DeveloperCertificateRequestData(certificate.Name, certificate.Description);
                 body.Name = certificate.Name;
                 body.Description = certificate.Description;
                 try

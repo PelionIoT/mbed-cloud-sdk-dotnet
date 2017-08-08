@@ -39,17 +39,6 @@ namespace TestServer
                 dict.Add(SnakeToCamel(k), nameValueCollection[k]);
             }
 
-            //var keysToUpdate = dict.Keys;
-
-            //foreach(var keyToUpdate in keysToUpdate)
-            //{
-            //    var newKey = SnakeToCamel(keyToUpdate);
-            //    var val = dict[keyToUpdate];
-
-            //    dict.Remove(keyToUpdate);
-            //    dict.Add(newKey, val);
-            //}
-
             return dict;
         }
     }
