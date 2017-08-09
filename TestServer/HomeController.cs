@@ -66,7 +66,7 @@ namespace TestServer
 
                 if (paramType.IsPrimitive || paramType == typeof(String))
                 {
-                    var obj = argsJsonObj[p.Name] as JValue;
+                    var obj = argsJsonObj[p.Name.ToUpper()] as JValue;
 
                     if (obj != null)
                     {
@@ -96,9 +96,9 @@ namespace TestServer
                         var propertyInst = paramType.GetProperty(prop.Name);
                         if (propertyInst != null)
                         {
-                            if (argsJsonObj[propertyInst.Name] != null)
+                            if (argsJsonObj[propertyInst.Name.ToUpper()] != null)
                             {
-                                vals[propertyInst.Name] = argsJsonObj[propertyInst.Name];
+                                vals[propertyInst.Name] = argsJsonObj[propertyInst.Name.ToUpper()];
                             }
                         }
                     }
@@ -138,7 +138,7 @@ namespace TestServer
 
                 var invokedMethod = methodInfo.Invoke(moduleInstance, serialisedParams.ToArray());
 
-                var result = JsonConvert.SerializeObject(invokedMethod,typeof(PaginatedResponse<ApiKey>), Formatting.Indented, settings);
+                var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, settings);
 
                 return Ok(result);
             }

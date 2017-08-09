@@ -134,10 +134,8 @@ namespace mbedCloudSDK.Update.Model.Campaign
 
         public UpdateCampaignPostRequest CreatePostRequest()
         {
-            UpdateCampaignPostRequest request = new UpdateCampaignPostRequest();
+            UpdateCampaignPostRequest request = new UpdateCampaignPostRequest(DeviceFilter:DeviceFilter, Name:Name);
             request.Description = this.Description;
-            request.DeviceFilter = this.DeviceFilter;
-            request.Name = this.Name;
             request.RootManifestId = this.RootManifestId;
             var updateCampaignStatus = (UpdateCampaignPostRequest.StateEnum)Enum.Parse(typeof(UpdateCampaignPostRequest.StateEnum), this.State.ToString());
             request.State = updateCampaignStatus;
@@ -147,14 +145,11 @@ namespace mbedCloudSDK.Update.Model.Campaign
 
         public UpdateCampaignPutRequest CreatePutRequest()
         {
-            UpdateCampaignPutRequest request = new UpdateCampaignPutRequest();
-            request.Description = this.Description;
-            request.DeviceFilter = this.DeviceFilter;
-            request.Name = this.Name;
-            request.RootManifestId = this.RootManifestId;
             var updateCampaignStatus = (UpdateCampaignPutRequest.StateEnum)Enum.Parse(typeof(UpdateCampaignPutRequest.StateEnum), this.State.ToString());
-            request.State = updateCampaignStatus;
-            request.When = this.ScheduledAt;
+            UpdateCampaignPutRequest request = new UpdateCampaignPutRequest(
+                Description:Description, RootManifestId:RootManifestId, _Object:"", 
+                When:ScheduledAt, State:updateCampaignStatus, DeviceFilter:DeviceFilter, Name:Name);
+
             return request;
         }
     }

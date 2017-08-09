@@ -9,11 +9,20 @@ namespace TestServer
 {
     public static class Utils
     {
-        public static string SnakeToCamel(string input)
+        public static string SnakeToCamel(string input, bool firstLower = false)
         {
             var newString = new Char[input.Length];
-            var firstCap = char.ToUpper(input[0]);
-            newString[0] = firstCap;
+
+            if (firstLower)
+            {
+                newString[0] = input[0];
+            }
+            else
+            {
+                var firstCap = char.ToUpper(input[0]);
+                newString[0] = firstCap;
+            }
+
             for (int i = 1; i < input.Count(); i++)
             {
                 if (input[i] == '_')
@@ -30,13 +39,18 @@ namespace TestServer
             return new string(newString.Where(c => !Char.IsWhiteSpace(c)).ToArray());
         }
 
+        public static string SnakeToLowerCamel(string input)
+        {
+            return SnakeToCamel(input, true);
+        }
+
         public static Dictionary<string, object> SnakeToCamelDict(NameValueCollection nameValueCollection)
         {
             var dict = new Dictionary<string, object>();
 
             foreach(var k in nameValueCollection.AllKeys)
             {
-                dict.Add(SnakeToCamel(k), nameValueCollection[k]);
+                dict.Add(SnakeToCamel(k).ToUpper(), nameValueCollection[k]);
             }
 
             return dict;

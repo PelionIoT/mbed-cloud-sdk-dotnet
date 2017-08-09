@@ -174,9 +174,8 @@ namespace mbedCloudSDK.AccountManagement.Model.User
 
         public iam.Model.UserInfoReq CreatePostRequest()
         {
-            iam.Model.UserInfoReq request = new iam.Model.UserInfoReq();
+            iam.Model.UserInfoReq request = new iam.Model.UserInfoReq(Email:Email);
             request.Username = this.Username;
-            request.Email = this.Email;
             request.FullName = this.FullName;
             request.Address = this.Address;
             request.Password = this.Password;
@@ -188,9 +187,8 @@ namespace mbedCloudSDK.AccountManagement.Model.User
 
         public iam.Model.UserUpdateReq CreatePutRequest()
         {
-            iam.Model.UserUpdateReq request = new iam.Model.UserUpdateReq();
+            iam.Model.UserUpdateReq request = new iam.Model.UserUpdateReq(Email:Email);
             request.Username = this.Username;
-            request.Email = this.Email;
             request.FullName = this.FullName;
             request.Address = this.Address;
             request.Password = this.Password;

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using mbedCloudSDK.Common.Query;
+using Newtonsoft.Json;
 
 namespace mbedCloudSDK.Common
 {
@@ -12,6 +13,7 @@ namespace mbedCloudSDK.Common
     /// Paginated reponse object wrapper.
     /// </summary>
     /// <typeparam name="T"></typeparam>
+    [JsonObject]
     public class PaginatedResponse<T> : IEnumerable<T>
     {
         private Func<QueryOptions, ResponsePage<T>> getDataFunc;
@@ -20,16 +22,19 @@ namespace mbedCloudSDK.Common
         /// Whether there are more results to display
         /// </summary>
         /// <value>Whether there are more results to display</value>
+        [JsonProperty]
         public bool? HasMore { get; private set; }
-        
+
         /// <summary>
         /// Total number of records
         /// </summary>
         /// <value>Total number of records</value>
+        [JsonProperty]
         public int? TotalCount { get; set; }
 
         private QueryOptions ListParams { get; set; }
 
+        [JsonProperty]
         private List<T> Data { get; set; }
 
         /// <summary>
