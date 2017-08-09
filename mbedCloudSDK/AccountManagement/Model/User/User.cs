@@ -1,4 +1,6 @@
-﻿using System;
+﻿using mbedCloudSDK.Common;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -88,6 +90,8 @@ namespace mbedCloudSDK.AccountManagement.Model.User
         /// <summary>
         /// The UUID of the user.
         /// </summary>
+        [NameOverride(Name = "UserId")]
+        [JsonProperty]
         public string Id { get; private set; }
         
         /// <summary>

@@ -196,6 +196,7 @@
     <Compile Include="Certificates\Api\CertificatesApi.cs" />
     <Compile Include="Certificates\Model\Certificate.cs" />
     <Compile Include="Certificates\Model\CertificateType.cs" />
+    <Compile Include="Common\CustomAttributes.cs" />
     <Compile Include="Common\Query\DeviceQueryOptions.cs" />
     <Compile Include="Common\PaginatedResponse.cs" />
     <Compile Include="Common\Query\QueryAttribute.cs" />

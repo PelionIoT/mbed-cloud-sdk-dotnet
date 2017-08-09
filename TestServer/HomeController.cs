@@ -96,6 +96,15 @@ namespace TestServer
                         var propertyInst = paramType.GetProperty(prop.Name);
                         if (propertyInst != null)
                         {
+                            var customAttributes = propertyInst.GetCustomAttributes(typeof(NameOverrideAttribute), true);
+                            if(customAttributes.Length > 0)
+                            {
+                                var attribute = customAttributes[0] as NameOverrideAttribute;
+                                if(argsJsonObj[attribute.Name.ToUpper()] != null)
+                                {
+                                    vals[propertyInst.Name] = argsJsonObj[attribute.Name.ToUpper()];
+                                }
+                            }
                             if (argsJsonObj[propertyInst.Name.ToUpper()] != null)
                             {
                                 vals[propertyInst.Name] = argsJsonObj[propertyInst.Name.ToUpper()];
