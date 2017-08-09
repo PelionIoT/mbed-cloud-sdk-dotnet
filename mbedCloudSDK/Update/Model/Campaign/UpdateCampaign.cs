@@ -1,4 +1,6 @@
 ﻿using deployment_service.Model;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,7 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// <summary>
         /// State of the update campaign.
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public UpdateCampaignState State { get; set; }
         
         /// <summary>

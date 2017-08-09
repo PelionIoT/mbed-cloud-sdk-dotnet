@@ -51,7 +51,7 @@ namespace mbedCloudSDK.Connect.Api
         /// <summary>
         /// Starts the long polling.
         /// </summary>
-        public void StartLongPolling()
+        public void StartNotifications()
         {
             longPollingTask.Start();
         }
@@ -59,7 +59,7 @@ namespace mbedCloudSDK.Connect.Api
         /// <summary>
         /// Stops the long polling.
         /// </summary>
-        public void StopLongPolling()
+        public void StopNotifications()
         {
             cancellationToken.Cancel();
         }

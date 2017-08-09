@@ -1,4 +1,6 @@
 ﻿using device_catalog.Model;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,7 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Logging
         /// <summary>
         /// Gets or Sets EventType
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public EventType EventType { get; set; }
         
         /// <summary>

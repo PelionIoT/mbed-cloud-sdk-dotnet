@@ -1,5 +1,6 @@
 ﻿using mbedCloudSDK.Common;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,6 +16,7 @@ namespace mbedCloudSDK.AccountManagement.Model.User
         /// <summary>
         /// The status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately.
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public UserStatus? Status { get; private set; }
 
         /// <summary>

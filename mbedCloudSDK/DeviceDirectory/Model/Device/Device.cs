@@ -5,6 +5,8 @@ using mbedCloudSDK.DeviceDirectory.Api;
 using mbedCloudSDK.Exceptions;
 using device_catalog.Model;
 using mds.Model;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace mbedCloudSDK.DeviceDirectory.Model.Device
 {
@@ -18,16 +20,19 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Device
         /// <summary>
         /// The ID of the channel used to communicate with the device
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public Mechanism? Mechanism { get; set; }
 
         /// <summary>
         /// The current state of the device
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public State? State { get; set; }
 
         /// <summary>
         /// The state of the device's deployment
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public DeployedState? DeployedState { get; set; }
 
         /// <summary>

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using mbedCloudSDK.Common;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +11,7 @@ namespace mbedCloudSDK.Certificates.Model
 {
     class Certificate
     {
+        [JsonConverter(typeof(StringEnumConverter))]
         public CertificateType Type { get; private set; }
         
         /// <summary>
@@ -62,6 +66,8 @@ namespace mbedCloudSDK.Certificates.Model
         /// Entity ID.
         /// </summary>
         /// <value>Entity ID.</value>
+        [NameOverride(Name = "CertificateId")]
+        [JsonProperty]
         public string Id { get; private set; }
         
         /// <summary>

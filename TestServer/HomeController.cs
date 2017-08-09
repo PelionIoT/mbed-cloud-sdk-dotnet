@@ -2,6 +2,7 @@
 using mbedCloudSDK.AccountManagement.Model.Account;
 using mbedCloudSDK.AccountManagement.Model.ApiKey;
 using mbedCloudSDK.Common;
+using mbedCloudSDK.Exceptions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
@@ -11,6 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,9 +24,9 @@ namespace TestServer
     public class HomeController : ApiController
     {
         [HttpGet]
-        public string Init()
+        public IHttpActionResult Init()
         {
-            return "Init";
+            return Ok();
         }
 
         [HttpGet]
@@ -56,6 +58,56 @@ namespace TestServer
             {
                 return StatusCode(HttpStatusCode.InternalServerError);
             }
+
+            var @params = GetMethodParams(methodInfo, argsJsonObj);
+
+            try
+            {
+                var invokedMethod = methodInfo.Invoke(moduleInstance, @params.ToArray());
+
+                var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, GetSnakeJsonSettings());
+
+                return Ok(result);
+            }
+            catch(TargetInvocationException e)
+            {
+                if(e.InnerException.GetType() == typeof(CloudApiException))
+                {
+                    var exception = e.InnerException as CloudApiException;
+                    if(exception.ErrorCode == 404)
+                    {
+                        return Content(HttpStatusCode.NotFound, exception.Message);
+                    }
+                    else
+                    {
+                        return InternalServerError(exception);
+                    }
+                }
+
+                return InternalServerError(e);
+            }
+            catch(Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        private JsonSerializerSettings GetSnakeJsonSettings()
+        {
+            var settings = new JsonSerializerSettings();
+
+            var contractResolver = new DefaultContractResolver
+            {
+                NamingStrategy = new SnakeCaseNamingStrategy()
+            };
+
+            settings.ContractResolver = contractResolver;
+
+            return settings;
+        }
+
+        private List<Object> GetMethodParams(MethodInfo methodInfo, JObject argsJsonObj)
+        {
             var @params = methodInfo.GetParameters();
 
             var serialisedParams = new List<object>();
@@ -88,7 +140,7 @@ namespace TestServer
                 }
                 else
                 {
-                    var properties = paramType.GetProperties();                        
+                    var properties = paramType.GetProperties();
                     var vals = new JObject();
 
                     foreach (var prop in properties)
@@ -97,7 +149,7 @@ namespace TestServer
                         if (propertyInst != null)
                         {
                             var customAttributes = propertyInst.GetCustomAttributes(typeof(NameOverrideAttribute), true);
-                            if(customAttributes.Length > 0)
+                            if (customAttributes.Length > 0)
                             {
                                 var attribute = customAttributes[0] as NameOverrideAttribute;
                                 var valFromArgsAttr = argsJsonObj[attribute.Name.ToUpper()];
@@ -113,50 +165,21 @@ namespace TestServer
                             }
                         }
                     }
+                    var obj = JsonConvert.DeserializeObject(vals.ToString(), paramType);
 
-                    try
-                    {
-                        var obj = JsonConvert.DeserializeObject(vals.ToString(), paramType);
-
-                        serialisedParams.Add(obj);
-                    }
-                    catch(Exception e)
-                    {
-                        return InternalServerError(e);
-                    }
+                    serialisedParams.Add(obj);
                 }
             }
 
-            if(serialisedParams.Count < @params.Length)
+            if (serialisedParams.Count < @params.Length)
             {
-                while(serialisedParams.Count < @params.Length)
+                while (serialisedParams.Count < @params.Length)
                 {
                     serialisedParams.Add(null);
                 }
             }
 
-            var settings = new JsonSerializerSettings();
-
-            var contractResolver = new DefaultContractResolver
-            {
-                NamingStrategy = new SnakeCaseNamingStrategy()
-            };
-
-            settings.ContractResolver = contractResolver;
-
-            try
-            {
-
-                var invokedMethod = methodInfo.Invoke(moduleInstance, serialisedParams.ToArray());
-
-                var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, settings);
-
-                return Ok(result);
-            }
-            catch(Exception e)
-            {
-                return InternalServerError(e);
-            }
+            return serialisedParams;
         }
     }
 }

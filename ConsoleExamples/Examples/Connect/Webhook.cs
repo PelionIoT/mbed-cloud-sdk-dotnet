@@ -43,7 +43,7 @@ namespace ConsoleExamples.Examples.Connect
             var resources = endpoints[0].ListResources();
             foreach (var resource in resources)
             {
-                if (resource.Uri == buttonResource)
+                if (resource.Path == buttonResource)
                 {
                     //Subscribe to the resource
                     api.Subscribe(endpoints[0].Id, resource);
