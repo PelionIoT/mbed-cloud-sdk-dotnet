@@ -48,7 +48,7 @@ namespace mbedCloudSDK.Certificates.Api
         /// </summary>
         /// <returns>Paginated response with certificates.</returns>
         /// <param name="options">Options used to query certificates.</param>
-        public PaginatedResponse<Certificate> ListCertifiates(QueryOptions options = null)
+        public PaginatedResponse<Certificate> ListCertificates(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -56,7 +56,7 @@ namespace mbedCloudSDK.Certificates.Api
             }
             try
             {
-                return new PaginatedResponse<Certificate>(ListCertifiatesFunc, options);
+                return new PaginatedResponse<Certificate>(ListCertificatesFunc, options);
             }
             catch (CloudApiException e)
             {
@@ -64,7 +64,7 @@ namespace mbedCloudSDK.Certificates.Api
             }
         }
 
-        private ResponsePage<Certificate> ListCertifiatesFunc(QueryOptions options = null)
+        private ResponsePage<Certificate> ListCertificatesFunc(QueryOptions options = null)
         {
             if (options == null)
             {

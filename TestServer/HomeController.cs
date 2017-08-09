@@ -100,14 +100,16 @@ namespace TestServer
                             if(customAttributes.Length > 0)
                             {
                                 var attribute = customAttributes[0] as NameOverrideAttribute;
-                                if(argsJsonObj[attribute.Name.ToUpper()] != null)
+                                var valFromArgsAttr = argsJsonObj[attribute.Name.ToUpper()];
+                                if (valFromArgsAttr != null)
                                 {
-                                    vals[propertyInst.Name] = argsJsonObj[attribute.Name.ToUpper()];
+                                    vals[propertyInst.Name] = valFromArgsAttr;
                                 }
                             }
-                            if (argsJsonObj[propertyInst.Name.ToUpper()] != null)
+                            var valFromArgsProp = argsJsonObj[propertyInst.Name.ToUpper()];
+                            if (valFromArgsProp != null)
                             {
-                                vals[propertyInst.Name] = argsJsonObj[propertyInst.Name.ToUpper()];
+                                vals[propertyInst.Name] = valFromArgsProp;
                             }
                         }
                     }
