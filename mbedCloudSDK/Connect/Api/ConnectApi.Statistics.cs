@@ -17,7 +17,7 @@ namespace mbedCloudSDK.Connect.Api
         /// <returns>List of statistics data queried using options.</returns>
         /// <exception cref="CloudApiException">Error while getting statistics.</exception>
         /// <example> 
-        /// This sample shows how to call the <see cref="GetMetrics"/> method.
+        /// This sample shows how to call the <see cref="ListMetrics"/> method.
         /// <code>
         /// class TestClass 
         /// {
@@ -40,7 +40,7 @@ namespace mbedCloudSDK.Connect.Api
         /// }
         /// </code>
         /// </example>
-        public List<Metric> GetMetrics(MetricQueryOptions options = null)
+        public List<Metric> ListMetrics(MetricQueryOptions options = null)
         {
             if (options == null)
             {
@@ -48,7 +48,7 @@ namespace mbedCloudSDK.Connect.Api
             }
             try
             {
-                var response = statisticsApi.V3MetricsGet(options.Include, options.Start, options.End, options.Period, options.Interval, this.auth);
+                var response = statisticsApi.V3MetricsGet(options.Include, options.Interval, auth, options.Start, options.End, options.Period);
                 List<Metric> statisticsList = new List<Metric>();
                 foreach (var data in response.Data)
                 {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel;
+using Newtonsoft.Json;
 
 namespace mbedCloudSDK.Common.Query
 {
@@ -55,6 +56,8 @@ namespace mbedCloudSDK.Common.Query
         /// Gets or sets the include.
         /// </summary>
         /// <value>Comma separate additional data to return. Currently supported: total_count.</value>
+        [NameOverride(Name = "filter")]
+        [JsonProperty]
         public string Include { get; set; }
 
         /// <summary>

@@ -56,7 +56,7 @@ namespace TestServer
             var methodInfo = moduleType.GetMethod(camelMethod);
             if(methodInfo == null)
             {
-                return StatusCode(HttpStatusCode.InternalServerError);
+                return Content(HttpStatusCode.InternalServerError,new { Message = "No method found"});
             }
 
             var @params = GetMethodParams(methodInfo, argsJsonObj);
@@ -76,19 +76,34 @@ namespace TestServer
                     var exception = e.InnerException as CloudApiException;
                     if(exception.ErrorCode == 404)
                     {
-                        return Content(HttpStatusCode.NotFound, exception.Message);
+                        return Content(HttpStatusCode.NotFound, exception);
+                    }
+                    else if(exception.ErrorCode == 400)
+                    {
+                        return Content(HttpStatusCode.BadRequest, exception);
                     }
                     else
                     {
-                        return InternalServerError(exception);
+                        return Content(HttpStatusCode.InternalServerError, exception);
+                    }
+                }
+                if(e.InnerException.GetType() == typeof(statistics.Client.ApiException))
+                {
+                    var exception = e.InnerException as statistics.Client.ApiException;
+                    if(exception.ErrorCode == 400)
+                    {
+                        return Content(HttpStatusCode.BadRequest, exception);
+                    }else
+                    {
+                        return Content(HttpStatusCode.InternalServerError, exception);
                     }
                 }
 
-                return InternalServerError(e);
+                return Content(HttpStatusCode.InternalServerError, e.InnerException);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                return InternalServerError(e);
+                return Content(HttpStatusCode.InternalServerError, e);
             }
         }
 
@@ -118,20 +133,7 @@ namespace TestServer
 
                 if (paramType.IsPrimitive || paramType == typeof(String))
                 {
-                    var obj = argsJsonObj[p.Name.ToUpper()] as JValue;
-
-                    if (obj != null)
-                    {
-                        //JValue integer type is int64, needs to be 32
-                        if (paramType == typeof(int))
-                        {
-                            serialisedParams.Add(Convert.ToInt32(obj.Value));
-                        }
-                        else
-                        {
-                            serialisedParams.Add(obj.Value);
-                        }
-                    }
+                    serialisedParams = GetParamValuePrimitive(p, paramType, argsJsonObj, serialisedParams);
                 }
                 else if (paramType.FullName == "System.IO.Stream")
                 {
@@ -148,26 +150,18 @@ namespace TestServer
                         var propertyInst = paramType.GetProperty(prop.Name);
                         if (propertyInst != null)
                         {
-                            var customAttributes = propertyInst.GetCustomAttributes(typeof(NameOverrideAttribute), true);
-                            if (customAttributes.Length > 0)
-                            {
-                                var attribute = customAttributes[0] as NameOverrideAttribute;
-                                var valFromArgsAttr = argsJsonObj[attribute.Name.ToUpper()];
-                                if (valFromArgsAttr != null)
-                                {
-                                    vals[propertyInst.Name] = valFromArgsAttr;
-                                }
-                            }
-                            var valFromArgsProp = argsJsonObj[propertyInst.Name.ToUpper()];
-                            if (valFromArgsProp != null)
-                            {
-                                vals[propertyInst.Name] = valFromArgsProp;
-                            }
+                            vals = GetParamValue(propertyInst, argsJsonObj, vals);
                         }
                     }
-                    var obj = JsonConvert.DeserializeObject(vals.ToString(), paramType);
-
-                    serialisedParams.Add(obj);
+                    try
+                    {
+                        var obj = JsonConvert.DeserializeObject(vals.ToString(), paramType);
+                        serialisedParams.Add(obj);
+                    }
+                    catch(JsonReaderException e)
+                    {
+                        serialisedParams.Add(null);
+                    }
                 }
             }
 
@@ -181,5 +175,66 @@ namespace TestServer
 
             return serialisedParams;
         }
+
+        private JObject GetParamValue(PropertyInfo propertyInst, JObject argsJsonObj, JObject vals)
+        {
+            var customAttributes = propertyInst.GetCustomAttributes(typeof(NameOverrideAttribute), true);
+            if (customAttributes.Length > 0)
+            {
+                var attribute = customAttributes[0] as NameOverrideAttribute;
+                var valFromArgsAttr = argsJsonObj[attribute.Name.ToUpper()];
+                if (valFromArgsAttr != null)
+                {
+                    vals[propertyInst.Name] = valFromArgsAttr;
+                }
+            }
+            var valFromArgsProp = argsJsonObj[propertyInst.Name.ToUpper()];
+            if (valFromArgsProp != null)
+            {
+                vals[propertyInst.Name] = valFromArgsProp;
+            }
+            return vals;
+        }
+
+        private List<object> GetParamValuePrimitive(ParameterInfo p,Type paramType, JObject argsJsonObj, List<object> serialisedParams)
+        {
+            JValue obj;
+            var customParamAttributes = p.GetCustomAttributes(typeof(NameOverrideAttribute), true);
+            if (customParamAttributes.Length > 0)
+            {
+                var attribute = customParamAttributes[0] as NameOverrideAttribute;
+                var valFromAttr = argsJsonObj[attribute.Name.ToUpper()];
+                if (valFromAttr != null)
+                {
+                    obj = valFromAttr as JValue;
+                }else
+                {
+                    obj = null;
+                }
+
+            }
+            else
+            {
+                obj = argsJsonObj[p.Name.ToUpper()] as JValue;
+            }
+
+            if (obj != null)
+            {
+                //JValue integer type is int64, needs to be 32
+                if (paramType == typeof(int))
+                {
+                    serialisedParams.Add(Convert.ToInt32(obj.Value));
+                }
+                else
+                {
+                    serialisedParams.Add(obj.Value);
+                }
+            }else
+            {
+                serialisedParams.Add(null);
+            }
+            return serialisedParams;
+        }
+        
     }
 }
