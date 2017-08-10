@@ -120,21 +120,15 @@ namespace mbedCloudSDK.AccountManagement.Model.ApiKey
             return apiKey;
         }
 
-        //ALEX_CHANGE
         public ApiKeyInfoReq CreatePostRequest()
         {
             ApiKeyInfoReq request = new ApiKeyInfoReq(Owner:Owner, Name:Name);
-            //request.Name = this.Name;
-            //request.Owner = this.Owner;
             return request;
         }
         
-        //ALEX_CHANGE
         public ApiKeyUpdateReq CreatePutRequest()
         {
             ApiKeyUpdateReq request = new ApiKeyUpdateReq(Owner:Owner, Name:Name);
-            //request.Name = this.Name;
-            //request.Owner = this.Owner;
             return request;
         }
     }

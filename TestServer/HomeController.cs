@@ -32,7 +32,8 @@ namespace TestServer
         [HttpGet]
         public IHttpActionResult TestModuleMethod(string module, string method, [FromUri] string args = "")
         {
-            var config = new Config("ak_1MDE1YmM4NTQ4YzJkMDI0MjBhMDE2ZDA2MDAwMDAwMDA015d9d2cac1402420a010f13000000001GfsW837Iq7kH5wiXtdw3KoNBy2E7qvC");
+            var apiKey = Utils.ReadSetting("ApiKey") as string;
+            var config = new Config(apiKey);
             config.Host = "https://lab-api.mbedcloudintegration.net";
 
             var camelModule = Utils.SnakeToCamel(module);
