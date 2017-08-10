@@ -296,7 +296,7 @@
     <Compile Include="Backends\Iam\Model\UserInfoRespList.cs" />
     <Compile Include="AccountManagement\Model\Group\Group.cs" />
     <Compile Include="AccountManagement\Model\User\User.cs" />
-    <Compile Include="AccountManagement\Api\AccountManagement.cs" />
+    <Compile Include="AccountManagement\Api\AccountManagementApi.cs" />
     <Compile Include="AccountManagement\Model\ApiKey\ApiKey.cs" />
     <Compile Include="AccountManagement\Model\Account\Account.cs" />
     <Compile Include="AccountManagement\Model\ApiKey\ApiKeyStatus.cs" />

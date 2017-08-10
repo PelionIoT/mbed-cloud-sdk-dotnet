@@ -39,7 +39,6 @@ namespace TestServer
             var camelMethod = Utils.SnakeToCamel(method);
 
             var argsJsonObj = new JObject();
-
             if (!string.IsNullOrEmpty(args))
             {
                 var dict = HttpUtility.ParseQueryString(args);
@@ -60,13 +59,10 @@ namespace TestServer
             }
 
             var @params = GetMethodParams(methodInfo, argsJsonObj);
-
             try
             {
                 var invokedMethod = methodInfo.Invoke(moduleInstance, @params.ToArray());
-
                 var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, GetSnakeJsonSettings());
-
                 return Ok(result);
             }
             catch(TargetInvocationException e)
@@ -98,7 +94,6 @@ namespace TestServer
                         return Content(HttpStatusCode.InternalServerError, exception);
                     }
                 }
-
                 return Content(HttpStatusCode.InternalServerError, e.InnerException);
             }
             catch (Exception e)
@@ -110,30 +105,25 @@ namespace TestServer
         private JsonSerializerSettings GetSnakeJsonSettings()
         {
             var settings = new JsonSerializerSettings();
-
             var contractResolver = new DefaultContractResolver
             {
                 NamingStrategy = new SnakeCaseNamingStrategy()
             };
-
             settings.ContractResolver = contractResolver;
-
             return settings;
         }
 
         private List<Object> GetMethodParams(MethodInfo methodInfo, JObject argsJsonObj)
         {
             var @params = methodInfo.GetParameters();
-
             var serialisedParams = new List<object>();
-
             foreach (var p in @params)
             {
                 var paramType = p.ParameterType;
-
                 if (paramType.IsPrimitive || paramType == typeof(String))
                 {
-                    serialisedParams = GetParamValuePrimitive(p, paramType, argsJsonObj, serialisedParams);
+                    var paramValue = GetParamValuePrimitive(p, paramType, argsJsonObj);
+                    serialisedParams.Add(paramValue);
                 }
                 else if (paramType.FullName == "System.IO.Stream")
                 {
@@ -144,13 +134,13 @@ namespace TestServer
                 {
                     var properties = paramType.GetProperties();
                     var vals = new JObject();
-
                     foreach (var prop in properties)
                     {
                         var propertyInst = paramType.GetProperty(prop.Name);
                         if (propertyInst != null)
                         {
-                            vals = GetParamValue(propertyInst, argsJsonObj, vals);
+                            var paramValue = GetParamValue(propertyInst, argsJsonObj);
+                            vals[propertyInst.Name] = paramValue;
                         }
                     }
                     try
@@ -172,11 +162,10 @@ namespace TestServer
                     serialisedParams.Add(null);
                 }
             }
-
             return serialisedParams;
         }
 
-        private JObject GetParamValue(PropertyInfo propertyInst, JObject argsJsonObj, JObject vals)
+        private JToken GetParamValue(PropertyInfo propertyInst, JObject argsJsonObj)
         {
             var customAttributes = propertyInst.GetCustomAttributes(typeof(NameOverrideAttribute), true);
             if (customAttributes.Length > 0)
@@ -185,18 +174,19 @@ namespace TestServer
                 var valFromArgsAttr = argsJsonObj[attribute.Name.ToUpper()];
                 if (valFromArgsAttr != null)
                 {
-                    vals[propertyInst.Name] = valFromArgsAttr;
+                    return valFromArgsAttr;
                 }
             }
             var valFromArgsProp = argsJsonObj[propertyInst.Name.ToUpper()];
             if (valFromArgsProp != null)
             {
-                vals[propertyInst.Name] = valFromArgsProp;
+                return valFromArgsProp;
             }
-            return vals;
+
+            return null;
         }
 
-        private List<object> GetParamValuePrimitive(ParameterInfo p,Type paramType, JObject argsJsonObj, List<object> serialisedParams)
+        private object GetParamValuePrimitive(ParameterInfo p,Type paramType, JObject argsJsonObj)
         {
             JValue obj;
             var customParamAttributes = p.GetCustomAttributes(typeof(NameOverrideAttribute), true);
@@ -211,7 +201,6 @@ namespace TestServer
                 {
                     obj = null;
                 }
-
             }
             else
             {
@@ -220,21 +209,18 @@ namespace TestServer
 
             if (obj != null)
             {
-                //JValue integer type is int64, needs to be 32
                 if (paramType == typeof(int))
                 {
-                    serialisedParams.Add(Convert.ToInt32(obj.Value));
+                    return Convert.ToInt32(obj.Value);
                 }
                 else
                 {
-                    serialisedParams.Add(obj.Value);
+                    return obj.Value;
                 }
             }else
             {
-                serialisedParams.Add(null);
+                return null;
             }
-            return serialisedParams;
         }
-        
     }
 }
