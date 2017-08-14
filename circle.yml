@@ -6,7 +6,8 @@ dependencies:
     - sudo apt-get install doxygen
 test:
   override:
-    - nuget restore mbed-cloud-sdk.sln
+    - wget https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+    - nuget.exe restore mbed-cloud-sdk.sln
     - xbuild
     - ./test.sh
     - echo "finished"
