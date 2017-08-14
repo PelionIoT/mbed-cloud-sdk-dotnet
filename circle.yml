@@ -8,7 +8,7 @@ test:
   override:
     - wget https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
     - mkdir packages
-    - mono --runtime=v4.0 nuget.exe install /mbedCloudSDK/packages.config
+    - mono --runtime=v4.0 nuget.exe install ./mbedCloudSDK/packages.config
     - xbuild
     - ./test.sh
     - echo "finished"
