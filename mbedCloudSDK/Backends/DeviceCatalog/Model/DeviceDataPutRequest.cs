@@ -39,13 +39,15 @@ namespace device_catalog.Model
         /// </summary>
         /// <param name="Description">The description of the object..</param>
         /// <param name="EndpointName">The endpoint name given to the device..</param>
-        /// <param name="AutoUpdate">Mark this device for auto firmware update..</param>
+        /// <param name="AutoUpdate">DEPRECATED Mark this device for auto firmware update..</param>
+        /// <param name="HostGateway">The endpoint_name of the host gateway, if appropriate..</param>
         /// <param name="_Object">The API resource entity..</param>
         /// <param name="CustomAttributes">Up to 5 custom JSON attributes.</param>
         /// <param name="DeviceKey">Fingerprint of the device certificate. (required).</param>
+        /// <param name="EndpointType">The endpoint type of the device - e.g. if the device is a gateway..</param>
         /// <param name="CaId">ID of the issuer of the certificate. (required).</param>
         /// <param name="Name">The name of the object..</param>
-        public DeviceDataPutRequest(string Description = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string _Object = default(string), Object CustomAttributes = default(Object), string DeviceKey = default(string), string CaId = default(string), string Name = default(string))
+        public DeviceDataPutRequest(string Description = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), string _Object = default(string), Object CustomAttributes = default(Object), string DeviceKey = default(string), string EndpointType = default(string), string CaId = default(string), string Name = default(string))
         {
             // to ensure "DeviceKey" is required (not null)
             if (DeviceKey == null)
@@ -68,8 +70,10 @@ namespace device_catalog.Model
             this.Description = Description;
             this.EndpointName = EndpointName;
             this.AutoUpdate = AutoUpdate;
+            this.HostGateway = HostGateway;
             this._Object = _Object;
             this.CustomAttributes = CustomAttributes;
+            this.EndpointType = EndpointType;
             this.Name = Name;
         }
         
@@ -86,11 +90,17 @@ namespace device_catalog.Model
         [DataMember(Name="endpoint_name", EmitDefaultValue=false)]
         public string EndpointName { get; set; }
         /// <summary>
-        /// Mark this device for auto firmware update.
+        /// DEPRECATED Mark this device for auto firmware update.
         /// </summary>
-        /// <value>Mark this device for auto firmware update.</value>
+        /// <value>DEPRECATED Mark this device for auto firmware update.</value>
         [DataMember(Name="auto_update", EmitDefaultValue=false)]
         public bool? AutoUpdate { get; set; }
+        /// <summary>
+        /// The endpoint_name of the host gateway, if appropriate.
+        /// </summary>
+        /// <value>The endpoint_name of the host gateway, if appropriate.</value>
+        [DataMember(Name="host_gateway", EmitDefaultValue=false)]
+        public string HostGateway { get; set; }
         /// <summary>
         /// The API resource entity.
         /// </summary>
@@ -109,6 +119,12 @@ namespace device_catalog.Model
         /// <value>Fingerprint of the device certificate.</value>
         [DataMember(Name="device_key", EmitDefaultValue=false)]
         public string DeviceKey { get; set; }
+        /// <summary>
+        /// The endpoint type of the device - e.g. if the device is a gateway.
+        /// </summary>
+        /// <value>The endpoint type of the device - e.g. if the device is a gateway.</value>
+        [DataMember(Name="endpoint_type", EmitDefaultValue=false)]
+        public string EndpointType { get; set; }
         /// <summary>
         /// ID of the issuer of the certificate.
         /// </summary>
@@ -132,9 +148,11 @@ namespace device_catalog.Model
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  EndpointName: ").Append(EndpointName).Append("\n");
             sb.Append("  AutoUpdate: ").Append(AutoUpdate).Append("\n");
+            sb.Append("  HostGateway: ").Append(HostGateway).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  CustomAttributes: ").Append(CustomAttributes).Append("\n");
             sb.Append("  DeviceKey: ").Append(DeviceKey).Append("\n");
+            sb.Append("  EndpointType: ").Append(EndpointType).Append("\n");
             sb.Append("  CaId: ").Append(CaId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
@@ -189,6 +207,11 @@ namespace device_catalog.Model
                     this.AutoUpdate.Equals(other.AutoUpdate)
                 ) && 
                 (
+                    this.HostGateway == other.HostGateway ||
+                    this.HostGateway != null &&
+                    this.HostGateway.Equals(other.HostGateway)
+                ) && 
+                (
                     this._Object == other._Object ||
                     this._Object != null &&
                     this._Object.Equals(other._Object)
@@ -202,6 +225,11 @@ namespace device_catalog.Model
                     this.DeviceKey == other.DeviceKey ||
                     this.DeviceKey != null &&
                     this.DeviceKey.Equals(other.DeviceKey)
+                ) && 
+                (
+                    this.EndpointType == other.EndpointType ||
+                    this.EndpointType != null &&
+                    this.EndpointType.Equals(other.EndpointType)
                 ) && 
                 (
                     this.CaId == other.CaId ||
@@ -232,12 +260,16 @@ namespace device_catalog.Model
                     hash = hash * 59 + this.EndpointName.GetHashCode();
                 if (this.AutoUpdate != null)
                     hash = hash * 59 + this.AutoUpdate.GetHashCode();
+                if (this.HostGateway != null)
+                    hash = hash * 59 + this.HostGateway.GetHashCode();
                 if (this._Object != null)
                     hash = hash * 59 + this._Object.GetHashCode();
                 if (this.CustomAttributes != null)
                     hash = hash * 59 + this.CustomAttributes.GetHashCode();
                 if (this.DeviceKey != null)
                     hash = hash * 59 + this.DeviceKey.GetHashCode();
+                if (this.EndpointType != null)
+                    hash = hash * 59 + this.EndpointType.GetHashCode();
                 if (this.CaId != null)
                     hash = hash * 59 + this.CaId.GetHashCode();
                 if (this.Name != null)

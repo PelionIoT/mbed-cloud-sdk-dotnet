@@ -34,7 +34,7 @@ namespace firmware_catalog.Model
         /// </summary>
         /// <param name="ClassId">Hex representation of the 128-bit RFC4122 GUID that represents the device class that the update targets..</param>
         /// <param name="VendorId">Hex representation of the 128-bit RFC4122 GUID that represents the vendor..</param>
-        /// <param name="ManifestVersion">A short description of the update..</param>
+        /// <param name="ManifestVersion">The version of the manifest format being used..</param>
         /// <param name="Description">A short description of the update..</param>
         /// <param name="Nonce">A 128-bit random field.</param>
         /// <param name="Timestamp">The time the manifest was created. The timestamp is stored as Unix time..</param>
@@ -69,9 +69,9 @@ namespace firmware_catalog.Model
         [DataMember(Name="vendorId", EmitDefaultValue=false)]
         public string VendorId { get; set; }
         /// <summary>
-        /// A short description of the update.
+        /// The version of the manifest format being used.
         /// </summary>
-        /// <value>A short description of the update.</value>
+        /// <value>The version of the manifest format being used.</value>
         [DataMember(Name="manifestVersion", EmitDefaultValue=false)]
         public int? ManifestVersion { get; set; }
         /// <summary>

@@ -138,7 +138,7 @@ namespace iam.Model
         /// <param name="Owner">The owner of this API key, who is the creator by default..</param>
         /// <param name="Id">The UUID of the API key. (required).</param>
         /// <param name="LastLoginTime">The timestamp of the latest API key usage, in milliseconds..</param>
-        public ApiKeyInfoResp(List<string> Groups = default(List<string>), StatusEnum? Status = default(StatusEnum?), string Name = default(string), string CreatedAt = default(string), ObjectEnum? _Object = default(ObjectEnum?), long? CreationTime = default(long?), string Etag = default(string), string Key = default(string), string Owner = default(string), string Id = default(string), long? LastLoginTime = default(long?))
+        public ApiKeyInfoResp(List<string> Groups = default(List<string>), StatusEnum? Status = default(StatusEnum?), string Name = default(string), DateTime? CreatedAt = default(DateTime?), ObjectEnum? _Object = default(ObjectEnum?), long? CreationTime = default(long?), string Etag = default(string), string Key = default(string), string Owner = default(string), string Id = default(string), long? LastLoginTime = default(long?))
         {
             // to ensure "Name" is required (not null)
             if (Name == null)
@@ -210,7 +210,7 @@ namespace iam.Model
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
-        public string CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
         /// <summary>
         /// The timestamp of the API key creation in the storage, in milliseconds.
         /// </summary>
