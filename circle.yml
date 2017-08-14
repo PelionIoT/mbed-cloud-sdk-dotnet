@@ -7,7 +7,8 @@ dependencies:
 test:
   override:
     - wget https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
-    - nuget.exe restore mbed-cloud-sdk.sln
+    - cd packages
+    - mono packages/nuget.exe restore
     - xbuild
     - ./test.sh
     - echo "finished"
