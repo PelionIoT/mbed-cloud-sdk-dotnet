@@ -37,7 +37,7 @@ namespace mbedCloudSDK.AccountManagement.Model.ApiKey
         /// Creation UTC time RFC3339.
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
-        public string CreatedAt { get; private set; }
+        public DateTime? CreatedAt { get; private set; }
         
         /// <summary>
         /// The timestamp of the API key creation in the storage, in milliseconds.

@@ -30,7 +30,7 @@ namespace mbedCloudSDK.Certificates.Model
         /// Creation UTC time RFC3339.
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
-        public string CreatedAt { get; private set; }
+        public DateTime? CreatedAt { get; private set; }
         
         /// <summary>
         /// Subject of the certificate.
@@ -48,7 +48,7 @@ namespace mbedCloudSDK.Certificates.Model
         /// Expiration time in UTC formatted as RFC3339.
         /// </summary>
         /// <value>Expiration time in UTC formatted as RFC3339.</value>
-        public string Validity { get; private set; }
+        public DateTime? Validity { get; private set; }
         
         /// <summary>
         /// Issuer of the certificate.

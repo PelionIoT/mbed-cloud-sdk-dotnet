@@ -19,6 +19,7 @@ namespace mbedCloudSDK.Certificates.Api
         private DeveloperCertificateApi developerCertificateApi;
         private ServerCredentialsApi serverCredentialsApi;
         private AccountAdminApi iamAccountApi;
+        private DeveloperApi developerApi;
         private string auth;
         private string bootstrapServerUri;
         private string lmw2mServerUri;
@@ -38,6 +39,10 @@ namespace mbedCloudSDK.Certificates.Api
             iamAccountApi = new AccountAdminApi(config.Host);
             iamAccountApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
             iamAccountApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+
+            developerApi = new DeveloperApi(config.Host);
+            developerApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
+            developerApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
 
             bootstrapServerUri = serverCredentialsApi.V3ServerCredentialsBootstrapGet(this.auth).ServerUri;
             lmw2mServerUri = serverCredentialsApi.V3ServerCredentialsLwm2mGet(this.auth).ServerUri;
@@ -72,7 +77,7 @@ namespace mbedCloudSDK.Certificates.Api
             }
             try
             {
-                var resp = iamAccountApi.GetAllCertificates(options.Limit, options.Order, options.After, options.QueryString);
+                var resp = developerApi.GetAllCertificates(limit:options.Limit, after:options.After, order:options.Order, include:options.Include);
                 ResponsePage<Certificate> respCertificates = new ResponsePage<Certificate>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var certificate in resp.Data)
                 {
@@ -96,7 +101,7 @@ namespace mbedCloudSDK.Certificates.Api
                 Certificate trustedCert = null;
                 try
                 {
-                    var response = iamAccountApi.GetCertificate(certificateId);
+                    var response = developerApi.GetCertificate(certificateId);
                     trustedCert = Certificate.Map(response);
                 }
                 catch (iam.Client.ApiException ex)
@@ -251,7 +256,7 @@ namespace mbedCloudSDK.Certificates.Api
         {
             try
             {
-                iamAccountApi.DeleteCertificate(certificateId);
+                developerApi.DeleteCertificate(certificateId);
             }
             catch(iam.Client.ApiException ex )
             {
@@ -286,7 +291,7 @@ namespace mbedCloudSDK.Certificates.Api
             req.Description = certificate.Description;
             try
             {
-                var resp = iamAccountApi.UpdateCertificate(certificate.Id, req);
+                var resp = developerApi.UpdateCertificate(certificate.Id, req);
                 return GetCertificate(resp.Id);
             }
             catch (CloudApiException ex)
