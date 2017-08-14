@@ -8,7 +8,7 @@ test:
   override:
     - wget https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
     - cd mbedCloudSDK; mkdir packages; cd packages
-    - mono --runtime=v4.0 ../../nuget.exe install ../packages.config
+    - mono --runtime=v4.0 nuget.exe install ../packages.config
     - cd ../..
     - xbuild
     - ./test.sh
