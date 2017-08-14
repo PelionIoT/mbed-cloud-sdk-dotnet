@@ -48,7 +48,7 @@ namespace mbedCloudSDK.Certificates.Api
         /// </summary>
         /// <returns>Paginated response with certificates.</returns>
         /// <param name="options">Options used to query certificates.</param>
-        public PaginatedResponse<Certificate> ListCertifiates(QueryOptions options = null)
+        public PaginatedResponse<Certificate> ListCertificates(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -56,7 +56,7 @@ namespace mbedCloudSDK.Certificates.Api
             }
             try
             {
-                return new PaginatedResponse<Certificate>(ListCertifiatesFunc, options);
+                return new PaginatedResponse<Certificate>(ListCertificatesFunc, options);
             }
             catch (CloudApiException e)
             {
@@ -64,7 +64,7 @@ namespace mbedCloudSDK.Certificates.Api
             }
         }
 
-        private ResponsePage<Certificate> ListCertifiatesFunc(QueryOptions options = null)
+        private ResponsePage<Certificate> ListCertificatesFunc(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -89,14 +89,14 @@ namespace mbedCloudSDK.Certificates.Api
         /// <summary>
         /// Get certificate by Id.
         /// </summary>
-        /// <param name="id">Id of the certificate.</param>
+        /// <param name="certificateId">Id of the certificate.</param>
         /// <returns>Object representing certificate.</returns>
-        public Certificate GetCertificate(string id)
+        public Certificate GetCertificate(string certificateId)
         {
                 Certificate trustedCert = null;
                 try
                 {
-                    var response = iamAccountApi.GetCertificate(id);
+                    var response = iamAccountApi.GetCertificate(certificateId);
                     trustedCert = Certificate.Map(response);
                 }
                 catch (iam.Client.ApiException ex)
@@ -172,7 +172,7 @@ namespace mbedCloudSDK.Certificates.Api
                 {
                     throw new ArgumentException("certificateData and signatureData are not required when creating developer certificate.");
                 }
-                connector_ca.Model.DeveloperCertificateRequestData body = new connector_ca.Model.DeveloperCertificateRequestData();
+                connector_ca.Model.DeveloperCertificateRequestData body = new connector_ca.Model.DeveloperCertificateRequestData(certificate.Name, certificate.Description);
                 body.Name = certificate.Name;
                 body.Description = certificate.Description;
                 try
@@ -191,20 +191,24 @@ namespace mbedCloudSDK.Certificates.Api
                 {
                     throw new ArgumentException("certificateData and signatureData are required when creating non developer certificate.");
                 }
-                TrustedCertificateReq trustedCertificate = new TrustedCertificateReq();
-                trustedCertificate.Certificate = certificateData;
-                trustedCertificate.Description = certificate.Description;
-                trustedCertificate.Name = certificate.Name;
+
+                TrustedCertificateReq.ServiceEnum serviceEnum;
                 switch (certificate.Type)
                 {
                     case CertificateType.Bootstrap:
-                        trustedCertificate.Service = TrustedCertificateReq.ServiceEnum.Bootstrap;
+                        serviceEnum = TrustedCertificateReq.ServiceEnum.Bootstrap;
                         break;
                     case CertificateType.Lwm2m:
-                        trustedCertificate.Service = TrustedCertificateReq.ServiceEnum.Lwm2m;
+                        serviceEnum = TrustedCertificateReq.ServiceEnum.Lwm2m;
+                        break;
+                    default:
+                        serviceEnum = TrustedCertificateReq.ServiceEnum.Bootstrap;
                         break;
                 }
-                trustedCertificate.Signature = signatureData;
+                TrustedCertificateReq trustedCertificate = new TrustedCertificateReq(Certificate:certificateData, Name:certificate.Name,
+                    Signature: signatureData, Service:serviceEnum);
+                trustedCertificate.Description = certificate.Description;
+                
                 try
                 {
                     var resp = iamAccountApi.AddCertificate(trustedCertificate);
@@ -263,7 +267,21 @@ namespace mbedCloudSDK.Certificates.Api
         /// <exception cref="CloudApiException">Error while uploading certificate.</exception>
         public Certificate UpdateCertificate(Certificate certificate)
         {
-            TrustedCertificateReq req = new TrustedCertificateReq();
+            TrustedCertificateReq.ServiceEnum serviceEnum;
+            switch (certificate.Type)
+            {
+                case CertificateType.Bootstrap:
+                    serviceEnum = TrustedCertificateReq.ServiceEnum.Bootstrap;
+                    break;
+                case CertificateType.Lwm2m:
+                    serviceEnum = TrustedCertificateReq.ServiceEnum.Lwm2m;
+                    break;
+                default:
+                    serviceEnum = TrustedCertificateReq.ServiceEnum.Bootstrap;
+                    break;
+            }
+            TrustedCertificateReq req = new TrustedCertificateReq(Certificate:certificate.CertData, Name:certificate.Name,
+                Service:serviceEnum, Signature:certificate.CertData);
             req.Name = certificate.Name;
             req.Description = certificate.Description;
             try

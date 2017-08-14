@@ -1,4 +1,7 @@
-﻿using System;
+﻿using mbedCloudSDK.Common;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,6 +16,7 @@ namespace mbedCloudSDK.AccountManagement.Model.User
         /// <summary>
         /// The status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately.
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public UserStatus? Status { get; private set; }
 
         /// <summary>
@@ -88,6 +92,8 @@ namespace mbedCloudSDK.AccountManagement.Model.User
         /// <summary>
         /// The UUID of the user.
         /// </summary>
+        [NameOverride(Name = "UserId")]
+        [JsonProperty]
         public string Id { get; private set; }
         
         /// <summary>
@@ -174,9 +180,8 @@ namespace mbedCloudSDK.AccountManagement.Model.User
 
         public iam.Model.UserInfoReq CreatePostRequest()
         {
-            iam.Model.UserInfoReq request = new iam.Model.UserInfoReq();
+            iam.Model.UserInfoReq request = new iam.Model.UserInfoReq(Email:Email);
             request.Username = this.Username;
-            request.Email = this.Email;
             request.FullName = this.FullName;
             request.Address = this.Address;
             request.Password = this.Password;
@@ -188,9 +193,8 @@ namespace mbedCloudSDK.AccountManagement.Model.User
 
         public iam.Model.UserUpdateReq CreatePutRequest()
         {
-            iam.Model.UserUpdateReq request = new iam.Model.UserUpdateReq();
+            iam.Model.UserUpdateReq request = new iam.Model.UserUpdateReq(Email:Email);
             request.Username = this.Username;
-            request.Email = this.Email;
             request.FullName = this.FullName;
             request.Address = this.Address;
             request.Password = this.Password;

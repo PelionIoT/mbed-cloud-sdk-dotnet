@@ -17,7 +17,7 @@ namespace mbedCloudSDK.AccountManagement.Api
         /// <returns></returns>
         public PaginatedResponse<User> ListUsers(QueryOptions options = null)
         {
-            if (options != null)
+            if (options == null)
             {
                 options = new QueryOptions();
             }

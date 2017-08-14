@@ -1,4 +1,6 @@
 ﻿using iam.Model;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,6 +15,7 @@ namespace mbedCloudSDK.AccountManagement.Model.ApiKey
         /// <summary>
         /// The status of the API key.
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public ApiKeyStatus? Status { get; private set; }
 
         /// <summary>
@@ -119,17 +122,13 @@ namespace mbedCloudSDK.AccountManagement.Model.ApiKey
 
         public ApiKeyInfoReq CreatePostRequest()
         {
-            ApiKeyInfoReq request = new ApiKeyInfoReq();
-            request.Name = this.Name;
-            request.Owner = this.Owner;
+            ApiKeyInfoReq request = new ApiKeyInfoReq(Owner:Owner, Name:Name);
             return request;
         }
-
+        
         public ApiKeyUpdateReq CreatePutRequest()
         {
-            ApiKeyUpdateReq request = new ApiKeyUpdateReq();
-            request.Name = this.Name;
-            request.Owner = this.Owner;
+            ApiKeyUpdateReq request = new ApiKeyUpdateReq(Owner:Owner, Name:Name);
             return request;
         }
     }

@@ -1,4 +1,5 @@
-﻿using mbedCloudSDK.Connect.Model.ConnectedDevice;
+﻿using mbedCloudSDK.Common;
+using mbedCloudSDK.Connect.Model.ConnectedDevice;
 using mbedCloudSDK.Connect.Model.Resource;
 using mbedCloudSDK.Exceptions;
 using System.Collections.Generic;
@@ -35,15 +36,15 @@ namespace mbedCloudSDK.Connect.Api
         /// <summary>
         /// Gets the value of the resource..
         /// </summary>
-        /// <param name="endpointName">Endpoint name.</param>
+        /// <param name="deviceId">Device Id</param>
         /// <param name="resourcePath">Resource path.</param>
-        public AsyncConsumer<string> GetResourceValue(string endpointName, string resourcePath)
+        public AsyncConsumer<string> GetResourceValue(string deviceId, string resourcePath)
         {
             resourcePath = FixedPath(resourcePath);
             var api = new mds.Api.ResourcesApi(config.Host);
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            var asyncID = api.V2EndpointsDeviceIdResourcePathGet(endpointName, resourcePath);
+            var asyncID = api.V2EndpointsDeviceIdResourcePathGet(deviceId, resourcePath);
             AsyncProducerConsumerCollection<string> collection = new AsyncProducerConsumerCollection<string>();
             asyncResponses.Add(asyncID.AsyncResponseId, collection);
             return new AsyncConsumer<string>(collection);
@@ -57,7 +58,7 @@ namespace mbedCloudSDK.Connect.Api
         /// <param name="resourceValue">Value to set.</param>
         /// <param name="noResponse">Don't get a response.</param>
         /// <returns></returns>
-        public AsyncConsumer<string> SetResourceValue(string deviceName, string resourcePath, string resourceValue, bool? noResponse = null)
+        public AsyncConsumer<string> SetResourceValue([NameOverride(Name = "DeviceId")]string deviceName, string resourcePath, string resourceValue, bool? noResponse = null)
         {
             resourcePath = FixedPath(resourcePath);
             var api = new mds.Api.ResourcesApi(config.Host);

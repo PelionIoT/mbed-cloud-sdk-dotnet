@@ -32,7 +32,7 @@ namespace mbedCloudSDK.Connect.Model.Resource
         /// Resource url.
         /// </summary>
         /// <value>Resource&#39;s url.</value>
-        public string Uri { get; set; }
+        public string Path { get; set; }
         
         /// <summary>
         /// Observable determines whether you can subscribe to changes for this resource. 
@@ -80,7 +80,7 @@ namespace mbedCloudSDK.Connect.Model.Resource
             resource.DeviceId = deviceID;
             resource.Type = res.Rt;
             resource.ConentType = res.Type;
-            resource.Uri = res.Uri;
+            resource.Path = res.Uri;
             resource.Observable = res.Obs;
             resource.Queue = new AsyncProducerConsumerCollection<string>();
             return resource;
@@ -91,7 +91,7 @@ namespace mbedCloudSDK.Connect.Model.Resource
         /// </summary>
         public AsyncConsumer<string> GetResourceValue()
         {
-            return this.api.GetResourceValue(this.DeviceId, this.Uri);
+            return this.api.GetResourceValue(this.DeviceId, this.Path);
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace mbedCloudSDK.Connect.Model.Resource
         /// <returns></returns>
         public AsyncConsumer<string> SetResourceValue(string resourceValue, bool? noResponse = null)
         {
-            return this.api.SetResourceValue(this.DeviceId, this.Uri, resourceValue, noResponse);
+            return this.api.SetResourceValue(this.DeviceId, this.Path, resourceValue, noResponse);
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace mbedCloudSDK.Connect.Model.Resource
             sb.Append("class Resource {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Conent Type: ").Append(ConentType).Append("\n");
-            sb.Append("  Uri: ").Append(Uri).Append("\n");
+            sb.Append("  Uri: ").Append(Path).Append("\n");
             sb.Append("  Obs: ").Append(Observable).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

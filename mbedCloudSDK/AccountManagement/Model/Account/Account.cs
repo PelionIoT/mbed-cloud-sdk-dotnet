@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json;
 
 namespace mbedCloudSDK.AccountManagement.Model.Account
 {
@@ -14,6 +16,7 @@ namespace mbedCloudSDK.AccountManagement.Model.Account
         /// <summary>
         /// The status of the account.
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public AccountStatus? Status { get; set; }
 
         /// <summary>
@@ -197,7 +200,7 @@ namespace mbedCloudSDK.AccountManagement.Model.Account
             account.CreatedAt = accountInfo.CreatedAt;
             account.Contact = account.Contact;
             account.TemplateId = accountInfo.TemplateId;
-            account.Policies = accountInfo.Policies.Select(p => { return Policy.Policy.Map(p); }).ToList();
+            account.Policies = accountInfo?.Policies?.Select(p => { return Policy.Policy.Map(p); }).ToList();
             return account;
         }
 

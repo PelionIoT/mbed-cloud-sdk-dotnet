@@ -36,13 +36,13 @@ namespace ConsoleExamples.Examples.Connect
             }
             //Start long polling thread
             var endpoints = endpointsResp.ToList();
-            api.StartLongPolling();
+            api.StartNotifications();
             var resources = endpoints[0].ListResources();
             foreach (var resource in resources)
             {
-                if (resource.Uri == buttonResource)
+                if (resource.Path == buttonResource)
                 {
-                    var resp = api.GetResourceValue(endpoints[0].Id, resource.Uri);
+                    var resp = api.GetResourceValue(endpoints[0].Id, resource.Path);
                     Console.WriteLine(resp.GetValue().Result);
                 }
             }
@@ -64,7 +64,7 @@ namespace ConsoleExamples.Examples.Connect
             }
             //Start long polling thread
             var endpoints = endpointsResp.ToList();
-            api.StartLongPolling();
+            api.StartNotifications();
             var resources = endpoints[0].ListResources();
             var resp = api.SetResourceValue(endpoints[0].Id, buttonResource, "100");
             Console.WriteLine(resp.GetValue().Result);

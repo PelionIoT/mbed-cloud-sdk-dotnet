@@ -1,4 +1,6 @@
 ﻿using device_query_service.Model;
+using mbedCloudSDK.Common;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +33,8 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Query
         /// <summary>
         /// The device query
         /// </summary>
+        [NameOverride(Name = "filter")]
+        [JsonProperty]
         public string QueryString {
             get {
                 string attributes = string.Join("&", Attributes.Select(q => String.Format("{0}={1}", q.Key, q.Value)));

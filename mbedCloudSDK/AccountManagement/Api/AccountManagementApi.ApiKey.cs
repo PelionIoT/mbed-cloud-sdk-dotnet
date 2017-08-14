@@ -37,7 +37,7 @@ namespace mbedCloudSDK.AccountManagement.Api
 
         private ResponsePage<ApiKey> ListApiKeysFunc(QueryOptions options = null)
         {
-            if (options != null)
+            if (options == null)
             {
                 options = new QueryOptions();
             }
@@ -87,14 +87,14 @@ namespace mbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Get API key details. Returns currently used key for empty argument.
         /// </summary>
-        /// <param name="keyId">API key ID</param>
-        public ApiKey GetApiKey(string keyId = null)
+        /// <param name="apiKeyId">API key ID</param>
+        public ApiKey GetApiKey(string apiKeyId = null)
         {
             try
             {
-                if (keyId != null)
+                if (apiKeyId != null)
                 {
-                    return ApiKey.Map(developerApi.GetApiKey(keyId));
+                    return ApiKey.Map(developerApi.GetApiKey(apiKeyId));
                 }
                 //return currently used api key for empty keyId
                 else
@@ -112,15 +112,15 @@ namespace mbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Get API key details asynchronously. Returns currently used key for empty argument.
         /// </summary>
-        /// <param name="keyId"></param>
+        /// <param name="apiKeyId"></param>
         /// <returns></returns>
-        public async Task<ApiKey> GetApiKeyAsync(string keyId = null)
+        public async Task<ApiKey> GetApiKeyAsync(string apiKeyId = null)
         {
             try
             {
-                if (keyId != null)
+                if (apiKeyId != null)
                 {
-                    return ApiKey.Map(await developerApi.GetApiKeyAsync(keyId));
+                    return ApiKey.Map(await developerApi.GetApiKeyAsync(apiKeyId));
                 }
                 //return currently used api key for empty keyId
                 else
@@ -173,15 +173,15 @@ namespace mbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Update API key.
         /// </summary>
-        /// <param name="apiKey"></param>
+        /// <param name="apiKeyId"></param>
         /// <param name="key"></param>
         /// <returns></returns>
-        public ApiKey UpdateApiKey(string apiKey, ApiKey key)
+        public ApiKey UpdateApiKey(string apiKeyId, ApiKey key)
         {
             try
             {
                 ApiKeyUpdateReq req = key.CreatePutRequest();
-                return ApiKey.Map(developerApi.UpdateApiKey(apiKey, req));
+                return ApiKey.Map(developerApi.UpdateApiKey(apiKeyId, req));
             }
             catch (iam.Client.ApiException e)
             {
@@ -192,15 +192,15 @@ namespace mbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Update API key asynchronously.
         /// </summary>
-        /// <param name="apiKey"></param>
+        /// <param name="apiKeyId"></param>
         /// <param name="key"></param>
         /// <returns></returns>
-        public async Task<ApiKey> UpdateApiKeyAsync(string apiKey, ApiKey key)
+        public async Task<ApiKey> UpdateApiKeyAsync(string apiKeyId, ApiKey key)
         {
             try
             {
                 ApiKeyUpdateReq req = key.CreatePutRequest();
-                return ApiKey.Map(await developerApi.UpdateApiKeyAsync(apiKey, req));
+                return ApiKey.Map(await developerApi.UpdateApiKeyAsync(apiKeyId, req));
             }
             catch (iam.Client.ApiException e)
             {
@@ -211,12 +211,12 @@ namespace mbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Delete API key.
         /// </summary>
-        /// <param name="keyId">API key ID</param>
-        public void DeleteApiKey(string keyId)
+        /// <param name="apiKeyId">API key ID</param>
+        public void DeleteApiKey(string apiKeyId)
         {
             try
             {
-                developerApi.DeleteApiKey(keyId);
+                developerApi.DeleteApiKey(apiKeyId);
             }
             catch (iam.Client.ApiException e)
             {
@@ -227,12 +227,12 @@ namespace mbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Delete API key asynchronously.
         /// </summary>
-        /// <param name="keyId">API key ID</param>
-        public async Task DeleteApiKeyAsync(string keyId)
+        /// <param name="apiKeyId">API key ID</param>
+        public async Task DeleteApiKeyAsync(string apiKeyId)
         {
             try
             {
-                await developerApi.DeleteApiKeyAsync(keyId);
+                await developerApi.DeleteApiKeyAsync(apiKeyId);
             }
             catch (iam.Client.ApiException e)
             {

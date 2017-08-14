@@ -5,6 +5,7 @@ using ConsoleExamples.Examples.AccountManagement;
 using ConsoleExamples.Examples.Update;
 using ConsoleExamples.Examples.Connect;
 using ConsoleExamples.Examples.DeviceDirectory;
+using System.Reflection;
 
 namespace ConsoleExamples
 {
