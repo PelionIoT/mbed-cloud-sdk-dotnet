@@ -2,6 +2,7 @@
 
 BACKEND_URL="http://localhost:3000";
 export PYTHONPATH="TestServer/testrunner"
+export GITHUB_TOKEN=""
 
 cleanup() {
   echo "Test run finished. Cleaning up. Deleting tmp directory: $TMPDIR";
@@ -24,6 +25,9 @@ if [ -z $API_KEY ]; then
   >&2 echo "API Key needs to be set using MBED_CLOUD_API_KEY env var";
   exit 1;
 fi
+
+git clone https://$GITHUB_TOKEN@github.com/ARMmbed/mbed-cloud-sdk-testrunner.git "TestServer/testrunner"
+pip install -r TestServer/testrunner/requirements.txt
 
 # Start the Python SDK test backend server. Send to background.
 CMD="mono TestServer/bin/Debug/TestServer.exe $API_KEY"
