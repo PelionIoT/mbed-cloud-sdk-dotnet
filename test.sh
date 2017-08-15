@@ -33,13 +33,8 @@ BACKEND_PID=$!
 
 sleep 5
 
-# Set the parameters to the test runner
-PARAMS=()
-PARAMS+=(-s $BACKEND_URL)
-PARAMS+=(-k $API_KEY)
-
 # Start the test runner
-python TestServer/testrunner/bin/trunner ${PARAMS[@]}
+python TestServer/testrunner/bin/trunner -s $BACKEND_URL -k $API_KEY
 RET_CODE=$
 
 cleanup
