@@ -1,8 +1,7 @@
 #!/bin/sh
 
 BACKEND_URL="http://localhost:3000";
-export PYTHONPATH="TestServer/testrunner"
-export GITHUB_TOKEN=""
+export PYTHONPATH="TestServer/testrunner";
 
 cleanup() {
   echo "Test run finished. Cleaning up. Deleting tmp directory: $TMPDIR";
