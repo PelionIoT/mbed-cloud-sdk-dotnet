@@ -20,7 +20,7 @@ namespace TestServer
 
             using (WebApp.Start<Startup>(url: baseAddress))
             {
-                Console.WriteLine($"Running at {baseAddress}");
+                Console.WriteLine("Running at " + baseAddress);
                 Console.ReadLine();
             }
         }
