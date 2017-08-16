@@ -1,7 +1,10 @@
 #!/bin/sh
 
+BACKEND_URL="http://localhost:3000";
+export PYTHONPATH="TestServer/testrunner";
+
 cleanup() {
-  echo "Test run finished. Cleaning up.";
+  echo "Test run finished. Cleaning up. Deleting tmp directory: $TMPDIR";
   if is_running $BACKEND_PID; then
     echo "Killing backend SDK server: $BACKEND_PID";
     kill $BACKEND_PID;
@@ -22,27 +25,19 @@ if [ -z $API_KEY ]; then
   exit 1;
 fi
 
-git clone https://${GITHUB_TOKEN:-git}@github.com/ARMmbed/mbed-cloud-sdk-testrunner.git "testrunner"
-pip install -r testrunner/requirements.txt
-pip3 install -r testrunner/requirements.txt
-export PYTHONPATH="testrunner:$PYTHONPATH"
+git clone https://$GITHUB_TOKEN@github.com/ARMmbed/mbed-cloud-sdk-testrunner.git "TestServer/testrunner"
+pip install -r TestServer/testrunner/requirements.txt
 
 # Start the Python SDK test backend server. Send to background.
-CMD="mono TestServer/TestServer.exe $API_KEY"
+CMD="mono TestServer/bin/Debug/TestServer.exe $API_KEY"
 eval "$CMD &"
 echo "Backend server started. PID: $!"
 BACKEND_PID=$!
 
 sleep 10
 
-if ! is_running $BACKEND_PID; then
-  >&2 echo "Backend server did not start successfully."
-  cleanup
-  exit 1
-fi
-
 # Start the test runner
-python testrunner/bin/trunner -s $BACKEND_URL -k $API_KEY
+python TestServer/testrunner/bin/trunner -s $BACKEND_URL -k $API_KEY
 
 cleanup
 
