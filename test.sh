@@ -1,12 +1,7 @@
 #!/bin/sh
 
-TMPDIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'tmprunner');
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
-ROOT_DIR=$(dirname "$DIR");
-BACKEND_URL="${BACKEND_URL:-"http://localhost:3000"}";
-
 cleanup() {
-  echo "Test run finished. Cleaning up. Deleting tmp directory: $TMPDIR";
+  echo "Test run finished. Cleaning up.";
   if is_running $BACKEND_PID; then
     echo "Killing backend SDK server: $BACKEND_PID";
     kill $BACKEND_PID;
@@ -27,15 +22,13 @@ if [ -z $API_KEY ]; then
   exit 1;
 fi
 
-git clone https://${GITHUB_TOKEN:-git}@github.com/ARMmbed/mbed-cloud-sdk-testrunner.git "$TMPDIR"
-pip install -r $ROOT_DIR/requirements.txt
-pip install -r $TMPDIR/requirements.txt
-pip3 install -r $ROOT_DIR/requirements.txt
-TRUNNER_DIR=$TMPDIR;
-export PYTHONPATH="$TRUNNER_DIR:$ROOT_DIR:$PYTHONPATH"
+git clone https://${GITHUB_TOKEN:-git}@github.com/ARMmbed/mbed-cloud-sdk-testrunner.git "testrunner"
+pip install -r testrunner/requirements.txt
+pip3 install -r testrunner/requirements.txt
+export PYTHONPATH="testrunner:$PYTHONPATH"
 
 # Start the Python SDK test backend server. Send to background.
-CMD="mono $DIR/TestServer.exe $API_KEY"
+CMD="mono TestServer/TestServer.exe $API_KEY"
 eval "$CMD &"
 echo "Backend server started. PID: $!"
 BACKEND_PID=$!
@@ -49,7 +42,7 @@ if ! is_running $BACKEND_PID; then
 fi
 
 # Start the test runner
-python $TRUNNER_DIR/bin/trunner -s $BACKEND_URL -k $API_KEY
+python testrunner/bin/trunner -s $BACKEND_URL -k $API_KEY
 
 cleanup
 
