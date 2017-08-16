@@ -1,7 +1,4 @@
 #!/bin/sh
-set -o pipefail
-IFS=$'\n\t'
-
 
 TMPDIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'tmprunner');
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
