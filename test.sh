@@ -36,6 +36,16 @@ BACKEND_PID=$!
 
 sleep 10
 
+curl http://localhost:3000/_init
+
+sleep 10
+
+if ! is_running $BACKEND_PID; then
+  >&2 echo "Backend server did not start successfully."
+  cleanup
+  exit 1
+fi
+
 # Start the test runner
 python TestServer/testrunner/bin/trunner -s $BACKEND_URL -k $API_KEY
 
