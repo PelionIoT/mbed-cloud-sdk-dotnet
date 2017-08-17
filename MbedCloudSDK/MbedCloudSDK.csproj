@@ -172,16 +172,16 @@
     <Compile Include="Backends\UpdateService\Model\FirmwareImagePage.cs" />
     <Compile Include="Backends\UpdateService\Model\FirmwareManifest.cs" />
     <Compile Include="Backends\UpdateService\Model\FirmwareManifestPage.cs" />
-    <Compile Include="Backends\UpdateService\Model\ManifestContents.cs"/>
-    <Compile Include="Backends\UpdateService\Model\ManifestContentsEncryptionMode.cs"/>
-    <Compile Include="Backends\UpdateService\Model\ManifestContentsPayload.cs"/>
-    <Compile Include="Backends\UpdateService\Model\ManifestContentsPayloadFormat.cs"/>
-    <Compile Include="Backends\UpdateService\Model\ManifestContentsPayloadReference.cs"/>
-    <Compile Include="Backends\UpdateService\Model\UpdateCampaign.cs"/>
-    <Compile Include="Backends\UpdateService\Model\UpdateCampaignPage.cs"/>
-    <Compile Include="Backends\UpdateService\Model\UpdateCampaignPatchRequest.cs"/>
-    <Compile Include="Backends\UpdateService\Model\UpdateCampaignPostRequest.cs"/>
-    <Compile Include="Backends\UpdateService\Model\UpdateCampaignPutRequest.cs"/>
+    <Compile Include="Backends\UpdateService\Model\ManifestContents.cs" />
+    <Compile Include="Backends\UpdateService\Model\ManifestContentsEncryptionMode.cs" />
+    <Compile Include="Backends\UpdateService\Model\ManifestContentsPayload.cs" />
+    <Compile Include="Backends\UpdateService\Model\ManifestContentsPayloadFormat.cs" />
+    <Compile Include="Backends\UpdateService\Model\ManifestContentsPayloadReference.cs" />
+    <Compile Include="Backends\UpdateService\Model\UpdateCampaign.cs" />
+    <Compile Include="Backends\UpdateService\Model\UpdateCampaignPage.cs" />
+    <Compile Include="Backends\UpdateService\Model\UpdateCampaignPatchRequest.cs" />
+    <Compile Include="Backends\UpdateService\Model\UpdateCampaignPostRequest.cs" />
+    <Compile Include="Backends\UpdateService\Model\UpdateCampaignPutRequest.cs" />
     <Compile Include="Certificates\Api\CertificatesApi.cs" />
     <Compile Include="Certificates\Model\Certificate.cs" />
     <Compile Include="Certificates\Model\CertificateType.cs" />
@@ -268,14 +268,16 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Connect\Model\Webhook\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
