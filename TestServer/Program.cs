@@ -21,6 +21,14 @@ namespace TestServer
             using (WebApp.Start<Startup>(url: baseAddress))
             {
                 Console.WriteLine("Running at " + baseAddress);
+
+                HttpClient client = new HttpClient();
+
+                var response = client.GetAsync(baseAddress + "_init").Result;
+
+                Console.WriteLine(response);
+                Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+
                 Console.ReadLine();
             }
         }

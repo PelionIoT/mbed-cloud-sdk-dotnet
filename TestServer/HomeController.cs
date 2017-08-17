@@ -26,7 +26,7 @@ namespace TestServer
         [HttpGet]
         public IHttpActionResult Init()
         {
-            return Ok();
+            return Ok("Init");
         }
 
         [HttpGet]
