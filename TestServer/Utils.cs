@@ -71,7 +71,7 @@ namespace TestServer
                 {
                     foreach (var key in appSettings.AllKeys)
                     {
-                        Console.WriteLine("Key: " + key + "Value:" + appSettings[key]);
+                        Console.WriteLine($"Key: {key} Value: {appSettings[key]}");
                     }
                 }
             }

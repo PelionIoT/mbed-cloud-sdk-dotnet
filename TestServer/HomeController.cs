@@ -49,8 +49,7 @@ namespace TestServer
             }
 
             var assemblyTypes = Assembly.Load("mbedCloudSDK").GetTypes();
-            var apiName = camelModule + "Api";
-            var moduleType = assemblyTypes.Where(t => t.Name == apiName).FirstOrDefault();
+            var moduleType = assemblyTypes.Where(t => t.Name == $"{camelModule}Api").FirstOrDefault();
             var moduleInstance = Activator.CreateInstance(moduleType, config);
 
             //get params for current method
