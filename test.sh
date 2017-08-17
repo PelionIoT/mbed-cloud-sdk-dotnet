@@ -34,11 +34,7 @@ eval "$CMD &"
 echo "Backend server started. PID: $!"
 BACKEND_PID=$!
 
-sleep 10
-
-curl http://127.0.0.1:3000/_init
-
-sleep 10
+sleep 2
 
 if ! is_running $BACKEND_PID; then
   >&2 echo "Backend server did not start successfully."
