@@ -200,7 +200,7 @@ namespace mbedCloudSDK.AccountManagement.Model.Account
             account.CreatedAt = accountInfo.CreatedAt;
             account.Contact = account.Contact;
             account.TemplateId = accountInfo.TemplateId;
-            account.Policies = accountInfo.Policies.Select(p => { return Policy.Policy.Map(p); }).ToList();
+            account.Policies = accountInfo?.Policies?.Select(p => { return Policy.Policy.Map(p); }).ToList();
             return account;
         }
 
