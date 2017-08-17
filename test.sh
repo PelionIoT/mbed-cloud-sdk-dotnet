@@ -36,7 +36,7 @@ BACKEND_PID=$!
 
 sleep 10
 
-curl http://localhost:3000/_init
+curl http://127.0.0.1:3000/_init
 
 sleep 10
 
