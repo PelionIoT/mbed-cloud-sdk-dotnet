@@ -48,7 +48,8 @@ fi
 
 # Start the test runner
 python TestServer/testrunner/bin/trunner -s $BACKEND_URL -k $API_KEY
+RET_CODE=$?
 
 cleanup
 
-exit 0
+exit $RET_CODE

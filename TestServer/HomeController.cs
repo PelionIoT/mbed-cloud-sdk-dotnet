@@ -65,7 +65,7 @@ namespace TestServer
             {
                 var invokedMethod = methodInfo.Invoke(moduleInstance, @params.ToArray());
                 var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, GetSnakeJsonSettings());
-                return Ok(result);
+                return Ok(JsonConvert.DeserializeObject(result));
             }
             catch(TargetInvocationException e)
             {
