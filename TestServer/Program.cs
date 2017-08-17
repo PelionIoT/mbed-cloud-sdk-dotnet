@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using System.Threading;
 
 namespace TestServer
 {
@@ -28,6 +29,8 @@ namespace TestServer
 
                 Console.WriteLine(response);
                 Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+
+                Thread.Sleep(Timeout.Infinite);
             }
         }
 
