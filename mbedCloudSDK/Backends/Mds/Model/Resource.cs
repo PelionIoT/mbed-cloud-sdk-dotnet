@@ -32,15 +32,28 @@ namespace mds.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Resource" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected Resource() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Resource" /> class.
+        /// </summary>
         /// <param name="Rt">Resource type..</param>
         /// <param name="Type">The content type of the resource. &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Important&lt;/b&gt;&lt;br/&gt; You are encouraged to use the resource types listed in the [LWM2M specification](http://technical.openmobilealliance.org/Technical/technical-information/omna/lightweight-m2m-lwm2m-object-registry). .</param>
-        /// <param name="Uri">The URL of the resource..</param>
+        /// <param name="Uri">The URL of the resource. (required).</param>
         /// <param name="Obs">Observable determines whether you can subscribe to changes for this resource. It can have values \&quot;true\&quot; or \&quot;false\&quot;. .</param>
         public Resource(string Rt = default(string), string Type = default(string), string Uri = default(string), bool? Obs = default(bool?))
         {
+            // to ensure "Uri" is required (not null)
+            if (Uri == null)
+            {
+                throw new InvalidDataException("Uri is a required property for Resource and cannot be null");
+            }
+            else
+            {
+                this.Uri = Uri;
+            }
             this.Rt = Rt;
             this.Type = Type;
-            this.Uri = Uri;
             this.Obs = Obs;
         }
         
