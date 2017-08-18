@@ -82,7 +82,7 @@ namespace mbedCloudSDK.AccountManagement.Model.Account
         /// <summary>
         /// Time when upgraded to commercial account in UTC format RFC3339.
         /// </summary>
-        public string UpgradedAt { get; set; }
+        public DateTime? UpgradedAt { get; set; }
         
         /// <summary>
         /// The tier level of the account; &#39;0&#39;: free tier, commercial account. Other values are reserved for the future.
@@ -102,7 +102,7 @@ namespace mbedCloudSDK.AccountManagement.Model.Account
         /// <summary>
         /// Creation UTC time RFC3339.
         /// </summary>
-        public string CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
         
         /// <summary>
         /// The name of the contact person for this account.

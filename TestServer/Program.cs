@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using System.Threading;
 
 namespace TestServer
 {
@@ -21,7 +22,7 @@ namespace TestServer
             using (WebApp.Start<Startup>(url: baseAddress))
             {
                 Console.WriteLine($"Running at {baseAddress}");
-                Console.ReadLine();
+                Thread.Sleep(Timeout.Infinite);
             }
         }
 

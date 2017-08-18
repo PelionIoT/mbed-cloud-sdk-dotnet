@@ -47,7 +47,7 @@ namespace mbedCloudSDK.AccountManagement.Model.User
         /// <summary>
         /// Creation UTC time RFC3339.
         /// </summary>
-        public string CreatedAt { get; private set; }
+        public DateTime? CreatedAt { get; private set; }
         
         /// <summary>
         /// A flag indicating that the General Terms and Conditions has been accepted.

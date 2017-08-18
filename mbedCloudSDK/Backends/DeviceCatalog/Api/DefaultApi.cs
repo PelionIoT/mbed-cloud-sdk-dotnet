@@ -15,6 +15,7 @@ using System.Linq;
 using RestSharp;
 using device_catalog.Client;
 using device_catalog.Model;
+using device_query_service.Model;
 
 namespace device_catalog.Api
 {

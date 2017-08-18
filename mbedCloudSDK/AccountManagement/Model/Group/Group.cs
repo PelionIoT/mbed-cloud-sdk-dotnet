@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace mbedCloudSDK.AccountManagement.Model.Group
@@ -32,7 +33,7 @@ namespace mbedCloudSDK.AccountManagement.Model.Group
         /// <summary>
         /// Creation UTC time RFC3339.
         /// </summary>
-        public string CreatedAt { get; private set; }
+        public DateTime? CreatedAt { get; private set; }
         
         /// <summary>
         /// A timestamp of the group creation in the storage, in milliseconds.
