@@ -292,6 +292,12 @@ namespace device_directory.Model
                 yield return new ValidationResult("Invalid value for DeviceKey, length must be less than 512.", new [] { "DeviceKey" });
             }
 
+            // EndpointType (string) maxLength
+            if(this.EndpointType != null && this.EndpointType.Length > 64)
+            {
+                yield return new ValidationResult("Invalid value for EndpointType, length must be less than 64.", new [] { "EndpointType" });
+            }
+
             // CaId (string) maxLength
             if(this.CaId != null && this.CaId.Length > 500)
             {
