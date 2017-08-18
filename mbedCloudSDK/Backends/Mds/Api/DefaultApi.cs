@@ -28,7 +28,7 @@ namespace mds.Api
         /// Delete callback URL
         /// </summary>
         /// <remarks>
-        /// Deletes the callback URL.
+        /// Deletes the callback URL.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/notification/callback -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
@@ -38,7 +38,7 @@ namespace mds.Api
         /// Delete callback URL
         /// </summary>
         /// <remarks>
-        /// Deletes the callback URL.
+        /// Deletes the callback URL.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/notification/callback -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -47,7 +47,7 @@ namespace mds.Api
         /// Check callback URL
         /// </summary>
         /// <remarks>
-        /// Shows the current callback URL if it exists.
+        /// Shows the current callback URL if it exists.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/callback -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Webhook</returns>
@@ -57,7 +57,7 @@ namespace mds.Api
         /// Check callback URL
         /// </summary>
         /// <remarks>
-        /// Shows the current callback URL if it exists.
+        /// Shows the current callback URL if it exists.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/callback -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Webhook</returns>
@@ -68,7 +68,7 @@ namespace mds.Api
         /// Delete callback URL
         /// </summary>
         /// <remarks>
-        /// Deletes the callback URL.
+        /// Deletes the callback URL.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/notification/callback -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of void</returns>
@@ -78,7 +78,7 @@ namespace mds.Api
         /// Delete callback URL
         /// </summary>
         /// <remarks>
-        /// Deletes the callback URL.
+        /// Deletes the callback URL.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/notification/callback -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse</returns>
@@ -87,7 +87,7 @@ namespace mds.Api
         /// Check callback URL
         /// </summary>
         /// <remarks>
-        /// Shows the current callback URL if it exists.
+        /// Shows the current callback URL if it exists.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/callback -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of Webhook</returns>
@@ -97,7 +97,7 @@ namespace mds.Api
         /// Check callback URL
         /// </summary>
         /// <remarks>
-        /// Shows the current callback URL if it exists.
+        /// Shows the current callback URL if it exists.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/callback -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse (Webhook)</returns>
@@ -215,7 +215,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Delete callback URL Deletes the callback URL.
+        /// Delete callback URL Deletes the callback URL.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/notification/callback -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
@@ -225,7 +225,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Delete callback URL Deletes the callback URL.
+        /// Delete callback URL Deletes the callback URL.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/notification/callback -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -284,7 +284,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Delete callback URL Deletes the callback URL.
+        /// Delete callback URL Deletes the callback URL.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/notification/callback -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of void</returns>
@@ -295,7 +295,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Delete callback URL Deletes the callback URL.
+        /// Delete callback URL Deletes the callback URL.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/notification/callback -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse</returns>
@@ -353,7 +353,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Check callback URL Shows the current callback URL if it exists.
+        /// Check callback URL Shows the current callback URL if it exists.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/callback -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Webhook</returns>
@@ -364,7 +364,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Check callback URL Shows the current callback URL if it exists.
+        /// Check callback URL Shows the current callback URL if it exists.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/callback -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Webhook</returns>
@@ -423,7 +423,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Check callback URL Shows the current callback URL if it exists.
+        /// Check callback URL Shows the current callback URL if it exists.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/callback -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of Webhook</returns>
@@ -435,7 +435,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Check callback URL Shows the current callback URL if it exists.
+        /// Check callback URL Shows the current callback URL if it exists.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/callback -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse (Webhook)</returns>
