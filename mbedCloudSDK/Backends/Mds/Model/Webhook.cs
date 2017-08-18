@@ -32,11 +32,24 @@ namespace mds.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Webhook" /> class.
         /// </summary>
-        /// <param name="Url">The URL to which the notifications are sent. We recommend that you serve this URL over HTTPS..</param>
+        [JsonConstructorAttribute]
+        protected Webhook() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Webhook" /> class.
+        /// </summary>
+        /// <param name="Url">The URL to which the notifications are sent. We recommend that you serve this URL over HTTPS. (required).</param>
         /// <param name="Headers">Headers (key/value) that are sent with the notification. Optional..</param>
         public Webhook(string Url = default(string), Object Headers = default(Object))
         {
-            this.Url = Url;
+            // to ensure "Url" is required (not null)
+            if (Url == null)
+            {
+                throw new InvalidDataException("Url is a required property for Webhook and cannot be null");
+            }
+            else
+            {
+                this.Url = Url;
+            }
             this.Headers = Headers;
         }
         
