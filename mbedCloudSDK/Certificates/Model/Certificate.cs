@@ -47,7 +47,8 @@ namespace mbedCloudSDK.Certificates.Model
 
         public string Signature {get {
             if(!String.IsNullOrEmpty(AccountId)){
-                return AccountId.Base64SHA256();
+                //return AccountId.Base64SHA256();
+                return "";
             }
             return "";
         }}
