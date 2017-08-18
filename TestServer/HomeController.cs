@@ -6,7 +6,7 @@ using mbedCloudSDK.Exceptions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
-using RestSharp.Contrib;
+using RestSharp.Extensions.MonoHttp;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,7 +26,7 @@ namespace TestServer
         [HttpGet]
         public IHttpActionResult Init()
         {
-            return Ok();
+            return Ok("Init");
         }
 
         [HttpGet]
@@ -64,7 +64,7 @@ namespace TestServer
             {
                 var invokedMethod = methodInfo.Invoke(moduleInstance, @params.ToArray());
                 var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, GetSnakeJsonSettings());
-                return Ok(result);
+                return Ok(JsonConvert.DeserializeObject(result));
             }
             catch(TargetInvocationException e)
             {
