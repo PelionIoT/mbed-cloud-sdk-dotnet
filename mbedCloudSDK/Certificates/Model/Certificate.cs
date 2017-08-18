@@ -45,13 +45,7 @@ namespace mbedCloudSDK.Certificates.Model
         /// <value>The UUID of the account.</value>
         public string AccountId { get; private set; }
 
-        public string Signature {get {
-            if(!String.IsNullOrEmpty(AccountId)){
-                //return AccountId.Base64SHA256();
-                return "";
-            }
-            return "";
-        }}
+        public string Signature {get; private set;}
      
         /// <summary>
         /// Expiration time in UTC formatted as RFC3339.
