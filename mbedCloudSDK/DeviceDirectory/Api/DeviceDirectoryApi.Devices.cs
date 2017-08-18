@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using device_catalog.Model;
 
 namespace mbedCloudSDK.DeviceDirectory.Api
 {
@@ -55,6 +56,58 @@ namespace mbedCloudSDK.DeviceDirectory.Api
             }
         }
 
+        public Device GetDevice(string deviceId){
+            try
+            {
+                var response = api.DeviceRetrieve(deviceId);
+                return Device.Map(response);
+            }
+            catch(device_catalog.Client.ApiException ex)
+            {
+                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+            }
+        }
+
+        public Device AddDevice(Device device){
+            var deviceDataPostRequest = new device_catalog.Model.DeviceDataPostRequest(DeviceKey:device.Fingerprint,CaId:device.IssuerId){
+                BootstrapExpirationDate = device.BootstrapExpirationDate,
+                BootstrappedTimestamp = device.BootstrappedTimestamp,
+                ConnectorExpirationDate = device.ConnectorExpirationDate,
+                Mechanism = GetMechanismEnum(device),
+                DeviceClass = device.DeviceClass,
+                EndpointName = device.EndpointName,
+                AutoUpdate = device.AutoUpdate,
+                HostGateway = device.HostGateway,
+                DeviceExecutionMode = device.DeviceExecutionMode,
+                CustomAttributes = device.CustomAttributes,
+                State = GetStateEnum(device),
+                SerialNumber = device.SerialNumber,
+                FirmwareChecksum = device.FirmwareChecksum,
+                VendorId = device.VendorId,
+                Description = device.Description,
+                _Object = device._Object,
+                EndpointType = device.EndpointType,
+                Deployment = device.Deployment,
+                MechanismUrl = device.MechanismUrl,
+                TrustLevel = device.TrustLevel,
+                Name = device.Name,
+                DeviceKey = device.Fingerprint,
+                Manifest = device.Manifest,
+                CaId = device.IssuerId
+            };
+
+            try
+            {
+                var response = api.DeviceCreate(deviceDataPostRequest);
+                return GetDevice(response.Id);
+            }
+            catch(device_catalog.Client.ApiException ex)
+            {
+                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+            }
+
+        }
+
         /// <summary>
         /// Deletes the device.
         /// </summary>
@@ -62,6 +115,47 @@ namespace mbedCloudSDK.DeviceDirectory.Api
         public void DeleteDevice(string deviceID)
         {
             this.api.DeviceDestroy(deviceID);
+        }
+
+        private DeviceDataPostRequest.MechanismEnum GetMechanismEnum(Device device){
+            DeviceDataPostRequest.MechanismEnum mechanismEnum;
+            switch(device.Mechanism.Value){
+                case Mechanism.Connector:
+                    mechanismEnum = DeviceDataPostRequest.MechanismEnum.Connector;
+                    break;
+                case Mechanism.Direct:
+                    mechanismEnum = DeviceDataPostRequest.MechanismEnum.Direct;
+                    break;
+                default:
+                    mechanismEnum = DeviceDataPostRequest.MechanismEnum.Connector;
+                    break;
+            }
+            return mechanismEnum;
+        }
+
+        private DeviceDataPostRequest.StateEnum GetStateEnum(Device device){
+            DeviceDataPostRequest.StateEnum stateEnum;
+            switch(device.State.Value){
+                case State.Bootstrapped:
+                    stateEnum = DeviceDataPostRequest.StateEnum.Bootstrapped;
+                    break;
+                case State.Cloudenrolling:
+                    stateEnum = DeviceDataPostRequest.StateEnum.Cloudenrolling;
+                    break;
+                case State.Deregistered:
+                    stateEnum = DeviceDataPostRequest.StateEnum.Deregistered;
+                    break;
+                case State.Registered:
+                    stateEnum = DeviceDataPostRequest.StateEnum.Registered;
+                    break;
+                case State.Unenrolled:
+                    stateEnum = DeviceDataPostRequest.StateEnum.Unenrolled;
+                    break;
+                default:
+                    stateEnum = DeviceDataPostRequest.StateEnum.Bootstrapped;
+                    break;
+            }
+            return stateEnum;
         }
     }
 }

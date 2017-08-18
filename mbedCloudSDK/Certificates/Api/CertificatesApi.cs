@@ -6,6 +6,7 @@ using mbedCloudSDK.Common;
 using mbedCloudSDK.Common.Query;
 using mbedCloudSDK.Exceptions;
 using System;
+using System.Reflection;
 
 namespace mbedCloudSDK.Certificates.Api
 {
@@ -197,19 +198,7 @@ namespace mbedCloudSDK.Certificates.Api
                     throw new ArgumentException("certificateData and signatureData are required when creating non developer certificate.");
                 }
 
-                TrustedCertificateReq.ServiceEnum serviceEnum;
-                switch (certificate.Type)
-                {
-                    case CertificateType.Bootstrap:
-                        serviceEnum = TrustedCertificateReq.ServiceEnum.Bootstrap;
-                        break;
-                    case CertificateType.Lwm2m:
-                        serviceEnum = TrustedCertificateReq.ServiceEnum.Lwm2m;
-                        break;
-                    default:
-                        serviceEnum = TrustedCertificateReq.ServiceEnum.Bootstrap;
-                        break;
-                }
+                var serviceEnum = GetServiceEnum(certificate);
                 TrustedCertificateReq trustedCertificate = new TrustedCertificateReq(Certificate:certificateData, Name:certificate.Name,
                     Signature: signatureData, Service:serviceEnum);
                 trustedCertificate.Description = certificate.Description;
@@ -270,8 +259,51 @@ namespace mbedCloudSDK.Certificates.Api
         /// <param name="certificate">Certificate with updated data.</param>
         /// <returns>Updated Certificate.</returns>
         /// <exception cref="CloudApiException">Error while uploading certificate.</exception>
-        public Certificate UpdateCertificate(Certificate certificate)
+        public Certificate UpdateCertificate(string certificateId, Certificate updatedCertificate)
         {
+            var originalCertificate = GetCertificate(certificateId);
+
+            var certificate = MapToUpdate(originalCertificate,updatedCertificate) as Certificate;
+
+            var serviceEnum = GetServiceEnum(certificate);
+            TrustedCertificateReq req = new TrustedCertificateReq(Certificate:certificate.CertData, Name:certificate.Name,
+                Service:serviceEnum, Signature:certificate.Signature);
+            req.Name = certificate.Name;
+            req.Description = certificate.Description;
+
+            try
+            {
+                var resp = developerApi.UpdateCertificate(certificate.Id, req);
+                return GetCertificate(resp.Id);
+            }
+            catch (CloudApiException ex)
+            {
+                throw ex;
+            }
+        }
+
+        private object MapToUpdate(object origObj, object updateObj){
+            var type = updateObj.GetType();
+            var props = type.GetProperties();
+            var newObj = Activator.CreateInstance(type);
+
+            foreach(var prop in props){
+                var targetProperty = type.GetProperty(prop.Name);
+                if(targetProperty.GetSetMethod(true) == null){
+                    continue;
+                }else{
+                    var val = prop.GetValue(updateObj,null);
+                    if(val != null){
+                        targetProperty.SetValue(newObj,val,null);
+                    }else{
+                        targetProperty.SetValue(newObj,prop.GetValue(origObj,null));
+                    }
+                }
+            }
+            return newObj;
+        }
+
+        private TrustedCertificateReq.ServiceEnum GetServiceEnum(Certificate certificate){
             TrustedCertificateReq.ServiceEnum serviceEnum;
             switch (certificate.Type)
             {
@@ -285,19 +317,7 @@ namespace mbedCloudSDK.Certificates.Api
                     serviceEnum = TrustedCertificateReq.ServiceEnum.Bootstrap;
                     break;
             }
-            TrustedCertificateReq req = new TrustedCertificateReq(Certificate:certificate.CertData, Name:certificate.Name,
-                Service:serviceEnum, Signature:certificate.CertData);
-            req.Name = certificate.Name;
-            req.Description = certificate.Description;
-            try
-            {
-                var resp = developerApi.UpdateCertificate(certificate.Id, req);
-                return GetCertificate(resp.Id);
-            }
-            catch (CloudApiException ex)
-            {
-                throw ex;
-            }
+            return serviceEnum;
         }
     }
 }

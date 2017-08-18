@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace mbedCloudSDK.Certificates.Model
 {
@@ -43,7 +44,14 @@ namespace mbedCloudSDK.Certificates.Model
         /// </summary>
         /// <value>The UUID of the account.</value>
         public string AccountId { get; private set; }
-        
+
+        public string Signature {get {
+            if(!String.IsNullOrEmpty(AccountId)){
+                return AccountId.Base64SHA256();
+            }
+            return "";
+        }}
+     
         /// <summary>
         /// Expiration time in UTC formatted as RFC3339.
         /// </summary>

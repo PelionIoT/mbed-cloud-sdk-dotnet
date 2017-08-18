@@ -7,6 +7,7 @@ using device_catalog.Model;
 using mds.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using mbedCloudSDK.Common;
 
 namespace mbedCloudSDK.DeviceDirectory.Model.Device
 {
@@ -16,6 +17,7 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Device
 	public class Device
 	{
         private DeviceDirectoryApi api;
+        internal string _Object;
 
         /// <summary>
         /// The ID of the channel used to communicate with the device
@@ -103,7 +105,7 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Device
         /// <summary>
         /// The device trust level
         /// </summary>
-        public long? TrustLevel { get; set; }
+        public int? TrustLevel { get; set; }
 
         /// <summary>
         /// DEPRECATED: The ID of the device
@@ -124,6 +126,17 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Device
         /// URL for the current device manifest
         /// </summary>
         public string Manifest { get; set; }
+        [NameOverride(Name="CertificateFingerprint")]
+        public string Fingerprint { get; internal set; }
+        [NameOverride(Name="CertificateIssuerId")]
+        public string IssuerId { get; internal set; }
+        public DateTime? BootstrapExpirationDate { get; internal set; }
+        public DateTime? ConnectorExpirationDate { get; internal set; }
+        public string EndpointName { get; internal set; }
+        public string HostGateway { get; internal set; }
+        public int? DeviceExecutionMode { get; internal set; }
+        public string FirmwareChecksum { get; internal set; }
+        public string EndpointType { get; internal set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Device" /> class.
