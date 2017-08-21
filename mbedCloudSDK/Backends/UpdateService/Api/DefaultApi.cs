@@ -361,9 +361,10 @@ namespace update_service.Api
         /// 
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">The ID of the update campaign</param>
         /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
         /// <returns>CampaignDeviceMetadata</returns>
-        CampaignDeviceMetadata V3CampaignDeviceMetadataCampaignDeviceMetadataIdGet (string campaignDeviceMetadataId);
+        CampaignDeviceMetadata V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGet (string campaignId, string campaignDeviceMetadataId);
 
         /// <summary>
         /// 
@@ -372,9 +373,10 @@ namespace update_service.Api
         /// 
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">The ID of the update campaign</param>
         /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
         /// <returns>ApiResponse of CampaignDeviceMetadata</returns>
-        ApiResponse<CampaignDeviceMetadata> V3CampaignDeviceMetadataCampaignDeviceMetadataIdGetWithHttpInfo (string campaignDeviceMetadataId);
+        ApiResponse<CampaignDeviceMetadata> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGetWithHttpInfo (string campaignId, string campaignDeviceMetadataId);
         /// <summary>
         /// 
         /// </summary>
@@ -382,8 +384,9 @@ namespace update_service.Api
         /// 
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">The ID of the update campaign</param>
         /// <returns>CampaignDeviceMetadataPage</returns>
-        CampaignDeviceMetadataPage V3CampaignDeviceMetadataGet ();
+        CampaignDeviceMetadataPage V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGet (string campaignId);
 
         /// <summary>
         /// 
@@ -392,8 +395,9 @@ namespace update_service.Api
         /// 
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">The ID of the update campaign</param>
         /// <returns>ApiResponse of CampaignDeviceMetadataPage</returns>
-        ApiResponse<CampaignDeviceMetadataPage> V3CampaignDeviceMetadataGetWithHttpInfo ();
+        ApiResponse<CampaignDeviceMetadataPage> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetWithHttpInfo (string campaignId);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -733,9 +737,10 @@ namespace update_service.Api
         /// 
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">The ID of the update campaign</param>
         /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
         /// <returns>Task of CampaignDeviceMetadata</returns>
-        System.Threading.Tasks.Task<CampaignDeviceMetadata> V3CampaignDeviceMetadataCampaignDeviceMetadataIdGetAsync (string campaignDeviceMetadataId);
+        System.Threading.Tasks.Task<CampaignDeviceMetadata> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGetAsync (string campaignId, string campaignDeviceMetadataId);
 
         /// <summary>
         /// 
@@ -744,9 +749,10 @@ namespace update_service.Api
         /// 
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">The ID of the update campaign</param>
         /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
         /// <returns>Task of ApiResponse (CampaignDeviceMetadata)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadata>> V3CampaignDeviceMetadataCampaignDeviceMetadataIdGetAsyncWithHttpInfo (string campaignDeviceMetadataId);
+        System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadata>> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGetAsyncWithHttpInfo (string campaignId, string campaignDeviceMetadataId);
         /// <summary>
         /// 
         /// </summary>
@@ -754,8 +760,9 @@ namespace update_service.Api
         /// 
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">The ID of the update campaign</param>
         /// <returns>Task of CampaignDeviceMetadataPage</returns>
-        System.Threading.Tasks.Task<CampaignDeviceMetadataPage> V3CampaignDeviceMetadataGetAsync ();
+        System.Threading.Tasks.Task<CampaignDeviceMetadataPage> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetAsync (string campaignId);
 
         /// <summary>
         /// 
@@ -764,8 +771,9 @@ namespace update_service.Api
         /// 
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">The ID of the update campaign</param>
         /// <returns>Task of ApiResponse (CampaignDeviceMetadataPage)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadataPage>> V3CampaignDeviceMetadataGetAsyncWithHttpInfo ();
+        System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadataPage>> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetAsyncWithHttpInfo (string campaignId);
         #endregion Asynchronous Operations
     }
 
@@ -3136,11 +3144,12 @@ namespace update_service.Api
         ///  
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">The ID of the update campaign</param>
         /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
         /// <returns>CampaignDeviceMetadata</returns>
-        public CampaignDeviceMetadata V3CampaignDeviceMetadataCampaignDeviceMetadataIdGet (string campaignDeviceMetadataId)
+        public CampaignDeviceMetadata V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGet (string campaignId, string campaignDeviceMetadataId)
         {
-             ApiResponse<CampaignDeviceMetadata> localVarResponse = V3CampaignDeviceMetadataCampaignDeviceMetadataIdGetWithHttpInfo(campaignDeviceMetadataId);
+             ApiResponse<CampaignDeviceMetadata> localVarResponse = V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGetWithHttpInfo(campaignId, campaignDeviceMetadataId);
              return localVarResponse.Data;
         }
 
@@ -3148,15 +3157,19 @@ namespace update_service.Api
         ///  
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">The ID of the update campaign</param>
         /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
         /// <returns>ApiResponse of CampaignDeviceMetadata</returns>
-        public ApiResponse< CampaignDeviceMetadata > V3CampaignDeviceMetadataCampaignDeviceMetadataIdGetWithHttpInfo (string campaignDeviceMetadataId)
+        public ApiResponse< CampaignDeviceMetadata > V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGetWithHttpInfo (string campaignId, string campaignDeviceMetadataId)
         {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGet");
             // verify the required parameter 'campaignDeviceMetadataId' is set
             if (campaignDeviceMetadataId == null)
-                throw new ApiException(400, "Missing required parameter 'campaignDeviceMetadataId' when calling DefaultApi->V3CampaignDeviceMetadataCampaignDeviceMetadataIdGet");
+                throw new ApiException(400, "Missing required parameter 'campaignDeviceMetadataId' when calling DefaultApi->V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGet");
 
-            var localVarPath = "/v3/campaign-device-metadata/{campaign_device_metadata_id}";
+            var localVarPath = "/v3/update-campaigns/{campaign_id}/campaign-device-metadata/{campaign_device_metadata_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3179,6 +3192,7 @@ namespace update_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
+            if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
             if (campaignDeviceMetadataId != null) localVarPathParams.Add("campaign_device_metadata_id", Configuration.ApiClient.ParameterToString(campaignDeviceMetadataId)); // path parameter
 
             // authentication (Bearer) required
@@ -3197,7 +3211,7 @@ namespace update_service.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V3CampaignDeviceMetadataCampaignDeviceMetadataIdGet", localVarResponse);
+                Exception exception = ExceptionFactory("V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGet", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -3211,11 +3225,12 @@ namespace update_service.Api
         ///  
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">The ID of the update campaign</param>
         /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
         /// <returns>Task of CampaignDeviceMetadata</returns>
-        public async System.Threading.Tasks.Task<CampaignDeviceMetadata> V3CampaignDeviceMetadataCampaignDeviceMetadataIdGetAsync (string campaignDeviceMetadataId)
+        public async System.Threading.Tasks.Task<CampaignDeviceMetadata> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGetAsync (string campaignId, string campaignDeviceMetadataId)
         {
-             ApiResponse<CampaignDeviceMetadata> localVarResponse = await V3CampaignDeviceMetadataCampaignDeviceMetadataIdGetAsyncWithHttpInfo(campaignDeviceMetadataId);
+             ApiResponse<CampaignDeviceMetadata> localVarResponse = await V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGetAsyncWithHttpInfo(campaignId, campaignDeviceMetadataId);
              return localVarResponse.Data;
 
         }
@@ -3224,15 +3239,19 @@ namespace update_service.Api
         ///  
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">The ID of the update campaign</param>
         /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
         /// <returns>Task of ApiResponse (CampaignDeviceMetadata)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadata>> V3CampaignDeviceMetadataCampaignDeviceMetadataIdGetAsyncWithHttpInfo (string campaignDeviceMetadataId)
+        public async System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadata>> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGetAsyncWithHttpInfo (string campaignId, string campaignDeviceMetadataId)
         {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGet");
             // verify the required parameter 'campaignDeviceMetadataId' is set
             if (campaignDeviceMetadataId == null)
-                throw new ApiException(400, "Missing required parameter 'campaignDeviceMetadataId' when calling DefaultApi->V3CampaignDeviceMetadataCampaignDeviceMetadataIdGet");
+                throw new ApiException(400, "Missing required parameter 'campaignDeviceMetadataId' when calling DefaultApi->V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGet");
 
-            var localVarPath = "/v3/campaign-device-metadata/{campaign_device_metadata_id}";
+            var localVarPath = "/v3/update-campaigns/{campaign_id}/campaign-device-metadata/{campaign_device_metadata_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3255,6 +3274,7 @@ namespace update_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
+            if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
             if (campaignDeviceMetadataId != null) localVarPathParams.Add("campaign_device_metadata_id", Configuration.ApiClient.ParameterToString(campaignDeviceMetadataId)); // path parameter
 
             // authentication (Bearer) required
@@ -3272,7 +3292,7 @@ namespace update_service.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V3CampaignDeviceMetadataCampaignDeviceMetadataIdGet", localVarResponse);
+                Exception exception = ExceptionFactory("V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGet", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -3286,10 +3306,11 @@ namespace update_service.Api
         ///  
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">The ID of the update campaign</param>
         /// <returns>CampaignDeviceMetadataPage</returns>
-        public CampaignDeviceMetadataPage V3CampaignDeviceMetadataGet ()
+        public CampaignDeviceMetadataPage V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGet (string campaignId)
         {
-             ApiResponse<CampaignDeviceMetadataPage> localVarResponse = V3CampaignDeviceMetadataGetWithHttpInfo();
+             ApiResponse<CampaignDeviceMetadataPage> localVarResponse = V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetWithHttpInfo(campaignId);
              return localVarResponse.Data;
         }
 
@@ -3297,11 +3318,15 @@ namespace update_service.Api
         ///  
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">The ID of the update campaign</param>
         /// <returns>ApiResponse of CampaignDeviceMetadataPage</returns>
-        public ApiResponse< CampaignDeviceMetadataPage > V3CampaignDeviceMetadataGetWithHttpInfo ()
+        public ApiResponse< CampaignDeviceMetadataPage > V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetWithHttpInfo (string campaignId)
         {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGet");
 
-            var localVarPath = "/v3/campaign-device-metadata";
+            var localVarPath = "/v3/update-campaigns/{campaign_id}/campaign-device-metadata/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3324,6 +3349,7 @@ namespace update_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
+            if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -3341,7 +3367,7 @@ namespace update_service.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V3CampaignDeviceMetadataGet", localVarResponse);
+                Exception exception = ExceptionFactory("V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGet", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -3355,10 +3381,11 @@ namespace update_service.Api
         ///  
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">The ID of the update campaign</param>
         /// <returns>Task of CampaignDeviceMetadataPage</returns>
-        public async System.Threading.Tasks.Task<CampaignDeviceMetadataPage> V3CampaignDeviceMetadataGetAsync ()
+        public async System.Threading.Tasks.Task<CampaignDeviceMetadataPage> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetAsync (string campaignId)
         {
-             ApiResponse<CampaignDeviceMetadataPage> localVarResponse = await V3CampaignDeviceMetadataGetAsyncWithHttpInfo();
+             ApiResponse<CampaignDeviceMetadataPage> localVarResponse = await V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetAsyncWithHttpInfo(campaignId);
              return localVarResponse.Data;
 
         }
@@ -3367,11 +3394,15 @@ namespace update_service.Api
         ///  
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">The ID of the update campaign</param>
         /// <returns>Task of ApiResponse (CampaignDeviceMetadataPage)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadataPage>> V3CampaignDeviceMetadataGetAsyncWithHttpInfo ()
+        public async System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadataPage>> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetAsyncWithHttpInfo (string campaignId)
         {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGet");
 
-            var localVarPath = "/v3/campaign-device-metadata";
+            var localVarPath = "/v3/update-campaigns/{campaign_id}/campaign-device-metadata/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3394,6 +3425,7 @@ namespace update_service.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
+            if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -3410,7 +3442,7 @@ namespace update_service.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V3CampaignDeviceMetadataGet", localVarResponse);
+                Exception exception = ExceptionFactory("V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGet", localVarResponse);
                 if (exception != null) throw exception;
             }
 
