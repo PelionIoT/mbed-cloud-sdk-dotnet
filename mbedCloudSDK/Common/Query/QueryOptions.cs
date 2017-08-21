@@ -51,6 +51,13 @@ namespace mbedCloudSDK.Common.Query
         /// </summary>
         public Dictionary<string, QueryAttribute> Attributes { get; set; }
 
+        /// <summary>
+        /// String representation of filter JSON
+        /// </summary>
+        [NameOverride(Name = "filter")]
+        [JsonProperty]
+        public string AttributesString { get; set; }
+
 
         /// <summary>
         /// Gets or sets the include.

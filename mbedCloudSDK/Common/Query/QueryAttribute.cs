@@ -31,5 +31,13 @@ namespace mbedCloudSDK.Common.Query
             this.Value = value;
             this.QueryOperator = queryOperator;
         }
+
+        /// <summary>
+        /// string representation of query
+        /// </summary>
+        public override string ToString()
+        {
+            return $"{Value}";
+        }
     }
 }
