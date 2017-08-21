@@ -17,7 +17,6 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Device
 	public class Device
 	{
         private DeviceDirectoryApi api;
-        internal string _Object;
 
         /// <summary>
         /// The ID of the channel used to communicate with the device
@@ -127,16 +126,47 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Device
         /// </summary>
         public string Manifest { get; set; }
         [NameOverride(Name="CertificateFingerprint")]
-        public string Fingerprint { get; internal set; }
+        /// <summary>
+        /// Fingerprint of the device certificate
+        /// </summary>
+        public string Fingerprint { get; set; }
         [NameOverride(Name="CertificateIssuerId")]
-        public string IssuerId { get; internal set; }
-        public DateTime? BootstrapExpirationDate { get; internal set; }
-        public DateTime? ConnectorExpirationDate { get; internal set; }
-        public string EndpointName { get; internal set; }
-        public string HostGateway { get; internal set; }
-        public int? DeviceExecutionMode { get; internal set; }
-        public string FirmwareChecksum { get; internal set; }
-        public string EndpointType { get; internal set; }
+        /// <summary>
+        /// ID of the issuer of the certificate
+        /// </summary>
+        public string IssuerId { get; set; }
+        /// <summary>
+        /// Expiration date of the certificate used to connect to bootstrap server
+        /// </summary>
+        public DateTime? BootstrapExpirationDate { get; set; }
+        /// <summary>
+        /// Expiration date of the certificate used to connect to connector server
+        /// </summary>
+        public DateTime? ConnectorExpirationDate { get; set; }
+        /// <summary>
+        /// The endpoint name given to the device
+        /// </summary>
+        public string EndpointName { get; set; }
+        /// <summary>
+        /// The endpoint_name of the host gateway, if appropriate
+        /// </summary>
+        public string HostGateway { get; set; }
+        /// <summary>
+        /// Defines the type of certificate used
+        /// </summary>
+        public int? DeviceExecutionMode { get; set; }
+        /// <summary>
+        /// The SHA256 checksum of the current firmware image
+        /// </summary>
+        public string FirmwareChecksum { get; set; }
+        /// <summary>
+        /// The endpoint type of the device - e.g. if the device is a gateway
+        /// </summary>
+        public string EndpointType { get; set; }
+        /// <summary>
+        /// The API resource entity
+        /// </summary>
+        public string _Object { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Device" /> class.

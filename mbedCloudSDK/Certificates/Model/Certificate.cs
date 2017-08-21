@@ -44,6 +44,10 @@ namespace mbedCloudSDK.Certificates.Model
         /// <value>The UUID of the account.</value>
         public string AccountId { get; private set; }
 
+        /// <summary>
+        /// Base 64 encoded SHA256 hash of AccountID.
+        /// </summary>
+        /// <value>Base 64 encoded SHA256 hash of AccountID.</value>
         public string Signature {get; private set;}
      
         /// <summary>

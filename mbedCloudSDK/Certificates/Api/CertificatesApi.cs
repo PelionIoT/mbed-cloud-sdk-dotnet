@@ -260,9 +260,9 @@ namespace mbedCloudSDK.Certificates.Api
         {
             var originalCertificate = GetCertificate(certificateId);
 
-            var certificate = Utils.MapToUpdate(originalCertificate,updatedCertificate) as Certificate;
+            var certificate = Utils.MapToUpdate(originalCertificate, updatedCertificate) as Certificate;
 
-            if(certificate.Type == CertificateType.Developer){
+            if (certificate.Type == CertificateType.Developer){
                 var body = new connector_ca.Model.DeveloperCertificateRequestData(Name:certificate.Name, Description:certificate.Description);
                 try
                 {
