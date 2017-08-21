@@ -193,14 +193,16 @@ namespace mbedCloudSDK.AccountManagement.Model.User
 
         public iam.Model.UserUpdateReq CreatePutRequest()
         {
-            iam.Model.UserUpdateReq request = new iam.Model.UserUpdateReq(Email:Email);
-            request.Username = this.Username;
-            request.FullName = this.FullName;
-            request.Address = this.Address;
-            request.Password = this.Password;
-            request.PhoneNumber = this.PhoneNumber;
-            request.IsGtcAccepted = this.TermsAccepted;
-            request.IsMarketingAccepted = this.MarketingAccepted;
+            iam.Model.UserUpdateReq request = new iam.Model.UserUpdateReq(Email:Email){
+                PhoneNumber = PhoneNumber,
+                Username = Username,
+                IsGtcAccepted = TermsAccepted,
+                FullName = FullName,
+                Address = Address,
+                IsMarketingAccepted = MarketingAccepted,
+                Password = Password
+            };
+                                                                            
             return request;
         }
     }

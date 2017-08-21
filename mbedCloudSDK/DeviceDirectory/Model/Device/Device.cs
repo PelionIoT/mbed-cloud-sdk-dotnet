@@ -7,6 +7,7 @@ using device_catalog.Model;
 using mds.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using mbedCloudSDK.Common;
 
 namespace mbedCloudSDK.DeviceDirectory.Model.Device
 {
@@ -103,7 +104,7 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Device
         /// <summary>
         /// The device trust level
         /// </summary>
-        public long? TrustLevel { get; set; }
+        public int? TrustLevel { get; set; }
 
         /// <summary>
         /// DEPRECATED: The ID of the device
@@ -124,6 +125,48 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Device
         /// URL for the current device manifest
         /// </summary>
         public string Manifest { get; set; }
+        [NameOverride(Name="CertificateFingerprint")]
+        /// <summary>
+        /// Fingerprint of the device certificate
+        /// </summary>
+        public string Fingerprint { get; set; }
+        [NameOverride(Name="CertificateIssuerId")]
+        /// <summary>
+        /// ID of the issuer of the certificate
+        /// </summary>
+        public string IssuerId { get; set; }
+        /// <summary>
+        /// Expiration date of the certificate used to connect to bootstrap server
+        /// </summary>
+        public DateTime? BootstrapExpirationDate { get; set; }
+        /// <summary>
+        /// Expiration date of the certificate used to connect to connector server
+        /// </summary>
+        public DateTime? ConnectorExpirationDate { get; set; }
+        /// <summary>
+        /// The endpoint name given to the device
+        /// </summary>
+        public string EndpointName { get; set; }
+        /// <summary>
+        /// The endpoint_name of the host gateway, if appropriate
+        /// </summary>
+        public string HostGateway { get; set; }
+        /// <summary>
+        /// Defines the type of certificate used
+        /// </summary>
+        public int? DeviceExecutionMode { get; set; }
+        /// <summary>
+        /// The SHA256 checksum of the current firmware image
+        /// </summary>
+        public string FirmwareChecksum { get; set; }
+        /// <summary>
+        /// The endpoint type of the device - e.g. if the device is a gateway
+        /// </summary>
+        public string EndpointType { get; set; }
+        /// <summary>
+        /// The API resource entity
+        /// </summary>
+        public string _Object { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Device" /> class.
