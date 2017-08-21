@@ -14,7 +14,7 @@ namespace TestServer
     {
         static void Main(string[] args)
         {
-            string baseAddress = "http://localhost:3001/";
+            string baseAddress = "http://localhost:3000/";
 
             var apiKey = args[0];
             Utils.UpdateAppSetting("ApiKey", apiKey); 

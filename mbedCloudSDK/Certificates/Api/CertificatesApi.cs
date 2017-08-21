@@ -179,8 +179,6 @@ namespace mbedCloudSDK.Certificates.Api
                     throw new ArgumentException("certificateData and signatureData are not required when creating developer certificate.");
                 }
                 connector_ca.Model.DeveloperCertificateRequestData body = new connector_ca.Model.DeveloperCertificateRequestData(certificate.Name, certificate.Description);
-                //body.Name = certificate.Name;
-                //body.Description = certificate.Description;
                 try
                 {
                     var response = developerCertificateApi.V3DeveloperCertificatesPost(this.auth, body);
@@ -263,7 +261,7 @@ namespace mbedCloudSDK.Certificates.Api
         {
             var originalCertificate = GetCertificate(certificateId);
 
-            var certificate = MapToUpdate(originalCertificate,updatedCertificate) as Certificate;
+            var certificate = Utils.MapToUpdate(originalCertificate,updatedCertificate) as Certificate;
 
             if(certificate.Type == CertificateType.Developer){
                 var body = new connector_ca.Model.DeveloperCertificateRequestData(Name:certificate.Name, Description:certificate.Description);
@@ -291,27 +289,6 @@ namespace mbedCloudSDK.Certificates.Api
                     throw ex;
                 }
             }
-        }
-
-        private object MapToUpdate(object origObj, object updateObj){
-            var type = updateObj.GetType();
-            var props = type.GetProperties();
-            var newObj = Activator.CreateInstance(type);
-
-            foreach(var prop in props){
-                var targetProperty = type.GetProperty(prop.Name);
-                if(targetProperty.GetSetMethod(true) == null){
-                    continue;
-                }else{
-                    var val = prop.GetValue(updateObj,null);
-                    if(val != null){
-                        targetProperty.SetValue(newObj,val,null);
-                    }else{
-                        targetProperty.SetValue(newObj,prop.GetValue(origObj,null));
-                    }
-                }
-            }
-            return newObj;
         }
 
         private TrustedCertificateReq.ServiceEnum GetServiceEnum(Certificate certificate){
