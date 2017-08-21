@@ -178,8 +178,6 @@ namespace mbedCloudSDK.Certificates.Api
                     throw new ArgumentException("certificateData and signatureData are not required when creating developer certificate.");
                 }
                 connector_ca.Model.DeveloperCertificateRequestData body = new connector_ca.Model.DeveloperCertificateRequestData(certificate.Name, certificate.Description);
-                body.Name = certificate.Name;
-                body.Description = certificate.Description;
                 try
                 {
                     var response = developerCertificateApi.V3DeveloperCertificatesPost(this.auth, body);
@@ -197,19 +195,7 @@ namespace mbedCloudSDK.Certificates.Api
                     throw new ArgumentException("certificateData and signatureData are required when creating non developer certificate.");
                 }
 
-                TrustedCertificateReq.ServiceEnum serviceEnum;
-                switch (certificate.Type)
-                {
-                    case CertificateType.Bootstrap:
-                        serviceEnum = TrustedCertificateReq.ServiceEnum.Bootstrap;
-                        break;
-                    case CertificateType.Lwm2m:
-                        serviceEnum = TrustedCertificateReq.ServiceEnum.Lwm2m;
-                        break;
-                    default:
-                        serviceEnum = TrustedCertificateReq.ServiceEnum.Bootstrap;
-                        break;
-                }
+                var serviceEnum = GetServiceEnum(certificate);
                 TrustedCertificateReq trustedCertificate = new TrustedCertificateReq(Certificate:certificateData, Name:certificate.Name,
                     Signature: signatureData, Service:serviceEnum);
                 trustedCertificate.Description = certificate.Description;
@@ -270,8 +256,41 @@ namespace mbedCloudSDK.Certificates.Api
         /// <param name="certificate">Certificate with updated data.</param>
         /// <returns>Updated Certificate.</returns>
         /// <exception cref="CloudApiException">Error while uploading certificate.</exception>
-        public Certificate UpdateCertificate(Certificate certificate)
+        public Certificate UpdateCertificate(string certificateId, Certificate updatedCertificate)
         {
+            var originalCertificate = GetCertificate(certificateId);
+
+            var certificate = Utils.MapToUpdate(originalCertificate, updatedCertificate) as Certificate;
+
+            if (certificate.Type == CertificateType.Developer){
+                var body = new connector_ca.Model.DeveloperCertificateRequestData(Name:certificate.Name, Description:certificate.Description);
+                try
+                {
+                    var response = developerCertificateApi.V3DeveloperCertificatesPost(this.auth,body);
+                    return GetCertificate(response.Id);
+                }
+                catch (connector_ca.Client.ApiException ex)
+                {
+                    throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+                }
+            }else{
+                var serviceEnum = GetServiceEnum(certificate);
+                TrustedCertificateReq req = new TrustedCertificateReq(Certificate:certificate.CertData, Name:certificate.Name,
+                    Service:serviceEnum, Signature:certificate.Signature);
+
+                try
+                {
+                    var resp = developerApi.UpdateCertificate(certificate.Id, req);
+                    return GetCertificate(resp.Id);
+                }
+                catch (CloudApiException ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        private TrustedCertificateReq.ServiceEnum GetServiceEnum(Certificate certificate){
             TrustedCertificateReq.ServiceEnum serviceEnum;
             switch (certificate.Type)
             {
@@ -285,19 +304,7 @@ namespace mbedCloudSDK.Certificates.Api
                     serviceEnum = TrustedCertificateReq.ServiceEnum.Bootstrap;
                     break;
             }
-            TrustedCertificateReq req = new TrustedCertificateReq(Certificate:certificate.CertData, Name:certificate.Name,
-                Service:serviceEnum, Signature:certificate.CertData);
-            req.Name = certificate.Name;
-            req.Description = certificate.Description;
-            try
-            {
-                var resp = developerApi.UpdateCertificate(certificate.Id, req);
-                return GetCertificate(resp.Id);
-            }
-            catch (CloudApiException ex)
-            {
-                throw ex;
-            }
+            return serviceEnum;
         }
     }
 }
