@@ -1,3 +1,0 @@
-[submodule "TestServer/testrunner"]
-	path = TestServer/testrunner
-	url = git@github.com:ARMmbed/mbed-cloud-sdk-testrunner.git
