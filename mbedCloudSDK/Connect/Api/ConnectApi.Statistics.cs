@@ -46,9 +46,13 @@ namespace mbedCloudSDK.Connect.Api
             {
                 options = new MetricQueryOptions();
             }
+            if (string.IsNullOrEmpty(options.Include))
+            {
+                options.Include = "transactions,bootstraps_successful,bootstraps_pending,bootstraps_failed,device_server_rest_api_success,device_server_rest_api_error";
+            }
             try
             {
-                var response = statisticsApi.V3MetricsGet(options.Include ?? "", options.Interval, auth, options.Start, options.End, options.Period);
+                var response = statisticsApi.V3MetricsGet(options.Include, options.Interval, auth, options.Start, options.End, options.Period, options.Limit, options.After, options.Order);
                 List<Metric> statisticsList = new List<Metric>();
                 foreach (var data in response.Data)
                 {

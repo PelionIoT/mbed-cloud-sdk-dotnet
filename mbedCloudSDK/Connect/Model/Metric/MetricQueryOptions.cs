@@ -32,6 +32,18 @@ namespace mbedCloudSDK.Connect.Model.Metric
         /// Group data by this interval in days, weeks, hours or minutes. Sample values: 2h, 3w, 4d, 5m. 
         /// </summary>
         public string Interval { get; set; }
+        /// <summary>
+        /// The number of results to return. Default value is 50, minimum value is 2 and maximum value is 1000. 
+        /// </summary>
+        public int? Limit { get; set; }
+        /// <summary>
+        /// The metric ID after which to start fetching. 
+        /// </summary>
+        public string After { get; set; }
+        /// <summary>
+        /// The order of the records to return. Available values are ASC and DESC. The default value is ASC. 
+        /// </summary>
+        public string Order { get; set; }
 
         public MetricQueryOptions()
         {
