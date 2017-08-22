@@ -42,7 +42,7 @@ namespace mbedCloudSDK.Common.Query
         {
             get
             {
-                return Attributes != null ? string.Join("&", Attributes.Select(q => String.Format("{0}={1}", q.Key, q.Value))) : string.Empty;
+                return Attributes != null ? string.Join("&", Attributes.Select(q => $"{q.Key}{q.Value.QueryOperator}{q.Value.Value}")) : string.Empty;
             }
         }
 

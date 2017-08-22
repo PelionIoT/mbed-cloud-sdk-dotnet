@@ -26,7 +26,10 @@ namespace mbedCloudSDK.DeviceDirectory.Api
             }
             try
             {
-                options.Attributes = Utils.ParseAttributeString(options.AttributesString);
+                if (!string.IsNullOrEmpty(options.AttributesString) && options.Attributes == null)
+                {
+                    options.Attributes = Utils.ParseAttributeString(options.AttributesString);
+                }
                 return new PaginatedResponse<Device>(ListDevicesFunc, options);
             }
             catch (CloudApiException e)
