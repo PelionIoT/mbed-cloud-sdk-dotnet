@@ -15,7 +15,7 @@ namespace mbedCloudSDK.Common.Query
         /// Attribute value.
         /// </summary>
         public string Value { get; set; }
-        
+
         /// <summary>
         /// operator for the query.
         /// </summary>
@@ -30,6 +30,26 @@ namespace mbedCloudSDK.Common.Query
         {
             this.Value = value;
             this.QueryOperator = queryOperator;
+        }
+
+        /// <summary>
+        /// Get the suffix for the query string
+        /// </summary>
+        public string GetSuffix()
+        {
+            switch (this.QueryOperator)
+            {
+                case QueryOperator.Equals:
+                    return "";
+                case QueryOperator.NotEqual:
+                    return "neq";
+                case QueryOperator.LessOrEqual:
+                    return "leq";
+                case QueryOperator.GreaterOrEqual:
+                    return "geq";
+                default:
+                    return "";
+            }
         }
     }
 }
