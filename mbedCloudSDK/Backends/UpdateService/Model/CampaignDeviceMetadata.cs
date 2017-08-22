@@ -30,6 +30,51 @@ namespace update_service.Model
     public partial class CampaignDeviceMetadata :  IEquatable<CampaignDeviceMetadata>, IValidatableObject
     {
         /// <summary>
+        /// The state of the update campaign on the device.
+        /// </summary>
+        /// <value>The state of the update campaign on the device.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum DeploymentStateEnum
+        {
+            
+            /// <summary>
+            /// Enum Pending for "pending"
+            /// </summary>
+            [EnumMember(Value = "pending")]
+            Pending,
+            
+            /// <summary>
+            /// Enum Updatedconnectorchannel for "updated_connector_channel"
+            /// </summary>
+            [EnumMember(Value = "updated_connector_channel")]
+            Updatedconnectorchannel,
+            
+            /// <summary>
+            /// Enum Failedconnectorchannelupdate for "failed_connector_channel_update"
+            /// </summary>
+            [EnumMember(Value = "failed_connector_channel_update")]
+            Failedconnectorchannelupdate,
+            
+            /// <summary>
+            /// Enum Deployed for "deployed"
+            /// </summary>
+            [EnumMember(Value = "deployed")]
+            Deployed,
+            
+            /// <summary>
+            /// Enum Manifestremoved for "manifestremoved"
+            /// </summary>
+            [EnumMember(Value = "manifestremoved")]
+            Manifestremoved
+        }
+
+        /// <summary>
+        /// The state of the update campaign on the device.
+        /// </summary>
+        /// <value>The state of the update campaign on the device.</value>
+        [DataMember(Name="deployment_state", EmitDefaultValue=false)]
+        public DeploymentStateEnum? DeploymentState { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="CampaignDeviceMetadata" /> class.
         /// </summary>
         /// <param name="Description">Description of the record.</param>
@@ -41,10 +86,10 @@ namespace update_service.Model
         /// <param name="Name">The name of the record.</param>
         /// <param name="Etag">API resource entity version..</param>
         /// <param name="MechanismUrl">The url of cloud connect used.</param>
-        /// <param name="DeploymentState">The state of the update campaign on the device.</param>
+        /// <param name="DeploymentState">The state of the update campaign on the device..</param>
         /// <param name="Id">The id of the metadata record.</param>
         /// <param name="DeviceId">The id of the device.</param>
-        public CampaignDeviceMetadata(string Description = default(string), string Campaign = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), string Mechanism = default(string), string Name = default(string), string Etag = default(string), string MechanismUrl = default(string), string DeploymentState = default(string), string Id = default(string), string DeviceId = default(string))
+        public CampaignDeviceMetadata(string Description = default(string), string Campaign = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), string Mechanism = default(string), string Name = default(string), string Etag = default(string), string MechanismUrl = default(string), DeploymentStateEnum? DeploymentState = default(DeploymentStateEnum?), string Id = default(string), string DeviceId = default(string))
         {
             this.Description = Description;
             this.Campaign = Campaign;
@@ -114,12 +159,6 @@ namespace update_service.Model
         /// <value>The url of cloud connect used</value>
         [DataMember(Name="mechanism_url", EmitDefaultValue=false)]
         public string MechanismUrl { get; set; }
-        /// <summary>
-        /// The state of the update campaign on the device
-        /// </summary>
-        /// <value>The state of the update campaign on the device</value>
-        [DataMember(Name="deployment_state", EmitDefaultValue=false)]
-        public string DeploymentState { get; set; }
         /// <summary>
         /// The id of the metadata record
         /// </summary>
