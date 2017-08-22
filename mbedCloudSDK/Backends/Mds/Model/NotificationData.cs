@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = mds.Client.SwaggerDateConverter;
 
 namespace mds.Model
 {
@@ -52,30 +53,35 @@ namespace mds.Model
         /// <value>URI path.</value>
         [DataMember(Name="path", EmitDefaultValue=false)]
         public string Path { get; set; }
+
         /// <summary>
         /// Max age value is an integer number of seconds between 0 and 2^32-1 but the actual maximum cache time is limited to 3 days. A default value of 60 seconds is assumed in the absence of the option. 
         /// </summary>
         /// <value>Max age value is an integer number of seconds between 0 and 2^32-1 but the actual maximum cache time is limited to 3 days. A default value of 60 seconds is assumed in the absence of the option. </value>
         [DataMember(Name="max-age", EmitDefaultValue=false)]
         public string MaxAge { get; set; }
+
         /// <summary>
         /// Base64 encoded payload.
         /// </summary>
         /// <value>Base64 encoded payload.</value>
         [DataMember(Name="payload", EmitDefaultValue=false)]
         public string Payload { get; set; }
+
         /// <summary>
         /// mbed Cloud Device ID.
         /// </summary>
         /// <value>mbed Cloud Device ID.</value>
         [DataMember(Name="ep", EmitDefaultValue=false)]
         public string Ep { get; set; }
+
         /// <summary>
         /// Content type.
         /// </summary>
         /// <value>Content type.</value>
         [DataMember(Name="ct", EmitDefaultValue=false)]
         public string Ct { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -177,8 +183,13 @@ namespace mds.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

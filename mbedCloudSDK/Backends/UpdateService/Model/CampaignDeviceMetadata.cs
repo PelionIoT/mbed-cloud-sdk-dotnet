@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = update_service.Client.SwaggerDateConverter;
 
 namespace update_service.Model
 {
@@ -111,66 +112,78 @@ namespace update_service.Model
         /// <value>Description of the record</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
+
         /// <summary>
         /// The id of the campaign the device is in
         /// </summary>
         /// <value>The id of the campaign the device is in</value>
         [DataMember(Name="campaign", EmitDefaultValue=false)]
         public string Campaign { get; set; }
+
         /// <summary>
         /// This time the record was created in the database
         /// </summary>
         /// <value>This time the record was created in the database</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
+
         /// <summary>
         /// Entity name: always &#39;update-campaign-device-metadata&#39;
         /// </summary>
         /// <value>Entity name: always &#39;update-campaign-device-metadata&#39;</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
+
         /// <summary>
         /// This time this record was modified in the database format: date-time
         /// </summary>
         /// <value>This time this record was modified in the database format: date-time</value>
         [DataMember(Name="updated_at", EmitDefaultValue=false)]
         public DateTime? UpdatedAt { get; set; }
+
         /// <summary>
         /// The mechanism used to deliver the firmware (connector or direct)
         /// </summary>
         /// <value>The mechanism used to deliver the firmware (connector or direct)</value>
         [DataMember(Name="mechanism", EmitDefaultValue=false)]
         public string Mechanism { get; set; }
+
         /// <summary>
         /// The name of the record
         /// </summary>
         /// <value>The name of the record</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
+
         /// <summary>
         /// API resource entity version.
         /// </summary>
         /// <value>API resource entity version.</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public string Etag { get; set; }
+
         /// <summary>
         /// The url of cloud connect used
         /// </summary>
         /// <value>The url of cloud connect used</value>
         [DataMember(Name="mechanism_url", EmitDefaultValue=false)]
         public string MechanismUrl { get; set; }
+
+
         /// <summary>
         /// The id of the metadata record
         /// </summary>
         /// <value>The id of the metadata record</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
+
         /// <summary>
         /// The id of the device
         /// </summary>
         /// <value>The id of the device</value>
         [DataMember(Name="device_id", EmitDefaultValue=false)]
         public string DeviceId { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -328,8 +341,13 @@ namespace update_service.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

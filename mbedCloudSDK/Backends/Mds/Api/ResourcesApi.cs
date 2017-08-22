@@ -402,9 +402,6 @@ namespace mds.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
             if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
@@ -432,7 +429,6 @@ namespace mds.Api
             return new ApiResponse<AsyncID>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AsyncID) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AsyncID)));
-            
         }
 
         /// <summary>
@@ -488,9 +484,6 @@ namespace mds.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
             if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
@@ -517,7 +510,6 @@ namespace mds.Api
             return new ApiResponse<AsyncID>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AsyncID) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AsyncID)));
-            
         }
 
         /// <summary>
@@ -574,9 +566,6 @@ namespace mds.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
             if (cacheOnly != null) localVarQueryParams.Add("cacheOnly", Configuration.ApiClient.ParameterToString(cacheOnly)); // query parameter
@@ -605,7 +594,6 @@ namespace mds.Api
             return new ApiResponse<AsyncID>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AsyncID) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AsyncID)));
-            
         }
 
         /// <summary>
@@ -663,9 +651,6 @@ namespace mds.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
             if (cacheOnly != null) localVarQueryParams.Add("cacheOnly", Configuration.ApiClient.ParameterToString(cacheOnly)); // query parameter
@@ -693,7 +678,6 @@ namespace mds.Api
             return new ApiResponse<AsyncID>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AsyncID) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AsyncID)));
-            
         }
 
         /// <summary>
@@ -762,9 +746,6 @@ namespace mds.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
             if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
@@ -800,7 +781,6 @@ namespace mds.Api
             return new ApiResponse<AsyncID>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AsyncID) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AsyncID)));
-            
         }
 
         /// <summary>
@@ -870,9 +850,6 @@ namespace mds.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
             if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
@@ -907,7 +884,6 @@ namespace mds.Api
             return new ApiResponse<AsyncID>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AsyncID) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AsyncID)));
-            
         }
 
         /// <summary>
@@ -979,9 +955,6 @@ namespace mds.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
             if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
@@ -1017,7 +990,6 @@ namespace mds.Api
             return new ApiResponse<AsyncID>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AsyncID) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AsyncID)));
-            
         }
 
         /// <summary>
@@ -1090,9 +1062,6 @@ namespace mds.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
             if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
@@ -1127,7 +1096,6 @@ namespace mds.Api
             return new ApiResponse<AsyncID>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AsyncID) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AsyncID)));
-            
         }
 
     }

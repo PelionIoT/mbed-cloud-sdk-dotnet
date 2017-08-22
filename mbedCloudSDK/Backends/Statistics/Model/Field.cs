@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = statistics.Client.SwaggerDateConverter;
 
 namespace statistics.Model
 {
@@ -46,12 +47,14 @@ namespace statistics.Model
         /// <value>Error description.</value>
         [DataMember(Name="message", EmitDefaultValue=false)]
         public string Message { get; set; }
+
         /// <summary>
         /// The field name in the request for which the validation has failed
         /// </summary>
         /// <value>The field name in the request for which the validation has failed</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -129,8 +132,13 @@ namespace statistics.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

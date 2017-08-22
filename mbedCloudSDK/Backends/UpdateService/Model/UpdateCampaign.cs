@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = update_service.Client.SwaggerDateConverter;
 
 namespace update_service.Model
 {
@@ -137,69 +138,82 @@ namespace update_service.Model
         /// <value>An optional description of the campaign.</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
+
         /// <summary>
         /// Gets or Sets RootManifestId
         /// </summary>
         [DataMember(Name="root_manifest_id", EmitDefaultValue=false)]
         public string RootManifestId { get; set; }
+
         /// <summary>
         /// The time the object was created.
         /// </summary>
         /// <value>The time the object was created.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public string CreatedAt { get; set; }
+
         /// <summary>
         /// The API resource entity.
         /// </summary>
         /// <value>The API resource entity.</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
+
         /// <summary>
         /// The timestamp at which update campaign scheduled to start.
         /// </summary>
         /// <value>The timestamp at which update campaign scheduled to start.</value>
         [DataMember(Name="when", EmitDefaultValue=false)]
         public string When { get; set; }
+
+
         /// <summary>
         /// The timestamp when the update campaign finished.
         /// </summary>
         /// <value>The timestamp when the update campaign finished.</value>
         [DataMember(Name="finished", EmitDefaultValue=false)]
         public string Finished { get; set; }
+
         /// <summary>
         /// The entity instance signature.
         /// </summary>
         /// <value>The entity instance signature.</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public string Etag { get; set; }
+
         /// <summary>
         /// Gets or Sets RootManifestUrl
         /// </summary>
         [DataMember(Name="root_manifest_url", EmitDefaultValue=false)]
         public string RootManifestUrl { get; set; }
+
         /// <summary>
         /// Gets or Sets StartedAt
         /// </summary>
         [DataMember(Name="started_at", EmitDefaultValue=false)]
         public DateTime? StartedAt { get; set; }
+
         /// <summary>
         /// The ID of the campaign.
         /// </summary>
         /// <value>The ID of the campaign.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
+
         /// <summary>
         /// The filter for the devices the campaign will target.
         /// </summary>
         /// <value>The filter for the devices the campaign will target.</value>
         [DataMember(Name="device_filter", EmitDefaultValue=false)]
         public string DeviceFilter { get; set; }
+
         /// <summary>
         /// A name for this campaign.
         /// </summary>
         /// <value>A name for this campaign.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -365,8 +379,13 @@ namespace update_service.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

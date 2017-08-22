@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = mds.Client.SwaggerDateConverter;
 
 namespace mds.Model
 {
@@ -59,12 +60,14 @@ namespace mds.Model
         /// <value>The URL to which the notifications are sent. We recommend that you serve this URL over HTTPS.</value>
         [DataMember(Name="url", EmitDefaultValue=false)]
         public string Url { get; set; }
+
         /// <summary>
         /// Headers (key/value) that are sent with the notification. Optional.
         /// </summary>
         /// <value>Headers (key/value) that are sent with the notification. Optional.</value>
         [DataMember(Name="headers", EmitDefaultValue=false)]
         public Object Headers { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -142,8 +145,13 @@ namespace mds.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

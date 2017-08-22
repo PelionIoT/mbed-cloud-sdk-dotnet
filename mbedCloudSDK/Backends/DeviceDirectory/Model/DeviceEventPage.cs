@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = device_directory.Client.SwaggerDateConverter;
 
 namespace device_directory.Model
 {
@@ -55,36 +56,43 @@ namespace device_directory.Model
         /// </summary>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
+
         /// <summary>
         /// Gets or Sets HasMore
         /// </summary>
         [DataMember(Name="has_more", EmitDefaultValue=false)]
         public bool? HasMore { get; set; }
+
         /// <summary>
         /// Gets or Sets TotalCount
         /// </summary>
         [DataMember(Name="total_count", EmitDefaultValue=false)]
         public int? TotalCount { get; set; }
+
         /// <summary>
         /// Gets or Sets After
         /// </summary>
         [DataMember(Name="after", EmitDefaultValue=false)]
         public string After { get; set; }
+
         /// <summary>
         /// Gets or Sets Limit
         /// </summary>
         [DataMember(Name="limit", EmitDefaultValue=false)]
         public int? Limit { get; set; }
+
         /// <summary>
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name="data", EmitDefaultValue=false)]
         public List<DeviceEventData> Data { get; set; }
+
         /// <summary>
         /// Gets or Sets Order
         /// </summary>
         [DataMember(Name="order", EmitDefaultValue=false)]
         public string Order { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -202,8 +210,13 @@ namespace device_directory.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

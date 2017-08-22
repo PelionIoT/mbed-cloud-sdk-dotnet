@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = iam.Client.SwaggerDateConverter;
 
 namespace iam.Model
 {
@@ -46,12 +47,14 @@ namespace iam.Model
         /// <value>An array of API keys.</value>
         [DataMember(Name="apikeys", EmitDefaultValue=false)]
         public List<string> Apikeys { get; set; }
+
         /// <summary>
         /// An array of user names.
         /// </summary>
         /// <value>An array of user names.</value>
         [DataMember(Name="users", EmitDefaultValue=false)]
         public List<string> Users { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -129,8 +132,13 @@ namespace iam.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }
