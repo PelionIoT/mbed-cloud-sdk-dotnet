@@ -3,6 +3,7 @@ using mbedCloudSDK.Connect.Model.ConnectedDevice;
 using mbedCloudSDK.Connect.Model.Resource;
 using mbedCloudSDK.Exceptions;
 using System.Collections.Generic;
+using System.Text;
 
 namespace mbedCloudSDK.Connect.Api
 {
@@ -58,7 +59,7 @@ namespace mbedCloudSDK.Connect.Api
         /// <param name="resourceValue">Value to set.</param>
         /// <param name="noResponse">Don't get a response.</param>
         /// <returns></returns>
-        public AsyncConsumer<string> SetResourceValue([NameOverride(Name = "DeviceId")]string deviceName, string resourcePath, string resourceValue, bool? noResponse = null)
+        public AsyncConsumer<string> SetResourceValue([NameOverride(Name = "DeviceId")]string deviceName, string resourcePath, byte[] resourceValue, bool? noResponse = null)
         {
             resourcePath = FixedPath(resourcePath);
             var api = new mds.Api.ResourcesApi(config.Host);
