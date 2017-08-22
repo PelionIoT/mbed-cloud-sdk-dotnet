@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = mds.Client.SwaggerDateConverter;
 
 namespace mds.Model
 {
@@ -53,31 +54,37 @@ namespace mds.Model
         /// </summary>
         [DataMember(Name="async-responses", EmitDefaultValue=false)]
         public List<AsyncIDResponse> AsyncResponses { get; set; }
+
         /// <summary>
         /// Gets or Sets DeRegistrations
         /// </summary>
         [DataMember(Name="de-registrations", EmitDefaultValue=false)]
         public List<string> DeRegistrations { get; set; }
+
         /// <summary>
         /// Gets or Sets RegUpdates
         /// </summary>
         [DataMember(Name="reg-updates", EmitDefaultValue=false)]
         public List<EndpointData> RegUpdates { get; set; }
+
         /// <summary>
         /// Gets or Sets Registrations
         /// </summary>
         [DataMember(Name="registrations", EmitDefaultValue=false)]
         public List<EndpointData> Registrations { get; set; }
+
         /// <summary>
         /// Gets or Sets Notifications
         /// </summary>
         [DataMember(Name="notifications", EmitDefaultValue=false)]
         public List<NotificationData> Notifications { get; set; }
+
         /// <summary>
         /// Gets or Sets RegistrationsExpired
         /// </summary>
         [DataMember(Name="registrations-expired", EmitDefaultValue=false)]
         public List<string> RegistrationsExpired { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -187,8 +194,13 @@ namespace mds.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = statistics.Client.SwaggerDateConverter;
 
 namespace statistics.Model
 {
@@ -64,66 +65,77 @@ namespace statistics.Model
         /// <value>Number of failed device server REST API requests the account has used.</value>
         [DataMember(Name="device_server_rest_api_error", EmitDefaultValue=false)]
         public long? DeviceServerRestApiError { get; set; }
+
         /// <summary>
         /// Number of failed bootstraps the account has used.
         /// </summary>
         /// <value>Number of failed bootstraps the account has used.</value>
         [DataMember(Name="bootstraps_failed", EmitDefaultValue=false)]
         public long? BootstrapsFailed { get; set; }
+
         /// <summary>
         /// Number of transaction events from devices linked to the account.
         /// </summary>
         /// <value>Number of transaction events from devices linked to the account.</value>
         [DataMember(Name="transactions", EmitDefaultValue=false)]
         public long? Transactions { get; set; }
+
         /// <summary>
         /// UTC time in RFC3339 format.
         /// </summary>
         /// <value>UTC time in RFC3339 format.</value>
         [DataMember(Name="timestamp", EmitDefaultValue=false)]
         public string Timestamp { get; set; }
+
         /// <summary>
         /// Maximum number of registered devices linked to the account.
         /// </summary>
         /// <value>Maximum number of registered devices linked to the account.</value>
         [DataMember(Name="registered_devices", EmitDefaultValue=false)]
         public long? RegisteredDevices { get; set; }
+
         /// <summary>
         /// Number of pending bootstraps the account has used.
         /// </summary>
         /// <value>Number of pending bootstraps the account has used.</value>
         [DataMember(Name="bootstraps_pending", EmitDefaultValue=false)]
         public long? BootstrapsPending { get; set; }
+
         /// <summary>
         /// Number of successful device server REST API requests the account has used.
         /// </summary>
         /// <value>Number of successful device server REST API requests the account has used.</value>
         [DataMember(Name="device_server_rest_api_success", EmitDefaultValue=false)]
         public long? DeviceServerRestApiSuccess { get; set; }
+
         /// <summary>
         /// Number of failed handshakes the account has used.
         /// </summary>
         /// <value>Number of failed handshakes the account has used.</value>
         [DataMember(Name="handshakes_failed", EmitDefaultValue=false)]
         public long? HandshakesFailed { get; set; }
+
         /// <summary>
         /// Number of successful handshakes the account has used.
         /// </summary>
         /// <value>Number of successful handshakes the account has used.</value>
         [DataMember(Name="handshakes_successful", EmitDefaultValue=false)]
         public long? HandshakesSuccessful { get; set; }
+
         /// <summary>
         /// Number of successful bootstraps the account has used.
         /// </summary>
         /// <value>Number of successful bootstraps the account has used.</value>
         [DataMember(Name="bootstraps_successful", EmitDefaultValue=false)]
         public long? BootstrapsSuccessful { get; set; }
+
         /// <summary>
         /// unique metric ID.
         /// </summary>
         /// <value>unique metric ID.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -273,8 +285,13 @@ namespace statistics.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

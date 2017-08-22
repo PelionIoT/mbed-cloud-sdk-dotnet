@@ -954,9 +954,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (datafile != null) localVarFileParams.Add("datafile", Configuration.ApiClient.ParameterToFile("datafile", datafile));
             if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
             if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
@@ -984,7 +981,6 @@ namespace update_service.Api
             return new ApiResponse<FirmwareImage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareImage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImage)));
-            
         }
 
         /// <summary>
@@ -1040,9 +1036,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (datafile != null) localVarFileParams.Add("datafile", Configuration.ApiClient.ParameterToFile("datafile", datafile));
             if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
             if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
@@ -1069,7 +1062,6 @@ namespace update_service.Api
             return new ApiResponse<FirmwareImage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareImage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImage)));
-            
         }
 
         /// <summary>
@@ -1115,9 +1107,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (imageId != null) localVarPathParams.Add("image_id", Configuration.ApiClient.ParameterToString(imageId)); // path parameter
 
             // authentication (Bearer) required
@@ -1140,7 +1129,6 @@ namespace update_service.Api
                 if (exception != null) throw exception;
             }
 
-            
             return new ApiResponse<Object>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
@@ -1190,9 +1178,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (imageId != null) localVarPathParams.Add("image_id", Configuration.ApiClient.ParameterToString(imageId)); // path parameter
 
             // authentication (Bearer) required
@@ -1214,7 +1199,6 @@ namespace update_service.Api
                 if (exception != null) throw exception;
             }
 
-            
             return new ApiResponse<Object>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
@@ -1269,9 +1253,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
@@ -1301,7 +1282,6 @@ namespace update_service.Api
             return new ApiResponse<FirmwareImagePage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareImagePage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImagePage)));
-            
         }
 
         /// <summary>
@@ -1354,9 +1334,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
@@ -1385,7 +1362,6 @@ namespace update_service.Api
             return new ApiResponse<FirmwareImagePage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareImagePage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImagePage)));
-            
         }
 
         /// <summary>
@@ -1432,9 +1408,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (imageId != null) localVarPathParams.Add("image_id", Configuration.ApiClient.ParameterToString(imageId)); // path parameter
 
             // authentication (Bearer) required
@@ -1460,7 +1433,6 @@ namespace update_service.Api
             return new ApiResponse<FirmwareImage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareImage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImage)));
-            
         }
 
         /// <summary>
@@ -1508,9 +1480,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (imageId != null) localVarPathParams.Add("image_id", Configuration.ApiClient.ParameterToString(imageId)); // path parameter
 
             // authentication (Bearer) required
@@ -1535,7 +1504,6 @@ namespace update_service.Api
             return new ApiResponse<FirmwareImage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareImage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImage)));
-            
         }
 
         /// <summary>
@@ -1590,9 +1558,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (datafile != null) localVarFileParams.Add("datafile", Configuration.ApiClient.ParameterToFile("datafile", datafile));
             if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
             if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
@@ -1620,7 +1585,6 @@ namespace update_service.Api
             return new ApiResponse<FirmwareManifest>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareManifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifest)));
-            
         }
 
         /// <summary>
@@ -1676,9 +1640,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (datafile != null) localVarFileParams.Add("datafile", Configuration.ApiClient.ParameterToFile("datafile", datafile));
             if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
             if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
@@ -1705,7 +1666,6 @@ namespace update_service.Api
             return new ApiResponse<FirmwareManifest>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareManifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifest)));
-            
         }
 
         /// <summary>
@@ -1751,9 +1711,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (manifestId != null) localVarPathParams.Add("manifest_id", Configuration.ApiClient.ParameterToString(manifestId)); // path parameter
 
             // authentication (Bearer) required
@@ -1776,7 +1733,6 @@ namespace update_service.Api
                 if (exception != null) throw exception;
             }
 
-            
             return new ApiResponse<Object>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
@@ -1826,9 +1782,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (manifestId != null) localVarPathParams.Add("manifest_id", Configuration.ApiClient.ParameterToString(manifestId)); // path parameter
 
             // authentication (Bearer) required
@@ -1850,7 +1803,6 @@ namespace update_service.Api
                 if (exception != null) throw exception;
             }
 
-            
             return new ApiResponse<Object>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
@@ -1905,9 +1857,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
@@ -1937,7 +1886,6 @@ namespace update_service.Api
             return new ApiResponse<FirmwareManifestPage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareManifestPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifestPage)));
-            
         }
 
         /// <summary>
@@ -1990,9 +1938,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
@@ -2021,7 +1966,6 @@ namespace update_service.Api
             return new ApiResponse<FirmwareManifestPage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareManifestPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifestPage)));
-            
         }
 
         /// <summary>
@@ -2068,9 +2012,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (manifestId != null) localVarPathParams.Add("manifest_id", Configuration.ApiClient.ParameterToString(manifestId)); // path parameter
 
             // authentication (Bearer) required
@@ -2096,7 +2037,6 @@ namespace update_service.Api
             return new ApiResponse<FirmwareManifest>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareManifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifest)));
-            
         }
 
         /// <summary>
@@ -2144,9 +2084,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (manifestId != null) localVarPathParams.Add("manifest_id", Configuration.ApiClient.ParameterToString(manifestId)); // path parameter
 
             // authentication (Bearer) required
@@ -2171,7 +2108,6 @@ namespace update_service.Api
             return new ApiResponse<FirmwareManifest>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareManifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifest)));
-            
         }
 
         /// <summary>
@@ -2218,9 +2154,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (campaign != null && campaign.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(campaign); // http body (model) parameter
@@ -2253,7 +2186,6 @@ namespace update_service.Api
             return new ApiResponse<UpdateCampaign>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
-            
         }
 
         /// <summary>
@@ -2301,9 +2233,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (campaign != null && campaign.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(campaign); // http body (model) parameter
@@ -2335,7 +2264,6 @@ namespace update_service.Api
             return new ApiResponse<UpdateCampaign>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
-            
         }
 
         /// <summary>
@@ -2381,9 +2309,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
 
             // authentication (Bearer) required
@@ -2406,7 +2331,6 @@ namespace update_service.Api
                 if (exception != null) throw exception;
             }
 
-            
             return new ApiResponse<Object>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
@@ -2456,9 +2380,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
 
             // authentication (Bearer) required
@@ -2480,7 +2401,6 @@ namespace update_service.Api
                 if (exception != null) throw exception;
             }
 
-            
             return new ApiResponse<Object>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
@@ -2535,9 +2455,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
@@ -2567,7 +2484,6 @@ namespace update_service.Api
             return new ApiResponse<UpdateCampaignPage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdateCampaignPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaignPage)));
-            
         }
 
         /// <summary>
@@ -2620,9 +2536,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
             if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
@@ -2651,7 +2564,6 @@ namespace update_service.Api
             return new ApiResponse<UpdateCampaignPage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdateCampaignPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaignPage)));
-            
         }
 
         /// <summary>
@@ -2703,9 +2615,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
             if (campaign != null && campaign.GetType() != typeof(byte[]))
             {
@@ -2739,7 +2648,6 @@ namespace update_service.Api
             return new ApiResponse<UpdateCampaign>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
-            
         }
 
         /// <summary>
@@ -2792,9 +2700,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
             if (campaign != null && campaign.GetType() != typeof(byte[]))
             {
@@ -2827,7 +2732,6 @@ namespace update_service.Api
             return new ApiResponse<UpdateCampaign>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
-            
         }
 
         /// <summary>
@@ -2874,9 +2778,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
 
             // authentication (Bearer) required
@@ -2902,7 +2803,6 @@ namespace update_service.Api
             return new ApiResponse<UpdateCampaign>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
-            
         }
 
         /// <summary>
@@ -2950,9 +2850,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
 
             // authentication (Bearer) required
@@ -2977,7 +2874,6 @@ namespace update_service.Api
             return new ApiResponse<UpdateCampaign>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
-            
         }
 
         /// <summary>
@@ -3029,9 +2925,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
             if (campaign != null && campaign.GetType() != typeof(byte[]))
             {
@@ -3065,7 +2958,6 @@ namespace update_service.Api
             return new ApiResponse<UpdateCampaign>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
-            
         }
 
         /// <summary>
@@ -3118,9 +3010,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
             if (campaign != null && campaign.GetType() != typeof(byte[]))
             {
@@ -3153,7 +3042,6 @@ namespace update_service.Api
             return new ApiResponse<UpdateCampaign>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
-            
         }
 
         /// <summary>
@@ -3205,9 +3093,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
             if (campaignDeviceMetadataId != null) localVarPathParams.Add("campaign_device_metadata_id", Configuration.ApiClient.ParameterToString(campaignDeviceMetadataId)); // path parameter
 
@@ -3234,7 +3119,6 @@ namespace update_service.Api
             return new ApiResponse<CampaignDeviceMetadata>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (CampaignDeviceMetadata) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CampaignDeviceMetadata)));
-            
         }
 
         /// <summary>
@@ -3287,9 +3171,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
             if (campaignDeviceMetadataId != null) localVarPathParams.Add("campaign_device_metadata_id", Configuration.ApiClient.ParameterToString(campaignDeviceMetadataId)); // path parameter
 
@@ -3315,7 +3196,6 @@ namespace update_service.Api
             return new ApiResponse<CampaignDeviceMetadata>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (CampaignDeviceMetadata) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CampaignDeviceMetadata)));
-            
         }
 
         /// <summary>
@@ -3370,9 +3250,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
@@ -3402,7 +3279,6 @@ namespace update_service.Api
             return new ApiResponse<CampaignDeviceMetadataPage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (CampaignDeviceMetadataPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CampaignDeviceMetadataPage)));
-            
         }
 
         /// <summary>
@@ -3458,9 +3334,6 @@ namespace update_service.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
@@ -3489,7 +3362,6 @@ namespace update_service.Api
             return new ApiResponse<CampaignDeviceMetadataPage>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (CampaignDeviceMetadataPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CampaignDeviceMetadataPage)));
-            
         }
 
     }

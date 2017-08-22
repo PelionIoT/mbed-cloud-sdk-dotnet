@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = update_service.Client.SwaggerDateConverter;
 
 namespace update_service.Model
 {
@@ -47,17 +48,20 @@ namespace update_service.Model
         /// </summary>
         [DataMember(Name="format", EmitDefaultValue=false)]
         public ManifestContentsPayloadFormat Format { get; set; }
+
         /// <summary>
         /// Gets or Sets Reference
         /// </summary>
         [DataMember(Name="reference", EmitDefaultValue=false)]
         public ManifestContentsPayloadReference Reference { get; set; }
+
         /// <summary>
         /// An identifier for where the payload is to be located. This identifier indicates where the image should be placed on the device. For example, when an IoT device contains multiple microcontrollers (MCUs) and the decision needs to be made to which MCU to send which firmware image.
         /// </summary>
         /// <value>An identifier for where the payload is to be located. This identifier indicates where the image should be placed on the device. For example, when an IoT device contains multiple microcontrollers (MCUs) and the decision needs to be made to which MCU to send which firmware image.</value>
         [DataMember(Name="storageIdentifier", EmitDefaultValue=false)]
         public string StorageIdentifier { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -143,8 +147,13 @@ namespace update_service.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = iam.Client.SwaggerDateConverter;
 
 namespace iam.Model
 {
@@ -73,54 +74,63 @@ namespace iam.Model
         /// <value>Phone number, not longer than 100 characters.</value>
         [DataMember(Name="phone_number", EmitDefaultValue=false)]
         public string PhoneNumber { get; set; }
+
         /// <summary>
         /// A username containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long.
         /// </summary>
         /// <value>A username containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long.</value>
         [DataMember(Name="username", EmitDefaultValue=false)]
         public string Username { get; set; }
+
         /// <summary>
         /// A list of IDs of the groups this user belongs to.
         /// </summary>
         /// <value>A list of IDs of the groups this user belongs to.</value>
         [DataMember(Name="groups", EmitDefaultValue=false)]
         public List<string> Groups { get; set; }
+
         /// <summary>
         /// A flag indicating that the General Terms and Conditions has been accepted.
         /// </summary>
         /// <value>A flag indicating that the General Terms and Conditions has been accepted.</value>
         [DataMember(Name="is_gtc_accepted", EmitDefaultValue=false)]
         public bool? IsGtcAccepted { get; set; }
+
         /// <summary>
         /// The full name of the user, not longer than 100 characters.
         /// </summary>
         /// <value>The full name of the user, not longer than 100 characters.</value>
         [DataMember(Name="full_name", EmitDefaultValue=false)]
         public string FullName { get; set; }
+
         /// <summary>
         /// A flag indicating that receiving marketing information has been accepted.
         /// </summary>
         /// <value>A flag indicating that receiving marketing information has been accepted.</value>
         [DataMember(Name="is_marketing_accepted", EmitDefaultValue=false)]
         public bool? IsMarketingAccepted { get; set; }
+
         /// <summary>
         /// Address, not longer than 100 characters.
         /// </summary>
         /// <value>Address, not longer than 100 characters.</value>
         [DataMember(Name="address", EmitDefaultValue=false)]
         public string Address { get; set; }
+
         /// <summary>
         /// The password when creating a new user. It will will generated when not present in the request.
         /// </summary>
         /// <value>The password when creating a new user. It will will generated when not present in the request.</value>
         [DataMember(Name="password", EmitDefaultValue=false)]
         public string Password { get; set; }
+
         /// <summary>
         /// The email address, not longer than 254 characters.
         /// </summary>
         /// <value>The email address, not longer than 254 characters.</value>
         [DataMember(Name="email", EmitDefaultValue=false)]
         public string Email { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -254,8 +264,13 @@ namespace iam.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = iam.Client.SwaggerDateConverter;
 
 namespace iam.Model
 {
@@ -61,18 +62,21 @@ namespace iam.Model
         /// <value>The owner of this API key, who is the creator by default.</value>
         [DataMember(Name="owner", EmitDefaultValue=false)]
         public string Owner { get; set; }
+
         /// <summary>
         /// The display name for the API key, not longer than 100 characters.
         /// </summary>
         /// <value>The display name for the API key, not longer than 100 characters.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
+
         /// <summary>
         /// A list of group IDs this API key belongs to.
         /// </summary>
         /// <value>A list of group IDs this API key belongs to.</value>
         [DataMember(Name="groups", EmitDefaultValue=false)]
         public List<string> Groups { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -158,8 +162,13 @@ namespace iam.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = update_service.Client.SwaggerDateConverter;
 
 namespace update_service.Model
 {
@@ -44,6 +45,7 @@ namespace update_service.Model
         /// <value>Format of the payload. Can be: 1: raw-binary 2: cbor 3: hex-location-length-data 4: elf </value>
         [DataMember(Name="enum", EmitDefaultValue=false)]
         public int? _Enum { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -113,8 +115,13 @@ namespace update_service.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

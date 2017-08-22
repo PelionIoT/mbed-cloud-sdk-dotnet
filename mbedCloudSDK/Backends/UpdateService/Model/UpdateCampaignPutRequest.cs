@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = update_service.Client.SwaggerDateConverter;
 
 namespace update_service.Model
 {
@@ -186,35 +187,42 @@ namespace update_service.Model
         /// <value>An optional description of the campaign.</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
+
         /// <summary>
         /// Gets or Sets RootManifestId
         /// </summary>
         [DataMember(Name="root_manifest_id", EmitDefaultValue=false)]
         public string RootManifestId { get; set; }
+
         /// <summary>
         /// The API resource entity.
         /// </summary>
         /// <value>The API resource entity.</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
+
         /// <summary>
         /// The timestamp at which update campaign scheduled to start.
         /// </summary>
         /// <value>The timestamp at which update campaign scheduled to start.</value>
         [DataMember(Name="when", EmitDefaultValue=false)]
         public string When { get; set; }
+
+
         /// <summary>
         /// The filter for the devices the campaign will target.
         /// </summary>
         /// <value>The filter for the devices the campaign will target.</value>
         [DataMember(Name="device_filter", EmitDefaultValue=false)]
         public string DeviceFilter { get; set; }
+
         /// <summary>
         /// A name for this campaign.
         /// </summary>
         /// <value>A name for this campaign.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -332,18 +340,23 @@ namespace update_service.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             // RootManifestId (string) maxLength
             if(this.RootManifestId != null && this.RootManifestId.Length > 32)
             {
-                yield return new ValidationResult("Invalid value for RootManifestId, length must be less than 32.", new [] { "RootManifestId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RootManifestId, length must be less than 32.", new [] { "RootManifestId" });
             }
 
             // Name (string) maxLength
             if(this.Name != null && this.Name.Length > 128)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be less than 128.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 128.", new [] { "Name" });
             }
 
             yield break;

@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = device_directory.Client.SwaggerDateConverter;
 
 namespace device_directory.Model
 {
@@ -117,42 +118,49 @@ namespace device_directory.Model
         /// <value>The name of the query.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
+
         /// <summary>
         /// Timestamp of when the device was created in the device directory.
         /// </summary>
         /// <value>Timestamp of when the device was created in the device directory.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
+
         /// <summary>
         /// The API resource entity.
         /// </summary>
         /// <value>The API resource entity.</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
+
         /// <summary>
         /// The time the object was updated.
         /// </summary>
         /// <value>The time the object was updated.</value>
         [DataMember(Name="updated_at", EmitDefaultValue=false)]
         public DateTime? UpdatedAt { get; set; }
+
         /// <summary>
         /// The entity instance signature.
         /// </summary>
         /// <value>The entity instance signature.</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public DateTime? Etag { get; set; }
+
         /// <summary>
         /// The device query.
         /// </summary>
         /// <value>The device query.</value>
         [DataMember(Name="query", EmitDefaultValue=false)]
         public string Query { get; set; }
+
         /// <summary>
         /// The ID of the query.
         /// </summary>
         /// <value>The ID of the query.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -270,8 +278,13 @@ namespace device_directory.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

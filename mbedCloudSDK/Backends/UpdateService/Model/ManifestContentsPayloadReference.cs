@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = update_service.Client.SwaggerDateConverter;
 
 namespace update_service.Model
 {
@@ -48,18 +49,21 @@ namespace update_service.Model
         /// <value>Hex representation of the SHA-256 hash of the payload</value>
         [DataMember(Name="hash", EmitDefaultValue=false)]
         public string Hash { get; set; }
+
         /// <summary>
         /// The URI of the payload.
         /// </summary>
         /// <value>The URI of the payload.</value>
         [DataMember(Name="uri", EmitDefaultValue=false)]
         public string Uri { get; set; }
+
         /// <summary>
         /// Size of the payload in bytes
         /// </summary>
         /// <value>Size of the payload in bytes</value>
         [DataMember(Name="size", EmitDefaultValue=false)]
         public int? Size { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -145,8 +149,13 @@ namespace update_service.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

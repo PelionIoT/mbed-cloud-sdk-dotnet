@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = update_service.Client.SwaggerDateConverter;
 
 namespace update_service.Model
 {
@@ -62,58 +63,68 @@ namespace update_service.Model
         /// <value>Hex representation of the 128-bit RFC4122 GUID that represents the device class that the update targets.</value>
         [DataMember(Name="classId", EmitDefaultValue=false)]
         public string ClassId { get; set; }
+
         /// <summary>
         /// Hex representation of the 128-bit RFC4122 GUID that represents the vendor.
         /// </summary>
         /// <value>Hex representation of the 128-bit RFC4122 GUID that represents the vendor.</value>
         [DataMember(Name="vendorId", EmitDefaultValue=false)]
         public string VendorId { get; set; }
+
         /// <summary>
         /// The version of the manifest format being used.
         /// </summary>
         /// <value>The version of the manifest format being used.</value>
         [DataMember(Name="manifestVersion", EmitDefaultValue=false)]
         public int? ManifestVersion { get; set; }
+
         /// <summary>
         /// A short description of the update.
         /// </summary>
         /// <value>A short description of the update.</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
+
         /// <summary>
         /// A 128-bit random field. This is provided by the manifest tool to ensure that the signing algorithm is safe from timing side-channel attacks.
         /// </summary>
         /// <value>A 128-bit random field. This is provided by the manifest tool to ensure that the signing algorithm is safe from timing side-channel attacks.</value>
         [DataMember(Name="nonce", EmitDefaultValue=false)]
         public string Nonce { get; set; }
+
         /// <summary>
         /// The time the manifest was created. The timestamp is stored as Unix time.
         /// </summary>
         /// <value>The time the manifest was created. The timestamp is stored as Unix time.</value>
         [DataMember(Name="timestamp", EmitDefaultValue=false)]
         public int? Timestamp { get; set; }
+
         /// <summary>
         /// Gets or Sets EncryptionMode
         /// </summary>
         [DataMember(Name="encryptionMode", EmitDefaultValue=false)]
         public ManifestContentsEncryptionMode EncryptionMode { get; set; }
+
         /// <summary>
         /// A flag that indicates that the update described by the manifest should be applied as soon as possible.
         /// </summary>
         /// <value>A flag that indicates that the update described by the manifest should be applied as soon as possible.</value>
         [DataMember(Name="applyImmediately", EmitDefaultValue=false)]
         public bool? ApplyImmediately { get; set; }
+
         /// <summary>
         /// Hex representation of the 128-bit RFC4122 GUID that uniquely identifies the device. Each device has a single, unique device ID.
         /// </summary>
         /// <value>Hex representation of the 128-bit RFC4122 GUID that uniquely identifies the device. Each device has a single, unique device ID.</value>
         [DataMember(Name="deviceId", EmitDefaultValue=false)]
         public string DeviceId { get; set; }
+
         /// <summary>
         /// Gets or Sets Payload
         /// </summary>
         [DataMember(Name="payload", EmitDefaultValue=false)]
         public ManifestContentsPayload Payload { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -255,8 +266,13 @@ namespace update_service.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

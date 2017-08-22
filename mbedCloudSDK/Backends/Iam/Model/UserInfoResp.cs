@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = iam.Client.SwaggerDateConverter;
 
 namespace iam.Model
 {
@@ -69,9 +70,9 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// Entity name: always 'user'
+        /// Entity name: always &#39;user&#39;
         /// </summary>
-        /// <value>Entity name: always 'user'</value>
+        /// <value>Entity name: always &#39;user&#39;</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ObjectEnum
         {
@@ -132,9 +133,9 @@ namespace iam.Model
         [DataMember(Name="status", EmitDefaultValue=false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
-        /// Entity name: always 'user'
+        /// Entity name: always &#39;user&#39;
         /// </summary>
-        /// <value>Entity name: always 'user'</value>
+        /// <value>Entity name: always &#39;user&#39;</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public ObjectEnum? _Object { get; set; }
         /// <summary>
@@ -235,108 +236,127 @@ namespace iam.Model
             this.LastLoginTime = LastLoginTime;
         }
         
+
         /// <summary>
         /// A username containing alphanumerical letters and -,._@+&#x3D; characters.
         /// </summary>
         /// <value>A username containing alphanumerical letters and -,._@+&#x3D; characters.</value>
         [DataMember(Name="username", EmitDefaultValue=false)]
         public string Username { get; set; }
+
         /// <summary>
         /// A list of IDs of the groups this user belongs to.
         /// </summary>
         /// <value>A list of IDs of the groups this user belongs to.</value>
         [DataMember(Name="groups", EmitDefaultValue=false)]
         public List<string> Groups { get; set; }
+
         /// <summary>
         /// A timestamp of the latest change of the user password, in milliseconds.
         /// </summary>
         /// <value>A timestamp of the latest change of the user password, in milliseconds.</value>
         [DataMember(Name="password_changed_time", EmitDefaultValue=false)]
         public long? PasswordChangedTime { get; set; }
+
         /// <summary>
         /// A flag indicating whether the user&#39;s email address has been verified or not.
         /// </summary>
         /// <value>A flag indicating whether the user&#39;s email address has been verified or not.</value>
         [DataMember(Name="email_verified", EmitDefaultValue=false)]
         public bool? EmailVerified { get; set; }
+
         /// <summary>
         /// Creation UTC time RFC3339.
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
+
+
         /// <summary>
         /// A flag indicating that the General Terms and Conditions has been accepted.
         /// </summary>
         /// <value>A flag indicating that the General Terms and Conditions has been accepted.</value>
         [DataMember(Name="is_gtc_accepted", EmitDefaultValue=false)]
         public bool? IsGtcAccepted { get; set; }
+
         /// <summary>
         /// The UUID of the account.
         /// </summary>
         /// <value>The UUID of the account.</value>
         [DataMember(Name="account_id", EmitDefaultValue=false)]
         public string AccountId { get; set; }
+
         /// <summary>
         /// The email address.
         /// </summary>
         /// <value>The email address.</value>
         [DataMember(Name="email", EmitDefaultValue=false)]
         public string Email { get; set; }
+
         /// <summary>
         /// A flag indicating that receiving marketing information has been accepted.
         /// </summary>
         /// <value>A flag indicating that receiving marketing information has been accepted.</value>
         [DataMember(Name="is_marketing_accepted", EmitDefaultValue=false)]
         public bool? IsMarketingAccepted { get; set; }
+
         /// <summary>
         /// API resource entity version.
         /// </summary>
         /// <value>API resource entity version.</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public string Etag { get; set; }
+
         /// <summary>
         /// The full name of the user.
         /// </summary>
         /// <value>The full name of the user.</value>
         [DataMember(Name="full_name", EmitDefaultValue=false)]
         public string FullName { get; set; }
+
         /// <summary>
         /// Address.
         /// </summary>
         /// <value>Address.</value>
         [DataMember(Name="address", EmitDefaultValue=false)]
         public string Address { get; set; }
+
         /// <summary>
         /// A timestamp of the user creation in the storage, in milliseconds.
         /// </summary>
         /// <value>A timestamp of the user creation in the storage, in milliseconds.</value>
         [DataMember(Name="creation_time", EmitDefaultValue=false)]
         public long? CreationTime { get; set; }
+
         /// <summary>
         /// The password when creating a new user. It will will generated when not present in the request.
         /// </summary>
         /// <value>The password when creating a new user. It will will generated when not present in the request.</value>
         [DataMember(Name="password", EmitDefaultValue=false)]
         public string Password { get; set; }
+
         /// <summary>
         /// Phone number.
         /// </summary>
         /// <value>Phone number.</value>
         [DataMember(Name="phone_number", EmitDefaultValue=false)]
         public string PhoneNumber { get; set; }
+
         /// <summary>
         /// The UUID of the user.
         /// </summary>
         /// <value>The UUID of the user.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
+
         /// <summary>
         /// A timestamp of the latest login of the user, in milliseconds.
         /// </summary>
         /// <value>A timestamp of the latest login of the user, in milliseconds.</value>
         [DataMember(Name="last_login_time", EmitDefaultValue=false)]
         public long? LastLoginTime { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -550,8 +570,13 @@ namespace iam.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

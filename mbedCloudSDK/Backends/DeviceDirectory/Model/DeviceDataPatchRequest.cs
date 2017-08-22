@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = device_directory.Client.SwaggerDateConverter;
 
 namespace device_directory.Model
 {
@@ -62,60 +63,70 @@ namespace device_directory.Model
         /// <value>The description of the device.</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
+
         /// <summary>
         /// The endpoint name given to the device.
         /// </summary>
         /// <value>The endpoint name given to the device.</value>
         [DataMember(Name="endpoint_name", EmitDefaultValue=false)]
         public string EndpointName { get; set; }
+
         /// <summary>
         /// DEPRECATED Mark this device for auto firmware update.
         /// </summary>
         /// <value>DEPRECATED Mark this device for auto firmware update.</value>
         [DataMember(Name="auto_update", EmitDefaultValue=false)]
         public bool? AutoUpdate { get; set; }
+
         /// <summary>
         /// The endpoint_name of the host gateway, if appropriate.
         /// </summary>
         /// <value>The endpoint_name of the host gateway, if appropriate.</value>
         [DataMember(Name="host_gateway", EmitDefaultValue=false)]
         public string HostGateway { get; set; }
+
         /// <summary>
         /// The API resource entity.
         /// </summary>
         /// <value>The API resource entity.</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
+
         /// <summary>
         /// Up to 5 custom JSON attributes
         /// </summary>
         /// <value>Up to 5 custom JSON attributes</value>
         [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
         public Object CustomAttributes { get; set; }
+
         /// <summary>
         /// Fingerprint of the device certificate.
         /// </summary>
         /// <value>Fingerprint of the device certificate.</value>
         [DataMember(Name="device_key", EmitDefaultValue=false)]
         public string DeviceKey { get; set; }
+
         /// <summary>
         /// The endpoint type of the device - e.g. if the device is a gateway.
         /// </summary>
         /// <value>The endpoint type of the device - e.g. if the device is a gateway.</value>
         [DataMember(Name="endpoint_type", EmitDefaultValue=false)]
         public string EndpointType { get; set; }
+
         /// <summary>
         /// ID of the issuer of the certificate.
         /// </summary>
         /// <value>ID of the issuer of the certificate.</value>
         [DataMember(Name="ca_id", EmitDefaultValue=false)]
         public string CaId { get; set; }
+
         /// <summary>
         /// The name of the device.
         /// </summary>
         /// <value>The name of the device.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -257,36 +268,41 @@ namespace device_directory.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             // EndpointName (string) maxLength
             if(this.EndpointName != null && this.EndpointName.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for EndpointName, length must be less than 64.", new [] { "EndpointName" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EndpointName, length must be less than 64.", new [] { "EndpointName" });
             }
 
             // DeviceKey (string) maxLength
             if(this.DeviceKey != null && this.DeviceKey.Length > 512)
             {
-                yield return new ValidationResult("Invalid value for DeviceKey, length must be less than 512.", new [] { "DeviceKey" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DeviceKey, length must be less than 512.", new [] { "DeviceKey" });
             }
 
             // EndpointType (string) maxLength
             if(this.EndpointType != null && this.EndpointType.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for EndpointType, length must be less than 64.", new [] { "EndpointType" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EndpointType, length must be less than 64.", new [] { "EndpointType" });
             }
 
             // CaId (string) maxLength
             if(this.CaId != null && this.CaId.Length > 500)
             {
-                yield return new ValidationResult("Invalid value for CaId, length must be less than 500.", new [] { "CaId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CaId, length must be less than 500.", new [] { "CaId" });
             }
 
             // Name (string) maxLength
             if(this.Name != null && this.Name.Length > 128)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be less than 128.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 128.", new [] { "Name" });
             }
 
             yield break;

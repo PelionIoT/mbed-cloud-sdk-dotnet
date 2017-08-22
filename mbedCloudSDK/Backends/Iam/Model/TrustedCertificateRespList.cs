@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = iam.Client.SwaggerDateConverter;
 
 namespace iam.Model
 {
@@ -30,9 +31,9 @@ namespace iam.Model
     public partial class TrustedCertificateRespList :  IEquatable<TrustedCertificateRespList>, IValidatableObject
     {
         /// <summary>
-        /// Entity name: always 'list'
+        /// Entity name: always &#39;list&#39;
         /// </summary>
-        /// <value>Entity name: always 'list'</value>
+        /// <value>Entity name: always &#39;list&#39;</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ObjectEnum
         {
@@ -108,9 +109,9 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// Entity name: always 'list'
+        /// Entity name: always &#39;list&#39;
         /// </summary>
-        /// <value>Entity name: always 'list'</value>
+        /// <value>Entity name: always &#39;list&#39;</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public ObjectEnum? _Object { get; set; }
         /// <summary>
@@ -191,30 +192,37 @@ namespace iam.Model
         /// <value>The entity ID to fetch after the given one.</value>
         [DataMember(Name="after", EmitDefaultValue=false)]
         public string After { get; set; }
+
         /// <summary>
         /// Flag indicating whether there is more results.
         /// </summary>
         /// <value>Flag indicating whether there is more results.</value>
         [DataMember(Name="has_more", EmitDefaultValue=false)]
         public bool? HasMore { get; set; }
+
         /// <summary>
         /// The total number or records, if requested. It might be returned also for small lists.
         /// </summary>
         /// <value>The total number or records, if requested. It might be returned also for small lists.</value>
         [DataMember(Name="total_count", EmitDefaultValue=false)]
         public int? TotalCount { get; set; }
+
+
         /// <summary>
         /// The number of results to return, (range: 2-1000), or equals to &#x60;total_count&#x60;
         /// </summary>
         /// <value>The number of results to return, (range: 2-1000), or equals to &#x60;total_count&#x60;</value>
         [DataMember(Name="limit", EmitDefaultValue=false)]
         public int? Limit { get; set; }
+
         /// <summary>
         /// A list of entities.
         /// </summary>
         /// <value>A list of entities.</value>
         [DataMember(Name="data", EmitDefaultValue=false)]
         public List<TrustedCertificateResp> Data { get; set; }
+
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -332,8 +340,13 @@ namespace iam.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }
