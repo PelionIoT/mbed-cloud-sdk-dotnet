@@ -66,7 +66,7 @@ namespace ConsoleExamples.Examples.Connect
             var endpoints = endpointsResp.ToList();
             api.StartNotifications();
             var resources = endpoints[0].ListResources();
-            var resp = api.SetResourceValue(endpoints[0].Id, buttonResource, "100");
+            var resp = api.SetResourceValue(endpoints[0].Id, buttonResource, Encoding.UTF8.GetBytes("100"));
             Console.WriteLine(resp.GetValue().Result);
         }
 
