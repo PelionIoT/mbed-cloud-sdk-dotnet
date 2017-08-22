@@ -13,26 +13,6 @@ namespace mbedCloudSDK.DeviceDirectory.Api
     public partial class DeviceDirectoryApi
     {
         /// <summary>
-        /// Creates new query.
-        /// </summary>
-        /// <returns>The query.</returns>
-        /// <param name="query">Query object to create</param>
-        public Query AddQuery(Query query)
-        {
-            return Query.Map(this.queryApi.DeviceQueryCreate(new device_query_service.Model.DeviceQueryPostPutRequest(query.QueryString, query.Name)));
-        }
-
-        /// <summary>
-        /// Deletes the query.
-        /// </summary>
-        /// <returns>The query.</returns>
-        /// <param name="queryID">Query identifier.</param>
-        public void DeleteQuery(string queryID)
-        {
-            queryApi.DeviceQueryDestroy(queryID);
-        }
-
-        /// <summary>
         /// List all queries.
         /// </summary>
         /// <param name="options"></param>
@@ -72,6 +52,73 @@ namespace mbedCloudSDK.DeviceDirectory.Api
             catch (device_catalog.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public Query GetQuery(string queryId)
+        {
+            try
+            {
+                var response = queryApi.DeviceQueryRetrieve(queryId);
+                return Query.Map(response);
+            }
+            catch(device_query_service.Client.ApiException ex)
+            {
+                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+            }
+        }
+
+        /// <summary>
+        /// Creates new query.
+        /// </summary>
+        /// <returns>The query.</returns>
+        /// <param name="query">Query object to create</param>
+        public Query AddQuery(Query query)
+        {
+            var deviceQueryPostPutRequest = new device_query_service.Model.DeviceQueryPostPutRequest(query.QueryString, query.Name);
+
+            try
+            {
+                var response = queryApi.DeviceQueryCreate(deviceQueryPostPutRequest);
+                return Query.Map(response);
+            }
+            catch(device_query_service.Client.ApiException ex)
+            {
+                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+            }
+        }
+
+        public Query UpdateQuery(string queryId, Query queryToUpdate)
+        {
+            var originalQuery = GetQuery(queryId);
+            var query = Utils.MapToUpdate(originalQuery, queryToUpdate) as Query;
+            var deviceQueryPostPutRequest = new device_query_service.Model.DeviceQueryPostPutRequest(query.QueryString, query.Name);
+
+            try
+            {
+                var response = queryApi.DeviceQueryUpdate(queryId, deviceQueryPostPutRequest);
+                return Query.Map(response);
+            }
+            catch (device_query_service.Client.ApiException ex)
+            {
+                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+            }
+        }
+
+        /// <summary>
+        /// Deletes the query.
+        /// </summary>
+        /// <returns>The query.</returns>
+        /// <param name="queryID">Query identifier.</param>
+        public void DeleteQuery(string queryID)
+        {
+            try
+            {
+                queryApi.DeviceQueryDestroy(queryID);
+            }
+            catch (device_query_service.Client.ApiException ex)
+            {
+                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
         }
     }

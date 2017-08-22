@@ -37,9 +37,13 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Query
         [JsonProperty]
         public string QueryString {
             get {
-                string attributes = string.Join("&", Attributes.Select(q => String.Format("{0}={1}", q.Key, q.Value)));
-                string customAttributes = string.Join("&", CustomAttributes.Select(q => String.Format("{0}{1}={2}", Query.CustomAttributesPrefix, q.Key, q.Value)));
-                return Uri.UnescapeDataString(string.Join("&", attributes, customAttributes));
+                if (Attributes != null)
+                {
+                    string attributes = string.Join("&", Attributes.Select(q => String.Format("{0}={1}", q.Key, q.Value)));
+                    string customAttributes = string.Join("&", CustomAttributes.Select(q => String.Format("{0}{1}={2}", Query.CustomAttributesPrefix, q.Key, q.Value)));
+                    return Uri.UnescapeDataString(string.Join("&", attributes, customAttributes));
+                }
+                return "";
             }
             private set {
                 queryString = value;
