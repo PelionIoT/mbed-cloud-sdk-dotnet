@@ -114,8 +114,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**UpdateCampaignPartialUpdate**](docs/DefaultApi.md#updatecampaignpartialupdate) | **PATCH** /v3/update-campaigns/{campaign_id}/ | 
 *DefaultApi* | [**UpdateCampaignRetrieve**](docs/DefaultApi.md#updatecampaignretrieve) | **GET** /v3/update-campaigns/{campaign_id}/ | 
 *DefaultApi* | [**UpdateCampaignUpdate**](docs/DefaultApi.md#updatecampaignupdate) | **PUT** /v3/update-campaigns/{campaign_id}/ | 
-*DefaultApi* | [**V3CampaignDeviceMetadataCampaignDeviceMetadataIdGet**](docs/DefaultApi.md#v3campaigndevicemetadatacampaigndevicemetadataidget) | **GET** /v3/campaign-device-metadata/{campaign_device_metadata_id} | 
-*DefaultApi* | [**V3CampaignDeviceMetadataGet**](docs/DefaultApi.md#v3campaigndevicemetadataget) | **GET** /v3/campaign-device-metadata | 
+*DefaultApi* | [**V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGet**](docs/DefaultApi.md#v3updatecampaignscampaignidcampaigndevicemetadatacampaigndevicemetadataidget) | **GET** /v3/update-campaigns/{campaign_id}/campaign-device-metadata/{campaign_device_metadata_id}/ | 
+*DefaultApi* | [**V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGet**](docs/DefaultApi.md#v3updatecampaignscampaignidcampaigndevicemetadataget) | **GET** /v3/update-campaigns/{campaign_id}/campaign-device-metadata/ | 
 
 
 <a name="documentation-for-models"></a>
