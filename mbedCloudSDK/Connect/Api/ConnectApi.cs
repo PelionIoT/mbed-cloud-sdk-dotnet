@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using mbedCloudSDK.Common;
 using mbedCloudSDK.Connect.Model.ConnectedDevice;
 using mbedCloudSDK.Connect.Model.Resource;
+using mds.Api;
 
 namespace mbedCloudSDK.Connect.Api
 {
@@ -19,10 +20,13 @@ namespace mbedCloudSDK.Connect.Api
 
         #region Variables
 
-        private Task longPollingTask;
+        private Task NotificationTask;
         private CancellationTokenSource cancellationToken;
         private statistics.Api.StatisticsApi statisticsApi;
+        private EndpointsApi endpointsApi;
         private statistics.Api.AccountApi accountApi;
+        private SubscriptionsApi subscriptionsApi;
+        private mds.Api.ResourcesApi resourcesApi;
         private string auth;
 
         /// <summary>
@@ -34,6 +38,8 @@ namespace mbedCloudSDK.Connect.Api
         /// Responses to async requests.
         /// </summary>
         public static Dictionary<String, AsyncProducerConsumerCollection<String>> asyncResponses = new Dictionary<string, AsyncProducerConsumerCollection<String>>();
+        private NotificationsApi notificationsApi;
+        private DefaultApi defaultApi;
 
         #endregion
 
@@ -46,7 +52,7 @@ namespace mbedCloudSDK.Connect.Api
         public ConnectApi(Config config) : base(config)
         {
             cancellationToken = new CancellationTokenSource();
-            longPollingTask = new Task(new Action(LongPolling), cancellationToken.Token, TaskCreationOptions.LongRunning);
+            NotificationTask = new Task(new Action(Notifications), cancellationToken.Token, TaskCreationOptions.LongRunning);
             resourceSubscribtions = new Dictionary<string, Resource>();
 
             this.auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);
@@ -55,9 +61,30 @@ namespace mbedCloudSDK.Connect.Api
             statisticsApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
             statisticsApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
 
+            subscriptionsApi = new mds.Api.SubscriptionsApi(config.Host);
+            subscriptionsApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
+            subscriptionsApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+
+            resourcesApi =  new mds.Api.ResourcesApi(config.Host);
+            resourcesApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
+            resourcesApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+
+            endpointsApi = new mds.Api.EndpointsApi(config.Host);
+            endpointsApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
+            endpointsApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+
             accountApi = new statistics.Api.AccountApi(config.Host);
             accountApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
             accountApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+
+            notificationsApi = new mds.Api.NotificationsApi(config.Host);
+            notificationsApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
+            notificationsApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+
+            defaultApi = new mds.Api.DefaultApi(config.Host);
+            defaultApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
+            defaultApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+
         }
 
         #endregion

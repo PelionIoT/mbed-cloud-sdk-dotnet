@@ -53,7 +53,7 @@ namespace mbedCloudSDK.Connect.Api
             try
             {
                 var response = statisticsApi.V3MetricsGet(options.Include, options.Interval, auth, options.Start, options.End, options.Period, options.Limit, options.After, options.Order);
-                List<Metric> statisticsList = new List<Metric>();
+                var statisticsList = new List<Metric>();
                 foreach (var data in response.Data)
                 {
                     statisticsList.Add(Metric.Map(data));
@@ -80,7 +80,7 @@ namespace mbedCloudSDK.Connect.Api
             try
             {
                 var response = this.accountApi.V3MetricsGet(include:options.Include, interval:options.Interval, authorization:auth, start:options.Start, end:options.End, period:options.Period);
-                List<Metric> statisticsList = new List<Metric>();
+                var statisticsList = new List<Metric>();
                 foreach (var data in response.Data)
                 {
                     statisticsList.Add(Metric.Map(data));
