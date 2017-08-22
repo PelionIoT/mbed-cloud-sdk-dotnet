@@ -385,8 +385,12 @@ namespace update_service.Api
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>CampaignDeviceMetadataPage</returns>
-        CampaignDeviceMetadataPage V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGet (string campaignId);
+        CampaignDeviceMetadataPage V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGet (string campaignId, int? limit = null, string order = null, string after = null, string include = null);
 
         /// <summary>
         /// 
@@ -396,8 +400,12 @@ namespace update_service.Api
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of CampaignDeviceMetadataPage</returns>
-        ApiResponse<CampaignDeviceMetadataPage> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetWithHttpInfo (string campaignId);
+        ApiResponse<CampaignDeviceMetadataPage> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetWithHttpInfo (string campaignId, int? limit = null, string order = null, string after = null, string include = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -761,8 +769,12 @@ namespace update_service.Api
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of CampaignDeviceMetadataPage</returns>
-        System.Threading.Tasks.Task<CampaignDeviceMetadataPage> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetAsync (string campaignId);
+        System.Threading.Tasks.Task<CampaignDeviceMetadataPage> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetAsync (string campaignId, int? limit = null, string order = null, string after = null, string include = null);
 
         /// <summary>
         /// 
@@ -772,8 +784,12 @@ namespace update_service.Api
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (CampaignDeviceMetadataPage)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadataPage>> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetAsyncWithHttpInfo (string campaignId);
+        System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadataPage>> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetAsyncWithHttpInfo (string campaignId, int? limit = null, string order = null, string after = null, string include = null);
         #endregion Asynchronous Operations
     }
 
@@ -3307,10 +3323,14 @@ namespace update_service.Api
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>CampaignDeviceMetadataPage</returns>
-        public CampaignDeviceMetadataPage V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGet (string campaignId)
+        public CampaignDeviceMetadataPage V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGet (string campaignId, int? limit = null, string order = null, string after = null, string include = null)
         {
-             ApiResponse<CampaignDeviceMetadataPage> localVarResponse = V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetWithHttpInfo(campaignId);
+             ApiResponse<CampaignDeviceMetadataPage> localVarResponse = V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetWithHttpInfo(campaignId, limit, order, after, include);
              return localVarResponse.Data;
         }
 
@@ -3319,8 +3339,12 @@ namespace update_service.Api
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of CampaignDeviceMetadataPage</returns>
-        public ApiResponse< CampaignDeviceMetadataPage > V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetWithHttpInfo (string campaignId)
+        public ApiResponse< CampaignDeviceMetadataPage > V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetWithHttpInfo (string campaignId, int? limit = null, string order = null, string after = null, string include = null)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -3350,6 +3374,10 @@ namespace update_service.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
+            if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
+            if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
+            if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -3382,10 +3410,14 @@ namespace update_service.Api
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of CampaignDeviceMetadataPage</returns>
-        public async System.Threading.Tasks.Task<CampaignDeviceMetadataPage> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetAsync (string campaignId)
+        public async System.Threading.Tasks.Task<CampaignDeviceMetadataPage> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetAsync (string campaignId, int? limit = null, string order = null, string after = null, string include = null)
         {
-             ApiResponse<CampaignDeviceMetadataPage> localVarResponse = await V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetAsyncWithHttpInfo(campaignId);
+             ApiResponse<CampaignDeviceMetadataPage> localVarResponse = await V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetAsyncWithHttpInfo(campaignId, limit, order, after, include);
              return localVarResponse.Data;
 
         }
@@ -3395,8 +3427,12 @@ namespace update_service.Api
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
+        /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
+        /// <param name="order">ASC or DESC (optional)</param>
+        /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
+        /// <param name="include">Comma separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (CampaignDeviceMetadataPage)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadataPage>> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetAsyncWithHttpInfo (string campaignId)
+        public async System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadataPage>> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGetAsyncWithHttpInfo (string campaignId, int? limit = null, string order = null, string after = null, string include = null)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -3426,6 +3462,10 @@ namespace update_service.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
+            if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
+            if (order != null) localVarQueryParams.Add("order", Configuration.ApiClient.ParameterToString(order)); // query parameter
+            if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
