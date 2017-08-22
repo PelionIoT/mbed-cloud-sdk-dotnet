@@ -41,16 +41,22 @@ namespace mbedCloudSDK.Common
             var oper = val.First as JProperty;
             var operName = oper.Name;
             var operValue = val.First.First.Value<string>();
-            var queryAttribute = new QueryAttribute(operValue, parseQueryOperator(operName));
+            var queryAttribute = new QueryAttribute(operValue, ParseQueryOperator(operName));
             return queryAttribute;
         }
 
-        private static QueryOperator parseQueryOperator(string val)
+        public static QueryOperator ParseQueryOperator(string val)
         {
             switch (val)
             {
                 case "$eq":
                     return QueryOperator.Equals;
+                case "$neq":
+                    return QueryOperator.NotEqual;
+                case "$lte":
+                    return QueryOperator.LessOrEqual;
+                case "$gte":
+                    return QueryOperator.GreaterOrEqual;
                 default:
                     return QueryOperator.Equals;
             }

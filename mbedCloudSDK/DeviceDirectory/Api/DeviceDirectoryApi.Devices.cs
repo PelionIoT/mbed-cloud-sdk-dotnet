@@ -26,7 +26,10 @@ namespace mbedCloudSDK.DeviceDirectory.Api
             }
             try
             {
-                options.Attributes = Utils.ParseAttributeString(options.AttributesString);
+                if (!string.IsNullOrEmpty(options.AttributesString) && options.Attributes == null)
+                {
+                    options.Attributes = Utils.ParseAttributeString(options.AttributesString);
+                }
                 return new PaginatedResponse<Device>(ListDevicesFunc, options);
             }
             catch (CloudApiException e)
@@ -43,6 +46,7 @@ namespace mbedCloudSDK.DeviceDirectory.Api
             }
             try
             {
+                var x = options.QueryString;
                 var resp = api.DeviceList(options.Limit, options.Order, options.After, options.QueryString, options.Include);
                 ResponsePage<Device> respDevices = new ResponsePage<Device>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
                 foreach (var device in resp.Data)
