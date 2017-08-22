@@ -3,6 +3,7 @@ using mbedCloudSDK.Connect.Model.ConnectedDevice;
 using mbedCloudSDK.Connect.Model.Resource;
 using mbedCloudSDK.Exceptions;
 using System.Collections.Generic;
+using System.Text;
 
 namespace mbedCloudSDK.Connect.Api
 {
