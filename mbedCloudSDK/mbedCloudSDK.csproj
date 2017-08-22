@@ -237,7 +237,6 @@
     <Compile Include="Backends\Mds\Client\IApiAccessor.cs" />
     <Compile Include="Backends\ProvisioningCertificate\Client\ExceptionFactory.cs" />
     <Compile Include="Backends\ProvisioningCertificate\Client\IApiAccessor.cs" />
-    <Compile Include="Connect\Api\ConnectApi.LongPolling.cs" />
     <Compile Include="Connect\Api\ConnectApi.Statistics.cs" />
     <Compile Include="Connect\Model\ConnectedDevice\ConnectedDevice.cs" />
     <Compile Include="Connect\Model\Subscription\Subscription.cs" />
@@ -304,6 +303,7 @@
     <Compile Include="AccountManagement\Model\ApiKey\ApiKeyStatus.cs" />
     <Compile Include="Connect\Model\Metric\Metric.cs" />
     <Compile Include="Connect\Model\Metric\MetricQueryOptions.cs" />
+    <Compile Include="Connect\Api\ConnectApi.WebHooks.cs" />
     <Compile Include="Update\Api\UpdateApi.Campaign.cs" />
     <Compile Include="Update\Api\UpdateApi.cs" />
     <Compile Include="Update\Api\UpdateApi.FirmwareImage.cs" />

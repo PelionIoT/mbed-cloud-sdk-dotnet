@@ -15,13 +15,10 @@ namespace mbedCloudSDK.Connect.Api
         /// <returns>The list of endpoints.</returns>
         public List<ConnectedDevice> ListConnectedDevices()
         {
-            var api = new mds.Api.EndpointsApi(config.Host);
-            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             try
             {
-                var endpoints = api.V2EndpointsGet();
-                List<ConnectedDevice> devices = new List<ConnectedDevice>();
+                var endpoints = endpointsApi.V2EndpointsGet();
+                var devices = new List<ConnectedDevice>();
                 foreach (var endpoint in endpoints)
                 {
                     devices.Add(ConnectedDevice.Map(endpoint, this));
@@ -42,11 +39,8 @@ namespace mbedCloudSDK.Connect.Api
         public AsyncConsumer<string> GetResourceValue(string deviceId, string resourcePath)
         {
             resourcePath = FixedPath(resourcePath);
-            var api = new mds.Api.ResourcesApi(config.Host);
-            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            var asyncID = api.V2EndpointsDeviceIdResourcePathGet(deviceId, resourcePath);
-            AsyncProducerConsumerCollection<string> collection = new AsyncProducerConsumerCollection<string>();
+            var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathGet(deviceId, resourcePath);
+            var collection = new AsyncProducerConsumerCollection<string>();
             asyncResponses.Add(asyncID.AsyncResponseId, collection);
             return new AsyncConsumer<string>(collection);
         }
@@ -54,19 +48,16 @@ namespace mbedCloudSDK.Connect.Api
         /// <summary>
         /// Set value of the resource.
         /// </summary>
-        /// <param name="deviceName">Name of the device.</param>
+        /// <param name="deviceId">Id of the device.</param>
         /// <param name="resourcePath">Path to the resource.</param>
         /// <param name="resourceValue">Value to set.</param>
         /// <param name="noResponse">Don't get a response.</param>
         /// <returns></returns>
-        public AsyncConsumer<string> SetResourceValue([NameOverride(Name = "DeviceId")]string deviceName, string resourcePath, byte[] resourceValue, bool? noResponse = null)
+        public AsyncConsumer<string> SetResourceValue(string deviceId, string resourcePath, byte[] resourceValue, bool? noResponse = null)
         {
             resourcePath = FixedPath(resourcePath);
-            var api = new mds.Api.ResourcesApi(config.Host);
-            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            var asyncID = api.V2EndpointsDeviceIdResourcePathPut(deviceName, resourcePath, resourceValue, noResponse);
-            AsyncProducerConsumerCollection<string> collection = new AsyncProducerConsumerCollection<string>();
+            var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPut(deviceId, resourcePath, resourceValue, noResponse);
+            var collection = new AsyncProducerConsumerCollection<string>();
             asyncResponses.Add(asyncID.AsyncResponseId, collection);
             return new AsyncConsumer<string>(collection);
         }
@@ -78,13 +69,10 @@ namespace mbedCloudSDK.Connect.Api
         /// <returns>List of resources for this endpoint.</returns>
         public List<Resource> ListResources(string deviceId)
         {
-            var api = new mds.Api.EndpointsApi(config.Host);
-            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             try
             {
-                var resourcesList = api.V2EndpointsDeviceIdGet(deviceId);
-                List<Resource> resources = new List<Resource>();
+                var resourcesList = endpointsApi.V2EndpointsDeviceIdGet(deviceId);
+                var resources = new List<Resource>();
                 foreach (var resource in resourcesList)
                 {
                     resources.Add(Resource.Map(deviceId, resource, this));
@@ -118,12 +106,9 @@ namespace mbedCloudSDK.Connect.Api
         /// <param name="endpointName">Endpoint resources are connected to.</param>
         public List<Resource> GetResources(string endpointName)
         {
-            var api = new mds.Api.EndpointsApi(config.Host);
-            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             try
             {
-                var resp = api.V2EndpointsDeviceIdGet(endpointName);
+                var resp = endpointsApi.V2EndpointsDeviceIdGet(endpointName);
                 var resources = new List<Resource>();
                 foreach (var resource in resp)
                 {

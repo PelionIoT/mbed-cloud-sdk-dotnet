@@ -14,12 +14,9 @@ namespace mbedCloudSDK.Connect.Api
         /// <param name="resource">Resource to subscribe.</param>
         public AsyncConsumer<String> Subscribe(String endpointName, Resource resource)
         {
-            string fixedPath = FixedPath(resource.Path);
-            var api = new mds.Api.SubscriptionsApi(config.Host);
-            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            api.V2SubscriptionsDeviceIdResourcePathPut(endpointName, fixedPath);
-            string subscribePath = endpointName + resource.Path;
+            var fixedPath = FixedPath(resource.Path);
+            subscriptionsApi.V2SubscriptionsDeviceIdResourcePathPut(endpointName, fixedPath);
+            var subscribePath = endpointName + resource.Path;
             if (!ConnectApi.resourceSubscribtions.ContainsKey(subscribePath))
             {
                 ConnectApi.resourceSubscribtions.Add(subscribePath, resource);
@@ -35,13 +32,10 @@ namespace mbedCloudSDK.Connect.Api
         /// <param name="endpointType">Endpoint type.</param>
         public void Presubscribe(String endpointName, String resourcePath, String endpointType = "")
         {
-            var api = new mds.Api.SubscriptionsApi(config.Host);
-            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             mds.Model.Presubscription presubscription = new mds.Model.Presubscription(endpointName, endpointType);
             mds.Model.PresubscriptionArray presubscriptionArray = new mds.Model.PresubscriptionArray();
             presubscriptionArray.Add(presubscription);
-            api.V2SubscriptionsPut(presubscriptionArray);
+            subscriptionsApi.V2SubscriptionsPut(presubscriptionArray);
         }
 
         /// <summary>
@@ -52,13 +46,10 @@ namespace mbedCloudSDK.Connect.Api
         /// <param name="endpointType">Endpoint type.</param>
         public async Task PresubscribeAsync(String endpointName, String resourcePath, String endpointType = "")
         {
-            var api = new mds.Api.SubscriptionsApi(config.Host);
-            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             mds.Model.Presubscription presubscription = new mds.Model.Presubscription(endpointName, endpointType);
             mds.Model.PresubscriptionArray presubscriptionArray = new mds.Model.PresubscriptionArray();
             presubscriptionArray.Add(presubscription);
-            await api.V2SubscriptionsPutAsync(presubscriptionArray);
+            await subscriptionsApi.V2SubscriptionsPutAsync(presubscriptionArray);
         }
 
         /// <summary>
@@ -68,12 +59,9 @@ namespace mbedCloudSDK.Connect.Api
         /// <param name="resource">Resource to unsubscribe.</param>
         public void Unsubscribe(String deviceName, Resource resource)
         {
-            string fixedPath = FixedPath(resource.Path);
-            var api = new mds.Api.SubscriptionsApi(config.Host);
-            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            string subscribePath = deviceName + resource.Path;
-            api.V2SubscriptionsDeviceIdResourcePathDelete(deviceName, fixedPath);
+            var fixedPath = FixedPath(resource.Path);
+            var subscribePath = deviceName + resource.Path;
+            subscriptionsApi.V2SubscriptionsDeviceIdResourcePathDelete(deviceName, fixedPath);
             if (resourceSubscribtions.ContainsKey(subscribePath))
             {
                 resourceSubscribtions.Remove(subscribePath);
@@ -87,12 +75,9 @@ namespace mbedCloudSDK.Connect.Api
         /// <param name="resource">Resource to unsubscribe.</param>
         public async Task UnsubscribeAsync(String deviceName, Resource resource)
         {
-            string fixedPath = FixedPath(resource.Path);
-            var api = new mds.Api.SubscriptionsApi(config.Host);
-            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            string subscribePath = deviceName + resource.Path;
-            await api.V2SubscriptionsDeviceIdResourcePathDeleteAsync(deviceName, fixedPath);
+            var fixedPath = FixedPath(resource.Path);
+            var subscribePath = deviceName + resource.Path;
+            await subscriptionsApi.V2SubscriptionsDeviceIdResourcePathDeleteAsync(deviceName, fixedPath);
             if (resourceSubscribtions.ContainsKey(subscribePath))
             {
                 resourceSubscribtions.Remove(subscribePath);
