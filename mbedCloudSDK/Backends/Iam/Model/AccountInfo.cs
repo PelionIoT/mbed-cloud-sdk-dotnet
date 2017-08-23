@@ -139,6 +139,7 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountInfo" /> class.
         /// </summary>
+        /// <param name="EndMarket">Account end market. (required).</param>
         /// <param name="Status">The status of the account. (required).</param>
         /// <param name="PostalCode">The postal code part of the postal address..</param>
         /// <param name="Id">Account ID. (required).</param>
@@ -162,11 +163,21 @@ namespace iam.Model
         /// <param name="Limits">List of limits as key-value pairs if requested..</param>
         /// <param name="Country">The country part of the postal address..</param>
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
+        /// <param name="IdleTimeout">The reference token expiration time in minutes for this account..</param>
         /// <param name="Contact">The name of the contact person for this account..</param>
         /// <param name="Policies">List of policies if requested..</param>
         /// <param name="TemplateId">Account template ID..</param>
-        public AccountInfo(StatusEnum? Status = default(StatusEnum?), string PostalCode = default(string), string Id = default(string), List<string> Aliases = default(List<string>), string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string ParentId = default(string), string State = default(string), string Etag = default(string), bool? IsProvisioningAllowed = default(bool?), string Email = default(string), string PhoneNumber = default(string), string Company = default(string), ObjectEnum? _Object = default(ObjectEnum?), string Reason = default(string), DateTime? UpgradedAt = default(DateTime?), string Tier = default(string), List<AccountInfo> SubAccounts = default(List<AccountInfo>), Dictionary<string, string> Limits = default(Dictionary<string, string>), string Country = default(string), DateTime? CreatedAt = default(DateTime?), string Contact = default(string), List<FeaturePolicy> Policies = default(List<FeaturePolicy>), string TemplateId = default(string))
+        public AccountInfo(string EndMarket = default(string), StatusEnum? Status = default(StatusEnum?), string PostalCode = default(string), string Id = default(string), List<string> Aliases = default(List<string>), string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string ParentId = default(string), string State = default(string), string Etag = default(string), bool? IsProvisioningAllowed = default(bool?), string Email = default(string), string PhoneNumber = default(string), string Company = default(string), ObjectEnum? _Object = default(ObjectEnum?), string Reason = default(string), DateTime? UpgradedAt = default(DateTime?), string Tier = default(string), List<AccountInfo> SubAccounts = default(List<AccountInfo>), Dictionary<string, string> Limits = default(Dictionary<string, string>), string Country = default(string), DateTime? CreatedAt = default(DateTime?), string IdleTimeout = default(string), string Contact = default(string), List<FeaturePolicy> Policies = default(List<FeaturePolicy>), string TemplateId = default(string))
         {
+            // to ensure "EndMarket" is required (not null)
+            if (EndMarket == null)
+            {
+                throw new InvalidDataException("EndMarket is a required property for AccountInfo and cannot be null");
+            }
+            else
+            {
+                this.EndMarket = EndMarket;
+            }
             // to ensure "Status" is required (not null)
             if (Status == null)
             {
@@ -246,11 +257,18 @@ namespace iam.Model
             this.Limits = Limits;
             this.Country = Country;
             this.CreatedAt = CreatedAt;
+            this.IdleTimeout = IdleTimeout;
             this.Contact = Contact;
             this.Policies = Policies;
             this.TemplateId = TemplateId;
         }
         
+        /// <summary>
+        /// Account end market.
+        /// </summary>
+        /// <value>Account end market.</value>
+        [DataMember(Name="end_market", EmitDefaultValue=false)]
+        public string EndMarket { get; set; }
         /// <summary>
         /// The postal code part of the postal address.
         /// </summary>
@@ -378,6 +396,12 @@ namespace iam.Model
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
         /// <summary>
+        /// The reference token expiration time in minutes for this account.
+        /// </summary>
+        /// <value>The reference token expiration time in minutes for this account.</value>
+        [DataMember(Name="idle_timeout", EmitDefaultValue=false)]
+        public string IdleTimeout { get; set; }
+        /// <summary>
         /// The name of the contact person for this account.
         /// </summary>
         /// <value>The name of the contact person for this account.</value>
@@ -403,6 +427,7 @@ namespace iam.Model
         {
             var sb = new StringBuilder();
             sb.Append("class AccountInfo {\n");
+            sb.Append("  EndMarket: ").Append(EndMarket).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
@@ -426,6 +451,7 @@ namespace iam.Model
             sb.Append("  Limits: ").Append(Limits).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
+            sb.Append("  IdleTimeout: ").Append(IdleTimeout).Append("\n");
             sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  Policies: ").Append(Policies).Append("\n");
             sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
@@ -465,6 +491,11 @@ namespace iam.Model
                 return false;
 
             return 
+                (
+                    this.EndMarket == other.EndMarket ||
+                    this.EndMarket != null &&
+                    this.EndMarket.Equals(other.EndMarket)
+                ) && 
                 (
                     this.Status == other.Status ||
                     this.Status != null &&
@@ -581,6 +612,11 @@ namespace iam.Model
                     this.CreatedAt.Equals(other.CreatedAt)
                 ) && 
                 (
+                    this.IdleTimeout == other.IdleTimeout ||
+                    this.IdleTimeout != null &&
+                    this.IdleTimeout.Equals(other.IdleTimeout)
+                ) && 
+                (
                     this.Contact == other.Contact ||
                     this.Contact != null &&
                     this.Contact.Equals(other.Contact)
@@ -608,6 +644,8 @@ namespace iam.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
+                if (this.EndMarket != null)
+                    hash = hash * 59 + this.EndMarket.GetHashCode();
                 if (this.Status != null)
                     hash = hash * 59 + this.Status.GetHashCode();
                 if (this.PostalCode != null)
@@ -654,6 +692,8 @@ namespace iam.Model
                     hash = hash * 59 + this.Country.GetHashCode();
                 if (this.CreatedAt != null)
                     hash = hash * 59 + this.CreatedAt.GetHashCode();
+                if (this.IdleTimeout != null)
+                    hash = hash * 59 + this.IdleTimeout.GetHashCode();
                 if (this.Contact != null)
                     hash = hash * 59 + this.Contact.GetHashCode();
                 if (this.Policies != null)
