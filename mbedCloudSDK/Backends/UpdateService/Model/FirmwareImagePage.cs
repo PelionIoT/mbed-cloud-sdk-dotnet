@@ -30,6 +30,33 @@ namespace update_service.Model
     public partial class FirmwareImagePage :  IEquatable<FirmwareImagePage>, IValidatableObject
     {
         /// <summary>
+        /// The order of the records to return. Available values: ASC, DESC; by default ASC.
+        /// </summary>
+        /// <value>The order of the records to return. Available values: ASC, DESC; by default ASC.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum OrderEnum
+        {
+            
+            /// <summary>
+            /// Enum ASC for "ASC"
+            /// </summary>
+            [EnumMember(Value = "ASC")]
+            ASC,
+            
+            /// <summary>
+            /// Enum DESC for "DESC"
+            /// </summary>
+            [EnumMember(Value = "DESC")]
+            DESC
+        }
+
+        /// <summary>
+        /// The order of the records to return. Available values: ASC, DESC; by default ASC.
+        /// </summary>
+        /// <value>The order of the records to return. Available values: ASC, DESC; by default ASC.</value>
+        [DataMember(Name="order", EmitDefaultValue=false)]
+        public OrderEnum? Order { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="FirmwareImagePage" /> class.
         /// </summary>
         /// <param name="_Object">_Object.</param>
@@ -38,8 +65,8 @@ namespace update_service.Model
         /// <param name="After">After.</param>
         /// <param name="Limit">Limit.</param>
         /// <param name="Data">Data.</param>
-        /// <param name="Order">Order.</param>
-        public FirmwareImagePage(string _Object = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), string After = default(string), int? Limit = default(int?), List<FirmwareImage> Data = default(List<FirmwareImage>), string Order = default(string))
+        /// <param name="Order">The order of the records to return. Available values: ASC, DESC; by default ASC..</param>
+        public FirmwareImagePage(string _Object = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), string After = default(string), int? Limit = default(int?), List<FirmwareImage> Data = default(List<FirmwareImage>), OrderEnum? Order = default(OrderEnum?))
         {
             this._Object = _Object;
             this.HasMore = HasMore;
@@ -80,11 +107,6 @@ namespace update_service.Model
         /// </summary>
         [DataMember(Name="data", EmitDefaultValue=false)]
         public List<FirmwareImage> Data { get; set; }
-        /// <summary>
-        /// Gets or Sets Order
-        /// </summary>
-        [DataMember(Name="order", EmitDefaultValue=false)]
-        public string Order { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
