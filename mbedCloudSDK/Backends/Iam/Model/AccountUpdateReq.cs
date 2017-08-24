@@ -38,13 +38,15 @@ namespace iam.Model
         /// <param name="DisplayName">The display name for the account, not longer than 100 characters..</param>
         /// <param name="Country">The country part of the postal address, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="Company">The name of the company, not longer than 100 characters. Required for commercial accounts only..</param>
+        /// <param name="IdleTimeout">The reference token expiration time in minutes for this account. Between 1 and 120 minutes..</param>
         /// <param name="State">The state part of the postal address, not longer than 100 characters..</param>
         /// <param name="Contact">The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="PostalCode">The postal code part of the postal address, not longer than 100 characters..</param>
+        /// <param name="EndMarket">The end market for this account, not longer than 100 characters..</param>
         /// <param name="PhoneNumber">The phone number of the company, not longer than 100 characters..</param>
         /// <param name="Email">The company email address for this account, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="Aliases">An array of aliases, not more than 10. An alias is not shorter than 8 and not longer than 100 characters..</param>
-        public AccountUpdateReq(string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string Country = default(string), string Company = default(string), string State = default(string), string Contact = default(string), string PostalCode = default(string), string PhoneNumber = default(string), string Email = default(string), List<string> Aliases = default(List<string>))
+        public AccountUpdateReq(string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string Country = default(string), string Company = default(string), string IdleTimeout = default(string), string State = default(string), string Contact = default(string), string PostalCode = default(string), string EndMarket = default(string), string PhoneNumber = default(string), string Email = default(string), List<string> Aliases = default(List<string>))
         {
             this.AddressLine2 = AddressLine2;
             this.City = City;
@@ -52,9 +54,11 @@ namespace iam.Model
             this.DisplayName = DisplayName;
             this.Country = Country;
             this.Company = Company;
+            this.IdleTimeout = IdleTimeout;
             this.State = State;
             this.Contact = Contact;
             this.PostalCode = PostalCode;
+            this.EndMarket = EndMarket;
             this.PhoneNumber = PhoneNumber;
             this.Email = Email;
             this.Aliases = Aliases;
@@ -97,6 +101,12 @@ namespace iam.Model
         [DataMember(Name="company", EmitDefaultValue=false)]
         public string Company { get; set; }
         /// <summary>
+        /// The reference token expiration time in minutes for this account. Between 1 and 120 minutes.
+        /// </summary>
+        /// <value>The reference token expiration time in minutes for this account. Between 1 and 120 minutes.</value>
+        [DataMember(Name="idle_timeout", EmitDefaultValue=false)]
+        public string IdleTimeout { get; set; }
+        /// <summary>
         /// The state part of the postal address, not longer than 100 characters.
         /// </summary>
         /// <value>The state part of the postal address, not longer than 100 characters.</value>
@@ -114,6 +124,12 @@ namespace iam.Model
         /// <value>The postal code part of the postal address, not longer than 100 characters.</value>
         [DataMember(Name="postal_code", EmitDefaultValue=false)]
         public string PostalCode { get; set; }
+        /// <summary>
+        /// The end market for this account, not longer than 100 characters.
+        /// </summary>
+        /// <value>The end market for this account, not longer than 100 characters.</value>
+        [DataMember(Name="end_market", EmitDefaultValue=false)]
+        public string EndMarket { get; set; }
         /// <summary>
         /// The phone number of the company, not longer than 100 characters.
         /// </summary>
@@ -146,9 +162,11 @@ namespace iam.Model
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
+            sb.Append("  IdleTimeout: ").Append(IdleTimeout).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");
+            sb.Append("  EndMarket: ").Append(EndMarket).Append("\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  Aliases: ").Append(Aliases).Append("\n");
@@ -219,6 +237,11 @@ namespace iam.Model
                     this.Company.Equals(other.Company)
                 ) && 
                 (
+                    this.IdleTimeout == other.IdleTimeout ||
+                    this.IdleTimeout != null &&
+                    this.IdleTimeout.Equals(other.IdleTimeout)
+                ) && 
+                (
                     this.State == other.State ||
                     this.State != null &&
                     this.State.Equals(other.State)
@@ -232,6 +255,11 @@ namespace iam.Model
                     this.PostalCode == other.PostalCode ||
                     this.PostalCode != null &&
                     this.PostalCode.Equals(other.PostalCode)
+                ) && 
+                (
+                    this.EndMarket == other.EndMarket ||
+                    this.EndMarket != null &&
+                    this.EndMarket.Equals(other.EndMarket)
                 ) && 
                 (
                     this.PhoneNumber == other.PhoneNumber ||
@@ -273,12 +301,16 @@ namespace iam.Model
                     hash = hash * 59 + this.Country.GetHashCode();
                 if (this.Company != null)
                     hash = hash * 59 + this.Company.GetHashCode();
+                if (this.IdleTimeout != null)
+                    hash = hash * 59 + this.IdleTimeout.GetHashCode();
                 if (this.State != null)
                     hash = hash * 59 + this.State.GetHashCode();
                 if (this.Contact != null)
                     hash = hash * 59 + this.Contact.GetHashCode();
                 if (this.PostalCode != null)
                     hash = hash * 59 + this.PostalCode.GetHashCode();
+                if (this.EndMarket != null)
+                    hash = hash * 59 + this.EndMarket.GetHashCode();
                 if (this.PhoneNumber != null)
                     hash = hash * 59 + this.PhoneNumber.GetHashCode();
                 if (this.Email != null)

@@ -37,7 +37,7 @@ namespace update_service.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="FirmwareImage" /> class.
         /// </summary>
-        /// <param name="Datafile">The binary file of firmware image. (required).</param>
+        /// <param name="Datafile">The url to binary file of firmware image. (required).</param>
         /// <param name="Description">The description of the object. (required).</param>
         /// <param name="CreatedAt">The time the object was created. (required).</param>
         /// <param name="_Object">The API resource entity. (required).</param>
@@ -47,7 +47,7 @@ namespace update_service.Model
         /// <param name="DatafileSize">Size of the datafile (in bytes)..</param>
         /// <param name="Id">The ID of the firmware image. (required).</param>
         /// <param name="Name">The name of the object. (required).</param>
-        public FirmwareImage(byte[] Datafile = default(byte[]), string Description = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), string DatafileChecksum = default(string), long? DatafileSize = default(long?), string Id = default(string), string Name = default(string))
+        public FirmwareImage(string Datafile = default(string), string Description = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), string DatafileChecksum = default(string), long? DatafileSize = default(long?), string Id = default(string), string Name = default(string))
         {
             // to ensure "Datafile" is required (not null)
             if (Datafile == null)
@@ -134,11 +134,11 @@ namespace update_service.Model
         }
         
         /// <summary>
-        /// The binary file of firmware image.
+        /// The url to binary file of firmware image.
         /// </summary>
-        /// <value>The binary file of firmware image.</value>
+        /// <value>The url to binary file of firmware image.</value>
         [DataMember(Name="datafile", EmitDefaultValue=false)]
-        public byte[] Datafile { get; set; }
+        public string Datafile { get; set; }
         /// <summary>
         /// The description of the object.
         /// </summary>

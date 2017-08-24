@@ -143,6 +143,8 @@ Class | Method | HTTP request | Description
  - [Model.Field](docs/Field.md)
  - [Model.GroupSummary](docs/GroupSummary.md)
  - [Model.GroupSummaryList](docs/GroupSummaryList.md)
+ - [Model.LoginHistory](docs/LoginHistory.md)
+ - [Model.MyUserInfoResp](docs/MyUserInfoResp.md)
  - [Model.SubjectList](docs/SubjectList.md)
  - [Model.TrustedCertificateReq](docs/TrustedCertificateReq.md)
  - [Model.TrustedCertificateResp](docs/TrustedCertificateResp.md)
@@ -152,6 +154,7 @@ Class | Method | HTTP request | Description
  - [Model.UserInfoResp](docs/UserInfoResp.md)
  - [Model.UserInfoRespList](docs/UserInfoRespList.md)
  - [Model.UserUpdateReq](docs/UserUpdateReq.md)
+ - [Model.UserUpdateResp](docs/UserUpdateResp.md)
 
 
 <a name="documentation-for-authorization"></a>

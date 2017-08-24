@@ -41,11 +41,13 @@ namespace iam.Model
         /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long..</param>
         /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted..</param>
         /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted..</param>
+        /// <param name="IsTotpEnabled">A flag indicating whether 2-factor authentication (TOTP) has to be enabled or disabled..</param>
+        /// <param name="Status">The status of the user..</param>
         /// <param name="FullName">The full name of the user, not longer than 100 characters..</param>
         /// <param name="Address">Address, not longer than 100 characters..</param>
         /// <param name="Password">The password when creating a new user. It will will generated when not present in the request..</param>
         /// <param name="Email">The email address, not longer than 254 characters. (required).</param>
-        public UserUpdateReq(string PhoneNumber = default(string), string Username = default(string), bool? IsMarketingAccepted = default(bool?), bool? IsGtcAccepted = default(bool?), string FullName = default(string), string Address = default(string), string Password = default(string), string Email = default(string))
+        public UserUpdateReq(string PhoneNumber = default(string), string Username = default(string), bool? IsMarketingAccepted = default(bool?), bool? IsGtcAccepted = default(bool?), bool? IsTotpEnabled = default(bool?), string Status = default(string), string FullName = default(string), string Address = default(string), string Password = default(string), string Email = default(string))
         {
             // to ensure "Email" is required (not null)
             if (Email == null)
@@ -60,6 +62,8 @@ namespace iam.Model
             this.Username = Username;
             this.IsMarketingAccepted = IsMarketingAccepted;
             this.IsGtcAccepted = IsGtcAccepted;
+            this.IsTotpEnabled = IsTotpEnabled;
+            this.Status = Status;
             this.FullName = FullName;
             this.Address = Address;
             this.Password = Password;
@@ -89,6 +93,18 @@ namespace iam.Model
         /// <value>A flag indicating that the General Terms and Conditions has been accepted.</value>
         [DataMember(Name="is_gtc_accepted", EmitDefaultValue=false)]
         public bool? IsGtcAccepted { get; set; }
+        /// <summary>
+        /// A flag indicating whether 2-factor authentication (TOTP) has to be enabled or disabled.
+        /// </summary>
+        /// <value>A flag indicating whether 2-factor authentication (TOTP) has to be enabled or disabled.</value>
+        [DataMember(Name="is_totp_enabled", EmitDefaultValue=false)]
+        public bool? IsTotpEnabled { get; set; }
+        /// <summary>
+        /// The status of the user.
+        /// </summary>
+        /// <value>The status of the user.</value>
+        [DataMember(Name="status", EmitDefaultValue=false)]
+        public string Status { get; set; }
         /// <summary>
         /// The full name of the user, not longer than 100 characters.
         /// </summary>
@@ -125,6 +141,8 @@ namespace iam.Model
             sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("  IsMarketingAccepted: ").Append(IsMarketingAccepted).Append("\n");
             sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
+            sb.Append("  IsTotpEnabled: ").Append(IsTotpEnabled).Append("\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  FullName: ").Append(FullName).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  Password: ").Append(Password).Append("\n");
@@ -186,6 +204,16 @@ namespace iam.Model
                     this.IsGtcAccepted.Equals(other.IsGtcAccepted)
                 ) && 
                 (
+                    this.IsTotpEnabled == other.IsTotpEnabled ||
+                    this.IsTotpEnabled != null &&
+                    this.IsTotpEnabled.Equals(other.IsTotpEnabled)
+                ) && 
+                (
+                    this.Status == other.Status ||
+                    this.Status != null &&
+                    this.Status.Equals(other.Status)
+                ) && 
+                (
                     this.FullName == other.FullName ||
                     this.FullName != null &&
                     this.FullName.Equals(other.FullName)
@@ -226,6 +254,10 @@ namespace iam.Model
                     hash = hash * 59 + this.IsMarketingAccepted.GetHashCode();
                 if (this.IsGtcAccepted != null)
                     hash = hash * 59 + this.IsGtcAccepted.GetHashCode();
+                if (this.IsTotpEnabled != null)
+                    hash = hash * 59 + this.IsTotpEnabled.GetHashCode();
+                if (this.Status != null)
+                    hash = hash * 59 + this.Status.GetHashCode();
                 if (this.FullName != null)
                     hash = hash * 59 + this.FullName.GetHashCode();
                 if (this.Address != null)
