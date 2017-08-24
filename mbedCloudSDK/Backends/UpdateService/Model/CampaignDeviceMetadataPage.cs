@@ -30,6 +30,33 @@ namespace update_service.Model
     public partial class CampaignDeviceMetadataPage :  IEquatable<CampaignDeviceMetadataPage>, IValidatableObject
     {
         /// <summary>
+        /// The order of the records to return. Available values: ASC, DESC; by default ASC.
+        /// </summary>
+        /// <value>The order of the records to return. Available values: ASC, DESC; by default ASC.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum OrderEnum
+        {
+            
+            /// <summary>
+            /// Enum ASC for "ASC"
+            /// </summary>
+            [EnumMember(Value = "ASC")]
+            ASC,
+            
+            /// <summary>
+            /// Enum DESC for "DESC"
+            /// </summary>
+            [EnumMember(Value = "DESC")]
+            DESC
+        }
+
+        /// <summary>
+        /// The order of the records to return. Available values: ASC, DESC; by default ASC.
+        /// </summary>
+        /// <value>The order of the records to return. Available values: ASC, DESC; by default ASC.</value>
+        [DataMember(Name="order", EmitDefaultValue=false)]
+        public OrderEnum? Order { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="CampaignDeviceMetadataPage" /> class.
         /// </summary>
         /// <param name="After">The entity ID to fetch after the given one..</param>
@@ -38,7 +65,8 @@ namespace update_service.Model
         /// <param name="_Object">Entity name: always ‘list’.</param>
         /// <param name="Limit">The number of results to return, (range: 2-1000), or equals to total_count.</param>
         /// <param name="Data">A list of entities.</param>
-        public CampaignDeviceMetadataPage(string After = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), string _Object = default(string), int? Limit = default(int?), List<CampaignDeviceMetadata> Data = default(List<CampaignDeviceMetadata>))
+        /// <param name="Order">The order of the records to return. Available values: ASC, DESC; by default ASC..</param>
+        public CampaignDeviceMetadataPage(string After = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), string _Object = default(string), int? Limit = default(int?), List<CampaignDeviceMetadata> Data = default(List<CampaignDeviceMetadata>), OrderEnum? Order = default(OrderEnum?))
         {
             this.After = After;
             this.HasMore = HasMore;
@@ -46,6 +74,7 @@ namespace update_service.Model
             this._Object = _Object;
             this.Limit = Limit;
             this.Data = Data;
+            this.Order = Order;
         }
         
         /// <summary>
@@ -98,6 +127,7 @@ namespace update_service.Model
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  Limit: ").Append(Limit).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  Order: ").Append(Order).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -163,6 +193,11 @@ namespace update_service.Model
                     this.Data == other.Data ||
                     this.Data != null &&
                     this.Data.SequenceEqual(other.Data)
+                ) && 
+                (
+                    this.Order == other.Order ||
+                    this.Order != null &&
+                    this.Order.Equals(other.Order)
                 );
         }
 
@@ -189,6 +224,8 @@ namespace update_service.Model
                     hash = hash * 59 + this.Limit.GetHashCode();
                 if (this.Data != null)
                     hash = hash * 59 + this.Data.GetHashCode();
+                if (this.Order != null)
+                    hash = hash * 59 + this.Order.GetHashCode();
                 return hash;
             }
         }

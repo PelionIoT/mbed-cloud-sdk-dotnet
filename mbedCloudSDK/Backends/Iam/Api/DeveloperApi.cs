@@ -317,8 +317,8 @@ namespace iam.Api
         /// An endpoint for retrieving the details of the logged in user.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>UserInfoResp</returns>
-        UserInfoResp GetMyUser ();
+        /// <returns>MyUserInfoResp</returns>
+        MyUserInfoResp GetMyUser ();
 
         /// <summary>
         /// Details of the current user.
@@ -327,8 +327,8 @@ namespace iam.Api
         /// An endpoint for retrieving the details of the logged in user.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of UserInfoResp</returns>
-        ApiResponse<UserInfoResp> GetMyUserWithHttpInfo ();
+        /// <returns>ApiResponse of MyUserInfoResp</returns>
+        ApiResponse<MyUserInfoResp> GetMyUserWithHttpInfo ();
         /// <summary>
         /// Remove API keys from a group.
         /// </summary>
@@ -427,8 +427,8 @@ namespace iam.Api
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
-        /// <returns>UserInfoResp</returns>
-        UserInfoResp UpdateMyUser (UserUpdateReq body);
+        /// <returns>UserUpdateResp</returns>
+        UserUpdateResp UpdateMyUser (UserUpdateReq body);
 
         /// <summary>
         /// Update user details.
@@ -438,8 +438,8 @@ namespace iam.Api
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
-        /// <returns>ApiResponse of UserInfoResp</returns>
-        ApiResponse<UserInfoResp> UpdateMyUserWithHttpInfo (UserUpdateReq body);
+        /// <returns>ApiResponse of UserUpdateResp</returns>
+        ApiResponse<UserUpdateResp> UpdateMyUserWithHttpInfo (UserUpdateReq body);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -735,8 +735,8 @@ namespace iam.Api
         /// An endpoint for retrieving the details of the logged in user.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of UserInfoResp</returns>
-        System.Threading.Tasks.Task<UserInfoResp> GetMyUserAsync ();
+        /// <returns>Task of MyUserInfoResp</returns>
+        System.Threading.Tasks.Task<MyUserInfoResp> GetMyUserAsync ();
 
         /// <summary>
         /// Details of the current user.
@@ -745,8 +745,8 @@ namespace iam.Api
         /// An endpoint for retrieving the details of the logged in user.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (UserInfoResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> GetMyUserAsyncWithHttpInfo ();
+        /// <returns>Task of ApiResponse (MyUserInfoResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<MyUserInfoResp>> GetMyUserAsyncWithHttpInfo ();
         /// <summary>
         /// Remove API keys from a group.
         /// </summary>
@@ -845,8 +845,8 @@ namespace iam.Api
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
-        /// <returns>Task of UserInfoResp</returns>
-        System.Threading.Tasks.Task<UserInfoResp> UpdateMyUserAsync (UserUpdateReq body);
+        /// <returns>Task of UserUpdateResp</returns>
+        System.Threading.Tasks.Task<UserUpdateResp> UpdateMyUserAsync (UserUpdateReq body);
 
         /// <summary>
         /// Update user details.
@@ -856,8 +856,8 @@ namespace iam.Api
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
-        /// <returns>Task of ApiResponse (UserInfoResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> UpdateMyUserAsyncWithHttpInfo (UserUpdateReq body);
+        /// <returns>Task of ApiResponse (UserUpdateResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UserUpdateResp>> UpdateMyUserAsyncWithHttpInfo (UserUpdateReq body);
         #endregion Asynchronous Operations
     }
 
@@ -2882,10 +2882,10 @@ namespace iam.Api
         /// Details of the current user. An endpoint for retrieving the details of the logged in user.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>UserInfoResp</returns>
-        public UserInfoResp GetMyUser ()
+        /// <returns>MyUserInfoResp</returns>
+        public MyUserInfoResp GetMyUser ()
         {
-             ApiResponse<UserInfoResp> localVarResponse = GetMyUserWithHttpInfo();
+             ApiResponse<MyUserInfoResp> localVarResponse = GetMyUserWithHttpInfo();
              return localVarResponse.Data;
         }
 
@@ -2893,8 +2893,8 @@ namespace iam.Api
         /// Details of the current user. An endpoint for retrieving the details of the logged in user.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of UserInfoResp</returns>
-        public ApiResponse< UserInfoResp > GetMyUserWithHttpInfo ()
+        /// <returns>ApiResponse of MyUserInfoResp</returns>
+        public ApiResponse< MyUserInfoResp > GetMyUserWithHttpInfo ()
         {
 
             var localVarPath = "/v3/users/me";
@@ -2942,9 +2942,9 @@ namespace iam.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<UserInfoResp>(localVarStatusCode,
+            return new ApiResponse<MyUserInfoResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoResp)));
+                (MyUserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(MyUserInfoResp)));
             
         }
 
@@ -2952,10 +2952,10 @@ namespace iam.Api
         /// Details of the current user. An endpoint for retrieving the details of the logged in user.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of UserInfoResp</returns>
-        public async System.Threading.Tasks.Task<UserInfoResp> GetMyUserAsync ()
+        /// <returns>Task of MyUserInfoResp</returns>
+        public async System.Threading.Tasks.Task<MyUserInfoResp> GetMyUserAsync ()
         {
-             ApiResponse<UserInfoResp> localVarResponse = await GetMyUserAsyncWithHttpInfo();
+             ApiResponse<MyUserInfoResp> localVarResponse = await GetMyUserAsyncWithHttpInfo();
              return localVarResponse.Data;
 
         }
@@ -2964,8 +2964,8 @@ namespace iam.Api
         /// Details of the current user. An endpoint for retrieving the details of the logged in user.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (UserInfoResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> GetMyUserAsyncWithHttpInfo ()
+        /// <returns>Task of ApiResponse (MyUserInfoResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<MyUserInfoResp>> GetMyUserAsyncWithHttpInfo ()
         {
 
             var localVarPath = "/v3/users/me";
@@ -3012,9 +3012,9 @@ namespace iam.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<UserInfoResp>(localVarStatusCode,
+            return new ApiResponse<MyUserInfoResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoResp)));
+                (MyUserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(MyUserInfoResp)));
             
         }
 
@@ -3727,10 +3727,10 @@ namespace iam.Api
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
-        /// <returns>UserInfoResp</returns>
-        public UserInfoResp UpdateMyUser (UserUpdateReq body)
+        /// <returns>UserUpdateResp</returns>
+        public UserUpdateResp UpdateMyUser (UserUpdateReq body)
         {
-             ApiResponse<UserInfoResp> localVarResponse = UpdateMyUserWithHttpInfo(body);
+             ApiResponse<UserUpdateResp> localVarResponse = UpdateMyUserWithHttpInfo(body);
              return localVarResponse.Data;
         }
 
@@ -3739,8 +3739,8 @@ namespace iam.Api
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
-        /// <returns>ApiResponse of UserInfoResp</returns>
-        public ApiResponse< UserInfoResp > UpdateMyUserWithHttpInfo (UserUpdateReq body)
+        /// <returns>ApiResponse of UserUpdateResp</returns>
+        public ApiResponse< UserUpdateResp > UpdateMyUserWithHttpInfo (UserUpdateReq body)
         {
             // verify the required parameter 'body' is set
             if (body == null)
@@ -3800,9 +3800,9 @@ namespace iam.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<UserInfoResp>(localVarStatusCode,
+            return new ApiResponse<UserUpdateResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoResp)));
+                (UserUpdateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserUpdateResp)));
             
         }
 
@@ -3811,10 +3811,10 @@ namespace iam.Api
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
-        /// <returns>Task of UserInfoResp</returns>
-        public async System.Threading.Tasks.Task<UserInfoResp> UpdateMyUserAsync (UserUpdateReq body)
+        /// <returns>Task of UserUpdateResp</returns>
+        public async System.Threading.Tasks.Task<UserUpdateResp> UpdateMyUserAsync (UserUpdateReq body)
         {
-             ApiResponse<UserInfoResp> localVarResponse = await UpdateMyUserAsyncWithHttpInfo(body);
+             ApiResponse<UserUpdateResp> localVarResponse = await UpdateMyUserAsyncWithHttpInfo(body);
              return localVarResponse.Data;
 
         }
@@ -3824,8 +3824,8 @@ namespace iam.Api
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
-        /// <returns>Task of ApiResponse (UserInfoResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> UpdateMyUserAsyncWithHttpInfo (UserUpdateReq body)
+        /// <returns>Task of ApiResponse (UserUpdateResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<UserUpdateResp>> UpdateMyUserAsyncWithHttpInfo (UserUpdateReq body)
         {
             // verify the required parameter 'body' is set
             if (body == null)
@@ -3884,9 +3884,9 @@ namespace iam.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<UserInfoResp>(localVarStatusCode,
+            return new ApiResponse<UserUpdateResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoResp)));
+                (UserUpdateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserUpdateResp)));
             
         }
 

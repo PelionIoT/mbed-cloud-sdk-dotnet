@@ -155,6 +155,8 @@ namespace iam.Model
         /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted..</param>
         /// <param name="AccountId">The UUID of the account. (required).</param>
         /// <param name="Email">The email address. (required).</param>
+        /// <param name="LoginHistory">Timestamps, succeedings, IP addresses and user agent information of the last five logins of the user, with timestamps in RFC3339 format..</param>
+        /// <param name="IsTotpEnabled">A flag indicating whether 2-factor authentication (TOTP) has been enabled..</param>
         /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted..</param>
         /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="FullName">The full name of the user..</param>
@@ -164,7 +166,7 @@ namespace iam.Model
         /// <param name="PhoneNumber">Phone number..</param>
         /// <param name="Id">The UUID of the user. (required).</param>
         /// <param name="LastLoginTime">A timestamp of the latest login of the user, in milliseconds..</param>
-        public UserInfoResp(StatusEnum? Status = default(StatusEnum?), string Username = default(string), List<string> Groups = default(List<string>), long? PasswordChangedTime = default(long?), bool? EmailVerified = default(bool?), DateTime? CreatedAt = default(DateTime?), ObjectEnum? _Object = default(ObjectEnum?), bool? IsGtcAccepted = default(bool?), string AccountId = default(string), string Email = default(string), bool? IsMarketingAccepted = default(bool?), string Etag = default(string), string FullName = default(string), string Address = default(string), long? CreationTime = default(long?), string Password = default(string), string PhoneNumber = default(string), string Id = default(string), long? LastLoginTime = default(long?))
+        public UserInfoResp(StatusEnum? Status = default(StatusEnum?), string Username = default(string), List<string> Groups = default(List<string>), long? PasswordChangedTime = default(long?), bool? EmailVerified = default(bool?), DateTime? CreatedAt = default(DateTime?), ObjectEnum? _Object = default(ObjectEnum?), bool? IsGtcAccepted = default(bool?), string AccountId = default(string), string Email = default(string), List<LoginHistory> LoginHistory = default(List<LoginHistory>), bool? IsTotpEnabled = default(bool?), bool? IsMarketingAccepted = default(bool?), string Etag = default(string), string FullName = default(string), string Address = default(string), long? CreationTime = default(long?), string Password = default(string), string PhoneNumber = default(string), string Id = default(string), long? LastLoginTime = default(long?))
         {
             // to ensure "Status" is required (not null)
             if (Status == null)
@@ -226,6 +228,8 @@ namespace iam.Model
             this.EmailVerified = EmailVerified;
             this.CreatedAt = CreatedAt;
             this.IsGtcAccepted = IsGtcAccepted;
+            this.LoginHistory = LoginHistory;
+            this.IsTotpEnabled = IsTotpEnabled;
             this.IsMarketingAccepted = IsMarketingAccepted;
             this.FullName = FullName;
             this.Address = Address;
@@ -283,6 +287,18 @@ namespace iam.Model
         /// <value>The email address.</value>
         [DataMember(Name="email", EmitDefaultValue=false)]
         public string Email { get; set; }
+        /// <summary>
+        /// Timestamps, succeedings, IP addresses and user agent information of the last five logins of the user, with timestamps in RFC3339 format.
+        /// </summary>
+        /// <value>Timestamps, succeedings, IP addresses and user agent information of the last five logins of the user, with timestamps in RFC3339 format.</value>
+        [DataMember(Name="login_history", EmitDefaultValue=false)]
+        public List<LoginHistory> LoginHistory { get; set; }
+        /// <summary>
+        /// A flag indicating whether 2-factor authentication (TOTP) has been enabled.
+        /// </summary>
+        /// <value>A flag indicating whether 2-factor authentication (TOTP) has been enabled.</value>
+        [DataMember(Name="is_totp_enabled", EmitDefaultValue=false)]
+        public bool? IsTotpEnabled { get; set; }
         /// <summary>
         /// A flag indicating that receiving marketing information has been accepted.
         /// </summary>
@@ -355,6 +371,8 @@ namespace iam.Model
             sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
+            sb.Append("  LoginHistory: ").Append(LoginHistory).Append("\n");
+            sb.Append("  IsTotpEnabled: ").Append(IsTotpEnabled).Append("\n");
             sb.Append("  IsMarketingAccepted: ").Append(IsMarketingAccepted).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  FullName: ").Append(FullName).Append("\n");
@@ -451,6 +469,16 @@ namespace iam.Model
                     this.Email.Equals(other.Email)
                 ) && 
                 (
+                    this.LoginHistory == other.LoginHistory ||
+                    this.LoginHistory != null &&
+                    this.LoginHistory.SequenceEqual(other.LoginHistory)
+                ) && 
+                (
+                    this.IsTotpEnabled == other.IsTotpEnabled ||
+                    this.IsTotpEnabled != null &&
+                    this.IsTotpEnabled.Equals(other.IsTotpEnabled)
+                ) && 
+                (
                     this.IsMarketingAccepted == other.IsMarketingAccepted ||
                     this.IsMarketingAccepted != null &&
                     this.IsMarketingAccepted.Equals(other.IsMarketingAccepted)
@@ -528,6 +556,10 @@ namespace iam.Model
                     hash = hash * 59 + this.AccountId.GetHashCode();
                 if (this.Email != null)
                     hash = hash * 59 + this.Email.GetHashCode();
+                if (this.LoginHistory != null)
+                    hash = hash * 59 + this.LoginHistory.GetHashCode();
+                if (this.IsTotpEnabled != null)
+                    hash = hash * 59 + this.IsTotpEnabled.GetHashCode();
                 if (this.IsMarketingAccepted != null)
                     hash = hash * 59 + this.IsMarketingAccepted.GetHashCode();
                 if (this.Etag != null)

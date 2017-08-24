@@ -114,7 +114,7 @@ namespace update_service.Model
         /// <param name="Id">The ID of the campaign..</param>
         /// <param name="DeviceFilter">The filter for the devices the campaign will target..</param>
         /// <param name="Name">A name for this campaign..</param>
-        public UpdateCampaign(string Description = default(string), string RootManifestId = default(string), string CreatedAt = default(string), string _Object = default(string), string When = default(string), StateEnum? State = default(StateEnum?), string Finished = default(string), string Etag = default(string), string RootManifestUrl = default(string), DateTime? StartedAt = default(DateTime?), string Id = default(string), string DeviceFilter = default(string), string Name = default(string))
+        public UpdateCampaign(string Description = default(string), string RootManifestId = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), string When = default(string), StateEnum? State = default(StateEnum?), DateTime? Finished = default(DateTime?), string Etag = default(string), string RootManifestUrl = default(string), DateTime? StartedAt = default(DateTime?), string Id = default(string), string DeviceFilter = default(string), string Name = default(string))
         {
             this.Description = Description;
             this.RootManifestId = RootManifestId;
@@ -147,7 +147,7 @@ namespace update_service.Model
         /// </summary>
         /// <value>The time the object was created.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
-        public string CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
         /// <summary>
         /// The API resource entity.
         /// </summary>
@@ -165,7 +165,7 @@ namespace update_service.Model
         /// </summary>
         /// <value>The timestamp when the update campaign finished.</value>
         [DataMember(Name="finished", EmitDefaultValue=false)]
-        public string Finished { get; set; }
+        public DateTime? Finished { get; set; }
         /// <summary>
         /// The entity instance signature.
         /// </summary>
