@@ -55,6 +55,10 @@ namespace mbedCloudSDK.DeviceDirectory.Api
             }
         }
 
+        /// <summary>
+        /// Get query in device query service.
+        /// </summary>
+        /// <param name="query">id of the query to get</param>
         public Query GetQuery(string queryId)
         {
             try
@@ -88,6 +92,10 @@ namespace mbedCloudSDK.DeviceDirectory.Api
             }
         }
 
+        /// <summary>
+        /// Update existing query in device query service.
+        /// </summary>
+        /// <param name="query">Existing query ID to update</param>
         public Query UpdateQuery(string queryId, Query queryToUpdate)
         {
             var originalQuery = GetQuery(queryId);

@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.Configuration;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace TestServer
@@ -51,10 +52,17 @@ namespace TestServer
 
             foreach(var k in nameValueCollection.AllKeys)
             {
-                dict.Add(SnakeToCamel(k).ToUpper(), nameValueCollection[k]);
+                var key = SnakeToCamel(k).ToUpper();
+                //var val = Pascalize(nameValueCollection[k]);
+                dict.Add(key, nameValueCollection[k]);
             }
 
             return dict;
+        }
+
+        public static string Pascalize(string input)
+        {
+            return Regex.Replace(input, "(?:^|_)(.)", match => match.Groups[1].Value.ToUpper());
         }
 
         public static void ReadAllSettings()

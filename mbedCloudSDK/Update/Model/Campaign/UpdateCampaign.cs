@@ -14,7 +14,6 @@ namespace mbedCloudSDK.Update.Model.Campaign
     /// </summary>
     public class UpdateCampaign
     {
-
         /// <summary>
         /// State of the update campaign.
         /// </summary>
@@ -70,6 +69,12 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// A name for this campaign
         /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// A when for this campaign
+        /// </summary>
+        public string When { get; set; }
+
+        public string _Object { get; set; }
 
         /// <summary>
         /// Create new update campaign object.

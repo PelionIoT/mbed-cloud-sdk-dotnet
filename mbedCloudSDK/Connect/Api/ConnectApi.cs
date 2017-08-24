@@ -32,7 +32,7 @@ namespace mbedCloudSDK.Connect.Api
         /// <summary>
         /// Resources that are currently subscribed.
         /// </summary>
-        public static Dictionary<String, Resource> resourceSubscribtions = new Dictionary<string, Resource>();
+        public static Dictionary<string, string> resourceSubscribtions = new Dictionary<string, string>();
 
         /// <summary>
         /// Responses to async requests.
@@ -53,7 +53,7 @@ namespace mbedCloudSDK.Connect.Api
         {
             cancellationToken = new CancellationTokenSource();
             NotificationTask = new Task(new Action(Notifications), cancellationToken.Token, TaskCreationOptions.LongRunning);
-            resourceSubscribtions = new Dictionary<string, Resource>();
+            resourceSubscribtions = new Dictionary<string, string>();
 
             this.auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);
 

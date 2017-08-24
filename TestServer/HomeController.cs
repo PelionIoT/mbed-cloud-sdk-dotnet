@@ -59,9 +59,9 @@ namespace TestServer
                 return Content(HttpStatusCode.InternalServerError,new { Message = "No method found"});
             }
 
-            var @params = GetMethodParams(methodInfo, argsJsonObj);
             try
             {
+                var @params = GetMethodParams(methodInfo, argsJsonObj);
                 var invokedMethod = methodInfo.Invoke(moduleInstance, @params.ToArray());
                 var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, GetSnakeJsonSettings());
                 return Ok(JsonConvert.DeserializeObject(result));
@@ -95,6 +95,22 @@ namespace TestServer
                         return Content(HttpStatusCode.InternalServerError, exception);
                     }
                 }
+                if(e.InnerException.GetType() == typeof(mds.Client.ApiException))
+                {
+                    var exception = e.InnerException as mds.Client.ApiException;
+                    if(exception.ErrorCode == 404)
+                    {
+                        return Content(HttpStatusCode.NotFound, exception);
+                    }
+                    else if(exception.ErrorCode == 400)
+                    {
+                        return Content(HttpStatusCode.BadRequest, exception);
+                    }
+                    else
+                    {
+                        return Content(HttpStatusCode.InternalServerError, exception);
+                    }
+                }
                 return Content(HttpStatusCode.InternalServerError, e.InnerException);
             }
             catch (Exception e)
@@ -111,6 +127,16 @@ namespace TestServer
                 NamingStrategy = new SnakeCaseNamingStrategy()
             };
             settings.ContractResolver = contractResolver;
+            return settings;
+        }
+
+        private JsonSerializerSettings GetCamelJsonSettings()
+        {
+            var settings = new JsonSerializerSettings()
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
+
             return settings;
         }
 
@@ -131,6 +157,13 @@ namespace TestServer
                     var stream = new MemoryStream();
                     serialisedParams.Add(stream);
                 }
+                else if(paramType.IsArray)
+                {
+                    var paramName = paramType.Name.Replace("[]", "s").ToUpper();
+                    var arrayJson = argsJsonObj[paramName].ToString();
+                    var array = JsonConvert.DeserializeObject(arrayJson,paramType);
+                    serialisedParams.Add(array);
+                }
                 else
                 {
                     var properties = paramType.GetProperties();
@@ -138,6 +171,12 @@ namespace TestServer
                     foreach (var prop in properties)
                     {
                         var propertyInst = paramType.GetProperty(prop.Name);
+                        if(propertyInst.PropertyType.BaseType == typeof(System.Enum)){
+                            var e = propertyInst.PropertyType;
+                            if(GetParamValue(propertyInst, argsJsonObj) == null){
+                                argsJsonObj[propertyInst.Name.ToUpper()] = e.GetEnumNames()[0];
+                            }
+                        }
                         if (propertyInst != null)
                         {
                             var paramValue = GetParamValue(propertyInst, argsJsonObj);

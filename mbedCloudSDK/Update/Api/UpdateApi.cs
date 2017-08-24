@@ -9,7 +9,7 @@ namespace mbedCloudSDK.Update.Api
     /// </summary>
     public partial class UpdateApi : BaseApi
     {
-        private deployment_service.Api.DefaultApi updateApi;
+        private deployment_service.Api.DefaultApi deploymentApi;
         private firmware_catalog.Api.DefaultApi firmwareApi;
 
         /// <summary>
@@ -22,9 +22,9 @@ namespace mbedCloudSDK.Update.Api
             {
                 Configuration.Default.ApiClient = new ApiClient(config.Host);
             }
-            this.updateApi = new deployment_service.Api.DefaultApi(config.Host);
-            this.updateApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            this.updateApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            this.deploymentApi = new deployment_service.Api.DefaultApi(config.Host);
+            this.deploymentApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
+            this.deploymentApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
 
             this.firmwareApi = new firmware_catalog.Api.DefaultApi(config.Host);
             this.firmwareApi.Configuration.ApiKey["Authorization"] = config.ApiKey;

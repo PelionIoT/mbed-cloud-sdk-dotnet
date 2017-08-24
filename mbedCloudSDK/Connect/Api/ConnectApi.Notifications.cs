@@ -7,12 +7,9 @@ namespace mbedCloudSDK.Connect.Api
     {
         private void Notifications()
         {
-            var api = new mds.Api.NotificationsApi(config.Host);
-            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
             while (!cancellationToken.IsCancellationRequested)
             {
-                var resp = api.V2NotificationPullGet();
+                var resp = notificationsApi.V2NotificationPullGet();
                 if (resp == null)
                 {
                     continue;
@@ -41,7 +38,7 @@ namespace mbedCloudSDK.Connect.Api
                         string resourceSubs = notification.Ep + notification.Path;
                         if (resourceSubscribtions.ContainsKey(resourceSubs))
                         {
-                            resourceSubscribtions[resourceSubs].Queue.Add(payload);
+                            //resourceSubscribtions[resourceSubs].Queue.Add(payload);
                         }
                     }
                 }

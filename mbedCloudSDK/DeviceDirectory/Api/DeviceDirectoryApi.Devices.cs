@@ -60,6 +60,10 @@ namespace mbedCloudSDK.DeviceDirectory.Api
             }
         }
 
+        /// <summary>
+        /// Get device details from catalog.
+        /// </summary>
+        /// <param name="deviceId">The ID of the device to retrieve.</param>
         public Device GetDevice(string deviceId){
             try
             {
@@ -72,6 +76,10 @@ namespace mbedCloudSDK.DeviceDirectory.Api
             }
         }
 
+        /// <summary>
+        /// Add a new device to catalog.
+        /// </summary>
+        /// <param name="device">The device to add to catalog.</param>
         public Device AddDevice(Device device){
             var deviceDataPostRequest = new device_catalog.Model.DeviceDataPostRequest(DeviceKey:device.CertificateFingerprint,CaId:device.CertificateIssuerId){
                 BootstrapExpirationDate = device.BootstrapExpirationDate,
@@ -112,6 +120,10 @@ namespace mbedCloudSDK.DeviceDirectory.Api
 
         }
 
+        /// <summary>
+        /// Update existing device in catalog.
+        /// </summary>
+        /// <param name="device">The device to update.</param>
         public Device UpdateDevice(string deviceId, Device deviceToUpdate)
         {
             var originalDevice = GetDevice(deviceId);

@@ -15,8 +15,6 @@ namespace mbedCloudSDK.DeviceDirectory.Api
         private device_catalog.Api.DefaultApi api;
         private device_query_service.Api.DefaultApi queryApi;
 
-        #region Contructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="T:mbedCloudSDK.DeviceDirectory.DeviceDirectory"/> class.
         /// </summary>
@@ -31,11 +29,6 @@ namespace mbedCloudSDK.DeviceDirectory.Api
             this.queryApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
             this.queryApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
         }
-
-        #endregion
-
-        #region Utils
-
         private string FixedPath(string path)
         {
             if (path.StartsWith("/", StringComparison.OrdinalIgnoreCase))
@@ -44,7 +37,5 @@ namespace mbedCloudSDK.DeviceDirectory.Api
             }
             return path;
         }
-
-        #endregion
     }
 }

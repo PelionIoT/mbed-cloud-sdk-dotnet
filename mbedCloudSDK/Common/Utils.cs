@@ -8,6 +8,11 @@ using Newtonsoft.Json.Linq;
 namespace mbedCloudSDK.Common
 {
     public static class Utils{
+        /// <summary>
+        /// Map update object to original object.
+        /// </summary>
+        /// <param name="origObj">Original object</param>
+        /// <param name="updateObj">Update object</param>
         public static object MapToUpdate(object origObj, object updateObj){
             var type = updateObj.GetType();
             var props = type.GetProperties();

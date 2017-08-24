@@ -57,6 +57,22 @@ namespace mbedCloudSDK.Update.Api
         }
 
         /// <summary>
+        /// Get a firmware image with provided image_id.
+        /// </summary>
+        /// <param name="imageId">The firmware ID for the image to retrieve.</param>
+        public FirmwareImage GetFirmwareImage(string imageId)
+        {
+            try
+            {
+                return FirmwareImage.Map(firmwareApi.FirmwareImageRetrieve(imageId));
+            }
+            catch (device_catalog.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        /// <summary>
         /// Creates the firmware image.
         /// </summary>
         /// <returns>The firmware image.</returns>
@@ -64,10 +80,9 @@ namespace mbedCloudSDK.Update.Api
         /// <param name="name">Name.</param>
         public FirmwareImage AddFirmwareImage(Stream dataFile, string name)
         {
-            var api = new firmware_catalog.Api.DefaultApi(config.Host);
             try
             {
-                return FirmwareImage.Map(api.FirmwareImageCreate(dataFile, name));
+                return FirmwareImage.Map(firmwareApi.FirmwareImageCreate(dataFile, name));
             }
             catch (device_catalog.Client.ApiException e)
             {
@@ -84,7 +99,6 @@ namespace mbedCloudSDK.Update.Api
             try
             {
                 firmwareApi.FirmwareImageDestroy(firmwareImageId);
-
             }
             catch (device_catalog.Client.ApiException e)
             {

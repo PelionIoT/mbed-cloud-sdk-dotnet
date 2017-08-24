@@ -94,11 +94,11 @@ namespace ConsoleExamples.Examples.Update
             campaign.Name = campaignName;
             campaign.RootManifestId = manifest.Id;
             campaign.DeviceFilter = query.QueryString;
-            campaign = api.AddUpdateCampaign(campaign);
+            campaign = api.AddCampaign(campaign);
             Console.WriteLine("Created campaign : " + campaign);
 
             // Start update campaign
-            campaign = api.StartUpdateCampaign(campaign);
+            campaign = api.StartCampaign(campaign);
 
             // Print status of update campaign
             /*

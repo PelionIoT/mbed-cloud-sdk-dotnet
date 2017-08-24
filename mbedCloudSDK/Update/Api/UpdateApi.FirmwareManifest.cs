@@ -57,6 +57,22 @@ namespace mbedCloudSDK.Update.Api
         }
 
         /// <summary>
+        /// Get manifest with provided manifest_id.
+        /// </summary>
+        /// <param name="manifestId">ID of manifest to retrieve.</param>
+        public FirmwareManifest GetFirmwareManifest(string manifestId)
+        {
+            try
+            {
+                return FirmwareManifest.Map(firmwareApi.FirmwareManifestRetrieve(manifestId));
+            }
+            catch(firmware_catalog.Client.ApiException ex)
+            {
+                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+            }
+        }
+
+        /// <summary>
         /// Add Firmware Manifest.
         /// </summary>
         /// <param name="dataFile">Stream to the manifest file.</param>
