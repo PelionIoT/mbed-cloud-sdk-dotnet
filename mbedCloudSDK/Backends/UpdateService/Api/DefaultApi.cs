@@ -1,7 +1,7 @@
 /* 
  * Update Service API
  *
- * This is the API Documentation for the mbed deployment service which is part of the update service.
+ * This is the API documentation for the Mbed deployment service, which is part of the update service.
  *
  * OpenAPI spec version: 3
  * 
@@ -362,7 +362,7 @@ namespace update_service.Api
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
+        /// <param name="campaignDeviceMetadataId">The ID of the campaign device metadata</param>
         /// <returns>CampaignDeviceMetadata</returns>
         CampaignDeviceMetadata V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGet (string campaignId, string campaignDeviceMetadataId);
 
@@ -374,7 +374,7 @@ namespace update_service.Api
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
+        /// <param name="campaignDeviceMetadataId">The ID of the campaign device metadata</param>
         /// <returns>ApiResponse of CampaignDeviceMetadata</returns>
         ApiResponse<CampaignDeviceMetadata> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGetWithHttpInfo (string campaignId, string campaignDeviceMetadataId);
         /// <summary>
@@ -746,7 +746,7 @@ namespace update_service.Api
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
+        /// <param name="campaignDeviceMetadataId">The ID of the campaign device metadata</param>
         /// <returns>Task of CampaignDeviceMetadata</returns>
         System.Threading.Tasks.Task<CampaignDeviceMetadata> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGetAsync (string campaignId, string campaignDeviceMetadataId);
 
@@ -758,7 +758,7 @@ namespace update_service.Api
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
+        /// <param name="campaignDeviceMetadataId">The ID of the campaign device metadata</param>
         /// <returns>Task of ApiResponse (CampaignDeviceMetadata)</returns>
         System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadata>> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGetAsyncWithHttpInfo (string campaignId, string campaignDeviceMetadataId);
         /// <summary>
@@ -3161,7 +3161,7 @@ namespace update_service.Api
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
+        /// <param name="campaignDeviceMetadataId">The ID of the campaign device metadata</param>
         /// <returns>CampaignDeviceMetadata</returns>
         public CampaignDeviceMetadata V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGet (string campaignId, string campaignDeviceMetadataId)
         {
@@ -3174,7 +3174,7 @@ namespace update_service.Api
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
+        /// <param name="campaignDeviceMetadataId">The ID of the campaign device metadata</param>
         /// <returns>ApiResponse of CampaignDeviceMetadata</returns>
         public ApiResponse< CampaignDeviceMetadata > V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGetWithHttpInfo (string campaignId, string campaignDeviceMetadataId)
         {
@@ -3242,7 +3242,7 @@ namespace update_service.Api
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
+        /// <param name="campaignDeviceMetadataId">The ID of the campaign device metadata</param>
         /// <returns>Task of CampaignDeviceMetadata</returns>
         public async System.Threading.Tasks.Task<CampaignDeviceMetadata> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGetAsync (string campaignId, string campaignDeviceMetadataId)
         {
@@ -3256,7 +3256,7 @@ namespace update_service.Api
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
-        /// <param name="campaignDeviceMetadataId">The id of the campaign device metadata</param>
+        /// <param name="campaignDeviceMetadataId">The ID of the campaign device metadata</param>
         /// <returns>Task of ApiResponse (CampaignDeviceMetadata)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadata>> V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGetAsyncWithHttpInfo (string campaignId, string campaignDeviceMetadataId)
         {

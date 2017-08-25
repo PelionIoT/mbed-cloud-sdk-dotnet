@@ -1,7 +1,7 @@
 /* 
  * Update Service API
  *
- * This is the API Documentation for the mbed deployment service which is part of the update service.
+ * This is the API documentation for the Mbed deployment service, which is part of the update service.
  *
  * OpenAPI spec version: 3
  * 
@@ -30,9 +30,9 @@ namespace update_service.Model
     public partial class CampaignDeviceMetadata :  IEquatable<CampaignDeviceMetadata>, IValidatableObject
     {
         /// <summary>
-        /// The state of the update campaign on the device.
+        /// The state of the update campaign on the device
         /// </summary>
-        /// <value>The state of the update campaign on the device.</value>
+        /// <value>The state of the update campaign on the device</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum DeploymentStateEnum
         {
@@ -69,26 +69,26 @@ namespace update_service.Model
         }
 
         /// <summary>
-        /// The state of the update campaign on the device.
+        /// The state of the update campaign on the device
         /// </summary>
-        /// <value>The state of the update campaign on the device.</value>
+        /// <value>The state of the update campaign on the device</value>
         [DataMember(Name="deployment_state", EmitDefaultValue=false)]
         public DeploymentStateEnum? DeploymentState { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CampaignDeviceMetadata" /> class.
         /// </summary>
-        /// <param name="Description">Description of the record.</param>
-        /// <param name="Campaign">The id of the campaign the device is in.</param>
-        /// <param name="CreatedAt">This time the record was created in the database.</param>
+        /// <param name="Description">Description.</param>
+        /// <param name="Campaign">The ID of the campaign the device is in.</param>
+        /// <param name="CreatedAt">The time the campaign was created.</param>
         /// <param name="_Object">Entity name: always &#39;update-campaign-device-metadata&#39;.</param>
         /// <param name="UpdatedAt">This time this record was modified in the database format: date-time.</param>
         /// <param name="Mechanism">The mechanism used to deliver the firmware (connector or direct).</param>
         /// <param name="Name">The name of the record.</param>
-        /// <param name="Etag">API resource entity version..</param>
-        /// <param name="MechanismUrl">The url of cloud connect used.</param>
-        /// <param name="DeploymentState">The state of the update campaign on the device..</param>
-        /// <param name="Id">The id of the metadata record.</param>
-        /// <param name="DeviceId">The id of the device.</param>
+        /// <param name="Etag">API resource entity version.</param>
+        /// <param name="MechanismUrl">The URL of cloud connect used.</param>
+        /// <param name="DeploymentState">The state of the update campaign on the device.</param>
+        /// <param name="Id">The ID of the metadata record.</param>
+        /// <param name="DeviceId">The ID of the device.</param>
         public CampaignDeviceMetadata(string Description = default(string), string Campaign = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), string Mechanism = default(string), string Name = default(string), string Etag = default(string), string MechanismUrl = default(string), DeploymentStateEnum? DeploymentState = default(DeploymentStateEnum?), string Id = default(string), string DeviceId = default(string))
         {
             this.Description = Description;
@@ -106,21 +106,21 @@ namespace update_service.Model
         }
         
         /// <summary>
-        /// Description of the record
+        /// Description
         /// </summary>
-        /// <value>Description of the record</value>
+        /// <value>Description</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
         /// <summary>
-        /// The id of the campaign the device is in
+        /// The ID of the campaign the device is in
         /// </summary>
-        /// <value>The id of the campaign the device is in</value>
+        /// <value>The ID of the campaign the device is in</value>
         [DataMember(Name="campaign", EmitDefaultValue=false)]
         public string Campaign { get; set; }
         /// <summary>
-        /// This time the record was created in the database
+        /// The time the campaign was created
         /// </summary>
-        /// <value>This time the record was created in the database</value>
+        /// <value>The time the campaign was created</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
         /// <summary>
@@ -148,27 +148,27 @@ namespace update_service.Model
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
-        /// API resource entity version.
+        /// API resource entity version
         /// </summary>
-        /// <value>API resource entity version.</value>
+        /// <value>API resource entity version</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public string Etag { get; set; }
         /// <summary>
-        /// The url of cloud connect used
+        /// The URL of cloud connect used
         /// </summary>
-        /// <value>The url of cloud connect used</value>
+        /// <value>The URL of cloud connect used</value>
         [DataMember(Name="mechanism_url", EmitDefaultValue=false)]
         public string MechanismUrl { get; set; }
         /// <summary>
-        /// The id of the metadata record
+        /// The ID of the metadata record
         /// </summary>
-        /// <value>The id of the metadata record</value>
+        /// <value>The ID of the metadata record</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
         /// <summary>
-        /// The id of the device
+        /// The ID of the device
         /// </summary>
-        /// <value>The id of the device</value>
+        /// <value>The ID of the device</value>
         [DataMember(Name="device_id", EmitDefaultValue=false)]
         public string DeviceId { get; set; }
         /// <summary>
