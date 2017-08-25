@@ -32,36 +32,77 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="LoginHistory" /> class.
         /// </summary>
-        /// <param name="Date">Date.</param>
-        /// <param name="UserAgent">UserAgent.</param>
-        /// <param name="IpAddress">IpAddress.</param>
-        /// <param name="Success">Success.</param>
-        public LoginHistory(string Date = default(string), string UserAgent = default(string), string IpAddress = default(string), bool? Success = default(bool?))
+        [JsonConstructorAttribute]
+        protected LoginHistory() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginHistory" /> class.
+        /// </summary>
+        /// <param name="Date">UTC time RFC3339 for this login attempt. (required).</param>
+        /// <param name="IpAddress">IP address of the client. (required).</param>
+        /// <param name="UserAgent">User Agent header from the login request. (required).</param>
+        /// <param name="Success">Flag indicating whether login attempt was successful or not. (required).</param>
+        public LoginHistory(DateTime? Date = default(DateTime?), string IpAddress = default(string), string UserAgent = default(string), bool? Success = default(bool?))
         {
-            this.Date = Date;
-            this.UserAgent = UserAgent;
-            this.IpAddress = IpAddress;
-            this.Success = Success;
+            // to ensure "Date" is required (not null)
+            if (Date == null)
+            {
+                throw new InvalidDataException("Date is a required property for LoginHistory and cannot be null");
+            }
+            else
+            {
+                this.Date = Date;
+            }
+            // to ensure "IpAddress" is required (not null)
+            if (IpAddress == null)
+            {
+                throw new InvalidDataException("IpAddress is a required property for LoginHistory and cannot be null");
+            }
+            else
+            {
+                this.IpAddress = IpAddress;
+            }
+            // to ensure "UserAgent" is required (not null)
+            if (UserAgent == null)
+            {
+                throw new InvalidDataException("UserAgent is a required property for LoginHistory and cannot be null");
+            }
+            else
+            {
+                this.UserAgent = UserAgent;
+            }
+            // to ensure "Success" is required (not null)
+            if (Success == null)
+            {
+                throw new InvalidDataException("Success is a required property for LoginHistory and cannot be null");
+            }
+            else
+            {
+                this.Success = Success;
+            }
         }
         
         /// <summary>
-        /// Gets or Sets Date
+        /// UTC time RFC3339 for this login attempt.
         /// </summary>
+        /// <value>UTC time RFC3339 for this login attempt.</value>
         [DataMember(Name="date", EmitDefaultValue=false)]
-        public string Date { get; set; }
+        public DateTime? Date { get; set; }
         /// <summary>
-        /// Gets or Sets UserAgent
+        /// IP address of the client.
         /// </summary>
-        [DataMember(Name="userAgent", EmitDefaultValue=false)]
-        public string UserAgent { get; set; }
-        /// <summary>
-        /// Gets or Sets IpAddress
-        /// </summary>
-        [DataMember(Name="ipAddress", EmitDefaultValue=false)]
+        /// <value>IP address of the client.</value>
+        [DataMember(Name="ip_address", EmitDefaultValue=false)]
         public string IpAddress { get; set; }
         /// <summary>
-        /// Gets or Sets Success
+        /// User Agent header from the login request.
         /// </summary>
+        /// <value>User Agent header from the login request.</value>
+        [DataMember(Name="user_agent", EmitDefaultValue=false)]
+        public string UserAgent { get; set; }
+        /// <summary>
+        /// Flag indicating whether login attempt was successful or not.
+        /// </summary>
+        /// <value>Flag indicating whether login attempt was successful or not.</value>
         [DataMember(Name="success", EmitDefaultValue=false)]
         public bool? Success { get; set; }
         /// <summary>
@@ -73,8 +114,8 @@ namespace iam.Model
             var sb = new StringBuilder();
             sb.Append("class LoginHistory {\n");
             sb.Append("  Date: ").Append(Date).Append("\n");
-            sb.Append("  UserAgent: ").Append(UserAgent).Append("\n");
             sb.Append("  IpAddress: ").Append(IpAddress).Append("\n");
+            sb.Append("  UserAgent: ").Append(UserAgent).Append("\n");
             sb.Append("  Success: ").Append(Success).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -118,14 +159,14 @@ namespace iam.Model
                     this.Date.Equals(other.Date)
                 ) && 
                 (
-                    this.UserAgent == other.UserAgent ||
-                    this.UserAgent != null &&
-                    this.UserAgent.Equals(other.UserAgent)
-                ) && 
-                (
                     this.IpAddress == other.IpAddress ||
                     this.IpAddress != null &&
                     this.IpAddress.Equals(other.IpAddress)
+                ) && 
+                (
+                    this.UserAgent == other.UserAgent ||
+                    this.UserAgent != null &&
+                    this.UserAgent.Equals(other.UserAgent)
                 ) && 
                 (
                     this.Success == other.Success ||
@@ -147,10 +188,10 @@ namespace iam.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.Date != null)
                     hash = hash * 59 + this.Date.GetHashCode();
-                if (this.UserAgent != null)
-                    hash = hash * 59 + this.UserAgent.GetHashCode();
                 if (this.IpAddress != null)
                     hash = hash * 59 + this.IpAddress.GetHashCode();
+                if (this.UserAgent != null)
+                    hash = hash * 59 + this.UserAgent.GetHashCode();
                 if (this.Success != null)
                     hash = hash * 59 + this.Success.GetHashCode();
                 return hash;
