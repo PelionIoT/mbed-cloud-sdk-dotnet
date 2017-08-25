@@ -82,8 +82,8 @@ namespace mbedCloudSDK.Update.Api
         {
             try
             {
-                var file = new StreamReader(dataFile).BaseStream;
-                return FirmwareImage.Map(api.FirmwareImageCreate(file, name));
+                var fs = File.Open(dataFile,FileMode.Open);
+                return FirmwareImage.Map(api.FirmwareImageCreate(fs, name));
             }
             catch (update_service.Client.ApiException e)
             {

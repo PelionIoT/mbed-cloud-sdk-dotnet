@@ -53,10 +53,10 @@ namespace mbedCloudSDK.Connect.Api
         /// <param name="resourceValue">Value to set.</param>
         /// <param name="noResponse">Don't get a response.</param>
         /// <returns></returns>
-        public AsyncConsumer<string> SetResourceValue(string deviceId, string resourcePath, byte[] resourceValue, bool? noResponse = null)
+        public AsyncConsumer<string> SetResourceValue(string deviceId, string resourcePath, string resourceValue, bool? noResponse = null)
         {
             resourcePath = FixedPath(resourcePath);
-            var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPut(deviceId, resourcePath, resourceValue, noResponse);
+            var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPut(deviceId, resourcePath, Encoding.UTF8.GetBytes(resourceValue), noResponse);
             var collection = new AsyncProducerConsumerCollection<string>();
             asyncResponses.Add(asyncID.AsyncResponseId, collection);
             return new AsyncConsumer<string>(collection);
