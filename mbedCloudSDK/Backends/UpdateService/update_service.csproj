@@ -11,7 +11,7 @@ OpenAPI spec version: 3
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{919A23C5-9C03-4680-9948-D5DCACF97C6E}</ProjectGuid>
+    <ProjectGuid>{16163C04-B20F-4240-96DC-36EE9DE14C8C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>update_service</RootNamespace>
