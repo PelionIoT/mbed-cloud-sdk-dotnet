@@ -4,6 +4,7 @@ using System.Linq;
 using mbedCloudSDK.Common.Query;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using RestSharp.Extensions.MonoHttp;
 
 namespace mbedCloudSDK.Common
 {
@@ -36,8 +37,18 @@ namespace mbedCloudSDK.Common
 
         public static Dictionary<string, QueryAttribute> ParseAttributeString(string attributeString)
         {
-            var json = JsonConvert.DeserializeObject<Dictionary<string, JObject>>(attributeString);
+            var decodedString = HttpUtility.UrlDecode(attributeString).Replace("u'","\"").Replace("'","\"");
+            var customAttributes = new Dictionary<string, QueryAttribute>();
+            var json = JsonConvert.DeserializeObject<Dictionary<string, JObject>>(decodedString);
+            if(json.Keys.Contains("custom_attributes")){
+                var f = json["custom_attributes"].ToString(Formatting.None);
+                customAttributes = ParseAttributeString(f);
+                json.Remove("custom_attributes");
+            }
             var dict = json.ToDictionary(k => k.Key, k => parseVal(k.Value));
+            if(customAttributes.Any()){
+                customAttributes.ToList().ForEach(d => dict.Add($"custom_attributes__{d.Key}", d.Value));
+            }
             return dict;
         }
 
