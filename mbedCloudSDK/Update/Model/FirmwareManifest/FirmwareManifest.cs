@@ -1,4 +1,4 @@
-﻿using firmware_catalog.Model;
+﻿using update_service.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ namespace mbedCloudSDK.Update.Model.FirmwareManifest
         /// <summary>
         /// Gets or Sets Datafile
         /// </summary>
-        public byte[] Datafile { get; set; }
+        public string Datafile { get; set; }
         
         /// <summary>
         /// The description of the object
@@ -83,7 +83,7 @@ namespace mbedCloudSDK.Update.Model.FirmwareManifest
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static FirmwareManifest Map(firmware_catalog.Model.FirmwareManifest data)
+        public static FirmwareManifest Map(update_service.Model.FirmwareManifest data)
         {
             FirmwareManifest manifest = new FirmwareManifest();
             manifest.CreatedAt = data.CreatedAt;

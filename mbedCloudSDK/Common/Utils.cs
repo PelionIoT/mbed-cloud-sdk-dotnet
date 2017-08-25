@@ -66,5 +66,62 @@ namespace mbedCloudSDK.Common
                     return QueryOperator.Equals;
             }
         }
+
+        public static string QueryOperatorToString(QueryOperator queryOperator){
+            switch (queryOperator)
+            {
+                case QueryOperator.Equals:
+                    return "$eq";
+                case QueryOperator.NotEqual:
+                    return "$neq";
+                case QueryOperator.LessOrEqual:
+                    return "$lte";
+                case QueryOperator.GreaterOrEqual:
+                    return "$gte";
+                default:
+                    return "$eq";
+            }
+        }
+
+        public static string QueryStringToJson(string queryString)
+        {
+            var dict = new Dictionary<string, QueryAttribute>();
+            var split = queryString.Split('&');
+            foreach (var b in split)
+            {
+                var keyValue = b.Split('=');
+                var val = keyValue[1];
+                var key = keyValue[0];
+                var oper = QueryOperator.Equals;
+
+                if (key.Contains("neq"))
+                {
+                    key = key.Replace("neq", "");
+                    oper = QueryOperator.NotEqual;
+                }
+                if (key.Contains("ltq"))
+                {
+                    key = key.Replace("ltq", "");
+                    oper = QueryOperator.LessOrEqual;
+                }
+                if (key.Contains("gtq"))
+                {
+                    key = key.Replace("gtq", "");
+                    oper = QueryOperator.GreaterOrEqual;
+                }
+
+                var queryAttribute = new QueryAttribute(val, oper);
+                dict.Add(key, queryAttribute);
+            }
+            var j = new JObject();
+            foreach(var kv in dict){
+                var l = new JObject();
+                l[QueryOperatorToString(kv.Value.QueryOperator)] = kv.Value.Value;
+                j[kv.Key] = l;
+            }
+            var x = JsonConvert.SerializeObject(j);
+            var y = j.ToString(Formatting.None);
+            return y;
+        }
     }
 }

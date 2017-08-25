@@ -1,4 +1,4 @@
-﻿using device_query_service.Model;
+﻿using device_directory.Model;
 using mbedCloudSDK.Common;
 using Newtonsoft.Json;
 using System;

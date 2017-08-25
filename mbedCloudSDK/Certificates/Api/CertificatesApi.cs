@@ -171,44 +171,38 @@ namespace mbedCloudSDK.Certificates.Api
         /// </example>
         public Certificate AddCertificate(Certificate certificate, string certificateData = null, string signatureData = null)
         {
-            if (certificate.Type == CertificateType.Developer)
+            if (certificateData == null || signatureData == null)
             {
-                if (certificateData != null || signatureData != null)
-                {
-                    throw new ArgumentException("certificateData and signatureData are not required when creating developer certificate.");
-                }
-                connector_ca.Model.DeveloperCertificateRequestData body = new connector_ca.Model.DeveloperCertificateRequestData(certificate.Name, certificate.Description);
-                try
-                {
-                    var response = developerCertificateApi.V3DeveloperCertificatesPost(this.auth, body);
-                    return GetCertificate(response.Id);
-                }
-                catch (connector_ca.Client.ApiException ex)
-                {
-                    throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
-                }
+                throw new ArgumentException("certificateData and signatureData are required when creating non developer certificate.");
             }
-            else
-            {
-                if (certificateData == null || signatureData == null)
-                {
-                    throw new ArgumentException("certificateData and signatureData are required when creating non developer certificate.");
-                }
 
-                var serviceEnum = GetServiceEnum(certificate);
-                TrustedCertificateReq trustedCertificate = new TrustedCertificateReq(Certificate:certificateData, Name:certificate.Name,
-                    Signature: signatureData, Service:serviceEnum);
-                trustedCertificate.Description = certificate.Description;
-                
-                try
-                {
-                    var resp = iamAccountApi.AddCertificate(trustedCertificate);
-                    return GetCertificate(resp.Id);
-                }
-                catch (iam.Client.ApiException ex)
-                {
-                    throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
-                }
+            var serviceEnum = GetServiceEnum(certificate);
+            TrustedCertificateReq trustedCertificate = new TrustedCertificateReq(Certificate:certificateData, Name:certificate.Name,
+                Signature: signatureData, Service:serviceEnum);
+            trustedCertificate.Description = certificate.Description;
+            
+            try
+            {
+                var resp = iamAccountApi.AddCertificate(trustedCertificate);
+                return GetCertificate(resp.Id);
+            }
+            catch (iam.Client.ApiException ex)
+            {
+                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+            }
+        }
+
+        public Certificate AddDeveloperCertificate(Certificate certificate)
+        {
+            connector_ca.Model.DeveloperCertificateRequestData body = new connector_ca.Model.DeveloperCertificateRequestData(certificate.Name, certificate.Description);
+            try
+            {
+                var response = developerCertificateApi.V3DeveloperCertificatesPost(this.auth, body);
+                return GetCertificate(response.Id);
+            }
+            catch (connector_ca.Client.ApiException ex)
+            {
+                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
         }
 

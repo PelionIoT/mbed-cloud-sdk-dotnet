@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using device_catalog.Model;
+using device_directory.Model;
 
 namespace mbedCloudSDK.DeviceDirectory.Api
 {
@@ -54,7 +54,7 @@ namespace mbedCloudSDK.DeviceDirectory.Api
                 }
                 return respDevices;
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (device_directory.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -70,7 +70,7 @@ namespace mbedCloudSDK.DeviceDirectory.Api
                 var response = api.DeviceRetrieve(deviceId);
                 return Device.Map(response);
             }
-            catch(device_catalog.Client.ApiException ex)
+            catch(device_directory.Client.ApiException ex)
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
@@ -81,7 +81,7 @@ namespace mbedCloudSDK.DeviceDirectory.Api
         /// </summary>
         /// <param name="device">The device to add to catalog.</param>
         public Device AddDevice(Device device){
-            var deviceDataPostRequest = new device_catalog.Model.DeviceDataPostRequest(DeviceKey:device.CertificateFingerprint,CaId:device.CertificateIssuerId){
+            var deviceDataPostRequest = new device_directory.Model.DeviceDataPostRequest(DeviceKey:device.CertificateFingerprint,CaId:device.CertificateIssuerId){
                 BootstrapExpirationDate = device.BootstrapExpirationDate,
                 BootstrappedTimestamp = device.BootstrappedTimestamp,
                 ConnectorExpirationDate = device.ConnectorExpirationDate,
@@ -113,7 +113,7 @@ namespace mbedCloudSDK.DeviceDirectory.Api
                 var response = api.DeviceCreate(deviceDataPostRequest);
                 return GetDevice(response.Id);
             }
-            catch(device_catalog.Client.ApiException ex)
+            catch(device_directory.Client.ApiException ex)
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
@@ -128,7 +128,7 @@ namespace mbedCloudSDK.DeviceDirectory.Api
         {
             var originalDevice = GetDevice(deviceId);
             var device = Utils.MapToUpdate(originalDevice, deviceToUpdate) as Device;
-            var deviceDataPutRequest = new device_catalog.Model.DeviceDataPutRequest(CaId: device.CertificateIssuerId, DeviceKey: device.CertificateFingerprint)
+            var deviceDataPutRequest = new device_directory.Model.DeviceDataPutRequest(CaId: device.CertificateIssuerId, DeviceKey: device.CertificateFingerprint)
             {
                 Description = device.Description,
                 EndpointName = device.EndpointName,
@@ -145,7 +145,7 @@ namespace mbedCloudSDK.DeviceDirectory.Api
                 var response = api.DeviceUpdate(deviceId, deviceDataPutRequest);
                 return GetDevice(deviceId);
             }
-            catch (device_catalog.Client.ApiException ex)
+            catch (device_directory.Client.ApiException ex)
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
@@ -161,7 +161,7 @@ namespace mbedCloudSDK.DeviceDirectory.Api
             {
                 this.api.DeviceDestroy(deviceID);
             }
-            catch (device_catalog.Client.ApiException ex)
+            catch (device_directory.Client.ApiException ex)
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }

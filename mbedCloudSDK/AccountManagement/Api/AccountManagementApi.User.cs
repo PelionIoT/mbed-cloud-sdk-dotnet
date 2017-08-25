@@ -52,7 +52,7 @@ namespace mbedCloudSDK.AccountManagement.Api
                 }
                 return respUsers;
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (device_directory.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }

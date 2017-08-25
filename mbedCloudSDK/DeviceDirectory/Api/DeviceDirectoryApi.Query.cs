@@ -41,7 +41,7 @@ namespace mbedCloudSDK.DeviceDirectory.Api
             }
             try
             {
-                var resp = this.queryApi.DeviceQueryList(options.Limit, options.Order, options.After, options.Include);
+                var resp = api.DeviceQueryList(options.Limit, options.Order, options.After, options.Include);
                 ResponsePage<Query> respDevices = new ResponsePage<Query>(resp.After, resp.HasMore, (int?)resp.Limit, resp.Order, (int?)resp.TotalCount);
                 foreach (var deviceQuery in resp.Data)
                 {
@@ -49,7 +49,7 @@ namespace mbedCloudSDK.DeviceDirectory.Api
                 }
                 return respDevices;
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (device_directory.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -63,10 +63,10 @@ namespace mbedCloudSDK.DeviceDirectory.Api
         {
             try
             {
-                var response = queryApi.DeviceQueryRetrieve(queryId);
+                var response = api.DeviceQueryRetrieve(queryId);
                 return Query.Map(response);
             }
-            catch(device_query_service.Client.ApiException ex)
+            catch(device_directory.Client.ApiException ex)
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
@@ -79,14 +79,14 @@ namespace mbedCloudSDK.DeviceDirectory.Api
         /// <param name="query">Query object to create</param>
         public Query AddQuery(Query query)
         {
-            var deviceQueryPostPutRequest = new device_query_service.Model.DeviceQueryPostPutRequest(query.QueryString, query.Name);
+            var deviceQueryPostPutRequest = new device_directory.Model.DeviceQueryPostPutRequest(query.QueryString, query.Name);
 
             try
             {
-                var response = queryApi.DeviceQueryCreate(deviceQueryPostPutRequest);
+                var response = api.DeviceQueryCreate(deviceQueryPostPutRequest);
                 return Query.Map(response);
             }
-            catch(device_query_service.Client.ApiException ex)
+            catch(device_directory.Client.ApiException ex)
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
@@ -100,14 +100,14 @@ namespace mbedCloudSDK.DeviceDirectory.Api
         {
             var originalQuery = GetQuery(queryId);
             var query = Utils.MapToUpdate(originalQuery, queryToUpdate) as Query;
-            var deviceQueryPostPutRequest = new device_query_service.Model.DeviceQueryPostPutRequest(query.QueryString, query.Name);
+            var deviceQueryPostPutRequest = new device_directory.Model.DeviceQueryPostPutRequest(query.QueryString, query.Name);
 
             try
             {
-                var response = queryApi.DeviceQueryUpdate(queryId, deviceQueryPostPutRequest);
+                var response = api.DeviceQueryUpdate(queryId, deviceQueryPostPutRequest);
                 return Query.Map(response);
             }
-            catch (device_query_service.Client.ApiException ex)
+            catch (device_directory.Client.ApiException ex)
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
@@ -122,9 +122,9 @@ namespace mbedCloudSDK.DeviceDirectory.Api
         {
             try
             {
-                queryApi.DeviceQueryDestroy(queryID);
+                api.DeviceQueryDestroy(queryID);
             }
-            catch (device_query_service.Client.ApiException ex)
+            catch (device_directory.Client.ApiException ex)
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }

@@ -41,15 +41,15 @@ namespace mbedCloudSDK.Update.Api
             }
             try
             {
-                var resp = deploymentApi.UpdateCampaignList(options.Limit, options.Order, options.After, options.QueryString, options.Include);
-                ResponsePage<Model.Campaign.UpdateCampaign> respDevices = new ResponsePage<Model.Campaign.UpdateCampaign>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
+                var resp = api.UpdateCampaignList(options.Limit, options.Order, options.After, options.QueryString, options.Include);
+                ResponsePage<Model.Campaign.UpdateCampaign> respDevices = new ResponsePage<Model.Campaign.UpdateCampaign>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var device in resp.Data)
                 {
                     respDevices.Data.Add(Model.Campaign.UpdateCampaign.Map(device));
                 }
                 return respDevices;
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (update_service.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -64,10 +64,10 @@ namespace mbedCloudSDK.Update.Api
         {
             try
             {
-                var resp = deploymentApi.UpdateCampaignRetrieve(campaignId);
+                var resp = api.UpdateCampaignRetrieve(campaignId);
                 return Model.Campaign.UpdateCampaign.Map(resp);
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (update_service.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -82,10 +82,11 @@ namespace mbedCloudSDK.Update.Api
         {
             try
             {
-                var resp = deploymentApi.UpdateCampaignCreate(updateCampaign.CreatePostRequest());
+                //updateCampaign.DeviceFilter = "id=015bda1139d100000000000100100018";
+                var resp = api.UpdateCampaignCreate(updateCampaign.CreatePostRequest());
                 return Model.Campaign.UpdateCampaign.Map(resp);
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (update_service.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -100,10 +101,10 @@ namespace mbedCloudSDK.Update.Api
         {
             try
             {
-                var resp = deploymentApi.UpdateCampaignUpdate(updateCampaign.Id, updateCampaign.CreatePutRequest());
+                var resp = api.UpdateCampaignUpdate(updateCampaign.Id, updateCampaign.CreatePutRequest());
                 return Model.Campaign.UpdateCampaign.Map(resp);
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (update_service.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -117,8 +118,8 @@ namespace mbedCloudSDK.Update.Api
         {
             try
             {
-                var stateEnum = (deployment_service.Model.UpdateCampaignPatchRequest.StateEnum)Enum.Parse(typeof(deployment_service.Model.UpdateCampaignPatchRequest.StateEnum), updateCampaign.State.ToString());
-                var updateCampaignPatchRequest = new deployment_service.Model.UpdateCampaignPatchRequest()
+                var stateEnum = (update_service.Model.UpdateCampaignPatchRequest.StateEnum)Enum.Parse(typeof(update_service.Model.UpdateCampaignPatchRequest.StateEnum), updateCampaign.State.ToString());
+                var updateCampaignPatchRequest = new update_service.Model.UpdateCampaignPatchRequest()
                 {
                     Description = updateCampaign.Description,
                     RootManifestId = updateCampaign.RootManifestId,
@@ -128,10 +129,10 @@ namespace mbedCloudSDK.Update.Api
                     DeviceFilter = updateCampaign.DeviceFilter,
                     Name = updateCampaign.Name
                 };
-                var response = deploymentApi.UpdateCampaignPartialUpdate(updateCampaign.Id, updateCampaignPatchRequest);
+                var response = api.UpdateCampaignPartialUpdate(updateCampaign.Id, updateCampaignPatchRequest);
                 return mbedCloudSDK.Update.Model.Campaign.UpdateCampaign.Map(response);
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (update_service.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -141,13 +142,13 @@ namespace mbedCloudSDK.Update.Api
         /// Delete Update campaign.
         /// </summary>
         /// <param name="upateCampaignId">Id of the update campaign.</param>
-        public void DeleteUpdateCampaign(string upateCampaignId)
+        public void DeleteCampaign(string upateCampaignId)
         {
             try
             {
-                deploymentApi.UpdateCampaignDestroy(upateCampaignId);
+                api.UpdateCampaignDestroy(upateCampaignId);
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (update_service.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }

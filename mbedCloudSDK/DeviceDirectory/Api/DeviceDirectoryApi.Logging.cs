@@ -55,7 +55,7 @@ namespace mbedCloudSDK.DeviceDirectory.Api
                 }
                 return respDeviceLogs;
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (device_directory.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -70,9 +70,9 @@ namespace mbedCloudSDK.DeviceDirectory.Api
         {
             try
             {
-                return DeviceLog.Map(this.api.DeviceLogRetrieve(deviceEventId));
+                return DeviceLog.Map(api.DeviceLogRetrieve(deviceEventId));
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (device_directory.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -87,9 +87,9 @@ namespace mbedCloudSDK.DeviceDirectory.Api
         {
             try
             {
-                return DeviceLog.Map(await this.api.DeviceLogRetrieveAsync(deviceLogId));
+                return DeviceLog.Map(await api.DeviceLogRetrieveAsync(deviceLogId));
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (device_directory.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }

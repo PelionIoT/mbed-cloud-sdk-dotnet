@@ -1,4 +1,4 @@
-﻿using device_catalog.Model;
+﻿using device_directory.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;

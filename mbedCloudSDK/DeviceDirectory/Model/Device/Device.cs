@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using mbedCloudSDK.DeviceDirectory.Api;
 using mbedCloudSDK.Exceptions;
-using device_catalog.Model;
+using device_directory.Model;
 using mds.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;

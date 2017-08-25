@@ -1,4 +1,4 @@
-﻿using deployment_service.Model;
+﻿using update_service.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,6 +90,7 @@ namespace mbedCloudSDK.Update.Model.Campaign
             return sb.ToString();
         }
 
+        /* 
         /// <summary>
         /// Map to UpdateCampaignDeviceMetada object.
         /// </summary>
@@ -111,5 +112,6 @@ namespace mbedCloudSDK.Update.Model.Campaign
             metadata.State = (UpdateCampaignDeviceState)Enum.Parse(typeof(UpdateCampaignDeviceState), data.DeploymentState.ToString());
             return metadata;
         }
+        */
     }
 }

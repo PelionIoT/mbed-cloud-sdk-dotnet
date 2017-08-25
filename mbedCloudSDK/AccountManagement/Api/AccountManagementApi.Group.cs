@@ -50,7 +50,7 @@ namespace mbedCloudSDK.AccountManagement.Api
                 }
                 return respGroups;
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (device_directory.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -110,7 +110,7 @@ namespace mbedCloudSDK.AccountManagement.Api
                 }
                 return respGroupUsers;
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (device_directory.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -151,7 +151,7 @@ namespace mbedCloudSDK.AccountManagement.Api
                 }
                 return respGroupKeys;
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (device_directory.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }

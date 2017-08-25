@@ -42,15 +42,15 @@ namespace mbedCloudSDK.Update.Api
             }
             try
             {
-                var resp = firmwareApi.FirmwareManifestList(options.Limit, options.Order, options.After);
-                ResponsePage<FirmwareManifest> respManifests = new ResponsePage<FirmwareManifest>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
+                var resp = api.FirmwareManifestList(options.Limit, options.Order, options.After);
+                ResponsePage<FirmwareManifest> respManifests = new ResponsePage<FirmwareManifest>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var manifest in resp.Data)
                 {
                     respManifests.Data.Add(FirmwareManifest.Map(manifest));
                 }
                 return respManifests;
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (update_service.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -64,9 +64,9 @@ namespace mbedCloudSDK.Update.Api
         {
             try
             {
-                return FirmwareManifest.Map(firmwareApi.FirmwareManifestRetrieve(manifestId));
+                return FirmwareManifest.Map(api.FirmwareManifestRetrieve(manifestId));
             }
-            catch(firmware_catalog.Client.ApiException ex)
+            catch(update_service.Client.ApiException ex)
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
@@ -83,9 +83,9 @@ namespace mbedCloudSDK.Update.Api
         {
             try
             {
-                return FirmwareManifest.Map(firmwareApi.FirmwareManifestCreate(dataFile, name, description));
+                return FirmwareManifest.Map(api.FirmwareManifestCreate(dataFile, name, description));
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (update_service.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -99,10 +99,10 @@ namespace mbedCloudSDK.Update.Api
         {
             try
             {
-                firmwareApi.FirmwareManifestDestroy(manifestId);
+                api.FirmwareManifestDestroy(manifestId);
 
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (update_service.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
