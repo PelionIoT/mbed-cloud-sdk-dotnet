@@ -49,7 +49,7 @@ namespace ConsoleExamples.Examples.Update
                             // Upload manifest
                             try
                             {
-                                manifest = api.AddFirmwareManifest(dataFile, CreateRandomName());
+                                //manifest = api.AddFirmwareManifest(dataFile, CreateRandomName());
                             }
                             catch (CloudApiException e)
                             {

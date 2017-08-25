@@ -79,11 +79,12 @@ namespace mbedCloudSDK.Update.Api
         /// <param name="name">Name of the firmware manifest.</param>
         /// <param name="description">Description for the firmware manifest.</param>
         /// <returns></returns>
-        public FirmwareManifest AddFirmwareManifest(Stream dataFile, string name, string description = null)
+        public FirmwareManifest AddFirmwareManifest(string dataFile, string name, string description = null)
         {
             try
             {
-                return FirmwareManifest.Map(api.FirmwareManifestCreate(dataFile, name, description));
+                var fs = File.Open(dataFile, FileMode.Open);
+                return FirmwareManifest.Map(api.FirmwareManifestCreate(fs, name, description));
             }
             catch (update_service.Client.ApiException e)
             {

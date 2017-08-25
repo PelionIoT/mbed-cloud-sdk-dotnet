@@ -44,9 +44,9 @@ namespace mbedCloudSDK.Common.Query
                 case QueryOperator.NotEqual:
                     return "neq";
                 case QueryOperator.LessOrEqual:
-                    return "leq";
+                    return "ltq";
                 case QueryOperator.GreaterOrEqual:
-                    return "geq";
+                    return "gtq";
                 default:
                     return "";
             }

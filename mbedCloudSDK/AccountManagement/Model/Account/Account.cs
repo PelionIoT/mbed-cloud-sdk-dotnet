@@ -204,6 +204,9 @@ namespace mbedCloudSDK.AccountManagement.Model.Account
             return account;
         }
 
+        /// <summary>
+        /// Create an Update Request
+        /// </summary>
         public iam.Model.AccountUpdateReq CreateUpdateRequest()
         {
             iam.Model.AccountUpdateReq request = new iam.Model.AccountUpdateReq();

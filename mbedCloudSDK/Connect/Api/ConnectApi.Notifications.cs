@@ -38,6 +38,7 @@ namespace mbedCloudSDK.Connect.Api
                         string resourceSubs = notification.Ep + notification.Path;
                         if (resourceSubscribtions.ContainsKey(resourceSubs))
                         {
+                        
                             //resourceSubscribtions[resourceSubs].Queue.Add(payload);
                         }
                     }

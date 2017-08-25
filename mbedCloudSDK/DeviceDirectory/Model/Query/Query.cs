@@ -101,6 +101,9 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Query
         /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public Query() {}
 
         /// <summary>

@@ -124,15 +124,13 @@ namespace mbedCloudSDK.Common
                 var queryAttribute = new QueryAttribute(val, oper);
                 dict.Add(key, queryAttribute);
             }
-            var j = new JObject();
+            var json = new JObject();
             foreach(var kv in dict){
-                var l = new JObject();
-                l[QueryOperatorToString(kv.Value.QueryOperator)] = kv.Value.Value;
-                j[kv.Key] = l;
+                var innerJson = new JObject();
+                innerJson[QueryOperatorToString(kv.Value.QueryOperator)] = kv.Value.Value;
+                json[kv.Key] = innerJson;
             }
-            var x = JsonConvert.SerializeObject(j);
-            var y = j.ToString(Formatting.None);
-            return y;
+            return json.ToString(Formatting.None);
         }
     }
 }

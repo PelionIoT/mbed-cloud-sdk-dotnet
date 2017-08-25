@@ -141,12 +141,12 @@ namespace mbedCloudSDK.Update.Api
         /// <summary>
         /// Delete Update campaign.
         /// </summary>
-        /// <param name="upateCampaignId">Id of the update campaign.</param>
-        public void DeleteCampaign(string upateCampaignId)
+        /// <param name="campaignId">Id of the update campaign.</param>
+        public void DeleteCampaign(string campaignId)
         {
             try
             {
-                api.UpdateCampaignDestroy(upateCampaignId);
+                api.UpdateCampaignDestroy(campaignId);
             }
             catch (update_service.Client.ApiException e)
             {

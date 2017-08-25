@@ -53,7 +53,6 @@ namespace TestServer
             foreach(var k in nameValueCollection.AllKeys)
             {
                 var key = SnakeToCamel(k).ToUpper();
-                //var val = Pascalize(nameValueCollection[k]);
                 dict.Add(key, nameValueCollection[k]);
             }
 
