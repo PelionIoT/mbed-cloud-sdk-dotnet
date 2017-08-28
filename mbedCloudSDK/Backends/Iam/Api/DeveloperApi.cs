@@ -356,7 +356,7 @@ namespace iam.Api
         /// Update API key details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating API key details. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/api-keys/me -d &#39;{\&quot;name\&quot;: \&quot;TestApiKey25\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for updating API key details.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be updated.</param>
@@ -368,7 +368,7 @@ namespace iam.Api
         /// Update API key details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating API key details. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/api-keys/me -d &#39;{\&quot;name\&quot;: \&quot;TestApiKey25\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for updating API key details.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be updated.</param>
@@ -774,7 +774,7 @@ namespace iam.Api
         /// Update API key details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating API key details. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/api-keys/me -d &#39;{\&quot;name\&quot;: \&quot;TestApiKey25\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for updating API key details.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be updated.</param>
@@ -786,7 +786,7 @@ namespace iam.Api
         /// Update API key details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating API key details. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/api-keys/me -d &#39;{\&quot;name\&quot;: \&quot;TestApiKey25\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for updating API key details.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be updated.</param>
@@ -3199,7 +3199,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update API key details. An endpoint for updating API key details. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/api-keys/me -d &#39;{\&quot;name\&quot;: \&quot;TestApiKey25\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Update API key details. An endpoint for updating API key details.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be updated.</param>
@@ -3212,7 +3212,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update API key details. An endpoint for updating API key details. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/api-keys/me -d &#39;{\&quot;name\&quot;: \&quot;TestApiKey25\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Update API key details. An endpoint for updating API key details.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be updated.</param>
@@ -3288,7 +3288,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update API key details. An endpoint for updating API key details. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/api-keys/me -d &#39;{\&quot;name\&quot;: \&quot;TestApiKey25\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Update API key details. An endpoint for updating API key details.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be updated.</param>
@@ -3302,7 +3302,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update API key details. An endpoint for updating API key details. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/api-keys/me -d &#39;{\&quot;name\&quot;: \&quot;TestApiKey25\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Update API key details. An endpoint for updating API key details.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be updated.</param>
