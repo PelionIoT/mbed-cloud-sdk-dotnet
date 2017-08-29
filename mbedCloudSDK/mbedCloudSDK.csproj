@@ -73,15 +73,6 @@
     <Compile Include="Backends\ConnectorCa\Model\DeveloperCertificateRequestData.cs" />
     <Compile Include="Backends\ConnectorCa\Model\DeveloperCertificateResponseData.cs" />
     <Compile Include="Backends\ConnectorCa\Model\ServerCredentialsResponseData.cs" />
-    <Compile Include="Backends\DeveloperCertificate\Api\DefaultApi.cs" />
-    <Compile Include="Backends\DeveloperCertificate\Client\ApiClient.cs" />
-    <Compile Include="Backends\DeveloperCertificate\Client\ApiException.cs" />
-    <Compile Include="Backends\DeveloperCertificate\Client\ApiResponse.cs" />
-    <Compile Include="Backends\DeveloperCertificate\Client\Configuration.cs" />
-    <Compile Include="Backends\DeveloperCertificate\Client\ExceptionFactory.cs" />
-    <Compile Include="Backends\DeveloperCertificate\Client\IApiAccessor.cs" />
-    <Compile Include="Backends\DeveloperCertificate\Model\Body.cs" />
-    <Compile Include="Backends\DeveloperCertificate\Model\DeveloperCertificate.cs" />
     <Compile Include="Backends\DeviceDirectory\Api\DefaultApi.cs" />
     <Compile Include="Backends\DeviceDirectory\Client\ApiClient.cs" />
     <Compile Include="Backends\DeviceDirectory\Client\ApiException.cs" />
