@@ -51,7 +51,7 @@ namespace mbedCloudSDK.Connect.Api
         /// </summary>
         public void StartNotifications()
         {
-            NotificationTask.Start();
+            notificationTask.Start();
         }
 
         /// <summary>

@@ -20,7 +20,7 @@ namespace mbedCloudSDK.Connect.Api
 
         #region Variables
 
-        private Task NotificationTask;
+        private Task notificationTask;
         private CancellationTokenSource cancellationToken;
         private statistics.Api.StatisticsApi statisticsApi;
         private EndpointsApi endpointsApi;
@@ -52,7 +52,7 @@ namespace mbedCloudSDK.Connect.Api
         public ConnectApi(Config config) : base(config)
         {
             cancellationToken = new CancellationTokenSource();
-            NotificationTask = new Task(new Action(Notifications), cancellationToken.Token, TaskCreationOptions.LongRunning);
+            notificationTask = new Task(new Action(Notifications), cancellationToken.Token, TaskCreationOptions.LongRunning);
             resourceSubscribtions = new Dictionary<string, Resource>();
 
             this.auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);

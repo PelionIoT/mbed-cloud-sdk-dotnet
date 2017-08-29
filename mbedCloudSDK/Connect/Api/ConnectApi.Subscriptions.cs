@@ -18,7 +18,7 @@ namespace mbedCloudSDK.Connect.Api
             try
             {
                 var fixedPath = FixedPath(resourcePath);
-                //resourceSubscribtions.Add(deviceId, resourcePath);
+                //resourceSubscribtions.Add(deviceId, new Resource());
                 subscriptionsApi.V2SubscriptionsDeviceIdResourcePathPut(deviceId, resourcePath);
                 return resourceSubscribtions;
             }
