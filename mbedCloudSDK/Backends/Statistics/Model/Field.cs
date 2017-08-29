@@ -33,7 +33,7 @@ namespace statistics.Model
         /// Initializes a new instance of the <see cref="Field" /> class.
         /// </summary>
         /// <param name="Message">Error description..</param>
-        /// <param name="Name">The field name in the request for which the validation has failed.</param>
+        /// <param name="Name">The field name in the request for which the validation has failed..</param>
         public Field(string Message = default(string), string Name = default(string))
         {
             this.Message = Message;
@@ -47,9 +47,9 @@ namespace statistics.Model
         [DataMember(Name="message", EmitDefaultValue=false)]
         public string Message { get; set; }
         /// <summary>
-        /// The field name in the request for which the validation has failed
+        /// The field name in the request for which the validation has failed.
         /// </summary>
-        /// <value>The field name in the request for which the validation has failed</value>
+        /// <value>The field name in the request for which the validation has failed.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>

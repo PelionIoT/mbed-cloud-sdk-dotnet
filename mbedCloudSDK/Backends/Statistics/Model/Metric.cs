@@ -32,18 +32,17 @@ namespace statistics.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Metric" /> class.
         /// </summary>
-        /// <param name="DeviceServerRestApiError">Number of failed device server REST API requests the account has used..</param>
-        /// <param name="BootstrapsFailed">Number of failed bootstraps the account has used..</param>
-        /// <param name="Transactions">Number of transaction events from devices linked to the account..</param>
-        /// <param name="Timestamp">UTC time in RFC3339 format..</param>
-        /// <param name="RegisteredDevices">Maximum number of registered devices linked to the account..</param>
-        /// <param name="BootstrapsPending">Number of pending bootstraps the account has used..</param>
-        /// <param name="DeviceServerRestApiSuccess">Number of successful device server REST API requests the account has used..</param>
-        /// <param name="HandshakesFailed">Number of failed handshakes the account has used..</param>
-        /// <param name="HandshakesSuccessful">Number of successful handshakes the account has used..</param>
-        /// <param name="BootstrapsSuccessful">Number of successful bootstraps the account has used..</param>
-        /// <param name="Id">unique metric ID..</param>
-        public Metric(long? DeviceServerRestApiError = default(long?), long? BootstrapsFailed = default(long?), long? Transactions = default(long?), string Timestamp = default(string), long? RegisteredDevices = default(long?), long? BootstrapsPending = default(long?), long? DeviceServerRestApiSuccess = default(long?), long? HandshakesFailed = default(long?), long? HandshakesSuccessful = default(long?), long? BootstrapsSuccessful = default(long?), string Id = default(string))
+        /// <param name="DeviceServerRestApiError">The number of failed [Connect API](/docs/v1.2/api-references/connect-api.html) requests the account has performed..</param>
+        /// <param name="BootstrapsFailed">The number of failed bootstraps the account has performed..</param>
+        /// <param name="Transactions">The number of transaction events from or to devices linked to the account. A transaction is a 512-byte block of data processed by mbed Cloud. It can be either sent by the device (device - -&gt; mbed cloud) or received by the device (mbed cloud - -&gt; device). A transaction does not include IP, TCP or UDP, TLS or DTLS packet overhead. It only contains the packet payload (full CoAP packet including CoAP headers)..</param>
+        /// <param name="Timestamp">UTC time in RFC3339 format. The timestamp is the starting point of the interval for which the data is aggregated. Each interval includes data for the time greater than or equal to the timestamp and less than the next interval&#39;s starting point..</param>
+        /// <param name="RegisteredDevices">The maximum number of registered devices linked to the account. The registered devices count is calculated based on unique registrations plus registration updates over a period of 5 minutes..</param>
+        /// <param name="BootstrapsPending">The number of pending bootstraps the account has performed..</param>
+        /// <param name="DeviceServerRestApiSuccess">The number of successful [Connect API](/docs/v1.2/api-references/connect-api.html) requests the account has performed..</param>
+        /// <param name="HandshakesSuccessful">The number of successful handshakes the account has performed..</param>
+        /// <param name="BootstrapsSuccessful">The number of successful bootstraps the account has performed..</param>
+        /// <param name="Id">A unique metric ID..</param>
+        public Metric(long? DeviceServerRestApiError = default(long?), long? BootstrapsFailed = default(long?), long? Transactions = default(long?), string Timestamp = default(string), long? RegisteredDevices = default(long?), long? BootstrapsPending = default(long?), long? DeviceServerRestApiSuccess = default(long?), long? HandshakesSuccessful = default(long?), long? BootstrapsSuccessful = default(long?), string Id = default(string))
         {
             this.DeviceServerRestApiError = DeviceServerRestApiError;
             this.BootstrapsFailed = BootstrapsFailed;
@@ -52,76 +51,69 @@ namespace statistics.Model
             this.RegisteredDevices = RegisteredDevices;
             this.BootstrapsPending = BootstrapsPending;
             this.DeviceServerRestApiSuccess = DeviceServerRestApiSuccess;
-            this.HandshakesFailed = HandshakesFailed;
             this.HandshakesSuccessful = HandshakesSuccessful;
             this.BootstrapsSuccessful = BootstrapsSuccessful;
             this.Id = Id;
         }
         
         /// <summary>
-        /// Number of failed device server REST API requests the account has used.
+        /// The number of failed [Connect API](/docs/v1.2/api-references/connect-api.html) requests the account has performed.
         /// </summary>
-        /// <value>Number of failed device server REST API requests the account has used.</value>
+        /// <value>The number of failed [Connect API](/docs/v1.2/api-references/connect-api.html) requests the account has performed.</value>
         [DataMember(Name="device_server_rest_api_error", EmitDefaultValue=false)]
         public long? DeviceServerRestApiError { get; set; }
         /// <summary>
-        /// Number of failed bootstraps the account has used.
+        /// The number of failed bootstraps the account has performed.
         /// </summary>
-        /// <value>Number of failed bootstraps the account has used.</value>
+        /// <value>The number of failed bootstraps the account has performed.</value>
         [DataMember(Name="bootstraps_failed", EmitDefaultValue=false)]
         public long? BootstrapsFailed { get; set; }
         /// <summary>
-        /// Number of transaction events from devices linked to the account.
+        /// The number of transaction events from or to devices linked to the account. A transaction is a 512-byte block of data processed by mbed Cloud. It can be either sent by the device (device - -&gt; mbed cloud) or received by the device (mbed cloud - -&gt; device). A transaction does not include IP, TCP or UDP, TLS or DTLS packet overhead. It only contains the packet payload (full CoAP packet including CoAP headers).
         /// </summary>
-        /// <value>Number of transaction events from devices linked to the account.</value>
+        /// <value>The number of transaction events from or to devices linked to the account. A transaction is a 512-byte block of data processed by mbed Cloud. It can be either sent by the device (device - -&gt; mbed cloud) or received by the device (mbed cloud - -&gt; device). A transaction does not include IP, TCP or UDP, TLS or DTLS packet overhead. It only contains the packet payload (full CoAP packet including CoAP headers).</value>
         [DataMember(Name="transactions", EmitDefaultValue=false)]
         public long? Transactions { get; set; }
         /// <summary>
-        /// UTC time in RFC3339 format.
+        /// UTC time in RFC3339 format. The timestamp is the starting point of the interval for which the data is aggregated. Each interval includes data for the time greater than or equal to the timestamp and less than the next interval&#39;s starting point.
         /// </summary>
-        /// <value>UTC time in RFC3339 format.</value>
+        /// <value>UTC time in RFC3339 format. The timestamp is the starting point of the interval for which the data is aggregated. Each interval includes data for the time greater than or equal to the timestamp and less than the next interval&#39;s starting point.</value>
         [DataMember(Name="timestamp", EmitDefaultValue=false)]
         public string Timestamp { get; set; }
         /// <summary>
-        /// Maximum number of registered devices linked to the account.
+        /// The maximum number of registered devices linked to the account. The registered devices count is calculated based on unique registrations plus registration updates over a period of 5 minutes.
         /// </summary>
-        /// <value>Maximum number of registered devices linked to the account.</value>
+        /// <value>The maximum number of registered devices linked to the account. The registered devices count is calculated based on unique registrations plus registration updates over a period of 5 minutes.</value>
         [DataMember(Name="registered_devices", EmitDefaultValue=false)]
         public long? RegisteredDevices { get; set; }
         /// <summary>
-        /// Number of pending bootstraps the account has used.
+        /// The number of pending bootstraps the account has performed.
         /// </summary>
-        /// <value>Number of pending bootstraps the account has used.</value>
+        /// <value>The number of pending bootstraps the account has performed.</value>
         [DataMember(Name="bootstraps_pending", EmitDefaultValue=false)]
         public long? BootstrapsPending { get; set; }
         /// <summary>
-        /// Number of successful device server REST API requests the account has used.
+        /// The number of successful [Connect API](/docs/v1.2/api-references/connect-api.html) requests the account has performed.
         /// </summary>
-        /// <value>Number of successful device server REST API requests the account has used.</value>
+        /// <value>The number of successful [Connect API](/docs/v1.2/api-references/connect-api.html) requests the account has performed.</value>
         [DataMember(Name="device_server_rest_api_success", EmitDefaultValue=false)]
         public long? DeviceServerRestApiSuccess { get; set; }
         /// <summary>
-        /// Number of failed handshakes the account has used.
+        /// The number of successful handshakes the account has performed.
         /// </summary>
-        /// <value>Number of failed handshakes the account has used.</value>
-        [DataMember(Name="handshakes_failed", EmitDefaultValue=false)]
-        public long? HandshakesFailed { get; set; }
-        /// <summary>
-        /// Number of successful handshakes the account has used.
-        /// </summary>
-        /// <value>Number of successful handshakes the account has used.</value>
+        /// <value>The number of successful handshakes the account has performed.</value>
         [DataMember(Name="handshakes_successful", EmitDefaultValue=false)]
         public long? HandshakesSuccessful { get; set; }
         /// <summary>
-        /// Number of successful bootstraps the account has used.
+        /// The number of successful bootstraps the account has performed.
         /// </summary>
-        /// <value>Number of successful bootstraps the account has used.</value>
+        /// <value>The number of successful bootstraps the account has performed.</value>
         [DataMember(Name="bootstraps_successful", EmitDefaultValue=false)]
         public long? BootstrapsSuccessful { get; set; }
         /// <summary>
-        /// unique metric ID.
+        /// A unique metric ID.
         /// </summary>
-        /// <value>unique metric ID.</value>
+        /// <value>A unique metric ID.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
         /// <summary>
@@ -139,7 +131,6 @@ namespace statistics.Model
             sb.Append("  RegisteredDevices: ").Append(RegisteredDevices).Append("\n");
             sb.Append("  BootstrapsPending: ").Append(BootstrapsPending).Append("\n");
             sb.Append("  DeviceServerRestApiSuccess: ").Append(DeviceServerRestApiSuccess).Append("\n");
-            sb.Append("  HandshakesFailed: ").Append(HandshakesFailed).Append("\n");
             sb.Append("  HandshakesSuccessful: ").Append(HandshakesSuccessful).Append("\n");
             sb.Append("  BootstrapsSuccessful: ").Append(BootstrapsSuccessful).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
@@ -215,11 +206,6 @@ namespace statistics.Model
                     this.DeviceServerRestApiSuccess.Equals(other.DeviceServerRestApiSuccess)
                 ) && 
                 (
-                    this.HandshakesFailed == other.HandshakesFailed ||
-                    this.HandshakesFailed != null &&
-                    this.HandshakesFailed.Equals(other.HandshakesFailed)
-                ) && 
-                (
                     this.HandshakesSuccessful == other.HandshakesSuccessful ||
                     this.HandshakesSuccessful != null &&
                     this.HandshakesSuccessful.Equals(other.HandshakesSuccessful)
@@ -261,8 +247,6 @@ namespace statistics.Model
                     hash = hash * 59 + this.BootstrapsPending.GetHashCode();
                 if (this.DeviceServerRestApiSuccess != null)
                     hash = hash * 59 + this.DeviceServerRestApiSuccess.GetHashCode();
-                if (this.HandshakesFailed != null)
-                    hash = hash * 59 + this.HandshakesFailed.GetHashCode();
                 if (this.HandshakesSuccessful != null)
                     hash = hash * 59 + this.HandshakesSuccessful.GetHashCode();
                 if (this.BootstrapsSuccessful != null)

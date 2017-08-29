@@ -149,6 +149,7 @@ Class | Method | HTTP request | Description
  - [Model.TrustedCertificateReq](docs/TrustedCertificateReq.md)
  - [Model.TrustedCertificateResp](docs/TrustedCertificateResp.md)
  - [Model.TrustedCertificateRespList](docs/TrustedCertificateRespList.md)
+ - [Model.TrustedCertificateUpdateReq](docs/TrustedCertificateUpdateReq.md)
  - [Model.UpdatedResponse](docs/UpdatedResponse.md)
  - [Model.UserInfoReq](docs/UserInfoReq.md)
  - [Model.UserInfoResp](docs/UserInfoResp.md)

@@ -32,11 +32,11 @@ namespace statistics.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SuccessfulResponse" /> class.
         /// </summary>
-        /// <param name="After">metric ID included in the request or null..</param>
+        /// <param name="After">The metric ID included in the request or null..</param>
         /// <param name="HasMore">Indicates whether there are more results for you to fetch in the next page..</param>
-        /// <param name="TotalCount">total number of records available..</param>
+        /// <param name="TotalCount">The total number of records available..</param>
         /// <param name="_Object">API resource name..</param>
-        /// <param name="Limit">limit used in the request to retrieve the results..</param>
+        /// <param name="Limit">The limit used in the request to retrieve the results..</param>
         /// <param name="Data">Data.</param>
         public SuccessfulResponse(string After = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), string _Object = default(string), int? Limit = default(int?), List<Metric> Data = default(List<Metric>))
         {
@@ -49,9 +49,9 @@ namespace statistics.Model
         }
         
         /// <summary>
-        /// metric ID included in the request or null.
+        /// The metric ID included in the request or null.
         /// </summary>
-        /// <value>metric ID included in the request or null.</value>
+        /// <value>The metric ID included in the request or null.</value>
         [DataMember(Name="after", EmitDefaultValue=false)]
         public string After { get; set; }
         /// <summary>
@@ -61,9 +61,9 @@ namespace statistics.Model
         [DataMember(Name="has_more", EmitDefaultValue=false)]
         public bool? HasMore { get; set; }
         /// <summary>
-        /// total number of records available.
+        /// The total number of records available.
         /// </summary>
-        /// <value>total number of records available.</value>
+        /// <value>The total number of records available.</value>
         [DataMember(Name="total_count", EmitDefaultValue=false)]
         public int? TotalCount { get; set; }
         /// <summary>
@@ -73,9 +73,9 @@ namespace statistics.Model
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
         /// <summary>
-        /// limit used in the request to retrieve the results.
+        /// The limit used in the request to retrieve the results.
         /// </summary>
-        /// <value>limit used in the request to retrieve the results.</value>
+        /// <value>The limit used in the request to retrieve the results.</value>
         [DataMember(Name="limit", EmitDefaultValue=false)]
         public int? Limit { get; set; }
         /// <summary>
