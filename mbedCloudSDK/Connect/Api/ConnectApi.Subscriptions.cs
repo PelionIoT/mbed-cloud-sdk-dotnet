@@ -3,7 +3,6 @@ using mbedCloudSDK.Connect.Model.Resource;
 using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-//using mds.Model;
 
 namespace mbedCloudSDK.Connect.Api
 {

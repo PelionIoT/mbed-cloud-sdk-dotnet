@@ -82,7 +82,6 @@ namespace mbedCloudSDK.Update.Api
         {
             try
             {
-                //updateCampaign.DeviceFilter = "id=015bda1139d100000000000100100018";
                 var resp = api.UpdateCampaignCreate(updateCampaign.CreatePostRequest());
                 return Model.Campaign.UpdateCampaign.Map(resp);
             }

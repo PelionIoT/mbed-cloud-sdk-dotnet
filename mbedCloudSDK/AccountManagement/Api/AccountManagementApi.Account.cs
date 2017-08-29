@@ -54,8 +54,7 @@ namespace mbedCloudSDK.AccountManagement.Api
         /// <returns></returns>
         public Account UpdateAccount(Account account)
         {
-            // Create Account request
-            AccountUpdateReq req = account.CreateUpdateRequest();
+            var req = account.CreateUpdateRequest();
             try
             {
                 var accountInfo = adminApi.UpdateMyAccount(req);
@@ -74,8 +73,7 @@ namespace mbedCloudSDK.AccountManagement.Api
         /// <returns></returns>
         public async Task<Account> UpdateAccountAsync(Account account)
         {
-            // Create account update request
-            AccountUpdateReq req = account.CreateUpdateRequest();
+            var req = account.CreateUpdateRequest();
             try
             {
                 var accountInfo = await adminApi.UpdateMyAccountAsync(req);

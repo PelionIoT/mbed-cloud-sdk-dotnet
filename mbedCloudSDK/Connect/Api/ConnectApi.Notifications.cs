@@ -39,7 +39,7 @@ namespace mbedCloudSDK.Connect.Api
                         if (resourceSubscribtions.ContainsKey(resourceSubs))
                         {
                         
-                            //resourceSubscribtions[resourceSubs].Queue.Add(payload);
+                            resourceSubscribtions[resourceSubs].Queue.Add(payload);
                         }
                     }
                 }

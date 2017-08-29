@@ -171,18 +171,18 @@ namespace mbedCloudSDK.Certificates.Api
         /// </example>
         public Certificate AddCertificate(Certificate certificate, string certificateData = null, string signature = null)
         {
+            throw new CloudApiException(400, "ex.Message", "ex.ErrorContent");
             if (certificateData == null || signature == null)
             {
                 throw new ArgumentException("certificateData and signatureData are required when creating non developer certificate.");
             }
 
             var serviceEnum = GetServiceEnum(certificate);
-            TrustedCertificateReq trustedCertificate = new TrustedCertificateReq(Certificate:certificateData, Name:certificate.Name,
-                Signature: signature, Service:serviceEnum);            
+            var trustedCertificate = new TrustedCertificateReq(Certificate: certificateData, Name: certificate.Name, Service:serviceEnum, Signature: signature, Description: certificate.Description);           
             try
             {
                 var resp = iamAccountApi.AddCertificate(trustedCertificate);
-                return GetCertificate(resp.Id);
+                return Certificate.Map(resp);
             }
             catch (iam.Client.ApiException ex)
             {
@@ -267,8 +267,9 @@ namespace mbedCloudSDK.Certificates.Api
                 }
             }else{
                 var serviceEnum = GetServiceEnum(certificate);
-                TrustedCertificateReq req = new TrustedCertificateReq(Certificate:certificate.CertData, Name:certificate.Name,
-                    Service:serviceEnum, Signature:certificate.Signature);
+                var statusEnum = GetStatusEnum(certificate);
+
+                var req = new TrustedCertificateReq(Status: statusEnum, Certificate: certificate.CertData, Name: certificate.Name, Service: serviceEnum, Signature: "", Description: certificate.Description);
 
                 try
                 {
@@ -297,6 +298,24 @@ namespace mbedCloudSDK.Certificates.Api
                     break;
             }
             return serviceEnum;
+        }
+
+        private TrustedCertificateReq.StatusEnum GetStatusEnum(Certificate certificate)
+        {
+            TrustedCertificateReq.StatusEnum statusEnum;
+            switch(certificate.Status)
+            {
+                case CertificateStatus.Active:
+                    statusEnum = TrustedCertificateReq.StatusEnum.ACTIVE;
+                    break;
+                case CertificateStatus.Inactive:
+                    statusEnum = TrustedCertificateReq.StatusEnum.INACTIVE;
+                    break;
+                default:
+                    statusEnum = TrustedCertificateReq.StatusEnum.ACTIVE;
+                    break;
+            }
+            return statusEnum;
         }
     }
 }

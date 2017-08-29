@@ -11,71 +11,71 @@ namespace mbedCloudSDK.Certificates.Model
 {
     class Certificate
     {
-        [JsonConverter(typeof(StringEnumConverter))]
-        public CertificateType Type { get; private set; }
-        
+        [JsonConverter(typeof(CertificateTypeConverter))]
+        public CertificateType? Type { get; set; }
+
         /// <summary>
         /// Human readable description of this certificate.
         /// </summary>
         /// <value>Human readable description of this certificate.</value>
         public string Description { get; set; }
-        
+
         /// <summary>
         /// Device execution mode where 1 means a developer certificate.
         /// </summary>
         /// <value>Device execution mode where 1 means a developer certificate.</value>
-        public int? DeviceExecutionMode { get; private set; }
-        
+        public int? DeviceExecutionMode { get; set; }
+
         /// <summary>
         /// Creation UTC time RFC3339.
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
-        public DateTime? CreatedAt { get; private set; }
-        
+        public DateTime? CreatedAt { get; set; }
+
         /// <summary>
         /// Subject of the certificate.
         /// </summary>
         /// <value>Subject of the certificate.</value>
-        public string Subject { get; private set; }
-        
+        public string Subject { get; set; }
+
         /// <summary>
         /// The UUID of the account.
         /// </summary>
         /// <value>The UUID of the account.</value>
-        public string AccountId { get; private set; }
+        public string AccountId { get; set; }
 
         /// <summary>
         /// Base 64 encoded SHA256 hash of AccountID.
         /// </summary>
         /// <value>Base 64 encoded SHA256 hash of AccountID.</value>
-        public string Signature {get; private set;}
-     
+        public string Signature { get; set; }
+
         /// <summary>
         /// Expiration time in UTC formatted as RFC3339.
         /// </summary>
         /// <value>Expiration time in UTC formatted as RFC3339.</value>
-        public DateTime? Validity { get; private set; }
-        
+        public DateTime? Validity { get; set; }
+
         /// <summary>
         /// Issuer of the certificate.
         /// </summary>
         /// <value>Issuer of the certificate.</value>
-        public string Issuer { get; private set; }
-        
+        public string Issuer { get; set; }
+
         /// <summary>
         /// X509.v3 trusted certificate in PEM or base64 encoded DER format.
         /// </summary>
         /// <value>X509.v3 trusted certificate in PEM or base64 encoded DER format.</value>
-        public string CertData { get; private set; }
-        
+        public string CertData { get; set; }
+
         /// <summary>
         /// Entity ID.
         /// </summary>
         /// <value>Entity ID.</value>
         [NameOverride(Name = "CertificateId")]
         [JsonProperty]
-        public string Id { get; private set; }
-        
+        public string Id { get; set; }
+
         /// <summary>
         /// Certificate name.
         /// </summary>
@@ -86,32 +86,39 @@ namespace mbedCloudSDK.Certificates.Model
         /// Content of the security.c file that will be flashed into the device to provide the security credentials
         /// </summary>
         /// <value>Content of the security.c file that will be flashed into the device to provide the security credentials</value>
-        public string SecurityFileContent { get; private set; }
-        
+        public string SecurityFileContent { get; set; }
+
         /// <summary>
         /// PEM format X.509 developer certificate.
         /// </summary>
         /// <value>PEM format X.509 developer certificate.</value>
-        public string DeveloperCertificate { get; private set; }
-        
+        public string DeveloperCertificate { get; set; }
+
         /// <summary>
         /// URI to which the client needs to connect to.
         /// </summary>
         /// <value>URI to which the client needs to connect to.</value>
         public string ServerUri { get; set; }
-        
+
         /// <summary>
         /// PEM format developer private key associated to the certificate.
         /// </summary>
         /// <value>PEM format developer private key associated to the certificate.</value>
-        public string DeveloperPrivateKey { get; private set; }
-        
+        public string DeveloperPrivateKey { get; set; }
+
         /// <summary>
         /// PEM format X.509 server certificate that will be used to validate the server certificate that will be received during the TLS/DTLS handshake.
         /// </summary>
         /// <value>PEM format X.509 server certificate that will be used to validate the server certificate that will be received during the TLS/DTLS handshake.</value>
-        public string ServerCertificate { get; private set; }
-        
+        public string ServerCertificate { get; set; }
+
+        /// <summary>
+        /// The Status of the certificate.
+        /// </summary>
+        /// <value>The Status of the certificate.</value>
+        [JsonConverter(typeof(CertificateStatusConverter))]
+        public CertificateStatus? Status { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>

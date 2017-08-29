@@ -35,27 +35,25 @@ namespace ConsoleExamples.Examples.Update
             UpdateApi api = new UpdateApi(config);
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.RestoreDirectory = true;
-            Stream dataFile = null;
+            string dataFile = null;
             Console.WriteLine("Choose manifest file to upload: ");
             FirmwareManifest manifest = null;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    if ((dataFile = openFileDialog.OpenFile()) != null)
+                    if ((dataFile = openFileDialog.FileName) != null)
                     {
-                        using (dataFile)
+
+                        // Upload manifest
+                        try
                         {
-                            // Upload manifest
-                            try
-                            {
-                                //manifest = api.AddFirmwareManifest(dataFile, CreateRandomName());
-                            }
-                            catch (CloudApiException e)
-                            {
-                                Console.WriteLine("Error while uploading manifest, Error: " + e.ToString());
-                                return;
-                            }
+                            manifest = api.AddFirmwareManifest(dataFile, CreateRandomName());
+                        }
+                        catch (CloudApiException e)
+                        {
+                            Console.WriteLine("Error while uploading manifest, Error: " + e.ToString());
+                            return;
                         }
                     }
                 }

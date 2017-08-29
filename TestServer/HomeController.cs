@@ -68,49 +68,17 @@ namespace TestServer
             }
             catch(TargetInvocationException e)
             {
-                if(e.InnerException.GetType() == typeof(CloudApiException))
-                {
-                    var exception = e.InnerException as CloudApiException;
-                    if(exception.ErrorCode == 404)
-                    {
-                        return Content(HttpStatusCode.NotFound, exception);
+                if(e.InnerException.GetType().GetProperty("ErrorCode") != null){
+                    dynamic innerException = e.InnerException;
+                    if(innerException.ErrorCode == 400){
+                        return Content(HttpStatusCode.BadRequest, innerException);
+                    }else if(innerException.ErrorCode == 404){
+                        return Content(HttpStatusCode.NotFound, innerException);
                     }
-                    else if(exception.ErrorCode == 400)
-                    {
-                        return Content(HttpStatusCode.BadRequest, exception);
-                    }
-                    else
-                    {
-                        return Content(HttpStatusCode.InternalServerError, exception);
-                    }
+
+                    return Content(HttpStatusCode.InternalServerError, innerException);
                 }
-                if(e.InnerException.GetType() == typeof(statistics.Client.ApiException))
-                {
-                    var exception = e.InnerException as statistics.Client.ApiException;
-                    if(exception.ErrorCode == 400)
-                    {
-                        return Content(HttpStatusCode.BadRequest, exception);
-                    }else
-                    {
-                        return Content(HttpStatusCode.InternalServerError, exception);
-                    }
-                }
-                if(e.InnerException.GetType() == typeof(mds.Client.ApiException))
-                {
-                    var exception = e.InnerException as mds.Client.ApiException;
-                    if(exception.ErrorCode == 404)
-                    {
-                        return Content(HttpStatusCode.NotFound, exception);
-                    }
-                    else if(exception.ErrorCode == 400)
-                    {
-                        return Content(HttpStatusCode.BadRequest, exception);
-                    }
-                    else
-                    {
-                        return Content(HttpStatusCode.InternalServerError, exception);
-                    }
-                }
+                
                 return Content(HttpStatusCode.InternalServerError, e.InnerException);
             }
             catch (Exception e)
@@ -152,18 +120,6 @@ namespace TestServer
                     var paramValue = GetParamValuePrimitive(p, paramType, argsJsonObj);
                     serialisedParams.Add(paramValue);
                 }
-                else if (paramType.FullName == "System.IO.Stream")
-                {
-                    var stream = new MemoryStream();
-                    serialisedParams.Add(stream);
-                }
-                else if(paramType.IsArray)
-                {
-                    var paramName = paramType.Name.Replace("[]", "s").ToUpper();
-                    var arrayJson = argsJsonObj[paramName].ToString();
-                    var array = JsonConvert.DeserializeObject(arrayJson,paramType);
-                    serialisedParams.Add(array);
-                }
                 else
                 {
                     var properties = paramType.GetProperties();
@@ -171,12 +127,6 @@ namespace TestServer
                     foreach (var prop in properties)
                     {
                         var propertyInst = paramType.GetProperty(prop.Name);
-                        if(propertyInst.PropertyType.BaseType == typeof(System.Enum)){
-                            var e = propertyInst.PropertyType;
-                            if(GetParamValue(propertyInst, argsJsonObj) == null){
-                                argsJsonObj[propertyInst.Name.ToUpper()] = e.GetEnumNames()[0];
-                            }
-                        }
                         if (propertyInst != null)
                         {
                             var paramValue = GetParamValue(propertyInst, argsJsonObj);
