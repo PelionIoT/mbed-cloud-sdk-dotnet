@@ -140,7 +140,7 @@ namespace mbedCloudSDK.Certificates.Api
         /// </summary>
         /// <param name="certificate">Certificate to be created.</param>
         /// <param name="certificateData">X509.v3 trusted certificate in PEM or base64 encoded DER format. Null for developer certificate.</param>
-        /// <param name="signatureData">Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. Null for developer certificate.</param>
+        /// <param name="signature">Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. Null for developer certificate.</param>
         /// <returns>Certificate</returns>
         /// <exception cref="CloudApiException">Error while adding certificate.</exception>
         /// <exception cref="ArgumentException">Invalid arguments..</exception>
@@ -169,18 +169,16 @@ namespace mbedCloudSDK.Certificates.Api
         /// }
         /// </code>
         /// </example>
-        public Certificate AddCertificate(Certificate certificate, string certificateData = null, string signatureData = null)
+        public Certificate AddCertificate(Certificate certificate, string certificateData = null, string signature = null)
         {
-            if (certificateData == null || signatureData == null)
+            if (certificateData == null || signature == null)
             {
                 throw new ArgumentException("certificateData and signatureData are required when creating non developer certificate.");
             }
 
             var serviceEnum = GetServiceEnum(certificate);
             TrustedCertificateReq trustedCertificate = new TrustedCertificateReq(Certificate:certificateData, Name:certificate.Name,
-                Signature: signatureData, Service:serviceEnum);
-            trustedCertificate.Description = certificate.Description;
-            
+                Signature: signature, Service:serviceEnum);            
             try
             {
                 var resp = iamAccountApi.AddCertificate(trustedCertificate);

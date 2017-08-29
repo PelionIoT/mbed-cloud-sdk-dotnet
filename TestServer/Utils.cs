@@ -59,11 +59,6 @@ namespace TestServer
             return dict;
         }
 
-        public static string Pascalize(string input)
-        {
-            return Regex.Replace(input, "(?:^|_)(.)", match => match.Groups[1].Value.ToUpper());
-        }
-
         public static void ReadAllSettings()
         {
             try

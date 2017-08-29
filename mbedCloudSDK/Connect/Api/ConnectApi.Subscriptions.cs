@@ -14,12 +14,12 @@ namespace mbedCloudSDK.Connect.Api
         /// </summary>
         /// <param name="deviceId">Id of device.</param>
         /// <param name="resourcePath">Resource path.</param>
-        public Dictionary<string, string> AddResourceSubscription(string deviceId, string resourcePath)
+        public Dictionary<string, Resource> AddResourceSubscription(string deviceId, string resourcePath)
         {
             try
             {
                 var fixedPath = FixedPath(resourcePath);
-                resourceSubscribtions.Add(deviceId, resourcePath);
+                //resourceSubscribtions.Add(deviceId, resourcePath);
                 subscriptionsApi.V2SubscriptionsDeviceIdResourcePathPut(deviceId, resourcePath);
                 return resourceSubscribtions;
             }
@@ -79,7 +79,7 @@ namespace mbedCloudSDK.Connect.Api
                 {
                     foreach(var resource in resourceSubscribtions)
                     {
-                        subscriptionsApi.V2SubscriptionsDeviceIdResourcePathDelete(resource.Key, resource.Value);
+                        subscriptionsApi.V2SubscriptionsDeviceIdResourcePathDelete(resource.Key, resource.Value.Path);
                     }
                 }
                 else
@@ -105,7 +105,7 @@ namespace mbedCloudSDK.Connect.Api
             var subscribePath = endpointName + resource.Path;
             if (!ConnectApi.resourceSubscribtions.ContainsKey(subscribePath))
             {
-                ConnectApi.resourceSubscribtions.Add(subscribePath, resource.ToString());
+                ConnectApi.resourceSubscribtions.Add(subscribePath, resource);
             }
             return new AsyncConsumer<String>(resource.Queue);
         }
