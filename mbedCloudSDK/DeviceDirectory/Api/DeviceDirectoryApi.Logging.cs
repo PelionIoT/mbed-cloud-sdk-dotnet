@@ -18,7 +18,7 @@ namespace mbedCloudSDK.DeviceDirectory.Api
         /// </summary>
         /// <returns>The device logs.</returns>
         /// <param name="options">Query options.</param>
-        public PaginatedResponse<DeviceLog> ListDeviceLogs(QueryOptions options = null)
+        public PaginatedResponse<DeviceLog> ListDeviceEvents(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -26,7 +26,7 @@ namespace mbedCloudSDK.DeviceDirectory.Api
             }
             try
             {
-                return new PaginatedResponse<DeviceLog>(ListDeviceLogsFunc, options);
+                return new PaginatedResponse<DeviceLog>(ListDeviceEventsFunc, options);
             }
             catch (CloudApiException e)
             {
@@ -39,7 +39,7 @@ namespace mbedCloudSDK.DeviceDirectory.Api
         /// </summary>
         /// <returns>The device logs.</returns>
         /// <param name="options">Query options.</param>
-        private ResponsePage<DeviceLog> ListDeviceLogsFunc(QueryOptions options = null)
+        private ResponsePage<DeviceLog> ListDeviceEventsFunc(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -48,14 +48,14 @@ namespace mbedCloudSDK.DeviceDirectory.Api
             try
             {
                 var resp = this.api.DeviceLogList(options.Limit, options.Order, options.After, options.QueryString);
-                ResponsePage<DeviceLog> respDeviceLogs = new ResponsePage<DeviceLog>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
+                var respDeviceLogs = new ResponsePage<DeviceLog>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
                 foreach (var deviceLog in resp.Data)
                 {
                     respDeviceLogs.Data.Add(DeviceLog.Map(deviceLog));
                 }
                 return respDeviceLogs;
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (device_directory.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -66,13 +66,13 @@ namespace mbedCloudSDK.DeviceDirectory.Api
         /// </summary>
         /// <returns>The device log.</returns>
         /// <param name="deviceLogId">Device log identifier.</param>
-        public DeviceLog GetDeviceLog(string deviceLogId)
+        public DeviceLog GetDeviceEvent(string deviceEventId)
         {
             try
             {
-                return DeviceLog.Map(this.api.DeviceLogRetrieve(deviceLogId));
+                return DeviceLog.Map(api.DeviceLogRetrieve(deviceEventId));
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (device_directory.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -83,13 +83,13 @@ namespace mbedCloudSDK.DeviceDirectory.Api
         /// </summary>
         /// <returns>The device log.</returns>
         /// <param name="deviceLogId">Device log identifier.</param>
-        public async Task<DeviceLog> GetDeviceLogAsync(string deviceLogId)
+        public async Task<DeviceLog> GetDeviceEventAsync(string deviceLogId)
         {
             try
             {
-                return DeviceLog.Map(await this.api.DeviceLogRetrieveAsync(deviceLogId));
+                return DeviceLog.Map(await api.DeviceLogRetrieveAsync(deviceLogId));
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (device_directory.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }

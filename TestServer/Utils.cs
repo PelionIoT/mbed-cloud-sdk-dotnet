@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.Configuration;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace TestServer
@@ -51,7 +52,8 @@ namespace TestServer
 
             foreach(var k in nameValueCollection.AllKeys)
             {
-                dict.Add(SnakeToCamel(k).ToUpper(), nameValueCollection[k]);
+                var key = SnakeToCamel(k).ToUpper();
+                dict.Add(key, nameValueCollection[k]);
             }
 
             return dict;

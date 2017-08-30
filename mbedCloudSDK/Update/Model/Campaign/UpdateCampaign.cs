@@ -1,4 +1,4 @@
-﻿using deployment_service.Model;
+﻿using update_service.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using mbedCloudSDK.Common;
+using System.Text.RegularExpressions;
+using mbedCloudSDK.Common.Query;
 
 namespace mbedCloudSDK.Update.Model.Campaign
 {
@@ -14,7 +17,6 @@ namespace mbedCloudSDK.Update.Model.Campaign
     /// </summary>
     public class UpdateCampaign
     {
-
         /// <summary>
         /// State of the update campaign.
         /// </summary>
@@ -29,7 +31,7 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// <summary>
         /// The time the object was created
         /// </summary>
-        public string CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
         
         /// <summary>
         /// Gets or Sets RootManifestId
@@ -49,7 +51,7 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// <summary>
         /// The timestamp when the update campaign finished
         /// </summary>
-        public string FinishedAt { get; set; }
+        public DateTime? FinishedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets RootManifestUrl
@@ -70,6 +72,12 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// A name for this campaign
         /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// A when for this campaign
+        /// </summary>
+        public string When { get; set; }
+
+        public string _Object { get; set; }
 
         /// <summary>
         /// Create new update campaign object.
@@ -118,13 +126,13 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static UpdateCampaign Map(deployment_service.Model.UpdateCampaign data)
+        public static UpdateCampaign Map(update_service.Model.UpdateCampaign data)
         {
             var updateCampaignStatus = (UpdateCampaignState)Enum.Parse(typeof(UpdateCampaignState), data.State.ToString());
             var campaign = new UpdateCampaign();
             campaign.CreatedAt = data.CreatedAt;
             campaign.Description = data.Description;
-            campaign.DeviceFilter = data.DeviceFilter;
+            campaign.DeviceFilter = Utils.QueryStringToJson(data.DeviceFilter);
             campaign.FinishedAt = data.Finished;
             campaign.Id = data.Id;
             campaign.Name = data.Name;
@@ -137,7 +145,9 @@ namespace mbedCloudSDK.Update.Model.Campaign
 
         public UpdateCampaignPostRequest CreatePostRequest()
         {
-            UpdateCampaignPostRequest request = new UpdateCampaignPostRequest(DeviceFilter:DeviceFilter, Name:Name);
+            var deviceFilterDict = Utils.ParseAttributeString(DeviceFilter);
+            var deviceFilterString = string.Join("&", deviceFilterDict.Select(q => $"{q.Key}{q.Value.GetSuffix()}={q.Value.Value}"));
+            UpdateCampaignPostRequest request = new UpdateCampaignPostRequest(DeviceFilter:deviceFilterString, Name:Name);
             request.Description = this.Description;
             request.RootManifestId = this.RootManifestId;
             var updateCampaignStatus = (UpdateCampaignPostRequest.StateEnum)Enum.Parse(typeof(UpdateCampaignPostRequest.StateEnum), this.State.ToString());

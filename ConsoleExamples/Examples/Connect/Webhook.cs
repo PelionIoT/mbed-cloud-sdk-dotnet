@@ -36,7 +36,7 @@ namespace ConsoleExamples.Examples.Connect
             }
             //webhook address
             string webhook = "http://testwebhooksdotnet.requestcatcher.com/test";
-            api.RegisterWebhook(webhook);
+            api.UpdateWebhook(webhook);
             Thread.Sleep(2000);
             var endpoints = endpointsResp.ToList();
             //subscribe to the resource
@@ -50,7 +50,7 @@ namespace ConsoleExamples.Examples.Connect
                     Console.WriteLine(string.Format("Webhook registered, see output on {0}", webhook));
                     //Deregister webhook after 1 minute
                     Thread.Sleep(60000);
-                    api.DeregisterWebhooks();
+                    api.DeleteWebhook();
                     break;
                 }
             }

@@ -42,7 +42,7 @@ namespace mbedCloudSDK.Common.Query
         {
             get
             {
-                return Attributes != null ? string.Join("&", Attributes.Select(q => String.Format("{0}={1}", q.Key, q.Value))) : string.Empty;
+                return Attributes != null ? string.Join("&", Attributes.Select(q => $"{q.Key}{q.Value.GetSuffix()}={q.Value.Value}")) : string.Empty;
             }
         }
 
@@ -50,6 +50,13 @@ namespace mbedCloudSDK.Common.Query
         /// List of query attributes.
         /// </summary>
         public Dictionary<string, QueryAttribute> Attributes { get; set; }
+
+        /// <summary>
+        /// String representation of filter JSON
+        /// </summary>
+        [NameOverride(Name = "filter")]
+        [JsonProperty]
+        public string AttributesString { get; set; }
 
 
         /// <summary>

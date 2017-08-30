@@ -12,10 +12,7 @@ namespace mbedCloudSDK.DeviceDirectory.Api
     /// </summary>
     public partial class DeviceDirectoryApi : BaseApi
     {
-        private device_catalog.Api.DefaultApi api;
-        private device_query_service.Api.DefaultApi queryApi;
-
-        #region Contructors
+        private device_directory.Api.DefaultApi api;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:mbedCloudSDK.DeviceDirectory.DeviceDirectory"/> class.
@@ -23,19 +20,10 @@ namespace mbedCloudSDK.DeviceDirectory.Api
         /// <param name="config">Config.</param>
         public DeviceDirectoryApi(Config config) : base(config)
         {
-            this.api = new device_catalog.Api.DefaultApi(config.Host);
-            this.api.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            this.api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-
-            this.queryApi = new device_query_service.Api.DefaultApi();
-            this.queryApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            this.queryApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            api = new device_directory.Api.DefaultApi(config.Host);
+            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
+            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
         }
-
-        #endregion
-
-        #region Utils
-
         private string FixedPath(string path)
         {
             if (path.StartsWith("/", StringComparison.OrdinalIgnoreCase))
@@ -44,7 +32,5 @@ namespace mbedCloudSDK.DeviceDirectory.Api
             }
             return path;
         }
-
-        #endregion
     }
 }

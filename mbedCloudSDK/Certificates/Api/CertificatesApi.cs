@@ -140,7 +140,7 @@ namespace mbedCloudSDK.Certificates.Api
         /// </summary>
         /// <param name="certificate">Certificate to be created.</param>
         /// <param name="certificateData">X509.v3 trusted certificate in PEM or base64 encoded DER format. Null for developer certificate.</param>
-        /// <param name="signatureData">Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. Null for developer certificate.</param>
+        /// <param name="signature">Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. Null for developer certificate.</param>
         /// <returns>Certificate</returns>
         /// <exception cref="CloudApiException">Error while adding certificate.</exception>
         /// <exception cref="ArgumentException">Invalid arguments..</exception>
@@ -169,46 +169,38 @@ namespace mbedCloudSDK.Certificates.Api
         /// }
         /// </code>
         /// </example>
-        public Certificate AddCertificate(Certificate certificate, string certificateData = null, string signatureData = null)
+        public Certificate AddCertificate(Certificate certificate, string certificateData = null, string signature = null)
         {
-            if (certificate.Type == CertificateType.Developer)
+            throw new CloudApiException(400, "ex.Message", "ex.ErrorContent");
+            if (certificateData == null || signature == null)
             {
-                if (certificateData != null || signatureData != null)
-                {
-                    throw new ArgumentException("certificateData and signatureData are not required when creating developer certificate.");
-                }
-                connector_ca.Model.DeveloperCertificateRequestData body = new connector_ca.Model.DeveloperCertificateRequestData(certificate.Name, certificate.Description);
-                try
-                {
-                    var response = developerCertificateApi.V3DeveloperCertificatesPost(this.auth, body);
-                    return GetCertificate(response.Id);
-                }
-                catch (connector_ca.Client.ApiException ex)
-                {
-                    throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
-                }
+                throw new ArgumentException("certificateData and signatureData are required when creating non developer certificate.");
             }
-            else
-            {
-                if (certificateData == null || signatureData == null)
-                {
-                    throw new ArgumentException("certificateData and signatureData are required when creating non developer certificate.");
-                }
 
-                var serviceEnum = GetServiceEnum(certificate);
-                TrustedCertificateReq trustedCertificate = new TrustedCertificateReq(Certificate:certificateData, Name:certificate.Name,
-                    Signature: signatureData, Service:serviceEnum);
-                trustedCertificate.Description = certificate.Description;
-                
-                try
-                {
-                    var resp = iamAccountApi.AddCertificate(trustedCertificate);
-                    return GetCertificate(resp.Id);
-                }
-                catch (iam.Client.ApiException ex)
-                {
-                    throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
-                }
+            var serviceEnum = GetServiceEnum(certificate);
+            var trustedCertificate = new TrustedCertificateReq(Certificate: certificateData, Name: certificate.Name, Service:serviceEnum, Signature: signature, Description: certificate.Description);           
+            try
+            {
+                var resp = iamAccountApi.AddCertificate(trustedCertificate);
+                return Certificate.Map(resp);
+            }
+            catch (iam.Client.ApiException ex)
+            {
+                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+            }
+        }
+
+        public Certificate AddDeveloperCertificate(Certificate certificate)
+        {
+            connector_ca.Model.DeveloperCertificateRequestData body = new connector_ca.Model.DeveloperCertificateRequestData(certificate.Name, certificate.Description);
+            try
+            {
+                var response = developerCertificateApi.V3DeveloperCertificatesPost(this.auth, body);
+                return GetCertificate(response.Id);
+            }
+            catch (connector_ca.Client.ApiException ex)
+            {
+                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
         }
 
@@ -275,8 +267,9 @@ namespace mbedCloudSDK.Certificates.Api
                 }
             }else{
                 var serviceEnum = GetServiceEnum(certificate);
-                TrustedCertificateReq req = new TrustedCertificateReq(Certificate:certificate.CertData, Name:certificate.Name,
-                    Service:serviceEnum, Signature:certificate.Signature);
+                var statusEnum = GetStatusEnum(certificate);
+
+                var req = new TrustedCertificateReq(Status: statusEnum, Certificate: certificate.CertData, Name: certificate.Name, Service: serviceEnum, Signature: "", Description: certificate.Description);
 
                 try
                 {
@@ -305,6 +298,24 @@ namespace mbedCloudSDK.Certificates.Api
                     break;
             }
             return serviceEnum;
+        }
+
+        private TrustedCertificateReq.StatusEnum GetStatusEnum(Certificate certificate)
+        {
+            TrustedCertificateReq.StatusEnum statusEnum;
+            switch(certificate.Status)
+            {
+                case CertificateStatus.Active:
+                    statusEnum = TrustedCertificateReq.StatusEnum.ACTIVE;
+                    break;
+                case CertificateStatus.Inactive:
+                    statusEnum = TrustedCertificateReq.StatusEnum.INACTIVE;
+                    break;
+                default:
+                    statusEnum = TrustedCertificateReq.StatusEnum.ACTIVE;
+                    break;
+            }
+            return statusEnum;
         }
     }
 }
