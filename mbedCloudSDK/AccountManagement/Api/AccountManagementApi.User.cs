@@ -45,14 +45,14 @@ namespace mbedCloudSDK.AccountManagement.Api
             try
             {
                 var resp = adminApi.GetAllUsers(options.Limit, options.Order, options.After, options.QueryString, options.Include);
-                ResponsePage<User> respUsers = new ResponsePage<User>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
+                var respUsers = new ResponsePage<User>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
                 foreach (var user in resp.Data)
                 {
                     respUsers.Data.Add(User.Map(user));
                 }
                 return respUsers;
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (device_directory.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -102,7 +102,7 @@ namespace mbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                UserInfoReq req = user.CreatePostRequest();
+                var req = user.CreatePostRequest();
                 return User.Map(adminApi.CreateUser(req));
             }
             catch (iam.Client.ApiException e)
@@ -120,7 +120,7 @@ namespace mbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                UserInfoReq req = user.CreatePostRequest();
+                var req = user.CreatePostRequest();
                 return User.Map(await adminApi.CreateUserAsync(req));
             }
             catch (iam.Client.ApiException e)
@@ -138,7 +138,7 @@ namespace mbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                UserUpdateReq req = user.CreatePutRequest();
+                var req = user.CreatePutRequest();
                 return User.Map(adminApi.UpdateUser(user.Id, req));
             }
             catch (iam.Client.ApiException e)
@@ -156,7 +156,7 @@ namespace mbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                UserUpdateReq req = user.CreatePutRequest();
+                var req = user.CreatePutRequest();
                 var userData = await adminApi.UpdateUserAsync(user.Id, req);
                 return User.Map(userData);
             }

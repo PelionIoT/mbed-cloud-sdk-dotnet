@@ -1,4 +1,4 @@
-﻿using device_catalog.Model;
+﻿using device_directory.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
@@ -49,7 +49,7 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Logging
         /// <summary>
         /// Gets or Sets DeviceLogId
         /// </summary>
-        public string DeviceLogId { get; set; }
+        public string Id { get; set; }
         
         /// <summary>
         /// Gets or Sets Data
@@ -93,7 +93,7 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Logging
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Changes: ").Append(Changes).Append("\n");
             sb.Append("  EventTypeDescription: ").Append(EventTypeDescription).Append("\n");
-            sb.Append("  DeviceLogId: ").Append(DeviceLogId).Append("\n");
+            sb.Append("  DeviceLogId: ").Append(Id).Append("\n");
             sb.Append("  EventType: ").Append(EventType).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
@@ -114,12 +114,12 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Logging
             deviceLog.DateTime = deviceLogSerializer.DateTime;
             deviceLog.Description = deviceLogSerializer.Description;
             deviceLog.DeviceId = deviceLogSerializer.DeviceId;
-            deviceLog.DeviceLogId = deviceLogSerializer.Id;
+            deviceLog.Id = deviceLogSerializer.Id;
             deviceLog.EventTypeDescription = deviceLogSerializer.EventTypeDescription;
-            deviceLogSerializer.StateChange = deviceLogSerializer.StateChange;
-            if (deviceLogSerializer.EventType != null)
+            deviceLog.StateChange = deviceLogSerializer.StateChange;
+            if (Enum.TryParse<EventType>(deviceLogSerializer.EventType.ToString(), out EventType eventType))
             {
-                deviceLog.EventType = (EventType)Enum.Parse(typeof(EventType), deviceLogSerializer.EventType.ToString());
+                deviceLog.EventType = eventType;
             }
             return deviceLog;
         }

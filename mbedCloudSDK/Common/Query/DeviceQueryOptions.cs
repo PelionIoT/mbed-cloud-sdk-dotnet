@@ -18,7 +18,7 @@ namespace mbedCloudSDK.Common.Query
         {
             get
             {
-                string attributes = Attributes != null ?  string.Join("&", Attributes.Select(q => String.Format("{0}={1}", q.Key, q.Value))) : string.Empty;
+                string attributes = Attributes != null ?  string.Join("&", Attributes.Select(q => $"{q.Key}{q.Value.GetSuffix()}={q.Value.Value}")) : string.Empty;
                 if (CustomAttributes != null)
                 {
                     return Uri.UnescapeDataString(string.Join("&", attributes, CustomAttributes));

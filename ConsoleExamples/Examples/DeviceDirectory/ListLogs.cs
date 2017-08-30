@@ -27,7 +27,7 @@ namespace ConsoleExamples.Examples.DeviceDirectory
             DeviceDirectoryApi api = new DeviceDirectoryApi(config);
             QueryOptions listParam = new QueryOptions();
             listParam.Limit = 10;
-            foreach (var log in api.ListDeviceLogs(listParam))
+            foreach (var log in api.ListDeviceEvents(listParam))
             {
                 Console.WriteLine(log.ToString());
             }

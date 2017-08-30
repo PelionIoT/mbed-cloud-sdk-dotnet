@@ -100,7 +100,7 @@ namespace mbedCloudSDK.Connect.Model.Resource
         /// <param name="resourceValue">Value to set.</param>
         /// <param name="noResponse">Don't get a response.</param>
         /// <returns></returns>
-        public AsyncConsumer<string> SetResourceValue(byte[] resourceValue, bool? noResponse = null)
+        public AsyncConsumer<string> SetResourceValue(string resourceValue, bool? noResponse = null)
         {
             return this.api.SetResourceValue(this.DeviceId, this.Path, resourceValue, noResponse);
         }

@@ -59,42 +59,26 @@ namespace TestServer
                 return Content(HttpStatusCode.InternalServerError,new { Message = "No method found"});
             }
 
-            var @params = GetMethodParams(methodInfo, argsJsonObj);
             try
             {
+                var @params = GetMethodParams(methodInfo, argsJsonObj);
                 var invokedMethod = methodInfo.Invoke(moduleInstance, @params.ToArray());
                 var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, GetSnakeJsonSettings());
                 return Ok(JsonConvert.DeserializeObject(result));
             }
             catch(TargetInvocationException e)
             {
-                if(e.InnerException.GetType() == typeof(CloudApiException))
-                {
-                    var exception = e.InnerException as CloudApiException;
-                    if(exception.ErrorCode == 404)
-                    {
-                        return Content(HttpStatusCode.NotFound, exception);
+                if(e.InnerException.GetType().GetProperty("ErrorCode") != null){
+                    dynamic innerException = e.InnerException;
+                    if(innerException.ErrorCode == 400){
+                        return Content(HttpStatusCode.BadRequest, innerException);
+                    }else if(innerException.ErrorCode == 404){
+                        return Content(HttpStatusCode.NotFound, innerException);
                     }
-                    else if(exception.ErrorCode == 400)
-                    {
-                        return Content(HttpStatusCode.BadRequest, exception);
-                    }
-                    else
-                    {
-                        return Content(HttpStatusCode.InternalServerError, exception);
-                    }
+
+                    return Content(HttpStatusCode.InternalServerError, innerException);
                 }
-                if(e.InnerException.GetType() == typeof(statistics.Client.ApiException))
-                {
-                    var exception = e.InnerException as statistics.Client.ApiException;
-                    if(exception.ErrorCode == 400)
-                    {
-                        return Content(HttpStatusCode.BadRequest, exception);
-                    }else
-                    {
-                        return Content(HttpStatusCode.InternalServerError, exception);
-                    }
-                }
+                
                 return Content(HttpStatusCode.InternalServerError, e.InnerException);
             }
             catch (Exception e)
@@ -114,6 +98,16 @@ namespace TestServer
             return settings;
         }
 
+        private JsonSerializerSettings GetCamelJsonSettings()
+        {
+            var settings = new JsonSerializerSettings()
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
+
+            return settings;
+        }
+
         private List<Object> GetMethodParams(MethodInfo methodInfo, JObject argsJsonObj)
         {
             var @params = methodInfo.GetParameters();
@@ -125,11 +119,6 @@ namespace TestServer
                 {
                     var paramValue = GetParamValuePrimitive(p, paramType, argsJsonObj);
                     serialisedParams.Add(paramValue);
-                }
-                else if (paramType.FullName == "System.IO.Stream")
-                {
-                    var stream = new MemoryStream();
-                    serialisedParams.Add(stream);
                 }
                 else
                 {

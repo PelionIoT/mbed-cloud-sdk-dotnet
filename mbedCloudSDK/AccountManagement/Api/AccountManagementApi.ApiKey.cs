@@ -44,7 +44,7 @@ namespace mbedCloudSDK.AccountManagement.Api
             try
             {
                 var resp = developerApi.GetAllApiKeys(options.Limit, options.After, options.Order, options.Include, options.QueryString);
-                ResponsePage<ApiKey> respKeys = new ResponsePage<ApiKey>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
+                var respKeys = new ResponsePage<ApiKey>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach(var key in resp.Data)
                 {
                     respKeys.Data.Add(ApiKey.Map(key));
@@ -88,20 +88,11 @@ namespace mbedCloudSDK.AccountManagement.Api
         /// Get API key details. Returns currently used key for empty argument.
         /// </summary>
         /// <param name="apiKeyId">API key ID</param>
-        public ApiKey GetApiKey(string apiKeyId = null)
+        public ApiKey GetApiKey(string apiKeyId)
         {
             try
             {
-                if (apiKeyId != null)
-                {
-                    return ApiKey.Map(developerApi.GetApiKey(apiKeyId));
-                }
-                //return currently used api key for empty keyId
-                else
-                {
-                    return ApiKey.Map(developerApi.GetMyApiKey());
-                }
-
+                return ApiKey.Map(developerApi.GetApiKey(apiKeyId));
             }
             catch (iam.Client.ApiException e)
             {
@@ -114,19 +105,11 @@ namespace mbedCloudSDK.AccountManagement.Api
         /// </summary>
         /// <param name="apiKeyId"></param>
         /// <returns></returns>
-        public async Task<ApiKey> GetApiKeyAsync(string apiKeyId = null)
+        public async Task<ApiKey> GetApiKeyAsync(string apiKeyId)
         {
             try
             {
-                if (apiKeyId != null)
-                {
-                    return ApiKey.Map(await developerApi.GetApiKeyAsync(apiKeyId));
-                }
-                //return currently used api key for empty keyId
-                else
-                {
-                    return ApiKey.Map(await developerApi.GetMyApiKeyAsync());
-                }
+                return ApiKey.Map(await developerApi.GetApiKeyAsync(apiKeyId));
             }
             catch (iam.Client.ApiException e)
             {
@@ -180,7 +163,7 @@ namespace mbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                ApiKeyUpdateReq req = key.CreatePutRequest();
+                var req = key.CreatePutRequest();
                 return ApiKey.Map(developerApi.UpdateApiKey(apiKeyId, req));
             }
             catch (iam.Client.ApiException e)
@@ -199,7 +182,7 @@ namespace mbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                ApiKeyUpdateReq req = key.CreatePutRequest();
+                var req = key.CreatePutRequest();
                 return ApiKey.Map(await developerApi.UpdateApiKeyAsync(apiKeyId, req));
             }
             catch (iam.Client.ApiException e)

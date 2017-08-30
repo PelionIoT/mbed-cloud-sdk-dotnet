@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using mbedCloudSDK.DeviceDirectory.Api;
 using mbedCloudSDK.Exceptions;
-using device_catalog.Model;
+using device_directory.Model;
 using mds.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -56,6 +56,7 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Device
         /// </summary>
         public string DeviceClass { get; set; }
 
+        [NameOverride(Name="DeviceId")]
         /// <summary>
         /// The ID of the device
         /// </summary>
@@ -125,16 +126,14 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Device
         /// URL for the current device manifest
         /// </summary>
         public string Manifest { get; set; }
-        [NameOverride(Name="CertificateFingerprint")]
         /// <summary>
         /// Fingerprint of the device certificate
         /// </summary>
-        public string Fingerprint { get; set; }
-        [NameOverride(Name="CertificateIssuerId")]
+        public string CertificateFingerprint { get; set; }
         /// <summary>
         /// ID of the issuer of the certificate
         /// </summary>
-        public string IssuerId { get; set; }
+        public string CertificateIssuerId { get; set; }
         /// <summary>
         /// Expiration date of the certificate used to connect to bootstrap server
         /// </summary>
@@ -167,6 +166,11 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Device
         /// The API resource entity
         /// </summary>
         public string _Object { get; set; }
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public Device() { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Device" /> class.
@@ -202,7 +206,7 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Device
             device.UpdatedAt = deviceData.UpdatedAt;
             device.CustomAttributes = deviceData.CustomAttributes;
             device.DeviceClass = deviceData.DeviceClass;
-            device.Id = deviceData.CaId;
+            device.Id = deviceData.Id;
             device.Description = deviceData.Description;
             device.AutoUpdate = deviceData.AutoUpdate;
             if (deviceData.Mechanism != null)
@@ -228,6 +232,15 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Device
             device.Name = deviceData.Name;
             device.CreatedAt = deviceData.CreatedAt;
             device.Manifest = deviceData.Manifest;
+            device.CertificateFingerprint = deviceData.DeviceKey;
+            device.CertificateIssuerId = deviceData.CaId;
+            device.BootstrapExpirationDate = deviceData.BootstrapExpirationDate;
+            device.ConnectorExpirationDate = deviceData.ConnectorExpirationDate;
+            device.EndpointName = deviceData.EndpointName;
+            device.HostGateway = deviceData.HostGateway;
+            device.DeviceExecutionMode = deviceData.DeviceExecutionMode;
+            device.FirmwareChecksum = deviceData.FirmwareChecksum;
+            device.EndpointType = deviceData.EndpointType;
             return device;
         }
 
@@ -260,6 +273,15 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Device
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Manifest: ").Append(Manifest).Append("\n");
+            sb.Append("  Fingerprint: ").Append(CertificateFingerprint).Append("\n");
+            sb.Append("  IssuerId: ").Append(CertificateIssuerId).Append("\n");
+            sb.Append("  BootstrapExpirationDate: ").Append(BootstrapExpirationDate).Append("\n");
+            sb.Append("  ConnectorExpirationDate: ").Append(ConnectorExpirationDate).Append("\n");
+            sb.Append("  EndpointName: ").Append(EndpointName).Append("\n");
+            sb.Append("  HostGateway: ").Append(HostGateway).Append("\n");
+            sb.Append("  DeviceExecutionMode: ").Append(DeviceExecutionMode).Append("\n");
+            sb.Append("  FirmwareChecksum: ").Append(FirmwareChecksum).Append("\n");
+            sb.Append("  EndpointType: ").Append(EndpointType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

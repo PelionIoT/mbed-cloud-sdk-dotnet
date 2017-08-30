@@ -15,7 +15,23 @@ namespace mbedCloudSDK.Common.Query
         /// <summary>
         /// Equal operator.
         /// </summary>
-        [EnumMember(Value = "equals")]
-        Equals
+        [EnumMember(Value = "")]
+        Equals,
+        /// <summary>
+        /// Not Equal operator.
+        /// </summary>
+        [EnumMember(Value = "neq")]
+        NotEqual,
+        /// <summary>
+        /// Less or Equal operator.
+        /// </summary>
+        [EnumMember(Value = "lte")]
+        LessOrEqual,
+        /// <summary>
+        /// Greater or Equal.
+        /// </summary>
+        [EnumMember(Value = "gte")]
+        GreaterOrEqual
+
     }
 }

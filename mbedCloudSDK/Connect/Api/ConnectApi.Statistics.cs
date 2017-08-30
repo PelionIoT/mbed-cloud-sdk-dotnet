@@ -46,10 +46,14 @@ namespace mbedCloudSDK.Connect.Api
             {
                 options = new MetricQueryOptions();
             }
+            if (string.IsNullOrEmpty(options.Include))
+            {
+                options.Include = "transactions,bootstraps_successful,bootstraps_pending,bootstraps_failed,device_server_rest_api_success,device_server_rest_api_error";
+            }
             try
             {
-                var response = statisticsApi.V3MetricsGet(options.Include ?? "", options.Interval, auth, options.Start, options.End, options.Period);
-                List<Metric> statisticsList = new List<Metric>();
+                var response = statisticsApi.V3MetricsGet(options.Include, options.Interval, auth, options.Start, options.End, options.Period, options.Limit, options.After, options.Order);
+                var statisticsList = new List<Metric>();
                 foreach (var data in response.Data)
                 {
                     statisticsList.Add(Metric.Map(data));
@@ -76,7 +80,7 @@ namespace mbedCloudSDK.Connect.Api
             try
             {
                 var response = this.accountApi.V3MetricsGet(include:options.Include, interval:options.Interval, authorization:auth, start:options.Start, end:options.End, period:options.Period);
-                List<Metric> statisticsList = new List<Metric>();
+                var statisticsList = new List<Metric>();
                 foreach (var data in response.Data)
                 {
                     statisticsList.Add(Metric.Map(data));

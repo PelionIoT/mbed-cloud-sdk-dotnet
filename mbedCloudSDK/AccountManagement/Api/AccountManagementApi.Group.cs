@@ -43,14 +43,14 @@ namespace mbedCloudSDK.AccountManagement.Api
             try
             {
                 var resp = this.developerApi.GetAllGroups(options.Limit, options.After, options.Order, options.Include);
-                ResponsePage<Group> respGroups = new ResponsePage<Group>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
+                var respGroups = new ResponsePage<Group>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
                 foreach (var group in resp.Data)
                 {
                     respGroups.Data.Add(Group.Map(group));
                 }
                 return respGroups;
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (device_directory.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -103,14 +103,14 @@ namespace mbedCloudSDK.AccountManagement.Api
             try
             {
                 var resp = this.adminApi.GetUsersOfGroup(options.Id, options.Limit, options.After, options.Order, options.Include);
-                ResponsePage<User> respGroupUsers = new ResponsePage<User>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
+                var respGroupUsers = new ResponsePage<User>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
                 foreach (var user in resp.Data)
                 {
                     respGroupUsers.Data.Add(User.Map(user));
                 }
                 return respGroupUsers;
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (device_directory.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -144,14 +144,14 @@ namespace mbedCloudSDK.AccountManagement.Api
             try
             {
                 var resp = this.developerApi.GetApiKeysOfGroup(options.Id, options.Limit, options.After, options.Order, options.Include);
-                ResponsePage<ApiKey> respGroupKeys = new ResponsePage<ApiKey>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
+                var respGroupKeys = new ResponsePage<ApiKey>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
                 foreach (var apiKey in resp.Data)
                 {
                     respGroupKeys.Data.Add(ApiKey.Map(apiKey));
                 }
                 return respGroupKeys;
             }
-            catch (device_catalog.Client.ApiException e)
+            catch (device_directory.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }

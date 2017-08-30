@@ -1,4 +1,4 @@
-﻿using device_query_service.Model;
+﻿using device_directory.Model;
 using mbedCloudSDK.Common;
 using Newtonsoft.Json;
 using System;
@@ -33,17 +33,29 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Query
         /// <summary>
         /// The device query
         /// </summary>
-        [NameOverride(Name = "filter")]
+        [NameOverride(Name="filter")]
         [JsonProperty]
         public string QueryString {
             get {
-                string attributes = string.Join("&", Attributes.Select(q => String.Format("{0}={1}", q.Key, q.Value)));
-                string customAttributes = string.Join("&", CustomAttributes.Select(q => String.Format("{0}{1}={2}", Query.CustomAttributesPrefix, q.Key, q.Value)));
-                return Uri.UnescapeDataString(string.Join("&", attributes, customAttributes));
+                if (this.queryString != null)
+                {
+                    try
+                    {
+                        var attributeDictionary = Utils.ParseAttributeString(this.queryString);
+                        var queryString = String.Join("&", attributeDictionary.Select(q => $"{q.Key}{q.Value.GetSuffix()}={q.Value.Value}"));
+                        return queryString;
+                    }
+                    catch (Exception e)
+                    {
+                        return queryString;
+                    }
+                }
+                return null;
             }
-            private set {
+            set {
                 queryString = value;
                 // Set attributes and custom attributes
+                /* 
                 Attributes = new Dictionary<string, string>();
                 CustomAttributes = new Dictionary<string, string>();
                 string[] substrings = queryString.Split('&');
@@ -65,6 +77,7 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Query
                         }
                     }
                 }
+                */
             }
         }
 
@@ -87,6 +100,11 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Query
         /// The name of the query.
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public Query() {}
 
         /// <summary>
         /// Create new Query class.

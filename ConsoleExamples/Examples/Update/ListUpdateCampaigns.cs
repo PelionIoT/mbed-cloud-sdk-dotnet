@@ -21,7 +21,7 @@ namespace ConsoleExamples.Examples.Update
         public void listCampaigns()
         {
             UpdateApi api = new UpdateApi(config);
-            var updateCampaigns = api.ListUpdateCampaigns();
+            var updateCampaigns = api.ListCampaigns();
             var enumerator = updateCampaigns.GetEnumerator();
             while (enumerator.MoveNext())
             {
