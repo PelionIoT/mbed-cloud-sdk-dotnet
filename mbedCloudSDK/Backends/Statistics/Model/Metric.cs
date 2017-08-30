@@ -33,26 +33,32 @@ namespace statistics.Model
         /// Initializes a new instance of the <see cref="Metric" /> class.
         /// </summary>
         /// <param name="DeviceServerRestApiError">The number of failed [Connect API](/docs/v1.2/api-references/connect-api.html) requests the account has performed..</param>
-        /// <param name="BootstrapsFailed">The number of failed bootstraps the account has performed..</param>
+        /// <param name="RegistrationUpdates">The number of registration updates linked to the account. Registration update is the process of updating the registration status with the Mbed Cloud Connect to update or extend the lifetime of the device..</param>
+        /// <param name="FullRegistrations">The number of full registrations linked to the account. Full registration is the process of registering a device with the Mbed Cloud Connect by providing its lifetime and capabilities such as the resource structure.The registered status of the device does not guarantee that the device is active and accessible from Mebd Cloud Connect at any point of time..</param>
+        /// <param name="BootstrapsFailed">The number of failed bootstraps the account has performed. Bootstrap is the process of provisioning a Lightweight Machine to Machine Client to a state where it can initiate a management session to a new Lightweight Machine to Machine Server..</param>
         /// <param name="Transactions">The number of transaction events from or to devices linked to the account. A transaction is a 512-byte block of data processed by mbed Cloud. It can be either sent by the device (device - -&gt; mbed cloud) or received by the device (mbed cloud - -&gt; device). A transaction does not include IP, TCP or UDP, TLS or DTLS packet overhead. It only contains the packet payload (full CoAP packet including CoAP headers)..</param>
         /// <param name="Timestamp">UTC time in RFC3339 format. The timestamp is the starting point of the interval for which the data is aggregated. Each interval includes data for the time greater than or equal to the timestamp and less than the next interval&#39;s starting point..</param>
-        /// <param name="RegisteredDevices">The maximum number of registered devices linked to the account. The registered devices count is calculated based on unique registrations plus registration updates over a period of 5 minutes..</param>
-        /// <param name="BootstrapsPending">The number of pending bootstraps the account has performed..</param>
         /// <param name="DeviceServerRestApiSuccess">The number of successful [Connect API](/docs/v1.2/api-references/connect-api.html) requests the account has performed..</param>
-        /// <param name="HandshakesSuccessful">The number of successful handshakes the account has performed..</param>
-        /// <param name="BootstrapsSuccessful">The number of successful bootstraps the account has performed..</param>
+        /// <param name="BootstrapsPending">The number of pending bootstraps the account has performed. Bootstrap is the process of provisioning a Lightweight Machine to Machine Client to a state where it can initiate a management session to a new Lightweight Machine to Machine Server..</param>
+        /// <param name="ExpiredRegistrations">The number of expired registrations linked to the account. Mbed Cloud Connect removes the device registrations when the devices cannot update their registration before the expiry of the lifetime. Mbed Cloud Connect no longer handles requests for a device whose registration has expired already..</param>
+        /// <param name="HandshakesSuccessful">The number of successful TLS handshakes the account has performed. The SSL or TLS handshake enables the SSL or TLS client and server to establish the secret keys with which they communicate. A successful TLS handshake is required for establishing a connection with Mbed Cloud Connect for any operaton such as registration, registration update and deregistration..</param>
+        /// <param name="BootstrapsSuccessful">The number of successful bootstraps the account has performed. Bootstrap is the process of provisioning a Lightweight Machine to Machine Client to a state where it can initiate a management session to a new Lightweight Machine to Machine Server..</param>
+        /// <param name="DeletedRegistrations">The number of deleted registrations (deregistrations) linked to the account. Deregistration is the process of removing the device registration from the Mbed Cloud Connect registry. The deregistration is usually initiated by the device. Mbed Cloud Connect no longer handles requests for a deregistered device..</param>
         /// <param name="Id">A unique metric ID..</param>
-        public Metric(long? DeviceServerRestApiError = default(long?), long? BootstrapsFailed = default(long?), long? Transactions = default(long?), string Timestamp = default(string), long? RegisteredDevices = default(long?), long? BootstrapsPending = default(long?), long? DeviceServerRestApiSuccess = default(long?), long? HandshakesSuccessful = default(long?), long? BootstrapsSuccessful = default(long?), string Id = default(string))
+        public Metric(long? DeviceServerRestApiError = default(long?), long? RegistrationUpdates = default(long?), long? FullRegistrations = default(long?), long? BootstrapsFailed = default(long?), long? Transactions = default(long?), string Timestamp = default(string), long? DeviceServerRestApiSuccess = default(long?), long? BootstrapsPending = default(long?), long? ExpiredRegistrations = default(long?), long? HandshakesSuccessful = default(long?), long? BootstrapsSuccessful = default(long?), long? DeletedRegistrations = default(long?), string Id = default(string))
         {
             this.DeviceServerRestApiError = DeviceServerRestApiError;
+            this.RegistrationUpdates = RegistrationUpdates;
+            this.FullRegistrations = FullRegistrations;
             this.BootstrapsFailed = BootstrapsFailed;
             this.Transactions = Transactions;
             this.Timestamp = Timestamp;
-            this.RegisteredDevices = RegisteredDevices;
-            this.BootstrapsPending = BootstrapsPending;
             this.DeviceServerRestApiSuccess = DeviceServerRestApiSuccess;
+            this.BootstrapsPending = BootstrapsPending;
+            this.ExpiredRegistrations = ExpiredRegistrations;
             this.HandshakesSuccessful = HandshakesSuccessful;
             this.BootstrapsSuccessful = BootstrapsSuccessful;
+            this.DeletedRegistrations = DeletedRegistrations;
             this.Id = Id;
         }
         
@@ -63,9 +69,21 @@ namespace statistics.Model
         [DataMember(Name="device_server_rest_api_error", EmitDefaultValue=false)]
         public long? DeviceServerRestApiError { get; set; }
         /// <summary>
-        /// The number of failed bootstraps the account has performed.
+        /// The number of registration updates linked to the account. Registration update is the process of updating the registration status with the Mbed Cloud Connect to update or extend the lifetime of the device.
         /// </summary>
-        /// <value>The number of failed bootstraps the account has performed.</value>
+        /// <value>The number of registration updates linked to the account. Registration update is the process of updating the registration status with the Mbed Cloud Connect to update or extend the lifetime of the device.</value>
+        [DataMember(Name="registration_updates", EmitDefaultValue=false)]
+        public long? RegistrationUpdates { get; set; }
+        /// <summary>
+        /// The number of full registrations linked to the account. Full registration is the process of registering a device with the Mbed Cloud Connect by providing its lifetime and capabilities such as the resource structure.The registered status of the device does not guarantee that the device is active and accessible from Mebd Cloud Connect at any point of time.
+        /// </summary>
+        /// <value>The number of full registrations linked to the account. Full registration is the process of registering a device with the Mbed Cloud Connect by providing its lifetime and capabilities such as the resource structure.The registered status of the device does not guarantee that the device is active and accessible from Mebd Cloud Connect at any point of time.</value>
+        [DataMember(Name="full_registrations", EmitDefaultValue=false)]
+        public long? FullRegistrations { get; set; }
+        /// <summary>
+        /// The number of failed bootstraps the account has performed. Bootstrap is the process of provisioning a Lightweight Machine to Machine Client to a state where it can initiate a management session to a new Lightweight Machine to Machine Server.
+        /// </summary>
+        /// <value>The number of failed bootstraps the account has performed. Bootstrap is the process of provisioning a Lightweight Machine to Machine Client to a state where it can initiate a management session to a new Lightweight Machine to Machine Server.</value>
         [DataMember(Name="bootstraps_failed", EmitDefaultValue=false)]
         public long? BootstrapsFailed { get; set; }
         /// <summary>
@@ -81,35 +99,41 @@ namespace statistics.Model
         [DataMember(Name="timestamp", EmitDefaultValue=false)]
         public string Timestamp { get; set; }
         /// <summary>
-        /// The maximum number of registered devices linked to the account. The registered devices count is calculated based on unique registrations plus registration updates over a period of 5 minutes.
-        /// </summary>
-        /// <value>The maximum number of registered devices linked to the account. The registered devices count is calculated based on unique registrations plus registration updates over a period of 5 minutes.</value>
-        [DataMember(Name="registered_devices", EmitDefaultValue=false)]
-        public long? RegisteredDevices { get; set; }
-        /// <summary>
-        /// The number of pending bootstraps the account has performed.
-        /// </summary>
-        /// <value>The number of pending bootstraps the account has performed.</value>
-        [DataMember(Name="bootstraps_pending", EmitDefaultValue=false)]
-        public long? BootstrapsPending { get; set; }
-        /// <summary>
         /// The number of successful [Connect API](/docs/v1.2/api-references/connect-api.html) requests the account has performed.
         /// </summary>
         /// <value>The number of successful [Connect API](/docs/v1.2/api-references/connect-api.html) requests the account has performed.</value>
         [DataMember(Name="device_server_rest_api_success", EmitDefaultValue=false)]
         public long? DeviceServerRestApiSuccess { get; set; }
         /// <summary>
-        /// The number of successful handshakes the account has performed.
+        /// The number of pending bootstraps the account has performed. Bootstrap is the process of provisioning a Lightweight Machine to Machine Client to a state where it can initiate a management session to a new Lightweight Machine to Machine Server.
         /// </summary>
-        /// <value>The number of successful handshakes the account has performed.</value>
+        /// <value>The number of pending bootstraps the account has performed. Bootstrap is the process of provisioning a Lightweight Machine to Machine Client to a state where it can initiate a management session to a new Lightweight Machine to Machine Server.</value>
+        [DataMember(Name="bootstraps_pending", EmitDefaultValue=false)]
+        public long? BootstrapsPending { get; set; }
+        /// <summary>
+        /// The number of expired registrations linked to the account. Mbed Cloud Connect removes the device registrations when the devices cannot update their registration before the expiry of the lifetime. Mbed Cloud Connect no longer handles requests for a device whose registration has expired already.
+        /// </summary>
+        /// <value>The number of expired registrations linked to the account. Mbed Cloud Connect removes the device registrations when the devices cannot update their registration before the expiry of the lifetime. Mbed Cloud Connect no longer handles requests for a device whose registration has expired already.</value>
+        [DataMember(Name="expired_registrations", EmitDefaultValue=false)]
+        public long? ExpiredRegistrations { get; set; }
+        /// <summary>
+        /// The number of successful TLS handshakes the account has performed. The SSL or TLS handshake enables the SSL or TLS client and server to establish the secret keys with which they communicate. A successful TLS handshake is required for establishing a connection with Mbed Cloud Connect for any operaton such as registration, registration update and deregistration.
+        /// </summary>
+        /// <value>The number of successful TLS handshakes the account has performed. The SSL or TLS handshake enables the SSL or TLS client and server to establish the secret keys with which they communicate. A successful TLS handshake is required for establishing a connection with Mbed Cloud Connect for any operaton such as registration, registration update and deregistration.</value>
         [DataMember(Name="handshakes_successful", EmitDefaultValue=false)]
         public long? HandshakesSuccessful { get; set; }
         /// <summary>
-        /// The number of successful bootstraps the account has performed.
+        /// The number of successful bootstraps the account has performed. Bootstrap is the process of provisioning a Lightweight Machine to Machine Client to a state where it can initiate a management session to a new Lightweight Machine to Machine Server.
         /// </summary>
-        /// <value>The number of successful bootstraps the account has performed.</value>
+        /// <value>The number of successful bootstraps the account has performed. Bootstrap is the process of provisioning a Lightweight Machine to Machine Client to a state where it can initiate a management session to a new Lightweight Machine to Machine Server.</value>
         [DataMember(Name="bootstraps_successful", EmitDefaultValue=false)]
         public long? BootstrapsSuccessful { get; set; }
+        /// <summary>
+        /// The number of deleted registrations (deregistrations) linked to the account. Deregistration is the process of removing the device registration from the Mbed Cloud Connect registry. The deregistration is usually initiated by the device. Mbed Cloud Connect no longer handles requests for a deregistered device.
+        /// </summary>
+        /// <value>The number of deleted registrations (deregistrations) linked to the account. Deregistration is the process of removing the device registration from the Mbed Cloud Connect registry. The deregistration is usually initiated by the device. Mbed Cloud Connect no longer handles requests for a deregistered device.</value>
+        [DataMember(Name="deleted_registrations", EmitDefaultValue=false)]
+        public long? DeletedRegistrations { get; set; }
         /// <summary>
         /// A unique metric ID.
         /// </summary>
@@ -125,14 +149,17 @@ namespace statistics.Model
             var sb = new StringBuilder();
             sb.Append("class Metric {\n");
             sb.Append("  DeviceServerRestApiError: ").Append(DeviceServerRestApiError).Append("\n");
+            sb.Append("  RegistrationUpdates: ").Append(RegistrationUpdates).Append("\n");
+            sb.Append("  FullRegistrations: ").Append(FullRegistrations).Append("\n");
             sb.Append("  BootstrapsFailed: ").Append(BootstrapsFailed).Append("\n");
             sb.Append("  Transactions: ").Append(Transactions).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
-            sb.Append("  RegisteredDevices: ").Append(RegisteredDevices).Append("\n");
-            sb.Append("  BootstrapsPending: ").Append(BootstrapsPending).Append("\n");
             sb.Append("  DeviceServerRestApiSuccess: ").Append(DeviceServerRestApiSuccess).Append("\n");
+            sb.Append("  BootstrapsPending: ").Append(BootstrapsPending).Append("\n");
+            sb.Append("  ExpiredRegistrations: ").Append(ExpiredRegistrations).Append("\n");
             sb.Append("  HandshakesSuccessful: ").Append(HandshakesSuccessful).Append("\n");
             sb.Append("  BootstrapsSuccessful: ").Append(BootstrapsSuccessful).Append("\n");
+            sb.Append("  DeletedRegistrations: ").Append(DeletedRegistrations).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -176,6 +203,16 @@ namespace statistics.Model
                     this.DeviceServerRestApiError.Equals(other.DeviceServerRestApiError)
                 ) && 
                 (
+                    this.RegistrationUpdates == other.RegistrationUpdates ||
+                    this.RegistrationUpdates != null &&
+                    this.RegistrationUpdates.Equals(other.RegistrationUpdates)
+                ) && 
+                (
+                    this.FullRegistrations == other.FullRegistrations ||
+                    this.FullRegistrations != null &&
+                    this.FullRegistrations.Equals(other.FullRegistrations)
+                ) && 
+                (
                     this.BootstrapsFailed == other.BootstrapsFailed ||
                     this.BootstrapsFailed != null &&
                     this.BootstrapsFailed.Equals(other.BootstrapsFailed)
@@ -191,9 +228,9 @@ namespace statistics.Model
                     this.Timestamp.Equals(other.Timestamp)
                 ) && 
                 (
-                    this.RegisteredDevices == other.RegisteredDevices ||
-                    this.RegisteredDevices != null &&
-                    this.RegisteredDevices.Equals(other.RegisteredDevices)
+                    this.DeviceServerRestApiSuccess == other.DeviceServerRestApiSuccess ||
+                    this.DeviceServerRestApiSuccess != null &&
+                    this.DeviceServerRestApiSuccess.Equals(other.DeviceServerRestApiSuccess)
                 ) && 
                 (
                     this.BootstrapsPending == other.BootstrapsPending ||
@@ -201,9 +238,9 @@ namespace statistics.Model
                     this.BootstrapsPending.Equals(other.BootstrapsPending)
                 ) && 
                 (
-                    this.DeviceServerRestApiSuccess == other.DeviceServerRestApiSuccess ||
-                    this.DeviceServerRestApiSuccess != null &&
-                    this.DeviceServerRestApiSuccess.Equals(other.DeviceServerRestApiSuccess)
+                    this.ExpiredRegistrations == other.ExpiredRegistrations ||
+                    this.ExpiredRegistrations != null &&
+                    this.ExpiredRegistrations.Equals(other.ExpiredRegistrations)
                 ) && 
                 (
                     this.HandshakesSuccessful == other.HandshakesSuccessful ||
@@ -214,6 +251,11 @@ namespace statistics.Model
                     this.BootstrapsSuccessful == other.BootstrapsSuccessful ||
                     this.BootstrapsSuccessful != null &&
                     this.BootstrapsSuccessful.Equals(other.BootstrapsSuccessful)
+                ) && 
+                (
+                    this.DeletedRegistrations == other.DeletedRegistrations ||
+                    this.DeletedRegistrations != null &&
+                    this.DeletedRegistrations.Equals(other.DeletedRegistrations)
                 ) && 
                 (
                     this.Id == other.Id ||
@@ -235,22 +277,28 @@ namespace statistics.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.DeviceServerRestApiError != null)
                     hash = hash * 59 + this.DeviceServerRestApiError.GetHashCode();
+                if (this.RegistrationUpdates != null)
+                    hash = hash * 59 + this.RegistrationUpdates.GetHashCode();
+                if (this.FullRegistrations != null)
+                    hash = hash * 59 + this.FullRegistrations.GetHashCode();
                 if (this.BootstrapsFailed != null)
                     hash = hash * 59 + this.BootstrapsFailed.GetHashCode();
                 if (this.Transactions != null)
                     hash = hash * 59 + this.Transactions.GetHashCode();
                 if (this.Timestamp != null)
                     hash = hash * 59 + this.Timestamp.GetHashCode();
-                if (this.RegisteredDevices != null)
-                    hash = hash * 59 + this.RegisteredDevices.GetHashCode();
-                if (this.BootstrapsPending != null)
-                    hash = hash * 59 + this.BootstrapsPending.GetHashCode();
                 if (this.DeviceServerRestApiSuccess != null)
                     hash = hash * 59 + this.DeviceServerRestApiSuccess.GetHashCode();
+                if (this.BootstrapsPending != null)
+                    hash = hash * 59 + this.BootstrapsPending.GetHashCode();
+                if (this.ExpiredRegistrations != null)
+                    hash = hash * 59 + this.ExpiredRegistrations.GetHashCode();
                 if (this.HandshakesSuccessful != null)
                     hash = hash * 59 + this.HandshakesSuccessful.GetHashCode();
                 if (this.BootstrapsSuccessful != null)
                     hash = hash * 59 + this.BootstrapsSuccessful.GetHashCode();
+                if (this.DeletedRegistrations != null)
+                    hash = hash * 59 + this.DeletedRegistrations.GetHashCode();
                 if (this.Id != null)
                     hash = hash * 59 + this.Id.GetHashCode();
                 return hash;

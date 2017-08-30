@@ -385,7 +385,7 @@ namespace iam.Api
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
         /// <param name="body">A trusted certificate object with attributes.</param>
         /// <returns>TrustedCertificateResp</returns>
-        TrustedCertificateResp UpdateCertificate (string certId, TrustedCertificateReq body);
+        TrustedCertificateResp UpdateCertificate (string certId, TrustedCertificateUpdateReq body);
 
         /// <summary>
         /// Update trusted certificate.
@@ -397,7 +397,7 @@ namespace iam.Api
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
         /// <param name="body">A trusted certificate object with attributes.</param>
         /// <returns>ApiResponse of TrustedCertificateResp</returns>
-        ApiResponse<TrustedCertificateResp> UpdateCertificateWithHttpInfo (string certId, TrustedCertificateReq body);
+        ApiResponse<TrustedCertificateResp> UpdateCertificateWithHttpInfo (string certId, TrustedCertificateUpdateReq body);
         /// <summary>
         /// Update API key details.
         /// </summary>
@@ -803,7 +803,7 @@ namespace iam.Api
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
         /// <param name="body">A trusted certificate object with attributes.</param>
         /// <returns>Task of TrustedCertificateResp</returns>
-        System.Threading.Tasks.Task<TrustedCertificateResp> UpdateCertificateAsync (string certId, TrustedCertificateReq body);
+        System.Threading.Tasks.Task<TrustedCertificateResp> UpdateCertificateAsync (string certId, TrustedCertificateUpdateReq body);
 
         /// <summary>
         /// Update trusted certificate.
@@ -815,7 +815,7 @@ namespace iam.Api
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
         /// <param name="body">A trusted certificate object with attributes.</param>
         /// <returns>Task of ApiResponse (TrustedCertificateResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TrustedCertificateResp>> UpdateCertificateAsyncWithHttpInfo (string certId, TrustedCertificateReq body);
+        System.Threading.Tasks.Task<ApiResponse<TrustedCertificateResp>> UpdateCertificateAsyncWithHttpInfo (string certId, TrustedCertificateUpdateReq body);
         /// <summary>
         /// Update API key details.
         /// </summary>
@@ -3383,7 +3383,7 @@ namespace iam.Api
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
         /// <param name="body">A trusted certificate object with attributes.</param>
         /// <returns>TrustedCertificateResp</returns>
-        public TrustedCertificateResp UpdateCertificate (string certId, TrustedCertificateReq body)
+        public TrustedCertificateResp UpdateCertificate (string certId, TrustedCertificateUpdateReq body)
         {
              ApiResponse<TrustedCertificateResp> localVarResponse = UpdateCertificateWithHttpInfo(certId, body);
              return localVarResponse.Data;
@@ -3396,7 +3396,7 @@ namespace iam.Api
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
         /// <param name="body">A trusted certificate object with attributes.</param>
         /// <returns>ApiResponse of TrustedCertificateResp</returns>
-        public ApiResponse< TrustedCertificateResp > UpdateCertificateWithHttpInfo (string certId, TrustedCertificateReq body)
+        public ApiResponse< TrustedCertificateResp > UpdateCertificateWithHttpInfo (string certId, TrustedCertificateUpdateReq body)
         {
             // verify the required parameter 'certId' is set
             if (certId == null)
@@ -3473,7 +3473,7 @@ namespace iam.Api
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
         /// <param name="body">A trusted certificate object with attributes.</param>
         /// <returns>Task of TrustedCertificateResp</returns>
-        public async System.Threading.Tasks.Task<TrustedCertificateResp> UpdateCertificateAsync (string certId, TrustedCertificateReq body)
+        public async System.Threading.Tasks.Task<TrustedCertificateResp> UpdateCertificateAsync (string certId, TrustedCertificateUpdateReq body)
         {
              ApiResponse<TrustedCertificateResp> localVarResponse = await UpdateCertificateAsyncWithHttpInfo(certId, body);
              return localVarResponse.Data;
@@ -3487,7 +3487,7 @@ namespace iam.Api
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
         /// <param name="body">A trusted certificate object with attributes.</param>
         /// <returns>Task of ApiResponse (TrustedCertificateResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<TrustedCertificateResp>> UpdateCertificateAsyncWithHttpInfo (string certId, TrustedCertificateReq body)
+        public async System.Threading.Tasks.Task<ApiResponse<TrustedCertificateResp>> UpdateCertificateAsyncWithHttpInfo (string certId, TrustedCertificateUpdateReq body)
         {
             // verify the required parameter 'certId' is set
             if (certId == null)
