@@ -30,6 +30,33 @@ namespace iam.Model
     public partial class ApiKeyInfoReq :  IEquatable<ApiKeyInfoReq>, IValidatableObject
     {
         /// <summary>
+        /// The status of the API key.
+        /// </summary>
+        /// <value>The status of the API key.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StatusEnum
+        {
+            
+            /// <summary>
+            /// Enum ACTIVE for "ACTIVE"
+            /// </summary>
+            [EnumMember(Value = "ACTIVE")]
+            ACTIVE,
+            
+            /// <summary>
+            /// Enum INACTIVE for "INACTIVE"
+            /// </summary>
+            [EnumMember(Value = "INACTIVE")]
+            INACTIVE
+        }
+
+        /// <summary>
+        /// The status of the API key.
+        /// </summary>
+        /// <value>The status of the API key.</value>
+        [DataMember(Name="status", EmitDefaultValue=false)]
+        public StatusEnum? Status { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="ApiKeyInfoReq" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -41,7 +68,7 @@ namespace iam.Model
         /// <param name="Status">The status of the API key..</param>
         /// <param name="Name">The display name for the API key, not longer than 100 characters. (required).</param>
         /// <param name="Groups">A list of group IDs this API key belongs to..</param>
-        public ApiKeyInfoReq(string Owner = default(string), string Status = default(string), string Name = default(string), List<string> Groups = default(List<string>))
+        public ApiKeyInfoReq(string Owner = default(string), StatusEnum? Status = default(StatusEnum?), string Name = default(string), List<string> Groups = default(List<string>))
         {
             // to ensure "Name" is required (not null)
             if (Name == null)
@@ -63,12 +90,6 @@ namespace iam.Model
         /// <value>The owner of this API key, who is the creator by default.</value>
         [DataMember(Name="owner", EmitDefaultValue=false)]
         public string Owner { get; set; }
-        /// <summary>
-        /// The status of the API key.
-        /// </summary>
-        /// <value>The status of the API key.</value>
-        [DataMember(Name="status", EmitDefaultValue=false)]
-        public string Status { get; set; }
         /// <summary>
         /// The display name for the API key, not longer than 100 characters.
         /// </summary>
