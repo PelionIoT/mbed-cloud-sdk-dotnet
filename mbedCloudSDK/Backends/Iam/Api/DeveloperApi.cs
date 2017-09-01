@@ -232,7 +232,7 @@ namespace iam.Api
         /// Get trusted certificate by ID.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving a trusted certificate by ID. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for retrieving a trusted certificate by ID. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
@@ -243,7 +243,7 @@ namespace iam.Api
         /// Get trusted certificate by ID.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving a trusted certificate by ID. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for retrieving a trusted certificate by ID. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
@@ -314,21 +314,23 @@ namespace iam.Api
         /// Details of the current user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving the details of the logged in user. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for retrieving the details of the logged in user. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
         /// <returns>MyUserInfoResp</returns>
-        MyUserInfoResp GetMyUser ();
+        MyUserInfoResp GetMyUser (string scratchCodes = null);
 
         /// <summary>
         /// Details of the current user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving the details of the logged in user. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for retrieving the details of the logged in user. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
         /// <returns>ApiResponse of MyUserInfoResp</returns>
-        ApiResponse<MyUserInfoResp> GetMyUserWithHttpInfo ();
+        ApiResponse<MyUserInfoResp> GetMyUserWithHttpInfo (string scratchCodes = null);
         /// <summary>
         /// Remove API keys from a group.
         /// </summary>
@@ -379,7 +381,7 @@ namespace iam.Api
         /// Update trusted certificate.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating existing trusted certificates. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for updating existing trusted certificates. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
@@ -391,7 +393,7 @@ namespace iam.Api
         /// Update trusted certificate.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating existing trusted certificates. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for updating existing trusted certificates. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
@@ -423,7 +425,7 @@ namespace iam.Api
         /// Update user details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating the details of the logged in user. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for updating the details of the logged in user. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
@@ -434,7 +436,7 @@ namespace iam.Api
         /// Update user details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating the details of the logged in user. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for updating the details of the logged in user. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
@@ -650,7 +652,7 @@ namespace iam.Api
         /// Get trusted certificate by ID.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving a trusted certificate by ID. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for retrieving a trusted certificate by ID. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
@@ -661,7 +663,7 @@ namespace iam.Api
         /// Get trusted certificate by ID.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving a trusted certificate by ID. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for retrieving a trusted certificate by ID. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
@@ -732,21 +734,23 @@ namespace iam.Api
         /// Details of the current user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving the details of the logged in user. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for retrieving the details of the logged in user. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
         /// <returns>Task of MyUserInfoResp</returns>
-        System.Threading.Tasks.Task<MyUserInfoResp> GetMyUserAsync ();
+        System.Threading.Tasks.Task<MyUserInfoResp> GetMyUserAsync (string scratchCodes = null);
 
         /// <summary>
         /// Details of the current user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving the details of the logged in user. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for retrieving the details of the logged in user. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
         /// <returns>Task of ApiResponse (MyUserInfoResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<MyUserInfoResp>> GetMyUserAsyncWithHttpInfo ();
+        System.Threading.Tasks.Task<ApiResponse<MyUserInfoResp>> GetMyUserAsyncWithHttpInfo (string scratchCodes = null);
         /// <summary>
         /// Remove API keys from a group.
         /// </summary>
@@ -797,7 +801,7 @@ namespace iam.Api
         /// Update trusted certificate.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating existing trusted certificates. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for updating existing trusted certificates. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
@@ -809,7 +813,7 @@ namespace iam.Api
         /// Update trusted certificate.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating existing trusted certificates. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for updating existing trusted certificates. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
@@ -841,7 +845,7 @@ namespace iam.Api
         /// Update user details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating the details of the logged in user. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for updating the details of the logged in user. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
@@ -852,7 +856,7 @@ namespace iam.Api
         /// Update user details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating the details of the logged in user. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for updating the details of the logged in user. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
@@ -2289,7 +2293,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Get trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
@@ -2301,7 +2305,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Get trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
@@ -2365,7 +2369,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Get trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
@@ -2378,7 +2382,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Get trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
@@ -2879,22 +2883,24 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Details of the current user. An endpoint for retrieving the details of the logged in user. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Details of the current user. An endpoint for retrieving the details of the logged in user. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
         /// <returns>MyUserInfoResp</returns>
-        public MyUserInfoResp GetMyUser ()
+        public MyUserInfoResp GetMyUser (string scratchCodes = null)
         {
-             ApiResponse<MyUserInfoResp> localVarResponse = GetMyUserWithHttpInfo();
+             ApiResponse<MyUserInfoResp> localVarResponse = GetMyUserWithHttpInfo(scratchCodes);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Details of the current user. An endpoint for retrieving the details of the logged in user. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Details of the current user. An endpoint for retrieving the details of the logged in user. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
         /// <returns>ApiResponse of MyUserInfoResp</returns>
-        public ApiResponse< MyUserInfoResp > GetMyUserWithHttpInfo ()
+        public ApiResponse< MyUserInfoResp > GetMyUserWithHttpInfo (string scratchCodes = null)
         {
 
             var localVarPath = "/v3/users/me";
@@ -2921,6 +2927,7 @@ namespace iam.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
+            if (scratchCodes != null) localVarQueryParams.Add("scratch_codes", Configuration.ApiClient.ParameterToString(scratchCodes)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2949,23 +2956,25 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Details of the current user. An endpoint for retrieving the details of the logged in user. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Details of the current user. An endpoint for retrieving the details of the logged in user. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
         /// <returns>Task of MyUserInfoResp</returns>
-        public async System.Threading.Tasks.Task<MyUserInfoResp> GetMyUserAsync ()
+        public async System.Threading.Tasks.Task<MyUserInfoResp> GetMyUserAsync (string scratchCodes = null)
         {
-             ApiResponse<MyUserInfoResp> localVarResponse = await GetMyUserAsyncWithHttpInfo();
+             ApiResponse<MyUserInfoResp> localVarResponse = await GetMyUserAsyncWithHttpInfo(scratchCodes);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Details of the current user. An endpoint for retrieving the details of the logged in user. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Details of the current user. An endpoint for retrieving the details of the logged in user. Example usage: curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
         /// <returns>Task of ApiResponse (MyUserInfoResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<MyUserInfoResp>> GetMyUserAsyncWithHttpInfo ()
+        public async System.Threading.Tasks.Task<ApiResponse<MyUserInfoResp>> GetMyUserAsyncWithHttpInfo (string scratchCodes = null)
         {
 
             var localVarPath = "/v3/users/me";
@@ -2992,6 +3001,7 @@ namespace iam.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
+            if (scratchCodes != null) localVarQueryParams.Add("scratch_codes", Configuration.ApiClient.ParameterToString(scratchCodes)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -3377,7 +3387,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update trusted certificate. An endpoint for updating existing trusted certificates. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Update trusted certificate. An endpoint for updating existing trusted certificates. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
@@ -3390,7 +3400,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update trusted certificate. An endpoint for updating existing trusted certificates. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Update trusted certificate. An endpoint for updating existing trusted certificates. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
@@ -3467,7 +3477,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update trusted certificate. An endpoint for updating existing trusted certificates. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Update trusted certificate. An endpoint for updating existing trusted certificates. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
@@ -3481,7 +3491,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update trusted certificate. An endpoint for updating existing trusted certificates. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Update trusted certificate. An endpoint for updating existing trusted certificates. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
@@ -3723,7 +3733,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update user details. An endpoint for updating the details of the logged in user. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Update user details. An endpoint for updating the details of the logged in user. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
@@ -3735,7 +3745,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update user details. An endpoint for updating the details of the logged in user. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Update user details. An endpoint for updating the details of the logged in user. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
@@ -3807,7 +3817,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update user details. An endpoint for updating the details of the logged in user. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Update user details. An endpoint for updating the details of the logged in user. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
@@ -3820,7 +3830,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update user details. An endpoint for updating the details of the logged in user. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Update user details. An endpoint for updating the details of the logged in user. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
