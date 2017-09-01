@@ -123,6 +123,7 @@
     <Compile Include="Backends\Iam\Model\UserInfoRespList.cs" />
     <Compile Include="Backends\Iam\Model\UserUpdateResp.cs" />
     <Compile Include="Backends\Iam\Model\UserUpdateReq.cs" />
+    <Compile Include="Backends\Iam\Model\PasswordPolicy.cs" />
     <Compile Include="Backends\Mds\Api\DefaultApi.cs" />
     <Compile Include="Backends\Mds\Api\EndpointsApi.cs" />
     <Compile Include="Backends\Mds\Api\NotificationsApi.cs" />
