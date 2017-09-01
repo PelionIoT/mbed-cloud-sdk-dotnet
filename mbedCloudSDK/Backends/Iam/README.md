@@ -145,6 +145,7 @@ Class | Method | HTTP request | Description
  - [Model.GroupSummaryList](docs/GroupSummaryList.md)
  - [Model.LoginHistory](docs/LoginHistory.md)
  - [Model.MyUserInfoResp](docs/MyUserInfoResp.md)
+ - [Model.PasswordPolicy](docs/PasswordPolicy.md)
  - [Model.SubjectList](docs/SubjectList.md)
  - [Model.TrustedCertificateReq](docs/TrustedCertificateReq.md)
  - [Model.TrustedCertificateResp](docs/TrustedCertificateResp.md)

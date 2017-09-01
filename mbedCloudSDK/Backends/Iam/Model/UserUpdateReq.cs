@@ -32,11 +32,6 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UserUpdateReq" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected UserUpdateReq() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UserUpdateReq" /> class.
-        /// </summary>
         /// <param name="PhoneNumber">Phone number, not longer than 100 characters..</param>
         /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long..</param>
         /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted..</param>
@@ -46,18 +41,9 @@ namespace iam.Model
         /// <param name="FullName">The full name of the user, not longer than 100 characters..</param>
         /// <param name="Address">Address, not longer than 100 characters..</param>
         /// <param name="Password">The password when creating a new user. It will will generated when not present in the request..</param>
-        /// <param name="Email">The email address, not longer than 254 characters. (required).</param>
+        /// <param name="Email">The email address, not longer than 254 characters..</param>
         public UserUpdateReq(string PhoneNumber = default(string), string Username = default(string), bool? IsMarketingAccepted = default(bool?), bool? IsGtcAccepted = default(bool?), bool? IsTotpEnabled = default(bool?), string Status = default(string), string FullName = default(string), string Address = default(string), string Password = default(string), string Email = default(string))
         {
-            // to ensure "Email" is required (not null)
-            if (Email == null)
-            {
-                throw new InvalidDataException("Email is a required property for UserUpdateReq and cannot be null");
-            }
-            else
-            {
-                this.Email = Email;
-            }
             this.PhoneNumber = PhoneNumber;
             this.Username = Username;
             this.IsMarketingAccepted = IsMarketingAccepted;
@@ -67,6 +53,7 @@ namespace iam.Model
             this.FullName = FullName;
             this.Address = Address;
             this.Password = Password;
+            this.Email = Email;
         }
         
         /// <summary>

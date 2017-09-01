@@ -131,6 +131,18 @@ namespace iam.Model
             Invalidtoken,
             
             /// <summary>
+            /// Enum Invalidapikey for "invalid_apikey"
+            /// </summary>
+            [EnumMember(Value = "invalid_apikey")]
+            Invalidapikey,
+            
+            /// <summary>
+            /// Enum Reauthrequired for "reauth_required"
+            /// </summary>
+            [EnumMember(Value = "reauth_required")]
+            Reauthrequired,
+            
+            /// <summary>
             /// Enum Accessdenied for "access_denied"
             /// </summary>
             [EnumMember(Value = "access_denied")]

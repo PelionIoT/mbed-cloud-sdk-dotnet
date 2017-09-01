@@ -24,55 +24,39 @@ using System.ComponentModel.DataAnnotations;
 namespace iam.Model
 {
     /// <summary>
-    /// Field
+    /// PasswordPolicy
     /// </summary>
     [DataContract]
-    public partial class Field :  IEquatable<Field>, IValidatableObject
+    public partial class PasswordPolicy :  IEquatable<PasswordPolicy>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Field" /> class.
+        /// Initializes a new instance of the <see cref="PasswordPolicy" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected Field() { }
+        protected PasswordPolicy() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Field" /> class.
+        /// Initializes a new instance of the <see cref="PasswordPolicy" /> class.
         /// </summary>
-        /// <param name="Message">Message describing the erroneous situation. (required).</param>
-        /// <param name="Name">Name of the erroneous field. (required).</param>
-        public Field(string Message = default(string), string Name = default(string))
+        /// <param name="MinimumLength">Minimum length for the password. A number between 8 and 512. (required).</param>
+        public PasswordPolicy(string MinimumLength = default(string))
         {
-            // to ensure "Message" is required (not null)
-            if (Message == null)
+            // to ensure "MinimumLength" is required (not null)
+            if (MinimumLength == null)
             {
-                throw new InvalidDataException("Message is a required property for Field and cannot be null");
+                throw new InvalidDataException("MinimumLength is a required property for PasswordPolicy and cannot be null");
             }
             else
             {
-                this.Message = Message;
-            }
-            // to ensure "Name" is required (not null)
-            if (Name == null)
-            {
-                throw new InvalidDataException("Name is a required property for Field and cannot be null");
-            }
-            else
-            {
-                this.Name = Name;
+                this.MinimumLength = MinimumLength;
             }
         }
         
         /// <summary>
-        /// Message describing the erroneous situation.
+        /// Minimum length for the password. A number between 8 and 512.
         /// </summary>
-        /// <value>Message describing the erroneous situation.</value>
-        [DataMember(Name="message", EmitDefaultValue=false)]
-        public string Message { get; set; }
-        /// <summary>
-        /// Name of the erroneous field.
-        /// </summary>
-        /// <value>Name of the erroneous field.</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
-        public string Name { get; set; }
+        /// <value>Minimum length for the password. A number between 8 and 512.</value>
+        [DataMember(Name="minimum_length", EmitDefaultValue=false)]
+        public string MinimumLength { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -80,9 +64,8 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Field {\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("class PasswordPolicy {\n");
+            sb.Append("  MinimumLength: ").Append(MinimumLength).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -104,15 +87,15 @@ namespace iam.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as Field);
+            return this.Equals(obj as PasswordPolicy);
         }
 
         /// <summary>
-        /// Returns true if Field instances are equal
+        /// Returns true if PasswordPolicy instances are equal
         /// </summary>
-        /// <param name="other">Instance of Field to be compared</param>
+        /// <param name="other">Instance of PasswordPolicy to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Field other)
+        public bool Equals(PasswordPolicy other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -120,14 +103,9 @@ namespace iam.Model
 
             return 
                 (
-                    this.Message == other.Message ||
-                    this.Message != null &&
-                    this.Message.Equals(other.Message)
-                ) && 
-                (
-                    this.Name == other.Name ||
-                    this.Name != null &&
-                    this.Name.Equals(other.Name)
+                    this.MinimumLength == other.MinimumLength ||
+                    this.MinimumLength != null &&
+                    this.MinimumLength.Equals(other.MinimumLength)
                 );
         }
 
@@ -142,10 +120,8 @@ namespace iam.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Message != null)
-                    hash = hash * 59 + this.Message.GetHashCode();
-                if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
+                if (this.MinimumLength != null)
+                    hash = hash * 59 + this.MinimumLength.GetHashCode();
                 return hash;
             }
         }
