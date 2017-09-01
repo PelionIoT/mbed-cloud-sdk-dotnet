@@ -32,15 +32,15 @@ namespace update_service.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ManifestContents" /> class.
         /// </summary>
-        /// <param name="ClassId">Hex representation of the 128-bit RFC4122 GUID that represents the device class that the update targets..</param>
-        /// <param name="VendorId">Hex representation of the 128-bit RFC4122 GUID that represents the vendor..</param>
-        /// <param name="ManifestVersion">The version of the manifest format being used..</param>
-        /// <param name="Description">A short description of the update..</param>
+        /// <param name="ClassId">The device class&#39;s 128-bit RFC4122 GUID as a hexidecimal digit string.</param>
+        /// <param name="VendorId">The vendor&#39;s 128-bit RFC4122 GUID as a hexidecimal digit string.</param>
+        /// <param name="ManifestVersion">The manifest format version.</param>
+        /// <param name="Description">A short description of the update.</param>
         /// <param name="Nonce">A 128-bit random field. This is provided by the manifest tool to ensure that the signing algorithm is safe from timing side-channel attacks..</param>
         /// <param name="Timestamp">The time the manifest was created. The timestamp is stored as Unix time..</param>
         /// <param name="EncryptionMode">EncryptionMode.</param>
-        /// <param name="ApplyImmediately">A flag that indicates that the update described by the manifest should be applied as soon as possible..</param>
-        /// <param name="DeviceId">Hex representation of the 128-bit RFC4122 GUID that uniquely identifies the device. Each device has a single, unique device ID..</param>
+        /// <param name="ApplyImmediately">A flag that indicates whether the update described by the manifest should be applied as soon as possible.</param>
+        /// <param name="DeviceId">The device&#39;s 128-bit RFC4122 GUID as a hexidecimal digit string. Each device has a single, unique device ID..</param>
         /// <param name="Payload">Payload.</param>
         public ManifestContents(string ClassId = default(string), string VendorId = default(string), int? ManifestVersion = default(int?), string Description = default(string), string Nonce = default(string), int? Timestamp = default(int?), ManifestContentsEncryptionMode EncryptionMode = default(ManifestContentsEncryptionMode), bool? ApplyImmediately = default(bool?), string DeviceId = default(string), ManifestContentsPayload Payload = default(ManifestContentsPayload))
         {
@@ -57,27 +57,27 @@ namespace update_service.Model
         }
         
         /// <summary>
-        /// Hex representation of the 128-bit RFC4122 GUID that represents the device class that the update targets.
+        /// The device class&#39;s 128-bit RFC4122 GUID as a hexidecimal digit string
         /// </summary>
-        /// <value>Hex representation of the 128-bit RFC4122 GUID that represents the device class that the update targets.</value>
+        /// <value>The device class&#39;s 128-bit RFC4122 GUID as a hexidecimal digit string</value>
         [DataMember(Name="classId", EmitDefaultValue=false)]
         public string ClassId { get; set; }
         /// <summary>
-        /// Hex representation of the 128-bit RFC4122 GUID that represents the vendor.
+        /// The vendor&#39;s 128-bit RFC4122 GUID as a hexidecimal digit string
         /// </summary>
-        /// <value>Hex representation of the 128-bit RFC4122 GUID that represents the vendor.</value>
+        /// <value>The vendor&#39;s 128-bit RFC4122 GUID as a hexidecimal digit string</value>
         [DataMember(Name="vendorId", EmitDefaultValue=false)]
         public string VendorId { get; set; }
         /// <summary>
-        /// The version of the manifest format being used.
+        /// The manifest format version
         /// </summary>
-        /// <value>The version of the manifest format being used.</value>
+        /// <value>The manifest format version</value>
         [DataMember(Name="manifestVersion", EmitDefaultValue=false)]
         public int? ManifestVersion { get; set; }
         /// <summary>
-        /// A short description of the update.
+        /// A short description of the update
         /// </summary>
-        /// <value>A short description of the update.</value>
+        /// <value>A short description of the update</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
         /// <summary>
@@ -98,15 +98,15 @@ namespace update_service.Model
         [DataMember(Name="encryptionMode", EmitDefaultValue=false)]
         public ManifestContentsEncryptionMode EncryptionMode { get; set; }
         /// <summary>
-        /// A flag that indicates that the update described by the manifest should be applied as soon as possible.
+        /// A flag that indicates whether the update described by the manifest should be applied as soon as possible
         /// </summary>
-        /// <value>A flag that indicates that the update described by the manifest should be applied as soon as possible.</value>
+        /// <value>A flag that indicates whether the update described by the manifest should be applied as soon as possible</value>
         [DataMember(Name="applyImmediately", EmitDefaultValue=false)]
         public bool? ApplyImmediately { get; set; }
         /// <summary>
-        /// Hex representation of the 128-bit RFC4122 GUID that uniquely identifies the device. Each device has a single, unique device ID.
+        /// The device&#39;s 128-bit RFC4122 GUID as a hexidecimal digit string. Each device has a single, unique device ID.
         /// </summary>
-        /// <value>Hex representation of the 128-bit RFC4122 GUID that uniquely identifies the device. Each device has a single, unique device ID.</value>
+        /// <value>The device&#39;s 128-bit RFC4122 GUID as a hexidecimal digit string. Each device has a single, unique device ID.</value>
         [DataMember(Name="deviceId", EmitDefaultValue=false)]
         public string DeviceId { get; set; }
         /// <summary>

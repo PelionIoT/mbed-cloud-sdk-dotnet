@@ -33,7 +33,7 @@ namespace update_service.Model
         /// Initializes a new instance of the <see cref="ManifestContentsPayloadReference" /> class.
         /// </summary>
         /// <param name="Hash">Hex representation of the SHA-256 hash of the payload.</param>
-        /// <param name="Uri">The URI of the payload..</param>
+        /// <param name="Uri">The payload URI.</param>
         /// <param name="Size">Size of the payload in bytes.</param>
         public ManifestContentsPayloadReference(string Hash = default(string), string Uri = default(string), int? Size = default(int?))
         {
@@ -49,9 +49,9 @@ namespace update_service.Model
         [DataMember(Name="hash", EmitDefaultValue=false)]
         public string Hash { get; set; }
         /// <summary>
-        /// The URI of the payload.
+        /// The payload URI
         /// </summary>
-        /// <value>The URI of the payload.</value>
+        /// <value>The payload URI</value>
         [DataMember(Name="uri", EmitDefaultValue=false)]
         public string Uri { get; set; }
         /// <summary>

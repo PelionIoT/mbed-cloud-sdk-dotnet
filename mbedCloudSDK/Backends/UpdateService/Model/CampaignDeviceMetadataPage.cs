@@ -30,9 +30,9 @@ namespace update_service.Model
     public partial class CampaignDeviceMetadataPage :  IEquatable<CampaignDeviceMetadataPage>, IValidatableObject
     {
         /// <summary>
-        /// The order of the records to return. Available values: ASC, DESC; by default ASC.
+        /// The order of the records to return. Acceptable values: ASC, DESC. Default: ASC
         /// </summary>
-        /// <value>The order of the records to return. Available values: ASC, DESC; by default ASC.</value>
+        /// <value>The order of the records to return. Acceptable values: ASC, DESC. Default: ASC</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum OrderEnum
         {
@@ -51,21 +51,21 @@ namespace update_service.Model
         }
 
         /// <summary>
-        /// The order of the records to return. Available values: ASC, DESC; by default ASC.
+        /// The order of the records to return. Acceptable values: ASC, DESC. Default: ASC
         /// </summary>
-        /// <value>The order of the records to return. Available values: ASC, DESC; by default ASC.</value>
+        /// <value>The order of the records to return. Acceptable values: ASC, DESC. Default: ASC</value>
         [DataMember(Name="order", EmitDefaultValue=false)]
         public OrderEnum? Order { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CampaignDeviceMetadataPage" /> class.
         /// </summary>
-        /// <param name="After">The entity ID to fetch after the given one..</param>
-        /// <param name="HasMore">Flag indicating whether there is more results..</param>
+        /// <param name="After">The entity ID to fetch after the given one.</param>
+        /// <param name="HasMore">Flag indicating whether there are more results.</param>
         /// <param name="TotalCount">The total number or records, if requested. It might be returned also for small lists..</param>
         /// <param name="_Object">Entity name: always ‘list’.</param>
         /// <param name="Limit">The number of results to return, (range: 2-1000), or equals to total_count.</param>
         /// <param name="Data">A list of entities.</param>
-        /// <param name="Order">The order of the records to return. Available values: ASC, DESC; by default ASC..</param>
+        /// <param name="Order">The order of the records to return. Acceptable values: ASC, DESC. Default: ASC.</param>
         public CampaignDeviceMetadataPage(string After = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), string _Object = default(string), int? Limit = default(int?), List<CampaignDeviceMetadata> Data = default(List<CampaignDeviceMetadata>), OrderEnum? Order = default(OrderEnum?))
         {
             this.After = After;
@@ -78,15 +78,15 @@ namespace update_service.Model
         }
         
         /// <summary>
-        /// The entity ID to fetch after the given one.
+        /// The entity ID to fetch after the given one
         /// </summary>
-        /// <value>The entity ID to fetch after the given one.</value>
+        /// <value>The entity ID to fetch after the given one</value>
         [DataMember(Name="after", EmitDefaultValue=false)]
         public string After { get; set; }
         /// <summary>
-        /// Flag indicating whether there is more results.
+        /// Flag indicating whether there are more results
         /// </summary>
-        /// <value>Flag indicating whether there is more results.</value>
+        /// <value>Flag indicating whether there are more results</value>
         [DataMember(Name="has_more", EmitDefaultValue=false)]
         public bool? HasMore { get; set; }
         /// <summary>

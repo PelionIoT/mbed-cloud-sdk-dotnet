@@ -78,17 +78,17 @@ namespace update_service.Model
         /// Initializes a new instance of the <see cref="CampaignDeviceMetadata" /> class.
         /// </summary>
         /// <param name="Description">Description.</param>
-        /// <param name="Campaign">The ID of the campaign the device is in.</param>
+        /// <param name="Campaign">The device&#39;s campaign ID.</param>
         /// <param name="CreatedAt">The time the campaign was created.</param>
         /// <param name="_Object">Entity name: always &#39;update-campaign-device-metadata&#39;.</param>
         /// <param name="UpdatedAt">This time this record was modified in the database format: date-time.</param>
-        /// <param name="Mechanism">The mechanism used to deliver the firmware (connector or direct).</param>
-        /// <param name="Name">The name of the record.</param>
+        /// <param name="Mechanism">How the firmware is delivered (connector or direct).</param>
+        /// <param name="Name">The record name.</param>
         /// <param name="Etag">API resource entity version.</param>
-        /// <param name="MechanismUrl">The URL of cloud connect used.</param>
+        /// <param name="MechanismUrl">The Cloud Connect URL.</param>
         /// <param name="DeploymentState">The state of the update campaign on the device.</param>
-        /// <param name="Id">The ID of the metadata record.</param>
-        /// <param name="DeviceId">The ID of the device.</param>
+        /// <param name="Id">The metadata record ID.</param>
+        /// <param name="DeviceId">The device ID.</param>
         public CampaignDeviceMetadata(string Description = default(string), string Campaign = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), string Mechanism = default(string), string Name = default(string), string Etag = default(string), string MechanismUrl = default(string), DeploymentStateEnum? DeploymentState = default(DeploymentStateEnum?), string Id = default(string), string DeviceId = default(string))
         {
             this.Description = Description;
@@ -112,9 +112,9 @@ namespace update_service.Model
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
         /// <summary>
-        /// The ID of the campaign the device is in
+        /// The device&#39;s campaign ID
         /// </summary>
-        /// <value>The ID of the campaign the device is in</value>
+        /// <value>The device&#39;s campaign ID</value>
         [DataMember(Name="campaign", EmitDefaultValue=false)]
         public string Campaign { get; set; }
         /// <summary>
@@ -136,15 +136,15 @@ namespace update_service.Model
         [DataMember(Name="updated_at", EmitDefaultValue=false)]
         public DateTime? UpdatedAt { get; set; }
         /// <summary>
-        /// The mechanism used to deliver the firmware (connector or direct)
+        /// How the firmware is delivered (connector or direct)
         /// </summary>
-        /// <value>The mechanism used to deliver the firmware (connector or direct)</value>
+        /// <value>How the firmware is delivered (connector or direct)</value>
         [DataMember(Name="mechanism", EmitDefaultValue=false)]
         public string Mechanism { get; set; }
         /// <summary>
-        /// The name of the record
+        /// The record name
         /// </summary>
-        /// <value>The name of the record</value>
+        /// <value>The record name</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
@@ -154,21 +154,21 @@ namespace update_service.Model
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public string Etag { get; set; }
         /// <summary>
-        /// The URL of cloud connect used
+        /// The Cloud Connect URL
         /// </summary>
-        /// <value>The URL of cloud connect used</value>
+        /// <value>The Cloud Connect URL</value>
         [DataMember(Name="mechanism_url", EmitDefaultValue=false)]
         public string MechanismUrl { get; set; }
         /// <summary>
-        /// The ID of the metadata record
+        /// The metadata record ID
         /// </summary>
-        /// <value>The ID of the metadata record</value>
+        /// <value>The metadata record ID</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
         /// <summary>
-        /// The ID of the device
+        /// The device ID
         /// </summary>
-        /// <value>The ID of the device</value>
+        /// <value>The device ID</value>
         [DataMember(Name="device_id", EmitDefaultValue=false)]
         public string DeviceId { get; set; }
         /// <summary>
