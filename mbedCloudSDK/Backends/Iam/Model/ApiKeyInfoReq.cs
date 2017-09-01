@@ -38,9 +38,10 @@ namespace iam.Model
         /// Initializes a new instance of the <see cref="ApiKeyInfoReq" /> class.
         /// </summary>
         /// <param name="Owner">The owner of this API key, who is the creator by default..</param>
+        /// <param name="Status">The status of the API key..</param>
         /// <param name="Name">The display name for the API key, not longer than 100 characters. (required).</param>
         /// <param name="Groups">A list of group IDs this API key belongs to..</param>
-        public ApiKeyInfoReq(string Owner = default(string), string Name = default(string), List<string> Groups = default(List<string>))
+        public ApiKeyInfoReq(string Owner = default(string), string Status = default(string), string Name = default(string), List<string> Groups = default(List<string>))
         {
             // to ensure "Name" is required (not null)
             if (Name == null)
@@ -52,6 +53,7 @@ namespace iam.Model
                 this.Name = Name;
             }
             this.Owner = Owner;
+            this.Status = Status;
             this.Groups = Groups;
         }
         
@@ -61,6 +63,12 @@ namespace iam.Model
         /// <value>The owner of this API key, who is the creator by default.</value>
         [DataMember(Name="owner", EmitDefaultValue=false)]
         public string Owner { get; set; }
+        /// <summary>
+        /// The status of the API key.
+        /// </summary>
+        /// <value>The status of the API key.</value>
+        [DataMember(Name="status", EmitDefaultValue=false)]
+        public string Status { get; set; }
         /// <summary>
         /// The display name for the API key, not longer than 100 characters.
         /// </summary>
@@ -82,6 +90,7 @@ namespace iam.Model
             var sb = new StringBuilder();
             sb.Append("class ApiKeyInfoReq {\n");
             sb.Append("  Owner: ").Append(Owner).Append("\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Groups: ").Append(Groups).Append("\n");
             sb.Append("}\n");
@@ -126,6 +135,11 @@ namespace iam.Model
                     this.Owner.Equals(other.Owner)
                 ) && 
                 (
+                    this.Status == other.Status ||
+                    this.Status != null &&
+                    this.Status.Equals(other.Status)
+                ) && 
+                (
                     this.Name == other.Name ||
                     this.Name != null &&
                     this.Name.Equals(other.Name)
@@ -150,6 +164,8 @@ namespace iam.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.Owner != null)
                     hash = hash * 59 + this.Owner.GetHashCode();
+                if (this.Status != null)
+                    hash = hash * 59 + this.Status.GetHashCode();
                 if (this.Name != null)
                     hash = hash * 59 + this.Name.GetHashCode();
                 if (this.Groups != null)

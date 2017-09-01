@@ -24,7 +24,7 @@ using System.ComponentModel.DataAnnotations;
 namespace iam.Model
 {
     /// <summary>
-    /// This object represents a trusted certificate in requests.
+    /// This object represents a trusted certificate in update requests.
     /// </summary>
     [DataContract]
     public partial class TrustedCertificateUpdateReq :  IEquatable<TrustedCertificateUpdateReq>, IValidatableObject
@@ -90,7 +90,7 @@ namespace iam.Model
         /// <param name="Certificate">X509.v3 trusted certificate in PEM format..</param>
         /// <param name="Name">Certificate name, not longer than 100 characters..</param>
         /// <param name="Service">Service name where the certificate must be used..</param>
-        /// <param name="Signature">Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256..</param>
+        /// <param name="Signature">Base64 encoded signature of the account ID signed by the certificate whose data to be updated. Signature must be hashed with SHA256..</param>
         /// <param name="Description">Human readable description of this certificate, not longer than 500 characters..</param>
         public TrustedCertificateUpdateReq(StatusEnum? Status = default(StatusEnum?), string Certificate = default(string), string Name = default(string), ServiceEnum? Service = default(ServiceEnum?), string Signature = default(string), string Description = default(string))
         {
@@ -115,9 +115,9 @@ namespace iam.Model
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
-        /// Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256.
+        /// Base64 encoded signature of the account ID signed by the certificate whose data to be updated. Signature must be hashed with SHA256.
         /// </summary>
-        /// <value>Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256.</value>
+        /// <value>Base64 encoded signature of the account ID signed by the certificate whose data to be updated. Signature must be hashed with SHA256.</value>
         [DataMember(Name="signature", EmitDefaultValue=false)]
         public string Signature { get; set; }
         /// <summary>

@@ -24,7 +24,7 @@ using System.ComponentModel.DataAnnotations;
 namespace iam.Model
 {
     /// <summary>
-    /// LoginHistory
+    /// This object represents an entry in login history.
     /// </summary>
     [DataContract]
     public partial class LoginHistory :  IEquatable<LoginHistory>, IValidatableObject
