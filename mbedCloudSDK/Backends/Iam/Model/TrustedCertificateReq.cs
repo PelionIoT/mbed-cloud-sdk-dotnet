@@ -24,7 +24,7 @@ using System.ComponentModel.DataAnnotations;
 namespace iam.Model
 {
     /// <summary>
-    /// This object represents a trusted certificate in requests.
+    /// This object represents a trusted certificate in upload requests.
     /// </summary>
     [DataContract]
     public partial class TrustedCertificateReq :  IEquatable<TrustedCertificateReq>, IValidatableObject
