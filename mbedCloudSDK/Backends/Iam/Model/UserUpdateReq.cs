@@ -37,17 +37,17 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UserUpdateReq" /> class.
         /// </summary>
-        /// <param name="PhoneNumber">Phone number, not longer than 100 characters..</param>
+        /// <param name="Status">The status of the user..</param>
         /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long..</param>
         /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted..</param>
         /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted..</param>
-        /// <param name="IsTotpEnabled">A flag indicating whether 2-factor authentication (TOTP) has to be enabled or disabled..</param>
-        /// <param name="Status">The status of the user..</param>
+        /// <param name="Email">The email address, not longer than 254 characters. (required).</param>
         /// <param name="FullName">The full name of the user, not longer than 100 characters..</param>
         /// <param name="Address">Address, not longer than 100 characters..</param>
         /// <param name="Password">The password when creating a new user. It will will generated when not present in the request..</param>
-        /// <param name="Email">The email address, not longer than 254 characters. (required).</param>
-        public UserUpdateReq(string PhoneNumber = default(string), string Username = default(string), bool? IsMarketingAccepted = default(bool?), bool? IsGtcAccepted = default(bool?), bool? IsTotpEnabled = default(bool?), string Status = default(string), string FullName = default(string), string Address = default(string), string Password = default(string), string Email = default(string))
+        /// <param name="PhoneNumber">Phone number, not longer than 100 characters..</param>
+        /// <param name="IsTotpEnabled">A flag indicating whether 2-factor authentication (TOTP) has to be enabled or disabled..</param>
+        public UserUpdateReq(string Status = default(string), string Username = default(string), bool? IsMarketingAccepted = default(bool?), bool? IsGtcAccepted = default(bool?), string Email = default(string), string FullName = default(string), string Address = default(string), string Password = default(string), string PhoneNumber = default(string), bool? IsTotpEnabled = default(bool?))
         {
             // to ensure "Email" is required (not null)
             if (Email == null)
@@ -58,23 +58,23 @@ namespace iam.Model
             {
                 this.Email = Email;
             }
-            this.PhoneNumber = PhoneNumber;
+            this.Status = Status;
             this.Username = Username;
             this.IsMarketingAccepted = IsMarketingAccepted;
             this.IsGtcAccepted = IsGtcAccepted;
-            this.IsTotpEnabled = IsTotpEnabled;
-            this.Status = Status;
             this.FullName = FullName;
             this.Address = Address;
             this.Password = Password;
+            this.PhoneNumber = PhoneNumber;
+            this.IsTotpEnabled = IsTotpEnabled;
         }
         
         /// <summary>
-        /// Phone number, not longer than 100 characters.
+        /// The status of the user.
         /// </summary>
-        /// <value>Phone number, not longer than 100 characters.</value>
-        [DataMember(Name="phone_number", EmitDefaultValue=false)]
-        public string PhoneNumber { get; set; }
+        /// <value>The status of the user.</value>
+        [DataMember(Name="status", EmitDefaultValue=false)]
+        public string Status { get; set; }
         /// <summary>
         /// A username containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long.
         /// </summary>
@@ -94,17 +94,11 @@ namespace iam.Model
         [DataMember(Name="is_gtc_accepted", EmitDefaultValue=false)]
         public bool? IsGtcAccepted { get; set; }
         /// <summary>
-        /// A flag indicating whether 2-factor authentication (TOTP) has to be enabled or disabled.
+        /// The email address, not longer than 254 characters.
         /// </summary>
-        /// <value>A flag indicating whether 2-factor authentication (TOTP) has to be enabled or disabled.</value>
-        [DataMember(Name="is_totp_enabled", EmitDefaultValue=false)]
-        public bool? IsTotpEnabled { get; set; }
-        /// <summary>
-        /// The status of the user.
-        /// </summary>
-        /// <value>The status of the user.</value>
-        [DataMember(Name="status", EmitDefaultValue=false)]
-        public string Status { get; set; }
+        /// <value>The email address, not longer than 254 characters.</value>
+        [DataMember(Name="email", EmitDefaultValue=false)]
+        public string Email { get; set; }
         /// <summary>
         /// The full name of the user, not longer than 100 characters.
         /// </summary>
@@ -124,11 +118,17 @@ namespace iam.Model
         [DataMember(Name="password", EmitDefaultValue=false)]
         public string Password { get; set; }
         /// <summary>
-        /// The email address, not longer than 254 characters.
+        /// Phone number, not longer than 100 characters.
         /// </summary>
-        /// <value>The email address, not longer than 254 characters.</value>
-        [DataMember(Name="email", EmitDefaultValue=false)]
-        public string Email { get; set; }
+        /// <value>Phone number, not longer than 100 characters.</value>
+        [DataMember(Name="phone_number", EmitDefaultValue=false)]
+        public string PhoneNumber { get; set; }
+        /// <summary>
+        /// A flag indicating whether 2-factor authentication (TOTP) has to be enabled or disabled.
+        /// </summary>
+        /// <value>A flag indicating whether 2-factor authentication (TOTP) has to be enabled or disabled.</value>
+        [DataMember(Name="is_totp_enabled", EmitDefaultValue=false)]
+        public bool? IsTotpEnabled { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -137,16 +137,16 @@ namespace iam.Model
         {
             var sb = new StringBuilder();
             sb.Append("class UserUpdateReq {\n");
-            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("  IsMarketingAccepted: ").Append(IsMarketingAccepted).Append("\n");
             sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
-            sb.Append("  IsTotpEnabled: ").Append(IsTotpEnabled).Append("\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  FullName: ").Append(FullName).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  Password: ").Append(Password).Append("\n");
-            sb.Append("  Email: ").Append(Email).Append("\n");
+            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
+            sb.Append("  IsTotpEnabled: ").Append(IsTotpEnabled).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -184,9 +184,9 @@ namespace iam.Model
 
             return 
                 (
-                    this.PhoneNumber == other.PhoneNumber ||
-                    this.PhoneNumber != null &&
-                    this.PhoneNumber.Equals(other.PhoneNumber)
+                    this.Status == other.Status ||
+                    this.Status != null &&
+                    this.Status.Equals(other.Status)
                 ) && 
                 (
                     this.Username == other.Username ||
@@ -204,14 +204,9 @@ namespace iam.Model
                     this.IsGtcAccepted.Equals(other.IsGtcAccepted)
                 ) && 
                 (
-                    this.IsTotpEnabled == other.IsTotpEnabled ||
-                    this.IsTotpEnabled != null &&
-                    this.IsTotpEnabled.Equals(other.IsTotpEnabled)
-                ) && 
-                (
-                    this.Status == other.Status ||
-                    this.Status != null &&
-                    this.Status.Equals(other.Status)
+                    this.Email == other.Email ||
+                    this.Email != null &&
+                    this.Email.Equals(other.Email)
                 ) && 
                 (
                     this.FullName == other.FullName ||
@@ -229,9 +224,14 @@ namespace iam.Model
                     this.Password.Equals(other.Password)
                 ) && 
                 (
-                    this.Email == other.Email ||
-                    this.Email != null &&
-                    this.Email.Equals(other.Email)
+                    this.PhoneNumber == other.PhoneNumber ||
+                    this.PhoneNumber != null &&
+                    this.PhoneNumber.Equals(other.PhoneNumber)
+                ) && 
+                (
+                    this.IsTotpEnabled == other.IsTotpEnabled ||
+                    this.IsTotpEnabled != null &&
+                    this.IsTotpEnabled.Equals(other.IsTotpEnabled)
                 );
         }
 
@@ -246,26 +246,26 @@ namespace iam.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.PhoneNumber != null)
-                    hash = hash * 59 + this.PhoneNumber.GetHashCode();
+                if (this.Status != null)
+                    hash = hash * 59 + this.Status.GetHashCode();
                 if (this.Username != null)
                     hash = hash * 59 + this.Username.GetHashCode();
                 if (this.IsMarketingAccepted != null)
                     hash = hash * 59 + this.IsMarketingAccepted.GetHashCode();
                 if (this.IsGtcAccepted != null)
                     hash = hash * 59 + this.IsGtcAccepted.GetHashCode();
-                if (this.IsTotpEnabled != null)
-                    hash = hash * 59 + this.IsTotpEnabled.GetHashCode();
-                if (this.Status != null)
-                    hash = hash * 59 + this.Status.GetHashCode();
+                if (this.Email != null)
+                    hash = hash * 59 + this.Email.GetHashCode();
                 if (this.FullName != null)
                     hash = hash * 59 + this.FullName.GetHashCode();
                 if (this.Address != null)
                     hash = hash * 59 + this.Address.GetHashCode();
                 if (this.Password != null)
                     hash = hash * 59 + this.Password.GetHashCode();
-                if (this.Email != null)
-                    hash = hash * 59 + this.Email.GetHashCode();
+                if (this.PhoneNumber != null)
+                    hash = hash * 59 + this.PhoneNumber.GetHashCode();
+                if (this.IsTotpEnabled != null)
+                    hash = hash * 59 + this.IsTotpEnabled.GetHashCode();
                 return hash;
             }
         }

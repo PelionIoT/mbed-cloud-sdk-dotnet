@@ -122,7 +122,19 @@ namespace iam.Model
             /// Enum Error for "error"
             /// </summary>
             [EnumMember(Value = "error")]
-            Error
+            Error,
+            
+            /// <summary>
+            /// Enum Agreement for "agreement"
+            /// </summary>
+            [EnumMember(Value = "agreement")]
+            Agreement,
+            
+            /// <summary>
+            /// Enum Signedagreement for "signed-agreement"
+            /// </summary>
+            [EnumMember(Value = "signed-agreement")]
+            Signedagreement
         }
 
         /// <summary>
@@ -147,15 +159,15 @@ namespace iam.Model
         /// </summary>
         /// <param name="Status">The status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately. (required).</param>
         /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters..</param>
-        /// <param name="Groups">A list of IDs of the groups this user belongs to..</param>
         /// <param name="PasswordChangedTime">A timestamp of the latest change of the user password, in milliseconds..</param>
+        /// <param name="Groups">A list of IDs of the groups this user belongs to..</param>
+        /// <param name="LoginHistory">Timestamps, succeedings, IP addresses and user agent information of the last five logins of the user, with timestamps in RFC3339 format..</param>
         /// <param name="EmailVerified">A flag indicating whether the user&#39;s email address has been verified or not..</param>
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
         /// <param name="_Object">Entity name: always &#39;user&#39; (required).</param>
         /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted..</param>
         /// <param name="AccountId">The UUID of the account. (required).</param>
         /// <param name="Email">The email address. (required).</param>
-        /// <param name="LoginHistory">Timestamps, succeedings, IP addresses and user agent information of the last five logins of the user, with timestamps in RFC3339 format..</param>
         /// <param name="IsTotpEnabled">A flag indicating whether 2-factor authentication (TOTP) has been enabled..</param>
         /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted..</param>
         /// <param name="Etag">API resource entity version. (required).</param>
@@ -166,7 +178,7 @@ namespace iam.Model
         /// <param name="PhoneNumber">Phone number..</param>
         /// <param name="Id">The UUID of the user. (required).</param>
         /// <param name="LastLoginTime">A timestamp of the latest login of the user, in milliseconds..</param>
-        public UserInfoResp(StatusEnum? Status = default(StatusEnum?), string Username = default(string), List<string> Groups = default(List<string>), long? PasswordChangedTime = default(long?), bool? EmailVerified = default(bool?), DateTime? CreatedAt = default(DateTime?), ObjectEnum? _Object = default(ObjectEnum?), bool? IsGtcAccepted = default(bool?), string AccountId = default(string), string Email = default(string), List<LoginHistory> LoginHistory = default(List<LoginHistory>), bool? IsTotpEnabled = default(bool?), bool? IsMarketingAccepted = default(bool?), string Etag = default(string), string FullName = default(string), string Address = default(string), long? CreationTime = default(long?), string Password = default(string), string PhoneNumber = default(string), string Id = default(string), long? LastLoginTime = default(long?))
+        public UserInfoResp(StatusEnum? Status = default(StatusEnum?), string Username = default(string), long? PasswordChangedTime = default(long?), List<string> Groups = default(List<string>), List<LoginHistory> LoginHistory = default(List<LoginHistory>), bool? EmailVerified = default(bool?), DateTime? CreatedAt = default(DateTime?), ObjectEnum? _Object = default(ObjectEnum?), bool? IsGtcAccepted = default(bool?), string AccountId = default(string), string Email = default(string), bool? IsTotpEnabled = default(bool?), bool? IsMarketingAccepted = default(bool?), string Etag = default(string), string FullName = default(string), string Address = default(string), long? CreationTime = default(long?), string Password = default(string), string PhoneNumber = default(string), string Id = default(string), long? LastLoginTime = default(long?))
         {
             // to ensure "Status" is required (not null)
             if (Status == null)
@@ -223,12 +235,12 @@ namespace iam.Model
                 this.Id = Id;
             }
             this.Username = Username;
-            this.Groups = Groups;
             this.PasswordChangedTime = PasswordChangedTime;
+            this.Groups = Groups;
+            this.LoginHistory = LoginHistory;
             this.EmailVerified = EmailVerified;
             this.CreatedAt = CreatedAt;
             this.IsGtcAccepted = IsGtcAccepted;
-            this.LoginHistory = LoginHistory;
             this.IsTotpEnabled = IsTotpEnabled;
             this.IsMarketingAccepted = IsMarketingAccepted;
             this.FullName = FullName;
@@ -246,17 +258,23 @@ namespace iam.Model
         [DataMember(Name="username", EmitDefaultValue=false)]
         public string Username { get; set; }
         /// <summary>
+        /// A timestamp of the latest change of the user password, in milliseconds.
+        /// </summary>
+        /// <value>A timestamp of the latest change of the user password, in milliseconds.</value>
+        [DataMember(Name="password_changed_time", EmitDefaultValue=false)]
+        public long? PasswordChangedTime { get; set; }
+        /// <summary>
         /// A list of IDs of the groups this user belongs to.
         /// </summary>
         /// <value>A list of IDs of the groups this user belongs to.</value>
         [DataMember(Name="groups", EmitDefaultValue=false)]
         public List<string> Groups { get; set; }
         /// <summary>
-        /// A timestamp of the latest change of the user password, in milliseconds.
+        /// Timestamps, succeedings, IP addresses and user agent information of the last five logins of the user, with timestamps in RFC3339 format.
         /// </summary>
-        /// <value>A timestamp of the latest change of the user password, in milliseconds.</value>
-        [DataMember(Name="password_changed_time", EmitDefaultValue=false)]
-        public long? PasswordChangedTime { get; set; }
+        /// <value>Timestamps, succeedings, IP addresses and user agent information of the last five logins of the user, with timestamps in RFC3339 format.</value>
+        [DataMember(Name="login_history", EmitDefaultValue=false)]
+        public List<LoginHistory> LoginHistory { get; set; }
         /// <summary>
         /// A flag indicating whether the user&#39;s email address has been verified or not.
         /// </summary>
@@ -287,12 +305,6 @@ namespace iam.Model
         /// <value>The email address.</value>
         [DataMember(Name="email", EmitDefaultValue=false)]
         public string Email { get; set; }
-        /// <summary>
-        /// Timestamps, succeedings, IP addresses and user agent information of the last five logins of the user, with timestamps in RFC3339 format.
-        /// </summary>
-        /// <value>Timestamps, succeedings, IP addresses and user agent information of the last five logins of the user, with timestamps in RFC3339 format.</value>
-        [DataMember(Name="login_history", EmitDefaultValue=false)]
-        public List<LoginHistory> LoginHistory { get; set; }
         /// <summary>
         /// A flag indicating whether 2-factor authentication (TOTP) has been enabled.
         /// </summary>
@@ -363,15 +375,15 @@ namespace iam.Model
             sb.Append("class UserInfoResp {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
-            sb.Append("  Groups: ").Append(Groups).Append("\n");
             sb.Append("  PasswordChangedTime: ").Append(PasswordChangedTime).Append("\n");
+            sb.Append("  Groups: ").Append(Groups).Append("\n");
+            sb.Append("  LoginHistory: ").Append(LoginHistory).Append("\n");
             sb.Append("  EmailVerified: ").Append(EmailVerified).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
-            sb.Append("  LoginHistory: ").Append(LoginHistory).Append("\n");
             sb.Append("  IsTotpEnabled: ").Append(IsTotpEnabled).Append("\n");
             sb.Append("  IsMarketingAccepted: ").Append(IsMarketingAccepted).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
@@ -429,14 +441,19 @@ namespace iam.Model
                     this.Username.Equals(other.Username)
                 ) && 
                 (
+                    this.PasswordChangedTime == other.PasswordChangedTime ||
+                    this.PasswordChangedTime != null &&
+                    this.PasswordChangedTime.Equals(other.PasswordChangedTime)
+                ) && 
+                (
                     this.Groups == other.Groups ||
                     this.Groups != null &&
                     this.Groups.SequenceEqual(other.Groups)
                 ) && 
                 (
-                    this.PasswordChangedTime == other.PasswordChangedTime ||
-                    this.PasswordChangedTime != null &&
-                    this.PasswordChangedTime.Equals(other.PasswordChangedTime)
+                    this.LoginHistory == other.LoginHistory ||
+                    this.LoginHistory != null &&
+                    this.LoginHistory.SequenceEqual(other.LoginHistory)
                 ) && 
                 (
                     this.EmailVerified == other.EmailVerified ||
@@ -467,11 +484,6 @@ namespace iam.Model
                     this.Email == other.Email ||
                     this.Email != null &&
                     this.Email.Equals(other.Email)
-                ) && 
-                (
-                    this.LoginHistory == other.LoginHistory ||
-                    this.LoginHistory != null &&
-                    this.LoginHistory.SequenceEqual(other.LoginHistory)
                 ) && 
                 (
                     this.IsTotpEnabled == other.IsTotpEnabled ||
@@ -540,10 +552,12 @@ namespace iam.Model
                     hash = hash * 59 + this.Status.GetHashCode();
                 if (this.Username != null)
                     hash = hash * 59 + this.Username.GetHashCode();
-                if (this.Groups != null)
-                    hash = hash * 59 + this.Groups.GetHashCode();
                 if (this.PasswordChangedTime != null)
                     hash = hash * 59 + this.PasswordChangedTime.GetHashCode();
+                if (this.Groups != null)
+                    hash = hash * 59 + this.Groups.GetHashCode();
+                if (this.LoginHistory != null)
+                    hash = hash * 59 + this.LoginHistory.GetHashCode();
                 if (this.EmailVerified != null)
                     hash = hash * 59 + this.EmailVerified.GetHashCode();
                 if (this.CreatedAt != null)
@@ -556,8 +570,6 @@ namespace iam.Model
                     hash = hash * 59 + this.AccountId.GetHashCode();
                 if (this.Email != null)
                     hash = hash * 59 + this.Email.GetHashCode();
-                if (this.LoginHistory != null)
-                    hash = hash * 59 + this.LoginHistory.GetHashCode();
                 if (this.IsTotpEnabled != null)
                     hash = hash * 59 + this.IsTotpEnabled.GetHashCode();
                 if (this.IsMarketingAccepted != null)

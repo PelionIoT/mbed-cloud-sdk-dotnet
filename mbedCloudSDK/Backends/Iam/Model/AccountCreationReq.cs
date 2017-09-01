@@ -27,10 +27,15 @@ namespace iam.Model
     /// This object represents an account creation request.
     /// </summary>
     [DataContract]
-    public partial class AccountUpdateReq :  IEquatable<AccountUpdateReq>, IValidatableObject
+    public partial class AccountCreationReq :  IEquatable<AccountCreationReq>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountUpdateReq" /> class.
+        /// Initializes a new instance of the <see cref="AccountCreationReq" /> class.
+        /// </summary>
+        [JsonConstructorAttribute]
+        protected AccountCreationReq() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountCreationReq" /> class.
         /// </summary>
         /// <param name="AddressLine2">Postal address line 2, not longer than 100 characters..</param>
         /// <param name="City">The city part of the postal address, not longer than 100 characters. Required for commercial accounts only..</param>
@@ -38,29 +43,41 @@ namespace iam.Model
         /// <param name="DisplayName">The display name for the account, not longer than 100 characters..</param>
         /// <param name="Country">The country part of the postal address, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="Company">The name of the company, not longer than 100 characters. Required for commercial accounts only..</param>
-        /// <param name="IdleTimeout">The reference token expiration time in minutes for this account. Between 1 and 120 minutes..</param>
         /// <param name="State">The state part of the postal address, not longer than 100 characters..</param>
         /// <param name="Contact">The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="PostalCode">The postal code part of the postal address, not longer than 100 characters..</param>
-        /// <param name="PasswordPolicy">Password policy for this account..</param>
-        /// <param name="EndMarket">The end market for this account, not longer than 100 characters..</param>
+        /// <param name="AdminPassword">The password when creating a new user. It will be generated when not present in the request..</param>
+        /// <param name="AdminName">The username of the admin user to be created, containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long..</param>
+        /// <param name="AdminFullName">The full name of the admin user to be created..</param>
+        /// <param name="EndMarket">The end market of the account to be created. (required).</param>
+        /// <param name="AdminEmail">The email address of the account admin, not longer than 254 characters..</param>
         /// <param name="PhoneNumber">The phone number of the company, not longer than 100 characters..</param>
         /// <param name="Email">The company email address for this account, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="Aliases">An array of aliases, not more than 10. An alias is not shorter than 8 and not longer than 100 characters..</param>
-        public AccountUpdateReq(string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string Country = default(string), string Company = default(string), string IdleTimeout = default(string), string State = default(string), string Contact = default(string), string PostalCode = default(string), PasswordPolicy PasswordPolicy = default(PasswordPolicy), string EndMarket = default(string), string PhoneNumber = default(string), string Email = default(string), List<string> Aliases = default(List<string>))
+        public AccountCreationReq(string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string Country = default(string), string Company = default(string), string State = default(string), string Contact = default(string), string PostalCode = default(string), string AdminPassword = default(string), string AdminName = default(string), string AdminFullName = default(string), string EndMarket = default(string), string AdminEmail = default(string), string PhoneNumber = default(string), string Email = default(string), List<string> Aliases = default(List<string>))
         {
+            // to ensure "EndMarket" is required (not null)
+            if (EndMarket == null)
+            {
+                throw new InvalidDataException("EndMarket is a required property for AccountCreationReq and cannot be null");
+            }
+            else
+            {
+                this.EndMarket = EndMarket;
+            }
             this.AddressLine2 = AddressLine2;
             this.City = City;
             this.AddressLine1 = AddressLine1;
             this.DisplayName = DisplayName;
             this.Country = Country;
             this.Company = Company;
-            this.IdleTimeout = IdleTimeout;
             this.State = State;
             this.Contact = Contact;
             this.PostalCode = PostalCode;
-            this.PasswordPolicy = PasswordPolicy;
-            this.EndMarket = EndMarket;
+            this.AdminPassword = AdminPassword;
+            this.AdminName = AdminName;
+            this.AdminFullName = AdminFullName;
+            this.AdminEmail = AdminEmail;
             this.PhoneNumber = PhoneNumber;
             this.Email = Email;
             this.Aliases = Aliases;
@@ -103,12 +120,6 @@ namespace iam.Model
         [DataMember(Name="company", EmitDefaultValue=false)]
         public string Company { get; set; }
         /// <summary>
-        /// The reference token expiration time in minutes for this account. Between 1 and 120 minutes.
-        /// </summary>
-        /// <value>The reference token expiration time in minutes for this account. Between 1 and 120 minutes.</value>
-        [DataMember(Name="idle_timeout", EmitDefaultValue=false)]
-        public string IdleTimeout { get; set; }
-        /// <summary>
         /// The state part of the postal address, not longer than 100 characters.
         /// </summary>
         /// <value>The state part of the postal address, not longer than 100 characters.</value>
@@ -127,17 +138,35 @@ namespace iam.Model
         [DataMember(Name="postal_code", EmitDefaultValue=false)]
         public string PostalCode { get; set; }
         /// <summary>
-        /// Password policy for this account.
+        /// The password when creating a new user. It will be generated when not present in the request.
         /// </summary>
-        /// <value>Password policy for this account.</value>
-        [DataMember(Name="password_policy", EmitDefaultValue=false)]
-        public PasswordPolicy PasswordPolicy { get; set; }
+        /// <value>The password when creating a new user. It will be generated when not present in the request.</value>
+        [DataMember(Name="admin_password", EmitDefaultValue=false)]
+        public string AdminPassword { get; set; }
         /// <summary>
-        /// The end market for this account, not longer than 100 characters.
+        /// The username of the admin user to be created, containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long.
         /// </summary>
-        /// <value>The end market for this account, not longer than 100 characters.</value>
+        /// <value>The username of the admin user to be created, containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long.</value>
+        [DataMember(Name="admin_name", EmitDefaultValue=false)]
+        public string AdminName { get; set; }
+        /// <summary>
+        /// The full name of the admin user to be created.
+        /// </summary>
+        /// <value>The full name of the admin user to be created.</value>
+        [DataMember(Name="admin_full_name", EmitDefaultValue=false)]
+        public string AdminFullName { get; set; }
+        /// <summary>
+        /// The end market of the account to be created.
+        /// </summary>
+        /// <value>The end market of the account to be created.</value>
         [DataMember(Name="end_market", EmitDefaultValue=false)]
         public string EndMarket { get; set; }
+        /// <summary>
+        /// The email address of the account admin, not longer than 254 characters.
+        /// </summary>
+        /// <value>The email address of the account admin, not longer than 254 characters.</value>
+        [DataMember(Name="admin_email", EmitDefaultValue=false)]
+        public string AdminEmail { get; set; }
         /// <summary>
         /// The phone number of the company, not longer than 100 characters.
         /// </summary>
@@ -163,19 +192,21 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class AccountUpdateReq {\n");
+            sb.Append("class AccountCreationReq {\n");
             sb.Append("  AddressLine2: ").Append(AddressLine2).Append("\n");
             sb.Append("  City: ").Append(City).Append("\n");
             sb.Append("  AddressLine1: ").Append(AddressLine1).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
-            sb.Append("  IdleTimeout: ").Append(IdleTimeout).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");
-            sb.Append("  PasswordPolicy: ").Append(PasswordPolicy).Append("\n");
+            sb.Append("  AdminPassword: ").Append(AdminPassword).Append("\n");
+            sb.Append("  AdminName: ").Append(AdminName).Append("\n");
+            sb.Append("  AdminFullName: ").Append(AdminFullName).Append("\n");
             sb.Append("  EndMarket: ").Append(EndMarket).Append("\n");
+            sb.Append("  AdminEmail: ").Append(AdminEmail).Append("\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  Aliases: ").Append(Aliases).Append("\n");
@@ -200,15 +231,15 @@ namespace iam.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as AccountUpdateReq);
+            return this.Equals(obj as AccountCreationReq);
         }
 
         /// <summary>
-        /// Returns true if AccountUpdateReq instances are equal
+        /// Returns true if AccountCreationReq instances are equal
         /// </summary>
-        /// <param name="other">Instance of AccountUpdateReq to be compared</param>
+        /// <param name="other">Instance of AccountCreationReq to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AccountUpdateReq other)
+        public bool Equals(AccountCreationReq other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -246,11 +277,6 @@ namespace iam.Model
                     this.Company.Equals(other.Company)
                 ) && 
                 (
-                    this.IdleTimeout == other.IdleTimeout ||
-                    this.IdleTimeout != null &&
-                    this.IdleTimeout.Equals(other.IdleTimeout)
-                ) && 
-                (
                     this.State == other.State ||
                     this.State != null &&
                     this.State.Equals(other.State)
@@ -266,14 +292,29 @@ namespace iam.Model
                     this.PostalCode.Equals(other.PostalCode)
                 ) && 
                 (
-                    this.PasswordPolicy == other.PasswordPolicy ||
-                    this.PasswordPolicy != null &&
-                    this.PasswordPolicy.Equals(other.PasswordPolicy)
+                    this.AdminPassword == other.AdminPassword ||
+                    this.AdminPassword != null &&
+                    this.AdminPassword.Equals(other.AdminPassword)
+                ) && 
+                (
+                    this.AdminName == other.AdminName ||
+                    this.AdminName != null &&
+                    this.AdminName.Equals(other.AdminName)
+                ) && 
+                (
+                    this.AdminFullName == other.AdminFullName ||
+                    this.AdminFullName != null &&
+                    this.AdminFullName.Equals(other.AdminFullName)
                 ) && 
                 (
                     this.EndMarket == other.EndMarket ||
                     this.EndMarket != null &&
                     this.EndMarket.Equals(other.EndMarket)
+                ) && 
+                (
+                    this.AdminEmail == other.AdminEmail ||
+                    this.AdminEmail != null &&
+                    this.AdminEmail.Equals(other.AdminEmail)
                 ) && 
                 (
                     this.PhoneNumber == other.PhoneNumber ||
@@ -315,18 +356,22 @@ namespace iam.Model
                     hash = hash * 59 + this.Country.GetHashCode();
                 if (this.Company != null)
                     hash = hash * 59 + this.Company.GetHashCode();
-                if (this.IdleTimeout != null)
-                    hash = hash * 59 + this.IdleTimeout.GetHashCode();
                 if (this.State != null)
                     hash = hash * 59 + this.State.GetHashCode();
                 if (this.Contact != null)
                     hash = hash * 59 + this.Contact.GetHashCode();
                 if (this.PostalCode != null)
                     hash = hash * 59 + this.PostalCode.GetHashCode();
-                if (this.PasswordPolicy != null)
-                    hash = hash * 59 + this.PasswordPolicy.GetHashCode();
+                if (this.AdminPassword != null)
+                    hash = hash * 59 + this.AdminPassword.GetHashCode();
+                if (this.AdminName != null)
+                    hash = hash * 59 + this.AdminName.GetHashCode();
+                if (this.AdminFullName != null)
+                    hash = hash * 59 + this.AdminFullName.GetHashCode();
                 if (this.EndMarket != null)
                     hash = hash * 59 + this.EndMarket.GetHashCode();
+                if (this.AdminEmail != null)
+                    hash = hash * 59 + this.AdminEmail.GetHashCode();
                 if (this.PhoneNumber != null)
                     hash = hash * 59 + this.PhoneNumber.GetHashCode();
                 if (this.Email != null)

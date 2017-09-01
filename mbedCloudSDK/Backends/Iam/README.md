@@ -101,14 +101,21 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AccountAdminApi* | [**AddCertificate**](docs/AccountAdminApi.md#addcertificate) | **POST** /v3/trusted-certificates | Upload a new trusted certificate.
 *AccountAdminApi* | [**AddSubjectsToGroup**](docs/AccountAdminApi.md#addsubjectstogroup) | **POST** /v3/policy-groups/{groupID} | Add members to a group.
+*AccountAdminApi* | [**CreateAccount**](docs/AccountAdminApi.md#createaccount) | **POST** /v3/accounts | Create a new account.
 *AccountAdminApi* | [**CreateUser**](docs/AccountAdminApi.md#createuser) | **POST** /v3/users | Create a new user.
 *AccountAdminApi* | [**DeleteUser**](docs/AccountAdminApi.md#deleteuser) | **DELETE** /v3/users/{user-id} | Delete a user.
+*AccountAdminApi* | [**GetAccountInfo**](docs/AccountAdminApi.md#getaccountinfo) | **GET** /v3/accounts/{accountID} | Get account info.
+*AccountAdminApi* | [**GetAllAccounts**](docs/AccountAdminApi.md#getallaccounts) | **GET** /v3/accounts | Get all accounts.
 *AccountAdminApi* | [**GetAllUsers**](docs/AccountAdminApi.md#getallusers) | **GET** /v3/users | Get the details of all users.
 *AccountAdminApi* | [**GetUser**](docs/AccountAdminApi.md#getuser) | **GET** /v3/users/{user-id} | Details of a user.
 *AccountAdminApi* | [**GetUsersOfGroup**](docs/AccountAdminApi.md#getusersofgroup) | **GET** /v3/policy-groups/{groupID}/users | Get users of a group.
 *AccountAdminApi* | [**RemoveUsersFromGroup**](docs/AccountAdminApi.md#removeusersfromgroup) | **DELETE** /v3/policy-groups/{groupID}/users | Remove users from a group.
+*AccountAdminApi* | [**UpdateAccount**](docs/AccountAdminApi.md#updateaccount) | **PUT** /v3/accounts/{accountID} | Update attributes of an existing account.
 *AccountAdminApi* | [**UpdateMyAccount**](docs/AccountAdminApi.md#updatemyaccount) | **PUT** /v3/accounts/me | Updates attributes of the account.
 *AccountAdminApi* | [**UpdateUser**](docs/AccountAdminApi.md#updateuser) | **PUT** /v3/users/{user-id} | Update user details.
+*DefaultApi* | [**DownloadAgreement**](docs/DefaultApi.md#downloadagreement) | **GET** /downloads/agreements/{agreement-id} | Download agreement as a document.
+*DefaultApi* | [**HeadDownloads**](docs/DefaultApi.md#headdownloads) | **HEAD** /downloads/agreements | The heartbeat method for this API.
+*DefaultApi* | [**IsAlive**](docs/DefaultApi.md#isalive) | **GET** /alive | Get alive status
 *DeveloperApi* | [**CreateApiKey**](docs/DeveloperApi.md#createapikey) | **POST** /v3/api-keys | Create a new API key.
 *DeveloperApi* | [**DeleteApiKey**](docs/DeveloperApi.md#deleteapikey) | **DELETE** /v3/api-keys/{apiKey} | Delete API key.
 *DeveloperApi* | [**DeleteCertificate**](docs/DeveloperApi.md#deletecertificate) | **DELETE** /v3/trusted-certificates/{cert-id} | Delete a trusted certificate by ID.
@@ -132,8 +139,12 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [Model.AccountCreationReq](docs/AccountCreationReq.md)
+ - [Model.AccountCreationResp](docs/AccountCreationResp.md)
  - [Model.AccountInfo](docs/AccountInfo.md)
+ - [Model.AccountInfoList](docs/AccountInfoList.md)
  - [Model.AccountUpdateReq](docs/AccountUpdateReq.md)
+ - [Model.AccountUpdateRootReq](docs/AccountUpdateRootReq.md)
  - [Model.ApiKeyInfoReq](docs/ApiKeyInfoReq.md)
  - [Model.ApiKeyInfoResp](docs/ApiKeyInfoResp.md)
  - [Model.ApiKeyInfoRespList](docs/ApiKeyInfoRespList.md)
@@ -145,13 +156,14 @@ Class | Method | HTTP request | Description
  - [Model.GroupSummaryList](docs/GroupSummaryList.md)
  - [Model.LoginHistory](docs/LoginHistory.md)
  - [Model.MyUserInfoResp](docs/MyUserInfoResp.md)
+ - [Model.PasswordPolicy](docs/PasswordPolicy.md)
  - [Model.SubjectList](docs/SubjectList.md)
  - [Model.TrustedCertificateReq](docs/TrustedCertificateReq.md)
  - [Model.TrustedCertificateResp](docs/TrustedCertificateResp.md)
  - [Model.TrustedCertificateRespList](docs/TrustedCertificateRespList.md)
  - [Model.TrustedCertificateUpdateReq](docs/TrustedCertificateUpdateReq.md)
  - [Model.UpdatedResponse](docs/UpdatedResponse.md)
- - [Model.UserInfoReq](docs/UserInfoReq.md)
+ - [Model.UserCreationReq](docs/UserCreationReq.md)
  - [Model.UserInfoResp](docs/UserInfoResp.md)
  - [Model.UserInfoRespList](docs/UserInfoRespList.md)
  - [Model.UserUpdateReq](docs/UserUpdateReq.md)

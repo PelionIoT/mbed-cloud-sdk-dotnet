@@ -27,58 +27,58 @@ namespace iam.Model
     /// This object represents a user in requests towards mbed Cloud.
     /// </summary>
     [DataContract]
-    public partial class UserInfoReq :  IEquatable<UserInfoReq>, IValidatableObject
+    public partial class UserCreationReq :  IEquatable<UserCreationReq>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserInfoReq" /> class.
+        /// Initializes a new instance of the <see cref="UserCreationReq" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected UserInfoReq() { }
+        protected UserCreationReq() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserInfoReq" /> class.
+        /// Initializes a new instance of the <see cref="UserCreationReq" /> class.
         /// </summary>
-        /// <param name="PhoneNumber">Phone number, not longer than 100 characters..</param>
         /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long..</param>
+        /// <param name="PhoneNumber">Phone number, not longer than 100 characters..</param>
         /// <param name="Groups">A list of IDs of the groups this user belongs to..</param>
         /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted..</param>
-        /// <param name="FullName">The full name of the user, not longer than 100 characters..</param>
         /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted..</param>
+        /// <param name="FullName">The full name of the user, not longer than 100 characters..</param>
         /// <param name="Address">Address, not longer than 100 characters..</param>
         /// <param name="Password">The password when creating a new user. It will will generated when not present in the request..</param>
         /// <param name="Email">The email address, not longer than 254 characters. (required).</param>
-        public UserInfoReq(string PhoneNumber = default(string), string Username = default(string), List<string> Groups = default(List<string>), bool? IsGtcAccepted = default(bool?), string FullName = default(string), bool? IsMarketingAccepted = default(bool?), string Address = default(string), string Password = default(string), string Email = default(string))
+        public UserCreationReq(string Username = default(string), string PhoneNumber = default(string), List<string> Groups = default(List<string>), bool? IsGtcAccepted = default(bool?), bool? IsMarketingAccepted = default(bool?), string FullName = default(string), string Address = default(string), string Password = default(string), string Email = default(string))
         {
             // to ensure "Email" is required (not null)
             if (Email == null)
             {
-                throw new InvalidDataException("Email is a required property for UserInfoReq and cannot be null");
+                throw new InvalidDataException("Email is a required property for UserCreationReq and cannot be null");
             }
             else
             {
                 this.Email = Email;
             }
-            this.PhoneNumber = PhoneNumber;
             this.Username = Username;
+            this.PhoneNumber = PhoneNumber;
             this.Groups = Groups;
             this.IsGtcAccepted = IsGtcAccepted;
-            this.FullName = FullName;
             this.IsMarketingAccepted = IsMarketingAccepted;
+            this.FullName = FullName;
             this.Address = Address;
             this.Password = Password;
         }
         
-        /// <summary>
-        /// Phone number, not longer than 100 characters.
-        /// </summary>
-        /// <value>Phone number, not longer than 100 characters.</value>
-        [DataMember(Name="phone_number", EmitDefaultValue=false)]
-        public string PhoneNumber { get; set; }
         /// <summary>
         /// A username containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long.
         /// </summary>
         /// <value>A username containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long.</value>
         [DataMember(Name="username", EmitDefaultValue=false)]
         public string Username { get; set; }
+        /// <summary>
+        /// Phone number, not longer than 100 characters.
+        /// </summary>
+        /// <value>Phone number, not longer than 100 characters.</value>
+        [DataMember(Name="phone_number", EmitDefaultValue=false)]
+        public string PhoneNumber { get; set; }
         /// <summary>
         /// A list of IDs of the groups this user belongs to.
         /// </summary>
@@ -92,17 +92,17 @@ namespace iam.Model
         [DataMember(Name="is_gtc_accepted", EmitDefaultValue=false)]
         public bool? IsGtcAccepted { get; set; }
         /// <summary>
-        /// The full name of the user, not longer than 100 characters.
-        /// </summary>
-        /// <value>The full name of the user, not longer than 100 characters.</value>
-        [DataMember(Name="full_name", EmitDefaultValue=false)]
-        public string FullName { get; set; }
-        /// <summary>
         /// A flag indicating that receiving marketing information has been accepted.
         /// </summary>
         /// <value>A flag indicating that receiving marketing information has been accepted.</value>
         [DataMember(Name="is_marketing_accepted", EmitDefaultValue=false)]
         public bool? IsMarketingAccepted { get; set; }
+        /// <summary>
+        /// The full name of the user, not longer than 100 characters.
+        /// </summary>
+        /// <value>The full name of the user, not longer than 100 characters.</value>
+        [DataMember(Name="full_name", EmitDefaultValue=false)]
+        public string FullName { get; set; }
         /// <summary>
         /// Address, not longer than 100 characters.
         /// </summary>
@@ -128,13 +128,13 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class UserInfoReq {\n");
-            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
+            sb.Append("class UserCreationReq {\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
+            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Groups: ").Append(Groups).Append("\n");
             sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
-            sb.Append("  FullName: ").Append(FullName).Append("\n");
             sb.Append("  IsMarketingAccepted: ").Append(IsMarketingAccepted).Append("\n");
+            sb.Append("  FullName: ").Append(FullName).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  Password: ").Append(Password).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
@@ -159,15 +159,15 @@ namespace iam.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as UserInfoReq);
+            return this.Equals(obj as UserCreationReq);
         }
 
         /// <summary>
-        /// Returns true if UserInfoReq instances are equal
+        /// Returns true if UserCreationReq instances are equal
         /// </summary>
-        /// <param name="other">Instance of UserInfoReq to be compared</param>
+        /// <param name="other">Instance of UserCreationReq to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(UserInfoReq other)
+        public bool Equals(UserCreationReq other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -175,14 +175,14 @@ namespace iam.Model
 
             return 
                 (
-                    this.PhoneNumber == other.PhoneNumber ||
-                    this.PhoneNumber != null &&
-                    this.PhoneNumber.Equals(other.PhoneNumber)
-                ) && 
-                (
                     this.Username == other.Username ||
                     this.Username != null &&
                     this.Username.Equals(other.Username)
+                ) && 
+                (
+                    this.PhoneNumber == other.PhoneNumber ||
+                    this.PhoneNumber != null &&
+                    this.PhoneNumber.Equals(other.PhoneNumber)
                 ) && 
                 (
                     this.Groups == other.Groups ||
@@ -195,14 +195,14 @@ namespace iam.Model
                     this.IsGtcAccepted.Equals(other.IsGtcAccepted)
                 ) && 
                 (
-                    this.FullName == other.FullName ||
-                    this.FullName != null &&
-                    this.FullName.Equals(other.FullName)
-                ) && 
-                (
                     this.IsMarketingAccepted == other.IsMarketingAccepted ||
                     this.IsMarketingAccepted != null &&
                     this.IsMarketingAccepted.Equals(other.IsMarketingAccepted)
+                ) && 
+                (
+                    this.FullName == other.FullName ||
+                    this.FullName != null &&
+                    this.FullName.Equals(other.FullName)
                 ) && 
                 (
                     this.Address == other.Address ||
@@ -232,18 +232,18 @@ namespace iam.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.PhoneNumber != null)
-                    hash = hash * 59 + this.PhoneNumber.GetHashCode();
                 if (this.Username != null)
                     hash = hash * 59 + this.Username.GetHashCode();
+                if (this.PhoneNumber != null)
+                    hash = hash * 59 + this.PhoneNumber.GetHashCode();
                 if (this.Groups != null)
                     hash = hash * 59 + this.Groups.GetHashCode();
                 if (this.IsGtcAccepted != null)
                     hash = hash * 59 + this.IsGtcAccepted.GetHashCode();
-                if (this.FullName != null)
-                    hash = hash * 59 + this.FullName.GetHashCode();
                 if (this.IsMarketingAccepted != null)
                     hash = hash * 59 + this.IsMarketingAccepted.GetHashCode();
+                if (this.FullName != null)
+                    hash = hash * 59 + this.FullName.GetHashCode();
                 if (this.Address != null)
                     hash = hash * 59 + this.Address.GetHashCode();
                 if (this.Password != null)

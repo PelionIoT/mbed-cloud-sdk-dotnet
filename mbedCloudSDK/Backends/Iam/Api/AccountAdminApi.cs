@@ -69,6 +69,29 @@ namespace iam.Api
         /// <returns>ApiResponse of UpdatedResponse</returns>
         ApiResponse<UpdatedResponse> AddSubjectsToGroupWithHttpInfo (string groupID, SubjectList body);
         /// <summary>
+        /// Create a new account.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for creating a new account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Details of the account to be created.</param>
+        /// <param name="action">Action, either &#39;create&#39; or &#39;enroll&#39;. (optional, default to create)</param>
+        /// <returns>AccountCreationResp</returns>
+        AccountCreationResp CreateAccount (AccountCreationReq body, string action = null);
+
+        /// <summary>
+        /// Create a new account.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for creating a new account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Details of the account to be created.</param>
+        /// <param name="action">Action, either &#39;create&#39; or &#39;enroll&#39;. (optional, default to create)</param>
+        /// <returns>ApiResponse of AccountCreationResp</returns>
+        ApiResponse<AccountCreationResp> CreateAccountWithHttpInfo (AccountCreationReq body, string action = null);
+        /// <summary>
         /// Create a new user.
         /// </summary>
         /// <remarks>
@@ -78,7 +101,7 @@ namespace iam.Api
         /// <param name="body">A user object with attributes.</param>
         /// <param name="action">Action, either &#39;create&#39; or &#39;invite&#39;. (optional, default to create)</param>
         /// <returns>UserInfoResp</returns>
-        UserInfoResp CreateUser (UserInfoReq body, string action = null);
+        UserInfoResp CreateUser (UserCreationReq body, string action = null);
 
         /// <summary>
         /// Create a new user.
@@ -90,7 +113,7 @@ namespace iam.Api
         /// <param name="body">A user object with attributes.</param>
         /// <param name="action">Action, either &#39;create&#39; or &#39;invite&#39;. (optional, default to create)</param>
         /// <returns>ApiResponse of UserInfoResp</returns>
-        ApiResponse<UserInfoResp> CreateUserWithHttpInfo (UserInfoReq body, string action = null);
+        ApiResponse<UserInfoResp> CreateUserWithHttpInfo (UserCreationReq body, string action = null);
         /// <summary>
         /// Delete a user.
         /// </summary>
@@ -112,6 +135,64 @@ namespace iam.Api
         /// <param name="userId">The ID of the user to be deleted.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> DeleteUserWithHttpInfo (string userId);
+        /// <summary>
+        /// Get account info.
+        /// </summary>
+        /// <remarks>
+        /// Returns detailed information about the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID or alias of the account to be fetched.</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
+        /// <returns>AccountInfo</returns>
+        AccountInfo GetAccountInfo (string accountID, string include = null);
+
+        /// <summary>
+        /// Get account info.
+        /// </summary>
+        /// <remarks>
+        /// Returns detailed information about the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID or alias of the account to be fetched.</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
+        /// <returns>ApiResponse of AccountInfo</returns>
+        ApiResponse<AccountInfo> GetAccountInfoWithHttpInfo (string accountID, string include = null);
+        /// <summary>
+        /// Get all accounts.
+        /// </summary>
+        /// <remarks>
+        /// Returns an array of account objects, optionally filtered by status and tier level.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="statusEq">An optional filter for account status, ENROLLING, ACTIVE, RESTRICTED or SUSPENDED. (optional)</param>
+        /// <param name="tierEq">An optional filter for tier level, must be 0, 1 or omitted. (optional)</param>
+        /// <param name="parentEq">An optional filter for parent account ID. (optional)</param>
+        /// <param name="endMarketEq">An optional filter for account end market. (optional)</param>
+        /// <param name="limit">The number of results to return (2-1000), default is 1000. (optional, default to 1000)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count,limits (optional)</param>
+        /// <param name="format">Format information for the response to the query, supported: format&#x3D;breakdown. (optional)</param>
+        /// <returns>AccountInfoList</returns>
+        AccountInfoList GetAllAccounts (string statusEq = null, string tierEq = null, string parentEq = null, string endMarketEq = null, int? limit = null, string after = null, string include = null, string format = null);
+
+        /// <summary>
+        /// Get all accounts.
+        /// </summary>
+        /// <remarks>
+        /// Returns an array of account objects, optionally filtered by status and tier level.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="statusEq">An optional filter for account status, ENROLLING, ACTIVE, RESTRICTED or SUSPENDED. (optional)</param>
+        /// <param name="tierEq">An optional filter for tier level, must be 0, 1 or omitted. (optional)</param>
+        /// <param name="parentEq">An optional filter for parent account ID. (optional)</param>
+        /// <param name="endMarketEq">An optional filter for account end market. (optional)</param>
+        /// <param name="limit">The number of results to return (2-1000), default is 1000. (optional, default to 1000)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count,limits (optional)</param>
+        /// <param name="format">Format information for the response to the query, supported: format&#x3D;breakdown. (optional)</param>
+        /// <returns>ApiResponse of AccountInfoList</returns>
+        ApiResponse<AccountInfoList> GetAllAccountsWithHttpInfo (string statusEq = null, string tierEq = null, string parentEq = null, string endMarketEq = null, int? limit = null, string after = null, string include = null, string format = null);
         /// <summary>
         /// Get the details of all users.
         /// </summary>
@@ -215,10 +296,33 @@ namespace iam.Api
         /// <returns>ApiResponse of UpdatedResponse</returns>
         ApiResponse<UpdatedResponse> RemoveUsersFromGroupWithHttpInfo (string groupID, SubjectList body);
         /// <summary>
+        /// Update attributes of an existing account.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating an account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">Details of the account to be updated.</param>
+        /// <returns>AccountInfo</returns>
+        AccountInfo UpdateAccount (string accountID, AccountUpdateRootReq body);
+
+        /// <summary>
+        /// Update attributes of an existing account.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating an account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">Details of the account to be updated.</param>
+        /// <returns>ApiResponse of AccountInfo</returns>
+        ApiResponse<AccountInfo> UpdateAccountWithHttpInfo (string accountID, AccountUpdateRootReq body);
+        /// <summary>
         /// Updates attributes of the account.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating the account. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/accounts/me -d &#39;{\&quot;phone_number\&quot;: \&quot;12345678\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for updating the account. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/accounts/me -d &#39;{\&quot;phone_number\&quot;: \&quot;12345678\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the account to be updated.</param>
@@ -229,7 +333,7 @@ namespace iam.Api
         /// Updates attributes of the account.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating the account. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/accounts/me -d &#39;{\&quot;phone_number\&quot;: \&quot;12345678\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for updating the account. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/accounts/me -d &#39;{\&quot;phone_number\&quot;: \&quot;12345678\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the account to be updated.</param>
@@ -305,6 +409,29 @@ namespace iam.Api
         /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> AddSubjectsToGroupAsyncWithHttpInfo (string groupID, SubjectList body);
         /// <summary>
+        /// Create a new account.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for creating a new account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Details of the account to be created.</param>
+        /// <param name="action">Action, either &#39;create&#39; or &#39;enroll&#39;. (optional, default to create)</param>
+        /// <returns>Task of AccountCreationResp</returns>
+        System.Threading.Tasks.Task<AccountCreationResp> CreateAccountAsync (AccountCreationReq body, string action = null);
+
+        /// <summary>
+        /// Create a new account.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for creating a new account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Details of the account to be created.</param>
+        /// <param name="action">Action, either &#39;create&#39; or &#39;enroll&#39;. (optional, default to create)</param>
+        /// <returns>Task of ApiResponse (AccountCreationResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AccountCreationResp>> CreateAccountAsyncWithHttpInfo (AccountCreationReq body, string action = null);
+        /// <summary>
         /// Create a new user.
         /// </summary>
         /// <remarks>
@@ -314,7 +441,7 @@ namespace iam.Api
         /// <param name="body">A user object with attributes.</param>
         /// <param name="action">Action, either &#39;create&#39; or &#39;invite&#39;. (optional, default to create)</param>
         /// <returns>Task of UserInfoResp</returns>
-        System.Threading.Tasks.Task<UserInfoResp> CreateUserAsync (UserInfoReq body, string action = null);
+        System.Threading.Tasks.Task<UserInfoResp> CreateUserAsync (UserCreationReq body, string action = null);
 
         /// <summary>
         /// Create a new user.
@@ -326,7 +453,7 @@ namespace iam.Api
         /// <param name="body">A user object with attributes.</param>
         /// <param name="action">Action, either &#39;create&#39; or &#39;invite&#39;. (optional, default to create)</param>
         /// <returns>Task of ApiResponse (UserInfoResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> CreateUserAsyncWithHttpInfo (UserInfoReq body, string action = null);
+        System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> CreateUserAsyncWithHttpInfo (UserCreationReq body, string action = null);
         /// <summary>
         /// Delete a user.
         /// </summary>
@@ -348,6 +475,64 @@ namespace iam.Api
         /// <param name="userId">The ID of the user to be deleted.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> DeleteUserAsyncWithHttpInfo (string userId);
+        /// <summary>
+        /// Get account info.
+        /// </summary>
+        /// <remarks>
+        /// Returns detailed information about the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID or alias of the account to be fetched.</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
+        /// <returns>Task of AccountInfo</returns>
+        System.Threading.Tasks.Task<AccountInfo> GetAccountInfoAsync (string accountID, string include = null);
+
+        /// <summary>
+        /// Get account info.
+        /// </summary>
+        /// <remarks>
+        /// Returns detailed information about the account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID or alias of the account to be fetched.</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
+        /// <returns>Task of ApiResponse (AccountInfo)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AccountInfo>> GetAccountInfoAsyncWithHttpInfo (string accountID, string include = null);
+        /// <summary>
+        /// Get all accounts.
+        /// </summary>
+        /// <remarks>
+        /// Returns an array of account objects, optionally filtered by status and tier level.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="statusEq">An optional filter for account status, ENROLLING, ACTIVE, RESTRICTED or SUSPENDED. (optional)</param>
+        /// <param name="tierEq">An optional filter for tier level, must be 0, 1 or omitted. (optional)</param>
+        /// <param name="parentEq">An optional filter for parent account ID. (optional)</param>
+        /// <param name="endMarketEq">An optional filter for account end market. (optional)</param>
+        /// <param name="limit">The number of results to return (2-1000), default is 1000. (optional, default to 1000)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count,limits (optional)</param>
+        /// <param name="format">Format information for the response to the query, supported: format&#x3D;breakdown. (optional)</param>
+        /// <returns>Task of AccountInfoList</returns>
+        System.Threading.Tasks.Task<AccountInfoList> GetAllAccountsAsync (string statusEq = null, string tierEq = null, string parentEq = null, string endMarketEq = null, int? limit = null, string after = null, string include = null, string format = null);
+
+        /// <summary>
+        /// Get all accounts.
+        /// </summary>
+        /// <remarks>
+        /// Returns an array of account objects, optionally filtered by status and tier level.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="statusEq">An optional filter for account status, ENROLLING, ACTIVE, RESTRICTED or SUSPENDED. (optional)</param>
+        /// <param name="tierEq">An optional filter for tier level, must be 0, 1 or omitted. (optional)</param>
+        /// <param name="parentEq">An optional filter for parent account ID. (optional)</param>
+        /// <param name="endMarketEq">An optional filter for account end market. (optional)</param>
+        /// <param name="limit">The number of results to return (2-1000), default is 1000. (optional, default to 1000)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count,limits (optional)</param>
+        /// <param name="format">Format information for the response to the query, supported: format&#x3D;breakdown. (optional)</param>
+        /// <returns>Task of ApiResponse (AccountInfoList)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AccountInfoList>> GetAllAccountsAsyncWithHttpInfo (string statusEq = null, string tierEq = null, string parentEq = null, string endMarketEq = null, int? limit = null, string after = null, string include = null, string format = null);
         /// <summary>
         /// Get the details of all users.
         /// </summary>
@@ -451,10 +636,33 @@ namespace iam.Api
         /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> RemoveUsersFromGroupAsyncWithHttpInfo (string groupID, SubjectList body);
         /// <summary>
+        /// Update attributes of an existing account.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating an account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">Details of the account to be updated.</param>
+        /// <returns>Task of AccountInfo</returns>
+        System.Threading.Tasks.Task<AccountInfo> UpdateAccountAsync (string accountID, AccountUpdateRootReq body);
+
+        /// <summary>
+        /// Update attributes of an existing account.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for updating an account.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">Details of the account to be updated.</param>
+        /// <returns>Task of ApiResponse (AccountInfo)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AccountInfo>> UpdateAccountAsyncWithHttpInfo (string accountID, AccountUpdateRootReq body);
+        /// <summary>
         /// Updates attributes of the account.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating the account. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/accounts/me -d &#39;{\&quot;phone_number\&quot;: \&quot;12345678\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for updating the account. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/accounts/me -d &#39;{\&quot;phone_number\&quot;: \&quot;12345678\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the account to be updated.</param>
@@ -465,7 +673,7 @@ namespace iam.Api
         /// Updates attributes of the account.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating the account. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/accounts/me -d &#39;{\&quot;phone_number\&quot;: \&quot;12345678\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// An endpoint for updating the account. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/accounts/me -d &#39;{\&quot;phone_number\&quot;: \&quot;12345678\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the account to be updated.</param>
@@ -955,13 +1163,187 @@ namespace iam.Api
         }
 
         /// <summary>
+        /// Create a new account. An endpoint for creating a new account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Details of the account to be created.</param>
+        /// <param name="action">Action, either &#39;create&#39; or &#39;enroll&#39;. (optional, default to create)</param>
+        /// <returns>AccountCreationResp</returns>
+        public AccountCreationResp CreateAccount (AccountCreationReq body, string action = null)
+        {
+             ApiResponse<AccountCreationResp> localVarResponse = CreateAccountWithHttpInfo(body, action);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a new account. An endpoint for creating a new account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Details of the account to be created.</param>
+        /// <param name="action">Action, either &#39;create&#39; or &#39;enroll&#39;. (optional, default to create)</param>
+        /// <returns>ApiResponse of AccountCreationResp</returns>
+        public ApiResponse< AccountCreationResp > CreateAccountWithHttpInfo (AccountCreationReq body, string action = null)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->CreateAccount");
+
+            var localVarPath = "/v3/accounts";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (action != null) localVarQueryParams.Add("action", Configuration.ApiClient.ParameterToString(action)); // query parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateAccount", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<AccountCreationResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (AccountCreationResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountCreationResp)));
+            
+        }
+
+        /// <summary>
+        /// Create a new account. An endpoint for creating a new account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Details of the account to be created.</param>
+        /// <param name="action">Action, either &#39;create&#39; or &#39;enroll&#39;. (optional, default to create)</param>
+        /// <returns>Task of AccountCreationResp</returns>
+        public async System.Threading.Tasks.Task<AccountCreationResp> CreateAccountAsync (AccountCreationReq body, string action = null)
+        {
+             ApiResponse<AccountCreationResp> localVarResponse = await CreateAccountAsyncWithHttpInfo(body, action);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Create a new account. An endpoint for creating a new account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Details of the account to be created.</param>
+        /// <param name="action">Action, either &#39;create&#39; or &#39;enroll&#39;. (optional, default to create)</param>
+        /// <returns>Task of ApiResponse (AccountCreationResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<AccountCreationResp>> CreateAccountAsyncWithHttpInfo (AccountCreationReq body, string action = null)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->CreateAccount");
+
+            var localVarPath = "/v3/accounts";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (action != null) localVarQueryParams.Add("action", Configuration.ApiClient.ParameterToString(action)); // query parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateAccount", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<AccountCreationResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (AccountCreationResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountCreationResp)));
+            
+        }
+
+        /// <summary>
         /// Create a new user. An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
         /// <param name="action">Action, either &#39;create&#39; or &#39;invite&#39;. (optional, default to create)</param>
         /// <returns>UserInfoResp</returns>
-        public UserInfoResp CreateUser (UserInfoReq body, string action = null)
+        public UserInfoResp CreateUser (UserCreationReq body, string action = null)
         {
              ApiResponse<UserInfoResp> localVarResponse = CreateUserWithHttpInfo(body, action);
              return localVarResponse.Data;
@@ -974,7 +1356,7 @@ namespace iam.Api
         /// <param name="body">A user object with attributes.</param>
         /// <param name="action">Action, either &#39;create&#39; or &#39;invite&#39;. (optional, default to create)</param>
         /// <returns>ApiResponse of UserInfoResp</returns>
-        public ApiResponse< UserInfoResp > CreateUserWithHttpInfo (UserInfoReq body, string action = null)
+        public ApiResponse< UserInfoResp > CreateUserWithHttpInfo (UserCreationReq body, string action = null)
         {
             // verify the required parameter 'body' is set
             if (body == null)
@@ -1048,7 +1430,7 @@ namespace iam.Api
         /// <param name="body">A user object with attributes.</param>
         /// <param name="action">Action, either &#39;create&#39; or &#39;invite&#39;. (optional, default to create)</param>
         /// <returns>Task of UserInfoResp</returns>
-        public async System.Threading.Tasks.Task<UserInfoResp> CreateUserAsync (UserInfoReq body, string action = null)
+        public async System.Threading.Tasks.Task<UserInfoResp> CreateUserAsync (UserCreationReq body, string action = null)
         {
              ApiResponse<UserInfoResp> localVarResponse = await CreateUserAsyncWithHttpInfo(body, action);
              return localVarResponse.Data;
@@ -1062,7 +1444,7 @@ namespace iam.Api
         /// <param name="body">A user object with attributes.</param>
         /// <param name="action">Action, either &#39;create&#39; or &#39;invite&#39;. (optional, default to create)</param>
         /// <returns>Task of ApiResponse (UserInfoResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> CreateUserAsyncWithHttpInfo (UserInfoReq body, string action = null)
+        public async System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> CreateUserAsyncWithHttpInfo (UserCreationReq body, string action = null)
         {
             // verify the required parameter 'body' is set
             if (body == null)
@@ -1276,6 +1658,352 @@ namespace iam.Api
             return new ApiResponse<Object>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
+        }
+
+        /// <summary>
+        /// Get account info. Returns detailed information about the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID or alias of the account to be fetched.</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
+        /// <returns>AccountInfo</returns>
+        public AccountInfo GetAccountInfo (string accountID, string include = null)
+        {
+             ApiResponse<AccountInfo> localVarResponse = GetAccountInfoWithHttpInfo(accountID, include);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get account info. Returns detailed information about the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID or alias of the account to be fetched.</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
+        /// <returns>ApiResponse of AccountInfo</returns>
+        public ApiResponse< AccountInfo > GetAccountInfoWithHttpInfo (string accountID, string include = null)
+        {
+            // verify the required parameter 'accountID' is set
+            if (accountID == null)
+                throw new ApiException(400, "Missing required parameter 'accountID' when calling AccountAdminApi->GetAccountInfo");
+
+            var localVarPath = "/v3/accounts/{accountID}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetAccountInfo", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<AccountInfo>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (AccountInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountInfo)));
+            
+        }
+
+        /// <summary>
+        /// Get account info. Returns detailed information about the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID or alias of the account to be fetched.</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
+        /// <returns>Task of AccountInfo</returns>
+        public async System.Threading.Tasks.Task<AccountInfo> GetAccountInfoAsync (string accountID, string include = null)
+        {
+             ApiResponse<AccountInfo> localVarResponse = await GetAccountInfoAsyncWithHttpInfo(accountID, include);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get account info. Returns detailed information about the account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID or alias of the account to be fetched.</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts (optional)</param>
+        /// <returns>Task of ApiResponse (AccountInfo)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<AccountInfo>> GetAccountInfoAsyncWithHttpInfo (string accountID, string include = null)
+        {
+            // verify the required parameter 'accountID' is set
+            if (accountID == null)
+                throw new ApiException(400, "Missing required parameter 'accountID' when calling AccountAdminApi->GetAccountInfo");
+
+            var localVarPath = "/v3/accounts/{accountID}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetAccountInfo", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<AccountInfo>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (AccountInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountInfo)));
+            
+        }
+
+        /// <summary>
+        /// Get all accounts. Returns an array of account objects, optionally filtered by status and tier level.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="statusEq">An optional filter for account status, ENROLLING, ACTIVE, RESTRICTED or SUSPENDED. (optional)</param>
+        /// <param name="tierEq">An optional filter for tier level, must be 0, 1 or omitted. (optional)</param>
+        /// <param name="parentEq">An optional filter for parent account ID. (optional)</param>
+        /// <param name="endMarketEq">An optional filter for account end market. (optional)</param>
+        /// <param name="limit">The number of results to return (2-1000), default is 1000. (optional, default to 1000)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count,limits (optional)</param>
+        /// <param name="format">Format information for the response to the query, supported: format&#x3D;breakdown. (optional)</param>
+        /// <returns>AccountInfoList</returns>
+        public AccountInfoList GetAllAccounts (string statusEq = null, string tierEq = null, string parentEq = null, string endMarketEq = null, int? limit = null, string after = null, string include = null, string format = null)
+        {
+             ApiResponse<AccountInfoList> localVarResponse = GetAllAccountsWithHttpInfo(statusEq, tierEq, parentEq, endMarketEq, limit, after, include, format);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get all accounts. Returns an array of account objects, optionally filtered by status and tier level.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="statusEq">An optional filter for account status, ENROLLING, ACTIVE, RESTRICTED or SUSPENDED. (optional)</param>
+        /// <param name="tierEq">An optional filter for tier level, must be 0, 1 or omitted. (optional)</param>
+        /// <param name="parentEq">An optional filter for parent account ID. (optional)</param>
+        /// <param name="endMarketEq">An optional filter for account end market. (optional)</param>
+        /// <param name="limit">The number of results to return (2-1000), default is 1000. (optional, default to 1000)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count,limits (optional)</param>
+        /// <param name="format">Format information for the response to the query, supported: format&#x3D;breakdown. (optional)</param>
+        /// <returns>ApiResponse of AccountInfoList</returns>
+        public ApiResponse< AccountInfoList > GetAllAccountsWithHttpInfo (string statusEq = null, string tierEq = null, string parentEq = null, string endMarketEq = null, int? limit = null, string after = null, string include = null, string format = null)
+        {
+
+            var localVarPath = "/v3/accounts";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (statusEq != null) localVarQueryParams.Add("status__eq", Configuration.ApiClient.ParameterToString(statusEq)); // query parameter
+            if (tierEq != null) localVarQueryParams.Add("tier__eq", Configuration.ApiClient.ParameterToString(tierEq)); // query parameter
+            if (parentEq != null) localVarQueryParams.Add("parent__eq", Configuration.ApiClient.ParameterToString(parentEq)); // query parameter
+            if (endMarketEq != null) localVarQueryParams.Add("end_market__eq", Configuration.ApiClient.ParameterToString(endMarketEq)); // query parameter
+            if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
+            if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (format != null) localVarQueryParams.Add("format", Configuration.ApiClient.ParameterToString(format)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetAllAccounts", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<AccountInfoList>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (AccountInfoList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountInfoList)));
+            
+        }
+
+        /// <summary>
+        /// Get all accounts. Returns an array of account objects, optionally filtered by status and tier level.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="statusEq">An optional filter for account status, ENROLLING, ACTIVE, RESTRICTED or SUSPENDED. (optional)</param>
+        /// <param name="tierEq">An optional filter for tier level, must be 0, 1 or omitted. (optional)</param>
+        /// <param name="parentEq">An optional filter for parent account ID. (optional)</param>
+        /// <param name="endMarketEq">An optional filter for account end market. (optional)</param>
+        /// <param name="limit">The number of results to return (2-1000), default is 1000. (optional, default to 1000)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count,limits (optional)</param>
+        /// <param name="format">Format information for the response to the query, supported: format&#x3D;breakdown. (optional)</param>
+        /// <returns>Task of AccountInfoList</returns>
+        public async System.Threading.Tasks.Task<AccountInfoList> GetAllAccountsAsync (string statusEq = null, string tierEq = null, string parentEq = null, string endMarketEq = null, int? limit = null, string after = null, string include = null, string format = null)
+        {
+             ApiResponse<AccountInfoList> localVarResponse = await GetAllAccountsAsyncWithHttpInfo(statusEq, tierEq, parentEq, endMarketEq, limit, after, include, format);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get all accounts. Returns an array of account objects, optionally filtered by status and tier level.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="statusEq">An optional filter for account status, ENROLLING, ACTIVE, RESTRICTED or SUSPENDED. (optional)</param>
+        /// <param name="tierEq">An optional filter for tier level, must be 0, 1 or omitted. (optional)</param>
+        /// <param name="parentEq">An optional filter for parent account ID. (optional)</param>
+        /// <param name="endMarketEq">An optional filter for account end market. (optional)</param>
+        /// <param name="limit">The number of results to return (2-1000), default is 1000. (optional, default to 1000)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count,limits (optional)</param>
+        /// <param name="format">Format information for the response to the query, supported: format&#x3D;breakdown. (optional)</param>
+        /// <returns>Task of ApiResponse (AccountInfoList)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<AccountInfoList>> GetAllAccountsAsyncWithHttpInfo (string statusEq = null, string tierEq = null, string parentEq = null, string endMarketEq = null, int? limit = null, string after = null, string include = null, string format = null)
+        {
+
+            var localVarPath = "/v3/accounts";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (statusEq != null) localVarQueryParams.Add("status__eq", Configuration.ApiClient.ParameterToString(statusEq)); // query parameter
+            if (tierEq != null) localVarQueryParams.Add("tier__eq", Configuration.ApiClient.ParameterToString(tierEq)); // query parameter
+            if (parentEq != null) localVarQueryParams.Add("parent__eq", Configuration.ApiClient.ParameterToString(parentEq)); // query parameter
+            if (endMarketEq != null) localVarQueryParams.Add("end_market__eq", Configuration.ApiClient.ParameterToString(endMarketEq)); // query parameter
+            if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
+            if (after != null) localVarQueryParams.Add("after", Configuration.ApiClient.ParameterToString(after)); // query parameter
+            if (include != null) localVarQueryParams.Add("include", Configuration.ApiClient.ParameterToString(include)); // query parameter
+            if (format != null) localVarQueryParams.Add("format", Configuration.ApiClient.ParameterToString(format)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetAllAccounts", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<AccountInfoList>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (AccountInfoList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountInfoList)));
+            
         }
 
         /// <summary>
@@ -1957,7 +2685,187 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Updates attributes of the account. An endpoint for updating the account. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/accounts/me -d &#39;{\&quot;phone_number\&quot;: \&quot;12345678\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Update attributes of an existing account. An endpoint for updating an account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">Details of the account to be updated.</param>
+        /// <returns>AccountInfo</returns>
+        public AccountInfo UpdateAccount (string accountID, AccountUpdateRootReq body)
+        {
+             ApiResponse<AccountInfo> localVarResponse = UpdateAccountWithHttpInfo(accountID, body);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update attributes of an existing account. An endpoint for updating an account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">Details of the account to be updated.</param>
+        /// <returns>ApiResponse of AccountInfo</returns>
+        public ApiResponse< AccountInfo > UpdateAccountWithHttpInfo (string accountID, AccountUpdateRootReq body)
+        {
+            // verify the required parameter 'accountID' is set
+            if (accountID == null)
+                throw new ApiException(400, "Missing required parameter 'accountID' when calling AccountAdminApi->UpdateAccount");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->UpdateAccount");
+
+            var localVarPath = "/v3/accounts/{accountID}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UpdateAccount", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<AccountInfo>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (AccountInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountInfo)));
+            
+        }
+
+        /// <summary>
+        /// Update attributes of an existing account. An endpoint for updating an account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">Details of the account to be updated.</param>
+        /// <returns>Task of AccountInfo</returns>
+        public async System.Threading.Tasks.Task<AccountInfo> UpdateAccountAsync (string accountID, AccountUpdateRootReq body)
+        {
+             ApiResponse<AccountInfo> localVarResponse = await UpdateAccountAsyncWithHttpInfo(accountID, body);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Update attributes of an existing account. An endpoint for updating an account.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountID">The ID of the account to be updated.</param>
+        /// <param name="body">Details of the account to be updated.</param>
+        /// <returns>Task of ApiResponse (AccountInfo)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<AccountInfo>> UpdateAccountAsyncWithHttpInfo (string accountID, AccountUpdateRootReq body)
+        {
+            // verify the required parameter 'accountID' is set
+            if (accountID == null)
+                throw new ApiException(400, "Missing required parameter 'accountID' when calling AccountAdminApi->UpdateAccount");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->UpdateAccount");
+
+            var localVarPath = "/v3/accounts/{accountID}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UpdateAccount", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<AccountInfo>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (AccountInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountInfo)));
+            
+        }
+
+        /// <summary>
+        /// Updates attributes of the account. An endpoint for updating the account. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/accounts/me -d &#39;{\&quot;phone_number\&quot;: \&quot;12345678\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the account to be updated.</param>
@@ -1969,7 +2877,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Updates attributes of the account. An endpoint for updating the account. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/accounts/me -d &#39;{\&quot;phone_number\&quot;: \&quot;12345678\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Updates attributes of the account. An endpoint for updating the account. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/accounts/me -d &#39;{\&quot;phone_number\&quot;: \&quot;12345678\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the account to be updated.</param>
@@ -2041,7 +2949,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Updates attributes of the account. An endpoint for updating the account. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/accounts/me -d &#39;{\&quot;phone_number\&quot;: \&quot;12345678\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Updates attributes of the account. An endpoint for updating the account. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/accounts/me -d &#39;{\&quot;phone_number\&quot;: \&quot;12345678\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the account to be updated.</param>
@@ -2054,7 +2962,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Updates attributes of the account. An endpoint for updating the account. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/accounts/me -d &#39;{\&quot;phone_number\&quot;: \&quot;12345678\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39;
+        /// Updates attributes of the account. An endpoint for updating the account. Example usage: curl -X PUT https://api.us-east-1.mbedcloud.com/v3/accounts/me -d &#39;{\&quot;phone_number\&quot;: \&quot;12345678\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer AUTH_TOKEN&#39; 
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the account to be updated.</param>

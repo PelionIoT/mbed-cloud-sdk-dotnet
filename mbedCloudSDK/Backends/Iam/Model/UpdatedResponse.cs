@@ -83,7 +83,19 @@ namespace iam.Model
             /// Enum Error for "error"
             /// </summary>
             [EnumMember(Value = "error")]
-            Error
+            Error,
+            
+            /// <summary>
+            /// Enum Agreement for "agreement"
+            /// </summary>
+            [EnumMember(Value = "agreement")]
+            Agreement,
+            
+            /// <summary>
+            /// Enum Signedagreement for "signed-agreement"
+            /// </summary>
+            [EnumMember(Value = "signed-agreement")]
+            Signedagreement
         }
 
         /// <summary>
@@ -129,6 +141,18 @@ namespace iam.Model
             /// </summary>
             [EnumMember(Value = "invalid_token")]
             Invalidtoken,
+            
+            /// <summary>
+            /// Enum Invalidapikey for "invalid_apikey"
+            /// </summary>
+            [EnumMember(Value = "invalid_apikey")]
+            Invalidapikey,
+            
+            /// <summary>
+            /// Enum Reauthrequired for "reauth_required"
+            /// </summary>
+            [EnumMember(Value = "reauth_required")]
+            Reauthrequired,
             
             /// <summary>
             /// Enum Accessdenied for "access_denied"
