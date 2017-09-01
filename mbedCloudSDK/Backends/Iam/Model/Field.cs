@@ -32,22 +32,45 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Field" /> class.
         /// </summary>
-        /// <param name="Message">Message.</param>
-        /// <param name="Name">Name.</param>
+        [JsonConstructorAttribute]
+        protected Field() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Field" /> class.
+        /// </summary>
+        /// <param name="Message">Message describing the erroneous situation. (required).</param>
+        /// <param name="Name">Name of the erroneous field. (required).</param>
         public Field(string Message = default(string), string Name = default(string))
         {
-            this.Message = Message;
-            this.Name = Name;
+            // to ensure "Message" is required (not null)
+            if (Message == null)
+            {
+                throw new InvalidDataException("Message is a required property for Field and cannot be null");
+            }
+            else
+            {
+                this.Message = Message;
+            }
+            // to ensure "Name" is required (not null)
+            if (Name == null)
+            {
+                throw new InvalidDataException("Name is a required property for Field and cannot be null");
+            }
+            else
+            {
+                this.Name = Name;
+            }
         }
         
         /// <summary>
-        /// Gets or Sets Message
+        /// Message describing the erroneous situation.
         /// </summary>
+        /// <value>Message describing the erroneous situation.</value>
         [DataMember(Name="message", EmitDefaultValue=false)]
         public string Message { get; set; }
         /// <summary>
-        /// Gets or Sets Name
+        /// Name of the erroneous field.
         /// </summary>
+        /// <value>Name of the erroneous field.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
