@@ -34,32 +34,32 @@ namespace iam.Model
         /// </summary>
         /// <param name="AddressLine2">Postal address line 2, not longer than 100 characters..</param>
         /// <param name="City">The city part of the postal address, not longer than 100 characters. Required for commercial accounts only..</param>
-        /// <param name="PasswordPolicy">Password policy for this account..</param>
+        /// <param name="AddressLine1">Postal address line 1, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="DisplayName">The display name for the account, not longer than 100 characters..</param>
         /// <param name="Country">The country part of the postal address, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="Company">The name of the company, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="IdleTimeout">The reference token expiration time in minutes for this account. Between 1 and 120 minutes..</param>
-        /// <param name="Contact">The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="State">The state part of the postal address, not longer than 100 characters..</param>
-        /// <param name="AddressLine1">Postal address line 1, not longer than 100 characters. Required for commercial accounts only..</param>
+        /// <param name="Contact">The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="PostalCode">The postal code part of the postal address, not longer than 100 characters..</param>
+        /// <param name="PasswordPolicy">Password policy for this account..</param>
         /// <param name="EndMarket">The end market for this account, not longer than 100 characters..</param>
         /// <param name="PhoneNumber">The phone number of the company, not longer than 100 characters..</param>
         /// <param name="Email">The company email address for this account, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="Aliases">An array of aliases, not more than 10. An alias is not shorter than 8 and not longer than 100 characters..</param>
-        public AccountUpdateReq(string AddressLine2 = default(string), string City = default(string), PasswordPolicy PasswordPolicy = default(PasswordPolicy), string DisplayName = default(string), string Country = default(string), string Company = default(string), string IdleTimeout = default(string), string Contact = default(string), string State = default(string), string AddressLine1 = default(string), string PostalCode = default(string), string EndMarket = default(string), string PhoneNumber = default(string), string Email = default(string), List<string> Aliases = default(List<string>))
+        public AccountUpdateReq(string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string Country = default(string), string Company = default(string), string IdleTimeout = default(string), string State = default(string), string Contact = default(string), string PostalCode = default(string), PasswordPolicy PasswordPolicy = default(PasswordPolicy), string EndMarket = default(string), string PhoneNumber = default(string), string Email = default(string), List<string> Aliases = default(List<string>))
         {
             this.AddressLine2 = AddressLine2;
             this.City = City;
-            this.PasswordPolicy = PasswordPolicy;
+            this.AddressLine1 = AddressLine1;
             this.DisplayName = DisplayName;
             this.Country = Country;
             this.Company = Company;
             this.IdleTimeout = IdleTimeout;
-            this.Contact = Contact;
             this.State = State;
-            this.AddressLine1 = AddressLine1;
+            this.Contact = Contact;
             this.PostalCode = PostalCode;
+            this.PasswordPolicy = PasswordPolicy;
             this.EndMarket = EndMarket;
             this.PhoneNumber = PhoneNumber;
             this.Email = Email;
@@ -79,11 +79,11 @@ namespace iam.Model
         [DataMember(Name="city", EmitDefaultValue=false)]
         public string City { get; set; }
         /// <summary>
-        /// Password policy for this account.
+        /// Postal address line 1, not longer than 100 characters. Required for commercial accounts only.
         /// </summary>
-        /// <value>Password policy for this account.</value>
-        [DataMember(Name="password_policy", EmitDefaultValue=false)]
-        public PasswordPolicy PasswordPolicy { get; set; }
+        /// <value>Postal address line 1, not longer than 100 characters. Required for commercial accounts only.</value>
+        [DataMember(Name="address_line1", EmitDefaultValue=false)]
+        public string AddressLine1 { get; set; }
         /// <summary>
         /// The display name for the account, not longer than 100 characters.
         /// </summary>
@@ -109,29 +109,29 @@ namespace iam.Model
         [DataMember(Name="idle_timeout", EmitDefaultValue=false)]
         public string IdleTimeout { get; set; }
         /// <summary>
-        /// The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only.
-        /// </summary>
-        /// <value>The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only.</value>
-        [DataMember(Name="contact", EmitDefaultValue=false)]
-        public string Contact { get; set; }
-        /// <summary>
         /// The state part of the postal address, not longer than 100 characters.
         /// </summary>
         /// <value>The state part of the postal address, not longer than 100 characters.</value>
         [DataMember(Name="state", EmitDefaultValue=false)]
         public string State { get; set; }
         /// <summary>
-        /// Postal address line 1, not longer than 100 characters. Required for commercial accounts only.
+        /// The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only.
         /// </summary>
-        /// <value>Postal address line 1, not longer than 100 characters. Required for commercial accounts only.</value>
-        [DataMember(Name="address_line1", EmitDefaultValue=false)]
-        public string AddressLine1 { get; set; }
+        /// <value>The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only.</value>
+        [DataMember(Name="contact", EmitDefaultValue=false)]
+        public string Contact { get; set; }
         /// <summary>
         /// The postal code part of the postal address, not longer than 100 characters.
         /// </summary>
         /// <value>The postal code part of the postal address, not longer than 100 characters.</value>
         [DataMember(Name="postal_code", EmitDefaultValue=false)]
         public string PostalCode { get; set; }
+        /// <summary>
+        /// Password policy for this account.
+        /// </summary>
+        /// <value>Password policy for this account.</value>
+        [DataMember(Name="password_policy", EmitDefaultValue=false)]
+        public PasswordPolicy PasswordPolicy { get; set; }
         /// <summary>
         /// The end market for this account, not longer than 100 characters.
         /// </summary>
@@ -166,15 +166,15 @@ namespace iam.Model
             sb.Append("class AccountUpdateReq {\n");
             sb.Append("  AddressLine2: ").Append(AddressLine2).Append("\n");
             sb.Append("  City: ").Append(City).Append("\n");
-            sb.Append("  PasswordPolicy: ").Append(PasswordPolicy).Append("\n");
+            sb.Append("  AddressLine1: ").Append(AddressLine1).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  IdleTimeout: ").Append(IdleTimeout).Append("\n");
-            sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
-            sb.Append("  AddressLine1: ").Append(AddressLine1).Append("\n");
+            sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");
+            sb.Append("  PasswordPolicy: ").Append(PasswordPolicy).Append("\n");
             sb.Append("  EndMarket: ").Append(EndMarket).Append("\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
@@ -226,9 +226,9 @@ namespace iam.Model
                     this.City.Equals(other.City)
                 ) && 
                 (
-                    this.PasswordPolicy == other.PasswordPolicy ||
-                    this.PasswordPolicy != null &&
-                    this.PasswordPolicy.Equals(other.PasswordPolicy)
+                    this.AddressLine1 == other.AddressLine1 ||
+                    this.AddressLine1 != null &&
+                    this.AddressLine1.Equals(other.AddressLine1)
                 ) && 
                 (
                     this.DisplayName == other.DisplayName ||
@@ -251,24 +251,24 @@ namespace iam.Model
                     this.IdleTimeout.Equals(other.IdleTimeout)
                 ) && 
                 (
-                    this.Contact == other.Contact ||
-                    this.Contact != null &&
-                    this.Contact.Equals(other.Contact)
-                ) && 
-                (
                     this.State == other.State ||
                     this.State != null &&
                     this.State.Equals(other.State)
                 ) && 
                 (
-                    this.AddressLine1 == other.AddressLine1 ||
-                    this.AddressLine1 != null &&
-                    this.AddressLine1.Equals(other.AddressLine1)
+                    this.Contact == other.Contact ||
+                    this.Contact != null &&
+                    this.Contact.Equals(other.Contact)
                 ) && 
                 (
                     this.PostalCode == other.PostalCode ||
                     this.PostalCode != null &&
                     this.PostalCode.Equals(other.PostalCode)
+                ) && 
+                (
+                    this.PasswordPolicy == other.PasswordPolicy ||
+                    this.PasswordPolicy != null &&
+                    this.PasswordPolicy.Equals(other.PasswordPolicy)
                 ) && 
                 (
                     this.EndMarket == other.EndMarket ||
@@ -307,8 +307,8 @@ namespace iam.Model
                     hash = hash * 59 + this.AddressLine2.GetHashCode();
                 if (this.City != null)
                     hash = hash * 59 + this.City.GetHashCode();
-                if (this.PasswordPolicy != null)
-                    hash = hash * 59 + this.PasswordPolicy.GetHashCode();
+                if (this.AddressLine1 != null)
+                    hash = hash * 59 + this.AddressLine1.GetHashCode();
                 if (this.DisplayName != null)
                     hash = hash * 59 + this.DisplayName.GetHashCode();
                 if (this.Country != null)
@@ -317,14 +317,14 @@ namespace iam.Model
                     hash = hash * 59 + this.Company.GetHashCode();
                 if (this.IdleTimeout != null)
                     hash = hash * 59 + this.IdleTimeout.GetHashCode();
-                if (this.Contact != null)
-                    hash = hash * 59 + this.Contact.GetHashCode();
                 if (this.State != null)
                     hash = hash * 59 + this.State.GetHashCode();
-                if (this.AddressLine1 != null)
-                    hash = hash * 59 + this.AddressLine1.GetHashCode();
+                if (this.Contact != null)
+                    hash = hash * 59 + this.Contact.GetHashCode();
                 if (this.PostalCode != null)
                     hash = hash * 59 + this.PostalCode.GetHashCode();
+                if (this.PasswordPolicy != null)
+                    hash = hash * 59 + this.PasswordPolicy.GetHashCode();
                 if (this.EndMarket != null)
                     hash = hash * 59 + this.EndMarket.GetHashCode();
                 if (this.PhoneNumber != null)

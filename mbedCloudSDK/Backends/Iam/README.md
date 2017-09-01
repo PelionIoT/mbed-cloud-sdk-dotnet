@@ -109,7 +109,6 @@ Class | Method | HTTP request | Description
 *AccountAdminApi* | [**RemoveUsersFromGroup**](docs/AccountAdminApi.md#removeusersfromgroup) | **DELETE** /v3/policy-groups/{groupID}/users | Remove users from a group.
 *AccountAdminApi* | [**UpdateMyAccount**](docs/AccountAdminApi.md#updatemyaccount) | **PUT** /v3/accounts/me | Updates attributes of the account.
 *AccountAdminApi* | [**UpdateUser**](docs/AccountAdminApi.md#updateuser) | **PUT** /v3/users/{user-id} | Update user details.
-*DefaultApi* | [**IsAlive**](docs/DefaultApi.md#isalive) | **GET** /alive | Get alive status
 *DeveloperApi* | [**CreateApiKey**](docs/DeveloperApi.md#createapikey) | **POST** /v3/api-keys | Create a new API key.
 *DeveloperApi* | [**DeleteApiKey**](docs/DeveloperApi.md#deleteapikey) | **DELETE** /v3/api-keys/{apiKey} | Delete API key.
 *DeveloperApi* | [**DeleteCertificate**](docs/DeveloperApi.md#deletecertificate) | **DELETE** /v3/trusted-certificates/{cert-id} | Delete a trusted certificate by ID.

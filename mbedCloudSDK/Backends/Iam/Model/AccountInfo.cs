@@ -116,19 +116,7 @@ namespace iam.Model
             /// Enum Error for "error"
             /// </summary>
             [EnumMember(Value = "error")]
-            Error,
-            
-            /// <summary>
-            /// Enum Agreement for "agreement"
-            /// </summary>
-            [EnumMember(Value = "agreement")]
-            Agreement,
-            
-            /// <summary>
-            /// Enum Signedagreement for "signed-agreement"
-            /// </summary>
-            [EnumMember(Value = "signed-agreement")]
-            Signedagreement
+            Error
         }
 
         /// <summary>
