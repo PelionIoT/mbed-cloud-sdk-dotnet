@@ -10,7 +10,7 @@ using iam.Model;
 
 namespace mbedCloudSDK.Certificates.Model
 {
-    class Certificate
+    public class Certificate
     {
         [JsonConverter(typeof(CertificateTypeConverter))]
         public CertificateType? Type { get; set; }

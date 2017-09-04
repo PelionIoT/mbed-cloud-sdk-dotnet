@@ -1,4 +1,5 @@
 using System;
+using mbedCloudSDK.Common;
 using Newtonsoft.Json;
 
 namespace mbedCloudSDK.Update.Model.Campaign

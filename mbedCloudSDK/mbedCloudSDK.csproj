@@ -197,6 +197,7 @@
     <Compile Include="Common\BaseApi.cs" />
     <Compile Include="Common\Config.cs" />
     <Compile Include="Common\Utils.cs" />
+    <Compile Include="Common\ApiMetadata.cs" />
     <Compile Include="Connect\Api\ConnectApi.ConnectedDevices.cs" />
     <Compile Include="Connect\Api\ConnectApi.cs" />
     <Compile Include="Connect\Api\ConnectApi.Statistics.cs" />
@@ -245,8 +246,11 @@
     <Compile Include="Update\Api\UpdateApi.FirmwareImage.cs" />
     <Compile Include="Update\Api\UpdateApi.FirmwareManifest.cs" />
     <Compile Include="Update\Model\Campaign\UpdateCampaign.cs" />
+    <Compile Include="Update\Model\Campaign\UpdateCampaignDeviceMetadata.cs" />
     <Compile Include="Update\Model\Campaign\UpdateCampaignDeviceState.cs" />
+    <Compile Include="Update\Model\Campaign\UpdateCampaignDeviceStateConverter.cs" />
     <Compile Include="Update\Model\Campaign\UpdateCampaignState.cs" />
+    <Compile Include="Update\Model\Campaign\UpdateCampaignStateConverter.cs" />
     <Compile Include="Update\Model\FirmwareImage\FirmwareImage.cs" />
     <Compile Include="Update\Model\FirmwareManifest\FirmwareManifest.cs" />
   </ItemGroup>
