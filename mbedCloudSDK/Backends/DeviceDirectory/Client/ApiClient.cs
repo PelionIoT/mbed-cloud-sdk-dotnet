@@ -40,11 +40,14 @@ namespace device_directory.Client
         partial void InterceptRequest(IRestRequest request);
 
         /// <summary>
-        /// Allows for extending response processing for <see cref="ApiClient"/> generated code.
+        /// Intercept the request and response objects during Api call
         /// </summary>
         /// <param name="request">The RestSharp request object</param>
         /// <param name="response">The RestSharp response object</param>
-        partial void InterceptResponse(IRestRequest request, IRestResponse response);
+        public void InterceptResponse(IRestRequest request, IRestResponse response)
+        {
+            LastApiResponse.Add(response);
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class
@@ -54,6 +57,7 @@ namespace device_directory.Client
         {
             Configuration = Configuration.Default;
             RestClient = new RestClient("https://api.us-east-1.mbedcloud.com");
+            LastApiResponse = new List<IRestResponse>();
         }
 
         /// <summary>
@@ -69,6 +73,7 @@ namespace device_directory.Client
                 Configuration = config;
 
             RestClient = new RestClient("https://api.us-east-1.mbedcloud.com");
+            LastApiResponse = new List<IRestResponse>();
         }
 
         /// <summary>
@@ -83,6 +88,7 @@ namespace device_directory.Client
 
             RestClient = new RestClient(basePath);
             Configuration = Configuration.Default;
+            LastApiResponse = new List<IRestResponse>();
         }
 
         /// <summary>
@@ -103,6 +109,12 @@ namespace device_directory.Client
         /// </summary>
         /// <value>An instance of the RestClient</value>
         public RestClient RestClient { get; set; }
+
+        /// <summary>
+        /// Gets or sets the LastApiResponse list.
+        /// </summary>
+        /// <value>An instance of the LastApiResponseList</value>
+        public List<IRestResponse> LastApiResponse { get; set; }
 
         // Creates and sets up a RestRequest prior to a call.
         private RestRequest PrepareRequest(
