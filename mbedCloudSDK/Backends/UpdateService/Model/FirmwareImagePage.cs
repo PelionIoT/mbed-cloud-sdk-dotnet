@@ -30,9 +30,9 @@ namespace update_service.Model
     public partial class FirmwareImagePage :  IEquatable<FirmwareImagePage>, IValidatableObject
     {
         /// <summary>
-        /// The order of the records to return. Available values: ASC, DESC; by default ASC.
+        /// The order of the records to return. Acceptable values: ASC, DESC. Default: ASC
         /// </summary>
-        /// <value>The order of the records to return. Available values: ASC, DESC; by default ASC.</value>
+        /// <value>The order of the records to return. Acceptable values: ASC, DESC. Default: ASC</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum OrderEnum
         {
@@ -51,9 +51,9 @@ namespace update_service.Model
         }
 
         /// <summary>
-        /// The order of the records to return. Available values: ASC, DESC; by default ASC.
+        /// The order of the records to return. Acceptable values: ASC, DESC. Default: ASC
         /// </summary>
-        /// <value>The order of the records to return. Available values: ASC, DESC; by default ASC.</value>
+        /// <value>The order of the records to return. Acceptable values: ASC, DESC. Default: ASC</value>
         [DataMember(Name="order", EmitDefaultValue=false)]
         public OrderEnum? Order { get; set; }
         /// <summary>
@@ -65,7 +65,7 @@ namespace update_service.Model
         /// <param name="After">After.</param>
         /// <param name="Limit">Limit.</param>
         /// <param name="Data">Data.</param>
-        /// <param name="Order">The order of the records to return. Available values: ASC, DESC; by default ASC..</param>
+        /// <param name="Order">The order of the records to return. Acceptable values: ASC, DESC. Default: ASC.</param>
         public FirmwareImagePage(string _Object = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), string After = default(string), int? Limit = default(int?), List<FirmwareImage> Data = default(List<FirmwareImage>), OrderEnum? Order = default(OrderEnum?))
         {
             this._Object = _Object;
