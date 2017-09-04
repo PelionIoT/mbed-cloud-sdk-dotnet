@@ -29,6 +29,9 @@ namespace mbedCloudSDK.DeviceDirectory.Api
             api = new device_directory.Api.DefaultApi();
         }
 
+        /// <summary>
+        /// Get meta data for the last Mbed Cloud API call
+        /// </summary>
         public ApiMetadata GetLastApiMetadata()
         {
             return ApiMetadata.Map(device_directory.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());

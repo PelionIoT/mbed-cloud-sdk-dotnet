@@ -67,6 +67,9 @@ namespace mbedCloudSDK.Connect.Api
             defaultApi = new mds.Api.DefaultApi();
         }
 
+        /// <summary>
+        /// Get meta data for the last Mbed Cloud API call
+        /// </summary>
         public ApiMetadata GetLastApiMetadata()
         {
             var lastMds = mds.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault()?.Headers?.Where(m => m.Name == "Date")?.Select(d => DateTime.Parse(d.Value.ToString()))?.FirstOrDefault();

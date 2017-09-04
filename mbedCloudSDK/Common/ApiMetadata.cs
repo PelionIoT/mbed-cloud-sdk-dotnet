@@ -7,16 +7,51 @@ using RestSharp;
 
 namespace mbedCloudSDK.Common
 {
+    /// <summary>
+    /// Api meta data
+    /// </summary>
     public class ApiMetadata
     {
+        /// <summary>
+        /// HTTP Status code of the API response
+        /// </summary>
         public HttpStatusCode StatusCode { get; set; }
+        /// <summary>
+        /// Any error message returned
+        /// </summary>
+        public string ErrorMessage { get; set; }
+        /// <summary>
+        /// Headers in the API response
+        /// </summary>
         public Dictionary<string,string> Headers { get; set; }
+        /// <summary>
+        /// Date of the API response
+        /// </summary>
         public DateTime date { get; set; }
+        /// <summary>
+        /// Request ID of the transaction
+        /// </summary>
         public string RequestId { get; set; }
+        /// <summary>
+        /// Object type of the returned data
+        /// </summary>
         public string Object { get; set; }
+        /// <summary>
+        /// etag of the returned data
+        /// </summary>
         public object Etag { get; set; }
+        /// <summary>
+        /// Method of the API request
+        /// </summary>
         public string Method{ get; set; }
+        /// <summary>
+        /// URL of the API request
+        /// </summary>
         public string Url { get; set; }
+
+        /// <summary>
+        /// Map an IRestResponse to an ApiMetadata object
+        /// </summary>
         public static ApiMetadata Map(IRestResponse response)
         {
             var metadata = new ApiMetadata();
@@ -24,6 +59,7 @@ namespace mbedCloudSDK.Common
             if (response != null)
             {
                 metadata.StatusCode = response.StatusCode;
+                metadata.ErrorMessage = response.ErrorMessage;
                 metadata.Headers = new Dictionary<string, string>();
                 foreach (var header in response.Headers)
                 {

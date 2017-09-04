@@ -43,6 +43,9 @@ namespace mbedCloudSDK.Certificates.Api
             lmw2mServerUri = serverCredentialsApi.V3ServerCredentialsLwm2mGet(this.auth).ServerUri;
         }
 
+        /// <summary>
+        /// Get meta data for the last Mbed Cloud API call
+        /// </summary>
         public ApiMetadata GetLastApiMetadata()
         {
             return ApiMetadata.Map(Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
