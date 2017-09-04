@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using mbedCloudSDK.Common;
 using update_service.Client;
 
@@ -21,9 +22,14 @@ namespace mbedCloudSDK.Update.Api
             {
                 Configuration.Default.ApiClient = new ApiClient(config.Host);
             }
-            api = new update_service.Api.DefaultApi(config.Host);
+            api = new update_service.Api.DefaultApi();
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+        }
+
+        public ApiMetadata GetLastApiMetadata()
+        {
+            return ApiMetadata.Map(update_service.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
         }
     }
 }

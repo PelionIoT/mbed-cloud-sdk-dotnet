@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using mbedCloudSDK.Common;
@@ -17,9 +18,6 @@ namespace mbedCloudSDK.Connect.Api
     /// </summary>
     public partial class ConnectApi : BaseApi
     {
-
-        #region Variables
-
         private Task notificationTask;
         private CancellationTokenSource cancellationToken;
         private statistics.Api.StatisticsApi statisticsApi;
@@ -40,10 +38,6 @@ namespace mbedCloudSDK.Connect.Api
         public static Dictionary<String, AsyncProducerConsumerCollection<String>> asyncResponses = new Dictionary<string, AsyncProducerConsumerCollection<String>>();
         private NotificationsApi notificationsApi;
         private DefaultApi defaultApi;
-
-        #endregion
-
-        #region Contructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:mbedCloudSDK.DeviceDirectory.DeviceDirectory"/> class.
@@ -73,9 +67,19 @@ namespace mbedCloudSDK.Connect.Api
             defaultApi = new mds.Api.DefaultApi();
         }
 
-        #endregion
-
-        #region Utils
+        public ApiMetadata GetLastApiMetadata()
+        {
+            var lastMds = mds.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault()?.Headers?.Where(m => m.Name == "Date")?.Select(d => DateTime.Parse(d.Value.ToString()))?.FirstOrDefault();
+            var lastStats = statistics.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault()?.Headers?.Where(m => m.Name == "Date")?.Select(d => DateTime.Parse(d.Value.ToString()))?.FirstOrDefault();
+            if(Nullable.Compare<DateTime>(lastMds, lastStats) > 0)
+            {
+                return ApiMetadata.Map(mds.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
+            }
+            else
+            {
+                return ApiMetadata.Map(statistics.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
+            }
+        }
 
         private string FixedPath(string path)
         {
@@ -85,7 +89,5 @@ namespace mbedCloudSDK.Connect.Api
             }
             return path;
         }
-
-        #endregion
     }
 }

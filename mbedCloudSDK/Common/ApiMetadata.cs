@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 
 namespace mbedCloudSDK.Common
@@ -18,6 +20,7 @@ namespace mbedCloudSDK.Common
         public static ApiMetadata Map(IRestResponse response)
         {
             var metadata = new ApiMetadata();
+            var content = JObject.Parse(response.Content);
             if (response != null)
             {
                 metadata.StatusCode = response.StatusCode;
@@ -28,8 +31,8 @@ namespace mbedCloudSDK.Common
                 }
                 metadata.date = metadata.Headers.ContainsKey("Date") ? DateTime.Parse(metadata.Headers["Date"]) : DateTime.Now;
                 metadata.RequestId = metadata.Headers.ContainsKey("X-Request-ID") ? metadata.Headers["X-Request-ID"] : null;
-                //metadata.Object = response
-                //metadata.Etag = response.Request.
+                metadata.Object = content["object"] != null ? content["object"].Value<string>() : null;
+                metadata.Etag = content["etag"] != null ? content["etag"].Value<string>() : null;
                 metadata.Method = response.Request.Method.ToString();
                 metadata.Url = response.ResponseUri.ToString();
             }
