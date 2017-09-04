@@ -29,7 +29,7 @@ namespace mbedCloudSDK.Update.Api
             }
             catch (CloudApiException e)
             {
-                throw e;
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
         }
 
@@ -48,6 +48,44 @@ namespace mbedCloudSDK.Update.Api
                     respDevices.Data.Add(Model.Campaign.UpdateCampaign.Map(device));
                 }
                 return respDevices;
+            }
+            catch (update_service.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public PaginatedResponse<UpdateCampaignDeviceMetadata> ListCampaignDeviceStates(QueryOptions options = null)
+        {
+            if(options == null)
+            {
+                options = new QueryOptions();
+            }
+            try 
+            {
+                return new PaginatedResponse<UpdateCampaignDeviceMetadata>(ListCampaignDeviceStatesFunc, options);
+            }
+            catch(CloudApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        private ResponsePage<UpdateCampaignDeviceMetadata> ListCampaignDeviceStatesFunc(QueryOptions options = null)
+        {
+            if(options == null)
+            {
+                options = new QueryOptions();
+            }
+            try
+            {
+                var resp = api.V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGet(campaignId: options.Id, limit: options.Limit, order: options.Order, after: options.After, include: options.Include);
+                var respStates = new ResponsePage<UpdateCampaignDeviceMetadata>(after: resp.After, hasMore: resp.HasMore, limit: resp.Limit, order: resp.Order.ToString(), totalCount: resp.TotalCount);
+                foreach(var state in resp.Data)
+                {
+                    respStates.Data.Add(UpdateCampaignDeviceMetadata.Map(state));
+                }
+                return respStates;
             }
             catch (update_service.Client.ApiException e)
             {
