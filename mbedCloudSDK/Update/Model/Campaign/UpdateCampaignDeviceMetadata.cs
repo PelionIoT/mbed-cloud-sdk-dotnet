@@ -4,18 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace mbedCloudSDK.Update.Model.Campaign
 {
     /// <summary>
     /// Contains information about Device in Update Campaign.
     /// </summary>
-    public class UpdateCampaignDeviceMetada
+    public class UpdateCampaignDeviceMetadata
     {
         /// <summary>
         /// State of the Device in Update Campaign.
         /// </summary>
-        public UpdateCampaignDeviceState State { get; set; }
+        [JsonConverter(typeof(UpdateCampaignDeviceStateConverter))]
+        public UpdateCampaignDeviceState? State { get; set; }
         
         /// <summary>
         /// The description of the object
@@ -90,15 +93,14 @@ namespace mbedCloudSDK.Update.Model.Campaign
             return sb.ToString();
         }
 
-        /* 
         /// <summary>
         /// Map to UpdateCampaignDeviceMetada object.
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static UpdateCampaignDeviceMetada Map(CampaignDeviceMetadataSerializer data)
+        public static UpdateCampaignDeviceMetadata Map(UpdateCampaignDeviceMetadata data)
         {
-            UpdateCampaignDeviceMetada metadata = new UpdateCampaignDeviceMetada();
+            UpdateCampaignDeviceMetadata metadata = new UpdateCampaignDeviceMetadata();
             metadata.Campaign = data.Campaign;
             metadata.CreatedAt = data.CreatedAt;
             metadata.Description = data.Description;
@@ -109,9 +111,8 @@ namespace mbedCloudSDK.Update.Model.Campaign
             metadata.MechanismUrl = data.MechanismUrl;
             metadata.Name = data.Name;
             metadata.UpdatedAt = data.UpdatedAt;
-            metadata.State = (UpdateCampaignDeviceState)Enum.Parse(typeof(UpdateCampaignDeviceState), data.DeploymentState.ToString());
+            metadata.State = (UpdateCampaignDeviceState)Enum.Parse(typeof(UpdateCampaignDeviceState), data.State.ToString());
             return metadata;
         }
-        */
     }
 }

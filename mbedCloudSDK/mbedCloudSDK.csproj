@@ -116,12 +116,14 @@
     <Compile Include="Backends\Iam\Model\TrustedCertificateReq.cs" />
     <Compile Include="Backends\Iam\Model\TrustedCertificateResp.cs" />
     <Compile Include="Backends\Iam\Model\TrustedCertificateRespList.cs" />
+    <Compile Include="Backends\Iam\Model\TrustedCertificateUpdateReq.cs" />
     <Compile Include="Backends\Iam\Model\UpdatedResponse.cs" />
     <Compile Include="Backends\Iam\Model\UserInfoReq.cs" />
     <Compile Include="Backends\Iam\Model\UserInfoResp.cs" />
     <Compile Include="Backends\Iam\Model\UserInfoRespList.cs" />
     <Compile Include="Backends\Iam\Model\UserUpdateResp.cs" />
     <Compile Include="Backends\Iam\Model\UserUpdateReq.cs" />
+    <Compile Include="Backends\Iam\Model\PasswordPolicy.cs" />
     <Compile Include="Backends\Mds\Api\DefaultApi.cs" />
     <Compile Include="Backends\Mds\Api\EndpointsApi.cs" />
     <Compile Include="Backends\Mds\Api\NotificationsApi.cs" />

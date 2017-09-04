@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using mbedCloudSDK.Common.Query;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -33,6 +34,37 @@ namespace mbedCloudSDK.Common
                 }
             }
             return newObj;
+        }
+
+        /// <summary>
+        /// Get string value of enum member value from enum.
+        /// </summary>
+        /// <param name="type">Enum type</param>
+        /// <param name="value">Enum member string</param>
+        public static string GetEnumMemberValue(Type type, string value)
+        {
+            var memInfo = type.GetMember(value);
+            if (memInfo.Any())
+            {
+                var attributes = memInfo[0].GetCustomAttributes(typeof(EnumMemberAttribute), false);
+                return ((EnumMemberAttribute)attributes.FirstOrDefault()).Value;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Get enum from enum member string
+        /// </summary>
+        /// <param name="type">Type of enum</param>
+        /// <param name="value">Enum member string</param>
+        public static object GetEnumFromEnumMemberValue(Type type, string value)
+        {
+            foreach (var name in Enum.GetNames(type))
+            {
+                var attr = ((EnumMemberAttribute[])type.GetField(name).GetCustomAttributes(typeof(EnumMemberAttribute), true)).Single();
+                if(attr.Value == value) return Enum.Parse(type, name);
+            }
+            return null;
         }
 
         public static Dictionary<string, QueryAttribute> ParseAttributeString(string attributeString)

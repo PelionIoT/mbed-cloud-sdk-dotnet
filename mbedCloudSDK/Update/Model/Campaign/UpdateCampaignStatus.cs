@@ -1,9 +1,11 @@
-﻿using deployment_service.Model;
+﻿using update_service.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace mbedCloudSDK.Update.Model.Campaign
 {
@@ -16,7 +18,8 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// <summary>
         /// State of update campaign.
         /// </summary>
-        public UpdateCampaignState State { get; set; }
+        [JsonConverter(typeof(UpdateCampaignStateConverter))]
+        public UpdateCampaignState? State { get; set; }
         
         /// <summary>
         /// Gets or Sets DirectDevices
@@ -51,7 +54,7 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// <summary>
         /// Gets or Sets CampaigndevicemetadataSet
         /// </summary>
-        public List<UpdateCampaignDeviceMetada> Metadata { get; set; }
+        public List<UpdateCampaignDeviceMetadata> Metadata { get; set; }
         
         /// <summary>
         /// DEPRECATED: The ID of the campaign
@@ -141,10 +144,10 @@ namespace mbedCloudSDK.Update.Model.Campaign
         public static UpdateCampaignStatus Map(UpdateCampaignStatus data)
         {
             UpdateCampaignStatus u = new UpdateCampaignStatus();
-            u.Metadata = new List<UpdateCampaignDeviceMetada>();
-            foreach (var d in data.CampaigndevicemetadataSet)
+            u.Metadata = new List<UpdateCampaignDeviceMetadata>();
+            foreach (var d in data.Metadata)
             {
-                u.Metadata.Add(UpdateCampaignDeviceMetada.Map(d));
+                u.Metadata.Add(UpdateCampaignDeviceMetadata.Map(d));
             }
             u.ConnectorDevices = data.ConnectorDevices;
             u.CreatedAt = data.CreatedAt;

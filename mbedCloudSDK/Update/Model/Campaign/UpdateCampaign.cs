@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using mbedCloudSDK.Common;
 using System.Text.RegularExpressions;
 using mbedCloudSDK.Common.Query;
+using Newtonsoft.Json.Linq;
 
 namespace mbedCloudSDK.Update.Model.Campaign
 {
@@ -21,7 +22,7 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// State of the update campaign.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public UpdateCampaignState State { get; set; }
+        public UpdateCampaignState? State { get; set; }
         
         /// <summary>
         /// An optional description of the campaign
@@ -128,7 +129,7 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// <returns></returns>
         public static UpdateCampaign Map(update_service.Model.UpdateCampaign data)
         {
-            var updateCampaignStatus = (UpdateCampaignState)Enum.Parse(typeof(UpdateCampaignState), data.State.ToString());
+            var updateCampaignStatus = data.State.HasValue ? (UpdateCampaignState?)Enum.Parse(typeof(UpdateCampaignState), data.State.ToString()) : null;
             var campaign = new UpdateCampaign();
             campaign.CreatedAt = data.CreatedAt;
             campaign.Description = data.Description;
@@ -150,15 +151,14 @@ namespace mbedCloudSDK.Update.Model.Campaign
             UpdateCampaignPostRequest request = new UpdateCampaignPostRequest(DeviceFilter:deviceFilterString, Name:Name);
             request.Description = this.Description;
             request.RootManifestId = this.RootManifestId;
-            var updateCampaignStatus = (UpdateCampaignPostRequest.StateEnum)Enum.Parse(typeof(UpdateCampaignPostRequest.StateEnum), this.State.ToString());
-            request.State = updateCampaignStatus;
+            request.State = State.HasValue ? (UpdateCampaignPostRequest.StateEnum?)Enum.Parse(typeof(UpdateCampaignPostRequest.StateEnum), State.ToString()) : null;
             request.When = this.ScheduledAt;
             return request;
         }
 
         public UpdateCampaignPutRequest CreatePutRequest()
         {
-            var updateCampaignStatus = (UpdateCampaignPutRequest.StateEnum)Enum.Parse(typeof(UpdateCampaignPutRequest.StateEnum), this.State.ToString());
+            var updateCampaignStatus = State.HasValue ? (UpdateCampaignPutRequest.StateEnum?)Enum.Parse(typeof(UpdateCampaignPutRequest.StateEnum), this.State.ToString()) : null;
             UpdateCampaignPutRequest request = new UpdateCampaignPutRequest(
                 Description:Description, RootManifestId:RootManifestId, _Object:"", 
                 When:ScheduledAt, State:updateCampaignStatus, DeviceFilter:DeviceFilter, Name:Name);
