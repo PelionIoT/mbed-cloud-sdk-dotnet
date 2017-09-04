@@ -7,6 +7,7 @@ using mbedCloudSDK.Common.Query;
 using mbedCloudSDK.Exceptions;
 using System;
 using connector_ca.Client;
+using System.Linq;
 
 namespace mbedCloudSDK.Certificates.Api
 {

@@ -14,7 +14,7 @@ namespace mbedCloudSDK.Update.Model.Campaign
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var enumString = (string)reader.Value;
-            return Utils.GetEnumFromValue(typeof(UpdateCampaignState), enumString);
+            return Utils.GetEnumMemberValue(typeof(UpdateCampaignState), enumString);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
