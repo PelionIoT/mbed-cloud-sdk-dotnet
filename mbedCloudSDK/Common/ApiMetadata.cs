@@ -27,7 +27,7 @@ namespace mbedCloudSDK.Common
         /// <summary>
         /// Date of the API response
         /// </summary>
-        public DateTime date { get; set; }
+        public DateTime Date { get; set; }
         /// <summary>
         /// Request ID of the transaction
         /// </summary>
