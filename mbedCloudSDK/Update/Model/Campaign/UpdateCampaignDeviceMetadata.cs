@@ -19,57 +19,62 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// </summary>
         [JsonConverter(typeof(UpdateCampaignDeviceStateConverter))]
         public UpdateCampaignDeviceState? State { get; set; }
-        
+
         /// <summary>
         /// The description of the object
         /// </summary>
         public string Description { get; private set; }
-        
+
         /// <summary>
         /// The update campaign to which this device belongs
         /// </summary>
         public string Campaign { get; private set; }
-        
+
         /// <summary>
         /// The time the object was created
         /// </summary>
         public DateTime? CreatedAt { get; private set; }
-        
+
         /// <summary>
         /// The time the object was updated
         /// </summary>
         public DateTime? UpdatedAt { get; private set; }
-        
+
         /// <summary>
         /// The ID of the channel used to communicated with the device
         /// </summary>
         public string Mechanism { get; private set; }
-        
+
         /// <summary>
         /// The name of the object
         /// </summary>
         public string Name { get; private set; }
-        
+
         /// <summary>
         /// The entity instance signature
         /// </summary>
-        public DateTime? Etag { get; private set; }
-        
+        public string Etag { get; private set; }
+
         /// <summary>
         /// The address of the Connector to use
         /// </summary>
         public string MechanismUrl { get; private set; }
-        
+
         /// <summary>
         /// The ID of the metadata concerning this device/campaign
         /// </summary>
         public string Id { get; private set; }
-        
+
         /// <summary>
         /// The ID of the device to deploy
         /// </summary>
         public string DeviceId { get; private set; }
-        
+
+        /// <summary>
+        /// Entity name: always &#39;update-campaign-device-metadata&#39;
+        /// </summary>
+        public string _Object { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -81,6 +86,7 @@ namespace mbedCloudSDK.Update.Model.Campaign
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Campaign: ").Append(Campaign).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  Mechanism: ").Append(Mechanism).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
@@ -98,7 +104,7 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static UpdateCampaignDeviceMetadata Map(UpdateCampaignDeviceMetadata data)
+        public static UpdateCampaignDeviceMetadata Map(update_service.Model.CampaignDeviceMetadata data)
         {
             UpdateCampaignDeviceMetadata metadata = new UpdateCampaignDeviceMetadata();
             metadata.Campaign = data.Campaign;
@@ -111,7 +117,7 @@ namespace mbedCloudSDK.Update.Model.Campaign
             metadata.MechanismUrl = data.MechanismUrl;
             metadata.Name = data.Name;
             metadata.UpdatedAt = data.UpdatedAt;
-            metadata.State = (UpdateCampaignDeviceState)Enum.Parse(typeof(UpdateCampaignDeviceState), data.State.ToString());
+            metadata.State = (UpdateCampaignDeviceState)Enum.Parse(typeof(UpdateCampaignDeviceState), data.DeploymentState.ToString());
             return metadata;
         }
     }
