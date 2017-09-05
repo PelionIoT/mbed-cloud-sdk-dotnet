@@ -42,12 +42,12 @@ namespace device_directory.Model
         /// <param name="AutoUpdate">DEPRECATED Mark this device for auto firmware update..</param>
         /// <param name="HostGateway">The endpoint_name of the host gateway, if appropriate..</param>
         /// <param name="_Object">The API resource entity..</param>
-        /// <param name="CustomAttributes">Up to 5 custom JSON attributes.</param>
+        /// <param name="CustomAttributes">Custom attributes(key/value). Up to 5 attributes.</param>
         /// <param name="DeviceKey">Fingerprint of the device certificate. (required).</param>
         /// <param name="EndpointType">The endpoint type of the device - e.g. if the device is a gateway..</param>
         /// <param name="CaId">ID of the issuer of the certificate. (required).</param>
         /// <param name="Name">The name of the device..</param>
-        public DeviceDataPutRequest(string Description = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), string _Object = default(string), Object CustomAttributes = default(Object), string DeviceKey = default(string), string EndpointType = default(string), string CaId = default(string), string Name = default(string))
+        public DeviceDataPutRequest(string Description = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), string _Object = default(string), Dictionary<string, string> CustomAttributes = default(Dictionary<string, string>), string DeviceKey = default(string), string EndpointType = default(string), string CaId = default(string), string Name = default(string))
         {
             // to ensure "DeviceKey" is required (not null)
             if (DeviceKey == null)
@@ -108,11 +108,11 @@ namespace device_directory.Model
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
         /// <summary>
-        /// Up to 5 custom JSON attributes
+        /// Custom attributes(key/value). Up to 5 attributes
         /// </summary>
-        /// <value>Up to 5 custom JSON attributes</value>
+        /// <value>Custom attributes(key/value). Up to 5 attributes</value>
         [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
-        public Object CustomAttributes { get; set; }
+        public Dictionary<string, string> CustomAttributes { get; set; }
         /// <summary>
         /// Fingerprint of the device certificate.
         /// </summary>
@@ -219,7 +219,7 @@ namespace device_directory.Model
                 (
                     this.CustomAttributes == other.CustomAttributes ||
                     this.CustomAttributes != null &&
-                    this.CustomAttributes.Equals(other.CustomAttributes)
+                    this.CustomAttributes.SequenceEqual(other.CustomAttributes)
                 ) && 
                 (
                     this.DeviceKey == other.DeviceKey ||

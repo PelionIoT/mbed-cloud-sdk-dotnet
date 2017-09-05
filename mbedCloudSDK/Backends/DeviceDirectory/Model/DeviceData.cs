@@ -161,8 +161,8 @@ namespace device_directory.Model
         /// <param name="DeviceKey">Fingerprint of the device certificate..</param>
         /// <param name="CreatedAt">Timestamp of when the device was created in the device directory..</param>
         /// <param name="Manifest">DEPRECATED The URL for the current device manifest..</param>
-        /// <param name="CustomAttributes">Up to 5 custom JSON attributes.</param>
-        public DeviceData(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), string CaId = default(string), string DeviceClass = default(string), string Id = default(string), string AccountId = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), int? DeviceExecutionMode = default(int?), MechanismEnum? Mechanism = default(MechanismEnum?), StateEnum? State = default(StateEnum?), DateTime? Etag = default(DateTime?), string SerialNumber = default(string), string FirmwareChecksum = default(string), DateTime? ManifestTimestamp = default(DateTime?), string VendorId = default(string), string Description = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string _Object = default(string), string EndpointType = default(string), string Deployment = default(string), string MechanismUrl = default(string), int? TrustLevel = default(int?), string Name = default(string), string DeviceKey = default(string), DateTime? CreatedAt = default(DateTime?), string Manifest = default(string), Object CustomAttributes = default(Object))
+        /// <param name="CustomAttributes">Custom attributes(key/value). Up to 5 attributes.</param>
+        public DeviceData(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), string CaId = default(string), string DeviceClass = default(string), string Id = default(string), string AccountId = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), int? DeviceExecutionMode = default(int?), MechanismEnum? Mechanism = default(MechanismEnum?), StateEnum? State = default(StateEnum?), DateTime? Etag = default(DateTime?), string SerialNumber = default(string), string FirmwareChecksum = default(string), DateTime? ManifestTimestamp = default(DateTime?), string VendorId = default(string), string Description = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string _Object = default(string), string EndpointType = default(string), string Deployment = default(string), string MechanismUrl = default(string), int? TrustLevel = default(int?), string Name = default(string), string DeviceKey = default(string), DateTime? CreatedAt = default(DateTime?), string Manifest = default(string), Dictionary<string, string> CustomAttributes = default(Dictionary<string, string>))
         {
             this.BootstrapExpirationDate = BootstrapExpirationDate;
             this.BootstrappedTimestamp = BootstrappedTimestamp;
@@ -360,11 +360,11 @@ namespace device_directory.Model
         [DataMember(Name="manifest", EmitDefaultValue=false)]
         public string Manifest { get; set; }
         /// <summary>
-        /// Up to 5 custom JSON attributes
+        /// Custom attributes(key/value). Up to 5 attributes
         /// </summary>
-        /// <value>Up to 5 custom JSON attributes</value>
+        /// <value>Custom attributes(key/value). Up to 5 attributes</value>
         [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
-        public Object CustomAttributes { get; set; }
+        public Dictionary<string, string> CustomAttributes { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -593,7 +593,7 @@ namespace device_directory.Model
                 (
                     this.CustomAttributes == other.CustomAttributes ||
                     this.CustomAttributes != null &&
-                    this.CustomAttributes.Equals(other.CustomAttributes)
+                    this.CustomAttributes.SequenceEqual(other.CustomAttributes)
                 );
         }
 

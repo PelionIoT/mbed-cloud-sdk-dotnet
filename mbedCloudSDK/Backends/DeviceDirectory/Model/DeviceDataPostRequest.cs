@@ -145,7 +145,7 @@ namespace device_directory.Model
         /// <param name="AutoUpdate">DEPRECATED Mark this device for auto firmware update..</param>
         /// <param name="HostGateway">The endpoint_name of the host gateway, if appropriate..</param>
         /// <param name="DeviceExecutionMode">Defines the type of certificate used..</param>
-        /// <param name="CustomAttributes">Up to 5 custom JSON attributes.</param>
+        /// <param name="CustomAttributes">Custom attributes(key/value). Up to 5 attributes.</param>
         /// <param name="State">The current state of the device..</param>
         /// <param name="SerialNumber">The serial number of the device..</param>
         /// <param name="FirmwareChecksum">The SHA256 checksum of the current firmware image..</param>
@@ -161,7 +161,7 @@ namespace device_directory.Model
         /// <param name="DeviceKey">Fingerprint of the device certificate. (required).</param>
         /// <param name="Manifest">DEPRECATED The URL for the current device manifest..</param>
         /// <param name="CaId">ID of the issuer of the certificate. (required).</param>
-        public DeviceDataPostRequest(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), MechanismEnum? Mechanism = default(MechanismEnum?), string DeviceClass = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), int? DeviceExecutionMode = default(int?), Object CustomAttributes = default(Object), StateEnum? State = default(StateEnum?), string SerialNumber = default(string), string FirmwareChecksum = default(string), string VendorId = default(string), string Description = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string _Object = default(string), string EndpointType = default(string), string Deployment = default(string), string MechanismUrl = default(string), int? TrustLevel = default(int?), string Name = default(string), string DeviceKey = default(string), string Manifest = default(string), string CaId = default(string))
+        public DeviceDataPostRequest(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), MechanismEnum? Mechanism = default(MechanismEnum?), string DeviceClass = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), int? DeviceExecutionMode = default(int?), Dictionary<string, string> CustomAttributes = default(Dictionary<string, string>), StateEnum? State = default(StateEnum?), string SerialNumber = default(string), string FirmwareChecksum = default(string), string VendorId = default(string), string Description = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string _Object = default(string), string EndpointType = default(string), string Deployment = default(string), string MechanismUrl = default(string), int? TrustLevel = default(int?), string Name = default(string), string DeviceKey = default(string), string Manifest = default(string), string CaId = default(string))
         {
             // to ensure "DeviceKey" is required (not null)
             if (DeviceKey == null)
@@ -255,11 +255,11 @@ namespace device_directory.Model
         [DataMember(Name="device_execution_mode", EmitDefaultValue=false)]
         public int? DeviceExecutionMode { get; set; }
         /// <summary>
-        /// Up to 5 custom JSON attributes
+        /// Custom attributes(key/value). Up to 5 attributes
         /// </summary>
-        /// <value>Up to 5 custom JSON attributes</value>
+        /// <value>Custom attributes(key/value). Up to 5 attributes</value>
         [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
-        public Object CustomAttributes { get; set; }
+        public Dictionary<string, string> CustomAttributes { get; set; }
         /// <summary>
         /// The serial number of the device.
         /// </summary>
@@ -455,7 +455,7 @@ namespace device_directory.Model
                 (
                     this.CustomAttributes == other.CustomAttributes ||
                     this.CustomAttributes != null &&
-                    this.CustomAttributes.Equals(other.CustomAttributes)
+                    this.CustomAttributes.SequenceEqual(other.CustomAttributes)
                 ) && 
                 (
                     this.State == other.State ||
