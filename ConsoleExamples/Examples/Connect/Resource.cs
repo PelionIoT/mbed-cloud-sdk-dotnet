@@ -43,7 +43,7 @@ namespace ConsoleExamples.Examples.Connect
                 if (resource.Path == buttonResource)
                 {
                     var resp = api.GetResourceValue(endpoints[0].Id, resource.Path);
-                    Console.WriteLine(resp.GetValue().Result);
+                    Console.WriteLine(resp);
                 }
             }
         }

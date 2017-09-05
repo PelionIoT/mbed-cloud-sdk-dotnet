@@ -36,13 +36,28 @@ namespace mbedCloudSDK.Connect.Api
         /// </summary>
         /// <param name="deviceId">Device Id</param>
         /// <param name="resourcePath">Resource path.</param>
-        public AsyncConsumer<string> GetResourceValue(string deviceId, string resourcePath)
+        public string GetResourceValue(string deviceId, string resourcePath)
         {
             resourcePath = FixedPath(resourcePath);
             var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathGet(deviceId, resourcePath);
             var collection = new AsyncProducerConsumerCollection<string>();
             asyncResponses.Add(asyncID.AsyncResponseId, collection);
-            return new AsyncConsumer<string>(collection);
+
+            if(asyncResponses.ContainsKey(asyncID.AsyncResponseId)){
+                var res = asyncResponses[asyncID.AsyncResponseId].Take().Result;
+                return res;
+            }
+
+            return null;
+        }
+
+        public string GetResourceValueAsync(string deviceId, string resourcePath)
+        {
+            resourcePath = FixedPath(resourcePath);
+            var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathGetAsync(deviceId, resourcePath).Result;
+            var collection = new AsyncProducerConsumerCollection<string>();
+            asyncResponses.Add(asyncID.AsyncResponseId, collection);
+            return asyncID.AsyncResponseId;
         }
 
         /// <summary>
@@ -60,6 +75,15 @@ namespace mbedCloudSDK.Connect.Api
             var collection = new AsyncProducerConsumerCollection<string>();
             asyncResponses.Add(asyncID.AsyncResponseId, collection);
             return new AsyncConsumer<string>(collection);
+        }
+
+        public string SetResourceValueAsync(string deviceId, string resourcePath, string resourceValue, bool? noResponse = null)
+        {
+            resourcePath = FixedPath(resourcePath);
+            var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPutAsync(deviceId, resourcePath, Encoding.UTF8.GetBytes(resourceValue), noResponse).Result;
+            var collection = new AsyncProducerConsumerCollection<string>();
+            asyncResponses.Add(asyncID.AsyncResponseId, collection);
+            return asyncID.AsyncResponseId;
         }
 
         /// <summary>
