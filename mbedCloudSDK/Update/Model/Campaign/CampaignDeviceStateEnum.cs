@@ -10,7 +10,7 @@ namespace mbedCloudSDK.Update.Model.Campaign
     /// <summary>
     /// Device state in update campaign.
     /// </summary>
-    public enum UpdateCampaignDeviceState
+    public enum CampaignDeviceStateEnum
     {
         /// <summary>
         /// Enum Pending for "pending"

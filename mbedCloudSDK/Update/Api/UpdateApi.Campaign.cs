@@ -17,7 +17,7 @@ namespace mbedCloudSDK.Update.Api
         /// </summary>
         /// <param name="options">Query options.</param>
         /// <returns></returns>
-        public PaginatedResponse<Model.Campaign.UpdateCampaign> ListCampaigns(QueryOptions options = null)
+        public PaginatedResponse<Campaign> ListCampaigns(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -25,15 +25,15 @@ namespace mbedCloudSDK.Update.Api
             }
             try
             {
-                return new PaginatedResponse<Model.Campaign.UpdateCampaign>(ListCampaignsFunc, options);
+                return new PaginatedResponse<Campaign>(ListCampaignsFunc, options);
             }
             catch (CloudApiException e)
             {
-                throw e;
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
         }
 
-        private ResponsePage<Model.Campaign.UpdateCampaign> ListCampaignsFunc(QueryOptions options = null)
+        private ResponsePage<Campaign> ListCampaignsFunc(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -42,12 +42,50 @@ namespace mbedCloudSDK.Update.Api
             try
             {
                 var resp = api.UpdateCampaignList(options.Limit, options.Order, options.After, options.QueryString, options.Include);
-                ResponsePage<Model.Campaign.UpdateCampaign> respDevices = new ResponsePage<Model.Campaign.UpdateCampaign>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
+                ResponsePage<Campaign> respDevices = new ResponsePage<Campaign>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var device in resp.Data)
                 {
-                    respDevices.Data.Add(Model.Campaign.UpdateCampaign.Map(device));
+                    respDevices.Data.Add(Campaign.Map(device));
                 }
                 return respDevices;
+            }
+            catch (update_service.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public PaginatedResponse<CampaignDeviceState> ListCampaignDeviceStates(QueryOptions options = null)
+        {
+            if(options == null)
+            {
+                options = new QueryOptions();
+            }
+            try 
+            {
+                return new PaginatedResponse<CampaignDeviceState>(ListCampaignDeviceStatesFunc, options);
+            }
+            catch(CloudApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        private ResponsePage<CampaignDeviceState> ListCampaignDeviceStatesFunc(QueryOptions options = null)
+        {
+            if(options == null)
+            {
+                options = new QueryOptions();
+            }
+            try
+            {
+                var resp = api.V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGet(campaignId: options.Id, limit: options.Limit, order: options.Order, after: options.After, include: options.Include);
+                var respStates = new ResponsePage<CampaignDeviceState>(after: resp.After, hasMore: resp.HasMore, limit: resp.Limit, order: resp.Order.ToString(), totalCount: resp.TotalCount);
+                foreach(var state in resp.Data)
+                {
+                    respStates.Data.Add(CampaignDeviceState.Map(state));
+                }
+                return respStates;
             }
             catch (update_service.Client.ApiException e)
             {
@@ -60,12 +98,12 @@ namespace mbedCloudSDK.Update.Api
         /// </summary>
         /// <param name="campaignId">Id of the update campaign.</param>
         /// <returns></returns>
-        public Model.Campaign.UpdateCampaign GetCampaign(string campaignId)
+        public Campaign GetCampaign(string campaignId)
         {
             try
             {
                 var resp = api.UpdateCampaignRetrieve(campaignId);
-                return Model.Campaign.UpdateCampaign.Map(resp);
+                return Campaign.Map(resp);
             }
             catch (update_service.Client.ApiException e)
             {
@@ -76,14 +114,14 @@ namespace mbedCloudSDK.Update.Api
         /// <summary>
         /// Create update campaign.
         /// </summary>
-        /// <param name="updateCampaign">Update campaign that will be created.</param>
+        /// <param name="campaign">Update campaign that will be created.</param>
         /// <returns></returns>
-        public Model.Campaign.UpdateCampaign AddCampaign(Model.Campaign.UpdateCampaign updateCampaign)
+        public Campaign AddCampaign(Campaign campaign)
         {
             try
             {
-                var resp = api.UpdateCampaignCreate(updateCampaign.CreatePostRequest());
-                return Model.Campaign.UpdateCampaign.Map(resp);
+                var resp = api.UpdateCampaignCreate(campaign.CreatePostRequest());
+                return Campaign.Map(resp);
             }
             catch (update_service.Client.ApiException e)
             {
@@ -94,14 +132,14 @@ namespace mbedCloudSDK.Update.Api
         /// <summary>
         /// Start update campaign.
         /// </summary>
-        /// <param name="updateCampaign">Update campaign to be started.</param>
+        /// <param name="campaign">Update campaign to be started.</param>
         /// <returns></returns>
-        public Model.Campaign.UpdateCampaign StartCampaign(Model.Campaign.UpdateCampaign updateCampaign)
+        public Campaign StartCampaign(Campaign campaign)
         {
             try
             {
-                var resp = api.UpdateCampaignUpdate(updateCampaign.Id, updateCampaign.CreatePutRequest());
-                return Model.Campaign.UpdateCampaign.Map(resp);
+                var resp = api.UpdateCampaignUpdate(campaign.Id, campaign.CreatePutRequest());
+                return Campaign.Map(resp);
             }
             catch (update_service.Client.ApiException e)
             {
@@ -112,24 +150,24 @@ namespace mbedCloudSDK.Update.Api
         /// <summary>
         /// Update update campaign.
         /// </summary>
-        /// <param name="updateCampaign">Update campaign to be updated.</param>
-        public UpdateCampaign UpdateCampaign(UpdateCampaign updateCampaign)
+        /// <param name="campaign">Update campaign to be updated.</param>
+        public Campaign UpdateCampaign(Campaign campaign)
         {
             try
             {
-                var stateEnum = (update_service.Model.UpdateCampaignPatchRequest.StateEnum)Enum.Parse(typeof(update_service.Model.UpdateCampaignPatchRequest.StateEnum), updateCampaign.State.ToString());
+                var stateEnum = (update_service.Model.UpdateCampaignPatchRequest.StateEnum)Enum.Parse(typeof(update_service.Model.UpdateCampaignPatchRequest.StateEnum), campaign.State.ToString());
                 var updateCampaignPatchRequest = new update_service.Model.UpdateCampaignPatchRequest()
                 {
-                    Description = updateCampaign.Description,
-                    RootManifestId = updateCampaign.RootManifestId,
-                    _Object = updateCampaign._Object,
-                    When = updateCampaign.When,
+                    Description = campaign.Description,
+                    RootManifestId = campaign.RootManifestId,
+                    _Object = campaign._Object,
+                    When = campaign.When,
                     State = stateEnum,
-                    DeviceFilter = updateCampaign.DeviceFilter,
-                    Name = updateCampaign.Name
+                    DeviceFilter = campaign.DeviceFilter,
+                    Name = campaign.Name
                 };
-                var response = api.UpdateCampaignPartialUpdate(updateCampaign.Id, updateCampaignPatchRequest);
-                return mbedCloudSDK.Update.Model.Campaign.UpdateCampaign.Map(response);
+                var response = api.UpdateCampaignPartialUpdate(campaign.Id, updateCampaignPatchRequest);
+                return Campaign.Map(response);
             }
             catch (update_service.Client.ApiException e)
             {

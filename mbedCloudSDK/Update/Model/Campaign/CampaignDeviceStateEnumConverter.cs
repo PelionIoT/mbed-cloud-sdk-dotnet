@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace mbedCloudSDK.Update.Model.Campaign
 {
-    public class UpdateCampaignDeviceStateConverter : JsonConverter
+    public class CampaignDeviceStateEnumConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
@@ -14,13 +14,13 @@ namespace mbedCloudSDK.Update.Model.Campaign
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var enumString = (string)reader.Value;
-            return Utils.GetEnumFromEnumMemberValue(typeof(UpdateCampaignDeviceState), enumString);
+            return Utils.GetEnumFromEnumMemberValue(typeof(CampaignDeviceStateEnum), enumString);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var updateCampaignDeviceState = (UpdateCampaignDeviceState)value;
-            writer.WriteValue(Utils.GetEnumMemberValue(typeof(UpdateCampaignDeviceState), updateCampaignDeviceState.ToString()));
+            var campaignDeviceStateEnum = (CampaignDeviceStateEnum)value;
+            writer.WriteValue(Utils.GetEnumMemberValue(typeof(CampaignDeviceStateEnum), campaignDeviceStateEnum.ToString()));
         }
     }
 }

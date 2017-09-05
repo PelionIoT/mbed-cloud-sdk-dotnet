@@ -244,9 +244,12 @@
     <Compile Include="Update\Api\UpdateApi.cs" />
     <Compile Include="Update\Api\UpdateApi.FirmwareImage.cs" />
     <Compile Include="Update\Api\UpdateApi.FirmwareManifest.cs" />
-    <Compile Include="Update\Model\Campaign\UpdateCampaign.cs" />
-    <Compile Include="Update\Model\Campaign\UpdateCampaignDeviceState.cs" />
-    <Compile Include="Update\Model\Campaign\UpdateCampaignState.cs" />
+    <Compile Include="Update\Model\Campaign\Campaign.cs" />
+    <Compile Include="Update\Model\Campaign\CampaignDeviceState.cs" />
+    <Compile Include="Update\Model\Campaign\CampaignDeviceStateEnum.cs" />
+    <Compile Include="Update\Model\Campaign\CampaignDeviceStateEnumConverter.cs" />
+    <Compile Include="Update\Model\Campaign\CampaignStateEnum.cs" />
+    <Compile Include="Update\Model\Campaign\CampaignStateEnumConverter.cs" />
     <Compile Include="Update\Model\FirmwareImage\FirmwareImage.cs" />
     <Compile Include="Update\Model\FirmwareManifest\FirmwareManifest.cs" />
   </ItemGroup>
