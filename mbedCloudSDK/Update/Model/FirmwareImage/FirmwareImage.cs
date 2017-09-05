@@ -16,7 +16,12 @@ namespace mbedCloudSDK.Update.Model.FirmwareImage
         /// The path to the firmware image
         /// </summary>
         public string Datafile { get; set; }
-        
+
+        /// <summary>
+        /// Size in bytes of the uploaded firmware image binary
+        /// </summary>
+        public long? DatafileSize { get; private set; }
+
         /// <summary>
         /// The description of the object
         /// </summary>
@@ -56,6 +61,7 @@ namespace mbedCloudSDK.Update.Model.FirmwareImage
             var sb = new StringBuilder();
             sb.Append("class FirmwareImageSerializerData {\n");
             sb.Append("  Datafile: ").Append(Datafile).Append("\n");
+            sb.Append("  DatafileSize:  ").Append(DatafileSize).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
@@ -76,6 +82,7 @@ namespace mbedCloudSDK.Update.Model.FirmwareImage
             FirmwareImage image = new FirmwareImage();
             image.CreatedAt = data.CreatedAt;
             image.Datafile = data.Datafile;
+            image.DatafileSize = data.DatafileSize;
             image.DatafileChecksum = data.DatafileChecksum;
             image.Description = data.Description;
             image.Id = data.Id;
