@@ -90,6 +90,7 @@ namespace mbedCloudSDK.Update.Model.Campaign
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  Mechanism: ").Append(Mechanism).Append("\n");
             sb.Append("  MechanismUrl: ").Append(MechanismUrl).Append("\n");
