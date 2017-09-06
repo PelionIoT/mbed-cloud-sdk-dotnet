@@ -18,6 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
+using mbedCloudSDK.Connect.Model.ConnectedDevice;
 
 namespace TestServer
 {
@@ -63,6 +64,14 @@ namespace TestServer
             {
                 var @params = GetMethodParams(methodInfo, argsJsonObj);
                 var invokedMethod = methodInfo.Invoke(moduleInstance, @params.ToArray());
+                if (invokedMethod != null)
+                {
+                    if(invokedMethod.GetType().Name == "AsyncConsumer`1")
+                    {
+                        var asyncConsumer = invokedMethod as AsyncConsumer<string>;
+                        return Ok(asyncConsumer.ToString());
+                    }
+                }
                 var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, GetSnakeJsonSettings());
                 return Ok(JsonConvert.DeserializeObject(result));
             }

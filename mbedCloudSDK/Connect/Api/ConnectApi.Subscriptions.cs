@@ -106,7 +106,7 @@ namespace mbedCloudSDK.Connect.Api
             {
                 ConnectApi.resourceSubscribtions.Add(subscribePath, resource);
             }
-            return new AsyncConsumer<String>(resource.Queue);
+            return new AsyncConsumer<String>(subscribePath, resource.Queue);
         }
 
         /// <summary>

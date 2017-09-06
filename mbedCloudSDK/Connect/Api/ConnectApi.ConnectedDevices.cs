@@ -51,13 +51,18 @@ namespace mbedCloudSDK.Connect.Api
             return null;
         }
 
-        public string GetResourceValueAsync(string deviceId, string resourcePath)
+        /// <summary>
+        /// Gets the value of the resource asynchronously 
+        /// </summary>
+        /// <param name="deviceId">Device Id</param>
+        /// <param name="resourcePath">Resource path.</param>
+        public AsyncConsumer<string> GetResourceValueAsync(string deviceId, string resourcePath)
         {
             resourcePath = FixedPath(resourcePath);
             var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathGetAsync(deviceId, resourcePath).Result;
             var collection = new AsyncProducerConsumerCollection<string>();
             asyncResponses.Add(asyncID.AsyncResponseId, collection);
-            return asyncID.AsyncResponseId;
+            return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
         }
 
         /// <summary>
@@ -74,16 +79,23 @@ namespace mbedCloudSDK.Connect.Api
             var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPut(deviceId, resourcePath, Encoding.UTF8.GetBytes(resourceValue), noResponse);
             var collection = new AsyncProducerConsumerCollection<string>();
             asyncResponses.Add(asyncID.AsyncResponseId, collection);
-            return new AsyncConsumer<string>(collection);
+            return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
         }
 
-        public string SetResourceValueAsync(string deviceId, string resourcePath, string resourceValue, bool? noResponse = null)
+        /// <summary>
+        /// Set value of the resource asynchronously.
+        /// </summary>
+        /// <param name="deviceId">Id of the device.</param>
+        /// <param name="resourcePath">Path to the resource.</param>
+        /// <param name="resourceValue">Value to set.</param>
+        /// <param name="noResponse">Don't get a response.</param>
+        public AsyncConsumer<string> SetResourceValueAsync(string deviceId, string resourcePath, string resourceValue, bool? noResponse = null)
         {
             resourcePath = FixedPath(resourcePath);
             var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPutAsync(deviceId, resourcePath, Encoding.UTF8.GetBytes(resourceValue), noResponse).Result;
             var collection = new AsyncProducerConsumerCollection<string>();
             asyncResponses.Add(asyncID.AsyncResponseId, collection);
-            return asyncID.AsyncResponseId;
+            return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
         }
 
         /// <summary>
