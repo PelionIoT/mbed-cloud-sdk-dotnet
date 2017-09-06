@@ -47,7 +47,7 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// <summary>
         /// The timestamp at which update campaign scheduled to start
         /// </summary>
-        public string ScheduledAt { get; set; }
+        public DateTime? ScheduledAt { get; set; }
         
         /// <summary>
         /// The timestamp when the update campaign finished
@@ -76,7 +76,7 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// <summary>
         /// A when for this campaign
         /// </summary>
-        public string When { get; set; }
+        public DateTime? When { get; set; }
 
         public string _Object { get; set; }
 
