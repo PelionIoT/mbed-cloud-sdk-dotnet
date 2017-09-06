@@ -116,12 +116,14 @@
     <Compile Include="Backends\Iam\Model\TrustedCertificateReq.cs" />
     <Compile Include="Backends\Iam\Model\TrustedCertificateResp.cs" />
     <Compile Include="Backends\Iam\Model\TrustedCertificateRespList.cs" />
+    <Compile Include="Backends\Iam\Model\TrustedCertificateUpdateReq.cs" />
     <Compile Include="Backends\Iam\Model\UpdatedResponse.cs" />
     <Compile Include="Backends\Iam\Model\UserInfoReq.cs" />
     <Compile Include="Backends\Iam\Model\UserInfoResp.cs" />
     <Compile Include="Backends\Iam\Model\UserInfoRespList.cs" />
     <Compile Include="Backends\Iam\Model\UserUpdateResp.cs" />
     <Compile Include="Backends\Iam\Model\UserUpdateReq.cs" />
+    <Compile Include="Backends\Iam\Model\PasswordPolicy.cs" />
     <Compile Include="Backends\Mds\Api\DefaultApi.cs" />
     <Compile Include="Backends\Mds\Api\EndpointsApi.cs" />
     <Compile Include="Backends\Mds\Api\NotificationsApi.cs" />
@@ -195,6 +197,7 @@
     <Compile Include="Common\BaseApi.cs" />
     <Compile Include="Common\Config.cs" />
     <Compile Include="Common\Utils.cs" />
+    <Compile Include="Common\ApiMetadata.cs" />
     <Compile Include="Connect\Api\ConnectApi.ConnectedDevices.cs" />
     <Compile Include="Connect\Api\ConnectApi.cs" />
     <Compile Include="Connect\Api\ConnectApi.Statistics.cs" />
@@ -242,9 +245,12 @@
     <Compile Include="Update\Api\UpdateApi.cs" />
     <Compile Include="Update\Api\UpdateApi.FirmwareImage.cs" />
     <Compile Include="Update\Api\UpdateApi.FirmwareManifest.cs" />
-    <Compile Include="Update\Model\Campaign\UpdateCampaign.cs" />
-    <Compile Include="Update\Model\Campaign\UpdateCampaignDeviceState.cs" />
-    <Compile Include="Update\Model\Campaign\UpdateCampaignState.cs" />
+    <Compile Include="Update\Model\Campaign\Campaign.cs" />
+    <Compile Include="Update\Model\Campaign\CampaignDeviceState.cs" />
+    <Compile Include="Update\Model\Campaign\CampaignDeviceStateEnum.cs" />
+    <Compile Include="Update\Model\Campaign\CampaignDeviceStateEnumConverter.cs" />
+    <Compile Include="Update\Model\Campaign\CampaignStateEnum.cs" />
+    <Compile Include="Update\Model\Campaign\CampaignStateEnumConverter.cs" />
     <Compile Include="Update\Model\FirmwareImage\FirmwareImage.cs" />
     <Compile Include="Update\Model\FirmwareManifest\FirmwareManifest.cs" />
   </ItemGroup>

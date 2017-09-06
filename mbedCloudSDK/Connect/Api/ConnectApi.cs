@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using mbedCloudSDK.Common;
@@ -17,9 +18,6 @@ namespace mbedCloudSDK.Connect.Api
     /// </summary>
     public partial class ConnectApi : BaseApi
     {
-
-        #region Variables
-
         private Task notificationTask;
         private CancellationTokenSource cancellationToken;
         private statistics.Api.StatisticsApi statisticsApi;
@@ -41,10 +39,6 @@ namespace mbedCloudSDK.Connect.Api
         private NotificationsApi notificationsApi;
         private DefaultApi defaultApi;
 
-        #endregion
-
-        #region Contructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="T:mbedCloudSDK.DeviceDirectory.DeviceDirectory"/> class.
         /// </summary>
@@ -56,40 +50,39 @@ namespace mbedCloudSDK.Connect.Api
             resourceSubscribtions = new Dictionary<string, Resource>();
 
             this.auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);
+            statistics.Client.Configuration.Default.ApiClient = new statistics.Client.ApiClient(config.Host);
+            statistics.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
+            statistics.Client.Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
 
-            statisticsApi = new statistics.Api.StatisticsApi(config.Host);
-            statisticsApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            statisticsApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            mds.Client.Configuration.Default.ApiClient = new mds.Client.ApiClient(config.Host);
+            mds.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
+            mds.Client.Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
 
-            subscriptionsApi = new mds.Api.SubscriptionsApi(config.Host);
-            subscriptionsApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            subscriptionsApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-
-            resourcesApi =  new mds.Api.ResourcesApi(config.Host);
-            resourcesApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            resourcesApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-
-            endpointsApi = new mds.Api.EndpointsApi(config.Host);
-            endpointsApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            endpointsApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-
-            accountApi = new statistics.Api.AccountApi(config.Host);
-            accountApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            accountApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-
-            notificationsApi = new mds.Api.NotificationsApi(config.Host);
-            notificationsApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            notificationsApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-
-            defaultApi = new mds.Api.DefaultApi(config.Host);
-            defaultApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            defaultApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-
+            statisticsApi = new statistics.Api.StatisticsApi();
+            subscriptionsApi = new mds.Api.SubscriptionsApi();
+            resourcesApi =  new mds.Api.ResourcesApi();
+            endpointsApi = new mds.Api.EndpointsApi();
+            accountApi = new statistics.Api.AccountApi();
+            notificationsApi = new mds.Api.NotificationsApi();
+            defaultApi = new mds.Api.DefaultApi();
         }
 
-        #endregion
-
-        #region Utils
+        /// <summary>
+        /// Get meta data for the last Mbed Cloud API call
+        /// </summary>
+        public ApiMetadata GetLastApiMetadata()
+        {
+            var lastMds = mds.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault()?.Headers?.Where(m => m.Name == "Date")?.Select(d => DateTime.Parse(d.Value.ToString()))?.FirstOrDefault();
+            var lastStats = statistics.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault()?.Headers?.Where(m => m.Name == "Date")?.Select(d => DateTime.Parse(d.Value.ToString()))?.FirstOrDefault();
+            if(Nullable.Compare<DateTime>(lastMds, lastStats) > 0)
+            {
+                return ApiMetadata.Map(mds.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
+            }
+            else
+            {
+                return ApiMetadata.Map(statistics.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
+            }
+        }
 
         private string FixedPath(string path)
         {
@@ -99,7 +92,5 @@ namespace mbedCloudSDK.Connect.Api
             }
             return path;
         }
-
-        #endregion
     }
 }

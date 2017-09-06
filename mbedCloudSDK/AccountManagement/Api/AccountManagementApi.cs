@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using iam.Api;
 using iam.Client;
 using mbedCloudSDK.Common;
+using RestSharp;
 
 namespace mbedCloudSDK.AccountManagement.Api
 {
@@ -22,14 +24,20 @@ namespace mbedCloudSDK.AccountManagement.Api
         /// <param name="config">Config.</param>
 		public AccountManagementApi(Config config): base(config)
         {
-            if (config.Host != string.Empty)
+            if (!string.IsNullOrEmpty(config.Host))
             {
                 Configuration.Default.ApiClient = new ApiClient(config.Host);
             }
             Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
             Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+
             developerApi = new DeveloperApi();
-            adminApi = new AccountAdminApi();
+            adminApi = new AccountAdminApi();            
+        }
+
+        public ApiMetadata GetLastApiMetadata()
+        {
+            return ApiMetadata.Map(Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
         }
     }
 }

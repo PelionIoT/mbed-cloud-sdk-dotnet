@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using iam.Model;
 
 namespace mbedCloudSDK.Certificates.Model
 {
-    class Certificate
+    public class Certificate
     {
         [JsonConverter(typeof(CertificateTypeConverter))]
         public CertificateType? Type { get; set; }
@@ -146,6 +147,78 @@ namespace mbedCloudSDK.Certificates.Model
             sb.Append("  ServerCertificate: ").Append(ServerCertificate).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
+        }
+
+        public static TrustedCertificateReq.ServiceEnum GetServiceEnum(Certificate certificate)
+        {
+            TrustedCertificateReq.ServiceEnum serviceEnum;
+            switch (certificate.Type)
+            {
+                case CertificateType.Bootstrap:
+                    serviceEnum = TrustedCertificateReq.ServiceEnum.Bootstrap;
+                    break;
+                case CertificateType.Lwm2m:
+                    serviceEnum = TrustedCertificateReq.ServiceEnum.Lwm2m;
+                    break;
+                default:
+                    serviceEnum = TrustedCertificateReq.ServiceEnum.Bootstrap;
+                    break;
+            }
+            return serviceEnum;
+        }
+
+        private static TrustedCertificateReq.StatusEnum GetStatusEnum(Certificate certificate)
+        {
+            TrustedCertificateReq.StatusEnum statusEnum;
+            switch (certificate.Status)
+            {
+                case CertificateStatus.Active:
+                    statusEnum = TrustedCertificateReq.StatusEnum.ACTIVE;
+                    break;
+                case CertificateStatus.Inactive:
+                    statusEnum = TrustedCertificateReq.StatusEnum.INACTIVE;
+                    break;
+                default:
+                    statusEnum = TrustedCertificateReq.StatusEnum.ACTIVE;
+                    break;
+            }
+            return statusEnum;
+        }
+
+        public static TrustedCertificateUpdateReq.ServiceEnum GetUpdateServiceEnum(Certificate certificate)
+        {
+            TrustedCertificateUpdateReq.ServiceEnum serviceEnum;
+            switch (certificate.Type)
+            {
+                case CertificateType.Bootstrap:
+                    serviceEnum = TrustedCertificateUpdateReq.ServiceEnum.Bootstrap;
+                    break;
+                case CertificateType.Lwm2m:
+                    serviceEnum = TrustedCertificateUpdateReq.ServiceEnum.Lwm2m;
+                    break;
+                default:
+                    serviceEnum = TrustedCertificateUpdateReq.ServiceEnum.Bootstrap;
+                    break;
+            }
+            return serviceEnum;
+        }
+
+        public static TrustedCertificateUpdateReq.StatusEnum GetUpdateStatusEnum(Certificate certificate)
+        {
+            TrustedCertificateUpdateReq.StatusEnum statusEnum;
+            switch (certificate.Status)
+            {
+                case CertificateStatus.Active:
+                    statusEnum = TrustedCertificateUpdateReq.StatusEnum.ACTIVE;
+                    break;
+                case CertificateStatus.Inactive:
+                    statusEnum = TrustedCertificateUpdateReq.StatusEnum.INACTIVE;
+                    break;
+                default:
+                    statusEnum = TrustedCertificateUpdateReq.StatusEnum.ACTIVE;
+                    break;
+            }
+            return statusEnum;
         }
 
         /// <summary>

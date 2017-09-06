@@ -1,4 +1,5 @@
 using System;
+using mbedCloudSDK.Common;
 using Newtonsoft.Json;
 
 namespace mbedCloudSDK.Certificates.Model
@@ -7,39 +8,14 @@ namespace mbedCloudSDK.Certificates.Model
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var certificateType = (CertificateType)value;
-
-            switch (certificateType)
-            {
-                case CertificateType.Bootstrap:
-                    writer.WriteValue("bootstrap");
-                    break;
-                case CertificateType.Developer:
-                    writer.WriteValue("developer");
-                    break;
-                case CertificateType.Lwm2m:
-                    writer.WriteValue("lwm2m");
-                    break;
-                default:
-                    break;
-            }
+            var certificateType = (CertificateType) value;
+            writer.WriteValue(Utils.GetEnumMemberValue(typeof(CertificateType), certificateType.ToString()));
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var enumString = (string)reader.Value;
-
-            switch(enumString)
-            {
-                case "bootstrap":
-                    return CertificateType.Bootstrap;
-                case "developer":
-                    return CertificateType.Developer;
-                case "lwm2m":
-                    return CertificateType.Lwm2m;
-                default:
-                    return null;
-            }
+            return Utils.GetEnumFromEnumMemberValue(typeof(CertificateType), enumString);
         }
 
         public override bool CanConvert(Type objectType)

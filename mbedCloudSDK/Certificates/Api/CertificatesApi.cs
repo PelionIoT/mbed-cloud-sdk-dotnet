@@ -6,6 +6,8 @@ using mbedCloudSDK.Common;
 using mbedCloudSDK.Common.Query;
 using mbedCloudSDK.Exceptions;
 using System;
+using connector_ca.Client;
+using System.Linq;
 
 namespace mbedCloudSDK.Certificates.Api
 {
@@ -14,7 +16,7 @@ namespace mbedCloudSDK.Certificates.Api
     /// - Manage CA certificates
     /// - Manage developer certificates
     /// </summary>
-    class CertificatesApi : BaseApi
+    public class CertificatesApi : BaseApi
     {
         private DeveloperCertificateApi developerCertificateApi;
         private ServerCredentialsApi serverCredentialsApi;
@@ -28,24 +30,25 @@ namespace mbedCloudSDK.Certificates.Api
         {
             this.auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);
 
-            developerCertificateApi = new DeveloperCertificateApi(config.Host);
-            developerCertificateApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            developerCertificateApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            Configuration.Default.ApiClient = new ApiClient(config.Host);
+            Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
+            Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
 
-            serverCredentialsApi = new ServerCredentialsApi(config.Host);
-            serverCredentialsApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            serverCredentialsApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-
-            iamAccountApi = new AccountAdminApi(config.Host);
-            iamAccountApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            iamAccountApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-
-            developerApi = new DeveloperApi(config.Host);
-            developerApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            developerApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            developerCertificateApi = new DeveloperCertificateApi();
+            serverCredentialsApi = new ServerCredentialsApi();
+            iamAccountApi = new AccountAdminApi();
+            developerApi = new DeveloperApi();
 
             bootstrapServerUri = serverCredentialsApi.V3ServerCredentialsBootstrapGet(this.auth).ServerUri;
             lmw2mServerUri = serverCredentialsApi.V3ServerCredentialsLwm2mGet(this.auth).ServerUri;
+        }
+
+        /// <summary>
+        /// Get meta data for the last Mbed Cloud API call
+        /// </summary>
+        public ApiMetadata GetLastApiMetadata()
+        {
+            return ApiMetadata.Map(Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
         }
 
         /// <summary>
@@ -171,13 +174,16 @@ namespace mbedCloudSDK.Certificates.Api
         /// </example>
         public Certificate AddCertificate(Certificate certificate, string certificateData = null, string signature = null)
         {
-            throw new CloudApiException(400, "ex.Message", "ex.ErrorContent");
+            if(!certificate.Type.HasValue)
+            {
+                throw new CloudApiException(400, "Value of Certificate Type must be bootstrap or lwm2m");
+            }
             if (certificateData == null || signature == null)
             {
                 throw new ArgumentException("certificateData and signatureData are required when creating non developer certificate.");
             }
 
-            var serviceEnum = GetServiceEnum(certificate);
+            var serviceEnum = Certificate.GetServiceEnum(certificate);
             var trustedCertificate = new TrustedCertificateReq(Certificate: certificateData, Name: certificate.Name, Service:serviceEnum, Signature: signature, Description: certificate.Description);           
             try
             {
@@ -266,14 +272,15 @@ namespace mbedCloudSDK.Certificates.Api
                     throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
                 }
             }else{
-                var serviceEnum = GetServiceEnum(certificate);
-                var statusEnum = GetStatusEnum(certificate);
+                var serviceEnum = Certificate.GetUpdateServiceEnum(certificate);
+                var statusEnum = Certificate.GetUpdateStatusEnum(certificate);
 
-                var req = new TrustedCertificateReq(Status: statusEnum, Certificate: certificate.CertData, Name: certificate.Name, Service: serviceEnum, Signature: "", Description: certificate.Description);
+                var req = new TrustedCertificateUpdateReq(Status: statusEnum, Certificate: string.IsNullOrEmpty(updatedCertificate.CertData) ? null : certificate.CertData,
+                    Name: certificate.Name, Service: serviceEnum, Signature:string.IsNullOrEmpty(updatedCertificate.CertData) ? null : certificate.Signature, Description:certificate.Description);
 
                 try
                 {
-                    var resp = developerApi.UpdateCertificate(certificate.Id, req);
+                    var resp = developerApi.UpdateCertificate(certificateId, req);
                     return GetCertificate(resp.Id);
                 }
                 catch (CloudApiException ex)
@@ -281,41 +288,6 @@ namespace mbedCloudSDK.Certificates.Api
                     throw ex;
                 }
             }
-        }
-
-        private TrustedCertificateReq.ServiceEnum GetServiceEnum(Certificate certificate){
-            TrustedCertificateReq.ServiceEnum serviceEnum;
-            switch (certificate.Type)
-            {
-                case CertificateType.Bootstrap:
-                    serviceEnum = TrustedCertificateReq.ServiceEnum.Bootstrap;
-                    break;
-                case CertificateType.Lwm2m:
-                    serviceEnum = TrustedCertificateReq.ServiceEnum.Lwm2m;
-                    break;
-                default:
-                    serviceEnum = TrustedCertificateReq.ServiceEnum.Bootstrap;
-                    break;
-            }
-            return serviceEnum;
-        }
-
-        private TrustedCertificateReq.StatusEnum GetStatusEnum(Certificate certificate)
-        {
-            TrustedCertificateReq.StatusEnum statusEnum;
-            switch(certificate.Status)
-            {
-                case CertificateStatus.Active:
-                    statusEnum = TrustedCertificateReq.StatusEnum.ACTIVE;
-                    break;
-                case CertificateStatus.Inactive:
-                    statusEnum = TrustedCertificateReq.StatusEnum.INACTIVE;
-                    break;
-                default:
-                    statusEnum = TrustedCertificateReq.StatusEnum.ACTIVE;
-                    break;
-            }
-            return statusEnum;
         }
     }
 }

@@ -9,19 +9,20 @@ using System.Threading.Tasks;
 using mbedCloudSDK.Common;
 using System.Text.RegularExpressions;
 using mbedCloudSDK.Common.Query;
+using Newtonsoft.Json.Linq;
 
 namespace mbedCloudSDK.Update.Model.Campaign
 {
     /// <summary>
     /// Update campaign object from Update API.
     /// </summary>
-    public class UpdateCampaign
+    public class Campaign
     {
         /// <summary>
         /// State of the update campaign.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public UpdateCampaignState State { get; set; }
+        public CampaignStateEnum? State { get; set; }
         
         /// <summary>
         /// An optional description of the campaign
@@ -83,7 +84,7 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// Create new update campaign object.
         /// </summary>
         /// <param name="options">Dictionary to initiate</param>
-        public UpdateCampaign(IDictionary<string, object> options = null)
+        public Campaign(IDictionary<string, object> options = null)
         {
             if (options != null)
             {
@@ -126,10 +127,10 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static UpdateCampaign Map(update_service.Model.UpdateCampaign data)
+        public static Campaign Map(update_service.Model.UpdateCampaign data)
         {
-            var updateCampaignStatus = (UpdateCampaignState)Enum.Parse(typeof(UpdateCampaignState), data.State.ToString());
-            var campaign = new UpdateCampaign();
+            var updateCampaignStatus = data.State.HasValue ? (CampaignStateEnum?)Enum.Parse(typeof(CampaignStateEnum), data.State.ToString()) : null;
+            var campaign = new Campaign();
             campaign.CreatedAt = data.CreatedAt;
             campaign.Description = data.Description;
             campaign.DeviceFilter = Utils.QueryStringToJson(data.DeviceFilter);
@@ -150,15 +151,14 @@ namespace mbedCloudSDK.Update.Model.Campaign
             UpdateCampaignPostRequest request = new UpdateCampaignPostRequest(DeviceFilter:deviceFilterString, Name:Name);
             request.Description = this.Description;
             request.RootManifestId = this.RootManifestId;
-            var updateCampaignStatus = (UpdateCampaignPostRequest.StateEnum)Enum.Parse(typeof(UpdateCampaignPostRequest.StateEnum), this.State.ToString());
-            request.State = updateCampaignStatus;
+            request.State = State.HasValue ? (UpdateCampaignPostRequest.StateEnum?)Enum.Parse(typeof(UpdateCampaignPostRequest.StateEnum), State.ToString()) : null;
             request.When = this.ScheduledAt;
             return request;
         }
 
         public UpdateCampaignPutRequest CreatePutRequest()
         {
-            var updateCampaignStatus = (UpdateCampaignPutRequest.StateEnum)Enum.Parse(typeof(UpdateCampaignPutRequest.StateEnum), this.State.ToString());
+            var updateCampaignStatus = State.HasValue ? (UpdateCampaignPutRequest.StateEnum?)Enum.Parse(typeof(UpdateCampaignPutRequest.StateEnum), this.State.ToString()) : null;
             UpdateCampaignPutRequest request = new UpdateCampaignPutRequest(
                 Description:Description, RootManifestId:RootManifestId, _Object:"", 
                 When:ScheduledAt, State:updateCampaignStatus, DeviceFilter:DeviceFilter, Name:Name);
