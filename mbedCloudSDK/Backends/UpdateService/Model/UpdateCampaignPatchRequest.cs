@@ -108,7 +108,7 @@ namespace update_service.Model
         /// <param name="State">The state of the campaign.</param>
         /// <param name="DeviceFilter">The filter for the devices the campaign will target.</param>
         /// <param name="Name">The campaign name.</param>
-        public UpdateCampaignPatchRequest(string Description = default(string), string RootManifestId = default(string), string _Object = default(string), string When = default(string), StateEnum? State = default(StateEnum?), string DeviceFilter = default(string), string Name = default(string))
+        public UpdateCampaignPatchRequest(string Description = default(string), string RootManifestId = default(string), string _Object = default(string), DateTime? When = default(DateTime?), StateEnum? State = default(StateEnum?), string DeviceFilter = default(string), string Name = default(string))
         {
             this.Description = Description;
             this.RootManifestId = RootManifestId;
@@ -141,7 +141,7 @@ namespace update_service.Model
         /// </summary>
         /// <value>The scheduled start time for the update campaign</value>
         [DataMember(Name="when", EmitDefaultValue=false)]
-        public string When { get; set; }
+        public DateTime? When { get; set; }
         /// <summary>
         /// The filter for the devices the campaign will target
         /// </summary>

@@ -77,7 +77,6 @@ namespace Example
             var apiInstance = new AccountApi();
             var include = include_example;  // string | A comma-separated list of requested metrics and total_count (if included, the response will contain total_count to specify the total number of records available). Supported values are:  - `transactions` - `full_registrations` - `registration_updates` - `deleted_registrations` - `expired_registrations` - `bootstraps_successful` - `bootstraps_failed` - `bootstraps_pending` - `handshakes_successful` - `device_server_rest_api_success` - `device_server_rest_api_error` - `total_count` 
             var interval = interval_example;  // string | Group the data by this interval in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The maximum interval cannot exceed one year (365 days). The allowed ranges are 5m-525600m/1h-8760h/1d-365d/1w-53w. 
-            var authorization = authorization_example;  // string | Bearer {Access Token}. A valid API Gateway access token. The token is validated and the associated account identifier is used to retrieve account-specific statistics. 
             var start = start_example;  // string | UTC time/year/date in RFC3339 format. Fetch the data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207. The maximum time between start and end parameters cannot exceed more than one year (365 days). The parameter is not mandatory, if the period is specified.  (optional) 
             var end = end_example;  // string | UTC time/year/date in RFC3339 format. Fetch the data with timestamp less than this value.Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207. The maximum time between start and end parameters cannot exceed more than one year ( 365 days ). The parameter is not mandatory, if the period is specified.  (optional) 
             var period = period_example;  // string | Period. Fetch the data for the period in minutes, hours, days or weeks. Sample values: 5m, 2h, 3d, 4w. The parameter is not mandatory, if the start and end time are specified. The maximum period cannot exceed one year (365 days). The allowed ranges are 5m-525600m/1h-8760h/1d-365d/1w-53w.  (optional) 
@@ -88,7 +87,7 @@ namespace Example
             try
             {
                 // Provides account-specific statistics for other cloud services.
-                SuccessfulResponse result = apiInstance.V3MetricsGet(include, interval, authorization, start, end, period, limit, after, order);
+                SuccessfulResponse result = apiInstance.V3MetricsGet(include, interval, start, end, period, limit, after, order);
                 Debug.WriteLine(result);
             }
             catch (Exception e)

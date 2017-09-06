@@ -16,6 +16,16 @@ namespace mbedCloudSDK.Update.Model.FirmwareManifest
         /// Gets or Sets Datafile
         /// </summary>
         public string Datafile { get; set; }
+
+        /// <summary>
+        /// Checksum generated for the datafile
+        /// </summary>
+        public string DatafileChecksum { get; private set; }
+
+        /// <summary>
+        /// Size in bytes of the uploaded firmware manifest binary
+        /// </summary>
+        public long? DatafileSize { get; private set; }
         
         /// <summary>
         /// The description of the object
@@ -66,6 +76,8 @@ namespace mbedCloudSDK.Update.Model.FirmwareManifest
             var sb = new StringBuilder();
             sb.Append("class FirmwareManifestSerializerData {\n");
             sb.Append("  Datafile: ").Append(Datafile).Append("\n");
+            sb.Append("  DatafileChecksum  ").Append(DatafileChecksum).Append("\n");
+            sb.Append("  DatafileSize  ").Append(DatafileSize).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
@@ -88,6 +100,8 @@ namespace mbedCloudSDK.Update.Model.FirmwareManifest
             FirmwareManifest manifest = new FirmwareManifest();
             manifest.CreatedAt = data.CreatedAt;
             manifest.Datafile = data.Datafile;
+            manifest.DatafileSize = data.DatafileSize;
+            manifest.DatafileChecksum = data.DatafileChecksum;
             manifest.Description = data.Description;
             manifest.DeviceClass = data.DeviceClass;
             manifest.Id = data.Id;

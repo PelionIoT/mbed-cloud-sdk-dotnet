@@ -88,7 +88,7 @@ namespace ConsoleExamples.Examples.Update
 
             // Create Campaign
             string campaignName = CreateRandomName();
-            var campaign = new UpdateCampaign();
+            var campaign = new Campaign();
             campaign.Name = campaignName;
             campaign.RootManifestId = manifest.Id;
             campaign.DeviceFilter = query.QueryString;

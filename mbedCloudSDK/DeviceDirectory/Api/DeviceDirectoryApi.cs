@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using device_directory.Client;
 using mbedCloudSDK.Common;
 
 
@@ -20,9 +22,19 @@ namespace mbedCloudSDK.DeviceDirectory.Api
         /// <param name="config">Config.</param>
         public DeviceDirectoryApi(Config config) : base(config)
         {
-            api = new device_directory.Api.DefaultApi(config.Host);
-            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            device_directory.Client.Configuration.Default.ApiClient = new ApiClient(config.Host);
+            device_directory.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
+            device_directory.Client.Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+
+            api = new device_directory.Api.DefaultApi();
+        }
+
+        /// <summary>
+        /// Get meta data for the last Mbed Cloud API call
+        /// </summary>
+        public ApiMetadata GetLastApiMetadata()
+        {
+            return ApiMetadata.Map(device_directory.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
         }
         private string FixedPath(string path)
         {

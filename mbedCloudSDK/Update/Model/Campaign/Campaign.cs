@@ -16,13 +16,13 @@ namespace mbedCloudSDK.Update.Model.Campaign
     /// <summary>
     /// Update campaign object from Update API.
     /// </summary>
-    public class UpdateCampaign
+    public class Campaign
     {
         /// <summary>
         /// State of the update campaign.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public UpdateCampaignState? State { get; set; }
+        public CampaignStateEnum? State { get; set; }
         
         /// <summary>
         /// An optional description of the campaign
@@ -84,7 +84,7 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// Create new update campaign object.
         /// </summary>
         /// <param name="options">Dictionary to initiate</param>
-        public UpdateCampaign(IDictionary<string, object> options = null)
+        public Campaign(IDictionary<string, object> options = null)
         {
             if (options != null)
             {
@@ -127,10 +127,10 @@ namespace mbedCloudSDK.Update.Model.Campaign
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static UpdateCampaign Map(update_service.Model.UpdateCampaign data)
+        public static Campaign Map(update_service.Model.UpdateCampaign data)
         {
-            var updateCampaignStatus = data.State.HasValue ? (UpdateCampaignState?)Enum.Parse(typeof(UpdateCampaignState), data.State.ToString()) : null;
-            var campaign = new UpdateCampaign();
+            var updateCampaignStatus = data.State.HasValue ? (CampaignStateEnum?)Enum.Parse(typeof(CampaignStateEnum), data.State.ToString()) : null;
+            var campaign = new Campaign();
             campaign.CreatedAt = data.CreatedAt;
             campaign.Description = data.Description;
             campaign.DeviceFilter = Utils.QueryStringToJson(data.DeviceFilter);

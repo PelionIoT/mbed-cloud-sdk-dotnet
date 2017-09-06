@@ -6,6 +6,8 @@ using mbedCloudSDK.Common;
 using mbedCloudSDK.Common.Query;
 using mbedCloudSDK.Exceptions;
 using System;
+using connector_ca.Client;
+using System.Linq;
 
 namespace mbedCloudSDK.Certificates.Api
 {
@@ -14,7 +16,7 @@ namespace mbedCloudSDK.Certificates.Api
     /// - Manage CA certificates
     /// - Manage developer certificates
     /// </summary>
-    class CertificatesApi : BaseApi
+    public class CertificatesApi : BaseApi
     {
         private DeveloperCertificateApi developerCertificateApi;
         private ServerCredentialsApi serverCredentialsApi;
@@ -28,24 +30,25 @@ namespace mbedCloudSDK.Certificates.Api
         {
             this.auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);
 
-            developerCertificateApi = new DeveloperCertificateApi(config.Host);
-            developerCertificateApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            developerCertificateApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            Configuration.Default.ApiClient = new ApiClient(config.Host);
+            Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
+            Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
 
-            serverCredentialsApi = new ServerCredentialsApi(config.Host);
-            serverCredentialsApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            serverCredentialsApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-
-            iamAccountApi = new AccountAdminApi(config.Host);
-            iamAccountApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            iamAccountApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-
-            developerApi = new DeveloperApi(config.Host);
-            developerApi.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            developerApi.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            developerCertificateApi = new DeveloperCertificateApi();
+            serverCredentialsApi = new ServerCredentialsApi();
+            iamAccountApi = new AccountAdminApi();
+            developerApi = new DeveloperApi();
 
             bootstrapServerUri = serverCredentialsApi.V3ServerCredentialsBootstrapGet(this.auth).ServerUri;
             lmw2mServerUri = serverCredentialsApi.V3ServerCredentialsLwm2mGet(this.auth).ServerUri;
+        }
+
+        /// <summary>
+        /// Get meta data for the last Mbed Cloud API call
+        /// </summary>
+        public ApiMetadata GetLastApiMetadata()
+        {
+            return ApiMetadata.Map(Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
         }
 
         /// <summary>

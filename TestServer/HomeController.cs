@@ -19,11 +19,18 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
 using mbedCloudSDK.Connect.Model.ConnectedDevice;
+using mds.Model;
 
 namespace TestServer
 {
     public class HomeController : ApiController
     {
+        private SingletonModuleInstance _moduleRepository;
+
+        public HomeController()
+        {
+            _moduleRepository = new SingletonModuleInstance();
+        }
         [HttpGet]
         public IHttpActionResult Init()
         {
@@ -33,10 +40,6 @@ namespace TestServer
         [HttpGet]
         public IHttpActionResult TestModuleMethod(string module, string method, [FromUri] string args = "")
         {
-            var apiKey = Utils.ReadSetting("ApiKey") as string;
-            var config = new Config(apiKey);
-            config.Host = "https://lab-api.mbedcloudintegration.net";
-
             var camelModule = Utils.SnakeToCamel(module);
             var camelMethod = Utils.SnakeToCamel(method);
 
@@ -49,9 +52,8 @@ namespace TestServer
                 argsJsonObj = JObject.Parse(argsJson);
             }
 
-            var assemblyTypes = Assembly.Load("mbedCloudSDK").GetTypes();
-            var moduleType = assemblyTypes.Where(t => t.Name == $"{camelModule}Api").FirstOrDefault();
-            var moduleInstance = Activator.CreateInstance(moduleType, config);
+            var moduleInstance = _moduleRepository.Create().GetModules()[camelModule];
+            var moduleType = moduleInstance.GetType();
 
             //get params for current method
             var methodInfo = moduleType.GetMethod(camelMethod);
@@ -128,6 +130,29 @@ namespace TestServer
                 {
                     var paramValue = GetParamValuePrimitive(p, paramType, argsJsonObj);
                     serialisedParams.Add(paramValue);
+                }
+                else if(paramType.IsArray){
+                    // currently not generic because EndpointName is sent as device_id and as Presubscription is generated, it cannot be decorated with a name attribute to correct this.
+                    var arrayType = paramType.GetElementType();
+                    if(arrayType == typeof(Presubscription))
+                    {
+                        var stringArg = GetParamValuePrimitive(p, paramType, argsJsonObj) as string;
+                        var json = JsonConvert.DeserializeObject(stringArg, typeof(JObject[])) as JObject[];
+                        var presubList = new List<Presubscription>();
+                        foreach (var item in json)
+                        {
+                            var presub = new Presubscription();
+                            presub.EndpointName = item["device_id"].Value<string>();
+                            var pathList = new List<ResourcePath>();
+                            foreach (var path in item["resource_paths"])
+                            {
+                                pathList.Add(new ResourcePath());
+                            }
+                            presub.ResourcePath = pathList;
+                            presubList.Add(presub);
+                        }
+                        serialisedParams.Add(presubList.ToArray());
+                    }
                 }
                 else
                 {
