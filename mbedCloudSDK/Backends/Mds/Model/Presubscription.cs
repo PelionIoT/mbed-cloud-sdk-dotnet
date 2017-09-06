@@ -35,7 +35,7 @@ namespace mds.Model
         /// <param name="EndpointName">The Device ID.</param>
         /// <param name="EndpointType">EndpointType.</param>
         /// <param name="ResourcePath">ResourcePath.</param>
-        public Presubscription(string EndpointName = default(string), string EndpointType = default(string), List<ResourcePath> ResourcePath = default(List<ResourcePath>))
+        public Presubscription(string EndpointName = default(string), string EndpointType = default(string), List<string> ResourcePath = default(List<string>))
         {
             this.EndpointName = EndpointName;
             this.EndpointType = EndpointType;
@@ -57,7 +57,7 @@ namespace mds.Model
         /// Gets or Sets ResourcePath
         /// </summary>
         [DataMember(Name="resource-path", EmitDefaultValue=false)]
-        public List<ResourcePath> ResourcePath { get; set; }
+        public List<string> ResourcePath { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>

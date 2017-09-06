@@ -39,7 +39,7 @@ namespace mds.Model
         /// </summary>
         /// <param name="Url">The URL to which the notifications are sent. We recommend that you serve this URL over HTTPS. (required).</param>
         /// <param name="Headers">Headers (key/value) that are sent with the notification. Optional..</param>
-        public Webhook(string Url = default(string), Object Headers = default(Object))
+        public Webhook(string Url = default(string), Dictionary<string, string> Headers = default(Dictionary<string, string>))
         {
             // to ensure "Url" is required (not null)
             if (Url == null)
@@ -64,7 +64,7 @@ namespace mds.Model
         /// </summary>
         /// <value>Headers (key/value) that are sent with the notification. Optional.</value>
         [DataMember(Name="headers", EmitDefaultValue=false)]
-        public Object Headers { get; set; }
+        public Dictionary<string, string> Headers { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -119,7 +119,7 @@ namespace mds.Model
                 (
                     this.Headers == other.Headers ||
                     this.Headers != null &&
-                    this.Headers.Equals(other.Headers)
+                    this.Headers.SequenceEqual(other.Headers)
                 );
         }
 

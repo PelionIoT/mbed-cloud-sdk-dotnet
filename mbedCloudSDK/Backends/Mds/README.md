@@ -130,7 +130,6 @@ Class | Method | HTTP request | Description
  - [Model.Presubscription](docs/Presubscription.md)
  - [Model.PresubscriptionArray](docs/PresubscriptionArray.md)
  - [Model.Resource](docs/Resource.md)
- - [Model.ResourcePath](docs/ResourcePath.md)
  - [Model.ResourcesData](docs/ResourcesData.md)
  - [Model.Webhook](docs/Webhook.md)
 
