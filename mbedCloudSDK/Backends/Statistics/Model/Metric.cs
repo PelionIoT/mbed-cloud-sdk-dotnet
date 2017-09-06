@@ -45,7 +45,7 @@ namespace statistics.Model
         /// <param name="BootstrapsSuccessful">The number of successful bootstraps the account has performed. Bootstrap is the process of provisioning a Lightweight Machine to Machine Client to a state where it can initiate a management session to a new Lightweight Machine to Machine Server..</param>
         /// <param name="DeletedRegistrations">The number of deleted registrations (deregistrations) linked to the account. Deregistration is the process of removing the device registration from the Mbed Cloud Connect registry. The deregistration is usually initiated by the device. Mbed Cloud Connect no longer handles requests for a deregistered device..</param>
         /// <param name="Id">A unique metric ID..</param>
-        public Metric(long? DeviceServerRestApiError = default(long?), long? RegistrationUpdates = default(long?), long? FullRegistrations = default(long?), long? BootstrapsFailed = default(long?), long? Transactions = default(long?), string Timestamp = default(string), long? DeviceServerRestApiSuccess = default(long?), long? BootstrapsPending = default(long?), long? ExpiredRegistrations = default(long?), long? HandshakesSuccessful = default(long?), long? BootstrapsSuccessful = default(long?), long? DeletedRegistrations = default(long?), string Id = default(string))
+        public Metric(long? DeviceServerRestApiError = default(long?), long? RegistrationUpdates = default(long?), long? FullRegistrations = default(long?), long? BootstrapsFailed = default(long?), long? Transactions = default(long?), DateTime? Timestamp = default(DateTime?), long? DeviceServerRestApiSuccess = default(long?), long? BootstrapsPending = default(long?), long? ExpiredRegistrations = default(long?), long? HandshakesSuccessful = default(long?), long? BootstrapsSuccessful = default(long?), long? DeletedRegistrations = default(long?), string Id = default(string))
         {
             this.DeviceServerRestApiError = DeviceServerRestApiError;
             this.RegistrationUpdates = RegistrationUpdates;
@@ -97,7 +97,7 @@ namespace statistics.Model
         /// </summary>
         /// <value>UTC time in RFC3339 format. The timestamp is the starting point of the interval for which the data is aggregated. Each interval includes data for the time greater than or equal to the timestamp and less than the next interval&#39;s starting point.</value>
         [DataMember(Name="timestamp", EmitDefaultValue=false)]
-        public string Timestamp { get; set; }
+        public DateTime? Timestamp { get; set; }
         /// <summary>
         /// The number of successful [Connect API](/docs/v1.2/api-references/connect-api.html) requests the account has performed.
         /// </summary>

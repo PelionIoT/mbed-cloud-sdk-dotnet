@@ -40,7 +40,7 @@ namespace statistics.Api
         /// <param name="after">The metric ID after which to start fetching.  (optional)</param>
         /// <param name="order">The order of the records to return. Available values are ASC and DESC. The default value is ASC.  (optional)</param>
         /// <returns>SuccessfulResponse</returns>
-        SuccessfulResponse V3MetricsGet (string include, string interval, string start = null, string end = null, string period = null, int? limit = null, string after = null, string order = null);
+        SuccessfulResponse V3MetricsGet (string include, string interval, DateTime? start = null, DateTime? end = null, string period = null, int? limit = null, string after = null, string order = null);
 
         /// <summary>
         /// Provides account-specific statistics for other cloud services.
@@ -58,7 +58,7 @@ namespace statistics.Api
         /// <param name="after">The metric ID after which to start fetching.  (optional)</param>
         /// <param name="order">The order of the records to return. Available values are ASC and DESC. The default value is ASC.  (optional)</param>
         /// <returns>ApiResponse of SuccessfulResponse</returns>
-        ApiResponse<SuccessfulResponse> V3MetricsGetWithHttpInfo (string include, string interval, string start = null, string end = null, string period = null, int? limit = null, string after = null, string order = null);
+        ApiResponse<SuccessfulResponse> V3MetricsGetWithHttpInfo (string include, string interval, DateTime? start = null, DateTime? end = null, string period = null, int? limit = null, string after = null, string order = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -77,7 +77,7 @@ namespace statistics.Api
         /// <param name="after">The metric ID after which to start fetching.  (optional)</param>
         /// <param name="order">The order of the records to return. Available values are ASC and DESC. The default value is ASC.  (optional)</param>
         /// <returns>Task of SuccessfulResponse</returns>
-        System.Threading.Tasks.Task<SuccessfulResponse> V3MetricsGetAsync (string include, string interval, string start = null, string end = null, string period = null, int? limit = null, string after = null, string order = null);
+        System.Threading.Tasks.Task<SuccessfulResponse> V3MetricsGetAsync (string include, string interval, DateTime? start = null, DateTime? end = null, string period = null, int? limit = null, string after = null, string order = null);
 
         /// <summary>
         /// Provides account-specific statistics for other cloud services.
@@ -95,7 +95,7 @@ namespace statistics.Api
         /// <param name="after">The metric ID after which to start fetching.  (optional)</param>
         /// <param name="order">The order of the records to return. Available values are ASC and DESC. The default value is ASC.  (optional)</param>
         /// <returns>Task of ApiResponse (SuccessfulResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SuccessfulResponse>> V3MetricsGetAsyncWithHttpInfo (string include, string interval, string start = null, string end = null, string period = null, int? limit = null, string after = null, string order = null);
+        System.Threading.Tasks.Task<ApiResponse<SuccessfulResponse>> V3MetricsGetAsyncWithHttpInfo (string include, string interval, DateTime? start = null, DateTime? end = null, string period = null, int? limit = null, string after = null, string order = null);
         #endregion Asynchronous Operations
     }
 
@@ -221,7 +221,7 @@ namespace statistics.Api
         /// <param name="after">The metric ID after which to start fetching.  (optional)</param>
         /// <param name="order">The order of the records to return. Available values are ASC and DESC. The default value is ASC.  (optional)</param>
         /// <returns>SuccessfulResponse</returns>
-        public SuccessfulResponse V3MetricsGet (string include, string interval, string start = null, string end = null, string period = null, int? limit = null, string after = null, string order = null)
+        public SuccessfulResponse V3MetricsGet (string include, string interval, DateTime? start = null, DateTime? end = null, string period = null, int? limit = null, string after = null, string order = null)
         {
              ApiResponse<SuccessfulResponse> localVarResponse = V3MetricsGetWithHttpInfo(include, interval, start, end, period, limit, after, order);
              return localVarResponse.Data;
@@ -240,7 +240,7 @@ namespace statistics.Api
         /// <param name="after">The metric ID after which to start fetching.  (optional)</param>
         /// <param name="order">The order of the records to return. Available values are ASC and DESC. The default value is ASC.  (optional)</param>
         /// <returns>ApiResponse of SuccessfulResponse</returns>
-        public ApiResponse< SuccessfulResponse > V3MetricsGetWithHttpInfo (string include, string interval, string start = null, string end = null, string period = null, int? limit = null, string after = null, string order = null)
+        public ApiResponse< SuccessfulResponse > V3MetricsGetWithHttpInfo (string include, string interval, DateTime? start = null, DateTime? end = null, string period = null, int? limit = null, string after = null, string order = null)
         {
             // verify the required parameter 'include' is set
             if (include == null)
@@ -321,7 +321,7 @@ namespace statistics.Api
         /// <param name="after">The metric ID after which to start fetching.  (optional)</param>
         /// <param name="order">The order of the records to return. Available values are ASC and DESC. The default value is ASC.  (optional)</param>
         /// <returns>Task of SuccessfulResponse</returns>
-        public async System.Threading.Tasks.Task<SuccessfulResponse> V3MetricsGetAsync (string include, string interval, string start = null, string end = null, string period = null, int? limit = null, string after = null, string order = null)
+        public async System.Threading.Tasks.Task<SuccessfulResponse> V3MetricsGetAsync (string include, string interval, DateTime? start = null, DateTime? end = null, string period = null, int? limit = null, string after = null, string order = null)
         {
              ApiResponse<SuccessfulResponse> localVarResponse = await V3MetricsGetAsyncWithHttpInfo(include, interval, start, end, period, limit, after, order);
              return localVarResponse.Data;
@@ -341,7 +341,7 @@ namespace statistics.Api
         /// <param name="after">The metric ID after which to start fetching.  (optional)</param>
         /// <param name="order">The order of the records to return. Available values are ASC and DESC. The default value is ASC.  (optional)</param>
         /// <returns>Task of ApiResponse (SuccessfulResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SuccessfulResponse>> V3MetricsGetAsyncWithHttpInfo (string include, string interval, string start = null, string end = null, string period = null, int? limit = null, string after = null, string order = null)
+        public async System.Threading.Tasks.Task<ApiResponse<SuccessfulResponse>> V3MetricsGetAsyncWithHttpInfo (string include, string interval, DateTime? start = null, DateTime? end = null, string period = null, int? limit = null, string after = null, string order = null)
         {
             // verify the required parameter 'include' is set
             if (include == null)
