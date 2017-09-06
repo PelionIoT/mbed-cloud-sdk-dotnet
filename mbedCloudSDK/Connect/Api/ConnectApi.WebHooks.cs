@@ -29,7 +29,7 @@ namespace mbedCloudSDK.Connect.Api
         /// </summary>
         /// <param name="url">The URL with listening webhook.</param>
         /// <param name="headers">K/V dict with additional headers to send with request</param>
-        public void UpdateWebhook(string url, object headers = null)
+        public void UpdateWebhook(string url, Dictionary<string, string> headers = null)
         {
             try
             {

@@ -25,7 +25,7 @@ namespace mbedCloudSDK.Connect.Model.Metric
         /// UTC time in RFC3339 format
         /// </summary>
         /// <value>UTC time in RFC3339 format</value>
-        public string Timestamp { get; private set; }
+        public DateTime? Timestamp { get; private set; }
         
         /// <summary>
         /// Number of pending bootstraps account has used.

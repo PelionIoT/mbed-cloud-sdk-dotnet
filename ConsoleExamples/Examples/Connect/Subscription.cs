@@ -42,7 +42,7 @@ namespace ConsoleExamples.Examples.Connect
                 if (resource.Path == buttonResource)
                 {
                     //Subscribe to the resource
-                    AsyncConsumer<String> consumer = api.Subscribe(endpoints[0].Id, resource);
+                    AsyncConsumer<String> consumer = api.AddResourceSubscription(endpoints[0].Id, resource.Path);
                     int counter = 0;
                     while (true)
                     {

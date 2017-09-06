@@ -144,7 +144,6 @@
     <Compile Include="Backends\Mds\Model\Presubscription.cs" />
     <Compile Include="Backends\Mds\Model\PresubscriptionArray.cs" />
     <Compile Include="Backends\Mds\Model\Resource.cs" />
-    <Compile Include="Backends\Mds\Model\ResourcePath.cs" />
     <Compile Include="Backends\Mds\Model\ResourcesData.cs" />
     <Compile Include="Backends\Mds\Model\Webhook.cs" />
     <Compile Include="Backends\Statistics\Api\AccountApi.cs" />
@@ -202,13 +201,14 @@
     <Compile Include="Connect\Api\ConnectApi.cs" />
     <Compile Include="Connect\Api\ConnectApi.Statistics.cs" />
     <Compile Include="Connect\Model\ConnectedDevice\ConnectedDevice.cs" />
-    <Compile Include="Connect\Model\Subscription\Subscription.cs" />
+    <Compile Include="Connect\Model\Subscription\Presubscription.cs" />
     <Compile Include="DeviceDirectory\Api\DeviceDirectoryApi.cs" />
     <Compile Include="DeviceDirectory\Api\DeviceDirectoryApi.Devices.cs" />
     <Compile Include="Connect\Api\ConnectApi.Notifications.cs" />
     <Compile Include="DeviceDirectory\Api\DeviceDirectoryApi.Logging.cs" />
     <Compile Include="DeviceDirectory\Api\DeviceDirectoryApi.Query.cs" />
-    <Compile Include="Connect\Api\ConnectApi.Subscriptions.cs" />
+    <Compile Include="Connect\Api\ConnectApi.Presubscriptions.cs" />
+    <Compile Include="Connect\Api\ConnectApi.ResourceSubscriptions.cs" />
     <Compile Include="DeviceDirectory\Model\Device\DeployedState.cs" />
     <Compile Include="DeviceDirectory\Model\Device\Mechanism.cs" />
     <Compile Include="DeviceDirectory\Model\Device\State.cs" />
