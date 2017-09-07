@@ -31,6 +31,11 @@ namespace mbedCloudSDK.Connect.Api
             }
         }
 
+        /// <summary>
+        /// Get an update from the resource subscription
+        /// </summary>
+        /// <param name="deviceId">Id of device.</param>
+        /// <param name="resourcePath">Resource path.</param>
         public void GetResourceSubscription(string deviceId, string resourcePath)
         {
             try
