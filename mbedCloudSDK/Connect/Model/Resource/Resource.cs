@@ -89,7 +89,7 @@ namespace mbedCloudSDK.Connect.Model.Resource
         /// <summary>
         /// Gets the value of the resource.
         /// </summary>
-        public AsyncConsumer<string> GetResourceValue()
+        public string GetResourceValue()
         {
             return this.api.GetResourceValue(this.DeviceId, this.Path);
         }

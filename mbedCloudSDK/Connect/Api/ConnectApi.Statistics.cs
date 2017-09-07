@@ -52,7 +52,8 @@ namespace mbedCloudSDK.Connect.Api
             }
             try
             {
-                var response = statisticsApi.V3MetricsGet(options.Include, options.Interval, auth, options.Start, options.End, options.Period, options.Limit, options.After, options.Order);
+                var response = statisticsApi.V3MetricsGet(include:options.Include, interval:options.Interval, 
+                    start:options.Start, end:options.End, period:options.Period, limit:options.Limit, after:options.After, order:options.Order);
                 var statisticsList = new List<Metric>();
                 foreach (var data in response.Data)
                 {
@@ -79,7 +80,7 @@ namespace mbedCloudSDK.Connect.Api
             }
             try
             {
-                var response = this.accountApi.V3MetricsGet(include:options.Include, interval:options.Interval, authorization:auth, start:options.Start, end:options.End, period:options.Period);
+                var response = this.accountApi.V3MetricsGet(include:options.Include, interval:options.Interval, start:options.Start, end:options.End, period:options.Period);
                 var statisticsList = new List<Metric>();
                 foreach (var data in response.Data)
                 {
