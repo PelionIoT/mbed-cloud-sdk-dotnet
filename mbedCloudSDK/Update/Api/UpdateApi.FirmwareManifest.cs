@@ -84,7 +84,9 @@ namespace mbedCloudSDK.Update.Api
             try
             {
                 var fs = File.Open(dataFile, FileMode.Open);
-                return FirmwareManifest.Map(api.FirmwareManifestCreate(fs, name, description));
+                var res = api.FirmwareManifestCreate(fs, name, description);
+                fs.Close();
+                return FirmwareManifest.Map(res);
             }
             catch (update_service.Client.ApiException e)
             {

@@ -82,8 +82,10 @@ namespace mbedCloudSDK.Update.Api
         {
             try
             {
-                var fs = File.Open(dataFile,FileMode.Open);
-                return FirmwareImage.Map(api.FirmwareImageCreate(fs, name));
+                var fs = File.OpenRead(dataFile);
+                var res = FirmwareImage.Map(api.FirmwareImageCreate(fs, name));
+                fs.Close();
+                return res;
             }
             catch (update_service.Client.ApiException e)
             {
@@ -94,12 +96,12 @@ namespace mbedCloudSDK.Update.Api
         /// <summary>
         /// Delete firmware image.
         /// </summary>
-        /// <param name="firmwareImageId">Id of the firmware image.</param>
-        public void DeleteFirmwareImage(string firmwareImageId)
+        /// <param name="imageId">Id of the firmware image.</param>
+        public void DeleteFirmwareImage(string imageId)
         {
             try
             {
-                api.FirmwareImageDestroy(firmwareImageId);
+                api.FirmwareImageDestroy(imageId);
             }
             catch (update_service.Client.ApiException e)
             {

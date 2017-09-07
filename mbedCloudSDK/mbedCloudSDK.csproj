@@ -252,6 +252,7 @@
     <Compile Include="Update\Model\Campaign\CampaignStateEnumConverter.cs" />
     <Compile Include="Update\Model\FirmwareImage\FirmwareImage.cs" />
     <Compile Include="Update\Model\FirmwareManifest\FirmwareManifest.cs" />
+    <Compile Include="Update\Model\FirmwareManifest\FirmwareManifestContents.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Backends\ConnectorCa\README.md" />
