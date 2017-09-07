@@ -143,10 +143,10 @@ namespace TestServer
                         {
                             var presub = new Presubscription();
                             presub.EndpointName = item["device_id"].Value<string>();
-                            var pathList = new List<ResourcePath>();
+                            var pathList = new List<string>();
                             foreach (var path in item["resource_paths"])
                             {
-                                pathList.Add(new ResourcePath());
+                                pathList.Add(path.Value<string>());
                             }
                             presub.ResourcePath = pathList;
                             presubList.Add(presub);
