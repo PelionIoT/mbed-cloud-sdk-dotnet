@@ -48,6 +48,9 @@ namespace mbedCloudSDK.Connect.Api
             }
         }
 
+        /// <summary>
+        /// Delete the presubscriptions
+        /// </summary>
         public void DeletePresubscriptions()
         {
             try
