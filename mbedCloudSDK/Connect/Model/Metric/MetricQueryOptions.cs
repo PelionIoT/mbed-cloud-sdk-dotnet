@@ -16,12 +16,12 @@ namespace mbedCloudSDK.Connect.Model.Metric
         /// <summary>
         /// UTC time/year/date in RFC3339 format. Fetch data with timestamp greater than or equal to this value. Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207. The parameter is not mandatory, if period specified.
         /// </summary>
-        public string Start { get; set; }
+        public DateTime? Start { get; set; }
 
         /// <summary>
         /// UTC time / year / date in RFC3339 format. Fetch data with timestamp less than this value.Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207.The parameter is not mandatory, if period specified. 
         /// </summary>
-        public string End { get; set; }
+        public DateTime? End { get; set; }
 
         /// <summary>
         /// Period. Fetch data for the period in days, weeks, hours or minutes. Sample values: 2h, 3w, 4d, 5m. The parameter is not mandatory, if start and end time are specified. 
@@ -47,7 +47,7 @@ namespace mbedCloudSDK.Connect.Model.Metric
 
         public MetricQueryOptions()
         {
-            this.Include = "transactions, bootstraps_successful, bootstraps_pending, bootstraps_failed, device_server_rest_api_success, device_server_rest_api_error";
+            this.Include = "transactions,bootstraps_successful,bootstraps_pending,bootstraps_failed,connect_rest_api_success,connect_rest_api_error,device_proxy_request_success,device_proxy_request_error,device_subscription_request_success,device_subscription_request_error,device_observations";
             this.Interval = "1d";
             this.Period = "1m";
         }

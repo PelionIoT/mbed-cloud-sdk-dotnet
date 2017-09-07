@@ -144,7 +144,6 @@
     <Compile Include="Backends\Mds\Model\Presubscription.cs" />
     <Compile Include="Backends\Mds\Model\PresubscriptionArray.cs" />
     <Compile Include="Backends\Mds\Model\Resource.cs" />
-    <Compile Include="Backends\Mds\Model\ResourcePath.cs" />
     <Compile Include="Backends\Mds\Model\ResourcesData.cs" />
     <Compile Include="Backends\Mds\Model\Webhook.cs" />
     <Compile Include="Backends\Statistics\Api\AccountApi.cs" />
@@ -156,7 +155,7 @@
     <Compile Include="Backends\Statistics\Client\ExceptionFactory.cs" />
     <Compile Include="Backends\Statistics\Client\IApiAccessor.cs" />
     <Compile Include="Backends\Statistics\Model\ErrorResponse.cs" />
-    <Compile Include="Backends\Statistics\Model\Field.cs" />
+    <Compile Include="Backends\Statistics\Model\Fields.cs" />
     <Compile Include="Backends\Statistics\Model\Metric.cs" />
     <Compile Include="Backends\Statistics\Model\SuccessfulResponse.cs" />
     <Compile Include="Backends\UpdateService\Api\DefaultApi.cs" />
