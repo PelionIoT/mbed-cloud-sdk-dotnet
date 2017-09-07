@@ -144,7 +144,14 @@ namespace statistics.Client
             // add file parameter, if any
             foreach(var param in fileParams)
             {
-                request.AddFile(param.Value.Name, param.Value.Writer, param.Value.FileName, param.Value.ContentType);
+                request.Files.Add(new FileParameter
+                {
+                    Name = param.Value.Name,
+                    Writer = param.Value.Writer,
+                    FileName = param.Value.ContentType,
+                    ContentType = param.Value.ContentType,
+                    ContentLength = param.Value.ContentLength
+                });
             }
 
             if (postBody != null) // http body (model or byte[]) parameter
@@ -243,9 +250,9 @@ namespace statistics.Client
         public FileParameter ParameterToFile(string name, Stream stream)
         {
             if (stream is FileStream)
-                return FileParameter.Create(name, ReadAsBytes(stream), Path.GetFileName(((FileStream)stream).Name));
+                return FileParameter.Create(name, ReadAsBytes(stream), Path.GetFileName(((FileStream)stream).Name), "multipart/form-data");
             else
-                return FileParameter.Create(name, ReadAsBytes(stream), "no_file_name_provided");
+                return FileParameter.Create(name, ReadAsBytes(stream), "no_file_name_provided", "multipart/form-data");
         }
 
         /// <summary>
