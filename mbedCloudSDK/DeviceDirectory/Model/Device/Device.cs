@@ -49,7 +49,7 @@ namespace mbedCloudSDK.DeviceDirectory.Model.Device
         /// <summary>
         /// Up to 5 custom JSON attributes
         /// </summary>
-        public Object CustomAttributes { get; set; }
+        public Dictionary<string, string> CustomAttributes { get; set; }
 
         /// <summary>
         /// The device class
