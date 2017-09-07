@@ -38,7 +38,7 @@ namespace statistics.Model
         /// <param name="RequestId">Request ID..</param>
         /// <param name="Message">Description of the error..</param>
         /// <param name="Type">Type of error..</param>
-        public ErrorResponse(int? Code = default(int?), List<Field> Fields = default(List<Field>), string _Object = default(string), string RequestId = default(string), string Message = default(string), string Type = default(string))
+        public ErrorResponse(int? Code = default(int?), List<Fields> Fields = default(List<Fields>), string _Object = default(string), string RequestId = default(string), string Message = default(string), string Type = default(string))
         {
             this.Code = Code;
             this.Fields = Fields;
@@ -59,7 +59,7 @@ namespace statistics.Model
         /// </summary>
         /// <value>Details of the error fields.</value>
         [DataMember(Name="fields", EmitDefaultValue=false)]
-        public List<Field> Fields { get; set; }
+        public List<Fields> Fields { get; set; }
         /// <summary>
         /// Response type, always \&quot;error\&quot;.
         /// </summary>
