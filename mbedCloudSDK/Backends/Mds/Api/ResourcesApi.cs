@@ -88,7 +88,7 @@ namespace mds.Api
         /// <param name="resourceFunction">This value is not needed. Most of the time resources do not accept a function but they have their own functions predefined. You can use this to trigger them.  If a function is included, the body of this request is passed as a char* to the function in mbed Cloud Client.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>AsyncID</returns>
-        AsyncID V2EndpointsDeviceIdResourcePathPost (string deviceId, string resourcePath, byte[] resourceFunction = null, bool? noResp = null);
+        AsyncID V2EndpointsDeviceIdResourcePathPost (string deviceId, string resourcePath, string resourceFunction = null, bool? noResp = null);
 
         /// <summary>
         /// Execute a function on a resource
@@ -102,7 +102,7 @@ namespace mds.Api
         /// <param name="resourceFunction">This value is not needed. Most of the time resources do not accept a function but they have their own functions predefined. You can use this to trigger them.  If a function is included, the body of this request is passed as a char* to the function in mbed Cloud Client.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>ApiResponse of AsyncID</returns>
-        ApiResponse<AsyncID> V2EndpointsDeviceIdResourcePathPostWithHttpInfo (string deviceId, string resourcePath, byte[] resourceFunction = null, bool? noResp = null);
+        ApiResponse<AsyncID> V2EndpointsDeviceIdResourcePathPostWithHttpInfo (string deviceId, string resourcePath, string resourceFunction = null, bool? noResp = null);
         /// <summary>
         /// Write to a resource
         /// </summary>
@@ -115,7 +115,7 @@ namespace mds.Api
         /// <param name="resourceValue">The value to be set to the resource. </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>AsyncID</returns>
-        AsyncID V2EndpointsDeviceIdResourcePathPut (string deviceId, string resourcePath, byte[] resourceValue, bool? noResp = null);
+        AsyncID V2EndpointsDeviceIdResourcePathPut (string deviceId, string resourcePath, string resourceValue, bool? noResp = null);
 
         /// <summary>
         /// Write to a resource
@@ -129,7 +129,7 @@ namespace mds.Api
         /// <param name="resourceValue">The value to be set to the resource. </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>ApiResponse of AsyncID</returns>
-        ApiResponse<AsyncID> V2EndpointsDeviceIdResourcePathPutWithHttpInfo (string deviceId, string resourcePath, byte[] resourceValue, bool? noResp = null);
+        ApiResponse<AsyncID> V2EndpointsDeviceIdResourcePathPutWithHttpInfo (string deviceId, string resourcePath, string resourceValue, bool? noResp = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -196,7 +196,7 @@ namespace mds.Api
         /// <param name="resourceFunction">This value is not needed. Most of the time resources do not accept a function but they have their own functions predefined. You can use this to trigger them.  If a function is included, the body of this request is passed as a char* to the function in mbed Cloud Client.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>Task of AsyncID</returns>
-        System.Threading.Tasks.Task<AsyncID> V2EndpointsDeviceIdResourcePathPostAsync (string deviceId, string resourcePath, byte[] resourceFunction = null, bool? noResp = null);
+        System.Threading.Tasks.Task<AsyncID> V2EndpointsDeviceIdResourcePathPostAsync (string deviceId, string resourcePath, string resourceFunction = null, bool? noResp = null);
 
         /// <summary>
         /// Execute a function on a resource
@@ -210,7 +210,7 @@ namespace mds.Api
         /// <param name="resourceFunction">This value is not needed. Most of the time resources do not accept a function but they have their own functions predefined. You can use this to trigger them.  If a function is included, the body of this request is passed as a char* to the function in mbed Cloud Client.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>Task of ApiResponse (AsyncID)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsDeviceIdResourcePathPostAsyncWithHttpInfo (string deviceId, string resourcePath, byte[] resourceFunction = null, bool? noResp = null);
+        System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsDeviceIdResourcePathPostAsyncWithHttpInfo (string deviceId, string resourcePath, string resourceFunction = null, bool? noResp = null);
         /// <summary>
         /// Write to a resource
         /// </summary>
@@ -223,7 +223,7 @@ namespace mds.Api
         /// <param name="resourceValue">The value to be set to the resource. </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>Task of AsyncID</returns>
-        System.Threading.Tasks.Task<AsyncID> V2EndpointsDeviceIdResourcePathPutAsync (string deviceId, string resourcePath, byte[] resourceValue, bool? noResp = null);
+        System.Threading.Tasks.Task<AsyncID> V2EndpointsDeviceIdResourcePathPutAsync (string deviceId, string resourcePath, string resourceValue, bool? noResp = null);
 
         /// <summary>
         /// Write to a resource
@@ -237,7 +237,7 @@ namespace mds.Api
         /// <param name="resourceValue">The value to be set to the resource. </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>Task of ApiResponse (AsyncID)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsDeviceIdResourcePathPutAsyncWithHttpInfo (string deviceId, string resourcePath, byte[] resourceValue, bool? noResp = null);
+        System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsDeviceIdResourcePathPutAsyncWithHttpInfo (string deviceId, string resourcePath, string resourceValue, bool? noResp = null);
         #endregion Asynchronous Operations
     }
 
@@ -705,7 +705,7 @@ namespace mds.Api
         /// <param name="resourceFunction">This value is not needed. Most of the time resources do not accept a function but they have their own functions predefined. You can use this to trigger them.  If a function is included, the body of this request is passed as a char* to the function in mbed Cloud Client.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>AsyncID</returns>
-        public AsyncID V2EndpointsDeviceIdResourcePathPost (string deviceId, string resourcePath, byte[] resourceFunction = null, bool? noResp = null)
+        public AsyncID V2EndpointsDeviceIdResourcePathPost (string deviceId, string resourcePath, string resourceFunction = null, bool? noResp = null)
         {
              ApiResponse<AsyncID> localVarResponse = V2EndpointsDeviceIdResourcePathPostWithHttpInfo(deviceId, resourcePath, resourceFunction, noResp);
              return localVarResponse.Data;
@@ -720,7 +720,7 @@ namespace mds.Api
         /// <param name="resourceFunction">This value is not needed. Most of the time resources do not accept a function but they have their own functions predefined. You can use this to trigger them.  If a function is included, the body of this request is passed as a char* to the function in mbed Cloud Client.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>ApiResponse of AsyncID</returns>
-        public ApiResponse< AsyncID > V2EndpointsDeviceIdResourcePathPostWithHttpInfo (string deviceId, string resourcePath, byte[] resourceFunction = null, bool? noResp = null)
+        public ApiResponse< AsyncID > V2EndpointsDeviceIdResourcePathPostWithHttpInfo (string deviceId, string resourcePath, string resourceFunction = null, bool? noResp = null)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
@@ -812,7 +812,7 @@ namespace mds.Api
         /// <param name="resourceFunction">This value is not needed. Most of the time resources do not accept a function but they have their own functions predefined. You can use this to trigger them.  If a function is included, the body of this request is passed as a char* to the function in mbed Cloud Client.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>Task of AsyncID</returns>
-        public async System.Threading.Tasks.Task<AsyncID> V2EndpointsDeviceIdResourcePathPostAsync (string deviceId, string resourcePath, byte[] resourceFunction = null, bool? noResp = null)
+        public async System.Threading.Tasks.Task<AsyncID> V2EndpointsDeviceIdResourcePathPostAsync (string deviceId, string resourcePath, string resourceFunction = null, bool? noResp = null)
         {
              ApiResponse<AsyncID> localVarResponse = await V2EndpointsDeviceIdResourcePathPostAsyncWithHttpInfo(deviceId, resourcePath, resourceFunction, noResp);
              return localVarResponse.Data;
@@ -828,7 +828,7 @@ namespace mds.Api
         /// <param name="resourceFunction">This value is not needed. Most of the time resources do not accept a function but they have their own functions predefined. You can use this to trigger them.  If a function is included, the body of this request is passed as a char* to the function in mbed Cloud Client.  (optional)</param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>Task of ApiResponse (AsyncID)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsDeviceIdResourcePathPostAsyncWithHttpInfo (string deviceId, string resourcePath, byte[] resourceFunction = null, bool? noResp = null)
+        public async System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsDeviceIdResourcePathPostAsyncWithHttpInfo (string deviceId, string resourcePath, string resourceFunction = null, bool? noResp = null)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
@@ -919,7 +919,7 @@ namespace mds.Api
         /// <param name="resourceValue">The value to be set to the resource. </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>AsyncID</returns>
-        public AsyncID V2EndpointsDeviceIdResourcePathPut (string deviceId, string resourcePath, byte[] resourceValue, bool? noResp = null)
+        public AsyncID V2EndpointsDeviceIdResourcePathPut (string deviceId, string resourcePath, string resourceValue, bool? noResp = null)
         {
              ApiResponse<AsyncID> localVarResponse = V2EndpointsDeviceIdResourcePathPutWithHttpInfo(deviceId, resourcePath, resourceValue, noResp);
              return localVarResponse.Data;
@@ -934,7 +934,7 @@ namespace mds.Api
         /// <param name="resourceValue">The value to be set to the resource. </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>ApiResponse of AsyncID</returns>
-        public ApiResponse< AsyncID > V2EndpointsDeviceIdResourcePathPutWithHttpInfo (string deviceId, string resourcePath, byte[] resourceValue, bool? noResp = null)
+        public ApiResponse< AsyncID > V2EndpointsDeviceIdResourcePathPutWithHttpInfo (string deviceId, string resourcePath, string resourceValue, bool? noResp = null)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
@@ -1029,7 +1029,7 @@ namespace mds.Api
         /// <param name="resourceValue">The value to be set to the resource. </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>Task of AsyncID</returns>
-        public async System.Threading.Tasks.Task<AsyncID> V2EndpointsDeviceIdResourcePathPutAsync (string deviceId, string resourcePath, byte[] resourceValue, bool? noResp = null)
+        public async System.Threading.Tasks.Task<AsyncID> V2EndpointsDeviceIdResourcePathPutAsync (string deviceId, string resourcePath, string resourceValue, bool? noResp = null)
         {
              ApiResponse<AsyncID> localVarResponse = await V2EndpointsDeviceIdResourcePathPutAsyncWithHttpInfo(deviceId, resourcePath, resourceValue, noResp);
              return localVarResponse.Data;
@@ -1045,7 +1045,7 @@ namespace mds.Api
         /// <param name="resourceValue">The value to be set to the resource. </param>
         /// <param name="noResp">**Non-confirmable requests**  All resource APIs have the parameter noResp. If you make a request with &#x60;noResp&#x3D;true&#x60;, mbed Cloud Connect makes a CoAP non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back an async-response-id.  If calls with this parameter enabled succeed, they return with the status code 204 No Content. If the underlying protocol does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code 409 Conflict.  (optional)</param>
         /// <returns>Task of ApiResponse (AsyncID)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsDeviceIdResourcePathPutAsyncWithHttpInfo (string deviceId, string resourcePath, byte[] resourceValue, bool? noResp = null)
+        public async System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsDeviceIdResourcePathPutAsyncWithHttpInfo (string deviceId, string resourcePath, string resourceValue, bool? noResp = null)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)

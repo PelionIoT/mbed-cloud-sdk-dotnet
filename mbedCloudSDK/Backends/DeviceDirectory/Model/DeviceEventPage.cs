@@ -1,7 +1,7 @@
 /* 
  * Device Directory API
  *
- * This is the API Documentation for the mbed device directory update service.
+ * This is the API Documentation for the Mbed device directory update service.
  *
  * OpenAPI spec version: 3
  * 
