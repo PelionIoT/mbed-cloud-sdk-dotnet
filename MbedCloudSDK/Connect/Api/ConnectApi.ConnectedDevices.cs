@@ -75,7 +75,7 @@ namespace MbedCloudSDK.Connect.Api
         public AsyncConsumer<string> SetResourceValue(string deviceId, string resourcePath, string resourceValue, bool? noResponse = null)
         {
             resourcePath = FixedPath(resourcePath);
-            var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPut(deviceId, resourcePath, Encoding.UTF8.GetBytes(resourceValue), noResponse);
+            var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPut(deviceId, resourcePath, resourceValue, noResponse);
             var collection = new AsyncProducerConsumerCollection<string>();
             asyncResponses.Add(asyncID.AsyncResponseId, collection);
             return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
@@ -91,7 +91,7 @@ namespace MbedCloudSDK.Connect.Api
         public AsyncConsumer<string> SetResourceValueAsync(string deviceId, string resourcePath, string resourceValue, bool? noResponse = null)
         {
             resourcePath = FixedPath(resourcePath);
-            var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPutAsync(deviceId, resourcePath, Encoding.UTF8.GetBytes(resourceValue), noResponse).Result;
+            var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPutAsync(deviceId, resourcePath, resourceValue, noResponse).Result;
             var collection = new AsyncProducerConsumerCollection<string>();
             asyncResponses.Add(asyncID.AsyncResponseId, collection);
             return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
