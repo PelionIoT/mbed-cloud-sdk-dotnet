@@ -34,7 +34,7 @@ namespace ConsoleExamples.Examples.Connect
                 throw new Exception("No endpoints registered. Aborting.");
             }
             var endpoints = endpointsResp.ToList();
-            //Start long polling thread
+            //Start pull notifications
             api.StartNotifications();
             var resources = endpoints[0].ListResources();
             foreach (var resource in resources)

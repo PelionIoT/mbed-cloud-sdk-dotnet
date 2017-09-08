@@ -68,7 +68,7 @@ namespace TestServer
                 var invokedMethod = methodInfo.Invoke(moduleInstance, @params.ToArray());
                 if (invokedMethod != null)
                 {
-                    if(invokedMethod.GetType().Name == "AsyncConsumer`1")
+                    if(invokedMethod.GetType() == typeof(AsyncConsumer<string>))
                     {
                         var asyncConsumer = invokedMethod as AsyncConsumer<string>;
                         return Ok(asyncConsumer.ToString());
