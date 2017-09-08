@@ -47,7 +47,7 @@ namespace mbedCloudSDK.Connect.Model.Metric
 
         public MetricQueryOptions()
         {
-            this.Include = "transactions, bootstraps_successful, bootstraps_pending, bootstraps_failed, device_server_rest_api_success, device_server_rest_api_error";
+            this.Include = "transactions,bootstraps_successful,bootstraps_pending,bootstraps_failed,connect_rest_api_success,connect_rest_api_error,device_proxy_request_success,device_proxy_request_error,device_subscription_request_success,device_subscription_request_error,device_observations";
             this.Interval = "1d";
             this.Period = "1m";
         }

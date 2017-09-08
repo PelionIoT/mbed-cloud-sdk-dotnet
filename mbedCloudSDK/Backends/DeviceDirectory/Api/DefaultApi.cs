@@ -49,7 +49,7 @@ namespace device_directory.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Delete device
+        /// Delete device. Only available for devices with a developer certificate. Attempts to delete a device with a production certicate will return a 400 response.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -60,7 +60,7 @@ namespace device_directory.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Delete device
+        /// Delete device. Only available for devices with a developer certificate. Attempts to delete a device with a production certicate will return a 400 response.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -427,7 +427,7 @@ namespace device_directory.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Delete device
+        /// Delete device. Only available for devices with a developer certificate. Attempts to delete a device with a production certicate will return a 400 response.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -438,7 +438,7 @@ namespace device_directory.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Delete device
+        /// Delete device. Only available for devices with a developer certificate. Attempts to delete a device with a production certicate will return a 400 response.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1055,7 +1055,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Delete device
+        ///  Delete device. Only available for devices with a developer certificate. Attempts to delete a device with a production certicate will return a 400 response.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1066,7 +1066,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Delete device
+        ///  Delete device. Only available for devices with a developer certificate. Attempts to delete a device with a production certicate will return a 400 response.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1129,7 +1129,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Delete device
+        ///  Delete device. Only available for devices with a developer certificate. Attempts to delete a device with a production certicate will return a 400 response.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1141,7 +1141,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Delete device
+        ///  Delete device. Only available for devices with a developer certificate. Attempts to delete a device with a production certicate will return a 400 response.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>

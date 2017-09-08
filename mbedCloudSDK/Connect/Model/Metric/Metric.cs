@@ -56,6 +56,41 @@ namespace mbedCloudSDK.Connect.Model.Metric
         /// </summary>
         /// <value>Number of failed device server REST API requests the account has used.</value>
         public long? FailedApiCalls { get; set; }
+        /// <summary>
+        /// The number of successful proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from
+        /// Mbed Cloud Connect to devices when you try to read or write values to device resources using Connect API endpoints.
+        /// </summary>
+        /// <value>The number of successful proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from
+        /// Mbed Cloud Connect to devices when you try to read or write values to device resources using Connect API endpoints.</value>
+        public long? DeviceProxyRequestSuccess { get; set; }
+        /// <summary>
+        /// The number of failed proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from
+        /// Mbed Cloud Connect to devices when you try to read or write values to device resources using Connect API endpoints.
+        /// </summary>
+        /// <value>The number of failed proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from
+        /// Mbed Cloud Connect to devices when you try to read or write values to device resources using Connect API endpoints.</value>
+        public long? DeviceProxyRequestError { get; set; }
+        /// <summary>
+        /// The number of successful subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from
+        /// Mbed Cloud Connect to devices when you try to subscribe to a resource path using Connect API endpoints.
+        /// </summary>
+        /// <value>The number of successful subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from
+        /// Mbed Cloud Connect to devices when you try to subscribe to a resource path using Connect API endpoints.</value>
+        public long? DeviceSubscriptionRequestSuccess { get; set; }
+        /// <summary>
+        /// The number of failed subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from
+        /// Mbed Cloud Connect to devices when you try to subscribe to a resource path using Connect API endpoints.
+        /// </summary>
+        /// <value>The number of failed subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from
+        /// Mbed Cloud Connect to devices when you try to subscribe to a resource path using Connect API endpoints.</value>
+        public long? DeviceSubscriptionRequestError { get; set; }
+        /// <summary>
+        /// The number of observations received by Mbed Cloud Connect from the devices linked to the account. The observations are pushed from the device to
+        /// Mbed Cloud Connect when you have successfully subscribed to the device resources using Connect API endpoints.
+        /// </summary>
+        /// <value>The number of observations received by Mbed Cloud Connect from the devices linked to the account. The observations are pushed from the device to
+        /// Mbed Cloud Connect when you have successfully subscribed to the device resources using Connect API endpoints.</value>
+        public long? DeviceObservations { get; set; }
 
         public static Metric Map(statistics.Model.Metric statisticsData)
         {
@@ -65,8 +100,13 @@ namespace mbedCloudSDK.Connect.Model.Metric
             metric.Transactions = statisticsData.Transactions;
             metric.PendingDeviceRegistrations = statisticsData.BootstrapsPending;
             metric.SuccessfulDeviceRegistrations = statisticsData.BootstrapsSuccessful;
-            metric.SuccessfulApiCalls = statisticsData.DeviceServerRestApiSuccess;
-            metric.FailedApiCalls = statisticsData.DeviceServerRestApiError;
+            metric.SuccessfulApiCalls = statisticsData.ConnectRestApiSuccess;
+            metric.FailedApiCalls = statisticsData.ConnectRestApiError;
+            metric.DeviceProxyRequestSuccess = statisticsData.DeviceProxyRequestSuccess;
+            metric.DeviceProxyRequestError = statisticsData.DeviceProxyRequestError;
+            metric.DeviceSubscriptionRequestSuccess = statisticsData.DeviceSubscriptionRequestSuccess;
+            metric.DeviceSubscriptionRequestError = statisticsData.DeviceSubscriptionRequestError;
+            metric.DeviceObservations = statisticsData.DeviceObservations;
             return metric;
         }
         
@@ -85,6 +125,11 @@ namespace mbedCloudSDK.Connect.Model.Metric
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("  SuccessfulApiCalls: ").Append(SuccessfulApiCalls).Append("\n");
             sb.Append("  FailedApiCalls: ").Append(FailedApiCalls).Append("\n");
+            sb.Append("  DeviceProxyRequestSuccess: ").Append(DeviceProxyRequestSuccess).Append("\n");
+            sb.Append("  DeviceProxyRequestError: ").Append(DeviceProxyRequestError).Append("\n");
+            sb.Append("  DeviceSubscriptionRequestSuccess: ").Append(DeviceSubscriptionRequestSuccess).Append("\n");
+            sb.Append("  DeviceSubscriptionRequestError: ").Append(DeviceSubscriptionRequestError).Append("\n");
+            sb.Append("  DeviceObservations: ").Append(DeviceObservations).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

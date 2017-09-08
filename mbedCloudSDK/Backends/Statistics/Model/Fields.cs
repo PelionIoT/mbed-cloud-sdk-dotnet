@@ -24,17 +24,17 @@ using System.ComponentModel.DataAnnotations;
 namespace statistics.Model
 {
     /// <summary>
-    /// Field
+    /// Fields
     /// </summary>
     [DataContract]
-    public partial class Field :  IEquatable<Field>, IValidatableObject
+    public partial class Fields :  IEquatable<Fields>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Field" /> class.
+        /// Initializes a new instance of the <see cref="Fields" /> class.
         /// </summary>
         /// <param name="Message">Error description..</param>
         /// <param name="Name">The field name in the request for which the validation has failed..</param>
-        public Field(string Message = default(string), string Name = default(string))
+        public Fields(string Message = default(string), string Name = default(string))
         {
             this.Message = Message;
             this.Name = Name;
@@ -59,7 +59,7 @@ namespace statistics.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Field {\n");
+            sb.Append("class Fields {\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
@@ -83,15 +83,15 @@ namespace statistics.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as Field);
+            return this.Equals(obj as Fields);
         }
 
         /// <summary>
-        /// Returns true if Field instances are equal
+        /// Returns true if Fields instances are equal
         /// </summary>
-        /// <param name="other">Instance of Field to be compared</param>
+        /// <param name="other">Instance of Fields to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Field other)
+        public bool Equals(Fields other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)

@@ -155,7 +155,7 @@
     <Compile Include="Backends\Statistics\Client\ExceptionFactory.cs" />
     <Compile Include="Backends\Statistics\Client\IApiAccessor.cs" />
     <Compile Include="Backends\Statistics\Model\ErrorResponse.cs" />
-    <Compile Include="Backends\Statistics\Model\Field.cs" />
+    <Compile Include="Backends\Statistics\Model\Fields.cs" />
     <Compile Include="Backends\Statistics\Model\Metric.cs" />
     <Compile Include="Backends\Statistics\Model\SuccessfulResponse.cs" />
     <Compile Include="Backends\UpdateService\Api\DefaultApi.cs" />
