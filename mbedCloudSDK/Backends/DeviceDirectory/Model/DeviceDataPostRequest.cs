@@ -1,7 +1,7 @@
 /* 
  * Device Directory API
  *
- * This is the API Documentation for the mbed device directory update service.
+ * This is the API Documentation for the Mbed device directory update service.
  *
  * OpenAPI spec version: 3
  * 
@@ -90,9 +90,9 @@ namespace device_directory.Model
         }
 
         /// <summary>
-        /// DEPRECATED The state of the device's deployment.
+        /// DEPRECATED: The state of the device's deployment.
         /// </summary>
-        /// <value>DEPRECATED The state of the device's deployment.</value>
+        /// <value>DEPRECATED: The state of the device's deployment.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum DeployedStateEnum
         {
@@ -123,9 +123,9 @@ namespace device_directory.Model
         [DataMember(Name="state", EmitDefaultValue=false)]
         public StateEnum? State { get; set; }
         /// <summary>
-        /// DEPRECATED The state of the device's deployment.
+        /// DEPRECATED: The state of the device's deployment.
         /// </summary>
-        /// <value>DEPRECATED The state of the device's deployment.</value>
+        /// <value>DEPRECATED: The state of the device's deployment.</value>
         [DataMember(Name="deployed_state", EmitDefaultValue=false)]
         public DeployedStateEnum? DeployedState { get; set; }
         /// <summary>
@@ -136,31 +136,31 @@ namespace device_directory.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceDataPostRequest" /> class.
         /// </summary>
-        /// <param name="BootstrapExpirationDate">Expiration date of the certificate used to connect to bootstrap server..</param>
-        /// <param name="BootstrappedTimestamp">Timestamp of when the device last went through the bootstrap process..</param>
-        /// <param name="ConnectorExpirationDate">Expiration date of the certificate used to connect to the lwm2m server..</param>
+        /// <param name="BootstrapExpirationDate">The expiration date of the certificate used to connect to bootstrap server..</param>
+        /// <param name="BootstrappedTimestamp">The timestamp of the device&#39;s most recent bootstrap process...</param>
+        /// <param name="ConnectorExpirationDate">The expiration date of the certificate used to connect to the LWM2M server..</param>
         /// <param name="Mechanism">The ID of the channel used to communicate with the device..</param>
-        /// <param name="DeviceClass">An id representing the model and hardware revision of the device..</param>
+        /// <param name="DeviceClass">An ID representing the model and hardware revision of the device..</param>
         /// <param name="EndpointName">The endpoint name given to the device..</param>
-        /// <param name="AutoUpdate">DEPRECATED Mark this device for auto firmware update..</param>
-        /// <param name="HostGateway">The endpoint_name of the host gateway, if appropriate..</param>
-        /// <param name="DeviceExecutionMode">Defines the type of certificate used..</param>
-        /// <param name="CustomAttributes">Custom attributes(key/value). Up to 5 attributes.</param>
+        /// <param name="AutoUpdate">DEPRECATED: Mark this device for automatic firmware update..</param>
+        /// <param name="HostGateway">The &#x60;endpoint_name&#x60; of the host gateway, if appropriate..</param>
+        /// <param name="DeviceExecutionMode">The certificate type..</param>
+        /// <param name="CustomAttributes">Up to five custom key-value attributes..</param>
         /// <param name="State">The current state of the device..</param>
         /// <param name="SerialNumber">The serial number of the device..</param>
         /// <param name="FirmwareChecksum">The SHA256 checksum of the current firmware image..</param>
         /// <param name="VendorId">The device vendor ID..</param>
         /// <param name="Description">The description of the device..</param>
-        /// <param name="DeployedState">DEPRECATED The state of the device&#39;s deployment..</param>
+        /// <param name="DeployedState">DEPRECATED: The state of the device&#39;s deployment..</param>
         /// <param name="_Object">The API resource entity..</param>
-        /// <param name="EndpointType">The endpoint type of the device - e.g. if the device is a gateway..</param>
-        /// <param name="Deployment">DEPRECATED The last deployment used on the device..</param>
+        /// <param name="EndpointType">The endpoint type of the device. For example, the device is a gateway..</param>
+        /// <param name="Deployment">DEPRECATED: The last deployment used on the device..</param>
         /// <param name="MechanismUrl">The address of the connector to use..</param>
         /// <param name="TrustLevel">The device trust level..</param>
         /// <param name="Name">The name of the device..</param>
-        /// <param name="DeviceKey">Fingerprint of the device certificate. (required).</param>
-        /// <param name="Manifest">DEPRECATED The URL for the current device manifest..</param>
-        /// <param name="CaId">ID of the issuer of the certificate. (required).</param>
+        /// <param name="DeviceKey">The fingerprint of the device certificate. (required).</param>
+        /// <param name="Manifest">DEPRECATED: The URL for the current device manifest..</param>
+        /// <param name="CaId">The certificate issuer&#39;s ID. (required).</param>
         public DeviceDataPostRequest(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), MechanismEnum? Mechanism = default(MechanismEnum?), string DeviceClass = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), int? DeviceExecutionMode = default(int?), Dictionary<string, string> CustomAttributes = default(Dictionary<string, string>), StateEnum? State = default(StateEnum?), string SerialNumber = default(string), string FirmwareChecksum = default(string), string VendorId = default(string), string Description = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string _Object = default(string), string EndpointType = default(string), string Deployment = default(string), string MechanismUrl = default(string), int? TrustLevel = default(int?), string Name = default(string), string DeviceKey = default(string), string Manifest = default(string), string CaId = default(string))
         {
             // to ensure "DeviceKey" is required (not null)
@@ -207,27 +207,27 @@ namespace device_directory.Model
         }
         
         /// <summary>
-        /// Expiration date of the certificate used to connect to bootstrap server.
+        /// The expiration date of the certificate used to connect to bootstrap server.
         /// </summary>
-        /// <value>Expiration date of the certificate used to connect to bootstrap server.</value>
+        /// <value>The expiration date of the certificate used to connect to bootstrap server.</value>
         [DataMember(Name="bootstrap_expiration_date", EmitDefaultValue=false)]
         public DateTime? BootstrapExpirationDate { get; set; }
         /// <summary>
-        /// Timestamp of when the device last went through the bootstrap process.
+        /// The timestamp of the device&#39;s most recent bootstrap process..
         /// </summary>
-        /// <value>Timestamp of when the device last went through the bootstrap process.</value>
+        /// <value>The timestamp of the device&#39;s most recent bootstrap process..</value>
         [DataMember(Name="bootstrapped_timestamp", EmitDefaultValue=false)]
         public DateTime? BootstrappedTimestamp { get; set; }
         /// <summary>
-        /// Expiration date of the certificate used to connect to the lwm2m server.
+        /// The expiration date of the certificate used to connect to the LWM2M server.
         /// </summary>
-        /// <value>Expiration date of the certificate used to connect to the lwm2m server.</value>
+        /// <value>The expiration date of the certificate used to connect to the LWM2M server.</value>
         [DataMember(Name="connector_expiration_date", EmitDefaultValue=false)]
         public DateTime? ConnectorExpirationDate { get; set; }
         /// <summary>
-        /// An id representing the model and hardware revision of the device.
+        /// An ID representing the model and hardware revision of the device.
         /// </summary>
-        /// <value>An id representing the model and hardware revision of the device.</value>
+        /// <value>An ID representing the model and hardware revision of the device.</value>
         [DataMember(Name="device_class", EmitDefaultValue=false)]
         public string DeviceClass { get; set; }
         /// <summary>
@@ -237,27 +237,27 @@ namespace device_directory.Model
         [DataMember(Name="endpoint_name", EmitDefaultValue=false)]
         public string EndpointName { get; set; }
         /// <summary>
-        /// DEPRECATED Mark this device for auto firmware update.
+        /// DEPRECATED: Mark this device for automatic firmware update.
         /// </summary>
-        /// <value>DEPRECATED Mark this device for auto firmware update.</value>
+        /// <value>DEPRECATED: Mark this device for automatic firmware update.</value>
         [DataMember(Name="auto_update", EmitDefaultValue=false)]
         public bool? AutoUpdate { get; set; }
         /// <summary>
-        /// The endpoint_name of the host gateway, if appropriate.
+        /// The &#x60;endpoint_name&#x60; of the host gateway, if appropriate.
         /// </summary>
-        /// <value>The endpoint_name of the host gateway, if appropriate.</value>
+        /// <value>The &#x60;endpoint_name&#x60; of the host gateway, if appropriate.</value>
         [DataMember(Name="host_gateway", EmitDefaultValue=false)]
         public string HostGateway { get; set; }
         /// <summary>
-        /// Defines the type of certificate used.
+        /// The certificate type.
         /// </summary>
-        /// <value>Defines the type of certificate used.</value>
+        /// <value>The certificate type.</value>
         [DataMember(Name="device_execution_mode", EmitDefaultValue=false)]
         public int? DeviceExecutionMode { get; set; }
         /// <summary>
-        /// Custom attributes(key/value). Up to 5 attributes
+        /// Up to five custom key-value attributes.
         /// </summary>
-        /// <value>Custom attributes(key/value). Up to 5 attributes</value>
+        /// <value>Up to five custom key-value attributes.</value>
         [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
         public Dictionary<string, string> CustomAttributes { get; set; }
         /// <summary>
@@ -291,15 +291,15 @@ namespace device_directory.Model
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
         /// <summary>
-        /// The endpoint type of the device - e.g. if the device is a gateway.
+        /// The endpoint type of the device. For example, the device is a gateway.
         /// </summary>
-        /// <value>The endpoint type of the device - e.g. if the device is a gateway.</value>
+        /// <value>The endpoint type of the device. For example, the device is a gateway.</value>
         [DataMember(Name="endpoint_type", EmitDefaultValue=false)]
         public string EndpointType { get; set; }
         /// <summary>
-        /// DEPRECATED The last deployment used on the device.
+        /// DEPRECATED: The last deployment used on the device.
         /// </summary>
-        /// <value>DEPRECATED The last deployment used on the device.</value>
+        /// <value>DEPRECATED: The last deployment used on the device.</value>
         [DataMember(Name="deployment", EmitDefaultValue=false)]
         public string Deployment { get; set; }
         /// <summary>
@@ -321,21 +321,21 @@ namespace device_directory.Model
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
-        /// Fingerprint of the device certificate.
+        /// The fingerprint of the device certificate.
         /// </summary>
-        /// <value>Fingerprint of the device certificate.</value>
+        /// <value>The fingerprint of the device certificate.</value>
         [DataMember(Name="device_key", EmitDefaultValue=false)]
         public string DeviceKey { get; set; }
         /// <summary>
-        /// DEPRECATED The URL for the current device manifest.
+        /// DEPRECATED: The URL for the current device manifest.
         /// </summary>
-        /// <value>DEPRECATED The URL for the current device manifest.</value>
+        /// <value>DEPRECATED: The URL for the current device manifest.</value>
         [DataMember(Name="manifest", EmitDefaultValue=false)]
         public string Manifest { get; set; }
         /// <summary>
-        /// ID of the issuer of the certificate.
+        /// The certificate issuer&#39;s ID.
         /// </summary>
-        /// <value>ID of the issuer of the certificate.</value>
+        /// <value>The certificate issuer&#39;s ID.</value>
         [DataMember(Name="ca_id", EmitDefaultValue=false)]
         public string CaId { get; set; }
         /// <summary>

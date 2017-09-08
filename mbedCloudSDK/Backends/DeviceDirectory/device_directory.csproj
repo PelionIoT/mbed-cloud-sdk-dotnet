@@ -2,7 +2,7 @@
 <!--
 Device Directory API
 
-This is the API Documentation for the mbed device directory update service.
+This is the API Documentation for the Mbed device directory update service.
 
 OpenAPI spec version: 3
 
@@ -11,7 +11,7 @@ OpenAPI spec version: 3
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E86E33BB-9114-4BAC-8B37-E5870DF87CC9}</ProjectGuid>
+    <ProjectGuid>{F1474E7B-1689-4C1E-B730-3CE0C7AA845A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>device_directory</RootNamespace>
