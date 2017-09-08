@@ -20,6 +20,10 @@ namespace mbedCloudSDK.Update.Model.FirmwareManifest
         /// <value>An payload storage destination identifier. The identifier specifies where to place the firmware image on the device. For example, when an IoT device has multiple microcontrollers (MCUs), the identifier determines which MCU receives the image.</value>
         public string StorageIdentifier { get; set; }
 
+        /// <summary>
+        /// Map to ManifestContentsPayload object.
+        /// </summary>
+        /// <param name="item"></param>
         public static ManifestContentsPayload Map(update_service.Model.ManifestContentsPayload item)
         {
             var payload = new ManifestContentsPayload();

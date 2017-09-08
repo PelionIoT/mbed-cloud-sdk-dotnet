@@ -13,41 +13,49 @@ namespace mbedCloudSDK.Update.Model.FirmwareManifest
         /// </summary>
         /// <value>The device class&#39;s 128-bit RFC4122 GUID as a hexidecimal digit string</value>
         public string ClassId { get; set; }
+
         /// <summary>
         /// The vendor&#39;s 128-bit RFC4122 GUID as a hexidecimal digit string
         /// </summary>
         /// <value>The vendor&#39;s 128-bit RFC4122 GUID as a hexidecimal digit string</value>
         public string VendorId { get; set; }
+
         /// <summary>
         /// The manifest format version
         /// </summary>
         /// <value>The manifest format version</value>
         public int? Version { get; set; }
+
         /// <summary>
         /// A short description of the update
         /// </summary>
         /// <value>A short description of the update</value>
         public string Description { get; set; }
+
         /// <summary>
         /// A 128-bit random field. This is provided by the manifest tool to ensure that the signing algorithm is safe from timing side-channel attacks.
         /// </summary>
         /// <value>A 128-bit random field. This is provided by the manifest tool to ensure that the signing algorithm is safe from timing side-channel attacks.</value>
         public string Nonce { get; set; }
+
         /// <summary>
         /// The time the manifest was created. The timestamp is stored as Unix time.
         /// </summary>
         /// <value>The time the manifest was created. The timestamp is stored as Unix time.</value>
         public int? CreatedAt { get; set; }
+
         /// <summary>
         /// Gets or Sets EncryptionMode
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public ManifestContentsEncryptionModeEnum EncryptionMode { get; set; }
+        public ManifestContentsEncryptionModeEnum? EncryptionMode { get; set; }
+
         /// <summary>
         /// A flag that indicates whether the update described by the manifest should be applied as soon as possible
         /// </summary>
         /// <value>A flag that indicates whether the update described by the manifest should be applied as soon as possible</value>
         public bool? ApplyImmediately { get; set; }
+
         /// <summary>
         /// The device&#39;s 128-bit RFC4122 GUID as a hexidecimal digit string. Each device has a single, unique device ID.
         /// </summary>
@@ -84,6 +92,10 @@ namespace mbedCloudSDK.Update.Model.FirmwareManifest
         /// <value>Size of the payload in bytes</value>
         public int? PayloadSize { get; set; }
 
+        /// <summary>
+        /// Map to FirmwareManifestContents object.
+        /// </summary>
+        /// <param name="item"></param>
         public static FirmwareManifestContents Map(update_service.Model.ManifestContents item)
         {
             var contents = new FirmwareManifestContents();
@@ -95,7 +107,7 @@ namespace mbedCloudSDK.Update.Model.FirmwareManifest
             contents.CreatedAt = item.Timestamp;
             contents.ApplyImmediately = item.ApplyImmediately;
             contents.DeviceId = item.DeviceId;
-            contents.EncryptionMode = (ManifestContentsEncryptionModeEnum)item.EncryptionMode._Enum.Value;
+            contents.EncryptionMode = item.EncryptionMode._Enum.HasValue ? (ManifestContentsEncryptionModeEnum)item.EncryptionMode._Enum.Value : default(ManifestContentsEncryptionModeEnum);
 
             var manifestContentsPayload = ManifestContentsPayload.Map(item.Payload);
             contents.PayloadFormat = manifestContentsPayload.PayloadFormat;

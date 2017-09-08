@@ -18,6 +18,10 @@ namespace mbedCloudSDK.Update.Model.FirmwareManifest
         /// <value>Size of the payload in bytes</value>
         public int? PayloadSize { get; set; }
 
+        /// <summary>
+        /// Map to ManifestContentsPayloadReference object.
+        /// </summary>
+        /// <param name="item"></param>
         public static ManifestContentsPayloadReference Map(update_service.Model.ManifestContentsPayloadReference item)
         {
             var payloadRef = new ManifestContentsPayloadReference();
