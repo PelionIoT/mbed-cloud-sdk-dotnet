@@ -1,7 +1,7 @@
 /* 
  * Device Directory API
  *
- * This is the API Documentation for the mbed device directory update service.
+ * This is the API Documentation for the Mbed device directory update service.
  *
  * OpenAPI spec version: 3
  * 
@@ -34,13 +34,13 @@ namespace device_directory.Model
         /// </summary>
         /// <param name="Description">The description of the device..</param>
         /// <param name="EndpointName">The endpoint name given to the device..</param>
-        /// <param name="AutoUpdate">DEPRECATED Mark this device for auto firmware update..</param>
-        /// <param name="HostGateway">The endpoint_name of the host gateway, if appropriate..</param>
+        /// <param name="AutoUpdate">DEPRECATED: Mark this device for automatic firmware update..</param>
+        /// <param name="HostGateway">The &#x60;endpoint_name&#x60; of the host gateway, if appropriate..</param>
         /// <param name="_Object">The API resource entity..</param>
-        /// <param name="CustomAttributes">Custom attributes(key/value). Up to 5 attributes.</param>
-        /// <param name="DeviceKey">Fingerprint of the device certificate..</param>
-        /// <param name="EndpointType">The endpoint type of the device - e.g. if the device is a gateway..</param>
-        /// <param name="CaId">ID of the issuer of the certificate..</param>
+        /// <param name="CustomAttributes">Up to five custom key-value attributes..</param>
+        /// <param name="DeviceKey">The fingerprint of the device certificate..</param>
+        /// <param name="EndpointType">The endpoint type of the device. For example, the device is a gateway..</param>
+        /// <param name="CaId">The certificate issuer&#39;s ID..</param>
         /// <param name="Name">The name of the device..</param>
         public DeviceDataPatchRequest(string Description = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), string _Object = default(string), Dictionary<string, string> CustomAttributes = default(Dictionary<string, string>), string DeviceKey = default(string), string EndpointType = default(string), string CaId = default(string), string Name = default(string))
         {
@@ -69,15 +69,15 @@ namespace device_directory.Model
         [DataMember(Name="endpoint_name", EmitDefaultValue=false)]
         public string EndpointName { get; set; }
         /// <summary>
-        /// DEPRECATED Mark this device for auto firmware update.
+        /// DEPRECATED: Mark this device for automatic firmware update.
         /// </summary>
-        /// <value>DEPRECATED Mark this device for auto firmware update.</value>
+        /// <value>DEPRECATED: Mark this device for automatic firmware update.</value>
         [DataMember(Name="auto_update", EmitDefaultValue=false)]
         public bool? AutoUpdate { get; set; }
         /// <summary>
-        /// The endpoint_name of the host gateway, if appropriate.
+        /// The &#x60;endpoint_name&#x60; of the host gateway, if appropriate.
         /// </summary>
-        /// <value>The endpoint_name of the host gateway, if appropriate.</value>
+        /// <value>The &#x60;endpoint_name&#x60; of the host gateway, if appropriate.</value>
         [DataMember(Name="host_gateway", EmitDefaultValue=false)]
         public string HostGateway { get; set; }
         /// <summary>
@@ -87,27 +87,27 @@ namespace device_directory.Model
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
         /// <summary>
-        /// Custom attributes(key/value). Up to 5 attributes
+        /// Up to five custom key-value attributes.
         /// </summary>
-        /// <value>Custom attributes(key/value). Up to 5 attributes</value>
+        /// <value>Up to five custom key-value attributes.</value>
         [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
         public Dictionary<string, string> CustomAttributes { get; set; }
         /// <summary>
-        /// Fingerprint of the device certificate.
+        /// The fingerprint of the device certificate.
         /// </summary>
-        /// <value>Fingerprint of the device certificate.</value>
+        /// <value>The fingerprint of the device certificate.</value>
         [DataMember(Name="device_key", EmitDefaultValue=false)]
         public string DeviceKey { get; set; }
         /// <summary>
-        /// The endpoint type of the device - e.g. if the device is a gateway.
+        /// The endpoint type of the device. For example, the device is a gateway.
         /// </summary>
-        /// <value>The endpoint type of the device - e.g. if the device is a gateway.</value>
+        /// <value>The endpoint type of the device. For example, the device is a gateway.</value>
         [DataMember(Name="endpoint_type", EmitDefaultValue=false)]
         public string EndpointType { get; set; }
         /// <summary>
-        /// ID of the issuer of the certificate.
+        /// The certificate issuer&#39;s ID.
         /// </summary>
-        /// <value>ID of the issuer of the certificate.</value>
+        /// <value>The certificate issuer&#39;s ID.</value>
         [DataMember(Name="ca_id", EmitDefaultValue=false)]
         public string CaId { get; set; }
         /// <summary>
