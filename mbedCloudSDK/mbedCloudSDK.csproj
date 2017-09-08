@@ -253,6 +253,10 @@
     <Compile Include="Update\Model\FirmwareImage\FirmwareImage.cs" />
     <Compile Include="Update\Model\FirmwareManifest\FirmwareManifest.cs" />
     <Compile Include="Update\Model\FirmwareManifest\FirmwareManifestContents.cs" />
+    <Compile Include="Update\Model\FirmwareManifest\ManifestContentsEncryptionModeEnum.cs" />
+    <Compile Include="Update\Model\FirmwareManifest\ManifestContentsPayload.cs" />
+    <Compile Include="Update\Model\FirmwareManifest\ManifestContentsPayloadFormatEnum.cs" />
+    <Compile Include="Update\Model\FirmwareManifest\ManifestContentsPayloadReference.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Backends\ConnectorCa\README.md" />
