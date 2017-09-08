@@ -1,11 +1,11 @@
-﻿using mbedCloudSDK.Common;
+﻿using MbedCloudSDK.Common;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace mbedCloudSDK.AccountManagement.Model.User
+namespace MbedCloudSDK.AccountManagement.Model.User
 {
     /// <summary>
     /// This object represents a user in mbed Cloud.

@@ -1,14 +1,14 @@
-﻿using mbedCloudSDK.Common;
-using mbedCloudSDK.Common.Query;
-using mbedCloudSDK.Exceptions;
+﻿using MbedCloudSDK.Common;
+using MbedCloudSDK.Common.Query;
+using MbedCloudSDK.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using mbedCloudSDK.Update.Model.Campaign;
+using MbedCloudSDK.Update.Model.Campaign;
 
-namespace mbedCloudSDK.Update.Api
+namespace MbedCloudSDK.Update.Api
 {
     public partial class UpdateApi
     {

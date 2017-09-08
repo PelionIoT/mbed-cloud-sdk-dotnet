@@ -1,7 +1,7 @@
-﻿using mbedCloudSDK.Common;
-using mbedCloudSDK.Common.Query;
-using mbedCloudSDK.Exceptions;
-using mbedCloudSDK.Update.Model.FirmwareManifest;
+﻿using MbedCloudSDK.Common;
+using MbedCloudSDK.Common.Query;
+using MbedCloudSDK.Exceptions;
+using MbedCloudSDK.Update.Model.FirmwareManifest;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.Update.Api
+namespace MbedCloudSDK.Update.Api
 {
     public partial class UpdateApi
     {

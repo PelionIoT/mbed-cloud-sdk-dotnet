@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.DeviceDirectory.Model.Logging
+namespace MbedCloudSDK.DeviceDirectory.Model.Logging
 {
     /// <summary>
     /// Device log object from Device Catalog API.

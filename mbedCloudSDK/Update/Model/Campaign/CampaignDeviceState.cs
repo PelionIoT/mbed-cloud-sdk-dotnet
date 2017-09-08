@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace mbedCloudSDK.Update.Model.Campaign
+namespace MbedCloudSDK.Update.Model.Campaign
 {
     /// <summary>
     /// Contains information about Device in Update Campaign.

@@ -1,14 +1,14 @@
 ﻿using iam.Client;
 using iam.Model;
-using mbedCloudSDK.AccountManagement.Model.Account;
-using mbedCloudSDK.Exceptions;
+using MbedCloudSDK.AccountManagement.Model.Account;
+using MbedCloudSDK.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.AccountManagement.Api
+namespace MbedCloudSDK.AccountManagement.Api
 {
     public partial class AccountManagementApi
     {

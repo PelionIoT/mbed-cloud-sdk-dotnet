@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.Connect.Model.ConnectedDevice
+namespace MbedCloudSDK.Connect.Model.ConnectedDevice
 {
 	/// <summary>
 	/// Async producer consumer collection.

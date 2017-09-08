@@ -1,8 +1,8 @@
 using System;
-using mbedCloudSDK.Common;
+using MbedCloudSDK.Common;
 using Newtonsoft.Json;
 
-namespace mbedCloudSDK.Certificates.Model
+namespace MbedCloudSDK.Certificates.Model
 {
     public class CertificateTypeConverter : JsonConverter
     {

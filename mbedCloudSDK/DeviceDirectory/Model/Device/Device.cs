@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using mbedCloudSDK.DeviceDirectory.Api;
-using mbedCloudSDK.Exceptions;
+using MbedCloudSDK.DeviceDirectory.Api;
+using MbedCloudSDK.Exceptions;
 using device_directory.Model;
 using mds.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using mbedCloudSDK.Common;
+using MbedCloudSDK.Common;
 
-namespace mbedCloudSDK.DeviceDirectory.Model.Device
+namespace MbedCloudSDK.DeviceDirectory.Model.Device
 {
 	/// <summary>
 	/// Endpoint.

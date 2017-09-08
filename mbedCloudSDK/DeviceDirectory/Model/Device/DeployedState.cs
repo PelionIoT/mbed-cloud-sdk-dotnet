@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.DeviceDirectory.Model.Device
+namespace MbedCloudSDK.DeviceDirectory.Model.Device
 {
     /// <summary>
     /// The state of the device's deployment

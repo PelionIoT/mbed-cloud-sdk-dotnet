@@ -1,5 +1,5 @@
 ﻿using System;
-namespace mbedCloudSDK.Exceptions
+namespace MbedCloudSDK.Exceptions
 {
     /// <summary>
     /// Cloud API exception. Common exception thrown when ApiException is raised by sending wrong values to the request
@@ -19,12 +19,12 @@ namespace mbedCloudSDK.Exceptions
         public dynamic ErrorContent { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:mbedCloudSDK.Exceptions.ValueException"/> class.
+        /// Initializes a new instance of the <see cref="T:MbedCloudSDK.Exceptions.ValueException"/> class.
         /// </summary>
         public ValueException() { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:mbedCloudSDK.Exceptions.ValueException"/> class.
+        /// Initializes a new instance of the <see cref="T:MbedCloudSDK.Exceptions.ValueException"/> class.
         /// </summary>
         /// <param name="message">Message.</param>
         public ValueException(string message) : base(message)
@@ -33,7 +33,7 @@ namespace mbedCloudSDK.Exceptions
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:mbedCloudSDK.Exceptions.ValueException"/> class.
+        /// Initializes a new instance of the <see cref="T:MbedCloudSDK.Exceptions.ValueException"/> class.
         /// </summary>
         /// <param name="errorCode">Error code.</param>
         /// <param name="message">Message.</param>
@@ -43,7 +43,7 @@ namespace mbedCloudSDK.Exceptions
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:mbedCloudSDK.Exceptions.ValueException"/> class.
+        /// Initializes a new instance of the <see cref="T:MbedCloudSDK.Exceptions.ValueException"/> class.
         /// </summary>
         /// <param name="errorCode">Error code.</param>
         /// <param name="message">Message.</param>

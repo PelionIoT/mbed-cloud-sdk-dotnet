@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.DeviceDirectory.Model.Logging
+namespace MbedCloudSDK.DeviceDirectory.Model.Logging
 {
     /// <summary>
     /// Logging event type.

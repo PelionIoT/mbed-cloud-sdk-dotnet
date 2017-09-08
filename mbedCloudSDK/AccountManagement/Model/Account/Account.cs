@@ -5,7 +5,7 @@ using System.Text;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json;
 
-namespace mbedCloudSDK.AccountManagement.Model.Account
+namespace MbedCloudSDK.AccountManagement.Model.Account
 {
     /// <summary>
     /// 

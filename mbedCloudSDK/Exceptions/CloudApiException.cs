@@ -1,5 +1,5 @@
 ﻿using System;
-namespace mbedCloudSDK.Exceptions
+namespace MbedCloudSDK.Exceptions
 {
 	/// <summary>
 	/// Cloud API exception. Common exception thrown when ApiException is raised from backend API
@@ -19,12 +19,12 @@ namespace mbedCloudSDK.Exceptions
 		public dynamic ErrorContent { get; private set; }
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="T:mbedCloudSDK.CloudApiException"/> class.
+		/// Initializes a new instance of the <see cref="T:MbedCloudSDK.CloudApiException"/> class.
 		/// </summary>
 		public CloudApiException() { }
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="T:mbedCloudSDK.CloudApiException"/> class.
+		/// Initializes a new instance of the <see cref="T:MbedCloudSDK.CloudApiException"/> class.
 		/// </summary>
 		/// <param name="errorCode">Error code.</param>
 		/// <param name="message">Message.</param>
@@ -34,7 +34,7 @@ namespace mbedCloudSDK.Exceptions
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="T:mbedCloudSDK.CloudApiException"/> class.
+		/// Initializes a new instance of the <see cref="T:MbedCloudSDK.CloudApiException"/> class.
 		/// </summary>
 		/// <param name="errorCode">Error code.</param>
 		/// <param name="message">Message.</param>

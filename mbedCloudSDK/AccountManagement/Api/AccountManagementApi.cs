@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using iam.Api;
 using iam.Client;
-using mbedCloudSDK.Common;
+using MbedCloudSDK.Common;
 using RestSharp;
 
-namespace mbedCloudSDK.AccountManagement.Api
+namespace MbedCloudSDK.AccountManagement.Api
 {
     /// <summary>
     /// Exposing functionality from IAM.
@@ -17,7 +17,7 @@ namespace mbedCloudSDK.AccountManagement.Api
         private AccountAdminApi adminApi;
         
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:mbedCloudSDK.AccountManagement.AccountManagement"/> class.
+        /// Initializes a new instance of the <see cref="T:MbedCloudSDK.AccountManagement.AccountManagement"/> class.
         /// Exposing functionality from the following underlying services:
         /// - IAM
         /// </summary>

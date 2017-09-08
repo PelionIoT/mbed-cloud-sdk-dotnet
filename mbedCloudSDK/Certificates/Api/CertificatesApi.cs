@@ -1,15 +1,15 @@
 ﻿using connector_ca.Api;
 using iam.Api;
 using iam.Model;
-using mbedCloudSDK.Certificates.Model;
-using mbedCloudSDK.Common;
-using mbedCloudSDK.Common.Query;
-using mbedCloudSDK.Exceptions;
+using MbedCloudSDK.Certificates.Model;
+using MbedCloudSDK.Common;
+using MbedCloudSDK.Common.Query;
+using MbedCloudSDK.Exceptions;
 using System;
 using connector_ca.Client;
 using System.Linq;
 
-namespace mbedCloudSDK.Certificates.Api
+namespace MbedCloudSDK.Certificates.Api
 {
     /// <summary>
     /// Exposing functionality to:

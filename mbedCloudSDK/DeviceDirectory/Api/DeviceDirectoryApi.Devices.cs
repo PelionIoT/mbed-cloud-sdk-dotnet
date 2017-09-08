@@ -1,7 +1,7 @@
-﻿using mbedCloudSDK.Common;
-using mbedCloudSDK.Common.Query;
-using mbedCloudSDK.DeviceDirectory.Model.Device;
-using mbedCloudSDK.Exceptions;
+﻿using MbedCloudSDK.Common;
+using MbedCloudSDK.Common.Query;
+using MbedCloudSDK.DeviceDirectory.Model.Device;
+using MbedCloudSDK.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using device_directory.Model;
 
-namespace mbedCloudSDK.DeviceDirectory.Api
+namespace MbedCloudSDK.DeviceDirectory.Api
 {
     public partial class DeviceDirectoryApi
     {

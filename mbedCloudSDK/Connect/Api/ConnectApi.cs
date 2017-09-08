@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using mbedCloudSDK.Common;
-using mbedCloudSDK.Connect.Model.ConnectedDevice;
-using mbedCloudSDK.Connect.Model.Resource;
+using MbedCloudSDK.Common;
+using MbedCloudSDK.Connect.Model.ConnectedDevice;
+using MbedCloudSDK.Connect.Model.Resource;
 using mds.Api;
 
-namespace mbedCloudSDK.Connect.Api
+namespace MbedCloudSDK.Connect.Api
 {
     /// <summary>
     /// Exposing functionality from the following underlying services:
@@ -40,7 +40,7 @@ namespace mbedCloudSDK.Connect.Api
         private DefaultApi defaultApi;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:mbedCloudSDK.DeviceDirectory.DeviceDirectory"/> class.
+        /// Initializes a new instance of the <see cref="T:MbedCloudSDK.DeviceDirectory.DeviceDirectory"/> class.
         /// </summary>
         /// <param name="config">Config.</param>
         public ConnectApi(Config config) : base(config)

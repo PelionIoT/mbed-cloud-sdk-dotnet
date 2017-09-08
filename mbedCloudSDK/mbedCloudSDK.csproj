@@ -5,8 +5,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7C35731A-8701-45BA-9478-76027FEEB003}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>mbedCloudSDK</RootNamespace>
-    <AssemblyName>mbedCloudSDK</AssemblyName>
+    <RootNamespace>MbedCloudSDK</RootNamespace>
+    <AssemblyName>MbedCloudSDK</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -17,7 +17,7 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\mbedCloudSDK.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\MbedCloudSDK.xml</DocumentationFile>
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -26,7 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <DocumentationFile>bin\Release\mbedCloudSDK.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\MbedCloudSDK.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>

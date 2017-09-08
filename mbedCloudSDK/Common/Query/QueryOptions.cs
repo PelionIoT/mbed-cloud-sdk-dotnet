@@ -4,7 +4,7 @@ using System.Linq;
 using System.ComponentModel;
 using Newtonsoft.Json;
 
-namespace mbedCloudSDK.Common.Query
+namespace MbedCloudSDK.Common.Query
 {
 	/// <summary>
 	/// Parameters send with list requests.
@@ -68,7 +68,7 @@ namespace mbedCloudSDK.Common.Query
         public string Include { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:mbedCloudSDK.Common.ListParams"/> class.
+        /// Initializes a new instance of the <see cref="T:MbedCloudSDK.Common.ListParams"/> class.
         /// </summary>
         /// <param name="limit">Limit.</param>
         /// <param name="order">Order.</param>

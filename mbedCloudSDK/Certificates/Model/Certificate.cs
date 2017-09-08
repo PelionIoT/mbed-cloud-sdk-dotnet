@@ -1,4 +1,4 @@
-﻿using mbedCloudSDK.Common;
+﻿using MbedCloudSDK.Common;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using iam.Model;
 
-namespace mbedCloudSDK.Certificates.Model
+namespace MbedCloudSDK.Certificates.Model
 {
     public class Certificate
     {

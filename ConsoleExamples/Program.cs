@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using mbedCloudSDK.Common;
+using MbedCloudSDK.Common;
 using ConsoleExamples.Examples.AccountManagement;
 using ConsoleExamples.Examples.Update;
 using ConsoleExamples.Examples.Connect;

@@ -1,10 +1,10 @@
-﻿using mbedCloudSDK.Connect.Api;
-using mbedCloudSDK.Connect.Model.ConnectedDevice;
+﻿using MbedCloudSDK.Connect.Api;
+using MbedCloudSDK.Connect.Model.ConnectedDevice;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace mbedCloudSDK.Connect.Model.Resource
+namespace MbedCloudSDK.Connect.Model.Resource
 {
 	/// <summary>
 	/// Resource.

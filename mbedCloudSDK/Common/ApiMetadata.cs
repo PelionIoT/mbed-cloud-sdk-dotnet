@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 
-namespace mbedCloudSDK.Common
+namespace MbedCloudSDK.Common
 {
     /// <summary>
     /// Api meta data

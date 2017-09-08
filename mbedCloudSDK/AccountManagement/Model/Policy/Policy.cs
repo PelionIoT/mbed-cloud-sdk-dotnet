@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.AccountManagement.Model.Policy
+namespace MbedCloudSDK.AccountManagement.Model.Policy
 {
     public class Policy
     {

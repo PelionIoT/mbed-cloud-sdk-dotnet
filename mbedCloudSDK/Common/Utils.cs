@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using mbedCloudSDK.Common.Query;
+using MbedCloudSDK.Common.Query;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp.Extensions.MonoHttp;
 
-namespace mbedCloudSDK.Common
+namespace MbedCloudSDK.Common
 {
     public static class Utils{
         /// <summary>

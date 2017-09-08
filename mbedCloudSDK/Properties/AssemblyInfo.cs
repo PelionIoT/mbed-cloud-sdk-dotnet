@@ -4,10 +4,10 @@ using System.Runtime.CompilerServices;
 // Information about this assembly is defined by the following attributes. 
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle("mbed.Cloud.SDK")]
-[assembly: AssemblyDescription("mbed Cloud .Net SDK")]
+[assembly: AssemblyTitle("Mbed.Cloud.SDK")]
+[assembly: AssemblyDescription("Mbed Cloud .Net SDK")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ARM")]
+[assembly: AssemblyCompany("Arm")]
 [assembly: AssemblyProduct("")]
 [assembly: AssemblyCopyright("${AuthorCopyright}")]
 [assembly: AssemblyTrademark("")]

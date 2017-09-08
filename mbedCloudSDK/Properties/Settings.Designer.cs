@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace mbedCloudSDK.Properties {
+namespace MbedCloudSDK.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

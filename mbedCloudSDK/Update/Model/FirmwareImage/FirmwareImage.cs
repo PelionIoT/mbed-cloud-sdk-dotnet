@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.Update.Model.FirmwareImage
+namespace MbedCloudSDK.Update.Model.FirmwareImage
 {
     /// <summary>
     /// Firmware Image from Update API. 

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.Connect.Model.ConnectedDevice
+namespace MbedCloudSDK.Connect.Model.ConnectedDevice
 {
     public class ConnectedDevice
     {

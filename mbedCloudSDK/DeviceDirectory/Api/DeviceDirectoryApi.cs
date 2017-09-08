@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
 using device_directory.Client;
-using mbedCloudSDK.Common;
+using MbedCloudSDK.Common;
 
 
-namespace mbedCloudSDK.DeviceDirectory.Api
+namespace MbedCloudSDK.DeviceDirectory.Api
 {
     /// <summary>
     /// Exposing functionality from the following underlying services:
@@ -17,7 +17,7 @@ namespace mbedCloudSDK.DeviceDirectory.Api
         private device_directory.Api.DefaultApi api;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:mbedCloudSDK.DeviceDirectory.DeviceDirectory"/> class.
+        /// Initializes a new instance of the <see cref="T:MbedCloudSDK.DeviceDirectory.DeviceDirectory"/> class.
         /// </summary>
         /// <param name="config">Config.</param>
         public DeviceDirectoryApi(Config config) : base(config)

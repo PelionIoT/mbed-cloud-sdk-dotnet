@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using mbedCloudSDK.Common.Query;
+using MbedCloudSDK.Common.Query;
 using Newtonsoft.Json;
 
-namespace mbedCloudSDK.Common
+namespace MbedCloudSDK.Common
 {
     /// <summary>
     /// Paginated reponse object wrapper.

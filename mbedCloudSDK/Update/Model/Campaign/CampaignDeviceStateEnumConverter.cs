@@ -1,8 +1,8 @@
 using System;
-using mbedCloudSDK.Common;
+using MbedCloudSDK.Common;
 using Newtonsoft.Json;
 
-namespace mbedCloudSDK.Update.Model.Campaign
+namespace MbedCloudSDK.Update.Model.Campaign
 {
     public class CampaignDeviceStateEnumConverter : JsonConverter
     {

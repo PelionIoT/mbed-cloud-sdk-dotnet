@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.Common
+namespace MbedCloudSDK.Common
 {
     public class NameOverrideAttribute : Attribute
     {

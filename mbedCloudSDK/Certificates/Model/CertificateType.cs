@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.Certificates.Model
+namespace MbedCloudSDK.Certificates.Model
 {
     /// <summary>
     /// Type of Trusted Certificate

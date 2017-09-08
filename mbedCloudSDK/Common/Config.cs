@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.Common
+namespace MbedCloudSDK.Common
 {
     /// <summary>
     /// Config for cloud API.
@@ -16,7 +16,7 @@ namespace mbedCloudSDK.Common
         private string authorizationPrefix = "Bearer";
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="T:mbedCloudSDK.Common.Config"/> class.
+		/// Initializes a new instance of the <see cref="T:MbedCloudSDK.Common.Config"/> class.
 		/// </summary>
 		/// <param name="apiKey">API key.</param>
         public Config(string apiKey)

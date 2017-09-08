@@ -1,13 +1,13 @@
 ﻿using iam.Api;
 using iam.Model;
-using mbedCloudSDK.AccountManagement.Model.User;
-using mbedCloudSDK.Common;
-using mbedCloudSDK.Common.Query;
-using mbedCloudSDK.Exceptions;
+using MbedCloudSDK.AccountManagement.Model.User;
+using MbedCloudSDK.Common;
+using MbedCloudSDK.Common.Query;
+using MbedCloudSDK.Exceptions;
 using System;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.AccountManagement.Api
+namespace MbedCloudSDK.AccountManagement.Api
 {
     public partial class AccountManagementApi
     {

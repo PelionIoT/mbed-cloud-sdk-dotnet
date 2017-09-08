@@ -1,12 +1,12 @@
 ﻿using device_directory.Model;
-using mbedCloudSDK.Common;
+using MbedCloudSDK.Common;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace mbedCloudSDK.DeviceDirectory.Model.Query
+namespace MbedCloudSDK.DeviceDirectory.Model.Query
 {
     /// <summary>
     /// Represents Query from device catalog API.

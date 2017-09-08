@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using mbedCloudSDK.Common;
+using MbedCloudSDK.Common;
 using update_service.Client;
 
-namespace mbedCloudSDK.Update.Api
+namespace MbedCloudSDK.Update.Api
 {
     /// <summary>
     /// Exposing functionality from: Update service, Update campaigns and Manifest management
@@ -13,7 +13,7 @@ namespace mbedCloudSDK.Update.Api
         private update_service.Api.DefaultApi api;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:mbedCloudSDK.Update"/> class.
+        /// Initializes a new instance of the <see cref="T:MbedCloudSDK.Update"/> class.
         /// </summary>
         /// <param name="config">Config.</param>
         public UpdateApi(Config config) : base(config)

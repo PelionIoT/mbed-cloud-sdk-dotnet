@@ -2,7 +2,7 @@
 using System.Runtime.Serialization;
 
 
-namespace mbedCloudSDK.DeviceDirectory.Model.Device
+namespace MbedCloudSDK.DeviceDirectory.Model.Device
 {
     /// <summary>
     /// The ID of the channel used to communicate with the device

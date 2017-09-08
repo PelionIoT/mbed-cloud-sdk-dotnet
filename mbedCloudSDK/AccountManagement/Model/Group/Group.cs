@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace mbedCloudSDK.AccountManagement.Model.Group
+namespace MbedCloudSDK.AccountManagement.Model.Group
 {
     /// <summary>
     /// Represents group from IAM.

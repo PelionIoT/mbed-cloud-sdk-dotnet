@@ -5,8 +5,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{39B90AFF-53CA-4361-8150-435E98B53061}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>mbedCloudSDK.UnitTests</RootNamespace>
-    <AssemblyName>mbedCloudSDK.UnitTests</AssemblyName>
+    <RootNamespace>MbedCloudSDK.UnitTests</RootNamespace>
+    <AssemblyName>MbedCloudSDK.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -38,9 +38,9 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\mbedCloudSDK\mbedCloudSDK.csproj">
+    <ProjectReference Include="..\MbedCloudSDK\MbedCloudSDK.csproj">
       <Project>{7C35731A-8701-45BA-9478-76027FEEB003}</Project>
-      <Name>mbedCloudSDK</Name>
+      <Name>MbedCloudSDK</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

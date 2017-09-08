@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace mbedCloudSDK.Connect.Api
+namespace MbedCloudSDK.Connect.Api
 {
     public partial class ConnectApi
     {

@@ -1,11 +1,11 @@
-﻿using mbedCloudSDK.Common;
-using mbedCloudSDK.Connect.Model.ConnectedDevice;
-using mbedCloudSDK.Connect.Model.Resource;
-using mbedCloudSDK.Exceptions;
+﻿using MbedCloudSDK.Common;
+using MbedCloudSDK.Connect.Model.ConnectedDevice;
+using MbedCloudSDK.Connect.Model.Resource;
+using MbedCloudSDK.Exceptions;
 using System.Collections.Generic;
 using System.Text;
 
-namespace mbedCloudSDK.Connect.Api
+namespace MbedCloudSDK.Connect.Api
 {
     public partial class ConnectApi
     {

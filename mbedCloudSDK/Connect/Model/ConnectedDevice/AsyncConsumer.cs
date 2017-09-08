@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.Connect.Model.ConnectedDevice
+namespace MbedCloudSDK.Connect.Model.ConnectedDevice
 {
 	/// <summary>
 	/// Async consumer.
@@ -12,7 +12,7 @@ namespace mbedCloudSDK.Connect.Model.ConnectedDevice
         AsyncProducerConsumerCollection<T> collection;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:mbedCloudSDK.DeviceDirectory.AsyncConsumer`1"/> class.
+        /// Initializes a new instance of the <see cref="T:MbedCloudSDK.DeviceDirectory.AsyncConsumer`1"/> class.
         /// </summary>
         /// <param name="asyncId">AsyncId</param>
         /// <param name="collection">Collection.</param>

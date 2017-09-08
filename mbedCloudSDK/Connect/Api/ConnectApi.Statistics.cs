@@ -1,12 +1,12 @@
-﻿using mbedCloudSDK.Connect.Model.Metric;
-using mbedCloudSDK.Exceptions;
+﻿using MbedCloudSDK.Connect.Model.Metric;
+using MbedCloudSDK.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.Connect.Api
+namespace MbedCloudSDK.Connect.Api
 {
     public partial class ConnectApi
     {

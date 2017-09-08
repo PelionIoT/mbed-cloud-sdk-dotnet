@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace mbedCloudSDK.AccountManagement.Model.ApiKey
+namespace MbedCloudSDK.AccountManagement.Model.ApiKey
 {
     /// <summary>
     /// This object represents an API key in mbed Cloud.
@@ -79,9 +79,9 @@ namespace mbedCloudSDK.AccountManagement.Model.ApiKey
         }
         
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:mbedCloudSDK.AccountManagement.Model.ApiKey.ApiKey"/>.
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:MbedCloudSDK.AccountManagement.Model.ApiKey.ApiKey"/>.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:mbedCloudSDK.AccountManagement.Model.ApiKey.ApiKey"/>.</returns>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:MbedCloudSDK.AccountManagement.Model.ApiKey.ApiKey"/>.</returns>
         public override string ToString()
         {
             var sb = new StringBuilder();

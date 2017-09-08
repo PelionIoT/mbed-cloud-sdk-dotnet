@@ -1,5 +1,5 @@
-﻿using mbedCloudSDK.Common;
-using mbedCloudSDK.Update.Api;
+﻿using MbedCloudSDK.Common;
+using MbedCloudSDK.Update.Api;
 using System;
 using System.Collections.Generic;
 using System.Linq;

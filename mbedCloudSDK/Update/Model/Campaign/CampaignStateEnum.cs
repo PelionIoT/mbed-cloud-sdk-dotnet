@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.Update.Model.Campaign
+namespace MbedCloudSDK.Update.Model.Campaign
 {
     /// <summary>
     /// The state of the campaign

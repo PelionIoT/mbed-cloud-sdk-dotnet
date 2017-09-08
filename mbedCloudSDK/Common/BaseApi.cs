@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mbedCloudSDK.Common
+namespace MbedCloudSDK.Common
 {
     /// <summary>
     /// Base API.
@@ -17,7 +17,7 @@ namespace mbedCloudSDK.Common
         protected Config config;
         
 		/// <summary>
-        /// Initializes a new instance of the <see cref="T:mbedCloudSDK.Common.BaseAPI"/> class.
+        /// Initializes a new instance of the <see cref="T:MbedCloudSDK.Common.BaseAPI"/> class.
         /// </summary>
         /// <param name="config">Config.</param>
 		public BaseApi(Config config)

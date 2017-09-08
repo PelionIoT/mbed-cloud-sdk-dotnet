@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using mds.Model;
 
-namespace mbedCloudSDK.Connect.Api
+namespace MbedCloudSDK.Connect.Api
 {
     public partial class ConnectApi
     {

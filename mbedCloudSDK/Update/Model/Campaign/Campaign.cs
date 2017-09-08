@@ -6,12 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using mbedCloudSDK.Common;
+using MbedCloudSDK.Common;
 using System.Text.RegularExpressions;
-using mbedCloudSDK.Common.Query;
+using MbedCloudSDK.Common.Query;
 using Newtonsoft.Json.Linq;
 
-namespace mbedCloudSDK.Update.Model.Campaign
+namespace MbedCloudSDK.Update.Model.Campaign
 {
     /// <summary>
     /// Update campaign object from Update API.

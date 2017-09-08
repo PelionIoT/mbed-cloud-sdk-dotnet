@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using mbedCloudSDK.Connect.Model.Subscription;
+using MbedCloudSDK.Connect.Model.Subscription;
 
-namespace mbedCloudSDK.Connect.Api
+namespace MbedCloudSDK.Connect.Api
 {
     public partial class ConnectApi
     {
