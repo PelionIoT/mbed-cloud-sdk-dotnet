@@ -201,13 +201,14 @@
     <Compile Include="Connect\Api\ConnectApi.cs" />
     <Compile Include="Connect\Api\ConnectApi.Statistics.cs" />
     <Compile Include="Connect\Model\ConnectedDevice\ConnectedDevice.cs" />
-    <Compile Include="Connect\Model\Subscription\Subscription.cs" />
+    <Compile Include="Connect\Model\Subscription\Presubscription.cs" />
     <Compile Include="DeviceDirectory\Api\DeviceDirectoryApi.cs" />
     <Compile Include="DeviceDirectory\Api\DeviceDirectoryApi.Devices.cs" />
     <Compile Include="Connect\Api\ConnectApi.Notifications.cs" />
     <Compile Include="DeviceDirectory\Api\DeviceDirectoryApi.Logging.cs" />
     <Compile Include="DeviceDirectory\Api\DeviceDirectoryApi.Query.cs" />
-    <Compile Include="Connect\Api\ConnectApi.Subscriptions.cs" />
+    <Compile Include="Connect\Api\ConnectApi.Presubscriptions.cs" />
+    <Compile Include="Connect\Api\ConnectApi.ResourceSubscriptions.cs" />
     <Compile Include="DeviceDirectory\Model\Device\DeployedState.cs" />
     <Compile Include="DeviceDirectory\Model\Device\Mechanism.cs" />
     <Compile Include="DeviceDirectory\Model\Device\State.cs" />

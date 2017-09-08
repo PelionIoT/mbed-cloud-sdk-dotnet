@@ -47,7 +47,6 @@ namespace mbedCloudSDK.Connect.Api
                 var res = asyncResponses[asyncID.AsyncResponseId].Take().Result;
                 return res;
             }
-
             return null;
         }
 

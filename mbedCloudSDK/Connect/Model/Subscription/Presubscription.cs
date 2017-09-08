@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace mbedCloudSDK.Connect.Model.Subscription
 {
-    class Subscription
+    public class Presubscription
     {
         /// <summary>
         /// The Device ID
         /// </summary>
         /// <value>The Device ID</value>
-        public string EndpointName { get; set; }
+        public string DeviceId { get; set; }
         
         /// <summary>
         /// Gets or Sets EndpointType
@@ -24,10 +24,10 @@ namespace mbedCloudSDK.Connect.Model.Subscription
         /// </summary>
         public List<String> ResourcePaths { get; set; }
 
-        public static Subscription Map(mds.Model.Presubscription subscriptionData)
+        public static Presubscription Map(mds.Model.Presubscription subscriptionData)
         {
-            Subscription substriction = new Subscription();
-            substriction.EndpointName = subscriptionData.EndpointName;
+            Presubscription substriction = new Presubscription();
+            substriction.DeviceId = subscriptionData.EndpointName;
             substriction.EndpointType = subscriptionData.EndpointType;
             substriction.ResourcePaths = subscriptionData.ResourcePath.Select((s) => { return s.ToString(); }).ToList();
             return substriction;
@@ -41,7 +41,7 @@ namespace mbedCloudSDK.Connect.Model.Subscription
         {
             var sb = new StringBuilder();
             sb.Append("class Presubscription {\n");
-            sb.Append("  EndpointName: ").Append(EndpointName).Append("\n");
+            sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
             sb.Append("  EndpointType: ").Append(EndpointType).Append("\n");
             sb.Append("  ResourcePaths: ").Append(ResourcePaths).Append("\n");
             sb.Append("}\n");

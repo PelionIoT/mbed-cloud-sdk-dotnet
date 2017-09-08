@@ -11,7 +11,7 @@ namespace mbedCloudSDK.Connect.Model.Resource
 	/// </summary>
 	public class Resource
 	{
-        private Connect.Api.ConnectApi api;
+        private Connect.Api.ConnectApi _api;
 
         /// <summary>
         /// Id of the device this resource belongs to.
@@ -52,7 +52,8 @@ namespace mbedCloudSDK.Connect.Model.Resource
         /// <param name="api">DeviceDirectory API.</param>
         public Resource(string deviceID, IDictionary<string, object> options = null, Connect.Api.ConnectApi api = null)
         {
-            this.api = api;
+            _api = api;
+            DeviceId = deviceID;
             if (options != null)
             {
                 foreach (KeyValuePair<string, object> item in options)
@@ -91,7 +92,7 @@ namespace mbedCloudSDK.Connect.Model.Resource
         /// </summary>
         public string GetResourceValue()
         {
-            return this.api.GetResourceValue(this.DeviceId, this.Path);
+            return this._api.GetResourceValue(this.DeviceId, this.Path);
         }
 
         /// <summary>
@@ -102,7 +103,7 @@ namespace mbedCloudSDK.Connect.Model.Resource
         /// <returns></returns>
         public AsyncConsumer<string> SetResourceValue(string resourceValue, bool? noResponse = null)
         {
-            return this.api.SetResourceValue(this.DeviceId, this.Path, resourceValue, noResponse);
+            return this._api.SetResourceValue(this.DeviceId, this.Path, resourceValue, noResponse);
         }
 
         /// <summary>
@@ -111,7 +112,7 @@ namespace mbedCloudSDK.Connect.Model.Resource
         /// <returns></returns>
         public AsyncConsumer<String> Subscribe()
         {
-            return this.api.Subscribe(this.DeviceId, this);
+            return this._api.AddResourceSubscription(this.DeviceId, this.Path);
         }
 
         /// <summary>
@@ -120,7 +121,7 @@ namespace mbedCloudSDK.Connect.Model.Resource
         /// <returns></returns>
         public void Unsubscribe()
         {
-            this.api.Unsubscribe(this.DeviceId, this);
+            this._api.DeleteResourceSubscription(this.DeviceId, this.Path);
         }
 
 
