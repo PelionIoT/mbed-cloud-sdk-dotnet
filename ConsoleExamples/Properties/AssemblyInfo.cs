@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ConsoleExamples")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ARM")]
+[assembly: AssemblyCompany("Arm")]
 [assembly: AssemblyProduct("ConsoleExamples")]
-[assembly: AssemblyCopyright("Copyright © ARM 2016")]
+[assembly: AssemblyCopyright("Copyright © Arm 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

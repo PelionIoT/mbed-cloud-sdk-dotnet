@@ -1,10 +1,10 @@
-﻿using mbedCloudSDK.Common;
-using mbedCloudSDK.Common.Query;
-using mbedCloudSDK.DeviceDirectory.Api;
-using mbedCloudSDK.Exceptions;
-using mbedCloudSDK.Update.Api;
-using mbedCloudSDK.Update.Model.Campaign;
-using mbedCloudSDK.Update.Model.FirmwareManifest;
+﻿using MbedCloudSDK.Common;
+using MbedCloudSDK.Common.Query;
+using MbedCloudSDK.DeviceDirectory.Api;
+using MbedCloudSDK.Exceptions;
+using MbedCloudSDK.Update.Api;
+using MbedCloudSDK.Update.Model.Campaign;
+using MbedCloudSDK.Update.Model.FirmwareManifest;
 using System;
 using System.Collections.Generic;
 using System.IO;

@@ -1,6 +1,6 @@
-﻿using mbedCloudSDK.Common;
-using mbedCloudSDK.Connect.Api;
-using mbedCloudSDK.Connect.Model.ConnectedDevice;
+﻿using MbedCloudSDK.Common;
+using MbedCloudSDK.Connect.Api;
+using MbedCloudSDK.Connect.Model.ConnectedDevice;
 using System;
 using System.Collections.Generic;
 using System.Linq;

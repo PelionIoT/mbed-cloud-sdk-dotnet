@@ -1,6 +1,6 @@
-﻿using mbedCloudSDK.AccountManagement.Api;
-using mbedCloudSDK.AccountManagement.Model.ApiKey;
-using mbedCloudSDK.Common;
+﻿using MbedCloudSDK.AccountManagement.Api;
+using MbedCloudSDK.AccountManagement.Model.ApiKey;
+using MbedCloudSDK.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
