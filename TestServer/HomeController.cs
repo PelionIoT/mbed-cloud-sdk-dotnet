@@ -69,11 +69,29 @@ namespace TestServer
                 var invokedMethod = methodInfo.Invoke(moduleInstance, @params.ToArray());
                 if (invokedMethod != null)
                 {
+                    var x = invokedMethod.GetType().GetProperties();
                     if(invokedMethod.GetType() == typeof(AsyncConsumer<string>))
                     {
                         var asyncConsumer = invokedMethod as AsyncConsumer<string>;
                         return Ok(asyncConsumer.ToString());
                     }
+                    if(invokedMethod.GetType().GetProperties().Select(p => p.Name).Contains("DeviceFilter"))
+                    {
+                        var y = JObject.FromObject(invokedMethod);
+                        var temp = new JObject();
+
+                        var z = y["DeviceFilter"];
+                        y.Remove("DeviceFilter");
+                        y.Add("DeviceFilter", JObject.FromObject(z["FilterJson"]));
+                        
+                        foreach (var row in y)
+                        {
+                            temp.Add(Utils.CamelToSnake(row.Key), row.Value);
+                        }
+
+                        return Ok(temp);
+                    }
+                    
                 }
                 var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, GetSnakeJsonSettings());
                 return Ok(JsonConvert.DeserializeObject(result));
@@ -164,7 +182,7 @@ namespace TestServer
                         var propertyInst = paramType.GetProperty(prop.Name);
                         if (propertyInst != null)
                         {
-                            if(propertyInst.Name == "Filter")
+                            if(propertyInst.PropertyType.Name == "Filter")
                             {
                                 var filterJson = GetParamValue(propertyInst, argsJsonObj);
                                 var filterJsonString = filterJson != null ? filterJson.ToString() : "";

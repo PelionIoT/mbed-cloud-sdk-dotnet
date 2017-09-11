@@ -71,19 +71,23 @@ namespace MbedCloudSDK.Common.Filter
         {
             var decodedString = HttpUtility.UrlDecode(attributeString).Replace("u'", "\"").Replace("'", "\"");
             var customAttributes = new Dictionary<string, FilterAttribute>();
-            var json = JsonConvert.DeserializeObject<Dictionary<string, JObject>>(decodedString);
-            if (json.Keys.Contains("custom_attributes"))
+            if (Utils.IsValidJson(decodedString))
             {
-                var f = json["custom_attributes"].ToString(Formatting.None);
-                customAttributes = ParseFilterJsonString(f);
-                json.Remove("custom_attributes");
+                var json = JsonConvert.DeserializeObject<Dictionary<string, JObject>>(decodedString);
+                if (json.Keys.Contains("custom_attributes"))
+                {
+                    var f = json["custom_attributes"].ToString(Formatting.None);
+                    customAttributes = ParseFilterJsonString(f);
+                    json.Remove("custom_attributes");
+                }
+                var dict = json.ToDictionary(k => k.Key, k => parseVal(k.Value));
+                if (customAttributes.Any())
+                {
+                    customAttributes.ToList().ForEach(d => dict.Add($"custom_attributes__{d.Key}", d.Value));
+                }
+                return dict;
             }
-            var dict = json.ToDictionary(k => k.Key, k => parseVal(k.Value));
-            if (customAttributes.Any())
-            {
-                customAttributes.ToList().ForEach(d => dict.Add($"custom_attributes__{d.Key}", d.Value));
-            }
-            return dict;
+            return new Dictionary<string, FilterAttribute>();
         }
 
         private static FilterAttribute parseVal(JObject val)

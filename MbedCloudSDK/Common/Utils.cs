@@ -103,7 +103,5 @@ namespace MbedCloudSDK.Common
                 return false;
             }
         }
-
-
     }
 }
