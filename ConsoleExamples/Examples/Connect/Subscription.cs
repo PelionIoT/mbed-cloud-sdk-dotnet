@@ -1,6 +1,6 @@
-﻿using mbedCloudSDK.Common;
-using mbedCloudSDK.Connect.Api;
-using mbedCloudSDK.Connect.Model.ConnectedDevice;
+﻿using MbedCloudSDK.Common;
+using MbedCloudSDK.Connect.Api;
+using MbedCloudSDK.Connect.Model.ConnectedDevice;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +34,7 @@ namespace ConsoleExamples.Examples.Connect
                 throw new Exception("No endpoints registered. Aborting.");
             }
             var endpoints = endpointsResp.ToList();
-            //Start long polling thread
+            //Start pull notifications
             api.StartNotifications();
             var resources = endpoints[0].ListResources();
             foreach (var resource in resources)
@@ -42,7 +42,7 @@ namespace ConsoleExamples.Examples.Connect
                 if (resource.Path == buttonResource)
                 {
                     //Subscribe to the resource
-                    AsyncConsumer<String> consumer = api.Subscribe(endpoints[0].Id, resource);
+                    AsyncConsumer<String> consumer = api.AddResourceSubscription(endpoints[0].Id, resource.Path);
                     int counter = 0;
                     while (true)
                     {

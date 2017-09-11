@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace mbedCloudSDK.Update.Model.FirmwareManifest
+namespace MbedCloudSDK.Update.Model.FirmwareManifest
 {
     public class ManifestContentsPayload
     {

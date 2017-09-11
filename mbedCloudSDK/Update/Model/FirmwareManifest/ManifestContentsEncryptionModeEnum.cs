@@ -1,6 +1,6 @@
 using System.Runtime.Serialization;
 
-namespace mbedCloudSDK.Update.Model.FirmwareManifest
+namespace MbedCloudSDK.Update.Model.FirmwareManifest
 {
     public enum ManifestContentsEncryptionModeEnum
     {

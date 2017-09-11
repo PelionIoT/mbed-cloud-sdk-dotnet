@@ -1,10 +1,10 @@
 using System;
 using System.Runtime.Serialization;
-using mbedCloudSDK.Common;
+using MbedCloudSDK.Common;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace mbedCloudSDK.Update.Model.FirmwareManifest
+namespace MbedCloudSDK.Update.Model.FirmwareManifest
 {
     public class FirmwareManifestContents
     {

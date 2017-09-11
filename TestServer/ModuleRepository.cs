@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using mbedCloudSDK.AccountManagement.Api;
-using mbedCloudSDK.Certificates.Api;
-using mbedCloudSDK.Common;
-using mbedCloudSDK.Connect.Api;
-using mbedCloudSDK.DeviceDirectory.Api;
-using mbedCloudSDK.Update.Api;
+using MbedCloudSDK.AccountManagement.Api;
+using MbedCloudSDK.Certificates.Api;
+using MbedCloudSDK.Common;
+using MbedCloudSDK.Connect.Api;
+using MbedCloudSDK.DeviceDirectory.Api;
+using MbedCloudSDK.Update.Api;
 
 namespace TestServer
 {

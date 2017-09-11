@@ -1,6 +1,6 @@
-﻿using mbedCloudSDK.Common;
-using mbedCloudSDK.DeviceDirectory.Api;
-using mbedCloudSDK.DeviceDirectory.Model.Query;
+﻿using MbedCloudSDK.Common;
+using MbedCloudSDK.DeviceDirectory.Api;
+using MbedCloudSDK.DeviceDirectory.Model.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;

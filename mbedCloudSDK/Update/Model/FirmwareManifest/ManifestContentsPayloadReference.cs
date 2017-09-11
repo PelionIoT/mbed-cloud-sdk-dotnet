@@ -1,4 +1,4 @@
-namespace mbedCloudSDK.Update.Model.FirmwareManifest
+namespace MbedCloudSDK.Update.Model.FirmwareManifest
 {
     public class ManifestContentsPayloadReference
     {

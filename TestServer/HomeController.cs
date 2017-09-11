@@ -1,8 +1,8 @@
-﻿using mbedCloudSDK.AccountManagement.Api;
-using mbedCloudSDK.AccountManagement.Model.Account;
-using mbedCloudSDK.AccountManagement.Model.ApiKey;
-using mbedCloudSDK.Common;
-using mbedCloudSDK.Exceptions;
+﻿using MbedCloudSDK.AccountManagement.Api;
+using MbedCloudSDK.AccountManagement.Model.Account;
+using MbedCloudSDK.AccountManagement.Model.ApiKey;
+using MbedCloudSDK.Common;
+using MbedCloudSDK.Exceptions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
@@ -18,7 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
-using mbedCloudSDK.Connect.Model.ConnectedDevice;
+using MbedCloudSDK.Connect.Model.ConnectedDevice;
 using mds.Model;
 
 namespace TestServer
@@ -68,7 +68,7 @@ namespace TestServer
                 var invokedMethod = methodInfo.Invoke(moduleInstance, @params.ToArray());
                 if (invokedMethod != null)
                 {
-                    if(invokedMethod.GetType().Name == "AsyncConsumer`1")
+                    if(invokedMethod.GetType() == typeof(AsyncConsumer<string>))
                     {
                         var asyncConsumer = invokedMethod as AsyncConsumer<string>;
                         return Ok(asyncConsumer.ToString());

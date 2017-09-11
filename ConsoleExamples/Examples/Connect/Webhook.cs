@@ -1,6 +1,6 @@
-﻿using mbedCloudSDK.Common;
-using mbedCloudSDK.Connect.Api;
-using mbedCloudSDK.DeviceDirectory.Api;
+﻿using MbedCloudSDK.Common;
+using MbedCloudSDK.Connect.Api;
+using MbedCloudSDK.DeviceDirectory.Api;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +46,7 @@ namespace ConsoleExamples.Examples.Connect
                 if (resource.Path == buttonResource)
                 {
                     //Subscribe to the resource
-                    api.Subscribe(endpoints[0].Id, resource);
+                    api.AddResourceSubscription(endpoints[0].Id, resource.Path);
                     Console.WriteLine(string.Format("Webhook registered, see output on {0}", webhook));
                     //Deregister webhook after 1 minute
                     Thread.Sleep(60000);
