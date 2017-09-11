@@ -41,7 +41,7 @@ namespace MbedCloudSDK.Update.Api
             }
             try
             {
-                var resp = api.UpdateCampaignList(options.Limit, options.Order, options.After, options.QueryString, options.Include);
+                var resp = api.UpdateCampaignList(options.Limit, options.Order, options.After, null, options.Include);
                 ResponsePage<Campaign> respDevices = new ResponsePage<Campaign>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var device in resp.Data)
                 {

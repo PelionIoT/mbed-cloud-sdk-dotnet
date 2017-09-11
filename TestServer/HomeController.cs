@@ -20,6 +20,7 @@ using System.Web.Http;
 using System.Web.Http.Results;
 using MbedCloudSDK.Connect.Model.ConnectedDevice;
 using mds.Model;
+using MbedCloudSDK.Common.Filter;
 
 namespace TestServer
 {
@@ -163,12 +164,23 @@ namespace TestServer
                         var propertyInst = paramType.GetProperty(prop.Name);
                         if (propertyInst != null)
                         {
-                            var paramValue = GetParamValue(propertyInst, argsJsonObj);
-                            vals[propertyInst.Name] = paramValue;
+                            if(propertyInst.Name == "Filter")
+                            {
+                                var filterJson = GetParamValue(propertyInst, argsJsonObj);
+                                var filterJsonString = filterJson != null ? filterJson.ToString() : "";
+                                var filterJToken = JToken.FromObject(new Filter(filterJsonString));
+                                vals[propertyInst.Name] = filterJToken;
+                            }else
+                            {
+                                var paramValue = GetParamValue(propertyInst, argsJsonObj);
+                                vals[propertyInst.Name] = paramValue;
+                            }
                         }
                     }
                     try
                     {
+                        //var y = vals["Filter"].ToObject(typeof(Filter));
+                        //var filter = JsonConvert.DeserializeObject<Filter>(vals["Filter"].ToString());
                         var obj = JsonConvert.DeserializeObject(vals.ToString(), paramType);
                         serialisedParams.Add(obj);
                     }

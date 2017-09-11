@@ -18,18 +18,14 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// </summary>
         /// <returns>The devices.</returns>
         /// <param name="options">Query options.</param>
-        public PaginatedResponse<Device> ListDevices(DeviceQueryOptions options = null)
+        public PaginatedResponse<Device> ListDevices(QueryOptions options = null)
         {
             if (options == null)
             {
-                options = new DeviceQueryOptions();
+                options = new QueryOptions();
             }
             try
             {
-                if (!string.IsNullOrEmpty(options.AttributesString) && options.Attributes == null)
-                {
-                    options.Attributes = Utils.ParseAttributeString(options.AttributesString);
-                }
                 return new PaginatedResponse<Device>(ListDevicesFunc, options);
             }
             catch (CloudApiException e)
@@ -42,11 +38,11 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         {
             if (options == null)
             {
-                options = new DeviceQueryOptions();
+                options = new QueryOptions();
             }
             try
             {
-                var resp = api.DeviceList(options.Limit, options.Order, options.After, options.QueryString, options.Include);
+                var resp = api.DeviceList(limit:options.Limit, order:options.Order, after:options.After, filter:options.Filter.FilterString, include:options.Include);
                 ResponsePage<Device> respDevices = new ResponsePage<Device>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
                 foreach (var device in resp.Data)
                 {

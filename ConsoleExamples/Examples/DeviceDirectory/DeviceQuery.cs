@@ -25,7 +25,7 @@ namespace ConsoleExamples.Examples.DeviceDirectory
         {
             DeviceDirectoryApi devices = new DeviceDirectoryApi(config);
             Query query = new Query();
-            query.Attributes.Add("auto_update", "true");
+            //query.Attributes.Add("auto_update", "true");
             query.Name = "test";
             devices.AddQuery(query);
         }

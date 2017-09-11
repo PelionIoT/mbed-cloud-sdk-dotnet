@@ -133,7 +133,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
             var campaign = new Campaign();
             campaign.CreatedAt = data.CreatedAt;
             campaign.Description = data.Description;
-            campaign.DeviceFilter = Utils.QueryStringToJson(data.DeviceFilter);
+            campaign.DeviceFilter = "";//Utils.QueryStringToJson(data.DeviceFilter);
             campaign.FinishedAt = data.Finished;
             campaign.Id = data.Id;
             campaign.Name = data.Name;
@@ -146,8 +146,8 @@ namespace MbedCloudSDK.Update.Model.Campaign
 
         public UpdateCampaignPostRequest CreatePostRequest()
         {
-            var deviceFilterDict = Utils.ParseAttributeString(DeviceFilter);
-            var deviceFilterString = string.Join("&", deviceFilterDict.Select(q => $"{q.Key}{q.Value.GetSuffix()}={q.Value.Value}"));
+            //var deviceFilterDict = Utils.ParseAttributeString(DeviceFilter);
+            var deviceFilterString = "";//string.Join("&", deviceFilterDict.Select(q => $"{q.Key}{q.Value.GetSuffix()}={q.Value.Value}"));
             UpdateCampaignPostRequest request = new UpdateCampaignPostRequest(DeviceFilter:deviceFilterString, Name:Name);
             request.Description = this.Description;
             request.RootManifestId = this.RootManifestId;

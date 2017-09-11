@@ -56,7 +56,6 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// </summary>
         public string DeviceClass { get; set; }
 
-        [NameOverride(Name="DeviceId")]
         /// <summary>
         /// The ID of the device
         /// </summary>
@@ -106,11 +105,6 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// The device trust level
         /// </summary>
         public int? TrustLevel { get; set; }
-
-        /// <summary>
-        /// DEPRECATED: The ID of the device
-        /// </summary>
-        public string DeviceId { get; set; }
 
         /// <summary>
         /// The name of the object
@@ -228,7 +222,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
             device.Deployment = deviceData.Deployment;
             device.MechanismUrl = deviceData.MechanismUrl;
             device.TrustLevel = deviceData.TrustLevel;
-            device.DeviceId = deviceData.Id;
+            device.Id = deviceData.Id;
             device.Name = deviceData.Name;
             device.CreatedAt = deviceData.CreatedAt;
             device.Manifest = deviceData.Manifest;
@@ -256,7 +250,6 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  CustomAttributes: ").Append(CustomAttributes).Append("\n");
             sb.Append("  DeviceClass: ").Append(DeviceClass).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  AutoUpdate: ").Append(AutoUpdate).Append("\n");
             sb.Append("  Mechanism: ").Append(Mechanism).Append("\n");
@@ -269,7 +262,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
             sb.Append("  Deployment: ").Append(Deployment).Append("\n");
             sb.Append("  MechanismUrl: ").Append(MechanismUrl).Append("\n");
             sb.Append("  TrustLevel: ").Append(TrustLevel).Append("\n");
-            sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
+            sb.Append("  DeviceId: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Manifest: ").Append(Manifest).Append("\n");
