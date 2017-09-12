@@ -100,7 +100,6 @@ namespace MbedCloudSDK.Common
                 }
                 catch (Exception ex) //some other exception
                 {
-                    Console.WriteLine(ex.ToString());
                     return false;
                 }
             }
