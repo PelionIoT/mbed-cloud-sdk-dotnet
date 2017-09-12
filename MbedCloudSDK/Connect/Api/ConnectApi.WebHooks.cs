@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MbedCloudSDK.Connect.Model.Webhook;
-//using mds.Model;
 
 namespace MbedCloudSDK.Connect.Api
 {
