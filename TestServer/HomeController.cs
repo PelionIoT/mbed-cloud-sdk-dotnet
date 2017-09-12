@@ -69,7 +69,6 @@ namespace TestServer
                 var invokedMethod = methodInfo.Invoke(moduleInstance, @params.ToArray());
                 if (invokedMethod != null)
                 {
-                    var x = invokedMethod.GetType().GetProperties();
                     if(invokedMethod.GetType() == typeof(AsyncConsumer<string>))
                     {
                         var asyncConsumer = invokedMethod as AsyncConsumer<string>;
@@ -77,19 +76,19 @@ namespace TestServer
                     }
                     if(invokedMethod.GetType().GetProperties().Select(p => p.Name).Contains("DeviceFilter"))
                     {
-                        var y = JObject.FromObject(invokedMethod);
-                        var temp = new JObject();
+                        var returnedJson = JObject.FromObject(invokedMethod);
+                        var tempJson = new JObject();
 
-                        var z = y["DeviceFilter"];
-                        y.Remove("DeviceFilter");
-                        y.Add("DeviceFilter", JObject.FromObject(z["FilterJson"]));
+                        var deviceFilter = returnedJson["DeviceFilter"];
+                        returnedJson.Remove("DeviceFilter");
+                        returnedJson.Add("DeviceFilter", JObject.FromObject(deviceFilter["FilterJson"]));
                         
-                        foreach (var row in y)
+                        foreach (var row in returnedJson)
                         {
-                            temp.Add(Utils.CamelToSnake(row.Key), row.Value);
+                            tempJson.Add(Utils.CamelToSnake(row.Key), row.Value);
                         }
 
-                        return Ok(temp);
+                        return Ok(tempJson);
                     }
                     
                 }

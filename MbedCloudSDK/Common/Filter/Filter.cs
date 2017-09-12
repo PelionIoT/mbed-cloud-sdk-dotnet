@@ -7,13 +7,21 @@ using RestSharp.Extensions.MonoHttp;
 
 namespace MbedCloudSDK.Common.Filter
 {
+    /// <summary>
+    /// Filter object
+    /// </summary>
     public class Filter
     {
         /// <summary>
         /// Prefix for custom attributes.
         /// </summary>
         public static readonly string CustomAttributesPrefix = "custom_attributes__";
-        public string FilterString { get{
+
+        /// <summary>
+        /// String representation of Filter.
+        /// </summary>
+        public string FilterString { 
+            get{
                 if (FilterDictionary.Any())
                 {
                     return String.Join("&", FilterDictionary?.Select(q => $"{q.Key}{q.Value.GetSuffix()}={q.Value.Value}"));
@@ -22,20 +30,37 @@ namespace MbedCloudSDK.Common.Filter
             }
         }
 
+        /// <summary>
+        /// Dictionary containing key-value pairs of filters
+        /// </summary>
         [JsonProperty]
         public Dictionary<string, FilterAttribute> FilterDictionary { get; private set; }
 
+        /// <summary>
+        /// Json representation of filter
+        /// </summary>
         [JsonProperty]
         public JObject FilterJson { get; private set; }
 
+        /// <summary>
+        /// If true, filter will not be mapped during an update
+        /// </summary>
         public bool IsBlank { get; set; }
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public Filter()
         {
             FilterJson = new JObject();
             FilterDictionary = new Dictionary<string, FilterAttribute>();
         }
 
+        /// <summary>
+        /// Create new filter object from json or query string
+        /// </summary>
+        /// <param name="value">Json or query string.</param>
+        /// <param name="isBlank">If true, Filter will not be mapped during update</param>
         public Filter(string value, bool isBlank = false)
         {
             IsBlank = isBlank;
@@ -59,6 +84,12 @@ namespace MbedCloudSDK.Common.Filter
             }
         }
 
+        /// <summary>
+        /// Add new query to filter
+        /// </summary>
+        /// <param name="key">Key</param>
+        /// <param name="value">Value</param>
+        /// <param name="filterOperator">Operator, Equals if not provided</param>
         public void Add(string key, string value, FilterOperator filterOperator = FilterOperator.Equals)
         {
             var filterAttribute = new FilterAttribute(value, filterOperator);
@@ -90,8 +121,8 @@ namespace MbedCloudSDK.Common.Filter
                 var json = JsonConvert.DeserializeObject<Dictionary<string, JObject>>(decodedString);
                 if (json.Keys.Contains("custom_attributes"))
                 {
-                    var f = json["custom_attributes"].ToString(Formatting.None);
-                    customAttributes = QueryJsonToDictionary(f);
+                    var customAttributeJson = json["custom_attributes"].ToString(Formatting.None);
+                    customAttributes = QueryJsonToDictionary(customAttributeJson);
                     json.Remove("custom_attributes");
                 }
                 var dict = json.ToDictionary(k => k.Key, k => GetQueryAttribute(k.Value));
@@ -152,9 +183,9 @@ namespace MbedCloudSDK.Common.Filter
             queryString = HttpUtility.UrlDecode(queryString).Replace("u'", "\"").Replace("'", "\"");
             var dict = new Dictionary<string, FilterAttribute>();
             var split = queryString.Split('&');
-            foreach (var b in split)
+            foreach (var part in split)
             {
-                var keyValue = b.Split('=');
+                var keyValue = part.Split('=');
                 var val = keyValue[1];
                 var key = keyValue[0];
                 var oper = FilterOperator.Equals;
