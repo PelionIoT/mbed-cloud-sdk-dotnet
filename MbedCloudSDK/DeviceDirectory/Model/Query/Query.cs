@@ -43,7 +43,10 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
         /// <summary>
         /// Default constructor
         /// </summary>
-        public Query() {}
+        public Query() 
+        {
+            Filter = new Filter();
+        }
 
         /// <summary>
         /// Returns the string presentation of the object

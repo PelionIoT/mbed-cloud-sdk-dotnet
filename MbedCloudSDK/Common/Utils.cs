@@ -29,8 +29,14 @@ namespace MbedCloudSDK.Common
                     if(val != null){
                         if(typeof(MbedCloudSDK.Common.Filter.Filter) == val.GetType())
                         {
-                            //TODO decide which filter to use
-                            targetProperty.SetValue(newObj, prop.GetValue(origObj, null));
+                            var filter = val as MbedCloudSDK.Common.Filter.Filter;
+                            if (filter.IsBlank)
+                            {
+                                targetProperty.SetValue(newObj, prop.GetValue(origObj, null));
+                            }
+                            else{
+                                targetProperty.SetValue(newObj, val, null);
+                            }
                         }
                         else
                         {

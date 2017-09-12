@@ -186,7 +186,7 @@ namespace TestServer
                             {
                                 var filterJson = GetParamValue(propertyInst, argsJsonObj);
                                 var filterJsonString = filterJson != null ? filterJson.ToString() : "";
-                                var filterJToken = JToken.FromObject(new Filter(filterJsonString));
+                                var filterJToken = JToken.FromObject(new Filter(filterJsonString, string.IsNullOrEmpty(filterJsonString)));
                                 vals[propertyInst.Name] = filterJToken;
                             }else
                             {
@@ -197,8 +197,6 @@ namespace TestServer
                     }
                     try
                     {
-                        //var y = vals["Filter"].ToObject(typeof(Filter));
-                        //var filter = JsonConvert.DeserializeObject<Filter>(vals["Filter"].ToString());
                         var obj = JsonConvert.DeserializeObject(vals.ToString(), paramType);
                         serialisedParams.Add(obj);
                     }

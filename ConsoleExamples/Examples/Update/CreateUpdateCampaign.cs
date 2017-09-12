@@ -91,7 +91,7 @@ namespace ConsoleExamples.Examples.Update
             var campaign = new Campaign();
             campaign.Name = campaignName;
             campaign.RootManifestId = manifest.Id;
-            //campaign.DeviceFilter = query.QueryString;
+            campaign.DeviceFilter = query.Filter;
             campaign = api.AddCampaign(campaign);
             Console.WriteLine("Created campaign : " + campaign);
 
