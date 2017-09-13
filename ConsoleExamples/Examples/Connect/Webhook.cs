@@ -35,7 +35,7 @@ namespace ConsoleExamples.Examples.Connect
                 throw new Exception("No endpoints registered. Aborting.");
             }
             //webhook address
-            string webhook = "http://testwebhooksdotnet.requestcatcher.com/test";
+            var webhook = new MbedCloudSDK.Connect.Model.Webhook.Webhook("http://testwebhooksdotnet.requestcatcher.com/test");
             api.UpdateWebhook(webhook);
             Thread.Sleep(2000);
             var endpoints = endpointsResp.ToList();

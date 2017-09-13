@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using mds.Model;
+using MbedCloudSDK.Connect.Model.Webhook;
 
 namespace MbedCloudSDK.Connect.Api
 {
@@ -16,7 +16,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                return defaultApi.V2NotificationCallbackGet();
+                return Webhook.Map(defaultApi.V2NotificationCallbackGet());
             }
             catch(mds.Client.ApiException ex)
             {
@@ -27,14 +27,12 @@ namespace MbedCloudSDK.Connect.Api
         /// <summary>
         /// Register new webhook for incoming subscriptions.
         /// </summary>
-        /// <param name="url">The URL with listening webhook.</param>
-        /// <param name="headers">K/V dict with additional headers to send with request</param>
-        public void UpdateWebhook(string url, Dictionary<string, string> headers = null)
+        /// <param name="webhook">The webhook object</param>
+        public void UpdateWebhook(Webhook webhook)
         {
             try
             {
-                var webhook = new Webhook(url, headers);
-                notificationsApi.V2NotificationCallbackPut(webhook);
+                notificationsApi.V2NotificationCallbackPut(Webhook.MapToApiWebook(webhook));
             }
             catch (mds.Client.ApiException ex)
             {
