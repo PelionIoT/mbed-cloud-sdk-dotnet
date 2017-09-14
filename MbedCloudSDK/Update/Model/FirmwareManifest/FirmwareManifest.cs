@@ -46,12 +46,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
         /// The time the object was updated
         /// </summary>
         public DateTime? UpdatedAt { get; set; }
-        
-        /// <summary>
-        /// The contents of the manifest
-        /// </summary>
-        public FirmwareManifestContents Contents { get; set; }
-        
+                
         /// <summary>
         /// The class of device
         /// </summary>
@@ -82,7 +77,6 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
-            sb.Append("  ManifestContents: ").Append(Contents).Append("\n");
             sb.Append("  DeviceClass: ").Append(DeviceClass).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
@@ -105,7 +99,6 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
             manifest.Description = data.Description;
             manifest.DeviceClass = data.DeviceClass;
             manifest.Id = data.Id;
-            manifest.Contents = FirmwareManifestContents.Map(data.ManifestContents);
             manifest.Name = data.Name;
             manifest.Timestamp = data.Timestamp;
             manifest.UpdatedAt = data.UpdatedAt;
