@@ -23,22 +23,22 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// A username containing alphanumerical letters and -,._@+&#x3D; characters.
         /// </summary>
         public string Username { get; set; }
-        
+
         /// <summary>
         /// A flag indicating whether the user&#39;s email address has been verified or not.
         /// </summary>
         public bool? EmailVerified { get; private set; }
-        
+
         /// <summary>
         /// The UUID of the account.
         /// </summary>
         public string AccountId { get; private set; }
-        
+
         /// <summary>
         /// A timestamp of the latest change of the user password, in milliseconds.
         /// </summary>
         public long? PasswordChangedTime { get; private set; }
-        
+
         /// <summary>
         /// A list of IDs of the groups this user belongs to.
         /// </summary>
@@ -48,54 +48,54 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// Creation UTC time RFC3339.
         /// </summary>
         public DateTime? CreatedAt { get; private set; }
-        
+
         /// <summary>
         /// A flag indicating that the General Terms and Conditions has been accepted.
         /// </summary>
         public bool? TermsAccepted { get; set; }
-        
+
         /// <summary>
         /// The email address.
         /// </summary>
         public string Email { get; set; }
-        
+
         /// <summary>
         /// A flag indicating that receiving marketing information has been accepted.
         /// </summary>
         public bool? MarketingAccepted { get; set; }
-        
+
         /// <summary>
         /// The full name of the user.
         /// </summary>
         public string FullName { get; set; }
-        
+
         /// <summary>
         /// Address.
         /// </summary>
         public string Address { get; set; }
-        
+
         /// <summary>
         /// A timestamp of the user creation in the storage, in milliseconds.
         /// </summary>
         public long? CreationTime { get; private set; }
-        
+
         /// <summary>
         /// The password when creating a new user. It will will generated when not present in the request.
         /// </summary>
         public string Password { get; set; }
-        
+
         /// <summary>
         /// Phone number.
         /// </summary>
         public string PhoneNumber { get; set; }
-        
+
         /// <summary>
         /// The UUID of the user.
         /// </summary>
         [NameOverride(Name = "UserId")]
         [JsonProperty]
         public string Id { get; private set; }
-        
+
         /// <summary>
         /// A timestamp of the latest login of the user, in milliseconds.
         /// </summary>
@@ -109,9 +109,9 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// <summary>
         /// History of logins for this user.
         /// </summary>
-        private List<LoginHistory> LoginHistory;
+        public List<LoginHistory> LoginHistory { get; private set; }
 
-        /// <summary>
+        /// <summary>x
         /// Initializes new instance of User class.
         /// </summary>
         /// <param name="options">Dictionary containing properties.</param>
