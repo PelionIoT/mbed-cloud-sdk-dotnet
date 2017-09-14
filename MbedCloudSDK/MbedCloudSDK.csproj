@@ -61,6 +61,7 @@
     <Compile Include="AccountManagement\Model\Account\AccountStatus.cs" />
     <Compile Include="AccountManagement\Model\Policy\Policy.cs" />
     <Compile Include="AccountManagement\Model\User\UserStatus.cs" />
+    <Compile Include="AccountManagement\Model\User\LoginHistory.cs" />
     <Compile Include="Backends\ConnectorCa\Api\DeveloperCertificateApi.cs" />
     <Compile Include="Backends\ConnectorCa\Api\ExternalAPIApi.cs" />
     <Compile Include="Backends\ConnectorCa\Api\ServerCredentialsApi.cs" />
