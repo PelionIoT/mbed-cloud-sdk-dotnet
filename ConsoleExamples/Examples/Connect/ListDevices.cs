@@ -38,7 +38,7 @@ namespace ConsoleExamples.Examples.Connect
         public void ListAllDevices()
         {
             DeviceDirectoryApi devices = new DeviceDirectoryApi(config);
-            DeviceQueryOptions options = new DeviceQueryOptions();
+            QueryOptions options = new QueryOptions();
             options.Limit = 10;
             foreach (var device in devices.ListDevices(options))
             {

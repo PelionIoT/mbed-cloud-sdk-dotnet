@@ -41,7 +41,7 @@ namespace MbedCloudSDK.Update.Api
             }
             try
             {
-                var resp = api.UpdateCampaignList(options.Limit, options.Order, options.After, options.QueryString, options.Include);
+                var resp = api.UpdateCampaignList(options.Limit, options.Order, options.After, options.Filter.FilterString, options.Include);
                 ResponsePage<Campaign> respDevices = new ResponsePage<Campaign>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var device in resp.Data)
                 {
@@ -163,7 +163,7 @@ namespace MbedCloudSDK.Update.Api
                     _Object = campaign._Object,
                     When = campaign.When,
                     State = stateEnum,
-                    DeviceFilter = campaign.DeviceFilter,
+                    DeviceFilter = campaign.DeviceFilter.FilterString,
                     Name = campaign.Name
                 };
                 var response = api.UpdateCampaignPartialUpdate(campaign.Id, updateCampaignPatchRequest);

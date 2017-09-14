@@ -27,7 +27,21 @@ namespace MbedCloudSDK.Common
                 }else{
                     var val = prop.GetValue(updateObj,null);
                     if(val != null){
-                        targetProperty.SetValue(newObj,val,null);
+                        if(typeof(MbedCloudSDK.Common.Filter.Filter) == val.GetType())
+                        {
+                            var filter = val as MbedCloudSDK.Common.Filter.Filter;
+                            if (filter.IsBlank)
+                            {
+                                targetProperty.SetValue(newObj, prop.GetValue(origObj, null));
+                            }
+                            else{
+                                targetProperty.SetValue(newObj, val, null);
+                            }
+                        }
+                        else
+                        {
+                            targetProperty.SetValue(newObj, val, null);
+                        }
                     }else{
                         targetProperty.SetValue(newObj,prop.GetValue(origObj,null));
                     }
@@ -67,102 +81,32 @@ namespace MbedCloudSDK.Common
             return null;
         }
 
-        public static Dictionary<string, QueryAttribute> ParseAttributeString(string attributeString)
+        public static bool IsValidJson(string strInput)
         {
-            var decodedString = HttpUtility.UrlDecode(attributeString).Replace("u'","\"").Replace("'","\"");
-            var customAttributes = new Dictionary<string, QueryAttribute>();
-            var json = JsonConvert.DeserializeObject<Dictionary<string, JObject>>(decodedString);
-            if(json.Keys.Contains("custom_attributes")){
-                var f = json["custom_attributes"].ToString(Formatting.None);
-                customAttributes = ParseAttributeString(f);
-                json.Remove("custom_attributes");
-            }
-            var dict = json.ToDictionary(k => k.Key, k => parseVal(k.Value));
-            if(customAttributes.Any()){
-                customAttributes.ToList().ForEach(d => dict.Add($"custom_attributes__{d.Key}", d.Value));
-            }
-            return dict;
-        }
-
-        private static QueryAttribute parseVal(JObject val)
-        {
-            var oper = val.First as JProperty;
-            var operName = oper.Name;
-            var operValue = val.First.First.Value<string>();
-            var queryAttribute = new QueryAttribute(operValue, ParseQueryOperator(operName));
-            return queryAttribute;
-        }
-
-        public static QueryOperator ParseQueryOperator(string val)
-        {
-            switch (val)
+            strInput = strInput.Trim();
+            if ((strInput.StartsWith("{") && strInput.EndsWith("}")) || //For object
+                (strInput.StartsWith("[") && strInput.EndsWith("]"))) //For array
             {
-                case "$eq":
-                    return QueryOperator.Equals;
-                case "$neq":
-                    return QueryOperator.NotEqual;
-                case "$lte":
-                    return QueryOperator.LessOrEqual;
-                case "$gte":
-                    return QueryOperator.GreaterOrEqual;
-                default:
-                    return QueryOperator.Equals;
+                try
+                {
+                    var obj = JToken.Parse(strInput);
+                    return true;
+                }
+                catch (JsonReaderException jex)
+                {
+                    //Exception in parsing json
+                    Console.WriteLine(jex.Message);
+                    return false;
+                }
+                catch (Exception ex) //some other exception
+                {
+                    return false;
+                }
             }
-        }
-
-        public static string QueryOperatorToString(QueryOperator queryOperator){
-            switch (queryOperator)
+            else
             {
-                case QueryOperator.Equals:
-                    return "$eq";
-                case QueryOperator.NotEqual:
-                    return "$neq";
-                case QueryOperator.LessOrEqual:
-                    return "$lte";
-                case QueryOperator.GreaterOrEqual:
-                    return "$gte";
-                default:
-                    return "$eq";
+                return false;
             }
-        }
-
-        public static string QueryStringToJson(string queryString)
-        {
-            var dict = new Dictionary<string, QueryAttribute>();
-            var split = queryString.Split('&');
-            foreach (var b in split)
-            {
-                var keyValue = b.Split('=');
-                var val = keyValue[1];
-                var key = keyValue[0];
-                var oper = QueryOperator.Equals;
-
-                if (key.Contains("neq"))
-                {
-                    key = key.Replace("neq", "");
-                    oper = QueryOperator.NotEqual;
-                }
-                if (key.Contains("ltq"))
-                {
-                    key = key.Replace("ltq", "");
-                    oper = QueryOperator.LessOrEqual;
-                }
-                if (key.Contains("gtq"))
-                {
-                    key = key.Replace("gtq", "");
-                    oper = QueryOperator.GreaterOrEqual;
-                }
-
-                var queryAttribute = new QueryAttribute(val, oper);
-                dict.Add(key, queryAttribute);
-            }
-            var json = new JObject();
-            foreach(var kv in dict){
-                var innerJson = new JObject();
-                innerJson[QueryOperatorToString(kv.Value.QueryOperator)] = kv.Value.Value;
-                json[kv.Key] = innerJson;
-            }
-            return json.ToString(Formatting.None);
         }
     }
 }

@@ -20,6 +20,7 @@ using System.Web.Http;
 using System.Web.Http.Results;
 using MbedCloudSDK.Connect.Model.ConnectedDevice;
 using mds.Model;
+using MbedCloudSDK.Common.Filter;
 
 namespace TestServer
 {
@@ -73,6 +74,23 @@ namespace TestServer
                         var asyncConsumer = invokedMethod as AsyncConsumer<string>;
                         return Ok(asyncConsumer.ToString());
                     }
+                    if(invokedMethod.GetType().GetProperties().Select(p => p.Name).Contains("DeviceFilter"))
+                    {
+                        var returnedJson = JObject.FromObject(invokedMethod);
+                        var tempJson = new JObject();
+
+                        var deviceFilter = returnedJson["DeviceFilter"];
+                        returnedJson.Remove("DeviceFilter");
+                        returnedJson.Add("DeviceFilter", JObject.FromObject(deviceFilter["FilterJson"]));
+                        
+                        foreach (var row in returnedJson)
+                        {
+                            tempJson.Add(Utils.CamelToSnake(row.Key), row.Value);
+                        }
+
+                        return Ok(tempJson);
+                    }
+                    
                 }
                 var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, GetSnakeJsonSettings());
                 return Ok(JsonConvert.DeserializeObject(result));
@@ -163,8 +181,17 @@ namespace TestServer
                         var propertyInst = paramType.GetProperty(prop.Name);
                         if (propertyInst != null)
                         {
-                            var paramValue = GetParamValue(propertyInst, argsJsonObj);
-                            vals[propertyInst.Name] = paramValue;
+                            if(propertyInst.PropertyType.Name == "Filter")
+                            {
+                                var filterJson = GetParamValue(propertyInst, argsJsonObj);
+                                var filterJsonString = filterJson != null ? filterJson.ToString() : "";
+                                var filterJToken = JToken.FromObject(new Filter(filterJsonString, string.IsNullOrEmpty(filterJsonString)));
+                                vals[propertyInst.Name] = filterJToken;
+                            }else
+                            {
+                                var paramValue = GetParamValue(propertyInst, argsJsonObj);
+                                vals[propertyInst.Name] = paramValue;
+                            }
                         }
                     }
                     try

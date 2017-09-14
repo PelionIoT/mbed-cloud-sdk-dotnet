@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MbedCloudSDK.Common.Query
+namespace MbedCloudSDK.Common.Filter
 {
-    /// <summary>
-    /// Operators used to query data.
-    /// </summary>
-    public enum QueryOperator
+    public enum FilterOperator
     {
         /// <summary>
         /// Equal operator.
@@ -32,6 +24,5 @@ namespace MbedCloudSDK.Common.Query
         /// </summary>
         [EnumMember(Value = "gte")]
         GreaterOrEqual
-
     }
 }

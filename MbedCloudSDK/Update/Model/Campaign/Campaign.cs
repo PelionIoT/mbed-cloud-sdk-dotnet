@@ -10,6 +10,7 @@ using MbedCloudSDK.Common;
 using System.Text.RegularExpressions;
 using MbedCloudSDK.Common.Query;
 using Newtonsoft.Json.Linq;
+using MbedCloudSDK.Common.Filter;
 
 namespace MbedCloudSDK.Update.Model.Campaign
 {
@@ -67,7 +68,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
         /// <summary>
         /// The filter for the devices the campaign will target
         /// </summary>
-        public string DeviceFilter { get; set; }
+        public Filter DeviceFilter { get; set; }
         
         /// <summary>
         /// A name for this campaign
@@ -133,7 +134,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
             var campaign = new Campaign();
             campaign.CreatedAt = data.CreatedAt;
             campaign.Description = data.Description;
-            campaign.DeviceFilter = Utils.QueryStringToJson(data.DeviceFilter);
+            campaign.DeviceFilter = new Filter(data.DeviceFilter);
             campaign.FinishedAt = data.Finished;
             campaign.Id = data.Id;
             campaign.Name = data.Name;
@@ -146,8 +147,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
 
         public UpdateCampaignPostRequest CreatePostRequest()
         {
-            var deviceFilterDict = Utils.ParseAttributeString(DeviceFilter);
-            var deviceFilterString = string.Join("&", deviceFilterDict.Select(q => $"{q.Key}{q.Value.GetSuffix()}={q.Value.Value}"));
+            var deviceFilterString = DeviceFilter.FilterString;
             UpdateCampaignPostRequest request = new UpdateCampaignPostRequest(DeviceFilter:deviceFilterString, Name:Name);
             request.Description = this.Description;
             request.RootManifestId = this.RootManifestId;
@@ -161,7 +161,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
             var updateCampaignStatus = State.HasValue ? (UpdateCampaignPutRequest.StateEnum?)Enum.Parse(typeof(UpdateCampaignPutRequest.StateEnum), this.State.ToString()) : null;
             UpdateCampaignPutRequest request = new UpdateCampaignPutRequest(
                 Description:Description, RootManifestId:RootManifestId, _Object:"", 
-                When:ScheduledAt, State:updateCampaignStatus, DeviceFilter:DeviceFilter, Name:Name);
+                When:ScheduledAt, State:updateCampaignStatus, DeviceFilter:DeviceFilter.FilterString, Name:Name);
 
             return request;
         }

@@ -79,7 +79,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <param name="query">Query object to create</param>
         public Query AddQuery(Query query)
         {
-            var deviceQueryPostPutRequest = new device_directory.Model.DeviceQueryPostPutRequest(query.QueryString, query.Name);
+            var deviceQueryPostPutRequest = new device_directory.Model.DeviceQueryPostPutRequest(query.Filter.FilterString, query.Name);
 
             try
             {
@@ -100,7 +100,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         {
             var originalQuery = GetQuery(queryId);
             var query = Utils.MapToUpdate(originalQuery, queryToUpdate) as Query;
-            var deviceQueryPostPutRequest = new device_directory.Model.DeviceQueryPostPutRequest(query.QueryString, query.Name);
+            var deviceQueryPostPutRequest = new device_directory.Model.DeviceQueryPostPutRequest(query.Filter.FilterString, query.Name);
 
             try
             {

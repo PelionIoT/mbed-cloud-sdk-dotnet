@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MbedCloudSDK.Common.Query
+namespace MbedCloudSDK.Common.Filter
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public class QueryAttribute
+    public class FilterAttribute
     {
         /// <summary>
         /// Attribute value.
@@ -19,17 +10,17 @@ namespace MbedCloudSDK.Common.Query
         /// <summary>
         /// operator for the query.
         /// </summary>
-        public QueryOperator QueryOperator { get; set; }
+        public FilterOperator FilterOperator { get; set; }
 
         /// <summary>
         /// Create new instance of Query attribute.
         /// </summary>
         /// <param name="value">Value for the query attribute.</param>
-        /// <param name="queryOperator">Operator for the query attribute.</param>
-        public QueryAttribute(string value, QueryOperator queryOperator = QueryOperator.Equals)
+        /// <param name="filterOperator">Operator for the query attribute.</param>
+        public FilterAttribute(string value, FilterOperator filterOperator = FilterOperator.Equals)
         {
             this.Value = value;
-            this.QueryOperator = queryOperator;
+            this.FilterOperator = filterOperator;
         }
 
         /// <summary>
@@ -37,15 +28,15 @@ namespace MbedCloudSDK.Common.Query
         /// </summary>
         public string GetSuffix()
         {
-            switch (this.QueryOperator)
+            switch (this.FilterOperator)
             {
-                case QueryOperator.Equals:
+                case FilterOperator.Equals:
                     return "";
-                case QueryOperator.NotEqual:
+                case FilterOperator.NotEqual:
                     return "neq";
-                case QueryOperator.LessOrEqual:
+                case FilterOperator.LessOrEqual:
                     return "ltq";
-                case QueryOperator.GreaterOrEqual:
+                case FilterOperator.GreaterOrEqual:
                     return "gtq";
                 default:
                     return "";

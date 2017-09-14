@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MbedCloudSDK.Common.Filter;
+using Newtonsoft.Json.Linq;
 
 namespace MbedCloudSDK.DeviceDirectory.Model.Query
 {
@@ -13,11 +15,6 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
     /// </summary>
     public class Query
     {
-        /// <summary>
-        /// Prefix for custom attributes.
-        /// </summary>
-        public static readonly string CustomAttributesPrefix = "custom_attributes__";
-        
         /// <summary>
         /// The time the object was created
         /// </summary>
@@ -28,68 +25,10 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
         /// </summary>
         public DateTime? UpdatedAt { get; set; }
 
-        private string queryString;
-
         /// <summary>
-        /// The device query
+        /// The device filter
         /// </summary>
-        [NameOverride(Name="filter")]
-        [JsonProperty]
-        public string QueryString {
-            get {
-                if (this.queryString != null)
-                {
-                    try
-                    {
-                        var attributeDictionary = Utils.ParseAttributeString(this.queryString);
-                        var queryString = String.Join("&", attributeDictionary.Select(q => $"{q.Key}{q.Value.GetSuffix()}={q.Value.Value}"));
-                        return queryString;
-                    }
-                    catch (Exception e)
-                    {
-                        return queryString;
-                    }
-                }
-                return null;
-            }
-            set {
-                queryString = value;
-                // Set attributes and custom attributes
-                /* 
-                Attributes = new Dictionary<string, string>();
-                CustomAttributes = new Dictionary<string, string>();
-                string[] substrings = queryString.Split('&');
-                if (substrings != null)
-                {
-                    foreach (var substring in substrings)
-                    {
-                        string[] att = substring.Split('=');
-                        if (att.Length == 2)
-                        {
-                            if (att[0].StartsWith(Query.CustomAttributesPrefix))
-                            {
-                                CustomAttributes.Add(att[0].Replace(Query.CustomAttributesPrefix, string.Empty), att[1]);
-                            }
-                            else
-                            {
-                                Attributes.Add(att[0], att[1]);
-                            }
-                        }
-                    }
-                }
-                */
-            }
-        }
-
-        /// <summary>
-        /// Attributes associated with Query.
-        /// </summary>
-        public Dictionary<string, string> Attributes { get; set; }
-
-        /// <summary>
-        /// Custom Attributes associated with Query.
-        /// </summary>
-        public Dictionary<string, string> CustomAttributes { get; set; }
+        public Filter Filter { get; set; }
 
         /// <summary>
         /// The ID of the query.
@@ -104,27 +43,9 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
         /// <summary>
         /// Default constructor
         /// </summary>
-        public Query() {}
-
-        /// <summary>
-        /// Create new Query class.
-        /// </summary>
-        /// <param name="options"></param>
-        public Query(IDictionary<string, object> options = null)
+        public Query() 
         {
-            this.Attributes = new Dictionary<string, string>();
-            this.CustomAttributes = new Dictionary<string, string>();
-            if (options != null)
-            {
-                foreach (KeyValuePair<string, object> item in options)
-                {
-                    var property = this.GetType().GetProperty(item.Key);
-                    if (property != null)
-                    {
-                        property.SetValue(this, item.Value, null);
-                    }
-                }
-            }
+            Filter = new Filter();
         }
 
         /// <summary>
@@ -137,7 +58,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
             sb.Append("class DeviceQueryDetail {\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
-            sb.Append("  Filter: ").Append(QueryString).Append("\n");
+            sb.Append("  Filter: ").Append(Filter).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
@@ -151,13 +72,13 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
         /// <returns></returns>
         public static Query Map(DeviceQuery data)
         {
-            Query filter = new Query();
-            filter.CreatedAt = data.CreatedAt;
-            filter.Id = data.Id;
-            filter.Name = data.Name;
-            filter.QueryString = data.Query;
-            filter.UpdatedAt = data.UpdatedAt;
-            return filter;
+            Query query = new Query();
+            query.CreatedAt = data.CreatedAt;
+            query.Id = data.Id;
+            query.Name = data.Name;
+            query.Filter = new MbedCloudSDK.Common.Filter.Filter(data.Query);
+            query.UpdatedAt = data.UpdatedAt;
+            return query;
         }
     }
 }

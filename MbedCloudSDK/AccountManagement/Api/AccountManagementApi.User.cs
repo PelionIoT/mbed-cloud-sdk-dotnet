@@ -44,7 +44,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             }
             try
             {
-                var resp = adminApi.GetAllUsers(options.Limit, options.Order, options.After, options.QueryString, options.Include);
+                var resp = adminApi.GetAllUsers(options.Limit, options.Order, options.After, options.Include, options.Filter.FilterString);
                 var respUsers = new ResponsePage<User>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
                 foreach (var user in resp.Data)
                 {
