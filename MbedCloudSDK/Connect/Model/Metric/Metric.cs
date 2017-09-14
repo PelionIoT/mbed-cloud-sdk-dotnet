@@ -19,12 +19,6 @@ namespace MbedCloudSDK.Connect.Model.Metric
         public long? FailedBootstraps { get; private set; }
         
         /// <summary>
-        /// Number of successful bootstrap certificate delete requests account has used.
-        /// </summary>
-        /// <value>Number of successful bootstrap certificate delete requests account has used.</value>
-        public long? BootstrapCertificateDelete { get; private set; }
-
-        /// <summary>
         /// The ID of the metric
         /// </summary>
         public string Id { get; private set; }
