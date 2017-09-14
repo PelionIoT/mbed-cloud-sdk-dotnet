@@ -202,6 +202,7 @@
     <Compile Include="Connect\Api\ConnectApi.Statistics.cs" />
     <Compile Include="Connect\Model\ConnectedDevice\ConnectedDevice.cs" />
     <Compile Include="Connect\Model\Subscription\Presubscription.cs" />
+    <Compile Include="Connect\Model\Webhook\Webhook.cs" />
     <Compile Include="DeviceDirectory\Api\DeviceDirectoryApi.cs" />
     <Compile Include="DeviceDirectory\Api\DeviceDirectoryApi.Devices.cs" />
     <Compile Include="Connect\Api\ConnectApi.Notifications.cs" />
