@@ -72,7 +72,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\mbedCloudSDK\mbedCloudSDK.csproj">
+    <ProjectReference Include="..\MbedCloudSDK\MbedCloudSDK.csproj">
       <Project>{7c35731a-8701-45ba-9478-76027feeb003}</Project>
       <Name>mbedCloudSDK</Name>
     </ProjectReference>
