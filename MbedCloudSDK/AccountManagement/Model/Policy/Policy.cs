@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MbedCloudSDK.AccountManagement.Model.Policy
+﻿namespace MbedCloudSDK.AccountManagement.Model.Policy
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
     public class Policy
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="Policy"/> class.
         /// Create new instance of api key class.
         /// </summary>
         /// <param name="options">Dictionary containing properties.</param>

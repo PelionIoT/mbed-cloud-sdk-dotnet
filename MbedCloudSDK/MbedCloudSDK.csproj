@@ -19,6 +19,8 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\MbedCloudSDK.xml</DocumentationFile>
     <ConsolePause>false</ConsolePause>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>MbedCloudSDK.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -27,6 +29,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <DocumentationFile>bin\Release\MbedCloudSDK.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>MbedCloudSDK.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -262,11 +265,13 @@
     <None Include="Backends\Mds\README.md" />
     <None Include="Backends\DeveloperCertificate\README.md" />
     <None Include="Backends\Statistics\README.md" />
+    <None Include="MbedCloudSDK.ruleset" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
