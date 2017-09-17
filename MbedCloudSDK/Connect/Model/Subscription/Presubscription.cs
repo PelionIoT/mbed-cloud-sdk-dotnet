@@ -1,35 +1,40 @@
-﻿using System;
+﻿// <copyright file="Presubscription.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MbedCloudSDK.Connect.Model.Subscription
 {
     public class Presubscription
     {
         /// <summary>
-        /// The Device ID
+        /// Gets or sets the Device ID
         /// </summary>
         /// <value>The Device ID</value>
         public string DeviceId { get; set; }
-        
+
         /// <summary>
-        /// Gets or Sets EndpointType
+        /// Gets or sets gets or Sets EndpointType
         /// </summary>
         public string EndpointType { get; set; }
-        
+
         /// <summary>
-        /// Gets or Sets ResourcePath
+        /// Gets or sets gets or Sets ResourcePath
         /// </summary>
-        public List<String> ResourcePaths { get; set; }
+        public List<string> ResourcePaths { get; set; }
 
         public static Presubscription Map(mds.Model.Presubscription subscriptionData)
         {
-            Presubscription substriction = new Presubscription();
-            substriction.DeviceId = subscriptionData.EndpointName;
-            substriction.EndpointType = subscriptionData.EndpointType;
-            substriction.ResourcePaths = subscriptionData.ResourcePath.Select((s) => { return s.ToString(); }).ToList();
+            Presubscription substriction = new Presubscription
+            {
+                DeviceId = subscriptionData.EndpointName,
+                EndpointType = subscriptionData.EndpointType,
+                ResourcePaths = subscriptionData.ResourcePath.Select((s) => { return s.ToString(); }).ToList()
+            };
             return substriction;
         }
 

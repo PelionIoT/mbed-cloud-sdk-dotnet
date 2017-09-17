@@ -1,35 +1,36 @@
-﻿using mds.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="ConnectedDevice.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Connect.Model.ConnectedDevice
 {
+    using System.Collections.Generic;
+    using System.Text;
+    using mds.Model;
+
     public class ConnectedDevice
     {
         private Connect.Api.ConnectApi api;
 
         /// <summary>
-        /// Id of the endpoint.
+        /// Gets or sets id of the endpoint.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Queue mode (default value is false).
+        /// Gets or sets queue mode (default value is false).
         /// </summary>
         /// <value>Queue mode (default value is false).</value>
         public bool? QueueMode { get; set; }
-        
+
         /// <summary>
-        /// Endpoint type.
+        /// Gets or sets endpoint type.
         /// </summary>
         /// <value>Endpoint type.</value>
         public string Type { get; set; }
-       
+
         /// <summary>
-        /// Possible values ACTIVE, STALE.
+        /// Gets or sets possible values ACTIVE, STALE.
         /// </summary>
         public string Status { get; set; }
 
@@ -38,14 +39,14 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         /// </summary>
         /// <param name="options">Dictionary containing properties.</param>
         /// <param name="api">Connect Api.</param>
-        public ConnectedDevice(IDictionary<string, object> options = null, Connect.Api.ConnectApi api = null)
+        public ConnectedDevice(IDictionary<string, object> options = null, Api.ConnectApi api = null)
         {
             this.api = api;
             if (options != null)
             {
                 foreach (KeyValuePair<string, object> item in options)
                 {
-                    var property = this.GetType().GetProperty(item.Key);
+                    var property = GetType().GetProperty(item.Key);
                     if (property != null)
                     {
                         property.SetValue(this, item.Value, null);
@@ -62,11 +63,13 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         /// <returns></returns>
         public static ConnectedDevice Map(Endpoint endpoint, Connect.Api.ConnectApi api = null)
         {
-            var device = new ConnectedDevice(null, api);
-            device.Id = endpoint.Name;
-            device.Status = endpoint.Status;
-            device.QueueMode = endpoint.Q;
-            device.Type = endpoint.Type;
+            var device = new ConnectedDevice(null, api)
+            {
+                Id = endpoint.Name,
+                Status = endpoint.Status,
+                QueueMode = endpoint.Q,
+                Type = endpoint.Type
+            };
             return device;
         }
 
@@ -74,9 +77,9 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         /// List resources for this device.
         /// </summary>
         /// <returns></returns>
-        public List<Resource.Resource> ListResources()
+        public List<Model.Resource.Resource> ListResources()
         {
-            return this.api.GetResources(this.Id);
+            return api.GetResources(Id);
         }
 
         /// <summary>
@@ -86,7 +89,7 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         /// <param name="noResponse"></param>
         public void DeleteResource(string resourcePath, bool? noResponse = null)
         {
-            this.api.DeleteResource(this.Id, resourcePath, noResponse);
+            api.DeleteResource(Id, resourcePath, noResponse);
         }
 
         /// <summary>

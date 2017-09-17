@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="ConnectApi.WebHooks.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
 using MbedCloudSDK.Connect.Model.Webhook;
 
 namespace MbedCloudSDK.Connect.Api
@@ -12,13 +11,14 @@ namespace MbedCloudSDK.Connect.Api
         /// <summary>
         /// Get the current callback URL if it exists.
         /// </summary>
+        /// <returns></returns>
         public Webhook GetWebhook()
         {
             try
             {
                 return Webhook.Map(defaultApi.V2NotificationCallbackGet());
             }
-            catch(mds.Client.ApiException ex)
+            catch (mds.Client.ApiException ex)
             {
                 throw new mds.Client.ApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
@@ -48,7 +48,7 @@ namespace MbedCloudSDK.Connect.Api
             try
             {
                 defaultApi.V2NotificationCallbackDelete();
-                resourceSubscribtions.Clear();
+                ResourceSubscribtions.Clear();
             }
             catch (mds.Client.ApiException ex)
             {

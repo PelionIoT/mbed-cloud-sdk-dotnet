@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="ConnectApi.Notifications.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
+using System;
 using System.Text;
 
 namespace MbedCloudSDK.Connect.Api
@@ -23,13 +27,14 @@ namespace MbedCloudSDK.Connect.Api
                         {
                             byte[] data = Convert.FromBase64String(asyncReponse.Payload);
                             string payload = Encoding.UTF8.GetString(data);
-                            if (asyncResponses.ContainsKey(asyncReponse.Id))
+                            if (AsyncResponses.ContainsKey(asyncReponse.Id))
                             {
-                                asyncResponses[asyncReponse.Id].Add(payload);
+                                AsyncResponses[asyncReponse.Id].Add(payload);
                             }
                         }
                     }
                 }
+
                 if (resp.Notifications != null)
                 {
                     foreach (var notification in resp.Notifications)
@@ -37,9 +42,9 @@ namespace MbedCloudSDK.Connect.Api
                         byte[] data = Convert.FromBase64String(notification.Payload);
                         string payload = Encoding.UTF8.GetString(data);
                         string resourceSubs = notification.Ep + notification.Path;
-                        if (resourceSubscribtions.ContainsKey(resourceSubs))
+                        if (ResourceSubscribtions.ContainsKey(resourceSubs))
                         {
-                            resourceSubscribtions[resourceSubs].Queue.Add(payload);
+                            ResourceSubscribtions[resourceSubs].Queue.Add(payload);
                         }
                     }
                 }

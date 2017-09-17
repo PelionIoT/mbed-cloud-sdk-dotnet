@@ -1,3 +1,7 @@
+// <copyright file="Webhook.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
 using System.Collections.Generic;
 
 namespace MbedCloudSDK.Connect.Model.Webhook
@@ -8,21 +12,25 @@ namespace MbedCloudSDK.Connect.Model.Webhook
     public class Webhook
     {
         /// <summary>
-        ///The url of the webhook
+        /// The url of the webhook
         /// </summary>
         public string Url { get; set; }
 
         /// <summary>
-        ///K/V dictionary of any headers
+        /// Gets or sets k/V dictionary of any headers
         /// </summary>
         public Dictionary<string, string> Headers { get; set; }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Webhook"/> class.
         /// Default constructor
         /// </summary>
-        public Webhook() {}
+        public Webhook()
+        {
+        }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Webhook"/> class.
         /// Create new webhook
         /// </summary>
         public Webhook(string url, Dictionary<string, string> headers = null)
@@ -34,11 +42,14 @@ namespace MbedCloudSDK.Connect.Model.Webhook
         /// <summary>
         /// Map from api webhook to webhook
         /// </summary>
+        /// <returns></returns>
         public static Webhook Map(mds.Model.Webhook data)
         {
-            var webhook = new Webhook();
-            webhook.Url = data.Url;
-            webhook.Headers = data.Headers;
+            var webhook = new Webhook
+            {
+                Url = data.Url,
+                Headers = data.Headers
+            };
             return webhook;
         }
 
@@ -47,8 +58,10 @@ namespace MbedCloudSDK.Connect.Model.Webhook
         /// </summary>
         public static mds.Model.Webhook MapToApiWebook(Webhook data)
         {
-            var webhook = new mds.Model.Webhook(data.Url);
-            webhook.Headers = data.Headers;
+            var webhook = new mds.Model.Webhook(data.Url)
+            {
+                Headers = data.Headers
+            };
             return webhook;
         }
     }

@@ -1,16 +1,19 @@
-﻿using System;
+﻿// <copyright file="AsyncProducerConsumerCollection.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MbedCloudSDK.Connect.Model.ConnectedDevice
 {
-	/// <summary>
-	/// Async producer consumer collection.
-	/// </summary>
-	public class AsyncProducerConsumerCollection<T>
+    /// <summary>
+    /// Async producer consumer collection.
+    /// </summary>
+    public class AsyncProducerConsumerCollection<T>
 	{
-		private readonly Queue<T> m_collection = new Queue<T>();
-		private readonly Queue<TaskCompletionSource<T>> m_waiting =
+		private readonly Queue<T> collection = new Queue<T>();
+		private readonly Queue<TaskCompletionSource<T>> waiting =
 			new Queue<TaskCompletionSource<T>>();
 
 		/// <summary>
@@ -20,12 +23,15 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
 		public void Add(T item)
 		{
 			TaskCompletionSource<T> tcs = null;
-			lock (m_collection)
+			lock (collection)
 			{
-				if (m_waiting.Count > 0) tcs = m_waiting.Dequeue();
-				else
+				if (waiting.Count > 0)
                 {
-                    m_collection.Enqueue(item);
+                    tcs = waiting.Dequeue();
+                }
+                else
+                {
+                    collection.Enqueue(item);
                 }
             }
 
@@ -35,21 +41,22 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
             }
         }
 
-		/// <summary>
-		/// Take this instance.
-		/// </summary>
-		public Task<T> Take()
+        /// <summary>
+        /// Take this instance.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        public Task<T> Take()
 		{
-			lock (m_collection)
+			lock (collection)
 			{
-				if (m_collection.Count > 0)
+				if (collection.Count > 0)
 				{
-					return Task.FromResult(m_collection.Dequeue());
+					return Task.FromResult(collection.Dequeue());
 				}
 				else
 				{
 					var tcs = new TaskCompletionSource<T>();
-					m_waiting.Enqueue(tcs);
+					waiting.Enqueue(tcs);
 					return tcs.Task;
 				}
 			}
