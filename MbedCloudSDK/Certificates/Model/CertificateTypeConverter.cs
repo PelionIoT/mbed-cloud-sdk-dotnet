@@ -1,3 +1,7 @@
+// <copyright file="CertificateTypeConverter.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
 using System;
 using MbedCloudSDK.Common;
 using Newtonsoft.Json;
@@ -8,8 +12,7 @@ namespace MbedCloudSDK.Certificates.Model
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var certificateType = (CertificateType) value;
-            writer.WriteValue(Utils.GetEnumMemberValue(typeof(CertificateType), certificateType.ToString()));
+            writer.WriteValue(Utils.GetEnumMemberValue(typeof(CertificateType), ((CertificateType)value).ToString()));
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)

@@ -1,76 +1,72 @@
-﻿using MbedCloudSDK.Common;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using iam.Model;
-
-namespace MbedCloudSDK.Certificates.Model
+﻿namespace MbedCloudSDK.Certificates.Model
 {
+    using System;
+    using System.Text;
+    using iam.Model;
+    using MbedCloudSDK.Common;
+    using Newtonsoft.Json;
+
     public class Certificate
     {
         [JsonConverter(typeof(CertificateTypeConverter))]
         public CertificateType? Type { get; set; }
 
         /// <summary>
-        /// Human readable description of this certificate.
+        /// Gets or sets human readable description of this certificate.
         /// </summary>
         /// <value>Human readable description of this certificate.</value>
         public string Description { get; set; }
 
         /// <summary>
-        /// Device execution mode where 1 means a developer certificate.
+        /// Gets or sets device execution mode where 1 means a developer certificate.
         /// </summary>
         /// <value>Device execution mode where 1 means a developer certificate.</value>
         public int? DeviceExecutionMode { get; set; }
 
         /// <summary>
-        /// Creation UTC time RFC3339.
+        /// Gets or sets creation UTC time RFC3339.
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
         public DateTime? CreatedAt { get; set; }
 
         /// <summary>
-        /// Subject of the certificate.
+        /// Gets or sets subject of the certificate.
         /// </summary>
         /// <value>Subject of the certificate.</value>
         public string Subject { get; set; }
 
         /// <summary>
-        /// The UUID of the account.
+        /// Gets or sets the UUID of the account.
         /// </summary>
         /// <value>The UUID of the account.</value>
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Base 64 encoded SHA256 hash of AccountID.
+        /// Gets or sets base 64 encoded SHA256 hash of AccountID.
         /// </summary>
         /// <value>Base 64 encoded SHA256 hash of AccountID.</value>
         public string Signature { get; set; }
 
         /// <summary>
-        /// Expiration time in UTC formatted as RFC3339.
+        /// Gets or sets expiration time in UTC formatted as RFC3339.
         /// </summary>
         /// <value>Expiration time in UTC formatted as RFC3339.</value>
         public DateTime? Validity { get; set; }
 
         /// <summary>
-        /// Issuer of the certificate.
+        /// Gets or sets issuer of the certificate.
         /// </summary>
         /// <value>Issuer of the certificate.</value>
         public string Issuer { get; set; }
 
         /// <summary>
-        /// X509.v3 trusted certificate in PEM or base64 encoded DER format.
+        /// Gets or sets x509.v3 trusted certificate in PEM or base64 encoded DER format.
         /// </summary>
         /// <value>X509.v3 trusted certificate in PEM or base64 encoded DER format.</value>
         public string CertificateData { get; set; }
 
         /// <summary>
-        /// Entity ID.
+        /// Gets or sets entity ID.
         /// </summary>
         /// <value>Entity ID.</value>
         [NameOverride(Name = "CertificateId")]
@@ -78,50 +74,50 @@ namespace MbedCloudSDK.Certificates.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// Certificate name.
+        /// Gets or sets certificate name.
         /// </summary>
         /// <value>Certificate name.</value>
         public string Name { get; set; }
 
         /// <summary>
-        /// Content of the security.c file that will be flashed into the device to provide the security credentials
+        /// Gets or sets content of the security.c file that will be flashed into the device to provide the security credentials
         /// </summary>
         /// <value>Content of the security.c file that will be flashed into the device to provide the security credentials</value>
         public string SecurityFileContent { get; set; }
 
         /// <summary>
-        /// PEM format X.509 developer certificate.
+        /// Gets or sets pEM format X.509 developer certificate.
         /// </summary>
         /// <value>PEM format X.509 developer certificate.</value>
         public string DeveloperCertificate { get; set; }
 
         /// <summary>
-        /// URI to which the client needs to connect to.
+        /// Gets or sets uRI to which the client needs to connect to.
         /// </summary>
         /// <value>URI to which the client needs to connect to.</value>
         public string ServerUri { get; set; }
 
         /// <summary>
-        /// PEM format developer private key associated to the certificate.
+        /// Gets or sets pEM format developer private key associated to the certificate.
         /// </summary>
         /// <value>PEM format developer private key associated to the certificate.</value>
         public string DeveloperPrivateKey { get; set; }
 
         /// <summary>
-        /// PEM format X.509 server certificate that will be used to validate the server certificate that will be received during the TLS/DTLS handshake.
+        /// Gets or sets pEM format X.509 server certificate that will be used to validate the server certificate that will be received during the TLS/DTLS handshake.
         /// </summary>
         /// <value>PEM format X.509 server certificate that will be used to validate the server certificate that will be received during the TLS/DTLS handshake.</value>
         public string ServerCertificate { get; set; }
 
         /// <summary>
-        /// The Status of the certificate.
+        /// Gets or sets the Status of the certificate.
         /// </summary>
         /// <value>The Status of the certificate.</value>
         [JsonConverter(typeof(CertificateStatusConverter))]
         public CertificateStatus? Status { get; set; }
 
         /// <summary>
-        /// Bootstrap server URI to which the client needs to connect to.
+        /// Gets or sets bootstrap server URI to which the client needs to connect to.
         /// </summary>
         /// <value>Bootstrap server URI to which the client needs to connect to.</value>
         public string OwnerId { get; set; }
@@ -189,6 +185,7 @@ namespace MbedCloudSDK.Certificates.Model
                     statusEnum = TrustedCertificateReq.StatusEnum.ACTIVE;
                     break;
             }
+
             return statusEnum;
         }
 
@@ -207,6 +204,7 @@ namespace MbedCloudSDK.Certificates.Model
                     serviceEnum = TrustedCertificateUpdateReq.ServiceEnum.Bootstrap;
                     break;
             }
+
             return serviceEnum;
         }
 
@@ -225,6 +223,7 @@ namespace MbedCloudSDK.Certificates.Model
                     statusEnum = TrustedCertificateUpdateReq.StatusEnum.ACTIVE;
                     break;
             }
+
             return statusEnum;
         }
 
@@ -240,6 +239,7 @@ namespace MbedCloudSDK.Certificates.Model
             {
                 certificate = new Certificate();
             }
+
             if (trustedCertificate.DeviceExecutionMode == 1)
             {
                 certificate.Type = CertificateType.Developer;
@@ -258,7 +258,7 @@ namespace MbedCloudSDK.Certificates.Model
                         throw new System.IO.InvalidDataException("Wrong Trusted Certificate Service"); 
                 }
             }
-            
+
             certificate.DeviceExecutionMode = trustedCertificate.DeviceExecutionMode;
             certificate.Subject = trustedCertificate.Subject;
             certificate.AccountId = trustedCertificate.AccountId;
@@ -286,6 +286,7 @@ namespace MbedCloudSDK.Certificates.Model
             {
                 certificate = new Certificate();
             }
+
             certificate.Type = CertificateType.Developer;
             certificate.DeviceExecutionMode = 0;
             certificate.SecurityFileContent = developerCertificateData.SecurityFileContent;

@@ -1,16 +1,20 @@
-﻿using connector_ca.Api;
-using iam.Api;
-using iam.Model;
-using MbedCloudSDK.Certificates.Model;
-using MbedCloudSDK.Common;
-using MbedCloudSDK.Common.Query;
-using MbedCloudSDK.Exceptions;
-using System;
-using connector_ca.Client;
-using System.Linq;
+﻿// <copyright file="CertificatesApi.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Certificates.Api
 {
+    using System;
+    using System.Linq;
+    using connector_ca.Api;
+    using connector_ca.Client;
+    using iam.Api;
+    using iam.Model;
+    using MbedCloudSDK.Certificates.Model;
+    using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.Exceptions;
+
     /// <summary>
     /// Exposing functionality to:
     /// - Manage CA certificates
@@ -26,9 +30,10 @@ namespace MbedCloudSDK.Certificates.Api
         private string bootstrapServerUri;
         private string lmw2mServerUri;
 
-        public CertificatesApi(Config config) : base(config)
+        public CertificatesApi(Config config)
+            : base(config)
         {
-            this.auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);
+            auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);
 
             Configuration.Default.ApiClient = new ApiClient(config.Host);
             Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
@@ -39,8 +44,8 @@ namespace MbedCloudSDK.Certificates.Api
             iamAccountApi = new AccountAdminApi();
             developerApi = new DeveloperApi();
 
-            bootstrapServerUri = serverCredentialsApi.V3ServerCredentialsBootstrapGet(this.auth).ServerUri;
-            lmw2mServerUri = serverCredentialsApi.V3ServerCredentialsLwm2mGet(this.auth).ServerUri;
+            bootstrapServerUri = serverCredentialsApi.V3ServerCredentialsBootstrapGet(auth).ServerUri;
+            lmw2mServerUri = serverCredentialsApi.V3ServerCredentialsLwm2mGet(auth).ServerUri;
         }
 
         /// <summary>
@@ -62,6 +67,7 @@ namespace MbedCloudSDK.Certificates.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 return new PaginatedResponse<Certificate>(ListCertificatesFunc, options);
@@ -78,14 +84,16 @@ namespace MbedCloudSDK.Certificates.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
-                var resp = developerApi.GetAllCertificates(limit:options.Limit, after:options.After, order:options.Order, include:options.Include);
+                var resp = developerApi.GetAllCertificates(limit: options.Limit, after: options.After, order: options.Order, include: options.Include);
                 ResponsePage<Certificate> respCertificates = new ResponsePage<Certificate>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var certificate in resp.Data)
                 {
                     respCertificates.Data.Add(Certificate.Map(certificate));
                 }
+
                 return respCertificates;
             }
             catch (iam.Client.ApiException e)
@@ -109,16 +117,17 @@ namespace MbedCloudSDK.Certificates.Api
                 }
                 catch (iam.Client.ApiException ex)
                 {
-                    throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent );
+                    throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
                 }
+
                 if (trustedCert.Type == CertificateType.Developer)
                 {
                     try
                     {
-                        var devResponse = developerCertificateApi.V3DeveloperCertificatesIdGet(trustedCert.Id, this.auth);
+                        var devResponse = developerCertificateApi.V3DeveloperCertificatesIdGet(trustedCert.Id, auth);
                         trustedCert = Certificate.Map(devResponse, trustedCert);
                     }
-                    catch (connector_ca.Client.ApiException ex)
+                    catch (ApiException ex)
                     {
                         throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
                     }
@@ -128,13 +137,14 @@ namespace MbedCloudSDK.Certificates.Api
                     switch (trustedCert.Type)
                     {
                         case CertificateType.Bootstrap:
-                            trustedCert.ServerUri = this.bootstrapServerUri;
+                            trustedCert.ServerUri = bootstrapServerUri;
                             break;
                         case CertificateType.Lwm2m:
-                            trustedCert.ServerUri = this.lmw2mServerUri;
+                            trustedCert.ServerUri = lmw2mServerUri;
                             break;
                     }
                 }
+
                 return trustedCert;
         }
 
@@ -150,7 +160,7 @@ namespace MbedCloudSDK.Certificates.Api
         /// <example> 
         /// This sample shows how to call the <see cref="AddCertificate"/> method.
         /// <code>
-        /// class TestClass 
+        /// class TestClass
         /// {
         ///     static int Main() 
         ///     {
@@ -174,20 +184,20 @@ namespace MbedCloudSDK.Certificates.Api
         /// </example>
         public Certificate AddCertificate(Certificate certificate, string certificateData = null, string signature = null)
         {
-            if(!certificate.Type.HasValue)
+            if (!certificate.Type.HasValue)
             {
                 throw new CloudApiException(400, "Value of Certificate Type must be bootstrap or lwm2m");
             }
+
             if (certificateData == null || signature == null)
             {
                 throw new ArgumentException("certificateData and signatureData are required when creating non developer certificate.");
             }
 
             var serviceEnum = Certificate.GetServiceEnum(certificate);
-            var trustedCertificate = new TrustedCertificateReq(Certificate: certificateData, Name: certificate.Name, Service:serviceEnum, Signature: signature, Description: certificate.Description);           
             try
             {
-                var resp = iamAccountApi.AddCertificate(trustedCertificate);
+                var resp = iamAccountApi.AddCertificate(new TrustedCertificateReq(Certificate: certificateData, Name: certificate.Name, Service: serviceEnum, Signature: signature, Description: certificate.Description));
                 return Certificate.Map(resp);
             }
             catch (iam.Client.ApiException ex)
@@ -201,10 +211,10 @@ namespace MbedCloudSDK.Certificates.Api
             connector_ca.Model.DeveloperCertificateRequestData body = new connector_ca.Model.DeveloperCertificateRequestData(certificate.Name, certificate.Description);
             try
             {
-                var response = developerCertificateApi.V3DeveloperCertificatesPost(this.auth, body);
+                var response = developerCertificateApi.V3DeveloperCertificatesPost(auth, body);
                 return GetCertificate(response.Id);
             }
-            catch (connector_ca.Client.ApiException ex)
+            catch (ApiException ex)
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
@@ -215,7 +225,7 @@ namespace MbedCloudSDK.Certificates.Api
         /// </summary>
         /// <param name="certificateId">Id of the certificate.</param>
         /// <exception cref="CloudApiException">Error while deleting certificate.</exception>
-        /// <example> 
+        /// <example>
         /// This sample shows how to call the <see cref="DeleteCertificate"/> method.
         /// <code>
         /// class TestClass 
@@ -236,13 +246,13 @@ namespace MbedCloudSDK.Certificates.Api
         /// }
         /// </code>
         /// </example>
-        public void DeleteCertificate(String certificateId)
+        public void DeleteCertificate(string certificateId)
         {
             try
             {
                 developerApi.DeleteCertificate(certificateId);
             }
-            catch(iam.Client.ApiException ex )
+            catch (iam.Client.ApiException ex)
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
@@ -262,10 +272,10 @@ namespace MbedCloudSDK.Certificates.Api
 
             if (certificate.Type == CertificateType.Developer)
             {
-                var body = new connector_ca.Model.DeveloperCertificateRequestData(Name:certificate.Name, Description:certificate.Description);
+                var body = new connector_ca.Model.DeveloperCertificateRequestData(Name: certificate.Name, Description: certificate.Description);
                 try
                 {
-                    var response = developerCertificateApi.V3DeveloperCertificatesPost(this.auth,body);
+                    var response = developerCertificateApi.V3DeveloperCertificatesPost(auth, body);
                     return GetCertificate(response.Id);
                 }
                 catch (connector_ca.Client.ApiException ex)
@@ -278,8 +288,7 @@ namespace MbedCloudSDK.Certificates.Api
                 var serviceEnum = Certificate.GetUpdateServiceEnum(certificate);
                 var statusEnum = Certificate.GetUpdateStatusEnum(certificate);
 
-                var req = new TrustedCertificateUpdateReq(Status: statusEnum, Certificate: string.IsNullOrEmpty(updatedCertificate.CertificateData) ? null : certificate.CertificateData,
-                    Name: certificate.Name, Service: serviceEnum, Signature:string.IsNullOrEmpty(updatedCertificate.CertificateData) ? null : certificate.Signature, Description:certificate.Description);
+                var req = new TrustedCertificateUpdateReq(Status: statusEnum, Certificate: string.IsNullOrEmpty(updatedCertificate.CertificateData) ? null : certificate.CertificateData, Name: certificate.Name, Service: serviceEnum, Signature: string.IsNullOrEmpty(updatedCertificate.CertificateData) ? null : certificate.Signature, Description: certificate.Description);
 
                 try
                 {

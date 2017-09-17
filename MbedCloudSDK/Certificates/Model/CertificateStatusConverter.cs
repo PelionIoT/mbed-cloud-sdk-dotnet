@@ -1,3 +1,7 @@
+// <copyright file="CertificateStatusConverter.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
 using System;
 using MbedCloudSDK.Common;
 using Newtonsoft.Json;
