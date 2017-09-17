@@ -1,49 +1,49 @@
-﻿using device_directory.Model;
-using MbedCloudSDK.Common;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MbedCloudSDK.Common.Filter;
-using Newtonsoft.Json.Linq;
+﻿// <copyright file="Query.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.DeviceDirectory.Model.Query
 {
+    using System;
+    using System.Text;
+    using device_directory.Model;
+    using MbedCloudSDK.Common.Filter;
+
     /// <summary>
     /// Represents Query from device catalog API.
     /// </summary>
     public class Query
     {
         /// <summary>
-        /// The time the object was created
+        /// Gets or sets the time the object was created
         /// </summary>
         public DateTime? CreatedAt { get; set; }
-        
+
         /// <summary>
-        /// The time the object was updated
+        /// Gets or sets the time the object was updated
         /// </summary>
         public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
-        /// The device filter
+        /// Gets or sets the device filter
         /// </summary>
         public Filter Filter { get; set; }
 
         /// <summary>
-        /// The ID of the query.
+        /// Gets or sets the ID of the query.
         /// </summary>
         public string Id { get; set; }
-        
+
         /// <summary>
-        /// The name of the query.
+        /// Gets or sets the name of the query.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Query"/> class.
         /// Default constructor
         /// </summary>
-        public Query() 
+        public Query()
         {
             Filter = new Filter();
         }
@@ -72,12 +72,14 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
         /// <returns></returns>
         public static Query Map(DeviceQuery data)
         {
-            Query query = new Query();
-            query.CreatedAt = data.CreatedAt;
-            query.Id = data.Id;
-            query.Name = data.Name;
-            query.Filter = new MbedCloudSDK.Common.Filter.Filter(data.Query);
-            query.UpdatedAt = data.UpdatedAt;
+            Query query = new Query
+            {
+                CreatedAt = data.CreatedAt,
+                Id = data.Id,
+                Name = data.Name,
+                Filter = new Filter(data.Query),
+                UpdatedAt = data.UpdatedAt
+            };
             return query;
         }
     }

@@ -1,66 +1,69 @@
-﻿using device_directory.Model;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="DeviceLog.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.DeviceDirectory.Model.Logging
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using device_directory.Model;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+
     /// <summary>
     /// Device log object from Device Catalog API.
     /// </summary>
     public class DeviceLog
     {
         /// <summary>
-        /// Gets or Sets EventType
+        /// Gets or sets gets or Sets EventType
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public EventType EventType { get; set; }
-        
+
         /// <summary>
-        /// Gets or Sets DateTime
+        /// Gets or sets gets or Sets DateTime
         /// </summary>
         public DateTime? DateTime { get; set; }
-        
+
         /// <summary>
-        /// Gets or Sets StateChange
+        /// Gets or sets gets or Sets StateChange
         /// </summary>
         public bool? StateChange { get; set; }
-        
+
         /// <summary>
-        /// Gets or Sets Description
+        /// Gets or sets gets or Sets Description
         /// </summary>
         public string Description { get; set; }
-        
+
         /// <summary>
-        /// Gets or Sets Changes
+        /// Gets or sets gets or Sets Changes
         /// </summary>
         public object Changes { get; set; }
-        
+
         /// <summary>
-        /// Gets or Sets EventTypeDescription
+        /// Gets or sets gets or Sets EventTypeDescription
         /// </summary>
         public string EventTypeDescription { get; set; }
-        
+
         /// <summary>
-        /// Gets or Sets DeviceLogId
+        /// Gets or sets gets or Sets DeviceLogId
         /// </summary>
         public string Id { get; set; }
-        
+
         /// <summary>
-        /// Gets or Sets Data
+        /// Gets or sets gets or Sets Data
         /// </summary>
         public object Data { get; set; }
-        
+
         /// <summary>
-        /// Gets or Sets DeviceId
+        /// Gets or sets gets or Sets DeviceId
         /// </summary>
         public string DeviceId { get; set; }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="DeviceLog"/> class.
         /// Create new instance of DeviceLog class.
         /// </summary>
         /// <param name="options"></param>
@@ -70,7 +73,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Logging
             {
                 foreach (KeyValuePair<string, object> item in options)
                 {
-                    var property = this.GetType().GetProperty(item.Key);
+                    var property = GetType().GetProperty(item.Key);
                     if (property != null)
                     {
                         property.SetValue(this, item.Value, null);
@@ -107,19 +110,22 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Logging
         /// <returns></returns>
         public static DeviceLog Map(DeviceEventData deviceLogSerializer)
         {
-            var deviceLog = new DeviceLog();
-            deviceLog.Changes = deviceLogSerializer.Changes;
-            deviceLog.Data = deviceLogSerializer.Data;
-            deviceLog.DateTime = deviceLogSerializer.DateTime;
-            deviceLog.Description = deviceLogSerializer.Description;
-            deviceLog.DeviceId = deviceLogSerializer.DeviceId;
-            deviceLog.Id = deviceLogSerializer.Id;
-            deviceLog.EventTypeDescription = deviceLogSerializer.EventTypeDescription;
-            deviceLog.StateChange = deviceLogSerializer.StateChange;
+            var deviceLog = new DeviceLog
+            {
+                Changes = deviceLogSerializer.Changes,
+                Data = deviceLogSerializer.Data,
+                DateTime = deviceLogSerializer.DateTime,
+                Description = deviceLogSerializer.Description,
+                DeviceId = deviceLogSerializer.DeviceId,
+                Id = deviceLogSerializer.Id,
+                EventTypeDescription = deviceLogSerializer.EventTypeDescription,
+                StateChange = deviceLogSerializer.StateChange
+            };
             if (Enum.TryParse<EventType>(deviceLogSerializer.EventType.ToString(), out EventType eventType))
             {
                 deviceLog.EventType = eventType;
             }
+
             return deviceLog;
         }
     }

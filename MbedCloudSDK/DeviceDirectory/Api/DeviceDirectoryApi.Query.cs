@@ -1,15 +1,14 @@
-﻿using MbedCloudSDK.Common;
-using MbedCloudSDK.Common.Query;
-using MbedCloudSDK.DeviceDirectory.Model.Query;
-using MbedCloudSDK.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="DeviceDirectoryApi.Query.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.DeviceDirectory.Api
 {
+    using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.DeviceDirectory.Model.Query;
+    using MbedCloudSDK.Exceptions;
+
     public partial class DeviceDirectoryApi
     {
         /// <summary>
@@ -23,6 +22,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 return new PaginatedResponse<Query>(ListDeviceQueriesFunc, options);
@@ -39,6 +39,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 var resp = api.DeviceQueryList(options.Limit, options.Order, options.After, options.Include);
@@ -59,7 +60,8 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Get query in device query service.
         /// </summary>
-        /// <param name="query">id of the query to get</param>
+        /// <param name="queryId"></param>
+        /// <returns></returns>
         public Query GetQuery(string queryId)
         {
             try
@@ -67,7 +69,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
                 var response = api.DeviceQueryRetrieve(queryId);
                 return Query.Map(response);
             }
-            catch(device_directory.Client.ApiException ex)
+            catch (device_directory.Client.ApiException ex)
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
@@ -87,7 +89,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
                 var response = api.DeviceQueryCreate(deviceQueryPostPutRequest);
                 return Query.Map(response);
             }
-            catch(device_directory.Client.ApiException ex)
+            catch (device_directory.Client.ApiException ex)
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
@@ -96,7 +98,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Update existing query in device query service.
         /// </summary>
-        /// <param name="query">Existing query ID to update</param>
+        /// <returns></returns>
         public Query UpdateQuery(string queryId, Query queryToUpdate)
         {
             var originalQuery = GetQuery(queryId);
@@ -117,13 +119,12 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Deletes the query.
         /// </summary>
-        /// <returns>The query.</returns>
-        /// <param name="queryID">Query identifier.</param>
-        public void DeleteQuery(string queryID)
+        /// <param name="queryId">Query identifier.</param>
+        public void DeleteQuery(string queryId)
         {
             try
             {
-                api.DeviceQueryDestroy(queryID);
+                api.DeviceQueryDestroy(queryId);
             }
             catch (device_directory.Client.ApiException ex)
             {

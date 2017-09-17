@@ -1,8 +1,11 @@
-﻿using System;
+﻿// <copyright file="DeviceDirectoryApi.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
+using System;
 using System.Linq;
 using device_directory.Client;
 using MbedCloudSDK.Common;
-
 
 namespace MbedCloudSDK.DeviceDirectory.Api
 {
@@ -17,10 +20,11 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         private device_directory.Api.DefaultApi api;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:MbedCloudSDK.DeviceDirectory.DeviceDirectory"/> class.
+        /// Initializes a new instance of the <see cref="DeviceDirectoryApi"/> class.
         /// </summary>
         /// <param name="config">Config.</param>
-        public DeviceDirectoryApi(Config config) : base(config)
+        public DeviceDirectoryApi(Config config)
+            : base(config)
         {
             device_directory.Client.Configuration.Default.ApiClient = new ApiClient(config.Host);
             device_directory.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
@@ -43,6 +47,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             {
                 path = path.Substring(1);
             }
+
             return path;
         }
     }

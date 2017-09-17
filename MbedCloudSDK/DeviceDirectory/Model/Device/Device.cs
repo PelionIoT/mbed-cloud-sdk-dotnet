@@ -1,167 +1,180 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MbedCloudSDK.DeviceDirectory.Api;
-using MbedCloudSDK.Exceptions;
-using device_directory.Model;
-using mds.Model;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using MbedCloudSDK.Common;
+﻿// <copyright file="Device.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.DeviceDirectory.Model.Device
 {
-	/// <summary>
-	/// Endpoint.
-	/// </summary>
-	public class Device
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using device_directory.Model;
+    using MbedCloudSDK.Common;
+    using MbedCloudSDK.DeviceDirectory.Api;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+
+    /// <summary>
+    /// Endpoint.
+    /// </summary>
+    public class Device
 	{
         private DeviceDirectoryApi api;
 
         /// <summary>
-        /// The ID of the channel used to communicate with the device
+        /// Gets or sets the ID of the channel used to communicate with the device
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public Mechanism? Mechanism { get; set; }
 
         /// <summary>
-        /// The current state of the device
+        /// Gets or sets the current state of the device
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public State? State { get; set; }
 
         /// <summary>
-        /// The state of the device's deployment
+        /// Gets or sets the state of the device's deployment
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public DeployedState? DeployedState { get; set; }
 
         /// <summary>
-        /// Gets or Sets BootstrappedTimestamp
+        /// Gets or sets gets or Sets BootstrappedTimestamp
         /// </summary>
         public DateTime? BootstrappedTimestamp { get; set; }
 
         /// <summary>
-        /// The time the object was updated
+        /// Gets or sets the time the object was updated
         /// </summary>
         public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
-        /// Up to 5 custom JSON attributes
+        /// Gets or sets up to 5 custom JSON attributes
         /// </summary>
         public Dictionary<string, string> CustomAttributes { get; set; }
 
         /// <summary>
-        /// The device class
+        /// Gets or sets the device class
         /// </summary>
         public string DeviceClass { get; set; }
 
         /// <summary>
-        /// The ID of the device
+        /// Gets or sets the ID of the device
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// The description of the object
+        /// Gets or sets the description of the object
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
-        /// Mark this device for auto firmware update
+        /// Gets or sets mark this device for auto firmware update
         /// </summary>
         public bool? AutoUpdate { get; set; }
 
         /// <summary>
-        /// The key used to provision the device
+        /// Gets or sets the key used to provision the device
         /// </summary>
         public string ProvisionKey { get; set; }
 
         /// <summary>
-        /// The serial number of the device
+        /// Gets or sets the serial number of the device
         /// </summary>
         public string SerialNumber { get; set; }
 
         /// <summary>
-        /// The device vendor ID
+        /// Gets or sets the device vendor ID
         /// </summary>
         public string VendorId { get; set; }
 
         /// <summary>
-        /// The owning IAM account ID
+        /// Gets or sets the owning IAM account ID
         /// </summary>
         public string AccountId { get; set; }
 
         /// <summary>
-        /// The last deployment used on the device
+        /// Gets or sets the last deployment used on the device
         /// </summary>
         public string Deployment { get; set; }
 
         /// <summary>
-        /// The address of the connector to use
+        /// Gets or sets the address of the connector to use
         /// </summary>
         public string MechanismUrl { get; set; }
 
         /// <summary>
-        /// The device trust level
+        /// Gets or sets the device trust level
         /// </summary>
         public int? TrustLevel { get; set; }
 
         /// <summary>
-        /// The name of the object
+        /// Gets or sets the name of the object
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// The time the object was created
+        /// Gets or sets the time the object was created
         /// </summary>
         public DateTime? CreatedAt { get; set; }
 
         /// <summary>
-        /// URL for the current device manifest
+        /// Gets or sets uRL for the current device manifest
         /// </summary>
         public string Manifest { get; set; }
+
         /// <summary>
-        /// Fingerprint of the device certificate
+        /// Gets or sets fingerprint of the device certificate
         /// </summary>
         public string CertificateFingerprint { get; set; }
+
         /// <summary>
-        /// ID of the issuer of the certificate
+        /// Gets or sets iD of the issuer of the certificate
         /// </summary>
         public string CertificateIssuerId { get; set; }
+
         /// <summary>
-        /// Expiration date of the certificate used to connect to bootstrap server
+        /// Gets or sets expiration date of the certificate used to connect to bootstrap server
         /// </summary>
         public DateTime? BootstrapExpirationDate { get; set; }
+
         /// <summary>
-        /// Expiration date of the certificate used to connect to connector server
+        /// Gets or sets expiration date of the certificate used to connect to connector server
         /// </summary>
         public DateTime? ConnectorExpirationDate { get; set; }
+
         /// <summary>
-        /// The endpoint name given to the device
+        /// Gets or sets the endpoint name given to the device
         /// </summary>
         public string EndpointName { get; set; }
+
         /// <summary>
-        /// The endpoint_name of the host gateway, if appropriate
+        /// Gets or sets the endpoint_name of the host gateway, if appropriate
         /// </summary>
         public string HostGateway { get; set; }
+
         /// <summary>
-        /// Defines the type of certificate used
+        /// Gets or sets defines the type of certificate used
         /// </summary>
         public int? DeviceExecutionMode { get; set; }
+
         /// <summary>
-        /// The SHA256 checksum of the current firmware image
+        /// Gets or sets the SHA256 checksum of the current firmware image
         /// </summary>
         public string FirmwareChecksum { get; set; }
+
         /// <summary>
-        /// The endpoint type of the device - e.g. if the device is a gateway
+        /// Gets or sets the endpoint type of the device - e.g. if the device is a gateway
         /// </summary>
         public string EndpointType { get; set; }
+
         /// <summary>
-        /// The API resource entity
+        /// Gets or sets the API resource entity
         /// </summary>
         public string _Object { get; set; }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Device"/> class.
         /// Default constructor
         /// </summary>
         public Device() { }
@@ -178,7 +191,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
             {
                 foreach (KeyValuePair<string, object> item in options)
                 {
-                    var property = this.GetType().GetProperty(item.Key);
+                    var property = GetType().GetProperty(item.Key);
                     if (property != null)
                     {
                         property.SetValue(this, item.Value, null);
@@ -195,24 +208,26 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// <returns></returns>
         public static Device Map(DeviceData deviceData, DeviceDirectoryApi api = null)
         {
-            var device = new Device(null, api);
-            device.BootstrappedTimestamp = deviceData.BootstrappedTimestamp;
-            device.UpdatedAt = deviceData.UpdatedAt;
-            device.CustomAttributes = deviceData.CustomAttributes;
-            device.DeviceClass = deviceData.DeviceClass;
-            device.Id = deviceData.Id;
-            device.Description = deviceData.Description;
-            device.AutoUpdate = deviceData.AutoUpdate;
-            device.Mechanism = Utils.ParseEnum<Mechanism>(deviceData.Mechanism);
-            device.State = Utils.ParseEnum<State>(deviceData.State);
-            device.ProvisionKey = deviceData.DeviceKey;
-            device.SerialNumber = deviceData.SerialNumber;
-            device.VendorId = deviceData.VendorId;
-            device.AccountId = deviceData.AccountId;
-            device.DeployedState = Utils.ParseEnum<DeployedState>(deviceData.DeployedState);
-            device.Deployment = deviceData.Deployment;
-            device.MechanismUrl = deviceData.MechanismUrl;
-            device.TrustLevel = deviceData.TrustLevel;
+            var device = new Device(null, api)
+            {
+                BootstrappedTimestamp = deviceData.BootstrappedTimestamp,
+                UpdatedAt = deviceData.UpdatedAt,
+                CustomAttributes = deviceData.CustomAttributes,
+                DeviceClass = deviceData.DeviceClass,
+                Id = deviceData.Id,
+                Description = deviceData.Description,
+                AutoUpdate = deviceData.AutoUpdate,
+                Mechanism = Utils.ParseEnum<Mechanism>(deviceData.Mechanism),
+                State = Utils.ParseEnum<State>(deviceData.State),
+                ProvisionKey = deviceData.DeviceKey,
+                SerialNumber = deviceData.SerialNumber,
+                VendorId = deviceData.VendorId,
+                AccountId = deviceData.AccountId,
+                DeployedState = Utils.ParseEnum<DeployedState>(deviceData.DeployedState),
+                Deployment = deviceData.Deployment,
+                MechanismUrl = deviceData.MechanismUrl,
+                TrustLevel = deviceData.TrustLevel
+            };
             device.Id = deviceData.Id;
             device.Name = deviceData.Name;
             device.CreatedAt = deviceData.CreatedAt;

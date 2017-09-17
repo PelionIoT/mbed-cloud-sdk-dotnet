@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿// <copyright file="EventType.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MbedCloudSDK.DeviceDirectory.Model.Logging
 {
