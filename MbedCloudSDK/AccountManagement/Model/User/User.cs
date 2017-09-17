@@ -1,114 +1,117 @@
-﻿using MbedCloudSDK.Common;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
+﻿// <copyright file="User.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.AccountManagement.Model.User
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using MbedCloudSDK.Common;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+
     /// <summary>
     /// This object represents a user in mbed Cloud.
     /// </summary>
     public class User
     {
-
         /// <summary>
-        /// The status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately.
+        /// Gets the status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public UserStatus? Status { get; private set; }
 
         /// <summary>
-        /// A username containing alphanumerical letters and -,._@+&#x3D; characters.
+        /// Gets or sets a username containing alphanumerical letters and -,._@+&#x3D; characters.
         /// </summary>
         public string Username { get; set; }
 
         /// <summary>
-        /// A flag indicating whether the user&#39;s email address has been verified or not.
+        /// Gets a flag indicating whether the user&#39;s email address has been verified or not.
         /// </summary>
         public bool? EmailVerified { get; private set; }
 
         /// <summary>
-        /// The UUID of the account.
+        /// Gets the UUID of the account.
         /// </summary>
         public string AccountId { get; private set; }
 
         /// <summary>
-        /// A timestamp of the latest change of the user password, in milliseconds.
+        /// Gets a timestamp of the latest change of the user password, in milliseconds.
         /// </summary>
         public long? PasswordChangedTime { get; private set; }
 
         /// <summary>
-        /// A list of IDs of the groups this user belongs to.
+        /// Gets or sets a list of IDs of the groups this user belongs to.
         /// </summary>
         public List<string> Groups { get; set; }
 
         /// <summary>
-        /// Creation UTC time RFC3339.
+        /// Gets creation UTC time RFC3339.
         /// </summary>
         public DateTime? CreatedAt { get; private set; }
 
         /// <summary>
-        /// A flag indicating that the General Terms and Conditions has been accepted.
+        /// Gets or sets a flag indicating that the General Terms and Conditions has been accepted.
         /// </summary>
         public bool? TermsAccepted { get; set; }
 
         /// <summary>
-        /// The email address.
+        /// Gets or sets the email address.
         /// </summary>
         public string Email { get; set; }
 
         /// <summary>
-        /// A flag indicating that receiving marketing information has been accepted.
+        /// Gets or sets a flag indicating that receiving marketing information has been accepted.
         /// </summary>
         public bool? MarketingAccepted { get; set; }
 
         /// <summary>
-        /// The full name of the user.
+        /// Gets or sets the full name of the user.
         /// </summary>
         public string FullName { get; set; }
 
         /// <summary>
-        /// Address.
+        /// Gets or sets address.
         /// </summary>
         public string Address { get; set; }
 
         /// <summary>
-        /// A timestamp of the user creation in the storage, in milliseconds.
+        /// Gets a timestamp of the user creation in the storage, in milliseconds.
         /// </summary>
         public long? CreationTime { get; private set; }
 
         /// <summary>
-        /// The password when creating a new user. It will will generated when not present in the request.
+        /// Gets or sets the password when creating a new user. It will will generated when not present in the request.
         /// </summary>
         public string Password { get; set; }
 
         /// <summary>
-        /// Phone number.
+        /// Gets or sets phone number.
         /// </summary>
         public string PhoneNumber { get; set; }
 
         /// <summary>
-        /// The UUID of the user.
+        /// Gets the UUID of the user.
         /// </summary>
         [NameOverride(Name = "UserId")]
         [JsonProperty]
         public string Id { get; private set; }
 
         /// <summary>
-        /// A timestamp of the latest login of the user, in milliseconds.
+        /// Gets a timestamp of the latest login of the user, in milliseconds.
         /// </summary>
         public long? LastLoginTime { get; private set; }
 
         /// <summary>
-        /// Whether two factor authentication has been enabled for this user.
+        /// Gets whether two factor authentication has been enabled for this user.
         /// </summary>
         public bool? TwoFactorAuthentication { get; private set; }
 
         /// <summary>
-        /// History of logins for this user.
+        /// Gets history of logins for this user.
         /// </summary>
         public List<LoginHistory> LoginHistory { get; private set; }
 
@@ -122,7 +125,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
             {
                 foreach (KeyValuePair<string, object> item in options)
                 {
-                    var property = this.GetType().GetProperty(item.Key);
+                    var property = GetType().GetProperty(item.Key);
                     if (property != null)
                     {
                         property.SetValue(this, item.Value, null);
@@ -189,26 +192,27 @@ namespace MbedCloudSDK.AccountManagement.Model.User
             user.Id = userInfo.Id;
             user.LastLoginTime = userInfo.LastLoginTime;
             user.TwoFactorAuthentication = userInfo.IsTotpEnabled;
-            user.LoginHistory = userInfo.LoginHistory.Select(l => { return AccountManagement.Model.User.LoginHistory.Map(l); }).ToList();
+            user.LoginHistory = userInfo.LoginHistory.Select(l => { return Model.User.LoginHistory.Map(l); }).ToList();
             return user; 
         }
 
         public iam.Model.UserInfoReq CreatePostRequest()
         {
             iam.Model.UserInfoReq request = new iam.Model.UserInfoReq(Email:Email);
-            request.Username = this.Username;
-            request.FullName = this.FullName;
-            request.Address = this.Address;
-            request.Password = this.Password;
-            request.PhoneNumber = this.PhoneNumber;
-            request.IsGtcAccepted = this.TermsAccepted;
-            request.IsMarketingAccepted = this.MarketingAccepted;
+            request.Username = Username;
+            request.FullName = FullName;
+            request.Address = Address;
+            request.Password = Password;
+            request.PhoneNumber = PhoneNumber;
+            request.IsGtcAccepted = TermsAccepted;
+            request.IsMarketingAccepted = MarketingAccepted;
             return request;
         }
 
         public iam.Model.UserUpdateReq CreatePutRequest()
         {
-            iam.Model.UserUpdateReq request = new iam.Model.UserUpdateReq(Email:Email){
+            iam.Model.UserUpdateReq request = new iam.Model.UserUpdateReq(Email:Email)
+            {
                 PhoneNumber = PhoneNumber,
                 Username = Username,
                 IsGtcAccepted = TermsAccepted,
@@ -217,7 +221,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 IsMarketingAccepted = MarketingAccepted,
                 Password = Password
             };
-                                                                            
+
             return request;
         }
     }

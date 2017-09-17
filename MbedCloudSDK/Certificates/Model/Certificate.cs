@@ -170,6 +170,7 @@ namespace MbedCloudSDK.Certificates.Model
                     serviceEnum = TrustedCertificateReq.ServiceEnum.Bootstrap;
                     break;
             }
+
             return serviceEnum;
         }
 

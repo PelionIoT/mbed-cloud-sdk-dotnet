@@ -14,6 +14,7 @@ namespace MbedCloudSDK.Connect.Api
                 {
                     continue;
                 }
+
                 if (resp.AsyncResponses != null)
                 {
                     foreach (var asyncReponse in resp.AsyncResponses)

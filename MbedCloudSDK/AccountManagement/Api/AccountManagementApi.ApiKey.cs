@@ -1,17 +1,16 @@
-﻿using iam.Api;
-using iam.Model;
-using MbedCloudSDK.AccountManagement.Model.ApiKey;
-using MbedCloudSDK.Common;
-using MbedCloudSDK.Common.Query;
-using MbedCloudSDK.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="AccountManagementApi.ApiKey.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.AccountManagement.Api
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using MbedCloudSDK.AccountManagement.Model.ApiKey;
+    using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.Exceptions;
+
     public partial class AccountManagementApi
     {
         /// <summary>
@@ -25,6 +24,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 return new PaginatedResponse<ApiKey>(ListApiKeysFunc, options);
@@ -41,14 +41,16 @@ namespace MbedCloudSDK.AccountManagement.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 var resp = developerApi.GetAllApiKeys(options.Limit, options.After, options.Order, options.Include, options.Filter.FilterString);
                 var respKeys = new ResponsePage<ApiKey>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
-                foreach(var key in resp.Data)
+                foreach (var key in resp.Data)
                 {
                     respKeys.Data.Add(ApiKey.Map(key));
                 }
+
                 return respKeys;
             }
             catch (iam.Client.ApiException e)
@@ -68,6 +70,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 var apiKeysInfo = await developerApi.GetAllApiKeysAsync(options.Limit, options.After, options.Order, options.Include, options.Filter.FilterString);
@@ -76,6 +79,7 @@ namespace MbedCloudSDK.AccountManagement.Api
                 {
                     apiKeys.Add(ApiKey.Map(key));
                 }
+
                 return apiKeys;
             }
             catch (iam.Client.ApiException e)

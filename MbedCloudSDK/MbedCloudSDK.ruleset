@@ -70,8 +70,10 @@
     <Rule Id="SA1123" Action="None" />
     <Rule Id="SA1124" Action="None" />
     <Rule Id="SA1200" Action="None" />
+    <Rule Id="SA1202" Action="None" />
     <Rule Id="SA1309" Action="None" />
     <Rule Id="SA1310" Action="None" />
+    <Rule Id="SA1625" Action="None" />
     <Rule Id="SX1101" Action="Warning" />
   </Rules>
 </RuleSet>

@@ -12,7 +12,6 @@ namespace MbedCloudSDK.DeviceDirectory.Api
 {
     public partial class DeviceDirectoryApi
     {
-
         /// <summary>
         /// Lists the device logs.
         /// </summary>

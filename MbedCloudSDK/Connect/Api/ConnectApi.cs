@@ -90,6 +90,7 @@ namespace MbedCloudSDK.Connect.Api
             {
                 path = path.Substring(1);
             }
+
             return path;
         }
     }

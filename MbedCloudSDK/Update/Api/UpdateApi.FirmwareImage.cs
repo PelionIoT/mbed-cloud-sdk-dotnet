@@ -24,6 +24,7 @@ namespace MbedCloudSDK.Update.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 return new PaginatedResponse<FirmwareImage>(ListFirmwareImagesFun, options);
@@ -40,6 +41,7 @@ namespace MbedCloudSDK.Update.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 var resp = api.FirmwareImageList(options.Limit, options.Order, options.After);
@@ -48,6 +50,7 @@ namespace MbedCloudSDK.Update.Api
                 {
                     respImages.Data.Add(FirmwareImage.Map(image));
                 }
+
                 return respImages;
             }
             catch (update_service.Client.ApiException e)

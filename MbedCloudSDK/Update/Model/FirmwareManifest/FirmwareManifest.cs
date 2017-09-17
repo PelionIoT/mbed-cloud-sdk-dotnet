@@ -104,6 +104,5 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
             manifest.UpdatedAt = data.UpdatedAt;
             return manifest;
         }
-
     }
 }

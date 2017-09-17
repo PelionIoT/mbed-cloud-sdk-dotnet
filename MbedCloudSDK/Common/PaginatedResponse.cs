@@ -132,7 +132,5 @@ namespace MbedCloudSDK.Common
         {
             return GetEnumerator();
         }
-
-
     }
 }

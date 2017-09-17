@@ -43,7 +43,8 @@ namespace MbedCloudSDK.Connect.Api
             var collection = new AsyncProducerConsumerCollection<string>();
             asyncResponses.Add(asyncID.AsyncResponseId, collection);
 
-            if(asyncResponses.ContainsKey(asyncID.AsyncResponseId)){
+            if(asyncResponses.ContainsKey(asyncID.AsyncResponseId))
+            {
                 var res = asyncResponses[asyncID.AsyncResponseId].Take().Result;
                 return res;
             }

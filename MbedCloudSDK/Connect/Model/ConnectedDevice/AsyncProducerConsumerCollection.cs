@@ -23,10 +23,17 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
 			lock (m_collection)
 			{
 				if (m_waiting.Count > 0) tcs = m_waiting.Dequeue();
-				else m_collection.Enqueue(item);
-			}
-			if (tcs != null) tcs.TrySetResult(item);
-		}
+				else
+                {
+                    m_collection.Enqueue(item);
+                }
+            }
+
+			if (tcs != null)
+            {
+                tcs.TrySetResult(item);
+            }
+        }
 
 		/// <summary>
 		/// Take this instance.

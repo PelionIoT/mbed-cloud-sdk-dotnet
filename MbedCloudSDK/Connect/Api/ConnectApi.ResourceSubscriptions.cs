@@ -23,6 +23,7 @@ namespace MbedCloudSDK.Connect.Api
                 {
                     ConnectApi.resourceSubscribtions.Add(subscribePath, resource);
                 }
+
                 return new AsyncConsumer<string>(subscribePath, resource.Queue);
             }
             catch (mds.Client.ApiException ex)

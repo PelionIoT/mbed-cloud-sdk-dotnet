@@ -60,7 +60,8 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// Get device details from catalog.
         /// </summary>
         /// <param name="deviceId">The ID of the device to retrieve.</param>
-        public Device GetDevice(string deviceId){
+        public Device GetDevice(string deviceId)
+        {
             try
             {
                 var response = api.DeviceRetrieve(deviceId);
@@ -76,8 +77,10 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// Add a new device to catalog.
         /// </summary>
         /// <param name="device">The device to add to catalog.</param>
-        public Device AddDevice(Device device){
-            var deviceDataPostRequest = new device_directory.Model.DeviceDataPostRequest(DeviceKey:device.CertificateFingerprint,CaId:device.CertificateIssuerId){
+        public Device AddDevice(Device device)
+        {
+            var deviceDataPostRequest = new device_directory.Model.DeviceDataPostRequest(DeviceKey:device.CertificateFingerprint,CaId:device.CertificateIssuerId)
+            {
                 BootstrapExpirationDate = device.BootstrapExpirationDate,
                 BootstrappedTimestamp = device.BootstrappedTimestamp,
                 ConnectorExpirationDate = device.ConnectorExpirationDate,
@@ -113,7 +116,6 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
-
         }
 
         /// <summary>
@@ -163,7 +165,8 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             }
         }
 
-        private DeviceDataPostRequest.MechanismEnum GetMechanismEnum(Device device){
+        private DeviceDataPostRequest.MechanismEnum GetMechanismEnum(Device device)
+        {
             if (device.Mechanism.HasValue)
             {
                 DeviceDataPostRequest.MechanismEnum mechanismEnum;
@@ -184,7 +187,8 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             return DeviceDataPostRequest.MechanismEnum.Connector;
         }
 
-        private DeviceDataPostRequest.StateEnum GetStateEnum(Device device){
+        private DeviceDataPostRequest.StateEnum GetStateEnum(Device device)
+        {
             if (device.State.HasValue)
             {
                 DeviceDataPostRequest.StateEnum stateEnum;

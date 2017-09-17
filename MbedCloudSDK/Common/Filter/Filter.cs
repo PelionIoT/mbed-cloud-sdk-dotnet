@@ -20,8 +20,10 @@ namespace MbedCloudSDK.Common.Filter
         /// <summary>
         /// String representation of Filter.
         /// </summary>
-        public string FilterString { 
-            get{
+        public string FilterString
+        { 
+            get
+            {
                 if (FilterDictionary.Any())
                 {
                     return String.Join("&", FilterDictionary?.Select(q => $"{q.Key}{q.Value.GetSuffix()}={q.Value.Value}"));

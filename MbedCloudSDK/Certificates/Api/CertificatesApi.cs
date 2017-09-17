@@ -260,7 +260,8 @@ namespace MbedCloudSDK.Certificates.Api
 
             var certificate = Utils.MapToUpdate(originalCertificate, updatedCertificate) as Certificate;
 
-            if (certificate.Type == CertificateType.Developer){
+            if (certificate.Type == CertificateType.Developer)
+            {
                 var body = new connector_ca.Model.DeveloperCertificateRequestData(Name:certificate.Name, Description:certificate.Description);
                 try
                 {
@@ -271,7 +272,9 @@ namespace MbedCloudSDK.Certificates.Api
                 {
                     throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
                 }
-            }else{
+            }
+            else
+            {
                 var serviceEnum = Certificate.GetUpdateServiceEnum(certificate);
                 var statusEnum = Certificate.GetUpdateStatusEnum(certificate);
 

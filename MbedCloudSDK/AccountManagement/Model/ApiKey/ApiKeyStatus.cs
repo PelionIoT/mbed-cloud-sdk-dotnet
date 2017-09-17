@@ -1,4 +1,7 @@
-﻿using System;
+﻿// <copyright file="ApiKeyStatus.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
 using System.Runtime.Serialization;
 
 namespace MbedCloudSDK.AccountManagement.Model.ApiKey
@@ -13,7 +16,7 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
         /// </summary>
         [EnumMember(Value = "ACTIVE")]
         ACTIVE,
-         
+
         /// <summary>
         /// Enum INACTIVE for "INACTIVE"
         /// </summary>

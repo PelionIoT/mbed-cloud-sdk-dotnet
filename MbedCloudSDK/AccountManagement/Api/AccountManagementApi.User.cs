@@ -1,14 +1,16 @@
-﻿using iam.Api;
-using iam.Model;
-using MbedCloudSDK.AccountManagement.Model.User;
-using MbedCloudSDK.Common;
-using MbedCloudSDK.Common.Query;
-using MbedCloudSDK.Exceptions;
-using System;
-using System.Threading.Tasks;
+﻿// <copyright file="AccountManagementApi.User.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.AccountManagement.Api
 {
+    using System;
+    using System.Threading.Tasks;
+    using MbedCloudSDK.AccountManagement.Model.User;
+    using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.Exceptions;
+
     public partial class AccountManagementApi
     {
         /// <summary>
@@ -21,6 +23,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 return new PaginatedResponse<User>(ListUsersFunc, options);
@@ -42,6 +45,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 var resp = adminApi.GetAllUsers(options.Limit, options.Order, options.After, options.Include, options.Filter.FilterString);
@@ -50,6 +54,7 @@ namespace MbedCloudSDK.AccountManagement.Api
                 {
                     respUsers.Data.Add(User.Map(user));
                 }
+
                 return respUsers;
             }
             catch (device_directory.Client.ApiException e)

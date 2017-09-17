@@ -52,6 +52,5 @@ namespace MbedCloudSDK.Common
             get { return authorizationPrefix; }
             set { authorizationPrefix = value; }
         }
-
     }
 }

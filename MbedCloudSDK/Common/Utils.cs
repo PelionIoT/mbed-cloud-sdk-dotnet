@@ -9,24 +9,31 @@ using RestSharp.Extensions.MonoHttp;
 
 namespace MbedCloudSDK.Common
 {
-    public static class Utils{
+    public static class Utils
+    {
         /// <summary>
         /// Map update object to original object.
         /// </summary>
         /// <param name="origObj">Original object</param>
         /// <param name="updateObj">Update object</param>
-        public static object MapToUpdate(object origObj, object updateObj){
+        public static object MapToUpdate(object origObj, object updateObj)
+        {
             var type = updateObj.GetType();
             var props = type.GetProperties();
             var newObj = Activator.CreateInstance(type);
 
-            foreach(var prop in props){
+            foreach (var prop in props)
+            {
                 var targetProperty = type.GetProperty(prop.Name);
-                if(targetProperty.GetSetMethod(true) == null){
+                if(targetProperty.GetSetMethod(true) == null)
+                {
                     continue;
-                }else{
+                }
+                else
+                {
                     var val = prop.GetValue(updateObj,null);
-                    if(val != null){
+                    if(val != null)
+                    {
                         if(typeof(MbedCloudSDK.Common.Filter.Filter) == val.GetType())
                         {
                             var filter = val as MbedCloudSDK.Common.Filter.Filter;
@@ -34,7 +41,8 @@ namespace MbedCloudSDK.Common
                             {
                                 targetProperty.SetValue(newObj, prop.GetValue(origObj, null));
                             }
-                            else{
+                            else
+                            {
                                 targetProperty.SetValue(newObj, val, null);
                             }
                         }
@@ -42,7 +50,9 @@ namespace MbedCloudSDK.Common
                         {
                             targetProperty.SetValue(newObj, val, null);
                         }
-                    }else{
+                    }
+                    else
+                    {
                         targetProperty.SetValue(newObj,prop.GetValue(origObj,null));
                     }
                 }
@@ -87,16 +97,20 @@ namespace MbedCloudSDK.Common
             foreach (var name in Enum.GetNames(type))
             {
                 var attr = ((EnumMemberAttribute[])type.GetField(name).GetCustomAttributes(typeof(EnumMemberAttribute), true)).Single();
-                if(attr.Value == value) return Enum.Parse(type, name);
+                if(attr.Value == value)
+                {
+                    return Enum.Parse(type, name);
+                }
             }
+
             return null;
         }
 
         public static bool IsValidJson(string strInput)
         {
             strInput = strInput.Trim();
-            if ((strInput.StartsWith("{") && strInput.EndsWith("}")) || //For object
-                (strInput.StartsWith("[") && strInput.EndsWith("]"))) //For array
+            if ((strInput.StartsWith("{") && strInput.EndsWith("}")) ||
+                (strInput.StartsWith("[") && strInput.EndsWith("]")))
             {
                 try
                 {
@@ -108,7 +122,7 @@ namespace MbedCloudSDK.Common
                     //Exception in parsing json
                     return false;
                 }
-                catch (Exception ex) //some other exception
+                catch (Exception ex)
                 {
                     return false;
                 }

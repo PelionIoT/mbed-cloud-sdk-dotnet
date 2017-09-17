@@ -1,128 +1,131 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json;
-using MbedCloudSDK.Common;
+﻿// <copyright file="Account.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.AccountManagement.Model.Account
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using MbedCloudSDK.Common;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+
     /// <summary>
     /// 
     /// </summary>
     public class Account
     {
-
         /// <summary>
-        /// The status of the account.
+        /// Gets or sets the status of the account.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public AccountStatus? Status { get; set; }
 
         /// <summary>
-        /// The phone number of the company.
+        /// Gets or sets the phone number of the company.
         /// </summary>
         public string PhoneNumber { get; set; }
-        
+
         /// <summary>
-        /// The postal code part of the postal address.
+        /// Gets or sets the postal code part of the postal address.
         /// </summary>
         public string Postcode { get; set; }
-       
+
         /// <summary>
-        /// Account ID.
+        /// Gets or sets account ID.
         /// </summary>
         public string Id { get; set; }
-       
+
         /// <summary>
-        /// An array of aliases.
+        /// Gets or sets an array of aliases.
         /// </summary>
         public List<string> Aliases { get; set; }
-        
+
         /// <summary>
-        /// Postal address line 2.
+        /// Gets or sets postal address line 2.
         /// </summary>
         public string AddressLine2 { get; set; }
-        
+
         /// <summary>
-        /// The city part of the postal address.
+        /// Gets or sets the city part of the postal address.
         /// </summary>
         public string City { get; set; }
-        
+
         /// <summary>
-        /// Postal address line 1.
+        /// Gets or sets postal address line 1.
         /// </summary>
         public string AddressLine1 { get; set; }
-        
+
         /// <summary>
-        /// The display name for the account.
+        /// Gets or sets the display name for the account.
         /// </summary>
         public string DisplayName { get; set; }
-        
+
         /// <summary>
-        /// The state part of the postal address.
+        /// Gets or sets the state part of the postal address.
         /// </summary>
         public string State { get; set; }
-        
+
         /// <summary>
-        /// Flag (true/false) indicating whether Factory Tool is allowed to download or not.
+        /// Gets or sets flag (true/false) indicating whether Factory Tool is allowed to download or not.
         /// </summary>
         public bool? ProvisisioningAllowed { get; set; }
-        
+
         /// <summary>
-        /// The company email address for this account.
+        /// Gets or sets the company email address for this account.
         /// </summary>
         public string Email { get; set; }
-        
+
         /// <summary>
-        /// The name of the company.
+        /// Gets or sets the name of the company.
         /// </summary>
         public string Company { get; set; }
-        
+
         /// <summary>
-        /// Time when upgraded to commercial account in UTC format RFC3339.
+        /// Gets or sets time when upgraded to commercial account in UTC format RFC3339.
         /// </summary>
         public DateTime? UpgradedAt { get; set; }
-        
+
         /// <summary>
-        /// The tier level of the account; &#39;0&#39;: free tier, commercial account. Other values are reserved for the future.
+        /// Gets or sets the tier level of the account; &#39;0&#39;: free tier, commercial account. Other values are reserved for the future.
         /// </summary>
         public string Tier { get; set; }
-        
+
         /// <summary>
-        /// List of limits as key-value pairs if requested.
+        /// Gets or sets list of limits as key-value pairs if requested.
         /// </summary>
         public Dictionary<string, string> Limits { get; set; }
-        
+
         /// <summary>
-        /// The country part of the postal address.
+        /// Gets or sets the country part of the postal address.
         /// </summary>
         public string Country { get; set; }
-        
+
         /// <summary>
-        /// Creation UTC time RFC3339.
+        /// Gets or sets creation UTC time RFC3339.
         /// </summary>
         public DateTime? CreatedAt { get; set; }
-        
+
         /// <summary>
-        /// The name of the contact person for this account.
+        /// Gets or sets the name of the contact person for this account.
         /// </summary>
         public string Contact { get; set; }
-        
+
         /// <summary>
-        /// Account template ID.
+        /// Gets or sets account template ID.
         /// </summary>
         public string TemplateId { get; set; }
 
         /// <summary>
-        /// List of policies.
+        /// Gets or sets list of policies.
         /// </summary>
         /// <value>List of policies.</value>
         public List<Policy.Policy> Policies { get; set; }
 
         /// <summary>
-        /// A reason note for updating the status of the account
+        /// Gets or sets a reason note for updating the status of the account
         /// </summary>
         public string Reason { get; set; }
 
@@ -135,7 +138,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
             {
                 foreach (KeyValuePair<string, object> item in options)
                 {
-                    var property = this.GetType().GetProperty(item.Key);
+                    var property = GetType().GetProperty(item.Key);
                     if (property != null)
                     {
                         property.SetValue(this, item.Value, null);
@@ -215,6 +218,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         /// <summary>
         /// Create an Update Request
         /// </summary>
+        /// <returns></returns>
         public iam.Model.AccountUpdateReq CreateUpdateRequest()
         {
             iam.Model.AccountUpdateReq request = new iam.Model.AccountUpdateReq();

@@ -39,6 +39,7 @@ namespace MbedCloudSDK.Update.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 var resp = api.UpdateCampaignList(options.Limit, options.Order, options.After, options.Filter.FilterString, options.Include);

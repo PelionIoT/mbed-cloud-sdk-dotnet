@@ -22,6 +22,7 @@ namespace MbedCloudSDK.Update.Api
             {
                 Configuration.Default.ApiClient = new ApiClient(config.Host);
             }
+
             api = new update_service.Api.DefaultApi();
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;

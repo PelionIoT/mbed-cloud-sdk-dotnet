@@ -47,6 +47,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
                 {
                     respDevices.Data.Add(Query.Map(deviceQuery));
                 }
+
                 return respDevices;
             }
             catch (device_directory.Client.ApiException e)

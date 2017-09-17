@@ -1,15 +1,14 @@
-﻿using iam.Client;
-using iam.Model;
-using MbedCloudSDK.AccountManagement.Model.Account;
-using MbedCloudSDK.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="AccountManagementApi.Account.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.AccountManagement.Api
 {
+    using System.Threading.Tasks;
+    using iam.Client;
+    using MbedCloudSDK.AccountManagement.Model.Account;
+    using MbedCloudSDK.Exceptions;
+
     public partial class AccountManagementApi
     {
         /// <summary>

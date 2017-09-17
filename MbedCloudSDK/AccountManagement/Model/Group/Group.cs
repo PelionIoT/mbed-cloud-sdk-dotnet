@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="Group.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,44 +13,43 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
     /// </summary>
     public class Group
     {
-
         /// <summary>
-        /// The id of the account.
+        /// Gets the id of the account.
         /// </summary>
         public string AccountId { get; private set; }
 
         /// <summary>
-        /// The name of the group.
+        /// Gets the name of the group.
         /// </summary>
         public string Name { get; private set; }
-        
+
         /// <summary>
-        /// A timestamp of the latest group update, in milliseconds.
+        /// Gets a timestamp of the latest group update, in milliseconds.
         /// </summary>
         public long? LastUpdateTime { get; private set; }
-        
+
         /// <summary>
-        /// The number of API keys in this group.
+        /// Gets the number of API keys in this group.
         /// </summary>
         public int? ApiKeyCount { get; private set; }
-        
+
         /// <summary>
-        /// Creation UTC time RFC3339.
+        /// Gets creation UTC time RFC3339.
         /// </summary>
         public DateTime? CreatedAt { get; private set; }
-        
+
         /// <summary>
-        /// A timestamp of the group creation in the storage, in milliseconds.
+        /// Gets or sets a timestamp of the group creation in the storage, in milliseconds.
         /// </summary>
         public long? CreationTime { get; set; }
-        
+
         /// <summary>
-        /// The UUID of the group.
+        /// Gets the UUID of the group.
         /// </summary>
         public string Id { get; private set; }
-        
+
         /// <summary>
-        /// The number of users in this group.
+        /// Gets the number of users in this group.
         /// </summary>
         public int? UserCount { get; private set; }
 
@@ -106,6 +109,5 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
             group.UserCount = groupInfo.UserCount;
             return group;
         }
-
     }
 }

@@ -1,62 +1,66 @@
-﻿using iam.Model;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using MbedCloudSDK.Common;
+﻿// <copyright file="ApiKey.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.AccountManagement.Model.ApiKey
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using iam.Model;
+    using MbedCloudSDK.Common;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+
     /// <summary>
     /// This object represents an API key in mbed Cloud.
     /// </summary>
     public class ApiKey
     {
         /// <summary>
-        /// The status of the API key.
+        /// Gets the status of the API key.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public ApiKeyStatus? Status { get; private set; }
 
         /// <summary>
-        /// The display name for the API key.
+        /// Gets or sets the display name for the API key.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// The owner of this API key, who is the creator by default.
+        /// Gets or sets the owner of this API key, who is the creator by default.
         /// </summary>
         public string OwnerId { get; set; }
 
         /// <summary>
-        /// The API key.
+        /// Gets the API key.
         /// </summary>
         public string Key { get; private set; }
-        
+
         /// <summary>
-        /// Creation UTC time RFC3339.
+        /// Gets creation UTC time RFC3339.
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
         public DateTime? CreatedAt { get; private set; }
-        
+
         /// <summary>
-        /// The timestamp of the API key creation in the storage, in milliseconds.
+        /// Gets the timestamp of the API key creation in the storage, in milliseconds.
         /// </summary>
         public long? CreationTime { get; private set; }
-        
+
         /// <summary>
-        /// A list of group IDs this API key belongs to.
+        /// Gets a list of group IDs this API key belongs to.
         /// </summary>
         public List<string> Groups { get; private set; }
-        
+
         /// <summary>
-        /// The UUID of the API key.
+        /// Gets the UUID of the API key.
         /// </summary>
         public string Id { get; private set; }
-        
+
         /// <summary>
-        /// The timestamp of the latest API key usage, in milliseconds.
+        /// Gets the timestamp of the latest API key usage, in milliseconds.
         /// </summary>
         public long? LastLoginTime { get; private set; }
 
@@ -70,7 +74,7 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
             {
                 foreach (KeyValuePair<string, object> item in options)
                 {
-                    var property = this.GetType().GetProperty(item.Key);
+                    var property = GetType().GetProperty(item.Key);
                     if (property != null)
                     {
                         property.SetValue(this, item.Value, null);
@@ -78,7 +82,7 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
                 }
             }
         }
-        
+
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:MbedCloudSDK.AccountManagement.Model.ApiKey.ApiKey"/>.
         /// </summary>
@@ -126,7 +130,7 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
             ApiKeyInfoReq request = new ApiKeyInfoReq(Owner:OwnerId, Status: Utils.ParseEnum<iam.Model.ApiKeyInfoReq.StatusEnum>(Status), Name:Name);
             return request;
         }
-        
+
         public ApiKeyUpdateReq CreatePutRequest()
         {
             var x = Status;

@@ -40,6 +40,7 @@ namespace MbedCloudSDK.Connect.Api
                 {
                     mappedResponse.Add(Connect.Model.Subscription.Presubscription.Map(presubscription));
                 }
+
                 return mappedResponse;
             }
             catch (mds.Client.ApiException ex)

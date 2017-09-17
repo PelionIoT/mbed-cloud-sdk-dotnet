@@ -103,7 +103,6 @@ namespace MbedCloudSDK.Update.Api
             try
             {
                 api.FirmwareManifestDestroy(manifestId);
-
             }
             catch (update_service.Client.ApiException e)
             {

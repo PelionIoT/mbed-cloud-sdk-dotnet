@@ -41,6 +41,5 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// </summary>
         [EnumMember(Value = "deregistered")]
         deregistered
-
     }
 }

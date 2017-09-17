@@ -11,7 +11,6 @@ namespace MbedCloudSDK.Connect.Model.Metric
     /// </summary>
     public class Metric
     {
-        
         /// <summary>
         /// Number of failed bootstraps account has used.
         /// </summary>

@@ -36,6 +36,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         {
             return ApiMetadata.Map(device_directory.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
         }
+
         private string FixedPath(string path)
         {
             if (path.StartsWith("/", StringComparison.OrdinalIgnoreCase))

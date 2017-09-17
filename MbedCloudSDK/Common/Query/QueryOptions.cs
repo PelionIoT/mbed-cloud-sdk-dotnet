@@ -11,7 +11,6 @@ namespace MbedCloudSDK.Common.Query
 	/// </summary>
 	public class QueryOptions
 	{
-        
         /// <summary>
 		/// Gets or sets the limit of objects in response.
 		/// </summary>

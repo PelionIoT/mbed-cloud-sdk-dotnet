@@ -1,10 +1,11 @@
-﻿namespace MbedCloudSDK.AccountManagement.Model.Policy
+﻿// <copyright file="Policy.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
+namespace MbedCloudSDK.AccountManagement.Model.Policy
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Text;
-    using System.Threading.Tasks;
 
     public class Policy
     {
@@ -19,7 +20,7 @@
             {
                 foreach (KeyValuePair<string, object> item in options)
                 {
-                    var property = this.GetType().GetProperty(item.Key);
+                    var property = GetType().GetProperty(item.Key);
                     if (property != null)
                     {
                         property.SetValue(this, item.Value, null);
@@ -44,25 +45,25 @@
         }
 
         /// <summary>
-        /// Comma separated list of actions, empty string represents all actions.
+        /// Gets or sets comma separated list of actions, empty string represents all actions.
         /// </summary>
         /// <value>Comma separated list of actions, empty string represents all actions.</value>
         public string Action { get; set; }
-        
+
         /// <summary>
-        /// Resource that is protected by this policy.
+        /// Gets or sets resource that is protected by this policy.
         /// </summary>
         /// <value>Resource that is protected by this policy.</value>
         public string Resource { get; set; }
-        
+
         /// <summary>
-        /// Feature name corresponding to this policy.
+        /// Gets or sets feature name corresponding to this policy.
         /// </summary>
         /// <value>Feature name corresponding to this policy.</value>
         public string Feature { get; set; }
-        
+
         /// <summary>
-        /// True or false controlling whether an action is allowed or not.
+        /// Gets or sets true or false controlling whether an action is allowed or not.
         /// </summary>
         /// <value>True or false controlling whether an action is allowed or not.</value>
         public bool? Allow { get; set; }

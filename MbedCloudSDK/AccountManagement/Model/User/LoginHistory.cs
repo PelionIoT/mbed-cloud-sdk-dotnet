@@ -1,31 +1,34 @@
+// <copyright file="LoginHistory.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
 using System;
-using System.Collections.Generic;
 
 namespace MbedCloudSDK.AccountManagement.Model.User
 {
-    ///<summary>
+    /// <summary>
     /// Login History
-    ///</summary>
+    /// </summary>
     public class LoginHistory
     {
-        ///<summary>
-        /// Date of login
-        ///</summary>
+        /// <summary>
+        /// Gets date of login
+        /// </summary>
         public DateTime? Date { get; private set; }
 
-        ///<summary>
-        /// User agent used for login
-        ///</summary>
+        /// <summary>
+        /// Gets user agent used for login
+        /// </summary>
         public string UserAgent { get; private set; }
 
-        ///<summary>
-        /// IP Address login from
-        ///</summary>
+        /// <summary>
+        /// Gets iP Address login from
+        /// </summary>
         public string IpAddress { get; private set; }
 
-        ///<summary>
-        /// Whether login was successful
-        ///</summary>
+        /// <summary>
+        /// Gets whether login was successful
+        /// </summary>
         public bool? Success { get; private set; }
 
         public LoginHistory(DateTime? date = null, string userAgent = null, string ipAddress = null, bool? success = null)

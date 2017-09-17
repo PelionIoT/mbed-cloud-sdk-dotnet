@@ -59,6 +59,7 @@ namespace MbedCloudSDK.Connect.Api
                 {
                     statisticsList.Add(Metric.Map(data));
                 }
+
                 return statisticsList;
             }
             catch (iam.Client.ApiException e)

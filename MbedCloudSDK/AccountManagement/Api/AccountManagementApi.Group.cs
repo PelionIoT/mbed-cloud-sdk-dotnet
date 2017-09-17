@@ -1,17 +1,16 @@
-﻿using MbedCloudSDK.AccountManagement.Model.ApiKey;
-using MbedCloudSDK.AccountManagement.Model.Group;
-using MbedCloudSDK.AccountManagement.Model.User;
-using MbedCloudSDK.Common;
-using MbedCloudSDK.Common.Query;
-using MbedCloudSDK.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="AccountManagementApi.Group.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.AccountManagement.Api
 {
+    using MbedCloudSDK.AccountManagement.Model.ApiKey;
+    using MbedCloudSDK.AccountManagement.Model.Group;
+    using MbedCloudSDK.AccountManagement.Model.User;
+    using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.Exceptions;
+
     public partial class AccountManagementApi
     {
         /// <summary>
@@ -24,6 +23,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 return new PaginatedResponse<Group>(ListGroupsFunc, options);
@@ -40,14 +40,16 @@ namespace MbedCloudSDK.AccountManagement.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
-                var resp = this.developerApi.GetAllGroups(options.Limit, options.After, options.Order, options.Include);
+                var resp = developerApi.GetAllGroups(options.Limit, options.After, options.Order, options.Include);
                 var respGroups = new ResponsePage<Group>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
                 foreach (var group in resp.Data)
                 {
                     respGroups.Data.Add(Group.Map(group));
                 }
+
                 return respGroups;
             }
             catch (device_directory.Client.ApiException e)
@@ -65,14 +67,13 @@ namespace MbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                var groupData = this.developerApi.GetGroupSummary(groupId);
+                var groupData = developerApi.GetGroupSummary(groupId);
                 return Group.Map(groupData);
             }
             catch (iam.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
-            
         }
 
         /// <summary>
@@ -87,6 +88,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             {
                 options = new QueryOptions();
             }
+
             options.Id = groupId;
             try
             {
@@ -102,12 +104,13 @@ namespace MbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                var resp = this.adminApi.GetUsersOfGroup(options.Id, options.Limit, options.After, options.Order, options.Include);
+                var resp = adminApi.GetUsersOfGroup(options.Id, options.Limit, options.After, options.Order, options.Include);
                 var respGroupUsers = new ResponsePage<User>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
                 foreach (var user in resp.Data)
                 {
                     respGroupUsers.Data.Add(User.Map(user));
                 }
+
                 return respGroupUsers;
             }
             catch (device_directory.Client.ApiException e)
@@ -128,6 +131,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             {
                 options = new QueryOptions();
             }
+
             options.Id = groupId;
             try
             {
@@ -143,12 +147,13 @@ namespace MbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                var resp = this.developerApi.GetApiKeysOfGroup(options.Id, options.Limit, options.After, options.Order, options.Include);
+                var resp = developerApi.GetApiKeysOfGroup(options.Id, options.Limit, options.After, options.Order, options.Include);
                 var respGroupKeys = new ResponsePage<ApiKey>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
                 foreach (var apiKey in resp.Data)
                 {
                     respGroupKeys.Data.Add(ApiKey.Map(apiKey));
                 }
+
                 return respGroupKeys;
             }
             catch (device_directory.Client.ApiException e)

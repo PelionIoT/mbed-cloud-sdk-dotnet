@@ -14,7 +14,6 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Logging
     /// </summary>
     public class DeviceLog
     {
-
         /// <summary>
         /// Gets or Sets EventType
         /// </summary>
