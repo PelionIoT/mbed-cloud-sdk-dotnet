@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="Config.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Common
 {
@@ -15,10 +13,10 @@ namespace MbedCloudSDK.Common
         private string apiKey;
         private string authorizationPrefix = "Bearer";
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:MbedCloudSDK.Common.Config"/> class.
-		/// </summary>
-		/// <param name="apiKey">API key.</param>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Config"/> class.
+        /// </summary>
+        /// <param name="apiKey">API key.</param>
         public Config(string apiKey)
         {
             this.apiKey = apiKey;

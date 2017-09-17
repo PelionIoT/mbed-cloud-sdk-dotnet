@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="BaseApi.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Common
 {
@@ -14,15 +12,17 @@ namespace MbedCloudSDK.Common
         /// <summary>
         /// Config used to initialize APIs. It is storing host and api key.
         /// </summary>
-        protected Config config;
-        
-		/// <summary>
-        /// Initializes a new instance of the <see cref="T:MbedCloudSDK.Common.BaseAPI"/> class.
+        private Config config;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseApi"/> class.
         /// </summary>
         /// <param name="config">Config.</param>
-		public BaseApi(Config config)
+        public BaseApi(Config config)
         {
             this.config = config;
         }
+
+        protected Config Config { get => config; set => config = value; }
     }
 }

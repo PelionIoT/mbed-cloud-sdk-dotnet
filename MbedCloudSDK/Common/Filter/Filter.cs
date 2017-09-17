@@ -1,3 +1,7 @@
+// <copyright file="Filter.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,30 +30,32 @@ namespace MbedCloudSDK.Common.Filter
             {
                 if (FilterDictionary.Any())
                 {
-                    return String.Join("&", FilterDictionary?.Select(q => $"{q.Key}{q.Value.GetSuffix()}={q.Value.Value}"));
+                    return string.Join("&", FilterDictionary?.Select(q => $"{q.Key}{q.Value.GetSuffix()}={q.Value.Value}"));
                 }
-                return "";
+
+                return string.Empty;
             }
         }
 
         /// <summary>
-        /// Dictionary containing key-value pairs of filters
+        /// Gets dictionary containing key-value pairs of filters
         /// </summary>
         [JsonProperty]
         public Dictionary<string, FilterAttribute> FilterDictionary { get; private set; }
 
         /// <summary>
-        /// Json representation of filter
+        /// Gets json representation of filter
         /// </summary>
         [JsonProperty]
         public JObject FilterJson { get; private set; }
 
         /// <summary>
-        /// If true, filter will not be mapped during an update
+        /// Gets or sets a value indicating whether if true, filter will not be mapped during an update
         /// </summary>
         public bool IsBlank { get; set; }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Filter"/> class.
         /// Default constructor
         /// </summary>
         public Filter()
@@ -59,6 +65,7 @@ namespace MbedCloudSDK.Common.Filter
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Filter"/> class.
         /// Create new filter object from json or query string
         /// </summary>
         /// <param name="value">Json or query string.</param>
@@ -70,12 +77,12 @@ namespace MbedCloudSDK.Common.Filter
             {
                 if (Utils.IsValidJson(value))
                 {
-                    FilterJson = stringToJsonObject(value);
+                    FilterJson = StringToJsonObject(value);
                     FilterDictionary = QueryJsonToDictionary(value);
                 }
                 else
                 {
-                    FilterJson = stringToJsonObject(QueryStringToJson(value));
+                    FilterJson = StringToJsonObject(QueryStringToJson(value));
                     FilterDictionary = QueryJsonToDictionary(Convert.ToString(FilterJson));
                 }
             }
@@ -97,19 +104,18 @@ namespace MbedCloudSDK.Common.Filter
             var filterAttribute = new FilterAttribute(value, filterOperator);
             FilterDictionary.Add(key, filterAttribute);
             FilterJson.Add(new JObject(
-                new JProperty(key, JObject.FromObject(filterAttribute))
-            ));
+                content: new JProperty(key, JObject.FromObject(filterAttribute))));
         }
 
         private Filter QueryStringToFilter(string queryString)
         {
             var queryJsonString = QueryStringToJson(queryString);
-            FilterJson = stringToJsonObject(queryJsonString);
+            FilterJson = StringToJsonObject(queryJsonString);
             FilterDictionary = QueryJsonToDictionary(queryJsonString);
             return this;
         }
 
-        private JObject stringToJsonObject(string jsonString)
+        private JObject StringToJsonObject(string jsonString)
         {
             return JObject.Parse(jsonString);
         }
@@ -127,13 +133,16 @@ namespace MbedCloudSDK.Common.Filter
                     customAttributes = QueryJsonToDictionary(customAttributeJson);
                     json.Remove("custom_attributes");
                 }
+
                 var dict = json.ToDictionary(k => k.Key, k => GetQueryAttribute(k.Value));
                 if (customAttributes.Any())
                 {
                     customAttributes.ToList().ForEach(d => dict.Add($"{CustomAttributesPrefix}{d.Key}", d.Value));
                 }
+
                 return dict;
             }
+
             return new Dictionary<string, FilterAttribute>();
         }
 
@@ -196,17 +205,19 @@ namespace MbedCloudSDK.Common.Filter
 
                     if (key.Contains("neq"))
                     {
-                        key = key.Replace("neq", "");
+                        key = key.Replace("neq", string.Empty);
                         oper = FilterOperator.NotEqual;
                     }
+
                     if (key.Contains("ltq"))
                     {
-                        key = key.Replace("ltq", "");
+                        key = key.Replace("ltq", string.Empty);
                         oper = FilterOperator.LessOrEqual;
                     }
+
                     if (key.Contains("gtq"))
                     {
-                        key = key.Replace("gtq", "");
+                        key = key.Replace("gtq", string.Empty);
                         oper = FilterOperator.GreaterOrEqual;
                     }
 
@@ -214,6 +225,7 @@ namespace MbedCloudSDK.Common.Filter
                     dict.Add(key, queryAttribute);
                 }
             }
+
             var json = new JObject();
             foreach (var kv in dict)
             {
@@ -221,6 +233,7 @@ namespace MbedCloudSDK.Common.Filter
                 innerJson[QueryOperatorToString(kv.Value.FilterOperator)] = kv.Value.Value;
                 json[kv.Key] = innerJson;
             }
+
             return json.ToString(Formatting.None);
         }
     }

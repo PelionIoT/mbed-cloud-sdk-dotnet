@@ -191,7 +191,7 @@
     <Compile Include="Certificates\Model\CertificateStatus.cs" />
     <Compile Include="Certificates\Model\CertificateTypeConverter.cs" />
     <Compile Include="Certificates\Model\CertificateStatusConverter.cs" />
-    <Compile Include="Common\CustomAttributes.cs" />
+    <Compile Include="Common\NameOverrideAttribute.cs" />
     <Compile Include="Common\PaginatedResponse.cs" />
     <Compile Include="Common\ResponsePage.cs" />
     <Compile Include="Common\BaseApi.cs" />

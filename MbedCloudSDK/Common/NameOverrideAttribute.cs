@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="NameOverrideAttribute.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
+using System;
 
 namespace MbedCloudSDK.Common
 {
