@@ -37,16 +37,16 @@ namespace statistics.Model
         /// <param name="BootstrapsFailed">The number of failed bootstraps the account has performed. Bootstrap is the process of provisioning a Lightweight Machine to Machine Client to a state where it can initiate a management session to a new Lightweight Machine to Machine Server..</param>
         /// <param name="Transactions">The number of transaction events from or to devices linked to the account. A transaction is a 512-byte block of data processed by mbed Cloud. It can be either sent by the device (device - -&gt; mbed cloud) or received by the device (mbed cloud - -&gt; device). A transaction does not include IP, TCP or UDP, TLS or DTLS packet overhead. It only contains the packet payload (full CoAP packet including CoAP headers)..</param>
         /// <param name="Timestamp">UTC time in RFC3339 format. The timestamp is the starting point of the interval for which the data is aggregated. Each interval includes data for the time greater than or equal to the timestamp and less than the next interval&#39;s starting point..</param>
-        /// <param name="DeviceSubscriptionRequestError">The number of failed subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints..</param>
+        /// <param name="DeviceSubscriptionRequestError">**(Beta)** The number of failed subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints. .</param>
         /// <param name="BootstrapsPending">The number of pending bootstraps the account has performed. Bootstrap is the process of provisioning a Lightweight Machine to Machine Client to a state where it can initiate a management session to a new Lightweight Machine to Machine Server..</param>
-        /// <param name="DeviceProxyRequestSuccess">The number of successful proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from Mbed Cloud Connect to devices when you try to read or write values to device resources using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints..</param>
+        /// <param name="DeviceProxyRequestSuccess">**(Beta)** The number of successful proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from Mbed Cloud Connect to devices when you try to read or write values to device resources using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints. .</param>
         /// <param name="BootstrapsSuccessful">The number of successful bootstraps the account has performed. Bootstrap is the process of provisioning a Lightweight Machine to Machine Client to a state where it can initiate a management session to a new Lightweight Machine to Machine Server..</param>
         /// <param name="FullRegistrations">The number of full registrations linked to the account. Full registration is the process of registering a device with the Mbed Cloud Connect by providing its lifetime and capabilities such as the resource structure.The registered status of the device does not guarantee that the device is active and accessible from Mebd Cloud Connect at any point of time..</param>
-        /// <param name="DeviceSubscriptionRequestSuccess">The number of successful subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints..</param>
+        /// <param name="DeviceSubscriptionRequestSuccess">**(Beta)** The number of successful subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints. .</param>
         /// <param name="ExpiredRegistrations">The number of expired registrations linked to the account. Mbed Cloud Connect removes the device registrations when the devices cannot update their registration before the expiry of the lifetime. Mbed Cloud Connect no longer handles requests for a device whose registration has expired already..</param>
         /// <param name="HandshakesSuccessful">The number of successful TLS handshakes the account has performed. The SSL or TLS handshake enables the SSL or TLS client and server to establish the secret keys with which they communicate. A successful TLS handshake is required for establishing a connection with Mbed Cloud Connect for any operaton such as registration, registration update and deregistration..</param>
-        /// <param name="DeviceObservations">The number of observations received by Mbed Cloud Connect from the devices linked to the account. The observations are pushed from the device to Mbed Cloud Connect when you have successfully subscribed to the device resources using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints..</param>
-        /// <param name="DeviceProxyRequestError">The number of failed proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from Mbed Cloud Connect to devices when you try to read or write values to device resources using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints..</param>
+        /// <param name="DeviceObservations">**(Beta)** The number of observations received by Mbed Cloud Connect from the devices linked to the account. The observations are pushed from the device to Mbed Cloud Connect when you have successfully subscribed to the device resources using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints. .</param>
+        /// <param name="DeviceProxyRequestError">**(Beta)** The number of failed proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from Mbed Cloud Connect to devices when you try to read or write values to device resources using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints. .</param>
         /// <param name="DeletedRegistrations">The number of deleted registrations (deregistrations) linked to the account. Deregistration is the process of removing the device registration from the Mbed Cloud Connect registry. The deregistration is usually initiated by the device. Mbed Cloud Connect no longer handles requests for a deregistered device..</param>
         /// <param name="ConnectRestApiError">The number of failed [Connect API](/docs/v1.2/api-references/connect-api.html) requests the account has performed.The metric do not consider the actual response from the device and it includes only the result of the http request used to subscibe to the device resources..</param>
         /// <param name="Id">A unique metric ID..</param>
@@ -103,9 +103,9 @@ namespace statistics.Model
         [DataMember(Name="timestamp", EmitDefaultValue=false)]
         public DateTime? Timestamp { get; set; }
         /// <summary>
-        /// The number of failed subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints.
+        /// **(Beta)** The number of failed subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints. 
         /// </summary>
-        /// <value>The number of failed subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints.</value>
+        /// <value>**(Beta)** The number of failed subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints. </value>
         [DataMember(Name="device_subscription_request_error", EmitDefaultValue=false)]
         public long? DeviceSubscriptionRequestError { get; set; }
         /// <summary>
@@ -115,9 +115,9 @@ namespace statistics.Model
         [DataMember(Name="bootstraps_pending", EmitDefaultValue=false)]
         public long? BootstrapsPending { get; set; }
         /// <summary>
-        /// The number of successful proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from Mbed Cloud Connect to devices when you try to read or write values to device resources using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints.
+        /// **(Beta)** The number of successful proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from Mbed Cloud Connect to devices when you try to read or write values to device resources using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints. 
         /// </summary>
-        /// <value>The number of successful proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from Mbed Cloud Connect to devices when you try to read or write values to device resources using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints.</value>
+        /// <value>**(Beta)** The number of successful proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from Mbed Cloud Connect to devices when you try to read or write values to device resources using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints. </value>
         [DataMember(Name="device_proxy_request_success", EmitDefaultValue=false)]
         public long? DeviceProxyRequestSuccess { get; set; }
         /// <summary>
@@ -133,9 +133,9 @@ namespace statistics.Model
         [DataMember(Name="full_registrations", EmitDefaultValue=false)]
         public long? FullRegistrations { get; set; }
         /// <summary>
-        /// The number of successful subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints.
+        /// **(Beta)** The number of successful subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints. 
         /// </summary>
-        /// <value>The number of successful subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints.</value>
+        /// <value>**(Beta)** The number of successful subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints. </value>
         [DataMember(Name="device_subscription_request_success", EmitDefaultValue=false)]
         public long? DeviceSubscriptionRequestSuccess { get; set; }
         /// <summary>
@@ -151,15 +151,15 @@ namespace statistics.Model
         [DataMember(Name="handshakes_successful", EmitDefaultValue=false)]
         public long? HandshakesSuccessful { get; set; }
         /// <summary>
-        /// The number of observations received by Mbed Cloud Connect from the devices linked to the account. The observations are pushed from the device to Mbed Cloud Connect when you have successfully subscribed to the device resources using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints.
+        /// **(Beta)** The number of observations received by Mbed Cloud Connect from the devices linked to the account. The observations are pushed from the device to Mbed Cloud Connect when you have successfully subscribed to the device resources using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints. 
         /// </summary>
-        /// <value>The number of observations received by Mbed Cloud Connect from the devices linked to the account. The observations are pushed from the device to Mbed Cloud Connect when you have successfully subscribed to the device resources using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints.</value>
+        /// <value>**(Beta)** The number of observations received by Mbed Cloud Connect from the devices linked to the account. The observations are pushed from the device to Mbed Cloud Connect when you have successfully subscribed to the device resources using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints. </value>
         [DataMember(Name="device_observations", EmitDefaultValue=false)]
         public long? DeviceObservations { get; set; }
         /// <summary>
-        /// The number of failed proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from Mbed Cloud Connect to devices when you try to read or write values to device resources using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints.
+        /// **(Beta)** The number of failed proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from Mbed Cloud Connect to devices when you try to read or write values to device resources using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints. 
         /// </summary>
-        /// <value>The number of failed proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from Mbed Cloud Connect to devices when you try to read or write values to device resources using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints.</value>
+        /// <value>**(Beta)** The number of failed proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from Mbed Cloud Connect to devices when you try to read or write values to device resources using [Connect API](/docs/v1.2/api-references/connect-api.html) endpoints. </value>
         [DataMember(Name="device_proxy_request_error", EmitDefaultValue=false)]
         public long? DeviceProxyRequestError { get; set; }
         /// <summary>
