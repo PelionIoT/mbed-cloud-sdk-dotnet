@@ -18,6 +18,26 @@ namespace MbedCloudSDK.AccountManagement.Model.User
     public class User
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="User"/> class.x
+        /// Initializes new instance of User class.
+        /// </summary>
+        /// <param name="options">Dictionary containing properties.</param>
+        public User(IDictionary<string, object> options = null)
+        {
+            if (options != null)
+            {
+                foreach (KeyValuePair<string, object> item in options)
+                {
+                    var property = GetType().GetProperty(item.Key);
+                    if (property != null)
+                    {
+                        property.SetValue(this, item.Value, null);
+                    }
+                }
+            }
+        }
+        
+        /// <summary>
         /// Gets the status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
@@ -116,26 +136,6 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         public List<LoginHistory> LoginHistory { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="User"/> class.x
-        /// Initializes new instance of User class.
-        /// </summary>
-        /// <param name="options">Dictionary containing properties.</param>
-        public User(IDictionary<string, object> options = null)
-        {
-            if (options != null)
-            {
-                foreach (KeyValuePair<string, object> item in options)
-                {
-                    var property = GetType().GetProperty(item.Key);
-                    if (property != null)
-                    {
-                        property.SetValue(this, item.Value, null);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -169,7 +169,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// <summary>
         /// Map to User object.
         /// </summary>
-        /// <param name="userInfo"></param>
+        /// <param name="userInfo">Iam user object</param>
         /// <returns></returns>
         public static User Map(iam.Model.UserInfoResp userInfo)
         {
@@ -197,6 +197,9 @@ namespace MbedCloudSDK.AccountManagement.Model.User
             return user;
         }
 
+        /// <summary>
+        /// Create post request
+        /// </summary>
         public iam.Model.UserInfoReq CreatePostRequest()
         {
             iam.Model.UserInfoReq request = new iam.Model.UserInfoReq(Email: Email)
@@ -212,6 +215,9 @@ namespace MbedCloudSDK.AccountManagement.Model.User
             return request;
         }
 
+        /// <summary>
+        /// Create put request
+        /// </summary>
         public iam.Model.UserUpdateReq CreatePutRequest()
         {
             iam.Model.UserUpdateReq request = new iam.Model.UserUpdateReq(Email: Email)

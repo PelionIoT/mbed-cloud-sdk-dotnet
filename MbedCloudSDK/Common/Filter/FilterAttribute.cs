@@ -4,6 +4,9 @@
 
 namespace MbedCloudSDK.Common.Filter
 {
+    /// <summary>
+    /// Filter Attribute
+    /// </summary>
     public class FilterAttribute
     {
         /// <summary>

@@ -12,16 +12,6 @@ namespace MbedCloudSDK.Connect.Model.Webhook
     public class Webhook
     {
         /// <summary>
-        /// The url of the webhook
-        /// </summary>
-        public string Url { get; set; }
-
-        /// <summary>
-        /// Gets or sets k/V dictionary of any headers
-        /// </summary>
-        public Dictionary<string, string> Headers { get; set; }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Webhook"/> class.
         /// Default constructor
         /// </summary>
@@ -38,6 +28,16 @@ namespace MbedCloudSDK.Connect.Model.Webhook
             Url = url;
             Headers = headers;
         }
+        
+        /// <summary>
+        /// The url of the webhook
+        /// </summary>
+        public string Url { get; set; }
+
+        /// <summary>
+        /// Gets or sets k/V dictionary of any headers
+        /// </summary>
+        public Dictionary<string, string> Headers { get; set; }
 
         /// <summary>
         /// Map from api webhook to webhook

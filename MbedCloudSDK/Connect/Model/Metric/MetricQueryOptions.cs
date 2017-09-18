@@ -6,8 +6,20 @@ using System;
 
 namespace MbedCloudSDK.Connect.Model.Metric
 {
+    /// <summary>
+    /// Metric query options
+    /// </summary>
     public class MetricQueryOptions
     {
+        /// <summary>
+        /// </summary>
+        public MetricQueryOptions()
+        {
+            Include = "transactions,bootstraps_successful,bootstraps_pending,bootstraps_failed,connect_rest_api_success,connect_rest_api_error,device_proxy_request_success,device_proxy_request_error,device_subscription_request_success,device_subscription_request_error,device_observations";
+            Interval = "1d";
+            Period = "1m";
+        }
+
         /// <summary>
         /// Gets or sets comma-separated list of requested metrics.Supported values are bootstraps_successful, bootstraps_failed, bootstraps_pending, bootstrap_certificate_create, bootstrap_certificate_delete, connector_certificate_create, connector_certificate_delete, bootstrap_credentials_get, bootstrap_full_credentials_get, connector_credentials_get, connector_full_credentials_get, connector_ca_rest_api_count, connector_ca_rest_api_error_count
         /// </summary>
@@ -47,12 +59,5 @@ namespace MbedCloudSDK.Connect.Model.Metric
         /// Gets or sets the order of the records to return. Available values are ASC and DESC. The default value is ASC.
         /// </summary>
         public string Order { get; set; }
-
-        public MetricQueryOptions()
-        {
-            Include = "transactions,bootstraps_successful,bootstraps_pending,bootstraps_failed,connect_rest_api_success,connect_rest_api_error,device_proxy_request_success,device_proxy_request_error,device_subscription_request_success,device_subscription_request_error,device_observations";
-            Interval = "1d";
-            Period = "1m";
-        }
     }
 }

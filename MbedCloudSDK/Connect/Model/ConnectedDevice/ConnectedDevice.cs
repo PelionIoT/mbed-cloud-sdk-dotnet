@@ -8,9 +8,33 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
     using System.Text;
     using mds.Model;
 
+    /// <summary>
+    /// Connected Device
+    /// </summary>
     public class ConnectedDevice
     {
         private Connect.Api.ConnectApi api;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConnectedDevice" /> class.
+        /// </summary>
+        /// <param name="options">Dictionary containing properties.</param>
+        /// <param name="api">Connect Api.</param>
+        public ConnectedDevice(IDictionary<string, object> options = null, Api.ConnectApi api = null)
+        {
+            this.api = api;
+            if (options != null)
+            {
+                foreach (KeyValuePair<string, object> item in options)
+                {
+                    var property = GetType().GetProperty(item.Key);
+                    if (property != null)
+                    {
+                        property.SetValue(this, item.Value, null);
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// Gets or sets id of the endpoint.
@@ -33,27 +57,6 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         /// Gets or sets possible values ACTIVE, STALE.
         /// </summary>
         public string Status { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ConnectedDevice" /> class.
-        /// </summary>
-        /// <param name="options">Dictionary containing properties.</param>
-        /// <param name="api">Connect Api.</param>
-        public ConnectedDevice(IDictionary<string, object> options = null, Api.ConnectApi api = null)
-        {
-            this.api = api;
-            if (options != null)
-            {
-                foreach (KeyValuePair<string, object> item in options)
-                {
-                    var property = GetType().GetProperty(item.Key);
-                    if (property != null)
-                    {
-                        property.SetValue(this, item.Value, null);
-                    }
-                }
-            }
-        }
 
         /// <summary>
         /// Map to Device object.

@@ -6,6 +6,9 @@ using System.Runtime.Serialization;
 
 namespace MbedCloudSDK.Certificates.Model
 {
+    /// <summary>
+    /// Certificate status enum
+    /// </summary>
     public enum CertificateStatus
     {
         /// <summary>

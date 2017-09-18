@@ -10,6 +10,10 @@ using Newtonsoft.Json.Linq;
 
 namespace MbedCloudSDK.Common
 {
+    /// <summary>
+    /// Utils
+    /// A set of utility functions
+    /// </summary>
     public static class Utils
     {
         /// <summary>
@@ -63,6 +67,9 @@ namespace MbedCloudSDK.Common
             return newObj;
         }
 
+        /// <summary>
+        /// Parse an enum
+        /// </summary>
         public static T ParseEnum<T>(object enumValue)
             where T : struct, IComparable
         {
@@ -113,6 +120,9 @@ namespace MbedCloudSDK.Common
             return null;
         }
 
+        /// <summary>
+        /// Check if string is valid Json
+        /// </summary>
         public static bool IsValidJson(string strInput)
         {
             strInput = strInput.Trim();

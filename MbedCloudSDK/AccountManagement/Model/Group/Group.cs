@@ -14,6 +14,25 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
     public class Group
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="Group" /> class.
+        /// </summary>
+        /// <param name="options">Dictionary containing properties.</param>
+        public Group(IDictionary<string, object> options = null)
+        {
+            if (options != null)
+            {
+                foreach (KeyValuePair<string, object> item in options)
+                {
+                    var property = GetType().GetProperty(item.Key);
+                    if (property != null)
+                    {
+                        property.SetValue(this, item.Value, null);
+                    }
+                }
+            }
+        }
+        
+        /// <summary>
         /// Gets the id of the account.
         /// </summary>
         public string AccountId { get; private set; }
@@ -52,25 +71,6 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
         /// Gets the number of users in this group.
         /// </summary>
         public int? UserCount { get; private set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Group" /> class.
-        /// </summary>
-        /// <param name="options">Dictionary containing properties.</param>
-        public Group(IDictionary<string, object> options = null)
-        {
-            if (options != null)
-            {
-                foreach (KeyValuePair<string, object> item in options)
-                {
-                    var property = GetType().GetProperty(item.Key);
-                    if (property != null)
-                    {
-                        property.SetValue(this, item.Value, null);
-                    }
-                }
-            }
-        }
 
         /// <summary>
         /// Returns the string presentation of the object

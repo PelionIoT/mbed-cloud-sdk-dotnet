@@ -14,11 +14,40 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
     using Newtonsoft.Json.Converters;
 
     /// <summary>
-    /// Endpoint.
+    /// Device
     /// </summary>
     public class Device
 	{
         private DeviceDirectoryApi api;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Device"/> class.
+        /// Default constructor
+        /// </summary>
+        public Device()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Device" /> class.
+        /// </summary>
+        /// <param name="options">Dictionary containing properties.</param>
+        /// <param name="api">DeviceDirectory Api.</param>
+        public Device(IDictionary<string, object> options = null, DeviceDirectoryApi api = null)
+        {
+            this.api = api;
+            if (options != null)
+            {
+                foreach (KeyValuePair<string, object> item in options)
+                {
+                    var property = GetType().GetProperty(item.Key);
+                    if (property != null)
+                    {
+                        property.SetValue(this, item.Value, null);
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// Gets or sets the ID of the channel used to communicate with the device
@@ -172,35 +201,6 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// Gets or sets the API resource entity
         /// </summary>
         public string _Object { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Device"/> class.
-        /// Default constructor
-        /// </summary>
-        public Device()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Device" /> class.
-        /// </summary>
-        /// <param name="options">Dictionary containing properties.</param>
-        /// <param name="api">DeviceDirectory Api.</param>
-        public Device(IDictionary<string, object> options = null, DeviceDirectoryApi api = null)
-        {
-            this.api = api;
-            if (options != null)
-            {
-                foreach (KeyValuePair<string, object> item in options)
-                {
-                    var property = GetType().GetProperty(item.Key);
-                    if (property != null)
-                    {
-                        property.SetValue(this, item.Value, null);
-                    }
-                }
-            }
-        }
 
         /// <summary>
         /// Map to Device object.

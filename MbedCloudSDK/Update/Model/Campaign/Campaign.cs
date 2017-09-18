@@ -19,6 +19,25 @@ namespace MbedCloudSDK.Update.Model.Campaign
     public class Campaign
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="Campaign"/> class.
+        /// Create new update campaign object.
+        /// </summary>
+        /// <param name="options">Dictionary to initiate</param>
+        public Campaign(IDictionary<string, object> options = null)
+        {
+            if (options != null)
+            {
+                foreach (KeyValuePair<string, object> item in options)
+                {
+                    if (GetType().GetProperty(item.Key) != null)
+                    {
+                        GetType().GetProperty(item.Key).SetValue(this, item.Value, null);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets state of the update campaign.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
@@ -79,26 +98,10 @@ namespace MbedCloudSDK.Update.Model.Campaign
         /// </summary>
         public DateTime? When { get; set; }
 
-        public string _Object { get; set; }
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="Campaign"/> class.
-        /// Create new update campaign object.
+        /// Object
         /// </summary>
-        /// <param name="options">Dictionary to initiate</param>
-        public Campaign(IDictionary<string, object> options = null)
-        {
-            if (options != null)
-            {
-                foreach (KeyValuePair<string, object> item in options)
-                {
-                    if (GetType().GetProperty(item.Key) != null)
-                    {
-                        GetType().GetProperty(item.Key).SetValue(this, item.Value, null);
-                    }
-                }
-            }
-        }
+        public string _Object { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -147,6 +150,9 @@ namespace MbedCloudSDK.Update.Model.Campaign
             return campaign;
         }
 
+        /// <summary>
+        /// Create Post Request
+        /// </summary>
         public UpdateCampaignPostRequest CreatePostRequest()
         {
             var deviceFilterString = DeviceFilter.FilterString;
@@ -160,6 +166,9 @@ namespace MbedCloudSDK.Update.Model.Campaign
             return request;
         }
 
+        /// <summary>
+        /// Create Put Request
+        /// </summary>
         public UpdateCampaignPutRequest CreatePutRequest()
         {
             var updateCampaignStatus = Utils.ParseEnum<UpdateCampaignPutRequest.StateEnum>(State);

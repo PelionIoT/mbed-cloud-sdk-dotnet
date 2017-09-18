@@ -17,6 +17,26 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Logging
     public class DeviceLog
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="DeviceLog"/> class.
+        /// Create new instance of DeviceLog class.
+        /// </summary>
+        /// <param name="options"></param>
+        public DeviceLog(IDictionary<string, object> options = null)
+        {
+            if (options != null)
+            {
+                foreach (KeyValuePair<string, object> item in options)
+                {
+                    var property = GetType().GetProperty(item.Key);
+                    if (property != null)
+                    {
+                        property.SetValue(this, item.Value, null);
+                    }
+                }
+            }
+        }
+        
+        /// <summary>
         /// Gets or sets gets or Sets EventType
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
@@ -61,26 +81,6 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Logging
         /// Gets or sets gets or Sets DeviceId
         /// </summary>
         public string DeviceId { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceLog"/> class.
-        /// Create new instance of DeviceLog class.
-        /// </summary>
-        /// <param name="options"></param>
-        public DeviceLog(IDictionary<string, object> options = null)
-        {
-            if (options != null)
-            {
-                foreach (KeyValuePair<string, object> item in options)
-                {
-                    var property = GetType().GetProperty(item.Key);
-                    if (property != null)
-                    {
-                        property.SetValue(this, item.Value, null);
-                    }
-                }
-            }
-        }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -18,6 +18,24 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
     public class Account
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="Account" /> class.
+        /// </summary>
+        public Account(IDictionary<string, object> options = null)
+        {
+            if (options != null)
+            {
+                foreach (KeyValuePair<string, object> item in options)
+                {
+                    var property = GetType().GetProperty(item.Key);
+                    if (property != null)
+                    {
+                        property.SetValue(this, item.Value, null);
+                    }
+                }
+            }
+        }
+        
+        /// <summary>
         /// Gets or sets the status of the account.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
@@ -128,24 +146,6 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         /// Gets or sets a reason note for updating the status of the account
         /// </summary>
         public string Reason { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Account" /> class.
-        /// </summary>
-        public Account(IDictionary<string, object> options = null)
-        {
-            if (options != null)
-            {
-                foreach (KeyValuePair<string, object> item in options)
-                {
-                    var property = GetType().GetProperty(item.Key);
-                    if (property != null)
-                    {
-                        property.SetValue(this, item.Value, null);
-                    }
-                }
-            }
-        }
 
         /// <summary>
         /// Returns the string presentation of the object.
