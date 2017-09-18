@@ -16,30 +16,30 @@ namespace MbedCloudSDK.Update.Model.Campaign
         /// Enum Pending for "pending"
         /// </summary>
         [EnumMember(Value = "pending")]
-        Pending,
+        pending,
             
         /// <summary>
         /// Enum Updateddevicecatalog for "updated_device_catalog"
         /// </summary>
         [EnumMember(Value = "updated_device_catalog")]
-        Updateddevicecatalog,
+        updated_device_catalog,
             
         /// <summary>
         /// Enum Updatedconnectorchannel for "updated_connector_channel"
         /// </summary>
         [EnumMember(Value = "updated_connector_channel")]
-        Updatedconnectorchannel,
+        updated_connector_channel,
             
         /// <summary>
         /// Enum Deployed for "deployed"
         /// </summary>
         [EnumMember(Value = "deployed")]
-        Deployed,
+        deployed,
             
         /// <summary>
         /// Enum Manifestremoved for "manifestremoved"
         /// </summary>
         [EnumMember(Value = "manifestremoved")]
-        Manifestremoved
+        manifestremoved
     }
 }

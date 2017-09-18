@@ -13,12 +13,12 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// Enum Connector for "connector"
         /// </summary>
         [EnumMember(Value = "connector")]
-        Connector,
+        connector,
 
         /// <summary>
         /// Enum Direct for "direct"
         /// </summary>
         [EnumMember(Value = "direct")]
-        Direct
+        direct
     }
 }

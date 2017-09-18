@@ -130,7 +130,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
         /// <returns></returns>
         public static Campaign Map(update_service.Model.UpdateCampaign data)
         {
-            var updateCampaignStatus = data.State.HasValue ? (CampaignStateEnum?)Enum.Parse(typeof(CampaignStateEnum), data.State.ToString()) : null;
+            var updateCampaignStatus = Utils.ParseEnum<CampaignStateEnum>(data.State);
             var campaign = new Campaign();
             campaign.CreatedAt = data.CreatedAt;
             campaign.Description = data.Description;
@@ -151,14 +151,14 @@ namespace MbedCloudSDK.Update.Model.Campaign
             UpdateCampaignPostRequest request = new UpdateCampaignPostRequest(DeviceFilter:deviceFilterString, Name:Name);
             request.Description = this.Description;
             request.RootManifestId = this.RootManifestId;
-            request.State = State.HasValue ? (UpdateCampaignPostRequest.StateEnum?)Enum.Parse(typeof(UpdateCampaignPostRequest.StateEnum), State.ToString()) : null;
+            request.State = Utils.ParseEnum<UpdateCampaignPostRequest.StateEnum>(State);
             request.When = this.ScheduledAt;
             return request;
         }
 
         public UpdateCampaignPutRequest CreatePutRequest()
         {
-            var updateCampaignStatus = State.HasValue ? (UpdateCampaignPutRequest.StateEnum?)Enum.Parse(typeof(UpdateCampaignPutRequest.StateEnum), this.State.ToString()) : null;
+            var updateCampaignStatus = Utils.ParseEnum<UpdateCampaignPutRequest.StateEnum>(State);
             UpdateCampaignPutRequest request = new UpdateCampaignPutRequest(
                 Description:Description, RootManifestId:RootManifestId, _Object:"", 
                 When:ScheduledAt, State:updateCampaignStatus, DeviceFilter:DeviceFilter.FilterString, Name:Name);

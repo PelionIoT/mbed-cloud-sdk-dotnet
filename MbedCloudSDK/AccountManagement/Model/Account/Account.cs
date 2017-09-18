@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json;
+using MbedCloudSDK.Common;
 
 namespace MbedCloudSDK.AccountManagement.Model.Account
 {
@@ -121,6 +122,11 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         public List<Policy.Policy> Policies { get; set; }
 
         /// <summary>
+        /// A reason note for updating the status of the account
+        /// </summary>
+        public string Reason { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Account" /> class.
         /// </summary>
         public Account(IDictionary<string, object> options = null)
@@ -167,6 +173,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
             sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
             sb.Append("  Policies: ").Append(string.Join(", ", Policies.Select(p => { return p.ToString(); }))).Append("\n");
+            sb.Append("  Reason: ").Append(Reason).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -178,7 +185,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         /// <returns></returns>
         public static Account Map(iam.Model.AccountInfo accountInfo)
         {
-            var accountStatus = (AccountStatus)Enum.Parse(typeof(AccountStatus), accountInfo.Status.ToString());
+            var accountStatus = Utils.ParseEnum<AccountStatus>(accountInfo.Status);
             var account = new Account();
             account.PhoneNumber = accountInfo.PhoneNumber;
             account.Postcode = accountInfo.PostalCode;
@@ -201,6 +208,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
             account.Contact = account.Contact;
             account.TemplateId = accountInfo.TemplateId;
             account.Policies = accountInfo?.Policies?.Select(p => { return Policy.Policy.Map(p); }).ToList();
+            account.Reason = accountInfo.Reason;
             return account;
         }
 
@@ -210,18 +218,18 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         public iam.Model.AccountUpdateReq CreateUpdateRequest()
         {
             iam.Model.AccountUpdateReq request = new iam.Model.AccountUpdateReq();
-            request.PhoneNumber = this.PhoneNumber;
-            request.PostalCode = this.Postcode;
-            request.Aliases = this.Aliases;
-            request.AddressLine2 = this.AddressLine2;
-            request.City = this.City;
-            request.AddressLine1 = this.AddressLine1;
-            request.DisplayName = this.DisplayName;
-            request.State = this.State;
-            request.Email = this.Email;
-            request.Company = this.Company;
-            request.Country = this.Country;
-            request.Contact = this.Contact;
+            request.PhoneNumber = PhoneNumber;
+            request.PostalCode = Postcode;
+            request.Aliases = Aliases;
+            request.AddressLine2 = AddressLine2;
+            request.City = City;
+            request.AddressLine1 = AddressLine1;
+            request.DisplayName = DisplayName;
+            request.State = State;
+            request.Email = Email;
+            request.Company = Company;
+            request.Country = Country;
+            request.Contact = Contact;
             return request;
         }
     }

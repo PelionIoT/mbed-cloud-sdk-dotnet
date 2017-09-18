@@ -67,7 +67,7 @@ namespace MbedCloudSDK.Certificates.Model
         /// X509.v3 trusted certificate in PEM or base64 encoded DER format.
         /// </summary>
         /// <value>X509.v3 trusted certificate in PEM or base64 encoded DER format.</value>
-        public string CertData { get; set; }
+        public string CertificateData { get; set; }
 
         /// <summary>
         /// Entity ID.
@@ -121,6 +121,12 @@ namespace MbedCloudSDK.Certificates.Model
         public CertificateStatus? Status { get; set; }
 
         /// <summary>
+        /// Bootstrap server URI to which the client needs to connect to.
+        /// </summary>
+        /// <value>Bootstrap server URI to which the client needs to connect to.</value>
+        public string OwnerId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -135,7 +141,7 @@ namespace MbedCloudSDK.Certificates.Model
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Validity: ").Append(Validity).Append("\n");
             sb.Append("  Issuer: ").Append(Issuer).Append("\n");
-            sb.Append("  CertData: ").Append(CertData).Append("\n");
+            sb.Append("  CertData: ").Append(CertificateData).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  SecurityFileContent: ").Append(SecurityFileContent).Append("\n");
@@ -257,11 +263,13 @@ namespace MbedCloudSDK.Certificates.Model
             certificate.AccountId = trustedCertificate.AccountId;
             certificate.Validity = trustedCertificate.Validity;
             certificate.Issuer = trustedCertificate.Issuer;
-            certificate.CertData = trustedCertificate.Certificate;
+            certificate.CertificateData = trustedCertificate.Certificate;
             certificate.Id = trustedCertificate.Id;
             certificate.Name = trustedCertificate.Name;
             certificate.Description = trustedCertificate.Description;
             certificate.CreatedAt = trustedCertificate.CreatedAt;
+            certificate.Status = Utils.ParseEnum<CertificateStatus>(trustedCertificate.Status);
+            certificate.OwnerId = trustedCertificate.OwnerId;
             return certificate;
         }
 

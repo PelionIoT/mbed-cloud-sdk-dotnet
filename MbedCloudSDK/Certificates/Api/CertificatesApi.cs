@@ -275,8 +275,8 @@ namespace MbedCloudSDK.Certificates.Api
                 var serviceEnum = Certificate.GetUpdateServiceEnum(certificate);
                 var statusEnum = Certificate.GetUpdateStatusEnum(certificate);
 
-                var req = new TrustedCertificateUpdateReq(Status: statusEnum, Certificate: string.IsNullOrEmpty(updatedCertificate.CertData) ? null : certificate.CertData,
-                    Name: certificate.Name, Service: serviceEnum, Signature:string.IsNullOrEmpty(updatedCertificate.CertData) ? null : certificate.Signature, Description:certificate.Description);
+                var req = new TrustedCertificateUpdateReq(Status: statusEnum, Certificate: string.IsNullOrEmpty(updatedCertificate.CertificateData) ? null : certificate.CertificateData,
+                    Name: certificate.Name, Service: serviceEnum, Signature:string.IsNullOrEmpty(updatedCertificate.CertificateData) ? null : certificate.Signature, Description:certificate.Description);
 
                 try
                 {

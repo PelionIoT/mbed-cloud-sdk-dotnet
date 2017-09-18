@@ -4,6 +4,7 @@ using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using MbedCloudSDK.Common;
 
 namespace MbedCloudSDK.AccountManagement.Model.ApiKey
 {
@@ -26,12 +27,12 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
         /// <summary>
         /// The owner of this API key, who is the creator by default.
         /// </summary>
-        public string Owner { get; set; }
+        public string OwnerId { get; set; }
 
         /// <summary>
         /// The API key.
         /// </summary>
-        public string Apikey { get; private set; }
+        public string Key { get; private set; }
         
         /// <summary>
         /// Creation UTC time RFC3339.
@@ -87,12 +88,12 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
             var sb = new StringBuilder();
             sb.Append("class ApiKey {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  Apikey: ").Append(Apikey).Append("\n");
+            sb.Append("  Apikey: ").Append(Key).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
             sb.Append("  Groups: ").Append(Groups).Append("\n");
-            sb.Append("  Owner: ").Append(Owner).Append("\n");
+            sb.Append("  Owner: ").Append(OwnerId).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  LastLoginTime: ").Append(LastLoginTime).Append("\n");
             sb.Append("}\n");
@@ -106,15 +107,15 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
         /// <returns></returns>
         public static ApiKey Map(ApiKeyInfoResp apiKeyInfo)
         {
-            ApiKeyStatus apiKeyStatus = (ApiKeyStatus)Enum.Parse(typeof(ApiKeyStatus), apiKeyInfo.Status.ToString());
+            ApiKeyStatus apiKeyStatus = Utils.ParseEnum<ApiKeyStatus>(apiKeyInfo.Status);
             var apiKey = new ApiKey();
             apiKey.Status = apiKeyStatus;
-            apiKey.Apikey = apiKeyInfo.Key;
+            apiKey.Key = apiKeyInfo.Key;
             apiKey.Name = apiKeyInfo.Name;
             apiKey.CreatedAt = apiKeyInfo.CreatedAt;
             apiKey.CreationTime = apiKeyInfo.CreationTime;
             apiKey.Groups = apiKeyInfo.Groups;
-            apiKey.Owner = apiKeyInfo.Owner;
+            apiKey.OwnerId = apiKeyInfo.Owner;
             apiKey.Id = apiKeyInfo.Id;
             apiKey.LastLoginTime = apiKeyInfo.LastLoginTime;
             return apiKey;
@@ -122,13 +123,14 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
 
         public ApiKeyInfoReq CreatePostRequest()
         {
-            ApiKeyInfoReq request = new ApiKeyInfoReq(Owner:Owner, Name:Name);
+            ApiKeyInfoReq request = new ApiKeyInfoReq(Owner:OwnerId, Status: Utils.ParseEnum<iam.Model.ApiKeyInfoReq.StatusEnum>(Status), Name:Name);
             return request;
         }
         
         public ApiKeyUpdateReq CreatePutRequest()
         {
-            ApiKeyUpdateReq request = new ApiKeyUpdateReq(Owner:Owner, Name:Name);
+            var x = Status;
+            ApiKeyUpdateReq request = new ApiKeyUpdateReq(Owner:OwnerId, Name:Name);
             return request;
         }
     }

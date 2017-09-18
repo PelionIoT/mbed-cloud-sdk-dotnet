@@ -16,31 +16,31 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// Enum Unenrolled for "unenrolled"
         /// </summary>
         [EnumMember(Value = "unenrolled")]
-        Unenrolled,
+        unenrolled,
 
         /// <summary>
         /// Enum Cloudenrolling for "cloud_enrolling"
         /// </summary>
         [EnumMember(Value = "cloud_enrolling")]
-        Cloudenrolling,
+        cloud_enrolling,
 
         /// <summary>
         /// Enum Bootstrapped for "bootstrapped"
         /// </summary>
         [EnumMember(Value = "bootstrapped")]
-        Bootstrapped,
+        bootstrapped,
 
         /// <summary>
         /// Enum Registered for "registered"
         /// </summary>
         [EnumMember(Value = "registered")]
-        Registered,
+        registered,
 
         /// <summary>
         /// Enum Deregistered for "deregistered"
         /// </summary>
         [EnumMember(Value = "deregistered")]
-        Deregistered
+        deregistered
 
     }
 }

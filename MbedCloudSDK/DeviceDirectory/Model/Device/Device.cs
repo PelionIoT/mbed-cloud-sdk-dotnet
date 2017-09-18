@@ -203,22 +203,13 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
             device.Id = deviceData.Id;
             device.Description = deviceData.Description;
             device.AutoUpdate = deviceData.AutoUpdate;
-            if (deviceData.Mechanism != null)
-            {
-                device.Mechanism = (Mechanism)Enum.Parse(typeof(Mechanism), deviceData.Mechanism.ToString());
-            }
-            if (deviceData.State != null)
-            {
-                device.State = (State)Enum.Parse(typeof(State), deviceData.State.ToString());
-            }
+            device.Mechanism = Utils.ParseEnum<Mechanism>(deviceData.Mechanism);
+            device.State = Utils.ParseEnum<State>(deviceData.State);
             device.ProvisionKey = deviceData.DeviceKey;
             device.SerialNumber = deviceData.SerialNumber;
             device.VendorId = deviceData.VendorId;
             device.AccountId = deviceData.AccountId;
-            if (deviceData.DeployedState != null)
-            {
-                device.DeployedState = (DeployedState)Enum.Parse(typeof(DeployedState), deviceData.DeployedState.ToString());
-            }
+            device.DeployedState = Utils.ParseEnum<DeployedState>(deviceData.DeployedState);
             device.Deployment = deviceData.Deployment;
             device.MechanismUrl = deviceData.MechanismUrl;
             device.TrustLevel = deviceData.TrustLevel;

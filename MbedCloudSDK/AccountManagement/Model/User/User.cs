@@ -4,6 +4,7 @@ using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace MbedCloudSDK.AccountManagement.Model.User
 {
@@ -156,7 +157,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
             sb.Append("  PasswordChangedTime: ").Append(PasswordChangedTime).Append("\n");
             sb.Append("  TwoFactorAuthentication: ").Append(TwoFactorAuthentication).Append("\n");            
             sb.Append("  LastLoginTime: ").Append(LastLoginTime).Append("\n");
-            sb.Append("  loginHistory: ").Append(LoginHistory).Append("\n");
+            sb.Append("  loginHistory: ").Append(string.Join(", ", LoginHistory.Select(l => { return l.ToString(); }))).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -168,7 +169,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// <returns></returns>
         public static User Map(iam.Model.UserInfoResp userInfo)
         {
-            var userStatus = (UserStatus)Enum.Parse(typeof(UserStatus), userInfo.Status.ToString());
+            var userStatus = Utils.ParseEnum<UserStatus>(userInfo.Status);
             User user = new User();
             user.Status = userStatus;
             user.Username = userInfo.Username;
@@ -188,7 +189,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
             user.Id = userInfo.Id;
             user.LastLoginTime = userInfo.LastLoginTime;
             user.TwoFactorAuthentication = userInfo.IsTotpEnabled;
-            user.LoginHistory = Model.User.LoginHistory.MapList(userInfo.LoginHistory);
+            user.LoginHistory = userInfo.LoginHistory.Select(l => { return AccountManagement.Model.User.LoginHistory.Map(l); }).ToList();
             return user; 
         }
 

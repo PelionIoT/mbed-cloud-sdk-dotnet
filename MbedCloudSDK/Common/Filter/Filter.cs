@@ -74,7 +74,7 @@ namespace MbedCloudSDK.Common.Filter
                 else
                 {
                     FilterJson = stringToJsonObject(QueryStringToJson(value));
-                    FilterDictionary = QueryJsonToDictionary(FilterJson.ToString());
+                    FilterDictionary = QueryJsonToDictionary(Convert.ToString(FilterJson));
                 }
             }
             else
@@ -186,28 +186,31 @@ namespace MbedCloudSDK.Common.Filter
             foreach (var part in split)
             {
                 var keyValue = part.Split('=');
-                var val = keyValue[1];
-                var key = keyValue[0];
-                var oper = FilterOperator.Equals;
+                if (keyValue.Length == 2)
+                {
+                    var val = keyValue[1];
+                    var key = keyValue[0];
+                    var oper = FilterOperator.Equals;
 
-                if (key.Contains("neq"))
-                {
-                    key = key.Replace("neq", "");
-                    oper = FilterOperator.NotEqual;
-                }
-                if (key.Contains("ltq"))
-                {
-                    key = key.Replace("ltq", "");
-                    oper = FilterOperator.LessOrEqual;
-                }
-                if (key.Contains("gtq"))
-                {
-                    key = key.Replace("gtq", "");
-                    oper = FilterOperator.GreaterOrEqual;
-                }
+                    if (key.Contains("neq"))
+                    {
+                        key = key.Replace("neq", "");
+                        oper = FilterOperator.NotEqual;
+                    }
+                    if (key.Contains("ltq"))
+                    {
+                        key = key.Replace("ltq", "");
+                        oper = FilterOperator.LessOrEqual;
+                    }
+                    if (key.Contains("gtq"))
+                    {
+                        key = key.Replace("gtq", "");
+                        oper = FilterOperator.GreaterOrEqual;
+                    }
 
-                var queryAttribute = new FilterAttribute(val, oper);
-                dict.Add(key, queryAttribute);
+                    var queryAttribute = new FilterAttribute(val, oper);
+                    dict.Add(key, queryAttribute);
+                }
             }
             var json = new JObject();
             foreach (var kv in dict)

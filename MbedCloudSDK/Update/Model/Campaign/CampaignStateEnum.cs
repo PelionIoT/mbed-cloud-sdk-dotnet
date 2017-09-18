@@ -16,60 +16,60 @@ namespace MbedCloudSDK.Update.Model.Campaign
         /// Enum Draft for "draft"
         /// </summary>
         [EnumMember(Value = "draft")]
-        Draft,
+        draft,
 
         /// <summary>
         /// Enum Scheduled for "scheduled"
         /// </summary>
         [EnumMember(Value = "scheduled")]
-        Scheduled,
+        scheduled,
 
         /// <summary>
         /// Enum Devicefetch for "devicefetch"
         /// </summary>
         [EnumMember(Value = "devicefetch")]
-        Devicefetch,
+        devicefetch,
 
         /// <summary>
         /// Enum Devicecopy for "devicecopy"
         /// </summary>
         [EnumMember(Value = "devicecopy")]
-        Devicecopy,
+        devicecopy,
 
         /// <summary>
         /// Enum Devicecopycomplete for "devicecopycomplete"
         /// </summary>
         [EnumMember(Value = "devicecopycomplete")]
-        Devicecopycomplete,
+        devicecopycomplete,
 
         /// <summary>
         /// Enum Publishing for "publishing"
         /// </summary>
         [EnumMember(Value = "publishing")]
-        Publishing,
+        publishing,
 
         /// <summary>
         /// Enum Deploying for "deploying"
         /// </summary>
         [EnumMember(Value = "deploying")]
-        Deploying,
+        deploying,
 
         /// <summary>
         /// Enum Deployed for "deployed"
         /// </summary>
         [EnumMember(Value = "deployed")]
-        Deployed,
+        deployed,
 
         /// <summary>
         /// Enum Manifestremoved for "manifestremoved"
         /// </summary>
         [EnumMember(Value = "manifestremoved")]
-        Manifestremoved,
+        manifestremoved,
 
         /// <summary>
         /// Enum Expired for "expired"
         /// </summary>
         [EnumMember(Value = "expired")]
-        Expired
+        expired
     }
 }

@@ -40,15 +40,5 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         {
             return new LoginHistory(data.Date, data.UserAgent, data.IpAddress, data.Success);
         }
-
-        public static List<LoginHistory> MapList(List<iam.Model.LoginHistory> data)
-        {
-            var list = new List<LoginHistory>();
-            foreach (var item in data)
-            {
-                list.Add(LoginHistory.Map(item));
-            }
-            return list;
-        } 
     }
 }

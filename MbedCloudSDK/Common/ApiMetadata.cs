@@ -72,7 +72,7 @@ namespace MbedCloudSDK.Common
                 metadata.Method = response.Request.Method.ToString();
                 metadata.Url = response.ResponseUri.ToString();
             }
-            return metadata;
+            return metadata;            
         }
     }
 }

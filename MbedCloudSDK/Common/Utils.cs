@@ -50,6 +50,17 @@ namespace MbedCloudSDK.Common
             return newObj;
         }
 
+        public static T ParseEnum<T>(object enumValue) where T : struct, IComparable
+        {
+            var value = Convert.ToString(enumValue);
+            if (string.IsNullOrEmpty(value))
+            {
+                return default(T);
+            }
+            T result;
+            return Enum.TryParse<T>(value, true, out result) ? result : default(T);
+        }
+
         /// <summary>
         /// Get string value of enum member value from enum.
         /// </summary>
@@ -95,7 +106,6 @@ namespace MbedCloudSDK.Common
                 catch (JsonReaderException jex)
                 {
                     //Exception in parsing json
-                    Console.WriteLine(jex.Message);
                     return false;
                 }
                 catch (Exception ex) //some other exception
