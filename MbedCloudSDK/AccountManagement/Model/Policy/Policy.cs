@@ -67,6 +67,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Policy
         /// </summary>
         /// <value>True or false controlling whether an action is allowed or not.</value>
         public bool? Allow { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>

@@ -15,12 +15,12 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// Enum Development for "development"
         /// </summary>
         [EnumMember(Value = "development")]
-        development,
+        Development,
 
         /// <summary>
         /// Enum Production for "production"
         /// </summary>
         [EnumMember(Value = "production")]
-        production
+        Production
     }
 }

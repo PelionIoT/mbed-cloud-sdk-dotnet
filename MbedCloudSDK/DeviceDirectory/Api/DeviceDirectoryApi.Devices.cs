@@ -179,10 +179,10 @@ namespace MbedCloudSDK.DeviceDirectory.Api
                 DeviceDataPostRequest.MechanismEnum mechanismEnum;
                 switch (device.Mechanism.Value)
                 {
-                    case Mechanism.connector:
+                    case Mechanism.Connector:
                         mechanismEnum = DeviceDataPostRequest.MechanismEnum.Connector;
                         break;
-                    case Mechanism.direct:
+                    case Mechanism.Direct:
                         mechanismEnum = DeviceDataPostRequest.MechanismEnum.Direct;
                         break;
                     default:
@@ -203,19 +203,19 @@ namespace MbedCloudSDK.DeviceDirectory.Api
                 DeviceDataPostRequest.StateEnum stateEnum;
                 switch (device.State.Value)
                 {
-                    case State.bootstrapped:
+                    case State.Bootstrapped:
                         stateEnum = DeviceDataPostRequest.StateEnum.Bootstrapped;
                         break;
-                    case State.cloud_enrolling:
+                    case State.Cloud_enrolling:
                         stateEnum = DeviceDataPostRequest.StateEnum.Cloudenrolling;
                         break;
-                    case State.deregistered:
+                    case State.Deregistered:
                         stateEnum = DeviceDataPostRequest.StateEnum.Deregistered;
                         break;
-                    case State.registered:
+                    case State.Registered:
                         stateEnum = DeviceDataPostRequest.StateEnum.Registered;
                         break;
-                    case State.unenrolled:
+                    case State.Unenrolled:
                         stateEnum = DeviceDataPostRequest.StateEnum.Unenrolled;
                         break;
                     default:
