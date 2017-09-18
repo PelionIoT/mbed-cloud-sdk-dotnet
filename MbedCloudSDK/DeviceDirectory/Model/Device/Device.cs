@@ -177,7 +177,9 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// Initializes a new instance of the <see cref="Device"/> class.
         /// Default constructor
         /// </summary>
-        public Device() { }
+        public Device()
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Device" /> class.

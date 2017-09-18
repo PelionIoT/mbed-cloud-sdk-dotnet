@@ -25,7 +25,7 @@ namespace MbedCloudSDK.Common.Filter
         /// String representation of Filter.
         /// </summary>
         public string FilterString
-        { 
+        {
             get
             {
                 if (FilterDictionary.Any())
@@ -119,7 +119,7 @@ namespace MbedCloudSDK.Common.Filter
         {
             return JObject.Parse(jsonString);
         }
-        
+
         private Dictionary<string, FilterAttribute> QueryJsonToDictionary(string queryJson)
         {
             var decodedString = HttpUtility.UrlDecode(queryJson).Replace("u'", "\"").Replace("'", "\"");

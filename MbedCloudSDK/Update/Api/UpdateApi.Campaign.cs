@@ -1,15 +1,15 @@
-﻿using MbedCloudSDK.Common;
-using MbedCloudSDK.Common.Query;
-using MbedCloudSDK.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MbedCloudSDK.Update.Model.Campaign;
+﻿// <copyright file="UpdateApi.Campaign.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Update.Api
 {
+    using System;
+    using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.Exceptions;
+    using MbedCloudSDK.Update.Model.Campaign;
+
     public partial class UpdateApi
     {
         /// <summary>
@@ -23,6 +23,7 @@ namespace MbedCloudSDK.Update.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 return new PaginatedResponse<Campaign>(ListCampaignsFunc, options);
@@ -48,6 +49,7 @@ namespace MbedCloudSDK.Update.Api
                 {
                     respDevices.Data.Add(Campaign.Map(device));
                 }
+
                 return respDevices;
             }
             catch (update_service.Client.ApiException e)
@@ -58,15 +60,16 @@ namespace MbedCloudSDK.Update.Api
 
         public PaginatedResponse<CampaignDeviceState> ListCampaignDeviceStates(QueryOptions options = null)
         {
-            if(options == null)
+            if (options == null)
             {
                 options = new QueryOptions();
             }
-            try 
+
+            try
             {
                 return new PaginatedResponse<CampaignDeviceState>(ListCampaignDeviceStatesFunc, options);
             }
-            catch(CloudApiException e)
+            catch (CloudApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -74,18 +77,20 @@ namespace MbedCloudSDK.Update.Api
 
         private ResponsePage<CampaignDeviceState> ListCampaignDeviceStatesFunc(QueryOptions options = null)
         {
-            if(options == null)
+            if (options == null)
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 var resp = api.V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGet(campaignId: options.Id, limit: options.Limit, order: options.Order, after: options.After, include: options.Include);
                 var respStates = new ResponsePage<CampaignDeviceState>(after: resp.After, hasMore: resp.HasMore, limit: resp.Limit, order: resp.Order.ToString(), totalCount: resp.TotalCount);
-                foreach(var state in resp.Data)
+                foreach (var state in resp.Data)
                 {
                     respStates.Data.Add(CampaignDeviceState.Map(state));
                 }
+
                 return respStates;
             }
             catch (update_service.Client.ApiException e)

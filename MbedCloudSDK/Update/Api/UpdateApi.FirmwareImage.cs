@@ -1,16 +1,15 @@
-﻿using MbedCloudSDK.Common;
-using MbedCloudSDK.Common.Query;
-using MbedCloudSDK.Exceptions;
-using MbedCloudSDK.Update.Model.FirmwareImage;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="UpdateApi.FirmwareImage.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Update.Api
 {
+    using System.IO;
+    using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.Exceptions;
+    using MbedCloudSDK.Update.Model.FirmwareImage;
+
     public partial class UpdateApi
     {
         /// <summary>
@@ -63,6 +62,7 @@ namespace MbedCloudSDK.Update.Api
         /// Get a firmware image with provided image_id.
         /// </summary>
         /// <param name="imageId">The firmware ID for the image to retrieve.</param>
+        /// <returns></returns>
         public FirmwareImage GetFirmwareImage(string imageId)
         {
             try

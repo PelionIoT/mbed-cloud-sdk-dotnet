@@ -19,7 +19,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <example>
         /// This sample shows how to call the <see cref="ListMetrics"/> method.
         /// <code>
-        /// class TestClass 
+        /// class TestClass
         /// {
         ///     static int Main()
         ///     {

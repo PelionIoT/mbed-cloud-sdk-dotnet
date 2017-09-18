@@ -63,7 +63,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
             {
                 foreach (KeyValuePair<string, object> item in options)
                 {
-                    var property = this.GetType().GetProperty(item.Key);
+                    var property = GetType().GetProperty(item.Key);
                     if (property != null)
                     {
                         property.SetValue(this, item.Value, null);

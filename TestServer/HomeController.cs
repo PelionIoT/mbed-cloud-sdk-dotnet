@@ -199,7 +199,7 @@ namespace TestServer
                         var obj = JsonConvert.DeserializeObject(vals.ToString(), paramType);
                         serialisedParams.Add(obj);
                     }
-                    catch(JsonReaderException e)
+                    catch(JsonReaderException)
                     {
                         serialisedParams.Add(null);
                     }

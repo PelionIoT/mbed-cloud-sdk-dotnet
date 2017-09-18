@@ -1,4 +1,9 @@
-﻿using System;
+﻿// <copyright file="ValueException.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
+using System;
+
 namespace MbedCloudSDK.Exceptions
 {
     /// <summary>
@@ -19,39 +24,44 @@ namespace MbedCloudSDK.Exceptions
         public dynamic ErrorContent { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:MbedCloudSDK.Exceptions.ValueException"/> class.
+        /// Initializes a new instance of the <see cref="ValueException"/> class.
         /// </summary>
-        public ValueException() { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:MbedCloudSDK.Exceptions.ValueException"/> class.
-        /// </summary>
-        /// <param name="message">Message.</param>
-        public ValueException(string message) : base(message)
+        public ValueException()
         {
-            this.ErrorCode = 1;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:MbedCloudSDK.Exceptions.ValueException"/> class.
+        /// Initializes a new instance of the <see cref="ValueException"/> class.
+        /// </summary>
+        /// <param name="message">Message.</param>
+        public ValueException(string message)
+            : base(message)
+        {
+            ErrorCode = 1;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ValueException"/> class.
         /// </summary>
         /// <param name="errorCode">Error code.</param>
         /// <param name="message">Message.</param>
-        public ValueException(int errorCode, string message) : base(message)
+        public ValueException(int errorCode, string message)
+            : base(message)
         {
-            this.ErrorCode = errorCode;
+            ErrorCode = errorCode;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:MbedCloudSDK.Exceptions.ValueException"/> class.
+        /// Initializes a new instance of the <see cref="ValueException"/> class.
         /// </summary>
         /// <param name="errorCode">Error code.</param>
         /// <param name="message">Message.</param>
         /// <param name="errorContent">Error content.</param>
-        public ValueException(int errorCode, string message, dynamic errorContent = null) : base(message)
+        public ValueException(int errorCode, string message, dynamic errorContent = null)
+            : base(message)
         {
-            this.ErrorCode = errorCode;
-            this.ErrorContent = errorContent;
+            ErrorCode = errorCode;
+            ErrorContent = errorContent;
         }
     }
 }

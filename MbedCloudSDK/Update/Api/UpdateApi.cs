@@ -1,4 +1,7 @@
-﻿using System;
+﻿// <copyright file="UpdateApi.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
 using System.Linq;
 using MbedCloudSDK.Common;
 using update_service.Client;
@@ -13,10 +16,11 @@ namespace MbedCloudSDK.Update.Api
         private update_service.Api.DefaultApi api;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:MbedCloudSDK.Update"/> class.
+        /// Initializes a new instance of the <see cref="UpdateApi"/> class.
         /// </summary>
         /// <param name="config">Config.</param>
-        public UpdateApi(Config config) : base(config)
+        public UpdateApi(Config config)
+            : base(config)
         {
             if (config.Host != string.Empty)
             {

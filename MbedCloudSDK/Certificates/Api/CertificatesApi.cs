@@ -157,16 +157,16 @@ namespace MbedCloudSDK.Certificates.Api
         /// <returns>Certificate</returns>
         /// <exception cref="CloudApiException">Error while adding certificate.</exception>
         /// <exception cref="ArgumentException">Invalid arguments..</exception>
-        /// <example> 
+        /// <example>
         /// This sample shows how to call the <see cref="AddCertificate"/> method.
         /// <code>
         /// class TestClass
         /// {
-        ///     static int Main() 
+        ///     static int Main()
         ///     {
         ///         Config config = new Config(apiKey);
         ///         config.Host = "https://lab-api.mbedcloudintegration.net";
-        ///         CertificatesApi api = new CertificatesApi(config);        
+        ///         CertificatesApi api = new CertificatesApi(config);
         ///         Certificate certificate = new Certificate();
         ///         certificate.Type = CertificateType.Developer;
         ///         certificate.Name = "developer certificate";
@@ -228,9 +228,9 @@ namespace MbedCloudSDK.Certificates.Api
         /// <example>
         /// This sample shows how to call the <see cref="DeleteCertificate"/> method.
         /// <code>
-        /// class TestClass 
+        /// class TestClass
         /// {
-        ///     static int Main() 
+        ///     static int Main()
         ///     {
         ///         String id="00000000";
         ///         Config config = new Config(apiKey);

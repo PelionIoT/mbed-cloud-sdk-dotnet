@@ -255,7 +255,7 @@
                         certificate.Type = CertificateType.Lwm2m;
                         break;
                     default:
-                        throw new System.IO.InvalidDataException("Wrong Trusted Certificate Service"); 
+                        throw new System.IO.InvalidDataException("Wrong Trusted Certificate Service");
                 }
             }
 

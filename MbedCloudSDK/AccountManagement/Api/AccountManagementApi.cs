@@ -18,7 +18,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         private AccountAdminApi adminApi;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:MbedCloudSDK.AccountManagement.AccountManagement"/> class.
+        /// Initializes a new instance of the <see cref="AccountManagementApi"/> class.
         /// Exposing functionality from the following underlying services:
         /// - IAM
         /// </summary>

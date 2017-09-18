@@ -13,7 +13,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
     using Newtonsoft.Json.Converters;
 
     /// <summary>
-    /// 
+    /// Account
     /// </summary>
     public class Account
     {

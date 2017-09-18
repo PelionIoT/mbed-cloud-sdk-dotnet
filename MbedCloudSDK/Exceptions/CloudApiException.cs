@@ -1,10 +1,15 @@
-﻿using System;
+﻿// <copyright file="CloudApiException.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
+using System;
+
 namespace MbedCloudSDK.Exceptions
 {
 	/// <summary>
 	/// Cloud API exception. Common exception thrown when ApiException is raised from backend API
 	/// </summary>
-	public class CloudApiException: Exception
+	public class CloudApiException : Exception
 	{
 		/// <summary>
 		/// Gets or sets the error code (HTTP status code)
@@ -18,31 +23,35 @@ namespace MbedCloudSDK.Exceptions
 		/// <value>The content of the error.</value>
 		public dynamic ErrorContent { get; private set; }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:MbedCloudSDK.CloudApiException"/> class.
-		/// </summary>
-		public CloudApiException() { }
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:MbedCloudSDK.CloudApiException"/> class.
-		/// </summary>
-		/// <param name="errorCode">Error code.</param>
-		/// <param name="message">Message.</param>
-		public CloudApiException(int errorCode, string message) : base(message)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CloudApiException"/> class.
+        /// </summary>
+        public CloudApiException()
         {
-			this.ErrorCode = errorCode;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CloudApiException"/> class.
+        /// </summary>
+        /// <param name="errorCode">Error code.</param>
+        /// <param name="message">Message.</param>
+        public CloudApiException(int errorCode, string message)
+            : base(message)
+        {
+            ErrorCode = errorCode;
 		}
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:MbedCloudSDK.CloudApiException"/> class.
-		/// </summary>
-		/// <param name="errorCode">Error code.</param>
-		/// <param name="message">Message.</param>
-		/// <param name="errorContent">Error content.</param>
-		public CloudApiException(int errorCode, string message, dynamic errorContent = null) : base(message)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CloudApiException"/> class.
+        /// </summary>
+        /// <param name="errorCode">Error code.</param>
+        /// <param name="message">Message.</param>
+        /// <param name="errorContent">Error content.</param>
+        public CloudApiException(int errorCode, string message, dynamic errorContent = null)
+            : base(message)
         {
-			this.ErrorCode = errorCode;
-			this.ErrorContent = errorContent;
+            ErrorCode = errorCode;
+            ErrorContent = errorContent;
 		}
 	}
 }

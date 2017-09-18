@@ -68,7 +68,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public User GetUser(String userId)
+        public User GetUser(string userId)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public async Task<User> GetUserAsync(String userId)
+        public async Task<User> GetUserAsync(string userId)
         {
             try
             {
@@ -175,7 +175,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Delete user.
         /// </summary>
         /// <param name="userId"></param>
-        public void DeleteUser(String userId)
+        public void DeleteUser(string userId)
         {
             try
             {
@@ -191,7 +191,8 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Delete user asynchronously.
         /// </summary>
         /// <param name="userId"></param>
-        public async Task DeleteUserAsync(String userId)
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        public async Task DeleteUserAsync(string userId)
         {
             try
             {

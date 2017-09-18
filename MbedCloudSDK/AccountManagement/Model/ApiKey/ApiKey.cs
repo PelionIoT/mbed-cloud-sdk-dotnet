@@ -65,6 +65,7 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
         public long? LastLoginTime { get; private set; }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="ApiKey"/> class.
         /// Create new instance of api key class.
         /// </summary>
         /// <param name="options">Dictionary containing properties.</param>
@@ -127,14 +128,14 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
 
         public ApiKeyInfoReq CreatePostRequest()
         {
-            ApiKeyInfoReq request = new ApiKeyInfoReq(Owner:OwnerId, Status: Utils.ParseEnum<iam.Model.ApiKeyInfoReq.StatusEnum>(Status), Name:Name);
+            ApiKeyInfoReq request = new ApiKeyInfoReq(Owner: OwnerId, Status: Utils.ParseEnum<ApiKeyInfoReq.StatusEnum>(Status), Name: Name);
             return request;
         }
 
         public ApiKeyUpdateReq CreatePutRequest()
         {
             var x = Status;
-            ApiKeyUpdateReq request = new ApiKeyUpdateReq(Owner:OwnerId, Name:Name);
+            ApiKeyUpdateReq request = new ApiKeyUpdateReq(Owner: OwnerId, Name: Name);
             return request;
         }
     }

@@ -115,7 +115,8 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// </summary>
         public List<LoginHistory> LoginHistory { get; private set; }
 
-        /// <summary>x
+        /// <summary>
+        /// Initializes a new instance of the <see cref="User"/> class.x
         /// Initializes new instance of User class.
         /// </summary>
         /// <param name="options">Dictionary containing properties.</param>
@@ -158,7 +159,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
             sb.Append("  PasswordChangedTime: ").Append(PasswordChangedTime).Append("\n");
-            sb.Append("  TwoFactorAuthentication: ").Append(TwoFactorAuthentication).Append("\n");            
+            sb.Append("  TwoFactorAuthentication: ").Append(TwoFactorAuthentication).Append("\n");
             sb.Append("  LastLoginTime: ").Append(LastLoginTime).Append("\n");
             sb.Append("  loginHistory: ").Append(string.Join(", ", LoginHistory.Select(l => { return l.ToString(); }))).Append("\n");
             sb.Append("}\n");
@@ -193,25 +194,27 @@ namespace MbedCloudSDK.AccountManagement.Model.User
             user.LastLoginTime = userInfo.LastLoginTime;
             user.TwoFactorAuthentication = userInfo.IsTotpEnabled;
             user.LoginHistory = userInfo.LoginHistory.Select(l => { return Model.User.LoginHistory.Map(l); }).ToList();
-            return user; 
+            return user;
         }
 
         public iam.Model.UserInfoReq CreatePostRequest()
         {
-            iam.Model.UserInfoReq request = new iam.Model.UserInfoReq(Email:Email);
-            request.Username = Username;
-            request.FullName = FullName;
-            request.Address = Address;
-            request.Password = Password;
-            request.PhoneNumber = PhoneNumber;
-            request.IsGtcAccepted = TermsAccepted;
-            request.IsMarketingAccepted = MarketingAccepted;
+            iam.Model.UserInfoReq request = new iam.Model.UserInfoReq(Email: Email)
+            {
+                Username = Username,
+                FullName = FullName,
+                Address = Address,
+                Password = Password,
+                PhoneNumber = PhoneNumber,
+                IsGtcAccepted = TermsAccepted,
+                IsMarketingAccepted = MarketingAccepted
+            };
             return request;
         }
 
         public iam.Model.UserUpdateReq CreatePutRequest()
         {
-            iam.Model.UserUpdateReq request = new iam.Model.UserUpdateReq(Email:Email)
+            iam.Model.UserUpdateReq request = new iam.Model.UserUpdateReq(Email: Email)
             {
                 PhoneNumber = PhoneNumber,
                 Username = Username,
