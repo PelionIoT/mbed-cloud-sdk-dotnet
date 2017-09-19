@@ -17,7 +17,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
     /// Device
     /// </summary>
     public class Device
-	{
+    {
         private DeviceDirectoryApi api;
 
         /// <summary>

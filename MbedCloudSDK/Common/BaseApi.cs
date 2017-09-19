@@ -7,7 +7,7 @@ namespace MbedCloudSDK.Common
     /// <summary>
     /// Base API.
     /// </summary>
-	public class BaseApi
+    public class BaseApi
     {
         /// <summary>
         /// Config used to initialize APIs. It is storing host and api key.

@@ -7,7 +7,7 @@ namespace MbedCloudSDK.Common
     /// <summary>
     /// Config for cloud API.
     /// </summary>
-	public class Config
+    public class Config
     {
         private string host = "https://api.us-east-1.mbedcloud.com";
         private string apiKey;
@@ -22,29 +22,29 @@ namespace MbedCloudSDK.Common
             this.apiKey = apiKey;
         }
 
-		/// <summary>
-		/// Gets or sets the host.
-		/// </summary>
-		/// <value>The host.</value>
+        /// <summary>
+        /// Gets or sets the host.
+        /// </summary>
+        /// <value>The host.</value>
         public string Host
         {
             get { return host; }
             set { host = value; }
         }
 
-		/// <summary>
-		/// Gets the API key.
-		/// </summary>
-		/// <value>The API key.</value>
+        /// <summary>
+        /// Gets the API key.
+        /// </summary>
+        /// <value>The API key.</value>
         public string ApiKey
         {
             get { return apiKey; }
         }
 
-		/// <summary>
-		/// Gets or sets the authorization prefix.
-		/// </summary>
-		/// <value>The authorization prefix.</value>
+        /// <summary>
+        /// Gets or sets the authorization prefix.
+        /// </summary>
+        /// <value>The authorization prefix.</value>
         public string AuthorizationPrefix
         {
             get { return authorizationPrefix; }

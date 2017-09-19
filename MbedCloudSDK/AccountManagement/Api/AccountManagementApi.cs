@@ -12,7 +12,7 @@ namespace MbedCloudSDK.AccountManagement.Api
     /// <summary>
     /// Exposing functionality from IAM.
     /// </summary>
-	public partial class AccountManagementApi : BaseApi
+    public partial class AccountManagementApi : BaseApi
     {
         private DeveloperApi developerApi;
         private AccountAdminApi adminApi;
@@ -23,7 +23,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// - IAM
         /// </summary>
         /// <param name="config">Config.</param>
-		public AccountManagementApi(Config config)
+        public AccountManagementApi(Config config)
             : base(config)
         {
             if (!string.IsNullOrEmpty(config.Host))
