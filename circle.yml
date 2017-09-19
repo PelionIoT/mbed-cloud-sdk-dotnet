@@ -27,5 +27,5 @@ deployment:
   production:
     branch: master
     commands:
-      - doxygen ar.doxygen
-      - aws s3 sync --delete --cache-control max-age=3600 docs/ s3://mbed-cloud-sdk-dotnet-dist/${SDK-TAG}/docs
+      - ./generate-docs.sh
+      
