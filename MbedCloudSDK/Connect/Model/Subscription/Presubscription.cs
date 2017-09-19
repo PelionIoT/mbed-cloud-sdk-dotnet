@@ -27,6 +27,9 @@ namespace MbedCloudSDK.Connect.Model.Subscription
         /// </summary>
         public List<string> ResourcePaths { get; set; }
 
+        /// <summary>
+        /// Map presubscription object
+        /// </summary>
         public static Presubscription Map(mds.Model.Presubscription subscriptionData)
         {
             Presubscription substriction = new Presubscription

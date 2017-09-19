@@ -12,18 +12,6 @@ namespace MbedCloudSDK.Exceptions
     public class ValueException : Exception
     {
         /// <summary>
-        /// Gets or sets the error code.
-        /// </summary>
-        /// <value>The error code.</value>
-        public int ErrorCode { get; set; }
-
-        /// <summary>
-        /// Gets the content of the error.
-        /// </summary>
-        /// <value>The content of the error.</value>
-        public dynamic ErrorContent { get; private set; }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="ValueException"/> class.
         /// </summary>
         public ValueException()
@@ -63,5 +51,17 @@ namespace MbedCloudSDK.Exceptions
             ErrorCode = errorCode;
             ErrorContent = errorContent;
         }
+        
+        /// <summary>
+        /// Gets or sets the error code.
+        /// </summary>
+        /// <value>The error code.</value>
+        public int ErrorCode { get; set; }
+
+        /// <summary>
+        /// Gets the content of the error.
+        /// </summary>
+        /// <value>The content of the error.</value>
+        public dynamic ErrorContent { get; private set; }
     }
 }

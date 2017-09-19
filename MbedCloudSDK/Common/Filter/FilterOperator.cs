@@ -6,6 +6,9 @@ using System.Runtime.Serialization;
 
 namespace MbedCloudSDK.Common.Filter
 {
+    /// <summary>
+    /// Filter operator
+    /// </summary>
     public enum FilterOperator
     {
         /// <summary>

@@ -15,6 +15,15 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
     public class Query
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="Query"/> class.
+        /// Default constructor
+        /// </summary>
+        public Query()
+        {
+            Filter = new Filter();
+        }
+        
+        /// <summary>
         /// Gets or sets the time the object was created
         /// </summary>
         public DateTime? CreatedAt { get; set; }
@@ -38,15 +47,6 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
         /// Gets or sets the name of the query.
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Query"/> class.
-        /// Default constructor
-        /// </summary>
-        public Query()
-        {
-            Filter = new Filter();
-        }
 
         /// <summary>
         /// Returns the string presentation of the object

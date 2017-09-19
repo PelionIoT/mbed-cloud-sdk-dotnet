@@ -18,6 +18,30 @@ namespace MbedCloudSDK.Connect.Model.Resource
         private Connect.Api.ConnectApi _api;
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Resource"/> class.
+        /// Initializes new Resource.
+        /// </summary>
+        /// <param name="deviceID">Id of the device that the resource belongs to.</param>
+        /// <param name="options">Dictionary used to initialize Resource.</param>
+        /// <param name="api">DeviceDirectory API.</param>
+        public Resource(string deviceID, IDictionary<string, object> options = null, ConnectApi api = null)
+        {
+            _api = api;
+            DeviceId = deviceID;
+            if (options != null)
+            {
+                foreach (KeyValuePair<string, object> item in options)
+                {
+                    var property = GetType().GetProperty(item.Key);
+                    if (property != null)
+                    {
+                        property.SetValue(this, item.Value, null);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets id of the device this resource belongs to.
         /// </summary>
         public string DeviceId { get; private set; }
@@ -47,30 +71,6 @@ namespace MbedCloudSDK.Connect.Model.Resource
 		/// Gets or sets the queue values.
 		/// </summary>
 		public AsyncProducerConsumerCollection<string> Queue { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Resource"/> class.
-        /// Initializes new Resource.
-        /// </summary>
-        /// <param name="deviceID">Id of the device that the resource belongs to.</param>
-        /// <param name="options">Dictionary used to initialize Resource.</param>
-        /// <param name="api">DeviceDirectory API.</param>
-        public Resource(string deviceID, IDictionary<string, object> options = null, ConnectApi api = null)
-        {
-            _api = api;
-            DeviceId = deviceID;
-            if (options != null)
-            {
-                foreach (KeyValuePair<string, object> item in options)
-                {
-                    var property = GetType().GetProperty(item.Key);
-                    if (property != null)
-                    {
-                        property.SetValue(this, item.Value, null);
-                    }
-                }
-            }
-        }
 
         /// <summary>
         /// Map to Resource object.

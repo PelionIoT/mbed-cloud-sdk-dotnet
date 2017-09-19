@@ -18,6 +18,26 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
     public class ApiKey
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="ApiKey"/> class.
+        /// Create new instance of api key class.
+        /// </summary>
+        /// <param name="options">Dictionary containing properties.</param>
+        public ApiKey(IDictionary<string, object> options = null)
+        {
+            if (options != null)
+            {
+                foreach (KeyValuePair<string, object> item in options)
+                {
+                    var property = GetType().GetProperty(item.Key);
+                    if (property != null)
+                    {
+                        property.SetValue(this, item.Value, null);
+                    }
+                }
+            }
+        }
+        
+        /// <summary>
         /// Gets the status of the API key.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
@@ -63,26 +83,6 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
         /// Gets the timestamp of the latest API key usage, in milliseconds.
         /// </summary>
         public long? LastLoginTime { get; private set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiKey"/> class.
-        /// Create new instance of api key class.
-        /// </summary>
-        /// <param name="options">Dictionary containing properties.</param>
-        public ApiKey(IDictionary<string, object> options = null)
-        {
-            if (options != null)
-            {
-                foreach (KeyValuePair<string, object> item in options)
-                {
-                    var property = GetType().GetProperty(item.Key);
-                    if (property != null)
-                    {
-                        property.SetValue(this, item.Value, null);
-                    }
-                }
-            }
-        }
 
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:MbedCloudSDK.AccountManagement.Model.ApiKey.ApiKey"/>.

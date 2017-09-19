@@ -8,6 +8,9 @@
 
     public class Certificate
     {
+        /// <summary>
+        /// Type of Certificate
+        /// </summary>
         [JsonConverter(typeof(CertificateTypeConverter))]
         public CertificateType? Type { get; set; }
 

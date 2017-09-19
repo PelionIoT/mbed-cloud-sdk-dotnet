@@ -12,6 +12,17 @@ namespace MbedCloudSDK.AccountManagement.Model.User
     public class LoginHistory
     {
         /// <summary>
+        /// Login History
+        /// </summary>
+        public LoginHistory(DateTime? date = null, string userAgent = null, string ipAddress = null, bool? success = null)
+        {
+            Date = date;
+            UserAgent = userAgent;
+            IpAddress = ipAddress;
+            Success = success;
+        }
+
+        /// <summary>
         /// Gets date of login
         /// </summary>
         public DateTime? Date { get; private set; }
@@ -31,14 +42,9 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// </summary>
         public bool? Success { get; private set; }
 
-        public LoginHistory(DateTime? date = null, string userAgent = null, string ipAddress = null, bool? success = null)
-        {
-            Date = date;
-            UserAgent = userAgent;
-            IpAddress = ipAddress;
-            Success = success;
-        }
-
+        /// <summary>
+        /// Login History
+        /// </summary>
         public static LoginHistory Map(iam.Model.LoginHistory data)
         {
             return new LoginHistory(data.Date, data.UserAgent, data.IpAddress, data.Success);

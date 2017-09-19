@@ -30,6 +30,9 @@ namespace MbedCloudSDK.Certificates.Api
         private string bootstrapServerUri;
         private string lmw2mServerUri;
 
+        /// <summary>
+        /// Initalize certificates api
+        /// </summary>
         public CertificatesApi(Config config)
             : base(config)
         {

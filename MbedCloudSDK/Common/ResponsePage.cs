@@ -13,6 +13,25 @@ namespace MbedCloudSDK.Common
     public class ResponsePage<T>
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="ResponsePage{T}"/> class.
+        /// Create new instance of response page.
+        /// </summary>
+        /// <param name="after"></param>
+        /// <param name="hasMore"></param>
+        /// <param name="limit"></param>
+        /// <param name="order"></param>
+        /// <param name="totalCount"></param>
+        public ResponsePage(string after, bool? hasMore, int? limit, string order, int? totalCount)
+        {
+            Data = new List<T>();
+            After = after;
+            HasMore = hasMore;
+            Limit = limit;
+            Order = order;
+            TotalCount = totalCount;
+        }
+        
+        /// <summary>
         /// Gets or sets whether there are more results to display
         /// </summary>
         /// <value>Whether there are more results to display</value>
@@ -46,24 +65,5 @@ namespace MbedCloudSDK.Common
         /// </summary>
         /// <value>Order of returned records</value>
         public string Order { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ResponsePage{T}"/> class.
-        /// Create new instance of response page.
-        /// </summary>
-        /// <param name="after"></param>
-        /// <param name="hasMore"></param>
-        /// <param name="limit"></param>
-        /// <param name="order"></param>
-        /// <param name="totalCount"></param>
-        public ResponsePage(string after, bool? hasMore, int? limit, string order, int? totalCount)
-        {
-            Data = new List<T>();
-            After = after;
-            HasMore = hasMore;
-            Limit = limit;
-            Order = order;
-            TotalCount = totalCount;
-        }
     }
 }
