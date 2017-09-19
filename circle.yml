@@ -28,7 +28,7 @@ test:
     - echo "finished"
 
 deployment:
-  staging:
+  production:
     branch: master
     commands:
       - doxygen ar.doxygen
