@@ -2,10 +2,10 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System;
-
 namespace MbedCloudSDK.Common
 {
+    using System;
+
     /// <summary>
     /// Name Override Attribute
     /// Used for occasions where there is a difference in naming between the test server and sdk

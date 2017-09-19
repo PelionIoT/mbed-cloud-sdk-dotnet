@@ -2,10 +2,10 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System.Collections.Generic;
-
 namespace MbedCloudSDK.Connect.Model.Webhook
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// Webhook
     /// </summary>

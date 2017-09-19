@@ -2,12 +2,12 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace MbedCloudSDK.AccountManagement.Model.Group
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
     /// <summary>
     /// Represents group from IAM.
     /// </summary>

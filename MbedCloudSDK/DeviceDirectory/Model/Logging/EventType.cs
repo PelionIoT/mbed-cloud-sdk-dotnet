@@ -2,10 +2,10 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System.Runtime.Serialization;
-
 namespace MbedCloudSDK.DeviceDirectory.Model.Logging
 {
+    using System.Runtime.Serialization;
+
     /// <summary>
     /// Logging event type.
     /// </summary>

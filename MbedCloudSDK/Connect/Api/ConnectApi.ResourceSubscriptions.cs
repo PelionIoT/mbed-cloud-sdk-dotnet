@@ -2,11 +2,11 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using MbedCloudSDK.Connect.Model.ConnectedDevice;
-using MbedCloudSDK.Connect.Model.Resource;
-
 namespace MbedCloudSDK.Connect.Api
 {
+    using MbedCloudSDK.Connect.Model.ConnectedDevice;
+    using MbedCloudSDK.Connect.Model.Resource;
+
     /// <summary>
     /// Connect Api
     /// </summary>

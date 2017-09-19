@@ -2,14 +2,14 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Net;
-using Newtonsoft.Json.Linq;
-using RestSharp;
-
 namespace MbedCloudSDK.Common
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Net;
+    using Newtonsoft.Json.Linq;
+    using RestSharp;
+
     /// <summary>
     /// Api meta data
     /// </summary>

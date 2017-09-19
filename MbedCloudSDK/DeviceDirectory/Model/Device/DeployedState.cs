@@ -2,10 +2,10 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System.Runtime.Serialization;
-
 namespace MbedCloudSDK.DeviceDirectory.Model.Device
 {
+    using System.Runtime.Serialization;
+
     /// <summary>
     /// The state of the device's deployment
     /// </summary>

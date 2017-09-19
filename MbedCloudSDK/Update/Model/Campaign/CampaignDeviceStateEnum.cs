@@ -2,10 +2,10 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System.Runtime.Serialization;
-
 namespace MbedCloudSDK.Update.Model.Campaign
 {
+    using System.Runtime.Serialization;
+
     /// <summary>
     /// Device state in update campaign.
     /// </summary>

@@ -2,10 +2,10 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System.Collections.Generic;
-
 namespace MbedCloudSDK.Common
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// Used to access multiple pages of data., either through manually iterating pages or using iterators.
     /// </summary>

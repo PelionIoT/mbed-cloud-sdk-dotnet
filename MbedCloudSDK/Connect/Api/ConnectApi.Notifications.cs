@@ -2,11 +2,11 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System;
-using System.Text;
-
 namespace MbedCloudSDK.Connect.Api
 {
+    using System;
+    using System.Text;
+
     /// <summary>
     /// Connect Api
     /// </summary>

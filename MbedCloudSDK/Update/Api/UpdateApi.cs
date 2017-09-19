@@ -2,12 +2,12 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System.Linq;
-using MbedCloudSDK.Common;
-using update_service.Client;
-
 namespace MbedCloudSDK.Update.Api
 {
+    using System.Linq;
+    using MbedCloudSDK.Common;
+    using update_service.Client;
+
     /// <summary>
     /// Exposing functionality from: Update service, Update campaigns and Manifest management
     /// </summary>

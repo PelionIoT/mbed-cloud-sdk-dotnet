@@ -2,10 +2,10 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System;
-
 namespace MbedCloudSDK.AccountManagement.Model.User
 {
+    using System;
+
     /// <summary>
     /// Login History
     /// </summary>

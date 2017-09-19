@@ -2,10 +2,10 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System;
-
 namespace MbedCloudSDK.Connect.Model.Metric
 {
+    using System;
+
     /// <summary>
     /// Metric query options
     /// </summary>

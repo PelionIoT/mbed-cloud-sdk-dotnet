@@ -2,15 +2,15 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System;
-
 namespace MbedCloudSDK.Exceptions
 {
-	/// <summary>
-	/// Cloud API exception. Common exception thrown when ApiException is raised from backend API
-	/// </summary>
-	public class CloudApiException : Exception
-	{
+    using System;
+
+    /// <summary>
+    /// Cloud API exception. Common exception thrown when ApiException is raised from backend API
+    /// </summary>
+    public class CloudApiException : Exception
+    {
         /// <summary>
         /// Initializes a new instance of the <see cref="CloudApiException"/> class.
         /// </summary>
@@ -48,10 +48,10 @@ namespace MbedCloudSDK.Exceptions
         /// <value>The error code (HTTP status code).</value>
         public int ErrorCode { get; set; }
 
-		/// <summary>
-		/// Gets the content of the error.
-		/// </summary>
-		/// <value>The content of the error.</value>
-		public dynamic ErrorContent { get; private set; }
-	}
+        /// <summary>
+        /// Gets the content of the error.
+        /// </summary>
+        /// <value>The content of the error.</value>
+        public dynamic ErrorContent { get; private set; }
+    }
 }

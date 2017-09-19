@@ -2,10 +2,10 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System.Runtime.Serialization;
-
 namespace MbedCloudSDK.AccountManagement.Model.Account
 {
+    using System.Runtime.Serialization;
+
     /// <summary>
     /// The status of the account.
     /// </summary>

@@ -2,15 +2,15 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using RestSharp.Extensions.MonoHttp;
-
 namespace MbedCloudSDK.Common.Filter
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using RestSharp.Extensions.MonoHttp;
+
     /// <summary>
     /// Filter object
     /// </summary>

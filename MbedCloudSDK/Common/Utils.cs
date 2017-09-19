@@ -2,14 +2,14 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System;
-using System.Linq;
-using System.Runtime.Serialization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-
 namespace MbedCloudSDK.Common
 {
+    using System;
+    using System.Linq;
+    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+
     /// <summary>
     /// Utils
     /// A set of utility functions

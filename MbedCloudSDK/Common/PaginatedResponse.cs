@@ -2,15 +2,15 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using MbedCloudSDK.Common.Query;
-using Newtonsoft.Json;
-
 namespace MbedCloudSDK.Common
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using MbedCloudSDK.Common.Query;
+    using Newtonsoft.Json;
+
     /// <summary>
     /// Paginated reponse object wrapper.
     /// </summary>

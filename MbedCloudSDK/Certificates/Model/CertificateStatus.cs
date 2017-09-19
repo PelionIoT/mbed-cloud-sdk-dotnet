@@ -2,10 +2,10 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System.Runtime.Serialization;
-
 namespace MbedCloudSDK.Certificates.Model
 {
+    using System.Runtime.Serialization;
+
     /// <summary>
     /// Certificate status enum
     /// </summary>

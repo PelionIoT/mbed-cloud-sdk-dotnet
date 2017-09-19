@@ -2,18 +2,18 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using MbedCloudSDK.Common;
-using MbedCloudSDK.Connect.Model.ConnectedDevice;
-using MbedCloudSDK.Connect.Model.Resource;
-using mds.Api;
-
 namespace MbedCloudSDK.Connect.Api
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using MbedCloudSDK.Common;
+    using MbedCloudSDK.Connect.Model.ConnectedDevice;
+    using MbedCloudSDK.Connect.Model.Resource;
+    using mds.Api;
+
     /// <summary>
     /// Exposing functionality from the following underlying services:
     /// - Connector / mDS

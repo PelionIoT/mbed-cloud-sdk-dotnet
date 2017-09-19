@@ -2,10 +2,10 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System;
-
 namespace MbedCloudSDK.Exceptions
 {
+    using System;
+
     /// <summary>
     /// Cloud API exception. Common exception thrown when ApiException is raised by sending wrong values to the request
     /// </summary>

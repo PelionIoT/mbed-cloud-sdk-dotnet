@@ -2,10 +2,10 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System.Runtime.Serialization;
-
 namespace MbedCloudSDK.Common.Filter
 {
+    using System.Runtime.Serialization;
+
     /// <summary>
     /// Filter operator
     /// </summary>

@@ -2,10 +2,10 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using MbedCloudSDK.Connect.Model.Webhook;
-
 namespace MbedCloudSDK.Connect.Api
 {
+    using MbedCloudSDK.Connect.Model.Webhook;
+
     /// <summary>
     /// Connect Api
     /// </summary>

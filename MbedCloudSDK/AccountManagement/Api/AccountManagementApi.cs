@@ -2,13 +2,13 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System.Linq;
-using iam.Api;
-using iam.Client;
-using MbedCloudSDK.Common;
-
 namespace MbedCloudSDK.AccountManagement.Api
 {
+    using System.Linq;
+    using iam.Api;
+    using iam.Client;
+    using MbedCloudSDK.Common;
+
     /// <summary>
     /// Exposing functionality from IAM.
     /// </summary>

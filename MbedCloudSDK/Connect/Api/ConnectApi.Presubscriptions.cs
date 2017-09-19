@@ -2,11 +2,11 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System.Collections.Generic;
-using MbedCloudSDK.Connect.Model.Subscription;
-
 namespace MbedCloudSDK.Connect.Api
 {
+    using System.Collections.Generic;
+    using MbedCloudSDK.Connect.Model.Subscription;
+
     /// <summary>
     /// Connect Api
     /// </summary>

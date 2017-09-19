@@ -10,12 +10,12 @@ namespace MbedCloudSDK.Connect.Model.Resource
     using MbedCloudSDK.Connect.Api;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
 
-	/// <summary>
-	/// Resource.
-	/// </summary>
-	public class Resource
-	{
-        private Connect.Api.ConnectApi _api;
+    /// <summary>
+    /// Resource.
+    /// </summary>
+    public class Resource
+    {
+        private Connect.Api.ConnectApi api;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Resource"/> class.
@@ -26,7 +26,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
         /// <param name="api">DeviceDirectory API.</param>
         public Resource(string deviceID, IDictionary<string, object> options = null, ConnectApi api = null)
         {
-            _api = api;
+            this.api = api;
             DeviceId = deviceID;
             if (options != null)
             {
@@ -67,10 +67,10 @@ namespace MbedCloudSDK.Connect.Model.Resource
         /// </summary>
         public bool? Observable { get; set; }
 
-		/// <summary>
-		/// Gets or sets the queue values.
-		/// </summary>
-		public AsyncProducerConsumerCollection<string> Queue { get; set; }
+        /// <summary>
+        /// Gets or sets the queue values.
+        /// </summary>
+        public AsyncProducerConsumerCollection<string> Queue { get; set; }
 
         /// <summary>
         /// Map to Resource object.
@@ -98,7 +98,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
         /// <returns>Resource value</returns>
         public string GetResourceValue()
         {
-            return _api.GetResourceValue(DeviceId, Path);
+            return api.GetResourceValue(DeviceId, Path);
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
         /// <returns>Async consumer with string</returns>
         public AsyncConsumer<string> SetResourceValue(string resourceValue, bool? noResponse = null)
         {
-            return _api.SetResourceValue(DeviceId, Path, resourceValue, noResponse);
+            return api.SetResourceValue(DeviceId, Path, resourceValue, noResponse);
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
         /// <returns>Async consumer with string</returns>
         public AsyncConsumer<string> Subscribe()
         {
-            return _api.AddResourceSubscription(DeviceId, Path);
+            return api.AddResourceSubscription(DeviceId, Path);
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
         /// </summary>
         public void Unsubscribe()
         {
-            _api.DeleteResourceSubscription(DeviceId, Path);
+            api.DeleteResourceSubscription(DeviceId, Path);
         }
 
         /// <summary>

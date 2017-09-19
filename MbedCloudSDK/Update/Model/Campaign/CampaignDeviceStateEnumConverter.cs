@@ -2,12 +2,12 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System;
-using MbedCloudSDK.Common;
-using Newtonsoft.Json;
-
 namespace MbedCloudSDK.Update.Model.Campaign
 {
+    using System;
+    using MbedCloudSDK.Common;
+    using Newtonsoft.Json;
+
     /// <summary>
     /// Campaign Device State Enum Converter
     /// </summary>

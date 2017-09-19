@@ -2,12 +2,12 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System;
-using MbedCloudSDK.Common;
-using Newtonsoft.Json;
-
 namespace MbedCloudSDK.Certificates.Model
 {
+    using System;
+    using MbedCloudSDK.Common;
+    using Newtonsoft.Json;
+
     /// <summary>
     /// Converter for certificate type enum
     /// </summary>

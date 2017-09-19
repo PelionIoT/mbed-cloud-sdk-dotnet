@@ -2,13 +2,13 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System;
-using System.Linq;
-using device_directory.Client;
-using MbedCloudSDK.Common;
-
 namespace MbedCloudSDK.DeviceDirectory.Api
 {
+    using System;
+    using System.Linq;
+    using device_directory.Client;
+    using MbedCloudSDK.Common;
+
     /// <summary>
     /// Exposing functionality from the following underlying services:
     /// - Connector / mDS
