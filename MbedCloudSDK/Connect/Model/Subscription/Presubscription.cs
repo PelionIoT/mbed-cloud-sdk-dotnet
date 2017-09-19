@@ -9,6 +9,9 @@ using System.Text;
 
 namespace MbedCloudSDK.Connect.Model.Subscription
 {
+    /// <summary>
+    /// Presubscription
+    /// </summary>
     public class Presubscription
     {
         /// <summary>
@@ -30,6 +33,8 @@ namespace MbedCloudSDK.Connect.Model.Subscription
         /// <summary>
         /// Map presubscription object
         /// </summary>
+        /// <param name="subscriptionData">Subscription data</param>
+        /// <returns>Presubscription</returns>
         public static Presubscription Map(mds.Model.Presubscription subscriptionData)
         {
             Presubscription substriction = new Presubscription

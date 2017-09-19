@@ -7,6 +7,9 @@ using MbedCloudSDK.Connect.Model.Resource;
 
 namespace MbedCloudSDK.Connect.Api
 {
+    /// <summary>
+    /// Connect Api
+    /// </summary>
     public partial class ConnectApi
     {
         /// <summary>
@@ -14,6 +17,7 @@ namespace MbedCloudSDK.Connect.Api
         /// </summary>
         /// <param name="deviceId">Id of device.</param>
         /// <param name="resourcePath">Resource path.</param>
+        /// <returns>Async Consumer with String</returns>
         public AsyncConsumer<string> AddResourceSubscription(string deviceId, string resourcePath)
         {
             try

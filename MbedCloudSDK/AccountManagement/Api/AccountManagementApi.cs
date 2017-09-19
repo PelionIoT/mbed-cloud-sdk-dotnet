@@ -38,6 +38,10 @@ namespace MbedCloudSDK.AccountManagement.Api
             adminApi = new AccountAdminApi();
         }
 
+        /// <summary>
+        /// Get LAst Api Metadata
+        /// </summary>
+        /// <returns>Api Metadata</returns>
         public ApiMetadata GetLastApiMetadata()
         {
             return ApiMetadata.Map(Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());

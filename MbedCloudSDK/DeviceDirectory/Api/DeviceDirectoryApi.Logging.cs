@@ -10,6 +10,9 @@ namespace MbedCloudSDK.DeviceDirectory.Api
     using MbedCloudSDK.DeviceDirectory.Model.Logging;
     using MbedCloudSDK.Exceptions;
 
+    /// <summary>
+    /// Device Directory Api
+    /// </summary>
     public partial class DeviceDirectoryApi
     {
         /// <summary>
@@ -67,7 +70,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// Gets the device log.
         /// </summary>
         /// <returns>The device log.</returns>
-        /// <param name="deviceLogId">Device log identifier.</param>
+        /// <param name="deviceEventId">Device log identifier.</param>
         public DeviceLog GetDeviceEvent(string deviceEventId)
         {
             try

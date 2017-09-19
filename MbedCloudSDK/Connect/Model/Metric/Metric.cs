@@ -124,6 +124,11 @@ namespace MbedCloudSDK.Connect.Model.Metric
         /// Mbed Cloud Connect when you have successfully subscribed to the device resources using Connect API endpoints.</value>
         public long? Observations { get; set; }
 
+        /// <summary>
+        /// Map
+        /// </summary>
+        /// <param name="statisticsData">Statistics Metric</param>
+        /// <returns>Metric</returns>
         public static Metric Map(statistics.Model.Metric statisticsData)
         {
             Metric metric = new Metric

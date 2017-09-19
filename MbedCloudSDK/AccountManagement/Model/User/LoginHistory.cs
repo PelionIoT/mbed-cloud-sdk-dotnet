@@ -15,6 +15,10 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// Initializes a new instance of the <see cref="LoginHistory"/> class.
         /// Login History
         /// </summary>
+        /// <param name="date">Date</param>
+        /// <param name="userAgent">User Agent</param>
+        /// <param name="ipAddress">IpAddress</param>
+        /// <param name="success">Success</param>
         public LoginHistory(DateTime? date = null, string userAgent = null, string ipAddress = null, bool? success = null)
         {
             Date = date;
@@ -46,6 +50,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// <summary>
         /// Login History
         /// </summary>
+        /// <param name="data">Data</param>
         /// <returns>Login history</returns>
         public static LoginHistory Map(iam.Model.LoginHistory data)
         {

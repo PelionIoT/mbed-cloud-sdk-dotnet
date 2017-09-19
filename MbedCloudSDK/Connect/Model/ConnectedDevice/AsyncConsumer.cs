@@ -9,6 +9,7 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
     /// <summary>
     /// Async consumer.
     /// </summary>
+    /// <typeparam name="T">Type of Async Consumer</typeparam>
     public class AsyncConsumer<T>
 	{
         private string asyncId;

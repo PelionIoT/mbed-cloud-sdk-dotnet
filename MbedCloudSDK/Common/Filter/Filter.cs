@@ -107,45 +107,6 @@ namespace MbedCloudSDK.Common.Filter
                 content: new JProperty(key, JObject.FromObject(filterAttribute))));
         }
 
-        private Filter QueryStringToFilter(string queryString)
-        {
-            var queryJsonString = QueryStringToJson(queryString);
-            FilterJson = StringToJsonObject(queryJsonString);
-            FilterDictionary = QueryJsonToDictionary(queryJsonString);
-            return this;
-        }
-
-        private JObject StringToJsonObject(string jsonString)
-        {
-            return JObject.Parse(jsonString);
-        }
-
-        private Dictionary<string, FilterAttribute> QueryJsonToDictionary(string queryJson)
-        {
-            var decodedString = HttpUtility.UrlDecode(queryJson).Replace("u'", "\"").Replace("'", "\"");
-            var customAttributes = new Dictionary<string, FilterAttribute>();
-            if (Utils.IsValidJson(decodedString))
-            {
-                var json = JsonConvert.DeserializeObject<Dictionary<string, JObject>>(decodedString);
-                if (json.Keys.Contains("custom_attributes"))
-                {
-                    var customAttributeJson = json["custom_attributes"].ToString(Formatting.None);
-                    customAttributes = QueryJsonToDictionary(customAttributeJson);
-                    json.Remove("custom_attributes");
-                }
-
-                var dict = json.ToDictionary(k => k.Key, k => GetQueryAttribute(k.Value));
-                if (customAttributes.Any())
-                {
-                    customAttributes.ToList().ForEach(d => dict.Add($"{CustomAttributesPrefix}{d.Key}", d.Value));
-                }
-
-                return dict;
-            }
-
-            return new Dictionary<string, FilterAttribute>();
-        }
-
         private static FilterAttribute GetQueryAttribute(JObject val)
         {
             var oper = val.First as JProperty;
@@ -237,6 +198,45 @@ namespace MbedCloudSDK.Common.Filter
             }
 
             return json.ToString(Formatting.None);
+        }
+
+        private Filter QueryStringToFilter(string queryString)
+        {
+            var queryJsonString = QueryStringToJson(queryString);
+            FilterJson = StringToJsonObject(queryJsonString);
+            FilterDictionary = QueryJsonToDictionary(queryJsonString);
+            return this;
+        }
+
+        private JObject StringToJsonObject(string jsonString)
+        {
+            return JObject.Parse(jsonString);
+        }
+
+        private Dictionary<string, FilterAttribute> QueryJsonToDictionary(string queryJson)
+        {
+            var decodedString = HttpUtility.UrlDecode(queryJson).Replace("u'", "\"").Replace("'", "\"");
+            var customAttributes = new Dictionary<string, FilterAttribute>();
+            if (Utils.IsValidJson(decodedString))
+            {
+                var json = JsonConvert.DeserializeObject<Dictionary<string, JObject>>(decodedString);
+                if (json.Keys.Contains("custom_attributes"))
+                {
+                    var customAttributeJson = json["custom_attributes"].ToString(Formatting.None);
+                    customAttributes = QueryJsonToDictionary(customAttributeJson);
+                    json.Remove("custom_attributes");
+                }
+
+                var dict = json.ToDictionary(k => k.Key, k => GetQueryAttribute(k.Value));
+                if (customAttributes.Any())
+                {
+                    customAttributes.ToList().ForEach(d => dict.Add($"{CustomAttributesPrefix}{d.Key}", d.Value));
+                }
+
+                return dict;
+            }
+
+            return new Dictionary<string, FilterAttribute>();
         }
     }
 }

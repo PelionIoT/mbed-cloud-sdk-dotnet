@@ -10,13 +10,16 @@ namespace MbedCloudSDK.Update.Api
     using MbedCloudSDK.Exceptions;
     using MbedCloudSDK.Update.Model.FirmwareImage;
 
+    /// <summary>
+    /// Update Api
+    /// </summary>
     public partial class UpdateApi
     {
         /// <summary>
         /// List Firmware Images.
         /// </summary>
         /// <param name="options">Query optionss.</param>
-        /// <returns></returns>
+        /// <returns>Paginated Response of Firmware Images</returns>
         public PaginatedResponse<FirmwareImage> ListFirmwareImages(QueryOptions options = null)
         {
             if (options == null)
@@ -62,7 +65,7 @@ namespace MbedCloudSDK.Update.Api
         /// Get a firmware image with provided image_id.
         /// </summary>
         /// <param name="imageId">The firmware ID for the image to retrieve.</param>
-        /// <returns></returns>
+        /// <returns>Firmware Image</returns>
         public FirmwareImage GetFirmwareImage(string imageId)
         {
             try

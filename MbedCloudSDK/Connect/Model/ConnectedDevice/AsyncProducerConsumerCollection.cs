@@ -10,6 +10,7 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
     /// <summary>
     /// Async producer consumer collection.
     /// </summary>
+    /// <typeparam name="T">Type of AsyncProducerConsumer</typeparam>
     public class AsyncProducerConsumerCollection<T>
 	{
 		private readonly Queue<T> collection = new Queue<T>();

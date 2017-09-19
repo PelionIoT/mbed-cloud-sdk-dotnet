@@ -34,6 +34,7 @@ namespace MbedCloudSDK.Certificates.Api
         /// Initializes a new instance of the <see cref="CertificatesApi"/> class.
         /// Initalize certificates api
         /// </summary>
+        /// <param name="config">Configuration Object</param>
         public CertificatesApi(Config config)
             : base(config)
         {
@@ -55,6 +56,7 @@ namespace MbedCloudSDK.Certificates.Api
         /// <summary>
         /// Get meta data for the last Mbed Cloud API call
         /// </summary>
+        /// <returns>Api Metadata</returns>
         public ApiMetadata GetLastApiMetadata()
         {
             return ApiMetadata.Map(Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
@@ -210,6 +212,11 @@ namespace MbedCloudSDK.Certificates.Api
             }
         }
 
+        /// <summary>
+        /// Add Developer Certificate
+        /// </summary>
+        /// <param name="certificate">Cartificate</param>
+        /// <returns>Certificate</returns>
         public Certificate AddDeveloperCertificate(Certificate certificate)
         {
             connector_ca.Model.DeveloperCertificateRequestData body = new connector_ca.Model.DeveloperCertificateRequestData(certificate.Name, certificate.Description);
@@ -265,7 +272,8 @@ namespace MbedCloudSDK.Certificates.Api
         /// <summary>
         /// Update Certificate.
         /// </summary>
-        /// <param name="certificate">Certificate with updated data.</param>
+        /// <param name="certificateId">Certificate Id</param>
+        /// <param name="updatedCertificate">Certificate with updated data.</param>
         /// <returns>Updated Certificate.</returns>
         /// <exception cref="CloudApiException">Error while uploading certificate.</exception>
         public Certificate UpdateCertificate(string certificateId, Certificate updatedCertificate)

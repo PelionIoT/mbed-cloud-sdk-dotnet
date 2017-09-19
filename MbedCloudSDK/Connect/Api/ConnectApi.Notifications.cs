@@ -7,6 +7,9 @@ using System.Text;
 
 namespace MbedCloudSDK.Connect.Api
 {
+    /// <summary>
+    /// Connect Api
+    /// </summary>
     public partial class ConnectApi
     {
         private void Notifications()

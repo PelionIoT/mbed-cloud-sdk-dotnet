@@ -10,13 +10,16 @@ namespace MbedCloudSDK.Update.Api
     using MbedCloudSDK.Exceptions;
     using MbedCloudSDK.Update.Model.FirmwareManifest;
 
+    /// <summary>
+    /// Update Api
+    /// </summary>
     public partial class UpdateApi
     {
         /// <summary>
         /// List Firmware Images.
         /// </summary>
         /// <param name="options">Query options.</param>
-        /// <returns></returns>
+        /// <returns>Paginated Response of Firmware Manifests</returns>
         public PaginatedResponse<FirmwareManifest> ListFirmwareManifests(QueryOptions options = null)
         {
             if (options == null)
@@ -62,6 +65,7 @@ namespace MbedCloudSDK.Update.Api
         /// Get manifest with provided manifest_id.
         /// </summary>
         /// <param name="manifestId">ID of manifest to retrieve.</param>
+        /// <returns>Firmware Manifest</returns>
         public FirmwareManifest GetFirmwareManifest(string manifestId)
         {
             try
@@ -80,7 +84,7 @@ namespace MbedCloudSDK.Update.Api
         /// <param name="dataFile">Stream to the manifest file.</param>
         /// <param name="name">Name of the firmware manifest.</param>
         /// <param name="description">Description for the firmware manifest.</param>
-        /// <returns></returns>
+        /// <returns>Firmware Manifest</returns>
         public FirmwareManifest AddFirmwareManifest(string dataFile, string name, string description = null)
         {
             try
