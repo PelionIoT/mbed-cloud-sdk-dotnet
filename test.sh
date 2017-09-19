@@ -39,7 +39,7 @@ sleep 2
 if ! is_running $BACKEND_PID; then
   >&2 echo "Backend server did not start successfully."
   cleanup
-  exit 1
+  exit 1000
 fi
 
 # Start the test runner
