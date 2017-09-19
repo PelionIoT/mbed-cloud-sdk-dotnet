@@ -1,18 +1,20 @@
-﻿using MbedCloudSDK.Common;
-using MbedCloudSDK.Common.Query;
-using MbedCloudSDK.DeviceDirectory.Model.Logging;
-using MbedCloudSDK.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="DeviceDirectoryApi.Logging.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.DeviceDirectory.Api
 {
+    using System.Threading.Tasks;
+    using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.DeviceDirectory.Model.Logging;
+    using MbedCloudSDK.Exceptions;
+
+    /// <summary>
+    /// Device Directory Api
+    /// </summary>
     public partial class DeviceDirectoryApi
     {
-
         /// <summary>
         /// Lists the device logs.
         /// </summary>
@@ -24,6 +26,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 return new PaginatedResponse<DeviceLog>(ListDeviceEventsFunc, options);
@@ -45,14 +48,16 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
-                var resp = this.api.DeviceLogList(options.Limit, options.Order, options.After, options.Filter.FilterString, options.Include);
+                var resp = api.DeviceLogList(options.Limit, options.Order, options.After, options.Filter.FilterString, options.Include);
                 var respDeviceLogs = new ResponsePage<DeviceLog>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
                 foreach (var deviceLog in resp.Data)
                 {
                     respDeviceLogs.Data.Add(DeviceLog.Map(deviceLog));
                 }
+
                 return respDeviceLogs;
             }
             catch (device_directory.Client.ApiException e)
@@ -65,7 +70,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// Gets the device log.
         /// </summary>
         /// <returns>The device log.</returns>
-        /// <param name="deviceLogId">Device log identifier.</param>
+        /// <param name="deviceEventId">Device log identifier.</param>
         public DeviceLog GetDeviceEvent(string deviceEventId)
         {
             try

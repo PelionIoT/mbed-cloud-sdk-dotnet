@@ -1,7 +1,14 @@
-using System.Runtime.Serialization;
+// <copyright file="FilterOperator.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Common.Filter
 {
+    using System.Runtime.Serialization;
+
+    /// <summary>
+    /// Filter operator
+    /// </summary>
     public enum FilterOperator
     {
         /// <summary>
@@ -9,16 +16,19 @@ namespace MbedCloudSDK.Common.Filter
         /// </summary>
         [EnumMember(Value = "")]
         Equals,
+
         /// <summary>
         /// Not Equal operator.
         /// </summary>
         [EnumMember(Value = "neq")]
         NotEqual,
+
         /// <summary>
         /// Less or Equal operator.
         /// </summary>
         [EnumMember(Value = "lte")]
         LessOrEqual,
+
         /// <summary>
         /// Greater or Equal.
         /// </summary>

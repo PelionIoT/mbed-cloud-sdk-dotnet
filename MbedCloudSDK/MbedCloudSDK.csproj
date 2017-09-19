@@ -19,6 +19,9 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\MbedCloudSDK.xml</DocumentationFile>
     <ConsolePause>false</ConsolePause>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>MbedCloudSDK.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>CS1591,CS0109</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -27,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <DocumentationFile>bin\Release\MbedCloudSDK.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>MbedCloudSDK.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -172,23 +176,23 @@
     <Compile Include="Backends\UpdateService\Model\FirmwareImagePage.cs" />
     <Compile Include="Backends\UpdateService\Model\FirmwareManifest.cs" />
     <Compile Include="Backends\UpdateService\Model\FirmwareManifestPage.cs" />
-    <Compile Include="Backends\UpdateService\Model\ManifestContents.cs"/>
-    <Compile Include="Backends\UpdateService\Model\ManifestContentsEncryptionMode.cs"/>
-    <Compile Include="Backends\UpdateService\Model\ManifestContentsPayload.cs"/>
-    <Compile Include="Backends\UpdateService\Model\ManifestContentsPayloadFormat.cs"/>
-    <Compile Include="Backends\UpdateService\Model\ManifestContentsPayloadReference.cs"/>
-    <Compile Include="Backends\UpdateService\Model\UpdateCampaign.cs"/>
-    <Compile Include="Backends\UpdateService\Model\UpdateCampaignPage.cs"/>
-    <Compile Include="Backends\UpdateService\Model\UpdateCampaignPatchRequest.cs"/>
-    <Compile Include="Backends\UpdateService\Model\UpdateCampaignPostRequest.cs"/>
-    <Compile Include="Backends\UpdateService\Model\UpdateCampaignPutRequest.cs"/>
+    <Compile Include="Backends\UpdateService\Model\ManifestContents.cs" />
+    <Compile Include="Backends\UpdateService\Model\ManifestContentsEncryptionMode.cs" />
+    <Compile Include="Backends\UpdateService\Model\ManifestContentsPayload.cs" />
+    <Compile Include="Backends\UpdateService\Model\ManifestContentsPayloadFormat.cs" />
+    <Compile Include="Backends\UpdateService\Model\ManifestContentsPayloadReference.cs" />
+    <Compile Include="Backends\UpdateService\Model\UpdateCampaign.cs" />
+    <Compile Include="Backends\UpdateService\Model\UpdateCampaignPage.cs" />
+    <Compile Include="Backends\UpdateService\Model\UpdateCampaignPatchRequest.cs" />
+    <Compile Include="Backends\UpdateService\Model\UpdateCampaignPostRequest.cs" />
+    <Compile Include="Backends\UpdateService\Model\UpdateCampaignPutRequest.cs" />
     <Compile Include="Certificates\Api\CertificatesApi.cs" />
     <Compile Include="Certificates\Model\Certificate.cs" />
     <Compile Include="Certificates\Model\CertificateType.cs" />
     <Compile Include="Certificates\Model\CertificateStatus.cs" />
     <Compile Include="Certificates\Model\CertificateTypeConverter.cs" />
     <Compile Include="Certificates\Model\CertificateStatusConverter.cs" />
-    <Compile Include="Common\CustomAttributes.cs" />
+    <Compile Include="Common\NameOverrideAttribute.cs" />
     <Compile Include="Common\PaginatedResponse.cs" />
     <Compile Include="Common\ResponsePage.cs" />
     <Compile Include="Common\BaseApi.cs" />
@@ -262,20 +266,24 @@
     <None Include="Backends\Mds\README.md" />
     <None Include="Backends\DeveloperCertificate\README.md" />
     <None Include="Backends\Statistics\README.md" />
+    <None Include="MbedCloudSDK.ruleset" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Connect\Model\Webhook\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

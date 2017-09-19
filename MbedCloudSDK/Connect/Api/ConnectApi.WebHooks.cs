@@ -1,24 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MbedCloudSDK.Connect.Model.Webhook;
+﻿// <copyright file="ConnectApi.WebHooks.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Connect.Api
 {
+    using MbedCloudSDK.Connect.Model.Webhook;
+
+    /// <summary>
+    /// Connect Api
+    /// </summary>
     public partial class ConnectApi
     {
         /// <summary>
         /// Get the current callback URL if it exists.
         /// </summary>
+        /// <returns>Webhook</returns>
         public Webhook GetWebhook()
         {
             try
             {
                 return Webhook.Map(defaultApi.V2NotificationCallbackGet());
             }
-            catch(mds.Client.ApiException ex)
+            catch (mds.Client.ApiException ex)
             {
                 throw new mds.Client.ApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
@@ -48,7 +51,7 @@ namespace MbedCloudSDK.Connect.Api
             try
             {
                 defaultApi.V2NotificationCallbackDelete();
-                resourceSubscribtions.Clear();
+                ResourceSubscribtions.Clear();
             }
             catch (mds.Client.ApiException ex)
             {

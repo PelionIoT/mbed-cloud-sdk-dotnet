@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="CertificateType.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Certificates.Model
 {
+    using System.Runtime.Serialization;
+
     /// <summary>
     /// Type of Trusted Certificate
     /// </summary>

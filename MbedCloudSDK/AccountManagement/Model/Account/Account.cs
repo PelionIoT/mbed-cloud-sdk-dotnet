@@ -1,141 +1,187 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json;
+﻿// <copyright file="Account.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.AccountManagement.Model.Account
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using MbedCloudSDK.Common;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+
     /// <summary>
-    /// 
+    /// Account
     /// </summary>
     public class Account
     {
-
-        /// <summary>
-        /// The status of the account.
-        /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public AccountStatus? Status { get; set; }
-
-        /// <summary>
-        /// The phone number of the company.
-        /// </summary>
-        public string PhoneNumber { get; set; }
-        
-        /// <summary>
-        /// The postal code part of the postal address.
-        /// </summary>
-        public string Postcode { get; set; }
-       
-        /// <summary>
-        /// Account ID.
-        /// </summary>
-        public string Id { get; set; }
-       
-        /// <summary>
-        /// An array of aliases.
-        /// </summary>
-        public List<string> Aliases { get; set; }
-        
-        /// <summary>
-        /// Postal address line 2.
-        /// </summary>
-        public string AddressLine2 { get; set; }
-        
-        /// <summary>
-        /// The city part of the postal address.
-        /// </summary>
-        public string City { get; set; }
-        
-        /// <summary>
-        /// Postal address line 1.
-        /// </summary>
-        public string AddressLine1 { get; set; }
-        
-        /// <summary>
-        /// The display name for the account.
-        /// </summary>
-        public string DisplayName { get; set; }
-        
-        /// <summary>
-        /// The state part of the postal address.
-        /// </summary>
-        public string State { get; set; }
-        
-        /// <summary>
-        /// Flag (true/false) indicating whether Factory Tool is allowed to download or not.
-        /// </summary>
-        public bool? ProvisisioningAllowed { get; set; }
-        
-        /// <summary>
-        /// The company email address for this account.
-        /// </summary>
-        public string Email { get; set; }
-        
-        /// <summary>
-        /// The name of the company.
-        /// </summary>
-        public string Company { get; set; }
-        
-        /// <summary>
-        /// Time when upgraded to commercial account in UTC format RFC3339.
-        /// </summary>
-        public DateTime? UpgradedAt { get; set; }
-        
-        /// <summary>
-        /// The tier level of the account; &#39;0&#39;: free tier, commercial account. Other values are reserved for the future.
-        /// </summary>
-        public string Tier { get; set; }
-        
-        /// <summary>
-        /// List of limits as key-value pairs if requested.
-        /// </summary>
-        public Dictionary<string, string> Limits { get; set; }
-        
-        /// <summary>
-        /// The country part of the postal address.
-        /// </summary>
-        public string Country { get; set; }
-        
-        /// <summary>
-        /// Creation UTC time RFC3339.
-        /// </summary>
-        public DateTime? CreatedAt { get; set; }
-        
-        /// <summary>
-        /// The name of the contact person for this account.
-        /// </summary>
-        public string Contact { get; set; }
-        
-        /// <summary>
-        /// Account template ID.
-        /// </summary>
-        public string TemplateId { get; set; }
-
-        /// <summary>
-        /// List of policies.
-        /// </summary>
-        /// <value>List of policies.</value>
-        public List<Policy.Policy> Policies { get; set; }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Account" /> class.
         /// </summary>
+        /// <param name="options">options for query</param>
         public Account(IDictionary<string, object> options = null)
         {
             if (options != null)
             {
                 foreach (KeyValuePair<string, object> item in options)
                 {
-                    var property = this.GetType().GetProperty(item.Key);
+                    var property = GetType().GetProperty(item.Key);
                     if (property != null)
                     {
                         property.SetValue(this, item.Value, null);
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets or sets the status of the account.
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public AccountStatus? Status { get; set; }
+
+        /// <summary>
+        /// Gets or sets the phone number of the company.
+        /// </summary>
+        public string PhoneNumber { get; set; }
+
+        /// <summary>
+        /// Gets or sets the postal code part of the postal address.
+        /// </summary>
+        public string Postcode { get; set; }
+
+        /// <summary>
+        /// Gets or sets account ID.
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets an array of aliases.
+        /// </summary>
+        public List<string> Aliases { get; set; }
+
+        /// <summary>
+        /// Gets or sets postal address line 2.
+        /// </summary>
+        public string AddressLine2 { get; set; }
+
+        /// <summary>
+        /// Gets or sets the city part of the postal address.
+        /// </summary>
+        public string City { get; set; }
+
+        /// <summary>
+        /// Gets or sets postal address line 1.
+        /// </summary>
+        public string AddressLine1 { get; set; }
+
+        /// <summary>
+        /// Gets or sets the display name for the account.
+        /// </summary>
+        public string DisplayName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the state part of the postal address.
+        /// </summary>
+        public string State { get; set; }
+
+        /// <summary>
+        /// Gets or sets flag (true/false) indicating whether Factory Tool is allowed to download or not.
+        /// </summary>
+        public bool? ProvisisioningAllowed { get; set; }
+
+        /// <summary>
+        /// Gets or sets the company email address for this account.
+        /// </summary>
+        public string Email { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the company.
+        /// </summary>
+        public string Company { get; set; }
+
+        /// <summary>
+        /// Gets or sets time when upgraded to commercial account in UTC format RFC3339.
+        /// </summary>
+        public DateTime? UpgradedAt { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tier level of the account; &#39;0&#39;: free tier, commercial account. Other values are reserved for the future.
+        /// </summary>
+        public string Tier { get; set; }
+
+        /// <summary>
+        /// Gets or sets list of limits as key-value pairs if requested.
+        /// </summary>
+        public Dictionary<string, string> Limits { get; set; }
+
+        /// <summary>
+        /// Gets or sets the country part of the postal address.
+        /// </summary>
+        public string Country { get; set; }
+
+        /// <summary>
+        /// Gets or sets creation UTC time RFC3339.
+        /// </summary>
+        public DateTime? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the contact person for this account.
+        /// </summary>
+        public string Contact { get; set; }
+
+        /// <summary>
+        /// Gets or sets account template ID.
+        /// </summary>
+        public string TemplateId { get; set; }
+
+        /// <summary>
+        /// Gets or sets list of policies.
+        /// </summary>
+        /// <value>List of policies.</value>
+        public List<Policy.Policy> Policies { get; set; }
+
+        /// <summary>
+        /// Gets or sets a reason note for updating the status of the account
+        /// </summary>
+        public string Reason { get; set; }
+
+        /// <summary>
+        /// Map to Account object.
+        /// </summary>
+        /// <param name="accountInfo">Iam account</param>
+        /// <returns>Account</returns>
+        public static Account Map(iam.Model.AccountInfo accountInfo)
+        {
+            var accountStatus = Utils.ParseEnum<AccountStatus>(accountInfo.Status);
+            var account = new Account
+            {
+                PhoneNumber = accountInfo.PhoneNumber,
+                Postcode = accountInfo.PostalCode,
+                Id = accountInfo.Id,
+                Aliases = accountInfo.Aliases,
+                AddressLine2 = accountInfo.AddressLine2,
+                City = accountInfo.City,
+                AddressLine1 = accountInfo.AddressLine1,
+                DisplayName = accountInfo.DisplayName,
+                State = accountInfo.State,
+                ProvisisioningAllowed = accountInfo.IsProvisioningAllowed,
+                Email = accountInfo.Email,
+                Status = accountStatus,
+                Company = accountInfo.Company,
+                UpgradedAt = accountInfo.UpgradedAt,
+                Tier = accountInfo.Tier,
+                Limits = accountInfo.Limits,
+                Country = accountInfo.Country,
+                CreatedAt = accountInfo.CreatedAt
+            };
+            account.Contact = account.Contact;
+            account.TemplateId = accountInfo.TemplateId;
+            account.Policies = accountInfo?.Policies?.Select(p => { return Policy.Policy.Map(p); }).ToList();
+            account.Reason = accountInfo.Reason;
+            return account;
         }
 
         /// <summary>
@@ -167,61 +213,32 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
             sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
             sb.Append("  Policies: ").Append(string.Join(", ", Policies.Select(p => { return p.ToString(); }))).Append("\n");
+            sb.Append("  Reason: ").Append(Reason).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
 
         /// <summary>
-        /// Map to Account object.
-        /// </summary>
-        /// <param name="accountInfo"></param>
-        /// <returns></returns>
-        public static Account Map(iam.Model.AccountInfo accountInfo)
-        {
-            var accountStatus = (AccountStatus)Enum.Parse(typeof(AccountStatus), accountInfo.Status.ToString());
-            var account = new Account();
-            account.PhoneNumber = accountInfo.PhoneNumber;
-            account.Postcode = accountInfo.PostalCode;
-            account.Id = accountInfo.Id;
-            account.Aliases = accountInfo.Aliases;
-            account.AddressLine2 = accountInfo.AddressLine2;
-            account.City = accountInfo.City;
-            account.AddressLine1 = accountInfo.AddressLine1;
-            account.DisplayName = accountInfo.DisplayName;
-            account.State = accountInfo.State;
-            account.ProvisisioningAllowed = accountInfo.IsProvisioningAllowed;
-            account.Email = accountInfo.Email;
-            account.Status = accountStatus;
-            account.Company = accountInfo.Company;
-            account.UpgradedAt = accountInfo.UpgradedAt;
-            account.Tier = accountInfo.Tier;
-            account.Limits = accountInfo.Limits;
-            account.Country = accountInfo.Country;
-            account.CreatedAt = accountInfo.CreatedAt;
-            account.Contact = account.Contact;
-            account.TemplateId = accountInfo.TemplateId;
-            account.Policies = accountInfo?.Policies?.Select(p => { return Policy.Policy.Map(p); }).ToList();
-            return account;
-        }
-
-        /// <summary>
         /// Create an Update Request
         /// </summary>
+        /// <returns>Account update request</returns>
         public iam.Model.AccountUpdateReq CreateUpdateRequest()
         {
-            iam.Model.AccountUpdateReq request = new iam.Model.AccountUpdateReq();
-            request.PhoneNumber = this.PhoneNumber;
-            request.PostalCode = this.Postcode;
-            request.Aliases = this.Aliases;
-            request.AddressLine2 = this.AddressLine2;
-            request.City = this.City;
-            request.AddressLine1 = this.AddressLine1;
-            request.DisplayName = this.DisplayName;
-            request.State = this.State;
-            request.Email = this.Email;
-            request.Company = this.Company;
-            request.Country = this.Country;
-            request.Contact = this.Contact;
+            iam.Model.AccountUpdateReq request = new iam.Model.AccountUpdateReq
+            {
+                PhoneNumber = PhoneNumber,
+                PostalCode = Postcode,
+                Aliases = Aliases,
+                AddressLine2 = AddressLine2,
+                City = City,
+                AddressLine1 = AddressLine1,
+                DisplayName = DisplayName,
+                State = State,
+                Email = Email,
+                Company = Company,
+                Country = Country,
+                Contact = Contact
+            };
             return request;
         }
     }

@@ -1,32 +1,56 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MbedCloudSDK.Common.Query;
-using Newtonsoft.Json;
+﻿// <copyright file="PaginatedResponse.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Common
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using MbedCloudSDK.Common.Query;
+    using Newtonsoft.Json;
+
     /// <summary>
     /// Paginated reponse object wrapper.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">Type contained in paginated response</typeparam>
     [JsonObject]
     public class PaginatedResponse<T> : IEnumerable<T>
     {
         private Func<QueryOptions, ResponsePage<T>> getDataFunc;
 
         /// <summary>
-        /// Whether there are more results to display
+        /// Initializes a new instance of the <see cref="PaginatedResponse{T}"/> class.
+        /// Create new instance of paginated reponse.
+        /// </summary>
+        /// <param name="getDataFunc">function to call to get next page.</param>
+        /// <param name="listParams">Page params</param>
+        /// <param name="initData">Data</param>
+        public PaginatedResponse(Func<QueryOptions, ResponsePage<T>> getDataFunc, QueryOptions listParams, List<T> initData = null)
+        {
+            this.getDataFunc = getDataFunc;
+            Data = initData;
+            ListParams = listParams;
+            if (initData != null)
+            {
+                TotalCount = initData.Count;
+            }
+            else
+            {
+                GetPage();
+            }
+        }
+
+        /// <summary>
+        /// Gets whether there are more results to display
         /// </summary>
         /// <value>Whether there are more results to display</value>
         [JsonProperty]
         public bool? HasMore { get; private set; }
 
         /// <summary>
-        /// Total number of records
+        /// Gets or sets total number of records
         /// </summary>
         /// <value>Total number of records</value>
         [JsonProperty]
@@ -38,101 +62,84 @@ namespace MbedCloudSDK.Common
         private List<T> Data { get; set; }
 
         /// <summary>
-        /// Create new instance of paginated reponse.
-        /// </summary>
-        /// <param name="getDataFunc">function to call to get next page.</param>
-        /// <param name="listParams">Page params</param>
-        /// <param name="initData">Data</param>
-        public PaginatedResponse(Func<QueryOptions, ResponsePage<T>> getDataFunc, QueryOptions listParams, List<T> initData = null)
-        {
-            this.getDataFunc = getDataFunc;
-            this.Data = initData;
-            this.ListParams = listParams;
-            if (initData != null)
-            {
-                this.TotalCount = initData.Count;
-            }
-            else
-            {
-                GetPage();
-            }
-        }
-
-        /// <summary>
         /// Return the paginated response as a list containing all elements.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of T</returns>
         public List<T> ToList()
         {
             List<T> list = new List<T>();
-            IEnumerator<T> enumerator = this.GetEnumerator();
-            while(enumerator.MoveNext())
+            IEnumerator<T> enumerator = GetEnumerator();
+            while (enumerator.MoveNext())
             {
                 list.Add(enumerator.Current);
             }
+
             return list;
         }
 
         private void GetPage()
         {
-            ResponsePage<T> resp = this.getDataFunc(this.ListParams);
-            this.HasMore = resp.HasMore;
-            this.TotalCount = resp.TotalCount;
-            this.Data = resp.Data;
-            if (resp.Data.Count > 0 )
+            ResponsePage<T> resp = getDataFunc(ListParams);
+            HasMore = resp.HasMore;
+            TotalCount = resp.TotalCount;
+            Data = resp.Data;
+            if (resp.Data.Count > 0)
             {
                 object last = resp.Data.Last();
                 var propertyInfo = last.GetType().GetProperty("Id");
                 if (propertyInfo != null)
                 {
-                    var after = (string) propertyInfo.GetValue(last);
-                    this.ListParams.After = after;
+                    var after = (string)propertyInfo.GetValue(last);
+                    ListParams.After = after;
                 }
             }
-            else if (this.ListParams.After != null)
+            else if (ListParams.After != null)
             {
-                this.ListParams.After = null;
+                ListParams.After = null;
             }
         }
 
         /// <summary>
         /// Return total count of items
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Count</returns>
         public int? GetTotalCount()
         {
-            QueryOptions listParams = new QueryOptions();
-            listParams.Include = "total_count";
-            listParams.Limit = 2;
-            ResponsePage<T> resp = this.getDataFunc(listParams);
+            QueryOptions listParams = new QueryOptions
+            {
+                Include = "total_count",
+                Limit = 2
+            };
+            ResponsePage<T> resp = getDataFunc(listParams);
             return resp.TotalCount;
         }
 
         /// <summary>
         /// Get items enumerator
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Enumerator</returns>
         public IEnumerator<T> GetEnumerator()
         {
             while (true)
             {
-                foreach (var obj in this.Data)
+                foreach (var obj in Data)
                 {
                     yield return obj;
                 }
-                if (this.HasMore != true)
+
+                if (HasMore != true)
                 {
                     yield break;
                 }
+
                 GetPage();
             }
         }
 
+        /// <inheritdoc/>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
-
-
     }
 }

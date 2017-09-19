@@ -1,33 +1,24 @@
-using System;
-using System.Collections.Generic;
+// <copyright file="LoginHistory.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.AccountManagement.Model.User
 {
-    ///<summary>
+    using System;
+
+    /// <summary>
     /// Login History
-    ///</summary>
+    /// </summary>
     public class LoginHistory
     {
-        ///<summary>
-        /// Date of login
-        ///</summary>
-        public DateTime? Date { get; private set; }
-
-        ///<summary>
-        /// User agent used for login
-        ///</summary>
-        public string UserAgent { get; private set; }
-
-        ///<summary>
-        /// IP Address login from
-        ///</summary>
-        public string IpAddress { get; private set; }
-
-        ///<summary>
-        /// Whether login was successful
-        ///</summary>
-        public bool? Success { get; private set; }
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginHistory"/> class.
+        /// Login History
+        /// </summary>
+        /// <param name="date">Date</param>
+        /// <param name="userAgent">User Agent</param>
+        /// <param name="ipAddress">IpAddress</param>
+        /// <param name="success">Success</param>
         public LoginHistory(DateTime? date = null, string userAgent = null, string ipAddress = null, bool? success = null)
         {
             Date = date;
@@ -36,19 +27,34 @@ namespace MbedCloudSDK.AccountManagement.Model.User
             Success = success;
         }
 
+        /// <summary>
+        /// Gets date of login
+        /// </summary>
+        public DateTime? Date { get; private set; }
+
+        /// <summary>
+        /// Gets user agent used for login
+        /// </summary>
+        public string UserAgent { get; private set; }
+
+        /// <summary>
+        /// Gets iP Address login from
+        /// </summary>
+        public string IpAddress { get; private set; }
+
+        /// <summary>
+        /// Gets whether login was successful
+        /// </summary>
+        public bool? Success { get; private set; }
+
+        /// <summary>
+        /// Login History
+        /// </summary>
+        /// <param name="data">Data</param>
+        /// <returns>Login history</returns>
         public static LoginHistory Map(iam.Model.LoginHistory data)
         {
             return new LoginHistory(data.Date, data.UserAgent, data.IpAddress, data.Success);
         }
-
-        public static List<LoginHistory> MapList(List<iam.Model.LoginHistory> data)
-        {
-            var list = new List<LoginHistory>();
-            foreach (var item in data)
-            {
-                list.Add(LoginHistory.Map(item));
-            }
-            return list;
-        } 
     }
 }

@@ -1,29 +1,32 @@
-﻿using MbedCloudSDK.Common;
-using MbedCloudSDK.Common.Query;
-using MbedCloudSDK.Exceptions;
-using MbedCloudSDK.Update.Model.FirmwareImage;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="UpdateApi.FirmwareImage.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Update.Api
 {
+    using System.IO;
+    using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.Exceptions;
+    using MbedCloudSDK.Update.Model.FirmwareImage;
+
+    /// <summary>
+    /// Update Api
+    /// </summary>
     public partial class UpdateApi
     {
         /// <summary>
         /// List Firmware Images.
         /// </summary>
         /// <param name="options">Query optionss.</param>
-        /// <returns></returns>
+        /// <returns>Paginated Response of Firmware Images</returns>
         public PaginatedResponse<FirmwareImage> ListFirmwareImages(QueryOptions options = null)
         {
             if (options == null)
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 return new PaginatedResponse<FirmwareImage>(ListFirmwareImagesFun, options);
@@ -40,6 +43,7 @@ namespace MbedCloudSDK.Update.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 var resp = api.FirmwareImageList(options.Limit, options.Order, options.After);
@@ -48,6 +52,7 @@ namespace MbedCloudSDK.Update.Api
                 {
                     respImages.Data.Add(FirmwareImage.Map(image));
                 }
+
                 return respImages;
             }
             catch (update_service.Client.ApiException e)
@@ -60,6 +65,7 @@ namespace MbedCloudSDK.Update.Api
         /// Get a firmware image with provided image_id.
         /// </summary>
         /// <param name="imageId">The firmware ID for the image to retrieve.</param>
+        /// <returns>Firmware Image</returns>
         public FirmwareImage GetFirmwareImage(string imageId)
         {
             try

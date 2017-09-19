@@ -1,11 +1,14 @@
-﻿using System;
-using System.Linq;
-using device_directory.Client;
-using MbedCloudSDK.Common;
-
+﻿// <copyright file="DeviceDirectoryApi.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.DeviceDirectory.Api
 {
+    using System;
+    using System.Linq;
+    using device_directory.Client;
+    using MbedCloudSDK.Common;
+
     /// <summary>
     /// Exposing functionality from the following underlying services:
     /// - Connector / mDS
@@ -17,10 +20,11 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         private device_directory.Api.DefaultApi api;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:MbedCloudSDK.DeviceDirectory.DeviceDirectory"/> class.
+        /// Initializes a new instance of the <see cref="DeviceDirectoryApi"/> class.
         /// </summary>
         /// <param name="config">Config.</param>
-        public DeviceDirectoryApi(Config config) : base(config)
+        public DeviceDirectoryApi(Config config)
+            : base(config)
         {
             device_directory.Client.Configuration.Default.ApiClient = new ApiClient(config.Host);
             device_directory.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
@@ -32,16 +36,19 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Get meta data for the last Mbed Cloud API call
         /// </summary>
+        /// <returns>Api Metadata</returns>
         public ApiMetadata GetLastApiMetadata()
         {
             return ApiMetadata.Map(device_directory.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
         }
+
         private string FixedPath(string path)
         {
             if (path.StartsWith("/", StringComparison.OrdinalIgnoreCase))
             {
                 path = path.Substring(1);
             }
+
             return path;
         }
     }

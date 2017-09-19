@@ -1,10 +1,13 @@
-﻿using System;
-using System.Linq;
-using MbedCloudSDK.Common;
-using update_service.Client;
+﻿// <copyright file="UpdateApi.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Update.Api
 {
+    using System.Linq;
+    using MbedCloudSDK.Common;
+    using update_service.Client;
+
     /// <summary>
     /// Exposing functionality from: Update service, Update campaigns and Manifest management
     /// </summary>
@@ -13,15 +16,17 @@ namespace MbedCloudSDK.Update.Api
         private update_service.Api.DefaultApi api;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:MbedCloudSDK.Update"/> class.
+        /// Initializes a new instance of the <see cref="UpdateApi"/> class.
         /// </summary>
         /// <param name="config">Config.</param>
-        public UpdateApi(Config config) : base(config)
+        public UpdateApi(Config config)
+            : base(config)
         {
             if (config.Host != string.Empty)
             {
                 Configuration.Default.ApiClient = new ApiClient(config.Host);
             }
+
             api = new update_service.Api.DefaultApi();
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
@@ -30,6 +35,7 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// Get meta data for the last Mbed Cloud API call
         /// </summary>
+        /// <returns>Api Metadata</returns>
         public ApiMetadata GetLastApiMetadata()
         {
             return ApiMetadata.Map(update_service.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());

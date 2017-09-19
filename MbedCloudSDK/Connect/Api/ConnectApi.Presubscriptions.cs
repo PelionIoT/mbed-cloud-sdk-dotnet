@@ -1,8 +1,15 @@
-using System.Collections.Generic;
-using MbedCloudSDK.Connect.Model.Subscription;
+// <copyright file="ConnectApi.Presubscriptions.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Connect.Api
 {
+    using System.Collections.Generic;
+    using MbedCloudSDK.Connect.Model.Subscription;
+
+    /// <summary>
+    /// Connect Api
+    /// </summary>
     public partial class ConnectApi
     {
         /// <summary>
@@ -17,6 +24,7 @@ namespace MbedCloudSDK.Connect.Api
                 var updatedPresubscription = new mds.Model.Presubscription(presubscription.EndpointName, presubscription.EndpointType, presubscription.ResourcePath);
                 presubscriptionArray.Add(updatedPresubscription);
             }
+
             try
             {
                 subscriptionsApi.V2SubscriptionsPut(presubscriptionArray);
@@ -30,6 +38,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <summary>
         /// Get a list of pre-subscription data.
         /// </summary>
+        /// <returns>List of Presubscriptions</returns>
         public List<Presubscription> ListPresubscriptions()
         {
             try
@@ -40,6 +49,7 @@ namespace MbedCloudSDK.Connect.Api
                 {
                     mappedResponse.Add(Connect.Model.Subscription.Presubscription.Map(presubscription));
                 }
+
                 return mappedResponse;
             }
             catch (mds.Client.ApiException ex)

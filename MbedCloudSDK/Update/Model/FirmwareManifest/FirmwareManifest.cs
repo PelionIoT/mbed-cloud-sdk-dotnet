@@ -1,67 +1,90 @@
-﻿using update_service.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="FirmwareManifest.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Update.Model.FirmwareManifest
 {
+    using System;
+    using System.Text;
+
     /// <summary>
     /// Firmware manifest from Update Campaign.
     /// </summary>
     public class FirmwareManifest
     {
         /// <summary>
-        /// Gets or Sets Datafile
+        /// Gets or sets gets or Sets Datafile
         /// </summary>
         public string Datafile { get; set; }
 
         /// <summary>
-        /// Checksum generated for the datafile
+        /// Gets checksum generated for the datafile
         /// </summary>
         public string DatafileChecksum { get; private set; }
 
         /// <summary>
-        /// Size in bytes of the uploaded firmware manifest binary
+        /// Gets size in bytes of the uploaded firmware manifest binary
         /// </summary>
         public long? DatafileSize { get; private set; }
-        
+
         /// <summary>
-        /// The description of the object
+        /// Gets or sets the description of the object
         /// </summary>
         public string Description { get; set; }
-        
+
         /// <summary>
-        /// The version of the firmware manifest (as a timestamp)
+        /// Gets or sets the version of the firmware manifest (as a timestamp)
         /// </summary>
         public DateTime? Timestamp { get; set; }
-        
+
         /// <summary>
-        /// The time the object was created
+        /// Gets or sets the time the object was created
         /// </summary>
         public DateTime? CreatedAt { get; set; }
-        
+
         /// <summary>
-        /// The time the object was updated
+        /// Gets or sets the time the object was updated
         /// </summary>
         public DateTime? UpdatedAt { get; set; }
-                
+
         /// <summary>
-        /// The class of device
+        /// Gets or sets the class of device
         /// </summary>
         public string DeviceClass { get; set; }
-        
+
         /// <summary>
-        /// The ID of the firmware manifest
+        /// Gets or sets the ID of the firmware manifest
         /// </summary>
         public string Id { get; set; }
-        
+
         /// <summary>
-        /// The name of the object
+        /// Gets or sets the name of the object
         /// </summary>
         public string Name { get; set; }
-        
+
+        /// <summary>
+        /// Map to FirmwareManifest object.
+        /// </summary>
+        /// <param name="data">Firmware Manifest</param>
+        /// <returns>Firmware Manifest</returns>
+        public static FirmwareManifest Map(update_service.Model.FirmwareManifest data)
+        {
+            FirmwareManifest manifest = new FirmwareManifest
+            {
+                CreatedAt = data.CreatedAt,
+                Datafile = data.Datafile,
+                DatafileSize = data.DatafileSize,
+                DatafileChecksum = data.DatafileChecksum,
+                Description = data.Description,
+                DeviceClass = data.DeviceClass,
+                Id = data.Id,
+                Name = data.Name,
+                Timestamp = data.Timestamp,
+                UpdatedAt = data.UpdatedAt
+            };
+            return manifest;
+        }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -83,27 +106,5 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// Map to FirmwareManifest object.
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public static FirmwareManifest Map(update_service.Model.FirmwareManifest data)
-        {
-            FirmwareManifest manifest = new FirmwareManifest();
-            manifest.CreatedAt = data.CreatedAt;
-            manifest.Datafile = data.Datafile;
-            manifest.DatafileSize = data.DatafileSize;
-            manifest.DatafileChecksum = data.DatafileChecksum;
-            manifest.Description = data.Description;
-            manifest.DeviceClass = data.DeviceClass;
-            manifest.Id = data.Id;
-            manifest.Name = data.Name;
-            manifest.Timestamp = data.Timestamp;
-            manifest.UpdatedAt = data.UpdatedAt;
-            return manifest;
-        }
-
     }
 }

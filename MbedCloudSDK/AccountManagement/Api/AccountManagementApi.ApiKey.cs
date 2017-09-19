@@ -1,17 +1,19 @@
-﻿using iam.Api;
-using iam.Model;
-using MbedCloudSDK.AccountManagement.Model.ApiKey;
-using MbedCloudSDK.Common;
-using MbedCloudSDK.Common.Query;
-using MbedCloudSDK.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="AccountManagementApi.ApiKey.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.AccountManagement.Api
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using MbedCloudSDK.AccountManagement.Model.ApiKey;
+    using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.Exceptions;
+
+    /// <summary>
+    /// Account Management api
+    /// </summary>
     public partial class AccountManagementApi
     {
         /// <summary>
@@ -25,6 +27,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 return new PaginatedResponse<ApiKey>(ListApiKeysFunc, options);
@@ -41,14 +44,16 @@ namespace MbedCloudSDK.AccountManagement.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 var resp = developerApi.GetAllApiKeys(options.Limit, options.After, options.Order, options.Include, options.Filter.FilterString);
                 var respKeys = new ResponsePage<ApiKey>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
-                foreach(var key in resp.Data)
+                foreach (var key in resp.Data)
                 {
                     respKeys.Data.Add(ApiKey.Map(key));
                 }
+
                 return respKeys;
             }
             catch (iam.Client.ApiException e)
@@ -60,14 +65,15 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// List API keys asynchronously.
         /// </summary>
-        /// <param name="options"></param>
-        /// <returns></returns>
+        /// <param name="options">Query options</param>
+        /// <returns>Task with list of api keys</returns>
         public async Task<List<ApiKey>> ListApiKeysAsync(QueryOptions options = null)
         {
             if (options != null)
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 var apiKeysInfo = await developerApi.GetAllApiKeysAsync(options.Limit, options.After, options.Order, options.Include, options.Filter.FilterString);
@@ -76,6 +82,7 @@ namespace MbedCloudSDK.AccountManagement.Api
                 {
                     apiKeys.Add(ApiKey.Map(key));
                 }
+
                 return apiKeys;
             }
             catch (iam.Client.ApiException e)
@@ -88,6 +95,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Get API key details. Returns currently used key for empty argument.
         /// </summary>
         /// <param name="apiKeyId">API key ID</param>
+        /// <returns>ApiKey</returns>
         public ApiKey GetApiKey(string apiKeyId)
         {
             try
@@ -103,8 +111,8 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Get API key details asynchronously. Returns currently used key for empty argument.
         /// </summary>
-        /// <param name="apiKeyId"></param>
-        /// <returns></returns>
+        /// <param name="apiKeyId">Id of Api Key</param>
+        /// <returns>Task with ApiKey</returns>
         public async Task<ApiKey> GetApiKeyAsync(string apiKeyId)
         {
             try
@@ -120,8 +128,8 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Create new Api key.
         /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
+        /// <param name="key">Api Key</param>
+        /// <returns>Api Key</returns>
         public ApiKey AddApiKey(ApiKey key)
         {
             try
@@ -138,8 +146,8 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Create new Api key asynchronously.
         /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
+        /// <param name="key">Api Key</param>
+        /// <returns>Task with Api Key</returns>
         public async Task<ApiKey> AddApiKeyAsync(ApiKey key)
         {
             try
@@ -156,9 +164,9 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Update API key.
         /// </summary>
-        /// <param name="apiKeyId"></param>
-        /// <param name="key"></param>
-        /// <returns></returns>
+        /// <param name="apiKeyId">Id of api key</param>
+        /// <param name="key">Api Key</param>
+        /// <returns>Api Key</returns>
         public ApiKey UpdateApiKey(string apiKeyId, ApiKey key)
         {
             try
@@ -175,9 +183,9 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Update API key asynchronously.
         /// </summary>
-        /// <param name="apiKeyId"></param>
-        /// <param name="key"></param>
-        /// <returns></returns>
+        /// <param name="apiKeyId">Id of Api Key</param>
+        /// <param name="key">Api Key</param>
+        /// <returns>Task with Api Key</returns>
         public async Task<ApiKey> UpdateApiKeyAsync(string apiKeyId, ApiKey key)
         {
             try
@@ -211,6 +219,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Delete API key asynchronously.
         /// </summary>
         /// <param name="apiKeyId">API key ID</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         public async Task DeleteApiKeyAsync(string apiKeyId)
         {
             try

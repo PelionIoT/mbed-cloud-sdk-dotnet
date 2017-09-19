@@ -1,8 +1,15 @@
-using MbedCloudSDK.Connect.Model.ConnectedDevice;
-using MbedCloudSDK.Connect.Model.Resource;
+// <copyright file="ConnectApi.ResourceSubscriptions.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Connect.Api
 {
+    using MbedCloudSDK.Connect.Model.ConnectedDevice;
+    using MbedCloudSDK.Connect.Model.Resource;
+
+    /// <summary>
+    /// Connect Api
+    /// </summary>
     public partial class ConnectApi
     {
         /// <summary>
@@ -10,6 +17,7 @@ namespace MbedCloudSDK.Connect.Api
         /// </summary>
         /// <param name="deviceId">Id of device.</param>
         /// <param name="resourcePath">Resource path.</param>
+        /// <returns>Async Consumer with String</returns>
         public AsyncConsumer<string> AddResourceSubscription(string deviceId, string resourcePath)
         {
             try
@@ -17,12 +25,15 @@ namespace MbedCloudSDK.Connect.Api
                 var fixedPath = FixedPath(resourcePath);
                 subscriptionsApi.V2SubscriptionsDeviceIdResourcePathPut(deviceId, fixedPath);
                 var subscribePath = deviceId + resourcePath;
-                var resource = new Resource(deviceId);
-                resource.Queue = new AsyncProducerConsumerCollection<string>();
-                if (!ConnectApi.resourceSubscribtions.ContainsKey(subscribePath))
+                var resource = new Resource(deviceId)
                 {
-                    ConnectApi.resourceSubscribtions.Add(subscribePath, resource);
+                    Queue = new AsyncProducerConsumerCollection<string>()
+                };
+                if (!ResourceSubscribtions.ContainsKey(subscribePath))
+                {
+                    ResourceSubscribtions.Add(subscribePath, resource);
                 }
+
                 return new AsyncConsumer<string>(subscribePath, resource.Queue);
             }
             catch (mds.Client.ApiException ex)
@@ -60,17 +71,17 @@ namespace MbedCloudSDK.Connect.Api
             {
                 if (deviceId == null)
                 {
-                    foreach (var resource in resourceSubscribtions)
+                    foreach (var resource in ResourceSubscribtions)
                     {
                         subscriptionsApi.V2SubscriptionsDeviceIdResourcePathDelete(resource.Key, resource.Value.Path);
-                        resourceSubscribtions.Clear();
+                        ResourceSubscribtions.Clear();
                     }
                 }
                 else
                 {
                     subscriptionsApi.V2SubscriptionsDeviceIdResourcePathDelete(deviceId, resourcePath);
                     var subscribePath = deviceId + resourcePath;
-                    resourceSubscribtions.Remove(subscribePath);
+                    ResourceSubscribtions.Remove(subscribePath);
                 }
             }
             catch (mds.Client.ApiException ex)

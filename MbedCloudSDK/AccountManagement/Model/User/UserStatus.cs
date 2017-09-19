@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="UserStatus.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.AccountManagement.Model.User
 {
+    using System.Runtime.Serialization;
+
     /// <summary>
     /// The status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately.
     /// </summary>

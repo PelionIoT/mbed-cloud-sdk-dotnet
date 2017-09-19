@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="CampaignDeviceStateEnum.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Update.Model.Campaign
 {
+    using System.Runtime.Serialization;
+
     /// <summary>
     /// Device state in update campaign.
     /// </summary>
@@ -17,25 +16,25 @@ namespace MbedCloudSDK.Update.Model.Campaign
         /// </summary>
         [EnumMember(Value = "pending")]
         Pending,
-            
+
         /// <summary>
         /// Enum Updateddevicecatalog for "updated_device_catalog"
         /// </summary>
         [EnumMember(Value = "updated_device_catalog")]
-        Updateddevicecatalog,
-            
+        Updated_device_catalog,
+
         /// <summary>
         /// Enum Updatedconnectorchannel for "updated_connector_channel"
         /// </summary>
         [EnumMember(Value = "updated_connector_channel")]
-        Updatedconnectorchannel,
-            
+        Updated_connector_channel,
+
         /// <summary>
         /// Enum Deployed for "deployed"
         /// </summary>
         [EnumMember(Value = "deployed")]
         Deployed,
-            
+
         /// <summary>
         /// Enum Manifestremoved for "manifestremoved"
         /// </summary>

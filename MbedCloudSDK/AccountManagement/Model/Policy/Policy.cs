@@ -1,14 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="Policy.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.AccountManagement.Model.Policy
 {
+    using System.Collections.Generic;
+    using System.Text;
+
+    /// <summary>
+    /// Policy
+    /// </summary>
     public class Policy
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="Policy"/> class.
         /// Create new instance of api key class.
         /// </summary>
         /// <param name="options">Dictionary containing properties.</param>
@@ -18,7 +23,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Policy
             {
                 foreach (KeyValuePair<string, object> item in options)
                 {
-                    var property = this.GetType().GetProperty(item.Key);
+                    var property = GetType().GetProperty(item.Key);
                     if (property != null)
                     {
                         property.SetValue(this, item.Value, null);
@@ -28,43 +33,46 @@ namespace MbedCloudSDK.AccountManagement.Model.Policy
         }
 
         /// <summary>
-        /// Map to Policy object.
-        /// </summary>
-        /// <param name="policy"></param>
-        /// <returns></returns>
-        public static Policy Map(iam.Model.FeaturePolicy policy)
-        {
-            Policy p = new Policy();
-            p.Action = policy.Action;
-            p.Resource = policy.Resource;
-            p.Feature = policy.Feature;
-            p.Allow = policy.Allow;
-            return p;
-        }
-
-        /// <summary>
-        /// Comma separated list of actions, empty string represents all actions.
+        /// Gets or sets comma separated list of actions, empty string represents all actions.
         /// </summary>
         /// <value>Comma separated list of actions, empty string represents all actions.</value>
         public string Action { get; set; }
-        
+
         /// <summary>
-        /// Resource that is protected by this policy.
+        /// Gets or sets resource that is protected by this policy.
         /// </summary>
         /// <value>Resource that is protected by this policy.</value>
         public string Resource { get; set; }
-        
+
         /// <summary>
-        /// Feature name corresponding to this policy.
+        /// Gets or sets feature name corresponding to this policy.
         /// </summary>
         /// <value>Feature name corresponding to this policy.</value>
         public string Feature { get; set; }
-        
+
         /// <summary>
-        /// True or false controlling whether an action is allowed or not.
+        /// Gets or sets true or false controlling whether an action is allowed or not.
         /// </summary>
         /// <value>True or false controlling whether an action is allowed or not.</value>
         public bool? Allow { get; set; }
+
+        /// <summary>
+        /// Map to Policy object.
+        /// </summary>
+        /// <param name="policy">Iam Policy object</param>
+        /// <returns>Policy object</returns>
+        public static Policy Map(iam.Model.FeaturePolicy policy)
+        {
+            Policy p = new Policy
+            {
+                Action = policy.Action,
+                Resource = policy.Resource,
+                Feature = policy.Feature,
+                Allow = policy.Allow
+            };
+            return p;
+        }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>

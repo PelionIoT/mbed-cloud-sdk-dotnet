@@ -1,12 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using RestSharp.Extensions.MonoHttp;
+// <copyright file="Filter.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Common.Filter
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using RestSharp.Extensions.MonoHttp;
+
     /// <summary>
     /// Filter object
     /// </summary>
@@ -18,36 +22,7 @@ namespace MbedCloudSDK.Common.Filter
         public static readonly string CustomAttributesPrefix = "custom_attributes__";
 
         /// <summary>
-        /// String representation of Filter.
-        /// </summary>
-        public string FilterString { 
-            get{
-                if (FilterDictionary.Any())
-                {
-                    return String.Join("&", FilterDictionary?.Select(q => $"{q.Key}{q.Value.GetSuffix()}={q.Value.Value}"));
-                }
-                return "";
-            }
-        }
-
-        /// <summary>
-        /// Dictionary containing key-value pairs of filters
-        /// </summary>
-        [JsonProperty]
-        public Dictionary<string, FilterAttribute> FilterDictionary { get; private set; }
-
-        /// <summary>
-        /// Json representation of filter
-        /// </summary>
-        [JsonProperty]
-        public JObject FilterJson { get; private set; }
-
-        /// <summary>
-        /// If true, filter will not be mapped during an update
-        /// </summary>
-        public bool IsBlank { get; set; }
-
-        /// <summary>
+        /// Initializes a new instance of the <see cref="Filter"/> class.
         /// Default constructor
         /// </summary>
         public Filter()
@@ -57,6 +32,7 @@ namespace MbedCloudSDK.Common.Filter
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Filter"/> class.
         /// Create new filter object from json or query string
         /// </summary>
         /// <param name="value">Json or query string.</param>
@@ -68,13 +44,13 @@ namespace MbedCloudSDK.Common.Filter
             {
                 if (Utils.IsValidJson(value))
                 {
-                    FilterJson = stringToJsonObject(value);
+                    FilterJson = StringToJsonObject(value);
                     FilterDictionary = QueryJsonToDictionary(value);
                 }
                 else
                 {
-                    FilterJson = stringToJsonObject(QueryStringToJson(value));
-                    FilterDictionary = QueryJsonToDictionary(FilterJson.ToString());
+                    FilterJson = StringToJsonObject(QueryStringToJson(value));
+                    FilterDictionary = QueryJsonToDictionary(Convert.ToString(FilterJson));
                 }
             }
             else
@@ -83,6 +59,39 @@ namespace MbedCloudSDK.Common.Filter
                 FilterDictionary = new Dictionary<string, FilterAttribute>();
             }
         }
+
+        /// <summary>
+        /// Gets string representation of Filter.
+        /// </summary>
+        public string FilterString
+        {
+            get
+            {
+                if (FilterDictionary.Any())
+                {
+                    return string.Join("&", FilterDictionary?.Select(q => $"{q.Key}{q.Value.GetSuffix()}={q.Value.Value}"));
+                }
+
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Gets dictionary containing key-value pairs of filters
+        /// </summary>
+        [JsonProperty]
+        public Dictionary<string, FilterAttribute> FilterDictionary { get; private set; }
+
+        /// <summary>
+        /// Gets json representation of filter
+        /// </summary>
+        [JsonProperty]
+        public JObject FilterJson { get; private set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether if true, filter will not be mapped during an update
+        /// </summary>
+        public bool IsBlank { get; set; }
 
         /// <summary>
         /// Add new query to filter
@@ -95,44 +104,7 @@ namespace MbedCloudSDK.Common.Filter
             var filterAttribute = new FilterAttribute(value, filterOperator);
             FilterDictionary.Add(key, filterAttribute);
             FilterJson.Add(new JObject(
-                new JProperty(key, JObject.FromObject(filterAttribute))
-            ));
-        }
-
-        private Filter QueryStringToFilter(string queryString)
-        {
-            var queryJsonString = QueryStringToJson(queryString);
-            FilterJson = stringToJsonObject(queryJsonString);
-            FilterDictionary = QueryJsonToDictionary(queryJsonString);
-            return this;
-        }
-
-        private JObject stringToJsonObject(string jsonString)
-        {
-            return JObject.Parse(jsonString);
-        }
-        
-        private Dictionary<string, FilterAttribute> QueryJsonToDictionary(string queryJson)
-        {
-            var decodedString = HttpUtility.UrlDecode(queryJson).Replace("u'", "\"").Replace("'", "\"");
-            var customAttributes = new Dictionary<string, FilterAttribute>();
-            if (Utils.IsValidJson(decodedString))
-            {
-                var json = JsonConvert.DeserializeObject<Dictionary<string, JObject>>(decodedString);
-                if (json.Keys.Contains("custom_attributes"))
-                {
-                    var customAttributeJson = json["custom_attributes"].ToString(Formatting.None);
-                    customAttributes = QueryJsonToDictionary(customAttributeJson);
-                    json.Remove("custom_attributes");
-                }
-                var dict = json.ToDictionary(k => k.Key, k => GetQueryAttribute(k.Value));
-                if (customAttributes.Any())
-                {
-                    customAttributes.ToList().ForEach(d => dict.Add($"{CustomAttributesPrefix}{d.Key}", d.Value));
-                }
-                return dict;
-            }
-            return new Dictionary<string, FilterAttribute>();
+                content: new JProperty(key, JObject.FromObject(filterAttribute))));
         }
 
         private static FilterAttribute GetQueryAttribute(JObject val)
@@ -186,37 +158,85 @@ namespace MbedCloudSDK.Common.Filter
             foreach (var part in split)
             {
                 var keyValue = part.Split('=');
-                var val = keyValue[1];
-                var key = keyValue[0];
-                var oper = FilterOperator.Equals;
+                if (keyValue.Length == 2)
+                {
+                    var val = keyValue[1];
+                    var key = keyValue[0];
+                    var oper = FilterOperator.Equals;
 
-                if (key.Contains("neq"))
-                {
-                    key = key.Replace("neq", "");
-                    oper = FilterOperator.NotEqual;
-                }
-                if (key.Contains("ltq"))
-                {
-                    key = key.Replace("ltq", "");
-                    oper = FilterOperator.LessOrEqual;
-                }
-                if (key.Contains("gtq"))
-                {
-                    key = key.Replace("gtq", "");
-                    oper = FilterOperator.GreaterOrEqual;
-                }
+                    if (key.Contains("neq"))
+                    {
+                        key = key.Replace("neq", string.Empty);
+                        oper = FilterOperator.NotEqual;
+                    }
 
-                var queryAttribute = new FilterAttribute(val, oper);
-                dict.Add(key, queryAttribute);
+                    if (key.Contains("ltq"))
+                    {
+                        key = key.Replace("ltq", string.Empty);
+                        oper = FilterOperator.LessOrEqual;
+                    }
+
+                    if (key.Contains("gtq"))
+                    {
+                        key = key.Replace("gtq", string.Empty);
+                        oper = FilterOperator.GreaterOrEqual;
+                    }
+
+                    var queryAttribute = new FilterAttribute(val, oper);
+                    dict.Add(key, queryAttribute);
+                }
             }
+
             var json = new JObject();
             foreach (var kv in dict)
             {
-                var innerJson = new JObject();
-                innerJson[QueryOperatorToString(kv.Value.FilterOperator)] = kv.Value.Value;
+                var innerJson = new JObject
+                {
+                    [QueryOperatorToString(kv.Value.FilterOperator)] = kv.Value.Value
+                };
                 json[kv.Key] = innerJson;
             }
+
             return json.ToString(Formatting.None);
+        }
+
+        private Filter QueryStringToFilter(string queryString)
+        {
+            var queryJsonString = QueryStringToJson(queryString);
+            FilterJson = StringToJsonObject(queryJsonString);
+            FilterDictionary = QueryJsonToDictionary(queryJsonString);
+            return this;
+        }
+
+        private JObject StringToJsonObject(string jsonString)
+        {
+            return JObject.Parse(jsonString);
+        }
+
+        private Dictionary<string, FilterAttribute> QueryJsonToDictionary(string queryJson)
+        {
+            var decodedString = HttpUtility.UrlDecode(queryJson).Replace("u'", "\"").Replace("'", "\"");
+            var customAttributes = new Dictionary<string, FilterAttribute>();
+            if (Utils.IsValidJson(decodedString))
+            {
+                var json = JsonConvert.DeserializeObject<Dictionary<string, JObject>>(decodedString);
+                if (json.Keys.Contains("custom_attributes"))
+                {
+                    var customAttributeJson = json["custom_attributes"].ToString(Formatting.None);
+                    customAttributes = QueryJsonToDictionary(customAttributeJson);
+                    json.Remove("custom_attributes");
+                }
+
+                var dict = json.ToDictionary(k => k.Key, k => GetQueryAttribute(k.Value));
+                if (customAttributes.Any())
+                {
+                    customAttributes.ToList().ForEach(d => dict.Add($"{CustomAttributesPrefix}{d.Key}", d.Value));
+                }
+
+                return dict;
+            }
+
+            return new Dictionary<string, FilterAttribute>();
         }
     }
 }

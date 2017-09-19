@@ -11,7 +11,7 @@ test:
     - wget https://dist.nuget.org/win-x86-commandline/v2.8.6/nuget.exe
     - mono --runtime=v4.0 nuget.exe restore MbedCloudSDK/packages.config -PackagesDirectory packages
     - mono --runtime=v4.0 nuget.exe restore TestServer/packages.config -PackagesDirectory packages
-    - xbuild | tr -d '[:cntrl:]'
+    - msbuild | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - ./test.sh
     - echo "finished"
 deployment:

@@ -1,9 +1,11 @@
-﻿using System;
-using System.Runtime.Serialization;
-
+﻿// <copyright file="Mechanism.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.DeviceDirectory.Model.Device
 {
+    using System.Runtime.Serialization;
+
     /// <summary>
     /// The ID of the channel used to communicate with the device
     /// </summary>

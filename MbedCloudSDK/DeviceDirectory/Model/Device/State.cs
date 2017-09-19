@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="State.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.DeviceDirectory.Model.Device
 {
+    using System.Runtime.Serialization;
+
     /// <summary>
     /// The current state of the device
     /// </summary>
@@ -22,7 +21,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// Enum Cloudenrolling for "cloud_enrolling"
         /// </summary>
         [EnumMember(Value = "cloud_enrolling")]
-        Cloudenrolling,
+        Cloud_enrolling,
 
         /// <summary>
         /// Enum Bootstrapped for "bootstrapped"
@@ -41,6 +40,5 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// </summary>
         [EnumMember(Value = "deregistered")]
         Deregistered
-
     }
 }

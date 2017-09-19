@@ -1,16 +1,18 @@
-﻿using MbedCloudSDK.Common;
-using MbedCloudSDK.Common.Query;
-using MbedCloudSDK.DeviceDirectory.Model.Device;
-using MbedCloudSDK.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using device_directory.Model;
+﻿// <copyright file="DeviceDirectoryApi.Devices.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.DeviceDirectory.Api
 {
+    using device_directory.Model;
+    using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.DeviceDirectory.Model.Device;
+    using MbedCloudSDK.Exceptions;
+
+    /// <summary>
+    /// Device Directory Api
+    /// </summary>
     public partial class DeviceDirectoryApi
     {
         /// <summary>
@@ -24,6 +26,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 return new PaginatedResponse<Device>(ListDevicesFunc, options);
@@ -40,14 +43,16 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
-                var resp = api.DeviceList(limit:options.Limit, order:options.Order, after:options.After, filter:options.Filter.FilterString, include:options.Include);
+                var resp = api.DeviceList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter.FilterString, include: options.Include);
                 ResponsePage<Device> respDevices = new ResponsePage<Device>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
                 foreach (var device in resp.Data)
                 {
                     respDevices.Data.Add(Device.Map(device, this));
                 }
+
                 return respDevices;
             }
             catch (device_directory.Client.ApiException e)
@@ -60,13 +65,15 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// Get device details from catalog.
         /// </summary>
         /// <param name="deviceId">The ID of the device to retrieve.</param>
-        public Device GetDevice(string deviceId){
+        /// <returns>Device</returns>
+        public Device GetDevice(string deviceId)
+        {
             try
             {
                 var response = api.DeviceRetrieve(deviceId);
                 return Device.Map(response);
             }
-            catch(device_directory.Client.ApiException ex)
+            catch (device_directory.Client.ApiException ex)
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
@@ -76,8 +83,11 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// Add a new device to catalog.
         /// </summary>
         /// <param name="device">The device to add to catalog.</param>
-        public Device AddDevice(Device device){
-            var deviceDataPostRequest = new device_directory.Model.DeviceDataPostRequest(DeviceKey:device.CertificateFingerprint,CaId:device.CertificateIssuerId){
+        /// <returns>Device</returns>
+        public Device AddDevice(Device device)
+        {
+            var deviceDataPostRequest = new DeviceDataPostRequest(DeviceKey: device.CertificateFingerprint, CaId: device.CertificateIssuerId)
+            {
                 BootstrapExpirationDate = device.BootstrapExpirationDate,
                 BootstrappedTimestamp = device.BootstrappedTimestamp,
                 ConnectorExpirationDate = device.ConnectorExpirationDate,
@@ -93,7 +103,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
                 FirmwareChecksum = device.FirmwareChecksum,
                 VendorId = device.VendorId,
                 Description = device.Description,
-                _Object = device._Object,
+                _Object = device.Object,
                 EndpointType = device.EndpointType,
                 Deployment = device.Deployment,
                 MechanismUrl = device.MechanismUrl,
@@ -109,28 +119,29 @@ namespace MbedCloudSDK.DeviceDirectory.Api
                 var response = api.DeviceCreate(deviceDataPostRequest);
                 return GetDevice(response.Id);
             }
-            catch(device_directory.Client.ApiException ex)
+            catch (device_directory.Client.ApiException ex)
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
-
         }
 
         /// <summary>
         /// Update existing device in catalog.
         /// </summary>
-        /// <param name="device">The device to update.</param>
+        /// <param name="deviceId">Device Id</param>
+        /// <param name="deviceToUpdate">Device to update</param>
+        /// <returns>Device</returns>
         public Device UpdateDevice(string deviceId, Device deviceToUpdate)
         {
             var originalDevice = GetDevice(deviceId);
             var device = Utils.MapToUpdate(originalDevice, deviceToUpdate) as Device;
-            var deviceDataPutRequest = new device_directory.Model.DeviceDataPutRequest(CaId: device.CertificateIssuerId, DeviceKey: device.CertificateFingerprint)
+            var deviceDataPutRequest = new DeviceDataPutRequest(CaId: device.CertificateIssuerId, DeviceKey: device.CertificateFingerprint)
             {
                 Description = device.Description,
                 EndpointName = device.EndpointName,
                 AutoUpdate = device.AutoUpdate,
                 HostGateway = device.HostGateway,
-                _Object = device._Object,
+                _Object = device.Object,
                 CustomAttributes = device.CustomAttributes,
                 EndpointType = device.EndpointType,
                 Name = device.Name
@@ -155,7 +166,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         {
             try
             {
-                this.api.DeviceDestroy(deviceID);
+                api.DeviceDestroy(deviceID);
             }
             catch (device_directory.Client.ApiException ex)
             {
@@ -163,7 +174,8 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             }
         }
 
-        private DeviceDataPostRequest.MechanismEnum GetMechanismEnum(Device device){
+        private DeviceDataPostRequest.MechanismEnum GetMechanismEnum(Device device)
+        {
             if (device.Mechanism.HasValue)
             {
                 DeviceDataPostRequest.MechanismEnum mechanismEnum;
@@ -179,12 +191,15 @@ namespace MbedCloudSDK.DeviceDirectory.Api
                         mechanismEnum = DeviceDataPostRequest.MechanismEnum.Connector;
                         break;
                 }
+
                 return mechanismEnum;
             }
+
             return DeviceDataPostRequest.MechanismEnum.Connector;
         }
 
-        private DeviceDataPostRequest.StateEnum GetStateEnum(Device device){
+        private DeviceDataPostRequest.StateEnum GetStateEnum(Device device)
+        {
             if (device.State.HasValue)
             {
                 DeviceDataPostRequest.StateEnum stateEnum;
@@ -193,7 +208,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
                     case State.Bootstrapped:
                         stateEnum = DeviceDataPostRequest.StateEnum.Bootstrapped;
                         break;
-                    case State.Cloudenrolling:
+                    case State.Cloud_enrolling:
                         stateEnum = DeviceDataPostRequest.StateEnum.Cloudenrolling;
                         break;
                     case State.Deregistered:
@@ -209,8 +224,10 @@ namespace MbedCloudSDK.DeviceDirectory.Api
                         stateEnum = DeviceDataPostRequest.StateEnum.Bootstrapped;
                         break;
                 }
+
                 return stateEnum;
             }
+
             return DeviceDataPostRequest.StateEnum.Bootstrapped;
         }
     }

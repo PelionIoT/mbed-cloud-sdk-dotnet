@@ -1,29 +1,32 @@
-﻿using MbedCloudSDK.Common;
-using MbedCloudSDK.Common.Query;
-using MbedCloudSDK.Exceptions;
-using MbedCloudSDK.Update.Model.FirmwareManifest;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="UpdateApi.FirmwareManifest.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Update.Api
 {
+    using System.IO;
+    using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.Exceptions;
+    using MbedCloudSDK.Update.Model.FirmwareManifest;
+
+    /// <summary>
+    /// Update Api
+    /// </summary>
     public partial class UpdateApi
     {
         /// <summary>
         /// List Firmware Images.
         /// </summary>
         /// <param name="options">Query options.</param>
-        /// <returns></returns>
+        /// <returns>Paginated Response of Firmware Manifests</returns>
         public PaginatedResponse<FirmwareManifest> ListFirmwareManifests(QueryOptions options = null)
         {
             if (options == null)
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 return new PaginatedResponse<FirmwareManifest>(ListFirmwareManifestsFun, options);
@@ -40,6 +43,7 @@ namespace MbedCloudSDK.Update.Api
             {
                 options = new QueryOptions();
             }
+
             try
             {
                 var resp = api.FirmwareManifestList(options.Limit, options.Order, options.After);
@@ -48,6 +52,7 @@ namespace MbedCloudSDK.Update.Api
                 {
                     respManifests.Data.Add(FirmwareManifest.Map(manifest));
                 }
+
                 return respManifests;
             }
             catch (update_service.Client.ApiException e)
@@ -60,13 +65,14 @@ namespace MbedCloudSDK.Update.Api
         /// Get manifest with provided manifest_id.
         /// </summary>
         /// <param name="manifestId">ID of manifest to retrieve.</param>
+        /// <returns>Firmware Manifest</returns>
         public FirmwareManifest GetFirmwareManifest(string manifestId)
         {
             try
             {
                 return FirmwareManifest.Map(api.FirmwareManifestRetrieve(manifestId));
             }
-            catch(update_service.Client.ApiException ex)
+            catch (update_service.Client.ApiException ex)
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
@@ -78,7 +84,7 @@ namespace MbedCloudSDK.Update.Api
         /// <param name="dataFile">Stream to the manifest file.</param>
         /// <param name="name">Name of the firmware manifest.</param>
         /// <param name="description">Description for the firmware manifest.</param>
-        /// <returns></returns>
+        /// <returns>Firmware Manifest</returns>
         public FirmwareManifest AddFirmwareManifest(string dataFile, string name, string description = null)
         {
             try
@@ -103,7 +109,6 @@ namespace MbedCloudSDK.Update.Api
             try
             {
                 api.FirmwareManifestDestroy(manifestId);
-
             }
             catch (update_service.Client.ApiException e)
             {

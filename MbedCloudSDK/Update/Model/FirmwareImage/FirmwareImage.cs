@@ -1,57 +1,78 @@
-﻿using update_service.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="FirmwareImage.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Update.Model.FirmwareImage
 {
+    using System;
+    using System.Text;
+
     /// <summary>
-    /// Firmware Image from Update API. 
+    /// Firmware Image from Update API.
     /// </summary>
     public class FirmwareImage
     {
         /// <summary>
-        /// The path to the firmware image
+        /// Gets or sets the path to the firmware image
         /// </summary>
         public string Datafile { get; set; }
 
         /// <summary>
-        /// Size in bytes of the uploaded firmware image binary
+        /// Gets size in bytes of the uploaded firmware image binary
         /// </summary>
         public long? DatafileSize { get; private set; }
 
         /// <summary>
-        /// The description of the object
+        /// Gets or sets the description of the object
         /// </summary>
         public string Description { get; set; }
-        
+
         /// <summary>
-        /// The time the object was created
+        /// Gets or sets the time the object was created
         /// </summary>
         public DateTime? CreatedAt { get; set; }
-        
+
         /// <summary>
-        /// The time the object was updated
+        /// Gets or sets the time the object was updated
         /// </summary>
         public DateTime? UpdatedAt { get; set; }
-        
+
         /// <summary>
-        /// Checksum generated for the datafile
+        /// Gets or sets checksum generated for the datafile
         /// </summary>
         public string DatafileChecksum { get; set; }
-        
+
         /// <summary>
-        /// The ID of the firmware image
+        /// Gets or sets the ID of the firmware image
         /// </summary>
         public string Id { get; set; }
-        
+
         /// <summary>
-        /// The name of the object
+        /// Gets or sets the name of the object
         /// </summary>
         public string Name { get; set; }
-        
+
+        /// <summary>
+        /// Map to FirmwareImage object.
+        /// </summary>
+        /// <param name="data">Firmwae image</param>
+        /// <returns>Firmware image</returns>
+        public static FirmwareImage Map(update_service.Model.FirmwareImage data)
+        {
+            FirmwareImage image = new FirmwareImage
+            {
+                CreatedAt = data.CreatedAt,
+                Datafile = data.Datafile,
+                DatafileSize = data.DatafileSize,
+                DatafileChecksum = data.DatafileChecksum,
+                Description = data.Description,
+                Id = data.Id,
+                Name = data.Name,
+                UpdatedAt = data.UpdatedAt
+            };
+            return image;
+        }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -70,25 +91,6 @@ namespace MbedCloudSDK.Update.Model.FirmwareImage
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// Map to FirmwareImage object.
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public static FirmwareImage Map(update_service.Model.FirmwareImage data)
-        {
-            FirmwareImage image = new FirmwareImage();
-            image.CreatedAt = data.CreatedAt;
-            image.Datafile = data.Datafile;
-            image.DatafileSize = data.DatafileSize;
-            image.DatafileChecksum = data.DatafileChecksum;
-            image.Description = data.Description;
-            image.Id = data.Id;
-            image.Name = data.Name;
-            image.UpdatedAt = data.UpdatedAt;
-            return image;
         }
     }
 }
