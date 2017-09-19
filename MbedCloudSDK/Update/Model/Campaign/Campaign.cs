@@ -25,6 +25,10 @@ namespace MbedCloudSDK.Update.Model.Campaign
         /// <param name="options">Dictionary to initiate</param>
         public Campaign(IDictionary<string, object> options = null)
         {
+
+
+
+            
             if (options != null)
             {
                 foreach (KeyValuePair<string, object> item in options)

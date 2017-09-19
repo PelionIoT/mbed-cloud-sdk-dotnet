@@ -19,7 +19,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\MbedCloudSDK.xml</DocumentationFile>
     <ConsolePause>false</ConsolePause>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <CodeAnalysisRuleSet>MbedCloudSDK.ruleset</CodeAnalysisRuleSet>
     <NoWarn>CS1591,CS0109</NoWarn>
   </PropertyGroup>
