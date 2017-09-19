@@ -8,6 +8,9 @@ namespace MbedCloudSDK.Connect.Api
     using MbedCloudSDK.Connect.Model.Metric;
     using MbedCloudSDK.Exceptions;
 
+    /// <summary>
+    /// Connect Api
+    /// </summary>
     public partial class ConnectApi
     {
         /// <summary>
@@ -80,8 +83,8 @@ namespace MbedCloudSDK.Connect.Api
         /// <summary>
         /// Get account-specific metrics.
         /// </summary>
-        /// <param name="options"></param>
-        /// <returns></returns>
+        /// <param name="options">Query Options</param>
+        /// <returns>List of Metrics</returns>
         public List<Metric> GetAccountMetrics(MetricQueryOptions options = null)
         {
             if (options == null)

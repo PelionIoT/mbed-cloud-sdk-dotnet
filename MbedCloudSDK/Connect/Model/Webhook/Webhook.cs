@@ -28,9 +28,9 @@ namespace MbedCloudSDK.Connect.Model.Webhook
             Url = url;
             Headers = headers;
         }
-        
+
         /// <summary>
-        /// The url of the webhook
+        /// Gets or sets the url of the webhook
         /// </summary>
         public string Url { get; set; }
 
@@ -42,7 +42,7 @@ namespace MbedCloudSDK.Connect.Model.Webhook
         /// <summary>
         /// Map from api webhook to webhook
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Webhook</returns>
         public static Webhook Map(mds.Model.Webhook data)
         {
             var webhook = new Webhook
@@ -56,6 +56,7 @@ namespace MbedCloudSDK.Connect.Model.Webhook
         /// <summary>
         /// Map to api webhook from webhook
         /// </summary>
+        /// <returns>Webhook</returns>
         public static mds.Model.Webhook MapToApiWebook(Webhook data)
         {
             var webhook = new mds.Model.Webhook(data.Url)

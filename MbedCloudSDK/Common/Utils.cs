@@ -21,7 +21,7 @@ namespace MbedCloudSDK.Common
         /// </summary>
         /// <param name="origObj">Original object</param>
         /// <param name="updateObj">Update object</param>
-        /// <returns></returns>
+        /// <returns>Object</returns>
         public static object MapToUpdate(object origObj, object updateObj)
         {
             var type = updateObj.GetType();
@@ -70,6 +70,9 @@ namespace MbedCloudSDK.Common
         /// <summary>
         /// Parse an enum
         /// </summary>
+        /// <typeparam name="T">Type of Enum</typeparam>
+        /// <param name="enumValue">Enum</param>
+        /// <returns>Enum of type T</returns>
         public static T ParseEnum<T>(object enumValue)
             where T : struct, IComparable
         {
@@ -87,7 +90,7 @@ namespace MbedCloudSDK.Common
         /// </summary>
         /// <param name="type">Enum type</param>
         /// <param name="value">Enum member string</param>
-        /// <returns></returns>
+        /// <returns>Value of Enum member attribute</returns>
         public static string GetEnumMemberValue(Type type, string value)
         {
             var memInfo = type.GetMember(value);
@@ -105,7 +108,7 @@ namespace MbedCloudSDK.Common
         /// </summary>
         /// <param name="type">Type of enum</param>
         /// <param name="value">Enum member string</param>
-        /// <returns></returns>
+        /// <returns>Enum</returns>
         public static object GetEnumFromEnumMemberValue(Type type, string value)
         {
             foreach (var name in Enum.GetNames(type))
@@ -123,6 +126,8 @@ namespace MbedCloudSDK.Common
         /// <summary>
         /// Check if string is valid Json
         /// </summary>
+        /// <param name="strInput">string to check</param>
+        /// <returns>Bool</returns>
         public static bool IsValidJson(string strInput)
         {
             strInput = strInput.Trim();

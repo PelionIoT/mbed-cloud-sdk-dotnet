@@ -200,14 +200,14 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// <summary>
         /// Gets or sets the API resource entity
         /// </summary>
-        public string _Object { get; set; }
+        public string Object { get; set; }
 
         /// <summary>
         /// Map to Device object.
         /// </summary>
         /// <param name="deviceData">DeviceDetal response object.</param>
         /// <param name="api">optional DeviceDirectoryApi</param>
-        /// <returns></returns>
+        /// <returns>Device</returns>
         public static Device Map(DeviceData deviceData, DeviceDirectoryApi api = null)
         {
             var device = new Device(null, api)

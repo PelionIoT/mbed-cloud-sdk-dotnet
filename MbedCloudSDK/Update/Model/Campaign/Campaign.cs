@@ -99,9 +99,33 @@ namespace MbedCloudSDK.Update.Model.Campaign
         public DateTime? When { get; set; }
 
         /// <summary>
-        /// Object
+        /// Gets or sets object
         /// </summary>
-        public string _Object { get; set; }
+        public string Object { get; set; }
+
+        /// <summary>
+        /// Map to Update campaign object.
+        /// </summary>
+        /// <param name="data">Update Campaign</param>
+        /// <returns>Campaign</returns>
+        public static Campaign Map(update_service.Model.UpdateCampaign data)
+        {
+            var updateCampaignStatus = Utils.ParseEnum<CampaignStateEnum>(data.State);
+            var campaign = new Campaign
+            {
+                CreatedAt = data.CreatedAt,
+                Description = data.Description,
+                DeviceFilter = new Filter(data.DeviceFilter),
+                FinishedAt = data.Finished,
+                Id = data.Id,
+                Name = data.Name,
+                RootManifestId = data.RootManifestId,
+                RootManifestUrl = data.RootManifestUrl,
+                State = updateCampaignStatus,
+                ScheduledAt = data.When
+            };
+            return campaign;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,32 +151,9 @@ namespace MbedCloudSDK.Update.Model.Campaign
         }
 
         /// <summary>
-        /// Map to Update campaign object.
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public static Campaign Map(update_service.Model.UpdateCampaign data)
-        {
-            var updateCampaignStatus = Utils.ParseEnum<CampaignStateEnum>(data.State);
-            var campaign = new Campaign
-            {
-                CreatedAt = data.CreatedAt,
-                Description = data.Description,
-                DeviceFilter = new Filter(data.DeviceFilter),
-                FinishedAt = data.Finished,
-                Id = data.Id,
-                Name = data.Name,
-                RootManifestId = data.RootManifestId,
-                RootManifestUrl = data.RootManifestUrl,
-                State = updateCampaignStatus,
-                ScheduledAt = data.When
-            };
-            return campaign;
-        }
-
-        /// <summary>
         /// Create Post Request
         /// </summary>
+        /// <returns>Update campaign post request</returns>
         public UpdateCampaignPostRequest CreatePostRequest()
         {
             var deviceFilterString = DeviceFilter.FilterString;
@@ -169,6 +170,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
         /// <summary>
         /// Create Put Request
         /// </summary>
+        /// <returns>Update campaign put request</returns>
         public UpdateCampaignPutRequest CreatePutRequest()
         {
             var updateCampaignStatus = Utils.ParseEnum<UpdateCampaignPutRequest.StateEnum>(State);

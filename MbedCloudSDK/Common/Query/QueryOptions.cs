@@ -10,6 +10,23 @@ namespace MbedCloudSDK.Common.Query
     public class QueryOptions
 	{
         /// <summary>
+        /// Initializes a new instance of the <see cref="QueryOptions"/> class.
+        /// </summary>
+        /// <param name="limit">Limit.</param>
+        /// <param name="order">Order.</param>
+        /// <param name="after">After.</param>
+        /// <param name="include">Include.</param>
+		/// <param name="filterString">Attributes.</param>
+        public QueryOptions(int? limit = null, string order = null, string after = null, string include = null, string filterString = null)
+        {
+            Limit = limit;
+            Order = order;
+            After = after;
+            Include = include;
+            Filter = new MbedCloudSDK.Common.Filter.Filter(filterString);
+        }
+
+        /// <summary>
 		/// Gets or sets the limit of objects in response.
 		/// </summary>
 		/// <value>The limit.</value>
@@ -32,6 +49,9 @@ namespace MbedCloudSDK.Common.Query
         /// </summary>
         public string Id { get; set; }
 
+        /// <summary>
+        /// Gets or sets filter
+        /// </summary>
         public Filter.Filter Filter { get; set; }
 
         /// <summary>
@@ -39,22 +59,5 @@ namespace MbedCloudSDK.Common.Query
         /// </summary>
         /// <value>Comma separate additional data to return. Currently supported: total_count.</value>
         public string Include { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="QueryOptions"/> class.
-        /// </summary>
-        /// <param name="limit">Limit.</param>
-        /// <param name="order">Order.</param>
-        /// <param name="after">After.</param>
-        /// <param name="include">Include.</param>
-		/// <param name="filterString">Attributes.</param>
-        public QueryOptions(int? limit = null, string order = null, string after = null, string include = null, string filterString = null)
-		{
-			Limit = limit;
-			Order = order;
-            After = after;
-			Include = include;
-            Filter = new MbedCloudSDK.Common.Filter.Filter(filterString);
-		}
 	}
 }

@@ -1,4 +1,8 @@
-﻿namespace MbedCloudSDK.Certificates.Model
+﻿// <copyright file="Certificate.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
+namespace MbedCloudSDK.Certificates.Model
 {
     using System;
     using System.Text;
@@ -6,10 +10,13 @@
     using MbedCloudSDK.Common;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Certificate
+    /// </summary>
     public class Certificate
     {
         /// <summary>
-        /// Type of Certificate
+        /// Gets or sets type of Certificate
         /// </summary>
         [JsonConverter(typeof(CertificateTypeConverter))]
         public CertificateType? Type { get; set; }
@@ -126,34 +133,10 @@
         public string OwnerId { get; set; }
 
         /// <summary>
-        /// Returns the string presentation of the object
+        /// Get Service Enum
         /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class Certificate {\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  DeviceExecutionMode: ").Append(DeviceExecutionMode).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  Subject: ").Append(Subject).Append("\n");
-            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
-            sb.Append("  Validity: ").Append(Validity).Append("\n");
-            sb.Append("  Issuer: ").Append(Issuer).Append("\n");
-            sb.Append("  CertData: ").Append(CertificateData).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  SecurityFileContent: ").Append(SecurityFileContent).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  DeveloperCertificate: ").Append(DeveloperCertificate).Append("\n");
-            sb.Append("  ServerUri: ").Append(ServerUri).Append("\n");
-            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
-            sb.Append("  DeveloperPrivateKey: ").Append(DeveloperPrivateKey).Append("\n");
-            sb.Append("  ServerCertificate: ").Append(ServerCertificate).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
-
+        /// <param name="certificate">Certificate</param>
+        /// <returns>Trusted Certificate Request Service Enum</returns>
         public static TrustedCertificateReq.ServiceEnum GetServiceEnum(Certificate certificate)
         {
             TrustedCertificateReq.ServiceEnum serviceEnum;
@@ -192,6 +175,11 @@
             return statusEnum;
         }
 
+        /// <summary>
+        /// Get update service enum
+        /// </summary>
+        /// <param name="certificate">Certificate</param>
+        /// <returns>Trusted certificate update request service enum</returns>
         public static TrustedCertificateUpdateReq.ServiceEnum GetUpdateServiceEnum(Certificate certificate)
         {
             TrustedCertificateUpdateReq.ServiceEnum serviceEnum;
@@ -211,6 +199,11 @@
             return serviceEnum;
         }
 
+        /// <summary>
+        /// Get update status enum
+        /// </summary>
+        /// <param name="certificate">Certificate</param>
+        /// <returns>Trusted certificate update request status enum</returns>
         public static TrustedCertificateUpdateReq.StatusEnum GetUpdateStatusEnum(Certificate certificate)
         {
             TrustedCertificateUpdateReq.StatusEnum statusEnum;
@@ -235,7 +228,7 @@
         /// </summary>
         /// <param name="trustedCertificate">TrustedCertificate response object.</param>
         /// <param name="certificate">Certificate to be updated.</param>
-        /// <returns></returns>
+        /// <returns>Certificate</returns>
         public static Certificate Map(iam.Model.TrustedCertificateResp trustedCertificate, Certificate certificate = null)
         {
             if (certificate == null)
@@ -282,7 +275,7 @@
         /// </summary>
         /// <param name="developerCertificateData">Developer certificate data</param>
         /// <param name="certificate">Certificate to be updated</param>
-        /// <returns></returns>
+        /// <returns>Certificate</returns>
         public static Certificate Map(connector_ca.Model.DeveloperCertificateResponseData developerCertificateData, Certificate certificate = null)
         {
             if (certificate == null)
@@ -302,6 +295,35 @@
             certificate.Id = developerCertificateData.Id;
             certificate.Name = developerCertificateData.Name;
             return certificate;
+        }
+
+        /// <summary>
+        /// Returns the string presentation of the object
+        /// </summary>
+        /// <returns>String presentation of the object</returns>
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            sb.Append("class Certificate {\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  DeviceExecutionMode: ").Append(DeviceExecutionMode).Append("\n");
+            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
+            sb.Append("  Subject: ").Append(Subject).Append("\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  Validity: ").Append(Validity).Append("\n");
+            sb.Append("  Issuer: ").Append(Issuer).Append("\n");
+            sb.Append("  CertData: ").Append(CertificateData).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  SecurityFileContent: ").Append(SecurityFileContent).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  DeveloperCertificate: ").Append(DeveloperCertificate).Append("\n");
+            sb.Append("  ServerUri: ").Append(ServerUri).Append("\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  DeveloperPrivateKey: ").Append(DeveloperPrivateKey).Append("\n");
+            sb.Append("  ServerCertificate: ").Append(ServerCertificate).Append("\n");
+            sb.Append("}\n");
+            return sb.ToString();
         }
     }
 }

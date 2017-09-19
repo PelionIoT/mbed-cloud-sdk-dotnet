@@ -7,6 +7,9 @@ using MbedCloudSDK.Connect.Model.Subscription;
 
 namespace MbedCloudSDK.Connect.Api
 {
+    /// <summary>
+    /// Connect Api
+    /// </summary>
     public partial class ConnectApi
     {
         /// <summary>
@@ -35,7 +38,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <summary>
         /// Get a list of pre-subscription data.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of Presubscriptions</returns>
         public List<Presubscription> ListPresubscriptions()
         {
             try

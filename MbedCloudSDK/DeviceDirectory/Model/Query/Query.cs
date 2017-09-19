@@ -22,7 +22,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
         {
             Filter = new Filter();
         }
-        
+
         /// <summary>
         /// Gets or sets the time the object was created
         /// </summary>
@@ -49,6 +49,24 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
         public string Name { get; set; }
 
         /// <summary>
+        /// Map to Query object.
+        /// </summary>
+        /// <param name="data">device query</param>
+        /// <returns>Query</returns>
+        public static Query Map(DeviceQuery data)
+        {
+            Query query = new Query
+            {
+                CreatedAt = data.CreatedAt,
+                Id = data.Id,
+                Name = data.Name,
+                Filter = new Filter(data.Query),
+                UpdatedAt = data.UpdatedAt
+            };
+            return query;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -63,24 +81,6 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// Map to Query object.
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public static Query Map(DeviceQuery data)
-        {
-            Query query = new Query
-            {
-                CreatedAt = data.CreatedAt,
-                Id = data.Id,
-                Name = data.Name,
-                Filter = new Filter(data.Query),
-                UpdatedAt = data.UpdatedAt
-            };
-            return query;
         }
     }
 }

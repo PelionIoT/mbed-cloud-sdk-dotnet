@@ -22,39 +22,6 @@ namespace MbedCloudSDK.Common.Filter
         public static readonly string CustomAttributesPrefix = "custom_attributes__";
 
         /// <summary>
-        /// String representation of Filter.
-        /// </summary>
-        public string FilterString
-        {
-            get
-            {
-                if (FilterDictionary.Any())
-                {
-                    return string.Join("&", FilterDictionary?.Select(q => $"{q.Key}{q.Value.GetSuffix()}={q.Value.Value}"));
-                }
-
-                return string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// Gets dictionary containing key-value pairs of filters
-        /// </summary>
-        [JsonProperty]
-        public Dictionary<string, FilterAttribute> FilterDictionary { get; private set; }
-
-        /// <summary>
-        /// Gets json representation of filter
-        /// </summary>
-        [JsonProperty]
-        public JObject FilterJson { get; private set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether if true, filter will not be mapped during an update
-        /// </summary>
-        public bool IsBlank { get; set; }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Filter"/> class.
         /// Default constructor
         /// </summary>
@@ -92,6 +59,39 @@ namespace MbedCloudSDK.Common.Filter
                 FilterDictionary = new Dictionary<string, FilterAttribute>();
             }
         }
+
+        /// <summary>
+        /// Gets string representation of Filter.
+        /// </summary>
+        public string FilterString
+        {
+            get
+            {
+                if (FilterDictionary.Any())
+                {
+                    return string.Join("&", FilterDictionary?.Select(q => $"{q.Key}{q.Value.GetSuffix()}={q.Value.Value}"));
+                }
+
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Gets dictionary containing key-value pairs of filters
+        /// </summary>
+        [JsonProperty]
+        public Dictionary<string, FilterAttribute> FilterDictionary { get; private set; }
+
+        /// <summary>
+        /// Gets json representation of filter
+        /// </summary>
+        [JsonProperty]
+        public JObject FilterJson { get; private set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether if true, filter will not be mapped during an update
+        /// </summary>
+        public bool IsBlank { get; set; }
 
         /// <summary>
         /// Add new query to filter
@@ -229,8 +229,10 @@ namespace MbedCloudSDK.Common.Filter
             var json = new JObject();
             foreach (var kv in dict)
             {
-                var innerJson = new JObject();
-                innerJson[QueryOperatorToString(kv.Value.FilterOperator)] = kv.Value.Value;
+                var innerJson = new JObject
+                {
+                    [QueryOperatorToString(kv.Value.FilterOperator)] = kv.Value.Value
+                };
                 json[kv.Key] = innerJson;
             }
 

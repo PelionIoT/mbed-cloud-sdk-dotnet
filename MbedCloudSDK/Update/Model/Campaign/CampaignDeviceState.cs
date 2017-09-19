@@ -72,38 +72,13 @@ namespace MbedCloudSDK.Update.Model.Campaign
         /// <summary>
         /// Gets or sets entity name: always &#39;update-campaign-device-metadata&#39;
         /// </summary>
-        public string _Object { get; set; }
-
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class CampaignDeviceState {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
-            sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
-            sb.Append("  State: ").Append(State).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
-            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
-            sb.Append("  Mechanism: ").Append(Mechanism).Append("\n");
-            sb.Append("  MechanismUrl: ").Append(MechanismUrl).Append("\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
-            sb.Append("  Etag: ").Append(Etag).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+        public string Object { get; set; }
 
         /// <summary>
         /// Map to UpdateCampaignDeviceMetada object.
         /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
+        /// <param name="data">Device metadata</param>
+        /// <returns>Campaign Device State</returns>
         public static CampaignDeviceState Map(update_service.Model.CampaignDeviceMetadata data)
         {
             CampaignDeviceState state = new CampaignDeviceState
@@ -121,6 +96,31 @@ namespace MbedCloudSDK.Update.Model.Campaign
                 State = (CampaignDeviceStateEnum)Enum.Parse(typeof(CampaignDeviceStateEnum), data.DeploymentState.ToString())
             };
             return state;
+        }
+
+        /// <summary>
+        /// Returns the string presentation of the object
+        /// </summary>
+        /// <returns>String presentation of the object</returns>
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            sb.Append("class CampaignDeviceState {\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
+            sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
+            sb.Append("  State: ").Append(State).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
+            sb.Append("  _Object: ").Append(Object).Append("\n");
+            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
+            sb.Append("  Mechanism: ").Append(Mechanism).Append("\n");
+            sb.Append("  MechanismUrl: ").Append(MechanismUrl).Append("\n");
+            sb.Append("  _Object: ").Append(Object).Append("\n");
+            sb.Append("  Etag: ").Append(Etag).Append("\n");
+            sb.Append("}\n");
+            return sb.ToString();
         }
     }
 }

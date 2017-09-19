@@ -36,7 +36,7 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
                 }
             }
         }
-        
+
         /// <summary>
         /// Gets the status of the API key.
         /// </summary>
@@ -85,6 +85,27 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
         public long? LastLoginTime { get; private set; }
 
         /// <summary>
+        /// Map to ApiKey object.
+        /// </summary>
+        /// <param name="apiKeyInfo">api key info</param>
+        /// <returns>api key</returns>
+        public static ApiKey Map(ApiKeyInfoResp apiKeyInfo)
+        {
+            ApiKeyStatus apiKeyStatus = Utils.ParseEnum<ApiKeyStatus>(apiKeyInfo.Status);
+            var apiKey = new ApiKey();
+            apiKey.Status = apiKeyStatus;
+            apiKey.Key = apiKeyInfo.Key;
+            apiKey.Name = apiKeyInfo.Name;
+            apiKey.CreatedAt = apiKeyInfo.CreatedAt;
+            apiKey.CreationTime = apiKeyInfo.CreationTime;
+            apiKey.Groups = apiKeyInfo.Groups;
+            apiKey.OwnerId = apiKeyInfo.Owner;
+            apiKey.Id = apiKeyInfo.Id;
+            apiKey.LastLoginTime = apiKeyInfo.LastLoginTime;
+            return apiKey;
+        }
+
+        /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:MbedCloudSDK.AccountManagement.Model.ApiKey.ApiKey"/>.
         /// </summary>
         /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:MbedCloudSDK.AccountManagement.Model.ApiKey.ApiKey"/>.</returns>
@@ -106,35 +127,21 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
         }
 
         /// <summary>
-        /// Map to ApiKey object.
+        /// create post request
         /// </summary>
-        /// <param name="apiKeyInfo"></param>
-        /// <returns></returns>
-        public static ApiKey Map(ApiKeyInfoResp apiKeyInfo)
-        {
-            ApiKeyStatus apiKeyStatus = Utils.ParseEnum<ApiKeyStatus>(apiKeyInfo.Status);
-            var apiKey = new ApiKey();
-            apiKey.Status = apiKeyStatus;
-            apiKey.Key = apiKeyInfo.Key;
-            apiKey.Name = apiKeyInfo.Name;
-            apiKey.CreatedAt = apiKeyInfo.CreatedAt;
-            apiKey.CreationTime = apiKeyInfo.CreationTime;
-            apiKey.Groups = apiKeyInfo.Groups;
-            apiKey.OwnerId = apiKeyInfo.Owner;
-            apiKey.Id = apiKeyInfo.Id;
-            apiKey.LastLoginTime = apiKeyInfo.LastLoginTime;
-            return apiKey;
-        }
-
+        /// <returns>Api key info</returns>
         public ApiKeyInfoReq CreatePostRequest()
         {
             ApiKeyInfoReq request = new ApiKeyInfoReq(Owner: OwnerId, Status: Utils.ParseEnum<ApiKeyInfoReq.StatusEnum>(Status), Name: Name);
             return request;
         }
 
+        /// <summary>
+        /// Create put request
+        /// </summary>
+        /// <returns>api key update request</returns>
         public ApiKeyUpdateReq CreatePutRequest()
         {
-            var x = Status;
             ApiKeyUpdateReq request = new ApiKeyUpdateReq(Owner: OwnerId, Name: Name);
             return request;
         }

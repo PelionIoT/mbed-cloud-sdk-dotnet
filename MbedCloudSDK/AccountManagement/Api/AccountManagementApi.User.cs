@@ -11,12 +11,16 @@ namespace MbedCloudSDK.AccountManagement.Api
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Exceptions;
 
+    /// <summary>
+    /// Account Management Api
+    /// </summary>
     public partial class AccountManagementApi
     {
         /// <summary>
         /// List users.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="options">Query Options</param>
+        /// <returns>Paginated Response of Users</returns>
         public PaginatedResponse<User> ListUsers(QueryOptions options = null)
         {
             if (options == null)
@@ -66,8 +70,8 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Get user
         /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="userId">User Id</param>
+        /// <returns>User</returns>
         public User GetUser(string userId)
         {
             try
@@ -83,8 +87,8 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Get user asynchronously.
         /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="userId">User Id</param>
+        /// <returns>Task with User</returns>
         public async Task<User> GetUserAsync(string userId)
         {
             try
@@ -101,8 +105,8 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Create user
         /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
+        /// <param name="user">User</param>
+        /// <returns>User</returns>
         public User AddUser(User user)
         {
             try
@@ -119,8 +123,8 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Create user
         /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
+        /// <param name="user">User</param>
+        /// <returns>Task with User</returns>
         public async Task<User> AddUserAsync(User user)
         {
             try
@@ -137,8 +141,8 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Update user
         /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
+        /// <param name="user">User</param>
+        /// <returns>Task with User</returns>
         public User UpdateUser(User user)
         {
             try
@@ -155,8 +159,8 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Update user asynchronously.
         /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
+        /// <param name="user">User</param>
+        /// <returns>Task with User</returns>
         public async Task<User> UpdateUserAsync(User user)
         {
             try
@@ -174,7 +178,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Delete user.
         /// </summary>
-        /// <param name="userId"></param>
+        /// <param name="userId">User Id</param>
         public void DeleteUser(string userId)
         {
             try
@@ -190,7 +194,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Delete user asynchronously.
         /// </summary>
-        /// <param name="userId"></param>
+        /// <param name="userId">User Id</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         public async Task DeleteUserAsync(string userId)
         {

@@ -9,18 +9,18 @@ namespace MbedCloudSDK.Common
     /// <summary>
     /// Used to access multiple pages of data., either through manually iterating pages or using iterators.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">Response page</typeparam>
     public class ResponsePage<T>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponsePage{T}"/> class.
         /// Create new instance of response page.
         /// </summary>
-        /// <param name="after"></param>
-        /// <param name="hasMore"></param>
-        /// <param name="limit"></param>
-        /// <param name="order"></param>
-        /// <param name="totalCount"></param>
+        /// <param name="after">after</param>
+        /// <param name="hasMore">has more</param>
+        /// <param name="limit">limit</param>
+        /// <param name="order">order</param>
+        /// <param name="totalCount">count</param>
         public ResponsePage(string after, bool? hasMore, int? limit, string order, int? totalCount)
         {
             Data = new List<T>();
@@ -30,7 +30,7 @@ namespace MbedCloudSDK.Common
             Order = order;
             TotalCount = totalCount;
         }
-        
+
         /// <summary>
         /// Gets or sets whether there are more results to display
         /// </summary>

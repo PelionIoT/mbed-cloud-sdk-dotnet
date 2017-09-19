@@ -36,7 +36,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 }
             }
         }
-        
+
         /// <summary>
         /// Gets the status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately.
         /// </summary>
@@ -136,6 +136,39 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         public List<LoginHistory> LoginHistory { get; private set; }
 
         /// <summary>
+        /// Map to User object.
+        /// </summary>
+        /// <param name="userInfo">Iam user object</param>
+        /// <returns>User</returns>
+        public static User Map(iam.Model.UserInfoResp userInfo)
+        {
+            var userStatus = Utils.ParseEnum<UserStatus>(userInfo.Status);
+            User user = new User
+            {
+                Status = userStatus,
+                Username = userInfo.Username,
+                EmailVerified = userInfo.EmailVerified,
+                AccountId = userInfo.AccountId,
+                PasswordChangedTime = userInfo.PasswordChangedTime,
+                Groups = userInfo.Groups,
+                CreatedAt = userInfo.CreatedAt,
+                TermsAccepted = userInfo.IsGtcAccepted,
+                Email = userInfo.Email,
+                MarketingAccepted = userInfo.IsMarketingAccepted,
+                FullName = userInfo.FullName,
+                Address = userInfo.Address,
+                CreationTime = userInfo.CreationTime,
+                Password = userInfo.Password,
+                PhoneNumber = userInfo.PhoneNumber,
+                Id = userInfo.Id,
+                LastLoginTime = userInfo.LastLoginTime,
+                TwoFactorAuthentication = userInfo.IsTotpEnabled,
+                LoginHistory = userInfo.LoginHistory.Select(l => { return Model.User.LoginHistory.Map(l); }).ToList()
+            };
+            return user;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -167,39 +200,9 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         }
 
         /// <summary>
-        /// Map to User object.
-        /// </summary>
-        /// <param name="userInfo">Iam user object</param>
-        /// <returns></returns>
-        public static User Map(iam.Model.UserInfoResp userInfo)
-        {
-            var userStatus = Utils.ParseEnum<UserStatus>(userInfo.Status);
-            User user = new User();
-            user.Status = userStatus;
-            user.Username = userInfo.Username;
-            user.EmailVerified = userInfo.EmailVerified;
-            user.AccountId = userInfo.AccountId;
-            user.PasswordChangedTime = userInfo.PasswordChangedTime;
-            user.Groups = userInfo.Groups;
-            user.CreatedAt = userInfo.CreatedAt;
-            user.TermsAccepted = userInfo.IsGtcAccepted;
-            user.Email = userInfo.Email;
-            user.MarketingAccepted = userInfo.IsMarketingAccepted;
-            user.FullName = userInfo.FullName;
-            user.Address = userInfo.Address;
-            user.CreationTime = userInfo.CreationTime;
-            user.Password = userInfo.Password;
-            user.PhoneNumber = userInfo.PhoneNumber;
-            user.Id = userInfo.Id;
-            user.LastLoginTime = userInfo.LastLoginTime;
-            user.TwoFactorAuthentication = userInfo.IsTotpEnabled;
-            user.LoginHistory = userInfo.LoginHistory.Select(l => { return Model.User.LoginHistory.Map(l); }).ToList();
-            return user;
-        }
-
-        /// <summary>
         /// Create post request
         /// </summary>
+        /// <returns>User info request</returns>
         public iam.Model.UserInfoReq CreatePostRequest()
         {
             iam.Model.UserInfoReq request = new iam.Model.UserInfoReq(Email: Email)
@@ -218,6 +221,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// <summary>
         /// Create put request
         /// </summary>
+        /// <returns>User info request</returns>
         public iam.Model.UserUpdateReq CreatePutRequest()
         {
             iam.Model.UserUpdateReq request = new iam.Model.UserUpdateReq(Email: Email)

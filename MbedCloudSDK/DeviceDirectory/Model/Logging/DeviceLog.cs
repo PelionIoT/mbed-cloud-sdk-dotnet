@@ -20,7 +20,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Logging
         /// Initializes a new instance of the <see cref="DeviceLog"/> class.
         /// Create new instance of DeviceLog class.
         /// </summary>
-        /// <param name="options"></param>
+        /// <param name="options">options for query</param>
         public DeviceLog(IDictionary<string, object> options = null)
         {
             if (options != null)
@@ -35,7 +35,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Logging
                 }
             }
         }
-        
+
         /// <summary>
         /// Gets or sets gets or Sets EventType
         /// </summary>
@@ -83,31 +83,10 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Logging
         public string DeviceId { get; set; }
 
         /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class DeviceLog {\n");
-            sb.Append("  DateTime: ").Append(DateTime).Append("\n");
-            sb.Append("  StateChange: ").Append(StateChange).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  Changes: ").Append(Changes).Append("\n");
-            sb.Append("  EventTypeDescription: ").Append(EventTypeDescription).Append("\n");
-            sb.Append("  DeviceLogId: ").Append(Id).Append("\n");
-            sb.Append("  EventType: ").Append(EventType).Append("\n");
-            sb.Append("  Data: ").Append(Data).Append("\n");
-            sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
-
-        /// <summary>
         /// Map to DeviceLog object.
         /// </summary>
-        /// <param name="deviceLogSerializer"></param>
-        /// <returns></returns>
+        /// <param name="deviceLogSerializer">device event data</param>
+        /// <returns>Device log</returns>
         public static DeviceLog Map(DeviceEventData deviceLogSerializer)
         {
             var deviceLog = new DeviceLog
@@ -127,6 +106,27 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Logging
             }
 
             return deviceLog;
+        }
+
+        /// <summary>
+        /// Returns the string presentation of the object
+        /// </summary>
+        /// <returns>String presentation of the object</returns>
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            sb.Append("class DeviceLog {\n");
+            sb.Append("  DateTime: ").Append(DateTime).Append("\n");
+            sb.Append("  StateChange: ").Append(StateChange).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  Changes: ").Append(Changes).Append("\n");
+            sb.Append("  EventTypeDescription: ").Append(EventTypeDescription).Append("\n");
+            sb.Append("  DeviceLogId: ").Append(Id).Append("\n");
+            sb.Append("  EventType: ").Append(EventType).Append("\n");
+            sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
+            sb.Append("}\n");
+            return sb.ToString();
         }
     }
 }

@@ -20,6 +20,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         /// <summary>
         /// Initializes a new instance of the <see cref="Account" /> class.
         /// </summary>
+        /// <param name="options">options for query</param>
         public Account(IDictionary<string, object> options = null)
         {
             if (options != null)
@@ -34,7 +35,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
                 }
             }
         }
-        
+
         /// <summary>
         /// Gets or sets the status of the account.
         /// </summary>
@@ -148,6 +149,42 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         public string Reason { get; set; }
 
         /// <summary>
+        /// Map to Account object.
+        /// </summary>
+        /// <param name="accountInfo">Iam account</param>
+        /// <returns>Account</returns>
+        public static Account Map(iam.Model.AccountInfo accountInfo)
+        {
+            var accountStatus = Utils.ParseEnum<AccountStatus>(accountInfo.Status);
+            var account = new Account
+            {
+                PhoneNumber = accountInfo.PhoneNumber,
+                Postcode = accountInfo.PostalCode,
+                Id = accountInfo.Id,
+                Aliases = accountInfo.Aliases,
+                AddressLine2 = accountInfo.AddressLine2,
+                City = accountInfo.City,
+                AddressLine1 = accountInfo.AddressLine1,
+                DisplayName = accountInfo.DisplayName,
+                State = accountInfo.State,
+                ProvisisioningAllowed = accountInfo.IsProvisioningAllowed,
+                Email = accountInfo.Email,
+                Status = accountStatus,
+                Company = accountInfo.Company,
+                UpgradedAt = accountInfo.UpgradedAt,
+                Tier = accountInfo.Tier,
+                Limits = accountInfo.Limits,
+                Country = accountInfo.Country,
+                CreatedAt = accountInfo.CreatedAt
+            };
+            account.Contact = account.Contact;
+            account.TemplateId = accountInfo.TemplateId;
+            account.Policies = accountInfo?.Policies?.Select(p => { return Policy.Policy.Map(p); }).ToList();
+            account.Reason = accountInfo.Reason;
+            return account;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object.
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -182,58 +219,26 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         }
 
         /// <summary>
-        /// Map to Account object.
-        /// </summary>
-        /// <param name="accountInfo"></param>
-        /// <returns></returns>
-        public static Account Map(iam.Model.AccountInfo accountInfo)
-        {
-            var accountStatus = Utils.ParseEnum<AccountStatus>(accountInfo.Status);
-            var account = new Account();
-            account.PhoneNumber = accountInfo.PhoneNumber;
-            account.Postcode = accountInfo.PostalCode;
-            account.Id = accountInfo.Id;
-            account.Aliases = accountInfo.Aliases;
-            account.AddressLine2 = accountInfo.AddressLine2;
-            account.City = accountInfo.City;
-            account.AddressLine1 = accountInfo.AddressLine1;
-            account.DisplayName = accountInfo.DisplayName;
-            account.State = accountInfo.State;
-            account.ProvisisioningAllowed = accountInfo.IsProvisioningAllowed;
-            account.Email = accountInfo.Email;
-            account.Status = accountStatus;
-            account.Company = accountInfo.Company;
-            account.UpgradedAt = accountInfo.UpgradedAt;
-            account.Tier = accountInfo.Tier;
-            account.Limits = accountInfo.Limits;
-            account.Country = accountInfo.Country;
-            account.CreatedAt = accountInfo.CreatedAt;
-            account.Contact = account.Contact;
-            account.TemplateId = accountInfo.TemplateId;
-            account.Policies = accountInfo?.Policies?.Select(p => { return Policy.Policy.Map(p); }).ToList();
-            account.Reason = accountInfo.Reason;
-            return account;
-        }
-
-        /// <summary>
         /// Create an Update Request
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Account update request</returns>
         public iam.Model.AccountUpdateReq CreateUpdateRequest()
         {
-            iam.Model.AccountUpdateReq request = new iam.Model.AccountUpdateReq();
-            request.PhoneNumber = PhoneNumber;
-            request.PostalCode = Postcode;
-            request.Aliases = Aliases;
-            request.AddressLine2 = AddressLine2;
-            request.City = City;
-            request.AddressLine1 = AddressLine1;
-            request.DisplayName = DisplayName;
-            request.State = State;
-            request.Email = Email;
-            request.Company = Company;
-            request.Country = Country;
-            request.Contact = Contact;
+            iam.Model.AccountUpdateReq request = new iam.Model.AccountUpdateReq
+            {
+                PhoneNumber = PhoneNumber,
+                PostalCode = Postcode,
+                Aliases = Aliases,
+                AddressLine2 = AddressLine2,
+                City = City,
+                AddressLine1 = AddressLine1,
+                DisplayName = DisplayName,
+                State = State,
+                Email = Email,
+                Company = Company,
+                Country = Country,
+                Contact = Contact
+            };
             return request;
         }
     }

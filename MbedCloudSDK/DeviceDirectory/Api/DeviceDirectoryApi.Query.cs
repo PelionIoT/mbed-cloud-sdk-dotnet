@@ -9,13 +9,16 @@ namespace MbedCloudSDK.DeviceDirectory.Api
     using MbedCloudSDK.DeviceDirectory.Model.Query;
     using MbedCloudSDK.Exceptions;
 
+    /// <summary>
+    /// Device Directory Api
+    /// </summary>
     public partial class DeviceDirectoryApi
     {
         /// <summary>
         /// List all queries.
         /// </summary>
-        /// <param name="options"></param>
-        /// <returns></returns>
+        /// <param name="options">Query Options</param>
+        /// <returns>Paginated Response of Queries</returns>
         public PaginatedResponse<Query> ListQueries(QueryOptions options = null)
         {
             if (options == null)
@@ -60,8 +63,8 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Get query in device query service.
         /// </summary>
-        /// <param name="queryId"></param>
-        /// <returns></returns>
+        /// <param name="queryId">Query Id</param>
+        /// <returns>Query</returns>
         public Query GetQuery(string queryId)
         {
             try
@@ -98,7 +101,9 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Update existing query in device query service.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="queryId">Query Id</param>
+        /// <param name="queryToUpdate">Query to update</param>
+        /// <returns>Query</returns>
         public Query UpdateQuery(string queryId, Query queryToUpdate)
         {
             var originalQuery = GetQuery(queryId);

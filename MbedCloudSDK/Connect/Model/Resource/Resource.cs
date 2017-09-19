@@ -75,10 +75,10 @@ namespace MbedCloudSDK.Connect.Model.Resource
         /// <summary>
         /// Map to Resource object.
         /// </summary>
-        /// <param name="api"></param>
         /// <param name="deviceID">Id of the devi</param>
-        /// <param name="res"></param>
-        /// <returns></returns>
+        /// <param name="res">resource</param>
+        /// <param name="api">Api</param>
+        /// <returns>Resource</returns>
         public static Resource Map(string deviceID, mds.Model.Resource res, ConnectApi api)
         {
             Resource resource = new Resource(deviceID, null, api)
@@ -95,7 +95,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
         /// <summary>
         /// Gets the value of the resource.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Resource value</returns>
         public string GetResourceValue()
         {
             return _api.GetResourceValue(DeviceId, Path);
@@ -106,7 +106,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
         /// </summary>
         /// <param name="resourceValue">Value to set.</param>
         /// <param name="noResponse">Don't get a response.</param>
-        /// <returns></returns>
+        /// <returns>Async consumer with string</returns>
         public AsyncConsumer<string> SetResourceValue(string resourceValue, bool? noResponse = null)
         {
             return _api.SetResourceValue(DeviceId, Path, resourceValue, noResponse);
@@ -115,7 +115,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
         /// <summary>
         /// Subscribe to this resource.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Async consumer with string</returns>
         public AsyncConsumer<string> Subscribe()
         {
             return _api.AddResourceSubscription(DeviceId, Path);
@@ -124,7 +124,6 @@ namespace MbedCloudSDK.Connect.Model.Resource
         /// <summary>
         /// Desubscribe this resource.
         /// </summary>
-        /// <returns></returns>
         public void Unsubscribe()
         {
             _api.DeleteResourceSubscription(DeviceId, Path);

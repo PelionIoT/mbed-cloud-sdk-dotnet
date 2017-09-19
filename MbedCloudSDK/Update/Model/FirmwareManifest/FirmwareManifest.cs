@@ -63,6 +63,29 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
         public string Name { get; set; }
 
         /// <summary>
+        /// Map to FirmwareManifest object.
+        /// </summary>
+        /// <param name="data">Firmware Manifest</param>
+        /// <returns>Firmware Manifest</returns>
+        public static FirmwareManifest Map(update_service.Model.FirmwareManifest data)
+        {
+            FirmwareManifest manifest = new FirmwareManifest
+            {
+                CreatedAt = data.CreatedAt,
+                Datafile = data.Datafile,
+                DatafileSize = data.DatafileSize,
+                DatafileChecksum = data.DatafileChecksum,
+                Description = data.Description,
+                DeviceClass = data.DeviceClass,
+                Id = data.Id,
+                Name = data.Name,
+                Timestamp = data.Timestamp,
+                UpdatedAt = data.UpdatedAt
+            };
+            return manifest;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -82,29 +105,6 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// Map to FirmwareManifest object.
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public static FirmwareManifest Map(update_service.Model.FirmwareManifest data)
-        {
-            FirmwareManifest manifest = new FirmwareManifest
-            {
-                CreatedAt = data.CreatedAt,
-                Datafile = data.Datafile,
-                DatafileSize = data.DatafileSize,
-                DatafileChecksum = data.DatafileChecksum,
-                Description = data.Description,
-                DeviceClass = data.DeviceClass,
-                Id = data.Id,
-                Name = data.Name,
-                Timestamp = data.Timestamp,
-                UpdatedAt = data.UpdatedAt
-            };
-            return manifest;
         }
     }
 }

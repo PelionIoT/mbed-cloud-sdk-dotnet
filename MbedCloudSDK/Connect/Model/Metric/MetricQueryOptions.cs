@@ -12,6 +12,7 @@ namespace MbedCloudSDK.Connect.Model.Metric
     public class MetricQueryOptions
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="MetricQueryOptions"/> class.
         /// </summary>
         public MetricQueryOptions()
         {

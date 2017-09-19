@@ -63,7 +63,7 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         /// </summary>
         /// <param name="endpoint">Endpoint response object.</param>
         /// <param name="api">optional DeviceDirectoryApi.</param>
-        /// <returns></returns>
+        /// <returns>Connected device</returns>
         public static ConnectedDevice Map(Endpoint endpoint, Connect.Api.ConnectApi api = null)
         {
             var device = new ConnectedDevice(null, api)
@@ -79,7 +79,7 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         /// <summary>
         /// List resources for this device.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of resources</returns>
         public List<Model.Resource.Resource> ListResources()
         {
             return api.GetResources(Id);
@@ -89,7 +89,7 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         /// Delete Resource.
         /// </summary>
         /// <param name="resourcePath">Path to the resource.</param>
-        /// <param name="noResponse"></param>
+        /// <param name="noResponse">no response</param>
         public void DeleteResource(string resourcePath, bool? noResponse = null)
         {
             api.DeleteResource(Id, resourcePath, noResponse);

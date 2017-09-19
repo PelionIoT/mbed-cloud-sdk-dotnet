@@ -51,7 +51,7 @@ namespace MbedCloudSDK.Exceptions
             ErrorCode = errorCode;
             ErrorContent = errorContent;
         }
-        
+
         /// <summary>
         /// Gets or sets the error code.
         /// </summary>

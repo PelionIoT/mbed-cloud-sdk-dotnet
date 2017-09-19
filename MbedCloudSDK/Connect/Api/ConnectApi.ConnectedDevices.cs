@@ -11,6 +11,9 @@ namespace MbedCloudSDK.Connect.Api
     using MbedCloudSDK.Connect.Model.Resource;
     using MbedCloudSDK.Exceptions;
 
+    /// <summary>
+    /// Connect Api
+    /// </summary>
     public partial class ConnectApi
     {
         /// <summary>
@@ -41,7 +44,7 @@ namespace MbedCloudSDK.Connect.Api
         /// </summary>
         /// <param name="deviceId">Device Id</param>
         /// <param name="resourcePath">Resource path.</param>
-        /// <returns></returns>
+        /// <returns>Resourse Value</returns>
         public string GetResourceValue(string deviceId, string resourcePath)
         {
             resourcePath = FixedPath(resourcePath);
@@ -63,7 +66,7 @@ namespace MbedCloudSDK.Connect.Api
         /// </summary>
         /// <param name="deviceId">Device Id</param>
         /// <param name="resourcePath">Resource path.</param>
-        /// <returns></returns>
+        /// <returns>Async consumer with string</returns>
         public AsyncConsumer<string> GetResourceValueAsync(string deviceId, string resourcePath)
         {
             resourcePath = FixedPath(resourcePath);
@@ -80,7 +83,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <param name="resourcePath">Path to the resource.</param>
         /// <param name="resourceValue">Value to set.</param>
         /// <param name="noResponse">Don't get a response.</param>
-        /// <returns></returns>
+        /// <returns>Async consumer with string</returns>
         public AsyncConsumer<string> SetResourceValue(string deviceId, string resourcePath, string resourceValue, bool? noResponse = null)
         {
             resourcePath = FixedPath(resourcePath);
@@ -97,7 +100,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <param name="resourcePath">Path to the resource.</param>
         /// <param name="resourceValue">Value to set.</param>
         /// <param name="noResponse">Don't get a response.</param>
-        /// <returns></returns>
+        /// <returns>Async consumer with string</returns>
         public AsyncConsumer<string> SetResourceValueAsync(string deviceId, string resourcePath, string resourceValue, bool? noResponse = null)
         {
             resourcePath = FixedPath(resourcePath);
@@ -136,7 +139,7 @@ namespace MbedCloudSDK.Connect.Api
         /// </summary>
         /// <param name="deviceName">Name of the Device</param>
         /// <param name="resourcePath">Path to the resource.</param>
-        /// <param name="noResponse"></param>
+        /// <param name="noResponse">no response</param>
         public void DeleteResource(string deviceName, string resourcePath, bool? noResponse = null)
         {
             var api = new mds.Api.ResourcesApi(Config.Host);

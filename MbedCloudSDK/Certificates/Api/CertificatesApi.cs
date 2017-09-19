@@ -31,6 +31,7 @@ namespace MbedCloudSDK.Certificates.Api
         private string lmw2mServerUri;
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="CertificatesApi"/> class.
         /// Initalize certificates api
         /// </summary>
         public CertificatesApi(Config config)

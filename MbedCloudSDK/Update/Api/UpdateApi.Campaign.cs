@@ -10,13 +10,16 @@ namespace MbedCloudSDK.Update.Api
     using MbedCloudSDK.Exceptions;
     using MbedCloudSDK.Update.Model.Campaign;
 
+    /// <summary>
+    /// Update Api
+    /// </summary>
     public partial class UpdateApi
     {
         /// <summary>
         /// List update campaigns.
         /// </summary>
         /// <param name="options">Query options.</param>
-        /// <returns></returns>
+        /// <returns>Paginated Response of Campaigns</returns>
         public PaginatedResponse<Campaign> ListCampaigns(QueryOptions options = null)
         {
             if (options == null)
@@ -58,6 +61,11 @@ namespace MbedCloudSDK.Update.Api
             }
         }
 
+        /// <summary>
+        /// List campaign Device States
+        /// </summary>
+        /// <param name="options">Query Options</param>
+        /// <returns>Paginated Response of Campaign Device States</returns>
         public PaginatedResponse<CampaignDeviceState> ListCampaignDeviceStates(QueryOptions options = null)
         {
             if (options == null)
@@ -103,7 +111,7 @@ namespace MbedCloudSDK.Update.Api
         /// Get update campaign.
         /// </summary>
         /// <param name="campaignId">Id of the update campaign.</param>
-        /// <returns></returns>
+        /// <returns>Campaign</returns>
         public Campaign GetCampaign(string campaignId)
         {
             try
@@ -121,7 +129,7 @@ namespace MbedCloudSDK.Update.Api
         /// Create update campaign.
         /// </summary>
         /// <param name="campaign">Update campaign that will be created.</param>
-        /// <returns></returns>
+        /// <returns>Campaign</returns>
         public Campaign AddCampaign(Campaign campaign)
         {
             try
@@ -139,7 +147,7 @@ namespace MbedCloudSDK.Update.Api
         /// Start update campaign.
         /// </summary>
         /// <param name="campaign">Update campaign to be started.</param>
-        /// <returns></returns>
+        /// <returns>Campaign</returns>
         public Campaign StartCampaign(Campaign campaign)
         {
             try
@@ -157,6 +165,7 @@ namespace MbedCloudSDK.Update.Api
         /// Update update campaign.
         /// </summary>
         /// <param name="campaign">Update campaign to be updated.</param>
+        /// <returns>Campaign</returns>
         public Campaign UpdateCampaign(Campaign campaign)
         {
             try
@@ -166,7 +175,7 @@ namespace MbedCloudSDK.Update.Api
                 {
                     Description = campaign.Description,
                     RootManifestId = campaign.RootManifestId,
-                    _Object = campaign._Object,
+                    _Object = campaign.Object,
                     When = campaign.When,
                     State = stateEnum,
                     DeviceFilter = campaign.DeviceFilter.FilterString,

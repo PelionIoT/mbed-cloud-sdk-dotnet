@@ -7,6 +7,9 @@ namespace MbedCloudSDK.AccountManagement.Model.Policy
     using System.Collections.Generic;
     using System.Text;
 
+    /// <summary>
+    /// Policy
+    /// </summary>
     public class Policy
     {
         /// <summary>
@@ -27,21 +30,6 @@ namespace MbedCloudSDK.AccountManagement.Model.Policy
                     }
                 }
             }
-        }
-
-        /// <summary>
-        /// Map to Policy object.
-        /// </summary>
-        /// <param name="policy"></param>
-        /// <returns></returns>
-        public static Policy Map(iam.Model.FeaturePolicy policy)
-        {
-            Policy p = new Policy();
-            p.Action = policy.Action;
-            p.Resource = policy.Resource;
-            p.Feature = policy.Feature;
-            p.Allow = policy.Allow;
-            return p;
         }
 
         /// <summary>
@@ -67,6 +55,23 @@ namespace MbedCloudSDK.AccountManagement.Model.Policy
         /// </summary>
         /// <value>True or false controlling whether an action is allowed or not.</value>
         public bool? Allow { get; set; }
+
+        /// <summary>
+        /// Map to Policy object.
+        /// </summary>
+        /// <param name="policy">Iam Policy object</param>
+        /// <returns>Policy object</returns>
+        public static Policy Map(iam.Model.FeaturePolicy policy)
+        {
+            Policy p = new Policy
+            {
+                Action = policy.Action,
+                Resource = policy.Resource,
+                Feature = policy.Feature,
+                Allow = policy.Allow
+            };
+            return p;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -63,7 +63,8 @@ namespace MbedCloudSDK.Common
         /// <summary>
         /// Map an IRestResponse to an ApiMetadata object
         /// </summary>
-        /// <returns></returns>
+        /// <param name="response">Response</param>
+        /// <returns>Api Metadata</returns>
         public static ApiMetadata Map(IRestResponse response)
         {
             var metadata = new ApiMetadata();

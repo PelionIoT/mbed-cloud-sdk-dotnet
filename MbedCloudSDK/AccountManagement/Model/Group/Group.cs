@@ -31,7 +31,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
                 }
             }
         }
-        
+
         /// <summary>
         /// Gets the id of the account.
         /// </summary>
@@ -73,6 +73,27 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
         public int? UserCount { get; private set; }
 
         /// <summary>
+        /// Map to Group object
+        /// </summary>
+        /// <param name="groupInfo">Iam group summary</param>
+        /// <returns>Group</returns>
+        public static Group Map(iam.Model.GroupSummary groupInfo)
+        {
+            var group = new Group
+            {
+                Name = groupInfo.Name,
+                LastUpdateTime = groupInfo.LastUpdateTime,
+                ApiKeyCount = groupInfo.ApikeyCount,
+                CreatedAt = groupInfo.CreatedAt,
+                CreationTime = groupInfo.CreationTime,
+                AccountId = groupInfo.AccountId,
+                Id = groupInfo.Id,
+                UserCount = groupInfo.UserCount
+            };
+            return group;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -89,25 +110,6 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
             sb.Append("  UserCount: ").Append(UserCount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// Map to Group object
-        /// </summary>
-        /// <param name="groupInfo"></param>
-        /// <returns></returns>
-        public static Group Map(iam.Model.GroupSummary groupInfo)
-        {
-            var group = new Group();
-            group.Name = groupInfo.Name;
-            group.LastUpdateTime = groupInfo.LastUpdateTime;
-            group.ApiKeyCount = groupInfo.ApikeyCount;
-            group.CreatedAt = groupInfo.CreatedAt;
-            group.CreationTime = groupInfo.CreationTime;
-            group.AccountId = groupInfo.AccountId;
-            group.Id = groupInfo.Id;
-            group.UserCount = groupInfo.UserCount;
-            return group;
         }
     }
 }

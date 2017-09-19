@@ -10,6 +10,9 @@ namespace MbedCloudSDK.DeviceDirectory.Api
     using MbedCloudSDK.DeviceDirectory.Model.Device;
     using MbedCloudSDK.Exceptions;
 
+    /// <summary>
+    /// Device Directory Api
+    /// </summary>
     public partial class DeviceDirectoryApi
     {
         /// <summary>
@@ -62,7 +65,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// Get device details from catalog.
         /// </summary>
         /// <param name="deviceId">The ID of the device to retrieve.</param>
-        /// <returns></returns>
+        /// <returns>Device</returns>
         public Device GetDevice(string deviceId)
         {
             try
@@ -80,7 +83,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// Add a new device to catalog.
         /// </summary>
         /// <param name="device">The device to add to catalog.</param>
-        /// <returns></returns>
+        /// <returns>Device</returns>
         public Device AddDevice(Device device)
         {
             var deviceDataPostRequest = new DeviceDataPostRequest(DeviceKey: device.CertificateFingerprint, CaId: device.CertificateIssuerId)
@@ -100,7 +103,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
                 FirmwareChecksum = device.FirmwareChecksum,
                 VendorId = device.VendorId,
                 Description = device.Description,
-                _Object = device._Object,
+                _Object = device.Object,
                 EndpointType = device.EndpointType,
                 Deployment = device.Deployment,
                 MechanismUrl = device.MechanismUrl,
@@ -125,10 +128,9 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Update existing device in catalog.
         /// </summary>
-        /// <param name="deviceId"></param>
-        /// <param name="deviceToUpdate"></param>
-        /// <param name="device">The device to update.</param>
-        /// <returns></returns>
+        /// <param name="deviceId">Device Id</param>
+        /// <param name="deviceToUpdate">Device to update</param>
+        /// <returns>Device</returns>
         public Device UpdateDevice(string deviceId, Device deviceToUpdate)
         {
             var originalDevice = GetDevice(deviceId);
@@ -139,7 +141,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
                 EndpointName = device.EndpointName,
                 AutoUpdate = device.AutoUpdate,
                 HostGateway = device.HostGateway,
-                _Object = device._Object,
+                _Object = device.Object,
                 CustomAttributes = device.CustomAttributes,
                 EndpointType = device.EndpointType,
                 Name = device.Name

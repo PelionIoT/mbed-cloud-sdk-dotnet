@@ -53,6 +53,27 @@ namespace MbedCloudSDK.Update.Model.FirmwareImage
         public string Name { get; set; }
 
         /// <summary>
+        /// Map to FirmwareImage object.
+        /// </summary>
+        /// <param name="data">Firmwae image</param>
+        /// <returns>Firmware image</returns>
+        public static FirmwareImage Map(update_service.Model.FirmwareImage data)
+        {
+            FirmwareImage image = new FirmwareImage
+            {
+                CreatedAt = data.CreatedAt,
+                Datafile = data.Datafile,
+                DatafileSize = data.DatafileSize,
+                DatafileChecksum = data.DatafileChecksum,
+                Description = data.Description,
+                Id = data.Id,
+                Name = data.Name,
+                UpdatedAt = data.UpdatedAt
+            };
+            return image;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -70,27 +91,6 @@ namespace MbedCloudSDK.Update.Model.FirmwareImage
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// Map to FirmwareImage object.
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public static FirmwareImage Map(update_service.Model.FirmwareImage data)
-        {
-            FirmwareImage image = new FirmwareImage
-            {
-                CreatedAt = data.CreatedAt,
-                Datafile = data.Datafile,
-                DatafileSize = data.DatafileSize,
-                DatafileChecksum = data.DatafileChecksum,
-                Description = data.Description,
-                Id = data.Id,
-                Name = data.Name,
-                UpdatedAt = data.UpdatedAt
-            };
-            return image;
         }
     }
 }

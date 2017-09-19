@@ -6,12 +6,15 @@ using MbedCloudSDK.Connect.Model.Webhook;
 
 namespace MbedCloudSDK.Connect.Api
 {
+    /// <summary>
+    /// Connect Api
+    /// </summary>
     public partial class ConnectApi
     {
         /// <summary>
         /// Get the current callback URL if it exists.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Webhook</returns>
         public Webhook GetWebhook()
         {
             try

@@ -14,30 +14,11 @@ namespace MbedCloudSDK.Common
     /// <summary>
     /// Paginated reponse object wrapper.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">Type contained in paginated response</typeparam>
     [JsonObject]
     public class PaginatedResponse<T> : IEnumerable<T>
     {
         private Func<QueryOptions, ResponsePage<T>> getDataFunc;
-
-        /// <summary>
-        /// Gets whether there are more results to display
-        /// </summary>
-        /// <value>Whether there are more results to display</value>
-        [JsonProperty]
-        public bool? HasMore { get; private set; }
-
-        /// <summary>
-        /// Gets or sets total number of records
-        /// </summary>
-        /// <value>Total number of records</value>
-        [JsonProperty]
-        public int? TotalCount { get; set; }
-
-        private QueryOptions ListParams { get; set; }
-
-        [JsonProperty]
-        private List<T> Data { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PaginatedResponse{T}"/> class.
@@ -62,9 +43,28 @@ namespace MbedCloudSDK.Common
         }
 
         /// <summary>
+        /// Gets whether there are more results to display
+        /// </summary>
+        /// <value>Whether there are more results to display</value>
+        [JsonProperty]
+        public bool? HasMore { get; private set; }
+
+        /// <summary>
+        /// Gets or sets total number of records
+        /// </summary>
+        /// <value>Total number of records</value>
+        [JsonProperty]
+        public int? TotalCount { get; set; }
+
+        private QueryOptions ListParams { get; set; }
+
+        [JsonProperty]
+        private List<T> Data { get; set; }
+
+        /// <summary>
         /// Return the paginated response as a list containing all elements.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of T</returns>
         public List<T> ToList()
         {
             List<T> list = new List<T>();
@@ -102,12 +102,14 @@ namespace MbedCloudSDK.Common
         /// <summary>
         /// Return total count of items
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Count</returns>
         public int? GetTotalCount()
         {
-            QueryOptions listParams = new QueryOptions();
-            listParams.Include = "total_count";
-            listParams.Limit = 2;
+            QueryOptions listParams = new QueryOptions
+            {
+                Include = "total_count",
+                Limit = 2
+            };
             ResponsePage<T> resp = getDataFunc(listParams);
             return resp.TotalCount;
         }
@@ -115,7 +117,7 @@ namespace MbedCloudSDK.Common
         /// <summary>
         /// Get items enumerator
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Enumerator</returns>
         public IEnumerator<T> GetEnumerator()
         {
             while (true)
@@ -134,6 +136,7 @@ namespace MbedCloudSDK.Common
             }
         }
 
+        /// <inheritdoc/>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();

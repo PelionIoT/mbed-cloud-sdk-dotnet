@@ -22,15 +22,6 @@ namespace MbedCloudSDK.Connect.Api
     /// </summary>
     public partial class ConnectApi : BaseApi
     {
-        private Task notificationTask;
-        private CancellationTokenSource cancellationToken;
-        private statistics.Api.StatisticsApi statisticsApi;
-        private EndpointsApi endpointsApi;
-        private statistics.Api.AccountApi accountApi;
-        private SubscriptionsApi subscriptionsApi;
-        private mds.Api.ResourcesApi resourcesApi;
-        private string auth;
-
         /// <summary>
         /// Resources that are currently subscribed.
         /// </summary>
@@ -40,12 +31,17 @@ namespace MbedCloudSDK.Connect.Api
         /// Responses to async requests.
         /// </summary>
         private static Dictionary<string, AsyncProducerConsumerCollection<string>> asyncResponses = new Dictionary<string, AsyncProducerConsumerCollection<string>>();
+
+        private Task notificationTask;
+        private CancellationTokenSource cancellationToken;
+        private statistics.Api.StatisticsApi statisticsApi;
+        private EndpointsApi endpointsApi;
+        private statistics.Api.AccountApi accountApi;
+        private SubscriptionsApi subscriptionsApi;
+        private mds.Api.ResourcesApi resourcesApi;
+        private string auth;
         private NotificationsApi notificationsApi;
         private DefaultApi defaultApi;
-
-        public static Dictionary<string, AsyncProducerConsumerCollection<string>> AsyncResponses { get => asyncResponses; set => asyncResponses = value; }
-
-        public static Dictionary<string, Resource> ResourceSubscribtions { get => resourceSubscribtions; set => resourceSubscribtions = value; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectApi"/> class.
@@ -77,8 +73,19 @@ namespace MbedCloudSDK.Connect.Api
         }
 
         /// <summary>
+        /// Gets or sets async responses
+        /// </summary>
+        public static Dictionary<string, AsyncProducerConsumerCollection<string>> AsyncResponses { get => asyncResponses; set => asyncResponses = value; }
+
+        /// <summary>
+        /// Gets or sets resource Subscriptions
+        /// </summary>
+        public static Dictionary<string, Resource> ResourceSubscribtions { get => resourceSubscribtions; set => resourceSubscribtions = value; }
+
+        /// <summary>
         /// Get meta data for the last Mbed Cloud API call
         /// </summary>
+        /// <returns>Metadata Object</returns>
         public ApiMetadata GetLastApiMetadata()
         {
             var lastMds = mds.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault()?.Headers?.Where(m => m.Name == "Date")?.Select(d => DateTime.Parse(d.Value.ToString()))?.FirstOrDefault();

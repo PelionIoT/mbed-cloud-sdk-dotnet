@@ -11,12 +11,16 @@ namespace MbedCloudSDK.AccountManagement.Api
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Exceptions;
 
+    /// <summary>
+    /// Account Management Api
+    /// </summary>
     public partial class AccountManagementApi
     {
         /// <summary>
         /// List groups.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="options">Query options</param>
+        /// <returns>Paginated Response of Groups</returns>
         public PaginatedResponse<Group> ListGroups(QueryOptions options = null)
         {
             if (options != null)
@@ -79,9 +83,9 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// List users of a group
         /// </summary>
-        /// <param name="groupId"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
+        /// <param name="groupId">Group Id</param>
+        /// <param name="options">Query Options</param>
+        /// <returns>Paginated Respoinse with Users</returns>
         public PaginatedResponse<User> ListGroupUsers(string groupId, QueryOptions options = null)
         {
             if (options != null)
@@ -122,9 +126,9 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// List API keys of a group.
         /// </summary>
-        /// <param name="groupId"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
+        /// <param name="groupId">Group Id</param>
+        /// <param name="options">Query Options</param>
+        /// <returns>Paginated Response of Api Keys</returns>
         public PaginatedResponse<ApiKey> ListGroupApiKeys(string groupId, QueryOptions options = null)
         {
             if (options != null)
