@@ -1,3 +1,12 @@
+general:
+  artifacts:
+    - ~/docs
+
+machine:
+  environment:
+    SDK_TAG: ${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}
+    SDK_DOCS: ${HOME}/docs
+
 dependencies:
   pre:
     - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
@@ -5,6 +14,9 @@ dependencies:
     - sudo apt-get update
     - sudo apt-get install mono-complete
     - sudo apt-get install doxygen
+    - mkdir ${SDK_DOCS}
+    - cp -r docs/* ${SDK_DOCS}/
+
 test:
   override:
     - sh ./setNugetCerts.sh
@@ -14,8 +26,10 @@ test:
     - msbuild | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - ./test.sh
     - echo "finished"
+
 deployment:
-  production:
+  staging:
     branch: master
     commands:
-      - ./generate-docs.sh
+      - doxygen ar.doxygen
+      - aws s3 sync --delete --cache-control max-age=3600 docs/ s3://mbed-cloud-sdk-dotnet-dist/${SDK-TAG}/docs
