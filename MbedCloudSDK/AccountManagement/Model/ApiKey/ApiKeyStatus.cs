@@ -14,13 +14,13 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
         /// <summary>
         /// Enum ACTIVE for "ACTIVE"
         /// </summary>
-        [EnumMember(Value = "ACTIVE")]
+        [EnumMember(Value = nameof(ACTIVE))]
         ACTIVE,
 
         /// <summary>
         /// Enum INACTIVE for "INACTIVE"
         /// </summary>
-        [EnumMember(Value = "INACTIVE")]
+        [EnumMember(Value = nameof(INACTIVE))]
         INACTIVE
     }
 }

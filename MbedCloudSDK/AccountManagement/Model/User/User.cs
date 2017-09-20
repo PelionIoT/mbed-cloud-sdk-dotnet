@@ -143,7 +143,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         public static User Map(iam.Model.UserInfoResp userInfo)
         {
             var userStatus = Utils.ParseEnum<UserStatus>(userInfo.Status);
-            User user = new User
+            var user = new User
             {
                 Status = userStatus,
                 Username = userInfo.Username,
@@ -205,7 +205,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// <returns>User info request</returns>
         public iam.Model.UserInfoReq CreatePostRequest()
         {
-            iam.Model.UserInfoReq request = new iam.Model.UserInfoReq(Email: Email)
+            var request = new iam.Model.UserInfoReq(Email: Email)
             {
                 Username = Username,
                 FullName = FullName,
@@ -224,7 +224,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// <returns>User info request</returns>
         public iam.Model.UserUpdateReq CreatePutRequest()
         {
-            iam.Model.UserUpdateReq request = new iam.Model.UserUpdateReq(Email: Email)
+            var request = new iam.Model.UserUpdateReq(Email: Email)
             {
                 PhoneNumber = PhoneNumber,
                 Username = Username,

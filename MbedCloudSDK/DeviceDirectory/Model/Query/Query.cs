@@ -55,7 +55,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
         /// <returns>Query</returns>
         public static Query Map(DeviceQuery data)
         {
-            Query query = new Query
+            var query = new Query
             {
                 CreatedAt = data.CreatedAt,
                 Id = data.Id,

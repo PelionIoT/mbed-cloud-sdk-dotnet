@@ -69,7 +69,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
         /// <returns>Firmware Manifest</returns>
         public static FirmwareManifest Map(update_service.Model.FirmwareManifest data)
         {
-            FirmwareManifest manifest = new FirmwareManifest
+            var manifest = new FirmwareManifest
             {
                 CreatedAt = data.CreatedAt,
                 Datafile = data.Datafile,

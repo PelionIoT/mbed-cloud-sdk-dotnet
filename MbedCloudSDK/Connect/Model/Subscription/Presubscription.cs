@@ -37,7 +37,7 @@ namespace MbedCloudSDK.Connect.Model.Subscription
         /// <returns>Presubscription</returns>
         public static Presubscription Map(mds.Model.Presubscription subscriptionData)
         {
-            Presubscription substriction = new Presubscription
+            var substriction = new Presubscription
             {
                 DeviceId = subscriptionData.EndpointName,
                 EndpointType = subscriptionData.EndpointType,

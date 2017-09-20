@@ -31,9 +31,9 @@ namespace MbedCloudSDK.Update.Api
             {
                 return new PaginatedResponse<FirmwareManifest>(ListFirmwareManifestsFun, options);
             }
-            catch (CloudApiException e)
+            catch (CloudApiException)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -47,7 +47,7 @@ namespace MbedCloudSDK.Update.Api
             try
             {
                 var resp = api.FirmwareManifestList(options.Limit, options.Order, options.After);
-                ResponsePage<FirmwareManifest> respManifests = new ResponsePage<FirmwareManifest>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
+                var respManifests = new ResponsePage<FirmwareManifest>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var manifest in resp.Data)
                 {
                     respManifests.Data.Add(FirmwareManifest.Map(manifest));
@@ -89,10 +89,12 @@ namespace MbedCloudSDK.Update.Api
         {
             try
             {
-                var fs = File.Open(dataFile, FileMode.Open);
-                var result = api.FirmwareManifestCreate(fs, name, description);
+                using (var fs = File.Open(dataFile, FileMode.Open))
+                {
+                    var result = api.FirmwareManifestCreate(fs, name, description);
                 fs.Close();
                 return FirmwareManifest.Map(result);
+                }
             }
             catch (update_service.Client.ApiException e)
             {

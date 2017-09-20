@@ -33,7 +33,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             }
             catch (CloudApiException e)
             {
-                throw e;
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
         }
 
@@ -47,7 +47,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             try
             {
                 var resp = api.DeviceList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter.FilterString, include: options.Include);
-                ResponsePage<Device> respDevices = new ResponsePage<Device>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
+                var respDevices = new ResponsePage<Device>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
                 foreach (var device in resp.Data)
                 {
                     respDevices.Data.Add(Device.Map(device, this));
@@ -174,7 +174,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             }
         }
 
-        private DeviceDataPostRequest.MechanismEnum GetMechanismEnum(Device device)
+        private static DeviceDataPostRequest.MechanismEnum GetMechanismEnum(Device device)
         {
             if (device.Mechanism.HasValue)
             {
@@ -198,7 +198,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             return DeviceDataPostRequest.MechanismEnum.Connector;
         }
 
-        private DeviceDataPostRequest.StateEnum GetStateEnum(Device device)
+        private static DeviceDataPostRequest.StateEnum GetStateEnum(Device device)
         {
             if (device.State.HasValue)
             {

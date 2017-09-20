@@ -28,8 +28,8 @@ namespace MbedCloudSDK.Connect.Api
                     {
                         if (asyncReponse.Payload != null)
                         {
-                            byte[] data = Convert.FromBase64String(asyncReponse.Payload);
-                            string payload = Encoding.UTF8.GetString(data);
+                            var data = Convert.FromBase64String(asyncReponse.Payload);
+                            var payload = Encoding.UTF8.GetString(data);
                             if (AsyncResponses.ContainsKey(asyncReponse.Id))
                             {
                                 AsyncResponses[asyncReponse.Id].Add(payload);
@@ -42,9 +42,9 @@ namespace MbedCloudSDK.Connect.Api
                 {
                     foreach (var notification in resp.Notifications)
                     {
-                        byte[] data = Convert.FromBase64String(notification.Payload);
-                        string payload = Encoding.UTF8.GetString(data);
-                        string resourceSubs = notification.Ep + notification.Path;
+                        var data = Convert.FromBase64String(notification.Payload);
+                        var payload = Encoding.UTF8.GetString(data);
+                        var resourceSubs = notification.Ep + notification.Path;
                         if (ResourceSubscribtions.ContainsKey(resourceSubs))
                         {
                             ResourceSubscribtions[resourceSubs].Queue.Add(payload);

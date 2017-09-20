@@ -47,7 +47,7 @@ namespace MbedCloudSDK.Update.Api
             try
             {
                 var resp = api.UpdateCampaignList(options.Limit, options.Order, options.After, options.Filter.FilterString, options.Include);
-                ResponsePage<Campaign> respDevices = new ResponsePage<Campaign>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
+                var respDevices = new ResponsePage<Campaign>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var device in resp.Data)
                 {
                     respDevices.Data.Add(Campaign.Map(device));
@@ -171,7 +171,7 @@ namespace MbedCloudSDK.Update.Api
             try
             {
                 var stateEnum = (update_service.Model.UpdateCampaignPatchRequest.StateEnum)Enum.Parse(typeof(update_service.Model.UpdateCampaignPatchRequest.StateEnum), campaign.State.ToString());
-                var updateCampaignPatchRequest = new update_service.Model.UpdateCampaignPatchRequest()
+                var updateCampaignPatchRequest = new update_service.Model.UpdateCampaignPatchRequest
                 {
                     Description = campaign.Description,
                     RootManifestId = campaign.RootManifestId,

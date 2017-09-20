@@ -31,9 +31,9 @@ namespace MbedCloudSDK.Update.Api
             {
                 return new PaginatedResponse<FirmwareImage>(ListFirmwareImagesFun, options);
             }
-            catch (CloudApiException e)
+            catch (CloudApiException)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -47,7 +47,7 @@ namespace MbedCloudSDK.Update.Api
             try
             {
                 var resp = api.FirmwareImageList(options.Limit, options.Order, options.After);
-                ResponsePage<FirmwareImage> respImages = new ResponsePage<FirmwareImage>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
+                var respImages = new ResponsePage<FirmwareImage>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var image in resp.Data)
                 {
                     respImages.Data.Add(FirmwareImage.Map(image));
@@ -88,10 +88,12 @@ namespace MbedCloudSDK.Update.Api
         {
             try
             {
-                var fs = File.OpenRead(dataFile);
-                var result = FirmwareImage.Map(api.FirmwareImageCreate(fs, name));
+                using (var fs = File.OpenRead(dataFile))
+                {
+                    var result = FirmwareImage.Map(api.FirmwareImageCreate(fs, name));
                 fs.Close();
                 return result;
+                }
             }
             catch (update_service.Client.ApiException e)
             {

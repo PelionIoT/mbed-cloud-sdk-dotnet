@@ -67,8 +67,8 @@ namespace MbedCloudSDK.Common
         /// <returns>List of T</returns>
         public List<T> ToList()
         {
-            List<T> list = new List<T>();
-            IEnumerator<T> enumerator = GetEnumerator();
+            var list = new List<T>();
+            var enumerator = GetEnumerator();
             while (enumerator.MoveNext())
             {
                 list.Add(enumerator.Current);
@@ -79,7 +79,7 @@ namespace MbedCloudSDK.Common
 
         private void GetPage()
         {
-            ResponsePage<T> resp = getDataFunc(ListParams);
+            var resp = getDataFunc?.Invoke(ListParams);
             HasMore = resp.HasMore;
             TotalCount = resp.TotalCount;
             Data = resp.Data;
@@ -105,12 +105,12 @@ namespace MbedCloudSDK.Common
         /// <returns>Count</returns>
         public int? GetTotalCount()
         {
-            QueryOptions listParams = new QueryOptions
+            var listParams = new QueryOptions
             {
                 Include = "total_count",
                 Limit = 2
             };
-            ResponsePage<T> resp = getDataFunc(listParams);
+            var resp = getDataFunc?.Invoke(listParams);
             return resp.TotalCount;
         }
 

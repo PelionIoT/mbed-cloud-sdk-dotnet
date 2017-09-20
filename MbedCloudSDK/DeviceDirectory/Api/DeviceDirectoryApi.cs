@@ -37,12 +37,12 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// Get meta data for the last Mbed Cloud API call
         /// </summary>
         /// <returns>Api Metadata</returns>
-        public ApiMetadata GetLastApiMetadata()
+        public static ApiMetadata GetLastApiMetadata()
         {
             return ApiMetadata.Map(device_directory.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
         }
 
-        private string FixedPath(string path)
+        private static string FixedPath(string path)
         {
             if (path.StartsWith("/", StringComparison.OrdinalIgnoreCase))
             {

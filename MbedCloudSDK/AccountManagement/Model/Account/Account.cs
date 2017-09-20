@@ -224,7 +224,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         /// <returns>Account update request</returns>
         public iam.Model.AccountUpdateReq CreateUpdateRequest()
         {
-            iam.Model.AccountUpdateReq request = new iam.Model.AccountUpdateReq
+            var request = new iam.Model.AccountUpdateReq
             {
                 PhoneNumber = PhoneNumber,
                 PostalCode = Postcode,

@@ -57,7 +57,7 @@ namespace MbedCloudSDK.Certificates.Api
         /// Get meta data for the last Mbed Cloud API call
         /// </summary>
         /// <returns>Api Metadata</returns>
-        public ApiMetadata GetLastApiMetadata()
+        public static ApiMetadata GetLastApiMetadata()
         {
             return ApiMetadata.Map(Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
         }
@@ -80,7 +80,7 @@ namespace MbedCloudSDK.Certificates.Api
             }
             catch (CloudApiException e)
             {
-                throw e;
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
         }
 
@@ -94,7 +94,7 @@ namespace MbedCloudSDK.Certificates.Api
             try
             {
                 var resp = developerApi.GetAllCertificates(limit: options.Limit, after: options.After, order: options.Order, include: options.Include);
-                ResponsePage<Certificate> respCertificates = new ResponsePage<Certificate>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
+                var respCertificates = new ResponsePage<Certificate>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var certificate in resp.Data)
                 {
                     respCertificates.Data.Add(Certificate.Map(certificate));
@@ -219,7 +219,7 @@ namespace MbedCloudSDK.Certificates.Api
         /// <returns>Certificate</returns>
         public Certificate AddDeveloperCertificate(Certificate certificate)
         {
-            connector_ca.Model.DeveloperCertificateRequestData body = new connector_ca.Model.DeveloperCertificateRequestData(certificate.Name, certificate.Description);
+            var body = new connector_ca.Model.DeveloperCertificateRequestData(certificate.Name, certificate.Description);
             try
             {
                 var response = developerCertificateApi.V3DeveloperCertificatesPost(auth, body);
@@ -309,7 +309,7 @@ namespace MbedCloudSDK.Certificates.Api
                 }
                 catch (CloudApiException ex)
                 {
-                    throw ex;
+                    throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorCode);
                 }
             }
         }

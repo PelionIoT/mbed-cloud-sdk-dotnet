@@ -200,17 +200,17 @@ namespace MbedCloudSDK.Common.Filter
             return json.ToString(Formatting.None);
         }
 
+        private static JObject StringToJsonObject(string jsonString)
+        {
+            return JObject.Parse(jsonString);
+        }
+
         private Filter QueryStringToFilter(string queryString)
         {
             var queryJsonString = QueryStringToJson(queryString);
             FilterJson = StringToJsonObject(queryJsonString);
             FilterDictionary = QueryJsonToDictionary(queryJsonString);
             return this;
-        }
-
-        private JObject StringToJsonObject(string jsonString)
-        {
-            return JObject.Parse(jsonString);
         }
 
         private Dictionary<string, FilterAttribute> QueryJsonToDictionary(string queryJson)

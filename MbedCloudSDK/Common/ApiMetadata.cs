@@ -79,7 +79,7 @@ namespace MbedCloudSDK.Common
                     metadata.Headers.Add(header.Name, header.Value.ToString());
                 }
 
-                metadata.Date = metadata.Headers.ContainsKey("Date") ? DateTime.Parse(metadata.Headers["Date"]) : DateTime.Now;
+                metadata.Date = metadata.Headers.ContainsKey(nameof(Date)) ? DateTime.Parse(metadata.Headers[nameof(Date)]) : DateTime.Now;
                 metadata.RequestId = metadata.Headers.ContainsKey("X-Request-ID") ? metadata.Headers["X-Request-ID"] : null;
                 metadata.Object = content["object"] != null ? content["object"].Value<string>() : null;
                 metadata.Etag = content["etag"] != null ? content["etag"].Value<string>() : null;

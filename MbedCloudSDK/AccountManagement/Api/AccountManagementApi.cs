@@ -42,7 +42,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Get LAst Api Metadata
         /// </summary>
         /// <returns>Api Metadata</returns>
-        public ApiMetadata GetLastApiMetadata()
+        public static ApiMetadata GetLastApiMetadata()
         {
             return ApiMetadata.Map(Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
         }
