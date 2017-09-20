@@ -39,6 +39,7 @@ namespace TestServer
             try
             {
                 var csv = new StringBuilder();
+                csv.AppendLine("Name,Version");
                 var files = Directory.GetFiles("MbedCloudSDK", "packages.config");
 
                 foreach (var path in files)
@@ -54,7 +55,7 @@ namespace TestServer
             }
             catch(Exception e)
             {
-                return Ok("");
+                return Ok("Init");
             }
 
             return Ok("Init");
@@ -69,7 +70,7 @@ namespace TestServer
             var argsJsonObj = new JObject();
             if (!string.IsNullOrEmpty(args))
             {
-                var dict = HttpUtility.ParseQueryString(args);
+                var dict = RestSharp.Extensions.MonoHttp.HttpUtility.ParseQueryString(args);
                 var camelDict = Utils.SnakeToCamelDict(dict);
                 var argsJson = JsonConvert.SerializeObject(camelDict);
                 argsJsonObj = JObject.Parse(argsJson);
