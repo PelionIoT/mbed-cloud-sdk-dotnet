@@ -53,7 +53,7 @@ namespace TestServer
                 }
                 File.WriteAllText("MbedCloudSDK/tpip.csv", csv.ToString());
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 return Ok("Init");
             }
