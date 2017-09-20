@@ -24,7 +24,7 @@ test:
     - echo "finished"
 deployment:
   production:
-    branch: master
+    branch: docs
     commands:
       - ./generate-docs.sh
       
