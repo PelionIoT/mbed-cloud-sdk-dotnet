@@ -21,6 +21,7 @@ using System.Web.Http.Results;
 using MbedCloudSDK.Connect.Model.ConnectedDevice;
 using mds.Model;
 using MbedCloudSDK.Common.Filter;
+using NuGet;
 
 namespace TestServer
 {
@@ -35,6 +36,28 @@ namespace TestServer
         [HttpGet]
         public IHttpActionResult Init()
         {
+            try
+            {
+                var csv = new StringBuilder();
+                csv.AppendLine("Name,Version");
+                var files = Directory.GetFiles("MbedCloudSDK", "packages.config");
+
+                foreach (var path in files)
+                {
+                    var file = new PackageReferenceFile(path);
+                    foreach (var packageReference in file.GetPackageReferences())
+                    {
+                        var newLine = $"{packageReference.Id},{packageReference.Version}";
+                        csv.AppendLine(newLine);
+                    }
+                }
+                File.WriteAllText("MbedCloudSDK/tpip.csv", csv.ToString());
+            }
+            catch(Exception)
+            {
+                return Ok("Init");
+            }
+
             return Ok("Init");
         }
 
@@ -47,7 +70,7 @@ namespace TestServer
             var argsJsonObj = new JObject();
             if (!string.IsNullOrEmpty(args))
             {
-                var dict = HttpUtility.ParseQueryString(args);
+                var dict = RestSharp.Extensions.MonoHttp.HttpUtility.ParseQueryString(args);
                 var camelDict = Utils.SnakeToCamelDict(dict);
                 var argsJson = JsonConvert.SerializeObject(camelDict);
                 argsJsonObj = JObject.Parse(argsJson);

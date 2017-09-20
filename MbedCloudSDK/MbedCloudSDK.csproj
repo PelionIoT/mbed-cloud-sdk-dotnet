@@ -31,6 +31,8 @@
     <ConsolePause>false</ConsolePause>
     <DocumentationFile>bin\Release\MbedCloudSDK.xml</DocumentationFile>
     <CodeAnalysisRuleSet>MbedCloudSDK.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>CS1591,CS0109</NoWarn>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
