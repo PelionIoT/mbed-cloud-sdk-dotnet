@@ -16,9 +16,6 @@ checkout:
   post:
     - git clone https://$GITHUB_TOKEN@github.com/ARMmbed/mbed-cloud-sdk-testrunner.git "TestServer/testrunner"
     - pip install -r TestServer/testrunner/requirements.txt
-    - export PYTHONPATH=TestServer/testrunner
-    - python setup.py develop:
-        pwd: tests/testrunner
 dependencies:
   pre:
     - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
