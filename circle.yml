@@ -12,7 +12,7 @@ machine:
     SDK_TESTS: ${HOME}/tests
     SDK_TPIP: ${HOME}/tpip
     SDK_BUILD: ${HOME}/build
-    BACKEND_URL: "http://localhost:3000"
+    BACKEND_URL: http://localhost:3000
 checkout:
   post:
     - git clone https://$GITHUB_TOKEN@github.com/ARMmbed/mbed-cloud-sdk-testrunner.git "TestServer/testrunner"
