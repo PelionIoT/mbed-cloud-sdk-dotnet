@@ -30,10 +30,17 @@ test:
     - wget https://dist.nuget.org/win-x86-commandline/v2.8.6/nuget.exe
     - mono --runtime=v4.0 nuget.exe restore MbedCloudSDK/packages.config -PackagesDirectory packages
     - mono --runtime=v4.0 nuget.exe restore TestServer/packages.config -PackagesDirectory packages
+<<<<<<< HEAD
     - msbuild | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
   override:
+=======
+    - msbuild /p:Configuration=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+  override:
+    - mv MbedCloudSDK/bin/Release/* ${SDK_BUILD}
+>>>>>>> master
     - echo "<h1>${SDK_NAME} (build ${CIRCLE_BUILD_NUM})</h1>" > ${SDK_TESTS}/index.html:
     - ./test.sh
+    - mv MbedCloudSDK/tpip.csv ${SDK_TPIP}
     - echo "finished"
 deployment:
   production:
