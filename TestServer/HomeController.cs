@@ -21,6 +21,7 @@ using System.Web.Http.Results;
 using MbedCloudSDK.Connect.Model.ConnectedDevice;
 using mds.Model;
 using MbedCloudSDK.Common.Filter;
+using NuGet;
 
 namespace TestServer
 {
@@ -35,6 +36,27 @@ namespace TestServer
         [HttpGet]
         public IHttpActionResult Init()
         {
+            try
+            {
+                var csv = new StringBuilder();
+                var files = Directory.GetFiles("MbedCloudSDK", "packages.config");
+
+                foreach (var path in files)
+                {
+                    var file = new PackageReferenceFile(path);
+                    foreach (var packageReference in file.GetPackageReferences())
+                    {
+                        var newLine = $"{packageReference.Id},{packageReference.Version}";
+                        csv.AppendLine(newLine);
+                    }
+                }
+                File.WriteAllText("MbedCloudSDK/tpip.csv", csv.ToString());
+            }
+            catch(Exception e)
+            {
+                return Ok("");
+            }
+
             return Ok("Init");
         }
 
