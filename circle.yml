@@ -14,7 +14,7 @@ machine:
     SDK_BUILD: ${HOME}/build
 checkout:
   post:
-    - git clone https://$GITHUB_TOKEN@github.com/ARMmbed/mbed-cloud-sdk-testrunner.git "TestServer/testrunner"
+    - git clone https://$GITHUB_TOKEN@github.com/ARMmbed/mbed-cloud-sdk-testrunner.git TestServer/testrunner
     - pip install -r TestServer/testrunner/requirements.txt
 dependencies:
   pre:
