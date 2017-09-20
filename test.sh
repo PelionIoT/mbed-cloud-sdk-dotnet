@@ -1,5 +1,7 @@
 #!/bin/sh
 
+BACKEND_URL = "http://localhost:3000";
+
 # Start the Python SDK test backend server. Send to background.
 CMD="mono TestServer/bin/Release/TestServer.exe $API_KEY"
 eval "$CMD &"
