@@ -7,7 +7,7 @@ OUTPUT_DIR="docs/";
 # Build Doxygen docs
 doxygen ar.doxygen
 
-mv docs/* ${SDK_DOCS}
+cp docs/* ${SDK_DOCS}
 
 # If AWS_ID and SECRET is defined, we push to S3
 if [[ -n $AWS_ID && -n $AWS_SECRET ]]; then
