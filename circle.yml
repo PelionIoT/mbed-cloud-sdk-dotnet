@@ -32,7 +32,6 @@ test:
     - mono --runtime=v4.0 nuget.exe restore TestServer/packages.config -PackagesDirectory packages
     - msbuild | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
   override:
-    - mkdir ${SDK_TESTS}
     - echo "<h1>${SDK_NAME} (build ${CIRCLE_BUILD_NUM})</h1>" > ${SDK_TESTS}/index.html:
     - ./test.sh
     - echo "finished"
