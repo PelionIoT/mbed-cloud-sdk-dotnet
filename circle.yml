@@ -12,12 +12,12 @@ machine:
     SDK_TESTS: ${HOME}/tests
     SDK_TPIP: ${HOME}/tpip
     SDK_BUILD: ${HOME}/build
+    BACKEND_URL: "http://localhost:3000": 
 checkout:
   post:
-    - git config --global user.name alexl0gan
-    - git config --global user.email alex.logan@arm.com
-    - git clone https://github.com/ARMmbed/mbed-cloud-sdk-testrunner.git TestServer/testrunner
+    - git clone https://$GITHUB_TOKEN@github.com/ARMmbed/mbed-cloud-sdk-testrunner.git "TestServer/testrunner"
     - pip install -r TestServer/testrunner/requirements.txt
+    - export PYTHONPATH="TestServer/testrunner";
     - python setup.py develop:
         pwd: tests/testrunner
 dependencies:
@@ -42,7 +42,8 @@ test:
   override:
     - mv MbedCloudSDK/bin/Release/* ${SDK_BUILD}
     - echo "<h1>${SDK_NAME} (build ${CIRCLE_BUILD_NUM})</h1>" > ${SDK_TESTS}/index.html:
-    - ./test.sh
+    - mono TestServer/bin/Release/TestServer.exe $API_KEY
+    - - set -o pipefail && bash test.sh 2>&1 | tee /dev/tty | ansi-html >> ${SDK_TESTS}/index.html:
     - mv MbedCloudSDK/tpip.csv ${SDK_TPIP}
     - echo "finished"
 deployment:
