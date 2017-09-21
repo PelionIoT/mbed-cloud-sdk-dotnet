@@ -42,5 +42,8 @@ deployment:
     branch: docs
     commands:
       - ./generate-docs.sh
+      - export AWS_ACCESS_KEY_ID=$AWS_ID;
+      - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET;
+      - export AWS_DEFAULT_REGION=us-west-2;
       - aws s3 sync --delete --cache-control max-age=3600 ${SDK_TPIP} s3://mbed-cloud-sdk-dotnet-dist/${SDK_TAG}/tpip
       - aws s3 sync --delete --cache-control max-age=3600 ${SDK_TEST} s3://mbed-cloud-sdk-dotnet-dist/${SDK_TAG}/test
