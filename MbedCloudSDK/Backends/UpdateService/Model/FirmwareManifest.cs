@@ -44,14 +44,13 @@ namespace update_service.Model
         /// <param name="CreatedAt">The time the object was created (required).</param>
         /// <param name="_Object">The API resource entity (required).</param>
         /// <param name="UpdatedAt">The time the object was updated (required).</param>
-        /// <param name="ManifestContents">ManifestContents (required).</param>
         /// <param name="Etag">The entity instance signature (required).</param>
         /// <param name="DeviceClass">The class of the device (required).</param>
         /// <param name="DatafileChecksum">Checksum generated for the datafile.</param>
         /// <param name="DatafileSize">Size of the datafile in bytes.</param>
         /// <param name="Id">The firmware manifest ID (required).</param>
         /// <param name="Name">The name of the object (required).</param>
-        public FirmwareManifest(string Datafile = default(string), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), ManifestContents ManifestContents = default(ManifestContents), DateTime? Etag = default(DateTime?), string DeviceClass = default(string), string DatafileChecksum = default(string), long? DatafileSize = default(long?), string Id = default(string), string Name = default(string))
+        public FirmwareManifest(string Datafile = default(string), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), string DeviceClass = default(string), string DatafileChecksum = default(string), long? DatafileSize = default(long?), string Id = default(string), string Name = default(string))
         {
             // to ensure "Datafile" is required (not null)
             if (Datafile == null)
@@ -106,15 +105,6 @@ namespace update_service.Model
             else
             {
                 this.UpdatedAt = UpdatedAt;
-            }
-            // to ensure "ManifestContents" is required (not null)
-            if (ManifestContents == null)
-            {
-                throw new InvalidDataException("ManifestContents is a required property for FirmwareManifest and cannot be null");
-            }
-            else
-            {
-                this.ManifestContents = ManifestContents;
             }
             // to ensure "Etag" is required (not null)
             if (Etag == null)
@@ -193,11 +183,6 @@ namespace update_service.Model
         [DataMember(Name="updated_at", EmitDefaultValue=false)]
         public DateTime? UpdatedAt { get; set; }
         /// <summary>
-        /// Gets or Sets ManifestContents
-        /// </summary>
-        [DataMember(Name="manifest_contents", EmitDefaultValue=false)]
-        public ManifestContents ManifestContents { get; set; }
-        /// <summary>
         /// The entity instance signature
         /// </summary>
         /// <value>The entity instance signature</value>
@@ -247,7 +232,6 @@ namespace update_service.Model
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
-            sb.Append("  ManifestContents: ").Append(ManifestContents).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  DeviceClass: ").Append(DeviceClass).Append("\n");
             sb.Append("  DatafileChecksum: ").Append(DatafileChecksum).Append("\n");
@@ -321,11 +305,6 @@ namespace update_service.Model
                     this.UpdatedAt.Equals(other.UpdatedAt)
                 ) && 
                 (
-                    this.ManifestContents == other.ManifestContents ||
-                    this.ManifestContents != null &&
-                    this.ManifestContents.Equals(other.ManifestContents)
-                ) && 
-                (
                     this.Etag == other.Etag ||
                     this.Etag != null &&
                     this.Etag.Equals(other.Etag)
@@ -380,8 +359,6 @@ namespace update_service.Model
                     hash = hash * 59 + this._Object.GetHashCode();
                 if (this.UpdatedAt != null)
                     hash = hash * 59 + this.UpdatedAt.GetHashCode();
-                if (this.ManifestContents != null)
-                    hash = hash * 59 + this.ManifestContents.GetHashCode();
                 if (this.Etag != null)
                     hash = hash * 59 + this.Etag.GetHashCode();
                 if (this.DeviceClass != null)

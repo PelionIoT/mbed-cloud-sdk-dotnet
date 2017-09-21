@@ -178,11 +178,6 @@
     <Compile Include="Backends\UpdateService\Model\FirmwareImagePage.cs" />
     <Compile Include="Backends\UpdateService\Model\FirmwareManifest.cs" />
     <Compile Include="Backends\UpdateService\Model\FirmwareManifestPage.cs" />
-    <Compile Include="Backends\UpdateService\Model\ManifestContents.cs" />
-    <Compile Include="Backends\UpdateService\Model\ManifestContentsEncryptionMode.cs" />
-    <Compile Include="Backends\UpdateService\Model\ManifestContentsPayload.cs" />
-    <Compile Include="Backends\UpdateService\Model\ManifestContentsPayloadFormat.cs" />
-    <Compile Include="Backends\UpdateService\Model\ManifestContentsPayloadReference.cs" />
     <Compile Include="Backends\UpdateService\Model\UpdateCampaign.cs" />
     <Compile Include="Backends\UpdateService\Model\UpdateCampaignPage.cs" />
     <Compile Include="Backends\UpdateService\Model\UpdateCampaignPatchRequest.cs" />
