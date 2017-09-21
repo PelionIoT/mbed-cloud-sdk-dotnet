@@ -143,7 +143,7 @@ namespace device_directory.Model
         /// <param name="EndpointName">The endpoint name given to the device..</param>
         /// <param name="AutoUpdate">DEPRECATED: Mark this device for automatic firmware update..</param>
         /// <param name="HostGateway">The &#x60;endpoint_name&#x60; of the host gateway, if appropriate..</param>
-        /// <param name="DeviceExecutionMode">The certificate type..</param>
+        /// <param name="DeviceExecutionMode">The execution mode from the certificate of the device. Permitted values:   - 0 - unspecified execution mode (default)   - 1 - development devices   - 5 - production devices.</param>
         /// <param name="Mechanism">The ID of the channel used to communicate with the device..</param>
         /// <param name="State">The current state of the device..</param>
         /// <param name="Etag">The entity instance signature..</param>
@@ -265,9 +265,9 @@ namespace device_directory.Model
         [DataMember(Name="host_gateway", EmitDefaultValue=false)]
         public string HostGateway { get; set; }
         /// <summary>
-        /// The certificate type.
+        /// The execution mode from the certificate of the device. Permitted values:   - 0 - unspecified execution mode (default)   - 1 - development devices   - 5 - production devices
         /// </summary>
-        /// <value>The certificate type.</value>
+        /// <value>The execution mode from the certificate of the device. Permitted values:   - 0 - unspecified execution mode (default)   - 1 - development devices   - 5 - production devices</value>
         [DataMember(Name="device_execution_mode", EmitDefaultValue=false)]
         public int? DeviceExecutionMode { get; set; }
         /// <summary>
