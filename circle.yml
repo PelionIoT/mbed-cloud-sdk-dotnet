@@ -46,6 +46,6 @@ test:
     - echo "finished"
 deployment:
   production:
-    branch: master
+    branch: nuget
     commands:
       - ./generate-docs.sh
