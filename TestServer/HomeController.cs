@@ -47,8 +47,11 @@ namespace TestServer
                     var file = new PackageReferenceFile(path);
                     foreach (var packageReference in file.GetPackageReferences())
                     {
-                        var newLine = $"{packageReference.Id},{packageReference.Version}";
-                        csv.AppendLine(newLine);
+                        if (!packageReference.IsDevelopmentDependency)
+                        {
+                            var newLine = $"{packageReference.Id},{packageReference.Version}";
+                            csv.AppendLine(newLine);
+                        }
                     }
                 }
                 File.WriteAllText("MbedCloudSDK/tpip.csv", csv.ToString());
