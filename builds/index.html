@@ -113,9 +113,6 @@
 		return build.lifecycle;
 	}
 
-	function getArtifactUrl(build, base) {
-		return "https://circle-artifacts.com/gh/ARMmbed/" + project + "/" + build.build_num + "/artifacts/0/home/ubuntu/" + base + "/index.html";
-	}
 	function getArtifactUrl(build, base, file) {
 		file = file || "index.html";
 		return "https://circle-artifacts.com/gh/ARMmbed/" + project + "/" + build.build_num + "/artifacts/0/home/ubuntu/" + base + "/" + file;
