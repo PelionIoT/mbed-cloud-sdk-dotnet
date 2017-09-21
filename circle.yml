@@ -32,6 +32,8 @@ test:
     - mono --runtime=v4.0 nuget.exe restore TestServer/packages.config -PackagesDirectory packages
     - msbuild /p:Configuration=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
   override:
+    - git clone https://$GITHUB_TOKEN@github.com/ARMmbed/mbed-cloud-sdk-testrunner.git TestServer/testrunner
+    - pip install -r TestServer/testrunner/requirements.txt
     - mv MbedCloudSDK/bin/Release/* ${SDK_BUILD}
     - echo "<h1>${SDK_NAME} (build ${CIRCLE_BUILD_NUM})</h1>" > ${SDK_TESTS}/index.html:
     - set -o pipefail && bash test.sh 2>&1 | tee /dev/tty | ansi-html >> ${SDK_TESTS}/index.html:
