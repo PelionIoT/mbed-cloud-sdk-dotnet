@@ -5,9 +5,7 @@ IFS=$'\n\t'
 OUTPUT_DIR="docs/";
 
 # Build Doxygen docs
-cd MbedCloudSDK
 doxygen ar.doxygen
-cd ..
 
 mv docs/* ${SDK_DOCS}
 
