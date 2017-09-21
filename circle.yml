@@ -39,6 +39,6 @@ test:
     - echo "finished"
 deployment:
   production:
-    branch: docs
+    branch: doc-generation
     commands:
       - ./generate-docs.sh
