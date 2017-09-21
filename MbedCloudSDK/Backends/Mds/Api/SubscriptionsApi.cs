@@ -73,8 +73,8 @@ namespace mds.Api
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns></returns>
-        void V2SubscriptionsDeviceIdGet (string deviceId);
+        /// <returns>string</returns>
+        string V2SubscriptionsDeviceIdGet (string deviceId);
 
         /// <summary>
         /// Read endpoints subscriptions
@@ -84,8 +84,8 @@ namespace mds.Api
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V2SubscriptionsDeviceIdGetWithHttpInfo (string deviceId);
+        /// <returns>ApiResponse of string</returns>
+        ApiResponse<string> V2SubscriptionsDeviceIdGetWithHttpInfo (string deviceId);
         /// <summary>
         /// Remove a subscription
         /// </summary>
@@ -245,8 +245,8 @@ namespace mds.Api
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V2SubscriptionsDeviceIdGetAsync (string deviceId);
+        /// <returns>Task of string</returns>
+        System.Threading.Tasks.Task<string> V2SubscriptionsDeviceIdGetAsync (string deviceId);
 
         /// <summary>
         /// Read endpoints subscriptions
@@ -256,8 +256,8 @@ namespace mds.Api
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeviceIdGetAsyncWithHttpInfo (string deviceId);
+        /// <returns>Task of ApiResponse (string)</returns>
+        System.Threading.Tasks.Task<ApiResponse<string>> V2SubscriptionsDeviceIdGetAsyncWithHttpInfo (string deviceId);
         /// <summary>
         /// Remove a subscription
         /// </summary>
@@ -772,10 +772,11 @@ namespace mds.Api
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns></returns>
-        public void V2SubscriptionsDeviceIdGet (string deviceId)
+        /// <returns>string</returns>
+        public string V2SubscriptionsDeviceIdGet (string deviceId)
         {
-             V2SubscriptionsDeviceIdGetWithHttpInfo(deviceId);
+             ApiResponse<string> localVarResponse = V2SubscriptionsDeviceIdGetWithHttpInfo(deviceId);
+             return localVarResponse.Data;
         }
 
         /// <summary>
@@ -783,8 +784,8 @@ namespace mds.Api
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V2SubscriptionsDeviceIdGetWithHttpInfo (string deviceId)
+        /// <returns>ApiResponse of string</returns>
+        public ApiResponse< string > V2SubscriptionsDeviceIdGetWithHttpInfo (string deviceId)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
@@ -836,10 +837,10 @@ namespace mds.Api
                 if (exception != null) throw exception;
             }
 
-            
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<string>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (string) Configuration.ApiClient.Deserialize(localVarResponse, typeof(string)));
+            
         }
 
         /// <summary>
@@ -847,10 +848,11 @@ namespace mds.Api
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V2SubscriptionsDeviceIdGetAsync (string deviceId)
+        /// <returns>Task of string</returns>
+        public async System.Threading.Tasks.Task<string> V2SubscriptionsDeviceIdGetAsync (string deviceId)
         {
-             await V2SubscriptionsDeviceIdGetAsyncWithHttpInfo(deviceId);
+             ApiResponse<string> localVarResponse = await V2SubscriptionsDeviceIdGetAsyncWithHttpInfo(deviceId);
+             return localVarResponse.Data;
 
         }
 
@@ -859,8 +861,8 @@ namespace mds.Api
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeviceIdGetAsyncWithHttpInfo (string deviceId)
+        /// <returns>Task of ApiResponse (string)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<string>> V2SubscriptionsDeviceIdGetAsyncWithHttpInfo (string deviceId)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
@@ -911,10 +913,10 @@ namespace mds.Api
                 if (exception != null) throw exception;
             }
 
-            
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<string>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (string) Configuration.ApiClient.Deserialize(localVarResponse, typeof(string)));
+            
         }
 
         /// <summary>
