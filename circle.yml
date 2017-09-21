@@ -34,7 +34,7 @@ test:
     - msbuild /p:Configuration=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - rm nuget.exe
     - wget https://dist.nuget.org/win-x86-commandline/v4.3.0/nuget.exe
-    - mono --runtime=v4.0 nuget.exe pack MbedCloudSDK/MbedCloudSDK.nuspec | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+    - mono --runtime=v4.0 nuget.exe pack MbedCloudSDK/MbedCloudSDK.nuspec -MSBuildPath "/usr/lib/mono/msbuild/15.0/bin" | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - mv ${NUGET_NAME} ${SDK_BUILD}
   override:
     - git clone https://$GITHUB_TOKEN@github.com/ARMmbed/mbed-cloud-sdk-testrunner.git TestServer/testrunner
