@@ -34,7 +34,7 @@ test:
   override:
     - mv MbedCloudSDK/bin/Release/* ${SDK_BUILD}
     - echo "<h1>${SDK_NAME} (build ${CIRCLE_BUILD_NUM})</h1>" > ${SDK_TESTS}/index.html:
-    - ./test.sh
+    - set -o pipefail && bash test.sh 2>&1 | tee /dev/tty | ansi-html >> ${SDK_TESTS}/index.html:
     - mv MbedCloudSDK/tpip.csv ${SDK_TPIP}
     - echo "finished"
 deployment:

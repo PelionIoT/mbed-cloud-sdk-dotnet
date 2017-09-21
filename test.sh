@@ -29,7 +29,8 @@ git clone https://$GITHUB_TOKEN@github.com/ARMmbed/mbed-cloud-sdk-testrunner.git
 pip install -r TestServer/testrunner/requirements.txt
 
 # Start the Python SDK test backend server. Send to background.
-mono TestServer/bin/Release/TestServer.exe $API_KEY & | ansi-html >> ${SDK_TESTS}/index.html
+CMD="mono TestServer/bin/Release/TestServer.exe $API_KEY"
+eval "$CMD &"
 echo "Backend server started. PID: $!"
 BACKEND_PID=$!
 
