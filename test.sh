@@ -25,9 +25,6 @@ if [ -z $API_KEY ]; then
   exit 1;
 fi
 
-git clone https://$GITHUB_TOKEN@github.com/ARMmbed/mbed-cloud-sdk-testrunner.git "TestServer/testrunner"
-pip install -r TestServer/testrunner/requirements.txt
-
 # Start the Python SDK test backend server. Send to background.
 CMD="mono TestServer/bin/Release/TestServer.exe $API_KEY"
 eval "$CMD &"
