@@ -23,7 +23,7 @@ greatly appreciated and you can read more about the process
 ```csharp
 using MbedCloudSDK.Common;
 
-Config config = new Config(apiKey);
+var config = new Config(apiKey);
 config.Host = "https://api.mbedcloud.com";
 ```
 3. Import api and you are ready to go.
@@ -31,11 +31,11 @@ config.Host = "https://api.mbedcloud.com";
 ```csharp
 using MbedCloudSDK.Common;
 using MbedCloudSDK.Common.Query;
-using MbedCloudSDK.Devices.Api;
+using MbedCloudSDK.DeviceDirectory.Api;
 using System;
 
-DevicesApi devices = new DevicesApi(config);
-DeviceQueryOptions options = new DeviceQueryOptions();
+var devices = new DeviceDirectoryApi(config);
+var options = new QueryOptions();
 options.Limit = 10;
 foreach (var device in devices.ListDevices(options))
 {
