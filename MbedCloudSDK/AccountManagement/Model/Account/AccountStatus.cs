@@ -14,25 +14,25 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         /// <summary>
         /// Enum ENROLLING for "ENROLLING"
         /// </summary>
-        [EnumMember(Value = "ENROLLING")]
+        [EnumMember(Value = nameof(ENROLLING))]
         ENROLLING,
 
         /// <summary>
         /// Enum ACTIVE for "ACTIVE"
         /// </summary>
-        [EnumMember(Value = "ACTIVE")]
+        [EnumMember(Value = nameof(ACTIVE))]
         ACTIVE,
 
         /// <summary>
         /// Enum SUSPENDED for "SUSPENDED"
         /// </summary>
-        [EnumMember(Value = "SUSPENDED")]
+        [EnumMember(Value = nameof(SUSPENDED))]
         SUSPENDED,
 
         /// <summary>
         /// Enum DISABLED for "DISABLED"
         /// </summary>
-        [EnumMember(Value = "DISABLED")]
+        [EnumMember(Value = nameof(DISABLED))]
         DISABLED
     }
 }

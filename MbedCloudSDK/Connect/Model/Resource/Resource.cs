@@ -81,7 +81,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
         /// <returns>Resource</returns>
         public static Resource Map(string deviceID, mds.Model.Resource res, ConnectApi api)
         {
-            Resource resource = new Resource(deviceID, null, api)
+            var resource = new Resource(deviceID, null, api)
             {
                 Type = res.Rt,
                 ConentType = res.Type,

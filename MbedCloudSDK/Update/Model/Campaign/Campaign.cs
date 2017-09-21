@@ -157,7 +157,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
         public UpdateCampaignPostRequest CreatePostRequest()
         {
             var deviceFilterString = DeviceFilter.FilterString;
-            UpdateCampaignPostRequest request = new UpdateCampaignPostRequest(DeviceFilter: deviceFilterString, Name: Name)
+            var request = new UpdateCampaignPostRequest(DeviceFilter: deviceFilterString, Name: Name)
             {
                 Description = Description,
                 RootManifestId = RootManifestId,
@@ -174,7 +174,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
         public UpdateCampaignPutRequest CreatePutRequest()
         {
             var updateCampaignStatus = Utils.ParseEnum<UpdateCampaignPutRequest.StateEnum>(State);
-            UpdateCampaignPutRequest request = new UpdateCampaignPutRequest(
+            var request = new UpdateCampaignPutRequest(
                 Description: Description,
                 RootManifestId: RootManifestId,
                 _Object: string.Empty,

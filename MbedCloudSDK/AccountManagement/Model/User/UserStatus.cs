@@ -14,25 +14,25 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// <summary>
         /// Enum INVITED for "INVITED"
         /// </summary>
-        [EnumMember(Value = "INVITED")]
+        [EnumMember(Value = nameof(INVITED))]
         INVITED,
 
         /// <summary>
         /// Enum ACTIVE for "ACTIVE"
         /// </summary>
-        [EnumMember(Value = "ACTIVE")]
+        [EnumMember(Value = nameof(ACTIVE))]
         ACTIVE,
 
         /// <summary>
         /// Enum RESET for "RESET"
         /// </summary>
-        [EnumMember(Value = "RESET")]
+        [EnumMember(Value = nameof(RESET))]
         RESET,
 
         /// <summary>
         /// Enum INACTIVE for "INACTIVE"
         /// </summary>
-        [EnumMember(Value = "INACTIVE")]
+        [EnumMember(Value = nameof(INACTIVE))]
         INACTIVE
     }
 }

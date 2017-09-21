@@ -279,6 +279,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Analyzer Include="..\packages\codecracker.CSharp.1.0.3\analyzers\dotnet\cs\CodeCracker.Common.dll" />
+    <Analyzer Include="..\packages\codecracker.CSharp.1.0.3\analyzers\dotnet\cs\CodeCracker.CSharp.dll" />
+    <Analyzer Include="..\packages\IDisposableAnalyzers.0.1.0.2-dev\analyzers\dotnet\cs\IDisposableAnalyzers.Analyzers.dll" />
+    <Analyzer Include="..\packages\IDisposableAnalyzers.0.1.0.2-dev\analyzers\dotnet\cs\IDisposableAnalyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>

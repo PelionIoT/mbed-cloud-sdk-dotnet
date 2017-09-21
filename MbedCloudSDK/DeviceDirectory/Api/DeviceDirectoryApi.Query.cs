@@ -32,7 +32,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             }
             catch (CloudApiException e)
             {
-                throw e;
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
         }
 
@@ -46,7 +46,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             try
             {
                 var resp = api.DeviceQueryList(options.Limit, options.Order, options.After, options.Include);
-                ResponsePage<Query> respDevices = new ResponsePage<Query>(resp.After, resp.HasMore, (int?)resp.Limit, resp.Order, (int?)resp.TotalCount);
+                var respDevices = new ResponsePage<Query>(resp.After, resp.HasMore, (int?)resp.Limit, resp.Order, (int?)resp.TotalCount);
                 foreach (var deviceQuery in resp.Data)
                 {
                     respDevices.Data.Add(Query.Map(deviceQuery));

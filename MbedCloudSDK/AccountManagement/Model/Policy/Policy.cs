@@ -63,7 +63,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Policy
         /// <returns>Policy object</returns>
         public static Policy Map(iam.Model.FeaturePolicy policy)
         {
-            Policy p = new Policy
+            var p = new Policy
             {
                 Action = policy.Action,
                 Resource = policy.Resource,

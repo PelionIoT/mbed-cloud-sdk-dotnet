@@ -10,7 +10,7 @@ namespace MbedCloudSDK.Common
     /// Name Override Attribute
     /// Used for occasions where there is a difference in naming between the test server and sdk
     /// </summary>
-    public class NameOverrideAttribute : Attribute
+    public sealed class NameOverrideAttribute : Attribute
     {
         /// <summary>
         /// Gets or sets name to apply to attribute

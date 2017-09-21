@@ -59,7 +59,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareImage
         /// <returns>Firmware image</returns>
         public static FirmwareImage Map(update_service.Model.FirmwareImage data)
         {
-            FirmwareImage image = new FirmwareImage
+            var image = new FirmwareImage
             {
                 CreatedAt = data.CreatedAt,
                 Datafile = data.Datafile,

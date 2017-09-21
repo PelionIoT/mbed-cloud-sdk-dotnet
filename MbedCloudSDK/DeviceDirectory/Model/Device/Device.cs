@@ -216,7 +216,6 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
                 UpdatedAt = deviceData.UpdatedAt,
                 CustomAttributes = deviceData.CustomAttributes,
                 DeviceClass = deviceData.DeviceClass,
-                Id = deviceData.Id,
                 Description = deviceData.Description,
                 AutoUpdate = deviceData.AutoUpdate,
                 Mechanism = Utils.ParseEnum<Mechanism>(deviceData.Mechanism),
@@ -228,21 +227,21 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
                 DeployedState = Utils.ParseEnum<DeployedState>(deviceData.DeployedState),
                 Deployment = deviceData.Deployment,
                 MechanismUrl = deviceData.MechanismUrl,
-                TrustLevel = deviceData.TrustLevel
+                TrustLevel = deviceData.TrustLevel,
+                Id = deviceData.Id,
+                Name = deviceData.Name,
+                CreatedAt = deviceData.CreatedAt,
+                Manifest = deviceData.Manifest,
+                CertificateFingerprint = deviceData.DeviceKey,
+                CertificateIssuerId = deviceData.CaId,
+                BootstrapExpirationDate = deviceData.BootstrapExpirationDate,
+                ConnectorExpirationDate = deviceData.ConnectorExpirationDate,
+                EndpointName = deviceData.EndpointName,
+                HostGateway = deviceData.HostGateway,
+                DeviceExecutionMode = deviceData.DeviceExecutionMode,
+                FirmwareChecksum = deviceData.FirmwareChecksum,
+                EndpointType = deviceData.EndpointType
             };
-            device.Id = deviceData.Id;
-            device.Name = deviceData.Name;
-            device.CreatedAt = deviceData.CreatedAt;
-            device.Manifest = deviceData.Manifest;
-            device.CertificateFingerprint = deviceData.DeviceKey;
-            device.CertificateIssuerId = deviceData.CaId;
-            device.BootstrapExpirationDate = deviceData.BootstrapExpirationDate;
-            device.ConnectorExpirationDate = deviceData.ConnectorExpirationDate;
-            device.EndpointName = deviceData.EndpointName;
-            device.HostGateway = deviceData.HostGateway;
-            device.DeviceExecutionMode = deviceData.DeviceExecutionMode;
-            device.FirmwareChecksum = deviceData.FirmwareChecksum;
-            device.EndpointType = deviceData.EndpointType;
             return device;
         }
 

@@ -91,17 +91,19 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
         /// <returns>api key</returns>
         public static ApiKey Map(ApiKeyInfoResp apiKeyInfo)
         {
-            ApiKeyStatus apiKeyStatus = Utils.ParseEnum<ApiKeyStatus>(apiKeyInfo.Status);
-            var apiKey = new ApiKey();
-            apiKey.Status = apiKeyStatus;
-            apiKey.Key = apiKeyInfo.Key;
-            apiKey.Name = apiKeyInfo.Name;
-            apiKey.CreatedAt = apiKeyInfo.CreatedAt;
-            apiKey.CreationTime = apiKeyInfo.CreationTime;
-            apiKey.Groups = apiKeyInfo.Groups;
-            apiKey.OwnerId = apiKeyInfo.Owner;
-            apiKey.Id = apiKeyInfo.Id;
-            apiKey.LastLoginTime = apiKeyInfo.LastLoginTime;
+            var apiKeyStatus = Utils.ParseEnum<ApiKeyStatus>(apiKeyInfo.Status);
+            var apiKey = new ApiKey
+            {
+                Status = apiKeyStatus,
+                Key = apiKeyInfo.Key,
+                Name = apiKeyInfo.Name,
+                CreatedAt = apiKeyInfo.CreatedAt,
+                CreationTime = apiKeyInfo.CreationTime,
+                Groups = apiKeyInfo.Groups,
+                OwnerId = apiKeyInfo.Owner,
+                Id = apiKeyInfo.Id,
+                LastLoginTime = apiKeyInfo.LastLoginTime
+            };
             return apiKey;
         }
 
@@ -132,7 +134,7 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
         /// <returns>Api key info</returns>
         public ApiKeyInfoReq CreatePostRequest()
         {
-            ApiKeyInfoReq request = new ApiKeyInfoReq(Owner: OwnerId, Status: Utils.ParseEnum<ApiKeyInfoReq.StatusEnum>(Status), Name: Name);
+            var request = new ApiKeyInfoReq(Owner: OwnerId, Status: Utils.ParseEnum<ApiKeyInfoReq.StatusEnum>(Status), Name: Name);
             return request;
         }
 
@@ -142,7 +144,7 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
         /// <returns>api key update request</returns>
         public ApiKeyUpdateReq CreatePutRequest()
         {
-            ApiKeyUpdateReq request = new ApiKeyUpdateReq(Owner: OwnerId, Name: Name);
+            var request = new ApiKeyUpdateReq(Owner: OwnerId, Name: Name);
             return request;
         }
     }

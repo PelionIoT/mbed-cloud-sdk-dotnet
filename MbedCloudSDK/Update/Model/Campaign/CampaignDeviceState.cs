@@ -81,7 +81,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
         /// <returns>Campaign Device State</returns>
         public static CampaignDeviceState Map(update_service.Model.CampaignDeviceMetadata data)
         {
-            CampaignDeviceState state = new CampaignDeviceState
+            var state = new CampaignDeviceState
             {
                 CampaignId = data.Campaign,
                 CreatedAt = data.CreatedAt,

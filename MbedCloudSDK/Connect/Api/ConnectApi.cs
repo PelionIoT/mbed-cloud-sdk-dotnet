@@ -20,7 +20,7 @@ namespace MbedCloudSDK.Connect.Api
     /// - Device query service
     /// - Device catalog
     /// </summary>
-    public partial class ConnectApi : BaseApi
+    public partial class ConnectApi : BaseApi, IDisposable
     {
         /// <summary>
         /// Resources that are currently subscribed.
@@ -42,6 +42,7 @@ namespace MbedCloudSDK.Connect.Api
         private string auth;
         private NotificationsApi notificationsApi;
         private DefaultApi defaultApi;
+        private bool disposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectApi"/> class.
@@ -86,7 +87,7 @@ namespace MbedCloudSDK.Connect.Api
         /// Get meta data for the last Mbed Cloud API call
         /// </summary>
         /// <returns>Metadata Object</returns>
-        public ApiMetadata GetLastApiMetadata()
+        public static ApiMetadata GetLastApiMetadata()
         {
             var lastMds = mds.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault()?.Headers?.Where(m => m.Name == "Date")?.Select(d => DateTime.Parse(d.Value.ToString()))?.FirstOrDefault();
             var lastStats = statistics.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault()?.Headers?.Where(m => m.Name == "Date")?.Select(d => DateTime.Parse(d.Value.ToString()))?.FirstOrDefault();
@@ -100,7 +101,45 @@ namespace MbedCloudSDK.Connect.Api
             }
         }
 
-        private string FixedPath(string path)
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Virtual dispose
+        /// </summary>
+        /// <param name="disposing">dispose</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            disposed = true;
+            if (disposing)
+            {
+                cancellationToken?.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Throw if disposed
+        /// </summary>
+        protected virtual void ThrowIfDisposed()
+        {
+            if (disposed)
+            {
+                throw new ObjectDisposedException(GetType().FullName);
+            }
+        }
+
+        private static string FixedPath(string path)
         {
             if (path.StartsWith("/", StringComparison.OrdinalIgnoreCase))
             {

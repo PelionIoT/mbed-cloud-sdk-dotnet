@@ -131,7 +131,7 @@ namespace MbedCloudSDK.Connect.Model.Metric
         /// <returns>Metric</returns>
         public static Metric Map(statistics.Model.Metric statisticsData)
         {
-            Metric metric = new Metric
+            var metric = new Metric
             {
                 Id = statisticsData.Id,
                 Timestamp = statisticsData.Timestamp,

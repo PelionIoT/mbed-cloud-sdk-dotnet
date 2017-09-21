@@ -31,9 +31,9 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             {
                 return new PaginatedResponse<DeviceLog>(ListDeviceEventsFunc, options);
             }
-            catch (CloudApiException e)
+            catch (CloudApiException)
             {
-                throw e;
+                throw;
             }
         }
 

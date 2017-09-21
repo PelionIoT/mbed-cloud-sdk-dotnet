@@ -32,9 +32,9 @@ namespace MbedCloudSDK.AccountManagement.Api
             {
                 return new PaginatedResponse<ApiKey>(ListApiKeysFunc, options);
             }
-            catch (CloudApiException e)
+            catch (CloudApiException)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -77,7 +77,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             try
             {
                 var apiKeysInfo = await developerApi.GetAllApiKeysAsync(options.Limit, options.After, options.Order, options.Include, options.Filter.FilterString);
-                List<ApiKey> apiKeys = new List<ApiKey>();
+                var apiKeys = new List<ApiKey>();
                 foreach (var key in apiKeysInfo.Data)
                 {
                     apiKeys.Add(ApiKey.Map(key));
