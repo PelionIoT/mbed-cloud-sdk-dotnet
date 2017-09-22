@@ -5,6 +5,7 @@
 namespace MbedCloudSDK.Connect.Model.Webhook
 {
     using System.Collections.Generic;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Webhook
@@ -32,14 +33,16 @@ namespace MbedCloudSDK.Connect.Model.Webhook
         }
 
         /// <summary>
-        /// Gets or sets the url of the webhook
+        /// Gets the url of the webhook
         /// </summary>
-        public string Url { get; set; }
+        [JsonProperty]
+        public string Url { get; private set; }
 
         /// <summary>
-        /// Gets or sets k/V dictionary of any headers
+        /// Gets k/V dictionary of any headers
         /// </summary>
-        public Dictionary<string, string> Headers { get; set; }
+        [JsonProperty]
+        public Dictionary<string, string> Headers { get; private set; }
 
         /// <summary>
         /// Map from api webhook to webhook

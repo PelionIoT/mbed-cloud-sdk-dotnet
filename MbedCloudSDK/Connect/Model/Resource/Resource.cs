@@ -9,6 +9,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
     using System.Text;
     using MbedCloudSDK.Connect.Api;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Resource.
@@ -44,28 +45,33 @@ namespace MbedCloudSDK.Connect.Model.Resource
         /// <summary>
         /// Gets id of the device this resource belongs to.
         /// </summary>
+        [JsonProperty]
         public string DeviceId { get; private set; }
 
         /// <summary>
-        /// Gets or sets resource&#39;s type
+        /// Gets resource&#39;s type
         /// </summary>
-        public string Type { get; set; }
+        [JsonProperty]
+        public string Type { get; private set; }
 
         /// <summary>
-        /// Gets or sets the content type of the resource. You are encouraged to use the resource types listed in the LWM2M specification: http://technical.openmobilealliance.org/Technical/technical-information/omna/lightweight-m2m-lwm2m-object-registry
+        /// Gets the content type of the resource. You are encouraged to use the resource types listed in the LWM2M specification: http://technical.openmobilealliance.org/Technical/technical-information/omna/lightweight-m2m-lwm2m-object-registry
         /// </summary>
-        public string ConentType { get; set; }
+        [JsonProperty]
+        public string ConentType { get; private set; }
 
         /// <summary>
-        /// Gets or sets resource url.
+        /// Gets resource url.
         /// </summary>
         /// <value>Resource&#39;s url.</value>
-        public string Path { get; set; }
+        [JsonProperty]
+        public string Path { get; private set; }
 
         /// <summary>
-        /// Gets or sets observable determines whether you can subscribe to changes for this resource.
+        /// Gets observable determines whether you can subscribe to changes for this resource.
         /// </summary>
-        public bool? Observable { get; set; }
+        [JsonProperty]
+        public bool? Observable { get; private set; }
 
         /// <summary>
         /// Gets or sets the queue values.

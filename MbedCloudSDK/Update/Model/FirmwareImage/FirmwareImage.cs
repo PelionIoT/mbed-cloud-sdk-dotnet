@@ -6,6 +6,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareImage
 {
     using System;
     using System.Text;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Firmware Image from Update API.
@@ -13,13 +14,15 @@ namespace MbedCloudSDK.Update.Model.FirmwareImage
     public class FirmwareImage
     {
         /// <summary>
-        /// Gets or sets the path to the firmware image
+        /// Gets the path to the firmware image
         /// </summary>
-        public string Datafile { get; set; }
+        [JsonProperty]
+        public string Url { get; private set; }
 
         /// <summary>
         /// Gets size in bytes of the uploaded firmware image binary
         /// </summary>
+        [JsonProperty]
         public long? DatafileSize { get; private set; }
 
         /// <summary>
@@ -28,24 +31,28 @@ namespace MbedCloudSDK.Update.Model.FirmwareImage
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets the time the object was created
+        /// Gets the time the object was created
         /// </summary>
-        public DateTime? CreatedAt { get; set; }
+        [JsonProperty]
+        public DateTime? CreatedAt { get; private set; }
 
         /// <summary>
-        /// Gets or sets the time the object was updated
+        /// Gets the time the object was updated
         /// </summary>
-        public DateTime? UpdatedAt { get; set; }
+        [JsonProperty]
+        public DateTime? UpdatedAt { get; private set; }
 
         /// <summary>
-        /// Gets or sets checksum generated for the datafile
+        /// Gets checksum generated for the datafile
         /// </summary>
-        public string DatafileChecksum { get; set; }
+        [JsonProperty]
+        public string DatafileChecksum { get; private set; }
 
         /// <summary>
-        /// Gets or sets the ID of the firmware image
+        /// Gets the ID of the firmware image
         /// </summary>
-        public string Id { get; set; }
+        [JsonProperty]
+        public string Id { get; private set; }
 
         /// <summary>
         /// Gets or sets the name of the object
@@ -62,7 +69,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareImage
             var image = new FirmwareImage
             {
                 CreatedAt = data.CreatedAt,
-                Datafile = data.Datafile,
+                Url = data.Datafile,
                 DatafileSize = data.DatafileSize,
                 DatafileChecksum = data.DatafileChecksum,
                 Description = data.Description,
@@ -81,7 +88,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareImage
         {
             var sb = new StringBuilder();
             sb.Append("class FirmwareImageSerializerData {\n");
-            sb.Append("  Datafile: ").Append(Datafile).Append("\n");
+            sb.Append("  Datafile: ").Append(Url).Append("\n");
             sb.Append("  DatafileSize:  ").Append(DatafileSize).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");

@@ -38,10 +38,10 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
         }
 
         /// <summary>
-        /// Gets the status of the API key.
+        /// Gets or sets the status of the API key.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public ApiKeyStatus? Status { get; private set; }
+        public ApiKeyStatus? Status { get; set; }
 
         /// <summary>
         /// Gets or sets the display name for the API key.
@@ -56,32 +56,37 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
         /// <summary>
         /// Gets the API key.
         /// </summary>
+        [JsonProperty]
         public string Key { get; private set; }
 
         /// <summary>
         /// Gets creation UTC time RFC3339.
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
+        [JsonProperty]
         public DateTime? CreatedAt { get; private set; }
 
         /// <summary>
         /// Gets the timestamp of the API key creation in the storage, in milliseconds.
         /// </summary>
+        [JsonProperty]
         public long? CreationTime { get; private set; }
 
         /// <summary>
         /// Gets a list of group IDs this API key belongs to.
         /// </summary>
+        [JsonProperty]
         public List<string> Groups { get; private set; }
 
         /// <summary>
-        /// Gets the UUID of the API key.
+        /// Gets or sets the UUID of the API key.
         /// </summary>
-        public string Id { get; private set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Gets the timestamp of the latest API key usage, in milliseconds.
         /// </summary>
+        [JsonProperty]
         public long? LastLoginTime { get; private set; }
 
         /// <summary>

@@ -6,6 +6,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
 {
     using System;
     using System.Text;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Firmware manifest from Update Campaign.
@@ -20,11 +21,13 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
         /// <summary>
         /// Gets checksum generated for the datafile
         /// </summary>
+        [JsonProperty]
         public string DatafileChecksum { get; private set; }
 
         /// <summary>
         /// Gets size in bytes of the uploaded firmware manifest binary
         /// </summary>
+        [JsonProperty]
         public long? DatafileSize { get; private set; }
 
         /// <summary>
@@ -33,29 +36,34 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets the version of the firmware manifest (as a timestamp)
+        /// Gets the version of the firmware manifest (as a timestamp)
         /// </summary>
-        public DateTime? Timestamp { get; set; }
+        [JsonProperty]
+        public DateTime? Timestamp { get; private set; }
 
         /// <summary>
-        /// Gets or sets the time the object was created
+        /// Gets the time the object was created
         /// </summary>
-        public DateTime? CreatedAt { get; set; }
+        [JsonProperty]
+        public DateTime? CreatedAt { get; private set; }
 
         /// <summary>
-        /// Gets or sets the time the object was updated
+        /// Gets the time the object was updated
         /// </summary>
-        public DateTime? UpdatedAt { get; set; }
+        [JsonProperty]
+        public DateTime? UpdatedAt { get; private set; }
 
         /// <summary>
-        /// Gets or sets the class of device
+        /// Gets the class of device
         /// </summary>
-        public string DeviceClass { get; set; }
+        [JsonProperty]
+        public string DeviceClass { get; private set; }
 
         /// <summary>
-        /// Gets or sets the ID of the firmware manifest
+        /// Gets the ID of the firmware manifest
         /// </summary>
-        public string Id { get; set; }
+        [JsonProperty]
+        public string Id { get; private set; }
 
         /// <summary>
         /// Gets or sets the name of the object
