@@ -41,7 +41,7 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         /// <summary>
         /// Map to Device object.
         /// </summary>
-        /// <param name="deviceData">Endpoint response object.</param>
+        /// <param name="deviceData">Device response object.</param>
         /// <param name="api">optional DeviceDirectoryApi.</param>
         /// <returns>Connected device</returns>
         public static ConnectedDevice Map(device_directory.Model.DeviceData deviceData, Connect.Api.ConnectApi api = null)
