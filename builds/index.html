@@ -61,6 +61,8 @@
 						<img class="logo docs" src="images/docs.svg" /></a>
 					<a title="Test Results" href="<%- getArtifactUrl(build, 'tests') %>">
 						<img class="logo tests" src="images/tests.svg" /></a>
+					<a title="TPIP Report" href="<%- getArtifactUrl(build, 'tpip', 'tpip.csv') %>">
+						<img class="logo tpip" src="images/tpip.svg" /></a>
 				<% } %>
 			</div>
 		</li>
@@ -111,9 +113,10 @@
 		return build.lifecycle;
 	}
 
-	function getArtifactUrl(build, base) {
-		return "https://circle-artifacts.com/gh/ARMmbed/" + project + "/" + build.build_num + "/artifacts/0/home/ubuntu/" + base + "/index.html";
-	}
+	function getArtifactUrl(build, base, file) {
+		file = file || "index.html";
+		return "https://circle-artifacts.com/gh/ARMmbed/" + project + "/" + build.build_num + "/artifacts/0/home/ubuntu/" + base + "/" + file;
+  	}
 
 	getCircle(function(builds) {
 		builds = builds.filter(function(build) {
