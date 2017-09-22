@@ -7,6 +7,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Represents group from IAM.
@@ -35,41 +36,49 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
         /// <summary>
         /// Gets the id of the account.
         /// </summary>
+        [JsonProperty]
         public string AccountId { get; private set; }
 
         /// <summary>
         /// Gets the name of the group.
         /// </summary>
+        [JsonProperty]
         public string Name { get; private set; }
 
         /// <summary>
         /// Gets a timestamp of the latest group update, in milliseconds.
         /// </summary>
+        [JsonProperty]
         public long? LastUpdateTime { get; private set; }
 
         /// <summary>
         /// Gets the number of API keys in this group.
         /// </summary>
+        [JsonProperty]
         public int? ApiKeyCount { get; private set; }
 
         /// <summary>
         /// Gets creation UTC time RFC3339.
         /// </summary>
+        [JsonProperty]
         public DateTime? CreatedAt { get; private set; }
 
         /// <summary>
         /// Gets or sets a timestamp of the group creation in the storage, in milliseconds.
         /// </summary>
+        [JsonProperty]
         public long? CreationTime { get; set; }
 
         /// <summary>
         /// Gets the UUID of the group.
         /// </summary>
+        [JsonProperty]
         public string Id { get; private set; }
 
         /// <summary>
         /// Gets the number of users in this group.
         /// </summary>
+        [JsonProperty]
         public int? UserCount { get; private set; }
 
         /// <summary>

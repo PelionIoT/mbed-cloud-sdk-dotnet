@@ -6,6 +6,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Policy
 {
     using System.Collections.Generic;
     using System.Text;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Policy
@@ -33,28 +34,32 @@ namespace MbedCloudSDK.AccountManagement.Model.Policy
         }
 
         /// <summary>
-        /// Gets or sets comma separated list of actions, empty string represents all actions.
+        /// Gets comma separated list of actions, empty string represents all actions.
         /// </summary>
         /// <value>Comma separated list of actions, empty string represents all actions.</value>
-        public string Action { get; set; }
+        [JsonProperty]
+        public string Action { get; private set; }
 
         /// <summary>
-        /// Gets or sets resource that is protected by this policy.
+        /// Gets resource that is protected by this policy.
         /// </summary>
         /// <value>Resource that is protected by this policy.</value>
-        public string Resource { get; set; }
+        [JsonProperty]
+        public string Resource { get; private set; }
 
         /// <summary>
-        /// Gets or sets feature name corresponding to this policy.
+        /// Gets feature name corresponding to this policy.
         /// </summary>
         /// <value>Feature name corresponding to this policy.</value>
-        public string Feature { get; set; }
+        [JsonProperty]
+        public string Feature { get; private set; }
 
         /// <summary>
-        /// Gets or sets true or false controlling whether an action is allowed or not.
+        /// Gets true or false controlling whether an action is allowed or not.
         /// </summary>
         /// <value>True or false controlling whether an action is allowed or not.</value>
-        public bool? Allow { get; set; }
+        [JsonProperty]
+        public bool? Allow { get; private set; }
 
         /// <summary>
         /// Map to Policy object.

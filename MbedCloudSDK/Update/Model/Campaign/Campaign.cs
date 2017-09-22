@@ -49,9 +49,10 @@ namespace MbedCloudSDK.Update.Model.Campaign
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets the time the object was created
+        /// Gets the time the object was created
         /// </summary>
-        public DateTime? CreatedAt { get; set; }
+        [JsonProperty]
+        public DateTime? CreatedAt { get; private set; }
 
         /// <summary>
         /// Gets or sets gets or Sets RootManifestId
@@ -69,19 +70,28 @@ namespace MbedCloudSDK.Update.Model.Campaign
         public DateTime? ScheduledAt { get; set; }
 
         /// <summary>
-        /// Gets or sets the timestamp when the update campaign finished
+        /// Gets the timestamp when the update campaign finished
         /// </summary>
-        public DateTime? FinishedAt { get; set; }
+        [JsonProperty]
+        public DateTime? FinishedAt { get; private set; }
 
         /// <summary>
-        /// Gets or sets gets or Sets RootManifestUrl
+        /// Gets the timestamp when the update campaign started
         /// </summary>
-        public string RootManifestUrl { get; set; }
+        [JsonProperty]
+        public DateTime? StartedAt { get; private set; }
 
         /// <summary>
-        /// Gets or sets the ID of the campaign
+        /// Gets ManifestUrl
         /// </summary>
-        public string Id { get; set; }
+        [JsonProperty]
+        public string ManifestUrl { get; private set; }
+
+        /// <summary>
+        /// Gets the ID of the campaign
+        /// </summary>
+        [JsonProperty]
+        public string Id { get; private set; }
 
         /// <summary>
         /// Gets or sets the filter for the devices the campaign will target
@@ -120,9 +130,10 @@ namespace MbedCloudSDK.Update.Model.Campaign
                 Id = data.Id,
                 Name = data.Name,
                 RootManifestId = data.RootManifestId,
-                RootManifestUrl = data.RootManifestUrl,
+                ManifestUrl = data.RootManifestUrl,
                 State = updateCampaignStatus,
-                ScheduledAt = data.When
+                ScheduledAt = data.When,
+                StartedAt = data.StartedAt
             };
             return campaign;
         }
@@ -140,9 +151,10 @@ namespace MbedCloudSDK.Update.Model.Campaign
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  RootManifestId: ").Append(RootManifestId).Append("\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
+            sb.Append("  StartedAt: ").Append(StartedAt).Append("\n");
             sb.Append("  ScheduledAt: ").Append(ScheduledAt).Append("\n");
             sb.Append("  FinishedAt: ").Append(FinishedAt).Append("\n");
-            sb.Append("  RootManifestUrl: ").Append(RootManifestUrl).Append("\n");
+            sb.Append("  RootManifestUrl: ").Append(ManifestUrl).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  DeviceFilter: ").Append(DeviceFilter).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");

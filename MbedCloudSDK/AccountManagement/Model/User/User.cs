@@ -41,6 +41,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// Gets the status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
+        [JsonProperty]
         public UserStatus? Status { get; private set; }
 
         /// <summary>
@@ -51,26 +52,31 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// <summary>
         /// Gets a flag indicating whether the user&#39;s email address has been verified or not.
         /// </summary>
+        [JsonProperty]
         public bool? EmailVerified { get; private set; }
 
         /// <summary>
         /// Gets the UUID of the account.
         /// </summary>
+        [JsonProperty]
         public string AccountId { get; private set; }
 
         /// <summary>
         /// Gets a timestamp of the latest change of the user password, in milliseconds.
         /// </summary>
+        [JsonProperty]
         public long? PasswordChangedTime { get; private set; }
 
         /// <summary>
-        /// Gets or sets a list of IDs of the groups this user belongs to.
+        /// Gets a list of IDs of the groups this user belongs to.
         /// </summary>
-        public List<string> Groups { get; set; }
+        [JsonProperty]
+        public List<string> Groups { get; private set; }
 
         /// <summary>
         /// Gets creation UTC time RFC3339.
         /// </summary>
+        [JsonProperty]
         public DateTime? CreatedAt { get; private set; }
 
         /// <summary>
@@ -101,6 +107,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// <summary>
         /// Gets a timestamp of the user creation in the storage, in milliseconds.
         /// </summary>
+        [JsonProperty]
         public long? CreationTime { get; private set; }
 
         /// <summary>
@@ -123,16 +130,19 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// <summary>
         /// Gets a timestamp of the latest login of the user, in milliseconds.
         /// </summary>
+        [JsonProperty]
         public long? LastLoginTime { get; private set; }
 
         /// <summary>
         /// Gets whether two factor authentication has been enabled for this user.
         /// </summary>
+        [JsonProperty]
         public bool? TwoFactorAuthentication { get; private set; }
 
         /// <summary>
         /// Gets history of logins for this user.
         /// </summary>
+        [JsonProperty]
         public List<LoginHistory> LoginHistory { get; private set; }
 
         /// <summary>

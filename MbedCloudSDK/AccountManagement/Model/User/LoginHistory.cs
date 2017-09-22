@@ -5,6 +5,7 @@
 namespace MbedCloudSDK.AccountManagement.Model.User
 {
     using System;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Login History
@@ -30,21 +31,25 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// <summary>
         /// Gets date of login
         /// </summary>
+        [JsonProperty]
         public DateTime? Date { get; private set; }
 
         /// <summary>
         /// Gets user agent used for login
         /// </summary>
+        [JsonProperty]
         public string UserAgent { get; private set; }
 
         /// <summary>
         /// Gets iP Address login from
         /// </summary>
+        [JsonProperty]
         public string IpAddress { get; private set; }
 
         /// <summary>
         /// Gets whether login was successful
         /// </summary>
+        [JsonProperty]
         public bool? Success { get; private set; }
 
         /// <summary>

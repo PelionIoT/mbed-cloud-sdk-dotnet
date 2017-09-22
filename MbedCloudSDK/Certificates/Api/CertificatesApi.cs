@@ -27,8 +27,6 @@ namespace MbedCloudSDK.Certificates.Api
         private AccountAdminApi iamAccountApi;
         private DeveloperApi developerApi;
         private string auth;
-        private string bootstrapServerUri;
-        private string lmw2mServerUri;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CertificatesApi"/> class.
@@ -49,9 +47,19 @@ namespace MbedCloudSDK.Certificates.Api
             iamAccountApi = new AccountAdminApi();
             developerApi = new DeveloperApi();
 
-            bootstrapServerUri = serverCredentialsApi.V3ServerCredentialsBootstrapGet(auth).ServerUri;
-            lmw2mServerUri = serverCredentialsApi.V3ServerCredentialsLwm2mGet(auth).ServerUri;
+            BootstrapServerUri = serverCredentialsApi.V3ServerCredentialsBootstrapGet(auth).ServerUri;
+            Lmw2mServerUri = serverCredentialsApi.V3ServerCredentialsLwm2mGet(auth).ServerUri;
         }
+
+        /// <summary>
+        /// Gets Bootstrap server uri
+        /// </summary>
+        public string BootstrapServerUri { get; private set; }
+
+        /// <summary>
+        /// Gets lmw2m server Uri
+        /// </summary>
+        public string Lmw2mServerUri { get; private set; }
 
         /// <summary>
         /// Get meta data for the last Mbed Cloud API call
@@ -97,7 +105,7 @@ namespace MbedCloudSDK.Certificates.Api
                 var respCertificates = new ResponsePage<Certificate>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var certificate in resp.Data)
                 {
-                    respCertificates.Data.Add(Certificate.Map(certificate));
+                    respCertificates.Data.Add(Certificate.MapTrustedCert(certificate));
                 }
 
                 return respCertificates;
@@ -119,7 +127,7 @@ namespace MbedCloudSDK.Certificates.Api
                 try
                 {
                     var response = developerApi.GetCertificate(certificateId);
-                    trustedCert = Certificate.Map(response);
+                    trustedCert = Certificate.MapTrustedCert(response, null, this);
                 }
                 catch (iam.Client.ApiException ex)
                 {
@@ -131,23 +139,11 @@ namespace MbedCloudSDK.Certificates.Api
                     try
                     {
                         var devResponse = developerCertificateApi.V3DeveloperCertificatesIdGet(trustedCert.Id, auth);
-                        trustedCert = Certificate.Map(devResponse, trustedCert);
+                        trustedCert = Certificate.MapDeveloperCert(devResponse, trustedCert);
                     }
                     catch (ApiException ex)
                     {
                         throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
-                    }
-                }
-                else
-                {
-                    switch (trustedCert.Type)
-                    {
-                        case CertificateType.Bootstrap:
-                            trustedCert.ServerUri = bootstrapServerUri;
-                            break;
-                        case CertificateType.Lwm2m:
-                            trustedCert.ServerUri = lmw2mServerUri;
-                            break;
                     }
                 }
 
@@ -204,7 +200,7 @@ namespace MbedCloudSDK.Certificates.Api
             try
             {
                 var resp = iamAccountApi.AddCertificate(new TrustedCertificateReq(Certificate: certificateData, Name: certificate.Name, Service: serviceEnum, Signature: signature, Description: certificate.Description));
-                return Certificate.Map(resp);
+                return Certificate.MapTrustedCert(resp);
             }
             catch (iam.Client.ApiException ex)
             {

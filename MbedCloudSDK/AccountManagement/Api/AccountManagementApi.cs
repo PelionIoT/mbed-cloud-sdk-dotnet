@@ -39,7 +39,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         }
 
         /// <summary>
-        /// Get LAst Api Metadata
+        /// Get metadata for last api call
         /// </summary>
         /// <returns>Api Metadata</returns>
         public static ApiMetadata GetLastApiMetadata()
