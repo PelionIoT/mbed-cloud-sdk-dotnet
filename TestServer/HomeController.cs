@@ -39,24 +39,26 @@ namespace TestServer
             try
             {
                 var csv = new StringBuilder();
-                csv.AppendLine("Name,Version");
+                csv.AppendLine("Name,Version,Repository,License");
                 var files = Directory.GetFiles("MbedCloudSDK", "packages.config");
 
                 foreach (var path in files)
                 {
                     var file = new PackageReferenceFile(path);
+                    var repo = PackageRepositoryFactory.Default.CreateRepository("https://packages.nuget.org/api/v2");
                     foreach (var packageReference in file.GetPackageReferences())
                     {
                         if (!packageReference.IsDevelopmentDependency)
                         {
-                            var newLine = $"{packageReference.Id},{packageReference.Version}";
+                            var packages = repo.FindPackagesById(packageReference.Id).ToList().LastOrDefault();
+                            var newLine = $"{packageReference.Id},{packageReference.Version},{packages.ProjectUrl},{packages.LicenseUrl}";
                             csv.AppendLine(newLine);
                         }
                     }
                 }
                 File.WriteAllText("MbedCloudSDK/tpip.csv", csv.ToString());
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return Ok("Init");
             }
