@@ -12,6 +12,7 @@ machine:
     SDK_TESTS: ${HOME}/tests
     SDK_TPIP: ${HOME}/tpip
     SDK_BUILD: ${HOME}/build
+    NUGET_NAME: Arm.Mbed.MbedCloudSDK.1.2.1.nupkg
 dependencies:
   pre:
     - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
@@ -31,6 +32,10 @@ test:
     - mono --runtime=v4.0 nuget.exe restore MbedCloudSDK/packages.config -PackagesDirectory packages
     - mono --runtime=v4.0 nuget.exe restore TestServer/packages.config -PackagesDirectory packages
     - msbuild /p:Configuration=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+    - rm nuget.exe
+    - wget https://dist.nuget.org/win-x86-commandline/v4.3.0/nuget.exe
+    - mono --runtime=v4.0 nuget.exe pack MbedCloudSDK/MbedCloudSDK.csproj -MSBuildPath "/usr/lib/mono/msbuild/15.0/bin" -IncludeReferencedProjects -Prop Configuration=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+    - mv ${NUGET_NAME} ${SDK_BUILD}
   override:
     - git clone https://$GITHUB_TOKEN@github.com/ARMmbed/mbed-cloud-sdk-testrunner.git TestServer/testrunner
     - pip install -r TestServer/testrunner/requirements.txt
