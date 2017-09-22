@@ -6,12 +6,14 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
 {
     using System.Collections.Generic;
     using System.Text;
+    using MbedCloudSDK.Common;
+    using MbedCloudSDK.DeviceDirectory.Model.Device;
     using mds.Model;
 
     /// <summary>
     /// Connected Device
     /// </summary>
-    public class ConnectedDevice
+    public class ConnectedDevice : DeviceDirectory.Model.Device.Device
     {
         private Connect.Api.ConnectApi api;
 
@@ -37,41 +39,44 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         }
 
         /// <summary>
-        /// Gets or sets id of the endpoint.
-        /// </summary>
-        public string Id { get; set; }
-
-        /// <summary>
-        /// Gets or sets queue mode (default value is false).
-        /// </summary>
-        /// <value>Queue mode (default value is false).</value>
-        public bool? QueueMode { get; set; }
-
-        /// <summary>
-        /// Gets or sets endpoint type.
-        /// </summary>
-        /// <value>Endpoint type.</value>
-        public string Type { get; set; }
-
-        /// <summary>
-        /// Gets or sets possible values ACTIVE, STALE.
-        /// </summary>
-        public string Status { get; set; }
-
-        /// <summary>
         /// Map to Device object.
         /// </summary>
-        /// <param name="endpoint">Endpoint response object.</param>
+        /// <param name="deviceData">Endpoint response object.</param>
         /// <param name="api">optional DeviceDirectoryApi.</param>
         /// <returns>Connected device</returns>
-        public static ConnectedDevice Map(Endpoint endpoint, Connect.Api.ConnectApi api = null)
+        public static ConnectedDevice Map(device_directory.Model.DeviceData deviceData, Connect.Api.ConnectApi api = null)
         {
             var device = new ConnectedDevice(null, api)
             {
-                Id = endpoint.Name,
-                Status = endpoint.Status,
-                QueueMode = endpoint.Q,
-                Type = endpoint.Type
+                BootstrappedTimestamp = deviceData.BootstrappedTimestamp,
+                UpdatedAt = deviceData.UpdatedAt,
+                CustomAttributes = deviceData.CustomAttributes,
+                DeviceClass = deviceData.DeviceClass,
+                Description = deviceData.Description,
+                AutoUpdate = deviceData.AutoUpdate,
+                Mechanism = Utils.ParseEnum<Mechanism>(deviceData.Mechanism),
+                State = Utils.ParseEnum<State>(deviceData.State),
+                ProvisionKey = deviceData.DeviceKey,
+                SerialNumber = deviceData.SerialNumber,
+                VendorId = deviceData.VendorId,
+                AccountId = deviceData.AccountId,
+                DeployedState = Utils.ParseEnum<DeployedState>(deviceData.DeployedState),
+                Deployment = deviceData.Deployment,
+                MechanismUrl = deviceData.MechanismUrl,
+                TrustLevel = deviceData.TrustLevel,
+                Id = deviceData.Id,
+                Name = deviceData.Name,
+                CreatedAt = deviceData.CreatedAt,
+                Manifest = deviceData.Manifest,
+                CertificateFingerprint = deviceData.DeviceKey,
+                CertificateIssuerId = deviceData.CaId,
+                BootstrapExpirationDate = deviceData.BootstrapExpirationDate,
+                ConnectorExpirationDate = deviceData.ConnectorExpirationDate,
+                EndpointName = deviceData.EndpointName,
+                HostGateway = deviceData.HostGateway,
+                DeviceExecutionMode = deviceData.DeviceExecutionMode,
+                FirmwareChecksum = deviceData.FirmwareChecksum,
+                EndpointType = deviceData.EndpointType
             };
             return device;
         }
@@ -93,22 +98,6 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         public void DeleteResource(string resourcePath, bool? noResponse = null)
         {
             api.DeleteResource(Id, resourcePath, noResponse);
-        }
-
-        /// <summary>
-        /// Returns the string presentation of the object
-        /// </summary>
-        /// <returns>String presentation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class DeviceDetail {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  QueueMode: ").Append(QueueMode.ToString()).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
         }
     }
 }
