@@ -257,6 +257,65 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         }
 
         /// <summary>
+        /// Create a device data post request
+        /// </summary>
+        /// <param name="device">Device</param>
+        /// <returns>a device data post request</returns>
+        public static DeviceDataPostRequest CreatePostRequest(Device device)
+        {
+            var deviceDataPostRequest = new DeviceDataPostRequest(DeviceKey: device.CertificateFingerprint, CaId: device.CertificateIssuerId)
+            {
+                BootstrapExpirationDate = device.BootstrapExpirationDate,
+                BootstrappedTimestamp = device.BootstrappedTimestamp,
+                ConnectorExpirationDate = device.ConnectorExpirationDate,
+                Mechanism = Utils.ParseEnum<DeviceDataPostRequest.MechanismEnum>(device.Mechanism),
+                DeviceClass = device.DeviceClass,
+                EndpointName = device.EndpointName,
+                AutoUpdate = device.AutoUpdate,
+                HostGateway = device.HostGateway,
+                DeviceExecutionMode = device.DeviceExecutionMode,
+                CustomAttributes = device.CustomAttributes,
+                State = Utils.ParseEnum<DeviceDataPostRequest.StateEnum>(device.State),
+                SerialNumber = device.SerialNumber,
+                FirmwareChecksum = device.FirmwareChecksum,
+                VendorId = device.VendorId,
+                Description = device.Description,
+                _Object = device.Object,
+                EndpointType = device.EndpointType,
+                Deployment = device.Deployment,
+                MechanismUrl = device.MechanismUrl,
+                Name = device.Name,
+                DeviceKey = device.CertificateFingerprint,
+                Manifest = device.Manifest,
+                CaId = device.CertificateIssuerId
+            };
+
+            return deviceDataPostRequest;
+        }
+
+        /// <summary>
+        /// Create a device data put request
+        /// </summary>
+        /// <param name="device">Device</param>
+        /// <returns>A device data put request</returns>
+        public static DeviceDataPutRequest CreatePutRequest(Device device)
+        {
+            var deviceDataPutRequest = new DeviceDataPutRequest(CaId: device.CertificateIssuerId, DeviceKey: device.CertificateFingerprint)
+            {
+                Description = device.Description,
+                EndpointName = device.EndpointName,
+                AutoUpdate = device.AutoUpdate,
+                HostGateway = device.HostGateway,
+                _Object = device.Object,
+                CustomAttributes = device.CustomAttributes,
+                EndpointType = device.EndpointType,
+                Name = device.Name
+            };
+
+            return deviceDataPutRequest;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>

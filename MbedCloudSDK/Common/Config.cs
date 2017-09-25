@@ -9,46 +9,35 @@ namespace MbedCloudSDK.Common
     /// </summary>
     public class Config
     {
-        private string host = "https://api.us-east-1.mbedcloud.com";
-        private string apiKey;
-        private string authorizationPrefix = "Bearer";
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Config"/> class.
         /// </summary>
         /// <param name="apiKey">API key.</param>
-        public Config(string apiKey)
+        /// <param name="host">Host url</param>
+        /// <param name="authorizationPrefix">Authorization prefix</param>
+        public Config(string apiKey, string host = "https://api.us-east-1.mbedcloud.com", string authorizationPrefix = "Bearer")
         {
-            this.apiKey = apiKey;
+            AuthorizationPrefix = authorizationPrefix;
+            ApiKey = apiKey;
+            Host = host;
         }
 
         /// <summary>
         /// Gets or sets the host.
         /// </summary>
         /// <value>The host.</value>
-        public string Host
-        {
-            get { return host; }
-            set { host = value; }
-        }
+        public string Host { get; set; }
 
         /// <summary>
         /// Gets the API key.
         /// </summary>
         /// <value>The API key.</value>
-        public string ApiKey
-        {
-            get { return apiKey; }
-        }
+        public string ApiKey { get; }
 
         /// <summary>
-        /// Gets or sets the authorization prefix.
+        /// Gets the authorization prefix.
         /// </summary>
         /// <value>The authorization prefix.</value>
-        public string AuthorizationPrefix
-        {
-            get { return authorizationPrefix; }
-            set { authorizationPrefix = value; }
-        }
+        public string AuthorizationPrefix { get; }
     }
 }

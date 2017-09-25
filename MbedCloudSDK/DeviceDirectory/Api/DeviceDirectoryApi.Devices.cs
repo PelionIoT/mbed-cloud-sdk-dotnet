@@ -86,37 +86,9 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <returns>Device</returns>
         public Device AddDevice(Device device)
         {
-            var deviceDataPostRequest = new DeviceDataPostRequest(DeviceKey: device.CertificateFingerprint, CaId: device.CertificateIssuerId)
-            {
-                BootstrapExpirationDate = device.BootstrapExpirationDate,
-                BootstrappedTimestamp = device.BootstrappedTimestamp,
-                ConnectorExpirationDate = device.ConnectorExpirationDate,
-                Mechanism = GetMechanismEnum(device),
-                DeviceClass = device.DeviceClass,
-                EndpointName = device.EndpointName,
-                AutoUpdate = device.AutoUpdate,
-                HostGateway = device.HostGateway,
-                DeviceExecutionMode = device.DeviceExecutionMode,
-                CustomAttributes = device.CustomAttributes,
-                State = GetStateEnum(device),
-                SerialNumber = device.SerialNumber,
-                FirmwareChecksum = device.FirmwareChecksum,
-                VendorId = device.VendorId,
-                Description = device.Description,
-                _Object = device.Object,
-                EndpointType = device.EndpointType,
-                Deployment = device.Deployment,
-                MechanismUrl = device.MechanismUrl,
-                TrustLevel = device.TrustLevel,
-                Name = device.Name,
-                DeviceKey = device.CertificateFingerprint,
-                Manifest = device.Manifest,
-                CaId = device.CertificateIssuerId
-            };
-
             try
             {
-                var response = api.DeviceCreate(deviceDataPostRequest);
+                var response = api.DeviceCreate(Device.CreatePostRequest(device));
                 return GetDevice(response.Id);
             }
             catch (device_directory.Client.ApiException ex)
@@ -135,21 +107,9 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         {
             var originalDevice = GetDevice(deviceId);
             var device = Utils.MapToUpdate(originalDevice, deviceToUpdate) as Device;
-            var deviceDataPutRequest = new DeviceDataPutRequest(CaId: device.CertificateIssuerId, DeviceKey: device.CertificateFingerprint)
-            {
-                Description = device.Description,
-                EndpointName = device.EndpointName,
-                AutoUpdate = device.AutoUpdate,
-                HostGateway = device.HostGateway,
-                _Object = device.Object,
-                CustomAttributes = device.CustomAttributes,
-                EndpointType = device.EndpointType,
-                Name = device.Name
-            };
-
             try
             {
-                var response = api.DeviceUpdate(deviceId, deviceDataPutRequest);
+                var response = api.DeviceUpdate(deviceId, Device.CreatePutRequest(device));
                 return GetDevice(deviceId);
             }
             catch (device_directory.Client.ApiException ex)
@@ -172,63 +132,6 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
-        }
-
-        private static DeviceDataPostRequest.MechanismEnum GetMechanismEnum(Device device)
-        {
-            if (device.Mechanism.HasValue)
-            {
-                DeviceDataPostRequest.MechanismEnum mechanismEnum;
-                switch (device.Mechanism.Value)
-                {
-                    case Mechanism.Connector:
-                        mechanismEnum = DeviceDataPostRequest.MechanismEnum.Connector;
-                        break;
-                    case Mechanism.Direct:
-                        mechanismEnum = DeviceDataPostRequest.MechanismEnum.Direct;
-                        break;
-                    default:
-                        mechanismEnum = DeviceDataPostRequest.MechanismEnum.Connector;
-                        break;
-                }
-
-                return mechanismEnum;
-            }
-
-            return DeviceDataPostRequest.MechanismEnum.Connector;
-        }
-
-        private static DeviceDataPostRequest.StateEnum GetStateEnum(Device device)
-        {
-            if (device.State.HasValue)
-            {
-                DeviceDataPostRequest.StateEnum stateEnum;
-                switch (device.State.Value)
-                {
-                    case State.Bootstrapped:
-                        stateEnum = DeviceDataPostRequest.StateEnum.Bootstrapped;
-                        break;
-                    case State.Cloud_enrolling:
-                        stateEnum = DeviceDataPostRequest.StateEnum.Cloudenrolling;
-                        break;
-                    case State.Deregistered:
-                        stateEnum = DeviceDataPostRequest.StateEnum.Deregistered;
-                        break;
-                    case State.Registered:
-                        stateEnum = DeviceDataPostRequest.StateEnum.Registered;
-                        break;
-                    case State.Unenrolled:
-                        stateEnum = DeviceDataPostRequest.StateEnum.Unenrolled;
-                        break;
-                    default:
-                        stateEnum = DeviceDataPostRequest.StateEnum.Bootstrapped;
-                        break;
-                }
-
-                return stateEnum;
-            }
-
-            return DeviceDataPostRequest.StateEnum.Bootstrapped;
         }
     }
 }
