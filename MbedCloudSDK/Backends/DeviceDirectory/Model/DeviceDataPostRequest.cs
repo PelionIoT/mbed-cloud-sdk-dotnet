@@ -146,7 +146,7 @@ namespace device_directory.Model
         /// <param name="AutoUpdate">DEPRECATED: Mark this device for automatic firmware update..</param>
         /// <param name="HostGateway">The &#x60;endpoint_name&#x60; of the host gateway, if appropriate..</param>
         /// <param name="DeviceExecutionMode">The execution mode from the certificate of the device. Permitted values:   - 0 - unspecified execution mode (default)   - 1 - development devices   - 5 - production devices.</param>
-        /// <param name="CustomAttributes">Up to five custom key-value attributes..</param>
+        /// <param name="CustomAttributes">Up to five custom key-value attributes. Note that keys cannot start with a number..</param>
         /// <param name="State">The current state of the device..</param>
         /// <param name="SerialNumber">The serial number of the device..</param>
         /// <param name="FirmwareChecksum">The SHA256 checksum of the current firmware image..</param>
@@ -254,9 +254,9 @@ namespace device_directory.Model
         [DataMember(Name="device_execution_mode", EmitDefaultValue=false)]
         public int? DeviceExecutionMode { get; set; }
         /// <summary>
-        /// Up to five custom key-value attributes.
+        /// Up to five custom key-value attributes. Note that keys cannot start with a number.
         /// </summary>
-        /// <value>Up to five custom key-value attributes.</value>
+        /// <value>Up to five custom key-value attributes. Note that keys cannot start with a number.</value>
         [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
         public Dictionary<string, string> CustomAttributes { get; set; }
         /// <summary>
