@@ -4,6 +4,7 @@
 
 namespace MbedCloudSDK.Connect.Api
 {
+    using System;
     using System.Collections.Generic;
     using System.Text;
     using MbedCloudSDK.Common;
@@ -44,11 +45,11 @@ namespace MbedCloudSDK.Connect.Api
         /// </summary>
         /// <param name="deviceId">Device Id</param>
         /// <returns>List of device subscriptions</returns>
-        public string ListDeviceSubscriptions(string deviceId)
+        public string[] ListDeviceSubscriptions(string deviceId)
         {
             try
             {
-                return subscriptionsApi.V2SubscriptionsDeviceIdGet(deviceId);
+                return subscriptionsApi.V2SubscriptionsDeviceIdGet(deviceId).Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             }
             catch (mds.Client.ApiException e)
             {
