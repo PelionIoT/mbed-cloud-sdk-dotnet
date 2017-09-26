@@ -43,7 +43,7 @@ namespace device_directory.Model
         /// <param name="AutoUpdate">DEPRECATED: Mark this device for automatic firmware update..</param>
         /// <param name="HostGateway">The &#x60;endpoint_name&#x60; of the host gateway, if appropriate..</param>
         /// <param name="_Object">The API resource entity..</param>
-        /// <param name="CustomAttributes">Up to five custom key-value attributes..</param>
+        /// <param name="CustomAttributes">Up to five custom key-value attributes. Note that keys cannot start with a number..</param>
         /// <param name="DeviceKey">The fingerprint of the device certificate. (required).</param>
         /// <param name="EndpointType">The endpoint type of the device. For example, the device is a gateway..</param>
         /// <param name="CaId">The certificate issuer&#39;s ID. (required).</param>
@@ -109,9 +109,9 @@ namespace device_directory.Model
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
         /// <summary>
-        /// Up to five custom key-value attributes.
+        /// Up to five custom key-value attributes. Note that keys cannot start with a number.
         /// </summary>
-        /// <value>Up to five custom key-value attributes.</value>
+        /// <value>Up to five custom key-value attributes. Note that keys cannot start with a number.</value>
         [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
         public Dictionary<string, string> CustomAttributes { get; set; }
         /// <summary>
