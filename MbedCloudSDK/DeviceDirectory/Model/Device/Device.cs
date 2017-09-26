@@ -76,7 +76,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// Gets the time the object was updated
         /// </summary>
         [JsonProperty]
-        public DateTime? UpdatedAt { get; private set; }
+        public DateTime? UpdatedAt { get; internal set; }
 
         /// <summary>
         /// Gets or sets up to 5 custom JSON attributes
@@ -92,7 +92,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// Gets the ID of the device
         /// </summary>
         [JsonProperty]
-        public string Id { get; private set; }
+        public string Id { get; internal set; }
 
         /// <summary>
         /// Gets or sets the description of the object
@@ -123,7 +123,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// Gets the owning IAM account ID
         /// </summary>
         [JsonProperty]
-        public string AccountId { get; private set; }
+        public string AccountId { get; internal set; }
 
         /// <summary>
         /// Gets or sets the last deployment used on the device
@@ -144,7 +144,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// Gets the time the object was created
         /// </summary>
         [JsonProperty]
-        public DateTime? CreatedAt { get; private set; }
+        public DateTime? CreatedAt { get; internal set; }
 
         /// <summary>
         /// Gets or sets uRL for the current device manifest
@@ -155,7 +155,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// Gets the timestamp of the current manifest version
         /// </summary>
         [JsonProperty]
-        public DateTime? ManifestTimeStamp { get; private set; }
+        public DateTime? ManifestTimeStamp { get; internal set; }
 
         /// <summary>
         /// Gets or sets fingerprint of the device certificate

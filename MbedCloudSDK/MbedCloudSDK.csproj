@@ -195,6 +195,7 @@
     <Compile Include="Common\BaseApi.cs" />
     <Compile Include="Common\Config.cs" />
     <Compile Include="Common\Utils.cs" />
+    <Compile Include="Common\ObjectExtensions.cs" />
     <Compile Include="Common\ApiMetadata.cs" />
     <Compile Include="Common\Filter\Filter.cs" />
     <Compile Include="Common\Filter\FilterAttribute.cs" />

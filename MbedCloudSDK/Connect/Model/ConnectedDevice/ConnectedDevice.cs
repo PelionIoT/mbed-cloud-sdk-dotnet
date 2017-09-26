@@ -4,6 +4,7 @@
 
 namespace MbedCloudSDK.Connect.Model.ConnectedDevice
 {
+    using System;
     using System.Collections.Generic;
     using System.Text;
     using MbedCloudSDK.Common;
@@ -46,39 +47,10 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         /// <returns>Connected device</returns>
         public static ConnectedDevice Map(device_directory.Model.DeviceData deviceData, Connect.Api.ConnectApi api = null)
         {
-            var device = new ConnectedDevice(null, api)
-            {
-                BootstrappedTimestamp = deviceData.BootstrappedTimestamp,
-                UpdatedAt = deviceData.UpdatedAt,
-                CustomAttributes = deviceData.CustomAttributes,
-                DeviceClass = deviceData.DeviceClass,
-                Description = deviceData.Description,
-                AutoUpdate = deviceData.AutoUpdate,
-                Mechanism = Utils.ParseEnum<Mechanism>(deviceData.Mechanism),
-                State = Utils.ParseEnum<State>(deviceData.State),
-                ProvisionKey = deviceData.DeviceKey,
-                SerialNumber = deviceData.SerialNumber,
-                VendorId = deviceData.VendorId,
-                AccountId = deviceData.AccountId,
-                DeployedState = Utils.ParseEnum<DeployedState>(deviceData.DeployedState),
-                Deployment = deviceData.Deployment,
-                MechanismUrl = deviceData.MechanismUrl,
-                TrustLevel = deviceData.TrustLevel,
-                Id = deviceData.Id,
-                Name = deviceData.Name,
-                CreatedAt = deviceData.CreatedAt,
-                Manifest = deviceData.Manifest,
-                CertificateFingerprint = deviceData.DeviceKey,
-                CertificateIssuerId = deviceData.CaId,
-                BootstrapExpirationDate = deviceData.BootstrapExpirationDate,
-                ConnectorExpirationDate = deviceData.ConnectorExpirationDate,
-                EndpointName = deviceData.EndpointName,
-                HostGateway = deviceData.HostGateway,
-                DeviceExecutionMode = deviceData.DeviceExecutionMode,
-                FirmwareChecksum = deviceData.FirmwareChecksum,
-                EndpointType = deviceData.EndpointType
-            };
-            return device;
+            var device = Device.Map(deviceData);
+            var @props = device.GetProperties();
+            var connectedDevice = new ConnectedDevice(@props, api);
+            return connectedDevice;
         }
 
         /// <summary>
