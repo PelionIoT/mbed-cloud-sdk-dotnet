@@ -8,6 +8,8 @@ namespace MbedCloudSDK.Connect.Api
     using System.Collections.Generic;
     using System.Text;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Filter;
+    using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
     using MbedCloudSDK.Connect.Model.Resource;
     using MbedCloudSDK.Exceptions;
@@ -20,21 +22,46 @@ namespace MbedCloudSDK.Connect.Api
         /// <summary>
         /// Lists all endpoints.
         /// </summary>
+        /// <param name="options">options</param>
         /// <returns>The list of endpoints.</returns>
-        public List<ConnectedDevice> ListConnectedDevices()
+        public PaginatedResponse<ConnectedDevice> ListConnectedDevices(QueryOptions options = null)
+        {
+            if (options == null)
+            {
+                options = new QueryOptions();
+            }
+
+            if (options.Filter == null)
+            {
+                options.Filter = new Filter();
+            }
+
+            options.Filter.Add("state", "registered");
+
+            try
+            {
+                return new PaginatedResponse<ConnectedDevice>(ListConnectedDevicesFunc, options);
+            }
+            catch (CloudApiException)
+            {
+                throw;
+            }
+        }
+
+        private ResponsePage<ConnectedDevice> ListConnectedDevicesFunc(QueryOptions options)
         {
             try
             {
-                var endpoints = endpointsApi.V2EndpointsGet();
-                var devices = new List<ConnectedDevice>();
-                foreach (var endpoint in endpoints)
+                var resp = deviceDirectoryApi.DeviceList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter.FilterString, include: options.Include);
+                var respDevices = new ResponsePage<ConnectedDevice>(after: resp.After, hasMore: resp.HasMore, limit: resp.Limit, order: resp.Order, totalCount: resp.TotalCount);
+                foreach (var device in resp.Data)
                 {
-                    devices.Add(ConnectedDevice.Map(endpoint, this));
+                    respDevices.Data.Add(ConnectedDevice.Map(device));
                 }
 
-                return devices;
+                return respDevices;
             }
-            catch (mds.Client.ApiException e)
+            catch (device_directory.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }

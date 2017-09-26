@@ -101,10 +101,18 @@ namespace MbedCloudSDK.Common.Filter
         /// <param name="filterOperator">Operator, Equals if not provided</param>
         public void Add(string key, string value, FilterOperator filterOperator = FilterOperator.Equals)
         {
-            var filterAttribute = new FilterAttribute(value, filterOperator);
-            FilterDictionary.Add(key, filterAttribute);
-            FilterJson.Add(new JObject(
-                content: new JProperty(key, JObject.FromObject(filterAttribute))));
+            try
+            {
+                var filterAttribute = new FilterAttribute(value, filterOperator);
+                FilterDictionary.Remove(key);
+                FilterDictionary.Add(key, filterAttribute);
+                var prop = new JProperty(key, JObject.FromObject(filterAttribute));
+                FilterJson.Add(prop);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         private static FilterAttribute GetQueryAttribute(JObject val)

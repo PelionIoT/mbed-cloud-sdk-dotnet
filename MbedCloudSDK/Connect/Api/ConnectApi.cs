@@ -9,6 +9,8 @@ namespace MbedCloudSDK.Connect.Api
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using device_directory.Api;
+    using device_directory.Client;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
     using MbedCloudSDK.Connect.Model.Resource;
@@ -34,6 +36,7 @@ namespace MbedCloudSDK.Connect.Api
 
         private Task notificationTask;
         private CancellationTokenSource cancellationToken;
+        private device_directory.Api.DefaultApi deviceDirectoryApi;
         private statistics.Api.StatisticsApi statisticsApi;
         private EndpointsApi endpointsApi;
         private statistics.Api.AccountApi accountApi;
@@ -41,7 +44,7 @@ namespace MbedCloudSDK.Connect.Api
         private mds.Api.ResourcesApi resourcesApi;
         private string auth;
         private NotificationsApi notificationsApi;
-        private DefaultApi defaultApi;
+        private mds.Api.DefaultApi defaultApi;
         private bool disposed;
 
         /// <summary>
@@ -64,13 +67,18 @@ namespace MbedCloudSDK.Connect.Api
             mds.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
             mds.Client.Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
 
+            device_directory.Client.Configuration.Default.ApiClient = new ApiClient(config.Host);
+            device_directory.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
+            device_directory.Client.Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+
+            deviceDirectoryApi = new device_directory.Api.DefaultApi();
             statisticsApi = new statistics.Api.StatisticsApi();
             subscriptionsApi = new SubscriptionsApi();
             resourcesApi = new ResourcesApi();
             endpointsApi = new EndpointsApi();
             accountApi = new statistics.Api.AccountApi();
             notificationsApi = new NotificationsApi();
-            defaultApi = new DefaultApi();
+            defaultApi = new mds.Api.DefaultApi();
         }
 
         /// <summary>
