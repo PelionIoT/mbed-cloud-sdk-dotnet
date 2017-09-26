@@ -37,10 +37,11 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         }
 
         /// <summary>
-        /// Gets or sets the status of the account.
+        /// Gets the status of the account.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public AccountStatus? Status { get; set; }
+        [JsonProperty]
+        public AccountStatus? Status { get; private set; }
 
         /// <summary>
         /// Gets or sets the phone number of the company.
@@ -53,14 +54,16 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         public string Postcode { get; set; }
 
         /// <summary>
-        /// Gets or sets account ID.
+        /// Gets account ID.
         /// </summary>
-        public string Id { get; set; }
+        [JsonProperty]
+        public string Id { get; private set; }
 
         /// <summary>
-        /// Gets or sets an array of aliases.
+        /// Gets an array of aliases.
         /// </summary>
-        public List<string> Aliases { get; set; }
+        [JsonProperty]
+        public List<string> Aliases { get; private set; }
 
         /// <summary>
         /// Gets or sets postal address line 2.
@@ -88,9 +91,10 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         public string State { get; set; }
 
         /// <summary>
-        /// Gets or sets flag (true/false) indicating whether Factory Tool is allowed to download or not.
+        /// Gets flag (true/false) indicating whether Factory Tool is allowed to download or not.
         /// </summary>
-        public bool? ProvisisioningAllowed { get; set; }
+        [JsonProperty]
+        public bool? ProvisisioningAllowed { get; private set; }
 
         /// <summary>
         /// Gets or sets the company email address for this account.
@@ -103,19 +107,22 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         public string Company { get; set; }
 
         /// <summary>
-        /// Gets or sets time when upgraded to commercial account in UTC format RFC3339.
+        /// Gets time when upgraded to commercial account in UTC format RFC3339.
         /// </summary>
-        public DateTime? UpgradedAt { get; set; }
+        [JsonProperty]
+        public DateTime? UpgradedAt { get; private set; }
 
         /// <summary>
-        /// Gets or sets the tier level of the account; &#39;0&#39;: free tier, commercial account. Other values are reserved for the future.
+        /// Gets the tier level of the account; &#39;0&#39;: free tier, commercial account. Other values are reserved for the future.
         /// </summary>
-        public string Tier { get; set; }
+        [JsonProperty]
+        public string Tier { get; private set; }
 
         /// <summary>
-        /// Gets or sets list of limits as key-value pairs if requested.
+        /// Gets list of limits as key-value pairs if requested.
         /// </summary>
-        public Dictionary<string, string> Limits { get; set; }
+        [JsonProperty]
+        public Dictionary<string, string> Limits { get; private set; }
 
         /// <summary>
         /// Gets or sets the country part of the postal address.
@@ -123,9 +130,10 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         public string Country { get; set; }
 
         /// <summary>
-        /// Gets or sets creation UTC time RFC3339.
+        /// Gets creation UTC time RFC3339.
         /// </summary>
-        public DateTime? CreatedAt { get; set; }
+        [JsonProperty]
+        public DateTime? CreatedAt { get; private set; }
 
         /// <summary>
         /// Gets or sets the name of the contact person for this account.
@@ -133,15 +141,17 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         public string Contact { get; set; }
 
         /// <summary>
-        /// Gets or sets account template ID.
+        /// Gets account template ID.
         /// </summary>
-        public string TemplateId { get; set; }
+        [JsonProperty]
+        public string TemplateId { get; private set; }
 
         /// <summary>
-        /// Gets or sets list of policies.
+        /// Gets list of policies.
         /// </summary>
         /// <value>List of policies.</value>
-        public List<Policy.Policy> Policies { get; set; }
+        [JsonProperty]
+        public List<Policy.Policy> Policies { get; private set; }
 
         /// <summary>
         /// Gets or sets a reason note for updating the status of the account
@@ -175,12 +185,12 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
                 Tier = accountInfo.Tier,
                 Limits = accountInfo.Limits,
                 Country = accountInfo.Country,
-                CreatedAt = accountInfo.CreatedAt
+                CreatedAt = accountInfo.CreatedAt,
+                Contact = accountInfo.Contact,
+                TemplateId = accountInfo.TemplateId,
+                Policies = accountInfo?.Policies?.Select(p => { return Policy.Policy.Map(p); }).ToList(),
+                Reason = accountInfo.Reason
             };
-            account.Contact = account.Contact;
-            account.TemplateId = accountInfo.TemplateId;
-            account.Policies = accountInfo?.Policies?.Select(p => { return Policy.Policy.Map(p); }).ToList();
-            account.Reason = accountInfo.Reason;
             return account;
         }
 

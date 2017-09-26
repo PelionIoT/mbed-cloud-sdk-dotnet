@@ -8,6 +8,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
     using System.Text;
     using device_directory.Model;
     using MbedCloudSDK.Common.Filter;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Represents Query from device catalog API.
@@ -24,14 +25,16 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
         }
 
         /// <summary>
-        /// Gets or sets the time the object was created
+        /// Gets the time the object was created
         /// </summary>
-        public DateTime? CreatedAt { get; set; }
+        [JsonProperty]
+        public DateTime? CreatedAt { get; private set; }
 
         /// <summary>
-        /// Gets or sets the time the object was updated
+        /// Gets the time the object was updated
         /// </summary>
-        public DateTime? UpdatedAt { get; set; }
+        [JsonProperty]
+        public DateTime? UpdatedAt { get; private set; }
 
         /// <summary>
         /// Gets or sets the device filter
@@ -39,9 +42,10 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
         public Filter Filter { get; set; }
 
         /// <summary>
-        /// Gets or sets the ID of the query.
+        /// Gets the ID of the query.
         /// </summary>
-        public string Id { get; set; }
+        [JsonProperty]
+        public string Id { get; private set; }
 
         /// <summary>
         /// Gets or sets the name of the query.

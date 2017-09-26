@@ -7,6 +7,7 @@ namespace MbedCloudSDK.Certificates.Model
     using System;
     using System.Text;
     using iam.Model;
+    using MbedCloudSDK.Certificates.Api;
     using MbedCloudSDK.Common;
     using Newtonsoft.Json;
 
@@ -16,10 +17,11 @@ namespace MbedCloudSDK.Certificates.Model
     public class Certificate
     {
         /// <summary>
-        /// Gets or sets type of Certificate
+        /// Gets type of Certificate
         /// </summary>
         [JsonConverter(typeof(CertificateTypeConverter))]
-        public CertificateType? Type { get; set; }
+        [JsonProperty]
+        public CertificateType? Type { get; private set; }
 
         /// <summary>
         /// Gets or sets human readable description of this certificate.
@@ -34,22 +36,25 @@ namespace MbedCloudSDK.Certificates.Model
         public int? DeviceExecutionMode { get; set; }
 
         /// <summary>
-        /// Gets or sets creation UTC time RFC3339.
+        /// Gets creation UTC time RFC3339.
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
-        public DateTime? CreatedAt { get; set; }
+        [JsonProperty]
+        public DateTime? CreatedAt { get; private set; }
 
         /// <summary>
-        /// Gets or sets subject of the certificate.
+        /// Gets subject of the certificate.
         /// </summary>
         /// <value>Subject of the certificate.</value>
-        public string Subject { get; set; }
+        [JsonProperty]
+        public string Subject { get; private set; }
 
         /// <summary>
-        /// Gets or sets the UUID of the account.
+        /// Gets the UUID of the account.
         /// </summary>
         /// <value>The UUID of the account.</value>
-        public string AccountId { get; set; }
+        [JsonProperty]
+        public string AccountId { get; private set; }
 
         /// <summary>
         /// Gets or sets base 64 encoded SHA256 hash of AccountID.
@@ -64,24 +69,26 @@ namespace MbedCloudSDK.Certificates.Model
         public DateTime? Validity { get; set; }
 
         /// <summary>
-        /// Gets or sets issuer of the certificate.
+        /// Gets issuer of the certificate.
         /// </summary>
         /// <value>Issuer of the certificate.</value>
-        public string Issuer { get; set; }
+        [JsonProperty]
+        public string Issuer { get; private set; }
 
         /// <summary>
-        /// Gets or sets x509.v3 trusted certificate in PEM or base64 encoded DER format.
+        /// Gets x509.v3 trusted certificate in PEM or base64 encoded DER format.
         /// </summary>
         /// <value>X509.v3 trusted certificate in PEM or base64 encoded DER format.</value>
-        public string CertificateData { get; set; }
+        [JsonProperty]
+        public string CertificateData { get; private set; }
 
         /// <summary>
-        /// Gets or sets entity ID.
+        /// Gets certificate Id.
         /// </summary>
-        /// <value>Entity ID.</value>
+        /// <value>certificate Id.</value>
         [NameOverride(Name = "CertificateId")]
         [JsonProperty]
-        public string Id { get; set; }
+        public string Id { get; private set; }
 
         /// <summary>
         /// Gets or sets certificate name.
@@ -96,41 +103,53 @@ namespace MbedCloudSDK.Certificates.Model
         public string SecurityFileContent { get; set; }
 
         /// <summary>
-        /// Gets or sets pEM format X.509 developer certificate.
+        /// Gets pEM format X.509 developer certificate.
         /// </summary>
         /// <value>PEM format X.509 developer certificate.</value>
-        public string DeveloperCertificate { get; set; }
+        [JsonProperty]
+        public string DeveloperCertificate { get; private set; }
 
         /// <summary>
-        /// Gets or sets uRI to which the client needs to connect to.
+        /// Gets uRI to which the client needs to connect to.
         /// </summary>
         /// <value>URI to which the client needs to connect to.</value>
-        public string ServerUri { get; set; }
+        [JsonProperty]
+        public string ServerUri { get; private set; }
 
         /// <summary>
-        /// Gets or sets pEM format developer private key associated to the certificate.
+        /// Gets pEM format developer private key associated to the certificate.
         /// </summary>
         /// <value>PEM format developer private key associated to the certificate.</value>
-        public string DeveloperPrivateKey { get; set; }
+        [JsonProperty]
+        public string DeveloperPrivateKey { get; private set; }
 
         /// <summary>
-        /// Gets or sets pEM format X.509 server certificate that will be used to validate the server certificate that will be received during the TLS/DTLS handshake.
+        /// Gets pEM format X.509 server certificate that will be used to validate the server certificate that will be received during the TLS/DTLS handshake.
         /// </summary>
         /// <value>PEM format X.509 server certificate that will be used to validate the server certificate that will be received during the TLS/DTLS handshake.</value>
-        public string ServerCertificate { get; set; }
+        [JsonProperty]
+        public string ServerCertificate { get; private set; }
 
         /// <summary>
-        /// Gets or sets the Status of the certificate.
+        /// Gets the Status of the certificate.
         /// </summary>
         /// <value>The Status of the certificate.</value>
         [JsonConverter(typeof(CertificateStatusConverter))]
-        public CertificateStatus? Status { get; set; }
+        [JsonProperty]
+        public CertificateStatus? Status { get; private set; }
 
         /// <summary>
-        /// Gets or sets bootstrap server URI to which the client needs to connect to.
+        /// Gets bootstrap server URI to which the client needs to connect to.
         /// </summary>
         /// <value>Bootstrap server URI to which the client needs to connect to.</value>
-        public string OwnerId { get; set; }
+        [JsonProperty]
+        public string OwnerId { get; private set; }
+
+        /// <summary>
+        /// Gets Content of the security.c file that will be flashed into the device to provide the security credentials.
+        /// </summary>
+        [JsonProperty]
+        public string HeaderFile { get; private set; }
 
         /// <summary>
         /// Get Service Enum
@@ -228,8 +247,9 @@ namespace MbedCloudSDK.Certificates.Model
         /// </summary>
         /// <param name="trustedCertificate">TrustedCertificate response object.</param>
         /// <param name="certificate">Certificate to be updated.</param>
+        /// <param name="api">Certificate Api</param>
         /// <returns>Certificate</returns>
-        public static Certificate Map(iam.Model.TrustedCertificateResp trustedCertificate, Certificate certificate = null)
+        public static Certificate MapTrustedCert(iam.Model.TrustedCertificateResp trustedCertificate, Certificate certificate = null, CertificatesApi api = null)
         {
             if (certificate == null)
             {
@@ -252,6 +272,19 @@ namespace MbedCloudSDK.Certificates.Model
                         break;
                     default:
                         throw new System.IO.InvalidDataException("Wrong Trusted Certificate Service");
+                }
+
+                if (api != null)
+                {
+                    switch (certificate.Type)
+                    {
+                        case CertificateType.Bootstrap:
+                            certificate.ServerUri = api.BootstrapServerUri;
+                            break;
+                        case CertificateType.Lwm2m:
+                            certificate.ServerUri = api.Lmw2mServerUri;
+                            break;
+                    }
                 }
             }
 
@@ -276,7 +309,7 @@ namespace MbedCloudSDK.Certificates.Model
         /// <param name="developerCertificateData">Developer certificate data</param>
         /// <param name="certificate">Certificate to be updated</param>
         /// <returns>Certificate</returns>
-        public static Certificate Map(connector_ca.Model.DeveloperCertificateResponseData developerCertificateData, Certificate certificate = null)
+        public static Certificate MapDeveloperCert(connector_ca.Model.DeveloperCertificateResponseData developerCertificateData, Certificate certificate = null)
         {
             if (certificate == null)
             {

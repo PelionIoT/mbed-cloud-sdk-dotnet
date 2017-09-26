@@ -218,8 +218,9 @@
     <Compile Include="DeviceDirectory\Model\Query\Query.cs" />
     <Compile Include="Exceptions\CloudApiException.cs" />
     <Compile Include="Common\Query\QueryOptions.cs" />
-    <Compile Include="DeviceDirectory\Model\Logging\DeviceLog.cs" />
+    <Compile Include="DeviceDirectory\Model\Logging\DeviceEvent.cs" />
     <Compile Include="DeviceDirectory\Model\Logging\EventType.cs" />
+    <Compile Include="DeviceDirectory\Model\Logging\EventTypeEnumConverter.cs" />
     <Compile Include="Connect\Model\ConnectedDevice\AsyncProducerConsumerCollection.cs" />
     <Compile Include="Connect\Model\ConnectedDevice\AsyncConsumer.cs" />
     <Compile Include="DeviceDirectory\Model\Device\Device.cs" />

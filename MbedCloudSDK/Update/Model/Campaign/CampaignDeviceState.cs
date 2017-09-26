@@ -17,56 +17,66 @@ namespace MbedCloudSDK.Update.Model.Campaign
         /// Gets or sets state of the Device in Update Campaign.
         /// </summary>
         [JsonConverter(typeof(CampaignDeviceStateEnumConverter))]
+        [JsonProperty]
         public CampaignDeviceStateEnum? State { get; set; }
 
         /// <summary>
         /// Gets the description of the object
         /// </summary>
+        [JsonProperty]
         public string Description { get; private set; }
 
         /// <summary>
         /// Gets the update campaign to which this device belongs
         /// </summary>
+        [JsonProperty]
         public string CampaignId { get; private set; }
 
         /// <summary>
         /// Gets the time the object was created
         /// </summary>
+        [JsonProperty]
         public DateTime? CreatedAt { get; private set; }
 
         /// <summary>
         /// Gets the time the object was updated
         /// </summary>
+        [JsonProperty]
         public DateTime? UpdatedAt { get; private set; }
 
         /// <summary>
         /// Gets the ID of the channel used to communicated with the device
         /// </summary>
+        [JsonProperty]
         public string Mechanism { get; private set; }
 
         /// <summary>
         /// Gets the name of the object
         /// </summary>
+        [JsonProperty]
         public string Name { get; private set; }
 
         /// <summary>
-        /// Gets the entity instance signature
+        /// Gets or sets the entity instance signature
         /// </summary>
-        public string Etag { get; private set; }
+        public string Etag { get; set; }
 
         /// <summary>
         /// Gets the address of the Connector to use
         /// </summary>
+        [JsonProperty]
         public string MechanismUrl { get; private set; }
 
         /// <summary>
         /// Gets the ID of the metadata concerning this device/campaign
         /// </summary>
+        [JsonProperty]
         public string Id { get; private set; }
 
         /// <summary>
         /// Gets the ID of the device to deploy
         /// </summary>
+        [JsonProperty]
         public string DeviceId { get; private set; }
 
         /// <summary>
