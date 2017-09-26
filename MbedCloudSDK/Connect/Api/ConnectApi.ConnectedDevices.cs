@@ -4,6 +4,7 @@
 
 namespace MbedCloudSDK.Connect.Api
 {
+    using System;
     using System.Collections.Generic;
     using System.Text;
     using MbedCloudSDK.Common;
@@ -32,6 +33,39 @@ namespace MbedCloudSDK.Connect.Api
                 }
 
                 return devices;
+            }
+            catch (mds.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        /// <summary>
+        /// List a device's subscriptions
+        /// </summary>
+        /// <param name="deviceId">Device Id</param>
+        /// <returns>List of device subscriptions</returns>
+        public string[] ListDeviceSubscriptions(string deviceId)
+        {
+            try
+            {
+                return subscriptionsApi.V2SubscriptionsDeviceIdGet(deviceId).Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            }
+            catch (mds.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        /// <summary>
+        /// Removes a device's subscriptions
+        /// </summary>
+        /// <param name="deviceId">Device Id</param>
+        public void DeleteDeviceSubscriptions(string deviceId)
+        {
+            try
+            {
+                subscriptionsApi.V2SubscriptionsDeviceIdDelete(deviceId);
             }
             catch (mds.Client.ApiException e)
             {

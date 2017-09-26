@@ -146,7 +146,7 @@ namespace device_directory.Model
         /// <param name="AutoUpdate">DEPRECATED: Mark this device for automatic firmware update..</param>
         /// <param name="HostGateway">The &#x60;endpoint_name&#x60; of the host gateway, if appropriate..</param>
         /// <param name="DeviceExecutionMode">The execution mode from the certificate of the device. Permitted values:   - 0 - unspecified execution mode (default)   - 1 - development devices   - 5 - production devices.</param>
-        /// <param name="CustomAttributes">Up to five custom key-value attributes..</param>
+        /// <param name="CustomAttributes">Up to five custom key-value attributes. Note that keys cannot start with a number..</param>
         /// <param name="State">The current state of the device..</param>
         /// <param name="SerialNumber">The serial number of the device..</param>
         /// <param name="FirmwareChecksum">The SHA256 checksum of the current firmware image..</param>
@@ -157,12 +157,11 @@ namespace device_directory.Model
         /// <param name="EndpointType">The endpoint type of the device. For example, the device is a gateway..</param>
         /// <param name="Deployment">DEPRECATED: The last deployment used on the device..</param>
         /// <param name="MechanismUrl">The address of the connector to use..</param>
-        /// <param name="TrustLevel">The device trust level..</param>
         /// <param name="Name">The name of the device..</param>
         /// <param name="DeviceKey">The fingerprint of the device certificate. (required).</param>
         /// <param name="Manifest">DEPRECATED: The URL for the current device manifest..</param>
         /// <param name="CaId">The certificate issuer&#39;s ID. (required).</param>
-        public DeviceDataPostRequest(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), MechanismEnum? Mechanism = default(MechanismEnum?), string DeviceClass = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), int? DeviceExecutionMode = default(int?), Dictionary<string, string> CustomAttributes = default(Dictionary<string, string>), StateEnum? State = default(StateEnum?), string SerialNumber = default(string), string FirmwareChecksum = default(string), string VendorId = default(string), string Description = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string _Object = default(string), string EndpointType = default(string), string Deployment = default(string), string MechanismUrl = default(string), int? TrustLevel = default(int?), string Name = default(string), string DeviceKey = default(string), string Manifest = default(string), string CaId = default(string))
+        public DeviceDataPostRequest(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), MechanismEnum? Mechanism = default(MechanismEnum?), string DeviceClass = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), int? DeviceExecutionMode = default(int?), Dictionary<string, string> CustomAttributes = default(Dictionary<string, string>), StateEnum? State = default(StateEnum?), string SerialNumber = default(string), string FirmwareChecksum = default(string), string VendorId = default(string), string Description = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string _Object = default(string), string EndpointType = default(string), string Deployment = default(string), string MechanismUrl = default(string), string Name = default(string), string DeviceKey = default(string), string Manifest = default(string), string CaId = default(string))
         {
             // to ensure "DeviceKey" is required (not null)
             if (DeviceKey == null)
@@ -202,7 +201,6 @@ namespace device_directory.Model
             this.EndpointType = EndpointType;
             this.Deployment = Deployment;
             this.MechanismUrl = MechanismUrl;
-            this.TrustLevel = TrustLevel;
             this.Name = Name;
             this.Manifest = Manifest;
         }
@@ -256,9 +254,9 @@ namespace device_directory.Model
         [DataMember(Name="device_execution_mode", EmitDefaultValue=false)]
         public int? DeviceExecutionMode { get; set; }
         /// <summary>
-        /// Up to five custom key-value attributes.
+        /// Up to five custom key-value attributes. Note that keys cannot start with a number.
         /// </summary>
-        /// <value>Up to five custom key-value attributes.</value>
+        /// <value>Up to five custom key-value attributes. Note that keys cannot start with a number.</value>
         [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
         public Dictionary<string, string> CustomAttributes { get; set; }
         /// <summary>
@@ -309,12 +307,6 @@ namespace device_directory.Model
         /// <value>The address of the connector to use.</value>
         [DataMember(Name="mechanism_url", EmitDefaultValue=false)]
         public string MechanismUrl { get; set; }
-        /// <summary>
-        /// The device trust level.
-        /// </summary>
-        /// <value>The device trust level.</value>
-        [DataMember(Name="trust_level", EmitDefaultValue=false)]
-        public int? TrustLevel { get; set; }
         /// <summary>
         /// The name of the device.
         /// </summary>
@@ -367,7 +359,6 @@ namespace device_directory.Model
             sb.Append("  EndpointType: ").Append(EndpointType).Append("\n");
             sb.Append("  Deployment: ").Append(Deployment).Append("\n");
             sb.Append("  MechanismUrl: ").Append(MechanismUrl).Append("\n");
-            sb.Append("  TrustLevel: ").Append(TrustLevel).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  DeviceKey: ").Append(DeviceKey).Append("\n");
             sb.Append("  Manifest: ").Append(Manifest).Append("\n");
@@ -509,11 +500,6 @@ namespace device_directory.Model
                     this.MechanismUrl.Equals(other.MechanismUrl)
                 ) && 
                 (
-                    this.TrustLevel == other.TrustLevel ||
-                    this.TrustLevel != null &&
-                    this.TrustLevel.Equals(other.TrustLevel)
-                ) && 
-                (
                     this.Name == other.Name ||
                     this.Name != null &&
                     this.Name.Equals(other.Name)
@@ -586,8 +572,6 @@ namespace device_directory.Model
                     hash = hash * 59 + this.Deployment.GetHashCode();
                 if (this.MechanismUrl != null)
                     hash = hash * 59 + this.MechanismUrl.GetHashCode();
-                if (this.TrustLevel != null)
-                    hash = hash * 59 + this.TrustLevel.GetHashCode();
                 if (this.Name != null)
                     hash = hash * 59 + this.Name.GetHashCode();
                 if (this.DeviceKey != null)
