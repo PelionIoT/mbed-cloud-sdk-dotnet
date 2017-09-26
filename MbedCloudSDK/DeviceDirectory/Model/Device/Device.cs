@@ -136,11 +136,6 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         public string MechanismUrl { get; set; }
 
         /// <summary>
-        /// Gets or sets the device trust level
-        /// </summary>
-        public int? TrustLevel { get; set; }
-
-        /// <summary>
         /// Gets or sets the name of the object
         /// </summary>
         public string Name { get; set; }
@@ -237,7 +232,6 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
                 DeployedState = Utils.ParseEnum<DeployedState>(deviceData.DeployedState),
                 Deployment = deviceData.Deployment,
                 MechanismUrl = deviceData.MechanismUrl,
-                TrustLevel = deviceData.TrustLevel,
                 Id = deviceData.Id,
                 Name = deviceData.Name,
                 CreatedAt = deviceData.CreatedAt,
@@ -338,7 +332,6 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
             sb.Append("  DeployedState: ").Append(DeployedState).Append("\n");
             sb.Append("  Deployment: ").Append(Deployment).Append("\n");
             sb.Append("  MechanismUrl: ").Append(MechanismUrl).Append("\n");
-            sb.Append("  TrustLevel: ").Append(TrustLevel).Append("\n");
             sb.Append("  DeviceId: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
