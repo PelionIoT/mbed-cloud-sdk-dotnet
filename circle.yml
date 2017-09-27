@@ -23,9 +23,6 @@ checkout:
         pwd: TestServer/testrunner
 dependencies:
   pre:
-    - export AWS_ACCESS_KEY_ID=$AWS_ID
-    - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET
-    - export AWS_DEFAULT_REGION=us-west-2
     - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
     - echo "deb http://download.mono-project.com/repo/ubuntu trusty main" | sudo tee /etc/apt/sources.list.d/mono-official.list
     - sudo apt-get update
