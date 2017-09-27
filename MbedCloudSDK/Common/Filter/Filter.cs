@@ -27,7 +27,6 @@ namespace MbedCloudSDK.Common.Filter
         /// </summary>
         public Filter()
         {
-            FilterJson = new JObject();
             FilterDictionary = new Dictionary<string, FilterAttribute>();
         }
 
@@ -44,18 +43,16 @@ namespace MbedCloudSDK.Common.Filter
             {
                 if (Utils.IsValidJson(value))
                 {
-                    FilterJson = StringToJsonObject(value);
                     FilterDictionary = QueryJsonToDictionary(value);
                 }
                 else
                 {
-                    FilterJson = StringToJsonObject(QueryStringToJson(value));
-                    FilterDictionary = QueryJsonToDictionary(Convert.ToString(FilterJson));
+                    var jsonString = QueryStringToJson(value);
+                    FilterDictionary = QueryJsonToDictionary(jsonString);
                 }
             }
             else
             {
-                FilterJson = new JObject();
                 FilterDictionary = new Dictionary<string, FilterAttribute>();
             }
         }
@@ -86,7 +83,21 @@ namespace MbedCloudSDK.Common.Filter
         /// Gets json representation of filter
         /// </summary>
         [JsonProperty]
-        public JObject FilterJson { get; private set; }
+        public JObject FilterJson
+        {
+            get
+            {
+                if (FilterDictionary.Any())
+                {
+                    var json = new JObject();
+                    FilterDictionary.ToList()
+                                    .ForEach(f => json.Add(new JProperty(f.Key, f.Value.FilterAttributeJson)));
+                    return json;
+                }
+
+                return default(JObject);
+            }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether if true, filter will not be mapped during an update
@@ -94,37 +105,11 @@ namespace MbedCloudSDK.Common.Filter
         public bool IsBlank { get; set; }
 
         /// <summary>
-        /// Add new query to filter
+        /// Return enum from Query Operator
         /// </summary>
-        /// <param name="key">Key</param>
-        /// <param name="value">Value</param>
-        /// <param name="filterOperator">Operator, Equals if not provided</param>
-        public void Add(string key, string value, FilterOperator filterOperator = FilterOperator.Equals)
-        {
-            try
-            {
-                var filterAttribute = new FilterAttribute(value, filterOperator);
-                FilterDictionary.Remove(key);
-                FilterDictionary.Add(key, filterAttribute);
-                var prop = new JProperty(key, JObject.FromObject(filterAttribute));
-                FilterJson.Add(prop);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        private static FilterAttribute GetQueryAttribute(JObject val)
-        {
-            var oper = val.First as JProperty;
-            var operName = oper.Name;
-            var operValue = val.First.First.Value<string>();
-            var queryAttribute = new FilterAttribute(operValue, QueryOperatorToEnum(operName));
-            return queryAttribute;
-        }
-
-        private static FilterOperator QueryOperatorToEnum(string val)
+        /// <param name="val">String to convert</param>
+        /// <returns>Filter Operator enum</returns>
+        public static FilterOperator QueryOperatorToEnum(string val)
         {
             switch (val)
             {
@@ -141,7 +126,12 @@ namespace MbedCloudSDK.Common.Filter
             }
         }
 
-        private static string QueryOperatorToString(FilterOperator queryOperator)
+        /// <summary>
+        /// Return string from Query Operator Enum
+        /// </summary>
+        /// <param name="queryOperator">Query Operator enum</param>
+        /// <returns>String value of Query Operator</returns>
+        public static string QueryOperatorToString(FilterOperator queryOperator)
         {
             switch (queryOperator)
             {
@@ -156,6 +146,56 @@ namespace MbedCloudSDK.Common.Filter
                 default:
                     return "$eq";
             }
+        }
+
+        /// <summary>
+        /// Add new query to filter
+        /// </summary>
+        /// <param name="key">Key</param>
+        /// <param name="value">Value</param>
+        /// <param name="filterOperator">Operator, Equals if not provided</param>
+        /// <returns>The filter dictionary</returns>
+        public Dictionary<string, FilterAttribute> Add(string key, string value, FilterOperator filterOperator = FilterOperator.Equals)
+        {
+            try
+            {
+                var filterAttribute = new FilterAttribute(value, filterOperator);
+                FilterDictionary.Remove(key);
+                FilterDictionary.Add(key, filterAttribute);
+                return FilterDictionary;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Remove key from filter
+        /// </summary>
+        /// <param name="key">Key to remove</param>
+        public void Remove(string key)
+        {
+            FilterDictionary.Remove(key);
+        }
+
+        /// <summary>
+        /// Check if filter contains key
+        /// </summary>
+        /// <param name="key">Key</param>
+        /// <returns>True if key in filter</returns>
+        public bool Contains(string key)
+        {
+            return FilterDictionary.ContainsKey(key);
+        }
+
+        private static FilterAttribute GetQueryAttribute(JObject val)
+        {
+            var oper = val.First as JProperty;
+            var operName = oper.Name;
+            var operValue = val.First.First.Value<string>();
+            var queryAttribute = new FilterAttribute(operValue, QueryOperatorToEnum(operName));
+            return queryAttribute;
         }
 
         private static string QueryStringToJson(string queryString)
@@ -216,7 +256,6 @@ namespace MbedCloudSDK.Common.Filter
         private Filter QueryStringToFilter(string queryString)
         {
             var queryJsonString = QueryStringToJson(queryString);
-            FilterJson = StringToJsonObject(queryJsonString);
             FilterDictionary = QueryJsonToDictionary(queryJsonString);
             return this;
         }

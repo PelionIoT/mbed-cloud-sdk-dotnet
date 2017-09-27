@@ -1,15 +1,5 @@
 #!/bin/bash
-set -eo pipefail
-IFS=$'\n\t'
 
-OUTPUT_DIR="docs/";
-
-# Build Doxygen docs
-doxygen ar.doxygen
-
-mv docs/* ${SDK_DOCS}
-
-# If AWS_ID and SECRET is defined, we push to S3
 if [[ -n $AWS_ID && -n $AWS_SECRET ]]; then
   export AWS_ACCESS_KEY_ID=$AWS_ID;
   export AWS_SECRET_ACCESS_KEY=$AWS_SECRET;
