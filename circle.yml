@@ -15,8 +15,8 @@ machine:
     NUGET_NAME: Mbed.Cloud.SDK.1.2.1.nupkg
 checkout:
   post:
-    - git config --global user.name monty-bot
-    - git config --global user.email monty-bot@arm.com
+    - git config --global user.name alexl0gan
+    - git config --global user.email alex.logan@arm.com
     - git clone https://github.com/ARMmbed/mbed-cloud-sdk-testrunner.git tests/testrunner
     - git clone https://$GITHUB_TOKEN@github.com/ARMmbed/mbed-cloud-sdk-testrunner.git TestServer/testrunner
 dependencies:
