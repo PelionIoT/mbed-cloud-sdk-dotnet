@@ -5,6 +5,6 @@ IFS=$'\n\t'
 OUTPUT_DIR="../docs/";
 
 # Build Doxygen docs
-doxygen ../ar.doxygen
+doxygen ar.doxygen
 
-mv ../docs/* ${SDK_DOCS}
+mv docs/* ${SDK_DOCS}
