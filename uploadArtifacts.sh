@@ -1,5 +1,4 @@
 #!/bin/bash
-set -eo pipefail
 
 if [[ -n $AWS_ID && -n $AWS_SECRET ]]; then
   export AWS_ACCESS_KEY_ID=$AWS_ID;
