@@ -13,7 +13,9 @@ machine:
     SDK_TPIP: ${HOME}/tpip
     SDK_BUILD: ${HOME}/build
     NUGET_NAME: Mbed.Cloud.SDK.1.2.1.nupkg
-    AWS_DEFAULT_REGION: us-west-2
+    - export AWS_ACCESS_KEY_ID=$AWS_ID
+    - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET
+    - export AWS_DEFAULT_REGION=us-west-2
 checkout:
   post:
     - git config --global user.name alexl0gan
