@@ -46,7 +46,7 @@ compile:
     - mono --runtime=v4.0 nuget.exe pack MbedCloudSDK/MbedCloudSDK.csproj -MSBuildPath "/usr/lib/mono/msbuild/15.0/bin" -IncludeReferencedProjects -Prop Configuration=Release -symbols | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - mv ${NUGET_NAME} ${SDK_BUILD}
     - mv MbedCloudSDK/bin/Release/* ${SDK_BUILD}
-    - aws s3 sync --delete --cache-control max-age=3600 ${SDK_BUILD} s3://mbed-cloud-sdk-dotnet-dist/${SDK_TAG}/build
+    - ./uploadArtifacts.sh
 test:
   override:
     - echo "<h1>${SDK_NAME} (build ${CIRCLE_BUILD_NUM})</h1>" > ${SDK_TESTS}/index.html:
@@ -58,6 +58,4 @@ deployment:
     branch: release-bits
     commands:
       - ./generate-docs.sh
-      - aws s3 sync --delete --cache-control max-age=3600 ${SDK_DOCS} s3://mbed-cloud-sdk-dotnet-dist/${SDK_TAG}/docs
-      - aws s3 sync --delete --cache-control max-age=3600 ${SDK_BUILD} s3://mbed-cloud-sdk-dotnet-dist/${SDK_TAG}/build
-      - aws s3 sync --delete --cache-control max-age=3600 ${SDK_TESTS} s3://mbed-cloud-sdk-dotnet-dist/${SDK_TAG}/tests
+      - ./uploadArtifacts.sh
