@@ -57,7 +57,7 @@ test:
     - echo "finished"
 deployment:
   staging:
-    branch: master
+    branch: [master, /docs-.*/]
     commands:
       - ./scripts/generate-docs.sh
       - ./scripts/uploadArtifacts.sh
