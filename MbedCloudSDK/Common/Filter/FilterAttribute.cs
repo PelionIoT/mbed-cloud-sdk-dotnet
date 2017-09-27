@@ -4,6 +4,8 @@
 
 namespace MbedCloudSDK.Common.Filter
 {
+    using Newtonsoft.Json.Linq;
+
     /// <summary>
     /// Filter Attribute
     /// </summary>
@@ -30,6 +32,18 @@ namespace MbedCloudSDK.Common.Filter
         /// Gets or sets operator for the query.
         /// </summary>
         public FilterOperator FilterOperator { get; set; }
+
+        /// <summary>
+        /// Gets Json representaion of Filter Attribute
+        /// </summary>
+        /// <returns>JObject of Filter Attribute</returns>
+        public JObject FilterAttributeJson
+        {
+            get
+            {
+                return new JObject(new JProperty(Filter.QueryOperatorToString(FilterOperator), Value));
+            }
+        }
 
         /// <summary>
         /// Get the suffix for the query string
