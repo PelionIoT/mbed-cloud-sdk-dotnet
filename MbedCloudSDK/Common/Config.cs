@@ -2,6 +2,8 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
+using System.Net;
+
 namespace MbedCloudSDK.Common
 {
     /// <summary>
@@ -17,6 +19,7 @@ namespace MbedCloudSDK.Common
         /// <param name="authorizationPrefix">Authorization prefix</param>
         public Config(string apiKey, string host = "https://api.us-east-1.mbedcloud.com", string authorizationPrefix = "Bearer")
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
             AuthorizationPrefix = authorizationPrefix;
             ApiKey = apiKey;
             Host = host;
