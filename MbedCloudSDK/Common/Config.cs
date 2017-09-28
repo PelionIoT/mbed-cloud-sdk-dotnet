@@ -2,10 +2,10 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System.Net;
-
 namespace MbedCloudSDK.Common
 {
+    using System.Net;
+
     /// <summary>
     /// Config for cloud API.
     /// </summary>
