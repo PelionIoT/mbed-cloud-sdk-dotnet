@@ -587,9 +587,9 @@ namespace device_directory.Model
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         { 
             // DeviceClass (string) maxLength
-            if(this.DeviceClass != null && this.DeviceClass.Length > 500)
+            if(this.DeviceClass != null && this.DeviceClass.Length > 32)
             {
-                yield return new ValidationResult("Invalid value for DeviceClass, length must be less than 500.", new [] { "DeviceClass" });
+                yield return new ValidationResult("Invalid value for DeviceClass, length must be less than 32.", new [] { "DeviceClass" });
             }
 
             // EndpointName (string) maxLength
