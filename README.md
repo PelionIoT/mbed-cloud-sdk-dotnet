@@ -45,4 +45,4 @@ foreach (var device in devices)
 
 ## Documentation
 
-See full [documentation and API reference here](https://s3-us-west-2.amazonaws.com/mbed-cloud-sdk-dotnet/index.html).
+See full [documentation and API reference here](https://s3-us-west-2.amazonaws.com/mbed-cloud-sdk-dotnet-dist/master-827/docs/index.html).
