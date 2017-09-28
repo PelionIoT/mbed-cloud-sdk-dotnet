@@ -15,11 +15,11 @@ machine:
     SDK_TESTS: ${HOME}/tests
     SDK_TPIP: ${HOME}/tpip
     SDK_BUILD: ${HOME}/build
-    NUGET_NAME: Mbed.Cloud.SDK.1.2.1.nupkg
+    NUGET_NAME: Mbed.Cloud.SDK.1.2.2.nupkg
 checkout:
   post:
-    - git config --global user.name alexl0gan
-    - git config --global user.email alex.logan@arm.com
+    - git config --global user.name monty-bot
+    - git config --global user.email monty-bot@arm.com
     - git clone https://github.com/ARMmbed/mbed-cloud-sdk-testrunner.git TestServer/testrunner
     - pip install -r TestServer/testrunner/requirements.txt
     - python setup.py develop:
