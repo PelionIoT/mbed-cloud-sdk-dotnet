@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/ARMmbed/mbed-cloud-sdk-dotnet.svg?style=shield&circle-token=68538baa897f82e3dcc38a48315e9ba24977b183)](https://circleci.com/gh/ARMmbed/mbed-cloud-sdk-dotnet)
 
-The Mbed Cloud SDK gives developers access to the full mbed suite using .Net 4.5.
+The Mbed Cloud SDK gives developers access to the full Mbed suite using .Net 4.5.
 
 If you want to contribute to creating a SDK for another language the work is
 greatly appreciated and you can read more about the process
@@ -23,8 +23,7 @@ greatly appreciated and you can read more about the process
 ```csharp
 using MbedCloudSDK.Common;
 
-var config = new Config(apiKey);
-config.Host = "https://api.mbedcloud.com";
+var config = new Config(apiKey, "https://api.mbedcloud.com");
 ```
 3. Import api and you are ready to go.
 
@@ -34,10 +33,11 @@ using MbedCloudSDK.Common.Query;
 using MbedCloudSDK.DeviceDirectory.Api;
 using System;
 
-var devices = new DeviceDirectoryApi(config);
+var deviceApi = new DeviceDirectoryApi(config);
 var options = new QueryOptions();
 options.Limit = 10;
-foreach (var device in devices.ListDevices(options))
+var devices = deviceApi.ListDevices(options);
+foreach (var device in devices)
 {
     Console.WriteLine(device.ToString());
 }
