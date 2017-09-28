@@ -8,7 +8,36 @@ greatly appreciated and you can read more about the process
 
 ## Installation
 
-1. Download mbedCloudSDK library dll from [here](https://github.com/ARMmbed/mbed-cloud-sdk-dotnet/releases/tag/v1.1.0.0).
-2. Download Newtonsoft.Json from [here](http://www.newtonsoft.com/json) or install it with NuGet : `Install-Package Newtonsoft.Json`
-3. Download RestSharp from [here](https://github.com/restsharp/RestSharp/downloads) or install it with NuGet : `Install-Package RestSharp`
-4. Reference downloaded dlls in your project.
+The application is installed using nuget:
+
+```
+$ nuget install Mbed.Cloud.SDK
+```
+
+## Usage
+
+1. Create API key in the [Mbed Cloud Portal](https://portal.mbedcloud.com/).
+2. Create config object:
+
+```csharp
+using MbedCloudSDK.Common;
+
+var config = new Config(apiKey, "https://api.mbedcloud.com");
+```
+3. Import api and you are ready to go.
+
+```csharp
+using MbedCloudSDK.Common;
+using MbedCloudSDK.Common.Query;
+using MbedCloudSDK.DeviceDirectory.Api;
+using System;
+
+var deviceApi = new DeviceDirectoryApi(config);
+var options = new QueryOptions();
+options.Limit = 10;
+var devices = deviceApi.ListDevices(options);
+foreach (var device in devices)
+{
+    Console.WriteLine(device.ToString());
+}
+```
