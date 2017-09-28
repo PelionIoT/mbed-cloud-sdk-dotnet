@@ -100,7 +100,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**V2NotificationCallbackDelete**](docs/DefaultApi.md#v2notificationcallbackdelete) | **DELETE** /v2/notification/callback | Delete callback URL
 *DefaultApi* | [**V2NotificationCallbackGet**](docs/DefaultApi.md#v2notificationcallbackget) | **GET** /v2/notification/callback | Check callback URL
 *EndpointsApi* | [**V2EndpointsDeviceIdGet**](docs/EndpointsApi.md#v2endpointsdeviceidget) | **GET** /v2/endpoints/{device-id} | List the resources on an endpoint
-*EndpointsApi* | [**V2EndpointsGet**](docs/EndpointsApi.md#v2endpointsget) | **GET** /v2/endpoints | List registered endpoints. The number of returned endpoints is currently limited to 200.
+*EndpointsApi* | [**V2EndpointsGet**](docs/EndpointsApi.md#v2endpointsget) | **GET** /v2/endpoints | (DEPRECATED) List registered endpoints. The number of returned endpoints is currently limited to 200.
 *NotificationsApi* | [**V2NotificationCallbackPut**](docs/NotificationsApi.md#v2notificationcallbackput) | **PUT** /v2/notification/callback | Register a callback URL
 *NotificationsApi* | [**V2NotificationPullDelete**](docs/NotificationsApi.md#v2notificationpulldelete) | **DELETE** /v2/notification/pull | Delete notification Long Poll channel
 *NotificationsApi* | [**V2NotificationPullGet**](docs/NotificationsApi.md#v2notificationpullget) | **GET** /v2/notification/pull | Get notifications using Long Poll
