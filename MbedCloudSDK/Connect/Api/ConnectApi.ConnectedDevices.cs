@@ -20,10 +20,10 @@ namespace MbedCloudSDK.Connect.Api
     public partial class ConnectApi
     {
         /// <summary>
-        /// Lists all endpoints.
+        /// Lists all connected devices.
         /// </summary>
         /// <param name="options">options</param>
-        /// <returns>The list of endpoints.</returns>
+        /// <returns>The list of connected devices.</returns>
         public PaginatedResponse<ConnectedDevice> ListConnectedDevices(QueryOptions options = null)
         {
             if (options == null)
