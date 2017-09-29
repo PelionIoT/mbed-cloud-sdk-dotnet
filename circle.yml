@@ -55,10 +55,15 @@ test:
     - echo "finished"
 deployment:
   staging:
-    branch: [master, /docs-.*/]
+    branch: [/docs-.*/, /feature-.*/]
     commands:
       - ./scripts/generate-docs.sh
       - ./scripts/uploadArtifacts.sh
+  master:
+    branch: master
+    commands:
+      - ./scripts/generate-docs.sh
+      - ./scripts/uploadArtifactsMaster.sh
   release:
     branch: /[0-9]+\.[0-9]+.*/
     commands:
