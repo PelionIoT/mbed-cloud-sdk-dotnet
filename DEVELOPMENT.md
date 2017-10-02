@@ -50,4 +50,4 @@ $ mono ${workspaceRoot}/MyProject/bin/Debug/MyProject.exe
 
 ## Building Documentation
 
-To see updates to the docs site as you push changes, make sure your branch name is prefixed with "docs-". On every successful build the docs will be regenerated and available at https://s3-us-west-2.amazonaws.com/mbed-cloud-sdk-dotnet-dist/docs-yournamehere-buildNo/docs/index.html. 
+To see updates to the docs site as you push changes, make sure your branch name is prefixed with "docs-". On every successful build the docs will be regenerated and available from [here](https://armmbed.github.io/mbed-cloud-sdk-dotnet/builds)
