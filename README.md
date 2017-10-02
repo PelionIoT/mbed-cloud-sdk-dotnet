@@ -24,7 +24,7 @@ $ nuget install Mbed.Cloud.SDK
 ```csharp
 using MbedCloudSDK.Common;
 
-var config = new Config(apiKey, "https://api.mbedcloud.com");
+var config = new Config(apiKey, "https://api.us-east-1.mbedcloud.com");
 ```
 3. Import api and you are ready to go.
 
