@@ -47,10 +47,12 @@ namespace MbedCloudSDK.AccountManagement.Api
         public static TypesEnum TestTlv()
         {
             byte[] array = { 0xE3, 0xA3, 0x67, 0b001_100 };
-            var stream = new MemoryStream(array);
-            var x = TypesHelper.GetTypeEnumValue(stream.ReadByte() & 0xFF);
-            stream.Position++;
-            return x;
+            using (var stream = new MemoryStream(array))
+            {
+                var x = TypesHelper.GetTypeEnumValue(stream.ReadByte() & 0xFF);
+                stream.Position++;
+                return x;
+            }
         }
 
         /// <summary>
