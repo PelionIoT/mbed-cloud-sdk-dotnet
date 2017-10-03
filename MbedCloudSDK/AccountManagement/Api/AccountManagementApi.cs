@@ -4,10 +4,12 @@
 
 namespace MbedCloudSDK.AccountManagement.Api
 {
+    using System.IO;
     using System.Linq;
     using iam.Api;
     using iam.Client;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Tlv;
 
     /// <summary>
     /// Exposing functionality from IAM.
@@ -36,6 +38,19 @@ namespace MbedCloudSDK.AccountManagement.Api
 
             developerApi = new DeveloperApi();
             adminApi = new AccountAdminApi();
+        }
+
+        /// <summary>
+        /// Test Tlv
+        /// </summary>
+        /// <returns>Enum</returns>
+        public static TypesEnum TestTlv()
+        {
+            byte[] array = { 0xE3, 0xA3, 0x67, 0b001_100 };
+            var stream = new MemoryStream(array);
+            var x = TypesHelper.GetTypeEnumValue(stream.ReadByte() & 0xFF);
+            stream.Position++;
+            return x;
         }
 
         /// <summary>
