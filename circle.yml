@@ -17,7 +17,7 @@ machine:
     SDK_BUILD: ${HOME}/build
     NUGET_NAME: Mbed.Cloud.SDK.1.2.2.nupkg
   python:
-    version: 3.6
+    version: 3.6.2
 checkout:
   post:
     - git config --global user.name monty-bot
