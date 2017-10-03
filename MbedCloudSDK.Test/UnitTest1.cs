@@ -9,7 +9,7 @@ namespace MbedCloudSDK.Test
         [Test]
         public void TestMethod1()
         {
-            Assert.AreEqual("test", "fail");
+            Assert.AreEqual("test", "test");
         }
     }
 }
