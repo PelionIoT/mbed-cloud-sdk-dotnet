@@ -23,6 +23,17 @@ namespace MbedCloudSDK.Common.Tlv
         }
 
         /// <summary>
+        /// Get type enum value from int
+        /// </summary>
+        /// <param name="value">imnt value</param>
+        /// <returns>Types enum</returns>
+        public static TypesEnum GetTypeEnumValue(int value)
+        {
+            var stringValue = Convert.ToString(value, 2);
+            return (TypesEnum)Utils.GetEnumFromEnumMemberValue(typeof(TypesEnum), stringValue);
+        }
+
+        /// <summary>
         /// Gets binary value of length type
         /// </summary>
         /// <param name="value">Length type enum</param>
@@ -31,6 +42,17 @@ namespace MbedCloudSDK.Common.Tlv
         {
             var enumValue = Utils.GetEnumMemberValue(typeof(LengthTypeEnum), Convert.ToString(value));
             return Convert.ToInt32(enumValue, 2);
+        }
+
+        /// <summary>
+        /// Get type enum value from int
+        /// </summary>
+        /// <param name="value">imnt value</param>
+        /// <returns>Types enum</returns>
+        public static LengthTypeEnum GetLengthTypeEnumValue(int value)
+        {
+            var stringValue = Convert.ToString(value, 2);
+            return (LengthTypeEnum)Utils.GetEnumFromEnumMemberValue(typeof(LengthTypeEnum), stringValue);
         }
     }
 }
