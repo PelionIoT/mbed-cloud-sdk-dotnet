@@ -1,57 +1,92 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using Newtonsoft.Json.Linq;
+// <copyright file="TlvDecoder.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Common.Tlv
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Runtime.Serialization;
+    using Newtonsoft.Json.Linq;
+
+    /// <summary>
+    /// Tlv Decoder
+    /// </summary>
     public class TlvDecoder
     {
-        private int TypeMask = Convert.ToInt32("11000000", 2);
-        private int IdLengthMask = Convert.ToInt32("00100000", 2);
-        private int LengthTypeMask = Convert.ToInt32("00011000", 2);
-        private int LengthMask = Convert.ToInt32("00000111", 2);
-        private int aggCount = 0;
+        private int typeMask = Convert.ToInt32("11000000", 2);
+        private int idLengthMask = Convert.ToInt32("00100000", 2);
+        private int lengthTypeMask = Convert.ToInt32("00011000", 2);
+        private int lengthMask = Convert.ToInt32("00000111", 2);
 
-        public int FindIdLength(int @byte)
+        /// <summary>
+        /// Get String Value
+        /// </summary>
+        /// <param name="value">Int value</param>
+        /// <returns>String value</returns>
+        public static string GetString(int value)
         {
-            return (@byte & IdLengthMask) == IdLengthMask ? 2 : 1;
+            return Convert.ToString(value);
         }
 
-        public int FindValueLength(int @byte)
+        /// <summary>
+        /// Combine Bytes
+        /// </summary>
+        /// <param name="accumalatedValue">accumalatedValue</param>
+        /// <param name="currentValue">currentValue</param>
+        /// <param name="index">index</param>
+        /// <param name="array">array</param>
+        /// <returns>Int value of bytes</returns>
+        public static int CombineBytes(int accumalatedValue, int currentValue, int index, List<int> array)
         {
-            if((@byte & LengthTypeMask) == TypesHelper.GetLengthTypeBinary(LengthType.ONE_BYTE))
+            var step = array.Count() - index - 1;
+            return accumalatedValue + (currentValue << (8 * step));
+        }
+
+        /// <summary>
+        /// Find Id Length
+        /// </summary>
+        /// <param name="byteVal">Byte value</param>
+        /// <returns>Id Length</returns>
+        public int FindIdLength(int byteVal)
+        {
+            return (byteVal & idLengthMask) == idLengthMask ? 2 : 1;
+        }
+
+        /// <summary>
+        /// Find Value Length
+        /// </summary>
+        /// <param name="byteVal">Byte value</param>
+        /// <returns>Value Length</returns>
+        public int FindValueLength(int byteVal)
+        {
+            if ((byteVal & lengthTypeMask) == TypesHelper.GetLengthTypeBinary(LengthTypeEnum.ONE_BYTE))
             {
                 return 1;
             }
-            else if ((@byte & LengthTypeMask) == TypesHelper.GetLengthTypeBinary(LengthType.TWO_BYTE))
+            else if ((byteVal & lengthTypeMask) == TypesHelper.GetLengthTypeBinary(LengthTypeEnum.TWO_BYTE))
             {
                 return 2;
             }
-            else if ((@byte & LengthTypeMask) == TypesHelper.GetLengthTypeBinary(LengthType.TRE_BYTE))
+            else if ((byteVal & lengthTypeMask) == TypesHelper.GetLengthTypeBinary(LengthTypeEnum.TRE_BYTE))
             {
                 return 3;
             }
             else
             {
-                return (@byte & LengthMask);
+                return byteVal & lengthMask;
             }
         }
 
-        public string GetString(int value)
-        {
-            return Convert.ToString(value);
-        }
-
-        public int CombineBytes(int accumalatedValue, int currentValue, int index, List<int> array)
-        {
-            var step = array.Count() - aggCount - 1;
-            aggCount += 1;
-            return accumalatedValue + (currentValue << (8 * step));
-        }
-
-        public JObject decode(List<int> bytes, JObject result, string path = "")
+        /// <summary>
+        /// Decode
+        /// </summary>
+        /// <param name="bytes">bytes</param>
+        /// <param name="result">result</param>
+        /// <param name="path">path</param>
+        /// <returns>JsonObject with decoded data</returns>
+        public JObject Decode(List<int> bytes, JObject result, string path = "")
         {
             if (result == null)
             {
@@ -59,98 +94,36 @@ namespace MbedCloudSDK.Common.Tlv
             }
 
             var @byte = bytes[0];
-            var type = @byte & TypeMask;
-            var IdLength = FindIdLength(@byte);
-            var Length = FindValueLength(@byte);
+            var type = @byte & typeMask;
+            var idLength = FindIdLength(@byte);
+            var length = FindValueLength(@byte);
 
             var offset = 1;
-            var id = bytes.Skip(offset).Take(offset + IdLength).Aggregate(0, (x, y, index) => CombineBytes(x, y, index, bytes));
-            offset = offset + Length;
+            var id = bytes.Skip(offset).Take(offset + idLength).Aggregate<int, int, int>(0, (x, y, index) => CombineBytes(x, y, index, bytes));
+            offset = offset + length;
 
-            var ValueLength = Length;
-            if((@byte & LengthTypeMask) != TypesHelper.GetLengthTypeBinary(LengthType.OTR_BYTE))
+            var valueLength = length;
+            if ((@byte & lengthTypeMask) != TypesHelper.GetLengthTypeBinary(LengthTypeEnum.OTR_BYTE))
             {
-                aggCount = 0;
-                ValueLength = bytes.Skip(offset).Take(offset + ValueLength).Aggregate(0, (x, y, index) => CombineBytes(x, y, index, bytes));
-                offset = offset + Length;
+                valueLength = bytes.Skip(offset).Take(offset + valueLength).Aggregate<int, int, int>(0, (x, y, index) => CombineBytes(x, y, index, bytes));
+                offset = offset + length;
             }
 
-            if(type == TypesHelper.GetTypeBinary(Types.MULT_RESOURCE))
+            if (type == TypesHelper.GetTypeBinary(TypesEnum.MULT_RESOURCE))
             {
-                decode(bytes.Skip(offset).Take(offset + ValueLength).ToList(), result, $"{path}/{id}");
+                Decode(bytes.Skip(offset).Take(offset + valueLength).ToList(), result, $"{path}/{id}");
             }
             else
             {
-                var ValueBytes = bytes.Skip(offset).Take(offset + ValueLength);
-                var HasZero = ValueBytes.Any(b => b == 0);
-                aggCount = 0;
-                var value = HasZero ? ValueBytes.Aggregate(0, (x, y, index) => CombineBytes(x, y, index, bytes)).ToString() : String.Join(String.Empty, ValueBytes.Select(s => GetString(s)).ToArray());
+                var valueBytes = bytes.Skip(offset).Take(offset + valueLength);
+                var hasZero = valueBytes.Any(b => b == 0);
+                var value = hasZero ? valueBytes.Aggregate<int, int, int>(0, (x, y, index) => CombineBytes(x, y, index, bytes)).ToString() : string.Join(string.Empty, valueBytes.Select(s => GetString(s)).ToArray());
                 result.Add($"{path}/{id}", value);
             }
 
-            offset = offset + ValueLength;
-            decode(bytes.Take(offset).ToList(), result, path);
+            offset = offset + valueLength;
+            Decode(bytes.Take(offset).ToList(), result, path);
 
-            return result;
-        }
-    }
-
-    public enum Types
-    {
-        [EnumMember(Value = "00000000")]
-        OBJECT_INSTAN,
-        [EnumMember(Value = "01000000")]
-        RESOURCE_INST,
-        [EnumMember(Value = "10000000")]
-        MULT_RESOURCE,
-        [EnumMember(Value = "11000000")]
-        RESOURCE_VALU
-    }
-
-    public static class TypesHelper
-    {
-        public static int GetTypeBinary(Types value)
-        {
-            var enumValue = Utils.GetEnumMemberValue(typeof(Types), Convert.ToString(value));
-            return Convert.ToInt32(enumValue, 2);
-        }
-
-        public static int GetLengthTypeBinary(LengthType value)
-        {
-            var enumValue = Utils.GetEnumMemberValue(typeof(LengthType), Convert.ToString(value));
-            return Convert.ToInt32(enumValue, 2);
-        }
-    }
-
-    public enum LengthType
-    {
-        [EnumMember(Value = "00001000")]
-        ONE_BYTE,
-        [EnumMember(Value = "00010000")]
-        TWO_BYTE,
-        [EnumMember(Value = "00011000")]
-        TRE_BYTE,
-        [EnumMember(Value = "00000000")]
-        OTR_BYTE
-    }
-
-    public static class EnumerableExtensions
-    {
-        public static TAccumulate Aggregate<TSource, TAccumulate, TResult>(
-        this IEnumerable<TSource> source,
-        TAccumulate seed,
-        Func<TAccumulate, TSource, int, TAccumulate> func)
-        {
-            //if (source == null) throw Error.ArgumentNull("source");
-            //if (func == null) throw Error.ArgumentNull("func");
-            //if (resultSelector == null) throw Error.ArgumentNull("resultSelector");
-            var index = 0;
-            var result = seed;
-            foreach (TSource element in source)
-            {
-                result = func(result, element, index);
-                index += 1;
-            }
             return result;
         }
     }
