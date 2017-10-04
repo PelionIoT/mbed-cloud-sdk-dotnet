@@ -5,6 +5,7 @@
 namespace MbedCloudSDK.Common.Tlv
 {
     using System;
+    using MbedCloudSDK.Exceptions;
 
     /// <summary>
     /// Types Helper
@@ -29,8 +30,17 @@ namespace MbedCloudSDK.Common.Tlv
         /// <returns>Types enum</returns>
         public static TypesEnum GetTypeEnumValue(int value)
         {
-            var stringValue = Convert.ToString(value, 2);
-            return (TypesEnum)Utils.GetEnumFromEnumMemberValue(typeof(TypesEnum), stringValue);
+            var idType = Convert.ToInt32(Utils.GetEnumMemberValue(typeof(MaskEnum), MaskEnum.ID_TYPE.ToString()), 2);
+            var stringValue = Convert.ToString(value & idType, 2).PadLeft(8, '0');
+            var enumVal = Utils.GetEnumFromEnumMemberValue(typeof(TypesEnum), stringValue);
+            if (enumVal != null)
+            {
+                return (TypesEnum)enumVal;
+            }
+            else
+            {
+                throw new DecodingException($"Unknown type value {Convert.ToString(value, 2)}");
+            }
         }
 
         /// <summary>
@@ -51,8 +61,17 @@ namespace MbedCloudSDK.Common.Tlv
         /// <returns>Types enum</returns>
         public static LengthTypeEnum GetLengthTypeEnumValue(int value)
         {
-            var stringValue = Convert.ToString(value, 2);
-            return (LengthTypeEnum)Utils.GetEnumFromEnumMemberValue(typeof(LengthTypeEnum), stringValue);
+            var idType = Convert.ToInt32(Utils.GetEnumMemberValue(typeof(MaskEnum), MaskEnum.LENGTH_TYPE.ToString()), 2);
+            var stringValue = Convert.ToString(value & idType, 2).PadLeft(8, '0');
+            var enumVal = Utils.GetEnumFromEnumMemberValue(typeof(LengthTypeEnum), stringValue);
+            if (enumVal != null)
+            {
+                return (LengthTypeEnum)enumVal;
+            }
+            else
+            {
+                throw new DecodingException($"Unknown type value {Convert.ToString(value, 2)}");
+            }
         }
     }
 }

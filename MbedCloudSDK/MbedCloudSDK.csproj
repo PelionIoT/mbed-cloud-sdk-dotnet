@@ -204,6 +204,7 @@
     <Compile Include="Common\Tlv\TlvDecoder.cs" />
     <Compile Include="Common\Tlv\TypesEnum.cs" />
     <Compile Include="Common\Tlv\TypesHelper.cs" />
+    <Compile Include="Common\Tlv\MaskEnum.cs" />
     <Compile Include="Connect\Api\ConnectApi.ConnectedDevices.cs" />
     <Compile Include="Connect\Api\ConnectApi.cs" />
     <Compile Include="Connect\Api\ConnectApi.Statistics.cs" />
@@ -231,6 +232,7 @@
     <Compile Include="DeviceDirectory\Model\Device\Device.cs" />
     <Compile Include="Connect\Model\Resource\Resource.cs" />
     <Compile Include="Exceptions\ValueException.cs" />
+    <Compile Include="Exceptions\DecodingException.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

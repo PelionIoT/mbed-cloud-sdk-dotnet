@@ -38,10 +38,11 @@ namespace MbedCloudSDK.Common.Tlv
         /// <param name="index">index</param>
         /// <param name="array">array</param>
         /// <returns>Int value of bytes</returns>
-        public static int CombineBytes(int accumalatedValue, int currentValue, int index, List<int> array)
+        public static int CombineBytes(int accumalatedValue, int currentValue, int index, List<byte> array)
         {
             var step = array.Count() - index - 1;
-            return accumalatedValue + (currentValue << (8 * step));
+            var combined = accumalatedValue + (currentValue << (8 * step));
+            return combined;
         }
 
         /// <summary>
@@ -86,8 +87,13 @@ namespace MbedCloudSDK.Common.Tlv
         /// <param name="result">result</param>
         /// <param name="path">path</param>
         /// <returns>JsonObject with decoded data</returns>
-        public JObject Decode(List<int> bytes, JObject result, string path = "")
+        public JObject Decode(List<byte> bytes, JObject result, string path = "")
         {
+            if (!bytes.Any())
+            {
+                return result;
+            }
+
             if (result == null)
             {
                 result = new JObject();
@@ -99,13 +105,13 @@ namespace MbedCloudSDK.Common.Tlv
             var length = FindValueLength(@byte);
 
             var offset = 1;
-            var id = bytes.Skip(offset).Take(offset + idLength).Aggregate<int, int, int>(0, (x, y, index) => CombineBytes(x, y, index, bytes));
+            var id = bytes.Skip(offset).Take(offset + idLength).Aggregate<byte, int, int>(0, (x, y, index) => CombineBytes(x, y, index, bytes));
             offset = offset + length;
 
             var valueLength = length;
             if ((@byte & lengthTypeMask) != TypesHelper.GetLengthTypeBinary(LengthTypeEnum.OTR_BYTE))
             {
-                valueLength = bytes.Skip(offset).Take(offset + valueLength).Aggregate<int, int, int>(0, (x, y, index) => CombineBytes(x, y, index, bytes));
+                valueLength = bytes.Skip(offset).Take(offset + length).Aggregate<byte, int, int>(0, (x, y, index) => CombineBytes(x, y, index, bytes));
                 offset = offset + length;
             }
 
@@ -117,12 +123,13 @@ namespace MbedCloudSDK.Common.Tlv
             {
                 var valueBytes = bytes.Skip(offset).Take(offset + valueLength);
                 var hasZero = valueBytes.Any(b => b == 0);
-                var value = hasZero ? valueBytes.Aggregate<int, int, int>(0, (x, y, index) => CombineBytes(x, y, index, bytes)).ToString() : string.Join(string.Empty, valueBytes.Select(s => GetString(s)).ToArray());
+                var value = hasZero ? valueBytes.Aggregate<byte, int, int>(0, (x, y, index) => CombineBytes(x, y, index, bytes)).ToString() : string.Join(string.Empty, valueBytes.Select(s => GetString(s)).ToArray());
                 result.Add($"{path}/{id}", value);
             }
 
             offset = offset + valueLength;
-            Decode(bytes.Take(offset).ToList(), result, path);
+            var bit = bytes.Skip(offset).ToList();
+            Decode(bit, result, path);
 
             return result;
         }
