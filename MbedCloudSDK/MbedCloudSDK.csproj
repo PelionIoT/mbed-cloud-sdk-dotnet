@@ -205,6 +205,8 @@
     <Compile Include="Common\Tlv\TypesEnum.cs" />
     <Compile Include="Common\Tlv\TypesHelper.cs" />
     <Compile Include="Common\Tlv\MaskEnum.cs" />
+    <Compile Include="Common\Tlv\Lwm2mResource.cs" />
+    <Compile Include="Common\Tlv\Lwm2mResourceTypeEnum.cs" />
     <Compile Include="Connect\Api\ConnectApi.ConnectedDevices.cs" />
     <Compile Include="Connect\Api\ConnectApi.cs" />
     <Compile Include="Connect\Api\ConnectApi.Statistics.cs" />

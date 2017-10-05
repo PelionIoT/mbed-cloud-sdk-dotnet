@@ -5,6 +5,7 @@ using System.IO;
 using MbedCloudSDK.Exceptions;
 using System.Linq;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace MbedCloudSDK.Test.Common.Tlv
 {
@@ -64,8 +65,11 @@ namespace MbedCloudSDK.Test.Common.Tlv
             using (var stream = new MemoryStream(response))
             {
                 var tlv = new TlvDecoder();
-                var res = tlv.Decode(response.ToList(), new JObject());
-                Assert.AreEqual(res.First, "some string");
+                var res = tlv.Decode(response.ToList(), new List<Lwm2mResource>());
+                Assert.AreEqual(1, res.Count);
+                var resource = res.FirstOrDefault();
+                Assert.AreEqual(resource.Id, 0);
+                Assert.AreEqual(resource.GetStringValue(), "Open Mobile Alliance");
             }
         }
 
@@ -94,8 +98,9 @@ namespace MbedCloudSDK.Test.Common.Tlv
             using (var stream = new MemoryStream(response))
             {
                 var tlv = new TlvDecoder();
-                var res = tlv.Decode(response.ToList(), new JObject());
-                Assert.AreEqual(res.First, "some string");
+                var res = tlv.Decode(response.ToList(), new List<Lwm2mResource>());
+                Assert.NotNull(res);
+                Assert.AreEqual(13, res.Count);
             }
         }
 
@@ -124,8 +129,9 @@ namespace MbedCloudSDK.Test.Common.Tlv
             using (var stream = new MemoryStream(response))
             {
                 var tlv = new TlvDecoder();
-                var res = tlv.Decode(response.ToList(), new JObject());
-                Assert.AreEqual(res.First, "some string");
+                var res = tlv.Decode(response.ToList(), new List<Lwm2mResource>());
+                Assert.AreEqual(res.Count, 1);
+
             }
         }
 
@@ -143,8 +149,8 @@ namespace MbedCloudSDK.Test.Common.Tlv
             using (var stream = new MemoryStream(response))
             {
                 var tlv = new TlvDecoder();
-                var res = tlv.Decode(response.ToList(), new JObject());
-                Assert.AreEqual(res.First, "some string");
+                var res = tlv.Decode(response.ToList(), new List<Lwm2mResource>());
+                Assert.AreEqual(res.Count, 2);
             }
         }
 
@@ -160,8 +166,10 @@ namespace MbedCloudSDK.Test.Common.Tlv
             using (var stream = new MemoryStream(response))
             {
                 var tlv = new TlvDecoder();
-                var res = tlv.Decode(response.ToList(), new JObject());
-                Assert.AreEqual(res.First, "some string");
+                var res = tlv.Decode(response.ToList(), new List<Lwm2mResource>());
+                Assert.AreEqual(1, res.Count);
+                var resource = res.FirstOrDefault();
+                Assert.AreEqual(resource.Id, 0);
             }
         }
     }

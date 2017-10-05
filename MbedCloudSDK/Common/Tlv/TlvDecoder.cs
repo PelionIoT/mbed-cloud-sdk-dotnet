@@ -27,7 +27,8 @@ namespace MbedCloudSDK.Common.Tlv
         /// <returns>String value</returns>
         public static string GetString(int value)
         {
-            return Convert.ToString(value);
+            var str = (char)value;
+            return str.ToString();
         }
 
         /// <summary>
@@ -36,11 +37,11 @@ namespace MbedCloudSDK.Common.Tlv
         /// <param name="accumalatedValue">accumalatedValue</param>
         /// <param name="currentValue">currentValue</param>
         /// <param name="index">index</param>
-        /// <param name="array">array</param>
+        /// <param name="count">count of array</param>
         /// <returns>Int value of bytes</returns>
-        public static int CombineBytes(int accumalatedValue, int currentValue, int index, List<byte> array)
+        public static int CombineBytes(int accumalatedValue, int currentValue, int index, int count)
         {
-            var step = array.Count() - index - 1;
+            var step = count - index - 1;
             var combined = accumalatedValue + (currentValue << (8 * step));
             return combined;
         }
@@ -87,7 +88,7 @@ namespace MbedCloudSDK.Common.Tlv
         /// <param name="result">result</param>
         /// <param name="path">path</param>
         /// <returns>JsonObject with decoded data</returns>
-        public JObject Decode(List<byte> bytes, JObject result, string path = "")
+        public List<Lwm2mResource> Decode(List<byte> bytes, List<Lwm2mResource> result, string path = "")
         {
             if (!bytes.Any())
             {
@@ -96,35 +97,35 @@ namespace MbedCloudSDK.Common.Tlv
 
             if (result == null)
             {
-                result = new JObject();
+                result = new List<Lwm2mResource>();
             }
 
-            var @byte = bytes[0];
-            var type = @byte & typeMask;
-            var idLength = FindIdLength(@byte);
-            var length = FindValueLength(@byte);
+            var byteVal = bytes[0];
+            var type = byteVal & typeMask;
+            var idLength = FindIdLength(byteVal);
+            var length = FindValueLength(byteVal);
 
             var offset = 1;
-            var id = bytes.Skip(offset).Take(offset + idLength).Aggregate<byte, int, int>(0, (x, y, index) => CombineBytes(x, y, index, bytes));
+            var id = bytes.Skip(offset).Take(offset).Aggregate<byte, int, int>(0, (x, y, index) => CombineBytes(x, y, index, offset - offset + 1));
             offset = offset + length;
 
             var valueLength = length;
-            if ((@byte & lengthTypeMask) != TypesHelper.GetLengthTypeBinary(LengthTypeEnum.OTR_BYTE))
+            if ((byteVal & lengthTypeMask) != TypesHelper.GetLengthTypeBinary(LengthTypeEnum.OTR_BYTE))
             {
-                valueLength = bytes.Skip(offset).Take(offset + length).Aggregate<byte, int, int>(0, (x, y, index) => CombineBytes(x, y, index, bytes));
+                valueLength = bytes.Skip(offset).Take(length).Aggregate<byte, int, int>(0, (x, y, index) => CombineBytes(x, y, index, length - offset + 1));
                 offset = offset + length;
             }
 
             if (type == TypesHelper.GetTypeBinary(TypesEnum.MULT_RESOURCE))
             {
-                Decode(bytes.Skip(offset).Take(offset + valueLength).ToList(), result, $"{path}/{id}");
+                Decode(bytes.Skip(offset).Take(valueLength).ToList(), result, $"{path}/{id}");
             }
             else
             {
-                var valueBytes = bytes.Skip(offset).Take(offset + valueLength);
+                var valueBytes = bytes.Skip(offset).Take(valueLength);
                 var hasZero = valueBytes.Any(b => b == 0);
-                var value = hasZero ? valueBytes.Aggregate<byte, int, int>(0, (x, y, index) => CombineBytes(x, y, index, bytes)).ToString() : string.Join(string.Empty, valueBytes.Select(s => GetString(s)).ToArray());
-                result.Add($"{path}/{id}", value);
+                var value = hasZero ? valueBytes.Aggregate<byte, int, int>(0, (x, y, index) => CombineBytes(x, y, index, valueLength - offset + 1)).ToString() : string.Join(string.Empty, valueBytes.Select(s => GetString(s)).ToArray());
+                result.Add(new Lwm2mResource(id, value));
             }
 
             offset = offset + valueLength;
