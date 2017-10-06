@@ -106,13 +106,15 @@ namespace MbedCloudSDK.Common.Tlv
             var length = FindValueLength(byteVal);
 
             var offset = 1;
-            var id = bytes.Skip(offset).Take(offset).Aggregate<byte, int, int>(0, (x, y, index) => CombineBytes(x, y, index, offset - offset + 1));
-            offset = offset + length;
+            var idSlice = bytes.Skip(offset).Take(offset);
+            var id = idSlice.Aggregate<byte, int, int>(0, (x, y, index) => CombineBytes(x, y, index, idSlice.Count()));
+            offset = offset + idLength;
 
             var valueLength = length;
             if ((byteVal & lengthTypeMask) != TypesHelper.GetLengthTypeBinary(LengthTypeEnum.OTR_BYTE))
             {
-                valueLength = bytes.Skip(offset).Take(length).Aggregate<byte, int, int>(0, (x, y, index) => CombineBytes(x, y, index, length - offset + 1));
+                var slice = bytes.Skip(offset).Take(length);
+                valueLength = slice.Aggregate<byte, int, int>(0, (x, y, index) => CombineBytes(x, y, index, slice.Count()));
                 offset = offset + length;
             }
 
@@ -124,8 +126,8 @@ namespace MbedCloudSDK.Common.Tlv
             {
                 var valueBytes = bytes.Skip(offset).Take(valueLength);
                 var hasZero = valueBytes.Any(b => b == 0);
-                var value = hasZero ? valueBytes.Aggregate<byte, int, int>(0, (x, y, index) => CombineBytes(x, y, index, valueLength - offset + 1)).ToString() : string.Join(string.Empty, valueBytes.Select(s => GetString(s)).ToArray());
-                result.Add(new Lwm2mResource(id, value));
+                var value = hasZero ? valueBytes.Aggregate<byte, int, int>(0, (x, y, index) => CombineBytes(x, y, index, valueBytes.Count())).ToString() : string.Join(string.Empty, valueBytes.Select(s => GetString(s)).ToArray());
+                result.Add(new Lwm2mResource($"{path}/{id}", value));
             }
 
             offset = offset + valueLength;

@@ -18,7 +18,7 @@ namespace MbedCloudSDK.Common.Tlv
         /// </summary>
         /// <param name="id">Id</param>
         /// <param name="value">Value</param>
-        public Lwm2mResource(int id, byte[] value)
+        public Lwm2mResource(string id, byte[] value)
         {
             Id = id;
             Value = value;
@@ -30,7 +30,7 @@ namespace MbedCloudSDK.Common.Tlv
         /// </summary>
         /// <param name="id">Id</param>
         /// <param name="value">Value</param>
-        public Lwm2mResource(int id, string value)
+        public Lwm2mResource(string id, string value)
         {
             Id = id;
             Value = Encoding.UTF8.GetBytes(value);
@@ -42,7 +42,7 @@ namespace MbedCloudSDK.Common.Tlv
         /// </summary>
         /// <param name="id">Id</param>
         /// <param name="value">Value</param>
-        public Lwm2mResource(int id, int value)
+        public Lwm2mResource(string id, int value)
         {
             Id = id;
             Type = Lwm2mResourceTypeEnum.INT;
@@ -80,7 +80,7 @@ namespace MbedCloudSDK.Common.Tlv
         /// Gets or sets the Id
         /// </summary>
         /// <returns>Id</returns>
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Gets or sets the value
@@ -114,6 +114,15 @@ namespace MbedCloudSDK.Common.Tlv
             {
                 return Encoding.UTF8.GetString(Value);
             }
+        }
+
+        /// <summary>
+        /// Get hex string
+        /// </summary>
+        /// <returns>string</returns>
+        public int GetHexValue()
+        {
+            return BitConverter.ToInt32(Value, 0);
         }
     }
 }
