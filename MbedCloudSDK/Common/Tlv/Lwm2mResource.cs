@@ -122,6 +122,13 @@ namespace MbedCloudSDK.Common.Tlv
         /// <returns>string</returns>
         public int GetHexValue()
         {
+            if (Value.Length < 4)
+            {
+                var temp = new byte[4];
+                Value.CopyTo(temp, 0);
+                return BitConverter.ToInt32(temp, 0);
+            }
+
             return BitConverter.ToInt32(Value, 0);
         }
     }

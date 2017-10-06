@@ -41,21 +41,6 @@ namespace MbedCloudSDK.AccountManagement.Api
         }
 
         /// <summary>
-        /// Test Tlv
-        /// </summary>
-        /// <returns>Enum</returns>
-        public static TypesEnum TestTlv()
-        {
-            byte[] array = { 0xE3, 0xA3, 0x67, 0b001_100 };
-            using (var stream = new MemoryStream(array))
-            {
-                var x = TypesHelper.GetTypeEnumValue(stream.ReadByte() & 0xFF);
-                stream.Position++;
-                return x;
-            }
-        }
-
-        /// <summary>
         /// Get metadata for last api call
         /// </summary>
         /// <returns>Api Metadata</returns>

@@ -6,12 +6,15 @@ namespace MbedCloudSDK.Connect.Api
 {
     using System;
     using System.Text;
+    using MbedCloudSDK.Common.Tlv;
 
     /// <summary>
     /// Connect Api
     /// </summary>
     public partial class ConnectApi
     {
+        private TlvDecoder tlvDecoder = new TlvDecoder();
+
         private void Notifications()
         {
             while (!cancellationToken.IsCancellationRequested)
@@ -28,8 +31,17 @@ namespace MbedCloudSDK.Connect.Api
                     {
                         if (asyncReponse.Payload != null)
                         {
-                            var data = Convert.FromBase64String(asyncReponse.Payload);
-                            var payload = Encoding.UTF8.GetString(data);
+                            var payload = string.Empty;
+                            if (asyncReponse.Ct.Contains("tlv"))
+                            {
+                                payload = tlvDecoder.DecodeTlv(asyncReponse.Payload);
+                            }
+                            else
+                            {
+                                var data = Convert.FromBase64String(asyncReponse.Payload);
+                                payload = Encoding.UTF8.GetString(data);
+                            }
+
                             if (AsyncResponses.ContainsKey(asyncReponse.Id))
                             {
                                 AsyncResponses[asyncReponse.Id].Add(payload);
@@ -42,8 +54,17 @@ namespace MbedCloudSDK.Connect.Api
                 {
                     foreach (var notification in resp.Notifications)
                     {
-                        var data = Convert.FromBase64String(notification.Payload);
-                        var payload = Encoding.UTF8.GetString(data);
+                        var payload = string.Empty;
+                        if (notification.Ct.Contains("tlv"))
+                        {
+                            payload = tlvDecoder.DecodeTlv(notification.Payload);
+                        }
+                        else
+                        {
+                            var data = Convert.FromBase64String(notification.Payload);
+                            payload = Encoding.UTF8.GetString(data);
+                        }
+
                         var resourceSubs = notification.Ep + notification.Path;
                         if (ResourceSubscribtions.ContainsKey(resourceSubs))
                         {

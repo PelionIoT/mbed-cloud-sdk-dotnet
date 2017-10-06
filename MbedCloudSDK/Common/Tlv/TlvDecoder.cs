@@ -8,6 +8,7 @@ namespace MbedCloudSDK.Common.Tlv
     using System.Collections.Generic;
     using System.Linq;
     using System.Runtime.Serialization;
+    using System.Text;
     using Newtonsoft.Json.Linq;
 
     /// <summary>
@@ -82,13 +83,35 @@ namespace MbedCloudSDK.Common.Tlv
         }
 
         /// <summary>
+        /// Decode a tlv payload
+        /// </summary>
+        /// <param name="val">String value of payload</param>
+        /// <returns>decoded string</returns>
+        public string DecodeTlv(string val)
+        {
+            var bytes = Encoding.Unicode.GetBytes(val);
+            var tlv = JObject.FromObject(Decode(bytes, new List<Lwm2mResource>()));
+            return tlv.ToString();
+        }
+
+        /// <summary>
+        /// Decode a tlv payload from a byte array
+        /// </summary>
+        /// <param name="bytes">payload byte array</param>
+        /// <returns>list of resource objects</returns>
+        public List<Lwm2mResource> DecodeTlv(byte[] bytes)
+        {
+            return Decode(bytes, new List<Lwm2mResource>());
+        }
+
+        /// <summary>
         /// Decode
         /// </summary>
         /// <param name="bytes">bytes</param>
         /// <param name="result">result</param>
         /// <param name="path">path</param>
         /// <returns>JsonObject with decoded data</returns>
-        public List<Lwm2mResource> Decode(List<byte> bytes, List<Lwm2mResource> result, string path = "")
+        private List<Lwm2mResource> Decode(byte[] bytes, List<Lwm2mResource> result, string path = "")
         {
             if (!bytes.Any())
             {
@@ -120,7 +143,7 @@ namespace MbedCloudSDK.Common.Tlv
 
             if (type == TypesHelper.GetTypeBinary(TypesEnum.MULT_RESOURCE))
             {
-                Decode(bytes.Skip(offset).Take(valueLength).ToList(), result, $"{path}/{id}");
+                Decode(bytes.Skip(offset).Take(valueLength).ToArray(), result, $"{path}/{id}");
             }
             else
             {
@@ -131,7 +154,7 @@ namespace MbedCloudSDK.Common.Tlv
             }
 
             offset = offset + valueLength;
-            var bit = bytes.Skip(offset).ToList();
+            var bit = bytes.Skip(offset).ToArray();
             Decode(bit, result, path);
 
             return result;

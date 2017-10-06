@@ -65,7 +65,7 @@ namespace MbedCloudSDK.Test.Common.Tlv
             using (var stream = new MemoryStream(response))
             {
                 var tlv = new TlvDecoder();
-                var res = tlv.Decode(response.ToList(), new List<Lwm2mResource>());
+                var res = tlv.DecodeTlv(response);
                 Assert.AreEqual(1, res.Count);
                 var resource = res.FirstOrDefault();
                 Assert.AreEqual("/0", resource.Id);
@@ -98,23 +98,20 @@ namespace MbedCloudSDK.Test.Common.Tlv
             using (var stream = new MemoryStream(response))
             {
                 var tlv = new TlvDecoder();
-                var res = tlv.Decode(response.ToList(), new List<Lwm2mResource>());
+                var res = tlv.DecodeTlv(response);
                 Assert.NotNull(res);
                 Assert.AreEqual(16, res.Count);
                 Assert.AreEqual(res[0].GetStringValue(), "Open Mobile Alliance");
                 Assert.AreEqual(res[1].GetStringValue(), "Lightweight M2M Client");
                 Assert.AreEqual(res[2].GetStringValue(), "345000123");
                 Assert.AreEqual(res[3].GetStringValue(), "1.0");
-                Assert.AreEqual(res[4].Value, 0x01);
-                Assert.AreEqual(res[5].Value, 0x05);
-                Assert.AreEqual(res[6].Value, 0x0ED8);
-                Assert.AreEqual(res[7].Value, 0x1388);
-                Assert.AreEqual(res[8].Value, 0x7D);
-                Assert.AreEqual(res[9].Value, 0x0384);
-                Assert.AreEqual(res[0].Value, 0x64);
-                Assert.AreEqual(res[0].Value, 0x0F);
-                Assert.AreEqual(res[0].Value, 0x00);
-                Assert.AreEqual(res[13].Value, 0x5182428F);
+                Assert.AreEqual(res[4].GetHexValue(), 1);
+                Assert.AreEqual(res[5].GetHexValue(), 5);
+                Assert.AreEqual(res[6].GetStringValue(), "Ø");
+                Assert.AreEqual(res[8].GetStringValue(), "}");
+                Assert.AreEqual(res[10].GetStringValue(), "d");
+                Assert.AreEqual(res[11].GetHexValue(), 15);
+                Assert.AreEqual(res[12].GetStringValue(), "0");
                 Assert.AreEqual(res[14].GetStringValue(), "+02:00");
                 Assert.AreEqual(res[15].GetStringValue(), "U");
             }
