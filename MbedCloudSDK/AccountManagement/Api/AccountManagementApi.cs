@@ -4,12 +4,10 @@
 
 namespace MbedCloudSDK.AccountManagement.Api
 {
-    using System.IO;
     using System.Linq;
     using iam.Api;
     using iam.Client;
     using MbedCloudSDK.Common;
-    using MbedCloudSDK.Common.Tlv;
 
     /// <summary>
     /// Exposing functionality from IAM.
