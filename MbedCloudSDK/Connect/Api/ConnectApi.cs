@@ -9,7 +9,6 @@ namespace MbedCloudSDK.Connect.Api
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using device_directory.Api;
     using device_directory.Client;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
@@ -41,10 +40,10 @@ namespace MbedCloudSDK.Connect.Api
         private EndpointsApi endpointsApi;
         private statistics.Api.AccountApi accountApi;
         private SubscriptionsApi subscriptionsApi;
-        private mds.Api.ResourcesApi resourcesApi;
+        private ResourcesApi resourcesApi;
         private string auth;
         private NotificationsApi notificationsApi;
-        private mds.Api.DefaultApi defaultApi;
+        private DefaultApi defaultApi;
         private bool disposed;
 
         /// <summary>
@@ -67,9 +66,9 @@ namespace MbedCloudSDK.Connect.Api
             mds.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
             mds.Client.Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
 
-            device_directory.Client.Configuration.Default.ApiClient = new ApiClient(config.Host);
-            device_directory.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
-            device_directory.Client.Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            Configuration.Default.ApiClient = new ApiClient(config.Host);
+            Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
+            Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
 
             deviceDirectoryApi = new device_directory.Api.DefaultApi();
             statisticsApi = new statistics.Api.StatisticsApi();
@@ -78,7 +77,7 @@ namespace MbedCloudSDK.Connect.Api
             endpointsApi = new EndpointsApi();
             accountApi = new statistics.Api.AccountApi();
             notificationsApi = new NotificationsApi();
-            defaultApi = new mds.Api.DefaultApi();
+            defaultApi = new DefaultApi();
         }
 
         /// <summary>
@@ -99,7 +98,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             var lastMds = mds.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault()?.Headers?.Where(m => m.Name == "Date")?.Select(d => DateTime.Parse(d.Value.ToString()))?.FirstOrDefault();
             var lastStats = statistics.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault()?.Headers?.Where(m => m.Name == "Date")?.Select(d => DateTime.Parse(d.Value.ToString()))?.FirstOrDefault();
-            if (Nullable.Compare<DateTime>(lastMds, lastStats) > 0)
+            if (Nullable.Compare(lastMds, lastStats) > 0)
             {
                 return ApiMetadata.Map(mds.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
             }
