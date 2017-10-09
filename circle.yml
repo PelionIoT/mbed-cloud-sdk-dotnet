@@ -58,7 +58,7 @@ test:
     - xsltproc nunit3-junit.xslt TestResult.xml >> junit.xml
     - mkdir -p ${CIRCLE_TEST_REPORTS}/junit
     - cp junit.xml $CIRCLE_TEST_REPORTS/junit/test-results.xml
-    - xsltproc html-report.xslt TestResult.xml | tee /dev/tty | ansi-html >> ${SDK_TESTS}/index.html:
+    - xsltproc text-report.xslt TestResult.xml | tee /dev/tty | ansi-html >> ${SDK_TESTS}/index.html:
     - echo "<h2>Integration Tests</h2>" >> ${SDK_TESTS}/index.html:
     - set -o pipefail && bash scripts/test.sh 2>&1 | tee /dev/tty | ansi-html >> ${SDK_TESTS}/index.html:
     - mv MbedCloudSDK/tpip.csv ${SDK_TPIP}
