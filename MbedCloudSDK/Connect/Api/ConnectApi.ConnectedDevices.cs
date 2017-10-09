@@ -232,5 +232,25 @@ namespace MbedCloudSDK.Connect.Api
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
         }
+
+        /// <summary>
+        /// Get a resource from the path
+        /// </summary>
+        /// <param name="deviceId">Id of the device</param>
+        /// <param name="resourcePath">Path to the resource</param>
+        /// <returns>The resource at the givn path. Throws if not found</returns>
+        public Resource GetResource(string deviceId, string resourcePath)
+        {
+            var resources = ListResources(deviceId);
+            foreach (var resource in resources)
+            {
+                if (resource.Path == resourcePath)
+                {
+                    return resource;
+                }
+            }
+
+            throw new CloudApiException(404, "Resource not found");
+        }
     }
 }
