@@ -9,6 +9,7 @@ general:
       - build
 machine:
   environment:
+    AWS_DEFAULT_REGION: us-west-2
     PROJECT_TOP: ${HOME}/${CIRCLE_PROJECT_REPONAME}
     SDK_NAME: ${CIRCLE_PROJECT_REPONAME}
     SDK_TAG: ${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}
