@@ -9,6 +9,7 @@ general:
       - build
 machine:
   environment:
+    PROJECT_TOP: ${HOME}/${CIRCLE_PROJECT_REPONAME}
     SDK_NAME: ${CIRCLE_PROJECT_REPONAME}
     SDK_TAG: ${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}
     SDK_DOCS: ${HOME}/docs
@@ -16,6 +17,9 @@ machine:
     SDK_TPIP: ${HOME}/tpip
     SDK_BUILD: ${HOME}/build
     NUGET_NAME: Mbed.Cloud.SDK.1.2.2.nupkg
+    ARTIFACTORY_URL: http://localhost:5000/artifactory/
+  services:
+    - docker
 checkout:
   post:
     - git config --global user.name monty-bot
@@ -24,6 +28,9 @@ checkout:
     - pip install -r TestServer/testrunner/requirements.txt
     - python setup.py develop:
         pwd: TestServer/testrunner
+    - aws s3 sync s3://artifactory-store ${PROJECT_TOP}
+    - docker build -t artifactory . :
+        pwd: proxy
 dependencies:
   pre:
     - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
@@ -45,7 +52,6 @@ dependencies:
     - mono --runtime=v4.0 nuget.exe restore MbedCloudSDK.Test/packages.config -PackagesDirectory packages
 compile:
   override:
-    - msbuild /nologo /noconsolelogger MbedCloudSDK/MbedCloudSDK.csproj /p:Configuration=Release;RunCodeAnalysis=true;CodeAnalysisLogFile=AnalysisReport.xml | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - msbuild /p:Configuration=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - mono --runtime=v4.0 nuget.exe pack MbedCloudSDK/MbedCloudSDK.csproj -MSBuildPath "/usr/lib/mono/msbuild/15.0/bin" -IncludeReferencedProjects -Prop Configuration=Release -symbols | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - mv ${NUGET_NAME} ${SDK_BUILD}
@@ -63,9 +69,11 @@ test:
     - set -o pipefail && bash scripts/test.sh 2>&1 | tee /dev/tty | ansi-html >> ${SDK_TESTS}/index.html:
     - mv MbedCloudSDK/tpip.csv ${SDK_TPIP}
     - echo "finished"
+  post:
+    - docker run -d -p 5000:80 artifactory; sleep 10
 deployment:
   staging:
-    branch: [/docs-.*/, /feature-.*/]
+    branch: [/docs-.*/, /feature-.*/, analysis-report]
     commands:
       - ./scripts/generate-docs.sh
       - ./scripts/uploadArtifacts.sh
