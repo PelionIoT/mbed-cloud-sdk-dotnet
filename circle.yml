@@ -76,6 +76,7 @@ deployment:
   staging:
     branch: [/docs-.*/, /feature-.*/, analysis-report]
     commands:
+      - mono --runtime=v4.0 nuget.exe push ${NUGET_NAME} -Source ${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-virtual | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
       - ./scripts/generate-docs.sh
       - ./scripts/uploadArtifacts.sh
   master:
