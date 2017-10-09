@@ -17,7 +17,7 @@ machine:
     SDK_TESTS: ${HOME}/tests
     SDK_TPIP: ${HOME}/tpip
     SDK_BUILD: ${HOME}/build
-    NUGET_NAME: Mbed.Cloud.SDK.1.2.2.symbols.nupkg
+    NUGET_NAME: Mbed.Cloud.SDK.1.2.2.nupkg
     ARTIFACTORY_URL: http://localhost:5000/artifactory/
   services:
     - docker
@@ -54,7 +54,7 @@ dependencies:
 compile:
   override:
     - msbuild /p:Configuration=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
-    - mono --runtime=v4.0 nuget.exe pack MbedCloudSDK/MbedCloudSDK.csproj -MSBuildPath "/usr/lib/mono/msbuild/15.0/bin" -IncludeReferencedProjects -Prop Configuration=Release -symbols | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+    - mono --runtime=v4.0 nuget.exe pack MbedCloudSDK/MbedCloudSDK.csproj -MSBuildPath "/usr/lib/mono/msbuild/15.0/bin" -IncludeReferencedProjects -Prop Configuration=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - mv ${NUGET_NAME} ${SDK_BUILD}
     - mv MbedCloudSDK/bin/Release/* ${SDK_BUILD}
 test:
@@ -73,9 +73,9 @@ deployment:
   staging:
     branch: [/docs-.*/, /feature-.*/, analysis-report]
     commands:
-      - mono --runtime=v4.0 nuget.exe sources Add -Name Artifactory -Source ${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-virtual
-      - sudo mono --runtime=v4.0 nuget.exe setapikey ${ARTIFACTORY_API_KEY} -Source Artifactory
-      - mono --runtime=v4.0 nuget.exe push ${NUGET_NAME} -Source ${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-virtual | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+      - mono --runtime=v4.0 nuget.exe sources Add -Name Artifactory -Source ${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-virtual | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+      - sudo mono --runtime=v4.0 nuget.exe setapikey ${ARTIFACTORY_API_KEY} -Source Artifactory -Verbosity detailed -ApiKey ${ARTIFACTORY_API_KEY} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+      - mono --runtime=v4.0 nuget.exe push ${NUGET_NAME} -Source Artifactory -Verbosity detailed -ApiKey ${ARTIFACTORY_API_KEY} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
       - ./scripts/generate-docs.sh
       - ./scripts/uploadArtifacts.sh
   master:
