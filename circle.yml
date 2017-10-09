@@ -29,7 +29,7 @@ checkout:
     - pip install -r TestServer/testrunner/requirements.txt
     - python setup.py develop:
         pwd: TestServer/testrunner
-    - aws s3 sync s3://artifactory-store ${PROJECT_TOP}
+    - ./scripts/buildArtifactoryContainer.sh
     - docker build -t artifactory . :
         pwd: proxy
 dependencies:
