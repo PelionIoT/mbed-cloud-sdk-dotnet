@@ -44,15 +44,17 @@ dependencies:
     - mono --runtime=v4.0 nuget.exe restore MbedCloudSDK.Test/packages.config -PackagesDirectory packages
 compile:
   override:
-    - msbuild /nologo /noconsolelogger MbedCloudSDK/MbedCloudSDK.csproj /p:Configuration=Release;CodeAnalysisLogFile=AnalysisReport.xml | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+    - msbuild /nologo /noconsolelogger MbedCloudSDK/MbedCloudSDK.csproj /p:Configuration=Release;RunCodeAnalysis=true;CodeAnalysisLogFile=AnalysisReport.xml | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - msbuild /p:Configuration=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - mono --runtime=v4.0 nuget.exe pack MbedCloudSDK/MbedCloudSDK.csproj -MSBuildPath "/usr/lib/mono/msbuild/15.0/bin" -IncludeReferencedProjects -Prop Configuration=Release -symbols | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - mv ${NUGET_NAME} ${SDK_BUILD}
     - mv MbedCloudSDK/bin/Release/* ${SDK_BUILD}
 test:
   override:
-    - mono packages/NUnit.ConsoleRunner.3.7.0/tools/nunit3-console.exe MbedCloudSDK.Test/MbedCloudSDK.Test.csproj --config=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
-    - echo "<h1>${SDK_NAME} (build ${CIRCLE_BUILD_NUM})</h1>" > ${SDK_TESTS}/index.html:
+    - echo "<h1>${SDK_NAME} (build ${CIRCLE_BUILD_NUM})</h1>" >> ${SDK_TESTS}/index.html:
+    - echo "<h2>Unit Tests</h2>" >> ${SDK_TESTS}/index.html:
+    - mono packages/NUnit.ConsoleRunner.3.7.0/tools/nunit3-console.exe MbedCloudSDK.Test/MbedCloudSDK.Test.csproj --config=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g" | tee /dev/tty | ansi-html >> ${SDK_TESTS}/index.html
+    - echo "<h2>Integration Tests</h2>" >> ${SDK_TESTS}/index.html:
     - set -o pipefail && bash scripts/test.sh 2>&1 | tee /dev/tty | ansi-html >> ${SDK_TESTS}/index.html:
     - mv MbedCloudSDK/tpip.csv ${SDK_TPIP}
     - echo "finished"
