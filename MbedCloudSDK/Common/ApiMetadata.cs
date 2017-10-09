@@ -81,8 +81,8 @@ namespace MbedCloudSDK.Common
 
                 metadata.Date = metadata.Headers.ContainsKey(nameof(Date)) ? DateTime.Parse(metadata.Headers[nameof(Date)]) : DateTime.Now;
                 metadata.RequestId = metadata.Headers.ContainsKey("X-Request-ID") ? metadata.Headers["X-Request-ID"] : null;
-                metadata.Object = content["object"] != null ? content["object"].Value<string>() : null;
-                metadata.Etag = content["etag"] != null ? content["etag"].Value<string>() : null;
+                metadata.Object = content["object"]?.Value<string>();
+                metadata.Etag = content["etag"]?.Value<string>();
                 metadata.Method = response.Request.Method.ToString();
                 metadata.Url = response.ResponseUri.ToString();
             }
