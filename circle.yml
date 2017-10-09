@@ -56,6 +56,7 @@ test:
     - echo "<h2>Unit Tests</h2>" >> ${SDK_TESTS}/index.html:
     - mono packages/NUnit.ConsoleRunner.3.7.0/tools/nunit3-console.exe MbedCloudSDK.Test/MbedCloudSDK.Test.csproj --config=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - xsltproc nunit3-junit.xslt TestResult.xml >> junit.xml
+    - mkdir -p ${CIRCLE_TEST_REPORTS}/junit
     - cp junit.xml $CIRCLE_TEST_REPORTS/junit/test-results.xml
     - echo "<h2>Integration Tests</h2>" >> ${SDK_TESTS}/index.html:
     - set -o pipefail && bash scripts/test.sh 2>&1 | tee /dev/tty | ansi-html >> ${SDK_TESTS}/index.html:
