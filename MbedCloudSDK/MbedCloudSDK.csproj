@@ -199,6 +199,7 @@
     <Compile Include="Common\Filter\Filter.cs" />
     <Compile Include="Common\Filter\FilterAttribute.cs" />
     <Compile Include="Common\Filter\FilterOperator.cs" />
+    <Compile Include="Common\Tlv\EnumerableExtensions.cs" />
     <Compile Include="Connect\Api\ConnectApi.ConnectedDevices.cs" />
     <Compile Include="Connect\Api\ConnectApi.cs" />
     <Compile Include="Connect\Api\ConnectApi.Statistics.cs" />
