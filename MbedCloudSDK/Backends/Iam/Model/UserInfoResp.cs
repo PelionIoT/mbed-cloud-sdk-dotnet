@@ -163,7 +163,7 @@ namespace iam.Model
         /// <param name="FullName">The full name of the user..</param>
         /// <param name="Address">Address..</param>
         /// <param name="CreationTime">A timestamp of the user creation in the storage, in milliseconds..</param>
-        /// <param name="Password">The password when creating a new user. It will will generated when not present in the request..</param>
+        /// <param name="Password">The password when creating a new user. It will be generated when not present in the request..</param>
         /// <param name="PhoneNumber">Phone number..</param>
         /// <param name="Id">The UUID of the user. (required).</param>
         /// <param name="LastLoginTime">A timestamp of the latest login of the user, in milliseconds..</param>
@@ -331,9 +331,9 @@ namespace iam.Model
         [DataMember(Name="creation_time", EmitDefaultValue=false)]
         public long? CreationTime { get; set; }
         /// <summary>
-        /// The password when creating a new user. It will will generated when not present in the request.
+        /// The password when creating a new user. It will be generated when not present in the request.
         /// </summary>
-        /// <value>The password when creating a new user. It will will generated when not present in the request.</value>
+        /// <value>The password when creating a new user. It will be generated when not present in the request.</value>
         [DataMember(Name="password", EmitDefaultValue=false)]
         public string Password { get; set; }
         /// <summary>
