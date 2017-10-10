@@ -62,8 +62,17 @@ namespace MbedCloudSDK.Connect.Api
                 {
                     foreach (var notification in resp.Notifications)
                     {
-                        var data = Convert.FromBase64String(notification.Payload);
-                        var payload = Encoding.UTF8.GetString(data);
+                        var payload = string.Empty;
+                        if (notification.Ct.Contains("tlv"))
+                        {
+                            payload = tlvDecoder.DecodeTlv(notification.Payload);
+                        }
+                        else
+                        {
+                            var data = Convert.FromBase64String(notification.Payload);
+                            payload = Encoding.UTF8.GetString(data);
+                        }
+
                         var resourceSubs = notification.Ep + notification.Path;
                         if (ResourceSubscribtions.ContainsKey(resourceSubs))
                         {

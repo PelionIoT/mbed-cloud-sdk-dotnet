@@ -91,27 +91,6 @@ namespace device_directory.Model
         }
 
         /// <summary>
-        /// DEPRECATED: The state of the device's deployment.
-        /// </summary>
-        /// <value>DEPRECATED: The state of the device's deployment.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum DeployedStateEnum
-        {
-            
-            /// <summary>
-            /// Enum Development for "development"
-            /// </summary>
-            [EnumMember(Value = "development")]
-            Development,
-            
-            /// <summary>
-            /// Enum Production for "production"
-            /// </summary>
-            [EnumMember(Value = "production")]
-            Production
-        }
-
-        /// <summary>
         /// The ID of the channel used to communicate with the device.
         /// </summary>
         /// <value>The ID of the channel used to communicate with the device.</value>
@@ -123,12 +102,6 @@ namespace device_directory.Model
         /// <value>The current state of the device.</value>
         [DataMember(Name="state", EmitDefaultValue=false)]
         public StateEnum? State { get; set; }
-        /// <summary>
-        /// DEPRECATED: The state of the device's deployment.
-        /// </summary>
-        /// <value>DEPRECATED: The state of the device's deployment.</value>
-        [DataMember(Name="deployed_state", EmitDefaultValue=false)]
-        public DeployedStateEnum? DeployedState { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceDataPostRequest" /> class.
         /// </summary>
@@ -150,10 +123,9 @@ namespace device_directory.Model
         /// <param name="State">The current state of the device..</param>
         /// <param name="SerialNumber">The serial number of the device..</param>
         /// <param name="FirmwareChecksum">The SHA256 checksum of the current firmware image..</param>
-        /// <param name="VendorId">The device vendor ID..</param>
-        /// <param name="Description">The description of the device..</param>
-        /// <param name="DeployedState">DEPRECATED: The state of the device&#39;s deployment..</param>
         /// <param name="_Object">The API resource entity..</param>
+        /// <param name="Description">The description of the device..</param>
+        /// <param name="VendorId">The device vendor ID..</param>
         /// <param name="EndpointType">The endpoint type of the device. For example, the device is a gateway..</param>
         /// <param name="Deployment">DEPRECATED: The last deployment used on the device..</param>
         /// <param name="MechanismUrl">The address of the connector to use..</param>
@@ -161,7 +133,7 @@ namespace device_directory.Model
         /// <param name="DeviceKey">The fingerprint of the device certificate. (required).</param>
         /// <param name="Manifest">DEPRECATED: The URL for the current device manifest..</param>
         /// <param name="CaId">The certificate issuer&#39;s ID. (required).</param>
-        public DeviceDataPostRequest(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), MechanismEnum? Mechanism = default(MechanismEnum?), string DeviceClass = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), int? DeviceExecutionMode = default(int?), Dictionary<string, string> CustomAttributes = default(Dictionary<string, string>), StateEnum? State = default(StateEnum?), string SerialNumber = default(string), string FirmwareChecksum = default(string), string VendorId = default(string), string Description = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string _Object = default(string), string EndpointType = default(string), string Deployment = default(string), string MechanismUrl = default(string), string Name = default(string), string DeviceKey = default(string), string Manifest = default(string), string CaId = default(string))
+        public DeviceDataPostRequest(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), MechanismEnum? Mechanism = default(MechanismEnum?), string DeviceClass = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), int? DeviceExecutionMode = default(int?), Dictionary<string, string> CustomAttributes = default(Dictionary<string, string>), StateEnum? State = default(StateEnum?), string SerialNumber = default(string), string FirmwareChecksum = default(string), string _Object = default(string), string Description = default(string), string VendorId = default(string), string EndpointType = default(string), string Deployment = default(string), string MechanismUrl = default(string), string Name = default(string), string DeviceKey = default(string), string Manifest = default(string), string CaId = default(string))
         {
             // to ensure "DeviceKey" is required (not null)
             if (DeviceKey == null)
@@ -194,10 +166,9 @@ namespace device_directory.Model
             this.State = State;
             this.SerialNumber = SerialNumber;
             this.FirmwareChecksum = FirmwareChecksum;
-            this.VendorId = VendorId;
-            this.Description = Description;
-            this.DeployedState = DeployedState;
             this._Object = _Object;
+            this.Description = Description;
+            this.VendorId = VendorId;
             this.EndpointType = EndpointType;
             this.Deployment = Deployment;
             this.MechanismUrl = MechanismUrl;
@@ -272,11 +243,11 @@ namespace device_directory.Model
         [DataMember(Name="firmware_checksum", EmitDefaultValue=false)]
         public string FirmwareChecksum { get; set; }
         /// <summary>
-        /// The device vendor ID.
+        /// The API resource entity.
         /// </summary>
-        /// <value>The device vendor ID.</value>
-        [DataMember(Name="vendor_id", EmitDefaultValue=false)]
-        public string VendorId { get; set; }
+        /// <value>The API resource entity.</value>
+        [DataMember(Name="object", EmitDefaultValue=false)]
+        public string _Object { get; set; }
         /// <summary>
         /// The description of the device.
         /// </summary>
@@ -284,11 +255,11 @@ namespace device_directory.Model
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
         /// <summary>
-        /// The API resource entity.
+        /// The device vendor ID.
         /// </summary>
-        /// <value>The API resource entity.</value>
-        [DataMember(Name="object", EmitDefaultValue=false)]
-        public string _Object { get; set; }
+        /// <value>The device vendor ID.</value>
+        [DataMember(Name="vendor_id", EmitDefaultValue=false)]
+        public string VendorId { get; set; }
         /// <summary>
         /// The endpoint type of the device. For example, the device is a gateway.
         /// </summary>
@@ -352,10 +323,9 @@ namespace device_directory.Model
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  SerialNumber: ").Append(SerialNumber).Append("\n");
             sb.Append("  FirmwareChecksum: ").Append(FirmwareChecksum).Append("\n");
-            sb.Append("  VendorId: ").Append(VendorId).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  DeployedState: ").Append(DeployedState).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  VendorId: ").Append(VendorId).Append("\n");
             sb.Append("  EndpointType: ").Append(EndpointType).Append("\n");
             sb.Append("  Deployment: ").Append(Deployment).Append("\n");
             sb.Append("  MechanismUrl: ").Append(MechanismUrl).Append("\n");
@@ -465,9 +435,9 @@ namespace device_directory.Model
                     this.FirmwareChecksum.Equals(other.FirmwareChecksum)
                 ) && 
                 (
-                    this.VendorId == other.VendorId ||
-                    this.VendorId != null &&
-                    this.VendorId.Equals(other.VendorId)
+                    this._Object == other._Object ||
+                    this._Object != null &&
+                    this._Object.Equals(other._Object)
                 ) && 
                 (
                     this.Description == other.Description ||
@@ -475,14 +445,9 @@ namespace device_directory.Model
                     this.Description.Equals(other.Description)
                 ) && 
                 (
-                    this.DeployedState == other.DeployedState ||
-                    this.DeployedState != null &&
-                    this.DeployedState.Equals(other.DeployedState)
-                ) && 
-                (
-                    this._Object == other._Object ||
-                    this._Object != null &&
-                    this._Object.Equals(other._Object)
+                    this.VendorId == other.VendorId ||
+                    this.VendorId != null &&
+                    this.VendorId.Equals(other.VendorId)
                 ) && 
                 (
                     this.EndpointType == other.EndpointType ||
@@ -558,14 +523,12 @@ namespace device_directory.Model
                     hash = hash * 59 + this.SerialNumber.GetHashCode();
                 if (this.FirmwareChecksum != null)
                     hash = hash * 59 + this.FirmwareChecksum.GetHashCode();
-                if (this.VendorId != null)
-                    hash = hash * 59 + this.VendorId.GetHashCode();
-                if (this.Description != null)
-                    hash = hash * 59 + this.Description.GetHashCode();
-                if (this.DeployedState != null)
-                    hash = hash * 59 + this.DeployedState.GetHashCode();
                 if (this._Object != null)
                     hash = hash * 59 + this._Object.GetHashCode();
+                if (this.Description != null)
+                    hash = hash * 59 + this.Description.GetHashCode();
+                if (this.VendorId != null)
+                    hash = hash * 59 + this.VendorId.GetHashCode();
                 if (this.EndpointType != null)
                     hash = hash * 59 + this.EndpointType.GetHashCode();
                 if (this.Deployment != null)
