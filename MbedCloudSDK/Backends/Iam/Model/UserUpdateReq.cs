@@ -41,7 +41,7 @@ namespace iam.Model
         /// <param name="Status">The status of the user..</param>
         /// <param name="FullName">The full name of the user, not longer than 100 characters..</param>
         /// <param name="Address">Address, not longer than 100 characters..</param>
-        /// <param name="Password">The password when creating a new user. It will will generated when not present in the request..</param>
+        /// <param name="Password">The password when creating a new user. It will be generated when not present in the request..</param>
         /// <param name="Email">The email address, not longer than 254 characters..</param>
         public UserUpdateReq(string PhoneNumber = default(string), string Username = default(string), bool? IsMarketingAccepted = default(bool?), bool? IsGtcAccepted = default(bool?), bool? IsTotpEnabled = default(bool?), string Status = default(string), string FullName = default(string), string Address = default(string), string Password = default(string), string Email = default(string))
         {
@@ -106,9 +106,9 @@ namespace iam.Model
         [DataMember(Name="address", EmitDefaultValue=false)]
         public string Address { get; set; }
         /// <summary>
-        /// The password when creating a new user. It will will generated when not present in the request.
+        /// The password when creating a new user. It will be generated when not present in the request.
         /// </summary>
-        /// <value>The password when creating a new user. It will will generated when not present in the request.</value>
+        /// <value>The password when creating a new user. It will be generated when not present in the request.</value>
         [DataMember(Name="password", EmitDefaultValue=false)]
         public string Password { get; set; }
         /// <summary>

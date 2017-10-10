@@ -164,7 +164,7 @@ namespace iam.Model
         /// <param name="Groups">A list of IDs of the groups this user belongs to..</param>
         /// <param name="Address">Address..</param>
         /// <param name="TotpSecret">Secret for the 2-factor authenticator app. Visible only when 2FA is requested to be enabled..</param>
-        /// <param name="Password">The password when creating a new user. It will will generated when not present in the request..</param>
+        /// <param name="Password">The password when creating a new user. It will be generated when not present in the request..</param>
         /// <param name="EmailVerified">A flag indicating whether the user&#39;s email address has been verified or not..</param>
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
         /// <param name="IsTotpEnabled">A flag indicating whether 2-factor authentication (TOTP) has been enabled..</param>
@@ -341,9 +341,9 @@ namespace iam.Model
         [DataMember(Name="totp_secret", EmitDefaultValue=false)]
         public string TotpSecret { get; set; }
         /// <summary>
-        /// The password when creating a new user. It will will generated when not present in the request.
+        /// The password when creating a new user. It will be generated when not present in the request.
         /// </summary>
-        /// <value>The password when creating a new user. It will will generated when not present in the request.</value>
+        /// <value>The password when creating a new user. It will be generated when not present in the request.</value>
         [DataMember(Name="password", EmitDefaultValue=false)]
         public string Password { get; set; }
         /// <summary>
