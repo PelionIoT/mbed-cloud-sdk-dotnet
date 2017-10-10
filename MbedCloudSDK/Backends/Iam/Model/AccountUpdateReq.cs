@@ -46,7 +46,7 @@ namespace iam.Model
         /// <param name="PasswordPolicy">Password policy for this account..</param>
         /// <param name="EndMarket">The end market for this account, not longer than 100 characters..</param>
         /// <param name="PhoneNumber">The phone number of the company, not longer than 100 characters..</param>
-        /// <param name="Email">The company email address for this account, not longer than 100 characters. Required for commercial accounts only..</param>
+        /// <param name="Email">The company email address for this account, not longer than 254 characters. Required for commercial accounts only..</param>
         /// <param name="Aliases">An array of aliases, not more than 10. An alias is not shorter than 8 and not longer than 100 characters..</param>
         public AccountUpdateReq(string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string Country = default(string), string Company = default(string), string IdleTimeout = default(string), string State = default(string), string Contact = default(string), string PostalCode = default(string), PasswordPolicy PasswordPolicy = default(PasswordPolicy), string EndMarket = default(string), string PhoneNumber = default(string), string Email = default(string), List<string> Aliases = default(List<string>))
         {
@@ -146,9 +146,9 @@ namespace iam.Model
         [DataMember(Name="phone_number", EmitDefaultValue=false)]
         public string PhoneNumber { get; set; }
         /// <summary>
-        /// The company email address for this account, not longer than 100 characters. Required for commercial accounts only.
+        /// The company email address for this account, not longer than 254 characters. Required for commercial accounts only.
         /// </summary>
-        /// <value>The company email address for this account, not longer than 100 characters. Required for commercial accounts only.</value>
+        /// <value>The company email address for this account, not longer than 254 characters. Required for commercial accounts only.</value>
         [DataMember(Name="email", EmitDefaultValue=false)]
         public string Email { get; set; }
         /// <summary>
