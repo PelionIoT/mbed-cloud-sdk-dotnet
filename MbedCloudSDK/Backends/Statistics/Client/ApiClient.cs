@@ -395,7 +395,7 @@ namespace statistics.Client
         public String SelectHeaderAccept(String[] accepts)
         {
             if (accepts.Length == 0)
-                return null;
+                return "*/*";
 
             if (accepts.Contains("application/json", StringComparer.OrdinalIgnoreCase))
                 return "application/json";
