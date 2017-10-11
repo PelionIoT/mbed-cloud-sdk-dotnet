@@ -31,9 +31,9 @@ namespace iam.Model
     public partial class UserUpdateResp :  IEquatable<UserUpdateResp>, IValidatableObject
     {
         /// <summary>
-        /// The status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately.
+        /// The status of the user. ENROLLING state indicates that the user is in the middle of the enrollment process. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately. INACTIVE users are locked out and not permitted to use the system.
         /// </summary>
-        /// <value>The status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately.</value>
+        /// <value>The status of the user. ENROLLING state indicates that the user is in the middle of the enrollment process. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately. INACTIVE users are locked out and not permitted to use the system.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -127,9 +127,9 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// The status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately.
+        /// The status of the user. ENROLLING state indicates that the user is in the middle of the enrollment process. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately. INACTIVE users are locked out and not permitted to use the system.
         /// </summary>
-        /// <value>The status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately.</value>
+        /// <value>The status of the user. ENROLLING state indicates that the user is in the middle of the enrollment process. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately. INACTIVE users are locked out and not permitted to use the system.</value>
         [DataMember(Name="status", EmitDefaultValue=false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
@@ -157,7 +157,7 @@ namespace iam.Model
         /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted..</param>
         /// <param name="PhoneNumber">Phone number..</param>
         /// <param name="Email">The email address. (required).</param>
-        /// <param name="Status">The status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately. (required).</param>
+        /// <param name="Status">The status of the user. ENROLLING state indicates that the user is in the middle of the enrollment process. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately. INACTIVE users are locked out and not permitted to use the system. (required).</param>
         /// <param name="AccountId">The UUID of the account. (required).</param>
         /// <param name="TotpScratchCodes">A list of scratch codes for the 2-factor authentication. Visible only when 2FA is requested to be enabled or the codes regenerated..</param>
         /// <param name="_Object">Entity name: always &#39;user&#39; (required).</param>
