@@ -160,7 +160,7 @@ namespace iam.Model
         /// <param name="_Object">Entity name: always &#39;account&#39; (required).</param>
         /// <param name="Reason">A reason note for updating the status of the account.</param>
         /// <param name="UpgradedAt">Time when upgraded to commercial account in UTC format RFC3339..</param>
-        /// <param name="Tier">The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account. Other values are reserved for the future. (required).</param>
+        /// <param name="Tier">The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account, &#39;2&#39;: partner tier. Other values are reserved for the future. (required).</param>
         /// <param name="SubAccounts">List of sub accounts..</param>
         /// <param name="Limits">List of limits as key-value pairs if requested..</param>
         /// <param name="Country">The country part of the postal address..</param>
@@ -375,9 +375,9 @@ namespace iam.Model
         [DataMember(Name="upgraded_at", EmitDefaultValue=false)]
         public DateTime? UpgradedAt { get; set; }
         /// <summary>
-        /// The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account. Other values are reserved for the future.
+        /// The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account, &#39;2&#39;: partner tier. Other values are reserved for the future.
         /// </summary>
-        /// <value>The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account. Other values are reserved for the future.</value>
+        /// <value>The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account, &#39;2&#39;: partner tier. Other values are reserved for the future.</value>
         [DataMember(Name="tier", EmitDefaultValue=false)]
         public string Tier { get; set; }
         /// <summary>

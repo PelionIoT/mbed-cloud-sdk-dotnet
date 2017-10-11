@@ -32,9 +32,17 @@ namespace MbedCloudSDK.Connect.Api
                         if (asyncReponse.Payload != null)
                         {
                             var payload = string.Empty;
-                            if (asyncReponse.Ct.Contains("tlv"))
+                            if (!string.IsNullOrEmpty(asyncReponse.Ct))
                             {
-                                payload = tlvDecoder.DecodeTlv(asyncReponse.Payload);
+                                if (asyncReponse.Ct.Contains("tlv"))
+                                {
+                                    payload = tlvDecoder.DecodeTlvFromString(asyncReponse.Payload);
+                                }
+                                else
+                                {
+                                    var data = Convert.FromBase64String(asyncReponse.Payload);
+                                    payload = Encoding.UTF8.GetString(data);
+                                }
                             }
                             else
                             {
@@ -57,7 +65,7 @@ namespace MbedCloudSDK.Connect.Api
                         var payload = string.Empty;
                         if (notification.Ct.Contains("tlv"))
                         {
-                            payload = tlvDecoder.DecodeTlv(notification.Payload);
+                            payload = tlvDecoder.DecodeTlvFromString(notification.Payload);
                         }
                         else
                         {
