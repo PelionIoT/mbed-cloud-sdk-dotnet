@@ -122,7 +122,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
         /// <returns>UserInfoRespList</returns>
@@ -137,7 +137,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
         /// <returns>ApiResponse of UserInfoRespList</returns>
@@ -173,7 +173,7 @@ namespace iam.Api
         /// <param name="groupID">The ID of the group whose users are retrieved.</param>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>UserInfoRespList</returns>
         UserInfoRespList GetUsersOfGroup (string groupID, int? limit = null, string after = null, string order = null, string include = null);
@@ -188,7 +188,7 @@ namespace iam.Api
         /// <param name="groupID">The ID of the group whose users are retrieved.</param>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of UserInfoRespList</returns>
         ApiResponse<UserInfoRespList> GetUsersOfGroupWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null);
@@ -358,7 +358,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
         /// <returns>Task of UserInfoRespList</returns>
@@ -373,7 +373,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
         /// <returns>Task of ApiResponse (UserInfoRespList)</returns>
@@ -409,7 +409,7 @@ namespace iam.Api
         /// <param name="groupID">The ID of the group whose users are retrieved.</param>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of UserInfoRespList</returns>
         System.Threading.Tasks.Task<UserInfoRespList> GetUsersOfGroupAsync (string groupID, int? limit = null, string after = null, string order = null, string include = null);
@@ -424,7 +424,7 @@ namespace iam.Api
         /// <param name="groupID">The ID of the group whose users are retrieved.</param>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (UserInfoRespList)</returns>
         System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetUsersOfGroupAsyncWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null);
@@ -1285,7 +1285,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
         /// <returns>UserInfoRespList</returns>
@@ -1301,7 +1301,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
         /// <returns>ApiResponse of UserInfoRespList</returns>
@@ -1370,7 +1370,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
         /// <returns>Task of UserInfoRespList</returns>
@@ -1387,7 +1387,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
         /// <returns>Task of ApiResponse (UserInfoRespList)</returns>
@@ -1608,7 +1608,7 @@ namespace iam.Api
         /// <param name="groupID">The ID of the group whose users are retrieved.</param>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>UserInfoRespList</returns>
         public UserInfoRespList GetUsersOfGroup (string groupID, int? limit = null, string after = null, string order = null, string include = null)
@@ -1624,7 +1624,7 @@ namespace iam.Api
         /// <param name="groupID">The ID of the group whose users are retrieved.</param>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of UserInfoRespList</returns>
         public ApiResponse< UserInfoRespList > GetUsersOfGroupWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null)
@@ -1696,7 +1696,7 @@ namespace iam.Api
         /// <param name="groupID">The ID of the group whose users are retrieved.</param>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of UserInfoRespList</returns>
         public async System.Threading.Tasks.Task<UserInfoRespList> GetUsersOfGroupAsync (string groupID, int? limit = null, string after = null, string order = null, string include = null)
@@ -1713,7 +1713,7 @@ namespace iam.Api
         /// <param name="groupID">The ID of the group whose users are retrieved.</param>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (UserInfoRespList)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetUsersOfGroupAsyncWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null)
