@@ -65,7 +65,7 @@ namespace MbedCloudSDK.Test.Common.Tlv
             using (var stream = new MemoryStream(response))
             {
                 var tlv = new TlvDecoder();
-                var res = tlv.DecodeTlv(response);
+                var res = tlv.DecodeTlvFromBytes(response);
                 Assert.AreEqual(1, res.Count);
                 var resource = res.FirstOrDefault();
                 Assert.AreEqual("/0", resource.Id);
@@ -98,7 +98,7 @@ namespace MbedCloudSDK.Test.Common.Tlv
             using (var stream = new MemoryStream(response))
             {
                 var tlv = new TlvDecoder();
-                var res = tlv.DecodeTlv(response);
+                var res = tlv.DecodeTlvFromBytes(response);
                 Assert.NotNull(res);
                 Assert.AreEqual(16, res.Count);
                 Assert.AreEqual(res[0].GetStringValue(), "Open Mobile Alliance");
