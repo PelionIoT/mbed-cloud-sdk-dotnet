@@ -9,6 +9,7 @@ namespace MbedCloudSDK.Common.Tlv
     using System.Linq;
     using System.Runtime.Serialization;
     using System.Text;
+    using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
     /// <summary>
@@ -87,11 +88,11 @@ namespace MbedCloudSDK.Common.Tlv
         /// </summary>
         /// <param name="val">String value of payload</param>
         /// <returns>decoded string</returns>
-        public string DecodeTlv(string val)
+        public string DecodeTlvFromString(string val)
         {
-            var bytes = Encoding.Unicode.GetBytes(val);
-            var tlv = JObject.FromObject(Decode(bytes, new List<Lwm2mResource>()));
-            return tlv.ToString();
+            var bytes = Convert.FromBase64String(val);
+            var tlv = Decode(bytes, new List<Lwm2mResource>());
+            return JsonConvert.SerializeObject(tlv);
         }
 
         /// <summary>
@@ -99,7 +100,7 @@ namespace MbedCloudSDK.Common.Tlv
         /// </summary>
         /// <param name="bytes">payload byte array</param>
         /// <returns>list of resource objects</returns>
-        public List<Lwm2mResource> DecodeTlv(byte[] bytes)
+        public List<Lwm2mResource> DecodeTlvFromBytes(byte[] bytes)
         {
             return Decode(bytes, new List<Lwm2mResource>());
         }
