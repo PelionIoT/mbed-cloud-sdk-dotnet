@@ -155,7 +155,7 @@ namespace iam.Model
         /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="IsProvisioningAllowed">Flag (true/false) indicating whether Factory Tool is allowed to download or not. (required).</param>
         /// <param name="Email">The company email address for this account..</param>
-        /// <param name="PhoneNumber">The phone number of the company..</param>
+        /// <param name="PhoneNumber">The phone number of a representative of the company..</param>
         /// <param name="Company">The name of the company..</param>
         /// <param name="_Object">Entity name: always &#39;account&#39; (required).</param>
         /// <param name="Reason">A reason note for updating the status of the account.</param>
@@ -351,9 +351,9 @@ namespace iam.Model
         [DataMember(Name="email", EmitDefaultValue=false)]
         public string Email { get; set; }
         /// <summary>
-        /// The phone number of the company.
+        /// The phone number of a representative of the company.
         /// </summary>
-        /// <value>The phone number of the company.</value>
+        /// <value>The phone number of a representative of the company.</value>
         [DataMember(Name="phone_number", EmitDefaultValue=false)]
         public string PhoneNumber { get; set; }
         /// <summary>

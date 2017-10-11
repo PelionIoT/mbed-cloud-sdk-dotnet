@@ -88,9 +88,9 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// The order of the records to return. Available values: ASC, DESC; by default ASC.
+        /// The order of the records to return based on creation time. Available values: ASC, DESC; by default ASC.
         /// </summary>
-        /// <value>The order of the records to return. Available values: ASC, DESC; by default ASC.</value>
+        /// <value>The order of the records to return based on creation time. Available values: ASC, DESC; by default ASC.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum OrderEnum
         {
@@ -115,9 +115,9 @@ namespace iam.Model
         [DataMember(Name="object", EmitDefaultValue=false)]
         public ObjectEnum? _Object { get; set; }
         /// <summary>
-        /// The order of the records to return. Available values: ASC, DESC; by default ASC.
+        /// The order of the records to return based on creation time. Available values: ASC, DESC; by default ASC.
         /// </summary>
-        /// <value>The order of the records to return. Available values: ASC, DESC; by default ASC.</value>
+        /// <value>The order of the records to return based on creation time. Available values: ASC, DESC; by default ASC.</value>
         [DataMember(Name="order", EmitDefaultValue=false)]
         public OrderEnum? Order { get; set; }
         /// <summary>
@@ -134,7 +134,7 @@ namespace iam.Model
         /// <param name="_Object">Entity name: always &#39;list&#39; (required).</param>
         /// <param name="Limit">The number of results to return, (range: 2-1000), or equals to &#x60;total_count&#x60; (required).</param>
         /// <param name="Data">A list of entities. (required).</param>
-        /// <param name="Order">The order of the records to return. Available values: ASC, DESC; by default ASC..</param>
+        /// <param name="Order">The order of the records to return based on creation time. Available values: ASC, DESC; by default ASC..</param>
         public GroupSummaryList(string After = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), ObjectEnum? _Object = default(ObjectEnum?), int? Limit = default(int?), List<GroupSummary> Data = default(List<GroupSummary>), OrderEnum? Order = default(OrderEnum?))
         {
             // to ensure "HasMore" is required (not null)

@@ -97,7 +97,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>ApiKeyInfoRespList</returns>
@@ -112,7 +112,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>ApiResponse of ApiKeyInfoRespList</returns>
@@ -126,7 +126,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
@@ -144,7 +144,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
@@ -161,7 +161,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>GroupSummaryList</returns>
         GroupSummaryList GetAllGroups (int? limit = null, string after = null, string order = null, string include = null);
@@ -175,7 +175,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of GroupSummaryList</returns>
         ApiResponse<GroupSummaryList> GetAllGroupsWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null);
@@ -210,7 +210,7 @@ namespace iam.Api
         /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiKeyInfoRespList</returns>
         ApiKeyInfoRespList GetApiKeysOfGroup (string groupID, int? limit = null, string after = null, string order = null, string include = null);
@@ -225,7 +225,7 @@ namespace iam.Api
         /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of ApiKeyInfoRespList</returns>
         ApiResponse<ApiKeyInfoRespList> GetApiKeysOfGroupWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null);
@@ -517,7 +517,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>Task of ApiKeyInfoRespList</returns>
@@ -532,7 +532,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>Task of ApiResponse (ApiKeyInfoRespList)</returns>
@@ -546,7 +546,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
@@ -564,7 +564,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
@@ -581,7 +581,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of GroupSummaryList</returns>
         System.Threading.Tasks.Task<GroupSummaryList> GetAllGroupsAsync (int? limit = null, string after = null, string order = null, string include = null);
@@ -595,7 +595,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (GroupSummaryList)</returns>
         System.Threading.Tasks.Task<ApiResponse<GroupSummaryList>> GetAllGroupsAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null);
@@ -630,7 +630,7 @@ namespace iam.Api
         /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiKeyInfoRespList</returns>
         System.Threading.Tasks.Task<ApiKeyInfoRespList> GetApiKeysOfGroupAsync (string groupID, int? limit = null, string after = null, string order = null, string include = null);
@@ -645,7 +645,7 @@ namespace iam.Api
         /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (ApiKeyInfoRespList)</returns>
         System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoRespList>> GetApiKeysOfGroupAsyncWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null);
@@ -1449,7 +1449,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>ApiKeyInfoRespList</returns>
@@ -1465,7 +1465,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>ApiResponse of ApiKeyInfoRespList</returns>
@@ -1534,7 +1534,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>Task of ApiKeyInfoRespList</returns>
@@ -1551,7 +1551,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>Task of ApiResponse (ApiKeyInfoRespList)</returns>
@@ -1619,7 +1619,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
@@ -1638,7 +1638,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
@@ -1713,7 +1713,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
@@ -1733,7 +1733,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
@@ -1807,7 +1807,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>GroupSummaryList</returns>
         public GroupSummaryList GetAllGroups (int? limit = null, string after = null, string order = null, string include = null)
@@ -1822,7 +1822,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of GroupSummaryList</returns>
         public ApiResponse< GroupSummaryList > GetAllGroupsWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null)
@@ -1889,7 +1889,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of GroupSummaryList</returns>
         public async System.Threading.Tasks.Task<GroupSummaryList> GetAllGroupsAsync (int? limit = null, string after = null, string order = null, string include = null)
@@ -1905,7 +1905,7 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (GroupSummaryList)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<GroupSummaryList>> GetAllGroupsAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null)
@@ -2124,7 +2124,7 @@ namespace iam.Api
         /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiKeyInfoRespList</returns>
         public ApiKeyInfoRespList GetApiKeysOfGroup (string groupID, int? limit = null, string after = null, string order = null, string include = null)
@@ -2140,7 +2140,7 @@ namespace iam.Api
         /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of ApiKeyInfoRespList</returns>
         public ApiResponse< ApiKeyInfoRespList > GetApiKeysOfGroupWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null)
@@ -2212,7 +2212,7 @@ namespace iam.Api
         /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiKeyInfoRespList</returns>
         public async System.Threading.Tasks.Task<ApiKeyInfoRespList> GetApiKeysOfGroupAsync (string groupID, int? limit = null, string after = null, string order = null, string include = null)
@@ -2229,7 +2229,7 @@ namespace iam.Api
         /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (ApiKeyInfoRespList)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoRespList>> GetApiKeysOfGroupAsyncWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null)
