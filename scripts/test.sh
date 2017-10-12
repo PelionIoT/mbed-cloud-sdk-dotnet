@@ -40,7 +40,7 @@ if ! is_running $BACKEND_PID; then
 fi
 
 # Start the test runner
-python TestServer/testrunner/bin/trunner -s $BACKEND_URL -k $API_KEY
+python3 TestServer/testrunner/bin/trunner -s $BACKEND_URL -k $API_KEY
 RET_CODE=$?
 
 cleanup
