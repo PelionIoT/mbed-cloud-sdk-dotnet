@@ -45,7 +45,7 @@ namespace device_directory.Model
         /// <param name="EventTypeDescription">EventTypeDescription.</param>
         /// <param name="EventType">EventType.</param>
         /// <param name="Data">Data.</param>
-        /// <param name="Id">Id.</param>
+        /// <param name="Id">Id (required).</param>
         /// <param name="DeviceId">DeviceId.</param>
         public DeviceEventData(DateTime? DateTime = default(DateTime?), bool? StateChange = default(bool?), string Description = default(string), Object Changes = default(Object), string EventTypeDescription = default(string), string EventType = default(string), Object Data = default(Object), string Id = default(string), string DeviceId = default(string))
         {
@@ -58,13 +58,21 @@ namespace device_directory.Model
             {
                 this.DateTime = DateTime;
             }
+            // to ensure "Id" is required (not null)
+            if (Id == null)
+            {
+                throw new InvalidDataException("Id is a required property for DeviceEventData and cannot be null");
+            }
+            else
+            {
+                this.Id = Id;
+            }
             this.StateChange = StateChange;
             this.Description = Description;
             this.Changes = Changes;
             this.EventTypeDescription = EventTypeDescription;
             this.EventType = EventType;
             this.Data = Data;
-            this.Id = Id;
             this.DeviceId = DeviceId;
         }
         
