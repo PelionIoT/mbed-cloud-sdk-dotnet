@@ -9,6 +9,8 @@ general:
       - build
 machine:
   environment:
+    AWS_DEFAULT_REGION: us-west-2
+    PROJECT_TOP: ${HOME}/${CIRCLE_PROJECT_REPONAME}
     SDK_NAME: ${CIRCLE_PROJECT_REPONAME}
     SDK_TAG: ${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}
     SDK_DOCS: ${HOME}/docs
@@ -16,6 +18,9 @@ machine:
     SDK_TPIP: ${HOME}/tpip
     SDK_BUILD: ${HOME}/build
     NUGET_NAME: Mbed.Cloud.SDK.1.2.2.nupkg
+    ARTIFACTORY_URL: http://localhost:5000/artifactory/
+  services:
+    - docker
 checkout:
   post:
     - git config --global user.name monty-bot
@@ -24,6 +29,9 @@ checkout:
     - pip install -r TestServer/testrunner/requirements.txt
     - python setup.py develop:
         pwd: TestServer/testrunner
+    - ./scripts/buildArtifactoryContainer.sh
+    - docker build -t artifactory . :
+        pwd: proxy
 dependencies:
   pre:
     - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
@@ -31,6 +39,7 @@ dependencies:
     - sudo apt-get update
     - sudo apt-get install mono-devel
     - sudo apt-get install doxygen
+    - sudo apt-get install xsltproc
     - mkdir ${SDK_DOCS}
     - mkdir ${SDK_TESTS}
     - mkdir ${SDK_TPIP}
@@ -45,16 +54,24 @@ dependencies:
 compile:
   override:
     - msbuild /p:Configuration=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
-    - mono --runtime=v4.0 nuget.exe pack MbedCloudSDK/MbedCloudSDK.csproj -MSBuildPath "/usr/lib/mono/msbuild/15.0/bin" -IncludeReferencedProjects -Prop Configuration=Release -symbols | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+    - mono --runtime=v4.0 nuget.exe pack MbedCloudSDK/MbedCloudSDK.csproj -MSBuildPath "/usr/lib/mono/msbuild/15.0/bin" -IncludeReferencedProjects -Prop Configuration=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - mv ${NUGET_NAME} ${SDK_BUILD}
     - mv MbedCloudSDK/bin/Release/* ${SDK_BUILD}
 test:
   override:
+    - echo "<h1>${SDK_NAME} (build ${CIRCLE_BUILD_NUM})</h1>" >> ${SDK_TESTS}/index.html:
+    - echo "<h2>Unit Tests</h2>" >> ${SDK_TESTS}/index.html:
     - mono packages/NUnit.ConsoleRunner.3.7.0/tools/nunit3-console.exe MbedCloudSDK.Test/MbedCloudSDK.Test.csproj --config=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
-    - echo "<h1>${SDK_NAME} (build ${CIRCLE_BUILD_NUM})</h1>" > ${SDK_TESTS}/index.html:
+    - xsltproc scripts/nunit3-junit.xslt TestResult.xml >> junit.xml
+    - mkdir -p ${CIRCLE_TEST_REPORTS}/junit
+    - cp junit.xml $CIRCLE_TEST_REPORTS/junit/test-results.xml
+    - xsltproc scripts/text-report.xslt TestResult.xml | tee /dev/tty | ansi-html >> ${SDK_TESTS}/index.html
+    - echo "<h2>Integration Tests</h2>" >> ${SDK_TESTS}/index.html:
     - set -o pipefail && bash scripts/test.sh 2>&1 | tee /dev/tty | ansi-html >> ${SDK_TESTS}/index.html:
     - mv MbedCloudSDK/tpip.csv ${SDK_TPIP}
     - echo "finished"
+  post:
+    - docker run -d -p 5000:80 artifactory; sleep 10
 deployment:
   staging:
     branch: [/docs-.*/, /feature-.*/]
@@ -73,3 +90,6 @@ deployment:
       - git tag ${SDK_TAG}
       - git push --tags
       - ./scripts/uploadArtifacts.sh
+      - mono --runtime=v4.0 nuget.exe sources Add -Name Artifactory -Source ${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-local | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+      - sudo mono --runtime=v4.0 nuget.exe setapikey ${ARTIFACTORY_API_KEY} -Source Artifactory | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+      - mono --runtime=v4.0 nuget.exe push ${SDK_BUILD}/${NUGET_NAME} -Source Artifactory -Verbosity detailed -ApiKey ${ARTIFACTORY_API_KEY} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
