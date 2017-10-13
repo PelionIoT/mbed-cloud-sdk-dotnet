@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace MbedCloudSDK.Test.Common.Filter
 {
     [TestFixture]
-    public class FilterTests
+    public class Filter
     {
         [Test]
         public void BlankFilterReturnsEmptyFilterString()

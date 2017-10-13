@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace MbedCloudSDK.Test.Common.Enum
 {
     [TestFixture]
-    public class EnumTests
+    public class Enums
     {
         [Test]
         public void ParseApiEnumToSDKEnum()

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace MbedCloudSDK.Test.Common.Tlv
 {
     [TestFixture]
-    public class TlvDecoderTests
+    public class TlvDecoder
     {
         [Test]
         public void TestTypeIdentifierParsing()
@@ -31,7 +31,7 @@ namespace MbedCloudSDK.Test.Common.Tlv
             byte[] array = { 0xE3, 0xA3, 0x67, 0b0001_1000 };
             using (var stream = new MemoryStream(array))
             {
-                var tlv = new TlvDecoder();
+                var tlv = new MbedCloudSDK.Common.Tlv.TlvDecoder();
                 Assert.AreEqual(2, tlv.FindIdLength(stream.ReadByte() & 0xFF));
                 Assert.AreEqual(2, tlv.FindIdLength(stream.ReadByte() & 0xFF));
                 Assert.AreEqual(2, tlv.FindIdLength(stream.ReadByte() & 0xFF));
@@ -64,7 +64,7 @@ namespace MbedCloudSDK.Test.Common.Tlv
             };
             using (var stream = new MemoryStream(response))
             {
-                var tlv = new TlvDecoder();
+                var tlv = new MbedCloudSDK.Common.Tlv.TlvDecoder();
                 var res = tlv.DecodeTlvFromBytes(response);
                 Assert.AreEqual(1, res.Count);
                 var resource = res.FirstOrDefault();
@@ -97,7 +97,7 @@ namespace MbedCloudSDK.Test.Common.Tlv
             };
             using (var stream = new MemoryStream(response))
             {
-                var tlv = new TlvDecoder();
+                var tlv = new MbedCloudSDK.Common.Tlv.TlvDecoder();
                 var res = tlv.DecodeTlvFromBytes(response);
                 Assert.NotNull(res);
                 Assert.AreEqual(16, res.Count);

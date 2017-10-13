@@ -160,5 +160,85 @@ namespace MbedCloudSDK.Common
                 return false;
             }
         }
+
+        /// <summary>
+        /// Convert snake case string to camel case
+        /// </summary>
+        /// <param name="input">Input</param>
+        /// <param name="firstLower">If true, first letter will be lower case</param>
+        /// <returns>Camel case string</returns>
+        public static string SnakeToCamel(string input, bool firstLower = false)
+        {
+            var newString = new char[input.Length];
+            var startIndex = 1;
+            var newStringIndex = 1;
+
+            if (firstLower)
+            {
+                newString[0] = input[0];
+            }
+            else
+            {
+                if (input[0] == '_')
+                {
+                    newString[0] = char.ToUpper(input[1]);
+                    startIndex += 1;
+                }
+                else
+                {
+                    var firstCap = char.ToUpper(input[0]);
+                    newString[0] = firstCap;
+                }
+            }
+
+            for (int i = startIndex; i < input.Count(); i++)
+            {
+                if (input[i] == '_')
+                {
+                    if (i + 1 >= input.Count())
+                    {
+                        newString[newStringIndex] = '_';
+                    }
+                    else
+                    {
+                        newString[newStringIndex] = char.ToUpper(input[i + 1]);
+                        newString[newStringIndex + 1] = ' ';
+                        i++;
+                        newStringIndex += 1;
+                    }
+                }
+                else
+                {
+                    newString[newStringIndex] = input[i];
+                }
+
+                newStringIndex += 1;
+            }
+
+            return new string(newString.Where(c => !char.IsWhiteSpace(c) && !(c == '\0')).ToArray());
+        }
+
+        /// <summary>
+        /// Wrapper method that returns camel case stirng with lowercase first letter
+        /// </summary>
+        /// <param name="input">Input</param>
+        /// <returns>camelcase string</returns>
+        public static string SnakeToLowerCamel(string input)
+        {
+            return SnakeToCamel(input, true);
+        }
+
+        /// <summary>
+        /// Convert camelcase string to snake case
+        /// </summary>
+        /// <param name="input">Input</param>
+        /// <returns>snake case string</returns>
+        public static string CamelToSnake(string input)
+        {
+            return string.Concat(input.Select((x, i) =>
+            {
+                return (i >= 0 && char.IsUpper(x)) ? "_" + x.ToString() : x.ToString();
+            })).ToLower();
+        }
     }
 }
