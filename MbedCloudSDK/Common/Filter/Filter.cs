@@ -47,8 +47,7 @@ namespace MbedCloudSDK.Common.Filter
                 }
                 else
                 {
-                    var jsonString = QueryStringToJson(value);
-                    FilterDictionary = QueryJsonToDictionary(jsonString);
+                    FilterDictionary = QueryStringToDictionary(value);
                 }
             }
             else
@@ -205,7 +204,10 @@ namespace MbedCloudSDK.Common.Filter
         /// <param name="key">Key to remove</param>
         public void Remove(string key)
         {
-            FilterDictionary.Remove(key);
+            if (FilterDictionary.ContainsKey(key))
+            {
+                FilterDictionary.Remove(key);
+            }
         }
 
         /// <summary>
@@ -238,10 +240,9 @@ namespace MbedCloudSDK.Common.Filter
             return filterAttributes.ToArray();
         }
 
-        private static string QueryStringToJson(string queryString)
+        private static Dictionary<string, FilterAttribute[]> QueryStringToDictionary(string queryString)
         {
-            queryString = HttpUtility.UrlDecode(queryString).Replace("u'", "\"").Replace("'", "\"");
-            var dict = new Dictionary<string, FilterAttribute>();
+            var dict = new Dictionary<string, FilterAttribute[]>();
             var split = queryString.Split('&');
             foreach (var part in split)
             {
@@ -252,40 +253,40 @@ namespace MbedCloudSDK.Common.Filter
                     var key = keyValue[0];
                     var oper = FilterOperator.Equals;
 
-                    if (key.Contains("neq"))
+                    if (key.Contains("__neq"))
                     {
-                        key = key.Replace("neq", string.Empty);
+                        key = key.Replace("__neq", string.Empty);
                         oper = FilterOperator.NotEqual;
                     }
 
-                    if (key.Contains("ltq"))
+                    if (key.Contains("__lte"))
                     {
-                        key = key.Replace("ltq", string.Empty);
+                        key = key.Replace("__lte", string.Empty);
                         oper = FilterOperator.LessOrEqual;
                     }
 
-                    if (key.Contains("gtq"))
+                    if (key.Contains("__gte"))
                     {
-                        key = key.Replace("gtq", string.Empty);
+                        key = key.Replace("__gte", string.Empty);
                         oper = FilterOperator.GreaterOrEqual;
                     }
 
                     var queryAttribute = new FilterAttribute(val, oper);
-                    dict.Add(key, queryAttribute);
+                    if (dict.ContainsKey(key))
+                    {
+                        var tmp = dict[key].ToList();
+                        tmp.Add(queryAttribute);
+                        dict.Remove(key);
+                        dict.Add(key, tmp.ToArray());
+                    }
+                    else
+                    {
+                        dict.Add(key, new FilterAttribute[] { queryAttribute });
+                    }
                 }
             }
 
-            var json = new JObject();
-            foreach (var kv in dict)
-            {
-                var innerJson = new JObject
-                {
-                    [QueryOperatorToString(kv.Value.FilterOperator)] = kv.Value.Value
-                };
-                json[kv.Key] = innerJson;
-            }
-
-            return json.ToString(Formatting.None);
+            return dict;
         }
 
         private static JObject StringToJsonObject(string jsonString)
@@ -342,8 +343,7 @@ namespace MbedCloudSDK.Common.Filter
 
         private Filter QueryStringToFilter(string queryString)
         {
-            var queryJsonString = QueryStringToJson(queryString);
-            FilterDictionary = QueryJsonToDictionary(queryJsonString);
+            FilterDictionary = QueryJsonToDictionary(queryString);
             return this;
         }
     }

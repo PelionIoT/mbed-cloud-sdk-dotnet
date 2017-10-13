@@ -25,8 +25,8 @@ namespace MbedCloudSDK.Test.Common.Filter
         public void ShouldEncodeFilter()
         {
             var filter = new MbedCloudSDK.Common.Filter.Filter();
-            filter.Add("key", new FilterAttribute("value", FilterOperator.Equals));
-            filter.Add("error", new FilterAttribute("found", FilterOperator.NotEqual));
+            filter.Add("key", "value", FilterOperator.Equals);
+            filter.Add("error", "found", FilterOperator.NotEqual);
             filter.Add("range", new FilterAttribute("10", FilterOperator.LessOrEqual), new FilterAttribute("2", FilterOperator.GreaterOrEqual));
             Assert.AreEqual("key=value&error__neq=found&range__lte=10&range__gte=2", filter.FilterString);
         }
@@ -35,8 +35,8 @@ namespace MbedCloudSDK.Test.Common.Filter
         public void FilterReturnsCorrectJson()
         {
             var filter = new MbedCloudSDK.Common.Filter.Filter();
-            filter.Add("key", new FilterAttribute("value", FilterOperator.Equals));
-            filter.Add("error", new FilterAttribute("found", FilterOperator.NotEqual));
+            filter.Add("key", "value", FilterOperator.Equals);
+            filter.Add("error", "found", FilterOperator.NotEqual);
             filter.Add("range", new FilterAttribute("10", FilterOperator.LessOrEqual), new FilterAttribute("2", FilterOperator.GreaterOrEqual));
             Assert.AreEqual("{\"key\":{\"$eq\":\"value\"},\"error\":{\"$ne\":\"found\"},\"range\":{\"$lte\":\"10\",\"$gte\":\"2\"}}", filter.FilterJson.ToString(Formatting.None));
         }
@@ -45,10 +45,10 @@ namespace MbedCloudSDK.Test.Common.Filter
         public void ShouldEncodeFilterAfterAddingWithSameKey()
         {
             var filter = new MbedCloudSDK.Common.Filter.Filter();
-            filter.Add("key", new FilterAttribute("value", FilterOperator.Equals));
-            filter.Add("error", new FilterAttribute("found", FilterOperator.NotEqual));
-            filter.Add("range", new FilterAttribute("10", FilterOperator.LessOrEqual));
-            filter.Add("range", new FilterAttribute("2", FilterOperator.GreaterOrEqual));
+            filter.Add("key", "value", FilterOperator.Equals);
+            filter.Add("error", "found", FilterOperator.NotEqual);
+            filter.Add("range", "10", FilterOperator.LessOrEqual);
+            filter.Add("range", "2", FilterOperator.GreaterOrEqual);
             Assert.AreEqual("key=value&error__neq=found&range__lte=10&range__gte=2", filter.FilterString);
         }
 
@@ -56,8 +56,8 @@ namespace MbedCloudSDK.Test.Common.Filter
         public void ShouldEncodeBareFilter()
         {
             var filter = new MbedCloudSDK.Common.Filter.Filter();
-            filter.Add("key", new FilterAttribute("value"));
-            filter.Add("error", new FilterAttribute("found", FilterOperator.NotEqual));
+            filter.Add("key", "value");
+            filter.Add("error", "found", FilterOperator.NotEqual);
             filter.Add("range", new FilterAttribute("10", FilterOperator.LessOrEqual), new FilterAttribute("2", FilterOperator.GreaterOrEqual));
             Assert.AreEqual("key=value&error__neq=found&range__lte=10&range__gte=2", filter.FilterString);
         }
@@ -96,6 +96,62 @@ namespace MbedCloudSDK.Test.Common.Filter
             var filterString = "{\"key\": {\"$eq\": \"value\"}, \"error\": {\"$ne\": \"found\"}, \"range\": {\"$lte\": \"10\", \"$gte\": \"2\"}, \"custom_attributes\": {\"custom_1\": {\"$eq\": \"custom_value_1\"}, \"custom_2\": {\"$ne\": \"custom_value_2\"}}}";
             var filter = new MbedCloudSDK.Common.Filter.Filter(filterString);
             Assert.AreEqual("key=value&error__neq=found&range__lte=10&range__gte=2&custom_attribute__custom_1=custom_value_1&custom_attribute__custom_2__neq=custom_value_2", filter.FilterString);
+        }
+
+        [Test]
+        public void ShouldDecodeFilter()
+        {
+            var filterString = "key=value&error__neq=found&range__lte=10&range__gte=2";
+            var filter = new MbedCloudSDK.Common.Filter.Filter(filterString);
+            Assert.AreEqual("key=value&error__neq=found&range__lte=10&range__gte=2", filter.FilterString);
+        }
+
+        [Test]
+        public void ShouldDecodeWithCustomAttributes()
+        {
+            var filterString = "key=value&error__neq=found&range__lte=10&range__gte=2&custom_attribute__custom_1=custom_value_1&custom_attribute__custom_2__neq=custom_value_2";
+            var filter = new MbedCloudSDK.Common.Filter.Filter(filterString);
+            Assert.AreEqual("key=value&error__neq=found&range__lte=10&range__gte=2&custom_attribute__custom_1=custom_value_1&custom_attribute__custom_2__neq=custom_value_2", filter.FilterString);
+        }
+
+        [Test]
+        public void RemoveShouldRemoveKeyFromFilter()
+        {
+            var filter = new MbedCloudSDK.Common.Filter.Filter();
+            filter.Add("key", "value", FilterOperator.Equals);
+            filter.Add("error", "found", FilterOperator.NotEqual);
+            filter.Add("range", new FilterAttribute("10", FilterOperator.LessOrEqual), new FilterAttribute("2", FilterOperator.GreaterOrEqual));
+            filter.Remove("range");
+            Assert.AreEqual("key=value&error__neq=found", filter.FilterString);
+        }
+
+        [Test]
+        public void RemoveKeyNotPresentShouldLEaveFilterUnchanged()
+        {
+            var filter = new MbedCloudSDK.Common.Filter.Filter();
+            filter.Add("key", "value", FilterOperator.Equals);
+            filter.Add("error", "found", FilterOperator.NotEqual);
+            filter.Add("range", new FilterAttribute("10", FilterOperator.LessOrEqual), new FilterAttribute("2", FilterOperator.GreaterOrEqual));
+            filter.Remove("rubbish");
+            Assert.AreEqual("key=value&error__neq=found&range__lte=10&range__gte=2", filter.FilterString);
+        }
+
+        [Test]
+        public void ContainsShouldReturnTrueIfKeyPresent()
+        {
+            var filter = new MbedCloudSDK.Common.Filter.Filter();
+            filter.Add("key", "value", FilterOperator.Equals);
+            var contains = filter.Contains("key");
+            Assert.IsTrue(contains);
+        }
+
+        [Test]
+        public void ContainsShouldReturnFalseIfKeyNotPresent()
+        {
+            var filter = new MbedCloudSDK.Common.Filter.Filter();
+            filter.Add("key", "value", FilterOperator.Equals);
+            var contains = filter.Contains("rubbish");
+            Assert.IsFalse(contains);
         }
     }
 }

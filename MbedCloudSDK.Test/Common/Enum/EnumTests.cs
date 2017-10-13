@@ -24,6 +24,13 @@ namespace MbedCloudSDK.Test.Common.Enum
         }
 
         [Test]
+        public void FailedParseWithIncorrectValueReturnsDefault()
+        {
+            var defaultEnum = Utils.ParseEnum<CertificateStatus>("rubbish");
+            Assert.AreEqual(default(CertificateStatus), defaultEnum);
+        }
+
+        [Test]
         public void GetEnumMemberValueFromEnum()
         {
             var enumMemberValue = Utils.GetEnumMemberValue(typeof(MaskEnum), MaskEnum.LENGTH_TYPE.ToString());
@@ -38,10 +45,24 @@ namespace MbedCloudSDK.Test.Common.Enum
         }
 
         [Test]
+        public void FailedEnumMemberValueConversionWithIncorrectValueShouldReturnNull()
+        {
+            var enumMemberValue = Utils.GetEnumMemberValue(typeof(MaskEnum), "rubbush");
+            Assert.IsNull(enumMemberValue);
+        }
+
+        [Test]
         public void GetEnumFromEnumMemberValue()
         {
             var enumValue = (CampaignStateEnum)Utils.GetEnumFromEnumMemberValue(typeof(CampaignStateEnum), "draft");
             Assert.AreEqual("Draft", enumValue.ToString());
+        }
+
+        [Test]
+        public void GetEnumFromEnumMemberValueWithIncorrectValueReturnsNull()
+        {
+            var enumValue = Utils.GetEnumFromEnumMemberValue(typeof(CampaignStateEnum), "rubbish");
+            Assert.IsNull(enumValue);
         }
 
         [Test]
