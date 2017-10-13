@@ -94,7 +94,19 @@ namespace MbedCloudSDK.Common.Filter
                 {
                     var json = new JObject();
                     FilterDictionary.ToList()
-                                    .ForEach(f => f.Value.ToList().ForEach(a => json.Add(new JProperty(f.Key, a.FilterAttributeJson))));
+                                    .ForEach(f => f.Value.ToList().ForEach(a =>
+                                    {
+                                        if (json.Properties().Select(p => p.Name).Contains(f.Key))
+                                        {
+                                            var currentJson = json[f.Key] as JObject;
+                                            currentJson.Merge(a.FilterAttributeJson);
+                                            json[f.Key] = currentJson;
+                                        }
+                                        else
+                                        {
+                                            json.Add(new JProperty(f.Key, a.FilterAttributeJson));
+                                        }
+                                    }));
                     return json;
                 }
 
@@ -155,12 +167,11 @@ namespace MbedCloudSDK.Common.Filter
         /// Add new query to filter
         /// </summary>
         /// <param name="key">Key</param>
-        /// <param name="filterAttribute">Value</param>
+        /// <param name="filterAttributes">Value</param>
         /// <returns>The filter dictionary</returns>
-        public Dictionary<string, FilterAttribute[]> Add(string key, params FilterAttribute[] filterAttribute)
+        public Dictionary<string, FilterAttribute[]> Add(string key, params FilterAttribute[] filterAttributes)
         {
-            FilterDictionary.Add(key, filterAttribute);
-            return FilterDictionary;
+            return AddFilters(key, filterAttributes);
         }
 
         /// <summary>
@@ -173,21 +184,19 @@ namespace MbedCloudSDK.Common.Filter
         public Dictionary<string, FilterAttribute[]> Add(string key, string value, FilterOperator filterOperator = FilterOperator.Equals)
         {
             var filterAttribute = new FilterAttribute(value, filterOperator);
-            FilterDictionary.Add(key, new FilterAttribute[] { filterAttribute });
-            return FilterDictionary;
+            return AddFilters(key, new FilterAttribute[] { filterAttribute });
         }
 
         /// <summary>
         /// Add custom query to filter
         /// </summary>
         /// <param name="key">Key</param>
-        /// <param name="filterAttribute">Value</param>
+        /// <param name="filterAttributes">Value</param>
         /// <returns>The filter dictionary</returns>
-        public Dictionary<string, FilterAttribute[]> AddCustom(string key, params FilterAttribute[] filterAttribute)
+        public Dictionary<string, FilterAttribute[]> AddCustom(string key, params FilterAttribute[] filterAttributes)
         {
             key = $"{CustomAttributesPrefix}{key}";
-            FilterDictionary.Add(key, filterAttribute);
-            return FilterDictionary;
+            return AddFilters(key, filterAttributes);
         }
 
         /// <summary>
@@ -308,6 +317,27 @@ namespace MbedCloudSDK.Common.Filter
             }
 
             return new Dictionary<string, FilterAttribute[]>();
+        }
+
+        private Dictionary<string, FilterAttribute[]> AddFilters(string key, params FilterAttribute[] filterAttributes)
+        {
+            if (FilterDictionary.ContainsKey(key))
+            {
+                var tmp = FilterDictionary.FirstOrDefault(t => t.Key == key).Value.ToList();
+                foreach (var item in filterAttributes)
+                {
+                    tmp.Add(item);
+                }
+
+                FilterDictionary.Remove(key);
+                FilterDictionary.Add(key, tmp.ToArray());
+                return FilterDictionary;
+            }
+            else
+            {
+                FilterDictionary.Add(key, filterAttributes);
+                return FilterDictionary;
+            }
         }
 
         private Filter QueryStringToFilter(string queryString)

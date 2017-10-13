@@ -93,11 +93,14 @@ namespace MbedCloudSDK.Common
         /// <returns>Value of Enum member attribute</returns>
         public static string GetEnumMemberValue(Type type, string value)
         {
-            var memInfo = type.GetMember(value);
-            if (memInfo.Any())
+            if (!string.IsNullOrWhiteSpace(value))
             {
-                var attributes = memInfo[0].GetCustomAttributes(typeof(EnumMemberAttribute), false);
-                return ((EnumMemberAttribute)attributes.FirstOrDefault()).Value;
+                var memInfo = type.GetMember(value);
+                if (memInfo.Any())
+                {
+                    var attributes = memInfo[0].GetCustomAttributes(typeof(EnumMemberAttribute), false);
+                    return ((EnumMemberAttribute)attributes.FirstOrDefault()).Value;
+                }
             }
 
             return null;
@@ -111,12 +114,15 @@ namespace MbedCloudSDK.Common
         /// <returns>Enum</returns>
         public static object GetEnumFromEnumMemberValue(Type type, string value)
         {
-            foreach (var name in Enum.GetNames(type))
+            if (!string.IsNullOrWhiteSpace(value))
             {
-                var attr = ((EnumMemberAttribute[])type.GetField(name).GetCustomAttributes(typeof(EnumMemberAttribute), true)).Single();
-                if (attr.Value == value)
+                foreach (var name in Enum.GetNames(type))
                 {
-                    return Enum.Parse(type, name);
+                    var attr = ((EnumMemberAttribute[])type.GetField(name).GetCustomAttributes(typeof(EnumMemberAttribute), true)).Single();
+                    if (attr.Value == value)
+                    {
+                        return Enum.Parse(type, name);
+                    }
                 }
             }
 

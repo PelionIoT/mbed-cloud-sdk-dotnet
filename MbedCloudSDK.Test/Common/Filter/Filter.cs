@@ -1,4 +1,5 @@
 using MbedCloudSDK.Common.Filter;
+using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace MbedCloudSDK.Test.Common.Filter
@@ -27,6 +28,27 @@ namespace MbedCloudSDK.Test.Common.Filter
             filter.Add("key", new FilterAttribute("value", FilterOperator.Equals));
             filter.Add("error", new FilterAttribute("found", FilterOperator.NotEqual));
             filter.Add("range", new FilterAttribute("10", FilterOperator.LessOrEqual), new FilterAttribute("2", FilterOperator.GreaterOrEqual));
+            Assert.AreEqual("key=value&error__neq=found&range__lte=10&range__gte=2", filter.FilterString);
+        }
+
+        [Test]
+        public void FilterReturnsCorrectJson()
+        {
+            var filter = new MbedCloudSDK.Common.Filter.Filter();
+            filter.Add("key", new FilterAttribute("value", FilterOperator.Equals));
+            filter.Add("error", new FilterAttribute("found", FilterOperator.NotEqual));
+            filter.Add("range", new FilterAttribute("10", FilterOperator.LessOrEqual), new FilterAttribute("2", FilterOperator.GreaterOrEqual));
+            Assert.AreEqual("{\"key\":{\"$eq\":\"value\"},\"error\":{\"$ne\":\"found\"},\"range\":{\"$lte\":\"10\",\"$gte\":\"2\"}}", filter.FilterJson.ToString(Formatting.None));
+        }
+
+        [Test]
+        public void ShouldEncodeFilterAfterAddingWithSameKey()
+        {
+            var filter = new MbedCloudSDK.Common.Filter.Filter();
+            filter.Add("key", new FilterAttribute("value", FilterOperator.Equals));
+            filter.Add("error", new FilterAttribute("found", FilterOperator.NotEqual));
+            filter.Add("range", new FilterAttribute("10", FilterOperator.LessOrEqual));
+            filter.Add("range", new FilterAttribute("2", FilterOperator.GreaterOrEqual));
             Assert.AreEqual("key=value&error__neq=found&range__lte=10&range__gte=2", filter.FilterString);
         }
 
