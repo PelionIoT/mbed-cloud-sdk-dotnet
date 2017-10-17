@@ -92,7 +92,7 @@ namespace MbedCloudSDK.Common.Tlv
         {
             var bytes = Convert.FromBase64String(val);
             var tlv = Decode(bytes, new List<Lwm2mResource>());
-            return JsonConvert.SerializeObject(tlv);
+            return GetString(tlv);
         }
 
         /// <summary>
@@ -159,6 +159,33 @@ namespace MbedCloudSDK.Common.Tlv
             Decode(bit, result, path);
 
             return result;
+        }
+
+        /// <summary>
+        /// Get string representation of Tlv
+        /// </summary>
+        /// <param name="tlv">tlv</param>
+        /// <returns>string</returns>
+        public static string GetString(List<Lwm2mResource> tlv)
+        {
+            if (tlv.Any())
+            {
+                var sb = new StringBuilder();
+                sb.Append("{");
+                foreach (var item in tlv)
+                {
+                    sb.Append($"\"{item.Id}\": \"{item.GetStringValue()}\"");
+                    if (item != tlv.LastOrDefault())
+                    {
+                        sb.Append(",");
+                    }
+                }
+
+                sb.Append("}");
+                return sb.ToString();
+            }
+
+            return "{}";
         }
     }
 }

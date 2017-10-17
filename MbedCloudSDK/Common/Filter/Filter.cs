@@ -7,6 +7,7 @@ namespace MbedCloudSDK.Common.Filter
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using MbedCloudSDK.Common.Filter.Maps;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
     using RestSharp.Extensions.MonoHttp;
@@ -174,6 +175,28 @@ namespace MbedCloudSDK.Common.Filter
         }
 
         /// <summary>
+        /// Add a filter with a DeviceFilterUpdateEnum for the key.
+        /// </summary>
+        /// <param name="key">DeviceFilterUpdateEnum. The enum provides mapping to the filter keys expected in the api.</param>
+        /// <param name="filterAttributes">Filter attributes</param>
+        /// <returns>The filter dictionary</returns>
+        public Dictionary<string, FilterAttribute[]> Add(DeviceFilterMapEnum key, params FilterAttribute[] filterAttributes)
+        {
+            return AddFilters(Utils.GetEnumMemberValue(typeof(DeviceFilterMapEnum), Convert.ToString(key)), filterAttributes);
+        }
+
+        /// <summary>
+        /// Add a filter with a UpdateFilterMapEnum for the key.
+        /// </summary>
+        /// <param name="key">UpdateFilterMapEnum. The enum provides mapping to the filter keys expected in the api.</param>
+        /// <param name="filterAttributes">Filter attributes</param>
+        /// <returns>The filter dictionary</returns>
+        public Dictionary<string, FilterAttribute[]> Add(UpdateFilterMapEnum key, params FilterAttribute[] filterAttributes)
+        {
+            return AddFilters(Utils.GetEnumMemberValue(typeof(UpdateFilterMapEnum), Convert.ToString(key)), filterAttributes);
+        }
+
+        /// <summary>
         /// Add new query to filter
         /// </summary>
         /// <param name="key">Key</param>
@@ -187,6 +210,32 @@ namespace MbedCloudSDK.Common.Filter
         }
 
         /// <summary>
+        /// Add a filter with a DeviceFilterMapEnum for the key.
+        /// </summary>
+        /// <param name="key">The enum provides mapping to the filter keys expected in the api.</param>
+        /// <param name="value">Value</param>
+        /// <param name="filterOperator">Operator, Equals if not provided</param>
+        /// <returns>The filter dictionary</returns>
+        public Dictionary<string, FilterAttribute[]> Add(DeviceFilterMapEnum key, string value, FilterOperator filterOperator = FilterOperator.Equals)
+        {
+            var filterAttribute = new FilterAttribute(value, filterOperator);
+            return AddFilters(Utils.GetEnumMemberValue(typeof(DeviceFilterMapEnum), Convert.ToString(key)), new FilterAttribute[] { filterAttribute });
+        }
+
+        /// <summary>
+        /// Add a filter with a UpdateFilterMapEnum for the key.
+        /// </summary>
+        /// <param name="key">The enum provides mapping to the filter keys expected in the api.</param>
+        /// <param name="value">Value</param>
+        /// <param name="filterOperator">Operator, Equals if not provided</param>
+        /// <returns>The filter dictionary</returns>
+        public Dictionary<string, FilterAttribute[]> Add(UpdateFilterMapEnum key, string value, FilterOperator filterOperator = FilterOperator.Equals)
+        {
+            var filterAttribute = new FilterAttribute(value, filterOperator);
+            return AddFilters(Utils.GetEnumMemberValue(typeof(UpdateFilterMapEnum), Convert.ToString(key)), new FilterAttribute[] { filterAttribute });
+        }
+
+        /// <summary>
         /// Add custom query to filter
         /// </summary>
         /// <param name="key">Key</param>
@@ -196,6 +245,20 @@ namespace MbedCloudSDK.Common.Filter
         {
             key = $"{CustomAttributesPrefix}{key}";
             return AddFilters(key, filterAttributes);
+        }
+
+        /// <summary>
+        /// Add custom query to filter
+        /// </summary>
+        /// <param name="key">Key</param>
+        /// <param name="value">Value</param>
+        /// <param name="filterOperator">The Operator</param>
+        /// <returns>The filter dictionary</returns>
+        public Dictionary<string, FilterAttribute[]> AddCustom(string key, string value, FilterOperator filterOperator = FilterOperator.Equals)
+        {
+            key = $"{CustomAttributesPrefix}{key}";
+            var filterAttribute = new FilterAttribute(value, filterOperator);
+            return AddFilters(key, new FilterAttribute[] { filterAttribute });
         }
 
         /// <summary>
@@ -339,12 +402,6 @@ namespace MbedCloudSDK.Common.Filter
                 FilterDictionary.Add(key, filterAttributes);
                 return FilterDictionary;
             }
-        }
-
-        private Filter QueryStringToFilter(string queryString)
-        {
-            FilterDictionary = QueryJsonToDictionary(queryString);
-            return this;
         }
     }
 }

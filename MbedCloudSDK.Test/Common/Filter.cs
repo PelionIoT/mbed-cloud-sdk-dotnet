@@ -1,4 +1,5 @@
 using MbedCloudSDK.Common.Filter;
+using MbedCloudSDK.Common.Filter.Maps;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
@@ -72,6 +73,16 @@ namespace MbedCloudSDK.Test.Common.Filter
             filter.AddCustom("custom_1", new FilterAttribute("custom_value_1", FilterOperator.Equals));
             filter.AddCustom("custom_2", new FilterAttribute("custom_value_2", FilterOperator.NotEqual));
             Assert.AreEqual("key=value&error__neq=found&range__lte=10&range__gte=2&custom_attribute__custom_1=custom_value_1&custom_attribute__custom_2__neq=custom_value_2", filter.FilterString);
+        }
+
+        [Test]
+        public void ShouldEncodeFilterWithMappedFields()
+        {
+            var filter = new MbedCloudSDK.Common.Filter.Filter();
+            filter.Add(DeviceFilterMapEnum.Alias, "value", FilterOperator.Equals);
+            filter.Add(UpdateFilterMapEnum.FinishedAt, "found", FilterOperator.NotEqual);
+            filter.Add("range", new FilterAttribute("10", FilterOperator.LessOrEqual), new FilterAttribute("2", FilterOperator.GreaterOrEqual));
+            Assert.AreEqual("endpoint_name=value&finished__neq=found&range__lte=10&range__gte=2", filter.FilterString);
         }
 
         [Test]

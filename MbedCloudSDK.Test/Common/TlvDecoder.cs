@@ -6,6 +6,7 @@ using MbedCloudSDK.Exceptions;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using MbedCloudSDK.Common;
 
 namespace MbedCloudSDK.Test.Common.Tlv
 {
@@ -115,6 +116,50 @@ namespace MbedCloudSDK.Test.Common.Tlv
                 Assert.AreEqual(res[14].GetStringValue(), "+02:00");
                 Assert.AreEqual(res[15].GetStringValue(), "U");
             }
+        }
+
+        [Test]
+        public void ShouldDecodeNothing()
+        {
+            var res = new mds.Model.AsyncIDResponse();
+            res.Payload = string.Empty;
+            res.Ct = "tlv";
+
+            var payload = Utils.DecodeBase64(res);
+            Assert.AreEqual("{}", payload);
+        }
+
+        [Test]
+        public void ShouldDecodeSimple()
+        {
+            var res = new mds.Model.AsyncIDResponse();
+            res.Payload = "AAA=";
+            res.Ct = "tlv";
+
+            var payload = Utils.DecodeBase64(res);
+            Assert.AreEqual("{\"/0\": \"\"}", payload);
+        }
+
+        [Test]
+        public void ShouldDecodeComplex()
+        {
+            var res = new mds.Model.AsyncIDResponse();
+            res.Payload = "iAsLSAAIAAAAAAAAAADBEFXIABAAAAAAAAAAAAAAAAAAAAAAyAEQAAAAAAAAAAAAAAAAAAAAAMECMMgRD2Rldl9kZXZpY2VfdHlwZcgSFGRldl9oYXJkd2FyZV92ZXJzaW9uyBUIAAAAAAAAAADIDQgAAAAAWdH0Bw==";
+            res.Ct = "tlv";
+
+            var payload = Utils.DecodeBase64(res);
+            Assert.AreEqual("{\"/11/0\": \"0\",\"/16\": \"U\",\"/0\": \"0\",\"/1\": \"0\",\"/2\": \"0\",\"/17\": \"dev_device_type\",\"/18\": \"dev_hardware_version\",\"/21\": \"0\",\"/13\": \"1506931719\"}", payload);
+        }
+
+        [Test]
+        public void ShouldDecodePlainPayload()
+        {
+            var res = new mds.Model.AsyncIDResponse();
+            res.Payload = "dGVzdA==";
+            res.Ct = "json";
+
+            var payload = Utils.DecodeBase64(res);
+            Assert.AreEqual("test", payload);
         }
     }
 }

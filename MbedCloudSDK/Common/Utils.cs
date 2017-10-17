@@ -7,6 +7,8 @@ namespace MbedCloudSDK.Common
     using System;
     using System.Linq;
     using System.Runtime.Serialization;
+    using System.Text;
+    using MbedCloudSDK.Common.Tlv;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
@@ -239,6 +241,49 @@ namespace MbedCloudSDK.Common
             {
                 return (i >= 0 && char.IsUpper(x)) ? "_" + x.ToString() : x.ToString();
             })).ToLower();
+        }
+
+        /// <summary>
+        /// Decode a base 64 payload
+        /// </summary>
+        /// <param name="asyncResponse">The response object</param>
+        /// <returns>String of payload</returns>
+        public static string DecodeBase64(mds.Model.AsyncIDResponse asyncResponse)
+        {
+            return DecodeBase64(asyncResponse.Ct, asyncResponse.Payload, new TlvDecoder());
+        }
+
+        /// <summary>
+        /// Decode a base64 payload from notification data
+        /// </summary>
+        /// <param name="notificationData">the notification</param>
+        /// <returns>decoded payload</returns>
+        public static string DecodeBase64(mds.Model.NotificationData notificationData)
+        {
+            return DecodeBase64(notificationData.Ct, notificationData.Payload, new TlvDecoder());
+        }
+
+        private static string DecodeBase64(string contentType, string payload, TlvDecoder tlvDecoder)
+        {
+            if (!string.IsNullOrEmpty(contentType))
+            {
+                if (contentType.Contains("tlv"))
+                {
+                    payload = tlvDecoder.DecodeTlvFromString(payload);
+                }
+                else
+                {
+                    var data = Convert.FromBase64String(payload);
+                    payload = Encoding.UTF8.GetString(data);
+                }
+            }
+            else
+            {
+                var data = Convert.FromBase64String(payload);
+                payload = Encoding.UTF8.GetString(data);
+            }
+
+            return payload;
         }
     }
 }
