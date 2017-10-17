@@ -49,6 +49,7 @@
     <Compile Include="Common\Filter.cs" />
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Common\CaseFunctions.cs" />
+    <Compile Include="Common\ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
