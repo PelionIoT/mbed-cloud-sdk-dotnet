@@ -352,9 +352,50 @@ namespace MbedCloudSDK.Common.Filter
             return dict;
         }
 
-        private static JObject StringToJsonObject(string jsonString)
+        private static string EncodeKey(string key)
         {
-            return JObject.Parse(jsonString);
+            var deviceMapValue = Utils.GetEnumMemberValue(typeof(DeviceFilterMapEnum), key);
+            var updateMapValue = Utils.GetEnumMemberValue(typeof(UpdateFilterMapEnum), key);
+            if (deviceMapValue != null)
+            {
+                key = deviceMapValue;
+            }
+
+            if (updateMapValue != null)
+            {
+                key = updateMapValue;
+            }
+
+            return key;
+        }
+
+        private static string DecodeKey(string key)
+        {
+            var isCustom = false;
+            if (key.Contains(CustomAttributesPrefix))
+            {
+                isCustom = true;
+                key = key.Replace(CustomAttributesPrefix, string.Empty);
+            }
+
+            var deviceMapValue = Utils.GetEnumFromEnumMemberValue(typeof(DeviceFilterMapEnum), key);
+            var updateMapValue = Utils.GetEnumFromEnumMemberValue(typeof(UpdateFilterMapEnum), key);
+            if (deviceMapValue != null)
+            {
+                key = Convert.ToString((DeviceFilterMapEnum)deviceMapValue);
+            }
+
+            if (updateMapValue != null)
+            {
+                key = Convert.ToString((UpdateFilterMapEnum)updateMapValue);
+            }
+
+            if (isCustom)
+            {
+                key = $"{CustomAttributesPrefix}{key}";
+            }
+
+            return key;
         }
 
         private static Dictionary<string, FilterAttribute[]> QueryJsonToDictionary(string queryJson)
