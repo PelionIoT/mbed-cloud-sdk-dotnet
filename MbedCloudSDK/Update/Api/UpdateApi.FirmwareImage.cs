@@ -46,7 +46,7 @@ namespace MbedCloudSDK.Update.Api
 
             try
             {
-                var resp = api.FirmwareImageList(options.Limit, options.Order, options.After);
+                var resp = api.FirmwareImageList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
                 var respImages = new ResponsePage<FirmwareImage>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var image in resp.Data)
                 {

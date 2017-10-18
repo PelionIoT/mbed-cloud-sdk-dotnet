@@ -52,7 +52,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                var resp = deviceDirectoryApi.DeviceList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter.FilterString, include: options.Include);
+                var resp = deviceDirectoryApi.DeviceList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
                 var respDevices = new ResponsePage<ConnectedDevice>(after: resp.After, hasMore: resp.HasMore, limit: resp.Limit, order: resp.Order, totalCount: resp.TotalCount);
                 foreach (var device in resp.Data)
                 {

@@ -47,7 +47,7 @@ namespace MbedCloudSDK.AccountManagement.Api
 
             try
             {
-                var resp = developerApi.GetAllApiKeys(options.Limit, options.After, options.Order, options.Include, options.Filter.FilterString);
+                var resp = developerApi.GetAllApiKeys(limit: options.Limit, after: options.After, order: options.Order, include: options.Include, ownerEq: options.Filter?.FilterString);
                 var respKeys = new ResponsePage<ApiKey>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var key in resp.Data)
                 {
@@ -76,7 +76,7 @@ namespace MbedCloudSDK.AccountManagement.Api
 
             try
             {
-                var apiKeysInfo = await developerApi.GetAllApiKeysAsync(options.Limit, options.After, options.Order, options.Include, options.Filter.FilterString);
+                var apiKeysInfo = await developerApi.GetAllApiKeysAsync(limit: options.Limit, after: options.After, order: options.Order, include: options.Include, ownerEq: options.Filter?.FilterString);
                 var apiKeys = new List<ApiKey>();
                 foreach (var key in apiKeysInfo.Data)
                 {
