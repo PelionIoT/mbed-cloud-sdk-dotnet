@@ -11,7 +11,7 @@ OpenAPI spec version: 3
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F0D76B91-1162-4BE1-A077-3D131FA8F8ED}</ProjectGuid>
+    <ProjectGuid>{3BF80198-D355-4077-84B6-9B8F5EFE1C8B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>statistics</RootNamespace>

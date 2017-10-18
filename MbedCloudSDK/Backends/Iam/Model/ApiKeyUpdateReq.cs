@@ -65,7 +65,7 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiKeyUpdateReq" /> class.
         /// </summary>
-        /// <param name="Owner">The owner of this API key, who is the creator by default..</param>
+        /// <param name="Owner">The owner of this API key..</param>
         /// <param name="Status">The status of the API key..</param>
         /// <param name="Name">The display name for the API key, not longer than 100 characters. (required).</param>
         public ApiKeyUpdateReq(string Owner = default(string), StatusEnum? Status = default(StatusEnum?), string Name = default(string))
@@ -84,9 +84,9 @@ namespace iam.Model
         }
         
         /// <summary>
-        /// The owner of this API key, who is the creator by default.
+        /// The owner of this API key.
         /// </summary>
-        /// <value>The owner of this API key, who is the creator by default.</value>
+        /// <value>The owner of this API key.</value>
         [DataMember(Name="owner", EmitDefaultValue=false)]
         public string Owner { get; set; }
         /// <summary>

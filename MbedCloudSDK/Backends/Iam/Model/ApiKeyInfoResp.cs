@@ -136,7 +136,7 @@ namespace iam.Model
         /// <param name="CreationTime">The timestamp of the API key creation in the storage, in milliseconds..</param>
         /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="Key">The API key. (required).</param>
-        /// <param name="Owner">The owner of this API key, who is the creator by default..</param>
+        /// <param name="Owner">The owner of this API key..</param>
         /// <param name="Id">The UUID of the API key. (required).</param>
         /// <param name="LastLoginTime">The timestamp of the latest API key usage, in milliseconds..</param>
         public ApiKeyInfoResp(List<string> Groups = default(List<string>), StatusEnum? Status = default(StatusEnum?), string Name = default(string), DateTime? CreatedAt = default(DateTime?), ObjectEnum? _Object = default(ObjectEnum?), long? CreationTime = default(long?), string Etag = default(string), string Key = default(string), string Owner = default(string), string Id = default(string), long? LastLoginTime = default(long?))
@@ -231,9 +231,9 @@ namespace iam.Model
         [DataMember(Name="key", EmitDefaultValue=false)]
         public string Key { get; set; }
         /// <summary>
-        /// The owner of this API key, who is the creator by default.
+        /// The owner of this API key.
         /// </summary>
-        /// <value>The owner of this API key, who is the creator by default.</value>
+        /// <value>The owner of this API key.</value>
         [DataMember(Name="owner", EmitDefaultValue=false)]
         public string Owner { get; set; }
         /// <summary>
