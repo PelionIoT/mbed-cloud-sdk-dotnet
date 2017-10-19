@@ -352,7 +352,12 @@ namespace MbedCloudSDK.Common.Filter
             return dict;
         }
 
-        private static string EncodeKey(string key)
+        /// <summary>
+        /// Encode a key to its mapped value
+        /// </summary>
+        /// <param name="key">Key to map</param>
+        /// <returns>The mapped key</returns>
+        public static string EncodeKey(string key)
         {
             var deviceMapValue = Utils.GetEnumMemberValue(typeof(DeviceFilterMapEnum), key);
             var updateMapValue = Utils.GetEnumMemberValue(typeof(UpdateFilterMapEnum), key);
@@ -369,15 +374,13 @@ namespace MbedCloudSDK.Common.Filter
             return key;
         }
 
-        private static string DecodeKey(string key)
+        /// <summary>
+        /// Decode a key from its mapped value
+        /// </summary>
+        /// <param name="key">Mapped key</param>
+        /// <returns>Original value of key</returns>
+        public static string DecodeKey(string key)
         {
-            var isCustom = false;
-            if (key.Contains(CustomAttributesPrefix))
-            {
-                isCustom = true;
-                key = key.Replace(CustomAttributesPrefix, string.Empty);
-            }
-
             var deviceMapValue = Utils.GetEnumFromEnumMemberValue(typeof(DeviceFilterMapEnum), key);
             var updateMapValue = Utils.GetEnumFromEnumMemberValue(typeof(UpdateFilterMapEnum), key);
             if (deviceMapValue != null)
@@ -388,11 +391,6 @@ namespace MbedCloudSDK.Common.Filter
             if (updateMapValue != null)
             {
                 key = Convert.ToString((UpdateFilterMapEnum)updateMapValue);
-            }
-
-            if (isCustom)
-            {
-                key = $"{CustomAttributesPrefix}{key}";
             }
 
             return key;
