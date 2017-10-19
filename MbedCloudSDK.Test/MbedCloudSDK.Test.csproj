@@ -50,6 +50,7 @@
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Common\CaseFunctions.cs" />
     <Compile Include="Common\ObjectExtensions.cs" />
+    <Compile Include="Common\PaginatedResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,7 @@
 using MbedCloudSDK.Common.Filter;
 using MbedCloudSDK.Common.Filter.Maps;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 
 namespace MbedCloudSDK.Test.Common.Filter
@@ -16,10 +17,24 @@ namespace MbedCloudSDK.Test.Common.Filter
         }
 
         [Test]
+        public void BlankFilterWithEmptyStringReturnsEmptyFilterString()
+        {
+            var filter = new MbedCloudSDK.Common.Filter.Filter("");
+            Assert.AreEqual(string.Empty, filter.FilterString);
+        }
+
+        [Test]
         public void BlankFilterWithEmptyJsonReturnsEmptyString()
         {
             var filter = new MbedCloudSDK.Common.Filter.Filter("{}");
             Assert.AreEqual(string.Empty, filter.FilterString);
+        }
+
+        [Test]
+        public void BlankFilterReturnsEmptyJson()
+        {
+            var filter = new MbedCloudSDK.Common.Filter.Filter();
+            Assert.AreEqual(default(JObject), filter.FilterJson);
         }
 
         [Test]

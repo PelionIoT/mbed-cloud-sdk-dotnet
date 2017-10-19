@@ -152,10 +152,6 @@ namespace MbedCloudSDK.Common
                     // Exception in parsing json
                     return false;
                 }
-                catch (Exception)
-                {
-                    return false;
-                }
             }
             else
             {

@@ -16,6 +16,17 @@ namespace MbedCloudSDK.Common
         /// Initializes a new instance of the <see cref="ResponsePage{T}"/> class.
         /// Create new instance of response page.
         /// </summary>
+        /// <param name="data">data</param>
+        public ResponsePage(List<T> data)
+        {
+            Data = data;
+            TotalCount = data.Count;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ResponsePage{T}"/> class.
+        /// Create new instance of response page.
+        /// </summary>
         /// <param name="after">after</param>
         /// <param name="hasMore">has more</param>
         /// <param name="limit">limit</param>

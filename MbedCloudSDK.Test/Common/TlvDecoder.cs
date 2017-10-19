@@ -14,6 +14,30 @@ namespace MbedCloudSDK.Test.Common.Tlv
     public class TlvDecoder
     {
         [Test]
+        public void CreateNewLwm2mResourceWithInt()
+        {
+            var lwm2m = new Lwm2mResource("/0", 50);
+            Assert.AreEqual(50, lwm2m.GetIntValue());
+            Assert.AreEqual("50", lwm2m.GetStringValue());
+        }
+
+        [Test]
+        public void CreateNewLwm2mResourceWithBytes()
+        {
+            var lwm2m = new Lwm2mResource("/0", new byte[] { 50 });
+            Assert.AreEqual(50, lwm2m.GetIntValue());
+            Assert.AreEqual("50", lwm2m.GetStringValue());
+        }
+
+        [Test]
+        public void CreateNewLwm2mResourceWithString()
+        {
+            var lwm2m = new Lwm2mResource("/0", "50");
+            Assert.AreEqual(50, lwm2m.GetIntValue());
+            Assert.AreEqual("50", lwm2m.GetStringValue());
+        }
+
+        [Test]
         public void TestTypeIdentifierParsing()
         {
             byte[] array = { 0xE3, 0xA3, 0x67, 0b0001_1000 };
@@ -51,6 +75,12 @@ namespace MbedCloudSDK.Test.Common.Tlv
                 Assert.AreEqual(LengthTypeEnum.ONE_BYTE, TypesHelper.GetLengthTypeEnumValue(stream.ReadByte() & 0xFF));
                 Assert.AreEqual(LengthTypeEnum.TRE_BYTE, TypesHelper.GetLengthTypeEnumValue(stream.ReadByte() & 0xFF));
             }
+        }
+
+        [Test]
+        public void InvalidLengthTypeThrowsException()
+        {
+            // Assert.That(() => TypesHelper.GetLengthTypeEnumValue(42 & 0xFF), Throws.Exception.TypeOf<DecodingException>());
         }
 
         [Test]
@@ -106,12 +136,12 @@ namespace MbedCloudSDK.Test.Common.Tlv
                 Assert.AreEqual(res[1].GetStringValue(), "Lightweight M2M Client");
                 Assert.AreEqual(res[2].GetStringValue(), "345000123");
                 Assert.AreEqual(res[3].GetStringValue(), "1.0");
-                Assert.AreEqual(res[4].GetHexValue(), 1);
-                Assert.AreEqual(res[5].GetHexValue(), 5);
+                Assert.AreEqual(res[4].GetIntValue(), 1);
+                Assert.AreEqual(res[5].GetIntValue(), 5);
                 Assert.AreEqual(res[6].GetStringValue(), "Ø");
                 Assert.AreEqual(res[8].GetStringValue(), "}");
                 Assert.AreEqual(res[10].GetStringValue(), "d");
-                Assert.AreEqual(res[11].GetHexValue(), 15);
+                Assert.AreEqual(res[11].GetIntValue(), 15);
                 Assert.AreEqual(res[12].GetStringValue(), "0");
                 Assert.AreEqual(res[14].GetStringValue(), "+02:00");
                 Assert.AreEqual(res[15].GetStringValue(), "U");
@@ -133,6 +163,27 @@ namespace MbedCloudSDK.Test.Common.Tlv
         public void ShouldDecodeSimple()
         {
             var res = new mds.Model.AsyncIDResponse();
+            res.Payload = "AAA=";
+            res.Ct = "tlv";
+
+            var payload = Utils.DecodeBase64(res);
+            Assert.AreEqual("{\"/0\": \"\"}", payload);
+        }
+
+        [Test]
+        public void ShouldDecodeSimpleWithNoContentType()
+        {
+            var res = new mds.Model.AsyncIDResponse();
+            res.Payload = "dGVzdA==";
+
+            var payload = Utils.DecodeBase64(res);
+            Assert.AreEqual("test", payload);
+        }
+
+        [Test]
+        public void ShouldDecodeSimpleNotification()
+        {
+            var res = new mds.Model.NotificationData();
             res.Payload = "AAA=";
             res.Ct = "tlv";
 

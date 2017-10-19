@@ -82,6 +82,14 @@ namespace MbedCloudSDK.Test.Common
         }
 
         [Test]
+        public void InvalidJsonThrowsJsonReaderException()
+        {
+            var json = "{key=value&error__neq=found&range__lte=10&range__gte=2}";
+            var isValidJson = Utils.IsValidJson(json);
+            Assert.IsFalse(isValidJson);
+        }
+
+        [Test]
         public void GetPropertiesOfAnObjectShouldReturnCorrectDictionary()
         {
             var obj = new { propertyOne = "one", propertyTwo = "two" };
