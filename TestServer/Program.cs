@@ -12,6 +12,7 @@ namespace TestServer
 {
     public class Program
     {
+        public static System.Threading.ManualResetEvent shutDown = new ManualResetEvent(false);
         static void Main(string[] args)
         {
             string baseAddress = "http://localhost:3000/";
@@ -22,10 +23,8 @@ namespace TestServer
             using (WebApp.Start<Startup>(url: baseAddress))
             {
                 Console.WriteLine($"Running at {baseAddress}");
-                Thread.Sleep(Timeout.Infinite);
+                shutDown.WaitOne();
             }
         }
-
-        
     }
 }
