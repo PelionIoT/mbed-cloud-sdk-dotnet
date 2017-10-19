@@ -65,7 +65,7 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiKeyInfoReq" /> class.
         /// </summary>
-        /// <param name="Owner">The owner of this API key, who is the creator by default..</param>
+        /// <param name="Owner">The owner of this API key..</param>
         /// <param name="Status">The status of the API key..</param>
         /// <param name="Name">The display name for the API key, not longer than 100 characters. (required).</param>
         /// <param name="Groups">A list of group IDs this API key belongs to..</param>
@@ -86,9 +86,9 @@ namespace iam.Model
         }
         
         /// <summary>
-        /// The owner of this API key, who is the creator by default.
+        /// The owner of this API key.
         /// </summary>
-        /// <value>The owner of this API key, who is the creator by default.</value>
+        /// <value>The owner of this API key.</value>
         [DataMember(Name="owner", EmitDefaultValue=false)]
         public string Owner { get; set; }
         /// <summary>
