@@ -66,7 +66,13 @@ namespace update_service.Model
             /// Enum Manifestremoved for "manifestremoved"
             /// </summary>
             [EnumMember(Value = "manifestremoved")]
-            Manifestremoved
+            Manifestremoved,
+            
+            /// <summary>
+            /// Enum Deregistered for "deregistered"
+            /// </summary>
+            [EnumMember(Value = "deregistered")]
+            Deregistered
         }
 
         /// <summary>
