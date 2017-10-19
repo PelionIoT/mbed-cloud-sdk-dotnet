@@ -8,6 +8,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Logging
     using System.Collections.Generic;
     using System.Text;
     using device_directory.Model;
+    using MbedCloudSDK.Common;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
@@ -107,7 +108,8 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Logging
                 DeviceId = deviceLogSerializer.DeviceId,
                 Id = deviceLogSerializer.Id,
                 TypeDescription = deviceLogSerializer.EventTypeDescription,
-                StateChanged = deviceLogSerializer.StateChange
+                StateChanged = deviceLogSerializer.StateChange,
+                Type = Utils.ParseEnum<EventType>(deviceLogSerializer.EventType)
             };
             if (Enum.TryParse<EventType>(deviceLogSerializer.EventType.ToString(), out EventType eventType))
             {

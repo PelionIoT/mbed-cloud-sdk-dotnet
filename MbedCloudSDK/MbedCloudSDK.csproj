@@ -237,7 +237,6 @@
     <Compile Include="Connect\Model\ConnectedDevice\AsyncConsumer.cs" />
     <Compile Include="DeviceDirectory\Model\Device\Device.cs" />
     <Compile Include="Connect\Model\Resource\Resource.cs" />
-    <Compile Include="Exceptions\ValueException.cs" />
     <Compile Include="Exceptions\DecodingException.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
