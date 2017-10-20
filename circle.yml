@@ -63,8 +63,10 @@ test:
     - mkdir -p ${CIRCLE_TEST_REPORTS}/junit
     - cp junit.xml $CIRCLE_TEST_REPORTS/junit/test-results.xml
     - xsltproc scripts/text-report.xslt TestResult.xml | tee /dev/tty | ansi-html >> ${UNITTEST_REPORT}
+    - cat ${UNITTEST_REPORT} | grep 'Test Count' ?? ${RAW_REPORT}
     - echo "<h1>${SDK_NAME} Integration Tests (build ${CIRCLE_BUILD_NUM})</h2>" >> ${INTTEST_REPORT}
     - set -o pipefail && bash scripts/test.sh 2>&1 | tee /dev/tty | ansi-html >> ${INTTEST_REPORT}
+    - cat ${INTTEST_REPORT} | grep 'Number of tests run' >> ${RAW_REPORT}
     - mv MbedCloudSDK/tpip.csv ${SDK_REPORTS}
     - echo "finished"
   post:
