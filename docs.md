@@ -1,12 +1,12 @@
 # Mbed Cloud SDK for .Net
 
-The Mbed Cloud SDK gives developers access to the full Mbed suite using .Net 4.5.
+The Mbed Cloud SDK gives developers access to the full Mbed suite using .Net 4.61.
 
 ## Prerequisites
 
 ### Windows
 
-.Net v4.5
+.Net v4.61
 
 ### Mac/Linux
 
