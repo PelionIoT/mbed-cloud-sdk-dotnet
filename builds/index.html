@@ -31,7 +31,7 @@
 			<% if (build.failed || !build.has_artifacts) { %>
 				<a title="CircleCI Build" href="<%- build.build_url %>">
 			<% } else { %>
-				<a title="Test Results" href="<%- getArtifactUrl(build, 'tests') %>">
+				<a title="Test Results" href="<%- getArtifactUrl(build, { path: 'docs' }) %>">
 			<% } %>
 
 				<div class="build <%- build.status === 'running' ? 'run' : build.failed ? 'fail' : 'pass' %>">
@@ -57,10 +57,14 @@
 				<a title="Github Commit" href="<%- build.vcs_url %>/commit/<%- build.vcs_revision %>">
 					<img class="logo github" src="images/github.svg" /></a>
 				<% if (build.has_artifacts) { %>
-					<a title="Documentation" href="<%- getArtifactUrl(build, 'docs') %>">
+					<a title="Documentation" href="<%- getArtifactUrl(build, { path: 'docs' }) %>">
 						<img class="logo docs" src="images/docs.svg" /></a>
-					<a title="Test Results" href="<%- getArtifactUrl(build, 'tests') %>">
+					<a title="Unit Test Results" href="<%- getArtifactUrl(build, { file: 'unittests.html' }) %>">
 						<img class="logo tests" src="images/tests.svg" /></a>
+					<a title="Integration Test Results" href="<%- getArtifactUrl(build, { file: 'inttests.html' }) %>">
+						<img class="logo tests" src="images/tests.svg" /></a>
+					<a title="Test Coverage" href="<%- getArtifactUrl(build, { path: 'reports/coverage' }) %>">
+  						<img class="logo tests" src="images/coverage.svg" /></a>
 					<a title="TPIP Report" href="<%- getArtifactUrl(build, 'tpip', 'tpip.csv') %>">
 						<img class="logo tpip" src="images/tpip.svg" /></a>
 				<% } %>
@@ -113,9 +117,10 @@
 		return build.lifecycle;
 	}
 
-	function getArtifactUrl(build, base, file) {
-		file = file || "index.html";
-		return "https://circle-artifacts.com/gh/ARMmbed/" + project + "/" + build.build_num + "/artifacts/0/home/ubuntu/" + base + "/" + file;
+	function getArtifactUrl(build, options) {
+		options.path = options.path || "reports";
+		options.file = options.file || "index.html";
+		return "https://circle-artifacts.com/gh/ARMmbed/" + project + "/" + build.build_num + "/artifacts/0/home/ubuntu/" + options.path + "/" + options.file;
   	}
 
 	getCircle(function(builds) {
