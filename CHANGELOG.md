@@ -20,4 +20,4 @@ $ nuget install Mbed.Cloud.SDK
   - Device Diectory
   - Update
 - Environments supported:
-  - .Net 4.5
+  - .Net 4.61
