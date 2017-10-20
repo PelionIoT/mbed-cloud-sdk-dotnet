@@ -4,7 +4,7 @@
 
 ### Windows
 
-.Net v4.5
+.Net v4.61
 
 ### Mac/Linux
 
