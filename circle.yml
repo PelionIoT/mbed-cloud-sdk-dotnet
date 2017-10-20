@@ -57,14 +57,14 @@ compile:
     - mono --runtime=v4.0 nuget.exe pack MbedCloudSDK/MbedCloudSDK.csproj -MSBuildPath "/usr/lib/mono/msbuild/15.0/bin" -IncludeReferencedProjects -Prop Configuration=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
 test:
   override:
-    - echo "<h1>${SDK_NAME} Unit Tests (build ${CIRCLE_BUILD_NUM})</h1>" >> ${UNITTEST_REPORT}:
+    - echo "<h1>${SDK_NAME} Unit Tests (build ${CIRCLE_BUILD_NUM})</h1>" >> ${UNITTEST_REPORT}
     - mono packages/NUnit.ConsoleRunner.3.7.0/tools/nunit3-console.exe MbedCloudSDK.Test/MbedCloudSDK.Test.csproj --config=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - xsltproc scripts/nunit3-junit.xslt TestResult.xml >> junit.xml
     - mkdir -p ${CIRCLE_TEST_REPORTS}/junit
     - cp junit.xml $CIRCLE_TEST_REPORTS/junit/test-results.xml
     - xsltproc scripts/text-report.xslt TestResult.xml | tee /dev/tty | ansi-html >> ${UNITTEST_REPORT}
-    - echo "<h1>${SDK_NAME} Integration Tests (build ${CIRCLE_BUILD_NUM})</h2>" >> ${INTTEST_REPORT}:
-    - set -o pipefail && bash scripts/test.sh 2>&1 | tee /dev/tty | ansi-html >> ${INTTEST_REPORT}:
+    - echo "<h1>${SDK_NAME} Integration Tests (build ${CIRCLE_BUILD_NUM})</h2>" >> ${INTTEST_REPORT}
+    - set -o pipefail && bash scripts/test.sh 2>&1 | tee /dev/tty | ansi-html >> ${INTTEST_REPORT}
     - mv MbedCloudSDK/tpip.csv ${SDK_REPORTS}
     - echo "finished"
   post:
