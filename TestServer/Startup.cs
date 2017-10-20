@@ -25,6 +25,12 @@ namespace TestServer
                 defaults: new { controller = "Home", action = "Init" }
             );
 
+            config.Routes.MapHttpRoute(
+                name: "Exit",
+                routeTemplate: "_exit",
+                defaults: new { controller = "Home", action = "Exit" }
+            );
+
             appBuilder.UseWebApi(config);
         }
     }

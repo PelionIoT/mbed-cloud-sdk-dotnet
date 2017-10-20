@@ -45,7 +45,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
 
             try
             {
-                var resp = api.DeviceQueryList(options.Limit, options.Order, options.After, options.Include);
+                var resp = api.DeviceQueryList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
                 var respDevices = new ResponsePage<Query>(resp.After, resp.HasMore, (int?)resp.Limit, resp.Order, (int?)resp.TotalCount);
                 foreach (var deviceQuery in resp.Data)
                 {

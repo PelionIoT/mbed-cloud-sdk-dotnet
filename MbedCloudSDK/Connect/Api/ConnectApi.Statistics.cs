@@ -95,7 +95,7 @@ namespace MbedCloudSDK.Connect.Api
             try
             {
                 var statisticsList = new List<Metric>();
-                foreach (var data in accountApi.V3MetricsGet(include: options.Include, interval: options.Interval, start: options.Start, end: options.End, period: options.Period).Data)
+                foreach (var data in accountApi.V3MetricsGet(include: options.Include, interval: options.Interval, start: options.Start, end: options.End, period: options.Period, limit: options.Limit, after: options.After, order: options.Order).Data)
                 {
                     statisticsList.Add(Metric.Map(data));
                 }

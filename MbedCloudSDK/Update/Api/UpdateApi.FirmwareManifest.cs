@@ -46,7 +46,7 @@ namespace MbedCloudSDK.Update.Api
 
             try
             {
-                var resp = api.FirmwareManifestList(options.Limit, options.Order, options.After);
+                var resp = api.FirmwareManifestList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
                 var respManifests = new ResponsePage<FirmwareManifest>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var manifest in resp.Data)
                 {

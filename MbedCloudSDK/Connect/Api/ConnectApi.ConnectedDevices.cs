@@ -52,11 +52,14 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                var resp = deviceDirectoryApi.DeviceList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter.FilterString, include: options.Include);
+                var resp = deviceDirectoryApi.DeviceList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
                 var respDevices = new ResponsePage<ConnectedDevice>(after: resp.After, hasMore: resp.HasMore, limit: resp.Limit, order: resp.Order, totalCount: resp.TotalCount);
                 foreach (var device in resp.Data)
                 {
-                    respDevices.Data.Add(ConnectedDevice.Map(device));
+                    using (var connectApi = new ConnectApi(Config))
+                    {
+                        respDevices.Data.Add(ConnectedDevice.Map(device, connectApi));
+                    }
                 }
 
                 return respDevices;
@@ -203,10 +206,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <param name="noResponse">no response</param>
         public void DeleteResource(string deviceName, string resourcePath, bool? noResponse = null)
         {
-            var api = new mds.Api.ResourcesApi(Config.Host);
-            api.Configuration.ApiKey["Authorization"] = Config.ApiKey;
-            api.Configuration.ApiKeyPrefix["Authorization"] = Config.AuthorizationPrefix;
-            api.V2EndpointsDeviceIdResourcePathDelete(deviceName, resourcePath, noResponse);
+            resourcesApi.V2EndpointsDeviceIdResourcePathDelete(deviceName, resourcePath, noResponse);
         }
 
         /// <summary>

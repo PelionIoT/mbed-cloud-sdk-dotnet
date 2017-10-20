@@ -137,8 +137,6 @@ namespace MbedCloudSDK.Connect.Api
             await subscriptionsApi.V2SubscriptionsPutAsync(presubscriptionArray);
         }
 
-        
-
         /// <summary>
         /// Unsubscribe resource.
         /// </summary>

@@ -67,6 +67,13 @@ namespace TestServer
         }
 
         [HttpGet]
+        public void Exit()
+        {
+            Console.WriteLine("Finished...");
+            Program.shutDown.Set();
+        }
+
+        [HttpGet]
         public IHttpActionResult TestModuleMethod(string module, string method, [FromUri] string args = "")
         {
             var camelModule = Utils.SnakeToCamel(module);

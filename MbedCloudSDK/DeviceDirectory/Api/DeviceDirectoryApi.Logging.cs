@@ -51,7 +51,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
 
             try
             {
-                var resp = api.DeviceLogList(options.Limit, options.Order, options.After, options.Filter.FilterString, options.Include);
+                var resp = api.DeviceLogList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
                 var respDeviceLogs = new ResponsePage<DeviceEvent>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
                 foreach (var deviceLog in resp.Data)
                 {

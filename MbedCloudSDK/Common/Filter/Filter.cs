@@ -7,6 +7,7 @@ namespace MbedCloudSDK.Common.Filter
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using MbedCloudSDK.Common.Filter.Maps;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
     using RestSharp.Extensions.MonoHttp;
@@ -19,7 +20,7 @@ namespace MbedCloudSDK.Common.Filter
         /// <summary>
         /// Prefix for custom attributes.
         /// </summary>
-        public static readonly string CustomAttributesPrefix = "custom_attributes__";
+        public static readonly string CustomAttributesPrefix = "custom_attribute__";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Filter"/> class.
@@ -27,7 +28,7 @@ namespace MbedCloudSDK.Common.Filter
         /// </summary>
         public Filter()
         {
-            FilterDictionary = new Dictionary<string, FilterAttribute>();
+            FilterDictionary = new Dictionary<string, FilterAttribute[]>();
         }
 
         /// <summary>
@@ -47,13 +48,12 @@ namespace MbedCloudSDK.Common.Filter
                 }
                 else
                 {
-                    var jsonString = QueryStringToJson(value);
-                    FilterDictionary = QueryJsonToDictionary(jsonString);
+                    FilterDictionary = QueryStringToDictionary(value);
                 }
             }
             else
             {
-                FilterDictionary = new Dictionary<string, FilterAttribute>();
+                FilterDictionary = new Dictionary<string, FilterAttribute[]>();
             }
         }
 
@@ -66,7 +66,10 @@ namespace MbedCloudSDK.Common.Filter
             {
                 if (FilterDictionary.Any())
                 {
-                    return string.Join("&", FilterDictionary?.Select(q => $"{q.Key}{q.Value.GetSuffix()}={q.Value.Value}"));
+                    var fString = new List<string>();
+                    FilterDictionary.ToList().ForEach(k => k.Value.ToList().ForEach(f => fString.Add($"{k.Key}{f.GetSuffix()}={f.Value}")));
+                    var stringVal = string.Join("&", fString);
+                    return stringVal;
                 }
 
                 return string.Empty;
@@ -77,7 +80,7 @@ namespace MbedCloudSDK.Common.Filter
         /// Gets dictionary containing key-value pairs of filters
         /// </summary>
         [JsonProperty]
-        public Dictionary<string, FilterAttribute> FilterDictionary { get; private set; }
+        public Dictionary<string, FilterAttribute[]> FilterDictionary { get; private set; }
 
         /// <summary>
         /// Gets json representation of filter
@@ -91,7 +94,19 @@ namespace MbedCloudSDK.Common.Filter
                 {
                     var json = new JObject();
                     FilterDictionary.ToList()
-                                    .ForEach(f => json.Add(new JProperty(f.Key, f.Value.FilterAttributeJson)));
+                                    .ForEach(f => f.Value.ToList().ForEach(a =>
+                                    {
+                                        if (json.Properties().Select(p => p.Name).Contains(f.Key))
+                                        {
+                                            var currentJson = json[f.Key] as JObject;
+                                            currentJson.Merge(a.FilterAttributeJson);
+                                            json[f.Key] = currentJson;
+                                        }
+                                        else
+                                        {
+                                            json.Add(new JProperty(f.Key, a.FilterAttributeJson));
+                                        }
+                                    }));
                     return json;
                 }
 
@@ -115,7 +130,7 @@ namespace MbedCloudSDK.Common.Filter
             {
                 case "$eq":
                     return FilterOperator.Equals;
-                case "$neq":
+                case "$ne":
                     return FilterOperator.NotEqual;
                 case "$lte":
                     return FilterOperator.LessOrEqual;
@@ -138,7 +153,7 @@ namespace MbedCloudSDK.Common.Filter
                 case FilterOperator.Equals:
                     return "$eq";
                 case FilterOperator.NotEqual:
-                    return "$neq";
+                    return "$ne";
                 case FilterOperator.LessOrEqual:
                     return "$lte";
                 case FilterOperator.GreaterOrEqual:
@@ -152,22 +167,98 @@ namespace MbedCloudSDK.Common.Filter
         /// Add new query to filter
         /// </summary>
         /// <param name="key">Key</param>
+        /// <param name="filterAttributes">Value</param>
+        /// <returns>The filter dictionary</returns>
+        public Dictionary<string, FilterAttribute[]> Add(string key, params FilterAttribute[] filterAttributes)
+        {
+            return AddFilters(key, filterAttributes);
+        }
+
+        /// <summary>
+        /// Add a filter with a DeviceFilterUpdateEnum for the key.
+        /// </summary>
+        /// <param name="key">DeviceFilterUpdateEnum. The enum provides mapping to the filter keys expected in the api.</param>
+        /// <param name="filterAttributes">Filter attributes</param>
+        /// <returns>The filter dictionary</returns>
+        public Dictionary<string, FilterAttribute[]> Add(DeviceFilterMapEnum key, params FilterAttribute[] filterAttributes)
+        {
+            return AddFilters(Utils.GetEnumMemberValue(typeof(DeviceFilterMapEnum), Convert.ToString(key)), filterAttributes);
+        }
+
+        /// <summary>
+        /// Add a filter with a UpdateFilterMapEnum for the key.
+        /// </summary>
+        /// <param name="key">UpdateFilterMapEnum. The enum provides mapping to the filter keys expected in the api.</param>
+        /// <param name="filterAttributes">Filter attributes</param>
+        /// <returns>The filter dictionary</returns>
+        public Dictionary<string, FilterAttribute[]> Add(UpdateFilterMapEnum key, params FilterAttribute[] filterAttributes)
+        {
+            return AddFilters(Utils.GetEnumMemberValue(typeof(UpdateFilterMapEnum), Convert.ToString(key)), filterAttributes);
+        }
+
+        /// <summary>
+        /// Add new query to filter
+        /// </summary>
+        /// <param name="key">Key</param>
         /// <param name="value">Value</param>
         /// <param name="filterOperator">Operator, Equals if not provided</param>
         /// <returns>The filter dictionary</returns>
-        public Dictionary<string, FilterAttribute> Add(string key, string value, FilterOperator filterOperator = FilterOperator.Equals)
+        public Dictionary<string, FilterAttribute[]> Add(string key, string value, FilterOperator filterOperator = FilterOperator.Equals)
         {
-            try
-            {
-                var filterAttribute = new FilterAttribute(value, filterOperator);
-                FilterDictionary.Remove(key);
-                FilterDictionary.Add(key, filterAttribute);
-                return FilterDictionary;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            var filterAttribute = new FilterAttribute(value, filterOperator);
+            return AddFilters(key, new FilterAttribute[] { filterAttribute });
+        }
+
+        /// <summary>
+        /// Add a filter with a DeviceFilterMapEnum for the key.
+        /// </summary>
+        /// <param name="key">The enum provides mapping to the filter keys expected in the api.</param>
+        /// <param name="value">Value</param>
+        /// <param name="filterOperator">Operator, Equals if not provided</param>
+        /// <returns>The filter dictionary</returns>
+        public Dictionary<string, FilterAttribute[]> Add(DeviceFilterMapEnum key, string value, FilterOperator filterOperator = FilterOperator.Equals)
+        {
+            var filterAttribute = new FilterAttribute(value, filterOperator);
+            return AddFilters(Utils.GetEnumMemberValue(typeof(DeviceFilterMapEnum), Convert.ToString(key)), new FilterAttribute[] { filterAttribute });
+        }
+
+        /// <summary>
+        /// Add a filter with a UpdateFilterMapEnum for the key.
+        /// </summary>
+        /// <param name="key">The enum provides mapping to the filter keys expected in the api.</param>
+        /// <param name="value">Value</param>
+        /// <param name="filterOperator">Operator, Equals if not provided</param>
+        /// <returns>The filter dictionary</returns>
+        public Dictionary<string, FilterAttribute[]> Add(UpdateFilterMapEnum key, string value, FilterOperator filterOperator = FilterOperator.Equals)
+        {
+            var filterAttribute = new FilterAttribute(value, filterOperator);
+            return AddFilters(Utils.GetEnumMemberValue(typeof(UpdateFilterMapEnum), Convert.ToString(key)), new FilterAttribute[] { filterAttribute });
+        }
+
+        /// <summary>
+        /// Add custom query to filter
+        /// </summary>
+        /// <param name="key">Key</param>
+        /// <param name="filterAttributes">Value</param>
+        /// <returns>The filter dictionary</returns>
+        public Dictionary<string, FilterAttribute[]> AddCustom(string key, params FilterAttribute[] filterAttributes)
+        {
+            key = $"{CustomAttributesPrefix}{key}";
+            return AddFilters(key, filterAttributes);
+        }
+
+        /// <summary>
+        /// Add custom query to filter
+        /// </summary>
+        /// <param name="key">Key</param>
+        /// <param name="value">Value</param>
+        /// <param name="filterOperator">The Operator</param>
+        /// <returns>The filter dictionary</returns>
+        public Dictionary<string, FilterAttribute[]> AddCustom(string key, string value, FilterOperator filterOperator = FilterOperator.Equals)
+        {
+            key = $"{CustomAttributesPrefix}{key}";
+            var filterAttribute = new FilterAttribute(value, filterOperator);
+            return AddFilters(key, new FilterAttribute[] { filterAttribute });
         }
 
         /// <summary>
@@ -176,7 +267,10 @@ namespace MbedCloudSDK.Common.Filter
         /// <param name="key">Key to remove</param>
         public void Remove(string key)
         {
-            FilterDictionary.Remove(key);
+            if (FilterDictionary.ContainsKey(key))
+            {
+                FilterDictionary.Remove(key);
+            }
         }
 
         /// <summary>
@@ -189,19 +283,29 @@ namespace MbedCloudSDK.Common.Filter
             return FilterDictionary.ContainsKey(key);
         }
 
-        private static FilterAttribute GetQueryAttribute(JObject val)
+        private static FilterAttribute[] GetQueryAttribute(object val)
         {
-            var oper = val.First as JProperty;
-            var operName = oper.Name;
-            var operValue = val.First.First.Value<string>();
-            var queryAttribute = new FilterAttribute(operValue, QueryOperatorToEnum(operName));
-            return queryAttribute;
+            var filterAttributes = new List<FilterAttribute>();
+            var objStr = Convert.ToString(val);
+            try
+            {
+                var jobj = JObject.Parse(objStr);
+                foreach (var item in jobj)
+                {
+                    filterAttributes.Add(new FilterAttribute(item.Value.Value<string>(), QueryOperatorToEnum(item.Key)));
+                }
+            }
+            catch (JsonReaderException)
+            {
+                filterAttributes.Add(new FilterAttribute(objStr));
+            }
+
+            return filterAttributes.ToArray();
         }
 
-        private static string QueryStringToJson(string queryString)
+        private static Dictionary<string, FilterAttribute[]> QueryStringToDictionary(string queryString)
         {
-            queryString = HttpUtility.UrlDecode(queryString).Replace("u'", "\"").Replace("'", "\"");
-            var dict = new Dictionary<string, FilterAttribute>();
+            var dict = new Dictionary<string, FilterAttribute[]>();
             var split = queryString.Split('&');
             foreach (var part in split)
             {
@@ -212,64 +316,96 @@ namespace MbedCloudSDK.Common.Filter
                     var key = keyValue[0];
                     var oper = FilterOperator.Equals;
 
-                    if (key.Contains("neq"))
+                    if (key.Contains("__neq"))
                     {
-                        key = key.Replace("neq", string.Empty);
+                        key = key.Replace("__neq", string.Empty);
                         oper = FilterOperator.NotEqual;
                     }
 
-                    if (key.Contains("ltq"))
+                    if (key.Contains("__lte"))
                     {
-                        key = key.Replace("ltq", string.Empty);
+                        key = key.Replace("__lte", string.Empty);
                         oper = FilterOperator.LessOrEqual;
                     }
 
-                    if (key.Contains("gtq"))
+                    if (key.Contains("__gte"))
                     {
-                        key = key.Replace("gtq", string.Empty);
+                        key = key.Replace("__gte", string.Empty);
                         oper = FilterOperator.GreaterOrEqual;
                     }
 
                     var queryAttribute = new FilterAttribute(val, oper);
-                    dict.Add(key, queryAttribute);
+                    if (dict.ContainsKey(key))
+                    {
+                        var tmp = dict[key].ToList();
+                        tmp.Add(queryAttribute);
+                        dict.Remove(key);
+                        dict.Add(key, tmp.ToArray());
+                    }
+                    else
+                    {
+                        dict.Add(key, new FilterAttribute[] { queryAttribute });
+                    }
                 }
             }
 
-            var json = new JObject();
-            foreach (var kv in dict)
+            return dict;
+        }
+
+        /// <summary>
+        /// Encode a key to its mapped value
+        /// </summary>
+        /// <param name="key">Key to map</param>
+        /// <returns>The mapped key</returns>
+        public static string EncodeKey(string key)
+        {
+            var deviceMapValue = Utils.GetEnumMemberValue(typeof(DeviceFilterMapEnum), key);
+            var updateMapValue = Utils.GetEnumMemberValue(typeof(UpdateFilterMapEnum), key);
+            if (deviceMapValue != null)
             {
-                var innerJson = new JObject
-                {
-                    [QueryOperatorToString(kv.Value.FilterOperator)] = kv.Value.Value
-                };
-                json[kv.Key] = innerJson;
+                key = deviceMapValue;
             }
 
-            return json.ToString(Formatting.None);
-        }
-
-        private static JObject StringToJsonObject(string jsonString)
-        {
-            return JObject.Parse(jsonString);
-        }
-
-        private Filter QueryStringToFilter(string queryString)
-        {
-            var queryJsonString = QueryStringToJson(queryString);
-            FilterDictionary = QueryJsonToDictionary(queryJsonString);
-            return this;
-        }
-
-        private Dictionary<string, FilterAttribute> QueryJsonToDictionary(string queryJson)
-        {
-            var decodedString = HttpUtility.UrlDecode(queryJson).Replace("u'", "\"").Replace("'", "\"");
-            var customAttributes = new Dictionary<string, FilterAttribute>();
-            if (Utils.IsValidJson(decodedString))
+            if (updateMapValue != null)
             {
-                var json = JsonConvert.DeserializeObject<Dictionary<string, JObject>>(decodedString);
+                key = updateMapValue;
+            }
+
+            return key;
+        }
+
+        /// <summary>
+        /// Decode a key from its mapped value
+        /// </summary>
+        /// <param name="key">Mapped key</param>
+        /// <returns>Original value of key</returns>
+        public static string DecodeKey(string key)
+        {
+            var deviceMapValue = Utils.GetEnumFromEnumMemberValue(typeof(DeviceFilterMapEnum), key);
+            var updateMapValue = Utils.GetEnumFromEnumMemberValue(typeof(UpdateFilterMapEnum), key);
+            if (deviceMapValue != null)
+            {
+                key = Convert.ToString((DeviceFilterMapEnum)deviceMapValue);
+            }
+
+            if (updateMapValue != null)
+            {
+                key = Convert.ToString((UpdateFilterMapEnum)updateMapValue);
+            }
+
+            return key;
+        }
+
+        private static Dictionary<string, FilterAttribute[]> QueryJsonToDictionary(string queryJson)
+        {
+            // var decodedString = HttpUtility.UrlDecode(queryJson).Replace("u'", "\"").Replace("'", "\"");
+            var customAttributes = new Dictionary<string, FilterAttribute[]>();
+            if (Utils.IsValidJson(queryJson))
+            {
+                var json = JsonConvert.DeserializeObject<Dictionary<string, object>>(queryJson);
                 if (json.Keys.Contains("custom_attributes"))
                 {
-                    var customAttributeJson = json["custom_attributes"].ToString(Formatting.None);
+                    var customAttributeJson = json["custom_attributes"].ToString();
                     customAttributes = QueryJsonToDictionary(customAttributeJson);
                     json.Remove("custom_attributes");
                 }
@@ -283,7 +419,28 @@ namespace MbedCloudSDK.Common.Filter
                 return dict;
             }
 
-            return new Dictionary<string, FilterAttribute>();
+            return new Dictionary<string, FilterAttribute[]>();
+        }
+
+        private Dictionary<string, FilterAttribute[]> AddFilters(string key, params FilterAttribute[] filterAttributes)
+        {
+            if (FilterDictionary.ContainsKey(key))
+            {
+                var tmp = FilterDictionary.FirstOrDefault(t => t.Key == key).Value.ToList();
+                foreach (var item in filterAttributes)
+                {
+                    tmp.Add(item);
+                }
+
+                FilterDictionary.Remove(key);
+                FilterDictionary.Add(key, tmp.ToArray());
+                return FilterDictionary;
+            }
+            else
+            {
+                FilterDictionary.Add(key, filterAttributes);
+                return FilterDictionary;
+            }
         }
     }
 }

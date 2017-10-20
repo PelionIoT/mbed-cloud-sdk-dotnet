@@ -7,6 +7,8 @@ namespace MbedCloudSDK.Common
     using System;
     using System.Linq;
     using System.Runtime.Serialization;
+    using System.Text;
+    using MbedCloudSDK.Common.Tlv;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
@@ -93,11 +95,14 @@ namespace MbedCloudSDK.Common
         /// <returns>Value of Enum member attribute</returns>
         public static string GetEnumMemberValue(Type type, string value)
         {
-            var memInfo = type.GetMember(value);
-            if (memInfo.Any())
+            if (!string.IsNullOrWhiteSpace(value))
             {
-                var attributes = memInfo[0].GetCustomAttributes(typeof(EnumMemberAttribute), false);
-                return ((EnumMemberAttribute)attributes.FirstOrDefault()).Value;
+                var memInfo = type.GetMember(value);
+                if (memInfo.Any())
+                {
+                    var attributes = memInfo[0].GetCustomAttributes(typeof(EnumMemberAttribute), false);
+                    return ((EnumMemberAttribute)attributes.FirstOrDefault()).Value;
+                }
             }
 
             return null;
@@ -111,12 +116,15 @@ namespace MbedCloudSDK.Common
         /// <returns>Enum</returns>
         public static object GetEnumFromEnumMemberValue(Type type, string value)
         {
-            foreach (var name in Enum.GetNames(type))
+            if (!string.IsNullOrWhiteSpace(value))
             {
-                var attr = ((EnumMemberAttribute[])type.GetField(name).GetCustomAttributes(typeof(EnumMemberAttribute), true)).Single();
-                if (attr.Value == value)
+                foreach (var name in Enum.GetNames(type))
                 {
-                    return Enum.Parse(type, name);
+                    var attr = ((EnumMemberAttribute[])type.GetField(name).GetCustomAttributes(typeof(EnumMemberAttribute), true)).Single();
+                    if (attr.Value == value)
+                    {
+                        return Enum.Parse(type, name);
+                    }
                 }
             }
 
@@ -144,15 +152,134 @@ namespace MbedCloudSDK.Common
                     // Exception in parsing json
                     return false;
                 }
-                catch (Exception)
-                {
-                    return false;
-                }
             }
             else
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Convert snake case string to camel case
+        /// </summary>
+        /// <param name="input">Input</param>
+        /// <param name="firstLower">If true, first letter will be lower case</param>
+        /// <returns>Camel case string</returns>
+        public static string SnakeToCamel(string input, bool firstLower = false)
+        {
+            var newString = new char[input.Length];
+            var startIndex = 1;
+            var newStringIndex = 1;
+
+            if (firstLower)
+            {
+                newString[0] = input[0];
+            }
+            else
+            {
+                if (input[0] == '_')
+                {
+                    newString[0] = char.ToUpper(input[1]);
+                    startIndex += 1;
+                }
+                else
+                {
+                    var firstCap = char.ToUpper(input[0]);
+                    newString[0] = firstCap;
+                }
+            }
+
+            for (int i = startIndex; i < input.Count(); i++)
+            {
+                if (input[i] == '_')
+                {
+                    if (i + 1 >= input.Count())
+                    {
+                        newString[newStringIndex] = '_';
+                    }
+                    else
+                    {
+                        newString[newStringIndex] = char.ToUpper(input[i + 1]);
+                        newString[newStringIndex + 1] = ' ';
+                        i++;
+                        newStringIndex += 1;
+                    }
+                }
+                else
+                {
+                    newString[newStringIndex] = input[i];
+                }
+
+                newStringIndex += 1;
+            }
+
+            return new string(newString.Where(c => !char.IsWhiteSpace(c) && !(c == '\0')).ToArray());
+        }
+
+        /// <summary>
+        /// Wrapper method that returns camel case stirng with lowercase first letter
+        /// </summary>
+        /// <param name="input">Input</param>
+        /// <returns>camelcase string</returns>
+        public static string SnakeToLowerCamel(string input)
+        {
+            return SnakeToCamel(input, true);
+        }
+
+        /// <summary>
+        /// Convert camelcase string to snake case
+        /// </summary>
+        /// <param name="input">Input</param>
+        /// <returns>snake case string</returns>
+        public static string CamelToSnake(string input)
+        {
+            return string.Concat(input.Select((x, i) =>
+            {
+                return (i >= 0 && char.IsUpper(x)) ? "_" + x.ToString() : x.ToString();
+            })).ToLower();
+        }
+
+        /// <summary>
+        /// Decode a base 64 payload
+        /// </summary>
+        /// <param name="asyncResponse">The response object</param>
+        /// <returns>String of payload</returns>
+        public static string DecodeBase64(mds.Model.AsyncIDResponse asyncResponse)
+        {
+            return DecodeBase64(asyncResponse.Ct, asyncResponse.Payload, new TlvDecoder());
+        }
+
+        /// <summary>
+        /// Decode a base64 payload from notification data
+        /// </summary>
+        /// <param name="notificationData">the notification</param>
+        /// <returns>decoded payload</returns>
+        public static string DecodeBase64(mds.Model.NotificationData notificationData)
+        {
+            return DecodeBase64(notificationData.Ct, notificationData.Payload, new TlvDecoder());
+        }
+
+        private static string DecodeBase64(string contentType, string payload, TlvDecoder tlvDecoder)
+        {
+            if (!string.IsNullOrEmpty(contentType))
+            {
+                if (contentType.Contains("tlv"))
+                {
+                    payload = tlvDecoder.DecodeTlvFromString(payload);
+                }
+                else
+                {
+                    var data = Convert.FromBase64String(payload);
+                    payload = Encoding.UTF8.GetString(data);
+                }
+            }
+            else
+            {
+                var data = Convert.FromBase64String(payload);
+                payload = Encoding.UTF8.GetString(data);
+            }
+
+            return payload;
         }
     }
 }

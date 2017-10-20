@@ -6,12 +6,37 @@ using MbedCloudSDK.Exceptions;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using MbedCloudSDK.Common;
 
 namespace MbedCloudSDK.Test.Common.Tlv
 {
     [TestFixture]
-    public class TlvDecoderTests
+    public class TlvDecoder
     {
+        [Test]
+        public void CreateNewLwm2mResourceWithInt()
+        {
+            var lwm2m = new Lwm2mResource("/0", 50);
+            Assert.AreEqual(50, lwm2m.GetIntValue());
+            Assert.AreEqual("50", lwm2m.GetStringValue());
+        }
+
+        [Test]
+        public void CreateNewLwm2mResourceWithBytes()
+        {
+            var lwm2m = new Lwm2mResource("/0", new byte[] { 50 });
+            Assert.AreEqual(50, lwm2m.GetIntValue());
+            Assert.AreEqual("50", lwm2m.GetStringValue());
+        }
+
+        [Test]
+        public void CreateNewLwm2mResourceWithString()
+        {
+            var lwm2m = new Lwm2mResource("/0", "50");
+            Assert.AreEqual(50, lwm2m.GetIntValue());
+            Assert.AreEqual("50", lwm2m.GetStringValue());
+        }
+
         [Test]
         public void TestTypeIdentifierParsing()
         {
@@ -31,7 +56,7 @@ namespace MbedCloudSDK.Test.Common.Tlv
             byte[] array = { 0xE3, 0xA3, 0x67, 0b0001_1000 };
             using (var stream = new MemoryStream(array))
             {
-                var tlv = new TlvDecoder();
+                var tlv = new MbedCloudSDK.Common.Tlv.TlvDecoder();
                 Assert.AreEqual(2, tlv.FindIdLength(stream.ReadByte() & 0xFF));
                 Assert.AreEqual(2, tlv.FindIdLength(stream.ReadByte() & 0xFF));
                 Assert.AreEqual(2, tlv.FindIdLength(stream.ReadByte() & 0xFF));
@@ -53,6 +78,12 @@ namespace MbedCloudSDK.Test.Common.Tlv
         }
 
         [Test]
+        public void InvalidLengthTypeThrowsException()
+        {
+            // Assert.That(() => TypesHelper.GetLengthTypeEnumValue(42 & 0xFF), Throws.Exception.TypeOf<DecodingException>());
+        }
+
+        [Test]
         public void TestSingleResourceTLVDecode()
         {
             byte[] response =
@@ -64,7 +95,7 @@ namespace MbedCloudSDK.Test.Common.Tlv
             };
             using (var stream = new MemoryStream(response))
             {
-                var tlv = new TlvDecoder();
+                var tlv = new MbedCloudSDK.Common.Tlv.TlvDecoder();
                 var res = tlv.DecodeTlvFromBytes(response);
                 Assert.AreEqual(1, res.Count);
                 var resource = res.FirstOrDefault();
@@ -97,7 +128,7 @@ namespace MbedCloudSDK.Test.Common.Tlv
             };
             using (var stream = new MemoryStream(response))
             {
-                var tlv = new TlvDecoder();
+                var tlv = new MbedCloudSDK.Common.Tlv.TlvDecoder();
                 var res = tlv.DecodeTlvFromBytes(response);
                 Assert.NotNull(res);
                 Assert.AreEqual(16, res.Count);
@@ -105,16 +136,81 @@ namespace MbedCloudSDK.Test.Common.Tlv
                 Assert.AreEqual(res[1].GetStringValue(), "Lightweight M2M Client");
                 Assert.AreEqual(res[2].GetStringValue(), "345000123");
                 Assert.AreEqual(res[3].GetStringValue(), "1.0");
-                Assert.AreEqual(res[4].GetHexValue(), 1);
-                Assert.AreEqual(res[5].GetHexValue(), 5);
+                Assert.AreEqual(res[4].GetIntValue(), 1);
+                Assert.AreEqual(res[5].GetIntValue(), 5);
                 Assert.AreEqual(res[6].GetStringValue(), "Ø");
                 Assert.AreEqual(res[8].GetStringValue(), "}");
                 Assert.AreEqual(res[10].GetStringValue(), "d");
-                Assert.AreEqual(res[11].GetHexValue(), 15);
+                Assert.AreEqual(res[11].GetIntValue(), 15);
                 Assert.AreEqual(res[12].GetStringValue(), "0");
                 Assert.AreEqual(res[14].GetStringValue(), "+02:00");
                 Assert.AreEqual(res[15].GetStringValue(), "U");
             }
+        }
+
+        [Test]
+        public void ShouldDecodeNothing()
+        {
+            var res = new mds.Model.AsyncIDResponse();
+            res.Payload = string.Empty;
+            res.Ct = "tlv";
+
+            var payload = Utils.DecodeBase64(res);
+            Assert.AreEqual("{}", payload);
+        }
+
+        [Test]
+        public void ShouldDecodeSimple()
+        {
+            var res = new mds.Model.AsyncIDResponse();
+            res.Payload = "AAA=";
+            res.Ct = "tlv";
+
+            var payload = Utils.DecodeBase64(res);
+            Assert.AreEqual("{\"/0\": \"\"}", payload);
+        }
+
+        [Test]
+        public void ShouldDecodeSimpleWithNoContentType()
+        {
+            var res = new mds.Model.AsyncIDResponse();
+            res.Payload = "dGVzdA==";
+
+            var payload = Utils.DecodeBase64(res);
+            Assert.AreEqual("test", payload);
+        }
+
+        [Test]
+        public void ShouldDecodeSimpleNotification()
+        {
+            var res = new mds.Model.NotificationData();
+            res.Payload = "AAA=";
+            res.Ct = "tlv";
+
+            var payload = Utils.DecodeBase64(res);
+            Assert.AreEqual("{\"/0\": \"\"}", payload);
+        }
+
+        [Test]
+        public void ShouldDecodeComplex()
+        {
+            var res = new mds.Model.AsyncIDResponse();
+            res.Payload = "iAsLSAAIAAAAAAAAAADBEFXIABAAAAAAAAAAAAAAAAAAAAAAyAEQAAAAAAAAAAAAAAAAAAAAAMECMMgRD2Rldl9kZXZpY2VfdHlwZcgSFGRldl9oYXJkd2FyZV92ZXJzaW9uyBUIAAAAAAAAAADIDQgAAAAAWdH0Bw==";
+            res.Ct = "tlv";
+
+            var payload = Utils.DecodeBase64(res);
+            Assert.AreEqual("{\"/11/0\": \"0\",\"/16\": \"U\",\"/0\": \"0\",\"/1\": \"0\",\"/2\": \"0\",\"/17\": \"dev_device_type\",\"/18\": \"dev_hardware_version\",\"/21\": \"0\",\"/13\": \"1506931719\"}", payload);
+        }
+
+        [Test]
+        public void ShouldDecodePlainPayload()
+        {
+            var res = new mds.Model.AsyncIDResponse();
+            res.Payload = "dGVzdA==";
+            res.Ct = "json";
+
+            var payload = Utils.DecodeBase64(res);
+            Assert.AreEqual("test", payload);
         }
     }
 }

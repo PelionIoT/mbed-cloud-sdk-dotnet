@@ -56,11 +56,11 @@ namespace MbedCloudSDK.Common.Filter
                 case FilterOperator.Equals:
                     return string.Empty;
                 case FilterOperator.NotEqual:
-                    return "neq";
+                    return "__neq";
                 case FilterOperator.LessOrEqual:
-                    return "ltq";
+                    return "__lte";
                 case FilterOperator.GreaterOrEqual:
-                    return "gtq";
+                    return "__gte";
                 default:
                     return string.Empty;
             }

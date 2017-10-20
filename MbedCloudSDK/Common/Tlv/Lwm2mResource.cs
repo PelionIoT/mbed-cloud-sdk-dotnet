@@ -46,34 +46,7 @@ namespace MbedCloudSDK.Common.Tlv
         {
             Id = id;
             Type = Lwm2mResourceTypeEnum.INT;
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new StreamWriter(stream))
-                {
-                    if ((value & 0xFF000000) != 0)
-                    {
-                        writer.Write((value & 0xFF000000) >> 24);
-                        writer.Flush();
-                    }
-
-                    if ((value & 0xFFFF0000) != 0)
-                    {
-                        writer.Write((value & 0xFF000000) >> 16);
-                        writer.Flush();
-                    }
-
-                    if ((value & 0xFFFFFF00) != 0)
-                    {
-                        writer.Write((value & 0xFF000000) >> 8);
-                        writer.Flush();
-                    }
-
-                    writer.Write(value & 0x000000FF);
-                    writer.Flush();
-
-                    Value = stream.ToArray();
-                }
-            }
+            Value = BitConverter.GetBytes(value);
         }
 
         /// <summary>
@@ -100,14 +73,9 @@ namespace MbedCloudSDK.Common.Tlv
         /// <returns>string</returns>
         public string GetStringValue()
         {
-            if (Type == Lwm2mResourceTypeEnum.INT)
+            if (Type == Lwm2mResourceTypeEnum.INT || Type == Lwm2mResourceTypeEnum.OPAQUE)
             {
-                var val = 0;
-                foreach (var element in Value)
-                {
-                    val = (val << 8) + (element & 0xFF);
-                }
-
+                var val = GetIntFromBytes(Value);
                 return Convert.ToString(val);
             }
             else
@@ -120,16 +88,34 @@ namespace MbedCloudSDK.Common.Tlv
         /// Get hex string
         /// </summary>
         /// <returns>string</returns>
-        public int GetHexValue()
+        public int GetIntValue()
         {
-            if (Value.Length < 4)
+            if (Type == Lwm2mResourceTypeEnum.STRING)
+            {
+                try
+                {
+                    var val = Encoding.UTF8.GetString(Value);
+                    return Convert.ToInt32(val);
+                }
+                catch (Exception)
+                {
+                    return GetIntFromBytes(Value);
+                }
+            }
+
+            return GetIntFromBytes(Value);
+        }
+
+        private static int GetIntFromBytes(byte[] val)
+        {
+            if (val.Length < 4)
             {
                 var temp = new byte[4];
-                Value.CopyTo(temp, 0);
+                val.CopyTo(temp, 0);
                 return BitConverter.ToInt32(temp, 0);
             }
 
-            return BitConverter.ToInt32(Value, 0);
+            return BitConverter.ToInt32(val, 0);
         }
     }
 }

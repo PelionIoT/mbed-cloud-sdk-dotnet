@@ -47,7 +47,7 @@ namespace MbedCloudSDK.AccountManagement.Api
 
             try
             {
-                var resp = developerApi.GetAllGroups(options.Limit, options.After, options.Order, options.Include);
+                var resp = developerApi.GetAllGroups(limit: options.Limit, after: options.After, order: options.Order, include: options.Include);
                 var respGroups = new ResponsePage<Group>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
                 foreach (var group in resp.Data)
                 {
@@ -108,7 +108,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                var resp = adminApi.GetUsersOfGroup(options.Id, options.Limit, options.After, options.Order, options.Include);
+                var resp = adminApi.GetUsersOfGroup(groupID: options.Id, limit: options.Limit, after: options.After, order: options.Order, include: options.Include);
                 var respGroupUsers = new ResponsePage<User>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
                 foreach (var user in resp.Data)
                 {
@@ -151,7 +151,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                var resp = developerApi.GetApiKeysOfGroup(options.Id, options.Limit, options.After, options.Order, options.Include);
+                var resp = developerApi.GetApiKeysOfGroup(groupID: options.Id, limit: options.Limit, after: options.After, order: options.Order, include: options.Include);
                 var respGroupKeys = new ResponsePage<ApiKey>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
                 foreach (var apiKey in resp.Data)
                 {
