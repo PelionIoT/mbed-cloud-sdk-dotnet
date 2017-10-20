@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/ARMmbed/mbed-cloud-sdk-dotnet.svg?style=shield&circle-token=68538baa897f82e3dcc38a48315e9ba24977b183)](https://circleci.com/gh/ARMmbed/mbed-cloud-sdk-dotnet)
 
-The Mbed Cloud SDK gives developers access to the full Mbed suite using .Net 4.5.
+The Mbed Cloud SDK gives developers access to the full Mbed suite using .Net 4.61.
 
 If you want to contribute to creating a SDK for another language the work is
 greatly appreciated and you can read more about the process
