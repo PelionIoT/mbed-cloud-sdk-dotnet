@@ -41,12 +41,9 @@ dependencies:
     - sudo apt-get install mono-devel
     - sudo apt-get install doxygen
     - sudo apt-get install xsltproc
-    - mkdir ${SDK_DOCS}
-    - mkdir ${SDK_REPORTS}
-    - mkdir ${SDK_COVERAGE_REPORTS}
-    - mkdir ${SDK_UNITTEST_REPORT}
-    - mkdir ${SDK_INTTEST_REPORT}
-    - mkdir ${RAW_REPORT}
+    - mkdir -p ${SDK_DOCS}
+    - mkdir -p ${SDK_REPORTS}
+    - mkdir -p ${SDK_COVERAGE_REPORTS}
   post:
     - npm install -g ansi-html-stream
     - ./scripts/setNugetCerts.sh
