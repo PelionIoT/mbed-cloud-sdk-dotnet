@@ -15,7 +15,7 @@ machine:
     SDK_REPORTS: ${HOME}/reports
     SDK_COVERAGE_REPORTS: ${SDK_REPORTS}/coverage
     UNITTEST_REPORT: ${SDK_REPORTS}/unittests.html
-    INTTEST_REPORT: $SDK_REPORTS}/inttests.html
+    INTTEST_REPORT: ${SDK_REPORTS}/inttests.html
     RAW_REPORT: ${SDK_REPORTS}/raw.txt
     NUGET_NAME: Mbed.Cloud.SDK.1.2.2.nupkg
     ARTIFACTORY_URL: http://localhost:5000/artifactory/
