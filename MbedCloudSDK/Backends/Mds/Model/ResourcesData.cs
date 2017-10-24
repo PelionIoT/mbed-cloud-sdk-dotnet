@@ -34,7 +34,7 @@ namespace mds.Model
         /// Initializes a new instance of the <see cref="ResourcesData" /> class.
         /// </summary>
         /// <param name="Path">Resource&#39;s URI path..</param>
-        /// <param name="Rf">Resource type [created by Client side application](/docs/v1.2/device-dev/connecting-devices-to-the-cloud-with-mbed-cloud-client.html#the-create-operation). For example \&quot;speed_sensor\&quot;.</param>
+        /// <param name="Rf">Resource type [created by Client side application](/docs/v1.2/collecting/resource-setup-in-mbed-cloud-client.html). For example \&quot;speed_sensor\&quot;.</param>
         /// <param name="Ct">Content type..</param>
         /// <param name="Obs">Whether the resource is observable or not (true/false)..</param>
         /// <param name="_If">Interface description..</param>
@@ -54,9 +54,9 @@ namespace mds.Model
         [DataMember(Name="path", EmitDefaultValue=false)]
         public string Path { get; set; }
         /// <summary>
-        /// Resource type [created by Client side application](/docs/v1.2/device-dev/connecting-devices-to-the-cloud-with-mbed-cloud-client.html#the-create-operation). For example \&quot;speed_sensor\&quot;
+        /// Resource type [created by Client side application](/docs/v1.2/collecting/resource-setup-in-mbed-cloud-client.html). For example \&quot;speed_sensor\&quot;
         /// </summary>
-        /// <value>Resource type [created by Client side application](/docs/v1.2/device-dev/connecting-devices-to-the-cloud-with-mbed-cloud-client.html#the-create-operation). For example \&quot;speed_sensor\&quot;</value>
+        /// <value>Resource type [created by Client side application](/docs/v1.2/collecting/resource-setup-in-mbed-cloud-client.html). For example \&quot;speed_sensor\&quot;</value>
         [DataMember(Name="rf", EmitDefaultValue=false)]
         public string Rf { get; set; }
         /// <summary>
