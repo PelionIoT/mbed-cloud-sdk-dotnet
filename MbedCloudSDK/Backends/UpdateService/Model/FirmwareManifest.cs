@@ -377,6 +377,18 @@ namespace update_service.Model
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         { 
+            // Description (string) maxLength
+            if(this.Description != null && this.Description.Length > 2000)
+            {
+                yield return new ValidationResult("Invalid value for Description, length must be less than 2000.", new [] { "Description" });
+            }
+
+            // Name (string) maxLength
+            if(this.Name != null && this.Name.Length > 128)
+            {
+                yield return new ValidationResult("Invalid value for Name, length must be less than 128.", new [] { "Name" });
+            }
+
             yield break;
         }
     }
