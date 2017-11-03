@@ -68,7 +68,7 @@ test:
     - cat ${UNITTEST_REPORT} | grep 'Test Count' >> ${RAW_REPORT}
     - echo "<h1>${SDK_NAME} Integration Tests (build ${CIRCLE_BUILD_NUM})</h2>" >> ${INTTEST_REPORT}
     - set -o pipefail && bash scripts/test.sh 2>&1 | tee /dev/tty | ansi-html >> ${INTTEST_REPORT}
-    - mprof-report --out=int-coverage-report --coverage-out=int-coverage-report.xml output.mlpd | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+    - mprof-report --out=int-coverage-report --coverage-out=int-coverage-report.xml int-output.mlpd | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - mv int-coverage-report ${SDK_REPORTS}
     - mono packages/ReportGenerator.3.0.2/tools/ReportGenerator.exe -reports:*-report.xml -targetdir:${SDK_COVERAGE_REPORTS} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - cat ${INTTEST_REPORT} | grep 'Number of tests run' >> ${RAW_REPORT}
