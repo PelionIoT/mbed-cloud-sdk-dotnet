@@ -61,7 +61,6 @@ test:
     - mono --debug --profile=log:coverage,covfilter=+[MbedCloudSDK] packages/NUnit.ConsoleRunner.3.7.0/tools/nunit3-console.exe --noh --inprocess MbedCloudSDK.Test/MbedCloudSDK.Test.csproj --config=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - mprof-report --out=coverage-report --coverage-out=coverage-report.xml output.mlpd | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - mv coverage-report ${SDK_REPORTS}
-    - rm output.mlpd
     - xsltproc scripts/nunit3-junit.xslt TestResult.xml >> junit.xml
     - mkdir -p ${CIRCLE_TEST_REPORTS}/junit
     - cp junit.xml $CIRCLE_TEST_REPORTS/junit/test-results.xml
