@@ -4,6 +4,7 @@ BACKEND_URL="http://localhost:3000";
 export PYTHONPATH="TestServer/testrunner";
 
 cleanup() {
+  curl -X POST http://localhost:3000/_exit
   echo "Test run finished. Cleaning up. Deleting tmp directory: $TMPDIR";
   if is_running $BACKEND_PID; then
     echo "Killing backend SDK server: $BACKEND_PID";
