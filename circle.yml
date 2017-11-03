@@ -59,7 +59,8 @@ test:
   override:
     - echo "<h1>${SDK_NAME} Unit Tests (build ${CIRCLE_BUILD_NUM})</h1>" >> ${UNITTEST_REPORT}
     - mono --debug --profile=log:coverage,covfilter=+[MbedCloudSDK] packages/NUnit.ConsoleRunner.3.7.0/tools/nunit3-console.exe --noh --inprocess MbedCloudSDK.Test/MbedCloudSDK.Test.csproj --config=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
-    - mprof-report --coverage-out=coverage-report.xml output.mlpd | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+    - mprof-report --out=coverage-report --coverage-out=coverage-report.xml output.mlpd | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+    - mv coverage-report ${SDK_REPORTS}
     - rm output.mlpd
     - xsltproc scripts/nunit3-junit.xslt TestResult.xml >> junit.xml
     - mkdir -p ${CIRCLE_TEST_REPORTS}/junit
@@ -68,7 +69,8 @@ test:
     - cat ${UNITTEST_REPORT} | grep 'Test Count' >> ${RAW_REPORT}
     - echo "<h1>${SDK_NAME} Integration Tests (build ${CIRCLE_BUILD_NUM})</h2>" >> ${INTTEST_REPORT}
     - set -o pipefail && bash scripts/test.sh 2>&1 | tee /dev/tty | ansi-html >> ${INTTEST_REPORT}
-    - mprof-report --coverage-out=int-coverage-report.xml output.mlpd | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+    - mprof-report --out=int-coverage-report --coverage-out=int-coverage-report.xml output.mlpd | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+    - mv int-coverage-report ${SDK_REPORTS}
     - mono packages/ReportGenerator.3.0.2/tools/ReportGenerator.exe -reports:*-report.xml -targetdir:${SDK_COVERAGE_REPORTS} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - cat ${INTTEST_REPORT} | grep 'Number of tests run' >> ${RAW_REPORT}
     - mv MbedCloudSDK/tpip.csv ${SDK_REPORTS}
