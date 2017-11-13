@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MbedCloudSDK.Update.Model.FirmwareManifest;
+using MbedCloudSDK.Common.Query;
 
 namespace ConsoleExamples.Examples.Update
 {
@@ -18,15 +20,19 @@ namespace ConsoleExamples.Examples.Update
             this.config = config;
         }
 
-        public void ListManifests()
+        public List<FirmwareManifest> ListManifests()
         {
             UpdateApi api = new UpdateApi(config);
-            var manifests = api.ListFirmwareManifests();
-            var enumerator = manifests.GetEnumerator();
-            while (enumerator.MoveNext())
+            var options = new QueryOptions()
             {
-                Console.WriteLine(enumerator.Current);
+                Limit = 5
+            };
+            var manifests = api.ListFirmwareManifests(options).Data;
+            foreach (var item in manifests)
+            {
+                //Console.WriteLine(item);
             }
+            return manifests;
         }
     }
 }

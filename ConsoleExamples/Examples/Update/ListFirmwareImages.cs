@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MbedCloudSDK.Common.Query;
+using MbedCloudSDK.Update.Model.FirmwareImage;
 
 namespace ConsoleExamples.Examples.Update
 {
@@ -18,15 +20,19 @@ namespace ConsoleExamples.Examples.Update
             this.config = config;
         }
 
-        public void ListImages()
+        public List<FirmwareImage> ListImages()
         {
             UpdateApi api = new UpdateApi(config);
-            var manifests = api.ListFirmwareManifests();
-            var enumerator = manifests.GetEnumerator();
-            while (enumerator.MoveNext())
+            var options = new QueryOptions()
             {
-                Console.WriteLine(enumerator.Current);
+                Limit = 2
+            };
+            var images = api.ListFirmwareImages(options).Data;
+            foreach (var item in images)
+            {
+                //Console.WriteLine(item);
             }
+            return images;
         }
     }
 }

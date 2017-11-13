@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MbedCloudSDK.Connect.Model.ConnectedDevice;
+using MbedCloudSDK.DeviceDirectory.Model.Device;
 
 namespace ConsoleExamples.Examples.Connect
 {
@@ -23,7 +25,7 @@ namespace ConsoleExamples.Examples.Connect
         /// <summary>
         /// List Connected devices.
         /// </summary>
-        public void ListConnectedDevices()
+        public List<ConnectedDevice> ListConnectedDevices()
         {
             ConnectApi devices = new ConnectApi(config);
             var options = new QueryOptions
@@ -35,25 +37,25 @@ namespace ConsoleExamples.Examples.Connect
             {
                 Console.WriteLine(endpoint);
             }
-            Console.WriteLine(deviceList.Count());
+            return deviceList;
         }
 
         /// <summary>
         /// List DeviceDirectory.
         /// </summary>
-        public void ListAllDevices()
+        public List<Device> ListAllDevices()
         {
             DeviceDirectoryApi devices = new DeviceDirectoryApi(config);
             QueryOptions options = new QueryOptions()
             {
-                Limit = 10
+                Limit = 5
             };
             var deviceList = devices.ListDevices(options).Data;
             foreach (var device in deviceList)
             {
                 Console.WriteLine(device.ToString());
             }
-            Console.WriteLine(deviceList.Count());
+            return deviceList;
         }
     }
 }

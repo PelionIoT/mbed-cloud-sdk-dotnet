@@ -17,13 +17,12 @@ namespace ConsoleExamples.Examples.Connect
         public Resource(Config config)
         {
             this.config = config;
-            GetResourceValue();
         }
 
         /// <summary>
         /// Get the value of the resource.
         /// </summary>
-        public void GetResourceValue()
+        public string GetResourceValue()
         {
             //Resource path
             var buttonResource = "/5002/0/1";
@@ -44,14 +43,16 @@ namespace ConsoleExamples.Examples.Connect
                 {
                     var resp = api.GetResourceValue(endpoints[0].Id, resource.Path);
                     Console.WriteLine(resp);
+                    return resp;
                 }
             }
+            return "no resource found";
         }
 
         /// <summary>
         /// Set the value on the resource.
         /// </summary>
-        public void SetResourceValue()
+        public string SetResourceValue()
         {
             //Resource path
             var buttonResource = "/5002/0/1";
@@ -67,8 +68,9 @@ namespace ConsoleExamples.Examples.Connect
             api.StartNotifications();
             var resources = endpoints[0].ListResources();
             var resp = api.SetResourceValue(endpoints[0].Id, buttonResource, "100");
-            Console.WriteLine(resp.GetValue().Result);
+            var value = resp.GetValue().Result;
+            Console.WriteLine(value);
+            return value;
         }
-
     }
 }

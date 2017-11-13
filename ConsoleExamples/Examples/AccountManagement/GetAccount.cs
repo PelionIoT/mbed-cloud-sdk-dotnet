@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MbedCloudSDK.AccountManagement.Model.Account;
 
 namespace ConsoleExamples.Examples.AccountManagement
 {
@@ -22,10 +23,20 @@ namespace ConsoleExamples.Examples.AccountManagement
             this.config = config;
         }
 
-        public void GetAccountDetails()
+        public Account GetAccountDetails()
         {
             AccountManagementApi access = new AccountManagementApi(config);
-            Console.WriteLine(access.GetAccount());
+            var account = access.GetAccount();
+            //Console.WriteLine(account);
+            return account;
+        }
+
+        public async Task<Account> GetAccountDetailsAsync()
+        {
+            AccountManagementApi access = new AccountManagementApi(config);
+            var account = await access.GetAccountAsync();
+            //Console.WriteLine(account);
+            return account;
         }
     }
 }

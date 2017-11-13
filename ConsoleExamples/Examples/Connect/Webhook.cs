@@ -23,7 +23,7 @@ namespace ConsoleExamples.Examples.Connect
         /// <summary>
         /// Create a webhook for the resouce.
         /// </summary>
-        public void RegisterWebhook()
+        public MbedCloudSDK.Connect.Model.Webhook.Webhook RegisterWebhook()
         {
             //Resource path
             var buttonResource = "/5002/0/1";
@@ -49,11 +49,12 @@ namespace ConsoleExamples.Examples.Connect
                     api.AddResourceSubscription(endpoints[0].Id, resource.Path);
                     Console.WriteLine(string.Format("Webhook registered, see output on {0}", webhook));
                     //Deregister webhook after 1 minute
-                    Thread.Sleep(60000);
+                    Thread.Sleep(10000);
                     api.DeleteWebhook();
                     break;
                 }
             }
+            return webhook;
         }
     }
 }

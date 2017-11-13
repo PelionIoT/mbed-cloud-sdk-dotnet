@@ -31,7 +31,7 @@ namespace ConsoleExamples
                 example = ShowMenu();
                 int exampleNumber = 0;
                 if (Int32.TryParse(example, out exampleNumber) && exampleNumber >=1 && exampleNumber<=15)
-                    RunExample(config, Convert.ToInt32(exampleNumber));
+                    RunExampleAsync(config, Convert.ToInt32(exampleNumber));
                 else
                     break;
             }
@@ -61,7 +61,7 @@ namespace ConsoleExamples
             return Console.ReadLine();
         }
         
-        private static void RunExample(Config config, int example)
+        private static async void RunExampleAsync(Config config, int example)
         {
             switch (example)
             {
@@ -91,7 +91,7 @@ namespace ConsoleExamples
                     break;
                 case 7:
                     ListApiKeys lAsyncApiKeys = new ListApiKeys(config);
-                    lAsyncApiKeys.ListApiKeysAsync();
+                    await lAsyncApiKeys.ListApiKeysAsync();
                     break;
                 case 8:
                     ListLogs lLogs = new ListLogs(config);
@@ -111,7 +111,7 @@ namespace ConsoleExamples
                     break;
                 case 12:
                     CreateUpdateCampaign cCampaign = new CreateUpdateCampaign(config);
-                    cCampaign.CreateCampaign();
+                    cCampaign.CreateCampaign(true);
                     break;
                 case 13:
                     Resource getRes = new Resource(config);

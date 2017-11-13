@@ -22,7 +22,7 @@ namespace ConsoleExamples.Examples.Connect
         /// <summary>
         /// Subscribe Resources.
         /// </summary>
-        public void Subscribe()
+        public AsyncConsumer<String> Subscribe()
         {
             //Resource path
             var buttonResource = "/5002/0/1";
@@ -55,8 +55,11 @@ namespace ConsoleExamples.Examples.Connect
                             break;
                         }
                     }
+                    return consumer;
                 }
+                return null;
             }
+            return null;
         }
     }
 }

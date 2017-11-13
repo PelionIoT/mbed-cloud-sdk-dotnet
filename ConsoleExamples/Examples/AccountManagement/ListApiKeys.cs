@@ -23,7 +23,7 @@ namespace ConsoleExamples.Examples.AccountManagement
             this.config = config;
         }
 
-        public void GetApiKeys()
+        public List<ApiKey> GetApiKeys()
         {
             AccountManagementApi access = new AccountManagementApi(config);
             var options = new QueryOptions()
@@ -33,25 +33,24 @@ namespace ConsoleExamples.Examples.AccountManagement
             var keys = access.ListApiKeys(options).Data;
             foreach (var key in keys)
             {
-                Console.WriteLine(key);
+                //Console.WriteLine(key);
             }
-            Console.WriteLine(keys.Count());
+            return keys;
         }
 
-        public async void ListApiKeysAsync()
+        public async Task<List<ApiKey>> ListApiKeysAsync()
         {
             AccountManagementApi access = new AccountManagementApi(config);
-            //List Api Keys asynchronously
-            var options = new QueryOptions()
+            var options = new QueryOptions
             {
                 Limit = 5
             };
-            var keys = await access.ListApiKeysAsync(options);;
+            var keys = await access.ListApiKeysAsync(options);
             foreach (var key in keys)
             {
-                Console.WriteLine(key);
+                //Console.WriteLine(key);
             }
-            Console.WriteLine(keys.Count());
+            return keys;
         }
     }
 }

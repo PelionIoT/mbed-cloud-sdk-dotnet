@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MbedCloudSDK.Common.Filter;
 
 namespace ConsoleExamples.Examples.DeviceDirectory
 {
@@ -21,13 +22,23 @@ namespace ConsoleExamples.Examples.DeviceDirectory
         /// <summary>
         /// Create new Query.
         /// </summary>
-        public void AddQuery()
+        public Query AddQuery()
         {
             DeviceDirectoryApi devices = new DeviceDirectoryApi(config);
-            Query query = new Query();
+            Query query = new Query()
+            {
+                Filter = new Filter(),
+                Name = $"test-{this.GetHashCode()}"
+            };
             query.Filter.Add("auto_update", "true");
-            query.Name = "test";
-            devices.AddQuery(query);
+            var addedQuery = devices.AddQuery(query);
+            //Console.WriteLine($"Adding query: {addedQuery}");
+            var tQuery = devices.GetQuery(addedQuery.Id);
+            if (tQuery.Id == addedQuery.Id)
+            {
+                //Console.WriteLine($"Query found with id {addedQuery.Id}");
+            }
+            return tQuery;
         }
     }
 }

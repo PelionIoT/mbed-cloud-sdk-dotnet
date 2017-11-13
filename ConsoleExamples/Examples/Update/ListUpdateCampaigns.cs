@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MbedCloudSDK.Common.Query;
+using MbedCloudSDK.Update.Model.Campaign;
 
 namespace ConsoleExamples.Examples.Update
 {
@@ -18,15 +20,19 @@ namespace ConsoleExamples.Examples.Update
             this.config = config;
         }
 
-        public void listCampaigns()
+        public List<Campaign> listCampaigns()
         {
             UpdateApi api = new UpdateApi(config);
-            var updateCampaigns = api.ListCampaigns();
-            var enumerator = updateCampaigns.GetEnumerator();
-            while (enumerator.MoveNext())
+            var options = new QueryOptions()
             {
-                Console.WriteLine(enumerator.Current);
+                Limit = 3
+            };
+            var updateCampaigns = api.ListCampaigns(options).Data;
+            foreach (var item in updateCampaigns)
+            {
+                //Console.WriteLine(item);
             }
+            return updateCampaigns;
         }
     }
 }

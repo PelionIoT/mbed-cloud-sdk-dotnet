@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MbedCloudSDK.DeviceDirectory.Model.Logging;
 
 namespace ConsoleExamples.Examples.DeviceDirectory
 {
@@ -22,15 +23,19 @@ namespace ConsoleExamples.Examples.DeviceDirectory
         /// <summary>
         /// List all devicse logs.
         /// </summary>
-        public void ListDevicesLogs()
+        public List<DeviceEvent> ListDevicesLogs()
         {
             DeviceDirectoryApi api = new DeviceDirectoryApi(config);
-            QueryOptions listParam = new QueryOptions();
-            listParam.Limit = 10;
-            foreach (var log in api.ListDeviceEvents(listParam))
+            QueryOptions options = new QueryOptions()
             {
-                Console.WriteLine(log.ToString());
+                Limit = 5
+            };
+            var logs = api.ListDeviceEvents(options).Data;
+            foreach (var log in logs)
+            {
+                //Console.WriteLine(log.ToString());
             }
+            return logs;
         }
     }
 }
