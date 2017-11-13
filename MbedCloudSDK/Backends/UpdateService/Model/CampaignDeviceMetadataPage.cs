@@ -63,7 +63,7 @@ namespace update_service.Model
         /// <param name="After">The entity ID to fetch after the given one.</param>
         /// <param name="HasMore">Flag indicating whether there are more results.</param>
         /// <param name="TotalCount">The total number or records, if requested. It might be returned also for small lists..</param>
-        /// <param name="_Object">Entity name: always ‘list’.</param>
+        /// <param name="_Object">Entity name: always &#39;list&#39;.</param>
         /// <param name="Limit">The number of results to return, (range: 2-1000), or equals to total_count.</param>
         /// <param name="Data">A list of entities.</param>
         /// <param name="Order">The order of the records to return. Acceptable values: ASC, DESC. Default: ASC.</param>
@@ -97,9 +97,9 @@ namespace update_service.Model
         [DataMember(Name="total_count", EmitDefaultValue=false)]
         public int? TotalCount { get; set; }
         /// <summary>
-        /// Entity name: always ‘list’
+        /// Entity name: always &#39;list&#39;
         /// </summary>
-        /// <value>Entity name: always ‘list’</value>
+        /// <value>Entity name: always &#39;list&#39;</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
         /// <summary>
