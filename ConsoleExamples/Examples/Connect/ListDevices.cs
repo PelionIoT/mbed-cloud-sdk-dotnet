@@ -26,10 +26,16 @@ namespace ConsoleExamples.Examples.Connect
         public void ListConnectedDevices()
         {
             ConnectApi devices = new ConnectApi(config);
-            foreach (var endpoint in devices.ListConnectedDevices())
+            var options = new QueryOptions
+            {
+                Limit = 1
+            };
+            var deviceList = devices.ListConnectedDevices(options).Data;
+            foreach (var endpoint in deviceList)
             {
                 Console.WriteLine(endpoint);
             }
+            Console.WriteLine(deviceList.Count());
         }
 
         /// <summary>
@@ -38,12 +44,16 @@ namespace ConsoleExamples.Examples.Connect
         public void ListAllDevices()
         {
             DeviceDirectoryApi devices = new DeviceDirectoryApi(config);
-            QueryOptions options = new QueryOptions();
-            options.Limit = 10;
-            foreach (var device in devices.ListDevices(options))
+            QueryOptions options = new QueryOptions()
+            {
+                Limit = 10
+            };
+            var deviceList = devices.ListDevices(options).Data;
+            foreach (var device in deviceList)
             {
                 Console.WriteLine(device.ToString());
             }
+            Console.WriteLine(deviceList.Count());
         }
     }
 }

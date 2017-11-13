@@ -69,7 +69,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <returns>Task with list of api keys</returns>
         public async Task<List<ApiKey>> ListApiKeysAsync(QueryOptions options = null)
         {
-            if (options != null)
+            if (options == null)
             {
                 options = new QueryOptions();
             }

@@ -1,6 +1,7 @@
 ﻿using MbedCloudSDK.AccountManagement.Api;
 using MbedCloudSDK.AccountManagement.Model.ApiKey;
 using MbedCloudSDK.Common;
+using MbedCloudSDK.Common.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,24 +26,32 @@ namespace ConsoleExamples.Examples.AccountManagement
         public void GetApiKeys()
         {
             AccountManagementApi access = new AccountManagementApi(config);
-            var keys = access.ListApiKeys();
+            var options = new QueryOptions()
+            {
+                Limit = 5
+            };
+            var keys = access.ListApiKeys(options).Data;
             foreach (var key in keys)
             {
                 Console.WriteLine(key);
             }
+            Console.WriteLine(keys.Count());
         }
 
-        public void ListApiKeysAsync()
+        public async void ListApiKeysAsync()
         {
             AccountManagementApi access = new AccountManagementApi(config);
             //List Api Keys asynchronously
-            var keysTask = access.ListApiKeysAsync();
-            Console.WriteLine("Print without waiting for response");
-            List<ApiKey> keys = keysTask.Result;
+            var options = new QueryOptions()
+            {
+                Limit = 5
+            };
+            var keys = await access.ListApiKeysAsync(options);;
             foreach (var key in keys)
             {
                 Console.WriteLine(key);
             }
+            Console.WriteLine(keys.Count());
         }
     }
 }
