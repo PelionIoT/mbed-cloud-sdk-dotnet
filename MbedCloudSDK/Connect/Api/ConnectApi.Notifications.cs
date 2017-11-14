@@ -15,6 +15,7 @@ namespace MbedCloudSDK.Connect.Api
     public partial class ConnectApi
     {
         private TlvDecoder tlvDecoder = new TlvDecoder();
+        private bool handleNotifications = false;
 
         private void Notifications()
         {
@@ -62,7 +63,18 @@ namespace MbedCloudSDK.Connect.Api
         /// </summary>
         public void StartNotifications()
         {
-            notificationTask.Start();
+            try
+            {
+                if (!handleNotifications)
+                {
+                    notificationTask.Start();
+                    handleNotifications = true;
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Notifications already started.");
+            }
         }
 
         /// <summary>
@@ -70,7 +82,18 @@ namespace MbedCloudSDK.Connect.Api
         /// </summary>
         public void StopNotifications()
         {
-            cancellationToken.Cancel();
+            try
+            {
+                if (handleNotifications)
+                {
+                    cancellationToken.Cancel();
+                    handleNotifications = false;
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Notifications not started yet.");
+            }
         }
     }
 }
