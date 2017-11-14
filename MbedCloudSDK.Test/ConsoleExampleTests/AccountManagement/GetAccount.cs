@@ -11,6 +11,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         public void GetAccountShouldNotBeNull()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
+            Console.WriteLine(key);
             var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
             var accountApi = new ConsoleExamples.Examples.AccountManagement.GetAccount(config);
             var account = accountApi.GetAccountDetails();
