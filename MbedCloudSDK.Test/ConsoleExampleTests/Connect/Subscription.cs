@@ -13,6 +13,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Connect
             var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
             var subscription = new ConsoleExamples.Examples.Connect.Subscription(config);
             var res = subscription.Subscribe();
+            Assert.IsNotNull(res);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Connect
             var setResourceValue = resource.SetResourceValue();
             Console.WriteLine(setResourceValue);
             Assert.IsNotNull(setResourceValue);
-            Assert.AreNotEqual(string.Empty, setResourceValue);
+            Assert.AreEqual("test-value", setResourceValue);
         }
     }
 }

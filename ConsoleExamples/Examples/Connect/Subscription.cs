@@ -43,15 +43,15 @@ namespace ConsoleExamples.Examples.Connect
                 if (resource.Path == buttonResource)
                 {
                     //Subscribe to the resource
-                    AsyncConsumer<String> consumer = api.AddResourceSubscription(endpoints[0].Id, resource.Path);
+                    var consumer = api.AddResourceSubscription(endpoints[0].Id, resource.Path);
                     int counter = 0;
                     while (true)
                     {
                         //Get the value of the resource and print it
-                        Task<string> t = consumer.GetValue();
+                        var t = consumer.GetValue();
                         Console.WriteLine(t.Result);
                         counter++;
-                        if (counter >= 5)
+                        if (counter >= 2)
                         {
                             break;
                         }
