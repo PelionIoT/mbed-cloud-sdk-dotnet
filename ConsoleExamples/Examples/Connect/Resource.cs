@@ -69,7 +69,7 @@ namespace ConsoleExamples.Examples.Connect
             var resources = endpoints[0].ListResources();
             var resp = api.SetResourceValue(endpoints[0].Id, resourcePath, "test-value");
 
-            var newValue = api.GetResourceValue(endpoints[0].Id, resourcePath);
+            var newValue = api.GetResourceValue(endpoints[0].Id, resourcePath).Replace("\"", "");
             if (newValue == "test-value")
             {
                 Console.WriteLine($"Value of resource set to {newValue}");

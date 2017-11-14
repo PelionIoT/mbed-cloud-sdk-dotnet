@@ -36,7 +36,8 @@ namespace ConsoleExamples.Examples.Connect
             var endpoints = endpointsResp.ToList();
             //Start pull notifications
             api.StartNotifications();
-            var resources = endpoints[0].ListResources();
+            var device = endpoints[0];
+            var resources = device.ListResources();
             foreach (var resource in resources)
             {
                 if (resource.Path == buttonResource)
@@ -57,7 +58,6 @@ namespace ConsoleExamples.Examples.Connect
                     }
                     return consumer;
                 }
-                return null;
             }
             return null;
         }
