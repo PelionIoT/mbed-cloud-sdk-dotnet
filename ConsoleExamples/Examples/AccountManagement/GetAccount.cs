@@ -27,7 +27,7 @@ namespace ConsoleExamples.Examples.AccountManagement
         {
             AccountManagementApi access = new AccountManagementApi(config);
             var account = access.GetAccount();
-            //Console.WriteLine(account);
+            Console.WriteLine(account);
             return account;
         }
 
@@ -35,7 +35,7 @@ namespace ConsoleExamples.Examples.AccountManagement
         {
             AccountManagementApi access = new AccountManagementApi(config);
             var account = await access.GetAccountAsync();
-            //Console.WriteLine(account);
+            Console.WriteLine(account);
             return account;
         }
     }

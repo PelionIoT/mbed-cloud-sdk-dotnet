@@ -48,7 +48,7 @@ namespace ConsoleExamples.Examples.Update
             var manifests = api.ListFirmwareManifests(listParamas).Data;
             foreach (var item in manifests)
             {
-                //Console.WriteLine(item);
+                Console.WriteLine(item);
             }
 
             if(!selectFile)
@@ -60,11 +60,6 @@ namespace ConsoleExamples.Examples.Update
 
             var devicesApi = new DeviceDirectoryApi(config);
             var queries = devicesApi.ListQueries().ToList();
-
-            foreach (var item in queries)
-            {
-                //Console.WriteLine(item);
-            }
             var query = queries.LastOrDefault();
 
             // Create Campaign
@@ -75,7 +70,7 @@ namespace ConsoleExamples.Examples.Update
             campaign.DeviceFilter = query.Filter;
             campaign = api.AddCampaign(campaign);
 
-            //Console.WriteLine("Created campaign : " + campaign);
+            Console.WriteLine("Created campaign : " + campaign);
 
             // Start update campaign
             campaign = api.StartCampaign(campaign);
@@ -91,7 +86,7 @@ namespace ConsoleExamples.Examples.Update
                 var states = api.ListCampaignDeviceStates(options).Data;
                 foreach (var item in states)
                 {
-                    //Console.WriteLine($"{item.Id} - {Convert.ToString(item.State)}");
+                    Console.WriteLine($"{item.Id} - {Convert.ToString(item.State)}");
                 }
                 countdown--;
             }
@@ -104,7 +99,7 @@ namespace ConsoleExamples.Examples.Update
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.RestoreDirectory = true;
             string dataFile = null;
-            //Console.WriteLine("Choose manifest file to upload: ");
+            Console.WriteLine("Choose manifest file to upload: ");
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try

@@ -30,7 +30,7 @@ namespace ConsoleExamples.Examples.Update
             var images = api.ListFirmwareImages(options).Data;
             foreach (var item in images)
             {
-                //Console.WriteLine(item);
+                Console.WriteLine(item);
             }
             return images;
         }

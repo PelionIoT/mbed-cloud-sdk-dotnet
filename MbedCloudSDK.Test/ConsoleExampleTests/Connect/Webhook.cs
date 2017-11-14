@@ -6,7 +6,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Connect
     [TestFixture]
     public class Webhook
     {
-        [Test]
+        [Test, Timeout(10000)]
         public void WebhookReturnsValue()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];

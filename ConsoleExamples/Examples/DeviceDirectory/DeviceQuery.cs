@@ -32,11 +32,11 @@ namespace ConsoleExamples.Examples.DeviceDirectory
             };
             query.Filter.Add("auto_update", "true");
             var addedQuery = devices.AddQuery(query);
-            //Console.WriteLine($"Adding query: {addedQuery}");
+            Console.WriteLine($"Adding query: {addedQuery}");
             var tQuery = devices.GetQuery(addedQuery.Id);
             if (tQuery.Id == addedQuery.Id)
             {
-                //Console.WriteLine($"Query found with id {addedQuery.Id}");
+                Console.WriteLine($"Query found with id {addedQuery.Id}");
             }
             return tQuery;
         }

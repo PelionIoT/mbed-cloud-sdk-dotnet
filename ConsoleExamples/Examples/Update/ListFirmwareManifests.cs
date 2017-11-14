@@ -30,7 +30,7 @@ namespace ConsoleExamples.Examples.Update
             var manifests = api.ListFirmwareManifests(options).Data;
             foreach (var item in manifests)
             {
-                //Console.WriteLine(item);
+                Console.WriteLine(item);
             }
             return manifests;
         }

@@ -33,7 +33,7 @@ namespace ConsoleExamples.Examples.DeviceDirectory
             var logs = api.ListDeviceEvents(options).Data;
             foreach (var log in logs)
             {
-                //Console.WriteLine(log.ToString());
+                Console.WriteLine(log.ToString());
             }
             return logs;
         }

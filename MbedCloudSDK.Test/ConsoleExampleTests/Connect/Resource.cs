@@ -7,7 +7,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Connect
     [TestFixture]
     public class Resource
     {
-        [Test]
+        [Test, Timeout(10000)]
         public void GetResourceValueGetsAValue()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
@@ -17,7 +17,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Connect
             Assert.AreNotEqual("no resource found", resourceValue);
         }
 
-        [Test]
+        [Test, Timeout(10000)]
         public void SetResourceValueSetsTheValue()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];

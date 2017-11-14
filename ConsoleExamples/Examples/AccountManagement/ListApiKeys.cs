@@ -33,7 +33,7 @@ namespace ConsoleExamples.Examples.AccountManagement
             var keys = access.ListApiKeys(options).Data;
             foreach (var key in keys)
             {
-                //Console.WriteLine(key);
+                Console.WriteLine(key);
             }
             return keys;
         }
@@ -48,7 +48,7 @@ namespace ConsoleExamples.Examples.AccountManagement
             var keys = await access.ListApiKeysAsync(options);
             foreach (var key in keys)
             {
-                //Console.WriteLine(key);
+                Console.WriteLine(key);
             }
             return keys;
         }

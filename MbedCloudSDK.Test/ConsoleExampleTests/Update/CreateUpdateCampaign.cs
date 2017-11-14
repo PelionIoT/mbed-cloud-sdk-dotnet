@@ -6,7 +6,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Update
     [TestFixture]
     public class CreateUpdateCampaign
     {
-        [Test]
+        [Test, Timeout(10000)]
         public void CreateUpdateCampaignShouldReturnCampaign()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];

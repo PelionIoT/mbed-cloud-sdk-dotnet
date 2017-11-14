@@ -6,7 +6,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Connect
     [TestFixture]
     public class Subscription
     {
-        [Test]
+        [Test, Timeout(20000)]
         public void SubscribeToResource()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];

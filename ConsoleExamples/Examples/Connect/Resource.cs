@@ -65,10 +65,12 @@ namespace ConsoleExamples.Examples.Connect
             }
             //Start long polling thread
             var endpoints = endpointsResp.ToList();
+            Console.WriteLine("Hi");  
             api.StartNotifications();
             var resources = endpoints[0].ListResources();
+            Console.WriteLine("found resources");
             var resp = api.SetResourceValue(endpoints[0].Id, resourcePath, "test-value");
-
+            Console.WriteLine(resp);
             var newValue = api.GetResourceValue(endpoints[0].Id, resourcePath).Replace("\"", "");
             if (newValue == "test-value")
             {

@@ -30,7 +30,7 @@ namespace ConsoleExamples.Examples.Update
             var updateCampaigns = api.ListCampaigns(options).Data;
             foreach (var item in updateCampaigns)
             {
-                //Console.WriteLine(item);
+                Console.WriteLine(item);
             }
             return updateCampaigns;
         }
