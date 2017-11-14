@@ -25,7 +25,7 @@ namespace ConsoleExamples.Examples.Connect
         public string GetResourceValue()
         {
             //Resource path
-            var buttonResource = "/5002/0/1";
+            var resourcePath = "/5001/0/1";
             ConnectApi api = new ConnectApi(config);
             //List all connected endpoints
             var endpointsResp = api.ListConnectedDevices();
@@ -39,7 +39,7 @@ namespace ConsoleExamples.Examples.Connect
             var resources = endpoints[0].ListResources();
             foreach (var resource in resources)
             {
-                if (resource.Path == buttonResource)
+                if (resource.Path == resourcePath)
                 {
                     var resp = api.GetResourceValue(endpoints[0].Id, resource.Path);
                     Console.WriteLine(resp);
@@ -55,7 +55,7 @@ namespace ConsoleExamples.Examples.Connect
         public string SetResourceValue()
         {
             //Resource path
-            var buttonResource = "/5002/0/1";
+            var resourcePath = "/5001/0/1";
             ConnectApi api = new ConnectApi(config);
             //List all connected endpoints
             var endpointsResp = api.ListConnectedDevices();
@@ -67,10 +67,15 @@ namespace ConsoleExamples.Examples.Connect
             var endpoints = endpointsResp.ToList();
             api.StartNotifications();
             var resources = endpoints[0].ListResources();
-            var resp = api.SetResourceValue(endpoints[0].Id, buttonResource, "100");
-            var value = resp.GetValue().Result;
-            Console.WriteLine(value);
-            return value;
+            var resp = api.SetResourceValue(endpoints[0].Id, resourcePath, "test-value");
+
+            var newValue = api.GetResourceValue(endpoints[0].Id, resourcePath);
+            if (newValue == "test-value")
+            {
+                Console.WriteLine($"Value of resource set to {newValue}");
+            }
+
+            return newValue;
         }
     }
 }
