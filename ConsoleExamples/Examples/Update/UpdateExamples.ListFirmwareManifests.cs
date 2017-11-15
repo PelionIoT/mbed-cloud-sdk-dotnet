@@ -11,18 +11,10 @@ using MbedCloudSDK.Common.Query;
 namespace ConsoleExamples.Examples.Update
 {
     /// @example
-    public class ListFirmwareManifests
+    public partial class UpdateExamples
     {
-        private Config config;
-
-        public ListFirmwareManifests(Config config)
-        {
-            this.config = config;
-        }
-
         public List<FirmwareManifest> ListManifests()
         {
-            UpdateApi api = new UpdateApi(config);
             var options = new QueryOptions()
             {
                 Limit = 5

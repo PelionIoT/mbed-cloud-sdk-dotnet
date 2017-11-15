@@ -16,13 +16,15 @@ using System.Windows.Forms;
 namespace ConsoleExamples.Examples.Update
 {
     /// @example
-    public class CreateUpdateCampaign
+    public partial class UpdateExamples
     {
         private Config config;
+        private UpdateApi api;
 
-        public CreateUpdateCampaign(Config config)
+        public UpdateExamples(Config config)
         {
             this.config = config;
+            api = new UpdateApi(config);
         }
 
         private string CreateRandomName()
@@ -32,7 +34,6 @@ namespace ConsoleExamples.Examples.Update
 
         public Campaign CreateCampaign(bool selectFile)
         {
-            UpdateApi api = new UpdateApi(config);
             string manifestId = string.Empty;
 
             if (selectFile)

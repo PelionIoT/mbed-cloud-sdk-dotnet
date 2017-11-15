@@ -11,18 +11,10 @@ using MbedCloudSDK.Update.Model.Campaign;
 namespace ConsoleExamples.Examples.Update
 {
     /// @example
-    public class ListUpdateCampaigns
+    public partial class UpdateExamples
     {
-        private Config config;
-
-        public ListUpdateCampaigns(Config config)
-        {
-            this.config = config;
-        }
-
         public List<Campaign> listCampaigns()
         {
-            UpdateApi api = new UpdateApi(config);
             var options = new QueryOptions()
             {
                 Limit = 3

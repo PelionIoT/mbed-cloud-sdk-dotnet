@@ -13,13 +13,15 @@ using MbedCloudSDK.DeviceDirectory.Model.Device;
 namespace ConsoleExamples.Examples.Connect
 {
     /// @example
-    public class ListDevices
+    public partial class ConnectExamples
     {
         private Config config;
+        private ConnectApi api;
 
-        public ListDevices(Config config)
+        public ConnectExamples(Config config)
         {
             this.config = config;
+            this.api = new ConnectApi(config);
         }
 
         /// <summary>
@@ -27,12 +29,11 @@ namespace ConsoleExamples.Examples.Connect
         /// </summary>
         public List<ConnectedDevice> ListConnectedDevices()
         {
-            ConnectApi devices = new ConnectApi(config);
             var options = new QueryOptions
             {
-                Limit = 1
+                Limit = 2
             };
-            var deviceList = devices.ListConnectedDevices(options).Data;
+            var deviceList = api.ListConnectedDevices(options).Data;
             foreach (var endpoint in deviceList)
             {
                 Console.WriteLine(endpoint);
@@ -40,20 +41,15 @@ namespace ConsoleExamples.Examples.Connect
             return deviceList;
         }
 
-        /// <summary>
-        /// List DeviceDirectory.
-        /// </summary>
-        public List<Device> ListAllDevices()
+        public List<ConnectedDevice> ListConnectedDevicesWithFilter()
         {
-            DeviceDirectoryApi devices = new DeviceDirectoryApi(config);
-            QueryOptions options = new QueryOptions()
+            var options = new QueryOptions();
+            options.Filter.Add("created_at", new DateTime(2017, 10, 1).ToString());
+            options.Filter.Add("created_at", new DateTime(2017, 10, 31).ToString());
+            var deviceList = api.ListConnectedDevices(options).Data;
+            foreach (var endpoint in deviceList)
             {
-                Limit = 5
-            };
-            var deviceList = devices.ListDevices(options).Data;
-            foreach (var device in deviceList)
-            {
-                Console.WriteLine(device.ToString());
+                Console.WriteLine(endpoint);
             }
             return deviceList;
         }

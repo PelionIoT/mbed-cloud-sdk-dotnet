@@ -11,26 +11,15 @@ using System.Threading.Tasks;
 namespace ConsoleExamples.Examples.AccountManagement
 {
     /// @example
-    public class ListApiKeys
+    public partial class AccountManagementExamples
     {
-        private Config config;
-
-        /// <summary>
-        /// List all Api keys.
-        /// </summary>
-        public ListApiKeys(Config config)
+        public List<ApiKey> ListApiKeys()
         {
-            this.config = config;
-        }
-
-        public List<ApiKey> GetApiKeys()
-        {
-            AccountManagementApi access = new AccountManagementApi(config);
             var options = new QueryOptions()
             {
                 Limit = 5
             };
-            var keys = access.ListApiKeys(options).Data;
+            var keys = api.ListApiKeys(options).Data;
             foreach (var key in keys)
             {
                 Console.WriteLine(key);
@@ -40,12 +29,11 @@ namespace ConsoleExamples.Examples.AccountManagement
 
         public async Task<List<ApiKey>> ListApiKeysAsync()
         {
-            AccountManagementApi access = new AccountManagementApi(config);
             var options = new QueryOptions
             {
                 Limit = 5
             };
-            var keys = await access.ListApiKeysAsync(options);
+            var keys = await api.ListApiKeysAsync(options);
             foreach (var key in keys)
             {
                 Console.WriteLine(key);

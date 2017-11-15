@@ -11,22 +11,14 @@ using MbedCloudSDK.DeviceDirectory.Model.Logging;
 namespace ConsoleExamples.Examples.DeviceDirectory
 {
     /// @example
-    public class ListLogs
+    public partial class DeviceDirectoryExamples
     {
-        private Config config;
-        
-        public ListLogs(Config config)
-        {
-            this.config = config;
-        }
-
         /// <summary>
         /// List all devicse logs.
         /// </summary>
         public List<DeviceEvent> ListDevicesLogs()
         {
-            DeviceDirectoryApi api = new DeviceDirectoryApi(config);
-            QueryOptions options = new QueryOptions()
+            var options = new QueryOptions()
             {
                 Limit = 5
             };
@@ -36,6 +28,20 @@ namespace ConsoleExamples.Examples.DeviceDirectory
                 Console.WriteLine(log.ToString());
             }
             return logs;
+        }
+
+        public List<DeviceEvent> ListDeviceEvents()
+        {
+            var options = new QueryOptions()
+            {
+                Limit = 5
+            };
+            var events = api.ListDeviceEvents(options).Data;
+            foreach (var item in events)
+            {
+                Console.WriteLine(item);
+            }
+            return events;
         }
     }
 }

@@ -11,18 +11,10 @@ using MbedCloudSDK.Update.Model.FirmwareImage;
 namespace ConsoleExamples.Examples.Update
 {
     /// @example
-    public class ListFirmwareImages
+    public partial class UpdateExamples
     {
-        private Config config;
-
-        public ListFirmwareImages(Config config)
-        {
-            this.config = config;
-        }
-
         public List<FirmwareImage> ListImages()
         {
-            UpdateApi api = new UpdateApi(config);
             var options = new QueryOptions()
             {
                 Limit = 2

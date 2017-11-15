@@ -23,7 +23,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <returns>Paginated Response of Groups</returns>
         public PaginatedResponse<Group> ListGroups(QueryOptions options = null)
         {
-            if (options != null)
+            if (options == null)
             {
                 options = new QueryOptions();
             }
@@ -88,7 +88,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <returns>Paginated Respoinse with Users</returns>
         public PaginatedResponse<User> ListGroupUsers(string groupId, QueryOptions options = null)
         {
-            if (options != null)
+            if (options == null)
             {
                 options = new QueryOptions();
             }
@@ -131,7 +131,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <returns>Paginated Response of Api Keys</returns>
         public PaginatedResponse<ApiKey> ListGroupApiKeys(string groupId, QueryOptions options = null)
         {
-            if (options != null)
+            if (options == null)
             {
                 options = new QueryOptions();
             }
