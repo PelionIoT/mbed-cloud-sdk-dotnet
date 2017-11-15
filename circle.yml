@@ -51,6 +51,7 @@ dependencies:
     - mono --runtime=v4.0 nuget.exe restore MbedCloudSDK/packages.config -PackagesDirectory packages
     - mono --runtime=v4.0 nuget.exe restore TestServer/packages.config -PackagesDirectory packages
     - mono --runtime=v4.0 nuget.exe restore MbedCloudSDK.Test/packages.config -PackagesDirectory packages
+    - mono --runtime=v4.0 nuget.exe restore ConsoleExamples/packages.config -PackagesDirectory packages
 compile:
   override:
     - msbuild /p:Configuration=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
