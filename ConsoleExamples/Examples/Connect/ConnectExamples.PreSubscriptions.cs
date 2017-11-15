@@ -7,10 +7,15 @@ namespace ConsoleExamples.Examples.Connect
 {
     public partial class ConnectExamples
     {
+        /// <summary>
+        /// Create, update and delete a presubscription
+        /// </summary>
+        /// <returns>A presubscription</returns>
         public Presubscription CreatePreSubscription()
         {
             var devices = api.ListConnectedDevices().Data;
 
+            Console.WriteLine("List presubscriptions for device...");
             foreach (var item in api.ListPresubscriptions())
             {
                 Console.WriteLine(item);
@@ -22,6 +27,7 @@ namespace ConsoleExamples.Examples.Connect
 
             var resourceUri = resources.Where(r => r.Observable == true).FirstOrDefault()?.Path;
 
+            //create the presubscription
             var presubscription = new Presubscription()
             {
                 DeviceId = deviceId,
@@ -29,6 +35,7 @@ namespace ConsoleExamples.Examples.Connect
             };
             api.UpdatePresubscriptions(new Presubscription[] { presubscription });
 
+            Console.WriteLine("List presubscriptions for device after new presubscription added...");
             foreach (var item in api.ListPresubscriptions())
             {
                 Console.WriteLine(item);
@@ -36,6 +43,7 @@ namespace ConsoleExamples.Examples.Connect
 
             api.DeletePresubscriptions();
 
+            Console.WriteLine("List presubscriptions for device after deleting presubscriptions...");
             foreach (var item in api.ListPresubscriptions())
             {
                 Console.WriteLine(item);

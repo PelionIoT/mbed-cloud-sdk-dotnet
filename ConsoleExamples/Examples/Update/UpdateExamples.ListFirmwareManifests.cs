@@ -13,6 +13,10 @@ namespace ConsoleExamples.Examples.Update
     /// @example
     public partial class UpdateExamples
     {
+        /// <summary>
+        /// List the first 5 firmware manifests
+        /// </summary>
+        /// <returns>list of firmware manifests</returns>
         public List<FirmwareManifest> ListManifests()
         {
             var options = new QueryOptions()

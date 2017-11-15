@@ -13,6 +13,10 @@ namespace ConsoleExamples.Examples.Update
     /// @example
     public partial class UpdateExamples
     {
+        /// <summary>
+        /// List the first 3 update campaigns
+        /// </summary>
+        /// <returns>List of campaigns</returns>
         public List<Campaign> listCampaigns()
         {
             var options = new QueryOptions()

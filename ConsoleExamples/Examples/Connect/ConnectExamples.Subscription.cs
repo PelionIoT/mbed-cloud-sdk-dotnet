@@ -49,6 +49,7 @@ namespace ConsoleExamples.Examples.Connect
 
         public void SubscribeToMultipleResources()
         {
+            //Define resources to subscribe to
             var incrementalResource = "/5002/0/1";
             var voltageResource = "/3316/0/5700";
             var currentResource = "/3317/0/5700";
@@ -69,6 +70,7 @@ namespace ConsoleExamples.Examples.Connect
 
             api.StartNotifications();
 
+            // add subscription if resource is subscribed to
             if (resources.Where(r => r.Path == incrementalResource).Any())
                 incrementSubscription = api.AddResourceSubscription(deviceId, incrementalResource);
             if (resources.Where(r => r.Path == voltageResource).Any())
@@ -80,6 +82,7 @@ namespace ConsoleExamples.Examples.Connect
 
             while(true)
             {
+                //print values when resources change
                 var i = incrementSubscription?.GetValue()?.Result;
                 Console.WriteLine($"Current value of increment - {i}");
                 var v = voltageSubscription?.GetValue()?.Result;

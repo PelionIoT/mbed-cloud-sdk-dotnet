@@ -32,10 +32,16 @@ namespace ConsoleExamples.Examples.Update
             return DateTime.Now.ToString();
         }
 
+        /// <summary>
+        /// Create an update campaign
+        /// </summary>
+        /// <param name="selectFile">True to bring up a file dialog</param>
+        /// <returns></returns>
         public Campaign CreateCampaign(bool selectFile)
         {
             string manifestId = string.Empty;
 
+            //select the manifest file
             if (selectFile)
             {
                 manifestId = GetManifestFile(api);
@@ -58,9 +64,8 @@ namespace ConsoleExamples.Examples.Update
             }
 
             // List all queries
-
             var devicesApi = new DeviceDirectoryApi(config);
-            var queries = devicesApi.ListQueries().ToList();
+            var queries = devicesApi.ListQueries();
             var query = queries.LastOrDefault();
 
             // Create Campaign

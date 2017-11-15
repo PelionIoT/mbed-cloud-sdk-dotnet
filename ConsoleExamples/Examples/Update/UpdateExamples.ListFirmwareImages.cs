@@ -13,6 +13,10 @@ namespace ConsoleExamples.Examples.Update
     /// @example
     public partial class UpdateExamples
     {
+        /// <summary>
+        /// List of first 2 firmware images
+        /// </summary>
+        /// <returns>List of firmware images</returns>
         public List<FirmwareImage> ListImages()
         {
             var options = new QueryOptions()

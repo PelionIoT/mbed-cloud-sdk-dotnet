@@ -9,6 +9,10 @@ namespace ConsoleExamples.Examples.Certificates
 {
     public partial class CertificateExamples
     {
+        /// <summary>
+        /// List the first 5 certificates
+        /// </summary>
+        /// <returns>List of certificates</returns>
         public List<Certificate> ListAllCertificates()
         {
             var options = new QueryOptions()

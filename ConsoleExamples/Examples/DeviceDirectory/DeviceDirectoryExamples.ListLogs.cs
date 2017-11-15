@@ -30,6 +30,10 @@ namespace ConsoleExamples.Examples.DeviceDirectory
             return logs;
         }
 
+        /// <summary>
+        /// List the first 5 device events
+        /// </summary>
+        /// <returns>List of device events</returns>
         public List<DeviceEvent> ListDeviceEvents()
         {
             var options = new QueryOptions()

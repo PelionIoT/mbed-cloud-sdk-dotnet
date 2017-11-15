@@ -18,8 +18,8 @@ namespace ConsoleExamples.Examples.Connect
         /// </summary>
         public string GetResourceValue()
         {
+            //resource path to get value from
             var resourcePath = "/5001/0/1";
-            //List all connected endpoints
             var connectedDevices = api.ListConnectedDevices().Data;
             if (connectedDevices == null)
             {
@@ -28,9 +28,8 @@ namespace ConsoleExamples.Examples.Connect
             var device = connectedDevices.FirstOrDefault();
             var resources = device.ListResources();
             api.StartNotifications();
-
             var resp = api.GetResourceValue(device.Id, resourcePath);
-            Console.WriteLine(resp);
+            Console.WriteLine($"The value of the resource is {resp}");
             api.StopNotifications();
             return resp;
         }
@@ -40,15 +39,12 @@ namespace ConsoleExamples.Examples.Connect
         /// </summary>
         public string SetResourceValue()
         {
-            //List all connected endpoints
             var connectedDevices = api.ListConnectedDevices().Data;
 
             if (connectedDevices == null)
             {
                 throw new Exception("No endpoints registered. Aborting.");
             }
-
-            //Start long polling thread
 
             var device = connectedDevices.FirstOrDefault();
 

@@ -16,6 +16,10 @@ namespace ConsoleExamples.Examples.Certificates
             api = new CertificatesApi(config);
         }
 
+        /// <summary>
+        /// Create, update and delete a certificate
+        /// </summary>
+        /// <returns>Certificate</returns>
         public Certificate CreateCertificate()
         {
             var certificate = new Certificate()

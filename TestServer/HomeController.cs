@@ -19,9 +19,9 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
 using MbedCloudSDK.Connect.Model.ConnectedDevice;
-using mds.Model;
 using MbedCloudSDK.Common.Filter;
 using NuGet;
+using MbedCloudSDK.Connect.Model.Subscription;
 
 namespace TestServer
 {
@@ -195,13 +195,13 @@ namespace TestServer
                         foreach (var item in json)
                         {
                             var presub = new Presubscription();
-                            presub.EndpointName = item["device_id"].Value<string>();
+                            presub.DeviceId = item["device_id"].Value<string>();
                             var pathList = new List<string>();
                             foreach (var path in item["resource_paths"])
                             {
                                 pathList.Add(path.Value<string>());
                             }
-                            presub.ResourcePath = pathList;
+                            presub.ResourcePaths = pathList;
                             presubList.Add(presub);
                         }
                         serialisedParams.Add(presubList.ToArray());

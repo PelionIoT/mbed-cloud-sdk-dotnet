@@ -13,6 +13,10 @@ namespace ConsoleExamples.Examples.AccountManagement
     /// @example
     public partial class AccountManagementExamples
     {
+        /// <summary>
+        /// List the first 5 ApiKeys
+        /// </summary>
+        /// <returns>List of Api keys</returns>
         public List<ApiKey> ListApiKeys()
         {
             var options = new QueryOptions()
@@ -27,6 +31,10 @@ namespace ConsoleExamples.Examples.AccountManagement
             return keys;
         }
 
+        /// <summary>
+        /// Returns the first 5 api keys asyncronously
+        /// </summary>
+        /// <returns>Task with list of api keys</returns>
         public async Task<List<ApiKey>> ListApiKeysAsync()
         {
             var options = new QueryOptions

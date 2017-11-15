@@ -25,6 +25,10 @@ namespace ConsoleExamples.Examples.AccountManagement
             api = new AccountManagementApi(config);
         }
 
+        /// <summary>
+        /// Gets details of the account asociated with this api key
+        /// </summary>
+        /// <returns>An Account object</returns>
         public Account GetAccountDetails()
         {
             var account = api.GetAccount();
@@ -32,6 +36,10 @@ namespace ConsoleExamples.Examples.AccountManagement
             return account;
         }
 
+        /// <summary>
+        /// Gets the account details asyncronously
+        /// </summary>
+        /// <returns>A task with the account object</returns>
         public async Task<Account> GetAccountDetailsAsync()
         {
             var account = await api.GetAccountAsync();

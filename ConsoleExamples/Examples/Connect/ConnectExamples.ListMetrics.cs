@@ -6,6 +6,10 @@ namespace ConsoleExamples.Examples.Connect
 {
     public partial class ConnectExamples
     {
+        /// <summary>
+        /// List metrics from last 30 days in i day intervals
+        /// </summary>
+        /// <returns>List of metrics</returns>
         public List<Metric> ListLast30Days()
         {
             var options = new MetricQueryOptions()
@@ -21,6 +25,10 @@ namespace ConsoleExamples.Examples.Connect
             return metrics;
         }
 
+        /// <summary>
+        /// List metrics from last 2 days in interval of 3 hours
+        /// </summary>
+        /// <returns>List of metrics</returns>
         public List<Metric> ListLast2Days()
         {
             var options = new MetricQueryOptions()
@@ -36,6 +44,10 @@ namespace ConsoleExamples.Examples.Connect
             return metrics;
         }
 
+        /// <summary>
+        /// List metrics for month March 2017
+        /// </summary>
+        /// <returns>List of metrics</returns>
         public List<Metric> ListMonth()
         {
             var options = new MetricQueryOptions()

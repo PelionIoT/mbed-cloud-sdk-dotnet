@@ -9,6 +9,10 @@ namespace ConsoleExamples.Examples.AccountManagement
 {
     public partial class AccountManagementExamples
     {
+        /// <summary>
+        /// List the active users
+        /// </summary>
+        /// <returns>List of Users</returns>
         public List<User> ListActiveUsers()
         {
             var options = new QueryOptions()

@@ -27,6 +27,7 @@ namespace ConsoleExamples.Examples.DeviceDirectory
             }
 
             options.Filter.Add("state", "deregistered");
+            //list the registered devices
             var registeredDeviceList = api.ListDevices(options).Data;
             Console.WriteLine("Listing registered devices ...");
             foreach (var device in registeredDeviceList)

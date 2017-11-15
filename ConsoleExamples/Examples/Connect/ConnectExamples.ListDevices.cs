@@ -41,6 +41,10 @@ namespace ConsoleExamples.Examples.Connect
             return deviceList;
         }
 
+        /// <summary>
+        /// List connected devices created in October 2017
+        /// </summary>
+        /// <returns></returns>
         public List<ConnectedDevice> ListConnectedDevicesWithFilter()
         {
             var options = new QueryOptions();
