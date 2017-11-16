@@ -219,7 +219,7 @@ namespace MbedCloudSDK.Certificates.Api
             try
             {
                 var response = developerCertificateApi.V3DeveloperCertificatesPost(auth, body);
-                return GetCertificate(response.Id);
+                return Certificate.MapDeveloperCert(response);
             }
             catch (ApiException ex)
             {

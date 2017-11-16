@@ -6,7 +6,6 @@ namespace MbedCloudSDK.Connect.Api
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Filter;
     using MbedCloudSDK.Common.Query;
