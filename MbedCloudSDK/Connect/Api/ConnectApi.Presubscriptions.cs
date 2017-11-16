@@ -16,12 +16,12 @@ namespace MbedCloudSDK.Connect.Api
         /// Update pre-subscription data. Pre-subscription data will be removed for empty list.
         /// </summary>
         /// <param name="presubscriptions">Id of device.</param>
-        public void UpdatePresubscriptions(mds.Model.Presubscription[] presubscriptions)
+        public void UpdatePresubscriptions(Presubscription[] presubscriptions)
         {
             var presubscriptionArray = new mds.Model.PresubscriptionArray();
             foreach (var presubscription in presubscriptions)
             {
-                var updatedPresubscription = new mds.Model.Presubscription(presubscription.EndpointName, presubscription.EndpointType, presubscription.ResourcePath);
+                var updatedPresubscription = new mds.Model.Presubscription(presubscription.DeviceId, presubscription.EndpointType, presubscription.ResourcePaths);
                 presubscriptionArray.Add(updatedPresubscription);
             }
 

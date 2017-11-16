@@ -51,6 +51,7 @@ dependencies:
     - mono --runtime=v4.0 nuget.exe restore MbedCloudSDK/packages.config -PackagesDirectory packages
     - mono --runtime=v4.0 nuget.exe restore TestServer/packages.config -PackagesDirectory packages
     - mono --runtime=v4.0 nuget.exe restore MbedCloudSDK.Test/packages.config -PackagesDirectory packages
+    - mono --runtime=v4.0 nuget.exe restore ConsoleExamples/packages.config -PackagesDirectory packages
 compile:
   override:
     - msbuild /p:Configuration=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
@@ -58,8 +59,7 @@ compile:
 test:
   override:
     - echo "<h1>${SDK_NAME} Unit Tests (build ${CIRCLE_BUILD_NUM})</h1>" >> ${UNITTEST_REPORT}
-    - mono --debug --profile=log:coverage,covfilter=+[MbedCloudSDK] packages/NUnit.ConsoleRunner.3.7.0/tools/nunit3-console.exe --noh --inprocess MbedCloudSDK.Test/MbedCloudSDK.Test.csproj --config=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
-    - mprof-report --coverage-out=coverage-report.xml output.mlpd | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+    - mono packages/NUnit.ConsoleRunner.3.7.0/tools/nunit3-console.exe MbedCloudSDK.Test/MbedCloudSDK.Test.csproj --config=Release --params=mbed_cloud_sdk_api_key=${MBED_CLOUD_API_KEY} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - xsltproc scripts/nunit3-junit.xslt TestResult.xml >> junit.xml
     - mkdir -p ${CIRCLE_TEST_REPORTS}/junit
     - cp junit.xml $CIRCLE_TEST_REPORTS/junit/test-results.xml
