@@ -19,7 +19,7 @@ namespace ConsoleExamples.Examples.Connect
         public string GetResourceValue()
         {
             // resource path to get value from
-            const string resourcePath = "/5001/0/1";
+            const string resourcePath = "/5002/0/1";
             var connectedDevices = api.ListConnectedDevices().Data;
             if (connectedDevices == null)
             {

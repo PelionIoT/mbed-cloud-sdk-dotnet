@@ -55,7 +55,7 @@ namespace ConsoleExamples.Examples.Update
             // List all firware manifests
             var listParamas = new QueryOptions
             {
-                Limit = 10,
+                Limit = 5,
             };
             var manifests = api.ListFirmwareManifests(listParamas).Data;
             foreach (var item in manifests)

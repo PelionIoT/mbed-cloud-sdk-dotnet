@@ -22,7 +22,7 @@ namespace ConsoleExamples.Examples.Update
         {
             var options = new QueryOptions
             {
-                Limit = 2,
+                Limit = 5,
             };
             var images = api.ListFirmwareImages(options).Data;
             foreach (var item in images)

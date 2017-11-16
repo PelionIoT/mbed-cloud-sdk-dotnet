@@ -15,7 +15,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Connect
             var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
             var connectExamples = new ConsoleExamples.Examples.Connect.ConnectExamples(config);
             var devices = connectExamples.ListConnectedDevices();
-            Assert.AreEqual(2, devices.Count);
+            Assert.AreEqual(5, devices.Count);
         }
 
         [Test]

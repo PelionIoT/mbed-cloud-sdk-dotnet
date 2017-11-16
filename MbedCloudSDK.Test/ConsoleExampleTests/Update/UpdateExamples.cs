@@ -23,7 +23,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Update
             var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
             var listImages = new ConsoleExamples.Examples.Update.UpdateExamples(config);
             var images = listImages.ListImages();
-            Assert.AreEqual(2, images.Count);
+            Assert.AreEqual(5, images.Count);
         }
 
         [Test]
@@ -33,7 +33,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Update
             var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
             var listManifests = new ConsoleExamples.Examples.Update.UpdateExamples(config);
             var manifests = listManifests.ListManifests();
-            Assert.AreEqual(2, manifests.Count);
+            Assert.AreEqual(5, manifests.Count);
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Update
             var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
             var listCampaigns = new ConsoleExamples.Examples.Update.UpdateExamples(config);
             var campaigns = listCampaigns.ListCampaigns();
-            Assert.AreEqual(3, campaigns.Count);
+            Assert.AreEqual(5, campaigns.Count);
         }
     }
 }

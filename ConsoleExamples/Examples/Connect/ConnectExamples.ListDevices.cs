@@ -37,7 +37,7 @@ namespace ConsoleExamples.Examples.Connect
         {
             var options = new QueryOptions
             {
-                Limit = 2,
+                Limit = 5,
             };
             var deviceList = api.ListConnectedDevices(options).Data;
             foreach (var endpoint in deviceList)

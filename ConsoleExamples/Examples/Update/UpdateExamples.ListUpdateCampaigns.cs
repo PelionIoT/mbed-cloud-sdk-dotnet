@@ -22,7 +22,7 @@ namespace ConsoleExamples.Examples.Update
         {
             var options = new QueryOptions
             {
-                Limit = 3,
+                Limit = 5,
             };
             var updateCampaigns = api.ListCampaigns(options).Data;
             foreach (var item in updateCampaigns)
