@@ -1,16 +1,18 @@
-﻿using MbedCloudSDK.AccountManagement.Api;
-using MbedCloudSDK.AccountManagement.Model.ApiKey;
-using MbedCloudSDK.Common;
-using MbedCloudSDK.Common.Query;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="AccountManagementExamples.ListApiKeys.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace ConsoleExamples.Examples.AccountManagement
 {
-    /// @example
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using MbedCloudSDK.AccountManagement.Model.ApiKey;
+    using MbedCloudSDK.Common.Query;
+
+    /// <summary>
+    /// Account management examples
+    /// </summary>
     public partial class AccountManagementExamples
     {
         /// <summary>
@@ -19,15 +21,16 @@ namespace ConsoleExamples.Examples.AccountManagement
         /// <returns>List of Api keys</returns>
         public List<ApiKey> ListApiKeys()
         {
-            var options = new QueryOptions()
+            var options = new QueryOptions
             {
-                Limit = 5
+                Limit = 5,
             };
             var keys = api.ListApiKeys(options).Data;
             foreach (var key in keys)
             {
                 Console.WriteLine(key);
             }
+
             return keys;
         }
 
@@ -39,13 +42,14 @@ namespace ConsoleExamples.Examples.AccountManagement
         {
             var options = new QueryOptions
             {
-                Limit = 5
+                Limit = 5,
             };
             var keys = await api.ListApiKeysAsync(options);
             foreach (var key in keys)
             {
                 Console.WriteLine(key);
             }
+
             return keys;
         }
     }

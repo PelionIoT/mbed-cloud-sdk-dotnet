@@ -1,19 +1,28 @@
-﻿using System;
-using System.Text;
-using MbedCloudSDK.Common;
-using ConsoleExamples.Examples.AccountManagement;
-using ConsoleExamples.Examples.Update;
-using ConsoleExamples.Examples.Connect;
-using ConsoleExamples.Examples.DeviceDirectory;
-using System.Reflection;
-using ConsoleExamples.Examples.Certificates;
+﻿// <copyright file="Program.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace ConsoleExamples
 {
-    class Program
+    using System;
+    using ConsoleExamples.Examples.AccountManagement;
+    using ConsoleExamples.Examples.Certificates;
+    using ConsoleExamples.Examples.Connect;
+    using ConsoleExamples.Examples.DeviceDirectory;
+    using ConsoleExamples.Examples.Update;
+    using MbedCloudSDK.Common;
+
+    /// <summary>
+    /// Program
+    /// </summary>
+    public class Program
     {
+        /// <summary>
+        /// Main
+        /// </summary>
+        /// <param name="args">args</param>
         [STAThread]
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             if (args == null || args.Length == 0)
             {
@@ -21,21 +30,27 @@ namespace ConsoleExamples
                 Console.ReadKey();
                 return;
             }
-            string apiKey = args[0];
-            Config config = new Config(apiKey);
 
-            //Change default host
-            config.Host = "https://lab-api.mbedcloudintegration.net";
+            var apiKey = args[0];
+            var config = new Config(apiKey)
+            {
+                // Change default host
+                Host = "https://lab-api.mbedcloudintegration.net",
+            };
             string example;
-            while(true)
+            while (true)
             {
                 example = ShowMenu();
-                int exampleNumber = 0;
-                if (Int32.TryParse(example, out exampleNumber) && exampleNumber >=1 && exampleNumber<=400)
+                if (int.TryParse(example, out int exampleNumber) && exampleNumber >= 1 && exampleNumber <= 400)
+                {
                     RunExampleAsync(config, Convert.ToInt32(exampleNumber));
+                }
                 else
+                {
                     break;
+                }
             }
+
             Console.WriteLine(" Closing application");
         }
 
@@ -172,7 +187,9 @@ namespace ConsoleExamples
                     updateExamples.ListManifests();
                     break;
                 case 28:
-                    updateExamples.listCampaigns();
+                    updateExamples.ListCampaigns();
+                    break;
+                default:
                     break;
             }
         }

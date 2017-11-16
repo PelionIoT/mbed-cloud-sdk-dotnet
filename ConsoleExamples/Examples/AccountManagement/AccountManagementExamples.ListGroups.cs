@@ -1,12 +1,17 @@
-using System;
-using System.Collections.Generic;
-using MbedCloudSDK.AccountManagement.Api;
-using MbedCloudSDK.AccountManagement.Model.Group;
-using MbedCloudSDK.Common;
-using MbedCloudSDK.Common.Query;
+// <copyright file="AccountManagementExamples.ListGroups.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace ConsoleExamples.Examples.AccountManagement
 {
+    using System;
+    using System.Collections.Generic;
+    using MbedCloudSDK.AccountManagement.Model.Group;
+    using MbedCloudSDK.Common.Query;
+
+    /// <summary>
+    /// Account management examples
+    /// </summary>
     public partial class AccountManagementExamples
     {
         /// <summary>
@@ -15,16 +20,17 @@ namespace ConsoleExamples.Examples.AccountManagement
         /// <returns>List of groups</returns>
         public List<Group> ListAllGroups()
         {
-            var options = new QueryOptions()
+            var options = new QueryOptions
             {
                 Limit = 5,
-                Order = "DESC"
+                Order = "DESC",
             };
             var groups = api.ListGroups(options).Data;
             foreach (var item in groups)
             {
                 Console.WriteLine(item.Name);
-                //List the keys in the group
+
+                // List the keys in the group
                 var keys = api.ListGroupApiKeys(item.Id);
                 Console.WriteLine("Keys in this group ... ");
                 foreach (var key in keys)

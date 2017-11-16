@@ -1,33 +1,35 @@
-﻿using MbedCloudSDK.Common;
-using MbedCloudSDK.Update.Api;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MbedCloudSDK.Common.Query;
-using MbedCloudSDK.Update.Model.Campaign;
+﻿// <copyright file="UpdateExamples.ListUpdateCampaigns.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace ConsoleExamples.Examples.Update
 {
-    /// @example
+    using System;
+    using System.Collections.Generic;
+    using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.Update.Model.Campaign;
+
+    /// <summary>
+    /// Update examples
+    /// </summary>
     public partial class UpdateExamples
     {
         /// <summary>
         /// List the first 3 update campaigns
         /// </summary>
         /// <returns>List of campaigns</returns>
-        public List<Campaign> listCampaigns()
+        public List<Campaign> ListCampaigns()
         {
-            var options = new QueryOptions()
+            var options = new QueryOptions
             {
-                Limit = 3
+                Limit = 3,
             };
             var updateCampaigns = api.ListCampaigns(options).Data;
             foreach (var item in updateCampaigns)
             {
                 Console.WriteLine(item);
             }
+
             return updateCampaigns;
         }
     }

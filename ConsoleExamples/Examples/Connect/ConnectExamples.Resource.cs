@@ -1,30 +1,31 @@
-﻿using MbedCloudSDK.Common;
-using MbedCloudSDK.Connect.Api;
-using MbedCloudSDK.DeviceDirectory.Api;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
+﻿// <copyright file="ConnectExamples.Resource.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace ConsoleExamples.Examples.Connect
 {
-    /// @example
+    using System;
+    using System.Linq;
+
+    /// <summary>
+    /// Connect examples
+    /// </summary>
     public partial class ConnectExamples
     {
         /// <summary>
         /// Get the value of the resource.
         /// </summary>
+        /// <returns>Resource value</returns>
         public string GetResourceValue()
         {
-            //resource path to get value from
-            var resourcePath = "/5001/0/1";
+            // resource path to get value from
+            const string resourcePath = "/5001/0/1";
             var connectedDevices = api.ListConnectedDevices().Data;
             if (connectedDevices == null)
             {
                 throw new Exception("No endpoints registered. Aborting.");
             }
+
             var device = connectedDevices.FirstOrDefault();
             var resources = device.ListResources();
             api.StartNotifications();
@@ -37,6 +38,7 @@ namespace ConsoleExamples.Examples.Connect
         /// <summary>
         /// Set the value on the resource.
         /// </summary>
+        /// <returns>Resource value</returns>
         public string SetResourceValue()
         {
             var connectedDevices = api.ListConnectedDevices().Data;
@@ -50,7 +52,7 @@ namespace ConsoleExamples.Examples.Connect
 
             var resources = device.ListResources();
 
-            var resourceUri = resources.Where(r => r.Type == "writable_resource").FirstOrDefault()?.Path;
+            var resourceUri = resources.FirstOrDefault(r => r.Type == "writable_resource")?.Path;
 
             api.StartNotifications();
             var resp = api.SetResourceValue(device.Id, resourceUri, "test-value");

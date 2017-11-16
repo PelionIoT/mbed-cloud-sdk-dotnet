@@ -1,28 +1,31 @@
-﻿using MbedCloudSDK.AccountManagement.Api;
-using MbedCloudSDK.AccountManagement.Model.ApiKey;
-using MbedCloudSDK.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MbedCloudSDK.AccountManagement.Model.Account;
+﻿// <copyright file="AccountManagementExamples.GetAccount.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace ConsoleExamples.Examples.AccountManagement
 {
-    /// @example
+    using System;
+    using System.Threading.Tasks;
+    using MbedCloudSDK.AccountManagement.Api;
+    using MbedCloudSDK.AccountManagement.Model.Account;
+    using MbedCloudSDK.Common;
+
+    /// <summary>
+    /// Account managment examples
+    /// </summary>
     public partial class AccountManagementExamples
     {
-        private Config config;
         private AccountManagementApi api;
+        private Config config;
 
         /// <summary>
-        /// List all Api keys.
+        /// Initializes a new instance of the <see cref="AccountManagementExamples"/> class.
         /// </summary>
-        public AccountManagementExamples(Config _config)
+        /// <param name="config">Config</param>
+        public AccountManagementExamples(Config config)
         {
-            config = _config;
-            api = new AccountManagementApi(config);
+            this.config = config;
+            api = new AccountManagementApi(this.config);
         }
 
         /// <summary>

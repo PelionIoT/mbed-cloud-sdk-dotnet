@@ -1,32 +1,35 @@
-﻿using MbedCloudSDK.Common;
-using MbedCloudSDK.Common.Query;
-using MbedCloudSDK.DeviceDirectory.Api;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MbedCloudSDK.DeviceDirectory.Model.Logging;
+﻿// <copyright file="DeviceDirectoryExamples.ListLogs.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace ConsoleExamples.Examples.DeviceDirectory
 {
-    /// @example
+    using System;
+    using System.Collections.Generic;
+    using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.DeviceDirectory.Model.Logging;
+
+    /// <summary>
+    /// Device directory examples
+    /// </summary>
     public partial class DeviceDirectoryExamples
     {
         /// <summary>
         /// List all devicse logs.
         /// </summary>
+        /// <returns>List of device events</returns>
         public List<DeviceEvent> ListDevicesLogs()
         {
-            var options = new QueryOptions()
+            var options = new QueryOptions
             {
-                Limit = 5
+                Limit = 5,
             };
             var logs = api.ListDeviceEvents(options).Data;
             foreach (var log in logs)
             {
                 Console.WriteLine(log.ToString());
             }
+
             return logs;
         }
 
@@ -36,15 +39,16 @@ namespace ConsoleExamples.Examples.DeviceDirectory
         /// <returns>List of device events</returns>
         public List<DeviceEvent> ListDeviceEvents()
         {
-            var options = new QueryOptions()
+            var options = new QueryOptions
             {
-                Limit = 5
+                Limit = 5,
             };
             var events = api.ListDeviceEvents(options).Data;
             foreach (var item in events)
             {
                 Console.WriteLine(item);
             }
+
             return events;
         }
     }

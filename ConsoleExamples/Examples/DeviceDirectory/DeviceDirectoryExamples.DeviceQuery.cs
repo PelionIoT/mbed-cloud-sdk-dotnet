@@ -1,28 +1,29 @@
-﻿using MbedCloudSDK.Common;
-using MbedCloudSDK.DeviceDirectory.Api;
-using MbedCloudSDK.DeviceDirectory.Model.Query;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MbedCloudSDK.Common.Filter;
-using MbedCloudSDK.Common.Query;
+﻿// <copyright file="DeviceDirectoryExamples.DeviceQuery.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace ConsoleExamples.Examples.DeviceDirectory
 {
-    /// @example
+    using System;
+    using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.DeviceDirectory.Model.Query;
+
+    /// <summary>
+    /// Device directory examples
+    /// </summary>
     public partial class DeviceDirectoryExamples
     {
         /// <summary>
         /// Create new Query.
         /// </summary>
+        /// <returns>Query</returns>
         public Query AddQuery()
         {
-            var options = new QueryOptions()
+            var options = new QueryOptions
             {
-                Limit = 5
+                Limit = 5,
             };
+
             // list the current queries
             var queries = api.ListQueries(options).Data;
             foreach (var item in queries)
@@ -30,13 +31,14 @@ namespace ConsoleExamples.Examples.DeviceDirectory
                 Console.WriteLine(item.Id);
             }
 
-            //create a new query
-            var query = new Query()
+            // create a new query
+            var query = new Query
             {
-                Name = $"test-{this.GetHashCode()}"
+                Name = $"test-{GetHashCode()}",
             };
             query.Filter.Add("auto_update", "true");
-            //add the query
+
+            // add the query
             var addedQuery = api.AddQuery(query);
             Console.WriteLine($"Adding query: {addedQuery}");
 
@@ -47,12 +49,13 @@ namespace ConsoleExamples.Examples.DeviceDirectory
                 Console.WriteLine($"Query found with id {addedQuery.Id}");
             }
 
-            var deviceOptions = new QueryOptions()
+            var deviceOptions = new QueryOptions
             {
                 Limit = 5,
-                Filter = tQuery.Filter
+                Filter = tQuery.Filter,
             };
-            //run the query and print the matching devices
+
+            // run the query and print the matching devices
             var matchingDevices = api.ListDevices(options).Data;
             Console.WriteLine("printing matching devices");
             foreach (var item in matchingDevices)

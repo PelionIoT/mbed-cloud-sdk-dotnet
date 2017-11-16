@@ -1,19 +1,30 @@
-using System;
-using MbedCloudSDK.Certificates.Api;
-using MbedCloudSDK.Certificates.Model;
-using MbedCloudSDK.Common;
+// <copyright file="CertificateExamples.DeveloperCertificate.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace ConsoleExamples.Examples.Certificates
 {
+    using System;
+    using MbedCloudSDK.Certificates.Api;
+    using MbedCloudSDK.Certificates.Model;
+    using MbedCloudSDK.Common;
+
+    /// <summary>
+    /// Certificate examples
+    /// </summary>
     public partial class CertificateExamples
     {
         private Config config;
         private CertificatesApi api;
 
-        public CertificateExamples(Config _config)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CertificateExamples"/> class.
+        /// </summary>
+        /// <param name="config">Config</param>
+        public CertificateExamples(Config config)
         {
-            config = _config;
-            api = new CertificatesApi(config);
+            this.config = config;
+            api = new CertificatesApi(this.config);
         }
 
         /// <summary>
@@ -22,9 +33,9 @@ namespace ConsoleExamples.Examples.Certificates
         /// <returns>Certificate</returns>
         public Certificate CreateCertificate()
         {
-            var certificate = new Certificate()
+            var certificate = new Certificate
             {
-                Name = $"myNewCertificate-{DateTime.Now}"
+                Name = $"myNewCertificate-{DateTime.Now}",
             };
             var newCertificate = api.AddDeveloperCertificate(certificate);
             Console.WriteLine($"New certificate id - {newCertificate.Id}");

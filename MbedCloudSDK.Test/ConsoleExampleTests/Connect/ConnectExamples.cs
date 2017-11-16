@@ -9,19 +9,6 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Connect
     public class ConnectExamples
     {
         [Test]
-        public void SetResourceValue()
-        {
-            var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
-            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
-            var connectExamples = new ConsoleExamples.Examples.Connect.ConnectExamples(config);
-
-            //SetResourceValue
-            Console.WriteLine("Set resource value...");
-            var setResourceValue = connectExamples.SetResourceValue();
-            Assert.IsNotNull(setResourceValue);
-        }
-
-        [Test]
         public void ListConnectedDevices()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];

@@ -1,16 +1,17 @@
-﻿using MbedCloudSDK.Common;
-using MbedCloudSDK.Update.Api;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MbedCloudSDK.Common.Query;
-using MbedCloudSDK.Update.Model.FirmwareImage;
+﻿// <copyright file="UpdateExamples.ListFirmwareImages.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace ConsoleExamples.Examples.Update
 {
-    /// @example
+    using System;
+    using System.Collections.Generic;
+    using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.Update.Model.FirmwareImage;
+
+    /// <summary>
+    /// Update examples
+    /// </summary>
     public partial class UpdateExamples
     {
         /// <summary>
@@ -19,15 +20,16 @@ namespace ConsoleExamples.Examples.Update
         /// <returns>List of firmware images</returns>
         public List<FirmwareImage> ListImages()
         {
-            var options = new QueryOptions()
+            var options = new QueryOptions
             {
-                Limit = 2
+                Limit = 2,
             };
             var images = api.ListFirmwareImages(options).Data;
             foreach (var item in images)
             {
                 Console.WriteLine(item);
             }
+
             return images;
         }
     }

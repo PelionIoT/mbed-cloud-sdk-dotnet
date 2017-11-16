@@ -1,50 +1,57 @@
-﻿using MbedCloudSDK.Common;
-using MbedCloudSDK.Common.Query;
-using MbedCloudSDK.Connect.Api;
-using MbedCloudSDK.DeviceDirectory.Api;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MbedCloudSDK.Connect.Model.ConnectedDevice;
-using MbedCloudSDK.DeviceDirectory.Model.Device;
+﻿// <copyright file="ConnectExamples.ListDevices.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace ConsoleExamples.Examples.Connect
 {
-    /// @example
+    using System;
+    using System.Collections.Generic;
+    using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.Connect.Api;
+    using MbedCloudSDK.Connect.Model.ConnectedDevice;
+
+    /// <summary>
+    /// Connect Examples
+    /// </summary>
     public partial class ConnectExamples
     {
         private Config config;
         private ConnectApi api;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConnectExamples"/> class.
+        /// </summary>
+        /// <param name="config">Config</param>
         public ConnectExamples(Config config)
         {
             this.config = config;
-            this.api = new ConnectApi(config);
+            api = new ConnectApi(config);
         }
 
         /// <summary>
         /// List Connected devices.
         /// </summary>
+        /// <returns>List of connected devices</returns>
         public List<ConnectedDevice> ListConnectedDevices()
         {
             var options = new QueryOptions
             {
-                Limit = 2
+                Limit = 2,
             };
             var deviceList = api.ListConnectedDevices(options).Data;
             foreach (var endpoint in deviceList)
             {
                 Console.WriteLine(endpoint);
             }
+
             return deviceList;
         }
 
         /// <summary>
         /// List connected devices created in October 2017
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of connected devices</returns>
         public List<ConnectedDevice> ListConnectedDevicesWithFilter()
         {
             var options = new QueryOptions();
@@ -55,6 +62,7 @@ namespace ConsoleExamples.Examples.Connect
             {
                 Console.WriteLine(endpoint);
             }
+
             return deviceList;
         }
     }

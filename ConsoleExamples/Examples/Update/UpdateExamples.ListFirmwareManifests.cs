@@ -1,16 +1,17 @@
-﻿using MbedCloudSDK.Common;
-using MbedCloudSDK.Update.Api;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MbedCloudSDK.Update.Model.FirmwareManifest;
-using MbedCloudSDK.Common.Query;
+﻿// <copyright file="UpdateExamples.ListFirmwareManifests.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace ConsoleExamples.Examples.Update
 {
-    /// @example
+    using System;
+    using System.Collections.Generic;
+    using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.Update.Model.FirmwareManifest;
+
+    /// <summary>
+    /// Update examples
+    /// </summary>
     public partial class UpdateExamples
     {
         /// <summary>
@@ -19,15 +20,16 @@ namespace ConsoleExamples.Examples.Update
         /// <returns>list of firmware manifests</returns>
         public List<FirmwareManifest> ListManifests()
         {
-            var options = new QueryOptions()
+            var options = new QueryOptions
             {
-                Limit = 5
+                Limit = 5,
             };
             var manifests = api.ListFirmwareManifests(options).Data;
             foreach (var item in manifests)
             {
                 Console.WriteLine(item);
             }
+
             return manifests;
         }
     }

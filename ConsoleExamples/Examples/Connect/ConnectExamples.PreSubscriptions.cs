@@ -1,10 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using MbedCloudSDK.Connect.Model.Subscription;
+// <copyright file="ConnectExamples.PreSubscriptions.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace ConsoleExamples.Examples.Connect
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using MbedCloudSDK.Connect.Model.Subscription;
+
+    /// <summary>
+    /// Connect examples
+    /// </summary>
     public partial class ConnectExamples
     {
         /// <summary>
@@ -25,13 +32,13 @@ namespace ConsoleExamples.Examples.Connect
 
             var resources = api.ListResources(deviceId);
 
-            var resourceUri = resources.Where(r => r.Observable == true).FirstOrDefault()?.Path;
+            var resourceUri = resources.FirstOrDefault(r => r.Observable == true)?.Path;
 
-            //create the presubscription
-            var presubscription = new Presubscription()
+            // create the presubscription
+            var presubscription = new Presubscription
             {
                 DeviceId = deviceId,
-                ResourcePaths = new List<string> { resourceUri }
+                ResourcePaths = new List<string> { resourceUri },
             };
             api.UpdatePresubscriptions(new Presubscription[] { presubscription });
 
