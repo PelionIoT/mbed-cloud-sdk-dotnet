@@ -16,6 +16,7 @@ namespace ConsoleExamples.Examples.Certificates
     {
         private Config config;
         private CertificatesApi api;
+        private Random rnd;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CertificateExamples"/> class.
@@ -25,6 +26,7 @@ namespace ConsoleExamples.Examples.Certificates
         {
             this.config = config;
             api = new CertificatesApi(this.config);
+            rnd = new Random();
         }
 
         /// <summary>
@@ -51,9 +53,9 @@ namespace ConsoleExamples.Examples.Certificates
             return updatedCertificate;
         }
 
-        private static string GetRandomName()
+        private string GetRandomName()
         {
-            return $"myNewCertificate-{DateTime.Now}";
+            return $"myNewCertificate-{rnd.Next(1000)}";
         }
     }
 }
