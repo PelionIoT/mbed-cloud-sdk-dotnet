@@ -16,6 +16,7 @@ namespace ConsoleExamples.Examples.Certificates
     {
         private Config config;
         private CertificatesApi api;
+        private Random rnd;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CertificateExamples"/> class.
@@ -25,6 +26,7 @@ namespace ConsoleExamples.Examples.Certificates
         {
             this.config = config;
             api = new CertificatesApi(this.config);
+            rnd = new Random();
         }
 
         /// <summary>
@@ -35,12 +37,12 @@ namespace ConsoleExamples.Examples.Certificates
         {
             var certificate = new Certificate
             {
-                Name = $"myNewCertificate-{DateTime.Now}",
+                Name = GetRandomName(),
             };
             var newCertificate = api.AddDeveloperCertificate(certificate);
             Console.WriteLine($"New certificate id - {newCertificate.Id}");
 
-            var updatedCertificate = api.UpdateCertificate(newCertificate.Id, new Certificate { Description = "my updated certificate" });
+            var updatedCertificate = api.UpdateCertificate(newCertificate.Id, new Certificate { Name = GetRandomName(), Description = "my updated certificate" });
 
             Console.WriteLine($"updated certificate description - {updatedCertificate.Description}");
 
@@ -49,6 +51,11 @@ namespace ConsoleExamples.Examples.Certificates
             Console.WriteLine("Deleted certificate");
 
             return updatedCertificate;
+        }
+
+        private string GetRandomName()
+        {
+            return $"myNewCertificate-{rnd.Next(1000)}";
         }
     }
 }
