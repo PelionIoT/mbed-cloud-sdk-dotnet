@@ -57,21 +57,23 @@ namespace MbedCloudSDK.Connect.Api
             notificationTask = new Task(new Action(Notifications), cancellationToken.Token, TaskCreationOptions.LongRunning);
             ResourceSubscribtions = new Dictionary<string, Resource>();
 
+            var dateFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
+
             auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);
             statistics.Client.Configuration.Default.ApiClient = new statistics.Client.ApiClient(config.Host);
             statistics.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
             statistics.Client.Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            statistics.Client.Configuration.Default.DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
+            statistics.Client.Configuration.Default.DateTimeFormat = dateFormat;
 
             mds.Client.Configuration.Default.ApiClient = new mds.Client.ApiClient(config.Host);
             mds.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
             mds.Client.Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            mds.Client.Configuration.Default.DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
+            mds.Client.Configuration.Default.DateTimeFormat = dateFormat;
 
             Configuration.Default.ApiClient = new ApiClient(config.Host);
             Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
             Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            Configuration.Default.DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
+            Configuration.Default.DateTimeFormat = dateFormat;
 
             deviceDirectoryApi = new device_directory.Api.DefaultApi();
             statisticsApi = new statistics.Api.StatisticsApi();
@@ -109,27 +111,6 @@ namespace MbedCloudSDK.Connect.Api
             {
                 return ApiMetadata.Map(statistics.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
             }
-        }
-
-        /// <summary>
-        /// Test
-        /// </summary>
-        /// <returns>Test</returns>
-        public List<Model.Metric.Metric> TestTest()
-        {
-            var options = new Model.Metric.MetricQueryOptions
-            {
-                Interval = "1d",
-                Start = new DateTime(2017, 3, 1),
-                End = new DateTime(2017, 4, 1),
-            };
-            var metrics = ListMetrics(options);
-            foreach (var item in metrics)
-            {
-                Console.WriteLine(item);
-            }
-
-            return metrics;
         }
 
         /// <summary>
