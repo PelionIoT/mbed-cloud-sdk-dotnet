@@ -61,8 +61,8 @@ namespace mds.Api
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false. Mbed Cloud Connect caches the received resource values for the time of [max_age](/docs/v1.2/collecting/handle-resources.html#working-with-the-server-cache) defined in the client side.  (optional)</param>
         /// <param name="noResp">&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Non-confirmable requests&lt;/b&gt;&lt;br/&gt;  All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, Mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code &#x60;204 No Content&#x60;. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  &#x60;409 Conflict&#x60;.  (optional)</param>
-        /// <returns>AsyncID</returns>
-        AsyncID V2EndpointsDeviceIdResourcePathGet (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null);
+        /// <returns></returns>
+        void V2EndpointsDeviceIdResourcePathGet (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null);
 
         /// <summary>
         /// Read from a resource
@@ -75,8 +75,8 @@ namespace mds.Api
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false. Mbed Cloud Connect caches the received resource values for the time of [max_age](/docs/v1.2/collecting/handle-resources.html#working-with-the-server-cache) defined in the client side.  (optional)</param>
         /// <param name="noResp">&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Non-confirmable requests&lt;/b&gt;&lt;br/&gt;  All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, Mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code &#x60;204 No Content&#x60;. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  &#x60;409 Conflict&#x60;.  (optional)</param>
-        /// <returns>ApiResponse of AsyncID</returns>
-        ApiResponse<AsyncID> V2EndpointsDeviceIdResourcePathGetWithHttpInfo (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null);
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> V2EndpointsDeviceIdResourcePathGetWithHttpInfo (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null);
         /// <summary>
         /// Execute a function on a resource
         /// </summary>
@@ -169,8 +169,8 @@ namespace mds.Api
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false. Mbed Cloud Connect caches the received resource values for the time of [max_age](/docs/v1.2/collecting/handle-resources.html#working-with-the-server-cache) defined in the client side.  (optional)</param>
         /// <param name="noResp">&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Non-confirmable requests&lt;/b&gt;&lt;br/&gt;  All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, Mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code &#x60;204 No Content&#x60;. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  &#x60;409 Conflict&#x60;.  (optional)</param>
-        /// <returns>Task of AsyncID</returns>
-        System.Threading.Tasks.Task<AsyncID> V2EndpointsDeviceIdResourcePathGetAsync (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null);
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task V2EndpointsDeviceIdResourcePathGetAsync (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null);
 
         /// <summary>
         /// Read from a resource
@@ -183,8 +183,8 @@ namespace mds.Api
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false. Mbed Cloud Connect caches the received resource values for the time of [max_age](/docs/v1.2/collecting/handle-resources.html#working-with-the-server-cache) defined in the client side.  (optional)</param>
         /// <param name="noResp">&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Non-confirmable requests&lt;/b&gt;&lt;br/&gt;  All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, Mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code &#x60;204 No Content&#x60;. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  &#x60;409 Conflict&#x60;.  (optional)</param>
-        /// <returns>Task of ApiResponse (AsyncID)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsDeviceIdResourcePathGetAsyncWithHttpInfo (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null);
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> V2EndpointsDeviceIdResourcePathGetAsyncWithHttpInfo (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null);
         /// <summary>
         /// Execute a function on a resource
         /// </summary>
@@ -527,11 +527,10 @@ namespace mds.Api
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false. Mbed Cloud Connect caches the received resource values for the time of [max_age](/docs/v1.2/collecting/handle-resources.html#working-with-the-server-cache) defined in the client side.  (optional)</param>
         /// <param name="noResp">&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Non-confirmable requests&lt;/b&gt;&lt;br/&gt;  All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, Mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code &#x60;204 No Content&#x60;. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  &#x60;409 Conflict&#x60;.  (optional)</param>
-        /// <returns>AsyncID</returns>
-        public AsyncID V2EndpointsDeviceIdResourcePathGet (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null)
+        /// <returns></returns>
+        public void V2EndpointsDeviceIdResourcePathGet (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null)
         {
-             ApiResponse<AsyncID> localVarResponse = V2EndpointsDeviceIdResourcePathGetWithHttpInfo(deviceId, resourcePath, cacheOnly, noResp);
-             return localVarResponse.Data;
+             V2EndpointsDeviceIdResourcePathGetWithHttpInfo(deviceId, resourcePath, cacheOnly, noResp);
         }
 
         /// <summary>
@@ -542,8 +541,8 @@ namespace mds.Api
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false. Mbed Cloud Connect caches the received resource values for the time of [max_age](/docs/v1.2/collecting/handle-resources.html#working-with-the-server-cache) defined in the client side.  (optional)</param>
         /// <param name="noResp">&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Non-confirmable requests&lt;/b&gt;&lt;br/&gt;  All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, Mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code &#x60;204 No Content&#x60;. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  &#x60;409 Conflict&#x60;.  (optional)</param>
-        /// <returns>ApiResponse of AsyncID</returns>
-        public ApiResponse< AsyncID > V2EndpointsDeviceIdResourcePathGetWithHttpInfo (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null)
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> V2EndpointsDeviceIdResourcePathGetWithHttpInfo (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
@@ -600,10 +599,10 @@ namespace mds.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<AsyncID>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (AsyncID) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AsyncID)));
             
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
         }
 
         /// <summary>
@@ -614,11 +613,10 @@ namespace mds.Api
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false. Mbed Cloud Connect caches the received resource values for the time of [max_age](/docs/v1.2/collecting/handle-resources.html#working-with-the-server-cache) defined in the client side.  (optional)</param>
         /// <param name="noResp">&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Non-confirmable requests&lt;/b&gt;&lt;br/&gt;  All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, Mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code &#x60;204 No Content&#x60;. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  &#x60;409 Conflict&#x60;.  (optional)</param>
-        /// <returns>Task of AsyncID</returns>
-        public async System.Threading.Tasks.Task<AsyncID> V2EndpointsDeviceIdResourcePathGetAsync (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null)
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task V2EndpointsDeviceIdResourcePathGetAsync (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null)
         {
-             ApiResponse<AsyncID> localVarResponse = await V2EndpointsDeviceIdResourcePathGetAsyncWithHttpInfo(deviceId, resourcePath, cacheOnly, noResp);
-             return localVarResponse.Data;
+             await V2EndpointsDeviceIdResourcePathGetAsyncWithHttpInfo(deviceId, resourcePath, cacheOnly, noResp);
 
         }
 
@@ -630,8 +628,8 @@ namespace mds.Api
         /// <param name="resourcePath">The URL of the resource. </param>
         /// <param name="cacheOnly">If true, the response comes only from the cache. Default: false. Mbed Cloud Connect caches the received resource values for the time of [max_age](/docs/v1.2/collecting/handle-resources.html#working-with-the-server-cache) defined in the client side.  (optional)</param>
         /// <param name="noResp">&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Non-confirmable requests&lt;/b&gt;&lt;br/&gt;  All resource APIs have the parameter &#x60;noResp&#x60;. If a request is made with &#x60;noResp&#x3D;true&#x60;, Mbed Cloud Connect makes a CoAP  non-confirmable request to the device. Such requests are not guaranteed to arrive in the device, and you do not get back  an async-response-id.  If calls with this parameter enabled succeed, they return with the status code &#x60;204 No Content&#x60;. If the underlying protocol  does not support non-confirmable requests, or if the endpoint is registered in queue mode, the response is status code  &#x60;409 Conflict&#x60;.  (optional)</param>
-        /// <returns>Task of ApiResponse (AsyncID)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<AsyncID>> V2EndpointsDeviceIdResourcePathGetAsyncWithHttpInfo (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null)
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2EndpointsDeviceIdResourcePathGetAsyncWithHttpInfo (string deviceId, string resourcePath, bool? cacheOnly = null, bool? noResp = null)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
@@ -687,10 +685,10 @@ namespace mds.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<AsyncID>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (AsyncID) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AsyncID)));
             
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
         }
 
         /// <summary>
