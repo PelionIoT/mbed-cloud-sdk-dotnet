@@ -4,7 +4,6 @@ BACKEND_URL="http://localhost:3000";
 export PYTHONPATH="TestServer/testrunner";
 
 cleanup() {
-  curl -X GET http://localhost:3000/_exit
   echo "Test run finished. Cleaning up. Deleting tmp directory: $TMPDIR";
   if is_running $BACKEND_PID; then
     echo "Killing backend SDK server: $BACKEND_PID";
@@ -27,7 +26,8 @@ if [ -z $API_KEY ]; then
 fi
 
 # Start the Python SDK test backend server. Send to background.
-$ mono --debug --profile=log:coverage,covfilter=+[MbedCloudSDK]MbedCloudSDK,output=int-output.mlpd TestServer/bin/Release/TestServer.exe $API_KEY
+CMD="mono --debug --profile=log:coverage,covfilter=+[MbedCloudSDK]MbedCloudSDK TestServer/bin/Release/TestServer.exe $API_KEY"
+eval "$CMD &"
 echo "Backend server started. PID: $!"
 BACKEND_PID=$!
 
