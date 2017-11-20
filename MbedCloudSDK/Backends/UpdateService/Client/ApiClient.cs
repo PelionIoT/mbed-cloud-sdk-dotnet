@@ -21,7 +21,6 @@ using System.Net;
 using System.Text;
 using Newtonsoft.Json;
 using RestSharp;
-using Newtonsoft.Json.Converters;
 
 namespace update_service.Client
 {
@@ -360,11 +359,7 @@ namespace update_service.Client
         {
             try
             {
-                var settings = new JsonSerializerSettings
-                {
-                    DateFormatString = Configuration.DateTimeFormat
-                };
-                return obj != null ? JsonConvert.SerializeObject(obj, settings) : null;
+                return obj != null ? JsonConvert.SerializeObject(obj) : null;
             }
             catch (Exception e)
             {
