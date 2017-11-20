@@ -18,7 +18,6 @@ namespace MbedCloudSDK.Connect.Model.Metric
         {
             Include = "transactions,bootstraps_successful,bootstraps_pending,bootstraps_failed,connect_rest_api_success,connect_rest_api_error,device_proxy_request_success,device_proxy_request_error,device_subscription_request_success,device_subscription_request_error,device_observations";
             Interval = "1d";
-            Period = "1m";
         }
 
         /// <summary>

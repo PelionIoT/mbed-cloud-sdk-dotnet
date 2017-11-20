@@ -55,8 +55,8 @@ namespace ConsoleExamples.Examples.Connect
         public List<ConnectedDevice> ListConnectedDevicesWithFilter()
         {
             var options = new QueryOptions();
-            options.Filter.Add("created_at", new DateTime(2017, 10, 1).ToString());
-            options.Filter.Add("created_at", new DateTime(2017, 10, 31).ToString());
+            options.Filter.Add("created_at", new DateTime(2017, 10, 1));
+            options.Filter.Add("created_at", new DateTime(2017, 10, 31));
             var deviceList = api.ListConnectedDevices(options).Data;
             foreach (var endpoint in deviceList)
             {
