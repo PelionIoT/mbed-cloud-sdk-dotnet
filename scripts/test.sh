@@ -26,7 +26,7 @@ if [ -z $API_KEY ]; then
 fi
 
 # Start the Python SDK test backend server. Send to background.
-CMD="mono --debug --profile=log:coverage,covfilter=+[MbedCloudSDK] TestServer/bin/Release/TestServer.exe $API_KEY"
+CMD="mono --debug --profile=log:coverage,covfilter=+[MbedCloudSDK],output=int-output TestServer/bin/Release/TestServer.exe $API_KEY"
 eval "$CMD &"
 echo "Backend server started. PID: $!"
 BACKEND_PID=$!
