@@ -33,6 +33,7 @@ namespace MbedCloudSDK.AccountManagement.Api
 
             Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
             Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            Configuration.Default.DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
 
             developerApi = new DeveloperApi();
             adminApi = new AccountAdminApi();

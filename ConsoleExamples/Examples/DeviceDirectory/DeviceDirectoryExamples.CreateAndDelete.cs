@@ -36,6 +36,8 @@ namespace ConsoleExamples.Examples.DeviceDirectory
             // create a new device
             var device = new Device
             {
+                Name = "test-device",
+                DeviceExecutionMode = 1,
                 CertificateIssuerId = (GetHashCode() * 2).ToString(),
                 CertificateFingerprint = (GetHashCode() * 3).ToString(),
             };
