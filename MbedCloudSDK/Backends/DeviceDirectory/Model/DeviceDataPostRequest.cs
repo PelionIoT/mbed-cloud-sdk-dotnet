@@ -573,6 +573,12 @@ namespace device_directory.Model
                 yield return new ValidationResult("Invalid value for FirmwareChecksum, length must be less than 64.", new [] { "FirmwareChecksum" });
             }
 
+            // Description (string) maxLength
+            if(this.Description != null && this.Description.Length > 2000)
+            {
+                yield return new ValidationResult("Invalid value for Description, length must be less than 2000.", new [] { "Description" });
+            }
+
             // VendorId (string) maxLength
             if(this.VendorId != null && this.VendorId.Length > 255)
             {

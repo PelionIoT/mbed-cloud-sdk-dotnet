@@ -673,10 +673,22 @@ namespace device_directory.Model
                 yield return new ValidationResult("Invalid value for DeviceClass, length must be less than 32.", new [] { "DeviceClass" });
             }
 
+            // Description (string) maxLength
+            if(this.Description != null && this.Description.Length > 2000)
+            {
+                yield return new ValidationResult("Invalid value for Description, length must be less than 2000.", new [] { "Description" });
+            }
+
             // EndpointType (string) maxLength
             if(this.EndpointType != null && this.EndpointType.Length > 64)
             {
                 yield return new ValidationResult("Invalid value for EndpointType, length must be less than 64.", new [] { "EndpointType" });
+            }
+
+            // Name (string) maxLength
+            if(this.Name != null && this.Name.Length > 128)
+            {
+                yield return new ValidationResult("Invalid value for Name, length must be less than 128.", new [] { "Name" });
             }
 
             // DeviceKey (string) maxLength

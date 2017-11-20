@@ -210,6 +210,19 @@ namespace MbedCloudSDK.Common.Filter
         }
 
         /// <summary>
+        /// Add new query to filter
+        /// </summary>
+        /// <param name="key">Key</param>
+        /// <param name="value">Value as datetime</param>
+        /// <param name="filterOperator">Operator, Equals if not provided</param>
+        /// <returns>The filter dictionary</returns>
+        public Dictionary<string, FilterAttribute[]> Add(string key, DateTime value, FilterOperator filterOperator = FilterOperator.Equals)
+        {
+            var filterAttribute = new FilterAttribute(value, filterOperator);
+            return AddFilters(key, new FilterAttribute[] { filterAttribute });
+        }
+
+        /// <summary>
         /// Add a filter with a DeviceFilterMapEnum for the key.
         /// </summary>
         /// <param name="key">The enum provides mapping to the filter keys expected in the api.</param>
@@ -255,6 +268,20 @@ namespace MbedCloudSDK.Common.Filter
         /// <param name="filterOperator">The Operator</param>
         /// <returns>The filter dictionary</returns>
         public Dictionary<string, FilterAttribute[]> AddCustom(string key, string value, FilterOperator filterOperator = FilterOperator.Equals)
+        {
+            key = $"{CustomAttributesPrefix}{key}";
+            var filterAttribute = new FilterAttribute(value, filterOperator);
+            return AddFilters(key, new FilterAttribute[] { filterAttribute });
+        }
+
+        /// <summary>
+        /// Add custom query to filter
+        /// </summary>
+        /// <param name="key">Key</param>
+        /// <param name="value">Value as datetime</param>
+        /// <param name="filterOperator">The Operator</param>
+        /// <returns>The filter dictionary</returns>
+        public Dictionary<string, FilterAttribute[]> AddCustom(string key, DateTime value, FilterOperator filterOperator = FilterOperator.Equals)
         {
             key = $"{CustomAttributesPrefix}{key}";
             var filterAttribute = new FilterAttribute(value, filterOperator);

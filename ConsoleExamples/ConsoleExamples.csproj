@@ -24,6 +24,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>..\MbedCloudSDK\MbedCloudSDK.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Debug\ConsoleExamples.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,6 +36,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>ConsoleExamples.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Build.Tasks.v4.0" />
@@ -51,30 +54,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Examples\AccountManagement\GetAccount.cs" />
-    <Compile Include="Examples\AccountManagement\ListApiKeys.cs" />
-    <Compile Include="Examples\Connect\ListDevices.cs" />
-    <Compile Include="Examples\DeviceDirectory\DeviceQuery.cs" />
-    <Compile Include="Examples\Connect\Resource.cs" />
-    <Compile Include="Examples\Connect\Subscription.cs" />
-    <Compile Include="Examples\Connect\Webhook.cs" />
-    <Compile Include="Examples\DeviceDirectory\ListLogs.cs" />
-    <Compile Include="Examples\Update\CreateUpdateCampaign.cs" />
-    <Compile Include="Examples\Update\ListFirmwareImages.cs" />
-    <Compile Include="Examples\Update\ListFirmwareManifests.cs" />
-    <Compile Include="Examples\Update\ListUpdateCampaigns.cs" />
+    <Compile Include="Examples\AccountManagement\AccountManagementExamples.GetAccount.cs" />
+    <Compile Include="Examples\AccountManagement\AccountManagementExamples.ListApiKeys.cs" />
+    <Compile Include="Examples\AccountManagement\AccountManagementExamples.ListUsers.cs" />
+    <Compile Include="Examples\AccountManagement\AccountManagementExamples.ListGroups.cs" />
+    <Compile Include="Examples\Certificates\CertificateExamples.DeveloperCertificate.cs" />
+    <Compile Include="Examples\Certificates\CertificateExamples.ListCertificates.cs" />
+    <Compile Include="Examples\Connect\ConnectExamples.ListDevices.cs" />
+    <Compile Include="Examples\Connect\ConnectExamples.Resource.cs" />
+    <Compile Include="Examples\Connect\ConnectExamples.Subscription.cs" />
+    <Compile Include="Examples\Connect\ConnectExamples.Webhook.cs" />
+    <Compile Include="Examples\Connect\ConnectExamples.ListMetrics.cs" />
+    <Compile Include="Examples\Connect\ConnectExamples.PreSubscriptions.cs" />
+    <Compile Include="Examples\DeviceDirectory\DeviceDirectoryExamples.DeviceQuery.cs" />
+    <Compile Include="Examples\DeviceDirectory\DeviceDirectoryExamples.DeviceCatalog.cs" />
+    <Compile Include="Examples\DeviceDirectory\DeviceDirectoryExamples.CreateAndDelete.cs" />
+    <Compile Include="Examples\DeviceDirectory\DeviceDirectoryExamples.ListLogs.cs" />
+    <Compile Include="Examples\Update\UpdateExamples.CreateUpdateCampaign.cs" />
+    <Compile Include="Examples\Update\UpdateExamples.ListFirmwareImages.cs" />
+    <Compile Include="Examples\Update\UpdateExamples.ListFirmwareManifests.cs" />
+    <Compile Include="Examples\Update\UpdateExamples.ListUpdateCampaigns.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="ConsoleExamples.ruleset" />
     <None Include="packages.config" />
+    <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MbedCloudSDK\MbedCloudSDK.csproj">
       <Project>{7c35731a-8701-45ba-9478-76027feeb003}</Project>
       <Name>mbedCloudSDK</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\codecracker.CSharp.1.0.3\analyzers\dotnet\cs\CodeCracker.Common.dll" />
+    <Analyzer Include="..\packages\codecracker.CSharp.1.0.3\analyzers\dotnet\cs\CodeCracker.CSharp.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.0-beta004\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.0-beta004\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

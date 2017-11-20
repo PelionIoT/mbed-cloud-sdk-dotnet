@@ -190,7 +190,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
                 Description: Description,
                 RootManifestId: RootManifestId,
                 _Object: string.Empty,
-                When: ScheduledAt,
+                When: ScheduledAt ?? DateTime.Now,
                 State: updateCampaignStatus,
                 DeviceFilter: DeviceFilter.FilterString,
                 Name: Name);

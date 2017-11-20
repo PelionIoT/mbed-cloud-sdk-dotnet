@@ -41,6 +41,7 @@ namespace MbedCloudSDK.Certificates.Api
             Configuration.Default.ApiClient = new ApiClient(config.Host);
             Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
             Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            Configuration.Default.DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
 
             developerCertificateApi = new DeveloperCertificateApi();
             serverCredentialsApi = new ServerCredentialsApi();
@@ -219,7 +220,7 @@ namespace MbedCloudSDK.Certificates.Api
             try
             {
                 var response = developerCertificateApi.V3DeveloperCertificatesPost(auth, body);
-                return GetCertificate(response.Id);
+                return Certificate.MapDeveloperCert(response);
             }
             catch (ApiException ex)
             {

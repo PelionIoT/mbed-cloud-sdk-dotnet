@@ -260,6 +260,12 @@ namespace device_directory.Model
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         { 
+            // Description (string) maxLength
+            if(this.Description != null && this.Description.Length > 2000)
+            {
+                yield return new ValidationResult("Invalid value for Description, length must be less than 2000.", new [] { "Description" });
+            }
+
             // EndpointName (string) maxLength
             if(this.EndpointName != null && this.EndpointName.Length > 64)
             {
