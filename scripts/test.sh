@@ -10,7 +10,7 @@ if [ -z $API_KEY ]; then
   exit 1;
 fi
 
-mono --debug --profile=coverage TestServer/bin/Release/TestServer.exe $API_KEY &
+mono --debug --profile=coverage TestServer/bin/Debug/TestServer.exe $API_KEY &
 
 sleep 2
 
