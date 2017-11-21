@@ -61,7 +61,7 @@ test:
     - echo "<h1>${SDK_NAME} Unit Tests (build ${CIRCLE_BUILD_NUM})</h1>" >> ${UNITTEST_REPORT}
     - mono --debug --profile=coverage packages/NUnit.ConsoleRunner.3.7.0/tools/nunit3-console.exe --noh --inprocess MbedCloudSDK.Test/MbedCloudSDK.Test.csproj --config=Release --params=mbed_cloud_sdk_api_key=${MBED_CLOUD_API_KEY} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - mv coverage.xml test-coverage.xml
-    - mv test-coverage.xml ${SDK_REPORTS}
+    - mv test-coverage.xml ${SDK_COVERAGE_REPORTS}
     - xsltproc scripts/nunit3-junit.xslt TestResult.xml >> junit.xml
     - mkdir -p ${CIRCLE_TEST_REPORTS}/junit
     - cp junit.xml $CIRCLE_TEST_REPORTS/junit/test-results.xml
@@ -70,7 +70,7 @@ test:
     - echo "<h1>${SDK_NAME} Integration Tests (build ${CIRCLE_BUILD_NUM})</h2>" >> ${INTTEST_REPORT}
     - set -o pipefail && bash scripts/test.sh 2>&1 | tee /dev/tty | ansi-html >> ${INTTEST_REPORT}
     - mv coverage.xml int-coverage.xml
-    - mv int-coverage.xml ${SDK_REPORTS}
+    - mv int-coverage.xml ${SDK_COVERAGE_REPORTS}
     - mono packages/ReportGenerator.3.0.2/tools/ReportGenerator.exe -reports:-coverage.xml -targetdir:${SDK_COVERAGE_REPORTS} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - cat ${INTTEST_REPORT} | grep 'Number of tests run' >> ${RAW_REPORT}
     - mv MbedCloudSDK/tpip.csv ${SDK_REPORTS}
