@@ -74,6 +74,7 @@ test:
     - mv int-coverage-report ${SDK_REPORTS}
     - cat output.mlpd int-output.mlpd > joint.mlpd
     - mprof-report --out=joint-report --coverage-out=joint-report.xml joint.mlpd | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+    - mv joint-report ${SDK_REPORTS}
     - mono packages/ReportGenerator.3.0.2/tools/ReportGenerator.exe -reports:joint-report.xml -targetdir:${SDK_COVERAGE_REPORTS} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - cat ${INTTEST_REPORT} | grep 'Number of tests run' >> ${RAW_REPORT}
     - mv MbedCloudSDK/tpip.csv ${SDK_REPORTS}
