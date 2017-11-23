@@ -359,7 +359,11 @@ namespace connector_ca.Client
         {
             try
             {
-                return obj != null ? JsonConvert.SerializeObject(obj) : null;
+                var settings = new JsonSerializerSettings
+                {
+                    DateFormatString = Configuration.DateTimeFormat
+                };
+                return obj != null ? JsonConvert.SerializeObject(obj, settings) : null;
             }
             catch (Exception e)
             {
