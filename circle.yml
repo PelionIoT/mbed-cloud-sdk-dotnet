@@ -75,7 +75,7 @@ test:
     - mv int-coverage-report ${SDK_REPORTS}
     - mono packages/ReportGenerator.3.0.2/tools/ReportGenerator.exe -reports:*-report.xml -targetdir:${SDK_COVERAGE_REPORTS} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - cat ${SDK_COVERAGE_REPORTS}/index.htm | grep '<tr><th>Line coverage:' >> ${RAW_REPORT}
-    - cat ${INTTEST_REPORT} | grep 'Number of tests run' >> ${RAW_REPORT}
+    - cat ${INTTEST_REPORT} | grep 'seconds ====' >> ${RAW_REPORT}
     - mv MbedCloudSDK/tpip.csv ${SDK_REPORTS}
     - echo "finished"
   post:
