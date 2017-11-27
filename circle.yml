@@ -7,7 +7,6 @@ general:
       - build
 machine:
   environment:
-    AWS_DEFAULT_REGION: us-west-2
     PROJECT_TOP: ${HOME}/${CIRCLE_PROJECT_REPONAME}
     SDK_NAME: ${CIRCLE_PROJECT_REPONAME}
     SDK_TAG: ${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}
@@ -23,6 +22,13 @@ machine:
     - docker
 checkout:
   post:
+      # switch out environment variables depending on branch
+    - |
+      if [[ $CIRCLE_BRANCH == production ]]; then
+        echo export MBED_CLOUD_HOST='' >> $HOME/.circlerc;
+        echo export MBED_CLOUD_API_KEY=$MBED_CLOUD_API_KEY_PROD >> $HOME/.circlerc;
+        echo 'environment variables swapped';
+      fi
     - git config --global user.name monty-bot
     - git config --global user.email monty-bot@arm.com
     - git clone https://github.com/ARMmbed/mbed-cloud-sdk-testrunner.git TestServer/testrunner
