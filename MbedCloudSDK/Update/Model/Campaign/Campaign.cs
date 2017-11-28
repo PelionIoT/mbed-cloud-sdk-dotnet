@@ -57,7 +57,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
         /// <summary>
         /// Gets or sets gets or Sets RootManifestId
         /// </summary>
-        public string RootManifestId { get; set; }
+        public string ManifestId { get; set; }
 
         /// <summary>
         /// Gets or sets dEPRECATED: The ID of the campaign
@@ -129,7 +129,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
                 FinishedAt = data.Finished,
                 Id = data.Id,
                 Name = data.Name,
-                RootManifestId = data.RootManifestId,
+                ManifestId = data.RootManifestId,
                 ManifestUrl = data.RootManifestUrl,
                 State = updateCampaignStatus,
                 ScheduledAt = data.When,
@@ -149,14 +149,14 @@ namespace MbedCloudSDK.Update.Model.Campaign
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  RootManifestId: ").Append(RootManifestId).Append("\n");
+            sb.Append("  ManifestId: ").Append(ManifestId).Append("\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
             sb.Append("  StartedAt: ").Append(StartedAt).Append("\n");
             sb.Append("  ScheduledAt: ").Append(ScheduledAt).Append("\n");
             sb.Append("  FinishedAt: ").Append(FinishedAt).Append("\n");
             sb.Append("  RootManifestUrl: ").Append(ManifestUrl).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  DeviceFilter: ").Append(DeviceFilter).Append("\n");
+            sb.Append("  DeviceFilter: ").Append(Convert.ToString(DeviceFilter?.FilterJson)).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -172,7 +172,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
             var request = new UpdateCampaignPostRequest(DeviceFilter: deviceFilterString, Name: Name)
             {
                 Description = Description,
-                RootManifestId = RootManifestId,
+                RootManifestId = ManifestId,
                 State = Utils.ParseEnum<UpdateCampaignPostRequest.StateEnum>(State),
                 When = ScheduledAt
             };
@@ -188,7 +188,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
             var updateCampaignStatus = Utils.ParseEnum<UpdateCampaignPutRequest.StateEnum>(State);
             var request = new UpdateCampaignPutRequest(
                 Description: Description,
-                RootManifestId: RootManifestId,
+                RootManifestId: ManifestId,
                 _Object: string.Empty,
                 When: ScheduledAt ?? DateTime.Now,
                 State: updateCampaignStatus,

@@ -171,7 +171,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
                 PhoneNumber = accountInfo.PhoneNumber,
                 Postcode = accountInfo.PostalCode,
                 Id = accountInfo.Id,
-                Aliases = accountInfo.Aliases,
+                Aliases = accountInfo.Aliases != null ? accountInfo.Aliases : Enumerable.Empty<string>().ToList(),
                 AddressLine2 = accountInfo.AddressLine2,
                 City = accountInfo.City,
                 AddressLine1 = accountInfo.AddressLine1,
@@ -183,12 +183,12 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
                 Company = accountInfo.Company,
                 UpgradedAt = accountInfo.UpgradedAt,
                 Tier = accountInfo.Tier,
-                Limits = accountInfo.Limits,
+                Limits = accountInfo.Limits != null ? accountInfo.Limits : new Dictionary<string, string>(),
                 Country = accountInfo.Country,
                 CreatedAt = accountInfo.CreatedAt,
                 Contact = accountInfo.Contact,
                 TemplateId = accountInfo.TemplateId,
-                Policies = accountInfo?.Policies?.Select(p => { return Policy.Policy.Map(p); }).ToList(),
+                Policies = accountInfo.Policies != null ? accountInfo.Policies.Select(p => { return Policy.Policy.Map(p); }).ToList() : Enumerable.Empty<Policy.Policy>().ToList(),
                 Reason = accountInfo.Reason
             };
             return account;
@@ -205,7 +205,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Postcode: ").Append(Postcode).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Aliases: ").Append(Aliases).Append("\n");
+            sb.Append("  Aliases: ").Append(Aliases.Any() ? string.Join(", ", Aliases) : string.Empty).Append("\n");
             sb.Append("  AddressLine2: ").Append(AddressLine2).Append("\n");
             sb.Append("  City: ").Append(City).Append("\n");
             sb.Append("  AddressLine1: ").Append(AddressLine1).Append("\n");
@@ -217,12 +217,12 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
             sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  UpgradedAt: ").Append(UpgradedAt).Append("\n");
             sb.Append("  Tier: ").Append(Tier).Append("\n");
-            sb.Append("  Limits: ").Append(string.Join(", ", Limits)).Append("\n");
+            sb.Append("  Limits: ").Append(Limits.Any() ? string.Join(", ", Limits) : string.Empty).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
-            sb.Append("  Policies: ").Append(string.Join(", ", Policies.Select(p => { return p.ToString(); }))).Append("\n");
+            sb.Append("  Policies: ").Append(Policies.Any() ? string.Join(", ", Policies.Select(p => { return Convert.ToString(p); })) : string.Empty).Append("\n");
             sb.Append("  Reason: ").Append(Reason).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
