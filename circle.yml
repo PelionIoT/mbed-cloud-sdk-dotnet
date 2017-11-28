@@ -87,7 +87,7 @@ deployment:
       - ./scripts/generate-docs.sh
       - ./scripts/uploadArtifacts.sh
   master:
-    branch: master, artifactory
+    branch: [master, artifactory]
     commands:
       - ./scripts/generate-docs.sh
       - ./scripts/uploadArtifactsMaster.sh
