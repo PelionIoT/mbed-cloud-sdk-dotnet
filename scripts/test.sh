@@ -21,5 +21,8 @@ docker run --rm --net=host --name=testrunner_container \
 -v /home/ubuntu/rpc_fixtures:/runner/test_fixtures \
 -v /home/ubuntu/rpc_results:/runner/results \
 ${TESTRUNNER_DOCKER_IMAGE}
+RET_CODE=$?
 
 curl -X GET http://localhost:3000/_exit
+
+exit $RET_CODE
