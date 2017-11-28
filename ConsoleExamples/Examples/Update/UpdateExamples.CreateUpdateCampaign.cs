@@ -78,7 +78,7 @@ namespace ConsoleExamples.Examples.Update
             var campaign = new Campaign
             {
                 Name = campaignName,
-                RootManifestId = manifestId,
+                ManifestId = manifestId,
                 DeviceFilter = query.Filter,
             };
             campaign = api.AddCampaign(campaign);

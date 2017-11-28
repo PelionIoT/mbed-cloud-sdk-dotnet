@@ -174,7 +174,7 @@ namespace MbedCloudSDK.Update.Api
                 var updateCampaignPatchRequest = new update_service.Model.UpdateCampaignPatchRequest
                 {
                     Description = campaign.Description,
-                    RootManifestId = campaign.RootManifestId,
+                    RootManifestId = campaign.ManifestId,
                     _Object = campaign.Object,
                     When = campaign.When,
                     State = stateEnum,
