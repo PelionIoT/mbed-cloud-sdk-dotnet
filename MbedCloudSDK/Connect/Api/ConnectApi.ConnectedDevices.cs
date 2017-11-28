@@ -200,12 +200,12 @@ namespace MbedCloudSDK.Connect.Api
         /// <summary>
         /// Delete resource.
         /// </summary>
-        /// <param name="deviceName">Name of the Device</param>
+        /// <param name="deviceId">Name of the Device</param>
         /// <param name="resourcePath">Path to the resource.</param>
         /// <param name="noResponse">no response</param>
-        public void DeleteResource(string deviceName, string resourcePath, bool? noResponse = null)
+        public void DeleteResource(string deviceId, string resourcePath, bool? noResponse = null)
         {
-            resourcesApi.V2EndpointsDeviceIdResourcePathDelete(deviceName, resourcePath, noResponse);
+            resourcesApi.V2EndpointsDeviceIdResourcePathDelete(deviceId, resourcePath, noResponse);
         }
 
         /// <summary>
