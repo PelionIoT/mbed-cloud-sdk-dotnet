@@ -160,7 +160,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 EmailVerified = userInfo.EmailVerified,
                 AccountId = userInfo.AccountId,
                 PasswordChangedTime = userInfo.PasswordChangedTime,
-                Groups = userInfo.Groups,
+                Groups = userInfo.Groups != null ? userInfo.Groups : Enumerable.Empty<string>().ToList(),
                 CreatedAt = userInfo.CreatedAt,
                 TermsAccepted = userInfo.IsGtcAccepted,
                 Email = userInfo.Email,
@@ -173,7 +173,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 Id = userInfo.Id,
                 LastLoginTime = userInfo.LastLoginTime,
                 TwoFactorAuthentication = userInfo.IsTotpEnabled,
-                LoginHistory = userInfo.LoginHistory.Select(l => { return Model.User.LoginHistory.Map(l); }).ToList()
+                LoginHistory = userInfo != null ? userInfo.LoginHistory.Select(l => { return Model.User.LoginHistory.Map(l); }).ToList() : Enumerable.Empty<LoginHistory>().ToList()
             };
             return user;
         }
@@ -194,7 +194,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  TermsAccepted: ").Append(TermsAccepted).Append("\n");
             sb.Append("  MarketingAccepted: ").Append(MarketingAccepted).Append("\n");
-            sb.Append("  Groups: ").Append(Groups).Append("\n");
+            sb.Append("  Groups: ").Append(Groups.Any() ? string.Join(", ", Groups) : string.Empty).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
@@ -204,7 +204,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
             sb.Append("  PasswordChangedTime: ").Append(PasswordChangedTime).Append("\n");
             sb.Append("  TwoFactorAuthentication: ").Append(TwoFactorAuthentication).Append("\n");
             sb.Append("  LastLoginTime: ").Append(LastLoginTime).Append("\n");
-            sb.Append("  loginHistory: ").Append(string.Join(", ", LoginHistory.Select(l => { return l.ToString(); }))).Append("\n");
+            sb.Append("  loginHistory: ").Append(LoginHistory.Any() ? string.Join(", ", LoginHistory.Select(l => { return l.ToString(); })) : string.Empty).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

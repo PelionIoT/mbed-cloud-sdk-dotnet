@@ -1,13 +1,4 @@
-﻿using MbedCloudSDK.AccountManagement.Api;
-using MbedCloudSDK.AccountManagement.Model.Account;
-using MbedCloudSDK.AccountManagement.Model.ApiKey;
-using MbedCloudSDK.Common;
-using MbedCloudSDK.Exceptions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
-using RestSharp.Extensions.MonoHttp;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,10 +9,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
-using MbedCloudSDK.Connect.Model.ConnectedDevice;
+using MbedCloudSDK.AccountManagement.Api;
+using MbedCloudSDK.AccountManagement.Model.Account;
+using MbedCloudSDK.AccountManagement.Model.ApiKey;
+using MbedCloudSDK.Common;
 using MbedCloudSDK.Common.Filter;
-using NuGet;
+using MbedCloudSDK.Connect.Model.ConnectedDevice;
 using MbedCloudSDK.Connect.Model.Subscription;
+using MbedCloudSDK.Exceptions;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
+using NuGet;
+using RestSharp.Extensions.MonoHttp;
 
 namespace TestServer
 {
@@ -30,10 +30,10 @@ namespace TestServer
         private SingletonModuleInstance _moduleRepository;
 
         public HomeController()
-        {
-            _moduleRepository = new SingletonModuleInstance();
-        }
-        [HttpGet]
+            {
+                _moduleRepository = new SingletonModuleInstance();
+            }
+            [HttpGet]
         public IHttpActionResult Init()
         {
             try
@@ -93,9 +93,9 @@ namespace TestServer
 
             //get params for current method
             var methodInfo = moduleType.GetMethod(camelMethod);
-            if(methodInfo == null)
+            if (methodInfo == null)
             {
-                return Content(HttpStatusCode.InternalServerError,new { Message = "No method found"});
+                return Content(HttpStatusCode.InternalServerError, new { Message = "No method found" });
             }
 
             try
@@ -104,12 +104,12 @@ namespace TestServer
                 var invokedMethod = methodInfo.Invoke(moduleInstance, @params.ToArray());
                 if (invokedMethod != null)
                 {
-                    if(invokedMethod.GetType() == typeof(AsyncConsumer<string>))
+                    if (invokedMethod.GetType() == typeof(AsyncConsumer<string>))
                     {
                         var asyncConsumer = invokedMethod as AsyncConsumer<string>;
                         return Ok(asyncConsumer.ToString());
                     }
-                    if(invokedMethod.GetType().GetProperties().Select(p => p.Name).Contains("DeviceFilter"))
+                    if (invokedMethod.GetType().GetProperties().Select(p => p.Name).Contains("DeviceFilter"))
                     {
                         var returnedJson = JObject.FromObject(invokedMethod);
                         var tempJson = new JObject();
@@ -117,7 +117,7 @@ namespace TestServer
                         var deviceFilter = returnedJson["DeviceFilter"];
                         returnedJson.Remove("DeviceFilter");
                         returnedJson.Add("DeviceFilter", JObject.FromObject(deviceFilter["FilterJson"]));
-                        
+
                         foreach (var row in returnedJson)
                         {
                             tempJson.Add(Utils.CamelToSnake(row.Key), row.Value);
@@ -125,24 +125,28 @@ namespace TestServer
 
                         return Ok(tempJson);
                     }
-                    
+
                 }
                 var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, GetSnakeJsonSettings());
                 return Ok(JsonConvert.DeserializeObject(result));
             }
-            catch(TargetInvocationException e)
+            catch (TargetInvocationException e)
             {
-                if(e.InnerException.GetType().GetProperty("ErrorCode") != null){
+                if (e.InnerException.GetType().GetProperty("ErrorCode") != null)
+                {
                     dynamic innerException = e.InnerException;
-                    if(innerException.ErrorCode == 400){
+                    if (innerException.ErrorCode == 400)
+                    {
                         return Content(HttpStatusCode.BadRequest, innerException);
-                    }else if(innerException.ErrorCode == 404){
+                    }
+                    else if (innerException.ErrorCode == 404)
+                    {
                         return Content(HttpStatusCode.NotFound, innerException);
                     }
 
                     return Content(HttpStatusCode.InternalServerError, innerException);
                 }
-                
+
                 return Content(HttpStatusCode.InternalServerError, e.InnerException);
             }
             catch (Exception e)
@@ -184,10 +188,11 @@ namespace TestServer
                     var paramValue = GetParamValuePrimitive(p, paramType, argsJsonObj);
                     serialisedParams.Add(paramValue);
                 }
-                else if(paramType.IsArray){
+                else if (paramType.IsArray)
+                {
                     // currently not generic because EndpointName is sent as device_id and as Presubscription is generated, it cannot be decorated with a name attribute to correct this.
                     var arrayType = paramType.GetElementType();
-                    if(arrayType == typeof(Presubscription))
+                    if (arrayType == typeof(Presubscription))
                     {
                         var stringArg = GetParamValuePrimitive(p, paramType, argsJsonObj) as string;
                         var json = JsonConvert.DeserializeObject(stringArg, typeof(JObject[])) as JObject[];
@@ -216,13 +221,24 @@ namespace TestServer
                         var propertyInst = paramType.GetProperty(prop.Name);
                         if (propertyInst != null)
                         {
-                            if(propertyInst.PropertyType.Name == "Filter")
+                            if (propertyInst.PropertyType.Name == "Filter")
                             {
                                 var filterJson = GetParamValue(propertyInst, argsJsonObj);
                                 var filterJsonString = filterJson != null ? filterJson.ToString() : "";
-                                var filterJToken = JToken.FromObject(new Filter(filterJsonString, string.IsNullOrEmpty(filterJsonString)));
-                                vals[propertyInst.Name] = filterJToken;
-                            }else
+                                if (filterJsonString.Contains("filter_string"))
+                                {
+                                    var filterJsonObj = JsonConvert.DeserializeObject(filterJsonString) as JObject;
+                                    var dict = filterJsonObj["filter_json"].ToString();
+                                    var obj = JToken.FromObject(new Filter(dict, string.IsNullOrEmpty(dict)));
+                                    vals[propertyInst.Name] = obj;
+                                }
+                                else
+                                {
+                                    var filterJToken = JToken.FromObject(new Filter(filterJsonString, string.IsNullOrEmpty(filterJsonString)));
+                                    vals[propertyInst.Name] = filterJToken;
+                                }
+                            }
+                            else
                             {
                                 var paramValue = GetParamValue(propertyInst, argsJsonObj);
                                 vals[propertyInst.Name] = paramValue;
@@ -234,7 +250,7 @@ namespace TestServer
                         var obj = JsonConvert.DeserializeObject(vals.ToString(), paramType);
                         serialisedParams.Add(obj);
                     }
-                    catch(JsonReaderException)
+                    catch (JsonReaderException)
                     {
                         serialisedParams.Add(null);
                     }
@@ -272,7 +288,7 @@ namespace TestServer
             return null;
         }
 
-        private object GetParamValuePrimitive(ParameterInfo p,Type paramType, JObject argsJsonObj)
+        private object GetParamValuePrimitive(ParameterInfo p, Type paramType, JObject argsJsonObj)
         {
             JValue obj;
             var customParamAttributes = p.GetCustomAttributes(typeof(NameOverrideAttribute), true);
@@ -283,7 +299,8 @@ namespace TestServer
                 if (valFromAttr != null)
                 {
                     obj = valFromAttr as JValue;
-                }else
+                }
+                else
                 {
                     obj = null;
                 }
@@ -303,7 +320,8 @@ namespace TestServer
                 {
                     return obj.Value;
                 }
-            }else
+            }
+            else
             {
                 return null;
             }
