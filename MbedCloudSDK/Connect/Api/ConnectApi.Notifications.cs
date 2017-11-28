@@ -21,7 +21,6 @@ namespace MbedCloudSDK.Connect.Api
             {
                 try
                 {
-                    Console.WriteLine($"Pulling in {GetHashCode()}");
                     var resp = notificationsApi.V2NotificationPullGet();
                     if (resp == null)
                     {
@@ -59,7 +58,6 @@ namespace MbedCloudSDK.Connect.Api
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine($"Multiple notification calls in {GetHashCode()}, refreshing channel");
                     StopNotifications();
                 }
             }
