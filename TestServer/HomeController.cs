@@ -151,7 +151,6 @@ namespace TestServer
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
                 return Content(HttpStatusCode.InternalServerError, e);
             }
         }
@@ -235,7 +234,6 @@ namespace TestServer
                                 }
                                 else
                                 {
-                                    Console.WriteLine(filterJsonString);
                                     var filterJToken = JToken.FromObject(new Filter(filterJsonString, string.IsNullOrEmpty(filterJsonString)));
                                     vals[propertyInst.Name] = filterJToken;
                                 }
