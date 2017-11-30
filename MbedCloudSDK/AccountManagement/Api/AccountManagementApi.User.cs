@@ -20,6 +20,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// List users.
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.ListUsers(QueryOptions)"/> method.
         /// <code>
         /// try
         /// {
@@ -87,6 +88,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Get details of a user
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.GetUser(string)"/> method.
         /// <code>
         /// try
         /// {
@@ -117,6 +119,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Get user asynchronously.
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.GetUserAsync(string)"/> method.
         /// <code>
         /// try
         /// {
@@ -148,6 +151,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Create user
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.AddUser(User)"/> method.
         /// <code>
         /// try
         /// {
@@ -185,6 +189,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Create user
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.AddUserAsync(User)"/> method.
         /// <code>
         /// try
         /// {
@@ -222,6 +227,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Update user
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.UpdateUser(string, User)"/> method.
         /// <code>
         /// try
         /// {
@@ -259,6 +265,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Update user asynchronously.
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.UpdateUserAsync(string, User)"/> method.
         /// <code>
         /// try
         /// {
@@ -297,6 +304,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Delete user.
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.DeleteUser(string)"/> method.
         /// <code>
         /// try
         /// {
@@ -325,6 +333,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Delete user asynchronously.
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.DeleteUserAsync(string)"/> method.
         /// <code>
         /// try
         /// {

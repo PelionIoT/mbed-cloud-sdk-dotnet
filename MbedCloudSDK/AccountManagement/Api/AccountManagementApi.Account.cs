@@ -18,6 +18,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Get details of account associated with current API key
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.GetAccount"/> method.
         /// <code>
         /// using MbedCloudSDK.AccountManagement.Model.Account;
         /// using MbedCloudSDK.Exceptions;
@@ -50,6 +51,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Get details of account associated with current API key asynchronously.
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.GetAccountAsync"/> method.
         /// <code>
         /// using MbedCloudSDK.AccountManagement.Model.Account;
         /// using MbedCloudSDK.Exceptions;
@@ -83,6 +85,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </summary>
         /// <param name="account"><see cref="Account"/> with updated info.</param>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.UpdateAccount"/> method.
         /// <code>
         /// try
         /// {
@@ -121,6 +124,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </summary>
         /// <param name="account"><see cref="Account"/> with updated info.</param>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.UpdateAccountAsync"/> method.
         /// <code>
         /// try
         /// {

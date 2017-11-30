@@ -17,7 +17,7 @@ namespace MbedCloudSDK.AccountManagement.Api
     /// <code>
     /// using MbedCloudSDK.Common;
     /// var config = new Config(apiKey);
-    /// vat accountApi = new AccountManagementApi(config);
+    /// var accountApi = new AccountManagementApi(config);
     /// </code>
     /// </example>
     public partial class AccountManagementApi : BaseApi
@@ -51,6 +51,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Get metadata for the last api call.
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.GetLastApiMetadata"/> method.
         /// <code>
         /// var metadata = accountApi.GetLastApiMetadata();
         /// </code>

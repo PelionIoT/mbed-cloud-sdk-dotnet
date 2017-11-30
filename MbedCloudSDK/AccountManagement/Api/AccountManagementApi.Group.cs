@@ -20,6 +20,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// List groups.
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.ListGroups(QueryOptions)"/> method.
         /// <code>
         /// try
         /// {
@@ -87,6 +88,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Get details of a group.
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.GetGroup(string)"/> method.
         /// <code>
         /// try
         /// {
@@ -118,6 +120,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// List users of a group
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.ListGroupUsers(string, QueryOptions)"/> method.
         /// <code>
         /// try
         /// {
@@ -182,6 +185,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// List API keys of a group.
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.ListGroupApiKeys(string, QueryOptions)"/> method.
         /// <code>
         /// try
         /// {

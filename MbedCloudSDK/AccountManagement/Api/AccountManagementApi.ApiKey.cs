@@ -20,6 +20,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Lists API keys.
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.ListApiKeys(QueryOptions)"/> method.
         /// <code>
         /// try
         /// {
@@ -87,6 +88,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// List API keys asynchronously.
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.ListApiKeysAsync(QueryOptions)"/> method.
         /// <code>
         /// try
         /// {
@@ -137,6 +139,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Get API key details. Returns currently used key for empty argument.
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.GetApiKey(string)"/> method.
         /// <code>
         /// try
         /// {
@@ -174,6 +177,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Get API key details asynchronously. Returns currently used key for empty argument.
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.GetApiKeyAsync(string)"/> method.
         /// <code>
         /// try
         /// {
@@ -211,6 +215,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Create new Api key.
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.AddApiKey(ApiKey)"/> method.
         /// <code>
         /// try
         /// {
@@ -246,6 +251,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Create new Api key asynchronously.
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.AddApiKeyAsync(ApiKey)"/> method.
         /// <code>
         /// try
         /// {
@@ -281,6 +287,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Update API key.
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.UpdateApiKey(string, ApiKey)"/> method.
         /// <code>
         /// try
         /// {
@@ -315,6 +322,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Update API key asynchronously.
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.UpdateApiKeyAsync(string, ApiKey)"/> method.
         /// <code>
         /// try
         /// {
@@ -349,6 +357,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Delete API key.
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.DeleteApiKey(string)"/> method.
         /// <code>
         /// try
         /// {
@@ -378,6 +387,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Delete API key asynchronously.
         /// </summary>
         /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.DeleteApiKeyAsync(string)"/> method.
         /// <code>
         /// try
         /// {
