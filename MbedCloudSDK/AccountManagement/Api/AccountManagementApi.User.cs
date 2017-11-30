@@ -19,8 +19,30 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// List users.
         /// </summary>
-        /// <param name="options">Query Options</param>
-        /// <returns>Paginated Response of Users</returns>
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.ListUsers(QueryOptions)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var options = new QueryOptions
+        ///     {
+        ///         Limit = 5,
+        ///     };
+        ///     var users = api.ListUsers(options).Data;
+        ///     foreach (var item in users)
+        ///     {
+        ///         Console.WriteLine(item);
+        ///     }
+        ///     return users;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="options"><see cref="QueryOptions"/></param>
+        /// <returns>Paginated Response of <see cref="User"/></returns>
         public PaginatedResponse<User> ListUsers(QueryOptions options = null)
         {
             if (options == null)
@@ -38,11 +60,6 @@ namespace MbedCloudSDK.AccountManagement.Api
             }
         }
 
-        /// <summary>
-        /// Lists the device logs.
-        /// </summary>
-        /// <returns>The device logs.</returns>
-        /// <param name="options">Query options.</param>
         private ResponsePage<User> ListUsersFunc(QueryOptions options = null)
         {
             if (options == null)
@@ -68,10 +85,24 @@ namespace MbedCloudSDK.AccountManagement.Api
         }
 
         /// <summary>
-        /// Get user
+        /// Get details of a user
         /// </summary>
-        /// <param name="userId">User Id</param>
-        /// <returns>User</returns>
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.GetUser(string)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var user = accountApi.GetUser("015c3c46514802420a010b1000000000");
+        ///     return user;
+        /// }
+        /// catch (Exception)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="userId"><see cref="User.Id"/></param>
+        /// <returns><see cref="User"/></returns>
         public User GetUser(string userId)
         {
             try
@@ -87,8 +118,22 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Get user asynchronously.
         /// </summary>
-        /// <param name="userId">User Id</param>
-        /// <returns>Task with User</returns>
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.GetUserAsync(string)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var user = await accountApi.GetUser("015c3c46514802420a010b1000000000");
+        ///     return user;
+        /// }
+        /// catch (Exception)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="userId"><see cref="User.Id"/></param>
+        /// <returns><see cref="Task"/> with <see cref="User"/></returns>
         public async Task<User> GetUserAsync(string userId)
         {
             try
@@ -105,8 +150,28 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Create user
         /// </summary>
-        /// <param name="user">User</param>
-        /// <returns>User</returns>
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.AddUser(User)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var user = new User
+        ///     {
+        ///         Email = "montybot@arm.com",
+        ///         FullName = "monty bot",
+        ///         Username = "montybot1",
+        ///     }
+        ///     var newUser = accountApi.AddUser(user);
+        ///     return newUser;
+        /// }
+        /// catch (Exception)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="user"><see cref="User"/></param>
+        /// <returns><see cref="User"/></returns>
         public User AddUser(User user)
         {
             try
@@ -123,8 +188,28 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Create user
         /// </summary>
-        /// <param name="user">User</param>
-        /// <returns>Task with User</returns>
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.AddUserAsync(User)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var user = new User
+        ///     {
+        ///         Email = "montybot@arm.com",
+        ///         FullName = "monty bot",
+        ///         Username = "montybot1",
+        ///     }
+        ///     var newUser = await accountApi.AddUserAsync(user);
+        ///     return newUser;
+        /// }
+        /// catch (Exception)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="user"><see cref="User"/></param>
+        /// <returns><see cref="Task"/> with <see cref="User"/></returns>
         public async Task<User> AddUserAsync(User user)
         {
             try
@@ -141,14 +226,34 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Update user
         /// </summary>
-        /// <param name="user">User</param>
-        /// <returns>Task with User</returns>
-        public User UpdateUser(User user)
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.UpdateUser(string, User)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var updatedInfo = new User
+        ///     {
+        ///         FullName = "Sir Monty Bot",
+        ///         Username = "montybot2",
+        ///     }
+        ///     var updatedUser = accountApi.UpdateUser("015c3c46514802420a010b1000000000", updatedInfo);
+        ///     return updatedUser;
+        /// }
+        /// catch (Exception)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="userId"><see cref="User.Id"/></param>
+        /// <param name="user"><see cref="User"/></param>
+        /// <returns><see cref="User"/></returns>
+        public User UpdateUser(string userId, User user)
         {
             try
             {
                 var req = user.CreatePutRequest();
-                return User.Map(adminApi.UpdateUser(user.Id, req));
+                return User.Map(adminApi.UpdateUser(userId, req));
             }
             catch (iam.Client.ApiException e)
             {
@@ -159,14 +264,34 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Update user asynchronously.
         /// </summary>
-        /// <param name="user">User</param>
-        /// <returns>Task with User</returns>
-        public async Task<User> UpdateUserAsync(User user)
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.UpdateUserAsync(string, User)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var updatedInfo = new User
+        ///     {
+        ///         FullName = "Sir Monty Bot",
+        ///         Username = "montybot2",
+        ///     }
+        ///     var updatedUser = await accountApi.UpdateUserAsync("015c3c46514802420a010b1000000000", updatedInfo);
+        ///     return updatedUser;
+        /// }
+        /// catch (Exception)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="userId"><see cref="User.Id"/></param>
+        /// <param name="user"><see cref="User"/></param>
+        /// <returns><see cref="User"/></returns>
+        public async Task<User> UpdateUserAsync(string userId, User user)
         {
             try
             {
                 var req = user.CreatePutRequest();
-                var userData = await adminApi.UpdateUserAsync(user.Id, req);
+                var userData = await adminApi.UpdateUserAsync(userId, req);
                 return User.Map(userData);
             }
             catch (iam.Client.ApiException e)
@@ -178,7 +303,20 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Delete user.
         /// </summary>
-        /// <param name="userId">User Id</param>
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.DeleteUser(string)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     accountApi.DeleteUser("015c3c46514802420a010b1000000000");
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="userId"><see cref="User.Id"/></param>
         public void DeleteUser(string userId)
         {
             try
@@ -194,8 +332,21 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Delete user asynchronously.
         /// </summary>
-        /// <param name="userId">User Id</param>
-        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.DeleteUserAsync(string)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     accountApi.DeleteUser("015c3c46514802420a010b1000000000");
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="userId"><see cref="User.Id"/></param>
+        /// <returns><see cref="Task"/></returns>
         public async Task DeleteUserAsync(string userId)
         {
             try

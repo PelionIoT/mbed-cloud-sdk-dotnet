@@ -49,5 +49,39 @@ namespace ConsoleExamples.Examples.AccountManagement
             Console.WriteLine(account);
             return account;
         }
+
+        /// <summary>
+        /// Update an account
+        /// </summary>
+        /// <returns>Account</returns>
+        public Account UpdateAccount()
+        {
+            var account = new Account
+            {
+                State = "New York",
+                City = "New York",
+                Country = "USA",
+            };
+            var updatedAccount = api.UpdateAccount(account);
+            Console.WriteLine(updatedAccount);
+            return updatedAccount;
+        }
+
+        /// <summary>
+        /// Update an account async
+        /// </summary>
+        /// <returns>Account</returns>
+        public async Task<Account> UpdateAccountAsync()
+        {
+            var account = new Account
+            {
+                State = "New York",
+                City = "New York",
+                Country = "USA",
+            };
+            var updatedAccount = await api.UpdateAccountAsync(account);
+            Console.WriteLine(updatedAccount);
+            return updatedAccount;
+        }
     }
 }

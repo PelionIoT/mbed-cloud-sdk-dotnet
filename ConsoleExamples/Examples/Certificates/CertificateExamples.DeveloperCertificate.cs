@@ -42,7 +42,12 @@ namespace ConsoleExamples.Examples.Certificates
             var newCertificate = api.AddDeveloperCertificate(certificate);
             Console.WriteLine($"New certificate id - {newCertificate.Id}");
 
-            var updatedCertificate = api.UpdateCertificate(newCertificate.Id, new Certificate { Name = GetRandomName(), Description = "my updated certificate" });
+            newCertificate.Name = GetRandomName();
+            newCertificate.Description = "my updated certificate";
+
+            Console.WriteLine(newCertificate);
+
+            var updatedCertificate = api.UpdateCertificate(newCertificate.Id, newCertificate);
 
             Console.WriteLine($"updated certificate description - {updatedCertificate.Description}");
 

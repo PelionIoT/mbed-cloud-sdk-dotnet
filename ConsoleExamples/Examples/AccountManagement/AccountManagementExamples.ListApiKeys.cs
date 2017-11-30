@@ -52,5 +52,71 @@ namespace ConsoleExamples.Examples.AccountManagement
 
             return keys;
         }
+
+        /// <summary>
+        /// Get an api key
+        /// </summary>
+        /// <returns>Api key</returns>
+        public ApiKey GetApiKey()
+        {
+            var key = api.GetApiKey();
+            Console.WriteLine(key);
+            return key;
+        }
+
+        /// <summary>
+        /// Get an api key async
+        /// </summary>
+        /// <returns>Api key</returns>
+        public async Task<ApiKey> GetApiKeyAsync()
+        {
+            var key = await api.GetApiKeyAsync();
+            Console.WriteLine(key);
+            return key;
+        }
+
+        /// <summary>
+        /// Add an api key
+        /// </summary>
+        /// <returns>ApiKey</returns>
+        public ApiKey AddApiKey()
+        {
+            var key = new ApiKey
+            {
+                Name = "Example api Key",
+            };
+            var newKey = api.AddApiKey(key);
+            Console.WriteLine(newKey);
+
+            newKey.Name = "updated example key";
+            var updatedKey = api.UpdateApiKey(newKey.Id, newKey);
+            Console.WriteLine(updatedKey);
+
+            api.DeleteApiKey(updatedKey.Id);
+
+            return updatedKey;
+        }
+
+        /// <summary>
+        /// Add an api key async
+        /// </summary>
+        /// <returns>ApiKey</returns>
+        public async Task<ApiKey> AddApiKeyAsync()
+        {
+            var key = new ApiKey
+            {
+                Name = "Example api Key",
+            };
+            var newKey = await api.AddApiKeyAsync(key);
+            Console.WriteLine(newKey);
+
+            newKey.Name = "updated example key";
+            var updatedKey = await api.UpdateApiKeyAsync(newKey.Id, newKey);
+            Console.WriteLine(updatedKey);
+
+            await api.DeleteApiKeyAsync(updatedKey.Id);
+
+            return updatedKey;
+        }
     }
 }

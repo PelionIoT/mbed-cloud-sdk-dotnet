@@ -6,6 +6,7 @@ namespace ConsoleExamples.Examples.AccountManagement
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using MbedCloudSDK.AccountManagement.Model.User;
     using MbedCloudSDK.Common.Query;
 
@@ -25,9 +26,6 @@ namespace ConsoleExamples.Examples.AccountManagement
                 Limit = 5,
             };
 
-            // options.Filter.Add("status", "ACTIVE");
-
-            // Console.WriteLine(options.Filter.FilterString);
             var users = api.ListUsers(options).Data;
             foreach (var item in users)
             {
@@ -35,6 +33,66 @@ namespace ConsoleExamples.Examples.AccountManagement
             }
 
             return users;
+        }
+
+        /// <summary>
+        /// Add user
+        /// </summary>
+        /// <returns>User</returns>
+        public User AddUser()
+        {
+            var user = new User
+            {
+                Email = "montybot@arm.com",
+                FullName = "Monty Bot",
+                Username = "xXmoBot69Xx",
+            };
+            var newUser = api.AddUser(user);
+
+            Console.WriteLine(newUser);
+
+            var updatedInfo = new User
+            {
+                Username = "mBot",
+            };
+
+            var updatedUser = api.UpdateUser(newUser.Id, updatedInfo);
+
+            Console.WriteLine(updatedUser);
+
+            api.DeleteUser(updatedUser.Id);
+
+            return updatedUser;
+        }
+
+        /// <summary>
+        /// Add user async
+        /// </summary>
+        /// <returns>User</returns>
+        public async Task<User> AddUserAsync()
+        {
+            var user = new User
+            {
+                Email = "montybot@arm.com",
+                FullName = "Monty Bot",
+                Username = "xXmoBot69Xx",
+            };
+            var newUser = await api.AddUserAsync(user);
+
+            Console.WriteLine(newUser);
+
+            var updatedInfo = new User
+            {
+                Username = "mBot",
+            };
+
+            var updatedUser = await api.UpdateUserAsync(newUser.Id, updatedInfo);
+
+            Console.WriteLine(updatedUser);
+
+            await api.DeleteUserAsync(updatedUser.Id);
+
+            return updatedUser;
         }
     }
 }

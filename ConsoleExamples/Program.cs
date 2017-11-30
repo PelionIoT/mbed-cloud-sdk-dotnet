@@ -61,10 +61,18 @@ namespace ConsoleExamples
             Console.WriteLine("---Account management---");
             Console.WriteLine($"{i++}. Get account details");
             Console.WriteLine($"{i++}. Get account details async");
+            Console.WriteLine($"{i++}. Update account details");
+            Console.WriteLine($"{i++}. Update account details async");
             Console.WriteLine($"{i++}. List Api keys");
             Console.WriteLine($"{i++}. List Api keys asynchronously");
+            Console.WriteLine($"{i++}. Get Api Key");
+            Console.WriteLine($"{i++}. Get Api Key asynchronously");
+            Console.WriteLine($"{i++}. Add Api key");
+            Console.WriteLine($"{i++}. Add Api key async");
             Console.WriteLine($"{i++}. List Groups");
             Console.WriteLine($"{i++}. List Users");
+            Console.WriteLine($"{i++}. Add User");
+            Console.WriteLine($"{i++}. Add User async");
             Console.WriteLine("---Certificates---");
             Console.WriteLine($"{i++}. Create Certificate");
             Console.WriteLine($"{i++}. List Certificates");
@@ -112,81 +120,105 @@ namespace ConsoleExamples
                     await accountManagementExamples.GetAccountDetailsAsync();
                     break;
                 case 3:
-                    accountManagementExamples.ListApiKeys();
+                    accountManagementExamples.UpdateAccount();
                     break;
                 case 4:
-                    await accountManagementExamples.ListApiKeysAsync();
+                    await accountManagementExamples.UpdateAccountAsync();
                     break;
                 case 5:
-                    accountManagementExamples.ListAllGroups();
+                    accountManagementExamples.ListApiKeys();
                     break;
                 case 6:
-                    accountManagementExamples.ListActiveUsers();
+                    await accountManagementExamples.ListApiKeysAsync();
                     break;
                 case 7:
-                    certificateExamples.CreateCertificate();
+                    accountManagementExamples.GetApiKey();
                     break;
                 case 8:
-                    certificateExamples.ListAllCertificates();
+                    await accountManagementExamples.GetApiKeyAsync();
                     break;
                 case 9:
-                    connectExamples.ListConnectedDevices();
+                    accountManagementExamples.AddApiKey();
                     break;
                 case 10:
-                    connectExamples.ListConnectedDevicesWithFilter();
+                    await accountManagementExamples.AddApiKeyAsync();
                     break;
                 case 11:
-                    connectExamples.ListLast30Days();
+                    accountManagementExamples.ListAllGroups();
                     break;
                 case 12:
-                    connectExamples.ListLast2Days();
+                    accountManagementExamples.ListActiveUsers();
                     break;
                 case 13:
-                    connectExamples.ListMonth();
+                    accountManagementExamples.AddUser();
                     break;
                 case 14:
-                    connectExamples.CreatePreSubscription();
+                    await accountManagementExamples.AddUserAsync();
                     break;
                 case 15:
-                    connectExamples.GetResourceValue();
+                    certificateExamples.CreateCertificate();
                     break;
                 case 16:
-                    connectExamples.SetResourceValue();
+                    certificateExamples.ListAllCertificates();
                     break;
                 case 17:
-                    connectExamples.Subscribe();
+                    connectExamples.ListConnectedDevices();
                     break;
                 case 18:
-                    connectExamples.SubscribeToMultipleResources();
+                    connectExamples.ListConnectedDevicesWithFilter();
                     break;
                 case 19:
-                    connectExamples.RegisterWebhook();
+                    connectExamples.ListLast30Days();
                     break;
                 case 20:
-                    deviceDirectoryExamples.CreateDevice();
+                    connectExamples.ListLast2Days();
                     break;
                 case 21:
-                    deviceDirectoryExamples.ListAllDevices();
+                    connectExamples.ListMonth();
                     break;
                 case 22:
-                    deviceDirectoryExamples.AddQuery();
+                    connectExamples.CreatePreSubscription();
                     break;
                 case 23:
-                    deviceDirectoryExamples.ListDevicesLogs();
+                    connectExamples.GetResourceValue();
                     break;
                 case 24:
-                    deviceDirectoryExamples.ListDeviceEvents();
+                    connectExamples.SetResourceValue();
                     break;
                 case 25:
-                    updateExamples.CreateCampaign(false);
+                    connectExamples.Subscribe();
                     break;
                 case 26:
-                    updateExamples.ListImages();
+                    connectExamples.SubscribeToMultipleResources();
                     break;
                 case 27:
-                    updateExamples.ListManifests();
+                    connectExamples.RegisterWebhook();
                     break;
                 case 28:
+                    deviceDirectoryExamples.CreateDevice();
+                    break;
+                case 29:
+                    deviceDirectoryExamples.ListAllDevices();
+                    break;
+                case 30:
+                    deviceDirectoryExamples.AddQuery();
+                    break;
+                case 31:
+                    deviceDirectoryExamples.ListDevicesLogs();
+                    break;
+                case 32:
+                    deviceDirectoryExamples.ListDeviceEvents();
+                    break;
+                case 33:
+                    updateExamples.CreateCampaign(false);
+                    break;
+                case 34:
+                    updateExamples.ListImages();
+                    break;
+                case 35:
+                    updateExamples.ListManifests();
+                    break;
+                case 36:
                     updateExamples.ListCampaigns();
                     break;
                 default:
