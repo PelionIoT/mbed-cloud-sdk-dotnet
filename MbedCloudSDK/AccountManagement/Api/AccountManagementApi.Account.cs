@@ -15,14 +15,28 @@ namespace MbedCloudSDK.AccountManagement.Api
     public partial class AccountManagementApi
     {
         /// <summary>
-        /// Get account info.
+        /// Get details of account associated with current API key
         /// </summary>
-        /// <returns>Account</returns>
+        /// <example>
+        /// <code>
+        /// using MbedCloudSDK.AccountManagement.Model.Account;
+        /// using MbedCloudSDK.Exceptions;
+        /// try
+        /// {
+        ///     var account = accountApi.GetAccount();
+        ///     return account;
+        /// }
+        /// catch (CloudApiException e)
+        /// {
+        ///     throw e;
+        /// }
+        /// </code>
+        /// </example>
+        /// <returns><see cref="Account"/></returns>
         public Account GetAccount()
         {
             try
             {
-                // Get account information including limits and policies
                 var account = developerApi.GetMyAccountInfo("limits, policies");
                 return Account.Map(account);
             }
@@ -33,9 +47,24 @@ namespace MbedCloudSDK.AccountManagement.Api
         }
 
         /// <summary>
-        /// Get account info asynchronously.
+        /// Get details of account associated with current API key asynchronously.
         /// </summary>
-        /// <returns>Task with Account</returns>
+        /// <example>
+        /// <code>
+        /// using MbedCloudSDK.AccountManagement.Model.Account;
+        /// using MbedCloudSDK.Exceptions;
+        /// try
+        /// {
+        ///     var account = await accountApi.GetAccountAsync();
+        ///     return account;
+        /// }
+        /// catch (CloudApiException e)
+        /// {
+        ///     throw e;
+        /// }
+        /// </code>
+        /// </example>
+        /// <returns><see cref="Task"/> with an <see cref="Account"/></returns>
         public async Task<Account> GetAccountAsync()
         {
             try
@@ -50,10 +79,29 @@ namespace MbedCloudSDK.AccountManagement.Api
         }
 
         /// <summary>
-        /// Update account.
+        /// Update details of account associated with current API key.
         /// </summary>
-        /// <param name="account">Updated account info.</param>
-        /// <returns>Account</returns>
+        /// <param name="account"><see cref="Account"/> with updated info.</param>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var account = new Account
+        ///     {
+        ///         state = "New York",
+        ///         city = "New York",
+        ///         country = "USA",
+        ///     };
+        ///     var updatedAccount = api.UpdateAccount(account);
+        ///     return updatedAccount;
+        /// }
+        /// catch (CloudApiException e)
+        /// {
+        ///     throw e;
+        /// }
+        /// </code>
+        /// </example>
+        /// <returns><see cref="Account"/></returns>
         public Account UpdateAccount(Account account)
         {
             var req = account.CreateUpdateRequest();
@@ -69,10 +117,29 @@ namespace MbedCloudSDK.AccountManagement.Api
         }
 
         /// <summary>
-        /// Update account asynchronously.
+        /// Update details of account associated with current API key asynchronously.
         /// </summary>
-        /// <param name="account">Updated account info.</param>
-        /// <returns>Account</returns>
+        /// <param name="account"><see cref="Account"/> with updated info.</param>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var account = new Account
+        ///     {
+        ///         state = "New York",
+        ///         city = "New York",
+        ///         country = "USA",
+        ///     };
+        ///     var updatedAccount = api.UpdateAccount(account);
+        ///     return updatedAccount;
+        /// }
+        /// catch (CloudApiException e)
+        /// {
+        ///     throw e;
+        /// }
+        /// </code>
+        /// </example>
+        /// <returns><see cref="Task"/> with <see cref="Account"/></returns>
         public async Task<Account> UpdateAccountAsync(Account account)
         {
             var req = account.CreateUpdateRequest();

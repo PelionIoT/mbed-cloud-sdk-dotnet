@@ -327,6 +327,7 @@ namespace MbedCloudSDK.Certificates.Model
             certificate.ServerCertificate = developerCertificateData.ServerCertificate;
             certificate.Id = developerCertificateData.Id;
             certificate.Name = developerCertificateData.Name;
+            certificate.CreatedAt = DateTime.Parse(developerCertificateData.CreatedAt);
             return certificate;
         }
 
@@ -340,6 +341,8 @@ namespace MbedCloudSDK.Certificates.Model
             sb.Append("class Certificate {\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DeviceExecutionMode: ").Append(DeviceExecutionMode).Append("\n");
+            sb.Append("  Type: ").Append(Convert.ToString(Type)).Append("\n");
+            sb.Append("  Status: ").Append(Convert.ToString(Status)).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Subject: ").Append(Subject).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");

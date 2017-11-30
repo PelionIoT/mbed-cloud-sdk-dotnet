@@ -10,8 +10,16 @@ namespace MbedCloudSDK.AccountManagement.Api
     using MbedCloudSDK.Common;
 
     /// <summary>
-    /// Exposing functionality from IAM.
+    /// Account Management Api. Exposing functionality from IAM.
     /// </summary>
+    /// <example>
+    /// This API is initalized with a <see cref="Config"/> object.
+    /// <code>
+    /// using MbedCloudSDK.Common;
+    /// var config = new Config(apiKey);
+    /// vat accountApi = new AccountManagementApi(config);
+    /// </code>
+    /// </example>
     public partial class AccountManagementApi : BaseApi
     {
         private DeveloperApi developerApi;
@@ -22,9 +30,9 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// Exposing functionality from the following underlying services:
         /// - IAM
         /// </summary>
-        /// <param name="config">Config.</param>
+        /// <param name="config"><see cref="Config"/></param>
         public AccountManagementApi(Config config)
-            : base(config)
+         : base(config)
         {
             if (!string.IsNullOrEmpty(config.Host))
             {
@@ -40,9 +48,14 @@ namespace MbedCloudSDK.AccountManagement.Api
         }
 
         /// <summary>
-        /// Get metadata for last api call
+        /// Get metadata for the last api call.
         /// </summary>
-        /// <returns>Api Metadata</returns>
+        /// <example>
+        /// <code>
+        /// var metadata = accountApi.GetLastApiMetadata();
+        /// </code>
+        /// </example>
+        /// <returns><see cref="ApiMetadata"/></returns>
         public static ApiMetadata GetLastApiMetadata()
         {
             return ApiMetadata.Map(Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());

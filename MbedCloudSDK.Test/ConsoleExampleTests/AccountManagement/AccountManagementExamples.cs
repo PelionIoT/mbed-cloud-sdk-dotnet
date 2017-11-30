@@ -66,5 +66,85 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
             var groups = accountApi.ListAllGroups();
             Assert.IsNotEmpty(groups);
         }
+
+        [Test]
+        public void UpdateAccount()
+        {
+            var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
+            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
+            var account = accountApi.UpdateAccount();
+            Assert.AreEqual("New York", account.City);
+        }
+
+        [Test]
+        public void UpdateAccountAsync()
+        {
+            var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
+            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
+            var account = accountApi.UpdateAccountAsync().Result;
+            Assert.AreEqual("New York", account.City);
+        }
+
+        [Test]
+        public void GetApiKey()
+        {
+            var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
+            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
+            var apiKey = accountApi.GetApiKey();
+            Assert.IsNotNull(apiKey);
+        }
+
+        [Test]
+        public void GetApiKeyAsync()
+        {
+            var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
+            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
+            var apiKey = accountApi.GetApiKeyAsync().Result;
+            Assert.IsNotNull(apiKey);
+        }
+
+        [Test]
+        public void AddApiKey()
+        {
+            var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
+            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
+            var apiKey = accountApi.AddApiKey();
+            Assert.IsNotNull(apiKey);
+        }
+
+        [Test]
+        public void AddApiKeyAsync()
+        {
+            var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
+            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
+            var apiKey = accountApi.AddApiKeyAsync().Result;
+            Assert.IsNotNull(apiKey);
+        }
+
+        [Test]
+        public void AddUser()
+        {
+            var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
+            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
+            var user = accountApi.AddUser();
+            Assert.IsNotNull(user);
+        }
+
+        [Test]
+        public void AddUserAsync()
+        {
+            var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
+            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
+            var user = accountApi.AddUserAsync().Result;
+            Assert.IsNotNull(user);
+        }
     }
 }
