@@ -24,7 +24,7 @@ namespace MbedCloudSDK.Connect.Api
         /// </summary>
         /// <param name="options"><see cref="QueryOptions"/></param>
         /// <returns>The list of connected devices.</returns>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -112,7 +112,7 @@ namespace MbedCloudSDK.Connect.Api
         /// }
         /// </code>
         /// </example>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public string[] ListDeviceSubscriptions(string deviceId)
         {
             try
@@ -141,7 +141,7 @@ namespace MbedCloudSDK.Connect.Api
         /// }
         /// </code>
         /// </example>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public void DeleteDeviceSubscriptions(string deviceId)
         {
             try
@@ -176,7 +176,7 @@ namespace MbedCloudSDK.Connect.Api
         /// }
         /// </code>
         /// </example>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public List<Resource> ListResources(string deviceId)
         {
             try
@@ -213,7 +213,7 @@ namespace MbedCloudSDK.Connect.Api
         /// }
         /// </code>
         /// </example>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public Resource GetResource(string deviceId, string resourcePath)
         {
             var resources = ListResources(deviceId);
@@ -246,7 +246,7 @@ namespace MbedCloudSDK.Connect.Api
         /// }
         /// </code>
         /// </example>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public void DeleteResource(string deviceId, string resourcePath, bool? noResponse = null)
         {
             try
@@ -280,7 +280,7 @@ namespace MbedCloudSDK.Connect.Api
         /// }
         /// </code>
         /// </example>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public string GetResourceValue(string deviceId, string resourcePath)
         {
             try
@@ -330,7 +330,7 @@ namespace MbedCloudSDK.Connect.Api
         /// }
         /// </code>
         /// </example>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public AsyncConsumer<string> SetResourceValue(string deviceId, string resourcePath, string resourceValue, bool? noResponse = null)
         {
             try
@@ -370,7 +370,7 @@ namespace MbedCloudSDK.Connect.Api
         /// }
         /// </code>
         /// </example>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public AsyncConsumer<string> ExecuteResource(string deviceId, string resourcePath, string functionName = null, bool? noResponse = null)
         {
             try

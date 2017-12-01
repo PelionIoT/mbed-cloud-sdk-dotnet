@@ -43,7 +43,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </example>
         /// <param name="options"><see cref="QueryOptions"/></param>
         /// <returns>Paginated Response of <see cref="User"/></returns>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public PaginatedResponse<User> ListUsers(QueryOptions options = null)
         {
             if (options == null)
@@ -104,7 +104,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </example>
         /// <param name="userId"><see cref="User.Id"/></param>
         /// <returns><see cref="User"/></returns>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public User GetUser(string userId)
         {
             try
@@ -136,7 +136,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </example>
         /// <param name="userId"><see cref="User.Id"/></param>
         /// <returns><see cref="Task"/> with <see cref="User"/></returns>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public async Task<User> GetUserAsync(string userId)
         {
             try
@@ -175,7 +175,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </example>
         /// <param name="user"><see cref="User"/></param>
         /// <returns><see cref="User"/></returns>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public User AddUser(User user)
         {
             try
@@ -214,7 +214,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </example>
         /// <param name="user"><see cref="User"/></param>
         /// <returns><see cref="Task"/> with <see cref="User"/></returns>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public async Task<User> AddUserAsync(User user)
         {
             try
@@ -253,7 +253,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <param name="userId"><see cref="User.Id"/></param>
         /// <param name="user"><see cref="User"/></param>
         /// <returns><see cref="User"/></returns>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public User UpdateUser(string userId, User user)
         {
             try
@@ -292,7 +292,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <param name="userId"><see cref="User.Id"/></param>
         /// <param name="user"><see cref="User"/></param>
         /// <returns><see cref="User"/></returns>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public async Task<User> UpdateUserAsync(string userId, User user)
         {
             try
@@ -324,7 +324,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </code>
         /// </example>
         /// <param name="userId"><see cref="User.Id"/></param>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public void DeleteUser(string userId)
         {
             try
@@ -355,7 +355,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </example>
         /// <param name="userId"><see cref="User.Id"/></param>
         /// <returns><see cref="Task"/></returns>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public async Task DeleteUserAsync(string userId)
         {
             try

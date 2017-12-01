@@ -37,7 +37,7 @@ namespace MbedCloudSDK.Connect.Api
         /// api.StopNotifications();
         /// </code>
         /// </example>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public AsyncConsumer<string> AddResourceSubscription(string deviceId, string resourcePath)
         {
             try
@@ -104,7 +104,7 @@ namespace MbedCloudSDK.Connect.Api
         /// }
         /// </code>
         /// </example>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public void DeleteResourceSubscription(string deviceId = null, string resourcePath = null)
         {
             try

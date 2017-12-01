@@ -40,7 +40,7 @@ namespace MbedCloudSDK.Connect.Api
         /// }
         /// </code>
         /// </example>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public void UpdatePresubscriptions(Presubscription[] presubscriptions)
         {
             var presubscriptionArray = new mds.Model.PresubscriptionArray();
@@ -81,7 +81,7 @@ namespace MbedCloudSDK.Connect.Api
         /// }
         /// </code>
         /// </example>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public Presubscription[] ListPresubscriptions()
         {
             try
@@ -109,7 +109,7 @@ namespace MbedCloudSDK.Connect.Api
         /// }
         /// </code>
         /// </example>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public void DeletePresubscriptions()
         {
             try
@@ -137,7 +137,7 @@ namespace MbedCloudSDK.Connect.Api
         /// }
         /// </code>
         /// </example>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public void DeleteSubscriptions()
         {
             try

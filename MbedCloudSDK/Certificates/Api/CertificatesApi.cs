@@ -107,7 +107,7 @@ namespace MbedCloudSDK.Certificates.Api
         /// </example>
         /// <returns>Paginated response with <see cref="Certificate"/></returns>
         /// <param name="options"><see cref="QueryOptions"/></param>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public PaginatedResponse<Certificate> ListCertificates(QueryOptions options = null)
         {
             if (options == null)
@@ -168,7 +168,7 @@ namespace MbedCloudSDK.Certificates.Api
         /// </example>
         /// <param name="certificateId"><see cref="Certificate.Id"/></param>
         /// <returns><see cref="Certificate"/></returns>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public Certificate GetCertificate(string certificateId)
         {
                 Certificate trustedCert = null;
@@ -223,7 +223,7 @@ namespace MbedCloudSDK.Certificates.Api
         /// }
         /// </code>
         /// </example>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public Certificate AddCertificate(Certificate certificate, string certificateData = null, string signature = null)
         {
             if (!certificate.Type.HasValue || certificate.Type.Value == CertificateType.Developer)
@@ -271,7 +271,7 @@ namespace MbedCloudSDK.Certificates.Api
         /// </example>
         /// <param name="certificate"><see cref="Certificate"/></param>
         /// <returns><see cref="Certificate"/></returns>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public Certificate AddDeveloperCertificate(Certificate certificate)
         {
             var body = new connector_ca.Model.DeveloperCertificateRequestData(certificate.Name, certificate.Description);
@@ -302,7 +302,7 @@ namespace MbedCloudSDK.Certificates.Api
         /// }
         /// </code>
         /// </example>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public void DeleteCertificate(string certificateId)
         {
             try
@@ -340,7 +340,7 @@ namespace MbedCloudSDK.Certificates.Api
         /// <param name="certificateId"><see cref="Certificate.Id"/></param>
         /// <param name="updatedCertificate"><see cref="Certificate"/></param>
         /// <returns><see cref="Certificate"/></returns>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public Certificate UpdateCertificate(string certificateId, Certificate updatedCertificate)
         {
             var originalCertificate = GetCertificate(certificateId);

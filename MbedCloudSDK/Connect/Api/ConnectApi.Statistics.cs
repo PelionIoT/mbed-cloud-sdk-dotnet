@@ -18,7 +18,7 @@ namespace MbedCloudSDK.Connect.Api
         /// </summary>
         /// <param name="options">Query options.</param>
         /// <returns>List of statistics data queried using options.</returns>
-        /// <exception cref="CloudApiException"></exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// This sample shows how to call the <see cref="ListMetrics"/> method.
         /// <code>
