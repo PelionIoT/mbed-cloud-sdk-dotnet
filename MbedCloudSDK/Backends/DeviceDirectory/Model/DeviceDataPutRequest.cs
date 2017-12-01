@@ -33,48 +33,27 @@ namespace device_directory.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceDataPutRequest" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected DeviceDataPutRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceDataPutRequest" /> class.
-        /// </summary>
         /// <param name="Description">The description of the device..</param>
         /// <param name="EndpointName">The endpoint name given to the device..</param>
         /// <param name="AutoUpdate">DEPRECATED: Mark this device for automatic firmware update..</param>
         /// <param name="HostGateway">The &#x60;endpoint_name&#x60; of the host gateway, if appropriate..</param>
         /// <param name="_Object">The API resource entity..</param>
         /// <param name="CustomAttributes">Up to five custom key-value attributes. Note that keys cannot start with a number..</param>
-        /// <param name="DeviceKey">The fingerprint of the device certificate. (required).</param>
+        /// <param name="DeviceKey">The fingerprint of the device certificate..</param>
         /// <param name="EndpointType">The endpoint type of the device. For example, the device is a gateway..</param>
-        /// <param name="CaId">The certificate issuer&#39;s ID. (required).</param>
+        /// <param name="CaId">The certificate issuer&#39;s ID..</param>
         /// <param name="Name">The name of the device..</param>
         public DeviceDataPutRequest(string Description = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), string _Object = default(string), Dictionary<string, string> CustomAttributes = default(Dictionary<string, string>), string DeviceKey = default(string), string EndpointType = default(string), string CaId = default(string), string Name = default(string))
         {
-            // to ensure "DeviceKey" is required (not null)
-            if (DeviceKey == null)
-            {
-                throw new InvalidDataException("DeviceKey is a required property for DeviceDataPutRequest and cannot be null");
-            }
-            else
-            {
-                this.DeviceKey = DeviceKey;
-            }
-            // to ensure "CaId" is required (not null)
-            if (CaId == null)
-            {
-                throw new InvalidDataException("CaId is a required property for DeviceDataPutRequest and cannot be null");
-            }
-            else
-            {
-                this.CaId = CaId;
-            }
             this.Description = Description;
             this.EndpointName = EndpointName;
             this.AutoUpdate = AutoUpdate;
             this.HostGateway = HostGateway;
             this._Object = _Object;
             this.CustomAttributes = CustomAttributes;
+            this.DeviceKey = DeviceKey;
             this.EndpointType = EndpointType;
+            this.CaId = CaId;
             this.Name = Name;
         }
         

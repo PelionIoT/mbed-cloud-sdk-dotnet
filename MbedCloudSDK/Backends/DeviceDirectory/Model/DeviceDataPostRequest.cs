@@ -105,11 +105,6 @@ namespace device_directory.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceDataPostRequest" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected DeviceDataPostRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceDataPostRequest" /> class.
-        /// </summary>
         /// <param name="BootstrapExpirationDate">The expiration date of the certificate used to connect to bootstrap server..</param>
         /// <param name="BootstrappedTimestamp">The timestamp of the device&#39;s most recent bootstrap process...</param>
         /// <param name="ConnectorExpirationDate">The expiration date of the certificate used to connect to the LWM2M server..</param>
@@ -130,29 +125,11 @@ namespace device_directory.Model
         /// <param name="Deployment">DEPRECATED: The last deployment used on the device..</param>
         /// <param name="MechanismUrl">The address of the connector to use..</param>
         /// <param name="Name">The name of the device..</param>
-        /// <param name="DeviceKey">The fingerprint of the device certificate. (required).</param>
+        /// <param name="DeviceKey">The fingerprint of the device certificate..</param>
         /// <param name="Manifest">DEPRECATED: The URL for the current device manifest..</param>
-        /// <param name="CaId">The certificate issuer&#39;s ID. (required).</param>
+        /// <param name="CaId">The certificate issuer&#39;s ID..</param>
         public DeviceDataPostRequest(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), MechanismEnum? Mechanism = default(MechanismEnum?), string DeviceClass = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), int? DeviceExecutionMode = default(int?), Dictionary<string, string> CustomAttributes = default(Dictionary<string, string>), StateEnum? State = default(StateEnum?), string SerialNumber = default(string), string FirmwareChecksum = default(string), string _Object = default(string), string Description = default(string), string VendorId = default(string), string EndpointType = default(string), string Deployment = default(string), string MechanismUrl = default(string), string Name = default(string), string DeviceKey = default(string), string Manifest = default(string), string CaId = default(string))
         {
-            // to ensure "DeviceKey" is required (not null)
-            if (DeviceKey == null)
-            {
-                throw new InvalidDataException("DeviceKey is a required property for DeviceDataPostRequest and cannot be null");
-            }
-            else
-            {
-                this.DeviceKey = DeviceKey;
-            }
-            // to ensure "CaId" is required (not null)
-            if (CaId == null)
-            {
-                throw new InvalidDataException("CaId is a required property for DeviceDataPostRequest and cannot be null");
-            }
-            else
-            {
-                this.CaId = CaId;
-            }
             this.BootstrapExpirationDate = BootstrapExpirationDate;
             this.BootstrappedTimestamp = BootstrappedTimestamp;
             this.ConnectorExpirationDate = ConnectorExpirationDate;
@@ -173,7 +150,9 @@ namespace device_directory.Model
             this.Deployment = Deployment;
             this.MechanismUrl = MechanismUrl;
             this.Name = Name;
+            this.DeviceKey = DeviceKey;
             this.Manifest = Manifest;
+            this.CaId = CaId;
         }
         
         /// <summary>
