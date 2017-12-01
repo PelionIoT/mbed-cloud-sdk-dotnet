@@ -6,6 +6,7 @@ namespace MbedCloudSDK.Connect.Api
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Filter;
     using MbedCloudSDK.Common.Query;
@@ -21,8 +22,28 @@ namespace MbedCloudSDK.Connect.Api
         /// <summary>
         /// Lists all connected devices.
         /// </summary>
-        /// <param name="options">options</param>
+        /// <param name="options"><see cref="QueryOptions"/></param>
         /// <returns>The list of connected devices.</returns>
+        /// <exception cref="CloudApiException"></exception>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var options = new QueryOptions();
+        ///     options.Filter.Add("createdAt", new DateTime(2017, 1, 1), FilterOperator.GreaterOrEqual);
+        ///     options.Filter.Add("createdAt", new DateTime(2018, 1, 1), FilterOperator.LessOrEqual);
+        ///     var devices = connectApi.ListConnectedDevices(options);
+        ///     foreach (var item in devices)
+        ///     {
+        ///         Console.WriteLine(item);
+        ///     }
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public PaginatedResponse<ConnectedDevice> ListConnectedDevices(QueryOptions options = null)
         {
             if (options == null)
@@ -70,10 +91,28 @@ namespace MbedCloudSDK.Connect.Api
         }
 
         /// <summary>
-        /// List a device's subscriptions
+        /// List a device's resources with subscriptions
         /// </summary>
-        /// <param name="deviceId">Device Id</param>
+        /// <param name="deviceId">DeviceId</param>
         /// <returns>List of device subscriptions</returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var subscriptions = connectApi.ListDeviceSubscriptions("015bb66a92a30000000000010010006d");
+        ///     foreach (var resource in subscriptions)
+        ///     {
+        ///         Console.WriteLine(resource);
+        ///     }
+        ///     return subscriptions;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <exception cref="CloudApiException"></exception>
         public string[] ListDeviceSubscriptions(string deviceId)
         {
             try
@@ -90,6 +129,19 @@ namespace MbedCloudSDK.Connect.Api
         /// Removes a device's subscriptions
         /// </summary>
         /// <param name="deviceId">Device Id</param>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     connectApi.DeleteDeviceSubscriptions("015bb66a92a30000000000010010006d");
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <exception cref="CloudApiException"></exception>
         public void DeleteDeviceSubscriptions(string deviceId)
         {
             try
@@ -103,25 +155,236 @@ namespace MbedCloudSDK.Connect.Api
         }
 
         /// <summary>
+        /// List Resources.
+        /// </summary>
+        /// <param name="deviceId">Id of the device that this resource belongs to.</param>
+        /// <returns>List of resources for this endpoint.</returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var resources = connectApi.ListResources("015bb66a92a30000000000010010006d");
+        ///     foreach (var resource in resources)
+        ///     {
+        ///         Console.WriteLine(resource);
+        ///     }
+        ///     return resources;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <exception cref="CloudApiException"></exception>
+        public List<Resource> ListResources(string deviceId)
+        {
+            try
+            {
+                using (var api = new ConnectApi(Config))
+                {
+                    return endpointsApi.V2EndpointsDeviceIdGet(deviceId)
+                    .Select(r => Resource.Map(deviceId, r, api))
+                    .ToList();
+                }
+            }
+            catch (mds.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        /// <summary>
+        /// Get a resource from the path
+        /// </summary>
+        /// <param name="deviceId">Id of the device</param>
+        /// <param name="resourcePath">Path to the resource</param>
+        /// <returns>The resource at the givn path</returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var resource = connectApi.GetResource("015bb66a92a30000000000010010006d", "5001/0/1");
+        ///     return resource;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <exception cref="CloudApiException"></exception>
+        public Resource GetResource(string deviceId, string resourcePath)
+        {
+            var resources = ListResources(deviceId);
+            foreach (var resource in resources)
+            {
+                if (resource.Path == resourcePath)
+                {
+                    return resource;
+                }
+            }
+
+            throw new CloudApiException(404, "Resource not found");
+        }
+
+        /// <summary>
+        /// Delete resource.
+        /// </summary>
+        /// <param name="deviceId">Device Id</param>
+        /// <param name="resourcePath">Path to the resource.</param>
+        /// <param name="noResponse">Whether to make a non-confirmable request to the device</param>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     connectApi.DeleteResource("015bb66a92a30000000000010010006d", "5001/0/1");
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <exception cref="CloudApiException"></exception>
+        public void DeleteResource(string deviceId, string resourcePath, bool? noResponse = null)
+        {
+            try
+            {
+                resourcesApi.V2EndpointsDeviceIdResourcePathDelete(deviceId, resourcePath, noResponse);
+            }
+            catch (mds.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        /// <summary>
         /// Gets the value of the resource..
         /// </summary>
         /// <param name="deviceId">Device Id</param>
         /// <param name="resourcePath">Resource path.</param>
         /// <returns>Resourse Value</returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     connectApi.StartNotifications();
+        ///     var resp = connectApi.GetResourceValue("015bb66a92a30000000000010010006d", "5001/0/1");
+        ///     Console.WriteLine($"The value of the resource is {resp}");
+        ///     connectApi.StopNotifications();
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <exception cref="CloudApiException"></exception>
         public string GetResourceValue(string deviceId, string resourcePath)
         {
-            resourcePath = FixedPath(resourcePath);
-            var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathGet(deviceId, resourcePath);
-            var collection = new AsyncProducerConsumerCollection<string>();
-            AsyncResponses.Add(asyncID.AsyncResponseId, collection);
-
-            if (AsyncResponses.ContainsKey(asyncID.AsyncResponseId))
+            try
             {
-                var res = AsyncResponses[asyncID.AsyncResponseId].Take().Result;
-                return res;
-            }
+                resourcePath = FixedPath(resourcePath);
+                var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathGet(deviceId, resourcePath);
+                var collection = new AsyncProducerConsumerCollection<string>();
+                AsyncResponses.Add(asyncID.AsyncResponseId, collection);
 
-            return null;
+                if (AsyncResponses.ContainsKey(asyncID.AsyncResponseId))
+                {
+                    var res = AsyncResponses[asyncID.AsyncResponseId].Take().Result;
+                    return res;
+                }
+                else
+                {
+                    throw new CloudApiException(404, "AsyncId not found.");
+                }
+            }
+            catch (CloudApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        /// <summary>
+        /// Set value of the resource.
+        /// </summary>
+        /// <param name="deviceId">Id of the device.</param>
+        /// <param name="resourcePath">Path to the resource.</param>
+        /// <param name="resourceValue">Value to set.</param>
+        /// <param name="noResponse">Don't get a response.</param>
+        /// <returns>Async consumer with string</returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     connectApi.StartNotifications();
+        ///     var resp = connectApi.SetResourceValue("015bb66a92a30000000000010010006d", "5001/0/1", "new value");
+        ///     var newValue = connectApi.GetResourceValue("015bb66a92a30000000000010010006d", "5001/0/1");
+        ///     Console.WriteLine($"The value of the resource is {newValue}");
+        ///     connectApi.StopNotifications();
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <exception cref="CloudApiException"></exception>
+        public AsyncConsumer<string> SetResourceValue(string deviceId, string resourcePath, string resourceValue, bool? noResponse = null)
+        {
+            try
+            {
+                resourcePath = FixedPath(resourcePath);
+                var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPut(deviceId, resourcePath, resourceValue, noResponse);
+                var collection = new AsyncProducerConsumerCollection<string>();
+                AsyncResponses.Add(asyncID.AsyncResponseId, collection);
+                return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
+            }
+            catch (mds.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        /// <summary>
+        /// Execute a function on a resource
+        /// </summary>
+        /// <param name="deviceId">Device ID</param>
+        /// <param name="resourcePath">Resource path</param>
+        /// <param name="functionName">The function to trigger</param>
+        /// <param name="noResponse">If true, Mbed Device Connector will not wait for a response</param>
+        /// <returns>AsyncConsumer with response</returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     connectApi.StartNotifications();
+        ///     var resp = connectApi.ExecuteResource("015bb66a92a30000000000010010006d", "5001/0/1");
+        ///     Console.WriteLine(resp);
+        ///     connectApi.StopNotifications();
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <exception cref="CloudApiException"></exception>
+        public AsyncConsumer<string> ExecuteResource(string deviceId, string resourcePath, string functionName = null, bool? noResponse = null)
+        {
+            try
+            {
+                resourcePath = FixedPath(resourcePath);
+                var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPost(deviceId, resourcePath, functionName, noResponse);
+                var collection = new AsyncProducerConsumerCollection<string>();
+                AsyncResponses.Add(asyncID.AsyncResponseId, collection);
+                return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
+            }
+            catch (mds.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
         }
 
         /// <summary>
@@ -134,23 +397,6 @@ namespace MbedCloudSDK.Connect.Api
         {
             resourcePath = FixedPath(resourcePath);
             var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathGetAsync(deviceId, resourcePath).Result;
-            var collection = new AsyncProducerConsumerCollection<string>();
-            AsyncResponses.Add(asyncID.AsyncResponseId, collection);
-            return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
-        }
-
-        /// <summary>
-        /// Set value of the resource.
-        /// </summary>
-        /// <param name="deviceId">Id of the device.</param>
-        /// <param name="resourcePath">Path to the resource.</param>
-        /// <param name="resourceValue">Value to set.</param>
-        /// <param name="noResponse">Don't get a response.</param>
-        /// <returns>Async consumer with string</returns>
-        public AsyncConsumer<string> SetResourceValue(string deviceId, string resourcePath, string resourceValue, bool? noResponse = null)
-        {
-            resourcePath = FixedPath(resourcePath);
-            var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPut(deviceId, resourcePath, resourceValue, noResponse);
             var collection = new AsyncProducerConsumerCollection<string>();
             AsyncResponses.Add(asyncID.AsyncResponseId, collection);
             return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
@@ -171,85 +417,6 @@ namespace MbedCloudSDK.Connect.Api
             var collection = new AsyncProducerConsumerCollection<string>();
             AsyncResponses.Add(asyncID.AsyncResponseId, collection);
             return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
-        }
-
-        /// <summary>
-        /// List Resources.
-        /// </summary>
-        /// <param name="deviceId">Id of the device that this resource belongs to.</param>
-        /// <returns>List of resources for this endpoint.</returns>
-        public List<Resource> ListResources(string deviceId)
-        {
-            try
-            {
-                var resourcesList = endpointsApi.V2EndpointsDeviceIdGet(deviceId);
-                var resources = new List<Resource>();
-                foreach (var resource in resourcesList)
-                {
-                    resources.Add(Resource.Map(deviceId, resource, this));
-                }
-
-                return resources;
-            }
-            catch (mds.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        /// <summary>
-        /// Delete resource.
-        /// </summary>
-        /// <param name="deviceId">Name of the Device</param>
-        /// <param name="resourcePath">Path to the resource.</param>
-        /// <param name="noResponse">no response</param>
-        public void DeleteResource(string deviceId, string resourcePath, bool? noResponse = null)
-        {
-            resourcesApi.V2EndpointsDeviceIdResourcePathDelete(deviceId, resourcePath, noResponse);
-        }
-
-        /// <summary>
-        /// Get the resources.
-        /// </summary>
-        /// <returns>The resources.</returns>
-        /// <param name="endpointName">Endpoint resources are connected to.</param>
-        public List<Resource> GetResources(string endpointName)
-        {
-            try
-            {
-                var resp = endpointsApi.V2EndpointsDeviceIdGet(endpointName);
-                var resources = new List<Resource>();
-                foreach (var resource in resp)
-                {
-                    resources.Add(Resource.Map(endpointName, resource, this));
-                }
-
-                return resources;
-            }
-            catch (mds.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        /// <summary>
-        /// Get a resource from the path
-        /// </summary>
-        /// <param name="deviceId">Id of the device</param>
-        /// <param name="resourcePath">Path to the resource</param>
-        /// <returns>The resource at the givn path. Throws if not found</returns>
-        public Resource GetResource(string deviceId, string resourcePath)
-        {
-            var resources = ListResources(deviceId);
-            foreach (var resource in resources)
-            {
-                if (resource.Path == resourcePath)
-                {
-                    return resource;
-                }
-            }
-
-            throw new CloudApiException(404, "Resource not found");
         }
     }
 }

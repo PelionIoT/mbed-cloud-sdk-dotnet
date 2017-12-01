@@ -43,6 +43,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </example>
         /// <returns>A paginated response containing <see cref="ApiKey"/></returns>
         /// <param name="options"><see cref="QueryOptions"/></param>
+        /// <exception cref="CloudApiException"></exception>
         public PaginatedResponse<ApiKey> ListApiKeys(QueryOptions options = null)
         {
             if (options == null)
@@ -111,6 +112,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </example>
         /// <returns>A <see cref="Task"/> with List containing <see cref="ApiKey"/></returns>
         /// <param name="options"><see cref="QueryOptions"/></param>
+        /// <exception cref="CloudApiException"></exception>
         public async Task<List<ApiKey>> ListApiKeysAsync(QueryOptions options = null)
         {
             if (options == null)
@@ -154,6 +156,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </example>
         /// <param name="apiKeyId"><see cref="ApiKey.Id"/></param>
         /// <returns><see cref="ApiKey"/></returns>
+        /// <exception cref="CloudApiException"></exception>
         public ApiKey GetApiKey(string apiKeyId = null)
         {
             try
@@ -192,6 +195,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </example>
         /// <param name="apiKeyId"><see cref="ApiKey.Id"/></param>
         /// <returns><see cref="Task"/> with <see cref="ApiKey"/></returns>
+        /// <exception cref="CloudApiException"></exception>
         public async Task<ApiKey> GetApiKeyAsync(string apiKeyId = null)
         {
             try
@@ -234,6 +238,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </example>
         /// <param name="key"><see cref="ApiKey"/></param>
         /// <returns><see cref="ApiKey"/></returns>
+        /// <exception cref="CloudApiException"></exception>
         public ApiKey AddApiKey(ApiKey key)
         {
             try
@@ -270,6 +275,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </example>
         /// <param name="key"><see cref="ApiKey"/></param>
         /// <returns><see cref="Task"/> with <see cref="ApiKey"/></returns>
+        /// <exception cref="CloudApiException"></exception>
         public async Task<ApiKey> AddApiKeyAsync(ApiKey key)
         {
             try
@@ -305,6 +311,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <param name="apiKeyId"><see cref="ApiKey.Id"/></param>
         /// <param name="key"><see cref="ApiKey"/></param>
         /// <returns><see cref="ApiKey"/></returns>
+        /// <exception cref="CloudApiException"></exception>
         public ApiKey UpdateApiKey(string apiKeyId, ApiKey key)
         {
             try
@@ -340,6 +347,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <param name="apiKeyId"><see cref="ApiKey.Id"/></param>
         /// <param name="key"><see cref="ApiKey"/></param>
         /// <returns><see cref="Task"/> with <see cref="ApiKey"/></returns>
+        /// <exception cref="CloudApiException"></exception>
         public async Task<ApiKey> UpdateApiKeyAsync(string apiKeyId, ApiKey key)
         {
             try
@@ -371,6 +379,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </code>
         /// </example>
         /// <param name="apiKeyId"><see cref="ApiKey.Id"/></param>
+        /// <exception cref="CloudApiException"></exception>
         public void DeleteApiKey(string apiKeyId)
         {
             try
@@ -402,6 +411,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </example>
         /// <param name="apiKeyId"><see cref="ApiKey.Id"/></param>
         /// <returns><see cref="Task"/> with <see cref="ApiKey"/></returns>
+        /// <exception cref="CloudApiException"></exception>
         public async Task DeleteApiKeyAsync(string apiKeyId)
         {
             try

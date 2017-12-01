@@ -59,7 +59,7 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         /// <returns>List of resources</returns>
         public List<Model.Resource.Resource> ListResources()
         {
-            return api.GetResources(Id);
+            return api.ListResources(Id);
         }
 
         /// <summary>

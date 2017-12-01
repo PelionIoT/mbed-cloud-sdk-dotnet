@@ -50,11 +50,11 @@ namespace MbedCloudSDK.Common
         public bool? HasMore { get; private set; }
 
         /// <summary>
-        /// Gets or sets total number of records
+        /// Gets total number of records
         /// </summary>
         /// <value>Total number of records</value>
         [JsonProperty]
-        public int? TotalCount { get; set; }
+        public int? TotalCount { get; private set; }
 
         /// <summary>
         /// Gets the data of the current page

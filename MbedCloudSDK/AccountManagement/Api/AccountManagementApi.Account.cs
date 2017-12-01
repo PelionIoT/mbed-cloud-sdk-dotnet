@@ -34,6 +34,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </code>
         /// </example>
         /// <returns><see cref="Account"/></returns>
+        /// <exception cref="CloudApiException"></exception>
         public Account GetAccount()
         {
             try
@@ -67,6 +68,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </code>
         /// </example>
         /// <returns><see cref="Task"/> with an <see cref="Account"/></returns>
+        /// <exception cref="CloudApiException"></exception>
         public async Task<Account> GetAccountAsync()
         {
             try
@@ -105,6 +107,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </code>
         /// </example>
         /// <returns><see cref="Account"/></returns>
+        /// <exception cref="CloudApiException"></exception>
         public Account UpdateAccount(Account account)
         {
             var req = account.CreateUpdateRequest();
@@ -144,6 +147,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </code>
         /// </example>
         /// <returns><see cref="Task"/> with <see cref="Account"/></returns>
+        /// <exception cref="CloudApiException"></exception>
         public async Task<Account> UpdateAccountAsync(Account account)
         {
             var req = account.CreateUpdateRequest();
