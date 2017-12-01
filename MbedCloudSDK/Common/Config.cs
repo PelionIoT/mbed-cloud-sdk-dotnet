@@ -14,7 +14,7 @@ namespace MbedCloudSDK.Common
         /// <summary>
         /// Initializes a new instance of the <see cref="Config"/> class.
         /// </summary>
-        /// <param name="apiKey">API key.</param>
+        /// <param name="apiKey"><see cref="ApiKey"/></param>
         /// <param name="host">Host url</param>
         /// <param name="authorizationPrefix">Authorization prefix</param>
         public Config(string apiKey, string host = "https://api.us-east-1.mbedcloud.com", string authorizationPrefix = "Bearer")

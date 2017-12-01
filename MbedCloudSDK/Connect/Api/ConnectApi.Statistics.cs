@@ -18,28 +18,25 @@ namespace MbedCloudSDK.Connect.Api
         /// </summary>
         /// <param name="options">Query options.</param>
         /// <returns>List of statistics data queried using options.</returns>
-        /// <exception cref="CloudApiException">Error while getting statistics.</exception>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// This sample shows how to call the <see cref="ListMetrics"/> method.
         /// <code>
-        /// class TestClass
+        /// try
         /// {
-        ///     static int Main()
+        ///     var options = new MetricQueryOptions()
         ///     {
-        ///         Config config = new Config(apiKey);
-        ///         config.Host = "https://lab-api.mbedcloudintegration.net";
-        ///         ConnectApi api = new ConnectApi(config);
-        ///         try {
-        ///             var metricsData = api.GetMetrics();
-        ///             foreach(var data in metricsData)
-        ///             {
-        ///                 Console.WriteLine(data);
-        ///             }
-        ///         }
-        ///         catch (CloudApiException ex) {
-        ///             Console.WriteLine(ex.Message);
-        ///         }
+        ///         Interval = "1d",
+        ///         Period = "30d",
+        ///     };
+        ///     var metricsData = api.ListMetrics(options);
+        ///     foreach(var data in metricsData)
+        ///     {
+        ///         Console.WriteLine(data);
         ///     }
+        /// }
+        /// catch (CloudApiException) {
+        ///     throw;
         /// }
         /// </code>
         /// </example>
@@ -68,34 +65,6 @@ namespace MbedCloudSDK.Connect.Api
                     order: options.Order);
                 var statisticsList = new List<Metric>();
                 foreach (var data in response.Data)
-                {
-                    statisticsList.Add(Metric.Map(data));
-                }
-
-                return statisticsList;
-            }
-            catch (iam.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        /// <summary>
-        /// Get account-specific metrics.
-        /// </summary>
-        /// <param name="options">Query Options</param>
-        /// <returns>List of Metrics</returns>
-        public List<Metric> GetAccountMetrics(MetricQueryOptions options = null)
-        {
-            if (options == null)
-            {
-                options = new MetricQueryOptions();
-            }
-
-            try
-            {
-                var statisticsList = new List<Metric>();
-                foreach (var data in accountApi.V3MetricsGet(include: options.Include, interval: options.Interval, start: options.Start, end: options.End, period: options.Period, limit: options.Limit, after: options.After, order: options.Order).Data)
                 {
                     statisticsList.Add(Metric.Map(data));
                 }

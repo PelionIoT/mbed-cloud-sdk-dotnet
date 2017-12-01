@@ -43,6 +43,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </example>
         /// <param name="options"><see cref="QueryOptions"/></param>
         /// <returns>Paginated Response of <see cref="Group"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public PaginatedResponse<Group> ListGroups(QueryOptions options = null)
         {
             if (options == null)
@@ -103,6 +104,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// </example>
         /// <param name="groupId"><see cref="Group.Id"/></param>
         /// <returns><see cref="Group"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public Group GetGroup(string groupId)
         {
             try
@@ -144,6 +146,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <param name="groupId"><see cref="Group.Id"/></param>
         /// <param name="options"><see cref="QueryOptions"/></param>
         /// <returns>Paginated Respoinse with <see cref="User"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public PaginatedResponse<User> ListGroupUsers(string groupId, QueryOptions options = null)
         {
             if (options == null)
@@ -209,6 +212,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <param name="groupId"><see cref="Group.Id"/></param>
         /// <param name="options"><see cref="QueryOptions"/></param>
         /// <returns>Paginated Response of <see cref="ApiKey"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public PaginatedResponse<ApiKey> ListGroupApiKeys(string groupId, QueryOptions options = null)
         {
             if (options == null)

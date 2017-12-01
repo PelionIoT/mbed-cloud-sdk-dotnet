@@ -33,8 +33,6 @@ namespace TestServer
                 defaults: new { controller = "Home", action = "Exit" }
             );
 
-            config.MessageHandlers.Add (new LogRequestAndResponseHandler ());
-
             appBuilder.UseWebApi(config);
         }
 

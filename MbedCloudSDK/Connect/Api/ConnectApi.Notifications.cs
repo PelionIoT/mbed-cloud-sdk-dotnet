@@ -66,6 +66,18 @@ namespace MbedCloudSDK.Connect.Api
         /// <summary>
         /// Starts the notifications task.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     connectApi.StartNotifications();
+        /// }
+        /// catch (Exception)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public void StartNotifications()
         {
             try
@@ -75,12 +87,25 @@ namespace MbedCloudSDK.Connect.Api
             catch (Exception)
             {
                 Console.WriteLine("Notifications already started.");
+                throw;
             }
         }
 
         /// <summary>
         /// Stops the notifications task.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     connectApi.StopNotifications();
+        /// }
+        /// catch (Exception)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public void StopNotifications()
         {
             try
@@ -91,6 +116,7 @@ namespace MbedCloudSDK.Connect.Api
             catch (Exception)
             {
                 Console.WriteLine("Notifications not started yet.");
+                throw;
             }
         }
     }

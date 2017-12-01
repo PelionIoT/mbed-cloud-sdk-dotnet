@@ -16,10 +16,23 @@ namespace MbedCloudSDK.Connect.Api
     using mds.Api;
 
     /// <summary>
-    /// Exposing functionality from the following underlying services:
-    /// - Connector / mDS
-    /// - Device query service
-    /// - Device catalog
+    /// Connect Api
+    /// <example>
+    /// This API is intialized with a <see cref="Config"/> object.
+    /// <code>
+    /// using MbedCloudSDK.Common;
+    /// var config = new config(apiKey);
+    /// var connectApi = new ConnectApi(config);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// Some methods require a notification channel to be set up before they will work.
+    /// <code>
+    /// connectApi.StartNotifications();
+    /// var resource = connectApi.GetResourceValue("", "5001/0/1");
+    /// connectApi.StopNotifications();
+    /// </code>
+    /// </example>
     /// </summary>
     public partial class ConnectApi : BaseApi, IDisposable
     {
@@ -49,7 +62,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectApi"/> class.
         /// </summary>
-        /// <param name="config">Config.</param>
+        /// <param name="config"><see cref="Config"/></param>
         public ConnectApi(Config config)
             : base(config)
         {
@@ -98,7 +111,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <summary>
         /// Get meta data for the last Mbed Cloud API call
         /// </summary>
-        /// <returns>Metadata Object</returns>
+        /// <returns><see cref="ApiMetadata"/></returns>
         public static ApiMetadata GetLastApiMetadata()
         {
             var lastMds = mds.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault()?.Headers?.Where(m => m.Name == "Date")?.Select(d => DateTime.Parse(d.Value.ToString()))?.FirstOrDefault();
