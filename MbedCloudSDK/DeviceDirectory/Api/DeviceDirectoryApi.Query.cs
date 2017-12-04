@@ -17,8 +17,29 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// List all queries.
         /// </summary>
-        /// <param name="options">Query Options</param>
-        /// <returns>Paginated Response of Queries</returns>
+        /// <param name="options"><see cref="QueryOptions"/></param>
+        /// <returns>Paginated Response of <see cref="Query"/></returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var options = new QueryOptions()
+        ///     {
+        ///         Limit = 5,
+        ///     };
+        ///     var queries = deviceApi.ListQueries(options).Data;
+        ///     foreach (var item in queries)
+        ///     {
+        ///         Console.WriteLine(item);
+        ///     }
+        ///     return queries;
+        /// }
+        /// catch (CloudApiExeption)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public PaginatedResponse<Query> ListQueries(QueryOptions options = null)
         {
             if (options == null)
@@ -63,8 +84,21 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Get query in device query service.
         /// </summary>
-        /// <param name="queryId">Query Id</param>
-        /// <returns>Query</returns>
+        /// <param name="queryId"><see cref="Query.Id"/></param>
+        /// <returns><see cref="Query"/></returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var query = deviceApi.GetQuery("015c45eb321700000000000100100155");
+        ///     return query;
+        /// }
+        /// catch (CloudApiExeption)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public Query GetQuery(string queryId)
         {
             try
@@ -82,7 +116,25 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// Creates new query.
         /// </summary>
         /// <returns>The query.</returns>
-        /// <param name="query">Query object to create</param>
+        /// <param name="query"><see cref="Query"/></param>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var query = new Query
+        ///     {
+        ///         Name = "newQuery",
+        ///     };
+        ///     query.Filter.Add("state", "bootstrapped");
+        ///     var newQuery = api.AddQuery(query);
+        ///     return newQuery;
+        /// }
+        /// catch (CloudApiExeption)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public Query AddQuery(Query query)
         {
             var deviceQueryPostPutRequest = new device_directory.Model.DeviceQueryPostPutRequest(query.Filter.FilterString, query.Name);
@@ -101,9 +153,27 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Update existing query in device query service.
         /// </summary>
-        /// <param name="queryId">Query Id</param>
-        /// <param name="queryToUpdate">Query to update</param>
-        /// <returns>Query</returns>
+        /// <param name="queryId"><see cref="Query.Id"/></param>
+        /// <param name="queryToUpdate"><see cref="Query"/> to update</param>
+        /// <returns><see cref="Query"/></returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var query = deviceApi.GetQuery("015c45eb321700000000000100100155");
+        ///     var fieldsToUpdate = new Query
+        ///     {
+        ///         Name = "updatedQuery",
+        ///     };
+        ///     var updatedQuery = deviceApi.UpdateQuery(query.Id, fieldsToUpdate);
+        ///     return updatedQuery;
+        /// }
+        /// catch (CloudApiExeption)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public Query UpdateQuery(string queryId, Query queryToUpdate)
         {
             var originalQuery = GetQuery(queryId);
@@ -124,7 +194,19 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Deletes the query.
         /// </summary>
-        /// <param name="queryId">Query identifier.</param>
+        /// <param name="queryId"><see cref="Query.Id"/></param>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     deviceApi.DeleteQuery("015c45eb321700000000000100100155");
+        /// }
+        /// catch (CloudApiExeption)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public void DeleteQuery(string queryId)
         {
             try

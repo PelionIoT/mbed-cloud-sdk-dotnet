@@ -44,10 +44,10 @@ namespace ConsoleExamples.Examples.DeviceDirectory
 
             // add the device
             var newDevice = api.AddDevice(device);
-            Console.WriteLine($"Device createed with id - {newDevice.Id}");
+            Console.WriteLine($"Device created with id - {newDevice.Id}");
 
             // update the device
-            var updatedDevice = api.UpdateDevice(newDevice.Id, new Device { CertificateFingerprint = newDevice.CertificateFingerprint, CertificateIssuerId = (GetHashCode() * 4).ToString() });
+            var updatedDevice = api.UpdateDevice(newDevice.Id, new Device { CertificateIssuerId = (GetHashCode() * 4).ToString() });
 
             Console.WriteLine("Updated device");
             Console.WriteLine(updatedDevice);

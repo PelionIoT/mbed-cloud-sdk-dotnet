@@ -6,6 +6,7 @@ namespace ConsoleExamples.Examples.DeviceDirectory
 {
     using System;
     using System.Collections.Generic;
+    using MbedCloudSDK.Common.Filter;
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.DeviceDirectory.Model.Logging;
 
@@ -24,6 +25,11 @@ namespace ConsoleExamples.Examples.DeviceDirectory
             {
                 Limit = 5,
             };
+
+            options.Filter.Add("deviceId", "015c45eb321700000000000100100155");
+            options.Filter.Add("eventDate", new DateTime(2017, 1, 1), FilterOperator.GreaterOrEqual);
+            options.Filter.Add("eventDate", new DateTime(2018, 1, 1), FilterOperator.LessOrEqual);
+
             var logs = api.ListDeviceEvents(options).Data;
             foreach (var log in logs)
             {
