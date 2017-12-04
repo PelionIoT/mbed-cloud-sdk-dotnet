@@ -8,11 +8,29 @@ If you want to contribute to creating a SDK for another language the work is
 greatly appreciated and you can read more about the process
 [here](https://github.com/ARMmbed/mbed-cloud-sdk-codegen/blob/master/docs/create-new-language.md).
 
-## Installation
+## Installation (Windows)
 
-The application is installed using nuget:
+To install in Visual Studio using the package manager console
 
 ```
+PM> Install-Package Mbed.Cloud.SDK
+```
+
+To install from the command line, make sure you have Nuget installed. Instructions are [here](https://docs.microsoft.com/en-us/nuget/tools/nuget-exe-cli-reference).
+
+```
+& nuget update -self
+$ nuget install Mbed.Cloud.SDK
+```
+
+## Installation (Mac)
+
+1. Install [mono](http://www.mono-project.com/download/)
+2. Install nuget using this [brew formulae](http://brewformulas.org/Nuget) 
+3. Download package from Nuget
+
+```
+& nuget update -self
 $ nuget install Mbed.Cloud.SDK
 ```
 
@@ -24,9 +42,9 @@ $ nuget install Mbed.Cloud.SDK
 ```csharp
 using MbedCloudSDK.Common;
 
-var config = new Config(apiKey, "https://api.us-east-1.mbedcloud.com");
+var config = new Config(apiKey);
 ```
-3. Import api and you are ready to go.
+3. Import api and instantiate with a Config object.
 
 ```csharp
 using MbedCloudSDK.Common;
