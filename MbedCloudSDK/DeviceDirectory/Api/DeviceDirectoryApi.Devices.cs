@@ -19,7 +19,28 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// Lists the devices.
         /// </summary>
         /// <returns>The devices.</returns>
-        /// <param name="options">Query options.</param>
+        /// <param name="options"><see cref="QueryOptions"/></param>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var options = new QueryOptions()
+        ///     {
+        ///         Limit = 5,
+        ///     };
+        ///     var devices = deviceApi.ListDevices(options).Data;
+        ///     foreach (var item in devices)
+        ///     {
+        ///         Console.WriteLine(item);
+        ///     }
+        ///     return devices;
+        /// }
+        /// catch (CloudApiExeption)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public PaginatedResponse<Device> ListDevices(QueryOptions options = null)
         {
             if (options == null)
@@ -64,8 +85,21 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Get device details from catalog.
         /// </summary>
-        /// <param name="deviceId">The ID of the device to retrieve.</param>
-        /// <returns>Device</returns>
+        /// <param name="deviceId"><see cref="Device.Id"/></param>
+        /// <returns><see cref="Device"/></returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var device = deviceApi.GetDevice("015c5ed320c0000000000001001000f0");
+        ///     return device;
+        /// }
+        /// catch (CloudApiExeption)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public Device GetDevice(string deviceId)
         {
             try
@@ -82,8 +116,27 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Add a new device to catalog.
         /// </summary>
-        /// <param name="device">The device to add to catalog.</param>
-        /// <returns>Device</returns>
+        /// <param name="device">The <see cref="Device"/> to add to catalog.</param>
+        /// <returns><see cref="Device"/></returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var device = new Device()
+        ///     {
+        ///         Name = "NewDevice",
+        ///         CertificateFingerprint = "07:7A:EB:67:37:42:4D:11:5C:3E:99:07:1E:EB:44:...",
+        ///         CertificateIssuerId = "015c3c457b2002420a01041603c00000",
+        ///     };
+        ///     var newDevice = deviceApi.AddDevice(device);
+        ///     return newDevice;
+        /// }
+        /// catch (CloudApiExeption)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public Device AddDevice(Device device)
         {
             try
@@ -100,9 +153,27 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Update existing device in catalog.
         /// </summary>
-        /// <param name="deviceId">Device Id</param>
-        /// <param name="deviceToUpdate">Device to update</param>
-        /// <returns>Device</returns>
+        /// <param name="deviceId"><see cref="Device.Id"/></param>
+        /// <param name="deviceToUpdate"><see cref="Device"/> to update</param>
+        /// <returns><see cref="Device"/></returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var device = deviceApi.GetDevice(device);
+        ///     var fieldsToUpdate = new Device
+        ///     {
+        ///         CertificateIssuerId = "015c5ed320c0000000000001001000f0",
+        ///     };
+        ///     var updatedDevice = deviceApi.UpdateDevice(device.Id, fieldsToUpdate);
+        ///     return updatedDevice;
+        /// }
+        /// catch (CloudApiExeption)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public Device UpdateDevice(string deviceId, Device deviceToUpdate)
         {
             var originalDevice = GetDevice(deviceId);
@@ -121,12 +192,24 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Deletes the device.
         /// </summary>
-        /// <param name="deviceID">Device identifier.</param>
-        public void DeleteDevice(string deviceID)
+        /// <param name="deviceId"><see cref="Device.Id"/></param>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     deviceApi.DeleteDevice("015c5ed320c0000000000001001000f0");
+        /// }
+        /// catch (CloudApiExeption)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        public void DeleteDevice(string deviceId)
         {
             try
             {
-                api.DeviceDestroy(deviceID);
+                api.DeviceDestroy(deviceId);
             }
             catch (device_directory.Client.ApiException ex)
             {

@@ -44,10 +44,15 @@ namespace MbedCloudSDK.Certificates.Api
         {
             auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);
 
-            Configuration.Default.ApiClient = new ApiClient(config.Host);
-            Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
-            Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            Configuration.Default.DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
+            connector_ca.Client.Configuration.Default.ApiClient = new ApiClient(config.Host);
+            connector_ca.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
+            connector_ca.Client.Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            connector_ca.Client.Configuration.Default.DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
+
+            iam.Client.Configuration.Default.ApiClient = new iam.Client.ApiClient(config.Host);
+            iam.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
+            iam.Client.Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            iam.Client.Configuration.Default.DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
 
             developerCertificateApi = new DeveloperCertificateApi();
             serverCredentialsApi = new ServerCredentialsApi();
@@ -119,7 +124,7 @@ namespace MbedCloudSDK.Certificates.Api
             {
                 return new PaginatedResponse<Certificate>(ListCertificatesFunc, options);
             }
-            catch (CloudApiException e)
+            catch (iam.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -189,7 +194,7 @@ namespace MbedCloudSDK.Certificates.Api
                         var devResponse = developerCertificateApi.V3DeveloperCertificatesIdGet(trustedCert.Id, auth);
                         trustedCert = Certificate.MapDeveloperCert(devResponse, trustedCert);
                     }
-                    catch (ApiException ex)
+                    catch (connector_ca.Client.ApiException ex)
                     {
                         throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
                     }
@@ -280,7 +285,7 @@ namespace MbedCloudSDK.Certificates.Api
                 var response = developerCertificateApi.V3DeveloperCertificatesPost(auth, body);
                 return Certificate.MapDeveloperCert(response);
             }
-            catch (ApiException ex)
+            catch (connector_ca.Client.ApiException ex)
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
@@ -372,7 +377,7 @@ namespace MbedCloudSDK.Certificates.Api
                     var resp = developerApi.UpdateCertificate(certificateId, req);
                     return GetCertificate(resp.Id);
                 }
-                catch (CloudApiException ex)
+                catch (iam.Client.ApiException ex)
                 {
                     throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorCode);
                 }
