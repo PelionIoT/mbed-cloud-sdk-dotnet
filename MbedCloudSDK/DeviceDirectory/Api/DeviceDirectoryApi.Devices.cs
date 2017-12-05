@@ -20,6 +20,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// </summary>
         /// <returns>The devices.</returns>
         /// <param name="options"><see cref="QueryOptions"/></param>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -87,6 +88,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// </summary>
         /// <param name="deviceId"><see cref="Device.Id"/></param>
         /// <returns><see cref="Device"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -118,6 +120,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// </summary>
         /// <param name="device">The <see cref="Device"/> to add to catalog.</param>
         /// <returns><see cref="Device"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -156,6 +159,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <param name="deviceId"><see cref="Device.Id"/></param>
         /// <param name="deviceToUpdate"><see cref="Device"/> to update</param>
         /// <returns><see cref="Device"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -193,6 +197,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// Deletes the device.
         /// </summary>
         /// <param name="deviceId"><see cref="Device.Id"/></param>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try

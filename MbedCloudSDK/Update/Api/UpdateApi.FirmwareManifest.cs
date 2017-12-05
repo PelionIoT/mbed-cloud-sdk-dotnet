@@ -20,6 +20,7 @@ namespace MbedCloudSDK.Update.Api
         /// </summary>
         /// <param name="options"><see cref="QueryOptions"/></param>
         /// <returns>Paginated Response of <see cref="FirmwareManifest"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -87,6 +88,7 @@ namespace MbedCloudSDK.Update.Api
         /// </summary>
         /// <param name="manifestId"><see cref="FirmwareManifest.Id"/></param>
         /// <returns><see cref="FirmwareManifest"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -119,6 +121,7 @@ namespace MbedCloudSDK.Update.Api
         /// <param name="name">Name of the firmware manifest.</param>
         /// <param name="description">Description for the firmware manifest.</param>
         /// <returns>Firmware Manifest</returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -152,6 +155,7 @@ namespace MbedCloudSDK.Update.Api
         /// Delete firmware manifest.
         /// </summary>
         /// <param name="manifestId"><see cref="FirmwareManifest.Id"/></param>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try

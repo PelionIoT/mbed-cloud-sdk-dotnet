@@ -20,6 +20,7 @@ namespace MbedCloudSDK.Update.Api
         /// </summary>
         /// <param name="options"><see cref="QueryOptions"/></param>
         /// <returns>Paginated Response of <see cref="Campaign"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -87,6 +88,7 @@ namespace MbedCloudSDK.Update.Api
         /// </summary>
         /// <param name="options"><see cref="Campaign"/></param>
         /// <returns>Paginated Response of <see cref="CampaignDeviceState"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -154,6 +156,7 @@ namespace MbedCloudSDK.Update.Api
         /// </summary>
         /// <param name="campaignId"><see cref="Campaign.Id"/></param>
         /// <returns><see cref="Campaign"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -185,6 +188,7 @@ namespace MbedCloudSDK.Update.Api
         /// </summary>
         /// <param name="campaign"><see cref="Campaign"/></param>
         /// <returns><see cref="Campaign"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -227,6 +231,7 @@ namespace MbedCloudSDK.Update.Api
         /// </summary>
         /// <param name="campaign"><see cref="Campaign"/></param>
         /// <returns><see cref="Campaign"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -260,6 +265,7 @@ namespace MbedCloudSDK.Update.Api
         /// <param name="campaignId"><see cref="Campaign.Id"/></param>
         /// <param name="campaign"><see cref="Campaign"/></param>
         /// <returns><see cref="Campaign"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -306,6 +312,7 @@ namespace MbedCloudSDK.Update.Api
         /// Delete Update campaign.
         /// </summary>
         /// <param name="campaignId"><see cref="Campaign.Id"/></param>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try

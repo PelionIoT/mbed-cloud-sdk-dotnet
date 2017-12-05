@@ -20,6 +20,7 @@ namespace MbedCloudSDK.Update.Api
         /// </summary>
         /// <param name="options"><see cref="QueryOptions"/></param>
         /// <returns>Paginated Response of <see cref="FirmwareImage"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -87,6 +88,7 @@ namespace MbedCloudSDK.Update.Api
         /// </summary>
         /// <param name="imageId"><see cref="FirmwareImage.Id"/></param>
         /// <returns><see cref="FirmwareImage"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -118,6 +120,7 @@ namespace MbedCloudSDK.Update.Api
         /// <returns>The firmware image.</returns>
         /// <param name="dataFile">Path to the data file</param>
         /// <param name="name">Name of the <see cref="FirmwareImage"/></param>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -155,6 +158,7 @@ namespace MbedCloudSDK.Update.Api
         /// Delete firmware image.
         /// </summary>
         /// <param name="imageId"><see cref="FirmwareImage.Id"/></param>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try

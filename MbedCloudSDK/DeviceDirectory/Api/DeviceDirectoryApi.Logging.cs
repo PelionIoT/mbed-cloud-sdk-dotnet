@@ -20,6 +20,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// </summary>
         /// <returns>The device events.</returns>
         /// <param name="options"><see cref="QueryOptions"/></param>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -67,6 +68,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// Lists the device logs.
         /// </summary>
         /// <returns>The device logs.</returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <param name="options">Query options.</param>
         private ResponsePage<DeviceEvent> ListDeviceEventsFunc(QueryOptions options = null)
         {
@@ -97,6 +99,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// </summary>
         /// <returns>The device log.</returns>
         /// <param name="deviceEventId"><see cref="DeviceEvent.Id"/></param>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -127,6 +130,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// </summary>
         /// <returns>The device log.</returns>
         /// <param name="deviceLogId"><see cref="DeviceEvent.Id"/></param>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
