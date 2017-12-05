@@ -12,11 +12,11 @@ namespace MbedCloudSDK.Common.Query
         /// <summary>
         /// Initializes a new instance of the <see cref="QueryOptions"/> class.
         /// </summary>
-        /// <param name="limit">Limit.</param>
-        /// <param name="order">Order.</param>
-        /// <param name="after">After.</param>
-        /// <param name="include">Include.</param>
-        /// <param name="filterString">Attributes.</param>
+        /// <param name="limit">The number of items returned in each page of query.</param>
+        /// <param name="order">Order of the items returned.</param>
+        /// <param name="after">The Id of the item to return from.</param>
+        /// <param name="include">Comma separated list of fields to include in response.</param>
+        /// <param name="filterString">Filter to apply to query.</param>
         public QueryOptions(int? limit = null, string order = null, string after = null, string include = null, string filterString = null)
         {
             Limit = limit;
