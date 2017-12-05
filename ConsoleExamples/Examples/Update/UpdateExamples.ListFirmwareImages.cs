@@ -32,5 +32,17 @@ namespace ConsoleExamples.Examples.Update
 
             return images;
         }
+
+        /// <summary>
+        /// Add a firmware image
+        /// </summary>
+        /// <returns>The firmware image</returns>
+        public FirmwareImage AddFirmwareImage()
+        {
+            var firmwareImage = api.AddFirmwareImage("./ConsoleExamples/images/firmware_image.bin", "new firmware image");
+            Console.WriteLine(firmwareImage);
+            api.DeleteFirmwareImage(firmwareImage.Id);
+            return firmwareImage;
+        }
     }
 }

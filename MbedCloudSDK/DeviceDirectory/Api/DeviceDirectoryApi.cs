@@ -31,6 +31,14 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// Initializes a new instance of the <see cref="DeviceDirectoryApi"/> class.
         /// </summary>
         /// <param name="config">Config.</param>
+        /// <example>
+        /// This API is intialized with a <see cref="Config"/> object.
+        /// <code>
+        /// using MbedCloudSDK.Common;
+        /// var config = new config(apiKey);
+        /// var deviceApi = new DeviceDirectoryApi(config);
+        /// </code>
+        /// </example>
         public DeviceDirectoryApi(Config config)
             : base(config)
         {

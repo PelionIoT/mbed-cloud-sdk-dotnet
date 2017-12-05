@@ -83,10 +83,17 @@ namespace ConsoleExamples.Examples.Update
             };
             campaign = api.AddCampaign(campaign);
 
+            var fieldsToUpdate = new Campaign
+            {
+                Name = $"updated-{campaign.Name}",
+            };
+
+            var updatedCampaign = api.UpdateCampaign(campaign.Id, fieldsToUpdate);
+
             Console.WriteLine("Created campaign : " + campaign);
 
             // Start update campaign
-            campaign = api.StartCampaign(campaign);
+            campaign = api.StartCampaign(updatedCampaign);
 
             // Print status of update campaign
             var countdown = 10;
@@ -97,6 +104,7 @@ namespace ConsoleExamples.Examples.Update
                     Id = campaign.Id,
                 };
                 var states = api.ListCampaignDeviceStates(options).Data;
+                Console.WriteLine($"states - {states.Count}");
                 foreach (var item in states)
                 {
                     Console.WriteLine($"{item.Id} - {Convert.ToString(item.State)}");
@@ -104,6 +112,8 @@ namespace ConsoleExamples.Examples.Update
 
                 countdown--;
             }
+
+            api.DeleteCampaign(updatedCampaign.Id);
 
             return campaign;
         }

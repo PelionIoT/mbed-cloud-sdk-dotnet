@@ -18,8 +18,29 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// List update campaigns.
         /// </summary>
-        /// <param name="options">Query options.</param>
-        /// <returns>Paginated Response of Campaigns</returns>
+        /// <param name="options"><see cref="QueryOptions"/></param>
+        /// <returns>Paginated Response of <see cref="Campaign"/></returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var options = new QueryOptions
+        ///     {
+        ///         Limit = 5,
+        ///     };
+        ///     var campaigns = updateApi.ListCampaigns(Options);
+        ///     foreach (var item in campaigns)
+        ///     {
+        ///         Console.WriteLine(item);
+        ///     }
+        ///     return campaigns;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public PaginatedResponse<Campaign> ListCampaigns(QueryOptions options = null)
         {
             if (options == null)
@@ -64,8 +85,29 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// List campaign Device States
         /// </summary>
-        /// <param name="options">Query Options</param>
-        /// <returns>Paginated Response of Campaign Device States</returns>
+        /// <param name="options"><see cref="Campaign"/></param>
+        /// <returns>Paginated Response of <see cref="CampaignDeviceState"/></returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var options = new QueryOptions
+        ///     {
+        ///         Limit = 5,
+        ///     };
+        ///     var campaignStates = updateApi.ListCampaignDeviceStates(Options);
+        ///     foreach (var item in campaignStates)
+        ///     {
+        ///         Console.WriteLine(item);
+        ///     }
+        ///     return campaignStates;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public PaginatedResponse<CampaignDeviceState> ListCampaignDeviceStates(QueryOptions options = null)
         {
             if (options == null)
@@ -93,7 +135,7 @@ namespace MbedCloudSDK.Update.Api
             try
             {
                 var resp = api.V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGet(campaignId: options.Id, limit: options.Limit, order: options.Order, after: options.After, include: options.Include);
-                var respStates = new ResponsePage<CampaignDeviceState>(after: resp.After, hasMore: resp.HasMore, limit: resp.Limit, order: resp.Order.ToString(), totalCount: resp.TotalCount);
+                var respStates = new ResponsePage<CampaignDeviceState>(after: resp.After, hasMore: resp.HasMore, limit: resp.Limit, order: Convert.ToString(resp.Order), totalCount: resp.TotalCount);
                 foreach (var state in resp.Data)
                 {
                     respStates.Data.Add(CampaignDeviceState.Map(state));
@@ -110,8 +152,21 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// Get update campaign.
         /// </summary>
-        /// <param name="campaignId">Id of the update campaign.</param>
-        /// <returns>Campaign</returns>
+        /// <param name="campaignId"><see cref="Campaign.Id"/></param>
+        /// <returns><see cref="Campaign"/></returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var campaign = updateApi.GetCampaign("015baf5f4f04000000000001001003d5");
+        ///     return campaign;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public Campaign GetCampaign(string campaignId)
         {
             try
@@ -128,8 +183,32 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// Create update campaign.
         /// </summary>
-        /// <param name="campaign">Update campaign that will be created.</param>
-        /// <returns>Campaign</returns>
+        /// <param name="campaign"><see cref="Campaign"/></param>
+        /// <returns><see cref="Campaign"/></returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     // List all queries
+        ///     var devicesApi = new DeviceDirectoryApi(config);
+        ///     var queries = devicesApi.ListQueries();
+        ///     var query = queries.LastOrDefault();
+        ///
+        ///     var campaign = new Campaign
+        ///     {
+        ///         Name = "new campaign",
+        ///         ManifestId = manifestId,
+        ///         DeviceFilter = query.Filter,
+        ///     };
+        ///     campaign = api.AddCampaign(campaign);
+        ///     return campaign;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public Campaign AddCampaign(Campaign campaign)
         {
             try
@@ -146,8 +225,22 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// Start update campaign.
         /// </summary>
-        /// <param name="campaign">Update campaign to be started.</param>
-        /// <returns>Campaign</returns>
+        /// <param name="campaign"><see cref="Campaign"/></param>
+        /// <returns><see cref="Campaign"/></returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var campaign = api.GetCampaign("015baf5f4f04000000000001001003d5");
+        ///     var startedCampaign = updateApi.StartCampaign(campaign);
+        ///     return startedCampaign;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public Campaign StartCampaign(Campaign campaign)
         {
             try
@@ -164,13 +257,32 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// Update update campaign.
         /// </summary>
-        /// <param name="campaign">Update campaign to be updated.</param>
-        /// <returns>Campaign</returns>
-        public Campaign UpdateCampaign(Campaign campaign)
+        /// <param name="campaignId"><see cref="Campaign.Id"/></param>
+        /// <param name="campaign"><see cref="Campaign"/></param>
+        /// <returns><see cref="Campaign"/></returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var campaign = updateApi.GetCampaign("015baf5f4f04000000000001001003d5");
+        ///     var fieldsToUpdate = new Campaign
+        ///     {
+        ///         Name = "updatedName",
+        ///     };
+        ///     var updatedCampaign = updateApi.UpdateCampaign(campaign.Id, fieldsToUpdate);
+        ///     return updatedCampaign;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        public Campaign UpdateCampaign(string campaignId, Campaign campaign)
         {
             try
             {
-                var stateEnum = (update_service.Model.UpdateCampaignPatchRequest.StateEnum)Enum.Parse(typeof(update_service.Model.UpdateCampaignPatchRequest.StateEnum), campaign.State.ToString());
+                var stateEnum = Utils.ParseEnum<update_service.Model.UpdateCampaignPatchRequest.StateEnum>(campaign.State);
                 var updateCampaignPatchRequest = new update_service.Model.UpdateCampaignPatchRequest
                 {
                     Description = campaign.Description,
@@ -178,10 +290,10 @@ namespace MbedCloudSDK.Update.Api
                     _Object = campaign.Object,
                     When = campaign.When,
                     State = stateEnum,
-                    DeviceFilter = campaign.DeviceFilter.FilterString,
+                    DeviceFilter = campaign?.DeviceFilter?.FilterString,
                     Name = campaign.Name
                 };
-                var response = api.UpdateCampaignPartialUpdate(campaign.Id, updateCampaignPatchRequest);
+                var response = api.UpdateCampaignPartialUpdate(campaignId, updateCampaignPatchRequest);
                 return Campaign.Map(response);
             }
             catch (update_service.Client.ApiException e)
@@ -193,7 +305,19 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// Delete Update campaign.
         /// </summary>
-        /// <param name="campaignId">Id of the update campaign.</param>
+        /// <param name="campaignId"><see cref="Campaign.Id"/></param>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     updateApi.DeleteCampaign("015baf5f4f04000000000001001003d5");
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public void DeleteCampaign(string campaignId)
         {
             try
