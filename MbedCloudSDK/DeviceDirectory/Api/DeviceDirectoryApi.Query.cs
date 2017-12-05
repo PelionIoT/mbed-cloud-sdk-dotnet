@@ -19,6 +19,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// </summary>
         /// <param name="options"><see cref="QueryOptions"/></param>
         /// <returns>Paginated Response of <see cref="Query"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -86,6 +87,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// </summary>
         /// <param name="queryId"><see cref="Query.Id"/></param>
         /// <returns><see cref="Query"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -117,6 +119,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// </summary>
         /// <returns>The query.</returns>
         /// <param name="query"><see cref="Query"/></param>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -156,6 +159,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <param name="queryId"><see cref="Query.Id"/></param>
         /// <param name="queryToUpdate"><see cref="Query"/> to update</param>
         /// <returns><see cref="Query"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
@@ -195,6 +199,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// Deletes the query.
         /// </summary>
         /// <param name="queryId"><see cref="Query.Id"/></param>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try

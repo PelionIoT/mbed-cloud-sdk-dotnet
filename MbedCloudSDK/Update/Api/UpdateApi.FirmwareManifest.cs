@@ -18,8 +18,30 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// List Firmware Images.
         /// </summary>
-        /// <param name="options">Query options.</param>
-        /// <returns>Paginated Response of Firmware Manifests</returns>
+        /// <param name="options"><see cref="QueryOptions"/></param>
+        /// <returns>Paginated Response of <see cref="FirmwareManifest"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var options = new QueryOptions
+        ///     {
+        ///         Limit = 5,
+        ///     };
+        ///     var manifests = updateApi.ListFirmwareManifests(Options);
+        ///     foreach (var item in manifests)
+        ///     {
+        ///         Console.WriteLine(item);
+        ///     }
+        ///     return manifests;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public PaginatedResponse<FirmwareManifest> ListFirmwareManifests(QueryOptions options = null)
         {
             if (options == null)
@@ -64,8 +86,22 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// Get manifest with provided manifest_id.
         /// </summary>
-        /// <param name="manifestId">ID of manifest to retrieve.</param>
-        /// <returns>Firmware Manifest</returns>
+        /// <param name="manifestId"><see cref="FirmwareManifest.Id"/></param>
+        /// <returns><see cref="FirmwareManifest"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var manifest = updateApI.GetFirmwareManifest("015baf5f4f04000000000001001003d5");
+        ///     return manifest;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public FirmwareManifest GetFirmwareManifest(string manifestId)
         {
             try
@@ -81,10 +117,24 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// Add Firmware Manifest.
         /// </summary>
-        /// <param name="dataFile">Stream to the manifest file.</param>
+        /// <param name="dataFile">Path to the manifest file</param>
         /// <param name="name">Name of the firmware manifest.</param>
         /// <param name="description">Description for the firmware manifest.</param>
         /// <returns>Firmware Manifest</returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var manifest = updateApI.AddFirmwareManifest("FirmwareManifest file path", "name of manifest");
+        ///     return manifest;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public FirmwareManifest AddFirmwareManifest(string dataFile, string name, string description = null)
         {
             try
@@ -104,7 +154,20 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// Delete firmware manifest.
         /// </summary>
-        /// <param name="manifestId">Id of the manifest to be deleted.</param>
+        /// <param name="manifestId"><see cref="FirmwareManifest.Id"/></param>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     updateApI.DeleteFirmwareManifest("015baf5f4f04000000000001001003d5");
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public void DeleteFirmwareManifest(string manifestId)
         {
             try

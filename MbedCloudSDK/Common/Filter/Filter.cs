@@ -169,6 +169,14 @@ namespace MbedCloudSDK.Common.Filter
         /// <param name="key">Key</param>
         /// <param name="filterAttributes">Value</param>
         /// <returns>The filter dictionary</returns>
+        /// <example>
+        /// <code>
+        /// var filter = new Filter();
+        /// filter.Add("name", new FilterAttribute("alex"), new FilterAttrtibute("dan", FilterOperator.NotEqual));
+        /// var filterString = filter.FilterString;
+        /// var filterJson = filter.FilterJson;
+        /// </code>
+        /// </example>
         public Dictionary<string, FilterAttribute[]> Add(string key, params FilterAttribute[] filterAttributes)
         {
             return AddFilters(key, filterAttributes);
@@ -180,6 +188,14 @@ namespace MbedCloudSDK.Common.Filter
         /// <param name="key">DeviceFilterUpdateEnum. The enum provides mapping to the filter keys expected in the api.</param>
         /// <param name="filterAttributes">Filter attributes</param>
         /// <returns>The filter dictionary</returns>
+        /// <example>
+        /// <code>
+        /// var filter = new Filter();
+        /// filter.Add(DeviceFilterMapEnum.BootstrapCertificateExpiration, new FilterAttribute("true"), new FilterAttrtibute("false", FilterOperator.NotEqual));
+        /// var filterString = filter.FilterString;
+        /// var filterJson = filter.FilterJson;
+        /// </code>
+        /// </example>
         public Dictionary<string, FilterAttribute[]> Add(DeviceFilterMapEnum key, params FilterAttribute[] filterAttributes)
         {
             return AddFilters(Utils.GetEnumMemberValue(typeof(DeviceFilterMapEnum), Convert.ToString(key)), filterAttributes);
@@ -191,6 +207,14 @@ namespace MbedCloudSDK.Common.Filter
         /// <param name="key">UpdateFilterMapEnum. The enum provides mapping to the filter keys expected in the api.</param>
         /// <param name="filterAttributes">Filter attributes</param>
         /// <returns>The filter dictionary</returns>
+        /// <example>
+        /// <code>
+        /// var filter = new Filter();
+        /// filter.Add(UpdateFilterMapEnum.ManifestUrl, new FilterAttribute("www.manifest.com"), new FilterAttrtibute("www.badmanifest", FilterOperator.NotEqual));
+        /// var filterString = filter.FilterString;
+        /// var filterJson = filter.FilterJson;
+        /// </code>
+        /// </example>
         public Dictionary<string, FilterAttribute[]> Add(UpdateFilterMapEnum key, params FilterAttribute[] filterAttributes)
         {
             return AddFilters(Utils.GetEnumMemberValue(typeof(UpdateFilterMapEnum), Convert.ToString(key)), filterAttributes);
@@ -203,6 +227,14 @@ namespace MbedCloudSDK.Common.Filter
         /// <param name="value">Value</param>
         /// <param name="filterOperator">Operator, Equals if not provided</param>
         /// <returns>The filter dictionary</returns>
+        /// <example>
+        /// <code>
+        /// var filter = new Filter();
+        /// filter.Add("name", "alex");
+        /// var filterString = filter.FilterString;
+        /// var filterJson = filter.FilterJson;
+        /// </code>
+        /// </example>
         public Dictionary<string, FilterAttribute[]> Add(string key, string value, FilterOperator filterOperator = FilterOperator.Equals)
         {
             var filterAttribute = new FilterAttribute(value, filterOperator);
@@ -216,6 +248,15 @@ namespace MbedCloudSDK.Common.Filter
         /// <param name="value">Value as datetime</param>
         /// <param name="filterOperator">Operator, Equals if not provided</param>
         /// <returns>The filter dictionary</returns>
+        /// <example>
+        /// <code>
+        /// var filter = new Filter();
+        /// filter.Add("date", new DateTime(2017, 1, 1), FilterOperator.GreaterOrEqual);
+        /// filter.Add("date", new DateTime(2018, 1, 1), FilterOperator.LessOrEqual);
+        /// var filterString = filter.FilterString;
+        /// var filterJson = filter.FilterJson;
+        /// </code>
+        /// </example>
         public Dictionary<string, FilterAttribute[]> Add(string key, DateTime value, FilterOperator filterOperator = FilterOperator.Equals)
         {
             var filterAttribute = new FilterAttribute(value, filterOperator);
@@ -229,6 +270,14 @@ namespace MbedCloudSDK.Common.Filter
         /// <param name="value">Value</param>
         /// <param name="filterOperator">Operator, Equals if not provided</param>
         /// <returns>The filter dictionary</returns>
+        /// <example>
+        /// <code>
+        /// var filter = new Filter();
+        /// filter.Add(DeviceFilterMapEnum.BootstrapCertificateExpiration, "false");
+        /// var filterString = filter.FilterString;
+        /// var filterJson = filter.FilterJson;
+        /// </code>
+        /// </example>
         public Dictionary<string, FilterAttribute[]> Add(DeviceFilterMapEnum key, string value, FilterOperator filterOperator = FilterOperator.Equals)
         {
             var filterAttribute = new FilterAttribute(value, filterOperator);
@@ -242,6 +291,14 @@ namespace MbedCloudSDK.Common.Filter
         /// <param name="value">Value</param>
         /// <param name="filterOperator">Operator, Equals if not provided</param>
         /// <returns>The filter dictionary</returns>
+        /// <example>
+        /// <code>
+        /// var filter = new Filter();
+        /// filter.Add(UpdateFilterMapEnum.ManifestUrl, "www.manifest.com");
+        /// var filterString = filter.FilterString;
+        /// var filterJson = filter.FilterJson;
+        /// </code>
+        /// </example>
         public Dictionary<string, FilterAttribute[]> Add(UpdateFilterMapEnum key, string value, FilterOperator filterOperator = FilterOperator.Equals)
         {
             var filterAttribute = new FilterAttribute(value, filterOperator);
@@ -254,6 +311,14 @@ namespace MbedCloudSDK.Common.Filter
         /// <param name="key">Key</param>
         /// <param name="filterAttributes">Value</param>
         /// <returns>The filter dictionary</returns>
+        /// <example>
+        /// <code>
+        /// var filter = new Filter();
+        /// filter.AddCustom("custom", new FilterAttribute("true"), new FilterAttribute("false", FilterOperator.NotEqual));
+        /// var filterString = filter.FilterString;
+        /// var filterJson = filter.FilterJson;
+        /// </code>
+        /// </example>
         public Dictionary<string, FilterAttribute[]> AddCustom(string key, params FilterAttribute[] filterAttributes)
         {
             key = $"{CustomAttributesPrefix}{key}";
@@ -267,6 +332,14 @@ namespace MbedCloudSDK.Common.Filter
         /// <param name="value">Value</param>
         /// <param name="filterOperator">The Operator</param>
         /// <returns>The filter dictionary</returns>
+        /// <example>
+        /// <code>
+        /// var filter = new Filter();
+        /// filter.AddCustom("custom", "false", FilterOperator.NotEqual);
+        /// var filterString = filter.FilterString;
+        /// var filterJson = filter.FilterJson;
+        /// </code>
+        /// </example>
         public Dictionary<string, FilterAttribute[]> AddCustom(string key, string value, FilterOperator filterOperator = FilterOperator.Equals)
         {
             key = $"{CustomAttributesPrefix}{key}";
@@ -281,6 +354,14 @@ namespace MbedCloudSDK.Common.Filter
         /// <param name="value">Value as datetime</param>
         /// <param name="filterOperator">The Operator</param>
         /// <returns>The filter dictionary</returns>
+        /// <example>
+        /// <code>
+        /// var filter = new Filter();
+        /// filter.AddCustom("custom", new Date(2017, 1, 1), FilterOperator.NotEqual);
+        /// var filterString = filter.FilterString;
+        /// var filterJson = filter.FilterJson;
+        /// </code>
+        /// </example>
         public Dictionary<string, FilterAttribute[]> AddCustom(string key, DateTime value, FilterOperator filterOperator = FilterOperator.Equals)
         {
             key = $"{CustomAttributesPrefix}{key}";
@@ -292,6 +373,13 @@ namespace MbedCloudSDK.Common.Filter
         /// Remove key from filter
         /// </summary>
         /// <param name="key">Key to remove</param>
+        /// <example>
+        /// <code>
+        /// var filter = new Filter();
+        /// filter.Add("date", new Date(2017, 1, 1), FilterOperator.NotEqual);
+        /// filter.Remove("date");
+        /// </code>
+        /// </example>
         public void Remove(string key)
         {
             if (FilterDictionary.ContainsKey(key))
@@ -305,6 +393,13 @@ namespace MbedCloudSDK.Common.Filter
         /// </summary>
         /// <param name="key">Key</param>
         /// <returns>True if key in filter</returns>
+        /// <example>
+        /// <code>
+        /// var filter = new Filter();
+        /// filter.Add("date", new Date(2017, 1, 1), FilterOperator.NotEqual);
+        /// var contains = filter.Contains("date"); // = true
+        /// </code>
+        /// </example>
         public bool Contains(string key)
         {
             return FilterDictionary.ContainsKey(key);

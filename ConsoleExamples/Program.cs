@@ -99,6 +99,8 @@ namespace ConsoleExamples
             Console.WriteLine($"{i++}. List firmware images");
             Console.WriteLine($"{i++}. List firmware manifests");
             Console.WriteLine($"{i++}. List update campaigns");
+            Console.WriteLine($"{i++}. Add firmware image");
+            Console.WriteLine($"{i++}. Add firmware manifest");
             Console.WriteLine("---Press any other key to exit---");
             Console.WriteLine();
             return Console.ReadLine();
@@ -220,6 +222,12 @@ namespace ConsoleExamples
                     break;
                 case 36:
                     updateExamples.ListCampaigns();
+                    break;
+                case 37:
+                    updateExamples.AddFirmwareImage();
+                    break;
+                case 38:
+                    updateExamples.AddFirmwareManifest();
                     break;
                 default:
                     break;
