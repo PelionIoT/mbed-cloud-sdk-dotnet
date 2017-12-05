@@ -32,10 +32,10 @@ namespace connector_ca.Api
         /// This REST API is intended to be used by customers to fetch an existing developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server). 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique identifier for the developer certificate. </param>
+        /// <param name="muuid">A unique identifier for the developer certificate. </param>
         /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>DeveloperCertificateResponseData</returns>
-        DeveloperCertificateResponseData V3DeveloperCertificatesIdGet (string id, string authorization);
+        DeveloperCertificateResponseData V3DeveloperCertificatesMuuidGet (string muuid, string authorization);
 
         /// <summary>
         /// Fetch an existing developer certificate to connect to the bootstrap server.
@@ -44,10 +44,10 @@ namespace connector_ca.Api
         /// This REST API is intended to be used by customers to fetch an existing developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server). 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique identifier for the developer certificate. </param>
+        /// <param name="muuid">A unique identifier for the developer certificate. </param>
         /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>ApiResponse of DeveloperCertificateResponseData</returns>
-        ApiResponse<DeveloperCertificateResponseData> V3DeveloperCertificatesIdGetWithHttpInfo (string id, string authorization);
+        ApiResponse<DeveloperCertificateResponseData> V3DeveloperCertificatesMuuidGetWithHttpInfo (string muuid, string authorization);
         /// <summary>
         /// Create a new developer certificate to connect to the bootstrap server.
         /// </summary>
@@ -80,10 +80,10 @@ namespace connector_ca.Api
         /// This REST API is intended to be used by customers to fetch an existing developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server). 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique identifier for the developer certificate. </param>
+        /// <param name="muuid">A unique identifier for the developer certificate. </param>
         /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>Task of DeveloperCertificateResponseData</returns>
-        System.Threading.Tasks.Task<DeveloperCertificateResponseData> V3DeveloperCertificatesIdGetAsync (string id, string authorization);
+        System.Threading.Tasks.Task<DeveloperCertificateResponseData> V3DeveloperCertificatesMuuidGetAsync (string muuid, string authorization);
 
         /// <summary>
         /// Fetch an existing developer certificate to connect to the bootstrap server.
@@ -92,10 +92,10 @@ namespace connector_ca.Api
         /// This REST API is intended to be used by customers to fetch an existing developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server). 
         /// </remarks>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique identifier for the developer certificate. </param>
+        /// <param name="muuid">A unique identifier for the developer certificate. </param>
         /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>Task of ApiResponse (DeveloperCertificateResponseData)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeveloperCertificateResponseData>> V3DeveloperCertificatesIdGetAsyncWithHttpInfo (string id, string authorization);
+        System.Threading.Tasks.Task<ApiResponse<DeveloperCertificateResponseData>> V3DeveloperCertificatesMuuidGetAsyncWithHttpInfo (string muuid, string authorization);
         /// <summary>
         /// Create a new developer certificate to connect to the bootstrap server.
         /// </summary>
@@ -235,12 +235,12 @@ namespace connector_ca.Api
         /// Fetch an existing developer certificate to connect to the bootstrap server. This REST API is intended to be used by customers to fetch an existing developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server). 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique identifier for the developer certificate. </param>
+        /// <param name="muuid">A unique identifier for the developer certificate. </param>
         /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>DeveloperCertificateResponseData</returns>
-        public DeveloperCertificateResponseData V3DeveloperCertificatesIdGet (string id, string authorization)
+        public DeveloperCertificateResponseData V3DeveloperCertificatesMuuidGet (string muuid, string authorization)
         {
-             ApiResponse<DeveloperCertificateResponseData> localVarResponse = V3DeveloperCertificatesIdGetWithHttpInfo(id, authorization);
+             ApiResponse<DeveloperCertificateResponseData> localVarResponse = V3DeveloperCertificatesMuuidGetWithHttpInfo(muuid, authorization);
              return localVarResponse.Data;
         }
 
@@ -248,19 +248,19 @@ namespace connector_ca.Api
         /// Fetch an existing developer certificate to connect to the bootstrap server. This REST API is intended to be used by customers to fetch an existing developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server). 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique identifier for the developer certificate. </param>
+        /// <param name="muuid">A unique identifier for the developer certificate. </param>
         /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>ApiResponse of DeveloperCertificateResponseData</returns>
-        public ApiResponse< DeveloperCertificateResponseData > V3DeveloperCertificatesIdGetWithHttpInfo (string id, string authorization)
+        public ApiResponse< DeveloperCertificateResponseData > V3DeveloperCertificatesMuuidGetWithHttpInfo (string muuid, string authorization)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling DeveloperCertificateApi->V3DeveloperCertificatesIdGet");
+            // verify the required parameter 'muuid' is set
+            if (muuid == null)
+                throw new ApiException(400, "Missing required parameter 'muuid' when calling DeveloperCertificateApi->V3DeveloperCertificatesMuuidGet");
             // verify the required parameter 'authorization' is set
             if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DeveloperCertificateApi->V3DeveloperCertificatesIdGet");
+                throw new ApiException(400, "Missing required parameter 'authorization' when calling DeveloperCertificateApi->V3DeveloperCertificatesMuuidGet");
 
-            var localVarPath = "/v3/developer-certificates/{id}";
+            var localVarPath = "/v3/developer-certificates/{muuid}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -284,7 +284,7 @@ namespace connector_ca.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (muuid != null) localVarPathParams.Add("muuid", Configuration.ApiClient.ParameterToString(muuid)); // path parameter
             if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
             // authentication (Bearer) required
@@ -303,7 +303,7 @@ namespace connector_ca.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V3DeveloperCertificatesIdGet", localVarResponse);
+                Exception exception = ExceptionFactory("V3DeveloperCertificatesMuuidGet", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -317,12 +317,12 @@ namespace connector_ca.Api
         /// Fetch an existing developer certificate to connect to the bootstrap server. This REST API is intended to be used by customers to fetch an existing developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server). 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique identifier for the developer certificate. </param>
+        /// <param name="muuid">A unique identifier for the developer certificate. </param>
         /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>Task of DeveloperCertificateResponseData</returns>
-        public async System.Threading.Tasks.Task<DeveloperCertificateResponseData> V3DeveloperCertificatesIdGetAsync (string id, string authorization)
+        public async System.Threading.Tasks.Task<DeveloperCertificateResponseData> V3DeveloperCertificatesMuuidGetAsync (string muuid, string authorization)
         {
-             ApiResponse<DeveloperCertificateResponseData> localVarResponse = await V3DeveloperCertificatesIdGetAsyncWithHttpInfo(id, authorization);
+             ApiResponse<DeveloperCertificateResponseData> localVarResponse = await V3DeveloperCertificatesMuuidGetAsyncWithHttpInfo(muuid, authorization);
              return localVarResponse.Data;
 
         }
@@ -331,19 +331,19 @@ namespace connector_ca.Api
         /// Fetch an existing developer certificate to connect to the bootstrap server. This REST API is intended to be used by customers to fetch an existing developer certificate (a certificate that can be flashed into multiple devices to connect to bootstrap server). 
         /// </summary>
         /// <exception cref="connector_ca.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique identifier for the developer certificate. </param>
+        /// <param name="muuid">A unique identifier for the developer certificate. </param>
         /// <param name="authorization">Bearer {Access Token}. </param>
         /// <returns>Task of ApiResponse (DeveloperCertificateResponseData)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeveloperCertificateResponseData>> V3DeveloperCertificatesIdGetAsyncWithHttpInfo (string id, string authorization)
+        public async System.Threading.Tasks.Task<ApiResponse<DeveloperCertificateResponseData>> V3DeveloperCertificatesMuuidGetAsyncWithHttpInfo (string muuid, string authorization)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling DeveloperCertificateApi->V3DeveloperCertificatesIdGet");
+            // verify the required parameter 'muuid' is set
+            if (muuid == null)
+                throw new ApiException(400, "Missing required parameter 'muuid' when calling DeveloperCertificateApi->V3DeveloperCertificatesMuuidGet");
             // verify the required parameter 'authorization' is set
             if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DeveloperCertificateApi->V3DeveloperCertificatesIdGet");
+                throw new ApiException(400, "Missing required parameter 'authorization' when calling DeveloperCertificateApi->V3DeveloperCertificatesMuuidGet");
 
-            var localVarPath = "/v3/developer-certificates/{id}";
+            var localVarPath = "/v3/developer-certificates/{muuid}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -367,7 +367,7 @@ namespace connector_ca.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (muuid != null) localVarPathParams.Add("muuid", Configuration.ApiClient.ParameterToString(muuid)); // path parameter
             if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
             // authentication (Bearer) required
@@ -385,7 +385,7 @@ namespace connector_ca.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V3DeveloperCertificatesIdGet", localVarResponse);
+                Exception exception = ExceptionFactory("V3DeveloperCertificatesMuuidGet", localVarResponse);
                 if (exception != null) throw exception;
             }
 

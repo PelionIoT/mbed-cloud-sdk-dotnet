@@ -75,18 +75,18 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
 
             var apiInstance = new DeveloperCertificateApi();
-            var id = id_example;  // string | A unique identifier for the developer certificate. 
+            var muuid = muuid_example;  // string | A unique identifier for the developer certificate. 
             var authorization = authorization_example;  // string | Bearer {Access Token}. 
 
             try
             {
                 // Fetch an existing developer certificate to connect to the bootstrap server.
-                DeveloperCertificateResponseData result = apiInstance.V3DeveloperCertificatesIdGet(id, authorization);
+                DeveloperCertificateResponseData result = apiInstance.V3DeveloperCertificatesMuuidGet(muuid, authorization);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DeveloperCertificateApi.V3DeveloperCertificatesIdGet: " + e.Message );
+                Debug.Print("Exception when calling DeveloperCertificateApi.V3DeveloperCertificatesMuuidGet: " + e.Message );
             }
         }
     }
@@ -96,13 +96,13 @@ namespace Example
 <a name="documentation-for-api-endpoints"></a>
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://api.mbedcloud.com*
+All URIs are relative to *http://api.us-east-1.mbedcloud.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DeveloperCertificateApi* | [**V3DeveloperCertificatesIdGet**](docs/DeveloperCertificateApi.md#v3developercertificatesidget) | **GET** /v3/developer-certificates/{id} | Fetch an existing developer certificate to connect to the bootstrap server.
+*DeveloperCertificateApi* | [**V3DeveloperCertificatesMuuidGet**](docs/DeveloperCertificateApi.md#v3developercertificatesmuuidget) | **GET** /v3/developer-certificates/{muuid} | Fetch an existing developer certificate to connect to the bootstrap server.
 *DeveloperCertificateApi* | [**V3DeveloperCertificatesPost**](docs/DeveloperCertificateApi.md#v3developercertificatespost) | **POST** /v3/developer-certificates | Create a new developer certificate to connect to the bootstrap server.
-*ExternalAPIApi* | [**V3DeveloperCertificatesIdGet**](docs/ExternalAPIApi.md#v3developercertificatesidget) | **GET** /v3/developer-certificates/{id} | Fetch an existing developer certificate to connect to the bootstrap server.
+*ExternalAPIApi* | [**V3DeveloperCertificatesMuuidGet**](docs/ExternalAPIApi.md#v3developercertificatesmuuidget) | **GET** /v3/developer-certificates/{muuid} | Fetch an existing developer certificate to connect to the bootstrap server.
 *ExternalAPIApi* | [**V3DeveloperCertificatesPost**](docs/ExternalAPIApi.md#v3developercertificatespost) | **POST** /v3/developer-certificates | Create a new developer certificate to connect to the bootstrap server.
 *ExternalAPIApi* | [**V3ServerCredentialsBootstrapGet**](docs/ExternalAPIApi.md#v3servercredentialsbootstrapget) | **GET** /v3/server-credentials/bootstrap | Fetch bootstrap server credentials.
 *ExternalAPIApi* | [**V3ServerCredentialsLwm2mGet**](docs/ExternalAPIApi.md#v3servercredentialslwm2mget) | **GET** /v3/server-credentials/lwm2m | Fetch LWM2M server credentials.
