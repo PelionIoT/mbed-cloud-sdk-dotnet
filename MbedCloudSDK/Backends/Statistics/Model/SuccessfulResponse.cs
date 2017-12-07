@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = statistics.Client.SwaggerDateConverter;
 
 namespace statistics.Model
 {
@@ -55,35 +56,41 @@ namespace statistics.Model
         /// <value>The metric ID included in the request or null.</value>
         [DataMember(Name="after", EmitDefaultValue=false)]
         public string After { get; set; }
+
         /// <summary>
         /// Indicates whether there are more results for you to fetch in the next page.
         /// </summary>
         /// <value>Indicates whether there are more results for you to fetch in the next page.</value>
         [DataMember(Name="has_more", EmitDefaultValue=false)]
         public bool? HasMore { get; set; }
+
         /// <summary>
         /// The total number of records available.
         /// </summary>
         /// <value>The total number of records available.</value>
         [DataMember(Name="total_count", EmitDefaultValue=false)]
         public int? TotalCount { get; set; }
+
         /// <summary>
         /// API resource name.
         /// </summary>
         /// <value>API resource name.</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
+
         /// <summary>
         /// The limit used in the request to retrieve the results.
         /// </summary>
         /// <value>The limit used in the request to retrieve the results.</value>
         [DataMember(Name="limit", EmitDefaultValue=false)]
         public int? Limit { get; set; }
+
         /// <summary>
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name="data", EmitDefaultValue=false)]
         public List<Metric> Data { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -193,8 +200,13 @@ namespace statistics.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

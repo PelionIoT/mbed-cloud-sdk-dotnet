@@ -268,9 +268,6 @@ namespace connector_ca.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
             // authentication (Bearer) required
@@ -296,7 +293,6 @@ namespace connector_ca.Api
             return new ApiResponse<ServerCredentialsResponseData>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ServerCredentialsResponseData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ServerCredentialsResponseData)));
-            
         }
 
         /// <summary>
@@ -345,9 +341,6 @@ namespace connector_ca.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
             // authentication (Bearer) required
@@ -372,7 +365,6 @@ namespace connector_ca.Api
             return new ApiResponse<ServerCredentialsResponseData>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ServerCredentialsResponseData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ServerCredentialsResponseData)));
-            
         }
 
         /// <summary>
@@ -420,9 +412,6 @@ namespace connector_ca.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
             // authentication (Bearer) required
@@ -448,7 +437,6 @@ namespace connector_ca.Api
             return new ApiResponse<ServerCredentialsResponseData>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ServerCredentialsResponseData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ServerCredentialsResponseData)));
-            
         }
 
         /// <summary>
@@ -497,9 +485,6 @@ namespace connector_ca.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
             if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
             // authentication (Bearer) required
@@ -524,7 +509,6 @@ namespace connector_ca.Api
             return new ApiResponse<ServerCredentialsResponseData>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ServerCredentialsResponseData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ServerCredentialsResponseData)));
-            
         }
 
     }
