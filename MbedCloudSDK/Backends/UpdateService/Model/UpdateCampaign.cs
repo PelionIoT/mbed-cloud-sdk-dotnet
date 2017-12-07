@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = update_service.Client.SwaggerDateConverter;
 
 namespace update_service.Model
 {
@@ -138,69 +139,82 @@ namespace update_service.Model
         /// <value>The optional description of the campaign</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
+
         /// <summary>
         /// Gets or Sets RootManifestId
         /// </summary>
         [DataMember(Name="root_manifest_id", EmitDefaultValue=false)]
         public string RootManifestId { get; set; }
+
         /// <summary>
         /// The time the update campaign was created
         /// </summary>
         /// <value>The time the update campaign was created</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
+
         /// <summary>
         /// The API resource entity
         /// </summary>
         /// <value>The API resource entity</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
+
         /// <summary>
         /// The scheduled start time for the update campaign
         /// </summary>
         /// <value>The scheduled start time for the update campaign</value>
         [DataMember(Name="when", EmitDefaultValue=false)]
         public DateTime? When { get; set; }
+
+
         /// <summary>
         /// The campaign finish timestamp
         /// </summary>
         /// <value>The campaign finish timestamp</value>
         [DataMember(Name="finished", EmitDefaultValue=false)]
         public DateTime? Finished { get; set; }
+
         /// <summary>
         /// The entity instance signature
         /// </summary>
         /// <value>The entity instance signature</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public string Etag { get; set; }
+
         /// <summary>
         /// Gets or Sets RootManifestUrl
         /// </summary>
         [DataMember(Name="root_manifest_url", EmitDefaultValue=false)]
         public string RootManifestUrl { get; set; }
+
         /// <summary>
         /// Gets or Sets StartedAt
         /// </summary>
         [DataMember(Name="started_at", EmitDefaultValue=false)]
         public DateTime? StartedAt { get; set; }
+
         /// <summary>
         /// The campaign ID
         /// </summary>
         /// <value>The campaign ID</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
+
         /// <summary>
         /// The filter for the devices the campaign will target
         /// </summary>
         /// <value>The filter for the devices the campaign will target</value>
         [DataMember(Name="device_filter", EmitDefaultValue=false)]
         public string DeviceFilter { get; set; }
+
         /// <summary>
         /// The campaign name
         /// </summary>
         /// <value>The campaign name</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -366,18 +380,23 @@ namespace update_service.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             // Description (string) maxLength
             if(this.Description != null && this.Description.Length > 2000)
             {
-                yield return new ValidationResult("Invalid value for Description, length must be less than 2000.", new [] { "Description" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be less than 2000.", new [] { "Description" });
             }
 
             // Name (string) maxLength
             if(this.Name != null && this.Name.Length > 128)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be less than 128.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 128.", new [] { "Name" });
             }
 
             yield break;

@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = mds.Client.SwaggerDateConverter;
 
 namespace mds.Model
 {
@@ -64,24 +65,28 @@ namespace mds.Model
         /// <value>Resource type.</value>
         [DataMember(Name="rt", EmitDefaultValue=false)]
         public string Rt { get; set; }
+
         /// <summary>
         /// The content type of the resource. &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Important&lt;/b&gt;&lt;br/&gt; You are encouraged to use the resource types listed in the [LwM2M specification](http://technical.openmobilealliance.org/Technical/technical-information/omna/lightweight-m2m-lwm2m-object-registry). 
         /// </summary>
         /// <value>The content type of the resource. &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Important&lt;/b&gt;&lt;br/&gt; You are encouraged to use the resource types listed in the [LwM2M specification](http://technical.openmobilealliance.org/Technical/technical-information/omna/lightweight-m2m-lwm2m-object-registry). </value>
         [DataMember(Name="type", EmitDefaultValue=false)]
         public string Type { get; set; }
+
         /// <summary>
         /// The URL of the resource.
         /// </summary>
         /// <value>The URL of the resource.</value>
         [DataMember(Name="uri", EmitDefaultValue=false)]
         public string Uri { get; set; }
+
         /// <summary>
         /// Observable determines whether you can subscribe to changes for this resource. It can have values \&quot;true\&quot; or \&quot;false\&quot;. 
         /// </summary>
         /// <value>Observable determines whether you can subscribe to changes for this resource. It can have values \&quot;true\&quot; or \&quot;false\&quot;. </value>
         [DataMember(Name="obs", EmitDefaultValue=false)]
         public bool? Obs { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -175,8 +180,13 @@ namespace mds.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

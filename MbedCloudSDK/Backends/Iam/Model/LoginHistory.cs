@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = iam.Client.SwaggerDateConverter;
 
 namespace iam.Model
 {
@@ -88,24 +89,28 @@ namespace iam.Model
         /// <value>UTC time RFC3339 for this login attempt.</value>
         [DataMember(Name="date", EmitDefaultValue=false)]
         public DateTime? Date { get; set; }
+
         /// <summary>
         /// IP address of the client.
         /// </summary>
         /// <value>IP address of the client.</value>
         [DataMember(Name="ip_address", EmitDefaultValue=false)]
         public string IpAddress { get; set; }
+
         /// <summary>
         /// User Agent header from the login request.
         /// </summary>
         /// <value>User Agent header from the login request.</value>
         [DataMember(Name="user_agent", EmitDefaultValue=false)]
         public string UserAgent { get; set; }
+
         /// <summary>
         /// Flag indicating whether login attempt was successful or not.
         /// </summary>
         /// <value>Flag indicating whether login attempt was successful or not.</value>
         [DataMember(Name="success", EmitDefaultValue=false)]
         public bool? Success { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -199,8 +204,13 @@ namespace iam.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }
