@@ -53,6 +53,7 @@ dependencies:
     - mono --runtime=v4.0 nuget.exe restore TestServer/packages.config -PackagesDirectory packages
     - mono --runtime=v4.0 nuget.exe restore MbedCloudSDK.Test/packages.config -PackagesDirectory packages
     - mono --runtime=v4.0 nuget.exe restore ConsoleExamples/packages.config -PackagesDirectory packages
+    - sudo mono --runtime=v4.0 nuget.exe setapikey ${NUGET_KEY} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
     - curl -s https://codecov.io/bash > codecov
     - chmod +x codecov
 compile:
@@ -80,6 +81,7 @@ test:
     - cat ${INTTEST_REPORT} | grep 'seconds ====' >> ${RAW_REPORT}
     - mv MbedCloudSDK/tpip.csv ${SDK_REPORTS}
     - echo "finished"
+
   post:
     - docker run -d -p 5000:80 artifactory; sleep 10
 deployment:
@@ -93,9 +95,7 @@ deployment:
     commands:
       - ./scripts/generate-docs.sh
       - ./scripts/uploadArtifactsMaster.sh
-      - mono --runtime=v4.0 nuget.exe sources Add -Name ArtifactorySnapshot -Source ${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-snapshots | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
-      - sudo mono --runtime=v4.0 nuget.exe setapikey ${ARTIFACTORY_API_KEY} -Source ArtifactorySnapshot | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
-      - mono --runtime=v4.0 nuget.exe push ${NUGET_NAME} -Source ArtifactorySnapshot -Verbosity detailed -ApiKey ${ARTIFACTORY_API_KEY} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+      - mono --runtime=v4.0 nuget.exe push ${NUGET_NAME} -Source https://api.nuget.org/v3/index.json -Verbosity detailed -ApiKey ${NUGET_KEY} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
   release:
     branch: /[0-9]+\.[0-9]+.*/
     commands:
@@ -103,6 +103,4 @@ deployment:
       - git tag ${SDK_TAG}
       - git push --tags
       - ./scripts/uploadArtifacts.sh
-      - mono --runtime=v4.0 nuget.exe sources Add -Name ArtifactoryRelease -Source ${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
-      - sudo mono --runtime=v4.0 nuget.exe setapikey ${ARTIFACTORY_API_KEY} -Source ArtifactoryRelease | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
-      - mono --runtime=v4.0 nuget.exe push ${NUGET_NAME} -Source ArtifactoryRelease -Verbosity detailed -ApiKey ${ARTIFACTORY_API_KEY} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+      - mono --runtime=v4.0 nuget.exe push ${NUGET_NAME} -Source https://api.nuget.org/v3/index.json -Verbosity detailed -ApiKey ${NUGET_KEY} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
