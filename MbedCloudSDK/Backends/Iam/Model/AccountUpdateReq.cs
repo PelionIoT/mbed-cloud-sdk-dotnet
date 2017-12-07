@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = iam.Client.SwaggerDateConverter;
 
 namespace iam.Model
 {
@@ -73,90 +74,105 @@ namespace iam.Model
         /// <value>Postal address line 2, not longer than 100 characters.</value>
         [DataMember(Name="address_line2", EmitDefaultValue=false)]
         public string AddressLine2 { get; set; }
+
         /// <summary>
         /// The city part of the postal address, not longer than 100 characters. Required for commercial accounts only.
         /// </summary>
         /// <value>The city part of the postal address, not longer than 100 characters. Required for commercial accounts only.</value>
         [DataMember(Name="city", EmitDefaultValue=false)]
         public string City { get; set; }
+
         /// <summary>
         /// Postal address line 1, not longer than 100 characters. Required for commercial accounts only.
         /// </summary>
         /// <value>Postal address line 1, not longer than 100 characters. Required for commercial accounts only.</value>
         [DataMember(Name="address_line1", EmitDefaultValue=false)]
         public string AddressLine1 { get; set; }
+
         /// <summary>
         /// The display name for the account, not longer than 100 characters.
         /// </summary>
         /// <value>The display name for the account, not longer than 100 characters.</value>
         [DataMember(Name="display_name", EmitDefaultValue=false)]
         public string DisplayName { get; set; }
+
         /// <summary>
         /// The country part of the postal address, not longer than 100 characters. Required for commercial accounts only.
         /// </summary>
         /// <value>The country part of the postal address, not longer than 100 characters. Required for commercial accounts only.</value>
         [DataMember(Name="country", EmitDefaultValue=false)]
         public string Country { get; set; }
+
         /// <summary>
         /// The name of the company, not longer than 100 characters. Required for commercial accounts only.
         /// </summary>
         /// <value>The name of the company, not longer than 100 characters. Required for commercial accounts only.</value>
         [DataMember(Name="company", EmitDefaultValue=false)]
         public string Company { get; set; }
+
         /// <summary>
         /// The reference token expiration time in minutes for this account. Between 1 and 120 minutes.
         /// </summary>
         /// <value>The reference token expiration time in minutes for this account. Between 1 and 120 minutes.</value>
         [DataMember(Name="idle_timeout", EmitDefaultValue=false)]
         public string IdleTimeout { get; set; }
+
         /// <summary>
         /// The state part of the postal address, not longer than 100 characters.
         /// </summary>
         /// <value>The state part of the postal address, not longer than 100 characters.</value>
         [DataMember(Name="state", EmitDefaultValue=false)]
         public string State { get; set; }
+
         /// <summary>
         /// The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only.
         /// </summary>
         /// <value>The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only.</value>
         [DataMember(Name="contact", EmitDefaultValue=false)]
         public string Contact { get; set; }
+
         /// <summary>
         /// The postal code part of the postal address, not longer than 100 characters.
         /// </summary>
         /// <value>The postal code part of the postal address, not longer than 100 characters.</value>
         [DataMember(Name="postal_code", EmitDefaultValue=false)]
         public string PostalCode { get; set; }
+
         /// <summary>
         /// Password policy for this account.
         /// </summary>
         /// <value>Password policy for this account.</value>
         [DataMember(Name="password_policy", EmitDefaultValue=false)]
         public PasswordPolicy PasswordPolicy { get; set; }
+
         /// <summary>
         /// The end market for this account, not longer than 100 characters.
         /// </summary>
         /// <value>The end market for this account, not longer than 100 characters.</value>
         [DataMember(Name="end_market", EmitDefaultValue=false)]
         public string EndMarket { get; set; }
+
         /// <summary>
         /// The phone number of a representative of the company, not longer than 100 characters.
         /// </summary>
         /// <value>The phone number of a representative of the company, not longer than 100 characters.</value>
         [DataMember(Name="phone_number", EmitDefaultValue=false)]
         public string PhoneNumber { get; set; }
+
         /// <summary>
         /// The company email address for this account, not longer than 254 characters. Required for commercial accounts only.
         /// </summary>
         /// <value>The company email address for this account, not longer than 254 characters. Required for commercial accounts only.</value>
         [DataMember(Name="email", EmitDefaultValue=false)]
         public string Email { get; set; }
+
         /// <summary>
         /// An array of aliases, not more than 10. An alias is not shorter than 8 and not longer than 100 characters.
         /// </summary>
         /// <value>An array of aliases, not more than 10. An alias is not shorter than 8 and not longer than 100 characters.</value>
         [DataMember(Name="aliases", EmitDefaultValue=false)]
         public List<string> Aliases { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -338,8 +354,13 @@ namespace iam.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

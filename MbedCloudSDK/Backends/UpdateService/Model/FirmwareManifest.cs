@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = update_service.Client.SwaggerDateConverter;
 
 namespace update_service.Model
 {
@@ -152,72 +153,84 @@ namespace update_service.Model
         /// <value>The URL of the firmware manifest binary</value>
         [DataMember(Name="datafile", EmitDefaultValue=false)]
         public string Datafile { get; set; }
+
         /// <summary>
         /// The description of the firmware manifest
         /// </summary>
         /// <value>The description of the firmware manifest</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
+
         /// <summary>
         /// The firmware manifest version as a timestamp
         /// </summary>
         /// <value>The firmware manifest version as a timestamp</value>
         [DataMember(Name="timestamp", EmitDefaultValue=false)]
         public DateTime? Timestamp { get; set; }
+
         /// <summary>
         /// The time the object was created
         /// </summary>
         /// <value>The time the object was created</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
+
         /// <summary>
         /// The API resource entity
         /// </summary>
         /// <value>The API resource entity</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
+
         /// <summary>
         /// The time the object was updated
         /// </summary>
         /// <value>The time the object was updated</value>
         [DataMember(Name="updated_at", EmitDefaultValue=false)]
         public DateTime? UpdatedAt { get; set; }
+
         /// <summary>
         /// The entity instance signature
         /// </summary>
         /// <value>The entity instance signature</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public DateTime? Etag { get; set; }
+
         /// <summary>
         /// The class of the device
         /// </summary>
         /// <value>The class of the device</value>
         [DataMember(Name="device_class", EmitDefaultValue=false)]
         public string DeviceClass { get; set; }
+
         /// <summary>
         /// Checksum generated for the datafile
         /// </summary>
         /// <value>Checksum generated for the datafile</value>
         [DataMember(Name="datafile_checksum", EmitDefaultValue=false)]
         public string DatafileChecksum { get; set; }
+
         /// <summary>
         /// Size of the datafile in bytes
         /// </summary>
         /// <value>Size of the datafile in bytes</value>
         [DataMember(Name="datafile_size", EmitDefaultValue=false)]
         public long? DatafileSize { get; set; }
+
         /// <summary>
         /// The firmware manifest ID
         /// </summary>
         /// <value>The firmware manifest ID</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
+
         /// <summary>
         /// The name of the object
         /// </summary>
         /// <value>The name of the object</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -375,18 +388,23 @@ namespace update_service.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             // Description (string) maxLength
             if(this.Description != null && this.Description.Length > 2000)
             {
-                yield return new ValidationResult("Invalid value for Description, length must be less than 2000.", new [] { "Description" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be less than 2000.", new [] { "Description" });
             }
 
             // Name (string) maxLength
             if(this.Name != null && this.Name.Length > 128)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be less than 128.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 128.", new [] { "Name" });
             }
 
             yield break;
