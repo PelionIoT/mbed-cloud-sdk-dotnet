@@ -81,7 +81,6 @@ test:
     - cat ${INTTEST_REPORT} | grep 'seconds ====' >> ${RAW_REPORT}
     - mv MbedCloudSDK/tpip.csv ${SDK_REPORTS}
     - echo "finished"
-    - mono --runtime=v4.0 nuget.exe push ${NUGET_NAME} -Source https://api.nuget.org/v3/index.json -Verbosity detailed -ApiKey ${NUGET_KEY} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
 
   post:
     - docker run -d -p 5000:80 artifactory; sleep 10
