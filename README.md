@@ -92,17 +92,23 @@ $ Mono -v
 }
 ```
 
-9. Now pressing Cmd + Shift + B should run the build task. Verify that it was successful by checking the output in the integrated terminal. 
+9. To resort your project packages, run the following NuGet command:
 
-10. To build from the command line, use msbuild in the root of the project
+```
+$ mono nuget.exe restore YourProject/packages.config -PackagesDirectory pathToYourPackagesFolder
+```
+
+10. Now pressing Cmd + Shift + B should run the build task. Verify that it was successful by checking the output in the integrated terminal. 
+
+11. To build from the command line, use msbuild in the root of the project
 
 ```
 $ msbuild
 ```
 
-11. After a build has been sucessful, press f5 to lauch debugging, or Shift + f5 to start without debugging. Any output should appear in the debug console tab of the integrated terminal. 
+12. After a build has been sucessful, press f5 to lauch debugging, or Shift + f5 to start without debugging. Any output should appear in the debug console tab of the integrated terminal. 
 
-12. Simple! For more information on VSCode tasks, got to the [docs](https://code.visualstudio.com/docs/editor/tasks).
+13. Simple! For more information on VSCode tasks, got to the [docs](https://code.visualstudio.com/docs/editor/tasks).
 
 ## Example Usage
 
