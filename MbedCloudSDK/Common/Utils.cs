@@ -9,6 +9,7 @@ namespace MbedCloudSDK.Common
     using System.Runtime.Serialization;
     using System.Text;
     using MbedCloudSDK.Common.Tlv;
+    using MbedCloudSDK.Connect.Model.Notifications;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
@@ -244,9 +245,9 @@ namespace MbedCloudSDK.Common
         /// </summary>
         /// <param name="asyncResponse">The response object</param>
         /// <returns>String of payload</returns>
-        public static string DecodeBase64(mds.Model.AsyncIDResponse asyncResponse)
+        public static string DecodeBase64(AsyncIdResponse asyncResponse)
         {
-            return DecodeBase64(asyncResponse.Ct, asyncResponse.Payload, new TlvDecoder());
+            return DecodeBase64(asyncResponse.ContentType, asyncResponse.Payload, new TlvDecoder());
         }
 
         /// <summary>
@@ -254,9 +255,9 @@ namespace MbedCloudSDK.Common
         /// </summary>
         /// <param name="notificationData">the notification</param>
         /// <returns>decoded payload</returns>
-        public static string DecodeBase64(mds.Model.NotificationData notificationData)
+        public static string DecodeBase64(NotificationData notificationData)
         {
-            return DecodeBase64(notificationData.Ct, notificationData.Payload, new TlvDecoder());
+            return DecodeBase64(notificationData.ContentType, notificationData.Payload, new TlvDecoder());
         }
 
         private static string DecodeBase64(string contentType, string payload, TlvDecoder tlvDecoder)

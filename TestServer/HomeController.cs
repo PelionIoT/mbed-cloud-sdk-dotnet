@@ -33,7 +33,7 @@ namespace TestServer
             {
                 _moduleRepository = new SingletonModuleInstance();
             }
-            [HttpGet]
+        [HttpGet]
         public IHttpActionResult Init()
         {
             try

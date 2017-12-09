@@ -7,6 +7,7 @@ using System.Linq;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using MbedCloudSDK.Common;
+using MbedCloudSDK.Connect.Model.Notifications;
 
 namespace MbedCloudSDK.Test.Common.Tlv
 {
@@ -151,9 +152,11 @@ namespace MbedCloudSDK.Test.Common.Tlv
         [Test]
         public void ShouldDecodeNothing()
         {
-            var res = new mds.Model.AsyncIDResponse();
-            res.Payload = string.Empty;
-            res.Ct = "tlv";
+            var res = new AsyncIdResponse
+            {
+                Payload = string.Empty,
+                ContentType = "tlv",
+            };
 
             var payload = Utils.DecodeBase64(res);
             Assert.AreEqual("{}", payload);
@@ -162,9 +165,11 @@ namespace MbedCloudSDK.Test.Common.Tlv
         [Test]
         public void ShouldDecodeSimple()
         {
-            var res = new mds.Model.AsyncIDResponse();
-            res.Payload = "AAA=";
-            res.Ct = "tlv";
+            var res = new AsyncIdResponse
+            {
+                Payload = "AAA=",
+                ContentType = "tlv",
+            };
 
             var payload = Utils.DecodeBase64(res);
             Assert.AreEqual("{\"/0\": \"\"}", payload);
@@ -173,8 +178,10 @@ namespace MbedCloudSDK.Test.Common.Tlv
         [Test]
         public void ShouldDecodeSimpleWithNoContentType()
         {
-            var res = new mds.Model.AsyncIDResponse();
-            res.Payload = "dGVzdA==";
+            var res = new AsyncIdResponse
+            {
+                Payload = "dGVzdA==",
+            };
 
             var payload = Utils.DecodeBase64(res);
             Assert.AreEqual("test", payload);
@@ -183,9 +190,11 @@ namespace MbedCloudSDK.Test.Common.Tlv
         [Test]
         public void ShouldDecodeSimpleNotification()
         {
-            var res = new mds.Model.NotificationData();
-            res.Payload = "AAA=";
-            res.Ct = "tlv";
+            var res = new NotificationData
+            {
+                Payload = "AAA=",
+                ContentType = "tlv",
+            };
 
             var payload = Utils.DecodeBase64(res);
             Assert.AreEqual("{\"/0\": \"\"}", payload);
@@ -194,9 +203,11 @@ namespace MbedCloudSDK.Test.Common.Tlv
         [Test]
         public void ShouldDecodeComplex()
         {
-            var res = new mds.Model.AsyncIDResponse();
-            res.Payload = "iAsLSAAIAAAAAAAAAADBEFXIABAAAAAAAAAAAAAAAAAAAAAAyAEQAAAAAAAAAAAAAAAAAAAAAMECMMgRD2Rldl9kZXZpY2VfdHlwZcgSFGRldl9oYXJkd2FyZV92ZXJzaW9uyBUIAAAAAAAAAADIDQgAAAAAWdH0Bw==";
-            res.Ct = "tlv";
+            var res = new AsyncIdResponse
+            {
+                Payload = "iAsLSAAIAAAAAAAAAADBEFXIABAAAAAAAAAAAAAAAAAAAAAAyAEQAAAAAAAAAAAAAAAAAAAAAMECMMgRD2Rldl9kZXZpY2VfdHlwZcgSFGRldl9oYXJkd2FyZV92ZXJzaW9uyBUIAAAAAAAAAADIDQgAAAAAWdH0Bw==",
+                ContentType = "tlv",
+            };
 
             var payload = Utils.DecodeBase64(res);
             Assert.AreEqual("{\"/11/0\": \"0\",\"/16\": \"U\",\"/0\": \"0\",\"/1\": \"0\",\"/2\": \"0\",\"/17\": \"dev_device_type\",\"/18\": \"dev_hardware_version\",\"/21\": \"0\",\"/13\": \"1506931719\"}", payload);
@@ -205,9 +216,11 @@ namespace MbedCloudSDK.Test.Common.Tlv
         [Test]
         public void ShouldDecodePlainPayload()
         {
-            var res = new mds.Model.AsyncIDResponse();
-            res.Payload = "dGVzdA==";
-            res.Ct = "json";
+            var res = new AsyncIdResponse
+            {
+                Payload = "dGVzdA==",
+                ContentType = "json",
+            };
 
             var payload = Utils.DecodeBase64(res);
             Assert.AreEqual("test", payload);
