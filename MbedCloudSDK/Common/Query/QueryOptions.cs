@@ -17,13 +17,15 @@ namespace MbedCloudSDK.Common.Query
         /// <param name="after">The Id of the item to return from.</param>
         /// <param name="include">Comma separated list of fields to include in response.</param>
         /// <param name="filterString">Filter to apply to query.</param>
-        public QueryOptions(int? limit = null, string order = null, string after = null, string include = null, string filterString = null)
+        /// <param name="id">Used when query requires an Id to be passed</param>
+        public QueryOptions(int? limit = null, string order = null, string after = null, string include = null, string filterString = null, string id = null)
         {
             Limit = limit;
             Order = order;
             After = after;
             Include = include;
             Filter = new MbedCloudSDK.Common.Filter.Filter(filterString);
+            Id = id;
         }
 
         /// <summary>

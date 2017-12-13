@@ -86,7 +86,8 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// List campaign Device States
         /// </summary>
-        /// <param name="options"><see cref="Campaign"/></param>
+        /// <param name="campaignId">The Id of the Campaign to list the states of.</param>
+        /// <param name="options"><see cref="QueryOptions"/></param>
         /// <returns>Paginated Response of <see cref="CampaignDeviceState"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
@@ -97,7 +98,7 @@ namespace MbedCloudSDK.Update.Api
         ///     {
         ///         Limit = 5,
         ///     };
-        ///     var campaignStates = updateApi.ListCampaignDeviceStates(Options);
+        ///     var campaignStates = updateApi.ListCampaignDeviceStates("015baf5f4f04000000000001001003d5", options);
         ///     foreach (var item in campaignStates)
         ///     {
         ///         Console.WriteLine(item);
@@ -110,12 +111,14 @@ namespace MbedCloudSDK.Update.Api
         /// }
         /// </code>
         /// </example>
-        public PaginatedResponse<CampaignDeviceState> ListCampaignDeviceStates(QueryOptions options = null)
+        public PaginatedResponse<CampaignDeviceState> ListCampaignDeviceStates(string campaignId, QueryOptions options = null)
         {
             if (options == null)
             {
                 options = new QueryOptions();
             }
+
+            options.Id = campaignId;
 
             try
             {
