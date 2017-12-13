@@ -117,7 +117,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                return subscriptionsApi.V2SubscriptionsDeviceIdGet(deviceId).Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                return subscriptionsApi.V2SubscriptionsDeviceIdGet(deviceId)?.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             }
             catch (mds.Client.ApiException e)
             {
@@ -251,7 +251,8 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                resourcesApi.V2EndpointsDeviceIdResourcePathDelete(deviceId, resourcePath, noResponse);
+                var fixedPath = FixedPath(resourcePath);
+                resourcesApi.V2EndpointsDeviceIdResourcePathDelete(deviceId, fixedPath, noResponse);
             }
             catch (mds.Client.ApiException e)
             {
@@ -285,8 +286,8 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                resourcePath = FixedPath(resourcePath);
-                var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathGet(deviceId, resourcePath);
+                var fixedPath = FixedPath(resourcePath);
+                var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathGet(deviceId, fixedPath);
                 var collection = new AsyncProducerConsumerCollection<string>();
                 AsyncResponses.Add(asyncID.AsyncResponseId, collection);
 
@@ -335,8 +336,8 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                resourcePath = FixedPath(resourcePath);
-                var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPut(deviceId, resourcePath, resourceValue, noResponse);
+                var fixedPath = FixedPath(resourcePath);
+                var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPut(deviceId, fixedPath, resourceValue, noResponse);
                 var collection = new AsyncProducerConsumerCollection<string>();
                 AsyncResponses.Add(asyncID.AsyncResponseId, collection);
                 return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
@@ -375,8 +376,8 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                resourcePath = FixedPath(resourcePath);
-                var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPost(deviceId, resourcePath, functionName, noResponse);
+                var fixedPath = FixedPath(resourcePath);
+                var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPost(deviceId, fixedPath, functionName, noResponse);
                 var collection = new AsyncProducerConsumerCollection<string>();
                 AsyncResponses.Add(asyncID.AsyncResponseId, collection);
                 return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
@@ -395,8 +396,8 @@ namespace MbedCloudSDK.Connect.Api
         /// <returns>Async consumer with string</returns>
         public AsyncConsumer<string> GetResourceValueAsync(string deviceId, string resourcePath)
         {
-            resourcePath = FixedPath(resourcePath);
-            var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathGetAsync(deviceId, resourcePath).Result;
+            var fixedPath = FixedPath(resourcePath);
+            var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathGetAsync(deviceId, fixedPath).Result;
             var collection = new AsyncProducerConsumerCollection<string>();
             AsyncResponses.Add(asyncID.AsyncResponseId, collection);
             return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
@@ -412,8 +413,8 @@ namespace MbedCloudSDK.Connect.Api
         /// <returns>Async consumer with string</returns>
         public AsyncConsumer<string> SetResourceValueAsync(string deviceId, string resourcePath, string resourceValue, bool? noResponse = null)
         {
-            resourcePath = FixedPath(resourcePath);
-            var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPutAsync(deviceId, resourcePath, resourceValue, noResponse).Result;
+            var fixedPath = FixedPath(resourcePath);
+            var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPutAsync(deviceId, fixedPath, resourceValue, noResponse).Result;
             var collection = new AsyncProducerConsumerCollection<string>();
             AsyncResponses.Add(asyncID.AsyncResponseId, collection);
             return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
