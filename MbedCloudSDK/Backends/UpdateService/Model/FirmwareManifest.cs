@@ -47,11 +47,10 @@ namespace update_service.Model
         /// <param name="UpdatedAt">The time the object was updated (required).</param>
         /// <param name="Etag">The entity instance signature (required).</param>
         /// <param name="DeviceClass">The class of the device (required).</param>
-        /// <param name="DatafileChecksum">Checksum generated for the datafile.</param>
         /// <param name="DatafileSize">Size of the datafile in bytes.</param>
         /// <param name="Id">The firmware manifest ID (required).</param>
         /// <param name="Name">The name of the object (required).</param>
-        public FirmwareManifest(string Datafile = default(string), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), string DeviceClass = default(string), string DatafileChecksum = default(string), long? DatafileSize = default(long?), string Id = default(string), string Name = default(string))
+        public FirmwareManifest(string Datafile = default(string), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), string DeviceClass = default(string), long? DatafileSize = default(long?), string Id = default(string), string Name = default(string))
         {
             // to ensure "Datafile" is required (not null)
             if (Datafile == null)
@@ -143,7 +142,6 @@ namespace update_service.Model
             {
                 this.Name = Name;
             }
-            this.DatafileChecksum = DatafileChecksum;
             this.DatafileSize = DatafileSize;
         }
         
@@ -204,13 +202,6 @@ namespace update_service.Model
         public string DeviceClass { get; set; }
 
         /// <summary>
-        /// Checksum generated for the datafile
-        /// </summary>
-        /// <value>Checksum generated for the datafile</value>
-        [DataMember(Name="datafile_checksum", EmitDefaultValue=false)]
-        public string DatafileChecksum { get; set; }
-
-        /// <summary>
         /// Size of the datafile in bytes
         /// </summary>
         /// <value>Size of the datafile in bytes</value>
@@ -247,7 +238,6 @@ namespace update_service.Model
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  DeviceClass: ").Append(DeviceClass).Append("\n");
-            sb.Append("  DatafileChecksum: ").Append(DatafileChecksum).Append("\n");
             sb.Append("  DatafileSize: ").Append(DatafileSize).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
@@ -328,11 +318,6 @@ namespace update_service.Model
                     this.DeviceClass.Equals(other.DeviceClass)
                 ) && 
                 (
-                    this.DatafileChecksum == other.DatafileChecksum ||
-                    this.DatafileChecksum != null &&
-                    this.DatafileChecksum.Equals(other.DatafileChecksum)
-                ) && 
-                (
                     this.DatafileSize == other.DatafileSize ||
                     this.DatafileSize != null &&
                     this.DatafileSize.Equals(other.DatafileSize)
@@ -376,8 +361,6 @@ namespace update_service.Model
                     hash = hash * 59 + this.Etag.GetHashCode();
                 if (this.DeviceClass != null)
                     hash = hash * 59 + this.DeviceClass.GetHashCode();
-                if (this.DatafileChecksum != null)
-                    hash = hash * 59 + this.DatafileChecksum.GetHashCode();
                 if (this.DatafileSize != null)
                     hash = hash * 59 + this.DatafileSize.GetHashCode();
                 if (this.Id != null)

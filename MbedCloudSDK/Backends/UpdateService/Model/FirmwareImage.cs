@@ -45,7 +45,7 @@ namespace update_service.Model
         /// <param name="_Object">The API resource entity (required).</param>
         /// <param name="UpdatedAt">The time the object was updated (required).</param>
         /// <param name="Etag">The entity instance signature (required).</param>
-        /// <param name="DatafileChecksum">Checksum generated for the datafile (required).</param>
+        /// <param name="DatafileChecksum">Checksum (sha256) generated for the datafile (required).</param>
         /// <param name="DatafileSize">Size of the datafile in bytes.</param>
         /// <param name="Id">The firmware image ID (required).</param>
         /// <param name="Name">The firmware image name (required).</param>
@@ -178,9 +178,9 @@ namespace update_service.Model
         public DateTime? Etag { get; set; }
 
         /// <summary>
-        /// Checksum generated for the datafile
+        /// Checksum (sha256) generated for the datafile
         /// </summary>
-        /// <value>Checksum generated for the datafile</value>
+        /// <value>Checksum (sha256) generated for the datafile</value>
         [DataMember(Name="datafile_checksum", EmitDefaultValue=false)]
         public string DatafileChecksum { get; set; }
 
