@@ -154,12 +154,12 @@ namespace MbedCloudSDK.Certificates.Model
         /// <summary>
         /// Get Service Enum
         /// </summary>
-        /// <param name="certificate">Certificate</param>
+        /// <param name="type">Certificate</param>
         /// <returns>Trusted Certificate Request Service Enum</returns>
-        public static TrustedCertificateReq.ServiceEnum GetServiceEnum(Certificate certificate)
+        public static TrustedCertificateReq.ServiceEnum GetServiceEnum(CertificateType type)
         {
             TrustedCertificateReq.ServiceEnum serviceEnum;
-            switch (certificate.Type)
+            switch (type)
             {
                 case CertificateType.Bootstrap:
                     serviceEnum = TrustedCertificateReq.ServiceEnum.Bootstrap;

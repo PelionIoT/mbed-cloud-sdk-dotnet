@@ -192,7 +192,7 @@ namespace MbedCloudSDK.Certificates.Api
                     try
                     {
                         var devResponse = developerCertificateApi.V3DeveloperCertificatesIdGet(trustedCert.Id, auth);
-                        trustedCert = Certificate.MapDeveloperCert(devResponse, trustedCert);
+                        trustedCert = Certificate.MapDeveloperCert(devResponse, new Certificate());
                     }
                     catch (connector_ca.Client.ApiException ex)
                     {
@@ -207,20 +207,20 @@ namespace MbedCloudSDK.Certificates.Api
         /// Create a new Certificate.
         /// </summary>
         /// <param name="certificate"><see cref="Certificate"/> to be created.</param>
+        /// <param name="type">The type of certificate to be created. Bootstrap or Lwm2m.</param>
         /// <param name="certificateData">X509.v3 trusted certificate in PEM or base64 encoded DER format. Null for developer certificate.</param>
         /// <param name="signature">Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. Null for developer certificate.</param>
         /// <returns><see cref="Certificate"/></returns>
         /// <example>
-        /// This sample shows how to call the <see cref="CertificatesApi.AddCertificate(Certificate, string, string)"/> method.
+        /// This sample shows how to call the <see cref="CertificatesApi.AddCertificate(Certificate, CertificateType, string, string)"/> method.
         /// <code>
         /// try {
         ///     var certificate = new Certificate
         ///     {
-        ///         Type = CertificateType.Bootstrap,
         ///         Name = "certificate",
         ///         Description = "This is my certificate",
         ///     };
-        ///     var newCertificate = api.AddCertificate(certificate, "-----BEGIN CERTIFICATE-----\nMIICFzCCAbygAwIBAgIQX ... EPSDKEF\n-----END CERTIFICATE-----", "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        ///     var newCertificate = api.AddCertificate(certificate, CertificateType.Bootstrap, "-----BEGIN CERTIFICATE-----\nMIICFzCCAbygAwIBAgIQX ... EPSDKEF\n-----END CERTIFICATE-----", "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
         ///     return newCertificate;
         /// }
         /// catch (CloudApiException) {
@@ -229,9 +229,9 @@ namespace MbedCloudSDK.Certificates.Api
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public Certificate AddCertificate(Certificate certificate, string certificateData = null, string signature = null)
+        public Certificate AddCertificate(Certificate certificate, CertificateType type, string certificateData = null, string signature = null)
         {
-            if (!certificate.Type.HasValue || certificate.Type.Value == CertificateType.Developer)
+            if (type == CertificateType.Developer)
             {
                 throw new CloudApiException(400, "Value of Certificate Type must be bootstrap or lwm2m");
             }
@@ -241,7 +241,7 @@ namespace MbedCloudSDK.Certificates.Api
                 throw new ArgumentException("certificateData and signatureData are required when creating non developer certificate.");
             }
 
-            var serviceEnum = Certificate.GetServiceEnum(certificate);
+            var serviceEnum = Certificate.GetServiceEnum(type);
             try
             {
                 var resp = iamAccountApi.AddCertificate(new TrustedCertificateReq(Certificate: certificateData, Name: certificate.Name, Service: serviceEnum, Signature: signature, Description: certificate.Description));
@@ -352,35 +352,19 @@ namespace MbedCloudSDK.Certificates.Api
 
             var certificate = Utils.MapToUpdate(originalCertificate, updatedCertificate) as Certificate;
 
-            if (certificate.Type == CertificateType.Developer)
+            var serviceEnum = Certificate.GetUpdateServiceEnum(certificate);
+            var statusEnum = Certificate.GetUpdateStatusEnum(certificate);
+
+            var req = new TrustedCertificateUpdateReq(Status: statusEnum, Certificate: string.IsNullOrEmpty(updatedCertificate.CertificateData) ? null : certificate.CertificateData, Name: certificate.Name, Service: serviceEnum, Signature: string.IsNullOrEmpty(updatedCertificate.CertificateData) ? null : certificate.Signature, Description: certificate.Description);
+
+            try
             {
-                var body = new connector_ca.Model.DeveloperCertificateRequestData(Name: certificate.Name, Description: certificate.Description);
-                try
-                {
-                    var response = developerCertificateApi.V3DeveloperCertificatesPost(auth, body);
-                    return GetCertificate(response.Id);
-                }
-                catch (connector_ca.Client.ApiException ex)
-                {
-                    throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
-                }
+                var resp = developerApi.UpdateCertificate(certificateId, req);
+                return GetCertificate(resp.Id);
             }
-            else
+            catch (iam.Client.ApiException ex)
             {
-                var serviceEnum = Certificate.GetUpdateServiceEnum(certificate);
-                var statusEnum = Certificate.GetUpdateStatusEnum(certificate);
-
-                var req = new TrustedCertificateUpdateReq(Status: statusEnum, Certificate: string.IsNullOrEmpty(updatedCertificate.CertificateData) ? null : certificate.CertificateData, Name: certificate.Name, Service: serviceEnum, Signature: string.IsNullOrEmpty(updatedCertificate.CertificateData) ? null : certificate.Signature, Description: certificate.Description);
-
-                try
-                {
-                    var resp = developerApi.UpdateCertificate(certificateId, req);
-                    return GetCertificate(resp.Id);
-                }
-                catch (iam.Client.ApiException ex)
-                {
-                    throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorCode);
-                }
+                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorCode);
             }
         }
     }
