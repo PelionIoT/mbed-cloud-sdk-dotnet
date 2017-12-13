@@ -5,6 +5,7 @@ namespace MbedCloudSDK.Connect.Model.Notifications
 {
     using System.Collections.Generic;
     using System.Linq;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// EndpointData
@@ -12,34 +13,39 @@ namespace MbedCloudSDK.Connect.Model.Notifications
     public class EndpointData
     {
         /// <summary>
-        /// Gets the QueueMode
+        /// Gets or sets the QueueMode
         /// </summary>
         /// <returns>QueueMode</returns>
-        public bool? QueueMode { get; private set; }
+        [JsonProperty("q")]
+        public bool? QueueMode { get; set; }
 
         /// <summary>
-        /// Gets the EndpointType
+        /// Gets or sets the EndpointType
         /// </summary>
         /// <returns>EndpointType</returns>
-        public string EndpointType { get; private set; }
+        [JsonProperty("ept")]
+        public string EndpointType { get; set; }
 
         /// <summary>
-        /// Gets the OriginalEndpointType
+        /// Gets or sets the OriginalEndpointType
         /// </summary>
         /// <returns>OriginalEndpointType</returns>
-        public string OriginalEndpointType { get; private set; }
+        [JsonProperty("original-ep")]
+        public string OriginalEndpointType { get; set; }
 
         /// <summary>
-        /// Gets the Resources
+        /// Gets or sets the Resources
         /// </summary>
         /// <returns>Resources</returns>
-        public List<ResourcesData> Resources { get; private set; }
+        [JsonProperty("resources")]
+        public List<ResourcesData> Resources { get; set; }
 
         /// <summary>
-        /// Gets the DeviceId
+        /// Gets or sets the DeviceId
         /// </summary>
         /// <returns>DeviceId</returns>
-        public string DeviceId { get; private set; }
+        [JsonProperty("ep")]
+        public string DeviceId { get; set; }
 
         /// <summary>
         /// Maps to EndpointData

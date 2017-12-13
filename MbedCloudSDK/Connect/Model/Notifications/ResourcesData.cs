@@ -1,42 +1,50 @@
 // <copyright file="ResourcesData.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
+
 namespace MbedCloudSDK.Connect.Model.Notifications
 {
+    using Newtonsoft.Json;
+
     /// <summary>
     /// Resources Data
     /// </summary>
     public class ResourcesData
     {
         /// <summary>
-        /// Gets the Path
+        /// Gets or sets the Path
         /// </summary>
         /// <returns>Path</returns>
-        public string Path { get; private set; }
+        [JsonProperty("path")]
+        public string Path { get; set; }
 
         /// <summary>
-        /// Gets the ResourceType
+        /// Gets or sets the ResourceType
         /// </summary>
         /// <returns>ResourceType</returns>
-        public string ResourceType { get; private set; }
+        [JsonProperty("rt")]
+        public string ResourceType { get; set; }
 
         /// <summary>
-        /// Gets the ContentType
+        /// Gets or sets the ContentType
         /// </summary>
         /// <returns>ContentType</returns>
-        public string ContentType { get; private set; }
+        [JsonProperty("ct")]
+        public string ContentType { get; set; }
 
         /// <summary>
-        /// Gets the Observable
+        /// Gets or sets the Observable
         /// </summary>
         /// <returns>Observable</returns>
-        public bool? Observable { get; private set; }
+        [JsonProperty("obs")]
+        public bool? Observable { get; set; }
 
         /// <summary>
-        /// Gets the InterfaceDescription
+        /// Gets or sets the InterfaceDescription
         /// </summary>
         /// <returns>InterfaceDescription</returns>
-        public string InterfaceDescription { get; private set; }
+        [JsonProperty("_if")]
+        public string InterfaceDescription { get; set; }
 
         /// <summary>
         /// Map the resource data

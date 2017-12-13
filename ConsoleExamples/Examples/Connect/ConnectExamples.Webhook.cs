@@ -32,19 +32,19 @@ namespace ConsoleExamples.Examples.Connect
             var device = connectedDevices.FirstOrDefault();
             api.DeleteDeviceSubscriptions(device.Id);
 
+            api.AddResourceSubscription(device.Id, buttonResource);
+
             // webhook address
-            var webhook = new MbedCloudSDK.Connect.Model.Webhook.Webhook("http://testwebhooksdotnet.requestcatcher.com/test");
+            var webhook = new MbedCloudSDK.Connect.Model.Webhook.Webhook("http://mbed-cloud-dotnet.requestcatcher.com/test");
             api.UpdateWebhook(webhook);
             Thread.Sleep(2000);
 
             // Subscribe to the resource
-            api.AddResourceSubscription(device.Id, buttonResource);
-            Console.WriteLine($"Webhook registered, see output on {webhook}");
+            Console.WriteLine($"Webhook registered, see output on {webhook.Url}");
 
             // Deregister webhook after 1 minute
             Thread.Sleep(60000);
             api.DeleteWebhook();
-
             return webhook;
         }
     }

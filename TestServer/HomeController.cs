@@ -30,9 +30,10 @@ namespace TestServer
         private SingletonModuleInstance _moduleRepository;
 
         public HomeController()
-            {
-                _moduleRepository = new SingletonModuleInstance();
-            }
+        {
+            _moduleRepository = new SingletonModuleInstance();
+        }
+
         [HttpGet]
         public IHttpActionResult Init()
         {

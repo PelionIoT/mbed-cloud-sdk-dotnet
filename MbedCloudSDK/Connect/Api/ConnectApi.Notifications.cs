@@ -5,12 +5,14 @@
 namespace MbedCloudSDK.Connect.Api
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Tlv;
     using MbedCloudSDK.Connect.Model.Notifications;
+    using MbedCloudSDK.Exceptions;
 
     /// <summary>
     /// Connect Api
@@ -18,6 +20,7 @@ namespace MbedCloudSDK.Connect.Api
     public partial class ConnectApi
     {
         private TlvDecoder tlvDecoder = new TlvDecoder();
+        private bool handleNotifications = false;
 
         /// <summary>
         /// Notify
@@ -49,9 +52,63 @@ namespace MbedCloudSDK.Connect.Api
                     var resourceSubs = item.DeviceId + item.Path;
                     if (ResourceSubscribtions.ContainsKey(resourceSubs))
                     {
-                        ResourceSubscribtions[resourceSubs].Queue.Add(payload);
+                        ResourceSubscribtions[resourceSubs].NotificationQueue.Add(payload);
                     }
                 }
+            }
+
+            if (notification.Registrations.Any())
+            {
+                notification.Registrations.ForEach(r =>
+                    {
+                        r.Resources.ForEach(res =>
+                        {
+                            var key = r.DeviceId + res.Path;
+                            if (ResourceSubscribtions.ContainsKey(key))
+                            {
+                                ResourceSubscribtions[key].RegistrationQueue.Add(r);
+                            }
+                        });
+                    });
+            }
+
+            if (notification.RegistrationUpdates.Any())
+            {
+                notification.RegistrationUpdates.ForEach(r =>
+                {
+                    r.Resources.ForEach(res =>
+                    {
+                        var key = r.DeviceId + res.Path;
+                        if (ResourceSubscribtions.ContainsKey(key))
+                        {
+                            ResourceSubscribtions[key].RegistrationUpdateQueue.Add(r);
+                        }
+                    });
+                });
+            }
+
+            if (notification.DeRegistrations.Any())
+            {
+                notification.DeRegistrations.ForEach(d =>
+                {
+                    var matchingSubs = resourceSubscribtions.Where(s => s.Key.Contains(d)).ToDictionary(r => r.Key, r => r.Value);
+                    foreach (var item in matchingSubs)
+                    {
+                        item.Value.DeRegistrationQueue.Add(d);
+                    }
+                });
+            }
+
+            if (notification.RegistrationsExpired.Any())
+            {
+                notification.RegistrationsExpired.ForEach(d =>
+                {
+                    var matchingSubs = resourceSubscribtions.Where(s => s.Key.Contains(d)).ToDictionary(r => r.Key, r => r.Value);
+                    foreach (var item in matchingSubs)
+                    {
+                        item.Value.RegistrationExpiredQueue.Add(d);
+                    }
+                });
             }
         }
 
@@ -69,8 +126,10 @@ namespace MbedCloudSDK.Connect.Api
 
                     Notify(NotificationMessage.Map(resp));
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    Console.WriteLine(e);
+                    Console.WriteLine("Multiple notification channels open");
                     StopNotifications();
                 }
             }
@@ -95,16 +154,39 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                Console.WriteLine("Starting notifications");
-                cancellationToken.Dispose();
-                cancellationToken = new CancellationTokenSource();
-                notificationTask = new Task(new Action(Notifications), cancellationToken.Token, TaskCreationOptions.LongRunning);
-                notificationTask.Start();
+                if (notificationTask?.Status != TaskStatus.Running || !handleNotifications)
+                {
+                    if (Config.ForceClear)
+                    {
+                        DeleteWebhook();
+                    }
+
+                    var webhook = GetWebhook();
+
+                    if (webhook?.Url != null)
+                    {
+                        Console.WriteLine($"Webhook already exists at {webhook.Url}");
+                    }
+
+                    Console.WriteLine("Starting notifications");
+                    if (cancellationToken != null)
+                    {
+                        cancellationToken.Dispose();
+                    }
+
+                    cancellationToken = new CancellationTokenSource();
+                    notificationTask = new Task(new Action(Notifications), cancellationToken.Token, TaskCreationOptions.LongRunning);
+                    notificationTask.Start();
+                    handleNotifications = true;
+                }
+                else
+                {
+                    Console.WriteLine("Notifications already started.");
+                }
             }
             catch (InvalidOperationException e)
             {
-                Console.WriteLine(e);
-                Console.WriteLine("Notifications already started.");
+                Console.WriteLine(e.Message);
             }
         }
 
@@ -125,16 +207,41 @@ namespace MbedCloudSDK.Connect.Api
         /// </example>
         public void StopNotifications()
         {
+            if (cancellationToken != null)
+            {
+                try
+                {
+                    cancellationToken?.Cancel();
+                    cancellationToken?.Dispose();
+                }
+                catch (ObjectDisposedException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (InvalidOperationException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+
             try
             {
-                Console.WriteLine("Stopping notifications");
-                cancellationToken.Cancel();
                 notificationsApi.V2NotificationPullDelete();
             }
-            catch (InvalidOperationException)
+            catch (mds.Client.ApiException e)
             {
-                Console.WriteLine("Notifications not started yet.");
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
+
+            if (notificationTask != null)
+            {
+                if (notificationTask.IsCanceled || notificationTask.IsFaulted || notificationTask.IsCanceled)
+                {
+                    notificationTask?.Dispose();
+                }
+            }
+
+            handleNotifications = false;
         }
     }
 }

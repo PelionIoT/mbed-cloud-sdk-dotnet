@@ -76,10 +76,7 @@ namespace MbedCloudSDK.Connect.Api
                 var respDevices = new ResponsePage<ConnectedDevice>(after: resp.After, hasMore: resp.HasMore, limit: resp.Limit, order: resp.Order, totalCount: resp.TotalCount);
                 foreach (var device in resp.Data)
                 {
-                    using (var connectApi = new ConnectApi(Config))
-                    {
-                        respDevices.Data.Add(ConnectedDevice.Map(device, connectApi));
-                    }
+                    respDevices.Data.Add(ConnectedDevice.Map(device, this));
                 }
 
                 return respDevices;
@@ -181,12 +178,9 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                using (var api = new ConnectApi(Config))
-                {
-                    return endpointsApi.V2EndpointsDeviceIdGet(deviceId)
-                    .Select(r => Resource.Map(deviceId, r, api))
-                    .ToList();
-                }
+                return endpointsApi.V2EndpointsDeviceIdGet(deviceId)
+                .Select(r => Resource.Map(deviceId, r, this))
+                .ToList();
             }
             catch (mds.Client.ApiException e)
             {
@@ -269,10 +263,8 @@ namespace MbedCloudSDK.Connect.Api
         /// <code>
         /// try
         /// {
-        ///     connectApi.StartNotifications();
         ///     var resp = connectApi.GetResourceValue("015bb66a92a30000000000010010006d", "5001/0/1");
         ///     Console.WriteLine($"The value of the resource is {resp}");
-        ///     connectApi.StopNotifications();
         /// }
         /// catch (CloudApiException)
         /// {
@@ -285,14 +277,11 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                resourcePath = FixedPath(resourcePath);
-                var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathGet(deviceId, resourcePath);
-                var collection = new AsyncProducerConsumerCollection<string>();
-                AsyncResponses.Add(asyncID.AsyncResponseId, collection);
+                var consumer = GetResourceValueAsync(deviceId, resourcePath).Result;
 
-                if (AsyncResponses.ContainsKey(asyncID.AsyncResponseId))
+                if (AsyncResponses.ContainsKey(consumer.AsyncId))
                 {
-                    var res = AsyncResponses[asyncID.AsyncResponseId].Take().Result;
+                    var res = AsyncResponses[consumer.AsyncId].Take().Result;
                     return res;
                 }
                 else
@@ -318,11 +307,9 @@ namespace MbedCloudSDK.Connect.Api
         /// <code>
         /// try
         /// {
-        ///     connectApi.StartNotifications();
         ///     var resp = connectApi.SetResourceValue("015bb66a92a30000000000010010006d", "5001/0/1", "new value");
         ///     var newValue = connectApi.GetResourceValue("015bb66a92a30000000000010010006d", "5001/0/1");
         ///     Console.WriteLine($"The value of the resource is {newValue}");
-        ///     connectApi.StopNotifications();
         /// }
         /// catch (CloudApiException)
         /// {
@@ -331,15 +318,20 @@ namespace MbedCloudSDK.Connect.Api
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public AsyncConsumer<string> SetResourceValue(string deviceId, string resourcePath, string resourceValue, bool? noResponse = null)
+        public string SetResourceValue(string deviceId, string resourcePath, string resourceValue, bool? noResponse = null)
         {
             try
             {
-                resourcePath = FixedPath(resourcePath);
-                var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPut(deviceId, resourcePath, resourceValue, noResponse);
-                var collection = new AsyncProducerConsumerCollection<string>();
-                AsyncResponses.Add(asyncID.AsyncResponseId, collection);
-                return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
+                var consumer = SetResourceValueAsync(deviceId, resourcePath, resourceValue, noResponse).Result;
+                if (AsyncResponses.ContainsKey(consumer.AsyncId))
+                {
+                    var res = AsyncResponses[consumer.AsyncId].Take().Result;
+                    return res;
+                }
+                else
+                {
+                    throw new CloudApiException(404, "AsyncId not found.");
+                }
             }
             catch (mds.Client.ApiException e)
             {
@@ -359,10 +351,8 @@ namespace MbedCloudSDK.Connect.Api
         /// <code>
         /// try
         /// {
-        ///     connectApi.StartNotifications();
         ///     var resp = connectApi.ExecuteResource("015bb66a92a30000000000010010006d", "5001/0/1");
         ///     Console.WriteLine(resp);
-        ///     connectApi.StopNotifications();
         /// }
         /// catch (CloudApiException)
         /// {
@@ -371,12 +361,42 @@ namespace MbedCloudSDK.Connect.Api
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public AsyncConsumer<string> ExecuteResource(string deviceId, string resourcePath, string functionName = null, bool? noResponse = null)
+        public string ExecuteResource(string deviceId, string resourcePath, string functionName = null, bool? noResponse = null)
         {
             try
             {
+                var consumer = ExecuteResourceAsync(deviceId, resourcePath, functionName, noResponse).Result;
+                if (AsyncResponses.ContainsKey(consumer.AsyncId))
+                {
+                    var res = AsyncResponses[consumer.AsyncId].Take().Result;
+                    return res;
+                }
+                else
+                {
+                    throw new CloudApiException(404, "AsyncId not found.");
+                }
+            }
+            catch (mds.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        /// <summary>
+        /// Execute a function on a resource asynchronously
+        /// </summary>
+        /// <param name="deviceId">Device Id</param>
+        /// <param name="resourcePath">Resource path.</param>
+        /// <param name="functionName">The function to trigger</param>
+        /// <param name="noResponse">If true, Mbed Device Connector will not wait for a response</param>
+        /// <returns>Async consumer with string</returns>
+        public async System.Threading.Tasks.Task<AsyncConsumer<string>> ExecuteResourceAsync(string deviceId, string resourcePath, string functionName = null, bool? noResponse = null)
+        {
+            try
+            {
+                StartNotifications();
                 resourcePath = FixedPath(resourcePath);
-                var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPost(deviceId, resourcePath, functionName, noResponse);
+                var asyncID = await resourcesApi.V2EndpointsDeviceIdResourcePathPostAsync(deviceId, resourcePath, functionName, noResponse);
                 var collection = new AsyncProducerConsumerCollection<string>();
                 AsyncResponses.Add(asyncID.AsyncResponseId, collection);
                 return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
@@ -393,10 +413,11 @@ namespace MbedCloudSDK.Connect.Api
         /// <param name="deviceId">Device Id</param>
         /// <param name="resourcePath">Resource path.</param>
         /// <returns>Async consumer with string</returns>
-        public AsyncConsumer<string> GetResourceValueAsync(string deviceId, string resourcePath)
+        public async System.Threading.Tasks.Task<AsyncConsumer<string>> GetResourceValueAsync(string deviceId, string resourcePath)
         {
+            StartNotifications();
             resourcePath = FixedPath(resourcePath);
-            var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathGetAsync(deviceId, resourcePath).Result;
+            var asyncID = await resourcesApi.V2EndpointsDeviceIdResourcePathGetAsync(deviceId, resourcePath);
             var collection = new AsyncProducerConsumerCollection<string>();
             AsyncResponses.Add(asyncID.AsyncResponseId, collection);
             return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
@@ -410,10 +431,11 @@ namespace MbedCloudSDK.Connect.Api
         /// <param name="resourceValue">Value to set.</param>
         /// <param name="noResponse">Don't get a response.</param>
         /// <returns>Async consumer with string</returns>
-        public AsyncConsumer<string> SetResourceValueAsync(string deviceId, string resourcePath, string resourceValue, bool? noResponse = null)
+        public async System.Threading.Tasks.Task<AsyncConsumer<string>> SetResourceValueAsync(string deviceId, string resourcePath, string resourceValue, bool? noResponse = null)
         {
+            StartNotifications();
             resourcePath = FixedPath(resourcePath);
-            var asyncID = resourcesApi.V2EndpointsDeviceIdResourcePathPutAsync(deviceId, resourcePath, resourceValue, noResponse).Result;
+            var asyncID = await resourcesApi.V2EndpointsDeviceIdResourcePathPutAsync(deviceId, resourcePath, resourceValue, noResponse);
             var collection = new AsyncProducerConsumerCollection<string>();
             AsyncResponses.Add(asyncID.AsyncResponseId, collection);
             return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);

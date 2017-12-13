@@ -4,6 +4,7 @@
 
 namespace MbedCloudSDK.Connect.Api
 {
+    using System;
     using MbedCloudSDK.Connect.Model.Webhook;
     using MbedCloudSDK.Exceptions;
 
@@ -38,6 +39,12 @@ namespace MbedCloudSDK.Connect.Api
             }
             catch (mds.Client.ApiException ex)
             {
+                if (ex.ErrorCode == 404)
+                {
+                    Console.WriteLine("No webhook found");
+                    return null;
+                }
+
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
         }
@@ -67,7 +74,11 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                notificationsApi.V2NotificationPullDelete();
+                if (Config.ForceClear)
+                {
+                    StopNotifications();
+                }
+
                 notificationsApi.V2NotificationCallbackPut(Webhook.MapToApiWebook(webhook));
             }
             catch (mds.Client.ApiException ex)
@@ -101,7 +112,14 @@ namespace MbedCloudSDK.Connect.Api
             }
             catch (mds.Client.ApiException ex)
             {
-                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+                if (ex.ErrorCode == 404)
+                {
+                    Console.WriteLine("Webhook doesn't exist");
+                }
+                else
+                {
+                    throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+                }
             }
         }
     }

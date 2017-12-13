@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using MbedCloudSDK.Common;
 using MbedCloudSDK.Connect.Model.Notifications;
+using Newtonsoft.Json;
 
 namespace MbedCloudSDK.Test.Common.Tlv
 {
@@ -224,6 +225,13 @@ namespace MbedCloudSDK.Test.Common.Tlv
 
             var payload = Utils.DecodeBase64(res);
             Assert.AreEqual("test", payload);
+        }
+
+        [Test]
+        public void ShouldSerializeNotification()
+        {
+            var notificationString = "{\"notifications\": [{\"ct\": \"text/plain\",\"ep\": \"015f77b2364200000000000100100027\",\"max-age\": 60,\"path\": \"/5002/0/1\",\"payload\": \"MTM3ODI=\"}]}";
+            var notificationJson = JsonConvert.DeserializeObject<NotificationMessage>(notificationString);
         }
     }
 }
