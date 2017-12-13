@@ -6,6 +6,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
 {
     using System;
     using System.Text;
+    using MbedCloudSDK.Common;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -103,7 +104,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
                 MechanismUrl = data.MechanismUrl,
                 Name = data.Name,
                 UpdatedAt = data.UpdatedAt,
-                State = (CampaignDeviceStateEnum)Enum.Parse(typeof(CampaignDeviceStateEnum), data.DeploymentState.ToString())
+                State = Utils.ParseEnum<CampaignDeviceStateEnum>(data.DeploymentState),
             };
             return state;
         }
