@@ -5,6 +5,7 @@
 namespace MbedCloudSDK.Update.Api
 {
     using System;
+    using System.IO;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Exceptions;
@@ -86,7 +87,8 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// List campaign Device States
         /// </summary>
-        /// <param name="options"><see cref="Campaign"/></param>
+        /// <param name="campaignId">The Id of the Campaign to list the states of.</param>
+        /// <param name="options"><see cref="QueryOptions"/></param>
         /// <returns>Paginated Response of <see cref="CampaignDeviceState"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
@@ -110,12 +112,19 @@ namespace MbedCloudSDK.Update.Api
         /// }
         /// </code>
         /// </example>
-        public PaginatedResponse<CampaignDeviceState> ListCampaignDeviceStates(QueryOptions options = null)
+        public PaginatedResponse<CampaignDeviceState> ListCampaignDeviceStates(string campaignId, QueryOptions options = null)
         {
             if (options == null)
             {
                 options = new QueryOptions();
             }
+
+            if (campaignId == null)
+            {
+                throw new InvalidDataException("Campaign Id is required in QueryOptions and cannot be null");
+            }
+
+            options.Id = campaignId;
 
             try
             {
