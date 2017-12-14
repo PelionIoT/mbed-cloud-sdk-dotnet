@@ -229,38 +229,6 @@ namespace MbedCloudSDK.Connect.Api
         }
 
         /// <summary>
-        /// Delete resource.
-        /// </summary>
-        /// <param name="deviceId">Device Id</param>
-        /// <param name="resourcePath">Path to the resource.</param>
-        /// <param name="noResponse">Whether to make a non-confirmable request to the device</param>
-        /// <example>
-        /// <code>
-        /// try
-        /// {
-        ///     connectApi.DeleteResource("015bb66a92a30000000000010010006d", "5001/0/1");
-        /// }
-        /// catch (CloudApiException)
-        /// {
-        ///     throw;
-        /// }
-        /// </code>
-        /// </example>
-        /// <exception cref="CloudApiException">CloudApiException</exception>
-        public void DeleteResource(string deviceId, string resourcePath, bool? noResponse = null)
-        {
-            try
-            {
-                var fixedPath = FixedPath(resourcePath);
-                resourcesApi.V2EndpointsDeviceIdResourcePathDelete(deviceId, fixedPath, noResponse);
-            }
-            catch (mds.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        /// <summary>
         /// Gets the value of the resource..
         /// </summary>
         /// <param name="deviceId">Device Id</param>
