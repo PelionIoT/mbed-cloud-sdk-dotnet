@@ -12,6 +12,7 @@ namespace MbedCloudSDK.Connect.Api
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Tlv;
     using MbedCloudSDK.Connect.Model.Notifications;
+    using MbedCloudSDK.Connect.Model.Webhook;
     using MbedCloudSDK.Exceptions;
 
     /// <summary>
@@ -158,10 +159,31 @@ namespace MbedCloudSDK.Connect.Api
                 {
                     if (Config.ForceClear)
                     {
-                        DeleteWebhook();
+                        try
+                        {
+                            DeleteWebhook();
+                        }
+                        catch (CloudApiException e)
+                        {
+                            if (e.ErrorCode != 404)
+                            {
+                                throw;
+                            }
+                        }
                     }
 
-                    var webhook = GetWebhook();
+                    var webhook = new Webhook();
+                    try
+                    {
+                        webhook = GetWebhook();
+                    }
+                    catch (CloudApiException e)
+                    {
+                        if (e.ErrorCode != 404)
+                        {
+                            throw;
+                        }
+                    }
 
                     if (webhook?.Url != null)
                     {

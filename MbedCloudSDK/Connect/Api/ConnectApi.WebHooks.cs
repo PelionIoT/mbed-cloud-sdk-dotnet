@@ -39,12 +39,6 @@ namespace MbedCloudSDK.Connect.Api
             }
             catch (mds.Client.ApiException ex)
             {
-                if (ex.ErrorCode == 404)
-                {
-                    Console.WriteLine("No webhook found");
-                    return null;
-                }
-
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
         }
@@ -112,14 +106,7 @@ namespace MbedCloudSDK.Connect.Api
             }
             catch (mds.Client.ApiException ex)
             {
-                if (ex.ErrorCode == 404)
-                {
-                    Console.WriteLine("Webhook doesn't exist");
-                }
-                else
-                {
-                    throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
-                }
+                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
         }
     }
