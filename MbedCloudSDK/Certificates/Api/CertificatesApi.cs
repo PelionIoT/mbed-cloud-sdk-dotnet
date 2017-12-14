@@ -207,20 +207,19 @@ namespace MbedCloudSDK.Certificates.Api
         /// Create a new Certificate.
         /// </summary>
         /// <param name="certificate"><see cref="Certificate"/> to be created.</param>
-        /// <param name="type">The type of certificate to be created. Bootstrap or Lwm2m.</param>
         /// <param name="certificateData">X509.v3 trusted certificate in PEM or base64 encoded DER format. Null for developer certificate.</param>
         /// <param name="signature">Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. Null for developer certificate.</param>
         /// <returns><see cref="Certificate"/></returns>
         /// <example>
-        /// This sample shows how to call the <see cref="CertificatesApi.AddCertificate(Certificate, CertificateType, string, string)"/> method.
+        /// This sample shows how to call the <see cref="CertificatesApi.AddCertificate(Certificate, string, string)"/> method.
         /// <code>
         /// try {
-        ///     var certificate = new Certificate
+        ///     var certificate = new Certificate(certificateType: CertificateType.Bootstrap)
         ///     {
         ///         Name = "certificate",
         ///         Description = "This is my certificate",
         ///     };
-        ///     var newCertificate = api.AddCertificate(certificate, CertificateType.Bootstrap, "-----BEGIN CERTIFICATE-----\nMIICFzCCAbygAwIBAgIQX ... EPSDKEF\n-----END CERTIFICATE-----", "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        ///     var newCertificate = api.AddCertificate(certificate, "-----BEGIN CERTIFICATE-----\nMIICFzCCAbygAwIBAgIQX ... EPSDKEF\n-----END CERTIFICATE-----", "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
         ///     return newCertificate;
         /// }
         /// catch (CloudApiException) {
@@ -229,9 +228,9 @@ namespace MbedCloudSDK.Certificates.Api
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public Certificate AddCertificate(Certificate certificate, CertificateType type, string certificateData = null, string signature = null)
+        public Certificate AddCertificate(Certificate certificate, string certificateData = null, string signature = null)
         {
-            if (type == CertificateType.Developer)
+            if (!certificate.Type.HasValue || certificate.Type == CertificateType.Developer)
             {
                 throw new CloudApiException(400, "Value of Certificate Type must be bootstrap or lwm2m");
             }
@@ -241,7 +240,7 @@ namespace MbedCloudSDK.Certificates.Api
                 throw new ArgumentException("certificateData and signatureData are required when creating non developer certificate.");
             }
 
-            var serviceEnum = Certificate.GetServiceEnum(type);
+            var serviceEnum = Certificate.GetServiceEnum(certificate.Type.Value);
             try
             {
                 var resp = iamAccountApi.AddCertificate(new TrustedCertificateReq(Certificate: certificateData, Name: certificate.Name, Service: serviceEnum, Signature: signature, Description: certificate.Description));
@@ -262,7 +261,6 @@ namespace MbedCloudSDK.Certificates.Api
         /// try {
         ///     var certificate = new Certificate
         ///     {
-        ///         Type = CertificateType.Developer,
         ///         Name = "certificate",
         ///         Description = "This is my certificate",
         ///     };
@@ -300,7 +298,7 @@ namespace MbedCloudSDK.Certificates.Api
         /// <code>
         /// try
         /// {
-        ///     certificatesApi.DeleteCertificate();
+        ///     certificatesApi.DeleteCertificate("015c64f76a7b02420a01230a0000000");
         /// }
         /// catch (CloudApiException) {
         ///     Throw;
