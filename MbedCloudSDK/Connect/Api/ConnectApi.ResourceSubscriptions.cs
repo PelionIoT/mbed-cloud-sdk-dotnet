@@ -161,6 +161,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
+                var fixedPath = FixedPath(resourcePath);
                 if (deviceId == null)
                 {
                     foreach (var resource in ResourceSubscribtions)
@@ -171,7 +172,7 @@ namespace MbedCloudSDK.Connect.Api
                 }
                 else
                 {
-                    subscriptionsApi.V2SubscriptionsDeviceIdResourcePathDelete(deviceId, resourcePath);
+                    subscriptionsApi.V2SubscriptionsDeviceIdResourcePathDelete(deviceId, fixedPath);
                     var subscribePath = deviceId + resourcePath;
                     ResourceSubscribtions.Remove(subscribePath);
                 }

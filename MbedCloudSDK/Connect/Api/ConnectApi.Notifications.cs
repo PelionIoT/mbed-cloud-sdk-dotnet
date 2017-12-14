@@ -195,7 +195,7 @@ namespace MbedCloudSDK.Connect.Api
         /// </summary>
         /// <example>
         /// <code>
-        /// try
+        /// /// try
         /// {
         ///     connectApi.StopNotifications();
         /// }

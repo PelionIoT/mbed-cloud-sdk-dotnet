@@ -17,6 +17,52 @@ namespace MbedCloudSDK.Certificates.Model
     public class Certificate
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="Certificate" /> class.
+        /// </summary>
+        public Certificate()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Certificate" /> class.
+        /// </summary>
+        /// <param name="description">description</param>
+        /// <param name="subject">subject</param>
+        /// <param name="accountId">accountId</param>
+        /// <param name="signature">signature</param>
+        /// <param name="issuer">issuer</param>
+        /// <param name="certificateData">certificateData</param>
+        /// <param name="id">id</param>
+        /// <param name="name">name</param>
+        /// <param name="securityFileContent">securityFileContent</param>
+        /// <param name="developerCertificate">developerCertificate</param>
+        /// <param name="serverUri">serverUri</param>
+        /// <param name="developerPrivateKey">developerPrivateKey</param>
+        /// <param name="serverCertificate">serverCertificate</param>
+        /// <param name="ownerId">ownerId</param>
+        /// <param name="headerFile">headerFile</param>
+        /// <param name="certificateType">certificateType</param>
+        public Certificate(string description = null, string subject = null, string accountId = null, string signature = null, string issuer = null, string certificateData = null, string id = null, string name = null, string securityFileContent = null, string developerCertificate = null, string serverUri = null, string developerPrivateKey = null, string serverCertificate = null, string ownerId = null, string headerFile = null, CertificateType certificateType = default(CertificateType))
+        {
+            Description = description;
+            Subject = subject;
+            AccountId = accountId;
+            Signature = signature;
+            Issuer = issuer;
+            CertificateData = certificateData;
+            Id = id;
+            Name = name;
+            SecurityFileContent = securityFileContent;
+            DeveloperCertificate = developerCertificate;
+            ServerUri = serverUri;
+            DeveloperPrivateKey = developerPrivateKey;
+            ServerCertificate = serverCertificate;
+            OwnerId = ownerId;
+            HeaderFile = headerFile;
+            Type = certificateType;
+        }
+
+        /// <summary>
         /// Gets type of Certificate
         /// </summary>
         [JsonConverter(typeof(CertificateTypeConverter))]
@@ -154,12 +200,12 @@ namespace MbedCloudSDK.Certificates.Model
         /// <summary>
         /// Get Service Enum
         /// </summary>
-        /// <param name="certificate">Certificate</param>
+        /// <param name="type">Certificate</param>
         /// <returns>Trusted Certificate Request Service Enum</returns>
-        public static TrustedCertificateReq.ServiceEnum GetServiceEnum(Certificate certificate)
+        public static TrustedCertificateReq.ServiceEnum GetServiceEnum(CertificateType type)
         {
             TrustedCertificateReq.ServiceEnum serviceEnum;
-            switch (certificate.Type)
+            switch (type)
             {
                 case CertificateType.Bootstrap:
                     serviceEnum = TrustedCertificateReq.ServiceEnum.Bootstrap;

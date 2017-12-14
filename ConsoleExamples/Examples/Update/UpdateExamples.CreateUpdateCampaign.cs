@@ -99,11 +99,7 @@ namespace ConsoleExamples.Examples.Update
             var countdown = 10;
             while (countdown >= 0)
             {
-                var options = new QueryOptions
-                {
-                    Id = campaign.Id,
-                };
-                var states = api.ListCampaignDeviceStates(options).Data;
+                var states = api.ListCampaignDeviceStates(campaign.Id).Data;
                 Console.WriteLine($"states - {states.Count}");
                 foreach (var item in states)
                 {
