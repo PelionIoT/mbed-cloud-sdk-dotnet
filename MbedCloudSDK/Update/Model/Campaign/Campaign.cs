@@ -104,11 +104,6 @@ namespace MbedCloudSDK.Update.Model.Campaign
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets a when for this campaign
-        /// </summary>
-        public DateTime? When { get; set; }
-
-        /// <summary>
         /// Gets or sets object
         /// </summary>
         public string Object { get; set; }
@@ -150,11 +145,10 @@ namespace MbedCloudSDK.Update.Model.Campaign
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  ManifestId: ").Append(ManifestId).Append("\n");
-            sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
             sb.Append("  StartedAt: ").Append(StartedAt).Append("\n");
             sb.Append("  ScheduledAt: ").Append(ScheduledAt).Append("\n");
             sb.Append("  FinishedAt: ").Append(FinishedAt).Append("\n");
-            sb.Append("  RootManifestUrl: ").Append(ManifestUrl).Append("\n");
+            sb.Append("  ManifestUrl: ").Append(ManifestUrl).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  DeviceFilter: ").Append(Convert.ToString(DeviceFilter?.FilterJson)).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
@@ -196,6 +190,27 @@ namespace MbedCloudSDK.Update.Model.Campaign
                 Name: Name);
 
             return request;
+        }
+
+        /// <summary>
+        /// Create patch request
+        /// </summary>
+        /// <returns>An UpdateCampaignPatchRequest</returns>
+        public UpdateCampaignPatchRequest CreatePatchRequest()
+        {
+            var updateCampaignStatus = Utils.ParseEnum<update_service.Model.UpdateCampaignPatchRequest.StateEnum>(State);
+            var updateCampaignPatchRequest = new update_service.Model.UpdateCampaignPatchRequest
+            {
+                Description = Description,
+                RootManifestId = ManifestId,
+                _Object = Object,
+                When = ScheduledAt ?? DateTime.Now,
+                State = updateCampaignStatus,
+                DeviceFilter = DeviceFilter?.FilterString,
+                Name = Name,
+            };
+
+            return updateCampaignPatchRequest;
         }
     }
 }

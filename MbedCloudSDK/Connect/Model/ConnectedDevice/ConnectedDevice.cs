@@ -61,15 +61,5 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         {
             return api.ListResources(Id);
         }
-
-        /// <summary>
-        /// Delete Resource.
-        /// </summary>
-        /// <param name="resourcePath">Path to the resource.</param>
-        /// <param name="noResponse">no response</param>
-        public void DeleteResource(string resourcePath, bool? noResponse = null)
-        {
-            api.DeleteResource(Id, resourcePath, noResponse);
-        }
     }
 }

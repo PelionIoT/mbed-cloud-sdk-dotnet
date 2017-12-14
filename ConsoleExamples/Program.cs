@@ -221,7 +221,7 @@ namespace ConsoleExamples
                     deviceDirectoryExamples.ListDeviceEvents();
                     break;
                 case 33:
-                    updateExamples.CreateCampaign(false);
+                    updateExamples.CreateCampaign();
                     break;
                 case 34:
                     updateExamples.ListImages();

@@ -232,6 +232,7 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// Start update campaign.
         /// </summary>
+        /// <param name="campaignId">Id of the campaign to start</param>
         /// <param name="campaign"><see cref="Campaign"/></param>
         /// <returns><see cref="Campaign"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
@@ -240,7 +241,7 @@ namespace MbedCloudSDK.Update.Api
         /// try
         /// {
         ///     var campaign = api.GetCampaign("015baf5f4f04000000000001001003d5");
-        ///     var startedCampaign = updateApi.StartCampaign(campaign);
+        ///     var startedCampaign = updateApi.StartCampaign(campaign.Id, campaign);
         ///     return startedCampaign;
         /// }
         /// catch (CloudApiException)
@@ -249,11 +250,49 @@ namespace MbedCloudSDK.Update.Api
         /// }
         /// </code>
         /// </example>
-        public Campaign StartCampaign(Campaign campaign)
+        public Campaign StartCampaign(string campaignId, Campaign campaign)
         {
             try
             {
-                var resp = api.UpdateCampaignUpdate(campaign.Id, campaign.CreatePutRequest());
+                campaign.State = CampaignStateEnum.Scheduled;
+                var resp = api.UpdateCampaignPartialUpdate(campaignId, campaign.CreatePatchRequest());
+                return Campaign.Map(resp);
+            }
+            catch (update_service.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        /// <summary>
+        /// Stop an update campaign.
+        /// </summary>
+        /// <param name="campaignId">Id of the campaign to stop.</param>
+        /// <param name="campaign"><see cref="Campaign"/></param>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
+        /// <returns><see cref="Campaign"/></returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var campaign = api.GetCampaign("015baf5f4f04000000000001001003d5");
+        ///     var startedCampaign = updateApi.StartCampaign(campaign.Id, campaign);
+        ///     Thread.Sleep(10000);
+        ///     var stoppedCampaign = updateApi.StopCampaign(campaign.Id, startedCampaign);
+        ///     return stoppedCampaign;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        public Campaign StopCampaign(string campaignId, Campaign campaign)
+        {
+            try
+            {
+                campaign.State = CampaignStateEnum.Draft;
+                var resp = api.UpdateCampaignPartialUpdate(campaignId, campaign.CreatePatchRequest());
                 return Campaign.Map(resp);
             }
             catch (update_service.Client.ApiException e)
@@ -292,17 +331,7 @@ namespace MbedCloudSDK.Update.Api
             try
             {
                 var stateEnum = Utils.ParseEnum<update_service.Model.UpdateCampaignPatchRequest.StateEnum>(campaign.State);
-                var updateCampaignPatchRequest = new update_service.Model.UpdateCampaignPatchRequest
-                {
-                    Description = campaign.Description,
-                    RootManifestId = campaign.ManifestId,
-                    _Object = campaign.Object,
-                    When = campaign.When,
-                    State = stateEnum,
-                    DeviceFilter = campaign?.DeviceFilter?.FilterString,
-                    Name = campaign.Name
-                };
-                var response = api.UpdateCampaignPartialUpdate(campaignId, updateCampaignPatchRequest);
+                var response = api.UpdateCampaignPartialUpdate(campaignId, campaign.CreatePatchRequest());
                 return Campaign.Map(response);
             }
             catch (update_service.Client.ApiException e)
