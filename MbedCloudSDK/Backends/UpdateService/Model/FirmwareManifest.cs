@@ -46,11 +46,12 @@ namespace update_service.Model
         /// <param name="_Object">The API resource entity (required).</param>
         /// <param name="UpdatedAt">The time the object was updated (required).</param>
         /// <param name="Etag">The entity instance signature (required).</param>
+        /// <param name="KeyTable">The optional URL of the key_table binary.</param>
         /// <param name="DeviceClass">The class of the device (required).</param>
         /// <param name="DatafileSize">Size of the datafile in bytes.</param>
         /// <param name="Id">The firmware manifest ID (required).</param>
         /// <param name="Name">The name of the object (required).</param>
-        public FirmwareManifest(string Datafile = default(string), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), string DeviceClass = default(string), long? DatafileSize = default(long?), string Id = default(string), string Name = default(string))
+        public FirmwareManifest(string Datafile = default(string), string Description = default(string), DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), string KeyTable = default(string), string DeviceClass = default(string), long? DatafileSize = default(long?), string Id = default(string), string Name = default(string))
         {
             // to ensure "Datafile" is required (not null)
             if (Datafile == null)
@@ -142,6 +143,7 @@ namespace update_service.Model
             {
                 this.Name = Name;
             }
+            this.KeyTable = KeyTable;
             this.DatafileSize = DatafileSize;
         }
         
@@ -195,6 +197,13 @@ namespace update_service.Model
         public DateTime? Etag { get; set; }
 
         /// <summary>
+        /// The optional URL of the key_table binary
+        /// </summary>
+        /// <value>The optional URL of the key_table binary</value>
+        [DataMember(Name="key_table", EmitDefaultValue=false)]
+        public string KeyTable { get; set; }
+
+        /// <summary>
         /// The class of the device
         /// </summary>
         /// <value>The class of the device</value>
@@ -237,6 +246,7 @@ namespace update_service.Model
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
+            sb.Append("  KeyTable: ").Append(KeyTable).Append("\n");
             sb.Append("  DeviceClass: ").Append(DeviceClass).Append("\n");
             sb.Append("  DatafileSize: ").Append(DatafileSize).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
@@ -313,6 +323,11 @@ namespace update_service.Model
                     this.Etag.Equals(other.Etag)
                 ) && 
                 (
+                    this.KeyTable == other.KeyTable ||
+                    this.KeyTable != null &&
+                    this.KeyTable.Equals(other.KeyTable)
+                ) && 
+                (
                     this.DeviceClass == other.DeviceClass ||
                     this.DeviceClass != null &&
                     this.DeviceClass.Equals(other.DeviceClass)
@@ -359,6 +374,8 @@ namespace update_service.Model
                     hash = hash * 59 + this.UpdatedAt.GetHashCode();
                 if (this.Etag != null)
                     hash = hash * 59 + this.Etag.GetHashCode();
+                if (this.KeyTable != null)
+                    hash = hash * 59 + this.KeyTable.GetHashCode();
                 if (this.DeviceClass != null)
                     hash = hash * 59 + this.DeviceClass.GetHashCode();
                 if (this.DatafileSize != null)
