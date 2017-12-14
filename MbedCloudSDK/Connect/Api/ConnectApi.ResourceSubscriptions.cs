@@ -65,56 +65,6 @@ namespace MbedCloudSDK.Connect.Api
         }
 
         /// <summary>
-        /// Subscribe to resource updates.
-        /// </summary>
-        /// <param name="resource">The resource to subscribe to.</param>
-        /// <returns>Async Consumer with String</returns>
-        /// <example>
-        /// <code>
-        /// var resource = new Resource("015bb66a92a30000000000010010006d", null, this);
-        /// var consumer = api.AddResourceSubscription(resource);
-        /// var counter = 0;
-        /// while (true)
-        /// {
-        ///     var t = consumer.GetValue();
-        ///     Console.WriteLine(t.Result);
-        ///     counter++;
-        ///     if (counter >= 2)
-        ///     {
-        ///     break;
-        ///     }
-        /// }
-        /// </code>
-        /// </example>
-        /// <exception cref="CloudApiException">CloudApiException</exception>
-        public Resource AddResourceSubscription(Resource resource)
-        {
-            try
-            {
-                StartNotifications();
-                var fixedPath = FixedPath(resource.Path);
-                subscriptionsApi.V2SubscriptionsDeviceIdResourcePathPut(resource.DeviceId, fixedPath);
-                var subscribePath = resource.DeviceId + resource.Path;
-
-                if (!ResourceSubscribtions.ContainsKey(subscribePath))
-                {
-                    ResourceSubscribtions.Add(subscribePath, resource);
-                }
-                else
-                {
-                    ResourceSubscribtions.Remove(subscribePath);
-                    ResourceSubscribtions.Add(subscribePath, resource);
-                }
-
-                return resource;
-            }
-            catch (mds.Client.ApiException ex)
-            {
-                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
-            }
-        }
-
-        /// <summary>
         /// Gets the status of a resource's subscription. True if ok, false if not.
         /// </summary>
         /// <param name="deviceId">Id of device.</param>
