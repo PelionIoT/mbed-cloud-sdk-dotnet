@@ -12,7 +12,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Update
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
             var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
             var createUpdateCampaign = new ConsoleExamples.Examples.Update.UpdateExamples(config);
-            var campaign = createUpdateCampaign.CreateCampaign(false);
+            var campaign = createUpdateCampaign.CreateCampaign();
             Assert.IsNotNull(campaign);
         }
 
