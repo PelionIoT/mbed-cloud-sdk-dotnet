@@ -131,9 +131,8 @@ namespace update_service.Api
         /// <param name="datafile">The manifest file to create. The API gateway enforces the account-specific file size.</param>
         /// <param name="name">The name of the firmware manifest</param>
         /// <param name="description">The description of the firmware manifest (optional)</param>
-        /// <param name="keyTable">The optional key table file to create. (optional)</param>
         /// <returns>FirmwareManifest</returns>
-        FirmwareManifest FirmwareManifestCreate (System.IO.Stream datafile, string name, string description = null, System.IO.Stream keyTable = null);
+        FirmwareManifest FirmwareManifestCreate (System.IO.Stream datafile, string name, string description = null);
 
         /// <summary>
         /// 
@@ -145,9 +144,8 @@ namespace update_service.Api
         /// <param name="datafile">The manifest file to create. The API gateway enforces the account-specific file size.</param>
         /// <param name="name">The name of the firmware manifest</param>
         /// <param name="description">The description of the firmware manifest (optional)</param>
-        /// <param name="keyTable">The optional key table file to create. (optional)</param>
         /// <returns>ApiResponse of FirmwareManifest</returns>
-        ApiResponse<FirmwareManifest> FirmwareManifestCreateWithHttpInfo (System.IO.Stream datafile, string name, string description = null, System.IO.Stream keyTable = null);
+        ApiResponse<FirmwareManifest> FirmwareManifestCreateWithHttpInfo (System.IO.Stream datafile, string name, string description = null);
         /// <summary>
         /// 
         /// </summary>
@@ -517,9 +515,8 @@ namespace update_service.Api
         /// <param name="datafile">The manifest file to create. The API gateway enforces the account-specific file size.</param>
         /// <param name="name">The name of the firmware manifest</param>
         /// <param name="description">The description of the firmware manifest (optional)</param>
-        /// <param name="keyTable">The optional key table file to create. (optional)</param>
         /// <returns>Task of FirmwareManifest</returns>
-        System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestCreateAsync (System.IO.Stream datafile, string name, string description = null, System.IO.Stream keyTable = null);
+        System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestCreateAsync (System.IO.Stream datafile, string name, string description = null);
 
         /// <summary>
         /// 
@@ -531,9 +528,8 @@ namespace update_service.Api
         /// <param name="datafile">The manifest file to create. The API gateway enforces the account-specific file size.</param>
         /// <param name="name">The name of the firmware manifest</param>
         /// <param name="description">The description of the firmware manifest (optional)</param>
-        /// <param name="keyTable">The optional key table file to create. (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareManifest)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestCreateAsyncWithHttpInfo (System.IO.Stream datafile, string name, string description = null, System.IO.Stream keyTable = null);
+        System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestCreateAsyncWithHttpInfo (System.IO.Stream datafile, string name, string description = null);
         /// <summary>
         /// 
         /// </summary>
@@ -1526,11 +1522,10 @@ namespace update_service.Api
         /// <param name="datafile">The manifest file to create. The API gateway enforces the account-specific file size.</param>
         /// <param name="name">The name of the firmware manifest</param>
         /// <param name="description">The description of the firmware manifest (optional)</param>
-        /// <param name="keyTable">The optional key table file to create. (optional)</param>
         /// <returns>FirmwareManifest</returns>
-        public FirmwareManifest FirmwareManifestCreate (System.IO.Stream datafile, string name, string description = null, System.IO.Stream keyTable = null)
+        public FirmwareManifest FirmwareManifestCreate (System.IO.Stream datafile, string name, string description = null)
         {
-             ApiResponse<FirmwareManifest> localVarResponse = FirmwareManifestCreateWithHttpInfo(datafile, name, description, keyTable);
+             ApiResponse<FirmwareManifest> localVarResponse = FirmwareManifestCreateWithHttpInfo(datafile, name, description);
              return localVarResponse.Data;
         }
 
@@ -1541,9 +1536,8 @@ namespace update_service.Api
         /// <param name="datafile">The manifest file to create. The API gateway enforces the account-specific file size.</param>
         /// <param name="name">The name of the firmware manifest</param>
         /// <param name="description">The description of the firmware manifest (optional)</param>
-        /// <param name="keyTable">The optional key table file to create. (optional)</param>
         /// <returns>ApiResponse of FirmwareManifest</returns>
-        public ApiResponse< FirmwareManifest > FirmwareManifestCreateWithHttpInfo (System.IO.Stream datafile, string name, string description = null, System.IO.Stream keyTable = null)
+        public ApiResponse< FirmwareManifest > FirmwareManifestCreateWithHttpInfo (System.IO.Stream datafile, string name, string description = null)
         {
             // verify the required parameter 'datafile' is set
             if (datafile == null)
@@ -1577,7 +1571,6 @@ namespace update_service.Api
             if (datafile != null) localVarFileParams.Add("datafile", Configuration.ApiClient.ParameterToFile("datafile", datafile));
             if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
             if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (keyTable != null) localVarFileParams.Add("key_table", Configuration.ApiClient.ParameterToFile("key_table", keyTable));
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1611,11 +1604,10 @@ namespace update_service.Api
         /// <param name="datafile">The manifest file to create. The API gateway enforces the account-specific file size.</param>
         /// <param name="name">The name of the firmware manifest</param>
         /// <param name="description">The description of the firmware manifest (optional)</param>
-        /// <param name="keyTable">The optional key table file to create. (optional)</param>
         /// <returns>Task of FirmwareManifest</returns>
-        public async System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestCreateAsync (System.IO.Stream datafile, string name, string description = null, System.IO.Stream keyTable = null)
+        public async System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestCreateAsync (System.IO.Stream datafile, string name, string description = null)
         {
-             ApiResponse<FirmwareManifest> localVarResponse = await FirmwareManifestCreateAsyncWithHttpInfo(datafile, name, description, keyTable);
+             ApiResponse<FirmwareManifest> localVarResponse = await FirmwareManifestCreateAsyncWithHttpInfo(datafile, name, description);
              return localVarResponse.Data;
 
         }
@@ -1627,9 +1619,8 @@ namespace update_service.Api
         /// <param name="datafile">The manifest file to create. The API gateway enforces the account-specific file size.</param>
         /// <param name="name">The name of the firmware manifest</param>
         /// <param name="description">The description of the firmware manifest (optional)</param>
-        /// <param name="keyTable">The optional key table file to create. (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareManifest)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestCreateAsyncWithHttpInfo (System.IO.Stream datafile, string name, string description = null, System.IO.Stream keyTable = null)
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestCreateAsyncWithHttpInfo (System.IO.Stream datafile, string name, string description = null)
         {
             // verify the required parameter 'datafile' is set
             if (datafile == null)
@@ -1663,7 +1654,6 @@ namespace update_service.Api
             if (datafile != null) localVarFileParams.Add("datafile", Configuration.ApiClient.ParameterToFile("datafile", datafile));
             if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
             if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
-            if (keyTable != null) localVarFileParams.Add("key_table", Configuration.ApiClient.ParameterToFile("key_table", keyTable));
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))

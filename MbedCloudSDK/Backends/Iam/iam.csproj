@@ -12,7 +12,7 @@ OpenAPI spec version: v3
     
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FCC3A1CD-4D7F-4154-BFAD-ABBC21E8FB71}</ProjectGuid>
+    <ProjectGuid>{84D0CB57-09C1-482E-93F1-927BFB053A7C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>iam</RootNamespace>
