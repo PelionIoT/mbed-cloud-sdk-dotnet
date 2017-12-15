@@ -155,4 +155,4 @@ brief guide on how to get started in [CONTRIBUTING.md](CONTRIBUTING.md).
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Mbed Cloud SDK for .Net is free-to-use and licensed under the **Apache License
-2.0**. See [LICENCE](LICENCE) file for more information.
+2.0**. See [LICENSE](LICENSE) file for more information.
