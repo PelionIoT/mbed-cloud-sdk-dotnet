@@ -7,7 +7,7 @@ namespace MbedCloudSDK.Common
     using System.Collections.Generic;
 
     /// <summary>
-    /// Used to access multiple pages of data., either through manually iterating pages or using iterators.
+    /// Used to access multiple pages of data, either through manually iterating pages or using iterators.
     /// </summary>
     /// <typeparam name="T">Response page</typeparam>
     public class ResponsePage<T>

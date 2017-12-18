@@ -137,7 +137,7 @@ namespace ConsoleExamples.Examples.Update
                             }
                             catch (CloudApiException e)
                             {
-                                Console.WriteLine("Error while uploading manifest, Error: " + e.ToString());
+                                Console.WriteLine("Error while uploading manifest. Error: " + e.ToString());
                                 return string.Empty;
                             }
                         }
@@ -146,7 +146,7 @@ namespace ConsoleExamples.Examples.Update
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error: Could not read file from disk. Wrror: " + ex.Message);
+                        MessageBox.Show("Error: Could not read file from disk. Error: " + ex.Message);
                         return string.Empty;
                     }
                 }

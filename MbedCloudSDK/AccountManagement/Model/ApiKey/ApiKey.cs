@@ -14,13 +14,13 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
     using Newtonsoft.Json.Converters;
 
     /// <summary>
-    /// This object represents an API key in mbed Cloud.
+    /// This object represents an API key in Mbed Cloud.
     /// </summary>
     public class ApiKey
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiKey"/> class.
-        /// Create new instance of api key class.
+        /// Create new instance of API key class.
         /// </summary>
         /// <param name="options">Dictionary containing properties.</param>
         public ApiKey(IDictionary<string, object> options = null)
