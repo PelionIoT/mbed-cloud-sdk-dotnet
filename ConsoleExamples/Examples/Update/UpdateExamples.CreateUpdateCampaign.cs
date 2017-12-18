@@ -8,6 +8,7 @@ namespace ConsoleExamples.Examples.Update
     using System.Linq;
     using System.Windows.Forms;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Filter;
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.DeviceDirectory.Api;
     using MbedCloudSDK.Exceptions;
@@ -40,38 +41,20 @@ namespace ConsoleExamples.Examples.Update
         /// <summary>
         /// Create an update campaign
         /// </summary>
-        /// <param name="selectFile">True to bring up a file dialog</param>
         /// <returns>Campaign</returns>
-        public Campaign CreateCampaign(bool selectFile)
+        public Campaign CreateCampaign()
         {
-            var manifestId = string.Empty;
-
-            // select the manifest file
-            if (selectFile)
-            {
-                manifestId = GetManifestFile(api);
-            }
-
             // List all firware manifests
             var listParamas = new QueryOptions
             {
                 Limit = 5,
             };
             var manifests = api.ListFirmwareManifests(listParamas).Data;
-            foreach (var item in manifests)
-            {
-                Console.WriteLine(item);
-            }
 
-            if (!selectFile)
-            {
-                manifestId = manifests.LastOrDefault()?.Id;
-            }
+            var manifestId = manifests.LastOrDefault()?.Id;
 
-            // List all queries
-            var devicesApi = new DeviceDirectoryApi(config);
-            var queries = devicesApi.ListQueries();
-            var query = queries.LastOrDefault();
+            var deviceFilter = new Filter();
+            deviceFilter.Add("state", "registered");
 
             // Create Campaign
             var campaignName = CreateRandomName();
@@ -79,7 +62,7 @@ namespace ConsoleExamples.Examples.Update
             {
                 Name = campaignName,
                 ManifestId = manifestId,
-                DeviceFilter = query.Filter,
+                DeviceFilter = deviceFilter,
             };
             campaign = api.AddCampaign(campaign);
 
@@ -93,23 +76,24 @@ namespace ConsoleExamples.Examples.Update
             Console.WriteLine("Created campaign : " + campaign);
 
             // Start update campaign
-            campaign = api.StartCampaign(updatedCampaign);
+            campaign = api.StartCampaign(updatedCampaign.Id, updatedCampaign);
 
             // Print status of update campaign
             var countdown = 10;
             while (countdown >= 0)
             {
                 var states = api.ListCampaignDeviceStates(campaign.Id).Data;
-                Console.WriteLine($"states - {states.Count}");
                 foreach (var item in states)
                 {
-                    Console.WriteLine($"{item.Id} - {Convert.ToString(item.State)}");
+                    Console.WriteLine($"Device state - {Convert.ToString(item.State)}");
                 }
 
                 countdown--;
             }
 
-            api.DeleteCampaign(updatedCampaign.Id);
+            api.StopCampaign(campaign.Id, campaign);
+
+            api.DeleteCampaign(campaign.Id);
 
             return campaign;
         }
