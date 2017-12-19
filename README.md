@@ -1,7 +1,7 @@
 # Mbed Cloud SDK for .Net
 
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://spdx.org/licenses/Apache-2.0.html)
 [![CircleCI](https://circleci.com/gh/ARMmbed/mbed-cloud-sdk-dotnet.svg?style=shield&circle-token=68538baa897f82e3dcc38a48315e9ba24977b183)](https://circleci.com/gh/ARMmbed/mbed-cloud-sdk-dotnet)
-
 [![codecov](https://codecov.io/gh/ARMmbed/mbed-cloud-sdk-dotnet/branch/master/graph/badge.svg?token=r8Bg3F9X7V)](https://codecov.io/gh/ARMmbed/mbed-cloud-sdk-dotnet)
 
 The Mbed Cloud SDK gives developers access to the full Mbed suite using .Net 4.61.
@@ -68,7 +68,7 @@ $ Mono -v
     ]
 }
 ```
-8. Now create a tasks.json file and insert the following 
+8. Now create a tasks.json file and insert the following
 
 ```
 {
@@ -98,7 +98,7 @@ $ Mono -v
 $ mono nuget.exe restore YourProject/packages.config -PackagesDirectory pathToYourPackagesFolder
 ```
 
-10. Now pressing Cmd + Shift + B should run the build task. Verify that it was successful by checking the output in the integrated terminal. 
+10. Now pressing Cmd + Shift + B should run the build task. Verify that it was successful by checking the output in the integrated terminal.
 
 11. To build from the command line, use msbuild in the root of the project
 
@@ -106,7 +106,7 @@ $ mono nuget.exe restore YourProject/packages.config -PackagesDirectory pathToYo
 $ msbuild
 ```
 
-12. After a build has been sucessful, press f5 to lauch debugging, or Shift + f5 to start without debugging. Any output should appear in the debug console tab of the integrated terminal. 
+12. After a build has been sucessful, press f5 to lauch debugging, or Shift + f5 to start without debugging. Any output should appear in the debug console tab of the integrated terminal.
 
 13. Simple! For more information on VSCode tasks, got to the [docs](https://code.visualstudio.com/docs/editor/tasks).
 
@@ -145,3 +145,13 @@ Further examples can be viewed in the Examples folder of this repo.
 ## Documentation
 
 See full [documentation and API reference here](https://s3-us-west-2.amazonaws.com/mbed-cloud-sdk-dotnet-dist/latest/docs/index.html).
+
+## Contributing
+
+Mbed Cloud SDK for .Net is open source and we would like your help; there is a
+brief guide on how to get started in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Licence
+
+Mbed Cloud SDK for .Net is free-to-use and licensed under the **Apache License
+2.0**. See [LICENSE](LICENSE) file for more information.
