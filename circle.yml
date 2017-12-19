@@ -46,8 +46,12 @@ dependencies:
     - echo "deb http://download.mono-project.com/repo/ubuntu trusty main" | sudo tee /etc/apt/sources.list.d/mono-official.list
     - sudo apt-get update
     - sudo apt-get install mono-complete
-    - sudo apt-get install doxygen
     - sudo apt-get install xsltproc
+    # Add artful repo to get latest doxygen
+    - sudo apt-get install software-properties-common python-software-properties
+    - sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu/ artful main"
+    - sudo apt-get update
+    - sudo apt-get install doxygen
     - mkdir -p ${SDK_DOCS}
     - mkdir -p ${SDK_REPORTS}
     - mkdir -p ${SDK_COVERAGE_REPORTS}
@@ -91,11 +95,6 @@ test:
   post:
     - docker run -d -p 5000:80 artifactory; sleep 10
 deployment:
-  staging:
-    branch: [/docs-.*/, /feature-.*/]
-    commands:
-      - ./scripts/generate-docs.sh
-      - ./scripts/uploadArtifacts.sh
   master:
     branch: master
     commands:
