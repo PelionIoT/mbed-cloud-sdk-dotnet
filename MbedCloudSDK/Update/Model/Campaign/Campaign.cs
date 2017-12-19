@@ -82,6 +82,12 @@ namespace MbedCloudSDK.Update.Model.Campaign
         public DateTime? StartedAt { get; private set; }
 
         /// <summary>
+        /// Gets the timestamp when the update campaign is updated
+        /// </summary>
+        [JsonProperty]
+        public DateTime? UpdatedAt { get; private set; }
+
+        /// <summary>
         /// Gets ManifestUrl
         /// </summary>
         [JsonProperty]
@@ -128,7 +134,8 @@ namespace MbedCloudSDK.Update.Model.Campaign
                 ManifestUrl = data.RootManifestUrl,
                 State = updateCampaignStatus,
                 ScheduledAt = data.When,
-                StartedAt = data.StartedAt
+                StartedAt = data.StartedAt,
+                UpdatedAt = data.UpdatedAt,
             };
             return campaign;
         }

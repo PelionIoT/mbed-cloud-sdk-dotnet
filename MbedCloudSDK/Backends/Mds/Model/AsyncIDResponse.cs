@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = mds.Client.SwaggerDateConverter;
 
 namespace mds.Model
 {
@@ -55,36 +56,42 @@ namespace mds.Model
         /// <value>Asynchronous response status code for a device operation related to a proxy request or manual subscription.</value>
         [DataMember(Name="status", EmitDefaultValue=false)]
         public int? Status { get; set; }
+
         /// <summary>
         /// Requested data, base64 encoded.
         /// </summary>
         /// <value>Requested data, base64 encoded.</value>
         [DataMember(Name="payload", EmitDefaultValue=false)]
         public string Payload { get; set; }
+
         /// <summary>
         /// Determines how long this value will be valid in cache, in seconds. 0 means that value is not stored in cache.
         /// </summary>
         /// <value>Determines how long this value will be valid in cache, in seconds. 0 means that value is not stored in cache.</value>
         [DataMember(Name="max-age", EmitDefaultValue=false)]
         public string MaxAge { get; set; }
+
         /// <summary>
         /// Optional error message, describing the error.
         /// </summary>
         /// <value>Optional error message, describing the error.</value>
         [DataMember(Name="error", EmitDefaultValue=false)]
         public string Error { get; set; }
+
         /// <summary>
         /// Asynchronous response unique ID.
         /// </summary>
         /// <value>Asynchronous response unique ID.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
+
         /// <summary>
         /// Content type
         /// </summary>
         /// <value>Content type</value>
         [DataMember(Name="ct", EmitDefaultValue=false)]
         public string Ct { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -194,8 +201,13 @@ namespace mds.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

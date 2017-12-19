@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = device_directory.Client.SwaggerDateConverter;
 
 namespace device_directory.Model
 {
@@ -81,46 +82,55 @@ namespace device_directory.Model
         /// </summary>
         [DataMember(Name="date_time", EmitDefaultValue=false)]
         public DateTime? DateTime { get; set; }
+
         /// <summary>
         /// Gets or Sets StateChange
         /// </summary>
         [DataMember(Name="state_change", EmitDefaultValue=false)]
         public bool? StateChange { get; set; }
+
         /// <summary>
         /// Gets or Sets Description
         /// </summary>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
+
         /// <summary>
         /// Gets or Sets Changes
         /// </summary>
         [DataMember(Name="changes", EmitDefaultValue=false)]
         public Object Changes { get; set; }
+
         /// <summary>
         /// Gets or Sets EventTypeDescription
         /// </summary>
         [DataMember(Name="event_type_description", EmitDefaultValue=false)]
         public string EventTypeDescription { get; set; }
+
         /// <summary>
         /// Gets or Sets EventType
         /// </summary>
         [DataMember(Name="event_type", EmitDefaultValue=false)]
         public string EventType { get; set; }
+
         /// <summary>
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name="data", EmitDefaultValue=false)]
         public Object Data { get; set; }
+
         /// <summary>
         /// Gets or Sets Id
         /// </summary>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
+
         /// <summary>
         /// Gets or Sets DeviceId
         /// </summary>
         [DataMember(Name="device_id", EmitDefaultValue=false)]
         public string DeviceId { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -254,12 +264,17 @@ namespace device_directory.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             // EventType (string) maxLength
             if(this.EventType != null && this.EventType.Length > 100)
             {
-                yield return new ValidationResult("Invalid value for EventType, length must be less than 100.", new [] { "EventType" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EventType, length must be less than 100.", new [] { "EventType" });
             }
 
             yield break;

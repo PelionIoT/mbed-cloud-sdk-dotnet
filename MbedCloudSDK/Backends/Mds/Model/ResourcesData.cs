@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = mds.Client.SwaggerDateConverter;
 
 namespace mds.Model
 {
@@ -53,30 +54,35 @@ namespace mds.Model
         /// <value>Resource&#39;s URI path.</value>
         [DataMember(Name="path", EmitDefaultValue=false)]
         public string Path { get; set; }
+
         /// <summary>
         /// Resource type [created by the client side application](/docs/v1.2/collecting/resource-setup-in-mbed-cloud-client.html). For example \&quot;speed_sensor\&quot;
         /// </summary>
         /// <value>Resource type [created by the client side application](/docs/v1.2/collecting/resource-setup-in-mbed-cloud-client.html). For example \&quot;speed_sensor\&quot;</value>
         [DataMember(Name="rf", EmitDefaultValue=false)]
         public string Rf { get; set; }
+
         /// <summary>
         /// Content type.
         /// </summary>
         /// <value>Content type.</value>
         [DataMember(Name="ct", EmitDefaultValue=false)]
         public string Ct { get; set; }
+
         /// <summary>
         /// Whether the resource is observable or not (true/false).
         /// </summary>
         /// <value>Whether the resource is observable or not (true/false).</value>
         [DataMember(Name="obs", EmitDefaultValue=false)]
         public bool? Obs { get; set; }
+
         /// <summary>
         /// Interface description.
         /// </summary>
         /// <value>Interface description.</value>
         [DataMember(Name="if", EmitDefaultValue=false)]
         public string _If { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -178,8 +184,13 @@ namespace mds.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

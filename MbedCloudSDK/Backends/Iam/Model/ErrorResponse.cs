@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = iam.Client.SwaggerDateConverter;
 
 namespace iam.Model
 {
@@ -31,9 +32,9 @@ namespace iam.Model
     public partial class ErrorResponse :  IEquatable<ErrorResponse>, IValidatableObject
     {
         /// <summary>
-        /// Entity name, always 'error'.
+        /// Entity name, always &#39;error&#39;.
         /// </summary>
-        /// <value>Entity name, always 'error'.</value>
+        /// <value>Entity name, always &#39;error&#39;.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ObjectEnum
         {
@@ -211,9 +212,9 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// Entity name, always 'error'.
+        /// Entity name, always &#39;error&#39;.
         /// </summary>
-        /// <value>Entity name, always 'error'.</value>
+        /// <value>Entity name, always &#39;error&#39;.</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public ObjectEnum? _Object { get; set; }
         /// <summary>
@@ -292,24 +293,30 @@ namespace iam.Model
         /// <value>Response code.</value>
         [DataMember(Name="code", EmitDefaultValue=false)]
         public int? Code { get; set; }
+
         /// <summary>
         /// Failed input fields during request object validation.
         /// </summary>
         /// <value>Failed input fields during request object validation.</value>
         [DataMember(Name="fields", EmitDefaultValue=false)]
         public List<Field> Fields { get; set; }
+
+
         /// <summary>
         /// Request ID.
         /// </summary>
         /// <value>Request ID.</value>
         [DataMember(Name="request_id", EmitDefaultValue=false)]
         public string RequestId { get; set; }
+
         /// <summary>
         /// A human readable message with detailed info.
         /// </summary>
         /// <value>A human readable message with detailed info.</value>
         [DataMember(Name="message", EmitDefaultValue=false)]
         public string Message { get; set; }
+
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -419,8 +426,13 @@ namespace iam.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }
