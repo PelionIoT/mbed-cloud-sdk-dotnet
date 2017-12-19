@@ -53,7 +53,8 @@ namespace TestServer
         private Dictionary<string, object> InitalizeModules()
         {
             var apiKey = Utils.ReadSetting("ApiKey") as string;
-            var config = new Config(apiKey, "https://lab-api.mbedcloudintegration.net");
+            var host = Utils.ReadSetting("Host") as string;
+            var config = new Config(apiKey, host);
 
             var dict = new Dictionary<string, object>();
             dict.Add("AccountManagement", Activator.CreateInstance(typeof(AccountManagementApi), config));
