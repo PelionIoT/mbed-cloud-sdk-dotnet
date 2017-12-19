@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = connector_ca.Client.SwaggerDateConverter;
 
 namespace connector_ca.Model
 {
@@ -67,72 +68,84 @@ namespace connector_ca.Model
         /// <value>The content of the &#x60;security.c&#x60; file that is flashed into the device to provide the security credentials</value>
         [DataMember(Name="security_file_content", EmitDefaultValue=false)]
         public string SecurityFileContent { get; set; }
+
         /// <summary>
         /// Description for the developer certificate.
         /// </summary>
         /// <value>Description for the developer certificate.</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
+
         /// <summary>
         /// The name of the developer certificate.
         /// </summary>
         /// <value>The name of the developer certificate.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
+
         /// <summary>
         /// The PEM format X.509 developer certificate.
         /// </summary>
         /// <value>The PEM format X.509 developer certificate.</value>
         [DataMember(Name="developer_certificate", EmitDefaultValue=false)]
         public string DeveloperCertificate { get; set; }
+
         /// <summary>
         /// The URI to which the client needs to connect to.
         /// </summary>
         /// <value>The URI to which the client needs to connect to.</value>
         [DataMember(Name="server_uri", EmitDefaultValue=false)]
         public string ServerUri { get; set; }
+
         /// <summary>
         /// Creation UTC time RFC3339.
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public string CreatedAt { get; set; }
+
         /// <summary>
         /// Entity name, always &#x60;trusted-cert&#x60;.
         /// </summary>
         /// <value>Entity name, always &#x60;trusted-cert&#x60;.</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
+
         /// <summary>
         /// The PEM format developer private key associated to the certificate.
         /// </summary>
         /// <value>The PEM format developer private key associated to the certificate.</value>
         [DataMember(Name="developer_private_key", EmitDefaultValue=false)]
         public string DeveloperPrivateKey { get; set; }
+
         /// <summary>
         /// The PEM format X.509 server certificate that is used to validate the server certificate that is received during the TLS/DTLS handshake.
         /// </summary>
         /// <value>The PEM format X.509 server certificate that is used to validate the server certificate that is received during the TLS/DTLS handshake.</value>
         [DataMember(Name="server_certificate", EmitDefaultValue=false)]
         public string ServerCertificate { get; set; }
+
         /// <summary>
         /// API resource entity version.
         /// </summary>
         /// <value>API resource entity version.</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public string Etag { get; set; }
+
         /// <summary>
         /// The mUUID that uniquely identifies the developer certificate.
         /// </summary>
         /// <value>The mUUID that uniquely identifies the developer certificate.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
+
         /// <summary>
         /// The account to which the developer certificate belongs.
         /// </summary>
         /// <value>The account to which the developer certificate belongs.</value>
         [DataMember(Name="account_id", EmitDefaultValue=false)]
         public string AccountId { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -290,8 +303,13 @@ namespace connector_ca.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

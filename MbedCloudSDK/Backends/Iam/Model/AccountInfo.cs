@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = iam.Client.SwaggerDateConverter;
 
 namespace iam.Model
 {
@@ -64,9 +65,9 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// Entity name: always 'account'
+        /// Entity name: always &#39;account&#39;
         /// </summary>
-        /// <value>Entity name: always 'account'</value>
+        /// <value>Entity name: always &#39;account&#39;</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ObjectEnum
         {
@@ -127,9 +128,9 @@ namespace iam.Model
         [DataMember(Name="status", EmitDefaultValue=false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
-        /// Entity name: always 'account'
+        /// Entity name: always &#39;account&#39;
         /// </summary>
-        /// <value>Entity name: always 'account'</value>
+        /// <value>Entity name: always &#39;account&#39;</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public ObjectEnum? _Object { get; set; }
         /// <summary>
@@ -272,162 +273,191 @@ namespace iam.Model
         /// <value>Account end market.</value>
         [DataMember(Name="end_market", EmitDefaultValue=false)]
         public string EndMarket { get; set; }
+
+
         /// <summary>
         /// The password policy for this account.
         /// </summary>
         /// <value>The password policy for this account.</value>
         [DataMember(Name="password_policy", EmitDefaultValue=false)]
         public PasswordPolicy PasswordPolicy { get; set; }
+
         /// <summary>
         /// The postal code part of the postal address.
         /// </summary>
         /// <value>The postal code part of the postal address.</value>
         [DataMember(Name="postal_code", EmitDefaultValue=false)]
         public string PostalCode { get; set; }
+
         /// <summary>
         /// Account ID.
         /// </summary>
         /// <value>Account ID.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
+
         /// <summary>
         /// An array of aliases.
         /// </summary>
         /// <value>An array of aliases.</value>
         [DataMember(Name="aliases", EmitDefaultValue=false)]
         public List<string> Aliases { get; set; }
+
         /// <summary>
         /// Postal address line 2.
         /// </summary>
         /// <value>Postal address line 2.</value>
         [DataMember(Name="address_line2", EmitDefaultValue=false)]
         public string AddressLine2 { get; set; }
+
         /// <summary>
         /// The city part of the postal address.
         /// </summary>
         /// <value>The city part of the postal address.</value>
         [DataMember(Name="city", EmitDefaultValue=false)]
         public string City { get; set; }
+
         /// <summary>
         /// Postal address line 1.
         /// </summary>
         /// <value>Postal address line 1.</value>
         [DataMember(Name="address_line1", EmitDefaultValue=false)]
         public string AddressLine1 { get; set; }
+
         /// <summary>
         /// The display name for the account.
         /// </summary>
         /// <value>The display name for the account.</value>
         [DataMember(Name="display_name", EmitDefaultValue=false)]
         public string DisplayName { get; set; }
+
         /// <summary>
         /// The ID of the parent account, if it has any.
         /// </summary>
         /// <value>The ID of the parent account, if it has any.</value>
         [DataMember(Name="parent_id", EmitDefaultValue=false)]
         public string ParentId { get; set; }
+
         /// <summary>
         /// The state part of the postal address.
         /// </summary>
         /// <value>The state part of the postal address.</value>
         [DataMember(Name="state", EmitDefaultValue=false)]
         public string State { get; set; }
+
         /// <summary>
         /// API resource entity version.
         /// </summary>
         /// <value>API resource entity version.</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public string Etag { get; set; }
+
         /// <summary>
         /// Flag (true/false) indicating whether Factory Tool is allowed to download or not.
         /// </summary>
         /// <value>Flag (true/false) indicating whether Factory Tool is allowed to download or not.</value>
         [DataMember(Name="is_provisioning_allowed", EmitDefaultValue=false)]
         public bool? IsProvisioningAllowed { get; set; }
+
         /// <summary>
         /// The company email address for this account.
         /// </summary>
         /// <value>The company email address for this account.</value>
         [DataMember(Name="email", EmitDefaultValue=false)]
         public string Email { get; set; }
+
         /// <summary>
         /// The phone number of a representative of the company.
         /// </summary>
         /// <value>The phone number of a representative of the company.</value>
         [DataMember(Name="phone_number", EmitDefaultValue=false)]
         public string PhoneNumber { get; set; }
+
         /// <summary>
         /// The name of the company.
         /// </summary>
         /// <value>The name of the company.</value>
         [DataMember(Name="company", EmitDefaultValue=false)]
         public string Company { get; set; }
+
+
         /// <summary>
         /// A reason note for updating the status of the account
         /// </summary>
         /// <value>A reason note for updating the status of the account</value>
         [DataMember(Name="reason", EmitDefaultValue=false)]
         public string Reason { get; set; }
+
         /// <summary>
         /// Time when upgraded to commercial account in UTC format RFC3339.
         /// </summary>
         /// <value>Time when upgraded to commercial account in UTC format RFC3339.</value>
         [DataMember(Name="upgraded_at", EmitDefaultValue=false)]
         public DateTime? UpgradedAt { get; set; }
+
         /// <summary>
         /// The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account, &#39;2&#39;: partner tier. Other values are reserved for the future.
         /// </summary>
         /// <value>The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account, &#39;2&#39;: partner tier. Other values are reserved for the future.</value>
         [DataMember(Name="tier", EmitDefaultValue=false)]
         public string Tier { get; set; }
+
         /// <summary>
         /// List of sub accounts.
         /// </summary>
         /// <value>List of sub accounts.</value>
         [DataMember(Name="sub_accounts", EmitDefaultValue=false)]
         public List<AccountInfo> SubAccounts { get; set; }
+
         /// <summary>
         /// List of limits as key-value pairs if requested.
         /// </summary>
         /// <value>List of limits as key-value pairs if requested.</value>
         [DataMember(Name="limits", EmitDefaultValue=false)]
         public Dictionary<string, string> Limits { get; set; }
+
         /// <summary>
         /// The country part of the postal address.
         /// </summary>
         /// <value>The country part of the postal address.</value>
         [DataMember(Name="country", EmitDefaultValue=false)]
         public string Country { get; set; }
+
         /// <summary>
         /// Creation UTC time RFC3339.
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
+
         /// <summary>
         /// The reference token expiration time in minutes for this account.
         /// </summary>
         /// <value>The reference token expiration time in minutes for this account.</value>
         [DataMember(Name="idle_timeout", EmitDefaultValue=false)]
         public string IdleTimeout { get; set; }
+
         /// <summary>
         /// The name of the contact person for this account.
         /// </summary>
         /// <value>The name of the contact person for this account.</value>
         [DataMember(Name="contact", EmitDefaultValue=false)]
         public string Contact { get; set; }
+
         /// <summary>
         /// List of policies if requested.
         /// </summary>
         /// <value>List of policies if requested.</value>
         [DataMember(Name="policies", EmitDefaultValue=false)]
         public List<FeaturePolicy> Policies { get; set; }
+
         /// <summary>
         /// Account template ID.
         /// </summary>
         /// <value>Account template ID.</value>
         [DataMember(Name="template_id", EmitDefaultValue=false)]
         public string TemplateId { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -721,8 +751,13 @@ namespace iam.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

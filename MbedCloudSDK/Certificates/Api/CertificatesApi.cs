@@ -191,8 +191,8 @@ namespace MbedCloudSDK.Certificates.Api
                 {
                     try
                     {
-                        var devResponse = developerCertificateApi.V3DeveloperCertificatesIdGet(trustedCert.Id, auth);
-                        trustedCert = Certificate.MapDeveloperCert(devResponse, new Certificate());
+                    var devResponse = developerCertificateApi.V3DeveloperCertificatesMuuidGet(trustedCert.Id, auth);
+                    trustedCert = Certificate.MapDeveloperCert(devResponse, new Certificate());
                     }
                     catch (connector_ca.Client.ApiException ex)
                     {

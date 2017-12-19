@@ -77,6 +77,7 @@
     <Compile Include="Backends\ConnectorCa\Client\Configuration.cs" />
     <Compile Include="Backends\ConnectorCa\Client\ExceptionFactory.cs" />
     <Compile Include="Backends\ConnectorCa\Client\IApiAccessor.cs" />
+    <Compile Include="Backends\ConnectorCa\Client\SwaggerDateConverter.cs" />
     <Compile Include="Backends\ConnectorCa\Model\DeveloperCertificateRequestData.cs" />
     <Compile Include="Backends\ConnectorCa\Model\DeveloperCertificateResponseData.cs" />
     <Compile Include="Backends\ConnectorCa\Model\ServerCredentialsResponseData.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Backends\DeviceDirectory\Client\Configuration.cs" />
     <Compile Include="Backends\DeviceDirectory\Client\ExceptionFactory.cs" />
     <Compile Include="Backends\DeviceDirectory\Client\IApiAccessor.cs" />
+    <Compile Include="Backends\DeviceDirectory\Client\SwaggerDateConverter.cs" />
     <Compile Include="Backends\DeviceDirectory\Model\DeviceData.cs" />
     <Compile Include="Backends\DeviceDirectory\Model\DeviceDataPatchRequest.cs" />
     <Compile Include="Backends\DeviceDirectory\Model\DeviceDataPostRequest.cs" />
@@ -106,6 +108,7 @@
     <Compile Include="Backends\Iam\Client\Configuration.cs" />
     <Compile Include="Backends\Iam\Client\ExceptionFactory.cs" />
     <Compile Include="Backends\Iam\Client\IApiAccessor.cs" />
+    <Compile Include="Backends\Iam\Client\SwaggerDateConverter.cs" />
     <Compile Include="Backends\Iam\Model\AccountInfo.cs" />
     <Compile Include="Backends\Iam\Model\AccountUpdateReq.cs" />
     <Compile Include="Backends\Iam\Model\ApiKeyInfoReq.cs" />
@@ -142,6 +145,7 @@
     <Compile Include="Backends\Mds\Client\Configuration.cs" />
     <Compile Include="Backends\Mds\Client\ExceptionFactory.cs" />
     <Compile Include="Backends\Mds\Client\IApiAccessor.cs" />
+    <Compile Include="Backends\Mds\Client\SwaggerDateConverter.cs" />
     <Compile Include="Backends\Mds\Model\AsyncID.cs" />
     <Compile Include="Backends\Mds\Model\AsyncIDResponse.cs" />
     <Compile Include="Backends\Mds\Model\Endpoint.cs" />
@@ -161,6 +165,7 @@
     <Compile Include="Backends\Statistics\Client\Configuration.cs" />
     <Compile Include="Backends\Statistics\Client\ExceptionFactory.cs" />
     <Compile Include="Backends\Statistics\Client\IApiAccessor.cs" />
+    <Compile Include="Backends\Statistics\Client\SwaggerDateConverter.cs" />
     <Compile Include="Backends\Statistics\Model\ErrorResponse.cs" />
     <Compile Include="Backends\Statistics\Model\Fields.cs" />
     <Compile Include="Backends\Statistics\Model\Metric.cs" />
@@ -172,6 +177,7 @@
     <Compile Include="Backends\UpdateService\Client\Configuration.cs" />
     <Compile Include="Backends\UpdateService\Client\ExceptionFactory.cs" />
     <Compile Include="Backends\UpdateService\Client\IApiAccessor.cs" />
+    <Compile Include="Backends\UpdateService\Client\SwaggerDateConverter.cs" />
     <Compile Include="Backends\UpdateService\Model\CampaignDeviceMetadata.cs" />
     <Compile Include="Backends\UpdateService\Model\CampaignDeviceMetadataPage.cs" />
     <Compile Include="Backends\UpdateService\Model\FirmwareImage.cs" />

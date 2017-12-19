@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = update_service.Client.SwaggerDateConverter;
 
 namespace update_service.Model
 {
@@ -84,36 +85,43 @@ namespace update_service.Model
         /// <value>The entity ID to fetch after the given one</value>
         [DataMember(Name="after", EmitDefaultValue=false)]
         public string After { get; set; }
+
         /// <summary>
         /// Flag indicating whether there are more results
         /// </summary>
         /// <value>Flag indicating whether there are more results</value>
         [DataMember(Name="has_more", EmitDefaultValue=false)]
         public bool? HasMore { get; set; }
+
         /// <summary>
         /// The total number or records, if requested. It might be returned also for small lists.
         /// </summary>
         /// <value>The total number or records, if requested. It might be returned also for small lists.</value>
         [DataMember(Name="total_count", EmitDefaultValue=false)]
         public int? TotalCount { get; set; }
+
         /// <summary>
         /// Entity name: always &#39;list&#39;
         /// </summary>
         /// <value>Entity name: always &#39;list&#39;</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
+
         /// <summary>
         /// The number of results to return, (range: 2-1000), or equals to total_count
         /// </summary>
         /// <value>The number of results to return, (range: 2-1000), or equals to total_count</value>
         [DataMember(Name="limit", EmitDefaultValue=false)]
         public int? Limit { get; set; }
+
         /// <summary>
         /// A list of entities
         /// </summary>
         /// <value>A list of entities</value>
         [DataMember(Name="data", EmitDefaultValue=false)]
         public List<CampaignDeviceMetadata> Data { get; set; }
+
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -231,8 +239,13 @@ namespace update_service.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

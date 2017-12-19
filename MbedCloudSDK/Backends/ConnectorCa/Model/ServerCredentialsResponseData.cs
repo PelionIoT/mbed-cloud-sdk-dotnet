@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = connector_ca.Client.SwaggerDateConverter;
 
 namespace connector_ca.Model
 {
@@ -55,36 +56,42 @@ namespace connector_ca.Model
         /// <value>The server URI to which the client needs to connect to.</value>
         [DataMember(Name="server_uri", EmitDefaultValue=false)]
         public string ServerUri { get; set; }
+
         /// <summary>
         /// Creation UTC time RFC3339.
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public string CreatedAt { get; set; }
+
         /// <summary>
         /// The entity name, always &#x60;server-credentials&#x60;.
         /// </summary>
         /// <value>The entity name, always &#x60;server-credentials&#x60;.</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
+
         /// <summary>
         /// The PEM format X.509 server certificate that is used to validate the server certificate that is received during the TLS/DTLS handshake.
         /// </summary>
         /// <value>The PEM format X.509 server certificate that is used to validate the server certificate that is received during the TLS/DTLS handshake.</value>
         [DataMember(Name="server_certificate", EmitDefaultValue=false)]
         public string ServerCertificate { get; set; }
+
         /// <summary>
         /// API resource entity version.
         /// </summary>
         /// <value>API resource entity version.</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public string Etag { get; set; }
+
         /// <summary>
         /// The mUUID that uniquely identifies the entity.
         /// </summary>
         /// <value>The mUUID that uniquely identifies the entity.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -194,8 +201,13 @@ namespace connector_ca.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }
