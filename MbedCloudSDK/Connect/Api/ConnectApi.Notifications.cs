@@ -14,6 +14,7 @@ namespace MbedCloudSDK.Connect.Api
     using MbedCloudSDK.Connect.Model.Notifications;
     using MbedCloudSDK.Connect.Model.Webhook;
     using MbedCloudSDK.Exceptions;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Connect Api
@@ -26,8 +27,23 @@ namespace MbedCloudSDK.Connect.Api
         /// <summary>
         /// Notify
         /// </summary>
-        /// <param name="notification">The Notification Message</param>
+        /// <param name="notification">The Notification Message as a <see cref="NotificationMessage"/></param>
         public static void Notify(NotificationMessage notification)
+        {
+            NotifyFunc(notification);
+        }
+
+        /// <summary>
+        /// Notify
+        /// </summary>
+        /// <param name="notification">The Notification Message as a string.</param>
+        public static void Notify(string notification)
+        {
+            var message = JsonConvert.DeserializeObject<NotificationMessage>(notification);
+            NotifyFunc(message);
+        }
+
+        private static void NotifyFunc(NotificationMessage notification)
         {
             if (notification.AsyncResponses.Any())
             {

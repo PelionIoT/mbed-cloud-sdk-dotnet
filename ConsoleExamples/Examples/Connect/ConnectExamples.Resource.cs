@@ -27,7 +27,6 @@ namespace ConsoleExamples.Examples.Connect
             }
 
             var device = connectedDevices.FirstOrDefault();
-            var resources = device.ListResources();
             var resp = api.GetResourceValue(device.Id, resourcePath);
             Console.WriteLine($"The value of the resource is {resp}");
             return resp;
