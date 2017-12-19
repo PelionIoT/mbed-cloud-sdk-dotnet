@@ -21,7 +21,6 @@ using System.Net;
 using System.Text;
 using Newtonsoft.Json;
 using RestSharp;
-using Newtonsoft.Json.Converters;
 
 namespace update_service.Client
 {

@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = iam.Client.SwaggerDateConverter;
 
 namespace iam.Model
 {
@@ -31,9 +32,9 @@ namespace iam.Model
     public partial class GroupSummary :  IEquatable<GroupSummary>, IValidatableObject
     {
         /// <summary>
-        /// Entity name: always 'group'
+        /// Entity name: always &#39;group&#39;
         /// </summary>
-        /// <value>Entity name: always 'group'</value>
+        /// <value>Entity name: always &#39;group&#39;</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ObjectEnum
         {
@@ -88,9 +89,9 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// Entity name: always 'group'
+        /// Entity name: always &#39;group&#39;
         /// </summary>
-        /// <value>Entity name: always 'group'</value>
+        /// <value>Entity name: always &#39;group&#39;</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public ObjectEnum? _Object { get; set; }
         /// <summary>
@@ -187,54 +188,64 @@ namespace iam.Model
         /// <value>A timestamp of the latest group update, in milliseconds.</value>
         [DataMember(Name="last_update_time", EmitDefaultValue=false)]
         public long? LastUpdateTime { get; set; }
+
         /// <summary>
         /// The number of users in this group.
         /// </summary>
         /// <value>The number of users in this group.</value>
         [DataMember(Name="user_count", EmitDefaultValue=false)]
         public int? UserCount { get; set; }
+
         /// <summary>
         /// The name of the group.
         /// </summary>
         /// <value>The name of the group.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
+
         /// <summary>
         /// Creation UTC time RFC3339.
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
+
+
         /// <summary>
         /// A timestamp of the group creation in the storage, in milliseconds.
         /// </summary>
         /// <value>A timestamp of the group creation in the storage, in milliseconds.</value>
         [DataMember(Name="creation_time", EmitDefaultValue=false)]
         public long? CreationTime { get; set; }
+
         /// <summary>
         /// API resource entity version.
         /// </summary>
         /// <value>API resource entity version.</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public string Etag { get; set; }
+
         /// <summary>
         /// The number of API keys in this group.
         /// </summary>
         /// <value>The number of API keys in this group.</value>
         [DataMember(Name="apikey_count", EmitDefaultValue=false)]
         public int? ApikeyCount { get; set; }
+
         /// <summary>
         /// The UUID of the group.
         /// </summary>
         /// <value>The UUID of the group.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
+
         /// <summary>
         /// The UUID of the account this group belongs to.
         /// </summary>
         /// <value>The UUID of the account this group belongs to.</value>
         [DataMember(Name="account_id", EmitDefaultValue=false)]
         public string AccountId { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -376,8 +387,13 @@ namespace iam.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }
