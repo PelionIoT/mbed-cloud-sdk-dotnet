@@ -50,7 +50,7 @@ dependencies:
     - sudo apt-get install software-properties-common python-software-properties
     - sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu/ artful main"
     - sudo apt-get update
-    - sudo apt-get install doxygen=1.8.13
+    - sudo apt-get install doxygen
     - mkdir -p ${SDK_DOCS}
     - mkdir -p ${SDK_REPORTS}
     - mkdir -p ${SDK_COVERAGE_REPORTS}
