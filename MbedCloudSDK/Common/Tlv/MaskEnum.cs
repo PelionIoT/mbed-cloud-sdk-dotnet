@@ -12,13 +12,13 @@ namespace MbedCloudSDK.Common.Tlv
     public enum MaskEnum
     {
         /// <summary>
-        /// Id type.
+        /// ID type.
         /// </summary>
         [EnumMember(Value = "11000000")]
         ID_TYPE,
 
         /// <summary>
-        /// Id length
+        /// ID length
         /// </summary>
         [EnumMember(Value = "00100000")]
         ID_LENGTH,

@@ -113,7 +113,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         public DateTime? UpgradedAt { get; private set; }
 
         /// <summary>
-        /// Gets the tier level of the account; &#39;0&#39;: free tier, commercial account. Other values are reserved for the future.
+        /// Gets the tier level of the account; '0': free tier, commercial account. Other values are reserved for the future.
         /// </summary>
         [JsonProperty]
         public string Tier { get; private set; }
@@ -161,7 +161,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         /// <summary>
         /// Map to Account object.
         /// </summary>
-        /// <param name="accountInfo">Iam account</param>
+        /// <param name="accountInfo">Identity and Account Manangement (IAM) information</param>
         /// <returns>Account</returns>
         public static Account Map(iam.Model.AccountInfo accountInfo)
         {

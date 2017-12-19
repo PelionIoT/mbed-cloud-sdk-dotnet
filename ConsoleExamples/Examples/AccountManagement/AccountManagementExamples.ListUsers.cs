@@ -11,7 +11,7 @@ namespace ConsoleExamples.Examples.AccountManagement
     using MbedCloudSDK.Common.Query;
 
     /// <summary>
-    /// Account management exxamples
+    /// Account management examples
     /// </summary>
     public partial class AccountManagementExamples
     {

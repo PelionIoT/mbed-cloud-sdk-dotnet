@@ -60,7 +60,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
         public string ManifestId { get; set; }
 
         /// <summary>
-        /// Gets or sets dEPRECATED: The ID of the campaign
+        /// Gets or sets DEPRECATED: The ID of the campaign
         /// </summary>
         public string CampaignId { get; set; }
 

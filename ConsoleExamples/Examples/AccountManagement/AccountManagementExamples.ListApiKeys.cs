@@ -35,9 +35,9 @@ namespace ConsoleExamples.Examples.AccountManagement
         }
 
         /// <summary>
-        /// Returns the first 5 api keys asyncronously
+        /// Returns the first 5 API keys asyncronously
         /// </summary>
-        /// <returns>Task with list of api keys</returns>
+        /// <returns>Task with list of API keys</returns>
         public async Task<List<ApiKey>> ListApiKeysAsync()
         {
             var options = new QueryOptions
@@ -54,7 +54,7 @@ namespace ConsoleExamples.Examples.AccountManagement
         }
 
         /// <summary>
-        /// Get an api key
+        /// Get an API key
         /// </summary>
         /// <returns>Api key</returns>
         public ApiKey GetApiKey()
@@ -65,7 +65,7 @@ namespace ConsoleExamples.Examples.AccountManagement
         }
 
         /// <summary>
-        /// Get an api key async
+        /// Get an API key async
         /// </summary>
         /// <returns>Api key</returns>
         public async Task<ApiKey> GetApiKeyAsync()
@@ -76,7 +76,7 @@ namespace ConsoleExamples.Examples.AccountManagement
         }
 
         /// <summary>
-        /// Add an api key
+        /// Add an API key
         /// </summary>
         /// <returns>ApiKey</returns>
         public ApiKey AddApiKey()
@@ -98,7 +98,7 @@ namespace ConsoleExamples.Examples.AccountManagement
         }
 
         /// <summary>
-        /// Add an api key async
+        /// Add an API key async
         /// </summary>
         /// <returns>ApiKey</returns>
         public async Task<ApiKey> AddApiKeyAsync()

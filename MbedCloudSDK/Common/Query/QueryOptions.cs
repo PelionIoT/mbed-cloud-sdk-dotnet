@@ -14,10 +14,10 @@ namespace MbedCloudSDK.Common.Query
         /// </summary>
         /// <param name="limit">The number of items returned in each page of query.</param>
         /// <param name="order">Order of the items returned.</param>
-        /// <param name="after">The Id of the item to return from.</param>
+        /// <param name="after">The ID of the item to return from.</param>
         /// <param name="include">Comma separated list of fields to include in response.</param>
         /// <param name="filterString">Filter to apply to query.</param>
-        /// <param name="id">Used when query requires an Id to be passed</param>
+        /// <param name="id">Used when query requires an ID to be passed</param>
         public QueryOptions(int? limit = null, string order = null, string after = null, string include = null, string filterString = null, string id = null)
         {
             Limit = limit;

@@ -13,7 +13,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
     using Newtonsoft.Json.Converters;
 
     /// <summary>
-    /// This object represents a user in mbed Cloud.
+    /// This object represents a user in Mbed Cloud.
     /// </summary>
     public class User
     {
@@ -111,7 +111,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         public long? CreationTime { get; private set; }
 
         /// <summary>
-        /// Gets or sets the password when creating a new user. It will will generated when not present in the request.
+        /// Gets or sets the password when creating a new user. It will be generated when not present in the request.
         /// </summary>
         public string Password { get; set; }
 

@@ -38,7 +38,7 @@ namespace ConsoleExamples.Examples.AccountManagement
                     Console.WriteLine(key.Name);
                 }
 
-                // list the users in thes group
+                // list the users in this group
                 var users = api.ListGroupUsers(item.Id);
                 Console.WriteLine("Users in this group ... ");
                 foreach (var user in users)
