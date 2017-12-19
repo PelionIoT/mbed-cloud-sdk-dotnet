@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = update_service.Client.SwaggerDateConverter;
 
 namespace update_service.Model
 {
@@ -31,9 +32,9 @@ namespace update_service.Model
     public partial class FirmwareImagePage :  IEquatable<FirmwareImagePage>, IValidatableObject
     {
         /// <summary>
-        /// The order of the records based on creation time, `ASC` or `DESC`; by default `ASC`.
+        /// The order of the records based on creation time, &#x60;ASC&#x60; or &#x60;DESC&#x60;; by default &#x60;ASC&#x60;.
         /// </summary>
-        /// <value>The order of the records based on creation time, `ASC` or `DESC`; by default `ASC`.</value>
+        /// <value>The order of the records based on creation time, &#x60;ASC&#x60; or &#x60;DESC&#x60;; by default &#x60;ASC&#x60;.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum OrderEnum
         {
@@ -52,9 +53,9 @@ namespace update_service.Model
         }
 
         /// <summary>
-        /// The order of the records based on creation time, `ASC` or `DESC`; by default `ASC`.
+        /// The order of the records based on creation time, &#x60;ASC&#x60; or &#x60;DESC&#x60;; by default &#x60;ASC&#x60;.
         /// </summary>
-        /// <value>The order of the records based on creation time, `ASC` or `DESC`; by default `ASC`.</value>
+        /// <value>The order of the records based on creation time, &#x60;ASC&#x60; or &#x60;DESC&#x60;; by default &#x60;ASC&#x60;.</value>
         [DataMember(Name="order", EmitDefaultValue=false)]
         public OrderEnum? Order { get; set; }
         /// <summary>
@@ -83,31 +84,38 @@ namespace update_service.Model
         /// </summary>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
+
         /// <summary>
         /// Gets or Sets HasMore
         /// </summary>
         [DataMember(Name="has_more", EmitDefaultValue=false)]
         public bool? HasMore { get; set; }
+
         /// <summary>
         /// Gets or Sets TotalCount
         /// </summary>
         [DataMember(Name="total_count", EmitDefaultValue=false)]
         public int? TotalCount { get; set; }
+
         /// <summary>
         /// Gets or Sets After
         /// </summary>
         [DataMember(Name="after", EmitDefaultValue=false)]
         public string After { get; set; }
+
         /// <summary>
         /// Gets or Sets Limit
         /// </summary>
         [DataMember(Name="limit", EmitDefaultValue=false)]
         public int? Limit { get; set; }
+
         /// <summary>
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name="data", EmitDefaultValue=false)]
         public List<FirmwareImage> Data { get; set; }
+
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -225,8 +233,13 @@ namespace update_service.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = iam.Client.SwaggerDateConverter;
 
 namespace iam.Model
 {
@@ -73,9 +74,9 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// Entity name: always 'trusted-cert'
+        /// Entity name: always &#39;trusted-cert&#39;
         /// </summary>
-        /// <value>Entity name: always 'trusted-cert'</value>
+        /// <value>Entity name: always &#39;trusted-cert&#39;</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ObjectEnum
         {
@@ -142,9 +143,9 @@ namespace iam.Model
         [DataMember(Name="status", EmitDefaultValue=false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
-        /// Entity name: always 'trusted-cert'
+        /// Entity name: always &#39;trusted-cert&#39;
         /// </summary>
-        /// <value>Entity name: always 'trusted-cert'</value>
+        /// <value>Entity name: always &#39;trusted-cert&#39;</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public ObjectEnum? _Object { get; set; }
         /// <summary>
@@ -269,78 +270,93 @@ namespace iam.Model
             this.OwnerId = OwnerId;
         }
         
+
+
         /// <summary>
         /// Human readable description of this certificate.
         /// </summary>
         /// <value>Human readable description of this certificate.</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
+
         /// <summary>
         /// X509.v3 trusted certificate in PEM format.
         /// </summary>
         /// <value>X509.v3 trusted certificate in PEM format.</value>
         [DataMember(Name="certificate", EmitDefaultValue=false)]
         public string Certificate { get; set; }
+
         /// <summary>
         /// Issuer of the certificate.
         /// </summary>
         /// <value>Issuer of the certificate.</value>
         [DataMember(Name="issuer", EmitDefaultValue=false)]
         public string Issuer { get; set; }
+
         /// <summary>
         /// Device execution mode where 1 means a developer certificate.
         /// </summary>
         /// <value>Device execution mode where 1 means a developer certificate.</value>
         [DataMember(Name="device_execution_mode", EmitDefaultValue=false)]
         public int? DeviceExecutionMode { get; set; }
+
         /// <summary>
         /// Creation UTC time RFC3339.
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
+
+
         /// <summary>
         /// Subject of the certificate.
         /// </summary>
         /// <value>Subject of the certificate.</value>
         [DataMember(Name="subject", EmitDefaultValue=false)]
         public string Subject { get; set; }
+
         /// <summary>
         /// The UUID of the account.
         /// </summary>
         /// <value>The UUID of the account.</value>
         [DataMember(Name="account_id", EmitDefaultValue=false)]
         public string AccountId { get; set; }
+
         /// <summary>
         /// API resource entity version.
         /// </summary>
         /// <value>API resource entity version.</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public string Etag { get; set; }
+
         /// <summary>
         /// Expiration time in UTC formatted as RFC3339.
         /// </summary>
         /// <value>Expiration time in UTC formatted as RFC3339.</value>
         [DataMember(Name="validity", EmitDefaultValue=false)]
         public DateTime? Validity { get; set; }
+
         /// <summary>
         /// The UUID of the owner.
         /// </summary>
         /// <value>The UUID of the owner.</value>
         [DataMember(Name="owner_id", EmitDefaultValue=false)]
         public string OwnerId { get; set; }
+
         /// <summary>
         /// Entity ID.
         /// </summary>
         /// <value>Entity ID.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
+
         /// <summary>
         /// Certificate name.
         /// </summary>
         /// <value>Certificate name.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -522,8 +538,13 @@ namespace iam.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }
