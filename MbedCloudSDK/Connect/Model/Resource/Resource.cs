@@ -67,7 +67,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
         }
 
         /// <summary>
-        /// Gets id of the device this resource belongs to.
+        /// Gets ID of the device this resource belongs to.
         /// </summary>
         [JsonProperty]
         public string DeviceId { get; private set; }
@@ -85,7 +85,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
         public string ConentType { get; private set; }
 
         /// <summary>
-        /// Gets resource url.
+        /// Gets resource URL.
         /// </summary>
         /// <value>Resource&#39;s url.</value>
         [JsonProperty]
@@ -272,7 +272,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
         }
 
         /// <summary>
-        /// Desubscribe this resource.
+        /// Unsubscribe this resource.
         /// </summary>
         public void Unsubscribe()
         {

@@ -77,7 +77,7 @@ namespace ConsoleExamples.Examples.Connect
         }
 
         /// <summary>
-        /// Subscfibe to multiple resources
+        /// Subscribe to multiple resources
         /// </summary>
         public async void SubscribeToMultipleResourcesAsync()
         {

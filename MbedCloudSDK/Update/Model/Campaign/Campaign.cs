@@ -60,7 +60,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
         public string ManifestId { get; set; }
 
         /// <summary>
-        /// Gets or sets dEPRECATED: The ID of the campaign
+        /// Gets or sets DEPRECATED: The ID of the campaign
         /// </summary>
         public string CampaignId { get; set; }
 
@@ -80,6 +80,12 @@ namespace MbedCloudSDK.Update.Model.Campaign
         /// </summary>
         [JsonProperty]
         public DateTime? StartedAt { get; private set; }
+
+        /// <summary>
+        /// Gets the timestamp when the update campaign is updated
+        /// </summary>
+        [JsonProperty]
+        public DateTime? UpdatedAt { get; private set; }
 
         /// <summary>
         /// Gets ManifestUrl
@@ -128,7 +134,8 @@ namespace MbedCloudSDK.Update.Model.Campaign
                 ManifestUrl = data.RootManifestUrl,
                 State = updateCampaignStatus,
                 ScheduledAt = data.When,
-                StartedAt = data.StartedAt
+                StartedAt = data.StartedAt,
+                UpdatedAt = data.UpdatedAt,
             };
             return campaign;
         }

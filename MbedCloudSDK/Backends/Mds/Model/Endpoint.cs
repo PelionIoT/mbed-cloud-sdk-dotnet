@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = mds.Client.SwaggerDateConverter;
 
 namespace mds.Model
 {
@@ -51,24 +52,28 @@ namespace mds.Model
         /// <value>Deprecated and the value is always ACTIVE. Only used for API backwards compatibility reasons.</value>
         [DataMember(Name="status", EmitDefaultValue=false)]
         public string Status { get; set; }
+
         /// <summary>
         /// Determines whether the device is in queue mode.  &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Queue mode&lt;/b&gt;&lt;br/&gt; When an endpoint is in queue mode, messages sent to the endpoint do not wake up the physical device. The messages are queued  and delivered when the device wakes up and connects to Mbed Cloud Connect itself. You can also use the queue mode when  the device is behind a NAT and cannot be reached directly by Mbed Cloud Connect. 
         /// </summary>
         /// <value>Determines whether the device is in queue mode.  &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Queue mode&lt;/b&gt;&lt;br/&gt; When an endpoint is in queue mode, messages sent to the endpoint do not wake up the physical device. The messages are queued  and delivered when the device wakes up and connects to Mbed Cloud Connect itself. You can also use the queue mode when  the device is behind a NAT and cannot be reached directly by Mbed Cloud Connect. </value>
         [DataMember(Name="q", EmitDefaultValue=false)]
         public bool? Q { get; set; }
+
         /// <summary>
         /// Type of endpoint. (Free text)
         /// </summary>
         /// <value>Type of endpoint. (Free text)</value>
         [DataMember(Name="type", EmitDefaultValue=false)]
         public string Type { get; set; }
+
         /// <summary>
         /// Unique Mbed Cloud Device ID representing the endpoint.
         /// </summary>
         /// <value>Unique Mbed Cloud Device ID representing the endpoint.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -162,8 +167,13 @@ namespace mds.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

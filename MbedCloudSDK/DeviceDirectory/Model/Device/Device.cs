@@ -147,7 +147,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         public DateTime? CreatedAt { get; internal set; }
 
         /// <summary>
-        /// Gets or sets uRL for the current device manifest
+        /// Gets or sets URL for the current device manifest
         /// </summary>
         public string Manifest { get; set; }
 
@@ -163,7 +163,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         public string CertificateFingerprint { get; set; }
 
         /// <summary>
-        /// Gets or sets iD of the issuer of the certificate
+        /// Gets or sets ID of the issuer of the certificate
         /// </summary>
         public string CertificateIssuerId { get; set; }
 

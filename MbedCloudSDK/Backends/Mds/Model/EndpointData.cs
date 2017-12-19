@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = mds.Client.SwaggerDateConverter;
 
 namespace mds.Model
 {
@@ -53,29 +54,34 @@ namespace mds.Model
         /// <value>Queue mode (default value is false).</value>
         [DataMember(Name="q", EmitDefaultValue=false)]
         public bool? Q { get; set; }
+
         /// <summary>
         /// Endpoint type.
         /// </summary>
         /// <value>Endpoint type.</value>
         [DataMember(Name="ept", EmitDefaultValue=false)]
         public string Ept { get; set; }
+
         /// <summary>
         /// In case of a self-provided endpoint name that is used to initiate the device registration, Mbed Cloud provides a new Device ID to be used from that point on. The new Mbed-Cloud-provided Device ID is forwarded as the &#39;ep&#39; property and the original self-provided one as the optional &#39;original-ep&#39; property in a registration notification. The name and ID can then be mapped accordingly. Mbed Cloud saves the original endpoint name in Device Directory for future device registrations so there is no need to do the mapping again.  
         /// </summary>
         /// <value>In case of a self-provided endpoint name that is used to initiate the device registration, Mbed Cloud provides a new Device ID to be used from that point on. The new Mbed-Cloud-provided Device ID is forwarded as the &#39;ep&#39; property and the original self-provided one as the optional &#39;original-ep&#39; property in a registration notification. The name and ID can then be mapped accordingly. Mbed Cloud saves the original endpoint name in Device Directory for future device registrations so there is no need to do the mapping again.  </value>
         [DataMember(Name="original-ep", EmitDefaultValue=false)]
         public string OriginalEp { get; set; }
+
         /// <summary>
         /// Gets or Sets Resources
         /// </summary>
         [DataMember(Name="resources", EmitDefaultValue=false)]
         public List<ResourcesData> Resources { get; set; }
+
         /// <summary>
         /// Unique Mbed Cloud Device ID.
         /// </summary>
         /// <value>Unique Mbed Cloud Device ID.</value>
         [DataMember(Name="ep", EmitDefaultValue=false)]
         public string Ep { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -177,8 +183,13 @@ namespace mds.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }
