@@ -41,12 +41,18 @@ checkout:
       ${login}
 dependencies:
   pre:
-    - docker pull ${TESTRUNNER_DOCKER_IMAGE}
     - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
     - echo "deb http://download.mono-project.com/repo/ubuntu trusty main" | sudo tee /etc/apt/sources.list.d/mono-official.list
     - sudo apt-get update
+    - git clone https://github.com/doxygen/doxygen.git
+    - cd doxygen
+    - mkdir build
+    - cd build
+    - cmake -G "Unix Makefiles" ..
+    - make
+    - make install
+    - docker pull ${TESTRUNNER_DOCKER_IMAGE}
     - sudo apt-get install mono-devel
-    - sudo apt-get install doxygen=1.8.13
     - sudo apt-get install xsltproc
     - mkdir -p ${SDK_DOCS}
     - mkdir -p ${SDK_REPORTS}
