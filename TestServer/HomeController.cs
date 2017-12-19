@@ -70,6 +70,7 @@ namespace TestServer
         [HttpGet]
         public void Exit()
         {
+            _moduleRepository.Create().StopNotifications();
             Console.WriteLine("Finished...");
             Program.shutDown.Set();
         }
