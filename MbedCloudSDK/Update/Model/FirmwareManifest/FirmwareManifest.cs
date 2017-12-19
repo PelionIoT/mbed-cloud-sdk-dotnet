@@ -19,12 +19,6 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
         public string Datafile { get; set; }
 
         /// <summary>
-        /// Gets checksum generated for the datafile
-        /// </summary>
-        [JsonProperty]
-        public string DatafileChecksum { get; private set; }
-
-        /// <summary>
         /// Gets size in bytes of the uploaded firmware manifest binary
         /// </summary>
         [JsonProperty]
@@ -82,7 +76,6 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
                 CreatedAt = data.CreatedAt,
                 Datafile = data.Datafile,
                 DatafileSize = data.DatafileSize,
-                DatafileChecksum = data.DatafileChecksum,
                 Description = data.Description,
                 DeviceClass = data.DeviceClass,
                 Id = data.Id,
@@ -102,7 +95,6 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
             var sb = new StringBuilder();
             sb.Append("class FirmwareManifestSerializerData {\n");
             sb.Append("  Datafile: ").Append(Datafile).Append("\n");
-            sb.Append("  DatafileChecksum  ").Append(DatafileChecksum).Append("\n");
             sb.Append("  DatafileSize  ").Append(DatafileSize).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
