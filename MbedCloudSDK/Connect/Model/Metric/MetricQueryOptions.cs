@@ -31,7 +31,7 @@ namespace MbedCloudSDK.Connect.Model.Metric
         public DateTime? Start { get; set; }
 
         /// <summary>
-        /// Gets or sets uTC time / year / date in RFC3339 format. Fetch data with timestamp less than this value.Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207.The parameter is not mandatory, if period specified.
+        /// Gets or sets UTC time / year / date in RFC3339 format. Fetch data with timestamp less than this value.Sample values: 20170207T092056990Z / 2017-02-07T09:20:56.990Z / 2017 / 20170207.The parameter is not mandatory, if period specified.
         /// </summary>
         public DateTime? End { get; set; }
 

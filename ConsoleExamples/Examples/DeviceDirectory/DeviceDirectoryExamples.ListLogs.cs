@@ -16,7 +16,7 @@ namespace ConsoleExamples.Examples.DeviceDirectory
     public partial class DeviceDirectoryExamples
     {
         /// <summary>
-        /// List all devicse logs.
+        /// List all device logs.
         /// </summary>
         /// <returns>List of device events</returns>
         public List<DeviceEvent> ListDevicesLogs()

@@ -33,7 +33,7 @@ namespace MbedCloudSDK.Connect.Model.Webhook
         }
 
         /// <summary>
-        /// Gets the url of the webhook
+        /// Gets the URL of the webhook
         /// </summary>
         [JsonProperty]
         public string Url { get; private set; }
@@ -45,7 +45,7 @@ namespace MbedCloudSDK.Connect.Model.Webhook
         public Dictionary<string, string> Headers { get; private set; }
 
         /// <summary>
-        /// Map from api webhook to webhook
+        /// Map from API webhook to webhook
         /// </summary>
         /// <param name="data">Webhook</param>
         /// <returns>Webhook</returns>
@@ -60,7 +60,7 @@ namespace MbedCloudSDK.Connect.Model.Webhook
         }
 
         /// <summary>
-        /// Map to api webhook from webhook
+        /// Map to API webhook from webhook
         /// </summary>
         /// <param name="data">Webhook</param>
         /// <returns>Webhook</returns>

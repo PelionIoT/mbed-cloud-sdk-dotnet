@@ -149,30 +149,30 @@ namespace MbedCloudSDK.Certificates.Model
         public string SecurityFileContent { get; set; }
 
         /// <summary>
-        /// Gets pEM format X.509 developer certificate.
+        /// Gets PEM format X.509 developer certificate.
         /// </summary>
         /// <value>PEM format X.509 developer certificate.</value>
         [JsonProperty]
         public string DeveloperCertificate { get; private set; }
 
         /// <summary>
-        /// Gets uRI to which the client needs to connect to.
+        /// Gets URI to which the client needs to connect to.
         /// </summary>
         /// <value>URI to which the client needs to connect to.</value>
         [JsonProperty]
         public string ServerUri { get; private set; }
 
         /// <summary>
-        /// Gets pEM format developer private key associated to the certificate.
+        /// Gets PEM format developer private key associated to the certificate.
         /// </summary>
         /// <value>PEM format developer private key associated to the certificate.</value>
         [JsonProperty]
         public string DeveloperPrivateKey { get; private set; }
 
         /// <summary>
-        /// Gets pEM format X.509 server certificate that will be used to validate the server certificate that will be received during the TLS/DTLS handshake.
+        /// Gets PEM format X.509 server certificate that will be used to validate the server certificate and that will be received during the TLS/DTLS handshake.
         /// </summary>
-        /// <value>PEM format X.509 server certificate that will be used to validate the server certificate that will be received during the TLS/DTLS handshake.</value>
+        /// <value>PEM format X.509 server certificate that will be used to validate the server certificate and that will be received during the TLS/DTLS handshake.</value>
         [JsonProperty]
         public string ServerCertificate { get; private set; }
 

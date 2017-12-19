@@ -16,7 +16,7 @@ namespace MbedCloudSDK.Common
     public class ApiMetadata
     {
         /// <summary>
-        /// Gets or sets hTTP Status code of the API response
+        /// Gets or sets HTTP Status code of the API response
         /// </summary>
         public HttpStatusCode StatusCode { get; set; }
 
@@ -56,7 +56,7 @@ namespace MbedCloudSDK.Common
         public string Method { get; set; }
 
         /// <summary>
-        /// Gets or sets uRL of the API request
+        /// Gets or sets URL of the API request
         /// </summary>
         public string Url { get; set; }
 

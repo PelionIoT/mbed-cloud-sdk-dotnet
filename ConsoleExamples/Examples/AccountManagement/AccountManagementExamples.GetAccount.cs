@@ -29,7 +29,7 @@ namespace ConsoleExamples.Examples.AccountManagement
         }
 
         /// <summary>
-        /// Gets details of the account asociated with this api key
+        /// Gets details of the account asociated with this API key
         /// </summary>
         /// <returns>An Account object</returns>
         public Account GetAccountDetails()
