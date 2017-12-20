@@ -24,8 +24,8 @@ checkout:
   post:
       # switch out environment variables depending on branch
     - |
-      if [[ $CIRCLE_BRANCH == production ]]; then
-        echo export MBED_CLOUD_HOST='' >> $HOME/.circlerc;
+      if [[ $CIRCLE_BRANCH == build ]]; then
+        echo export MBED_CLOUD_API_HOST='https://api.us-east-1.mbedcloud.com' >> $HOME/.circlerc;
         echo export MBED_CLOUD_API_KEY=$MBED_CLOUD_API_KEY_PROD >> $HOME/.circlerc;
         echo 'environment variables swapped';
       fi

@@ -22,9 +22,9 @@ The Mbed Cloud SDK gives developers access to the full Mbed suite using .Net 4.6
 4. Go to Tools -> NuGet Package Manager and select the package manager console.
 5. Run the following command to install the package:
 
-    ```
+\code{.sh}
     PM> Install-Package Mbed.Cloud.SDK
-    ```
+\endcode
 
 ## Installation (Mac - Visual Studio Community)
 
@@ -40,9 +40,10 @@ If you do not use Visual Studio for Mac, then you can open the project you just 
 
 1. Make sure you have the latest version of Mono installed
 
-    ```
+\code{.sh}
     $ Mono -v
-    ```
+\endcode
+
 2. Download the latest version of NuGet from [here](https://dist.nuget.org/win-x86-commandline/latest/nuget.exe).
 3. Download Visual Studio Code from [here](https://code.visualstudio.com/?wt.mc_id=DX_841432).
 4. Open the root of the project in VSCode.
@@ -50,8 +51,8 @@ If you do not use Visual Studio for Mac, then you can open the project you just 
 6. Create a .vscode directory at the root of the project and create a launch.json file.
 7. In your launch.json, insert the following:
 
-    ```
-     {
+\code{.json}
+{
         "version": "0.2.0",
         "configurations": [
             {
@@ -71,10 +72,11 @@ If you do not use Visual Studio for Mac, then you can open the project you just 
             }
         ]
     }
-    ```
+\endcode
+
 8. Now create a tasks.json file and insert the following:
 
-    ```
+\code{.json}
     {
         "version": "2.0.0",
         "tasks": [
@@ -94,21 +96,21 @@ If you do not use Visual Studio for Mac, then you can open the project you just 
             },
         ]
      }
-    ```
+\endcode
 
 9. To resort your project packages, run the following NuGet command:
 
-    ```
+    \code{.sh}
     $ mono nuget.exe restore YourProject/packages.config -PackagesDirectory pathToYourPackagesFolder
-    ```
+    \endcode
 
 10. Now pressing Cmd + Shift + B runs the build task. Verify that it was successful by checking the output in the integrated terminal.
 
 11. To build from the command line, use `msbuild` in the root of the project
 
-    ```
+    \code{.sh}
     $ msbuild
-    ```
+    \endcode
 
 12. After a build has been successful, press f5 to launch debugging, or Shift + f5 to start without debugging. Any output should appear in the debug console tab of the integrated terminal.
 
@@ -119,7 +121,7 @@ If you do not use Visual Studio for Mac, then you can open the project you just 
 1. Create API key in the [Mbed Cloud Portal](https://portal.mbedcloud.com/).
 2. In your project, follow the sample below.
 
-    ```csharp
+    \code{.cs}
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.DeviceDirectory.Api;
@@ -142,7 +144,7 @@ If you do not use Visual Studio for Mac, then you can open the project you just 
     {
         // Use the device object here
     }
-    ```
+    \endcode
 
 ## Api Keys
 

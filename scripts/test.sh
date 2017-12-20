@@ -10,7 +10,7 @@ if [ -z $API_KEY ]; then
   exit 1;
 fi
 
-mono --debug --profile=log:coverage,covfilter=+[MbedCloudSDK]MbedCloudSDK,output=int-output.mlpd TestServer/bin/Debug/TestServer.exe ${API_KEY} &
+mono --debug --profile=log:coverage,covfilter=+[MbedCloudSDK]MbedCloudSDK,output=int-output.mlpd TestServer/bin/Debug/TestServer.exe ${MBED_CLOUD_API_KEY} ${MBED_CLOUD_API_HOST} &
 
 sleep 2
 

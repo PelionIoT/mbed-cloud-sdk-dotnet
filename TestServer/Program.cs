@@ -18,7 +18,9 @@ namespace TestServer
             string baseAddress = "http://localhost:3000/";
 
             var apiKey = args[0];
-            Utils.UpdateAppSetting("ApiKey", apiKey); 
+            Utils.UpdateAppSetting("ApiKey", apiKey);
+            var host = args[1];
+            Utils.UpdateAppSetting("Host", host);
 
             using (WebApp.Start<Startup>(url: baseAddress))
             {

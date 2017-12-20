@@ -3,7 +3,7 @@
   <metadata>
     <id>Mbed.Cloud.SDK</id>
     <version>1.2.2</version>
-    <title>MbedCloudSDK</title>
+    <title>Mbed Cloud SDK for .NET</title>
     <authors>Alex Logan</authors>
     <owners>Alex Logan</owners>
     <licenseUrl>https://github.com/ARMmbed/mbed-cloud-sdk-dotnet/blob/master/LICENSE</licenseUrl>
