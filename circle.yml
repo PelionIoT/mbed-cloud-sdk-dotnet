@@ -100,7 +100,9 @@ deployment:
     commands:
       - ./scripts/generate-docs.sh
       - ./scripts/uploadArtifactsMaster.sh
-      - mono --runtime=v4.0 nuget.exe push ${NUGET_NAME} -Source https://api.nuget.org/v3/index.json -Verbosity detailed -ApiKey ${NUGET_KEY} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+      - mono --runtime=v4.0 nuget.exe sources Add -Name ArtifactorySnapshot -Source ${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-snapshots | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+      - sudo mono --runtime=v4.0 nuget.exe setapikey ${ARTIFACTORY_API_KEY} -Source ArtifactorySnapshot | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+      - mono --runtime=v4.0 nuget.exe push ${NUGET_NAME} -Source ArtifactorySnapshot -Verbosity detailed -ApiKey ${ARTIFACTORY_API_KEY} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
   release:
     branch: /[0-9]+\.[0-9]+.*/
     commands:

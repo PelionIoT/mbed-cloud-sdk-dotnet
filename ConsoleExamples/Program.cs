@@ -38,10 +38,16 @@ namespace ConsoleExamples
             }
 
             var apiKey = args[0];
+            var host = "https://api.us-east-1.mbedcloud.com";
+            if (args.Length >= 2)
+            {
+                host = args[1];
+            }
+
             var config = new Config(apiKey)
             {
                 // Change default host
-                Host = "https://lab-api.mbedcloudintegration.net",
+                Host = host,
                 ForceClear = true,
             };
 
