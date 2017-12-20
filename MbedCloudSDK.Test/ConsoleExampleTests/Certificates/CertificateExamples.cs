@@ -14,7 +14,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Certificates
             var config = new Config(key, host);
             var certificatesApi = new ConsoleExamples.Examples.Certificates.CertificateExamples(config);
             var certificates = certificatesApi.ListAllCertificates();
-            Assert.AreEqual(5, certificates.Count);
+            Assert.IsNotEmpty(certificates);
         }
 
         [Test]

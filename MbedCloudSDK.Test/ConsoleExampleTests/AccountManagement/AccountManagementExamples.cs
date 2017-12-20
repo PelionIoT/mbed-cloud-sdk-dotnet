@@ -37,7 +37,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
             var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var keys = accountApi.ListApiKeys();
-            Assert.AreEqual(5, keys.Count);
+            Assert.IsNotEmpty(keys);
         }
 
         [Test]
@@ -48,7 +48,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
             var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var keys = accountApi.ListApiKeysAsync().Result;
-            Assert.AreEqual(5, keys.Count);
+            Assert.IsNotEmpty(keys);
         }
 
         [Test]
