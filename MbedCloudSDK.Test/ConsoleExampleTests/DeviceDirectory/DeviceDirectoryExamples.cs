@@ -36,7 +36,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.DeviceDirectory
             var config = new Config(key, host);
             var deviceQuery = new ConsoleExamples.Examples.DeviceDirectory.DeviceDirectoryExamples(config);
             var devices = deviceQuery.ListAllDevices();
-            Assert.AreEqual(5, devices.Count);
+            Assert.IsNotEmpty(devices);
         }
 
         [Test]
@@ -47,7 +47,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.DeviceDirectory
             var config = new Config(key, host);
             var listLogs = new ConsoleExamples.Examples.DeviceDirectory.DeviceDirectoryExamples(config);
             var logs = listLogs.ListDevicesLogs();
-            Assert.AreEqual(5, logs.Count);
+            Assert.IsNotEmpty(logs);
         }
 
         [Test]
@@ -58,7 +58,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.DeviceDirectory
             var config = new Config(key, host);
             var listEvents = new ConsoleExamples.Examples.DeviceDirectory.DeviceDirectoryExamples(config);
             var events = listEvents.ListDeviceEvents();
-            Assert.AreEqual(5, events.Count);
+            Assert.IsNotEmpty(events);
         }
     }
 }

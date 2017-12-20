@@ -25,7 +25,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Update
             var config = new Config(key, host);
             var listImages = new ConsoleExamples.Examples.Update.UpdateExamples(config);
             var images = listImages.ListImages();
-            Assert.AreEqual(5, images.Count);
+            Assert.IsNotEmpty(images);
         }
 
         [Test]
@@ -36,7 +36,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Update
             var config = new Config(key, host);
             var listManifests = new ConsoleExamples.Examples.Update.UpdateExamples(config);
             var manifests = listManifests.ListManifests();
-            Assert.AreEqual(5, manifests.Count);
+            Assert.IsNotEmpty(manifests);
         }
 
         [Test]
@@ -47,7 +47,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Update
             var config = new Config(key, host);
             var listCampaigns = new ConsoleExamples.Examples.Update.UpdateExamples(config);
             var campaigns = listCampaigns.ListCampaigns();
-            Assert.AreEqual(5, campaigns.Count);
+            Assert.IsNotEmpty(campaigns);
         }
     }
 }
