@@ -11,7 +11,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         public void GetAccountDetails()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
-            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var host = TestContext.Parameters["mbed_cloud_sdk_host"];
+            var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var account = accountApi.GetAccountDetails();
             Assert.NotNull(account);
@@ -21,7 +22,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         public void GetAccountDetailsAsync()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
-            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var host = TestContext.Parameters["mbed_cloud_sdk_host"];
+            var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var account = accountApi.GetAccountDetailsAsync();
             Assert.NotNull(account);
@@ -31,7 +33,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         public void ListApiKeys()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
-            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var host = TestContext.Parameters["mbed_cloud_sdk_host"];
+            var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var keys = accountApi.ListApiKeys();
             Assert.AreEqual(5, keys.Count);
@@ -41,7 +44,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         public void ListApiKeysAsync()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
-            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var host = TestContext.Parameters["mbed_cloud_sdk_host"];
+            var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var keys = accountApi.ListApiKeysAsync().Result;
             Assert.AreEqual(5, keys.Count);
@@ -51,7 +55,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         public void ListActiveUsers()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
-            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var host = TestContext.Parameters["mbed_cloud_sdk_host"];
+            var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var users = accountApi.ListActiveUsers();
             Assert.IsNotNull(users);
@@ -61,7 +66,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         public void ListAllGroups()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
-            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var host = TestContext.Parameters["mbed_cloud_sdk_host"];
+            var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var groups = accountApi.ListAllGroups();
             Assert.IsNotEmpty(groups);
@@ -71,7 +77,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         public void UpdateAccount()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
-            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var host = TestContext.Parameters["mbed_cloud_sdk_host"];
+            var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var account = accountApi.UpdateAccount();
             Assert.AreEqual("New York", account.City);
@@ -81,7 +88,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         public void UpdateAccountAsync()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
-            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var host = TestContext.Parameters["mbed_cloud_sdk_host"];
+            var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var account = accountApi.UpdateAccountAsync().Result;
             Assert.AreEqual("New York", account.City);
@@ -91,7 +99,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         public void GetApiKey()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
-            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var host = TestContext.Parameters["mbed_cloud_sdk_host"];
+            var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var apiKey = accountApi.GetApiKey();
             Assert.IsNotNull(apiKey);
@@ -101,7 +110,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         public void GetApiKeyAsync()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
-            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var host = TestContext.Parameters["mbed_cloud_sdk_host"];
+            var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var apiKey = accountApi.GetApiKeyAsync().Result;
             Assert.IsNotNull(apiKey);
@@ -111,7 +121,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         public void AddApiKey()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
-            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var host = TestContext.Parameters["mbed_cloud_sdk_host"];
+            var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var apiKey = accountApi.AddApiKey();
             Assert.IsNotNull(apiKey);
@@ -121,7 +132,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         public void AddApiKeyAsync()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
-            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var host = TestContext.Parameters["mbed_cloud_sdk_host"];
+            var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var apiKey = accountApi.AddApiKeyAsync().Result;
             Assert.IsNotNull(apiKey);
@@ -131,7 +143,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         public void AddUser()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
-            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var host = TestContext.Parameters["mbed_cloud_sdk_host"];
+            var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var user = accountApi.AddUser();
             Assert.IsNotNull(user);
@@ -141,7 +154,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         public void AddUserAsync()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
-            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var host = TestContext.Parameters["mbed_cloud_sdk_host"];
+            var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var user = accountApi.AddUserAsync().Result;
             Assert.IsNotNull(user);
