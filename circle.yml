@@ -2,9 +2,6 @@ general:
   artifacts:
     - ~/docs
     - ~/reports
-  branches:
-    ignore:
-      - build
 machine:
   environment:
     PROJECT_TOP: ${HOME}/${CIRCLE_PROJECT_REPONAME}
