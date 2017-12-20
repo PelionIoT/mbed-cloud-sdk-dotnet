@@ -12,9 +12,6 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
     /// <typeparam name="T">Type of Async Consumer</typeparam>
     public class AsyncConsumer<T>
     {
-        private string asyncId;
-        private AsyncProducerConsumerCollection<T> collection;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AsyncConsumer{T}"/> class.
         /// </summary>
@@ -22,9 +19,21 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         /// <param name="collection">Collection.</param>
         public AsyncConsumer(string asyncId, AsyncProducerConsumerCollection<T> collection)
         {
-            this.asyncId = asyncId;
-            this.collection = collection;
+            AsyncId = asyncId;
+            Collection = collection;
         }
+
+        /// <summary>
+        /// Gets or sets the AsyncId
+        /// </summary>
+        /// <returns>The Async Id</returns>
+        public string AsyncId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the AsyncProducerConsumerCollection
+        /// </summary>
+        /// <returns>The AsyncProducerConsumercollection</returns>
+        public AsyncProducerConsumerCollection<T> Collection { get; set; }
 
         /// <summary>
         /// Gets the value.
@@ -32,7 +41,7 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         /// <returns>The value.</returns>
         public async Task<T> GetValue()
         {
-            var t = await collection.Take();
+            var t = await Collection.Take();
             return t;
         }
 
@@ -42,7 +51,7 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         /// <returns>The AsyncId.</returns>
         public override string ToString()
         {
-            return asyncId;
+            return AsyncId;
         }
     }
 }

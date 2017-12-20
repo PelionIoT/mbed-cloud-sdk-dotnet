@@ -17,6 +17,12 @@ namespace ConsoleExamples
     /// </summary>
     public class Program
     {
+        private static AccountManagementExamples accountManagementExamples;
+        private static CertificateExamples certificateExamples;
+        private static ConnectExamples connectExamples;
+        private static DeviceDirectoryExamples deviceDirectoryExamples;
+        private static UpdateExamples updateExamples;
+
         /// <summary>
         /// Main
         /// </summary>
@@ -36,7 +42,15 @@ namespace ConsoleExamples
             {
                 // Change default host
                 Host = "https://lab-api.mbedcloudintegration.net",
+                ForceClear = true,
             };
+
+            accountManagementExamples = new AccountManagementExamples(config);
+            certificateExamples = new CertificateExamples(config);
+            connectExamples = new ConnectExamples(config);
+            deviceDirectoryExamples = new DeviceDirectoryExamples(config);
+            updateExamples = new UpdateExamples(config);
+
             string example;
             while (true)
             {
@@ -85,8 +99,8 @@ namespace ConsoleExamples
             Console.WriteLine($"{i++}. Create presubscription");
             Console.WriteLine($"{i++}. Get resource value");
             Console.WriteLine($"{i++}. Set resource value example");
-            Console.WriteLine($"{i++}. Subscribe to the resource");
-            Console.WriteLine($"{i++}. Subscribe to multiple resources");
+            Console.WriteLine($"{i++}. Subscribe to a resource");
+            Console.WriteLine($"{i++}. Subscribe to a resource with a callback");
             Console.WriteLine($"{i++}. Create a webhook for a resource");
             Console.WriteLine("---Device Directory---");
             Console.WriteLine($"{i++}. Create Devices");
@@ -108,11 +122,6 @@ namespace ConsoleExamples
 
         private static async void RunExampleAsync(Config config, int example)
         {
-            var accountManagementExamples = new AccountManagementExamples(config);
-            var certificateExamples = new CertificateExamples(config);
-            var connectExamples = new ConnectExamples(config);
-            var deviceDirectoryExamples = new DeviceDirectoryExamples(config);
-            var updateExamples = new UpdateExamples(config);
             switch (example)
             {
                 case 1:
@@ -188,10 +197,10 @@ namespace ConsoleExamples
                     connectExamples.SetResourceValue();
                     break;
                 case 25:
-                    connectExamples.Subscribe();
+                    await connectExamples.SubscribeAsync();
                     break;
                 case 26:
-                    connectExamples.SubscribeToMultipleResources();
+                    connectExamples.SubscribeCallback();
                     break;
                 case 27:
                     connectExamples.RegisterWebhook();

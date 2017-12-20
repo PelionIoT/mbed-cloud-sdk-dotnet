@@ -17,12 +17,14 @@ namespace MbedCloudSDK.Common
         /// <param name="apiKey"><see cref="ApiKey"/></param>
         /// <param name="host">Host url</param>
         /// <param name="authorizationPrefix">Authorization prefix</param>
-        public Config(string apiKey, string host = "https://api.us-east-1.mbedcloud.com", string authorizationPrefix = "Bearer")
+        /// <param name="forceClear">Auto start notifications. If true, notifications will start automatically when required.</param>
+        public Config(string apiKey, string host = "https://api.us-east-1.mbedcloud.com", bool forceClear = false, string authorizationPrefix = "Bearer")
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
             AuthorizationPrefix = authorizationPrefix;
             ApiKey = apiKey;
             Host = host;
+            ForceClear = forceClear;
         }
 
         /// <summary>
@@ -30,6 +32,12 @@ namespace MbedCloudSDK.Common
         /// </summary>
         /// <value>The host.</value>
         public string Host { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to clear any existing notification channels
+        /// </summary>
+        /// <value>If true, notifications will start automaticaly</value>
+        public bool ForceClear { get; set; }
 
         /// <summary>
         /// Gets the API key.

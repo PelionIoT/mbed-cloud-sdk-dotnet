@@ -30,10 +30,11 @@ namespace TestServer
         private SingletonModuleInstance _moduleRepository;
 
         public HomeController()
-            {
-                _moduleRepository = new SingletonModuleInstance();
-            }
-            [HttpGet]
+        {
+            _moduleRepository = new SingletonModuleInstance();
+        }
+
+        [HttpGet]
         public IHttpActionResult Init()
         {
             try
@@ -69,6 +70,7 @@ namespace TestServer
         [HttpGet]
         public void Exit()
         {
+            _moduleRepository.Create().StopNotifications();
             Console.WriteLine("Finished...");
             Program.shutDown.Set();
         }

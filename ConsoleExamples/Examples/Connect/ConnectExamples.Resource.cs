@@ -27,11 +27,8 @@ namespace ConsoleExamples.Examples.Connect
             }
 
             var device = connectedDevices.FirstOrDefault();
-            var resources = device.ListResources();
-            api.StartNotifications();
             var resp = api.GetResourceValue(device.Id, resourcePath);
             Console.WriteLine($"The value of the resource is {resp}");
-            api.StopNotifications();
             return resp;
         }
 
@@ -54,13 +51,11 @@ namespace ConsoleExamples.Examples.Connect
 
             var resourceUri = resources.FirstOrDefault(r => r.Type == "writable_resource")?.Path;
 
-            api.StartNotifications();
             var resp = api.SetResourceValue(device.Id, resourceUri, "test-value");
 
             var newValue = api.GetResourceValue(device.Id, resourceUri);
 
             Console.WriteLine($"Resource value set to {newValue}");
-            api.StopNotifications();
             return newValue;
         }
     }

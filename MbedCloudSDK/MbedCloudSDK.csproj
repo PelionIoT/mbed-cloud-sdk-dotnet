@@ -222,6 +222,11 @@
     <Compile Include="Connect\Model\ConnectedDevice\ConnectedDevice.cs" />
     <Compile Include="Connect\Model\Subscription\Presubscription.cs" />
     <Compile Include="Connect\Model\Webhook\Webhook.cs" />
+    <Compile Include="Connect\Model\Notifications\AsyncIdResponse.cs" />
+    <Compile Include="Connect\Model\Notifications\EndpointData.cs" />
+    <Compile Include="Connect\Model\Notifications\NotificationData.cs" />
+    <Compile Include="Connect\Model\Notifications\NotificationMessage.cs" />
+    <Compile Include="Connect\Model\Notifications\ResourcesData.cs" />
     <Compile Include="DeviceDirectory\Api\DeviceDirectoryApi.cs" />
     <Compile Include="DeviceDirectory\Api\DeviceDirectoryApi.Devices.cs" />
     <Compile Include="Connect\Api\ConnectApi.Notifications.cs" />

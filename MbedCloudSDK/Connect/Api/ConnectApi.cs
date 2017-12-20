@@ -66,8 +66,6 @@ namespace MbedCloudSDK.Connect.Api
         public ConnectApi(Config config)
             : base(config)
         {
-            cancellationToken = new CancellationTokenSource();
-            notificationTask = new Task(new Action(Notifications), cancellationToken.Token, TaskCreationOptions.LongRunning);
             ResourceSubscribtions = new Dictionary<string, Resource>();
 
             var dateFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";

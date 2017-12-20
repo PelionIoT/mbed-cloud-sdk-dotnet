@@ -36,6 +36,12 @@ namespace TestServer
             return apis;
         }
 
+        public void StopNotifications()
+        {
+            var connect = apis["Connect"] as ConnectApi;
+            connect.StopNotifications();
+        }
+
         public static ModuleRepository Instance
         {
             get

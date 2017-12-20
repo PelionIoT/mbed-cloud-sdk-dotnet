@@ -4,6 +4,7 @@
 
 namespace MbedCloudSDK.Connect.Api
 {
+    using System;
     using MbedCloudSDK.Connect.Model.Webhook;
     using MbedCloudSDK.Exceptions;
 
@@ -67,7 +68,11 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                notificationsApi.V2NotificationPullDelete();
+                if (Config.ForceClear)
+                {
+                    StopNotifications();
+                }
+
                 notificationsApi.V2NotificationCallbackPut(Webhook.MapToApiWebook(webhook));
             }
             catch (mds.Client.ApiException ex)

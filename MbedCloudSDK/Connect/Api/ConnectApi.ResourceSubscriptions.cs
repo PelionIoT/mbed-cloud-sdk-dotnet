@@ -4,6 +4,7 @@
 
 namespace MbedCloudSDK.Connect.Api
 {
+    using System;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
     using MbedCloudSDK.Connect.Model.Resource;
     using MbedCloudSDK.Exceptions;
@@ -21,8 +22,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <returns>Async Consumer with String</returns>
         /// <example>
         /// <code>
-        /// api.StartNotifications();
-        /// var consumer = api.AddResourceSubscription(015bb66a92a30000000000010010006d, "3200/0/5500");
+        /// var consumer = api.AddResourceSubscription("015bb66a92a30000000000010010006d", "3200/0/5500");
         /// var counter = 0;
         /// while (true)
         /// {
@@ -34,27 +34,29 @@ namespace MbedCloudSDK.Connect.Api
         ///     break;
         ///     }
         /// }
-        /// api.StopNotifications();
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public AsyncConsumer<string> AddResourceSubscription(string deviceId, string resourcePath)
+        public Resource AddResourceSubscription(string deviceId, string resourcePath)
         {
             try
             {
+                StartNotifications();
                 var fixedPath = FixedPath(resourcePath);
                 subscriptionsApi.V2SubscriptionsDeviceIdResourcePathPut(deviceId, fixedPath);
                 var subscribePath = deviceId + resourcePath;
-                var resource = new Resource(deviceId)
-                {
-                    Queue = new AsyncProducerConsumerCollection<string>()
-                };
+                var resource = new Resource(deviceId, null, this);
                 if (!ResourceSubscribtions.ContainsKey(subscribePath))
                 {
                     ResourceSubscribtions.Add(subscribePath, resource);
                 }
+                else
+                {
+                    ResourceSubscribtions.Remove(subscribePath);
+                    ResourceSubscribtions.Add(subscribePath, resource);
+                }
 
-                return new AsyncConsumer<string>(subscribePath, resource.Queue);
+                return resource;
             }
             catch (mds.Client.ApiException ex)
             {
