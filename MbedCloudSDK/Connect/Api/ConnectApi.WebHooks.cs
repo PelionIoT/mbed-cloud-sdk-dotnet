@@ -4,7 +4,9 @@
 
 namespace MbedCloudSDK.Connect.Api
 {
+    using System;
     using MbedCloudSDK.Connect.Model.Webhook;
+    using MbedCloudSDK.Exceptions;
 
     /// <summary>
     /// Connect Api
@@ -15,6 +17,20 @@ namespace MbedCloudSDK.Connect.Api
         /// Get the current callback URL if it exists.
         /// </summary>
         /// <returns>Webhook</returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var webhook = connectApi.GetWebhook();
+        ///     return webhook;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public Webhook GetWebhook()
         {
             try
@@ -23,30 +39,64 @@ namespace MbedCloudSDK.Connect.Api
             }
             catch (mds.Client.ApiException ex)
             {
-                throw new mds.Client.ApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
         }
 
         /// <summary>
         /// Register new webhook for incoming subscriptions.
         /// </summary>
-        /// <param name="webhook">The webhook object</param>
+        /// <param name="webhook"><see cref="Webhook"/></param>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var webhook = new Webhook
+        ///     {
+        ///         Url = "www.exampleurl.com",
+        ///     };
+        ///     connectApi.UpdateWebhook(webhook);
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public void UpdateWebhook(Webhook webhook)
         {
             try
             {
-                notificationsApi.V2NotificationPullDelete();
+                if (Config.ForceClear)
+                {
+                    StopNotifications();
+                }
+
                 notificationsApi.V2NotificationCallbackPut(Webhook.MapToApiWebook(webhook));
             }
             catch (mds.Client.ApiException ex)
             {
-                throw new mds.Client.ApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
         }
 
         /// <summary>
         /// Delete/remove registered webhook.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     connectApi.DeleteWebhook();
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public void DeleteWebhook()
         {
             try
@@ -56,7 +106,7 @@ namespace MbedCloudSDK.Connect.Api
             }
             catch (mds.Client.ApiException ex)
             {
-                throw new mds.Client.ApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
         }
     }

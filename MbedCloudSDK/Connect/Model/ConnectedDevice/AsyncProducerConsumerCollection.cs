@@ -4,7 +4,11 @@
 
 namespace MbedCloudSDK.Connect.Model.ConnectedDevice
 {
+    using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Collections.Specialized;
+    using System.Linq;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -13,7 +17,7 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
     /// <typeparam name="T">Type of AsyncProducerConsumer</typeparam>
     public class AsyncProducerConsumerCollection<T>
     {
-        private readonly Queue<T> collection = new Queue<T>();
+        private readonly ObservableCollection<T> collection = new ObservableCollection<T>();
         private readonly Queue<TaskCompletionSource<T>> waiting =
             new Queue<TaskCompletionSource<T>>();
 
@@ -32,7 +36,7 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
                 }
                 else
                 {
-                    collection.Enqueue(item);
+                    collection.Add(item);
                 }
             }
 
@@ -52,7 +56,9 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
             {
                 if (collection.Count > 0)
                 {
-                    return Task.FromResult(collection.Dequeue());
+                    var first = collection.FirstOrDefault();
+                    collection.Remove(first);
+                    return Task.FromResult(first);
                 }
                 else
                 {
@@ -60,6 +66,18 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
                     waiting.Enqueue(tcs);
                     return tcs.Task;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Add a handler to consumer
+        /// </summary>
+        /// <param name="handler">The handler function</param>
+        public void AddHandler(Action<object, NotifyCollectionChangedEventArgs> handler)
+        {
+            if (handler != null)
+            {
+                collection.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(handler);
             }
         }
     }

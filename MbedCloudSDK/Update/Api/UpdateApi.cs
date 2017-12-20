@@ -4,6 +4,7 @@
 
 namespace MbedCloudSDK.Update.Api
 {
+    using System;
     using System.Linq;
     using MbedCloudSDK.Common;
     using update_service.Client;
@@ -18,7 +19,15 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateApi"/> class.
         /// </summary>
-        /// <param name="config">Config.</param>
+        /// <param name="config"><see cref="Config"/></param>
+        /// <example>
+        /// This API is intialized with a <see cref="Config"/> object.
+        /// <code>
+        /// using MbedCloudSDK.Common;
+        /// var config = new config(apiKey);
+        /// var updateApi = new UpdateApi(config);
+        /// </code>
+        /// </example>
         public UpdateApi(Config config)
             : base(config)
         {
@@ -30,12 +39,13 @@ namespace MbedCloudSDK.Update.Api
             api = new update_service.Api.DefaultApi();
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            api.Configuration.DateTimeFormat = "yyyy-MM-ddThh:mm:ss.ffffffZ";
         }
 
         /// <summary>
         /// Get meta data for the last Mbed Cloud API call
         /// </summary>
-        /// <returns>Api Metadata</returns>
+        /// <returns><see cref="ApiMetadata"/></returns>
         public static ApiMetadata GetLastApiMetadata()
         {
             return ApiMetadata.Map(update_service.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());

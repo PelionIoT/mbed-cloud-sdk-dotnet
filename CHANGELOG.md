@@ -1,5 +1,30 @@
 # Changelog
 
+## 1.2.3
+
+### Deliverables
+
+The application is hosted on Nuget at https://www.nuget.org/packages/Mbed.Cloud.SDK and can be installed using nuget:
+
+```
+$ nuget install Mbed.Cloud.SDK
+```
+
+### Changes
+
+- Added webhook notification handler
+- Added callbacks to resource subscriptions
+- Various bugfixes
+
+### Known Issues
+
+- Testing shows that `get_resource_value` will fail
+when the cloud service returns a value directly, rather than
+through an open notification channel. This affects all previous versions.
+- The only known workaround at present is to ensure the cloud cache is not used by:
+- Waiting between calls to get_resource_value
+- Reducing [the configured TTL](https://cloud.mbed.com/docs/latest/collecting/handle-resources.html#working-with-the-server-cache) on the cloud client image on the device
+
 ## 1.2.2
 
 ### Deliverables

@@ -16,10 +16,37 @@ namespace MbedCloudSDK.DeviceDirectory.Api
     public partial class DeviceDirectoryApi
     {
         /// <summary>
-        /// Lists the device logs.
+        /// Lists the device events.
         /// </summary>
-        /// <returns>The device logs.</returns>
-        /// <param name="options">Query options.</param>
+        /// <returns>The device events.</returns>
+        /// <param name="options"><see cref="QueryOptions"/></param>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var options = new QueryOptions()
+        ///     {
+        ///         Limit = 5,
+        ///     };
+        ///
+        ///     options.Filter.Add("deviceId", "015c45eb321700000000000100100155");
+        ///     options.Filter.Add("eventDate", new DateTime(2017, 1, 1), FilterOperator.GreaterOrEqual);
+        ///     options.Filter.Add("eventDate", new DateTime(2018, 1, 1), FilterOperator.LessOrEqual);
+        ///
+        ///     var events = deviceApi.ListDeviceEvents(options).Data;
+        ///     foreach (var item in events)
+        ///     {
+        ///         Console.WriteLine(item);
+        ///     }
+        ///     return events;
+        /// }
+        /// catch (CloudApiExeption)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public PaginatedResponse<DeviceEvent> ListDeviceEvents(QueryOptions options = null)
         {
             if (options == null)
@@ -41,6 +68,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// Lists the device logs.
         /// </summary>
         /// <returns>The device logs.</returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <param name="options">Query options.</param>
         private ResponsePage<DeviceEvent> ListDeviceEventsFunc(QueryOptions options = null)
         {
@@ -70,7 +98,21 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// Gets the device log.
         /// </summary>
         /// <returns>The device log.</returns>
-        /// <param name="deviceEventId">Device log identifier.</param>
+        /// <param name="deviceEventId"><see cref="DeviceEvent.Id"/></param>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var event = deviceApi.GetDeviceEvent("015c45eb321700000000000100100155");
+        ///     return event;
+        /// }
+        /// catch (CloudApiExeption)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public DeviceEvent GetDeviceEvent(string deviceEventId)
         {
             try
@@ -87,7 +129,21 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// Gets the device log asynchronously.
         /// </summary>
         /// <returns>The device log.</returns>
-        /// <param name="deviceLogId">Device log identifier.</param>
+        /// <param name="deviceLogId"><see cref="DeviceEvent.Id"/></param>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var event = await deviceApi.GetDeviceEventAsync("015c45eb321700000000000100100155");
+        ///     return event;
+        /// }
+        /// catch (CloudApiExeption)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         public async Task<DeviceEvent> GetDeviceEventAsync(string deviceLogId)
         {
             try

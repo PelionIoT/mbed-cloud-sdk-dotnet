@@ -55,12 +55,21 @@
     <Compile Include="Common\CaseFunctions.cs" />
     <Compile Include="Common\ObjectExtensions.cs" />
     <Compile Include="Common\PaginatedResponse.cs" />
+    <Compile Include="ConsoleExampleTests\AccountManagement\AccountManagementExamples.cs" />
+    <Compile Include="ConsoleExampleTests\Certificates\CertificateExamples.cs" />
+    <Compile Include="ConsoleExampleTests\Connect\ConnectExamples.cs" />
+    <Compile Include="ConsoleExampleTests\DeviceDirectory\DeviceDirectoryExamples.cs" />
+    <Compile Include="ConsoleExampleTests\Update\UpdateExamples.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ConsoleExamples\ConsoleExamples.csproj">
+      <Project>{d51a5107-37ea-4dca-8ff9-d32bd38508a5}</Project>
+      <Name>ConsoleExamples</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MbedCloudSDK\MbedCloudSDK.csproj">
       <Project>{7c35731a-8701-45ba-9478-76027feeb003}</Project>
       <Name>MbedCloudSDK</Name>

@@ -19,11 +19,34 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// List groups.
         /// </summary>
-        /// <param name="options">Query options</param>
-        /// <returns>Paginated Response of Groups</returns>
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.ListGroups(QueryOptions)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var options = new QueryOptions
+        ///     {
+        ///         Limit = 5,
+        ///     };
+        ///     var groups = accountApi.ListGroups(options);
+        ///     foreach (item in groups)
+        ///     {
+        ///         Console.WriteLine(item);
+        ///     }
+        ///     return groups;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="options"><see cref="QueryOptions"/></param>
+        /// <returns>Paginated Response of <see cref="Group"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public PaginatedResponse<Group> ListGroups(QueryOptions options = null)
         {
-            if (options != null)
+            if (options == null)
             {
                 options = new QueryOptions();
             }
@@ -65,8 +88,23 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Get details of a group.
         /// </summary>
-        /// <param name="groupId">The group ID</param>
-        /// <returns>Group</returns>
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.GetGroup(string)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var group = accountApi.GetGroup("015b5c9279ee02420a01041200000000");
+        ///     return group;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="groupId"><see cref="Group.Id"/></param>
+        /// <returns><see cref="Group"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public Group GetGroup(string groupId)
         {
             try
@@ -83,12 +121,35 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// List users of a group
         /// </summary>
-        /// <param name="groupId">Group Id</param>
-        /// <param name="options">Query Options</param>
-        /// <returns>Paginated Respoinse with Users</returns>
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.ListGroupUsers(string, QueryOptions)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var options = new QueryOptions
+        ///     {
+        ///         Limit = 5,
+        ///     };
+        ///     var users = accountApi.ListGroupUsers("015b5c9279ee02420a01041200000000", options);
+        ///     foreach (item in users)
+        ///     {
+        ///         Console.WriteLine(item);
+        ///     }
+        ///     return users;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="groupId"><see cref="Group.Id"/></param>
+        /// <param name="options"><see cref="QueryOptions"/></param>
+        /// <returns>Paginated Respoinse with <see cref="User"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public PaginatedResponse<User> ListGroupUsers(string groupId, QueryOptions options = null)
         {
-            if (options != null)
+            if (options == null)
             {
                 options = new QueryOptions();
             }
@@ -126,12 +187,35 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// List API keys of a group.
         /// </summary>
-        /// <param name="groupId">Group Id</param>
-        /// <param name="options">Query Options</param>
-        /// <returns>Paginated Response of Api Keys</returns>
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.ListGroupApiKeys(string, QueryOptions)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var options = new QueryOptions
+        ///     {
+        ///         Limit = 5,
+        ///     };
+        ///     var keys = accountApi.ListGroupApiKeys("015b5c9279ee02420a01041200000000", options);
+        ///     foreach (item in keys)
+        ///     {
+        ///         Console.WriteLine(item);
+        ///     }
+        ///     return keys;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="groupId"><see cref="Group.Id"/></param>
+        /// <param name="options"><see cref="QueryOptions"/></param>
+        /// <returns>Paginated Response of <see cref="ApiKey"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public PaginatedResponse<ApiKey> ListGroupApiKeys(string groupId, QueryOptions options = null)
         {
-            if (options != null)
+            if (options == null)
             {
                 options = new QueryOptions();
             }

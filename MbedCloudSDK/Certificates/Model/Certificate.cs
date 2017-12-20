@@ -17,6 +17,52 @@ namespace MbedCloudSDK.Certificates.Model
     public class Certificate
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="Certificate" /> class.
+        /// </summary>
+        public Certificate()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Certificate" /> class.
+        /// </summary>
+        /// <param name="description">description</param>
+        /// <param name="subject">subject</param>
+        /// <param name="accountId">accountId</param>
+        /// <param name="signature">signature</param>
+        /// <param name="issuer">issuer</param>
+        /// <param name="certificateData">certificateData</param>
+        /// <param name="id">id</param>
+        /// <param name="name">name</param>
+        /// <param name="securityFileContent">securityFileContent</param>
+        /// <param name="developerCertificate">developerCertificate</param>
+        /// <param name="serverUri">serverUri</param>
+        /// <param name="developerPrivateKey">developerPrivateKey</param>
+        /// <param name="serverCertificate">serverCertificate</param>
+        /// <param name="ownerId">ownerId</param>
+        /// <param name="headerFile">headerFile</param>
+        /// <param name="certificateType">certificateType</param>
+        public Certificate(string description = null, string subject = null, string accountId = null, string signature = null, string issuer = null, string certificateData = null, string id = null, string name = null, string securityFileContent = null, string developerCertificate = null, string serverUri = null, string developerPrivateKey = null, string serverCertificate = null, string ownerId = null, string headerFile = null, CertificateType certificateType = default(CertificateType))
+        {
+            Description = description;
+            Subject = subject;
+            AccountId = accountId;
+            Signature = signature;
+            Issuer = issuer;
+            CertificateData = certificateData;
+            Id = id;
+            Name = name;
+            SecurityFileContent = securityFileContent;
+            DeveloperCertificate = developerCertificate;
+            ServerUri = serverUri;
+            DeveloperPrivateKey = developerPrivateKey;
+            ServerCertificate = serverCertificate;
+            OwnerId = ownerId;
+            HeaderFile = headerFile;
+            Type = certificateType;
+        }
+
+        /// <summary>
         /// Gets type of Certificate
         /// </summary>
         [JsonConverter(typeof(CertificateTypeConverter))]
@@ -103,30 +149,30 @@ namespace MbedCloudSDK.Certificates.Model
         public string SecurityFileContent { get; set; }
 
         /// <summary>
-        /// Gets pEM format X.509 developer certificate.
+        /// Gets PEM format X.509 developer certificate.
         /// </summary>
         /// <value>PEM format X.509 developer certificate.</value>
         [JsonProperty]
         public string DeveloperCertificate { get; private set; }
 
         /// <summary>
-        /// Gets uRI to which the client needs to connect to.
+        /// Gets URI to which the client needs to connect to.
         /// </summary>
         /// <value>URI to which the client needs to connect to.</value>
         [JsonProperty]
         public string ServerUri { get; private set; }
 
         /// <summary>
-        /// Gets pEM format developer private key associated to the certificate.
+        /// Gets PEM format developer private key associated to the certificate.
         /// </summary>
         /// <value>PEM format developer private key associated to the certificate.</value>
         [JsonProperty]
         public string DeveloperPrivateKey { get; private set; }
 
         /// <summary>
-        /// Gets pEM format X.509 server certificate that will be used to validate the server certificate that will be received during the TLS/DTLS handshake.
+        /// Gets PEM format X.509 server certificate that will be used to validate the server certificate and that will be received during the TLS/DTLS handshake.
         /// </summary>
-        /// <value>PEM format X.509 server certificate that will be used to validate the server certificate that will be received during the TLS/DTLS handshake.</value>
+        /// <value>PEM format X.509 server certificate that will be used to validate the server certificate and that will be received during the TLS/DTLS handshake.</value>
         [JsonProperty]
         public string ServerCertificate { get; private set; }
 
@@ -154,12 +200,12 @@ namespace MbedCloudSDK.Certificates.Model
         /// <summary>
         /// Get Service Enum
         /// </summary>
-        /// <param name="certificate">Certificate</param>
+        /// <param name="type">Certificate</param>
         /// <returns>Trusted Certificate Request Service Enum</returns>
-        public static TrustedCertificateReq.ServiceEnum GetServiceEnum(Certificate certificate)
+        public static TrustedCertificateReq.ServiceEnum GetServiceEnum(CertificateType type)
         {
             TrustedCertificateReq.ServiceEnum serviceEnum;
-            switch (certificate.Type)
+            switch (type)
             {
                 case CertificateType.Bootstrap:
                     serviceEnum = TrustedCertificateReq.ServiceEnum.Bootstrap;
@@ -327,6 +373,7 @@ namespace MbedCloudSDK.Certificates.Model
             certificate.ServerCertificate = developerCertificateData.ServerCertificate;
             certificate.Id = developerCertificateData.Id;
             certificate.Name = developerCertificateData.Name;
+            certificate.CreatedAt = DateTime.Parse(developerCertificateData.CreatedAt);
             return certificate;
         }
 
@@ -340,6 +387,8 @@ namespace MbedCloudSDK.Certificates.Model
             sb.Append("class Certificate {\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DeviceExecutionMode: ").Append(DeviceExecutionMode).Append("\n");
+            sb.Append("  Type: ").Append(Convert.ToString(Type)).Append("\n");
+            sb.Append("  Status: ").Append(Convert.ToString(Status)).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Subject: ").Append(Subject).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");

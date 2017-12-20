@@ -56,7 +56,7 @@ namespace MbedCloudSDK.Connect.Model.Subscription
             sb.Append("class Presubscription {\n");
             sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
             sb.Append("  EndpointType: ").Append(EndpointType).Append("\n");
-            sb.Append("  ResourcePaths: ").Append(ResourcePaths).Append("\n");
+            sb.Append("  ResourcePaths: ").Append(string.Join(", ", ResourcePaths?.Select(r => { return Convert.ToString(r); }))).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

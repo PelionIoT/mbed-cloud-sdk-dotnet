@@ -15,7 +15,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Policy
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Policy"/> class.
-        /// Create new instance of api key class.
+        /// Create new instance of API key class.
         /// </summary>
         /// <param name="options">Dictionary containing properties.</param>
         public Policy(IDictionary<string, object> options = null)

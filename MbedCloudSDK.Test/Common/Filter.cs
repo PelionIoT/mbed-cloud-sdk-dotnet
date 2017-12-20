@@ -1,3 +1,4 @@
+using System;
 using MbedCloudSDK.Common.Filter;
 using MbedCloudSDK.Common.Filter.Maps;
 using Newtonsoft.Json;
@@ -204,6 +205,14 @@ namespace MbedCloudSDK.Test.Common.Filter
             var key = "finished";
             var decodedKey = MbedCloudSDK.Common.Filter.Filter.DecodeKey(key);
             Assert.AreEqual("FinishedAt", decodedKey);
+        }
+
+        [Test]
+        public void ShouldEncodeDate()
+        {
+            var filter = new MbedCloudSDK.Common.Filter.Filter();
+            filter.Add("date", new DateTime(2017, 1, 1), FilterOperator.GreaterOrEqual);
+            Assert.AreEqual("date__gte=2017-01-01T00:00:00.000Z", filter.FilterString);
         }
     }
 }

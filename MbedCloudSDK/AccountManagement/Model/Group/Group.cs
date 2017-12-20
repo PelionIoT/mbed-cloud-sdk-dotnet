@@ -34,7 +34,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
         }
 
         /// <summary>
-        /// Gets the id of the account.
+        /// Gets the ID of the account.
         /// </summary>
         [JsonProperty]
         public string AccountId { get; private set; }
@@ -84,7 +84,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
         /// <summary>
         /// Map to Group object
         /// </summary>
-        /// <param name="groupInfo">Iam group summary</param>
+        /// <param name="groupInfo">Identity and Access Management (IAM) group summary</param>
         /// <returns>Group</returns>
         public static Group Map(iam.Model.GroupSummary groupInfo)
         {

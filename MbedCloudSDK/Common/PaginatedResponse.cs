@@ -50,16 +50,19 @@ namespace MbedCloudSDK.Common
         public bool? HasMore { get; private set; }
 
         /// <summary>
-        /// Gets or sets total number of records
+        /// Gets total number of records
         /// </summary>
         /// <value>Total number of records</value>
         [JsonProperty]
-        public int? TotalCount { get; set; }
+        public int? TotalCount { get; private set; }
+
+        /// <summary>
+        /// Gets the data of the current page
+        /// </summary>
+        [JsonProperty]
+        public List<T> Data { get; private set; }
 
         private QueryOptions ListParams { get; set; }
-
-        [JsonProperty]
-        private List<T> Data { get; set; }
 
         /// <summary>
         /// Return the paginated response as a list containing all elements.
@@ -75,6 +78,16 @@ namespace MbedCloudSDK.Common
             }
 
             return list;
+        }
+
+        /// <summary>
+        /// Return the next page of responses
+        /// </summary>
+        /// <returns>List of the Items in the next page</returns>
+        public List<T> GetNextPage()
+        {
+            GetPage();
+            return Data;
         }
 
         private void GetPage()

@@ -2,14 +2,14 @@
 <package >
   <metadata>
     <id>Mbed.Cloud.SDK</id>
-    <version>1.2.2</version>
-    <title>MbedCloudSDK</title>
+    <version>1.2.3-beta</version>
+    <title>Mbed Cloud SDK for .NET</title>
     <authors>Alex Logan</authors>
     <owners>Alex Logan</owners>
     <licenseUrl>https://github.com/ARMmbed/mbed-cloud-sdk-dotnet/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/ARMmbed/mbed-cloud-sdk-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>The Mbed Cloud SDK gives developers access to the full Mbed suite using .Net 4.5.</description>
+    <description>The Mbed Cloud SDK provides a simplified interface to the Mbed Cloud APIs by exposing functionality using conventions and paradigms familiar to .NET developers.</description>
     <releaseNotes>None</releaseNotes>
     <copyright>Copyright 2017 Arm</copyright>
     <tags>Mbed SDK</tags>
