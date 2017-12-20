@@ -4,10 +4,10 @@
 
 ### Deliverables
 
-The application is primarily hosted on pypi at https://pypi.org/project/mbed-cloud-sdk and can be installed using pip:
+The application is hosted on Nuget at https://www.nuget.org/packages/Mbed.Cloud.SDK and can be installed using nuget:
 
 ```
-$ pip install mbed-cloud-sdk
+$ nuget install Mbed.Cloud.SDK
 ```
 
 ### Changes
