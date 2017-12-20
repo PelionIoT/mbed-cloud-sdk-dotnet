@@ -10,7 +10,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.DeviceDirectory
         public void AddQuery()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
-            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var host = TestContext.Parameters["mbed_cloud_sdk_host"];
+            var config = new Config(key, host);
             var deviceQuery = new ConsoleExamples.Examples.DeviceDirectory.DeviceDirectoryExamples(config);
             var query = deviceQuery.AddQuery();
             Assert.NotNull(query);
@@ -20,7 +21,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.DeviceDirectory
         public void CreateDevice()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
-            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var host = TestContext.Parameters["mbed_cloud_sdk_host"];
+            var config = new Config(key, host);
             var deviceQuery = new ConsoleExamples.Examples.DeviceDirectory.DeviceDirectoryExamples(config);
             var device = deviceQuery.CreateDevice();
             Assert.IsNotNull(device);
@@ -30,7 +32,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.DeviceDirectory
         public void ListAllDevices()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
-            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var host = TestContext.Parameters["mbed_cloud_sdk_host"];
+            var config = new Config(key, host);
             var deviceQuery = new ConsoleExamples.Examples.DeviceDirectory.DeviceDirectoryExamples(config);
             var devices = deviceQuery.ListAllDevices();
             Assert.AreEqual(5, devices.Count);
@@ -40,7 +43,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.DeviceDirectory
         public void ListDeviceLogs()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
-            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var host = TestContext.Parameters["mbed_cloud_sdk_host"];
+            var config = new Config(key, host);
             var listLogs = new ConsoleExamples.Examples.DeviceDirectory.DeviceDirectoryExamples(config);
             var logs = listLogs.ListDevicesLogs();
             Assert.AreEqual(5, logs.Count);
@@ -50,7 +54,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.DeviceDirectory
         public void ListDeviceEvents()
         {
             var key = TestContext.Parameters["mbed_cloud_sdk_api_key"];
-            var config = new Config(key, "https://lab-api.mbedcloudintegration.net");
+            var host = TestContext.Parameters["mbed_cloud_sdk_host"];
+            var config = new Config(key, host);
             var listEvents = new ConsoleExamples.Examples.DeviceDirectory.DeviceDirectoryExamples(config);
             var events = listEvents.ListDeviceEvents();
             Assert.AreEqual(5, events.Count);
