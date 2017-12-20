@@ -27,7 +27,7 @@ namespace MbedCloudSDK.Connect.Model.Metric
         public string Id { get; private set; }
 
         /// <summary>
-        /// Gets uTC time in RFC3339 format
+        /// Gets UTC time in RFC3339 format
         /// </summary>
         /// <value>UTC time in RFC3339 format</value>
         [JsonProperty]

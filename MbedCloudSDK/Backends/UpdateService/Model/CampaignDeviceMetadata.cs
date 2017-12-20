@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = update_service.Client.SwaggerDateConverter;
 
 namespace update_service.Model
 {
@@ -118,66 +119,78 @@ namespace update_service.Model
         /// <value>Description</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
+
         /// <summary>
         /// The device&#39;s campaign ID
         /// </summary>
         /// <value>The device&#39;s campaign ID</value>
         [DataMember(Name="campaign", EmitDefaultValue=false)]
         public string Campaign { get; set; }
+
         /// <summary>
         /// The time the campaign was created
         /// </summary>
         /// <value>The time the campaign was created</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
+
         /// <summary>
         /// Entity name: always &#39;update-campaign-device-metadata&#39;
         /// </summary>
         /// <value>Entity name: always &#39;update-campaign-device-metadata&#39;</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
+
         /// <summary>
         /// This time this record was modified in the database format: date-time
         /// </summary>
         /// <value>This time this record was modified in the database format: date-time</value>
         [DataMember(Name="updated_at", EmitDefaultValue=false)]
         public DateTime? UpdatedAt { get; set; }
+
         /// <summary>
         /// How the firmware is delivered (connector or direct)
         /// </summary>
         /// <value>How the firmware is delivered (connector or direct)</value>
         [DataMember(Name="mechanism", EmitDefaultValue=false)]
         public string Mechanism { get; set; }
+
         /// <summary>
         /// The record name
         /// </summary>
         /// <value>The record name</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
+
         /// <summary>
         /// API resource entity version
         /// </summary>
         /// <value>API resource entity version</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public string Etag { get; set; }
+
         /// <summary>
         /// The Cloud Connect URL
         /// </summary>
         /// <value>The Cloud Connect URL</value>
         [DataMember(Name="mechanism_url", EmitDefaultValue=false)]
         public string MechanismUrl { get; set; }
+
+
         /// <summary>
         /// The metadata record ID
         /// </summary>
         /// <value>The metadata record ID</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
+
         /// <summary>
         /// The device ID
         /// </summary>
         /// <value>The device ID</value>
         [DataMember(Name="device_id", EmitDefaultValue=false)]
         public string DeviceId { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -335,8 +348,25 @@ namespace update_service.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            // Description (string) maxLength
+            if(this.Description != null && this.Description.Length > 2000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be less than 2000.", new [] { "Description" });
+            }
+
+            // Name (string) maxLength
+            if(this.Name != null && this.Name.Length > 128)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 128.", new [] { "Name" });
+            }
+
             yield break;
         }
     }

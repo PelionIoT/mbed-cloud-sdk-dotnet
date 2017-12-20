@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = update_service.Client.SwaggerDateConverter;
 
 namespace update_service.Model
 {
@@ -107,24 +108,26 @@ namespace update_service.Model
         /// <param name="CreatedAt">The time the update campaign was created.</param>
         /// <param name="_Object">The API resource entity.</param>
         /// <param name="When">The scheduled start time for the update campaign.</param>
+        /// <param name="UpdatedAt">The time the object was updated.</param>
         /// <param name="State">The state of the campaign.</param>
-        /// <param name="Finished">The campaign finish timestamp.</param>
         /// <param name="Etag">The entity instance signature.</param>
+        /// <param name="Finished">The campaign finish timestamp.</param>
         /// <param name="RootManifestUrl">RootManifestUrl.</param>
         /// <param name="StartedAt">StartedAt.</param>
         /// <param name="Id">The campaign ID.</param>
         /// <param name="DeviceFilter">The filter for the devices the campaign will target.</param>
         /// <param name="Name">The campaign name.</param>
-        public UpdateCampaign(string Description = default(string), string RootManifestId = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? When = default(DateTime?), StateEnum? State = default(StateEnum?), DateTime? Finished = default(DateTime?), string Etag = default(string), string RootManifestUrl = default(string), DateTime? StartedAt = default(DateTime?), string Id = default(string), string DeviceFilter = default(string), string Name = default(string))
+        public UpdateCampaign(string Description = default(string), string RootManifestId = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? When = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), StateEnum? State = default(StateEnum?), string Etag = default(string), DateTime? Finished = default(DateTime?), string RootManifestUrl = default(string), DateTime? StartedAt = default(DateTime?), string Id = default(string), string DeviceFilter = default(string), string Name = default(string))
         {
             this.Description = Description;
             this.RootManifestId = RootManifestId;
             this.CreatedAt = CreatedAt;
             this._Object = _Object;
             this.When = When;
+            this.UpdatedAt = UpdatedAt;
             this.State = State;
-            this.Finished = Finished;
             this.Etag = Etag;
+            this.Finished = Finished;
             this.RootManifestUrl = RootManifestUrl;
             this.StartedAt = StartedAt;
             this.Id = Id;
@@ -138,69 +141,89 @@ namespace update_service.Model
         /// <value>The optional description of the campaign</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
+
         /// <summary>
         /// Gets or Sets RootManifestId
         /// </summary>
         [DataMember(Name="root_manifest_id", EmitDefaultValue=false)]
         public string RootManifestId { get; set; }
+
         /// <summary>
         /// The time the update campaign was created
         /// </summary>
         /// <value>The time the update campaign was created</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
+
         /// <summary>
         /// The API resource entity
         /// </summary>
         /// <value>The API resource entity</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
+
         /// <summary>
         /// The scheduled start time for the update campaign
         /// </summary>
         /// <value>The scheduled start time for the update campaign</value>
         [DataMember(Name="when", EmitDefaultValue=false)]
         public DateTime? When { get; set; }
+
         /// <summary>
-        /// The campaign finish timestamp
+        /// The time the object was updated
         /// </summary>
-        /// <value>The campaign finish timestamp</value>
-        [DataMember(Name="finished", EmitDefaultValue=false)]
-        public DateTime? Finished { get; set; }
+        /// <value>The time the object was updated</value>
+        [DataMember(Name="updated_at", EmitDefaultValue=false)]
+        public DateTime? UpdatedAt { get; set; }
+
+
         /// <summary>
         /// The entity instance signature
         /// </summary>
         /// <value>The entity instance signature</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public string Etag { get; set; }
+
+        /// <summary>
+        /// The campaign finish timestamp
+        /// </summary>
+        /// <value>The campaign finish timestamp</value>
+        [DataMember(Name="finished", EmitDefaultValue=false)]
+        public DateTime? Finished { get; set; }
+
         /// <summary>
         /// Gets or Sets RootManifestUrl
         /// </summary>
         [DataMember(Name="root_manifest_url", EmitDefaultValue=false)]
         public string RootManifestUrl { get; set; }
+
         /// <summary>
         /// Gets or Sets StartedAt
         /// </summary>
         [DataMember(Name="started_at", EmitDefaultValue=false)]
         public DateTime? StartedAt { get; set; }
+
         /// <summary>
         /// The campaign ID
         /// </summary>
         /// <value>The campaign ID</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
+
         /// <summary>
         /// The filter for the devices the campaign will target
         /// </summary>
         /// <value>The filter for the devices the campaign will target</value>
         [DataMember(Name="device_filter", EmitDefaultValue=false)]
         public string DeviceFilter { get; set; }
+
         /// <summary>
         /// The campaign name
         /// </summary>
         /// <value>The campaign name</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -214,9 +237,10 @@ namespace update_service.Model
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  When: ").Append(When).Append("\n");
+            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
-            sb.Append("  Finished: ").Append(Finished).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
+            sb.Append("  Finished: ").Append(Finished).Append("\n");
             sb.Append("  RootManifestUrl: ").Append(RootManifestUrl).Append("\n");
             sb.Append("  StartedAt: ").Append(StartedAt).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
@@ -284,19 +308,24 @@ namespace update_service.Model
                     this.When.Equals(other.When)
                 ) && 
                 (
+                    this.UpdatedAt == other.UpdatedAt ||
+                    this.UpdatedAt != null &&
+                    this.UpdatedAt.Equals(other.UpdatedAt)
+                ) && 
+                (
                     this.State == other.State ||
                     this.State != null &&
                     this.State.Equals(other.State)
                 ) && 
                 (
-                    this.Finished == other.Finished ||
-                    this.Finished != null &&
-                    this.Finished.Equals(other.Finished)
-                ) && 
-                (
                     this.Etag == other.Etag ||
                     this.Etag != null &&
                     this.Etag.Equals(other.Etag)
+                ) && 
+                (
+                    this.Finished == other.Finished ||
+                    this.Finished != null &&
+                    this.Finished.Equals(other.Finished)
                 ) && 
                 (
                     this.RootManifestUrl == other.RootManifestUrl ||
@@ -346,12 +375,14 @@ namespace update_service.Model
                     hash = hash * 59 + this._Object.GetHashCode();
                 if (this.When != null)
                     hash = hash * 59 + this.When.GetHashCode();
+                if (this.UpdatedAt != null)
+                    hash = hash * 59 + this.UpdatedAt.GetHashCode();
                 if (this.State != null)
                     hash = hash * 59 + this.State.GetHashCode();
-                if (this.Finished != null)
-                    hash = hash * 59 + this.Finished.GetHashCode();
                 if (this.Etag != null)
                     hash = hash * 59 + this.Etag.GetHashCode();
+                if (this.Finished != null)
+                    hash = hash * 59 + this.Finished.GetHashCode();
                 if (this.RootManifestUrl != null)
                     hash = hash * 59 + this.RootManifestUrl.GetHashCode();
                 if (this.StartedAt != null)
@@ -366,8 +397,25 @@ namespace update_service.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            // Description (string) maxLength
+            if(this.Description != null && this.Description.Length > 2000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be less than 2000.", new [] { "Description" });
+            }
+
+            // Name (string) maxLength
+            if(this.Name != null && this.Name.Length > 128)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 128.", new [] { "Name" });
+            }
+
             yield break;
         }
     }

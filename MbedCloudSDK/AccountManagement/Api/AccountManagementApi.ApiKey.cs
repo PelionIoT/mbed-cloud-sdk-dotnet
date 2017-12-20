@@ -19,8 +19,31 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Lists API keys.
         /// </summary>
-        /// <returns>The API keys.</returns>
-        /// <param name="options">Query options.</param>
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.ListApiKeys(QueryOptions)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var options = new QueryOptions
+        ///     {
+        ///         Limit = 5,
+        ///     };
+        ///     var keys = accountApi.ListApiKeys(options).Data;
+        ///     foreach (var key in keys)
+        ///     {
+        ///         Console.WriteLine(key);
+        ///     }
+        ///     return keys;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <returns>A paginated response containing <see cref="ApiKey"/></returns>
+        /// <param name="options"><see cref="QueryOptions"/></param>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public PaginatedResponse<ApiKey> ListApiKeys(QueryOptions options = null)
         {
             if (options == null)
@@ -65,11 +88,34 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// List API keys asynchronously.
         /// </summary>
-        /// <param name="options">Query options</param>
-        /// <returns>Task with list of api keys</returns>
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.ListApiKeysAsync(QueryOptions)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var options = new QueryOptions
+        ///     {
+        ///         Limit = 5,
+        ///     };
+        ///     var keys = await accountApi.ListApiKeysAsync(options);
+        ///     foreach (var key in keys)
+        ///     {
+        ///         Console.WriteLine(key);
+        ///     }
+        ///     return keys;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <returns>A <see cref="Task"/> with List containing <see cref="ApiKey"/></returns>
+        /// <param name="options"><see cref="QueryOptions"/></param>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public async Task<List<ApiKey>> ListApiKeysAsync(QueryOptions options = null)
         {
-            if (options != null)
+            if (options == null)
             {
                 options = new QueryOptions();
             }
@@ -94,13 +140,35 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Get API key details. Returns currently used key for empty argument.
         /// </summary>
-        /// <param name="apiKeyId">API key ID</param>
-        /// <returns>ApiKey</returns>
-        public ApiKey GetApiKey(string apiKeyId)
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.GetApiKey(string)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var key = accountApi.GetApiKey();
+        ///     return key;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="apiKeyId"><see cref="ApiKey.Id"/></param>
+        /// <returns><see cref="ApiKey"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
+        public ApiKey GetApiKey(string apiKeyId = null)
         {
             try
             {
-                return ApiKey.Map(developerApi.GetApiKey(apiKeyId));
+                if (!string.IsNullOrEmpty(apiKeyId))
+                {
+                    return ApiKey.Map(developerApi.GetApiKey(apiKeyId));
+                }
+                else
+                {
+                    return ApiKey.Map(developerApi.GetMyApiKey());
+                }
             }
             catch (iam.Client.ApiException e)
             {
@@ -111,13 +179,35 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Get API key details asynchronously. Returns currently used key for empty argument.
         /// </summary>
-        /// <param name="apiKeyId">Id of Api Key</param>
-        /// <returns>Task with ApiKey</returns>
-        public async Task<ApiKey> GetApiKeyAsync(string apiKeyId)
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.GetApiKeyAsync(string)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var key = awaut accountApi.GetApiKeyAsync();
+        ///     return key;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="apiKeyId"><see cref="ApiKey.Id"/></param>
+        /// <returns><see cref="Task"/> with <see cref="ApiKey"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
+        public async Task<ApiKey> GetApiKeyAsync(string apiKeyId = null)
         {
             try
             {
-                return ApiKey.Map(await developerApi.GetApiKeyAsync(apiKeyId));
+                if (!string.IsNullOrEmpty(apiKeyId))
+                {
+                    return ApiKey.Map(await developerApi.GetApiKeyAsync(apiKeyId));
+                }
+                else
+                {
+                    return ApiKey.Map(await developerApi.GetMyApiKeyAsync());
+                }
             }
             catch (iam.Client.ApiException e)
             {
@@ -128,8 +218,27 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Create new Api key.
         /// </summary>
-        /// <param name="key">Api Key</param>
-        /// <returns>Api Key</returns>
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.AddApiKey(ApiKey)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var key = new ApiKey
+        ///     {
+        ///         Name = "example api key",
+        ///     };
+        ///     var newKey = accountApi.AddApiKey(key);
+        ///     return newKey;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="key"><see cref="ApiKey"/></param>
+        /// <returns><see cref="ApiKey"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public ApiKey AddApiKey(ApiKey key)
         {
             try
@@ -146,8 +255,27 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Create new Api key asynchronously.
         /// </summary>
-        /// <param name="key">Api Key</param>
-        /// <returns>Task with Api Key</returns>
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.AddApiKeyAsync(ApiKey)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var key = new ApiKey
+        ///     {
+        ///         Name = "example api key",
+        ///     };
+        ///     var newKey = await accountApi.AddApiKeyAsync(key);
+        ///     return newKey;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="key"><see cref="ApiKey"/></param>
+        /// <returns><see cref="Task"/> with <see cref="ApiKey"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public async Task<ApiKey> AddApiKeyAsync(ApiKey key)
         {
             try
@@ -164,9 +292,26 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Update API key.
         /// </summary>
-        /// <param name="apiKeyId">Id of api key</param>
-        /// <param name="key">Api Key</param>
-        /// <returns>Api Key</returns>
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.UpdateApiKey(string, ApiKey)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var key = accountApi.GetApiKey()
+        ///     key.Name = "updated api key";
+        ///     var updatedApiKey = accountApi.UpdateApiKey(key.Id, key);
+        ///     return updatedApiKey;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="apiKeyId"><see cref="ApiKey.Id"/></param>
+        /// <param name="key"><see cref="ApiKey"/></param>
+        /// <returns><see cref="ApiKey"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public ApiKey UpdateApiKey(string apiKeyId, ApiKey key)
         {
             try
@@ -183,9 +328,26 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Update API key asynchronously.
         /// </summary>
-        /// <param name="apiKeyId">Id of Api Key</param>
-        /// <param name="key">Api Key</param>
-        /// <returns>Task with Api Key</returns>
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.UpdateApiKeyAsync(string, ApiKey)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var key = await accountApi.GetApiKeyAsync()
+        ///     key.Name = "updated api key";
+        ///     var updatedApiKey = await accountApi.UpdateApiKeyAsync(key.Id, key);
+        ///     return updatedApiKey;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="apiKeyId"><see cref="ApiKey.Id"/></param>
+        /// <param name="key"><see cref="ApiKey"/></param>
+        /// <returns><see cref="Task"/> with <see cref="ApiKey"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public async Task<ApiKey> UpdateApiKeyAsync(string apiKeyId, ApiKey key)
         {
             try
@@ -202,7 +364,22 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Delete API key.
         /// </summary>
-        /// <param name="apiKeyId">API key ID</param>
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.DeleteApiKey(string)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var key = accountApi.GetApiKey()
+        ///     accountApi.DeleteApiKey(key.Id);
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="apiKeyId"><see cref="ApiKey.Id"/></param>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public void DeleteApiKey(string apiKeyId)
         {
             try
@@ -218,8 +395,23 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <summary>
         /// Delete API key asynchronously.
         /// </summary>
-        /// <param name="apiKeyId">API key ID</param>
-        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        /// <example>
+        /// This example shows how to use the <see cref="AccountManagementApi.DeleteApiKeyAsync(string)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var key = accountApi.GetApiKey()
+        ///     await accountApi.DeleteApiKeyAsync(key.Id);
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="apiKeyId"><see cref="ApiKey.Id"/></param>
+        /// <returns><see cref="Task"/> with <see cref="ApiKey"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public async Task DeleteApiKeyAsync(string apiKeyId)
         {
             try

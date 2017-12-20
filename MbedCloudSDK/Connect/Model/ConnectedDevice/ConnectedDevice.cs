@@ -59,17 +59,7 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         /// <returns>List of resources</returns>
         public List<Model.Resource.Resource> ListResources()
         {
-            return api.GetResources(Id);
-        }
-
-        /// <summary>
-        /// Delete Resource.
-        /// </summary>
-        /// <param name="resourcePath">Path to the resource.</param>
-        /// <param name="noResponse">no response</param>
-        public void DeleteResource(string resourcePath, bool? noResponse = null)
-        {
-            api.DeleteResource(Id, resourcePath, noResponse);
+            return api.ListResources(Id);
         }
     }
 }

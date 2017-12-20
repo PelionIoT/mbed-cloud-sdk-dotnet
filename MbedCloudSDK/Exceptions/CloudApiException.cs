@@ -14,13 +14,6 @@ namespace MbedCloudSDK.Exceptions
         /// <summary>
         /// Initializes a new instance of the <see cref="CloudApiException"/> class.
         /// </summary>
-        public CloudApiException()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CloudApiException"/> class.
-        /// </summary>
         /// <param name="errorCode">Error code.</param>
         /// <param name="message">Message.</param>
         public CloudApiException(int errorCode, string message)

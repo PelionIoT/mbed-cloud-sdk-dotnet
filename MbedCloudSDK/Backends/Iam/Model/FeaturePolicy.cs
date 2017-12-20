@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = iam.Client.SwaggerDateConverter;
 
 namespace iam.Model
 {
@@ -51,24 +52,28 @@ namespace iam.Model
         /// <value>Comma separated list of actions, empty string represents all actions.</value>
         [DataMember(Name="action", EmitDefaultValue=false)]
         public string Action { get; set; }
+
         /// <summary>
         /// Resource that is protected by this policy.
         /// </summary>
         /// <value>Resource that is protected by this policy.</value>
         [DataMember(Name="resource", EmitDefaultValue=false)]
         public string Resource { get; set; }
+
         /// <summary>
         /// Feature name corresponding to this policy.
         /// </summary>
         /// <value>Feature name corresponding to this policy.</value>
         [DataMember(Name="feature", EmitDefaultValue=false)]
         public string Feature { get; set; }
+
         /// <summary>
         /// True or false controlling whether an action is allowed or not.
         /// </summary>
         /// <value>True or false controlling whether an action is allowed or not.</value>
         [DataMember(Name="allow", EmitDefaultValue=false)]
         public bool? Allow { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -162,8 +167,13 @@ namespace iam.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

@@ -41,7 +41,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         public string UserAgent { get; private set; }
 
         /// <summary>
-        /// Gets iP Address login from
+        /// Gets IP Address for the login
         /// </summary>
         [JsonProperty]
         public string IpAddress { get; private set; }

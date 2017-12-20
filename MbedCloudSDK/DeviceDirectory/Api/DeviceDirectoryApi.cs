@@ -15,6 +15,14 @@ namespace MbedCloudSDK.DeviceDirectory.Api
     /// - Device query service
     /// - Device catalog
     /// </summary>
+    /// <example>
+    /// This API is intialized with a <see cref="Config"/> object.
+    /// <code>
+    /// using MbedCloudSDK.Common;
+    /// var config = new config(apiKey);
+    /// var deviceApi = new DeviceDirectoryApi(config);
+    /// </code>
+    /// </example>
     public partial class DeviceDirectoryApi : BaseApi
     {
         private device_directory.Api.DefaultApi api;
@@ -23,12 +31,21 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// Initializes a new instance of the <see cref="DeviceDirectoryApi"/> class.
         /// </summary>
         /// <param name="config">Config.</param>
+        /// <example>
+        /// This API is intialized with a <see cref="Config"/> object.
+        /// <code>
+        /// using MbedCloudSDK.Common;
+        /// var config = new config(apiKey);
+        /// var deviceApi = new DeviceDirectoryApi(config);
+        /// </code>
+        /// </example>
         public DeviceDirectoryApi(Config config)
             : base(config)
         {
             device_directory.Client.Configuration.Default.ApiClient = new ApiClient(config.Host);
             device_directory.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
             device_directory.Client.Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            device_directory.Client.Configuration.Default.DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
 
             api = new device_directory.Api.DefaultApi();
         }
@@ -36,7 +53,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Get meta data for the last Mbed Cloud API call
         /// </summary>
-        /// <returns>Api Metadata</returns>
+        /// <returns><see cref="ApiMetadata"/></returns>
         public static ApiMetadata GetLastApiMetadata()
         {
             return ApiMetadata.Map(device_directory.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());

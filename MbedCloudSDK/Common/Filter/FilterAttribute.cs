@@ -4,6 +4,8 @@
 
 namespace MbedCloudSDK.Common.Filter
 {
+    using System;
+    using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
     /// <summary>
@@ -17,9 +19,22 @@ namespace MbedCloudSDK.Common.Filter
         /// </summary>
         /// <param name="value">Value for the query attribute.</param>
         /// <param name="filterOperator">Operator for the query attribute.</param>
+        [JsonConstructor]
         public FilterAttribute(string value, FilterOperator filterOperator = FilterOperator.Equals)
         {
             Value = value;
+            FilterOperator = filterOperator;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FilterAttribute"/> class.
+        /// Create new instance of Query attribute.
+        /// </summary>
+        /// <param name="value">Value for the query attribute as datetime.</param>
+        /// <param name="filterOperator">Operator for the query attribute.</param>
+        public FilterAttribute(DateTime value, FilterOperator filterOperator = FilterOperator.Equals)
+        {
+            Value = value.ToString("yyyy-MM-dd'T'HH:mm:ss.fffZ");
             FilterOperator = filterOperator;
         }
 

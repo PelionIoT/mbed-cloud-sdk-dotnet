@@ -1,0 +1,142 @@
+﻿// <copyright file="UpdateExamples.CreateUpdateCampaign.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
+namespace ConsoleExamples.Examples.Update
+{
+    using System;
+    using System.Linq;
+    using System.Windows.Forms;
+    using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Filter;
+    using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.DeviceDirectory.Api;
+    using MbedCloudSDK.Exceptions;
+    using MbedCloudSDK.Update.Api;
+    using MbedCloudSDK.Update.Model.Campaign;
+
+    /// <summary>
+    /// Update examples
+    /// </summary>
+    public partial class UpdateExamples
+    {
+        private Config config;
+        private UpdateApi api;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateExamples"/> class.
+        /// </summary>
+        /// <param name="config">Config</param>
+        public UpdateExamples(Config config)
+        {
+            this.config = config;
+            api = new UpdateApi(config);
+        }
+
+        private static string CreateRandomName()
+        {
+            return DateTime.Now.ToString();
+        }
+
+        /// <summary>
+        /// Create an update campaign
+        /// </summary>
+        /// <returns>Campaign</returns>
+        public Campaign CreateCampaign()
+        {
+            // List all firware manifests
+            var listParamas = new QueryOptions
+            {
+                Limit = 5,
+            };
+            var manifests = api.ListFirmwareManifests(listParamas).Data;
+
+            var manifestId = manifests.LastOrDefault()?.Id;
+
+            var deviceFilter = new Filter();
+            deviceFilter.Add("state", "registered");
+
+            // Create Campaign
+            var campaignName = CreateRandomName();
+            var campaign = new Campaign
+            {
+                Name = campaignName,
+                ManifestId = manifestId,
+                DeviceFilter = deviceFilter,
+            };
+            campaign = api.AddCampaign(campaign);
+
+            var fieldsToUpdate = new Campaign
+            {
+                Name = $"updated-{campaign.Name}",
+            };
+
+            var updatedCampaign = api.UpdateCampaign(campaign.Id, fieldsToUpdate);
+
+            Console.WriteLine("Created campaign : " + campaign);
+
+            // Start update campaign
+            campaign = api.StartCampaign(updatedCampaign.Id, updatedCampaign);
+
+            // Print status of update campaign
+            var countdown = 10;
+            while (countdown >= 0)
+            {
+                var states = api.ListCampaignDeviceStates(campaign.Id).Data;
+                foreach (var item in states)
+                {
+                    Console.WriteLine($"Device state - {Convert.ToString(item.State)}");
+                }
+
+                countdown--;
+            }
+
+            api.StopCampaign(campaign.Id, campaign);
+
+            api.DeleteCampaign(campaign.Id);
+
+            return campaign;
+        }
+
+        private static string GetManifestFile(UpdateApi api)
+        {
+            using (var openFileDialog = new OpenFileDialog
+            {
+                RestoreDirectory = true,
+            })
+            {
+                string dataFile = null;
+                Console.WriteLine("Choose manifest file to upload: ");
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        if ((dataFile = openFileDialog.FileName) != null)
+                        {
+                            // Upload manifest
+                            try
+                            {
+                                var manifest = api.AddFirmwareManifest(dataFile, CreateRandomName());
+                                return manifest.Id;
+                            }
+                            catch (CloudApiException e)
+                            {
+                                Console.WriteLine("Error while uploading manifest. Error: " + e.ToString());
+                                return string.Empty;
+                            }
+                        }
+
+                        return string.Empty;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: Could not read file from disk. Error: " + ex.Message);
+                        return string.Empty;
+                    }
+                }
+
+                return string.Empty;
+            }
+        }
+    }
+}

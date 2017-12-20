@@ -4,8 +4,10 @@
 
 namespace MbedCloudSDK.Connect.Api
 {
+    using System;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
     using MbedCloudSDK.Connect.Model.Resource;
+    using MbedCloudSDK.Exceptions;
 
     /// <summary>
     /// Connect Api
@@ -18,45 +20,72 @@ namespace MbedCloudSDK.Connect.Api
         /// <param name="deviceId">Id of device.</param>
         /// <param name="resourcePath">Resource path.</param>
         /// <returns>Async Consumer with String</returns>
-        public AsyncConsumer<string> AddResourceSubscription(string deviceId, string resourcePath)
+        /// <example>
+        /// <code>
+        /// var consumer = api.AddResourceSubscription("015bb66a92a30000000000010010006d", "3200/0/5500");
+        /// var counter = 0;
+        /// while (true)
+        /// {
+        ///     var t = consumer.GetValue();
+        ///     Console.WriteLine(t.Result);
+        ///     counter++;
+        ///     if (counter >= 2)
+        ///     {
+        ///     break;
+        ///     }
+        /// }
+        /// </code>
+        /// </example>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
+        public Resource AddResourceSubscription(string deviceId, string resourcePath)
         {
             try
             {
+                StartNotifications();
                 var fixedPath = FixedPath(resourcePath);
                 subscriptionsApi.V2SubscriptionsDeviceIdResourcePathPut(deviceId, fixedPath);
                 var subscribePath = deviceId + resourcePath;
-                var resource = new Resource(deviceId)
-                {
-                    Queue = new AsyncProducerConsumerCollection<string>()
-                };
+                var resource = new Resource(deviceId, null, this);
                 if (!ResourceSubscribtions.ContainsKey(subscribePath))
                 {
                     ResourceSubscribtions.Add(subscribePath, resource);
                 }
+                else
+                {
+                    ResourceSubscribtions.Remove(subscribePath);
+                    ResourceSubscribtions.Add(subscribePath, resource);
+                }
 
-                return new AsyncConsumer<string>(subscribePath, resource.Queue);
+                return resource;
             }
             catch (mds.Client.ApiException ex)
             {
-                throw new mds.Client.ApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
         }
 
         /// <summary>
-        /// Get an update from the resource subscription
+        /// Gets the status of a resource's subscription. True if ok, false if not.
         /// </summary>
         /// <param name="deviceId">Id of device.</param>
         /// <param name="resourcePath">Resource path.</param>
-        public void GetResourceSubscription(string deviceId, string resourcePath)
+        /// <returns>True if subscribed, false if not.</returns>
+        /// <example>
+        /// <code>
+        /// var status = connectApi.GetResourceSubscription("015bb66a92a30000000000010010006d", "3200/0/5500");
+        /// </code>
+        /// </example>
+        public bool GetResourceSubscription(string deviceId, string resourcePath)
         {
             try
             {
                 var fixedPath = FixedPath(resourcePath);
                 subscriptionsApi.V2SubscriptionsDeviceIdResourcePathGet(deviceId, fixedPath);
+                return true;
             }
-            catch (mds.Client.ApiException ex)
+            catch (mds.Client.ApiException)
             {
-                throw new mds.Client.ApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+                return false;
             }
         }
 
@@ -65,10 +94,24 @@ namespace MbedCloudSDK.Connect.Api
         /// </summary>
         /// <param name="deviceId">device to unsubscribe events from. If not provided, all registered devices will be unsubscribed</param>
         /// <param name="resourcePath">resource_path to unsubscribe events from. If not provided, all resource paths will be unsubscribed.</param>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     connectApi.DeleteResourceSubscription("015bb66a92a30000000000010010006d", "3200/0/5500");
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
         public void DeleteResourceSubscription(string deviceId = null, string resourcePath = null)
         {
             try
             {
+                var fixedPath = FixedPath(resourcePath);
                 if (deviceId == null)
                 {
                     foreach (var resource in ResourceSubscribtions)
@@ -79,14 +122,14 @@ namespace MbedCloudSDK.Connect.Api
                 }
                 else
                 {
-                    subscriptionsApi.V2SubscriptionsDeviceIdResourcePathDelete(deviceId, resourcePath);
+                    subscriptionsApi.V2SubscriptionsDeviceIdResourcePathDelete(deviceId, fixedPath);
                     var subscribePath = deviceId + resourcePath;
                     ResourceSubscribtions.Remove(subscribePath);
                 }
             }
             catch (mds.Client.ApiException ex)
             {
-                throw new mds.Client.ApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
         }
     }

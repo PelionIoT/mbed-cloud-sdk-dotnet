@@ -1,18 +1,34 @@
-﻿using System;
-using System.Text;
-using MbedCloudSDK.Common;
-using ConsoleExamples.Examples.AccountManagement;
-using ConsoleExamples.Examples.Update;
-using ConsoleExamples.Examples.Connect;
-using ConsoleExamples.Examples.DeviceDirectory;
-using System.Reflection;
+﻿// <copyright file="Program.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace ConsoleExamples
 {
-    class Program
+    using System;
+    using ConsoleExamples.Examples.AccountManagement;
+    using ConsoleExamples.Examples.Certificates;
+    using ConsoleExamples.Examples.Connect;
+    using ConsoleExamples.Examples.DeviceDirectory;
+    using ConsoleExamples.Examples.Update;
+    using MbedCloudSDK.Common;
+
+    /// <summary>
+    /// Program
+    /// </summary>
+    public class Program
     {
+        private static AccountManagementExamples accountManagementExamples;
+        private static CertificateExamples certificateExamples;
+        private static ConnectExamples connectExamples;
+        private static DeviceDirectoryExamples deviceDirectoryExamples;
+        private static UpdateExamples updateExamples;
+
+        /// <summary>
+        /// Main
+        /// </summary>
+        /// <param name="args">args</param>
         [STAThread]
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             if (args == null || args.Length == 0)
             {
@@ -20,110 +36,215 @@ namespace ConsoleExamples
                 Console.ReadKey();
                 return;
             }
-            string apiKey = args[0];
-            Config config = new Config(apiKey);
 
-            //Change default host
-            config.Host = "https://lab-api.mbedcloudintegration.net";
+            var apiKey = args[0];
+            var host = "https://api.us-east-1.mbedcloud.com";
+            if (args.Length >= 2)
+            {
+                host = args[1];
+            }
+
+            var config = new Config(apiKey)
+            {
+                // Change default host
+                Host = host,
+                ForceClear = true,
+            };
+
+            accountManagementExamples = new AccountManagementExamples(config);
+            certificateExamples = new CertificateExamples(config);
+            connectExamples = new ConnectExamples(config);
+            deviceDirectoryExamples = new DeviceDirectoryExamples(config);
+            updateExamples = new UpdateExamples(config);
+
             string example;
-            while(true)
+            while (true)
             {
                 example = ShowMenu();
-                int exampleNumber = 0;
-                if (Int32.TryParse(example, out exampleNumber) && exampleNumber >=1 && exampleNumber<=15)
-                    RunExample(config, Convert.ToInt32(exampleNumber));
+                if (int.TryParse(example, out int exampleNumber) && exampleNumber >= 1 && exampleNumber <= 400)
+                {
+                    RunExampleAsync(config, Convert.ToInt32(exampleNumber));
+                }
                 else
+                {
                     break;
+                }
             }
+
             Console.WriteLine(" Closing application");
         }
 
         private static string ShowMenu()
         {
+            var i = 1;
             Console.WriteLine("Select Example");
-            Console.WriteLine("1. List Api keys");
-            Console.WriteLine("2. List Devices");
-            Console.WriteLine("3. List Connected Devices");
-            Console.WriteLine("4. Subscribe to the resource");
-            Console.WriteLine("5. Create a webhook for a resource");
-            Console.WriteLine("6. Run device query");
-            Console.WriteLine("7. List Api keys asynchronously");
-            Console.WriteLine("8. Run device logs example");
-            Console.WriteLine("9. List update campaigns");
-            Console.WriteLine("10. List firmware images");
-            Console.WriteLine("11. List firmware manifests");
-            Console.WriteLine("12. Run update campaign example");
-            Console.WriteLine("13. Get resource value example");
-            Console.WriteLine("14. Set resource value example");
-            Console.WriteLine("15. Get account details");
+            Console.WriteLine("---Account management---");
+            Console.WriteLine($"{i++}. Get account details");
+            Console.WriteLine($"{i++}. Get account details async");
+            Console.WriteLine($"{i++}. Update account details");
+            Console.WriteLine($"{i++}. Update account details async");
+            Console.WriteLine($"{i++}. List Api keys");
+            Console.WriteLine($"{i++}. List Api keys asynchronously");
+            Console.WriteLine($"{i++}. Get Api Key");
+            Console.WriteLine($"{i++}. Get Api Key asynchronously");
+            Console.WriteLine($"{i++}. Add Api key");
+            Console.WriteLine($"{i++}. Add Api key async");
+            Console.WriteLine($"{i++}. List Groups");
+            Console.WriteLine($"{i++}. List Users");
+            Console.WriteLine($"{i++}. Add User");
+            Console.WriteLine($"{i++}. Add User async");
+            Console.WriteLine("---Certificates---");
+            Console.WriteLine($"{i++}. Create Certificate");
+            Console.WriteLine($"{i++}. List Certificates");
+            Console.WriteLine("---Connect---");
+            Console.WriteLine($"{i++}. List Connected Devices");
+            Console.WriteLine($"{i++}. List filtered connected devices");
+            Console.WriteLine($"{i++}. List metrics from last 30 days");
+            Console.WriteLine($"{i++}. List metrics from last 2 days in 3 hour intervals");
+            Console.WriteLine($"{i++}. List metrics from 1 March 2017 to 1 April 2017");
+            Console.WriteLine($"{i++}. Create presubscription");
+            Console.WriteLine($"{i++}. Get resource value");
+            Console.WriteLine($"{i++}. Set resource value example");
+            Console.WriteLine($"{i++}. Subscribe to a resource");
+            Console.WriteLine($"{i++}. Subscribe to a resource with a callback");
+            Console.WriteLine($"{i++}. Create a webhook for a resource");
+            Console.WriteLine("---Device Directory---");
+            Console.WriteLine($"{i++}. Create Devices");
+            Console.WriteLine($"{i++}. List Devices");
+            Console.WriteLine($"{i++}. Add device query");
+            Console.WriteLine($"{i++}. List device logs");
+            Console.WriteLine($"{i++}. List device events");
+            Console.WriteLine("---Update---");
+            Console.WriteLine($"{i++}. Create update campaign");
+            Console.WriteLine($"{i++}. List firmware images");
+            Console.WriteLine($"{i++}. List firmware manifests");
+            Console.WriteLine($"{i++}. List update campaigns");
+            Console.WriteLine($"{i++}. Add firmware image");
+            Console.WriteLine($"{i++}. Add firmware manifest");
             Console.WriteLine("---Press any other key to exit---");
             Console.WriteLine();
             return Console.ReadLine();
         }
-        
-        private static void RunExample(Config config, int example)
+
+        private static async void RunExampleAsync(Config config, int example)
         {
             switch (example)
             {
                 case 1:
-                    ListApiKeys lApiKeys = new ListApiKeys(config);
-                    lApiKeys.GetApiKeys();
+                    accountManagementExamples.GetAccountDetails();
                     break;
                 case 2:
-                    ListDevices lDevices = new ListDevices(config);
-                    lDevices.ListAllDevices();
+                    await accountManagementExamples.GetAccountDetailsAsync();
                     break;
                 case 3:
-                    ListDevices lConnectedDevices = new ListDevices(config);
-                    lConnectedDevices.ListConnectedDevices();
+                    accountManagementExamples.UpdateAccount();
                     break;
                 case 4:
-                    Subscription sub = new Subscription(config);
-                    sub.Subscribe();
+                    await accountManagementExamples.UpdateAccountAsync();
                     break;
                 case 5:
-                    Webhook webhook = new Webhook(config);
-                    webhook.RegisterWebhook();
+                    accountManagementExamples.ListApiKeys();
                     break;
                 case 6:
-                    DeviceQuery query = new DeviceQuery(config);
-                    query.AddQuery();
+                    await accountManagementExamples.ListApiKeysAsync();
                     break;
                 case 7:
-                    ListApiKeys lAsyncApiKeys = new ListApiKeys(config);
-                    lAsyncApiKeys.ListApiKeysAsync();
+                    accountManagementExamples.GetApiKey();
                     break;
                 case 8:
-                    ListLogs lLogs = new ListLogs(config);
-                    lLogs.ListDevicesLogs();
+                    await accountManagementExamples.GetApiKeyAsync();
                     break;
                 case 9:
-                    ListUpdateCampaigns lUpdateCampaigns = new ListUpdateCampaigns(config);
-                    lUpdateCampaigns.listCampaigns();
+                    accountManagementExamples.AddApiKey();
                     break;
                 case 10:
-                    ListFirmwareImages lImages = new ListFirmwareImages(config);
-                    lImages.ListImages();
+                    await accountManagementExamples.AddApiKeyAsync();
                     break;
                 case 11:
-                    ListFirmwareManifests lManifests = new ListFirmwareManifests(config);
-                    lManifests.ListManifests();
+                    accountManagementExamples.ListAllGroups();
                     break;
                 case 12:
-                    CreateUpdateCampaign cCampaign = new CreateUpdateCampaign(config);
-                    cCampaign.CreateCampaign();
+                    accountManagementExamples.ListActiveUsers();
                     break;
                 case 13:
-                    Resource getRes = new Resource(config);
-                    getRes.GetResourceValue();
+                    accountManagementExamples.AddUser();
                     break;
                 case 14:
-                    Resource setRes = new Resource(config);
-                    setRes.SetResourceValue();
+                    await accountManagementExamples.AddUserAsync();
                     break;
                 case 15:
-                    GetAccount acc = new GetAccount(config);
-                    acc.GetAccountDetails();
+                    certificateExamples.CreateCertificate();
+                    break;
+                case 16:
+                    certificateExamples.ListAllCertificates();
+                    break;
+                case 17:
+                    connectExamples.ListConnectedDevices();
+                    break;
+                case 18:
+                    connectExamples.ListConnectedDevicesWithFilter();
+                    break;
+                case 19:
+                    connectExamples.ListLast30Days();
+                    break;
+                case 20:
+                    connectExamples.ListLast2Days();
+                    break;
+                case 21:
+                    connectExamples.ListMonth();
+                    break;
+                case 22:
+                    connectExamples.CreatePreSubscription();
+                    break;
+                case 23:
+                    connectExamples.GetResourceValue();
+                    break;
+                case 24:
+                    connectExamples.SetResourceValue();
+                    break;
+                case 25:
+                    await connectExamples.SubscribeAsync();
+                    break;
+                case 26:
+                    connectExamples.SubscribeCallback();
+                    break;
+                case 27:
+                    connectExamples.RegisterWebhook();
+                    break;
+                case 28:
+                    deviceDirectoryExamples.CreateDevice();
+                    break;
+                case 29:
+                    deviceDirectoryExamples.ListAllDevices();
+                    break;
+                case 30:
+                    deviceDirectoryExamples.AddQuery();
+                    break;
+                case 31:
+                    deviceDirectoryExamples.ListDevicesLogs();
+                    break;
+                case 32:
+                    deviceDirectoryExamples.ListDeviceEvents();
+                    break;
+                case 33:
+                    updateExamples.CreateCampaign();
+                    break;
+                case 34:
+                    updateExamples.ListImages();
+                    break;
+                case 35:
+                    updateExamples.ListManifests();
+                    break;
+                case 36:
+                    updateExamples.ListCampaigns();
+                    break;
+                case 37:
+                    updateExamples.AddFirmwareImage();
+                    break;
+                case 38:
+                    updateExamples.AddFirmwareManifest();
+                    break;
+                default:
                     break;
             }
         }

@@ -1,22 +1,7 @@
 #!/bin/sh
+set -e
 
 BACKEND_URL="http://localhost:3000";
-export PYTHONPATH="TestServer/testrunner";
-
-cleanup() {
-  echo "Test run finished. Cleaning up. Deleting tmp directory: $TMPDIR";
-  if is_running $BACKEND_PID; then
-    echo "Killing backend SDK server: $BACKEND_PID";
-    kill $BACKEND_PID;
-  fi
-}
-
-is_running() {
-  if ps -p $1 >/dev/null; then
-    return 0;
-  fi
-  return 1;
-}
 
 # Ensure we have API key
 API_KEY="${MBED_CLOUD_API_KEY}"
@@ -25,24 +10,19 @@ if [ -z $API_KEY ]; then
   exit 1;
 fi
 
-# Start the Python SDK test backend server. Send to background.
-CMD="mono TestServer/bin/Release/TestServer.exe $API_KEY"
-eval "$CMD &"
-echo "Backend server started. PID: $!"
-BACKEND_PID=$!
+mono --debug --profile=log:coverage,covfilter=+[MbedCloudSDK]MbedCloudSDK,output=int-output.mlpd TestServer/bin/Debug/TestServer.exe ${MBED_CLOUD_API_KEY} ${MBED_CLOUD_API_HOST} &
 
 sleep 2
 
-if ! is_running $BACKEND_PID; then
-  >&2 echo "Backend server did not start successfully."
-  cleanup
-  exit 1000
-fi
-
 # Start the test runner
-python TestServer/testrunner/bin/trunner -s $BACKEND_URL -k $API_KEY
+docker run --rm --net=host --name=testrunner_container \
+-e "TEST_SERVER_URL=${BACKEND_URL}" \
+-e "TEST_FIXTURES_DIR=/home/ubuntu/rpc_fixtures" \
+-v /home/ubuntu/rpc_fixtures:/runner/test_fixtures \
+-v /home/ubuntu/rpc_results:/runner/results \
+${TESTRUNNER_DOCKER_IMAGE}
 RET_CODE=$?
 
-cleanup
+curl -X GET http://localhost:3000/_exit
 
 exit $RET_CODE

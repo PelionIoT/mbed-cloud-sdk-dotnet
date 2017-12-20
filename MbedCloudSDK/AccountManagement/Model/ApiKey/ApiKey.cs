@@ -6,6 +6,7 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
     using iam.Model;
     using MbedCloudSDK.Common;
@@ -13,13 +14,13 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
     using Newtonsoft.Json.Converters;
 
     /// <summary>
-    /// This object represents an API key in mbed Cloud.
+    /// This object represents an API key in Mbed Cloud.
     /// </summary>
     public class ApiKey
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiKey"/> class.
-        /// Create new instance of api key class.
+        /// Create new instance of API key class.
         /// </summary>
         /// <param name="options">Dictionary containing properties.</param>
         public ApiKey(IDictionary<string, object> options = null)
@@ -104,7 +105,7 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
                 Name = apiKeyInfo.Name,
                 CreatedAt = apiKeyInfo.CreatedAt,
                 CreationTime = apiKeyInfo.CreationTime,
-                Groups = apiKeyInfo.Groups,
+                Groups = apiKeyInfo.Groups != null ? apiKeyInfo.Groups : Enumerable.Empty<string>().ToList(),
                 OwnerId = apiKeyInfo.Owner,
                 Id = apiKeyInfo.Id,
                 LastLoginTime = apiKeyInfo.LastLoginTime
@@ -125,7 +126,7 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
-            sb.Append("  Groups: ").Append(Groups).Append("\n");
+            sb.Append("  Groups: ").Append(Groups.Any() ? string.Join(", ", Groups) : string.Empty).Append("\n");
             sb.Append("  Owner: ").Append(OwnerId).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  LastLoginTime: ").Append(LastLoginTime).Append("\n");

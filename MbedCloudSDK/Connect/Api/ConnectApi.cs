@@ -16,10 +16,23 @@ namespace MbedCloudSDK.Connect.Api
     using mds.Api;
 
     /// <summary>
-    /// Exposing functionality from the following underlying services:
-    /// - Connector / mDS
-    /// - Device query service
-    /// - Device catalog
+    /// Connect Api
+    /// <example>
+    /// This API is intialized with a <see cref="Config"/> object.
+    /// <code>
+    /// using MbedCloudSDK.Common;
+    /// var config = new config(apiKey);
+    /// var connectApi = new ConnectApi(config);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// Some methods require a notification channel to be set up before they will work.
+    /// <code>
+    /// connectApi.StartNotifications();
+    /// var resource = connectApi.GetResourceValue("", "5001/0/1");
+    /// connectApi.StopNotifications();
+    /// </code>
+    /// </example>
     /// </summary>
     public partial class ConnectApi : BaseApi, IDisposable
     {
@@ -49,26 +62,29 @@ namespace MbedCloudSDK.Connect.Api
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectApi"/> class.
         /// </summary>
-        /// <param name="config">Config.</param>
+        /// <param name="config"><see cref="Config"/></param>
         public ConnectApi(Config config)
             : base(config)
         {
-            cancellationToken = new CancellationTokenSource();
-            notificationTask = new Task(new Action(Notifications), cancellationToken.Token, TaskCreationOptions.LongRunning);
             ResourceSubscribtions = new Dictionary<string, Resource>();
+
+            var dateFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
 
             auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);
             statistics.Client.Configuration.Default.ApiClient = new statistics.Client.ApiClient(config.Host);
             statistics.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
             statistics.Client.Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            statistics.Client.Configuration.Default.DateTimeFormat = dateFormat;
 
             mds.Client.Configuration.Default.ApiClient = new mds.Client.ApiClient(config.Host);
             mds.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
             mds.Client.Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            mds.Client.Configuration.Default.DateTimeFormat = dateFormat;
 
             Configuration.Default.ApiClient = new ApiClient(config.Host);
             Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
             Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
+            Configuration.Default.DateTimeFormat = dateFormat;
 
             deviceDirectoryApi = new device_directory.Api.DefaultApi();
             statisticsApi = new statistics.Api.StatisticsApi();
@@ -93,7 +109,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <summary>
         /// Get meta data for the last Mbed Cloud API call
         /// </summary>
-        /// <returns>Metadata Object</returns>
+        /// <returns><see cref="ApiMetadata"/></returns>
         public static ApiMetadata GetLastApiMetadata()
         {
             var lastMds = mds.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault()?.Headers?.Where(m => m.Name == "Date")?.Select(d => DateTime.Parse(d.Value.ToString()))?.FirstOrDefault();

@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = statistics.Client.SwaggerDateConverter;
 
 namespace statistics.Model
 {
@@ -55,36 +56,42 @@ namespace statistics.Model
         /// <value>HTTP response code.</value>
         [DataMember(Name="code", EmitDefaultValue=false)]
         public int? Code { get; set; }
+
         /// <summary>
         /// Details of the error fields.
         /// </summary>
         /// <value>Details of the error fields.</value>
         [DataMember(Name="fields", EmitDefaultValue=false)]
         public List<Fields> Fields { get; set; }
+
         /// <summary>
         /// Response type, always \&quot;error\&quot;.
         /// </summary>
         /// <value>Response type, always \&quot;error\&quot;.</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public string _Object { get; set; }
+
         /// <summary>
         /// Request ID.
         /// </summary>
         /// <value>Request ID.</value>
         [DataMember(Name="request_id", EmitDefaultValue=false)]
         public string RequestId { get; set; }
+
         /// <summary>
         /// Description of the error.
         /// </summary>
         /// <value>Description of the error.</value>
         [DataMember(Name="message", EmitDefaultValue=false)]
         public string Message { get; set; }
+
         /// <summary>
         /// Type of error.
         /// </summary>
         /// <value>Type of error.</value>
         [DataMember(Name="type", EmitDefaultValue=false)]
         public string Type { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -194,8 +201,13 @@ namespace statistics.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }
