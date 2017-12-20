@@ -10,13 +10,13 @@ This project provides a set of examples of how the SDK can be used to interact w
 
 ## Prerequisites (Mac)
 * Mono (Latest version can be downloaded from [here](http://www.mono-project.com/download/))
-* Nuget (Exectuable can be found [here](https://dist.nuget.org/win-x86-commandline/latest/nuget.exe))
+* Nuget (Executable can be found [here](https://dist.nuget.org/win-x86-commandline/latest/nuget.exe))
 
 ## Building Examples (Windows)
 1. Clone the reposotory.
 2. Open the solution (.sln) file in Visual Studio.
 3. Right click on the ConsoleExamples project and set as startup project.
-4. Click 'Start Debugging' to launch the application. This will build and restore dependencies automaticaly. 
+4. Click 'Start Debugging' to launch the application. This will build and restore dependencies automatically. 
 
 ## Building Examples (Mac)
 1. Clone the repository.
@@ -75,4 +75,4 @@ Select Example
 ---Press any other key to exit---
 ```
 
-Enter the number of example you which to run or press any key to exit. 
+Enter the number of the example you wish to run or press any key to exit. 
