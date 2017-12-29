@@ -4,6 +4,7 @@
 
 namespace MbedCloudSDK.Common
 {
+    using System;
     using System.Net;
 
     /// <summary>
@@ -18,9 +19,22 @@ namespace MbedCloudSDK.Common
         /// <param name="host">Host url</param>
         /// <param name="authorizationPrefix">Authorization prefix</param>
         /// <param name="forceClear">Auto start notifications. If true, notifications will start automatically when required.</param>
-        public Config(string apiKey, string host = "https://api.us-east-1.mbedcloud.com", bool forceClear = false, string authorizationPrefix = "Bearer")
+        /// <param name="setSecurity">If true, SecurityProtocol will be set. Required for .NET 4.6 but depreciated in .NET Core. If using .NET Core, set to false.</param>
+        public Config(string apiKey, string host = "https://api.us-east-1.mbedcloud.com", bool setSecurity = true, bool forceClear = false, string authorizationPrefix = "Bearer")
         {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+            if (setSecurity)
+            {
+                try
+                {
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("ServicePointManager depreciated in .NET Core");
+                    Console.WriteLine(e);
+                }
+            }
+
             AuthorizationPrefix = authorizationPrefix;
             ApiKey = apiKey;
             Host = host;
