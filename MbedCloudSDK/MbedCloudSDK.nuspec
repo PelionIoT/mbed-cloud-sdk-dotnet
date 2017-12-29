@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Mbed.Cloud.SDK</id>
-    <version>1.2.3-beta</version>
+    <version>1.2.3</version>
     <title>Mbed Cloud SDK for .NET</title>
     <authors>Alex Logan</authors>
     <owners>Alex Logan</owners>
