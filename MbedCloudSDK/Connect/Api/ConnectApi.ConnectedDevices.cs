@@ -121,7 +121,7 @@ namespace MbedCloudSDK.Connect.Api
             {
                 if (e.ErrorCode == 404)
                 {
-                    return default(string[]);
+                    return new string[] { };
                 }
 
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
@@ -132,7 +132,7 @@ namespace MbedCloudSDK.Connect.Api
                 return subscriptionsString.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             }
 
-            return default(string[]);
+            return new string[] { };
         }
 
         /// <summary>
