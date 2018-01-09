@@ -71,6 +71,7 @@ namespace ConsoleExamples
                 }
             }
 
+            connectExamples.api.StopNotifications();
             Console.WriteLine(" Closing application");
         }
 

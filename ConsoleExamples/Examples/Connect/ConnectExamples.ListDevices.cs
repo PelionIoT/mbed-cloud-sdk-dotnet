@@ -16,8 +16,13 @@ namespace ConsoleExamples.Examples.Connect
     /// </summary>
     public partial class ConnectExamples
     {
+#pragma warning disable SA1401, SA1307
+        /// <summary>
+        /// Api
+        /// </summary>
+        public ConnectApi api;
+#pragma warning restore CS3021, SA1307
         private Config config;
-        private ConnectApi api;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectExamples"/> class.
