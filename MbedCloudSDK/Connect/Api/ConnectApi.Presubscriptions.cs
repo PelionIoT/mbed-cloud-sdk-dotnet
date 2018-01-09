@@ -143,6 +143,7 @@ namespace MbedCloudSDK.Connect.Api
             try
             {
                 subscriptionsApi.V2SubscriptionsDelete();
+                ResourceSubscribtions.Clear();
             }
             catch (mds.Client.ApiException e)
             {
