@@ -112,14 +112,27 @@ namespace MbedCloudSDK.Connect.Api
         /// <exception cref="CloudApiException">CloudApiException</exception>
         public string[] ListDeviceSubscriptions(string deviceId)
         {
+            string subscriptionsString;
             try
             {
-                return subscriptionsApi.V2SubscriptionsDeviceIdGet(deviceId)?.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                subscriptionsString = subscriptionsApi.V2SubscriptionsDeviceIdGet(deviceId);
             }
             catch (mds.Client.ApiException e)
             {
+                if (e.ErrorCode == 404)
+                {
+                    return default(string[]);
+                }
+
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
+
+            if (!string.IsNullOrEmpty(subscriptionsString))
+            {
+                return subscriptionsString.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            }
+
+            return default(string[]);
         }
 
         /// <summary>
