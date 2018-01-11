@@ -240,6 +240,19 @@ namespace TestServer
                                     vals[propertyInst.Name] = filterJToken;
                                 }
                             }
+                            else if (propertyInst.PropertyType == typeof(List<string>))
+                            {
+                                var paramValue = GetParamValue(propertyInst, argsJsonObj);
+                                if (paramValue != null)
+                                {
+                                    var list = JsonConvert.DeserializeObject<List<string>>(paramValue.ToString());
+                                    vals[propertyInst.Name] = JToken.FromObject(list);
+                                }
+                                else
+                                {
+                                    vals[propertyInst.Name] = paramValue;
+                                }
+                            }
                             else
                             {
                                 var paramValue = GetParamValue(propertyInst, argsJsonObj);
