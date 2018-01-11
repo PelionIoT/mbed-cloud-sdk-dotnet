@@ -68,14 +68,14 @@ namespace MbedCloudSDK.Update.Model.FirmwareImage
         {
             var image = new FirmwareImage
             {
-                CreatedAt = data.CreatedAt,
+                CreatedAt = data.CreatedAt.HasValue ? data.CreatedAt.Value.ToUniversalTime() : default(DateTime),
                 Url = data.Datafile,
                 DatafileSize = data.DatafileSize,
                 DatafileChecksum = data.DatafileChecksum,
                 Description = data.Description,
                 Id = data.Id,
                 Name = data.Name,
-                UpdatedAt = data.UpdatedAt
+                UpdatedAt = data.UpdatedAt.HasValue ? data.UpdatedAt.Value.ToUniversalTime() : default(DateTime)
             };
             return image;
         }

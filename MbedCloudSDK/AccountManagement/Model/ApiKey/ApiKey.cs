@@ -103,7 +103,7 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
                 Status = apiKeyStatus,
                 Key = apiKeyInfo.Key,
                 Name = apiKeyInfo.Name,
-                CreatedAt = apiKeyInfo.CreatedAt,
+                CreatedAt = apiKeyInfo.CreatedAt.HasValue ? apiKeyInfo.CreatedAt.Value.ToUniversalTime() : default(DateTime),
                 CreationTime = apiKeyInfo.CreationTime,
                 Groups = apiKeyInfo.Groups != null ? apiKeyInfo.Groups : Enumerable.Empty<string>().ToList(),
                 OwnerId = apiKeyInfo.Owner,

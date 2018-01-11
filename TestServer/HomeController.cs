@@ -86,7 +86,7 @@ namespace TestServer
             {
                 var dict = RestSharp.Extensions.MonoHttp.HttpUtility.ParseQueryString(args);
                 var camelDict = Utils.SnakeToCamelDict(dict);
-                var argsJson = JsonConvert.SerializeObject(camelDict);
+                var argsJson = JsonConvert.SerializeObject(camelDict, GetDateSettings());
                 argsJsonObj = JObject.Parse(argsJson);
             }
 
@@ -157,9 +157,23 @@ namespace TestServer
             }
         }
 
+        private JsonSerializerSettings GetDateSettings()
+        {
+            var settings = new JsonSerializerSettings()
+            {
+                DateFormatString = "yyyy-MM-ddTHH:mm:ss.ffffffZ",
+                DateTimeZoneHandling = DateTimeZoneHandling.Utc
+            };
+            return settings;
+        }
+
         private JsonSerializerSettings GetSnakeJsonSettings()
         {
-            var settings = new JsonSerializerSettings();
+            var settings = new JsonSerializerSettings()
+            {
+                DateFormatString = "yyyy-MM-ddTHH:mm:ss.ffffffZ",
+                DateTimeZoneHandling = DateTimeZoneHandling.Utc
+            };
             var contractResolver = new DefaultContractResolver
             {
                 NamingStrategy = new SnakeCaseNamingStrategy()

@@ -93,7 +93,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
                 Name = groupInfo.Name,
                 LastUpdateTime = groupInfo.LastUpdateTime,
                 ApiKeyCount = groupInfo.ApikeyCount,
-                CreatedAt = groupInfo.CreatedAt,
+                CreatedAt = groupInfo.CreatedAt.HasValue ? groupInfo.CreatedAt.Value.ToUniversalTime() : default(DateTime),
                 CreationTime = groupInfo.CreationTime,
                 AccountId = groupInfo.AccountId,
                 Id = groupInfo.Id,

@@ -73,15 +73,15 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
         {
             var manifest = new FirmwareManifest
             {
-                CreatedAt = data.CreatedAt,
+                CreatedAt = data.CreatedAt.HasValue ? data.CreatedAt.Value.ToUniversalTime() : default(DateTime),
                 Datafile = data.Datafile,
                 DatafileSize = data.DatafileSize,
                 Description = data.Description,
                 DeviceClass = data.DeviceClass,
                 Id = data.Id,
                 Name = data.Name,
-                Timestamp = data.Timestamp,
-                UpdatedAt = data.UpdatedAt
+                Timestamp = data.Timestamp.HasValue ? data.CreatedAt.Value.ToUniversalTime() : default(DateTime),
+                UpdatedAt = data.UpdatedAt.HasValue ? data.UpdatedAt.Value.ToUniversalTime() : default(DateTime)
             };
             return manifest;
         }

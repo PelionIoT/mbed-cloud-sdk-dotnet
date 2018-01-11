@@ -119,7 +119,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
             var updateCampaignStatus = Utils.ParseEnum<CampaignStateEnum>(data.State);
             var campaign = new Campaign
             {
-                CreatedAt = data.CreatedAt,
+                CreatedAt = data.CreatedAt.HasValue ? data.CreatedAt.Value.ToUniversalTime() : default(DateTime),
                 Description = data.Description,
                 DeviceFilter = new Filter(data.DeviceFilter),
                 FinishedAt = data.Finished,
@@ -128,7 +128,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
                 ManifestId = data.RootManifestId,
                 ManifestUrl = data.RootManifestUrl,
                 State = updateCampaignStatus,
-                ScheduledAt = data.When,
+                ScheduledAt = data.When.HasValue ? data.When.Value.ToUniversalTime() : default(DateTime),
                 StartedAt = data.StartedAt,
                 UpdatedAt = data.UpdatedAt,
             };
@@ -170,7 +170,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
                 Description = Description,
                 RootManifestId = ManifestId,
                 State = Utils.ParseEnum<UpdateCampaignPostRequest.StateEnum>(State),
-                When = ScheduledAt
+                When = ScheduledAt.HasValue ? ScheduledAt.Value.ToUniversalTime() : DateTime.Now.ToUniversalTime(),
             };
             return request;
         }
@@ -185,7 +185,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
             var request = new UpdateCampaignPutRequest(
                 Description: Description,
                 RootManifestId: ManifestId,
-                When: ScheduledAt ?? DateTime.Now,
+                When: ScheduledAt ?? DateTime.Now.ToUniversalTime(),
                 State: updateCampaignStatus,
                 DeviceFilter: DeviceFilter.FilterString,
                 Name: Name);
@@ -204,7 +204,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
             {
                 Description = Description,
                 RootManifestId = ManifestId,
-                When = ScheduledAt ?? DateTime.Now,
+                When = ScheduledAt ?? DateTime.Now.ToUniversalTime(),
                 State = updateCampaignStatus,
                 DeviceFilter = DeviceFilter?.FilterString,
                 Name = Name,
