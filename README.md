@@ -64,7 +64,7 @@ Further examples can be viewed in the ConsoleExamples folder of this repo.
 
 ## Documentation
 
-See full [documentation and API reference here](https://s3-us-west-2.amazonaws.com/mbed-cloud-sdk-dotnet-dist/latest/docs/index.html).
+See full [documentation and API reference here](https://cloud.mbed.com/docs/v1.2/mbed-cloud-sdk-dotnet/index.html).
 
 ## Contributing
 
