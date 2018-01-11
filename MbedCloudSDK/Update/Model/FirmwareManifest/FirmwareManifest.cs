@@ -65,7 +65,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the time the object was updated
+        /// Gets the time the object was updated
         /// </summary>
         public string Version { get; private set; }
 
