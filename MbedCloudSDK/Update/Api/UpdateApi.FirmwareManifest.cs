@@ -42,7 +42,7 @@ namespace MbedCloudSDK.Update.Api
         /// }
         /// </code>
         /// </example>
-        public PaginatedResponse<FirmwareManifest> ListFirmwareManifests(QueryOptions options = null)
+        public PaginatedResponse<QueryOptions, FirmwareManifest> ListFirmwareManifests(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -51,7 +51,7 @@ namespace MbedCloudSDK.Update.Api
 
             try
             {
-                return new PaginatedResponse<FirmwareManifest>(ListFirmwareManifestsFun, options);
+                return new PaginatedResponse<QueryOptions, FirmwareManifest>(ListFirmwareManifestsFun, options);
             }
             catch (CloudApiException)
             {

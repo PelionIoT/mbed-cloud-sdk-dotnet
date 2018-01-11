@@ -23,7 +23,7 @@ namespace MbedCloudSDK.Connect.Model.Subscription
         /// <summary>
         /// Gets or sets gets or Sets EndpointType
         /// </summary>
-        public string EndpointType { get; set; }
+        public string DeviceType { get; set; }
 
         /// <summary>
         /// Gets or sets gets or Sets ResourcePath
@@ -40,7 +40,7 @@ namespace MbedCloudSDK.Connect.Model.Subscription
             var substriction = new Presubscription
             {
                 DeviceId = subscriptionData.EndpointName,
-                EndpointType = subscriptionData.EndpointType,
+                DeviceType = subscriptionData.EndpointType,
                 ResourcePaths = subscriptionData.ResourcePath.Select((s) => { return s.ToString(); }).ToList()
             };
             return substriction;
@@ -55,7 +55,7 @@ namespace MbedCloudSDK.Connect.Model.Subscription
             var sb = new StringBuilder();
             sb.Append("class Presubscription {\n");
             sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
-            sb.Append("  EndpointType: ").Append(EndpointType).Append("\n");
+            sb.Append("  DeviceType: ").Append(DeviceType).Append("\n");
             sb.Append("  ResourcePaths: ").Append(string.Join(", ", ResourcePaths?.Select(r => { return Convert.ToString(r); }))).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

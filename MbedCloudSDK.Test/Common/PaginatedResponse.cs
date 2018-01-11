@@ -14,7 +14,7 @@ namespace MbedCloudSDK.Test.Common
         {
             var options = new QueryOptions();
             Func<QueryOptions, ResponsePage<string>> listFunc = (ops) => { return new ResponsePage<string>(new List<string> { "stuff", "more stuff", "even more stuff" }); };
-            var pag = new PaginatedResponse<string>(listFunc, options, new List<string> { "init data", "more init data"});
+            var pag = new PaginatedResponse<QueryOptions, string>(listFunc, options, new List<string> { "init data", "more init data"});
 
             Assert.AreEqual(2, pag.TotalCount);
             Assert.AreEqual(2, pag.ToList().Count);
@@ -25,10 +25,9 @@ namespace MbedCloudSDK.Test.Common
         {
             var options = new QueryOptions();
             Func<QueryOptions, ResponsePage<string>> listFunc = (ops) => { return new ResponsePage<string>(new List<string> { "stuff", "more stuff", "even more stuff" }); };
-            var pag = new PaginatedResponse<string>(listFunc, options);
+            var pag = new PaginatedResponse<QueryOptions, string>(listFunc, options);
 
             Assert.AreEqual(3, pag.TotalCount);
-            Assert.AreEqual(3, pag.GetTotalCount());
             Assert.AreEqual(3, pag.ToList().Count);
         }
     }

@@ -9,25 +9,28 @@ namespace MbedCloudSDK.Common
     using System.Collections.Generic;
     using System.Linq;
     using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.Connect.Model.Metric;
     using Newtonsoft.Json;
 
     /// <summary>
     /// Paginated reponse object wrapper.
     /// </summary>
-    /// <typeparam name="T">Type contained in paginated response</typeparam>
+    /// <typeparam name="TOptions">Type of parameter object</typeparam>
+    /// <typeparam name="TData">Type contained in paginated response</typeparam>
     [JsonObject]
-    public class PaginatedResponse<T> : IEnumerable<T>
+    public class PaginatedResponse<TOptions, TData> : IEnumerable<TData>
+        where TOptions : QueryOptions
     {
-        private Func<QueryOptions, ResponsePage<T>> getDataFunc;
+        private Func<TOptions, ResponsePage<TData>> getDataFunc;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaginatedResponse{T}"/> class.
+        /// Initializes a new instance of the <see cref="PaginatedResponse{TOne, TTwo}"/> class.
         /// Create new instance of paginated reponse.
         /// </summary>
         /// <param name="getDataFunc">function to call to get next page.</param>
         /// <param name="listParams">Page params</param>
         /// <param name="initData">Data</param>
-        public PaginatedResponse(Func<QueryOptions, ResponsePage<T>> getDataFunc, QueryOptions listParams, List<T> initData = null)
+        public PaginatedResponse(Func<TOptions, ResponsePage<TData>> getDataFunc, TOptions listParams, List<TData> initData = null)
         {
             this.getDataFunc = getDataFunc;
             Data = initData;
@@ -60,17 +63,17 @@ namespace MbedCloudSDK.Common
         /// Gets the data of the current page
         /// </summary>
         [JsonProperty]
-        public List<T> Data { get; private set; }
+        public List<TData> Data { get; private set; }
 
-        private QueryOptions ListParams { get; set; }
+        private TOptions ListParams { get; set; }
 
         /// <summary>
         /// Return the paginated response as a list containing all elements.
         /// </summary>
         /// <returns>List of T</returns>
-        public List<T> ToList()
+        public List<TData> ToList()
         {
-            var list = new List<T>();
+            var list = new List<TData>();
             var enumerator = GetEnumerator();
             while (enumerator.MoveNext())
             {
@@ -84,7 +87,7 @@ namespace MbedCloudSDK.Common
         /// Return the next page of responses
         /// </summary>
         /// <returns>List of the Items in the next page</returns>
-        public List<T> GetNextPage()
+        public List<TData> GetNextPage()
         {
             GetPage();
             return Data;
@@ -113,25 +116,10 @@ namespace MbedCloudSDK.Common
         }
 
         /// <summary>
-        /// Return total count of items
-        /// </summary>
-        /// <returns>Count</returns>
-        public int? GetTotalCount()
-        {
-            var listParams = new QueryOptions
-            {
-                Include = "total_count",
-                Limit = 2
-            };
-            var resp = getDataFunc?.Invoke(listParams);
-            return resp.TotalCount;
-        }
-
-        /// <summary>
         /// Get items enumerator
         /// </summary>
         /// <returns>Enumerator</returns>
-        public IEnumerator<T> GetEnumerator()
+        public IEnumerator<TData> GetEnumerator()
         {
             while (true)
             {

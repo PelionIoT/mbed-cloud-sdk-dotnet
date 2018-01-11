@@ -6,6 +6,7 @@ namespace ConsoleExamples.Examples.Connect
 {
     using System;
     using System.Collections.Generic;
+    using MbedCloudSDK.Common;
     using MbedCloudSDK.Connect.Model.Metric;
 
     /// <summary>
@@ -17,7 +18,7 @@ namespace ConsoleExamples.Examples.Connect
         /// List metrics from last 30 days in i day intervals
         /// </summary>
         /// <returns>List of metrics</returns>
-        public List<Metric> ListLast30Days()
+        public PaginatedResponse<MetricQueryOptions, Metric> ListLast30Days()
         {
             var options = new MetricQueryOptions
             {
@@ -37,7 +38,7 @@ namespace ConsoleExamples.Examples.Connect
         /// List metrics from last 2 days in interval of 3 hours
         /// </summary>
         /// <returns>List of metrics</returns>
-        public List<Metric> ListLast2Days()
+        public PaginatedResponse<MetricQueryOptions, Metric> ListLast2Days()
         {
             var options = new MetricQueryOptions
             {
@@ -57,7 +58,7 @@ namespace ConsoleExamples.Examples.Connect
         /// List metrics for month March 2017
         /// </summary>
         /// <returns>List of metrics</returns>
-        public List<Metric> ListMonth()
+        public PaginatedResponse<MetricQueryOptions, Metric> ListMonth()
         {
             var options = new MetricQueryOptions
             {

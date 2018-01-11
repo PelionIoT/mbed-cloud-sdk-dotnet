@@ -170,12 +170,12 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// <summary>
         /// Gets or sets expiration date of the certificate used to connect to bootstrap server
         /// </summary>
-        public DateTime? BootstrapExpirationDate { get; set; }
+        public DateTime? BootstrapCertificateExpiration { get; set; }
 
         /// <summary>
         /// Gets or sets expiration date of the certificate used to connect to connector server
         /// </summary>
-        public DateTime? ConnectorExpirationDate { get; set; }
+        public DateTime? ConnectorCertificateExpiration { get; set; }
 
         /// <summary>
         /// Gets or sets the endpoint name given to the device
@@ -200,12 +200,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// <summary>
         /// Gets or sets the endpoint type of the device - e.g. if the device is a gateway
         /// </summary>
-        public string EndpointType { get; set; }
-
-        /// <summary>
-        /// Gets or sets the API resource entity
-        /// </summary>
-        public string Object { get; set; }
+        public string DeviceType { get; set; }
 
         /// <summary>
         /// Map to Device object.
@@ -238,13 +233,13 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
                 Manifest = deviceData.Manifest,
                 CertificateFingerprint = deviceData.DeviceKey,
                 CertificateIssuerId = deviceData.CaId,
-                BootstrapExpirationDate = deviceData.BootstrapExpirationDate,
-                ConnectorExpirationDate = deviceData.ConnectorExpirationDate,
+                BootstrapCertificateExpiration = deviceData.BootstrapExpirationDate,
+                ConnectorCertificateExpiration = deviceData.ConnectorExpirationDate,
                 EndpointName = deviceData.EndpointName,
                 HostGateway = deviceData.HostGateway,
                 DeviceExecutionMode = deviceData.DeviceExecutionMode,
                 FirmwareChecksum = deviceData.FirmwareChecksum,
-                EndpointType = deviceData.EndpointType,
+                DeviceType = deviceData.EndpointType,
                 ManifestTimeStamp = deviceData.ManifestTimestamp
             };
             return device;
@@ -259,9 +254,9 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         {
             var deviceDataPostRequest = new DeviceDataPostRequest(DeviceKey: device.CertificateFingerprint, CaId: device.CertificateIssuerId)
             {
-                BootstrapExpirationDate = device.BootstrapExpirationDate,
+                BootstrapExpirationDate = device.BootstrapCertificateExpiration,
                 BootstrappedTimestamp = device.BootstrappedTimestamp,
-                ConnectorExpirationDate = device.ConnectorExpirationDate,
+                ConnectorExpirationDate = device.ConnectorCertificateExpiration,
                 Mechanism = Utils.ParseEnum<DeviceDataPostRequest.MechanismEnum>(device.Mechanism),
                 DeviceClass = device.DeviceClass,
                 EndpointName = device.EndpointName,
@@ -274,8 +269,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
                 FirmwareChecksum = device.FirmwareChecksum,
                 VendorId = device.VendorId,
                 Description = device.Description,
-                _Object = device.Object,
-                EndpointType = device.EndpointType,
+                EndpointType = device.DeviceType,
                 Deployment = device.Deployment,
                 MechanismUrl = device.MechanismUrl,
                 Name = device.Name,
@@ -300,9 +294,8 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
                 EndpointName = device.EndpointName,
                 AutoUpdate = device.AutoUpdate,
                 HostGateway = device.HostGateway,
-                _Object = device.Object,
                 CustomAttributes = device.CustomAttributes,
-                EndpointType = device.EndpointType,
+                EndpointType = device.DeviceType,
                 Name = device.Name
             };
 
@@ -339,13 +332,13 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
             sb.Append("  ManifestTimeStamp: ").Append(ManifestTimeStamp).Append("\n");
             sb.Append("  Fingerprint: ").Append(CertificateFingerprint).Append("\n");
             sb.Append("  IssuerId: ").Append(CertificateIssuerId).Append("\n");
-            sb.Append("  BootstrapExpirationDate: ").Append(BootstrapExpirationDate).Append("\n");
-            sb.Append("  ConnectorExpirationDate: ").Append(ConnectorExpirationDate).Append("\n");
+            sb.Append("  BootstrapCertificateExpiration: ").Append(BootstrapCertificateExpiration).Append("\n");
+            sb.Append("  ConnectorCertificateExpiration: ").Append(ConnectorCertificateExpiration).Append("\n");
             sb.Append("  EndpointName: ").Append(EndpointName).Append("\n");
             sb.Append("  HostGateway: ").Append(HostGateway).Append("\n");
             sb.Append("  DeviceExecutionMode: ").Append(DeviceExecutionMode).Append("\n");
             sb.Append("  FirmwareChecksum: ").Append(FirmwareChecksum).Append("\n");
-            sb.Append("  EndpointType: ").Append(EndpointType).Append("\n");
+            sb.Append("  DeviceType: ").Append(DeviceType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

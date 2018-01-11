@@ -42,7 +42,7 @@ namespace MbedCloudSDK.Update.Api
         /// }
         /// </code>
         /// </example>
-        public PaginatedResponse<FirmwareImage> ListFirmwareImages(QueryOptions options = null)
+        public PaginatedResponse<QueryOptions, FirmwareImage> ListFirmwareImages(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -51,7 +51,7 @@ namespace MbedCloudSDK.Update.Api
 
             try
             {
-                return new PaginatedResponse<FirmwareImage>(ListFirmwareImagesFun, options);
+                return new PaginatedResponse<QueryOptions, FirmwareImage>(ListFirmwareImagesFun, options);
             }
             catch (CloudApiException)
             {

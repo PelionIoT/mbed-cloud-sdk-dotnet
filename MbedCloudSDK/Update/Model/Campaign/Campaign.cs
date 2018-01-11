@@ -110,11 +110,6 @@ namespace MbedCloudSDK.Update.Model.Campaign
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets object
-        /// </summary>
-        public string Object { get; set; }
-
-        /// <summary>
         /// Map to Update campaign object.
         /// </summary>
         /// <param name="data">Update Campaign</param>
@@ -190,7 +185,6 @@ namespace MbedCloudSDK.Update.Model.Campaign
             var request = new UpdateCampaignPutRequest(
                 Description: Description,
                 RootManifestId: ManifestId,
-                _Object: string.Empty,
                 When: ScheduledAt ?? DateTime.Now,
                 State: updateCampaignStatus,
                 DeviceFilter: DeviceFilter.FilterString,
@@ -210,7 +204,6 @@ namespace MbedCloudSDK.Update.Model.Campaign
             {
                 Description = Description,
                 RootManifestId = ManifestId,
-                _Object = Object,
                 When = ScheduledAt ?? DateTime.Now,
                 State = updateCampaignStatus,
                 DeviceFilter = DeviceFilter?.FilterString,

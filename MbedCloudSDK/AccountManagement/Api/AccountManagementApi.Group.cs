@@ -44,7 +44,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <param name="options"><see cref="QueryOptions"/></param>
         /// <returns>Paginated Response of <see cref="Group"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public PaginatedResponse<Group> ListGroups(QueryOptions options = null)
+        public PaginatedResponse<QueryOptions, Group> ListGroups(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -53,7 +53,7 @@ namespace MbedCloudSDK.AccountManagement.Api
 
             try
             {
-                return new PaginatedResponse<Group>(ListGroupsFunc, options);
+                return new PaginatedResponse<QueryOptions, Group>(ListGroupsFunc, options);
             }
             catch (iam.Client.ApiException e)
             {
@@ -147,7 +147,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <param name="options"><see cref="QueryOptions"/></param>
         /// <returns>Paginated Respoinse with <see cref="User"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public PaginatedResponse<User> ListGroupUsers(string groupId, QueryOptions options = null)
+        public PaginatedResponse<QueryOptions, User> ListGroupUsers(string groupId, QueryOptions options = null)
         {
             if (options == null)
             {
@@ -157,7 +157,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             options.Id = groupId;
             try
             {
-                return new PaginatedResponse<User>(ListGroupUsersFunc, options);
+                return new PaginatedResponse<QueryOptions, User>(ListGroupUsersFunc, options);
             }
             catch (iam.Client.ApiException e)
             {
@@ -213,7 +213,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <param name="options"><see cref="QueryOptions"/></param>
         /// <returns>Paginated Response of <see cref="ApiKey"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public PaginatedResponse<ApiKey> ListGroupApiKeys(string groupId, QueryOptions options = null)
+        public PaginatedResponse<QueryOptions, ApiKey> ListGroupApiKeys(string groupId, QueryOptions options = null)
         {
             if (options == null)
             {
@@ -223,7 +223,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             options.Id = groupId;
             try
             {
-                return new PaginatedResponse<ApiKey>(ListGroupApiKeysFunc, options);
+                return new PaginatedResponse<QueryOptions, ApiKey>(ListGroupApiKeysFunc, options);
             }
             catch (iam.Client.ApiException e)
             {

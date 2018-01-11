@@ -44,7 +44,7 @@ namespace MbedCloudSDK.Connect.Api
         /// }
         /// </code>
         /// </example>
-        public PaginatedResponse<ConnectedDevice> ListConnectedDevices(QueryOptions options = null)
+        public PaginatedResponse<QueryOptions, ConnectedDevice> ListConnectedDevices(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -60,7 +60,7 @@ namespace MbedCloudSDK.Connect.Api
 
             try
             {
-                return new PaginatedResponse<ConnectedDevice>(ListConnectedDevicesFunc, options);
+                return new PaginatedResponse<QueryOptions, ConnectedDevice>(ListConnectedDevicesFunc, options);
             }
             catch (CloudApiException)
             {

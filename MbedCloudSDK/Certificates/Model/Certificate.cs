@@ -325,10 +325,12 @@ namespace MbedCloudSDK.Certificates.Model
                     switch (certificate.Type)
                     {
                         case CertificateType.Bootstrap:
-                            certificate.ServerUri = api.BootstrapServerUri;
+                            certificate.ServerUri = api.BootstrapServerCredentials.ServerUri;
+                            certificate.ServerCertificate = api.BootstrapServerCredentials.ServerCertificate;
                             break;
                         case CertificateType.Lwm2m:
-                            certificate.ServerUri = api.Lmw2mServerUri;
+                            certificate.ServerUri = api.Lmw2mServerCredentials.ServerUri;
+                            certificate.ServerCertificate = api.Lmw2mServerCredentials.ServerCertificate;
                             break;
                     }
                 }

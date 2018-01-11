@@ -82,7 +82,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
         /// Gets the content type of the resource. You are encouraged to use the resource types listed in the LWM2M specification: http://technical.openmobilealliance.org/Technical/technical-information/omna/lightweight-m2m-lwm2m-object-registry
         /// </summary>
         [JsonProperty]
-        public string ConentType { get; private set; }
+        public string ContentType { get; private set; }
 
         /// <summary>
         /// Gets resource URL.
@@ -159,7 +159,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
             var resource = new Resource(deviceId, null, api)
             {
                 Type = res.Rt,
-                ConentType = res.Type,
+                ContentType = res.Type,
                 Path = res.Uri,
                 Observable = res.Obs,
             };
@@ -288,7 +288,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
             var sb = new StringBuilder();
             sb.Append("class Resource {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
-            sb.Append("  Content Type: ").Append(ConentType).Append("\n");
+            sb.Append("  Content Type: ").Append(ContentType).Append("\n");
             sb.Append("  Uri: ").Append(Path).Append("\n");
             sb.Append("  Observable: ").Append(Observable).Append("\n");
             sb.Append("}\n");

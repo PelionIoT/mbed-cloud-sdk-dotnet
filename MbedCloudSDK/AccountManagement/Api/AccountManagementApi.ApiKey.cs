@@ -44,7 +44,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <returns>A paginated response containing <see cref="ApiKey"/></returns>
         /// <param name="options"><see cref="QueryOptions"/></param>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public PaginatedResponse<ApiKey> ListApiKeys(QueryOptions options = null)
+        public PaginatedResponse<QueryOptions, ApiKey> ListApiKeys(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -53,7 +53,7 @@ namespace MbedCloudSDK.AccountManagement.Api
 
             try
             {
-                return new PaginatedResponse<ApiKey>(ListApiKeysFunc, options);
+                return new PaginatedResponse<QueryOptions, ApiKey>(ListApiKeysFunc, options);
             }
             catch (CloudApiException)
             {
