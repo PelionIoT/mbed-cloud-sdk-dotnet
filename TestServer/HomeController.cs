@@ -130,6 +130,11 @@ namespace TestServer
 
                 }
                 var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, GetSnakeJsonSettings());
+                if (result == null || result == "null")
+                {
+                    return Ok(new object());
+                }
+
                 return Ok(JsonConvert.DeserializeObject(result));
             }
             catch (TargetInvocationException e)
