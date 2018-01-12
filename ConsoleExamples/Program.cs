@@ -44,12 +44,7 @@ namespace ConsoleExamples
                 host = args[1];
             }
 
-            var config = new Config(apiKey)
-            {
-                // Change default host
-                Host = host,
-                ForceClear = true,
-            };
+            var config = new Config(apiKey: apiKey, host: host, forceClear: true, autostartNotifications: true);
 
             accountManagementExamples = new AccountManagementExamples(config);
             certificateExamples = new CertificateExamples(config);

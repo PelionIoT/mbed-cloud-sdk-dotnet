@@ -18,9 +18,10 @@ namespace MbedCloudSDK.Common
         /// <param name="apiKey"><see cref="ApiKey"/></param>
         /// <param name="host">Host url</param>
         /// <param name="authorizationPrefix">Authorization prefix</param>
-        /// <param name="forceClear">Auto start notifications. If true, notifications will start automatically when required.</param>
+        /// <param name="forceClear">Force clear notification channel. If true, when adding a webhook, notifications will be stopped.</param>
+        /// <param name="autostartNotifications">Auto start notifications. If true, notifications will start automatically when required.</param>
         /// <param name="setSecurity">If true, SecurityProtocol will be set. Required for .NET 4.6 but depreciated in .NET Core. If using .NET Core, set to false.</param>
-        public Config(string apiKey, string host = "https://api.us-east-1.mbedcloud.com", bool setSecurity = true, bool forceClear = false, string authorizationPrefix = "Bearer")
+        public Config(string apiKey, string host = "https://api.us-east-1.mbedcloud.com", bool forceClear = false, bool autostartNotifications = false, bool setSecurity = true, string authorizationPrefix = "Bearer")
         {
             if (setSecurity)
             {
@@ -39,6 +40,7 @@ namespace MbedCloudSDK.Common
             ApiKey = apiKey;
             Host = host;
             ForceClear = forceClear;
+            AutostartNotifications = autostartNotifications;
         }
 
         /// <summary>
@@ -48,10 +50,15 @@ namespace MbedCloudSDK.Common
         public string Host { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to clear any existing notification channels
+        /// Gets a value indicating whether to clear any existing notification channels
         /// </summary>
         /// <value>If true, notifications will start automaticaly</value>
-        public bool ForceClear { get; set; }
+        public bool ForceClear { get; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to auto start notifications
+        /// </summary>
+        public bool AutostartNotifications { get; set; }
 
         /// <summary>
         /// Gets the API key.
