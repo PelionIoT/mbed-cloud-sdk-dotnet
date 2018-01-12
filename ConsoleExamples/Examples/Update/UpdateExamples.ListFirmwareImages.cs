@@ -39,7 +39,7 @@ namespace ConsoleExamples.Examples.Update
         /// <returns>The firmware image</returns>
         public FirmwareImage AddFirmwareImage()
         {
-            var firmwareImage = api.AddFirmwareImage("./ConsoleExamples/images/firmware_image.bin", "new firmware image");
+            var firmwareImage = api.AddFirmwareImage("./ConsoleExamples/images/firmware_image.bin", "new firmware image", "description");
             Console.WriteLine(firmwareImage);
             api.DeleteFirmwareImage(firmwareImage.Id);
             return firmwareImage;
