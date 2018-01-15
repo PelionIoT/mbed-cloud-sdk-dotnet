@@ -5,6 +5,7 @@
 namespace MbedCloudSDK.Certificates.Api
 {
     using System;
+    using System.Globalization;
     using System.Linq;
     using connector_ca.Api;
     using connector_ca.Client;
@@ -139,7 +140,11 @@ namespace MbedCloudSDK.Certificates.Api
 
             try
             {
-                var resp = developerApi.GetAllCertificates(limit: options.Limit, after: options.After, order: options.Order, include: options.Include);
+                var type = options.Filter.GetFirstValueByKey("type") ?? options.Filter.GetFirstValueByKey("event_type");
+                var serviceEq = (type == "developer") ? "bootstrap" : type;
+                var executionMode = (type == "developer") ? new int?(1) : null;
+                var expiredParsed = int.TryParse(options.Filter.GetFirstValueByKey("expires"), NumberStyles.None, null, out int expires);
+                var resp = developerApi.GetAllCertificates(limit: options.Limit, after: options.After, order: options.Order, include: options.Include, serviceEq: serviceEq, expireEq: expiredParsed ? new int?(expires) : null, deviceExecutionModeEq: executionMode, ownerEq: options.Filter.GetFirstValueByKey("owner_id"));
                 var respCertificates = new ResponsePage<Certificate>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var certificate in resp.Data)
                 {
