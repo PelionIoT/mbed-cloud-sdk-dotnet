@@ -432,28 +432,12 @@ namespace MbedCloudSDK.Common.Filter
                 var jobj = JObject.Parse(objStr);
                 foreach (var item in jobj)
                 {
-                    /*
-                    var x = JsonConvert.SerializeObject(item);
-                    var y = JsonConvert.DeserializeObject(x) as dynamic;
-                    var z = Convert.ToString(y["Value"]);
-                    var parsedVal = string.Empty;
-                    var isDate = DateTime.TryParse(z, out DateTime date);
+                    var value = item.Value.Value<string>();
+                    var isDate = DateTime.TryParseExact(value, "MM/dd/yyyy HH:mm:ss", null, DateTimeStyles.None, out DateTime dateValue);
                     if (isDate)
                     {
-                        parsedVal = date.ToString("yyyy-MM-dd'T'HH:mm:ss.fffZ");
-                    }
-                    else
-                    {
-                        parsedVal = z;
-                    }
-                    */
-                    var value = item.Value.Value<string>().Trim();
-                    Console.WriteLine(value);
-                    var isDate = DateTime.TryParse(value, out DateTime dateValue);
-                    Console.WriteLine(isDate);
-                    if (isDate)
-                    {
-                        value = dateValue.ToString("yyyy-MM-dd'T'HH:mm:ss.fffZ");
+                        var dateWithMilli = item.Value.Value<DateTime>();
+                        value = dateWithMilli.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
                     }
 
                     filterAttributes.Add(new FilterAttribute(value, QueryOperatorToEnum(item.Key)));
