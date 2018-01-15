@@ -95,7 +95,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
             var state = new CampaignDeviceState
             {
                 CampaignId = data.Campaign,
-                CreatedAt = data.CreatedAt.HasValue ? data.CreatedAt.Value.ToUniversalTime() : default(DateTime),
+                CreatedAt = data.CreatedAt.ToNullableUniversalTime(),
                 Description = data.Description,
                 DeviceId = data.DeviceId,
                 Etag = data.Etag,
@@ -103,7 +103,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
                 Mechanism = data.Mechanism,
                 MechanismUrl = data.MechanismUrl,
                 Name = data.Name,
-                UpdatedAt = data.UpdatedAt.HasValue ? data.CreatedAt.Value.ToUniversalTime() : default(DateTime),
+                UpdatedAt = data.UpdatedAt.ToNullableUniversalTime(),
                 State = Utils.ParseEnum<CampaignDeviceStateEnum>(data.DeploymentState),
             };
             return state;

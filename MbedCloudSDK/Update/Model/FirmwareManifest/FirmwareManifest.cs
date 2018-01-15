@@ -6,6 +6,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
 {
     using System;
     using System.Text;
+    using MbedCloudSDK.Common;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -78,15 +79,15 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
         {
             var manifest = new FirmwareManifest
             {
-                CreatedAt = data.CreatedAt.HasValue ? data.CreatedAt.Value.ToUniversalTime() : default(DateTime),
+                CreatedAt = data.CreatedAt.ToNullableUniversalTime(),
                 Url = data.Datafile,
                 DatafileSize = data.DatafileSize,
                 Description = data.Description,
                 DeviceClass = data.DeviceClass,
                 Id = data.Id,
                 Name = data.Name,
-                Timestamp = data.Timestamp.HasValue ? data.CreatedAt.Value.ToUniversalTime() : default(DateTime),
-                UpdatedAt = data.UpdatedAt.HasValue ? data.UpdatedAt.Value.ToUniversalTime() : default(DateTime)
+                Timestamp = data.Timestamp.ToNullableUniversalTime(),
+                UpdatedAt = data.UpdatedAt.ToNullableUniversalTime()
             };
             return manifest;
         }

@@ -7,6 +7,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using MbedCloudSDK.Common;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -93,7 +94,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
                 Name = groupInfo.Name,
                 LastUpdateTime = groupInfo.LastUpdateTime,
                 ApiKeyCount = groupInfo.ApikeyCount,
-                CreatedAt = groupInfo.CreatedAt.HasValue ? groupInfo.CreatedAt.Value.ToUniversalTime() : default(DateTime),
+                CreatedAt = groupInfo.CreatedAt.ToNullableUniversalTime(),
                 CreationTime = groupInfo.CreationTime,
                 AccountId = groupInfo.AccountId,
                 Id = groupInfo.Id,

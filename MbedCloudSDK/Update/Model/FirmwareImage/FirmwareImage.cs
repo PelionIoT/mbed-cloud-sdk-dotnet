@@ -6,6 +6,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareImage
 {
     using System;
     using System.Text;
+    using MbedCloudSDK.Common;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -68,14 +69,14 @@ namespace MbedCloudSDK.Update.Model.FirmwareImage
         {
             var image = new FirmwareImage
             {
-                CreatedAt = data.CreatedAt.HasValue ? data.CreatedAt.Value.ToUniversalTime() : default(DateTime),
+                CreatedAt = data.CreatedAt.ToNullableUniversalTime(),
                 Url = data.Datafile,
                 DatafileSize = data.DatafileSize,
                 DatafileChecksum = data.DatafileChecksum,
                 Description = data.Description,
                 Id = data.Id,
                 Name = data.Name,
-                UpdatedAt = data.UpdatedAt.HasValue ? data.UpdatedAt.Value.ToUniversalTime() : default(DateTime)
+                UpdatedAt = data.UpdatedAt.ToNullableUniversalTime()
             };
             return image;
         }

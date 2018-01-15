@@ -4,6 +4,7 @@
 
 namespace MbedCloudSDK.AccountManagement.Api
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using MbedCloudSDK.AccountManagement.Model.ApiKey;
@@ -70,7 +71,7 @@ namespace MbedCloudSDK.AccountManagement.Api
 
             try
             {
-                var resp = developerApi.GetAllApiKeys(limit: options.Limit, after: options.After, order: options.Order, include: options.Include, ownerEq: options.Filter?.FilterString);
+                var resp = developerApi.GetAllApiKeys(limit: options.Limit, after: options.After, order: options.Order, include: options.Include, ownerEq: options.Filter.GetFirstValueByKey("owner_id"));
                 var respKeys = new ResponsePage<ApiKey>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var key in resp.Data)
                 {

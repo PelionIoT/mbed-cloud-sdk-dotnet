@@ -6,7 +6,9 @@ namespace MbedCloudSDK.Common.Filter
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
+    using System.Threading;
     using MbedCloudSDK.Common.Filter.Maps;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
@@ -130,7 +132,7 @@ namespace MbedCloudSDK.Common.Filter
             {
                 case "$eq":
                     return FilterOperator.Equals;
-                case "$ne":
+                case "$neq":
                     return FilterOperator.NotEqual;
                 case "$lte":
                     return FilterOperator.LessOrEqual;
@@ -153,7 +155,7 @@ namespace MbedCloudSDK.Common.Filter
                 case FilterOperator.Equals:
                     return "$eq";
                 case FilterOperator.NotEqual:
-                    return "$ne";
+                    return "$neq";
                 case FilterOperator.LessOrEqual:
                     return "$lte";
                 case FilterOperator.GreaterOrEqual:
@@ -370,6 +372,22 @@ namespace MbedCloudSDK.Common.Filter
         }
 
         /// <summary>
+        /// Get the first value from a filter by key.
+        /// </summary>
+        /// <param name="key">They key of the filter</param>
+        /// <returns>The first value in the filter</returns>
+        public string GetFirstValueByKey(string key)
+        {
+            if (FilterDictionary.ContainsKey(key))
+            {
+                var attr = FilterDictionary[key];
+                return attr.FirstOrDefault().Value;
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// Remove key from filter
         /// </summary>
         /// <param name="key">Key to remove</param>
@@ -414,7 +432,31 @@ namespace MbedCloudSDK.Common.Filter
                 var jobj = JObject.Parse(objStr);
                 foreach (var item in jobj)
                 {
-                    filterAttributes.Add(new FilterAttribute(item.Value.Value<string>(), QueryOperatorToEnum(item.Key)));
+                    /*
+                    var x = JsonConvert.SerializeObject(item);
+                    var y = JsonConvert.DeserializeObject(x) as dynamic;
+                    var z = Convert.ToString(y["Value"]);
+                    var parsedVal = string.Empty;
+                    var isDate = DateTime.TryParse(z, out DateTime date);
+                    if (isDate)
+                    {
+                        parsedVal = date.ToString("yyyy-MM-dd'T'HH:mm:ss.fffZ");
+                    }
+                    else
+                    {
+                        parsedVal = z;
+                    }
+                    */
+                    var value = item.Value.Value<string>().Trim();
+                    Console.WriteLine(value);
+                    var isDate = DateTime.TryParse(value, out DateTime dateValue);
+                    Console.WriteLine(isDate);
+                    if (isDate)
+                    {
+                        value = dateValue.ToString("yyyy-MM-dd'T'HH:mm:ss.fffZ");
+                    }
+
+                    filterAttributes.Add(new FilterAttribute(value, QueryOperatorToEnum(item.Key)));
                 }
             }
             catch (JsonReaderException)
@@ -524,7 +566,15 @@ namespace MbedCloudSDK.Common.Filter
             var customAttributes = new Dictionary<string, FilterAttribute[]>();
             if (Utils.IsValidJson(queryJson))
             {
-                var json = JsonConvert.DeserializeObject<Dictionary<string, object>>(queryJson);
+                var tempJson = JsonConvert.DeserializeObject<Dictionary<string, object>>(queryJson);
+                var json = new Dictionary<string, object>();
+                foreach (var key in tempJson.Keys)
+                {
+                    var val = tempJson[key];
+                    var map = MapKeys.Map(key);
+                    json.Add(map, val);
+                }
+
                 if (json.Keys.Contains("custom_attributes"))
                 {
                     var customAttributeJson = json["custom_attributes"].ToString();

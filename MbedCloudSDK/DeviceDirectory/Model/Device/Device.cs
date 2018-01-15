@@ -155,7 +155,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// Gets the timestamp of the current manifest version
         /// </summary>
         [JsonProperty]
-        public DateTime? ManifestTimeStamp { get; internal set; }
+        public DateTime? ManifestTimestamp { get; internal set; }
 
         /// <summary>
         /// Gets or sets fingerprint of the device certificate
@@ -180,7 +180,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// <summary>
         /// Gets or sets the endpoint name given to the device
         /// </summary>
-        public string EndpointName { get; set; }
+        public string Alias { get; set; }
 
         /// <summary>
         /// Gets or sets the endpoint_name of the host gateway, if appropriate
@@ -212,8 +212,8 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         {
             var device = new Device(null, api)
             {
-                BootstrappedTimestamp = deviceData.BootstrappedTimestamp.HasValue ? deviceData.BootstrappedTimestamp.Value.ToUniversalTime() : default(DateTime),
-                UpdatedAt = deviceData.UpdatedAt.HasValue ? deviceData.UpdatedAt.Value.ToUniversalTime() : default(DateTime),
+                BootstrappedTimestamp = deviceData.BootstrappedTimestamp.ToNullableUniversalTime(),
+                UpdatedAt = deviceData.UpdatedAt.ToNullableUniversalTime(),
                 CustomAttributes = deviceData.CustomAttributes,
                 DeviceClass = deviceData.DeviceClass,
                 Description = deviceData.Description,
@@ -229,18 +229,18 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
                 MechanismUrl = deviceData.MechanismUrl,
                 Id = deviceData.Id,
                 Name = deviceData.Name,
-                CreatedAt = deviceData.CreatedAt.HasValue ? deviceData.CreatedAt.Value.ToUniversalTime() : default(DateTime),
+                CreatedAt = deviceData.CreatedAt.ToNullableUniversalTime(),
                 Manifest = deviceData.Manifest,
                 CertificateFingerprint = deviceData.DeviceKey,
                 CertificateIssuerId = deviceData.CaId,
-                BootstrapCertificateExpiration = deviceData.BootstrapExpirationDate.HasValue ? deviceData.BootstrapExpirationDate.Value.ToUniversalTime() : default(DateTime),
-                ConnectorCertificateExpiration = deviceData.ConnectorExpirationDate.HasValue ? deviceData.ConnectorExpirationDate.Value.ToUniversalTime() : default(DateTime),
-                EndpointName = deviceData.EndpointName,
+                BootstrapCertificateExpiration = deviceData.BootstrapExpirationDate.ToNullableUniversalTime(),
+                ConnectorCertificateExpiration = deviceData.ConnectorExpirationDate.ToNullableUniversalTime(),
+                Alias = deviceData.EndpointName,
                 HostGateway = deviceData.HostGateway,
                 DeviceExecutionMode = deviceData.DeviceExecutionMode,
                 FirmwareChecksum = deviceData.FirmwareChecksum,
                 DeviceType = deviceData.EndpointType,
-                ManifestTimeStamp = deviceData.ManifestTimestamp.HasValue ? deviceData.ManifestTimestamp.Value.ToUniversalTime() : default(DateTime)
+                ManifestTimestamp = deviceData.ManifestTimestamp.ToNullableUniversalTime(),
             };
             return device;
         }
@@ -254,12 +254,12 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         {
             var deviceDataPostRequest = new DeviceDataPostRequest(DeviceKey: device.CertificateFingerprint, CaId: device.CertificateIssuerId)
             {
-                BootstrapExpirationDate = device.BootstrapCertificateExpiration.HasValue ? device.BootstrapCertificateExpiration.Value.ToUniversalTime() : default(DateTime),
-                BootstrappedTimestamp = device.BootstrappedTimestamp.HasValue ? device.BootstrappedTimestamp.Value.ToUniversalTime() : default(DateTime),
-                ConnectorExpirationDate = device.ConnectorCertificateExpiration.HasValue ? device.ConnectorCertificateExpiration.Value.ToUniversalTime() : default(DateTime),
+                BootstrapExpirationDate = device.BootstrapCertificateExpiration.ToNullableUniversalTime(),
+                BootstrappedTimestamp = device.BootstrappedTimestamp.ToNullableUniversalTime(),
+                ConnectorExpirationDate = device.ConnectorCertificateExpiration.ToNullableUniversalTime(),
                 Mechanism = Utils.ParseEnum<DeviceDataPostRequest.MechanismEnum>(device.Mechanism),
                 DeviceClass = device.DeviceClass,
-                EndpointName = device.EndpointName,
+                EndpointName = device.Alias,
                 AutoUpdate = device.AutoUpdate,
                 HostGateway = device.HostGateway,
                 DeviceExecutionMode = device.DeviceExecutionMode,
@@ -291,7 +291,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
             var deviceDataPutRequest = new DeviceDataPutRequest(CaId: device.CertificateIssuerId, DeviceKey: device.CertificateFingerprint)
             {
                 Description = device.Description,
-                EndpointName = device.EndpointName,
+                EndpointName = device.Alias,
                 AutoUpdate = device.AutoUpdate,
                 HostGateway = device.HostGateway,
                 CustomAttributes = device.CustomAttributes,
@@ -329,12 +329,12 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Manifest: ").Append(Manifest).Append("\n");
-            sb.Append("  ManifestTimeStamp: ").Append(ManifestTimeStamp).Append("\n");
+            sb.Append("  ManifestTimeStamp: ").Append(ManifestTimestamp).Append("\n");
             sb.Append("  Fingerprint: ").Append(CertificateFingerprint).Append("\n");
             sb.Append("  IssuerId: ").Append(CertificateIssuerId).Append("\n");
             sb.Append("  BootstrapCertificateExpiration: ").Append(BootstrapCertificateExpiration).Append("\n");
             sb.Append("  ConnectorCertificateExpiration: ").Append(ConnectorCertificateExpiration).Append("\n");
-            sb.Append("  EndpointName: ").Append(EndpointName).Append("\n");
+            sb.Append("  EndpointName: ").Append(Alias).Append("\n");
             sb.Append("  HostGateway: ").Append(HostGateway).Append("\n");
             sb.Append("  DeviceExecutionMode: ").Append(DeviceExecutionMode).Append("\n");
             sb.Append("  FirmwareChecksum: ").Append(FirmwareChecksum).Append("\n");
