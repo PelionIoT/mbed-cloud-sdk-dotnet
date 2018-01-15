@@ -42,7 +42,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// }
         /// </code>
         /// </example>
-        public PaginatedResponse<Device> ListDevices(QueryOptions options = null)
+        public PaginatedResponse<QueryOptions, Device> ListDevices(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -51,7 +51,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
 
             try
             {
-                return new PaginatedResponse<Device>(ListDevicesFunc, options);
+                return new PaginatedResponse<QueryOptions, Device>(ListDevicesFunc, options);
             }
             catch (CloudApiException e)
             {

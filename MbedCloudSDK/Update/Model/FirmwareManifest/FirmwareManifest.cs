@@ -6,6 +6,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
 {
     using System;
     using System.Text;
+    using MbedCloudSDK.Common;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -16,7 +17,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
         /// <summary>
         /// Gets or sets gets or Sets Datafile
         /// </summary>
-        public string Datafile { get; set; }
+        public string Url { get; set; }
 
         /// <summary>
         /// Gets size in bytes of the uploaded firmware manifest binary
@@ -65,6 +66,11 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
         public string Name { get; set; }
 
         /// <summary>
+        /// Gets the time the object was updated
+        /// </summary>
+        public string Version { get; private set; }
+
+        /// <summary>
         /// Map to FirmwareManifest object.
         /// </summary>
         /// <param name="data">Firmware Manifest</param>
@@ -73,15 +79,15 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
         {
             var manifest = new FirmwareManifest
             {
-                CreatedAt = data.CreatedAt,
-                Datafile = data.Datafile,
+                CreatedAt = data.CreatedAt.ToNullableUniversalTime(),
+                Url = data.Datafile,
                 DatafileSize = data.DatafileSize,
                 Description = data.Description,
                 DeviceClass = data.DeviceClass,
                 Id = data.Id,
                 Name = data.Name,
-                Timestamp = data.Timestamp,
-                UpdatedAt = data.UpdatedAt
+                Timestamp = data.Timestamp.ToNullableUniversalTime(),
+                UpdatedAt = data.UpdatedAt.ToNullableUniversalTime()
             };
             return manifest;
         }
@@ -94,7 +100,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
         {
             var sb = new StringBuilder();
             sb.Append("class FirmwareManifestSerializerData {\n");
-            sb.Append("  Datafile: ").Append(Datafile).Append("\n");
+            sb.Append("  Datafile: ").Append(Url).Append("\n");
             sb.Append("  DatafileSize  ").Append(DatafileSize).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");

@@ -60,7 +60,7 @@ namespace TestServer
         {
             var apiKey = Utils.ReadSetting("ApiKey") as string;
             var host = Utils.ReadSetting("Host") as string;
-            var config = new Config(apiKey, host);
+            var config = new Config(apiKey: apiKey, host: host, forceClear: true, autostartNotifications: false);
 
             var dict = new Dictionary<string, object>();
             dict.Add("AccountManagement", Activator.CreateInstance(typeof(AccountManagementApi), config));

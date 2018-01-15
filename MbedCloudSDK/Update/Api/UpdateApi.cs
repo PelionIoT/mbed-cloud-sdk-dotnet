@@ -39,7 +39,7 @@ namespace MbedCloudSDK.Update.Api
             api = new update_service.Api.DefaultApi();
             api.Configuration.ApiKey["Authorization"] = config.ApiKey;
             api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            api.Configuration.DateTimeFormat = "yyyy-MM-ddThh:mm:ss.ffffffZ";
+            api.Configuration.DateTimeFormat = "yyyy-MM-ddTHH:mm:ss.ffffffZ";
         }
 
         /// <summary>

@@ -68,11 +68,12 @@ namespace TestServer
         }
 
         [HttpGet]
-        public void Exit()
+        public string Exit()
         {
             _moduleRepository.Create().StopNotifications();
             Console.WriteLine("Finished...");
             Program.shutDown.Set();
+            return "bye";
         }
 
         [HttpGet]
@@ -86,7 +87,7 @@ namespace TestServer
             {
                 var dict = RestSharp.Extensions.MonoHttp.HttpUtility.ParseQueryString(args);
                 var camelDict = Utils.SnakeToCamelDict(dict);
-                var argsJson = JsonConvert.SerializeObject(camelDict);
+                var argsJson = JsonConvert.SerializeObject(camelDict, GetDateSettings());
                 argsJsonObj = JObject.Parse(argsJson);
             }
 
@@ -130,6 +131,11 @@ namespace TestServer
 
                 }
                 var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, GetSnakeJsonSettings());
+                if (result == null || result == "null")
+                {
+                    return Ok(new object());
+                }
+
                 return Ok(JsonConvert.DeserializeObject(result));
             }
             catch (TargetInvocationException e)
@@ -157,9 +163,23 @@ namespace TestServer
             }
         }
 
+        private JsonSerializerSettings GetDateSettings()
+        {
+            var settings = new JsonSerializerSettings()
+            {
+                DateFormatString = "yyyy-MM-ddTHH:mm:ss.ffffffZ",
+                DateTimeZoneHandling = DateTimeZoneHandling.Utc
+            };
+            return settings;
+        }
+
         private JsonSerializerSettings GetSnakeJsonSettings()
         {
-            var settings = new JsonSerializerSettings();
+            var settings = new JsonSerializerSettings()
+            {
+                DateFormatString = "yyyy-MM-ddTHH:mm:ss.ffffffZ",
+                DateTimeZoneHandling = DateTimeZoneHandling.Utc
+            };
             var contractResolver = new DefaultContractResolver
             {
                 NamingStrategy = new SnakeCaseNamingStrategy()
@@ -238,6 +258,19 @@ namespace TestServer
                                 {
                                     var filterJToken = JToken.FromObject(new Filter(filterJsonString, string.IsNullOrEmpty(filterJsonString)));
                                     vals[propertyInst.Name] = filterJToken;
+                                }
+                            }
+                            else if (propertyInst.PropertyType == typeof(List<string>))
+                            {
+                                var paramValue = GetParamValue(propertyInst, argsJsonObj);
+                                if (paramValue != null)
+                                {
+                                    var list = JsonConvert.DeserializeObject<List<string>>(paramValue.ToString());
+                                    vals[propertyInst.Name] = JToken.FromObject(list);
+                                }
+                                else
+                                {
+                                    vals[propertyInst.Name] = paramValue;
                                 }
                             }
                             else

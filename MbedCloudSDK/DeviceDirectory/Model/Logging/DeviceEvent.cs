@@ -103,7 +103,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Logging
             {
                 Changes = deviceLogSerializer.Changes,
                 Data = deviceLogSerializer.Data,
-                EventDate = deviceLogSerializer.DateTime,
+                EventDate = deviceLogSerializer.DateTime.ToNullableUniversalTime(),
                 Description = deviceLogSerializer.Description,
                 DeviceId = deviceLogSerializer.DeviceId,
                 Id = deviceLogSerializer.Id,

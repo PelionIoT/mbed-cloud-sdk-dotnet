@@ -42,7 +42,7 @@ namespace MbedCloudSDK.Update.Api
         /// }
         /// </code>
         /// </example>
-        public PaginatedResponse<Campaign> ListCampaigns(QueryOptions options = null)
+        public PaginatedResponse<QueryOptions, Campaign> ListCampaigns(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -51,7 +51,7 @@ namespace MbedCloudSDK.Update.Api
 
             try
             {
-                return new PaginatedResponse<Campaign>(ListCampaignsFunc, options);
+                return new PaginatedResponse<QueryOptions, Campaign>(ListCampaignsFunc, options);
             }
             catch (CloudApiException e)
             {
@@ -111,7 +111,7 @@ namespace MbedCloudSDK.Update.Api
         /// }
         /// </code>
         /// </example>
-        public PaginatedResponse<CampaignDeviceState> ListCampaignDeviceStates(string campaignId, QueryOptions options = null)
+        public PaginatedResponse<QueryOptions, CampaignDeviceState> ListCampaignDeviceStates(string campaignId, QueryOptions options = null)
         {
             if (options == null)
             {
@@ -122,7 +122,7 @@ namespace MbedCloudSDK.Update.Api
 
             try
             {
-                return new PaginatedResponse<CampaignDeviceState>(ListCampaignDeviceStatesFunc, options);
+                return new PaginatedResponse<QueryOptions, CampaignDeviceState>(ListCampaignDeviceStatesFunc, options);
             }
             catch (CloudApiException e)
             {

@@ -110,11 +110,6 @@ namespace MbedCloudSDK.Update.Model.Campaign
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets object
-        /// </summary>
-        public string Object { get; set; }
-
-        /// <summary>
         /// Map to Update campaign object.
         /// </summary>
         /// <param name="data">Update Campaign</param>
@@ -124,7 +119,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
             var updateCampaignStatus = Utils.ParseEnum<CampaignStateEnum>(data.State);
             var campaign = new Campaign
             {
-                CreatedAt = data.CreatedAt,
+                CreatedAt = data.CreatedAt.ToNullableUniversalTime(),
                 Description = data.Description,
                 DeviceFilter = new Filter(data.DeviceFilter),
                 FinishedAt = data.Finished,
@@ -133,7 +128,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
                 ManifestId = data.RootManifestId,
                 ManifestUrl = data.RootManifestUrl,
                 State = updateCampaignStatus,
-                ScheduledAt = data.When,
+                ScheduledAt = data.When.ToNullableUniversalTime(),
                 StartedAt = data.StartedAt,
                 UpdatedAt = data.UpdatedAt,
             };
@@ -175,7 +170,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
                 Description = Description,
                 RootManifestId = ManifestId,
                 State = Utils.ParseEnum<UpdateCampaignPostRequest.StateEnum>(State),
-                When = ScheduledAt
+                When = ScheduledAt.ToNullableUniversalTime(),
             };
             return request;
         }
@@ -190,8 +185,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
             var request = new UpdateCampaignPutRequest(
                 Description: Description,
                 RootManifestId: ManifestId,
-                _Object: string.Empty,
-                When: ScheduledAt ?? DateTime.Now,
+                When: ScheduledAt ?? DateTime.Now.ToUniversalTime(),
                 State: updateCampaignStatus,
                 DeviceFilter: DeviceFilter.FilterString,
                 Name: Name);
@@ -210,8 +204,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
             {
                 Description = Description,
                 RootManifestId = ManifestId,
-                _Object = Object,
-                When = ScheduledAt ?? DateTime.Now,
+                When = ScheduledAt ?? DateTime.Now.ToUniversalTime(),
                 State = updateCampaignStatus,
                 DeviceFilter = DeviceFilter?.FilterString,
                 Name = Name,

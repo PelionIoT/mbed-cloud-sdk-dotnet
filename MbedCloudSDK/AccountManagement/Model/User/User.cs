@@ -161,7 +161,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 AccountId = userInfo.AccountId,
                 PasswordChangedTime = userInfo.PasswordChangedTime,
                 Groups = userInfo.Groups != null ? userInfo.Groups : Enumerable.Empty<string>().ToList(),
-                CreatedAt = userInfo.CreatedAt,
+                CreatedAt = userInfo.CreatedAt.ToNullableUniversalTime(),
                 TermsAccepted = userInfo.IsGtcAccepted,
                 Email = userInfo.Email,
                 MarketingAccepted = userInfo.IsMarketingAccepted,

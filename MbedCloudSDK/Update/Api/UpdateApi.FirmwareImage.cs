@@ -42,7 +42,7 @@ namespace MbedCloudSDK.Update.Api
         /// }
         /// </code>
         /// </example>
-        public PaginatedResponse<FirmwareImage> ListFirmwareImages(QueryOptions options = null)
+        public PaginatedResponse<QueryOptions, FirmwareImage> ListFirmwareImages(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -51,7 +51,7 @@ namespace MbedCloudSDK.Update.Api
 
             try
             {
-                return new PaginatedResponse<FirmwareImage>(ListFirmwareImagesFun, options);
+                return new PaginatedResponse<QueryOptions, FirmwareImage>(ListFirmwareImagesFun, options);
             }
             catch (CloudApiException)
             {
@@ -120,12 +120,13 @@ namespace MbedCloudSDK.Update.Api
         /// <returns>The firmware image.</returns>
         /// <param name="dataFile">Path to the data file</param>
         /// <param name="name">Name of the <see cref="FirmwareImage"/></param>
+        /// <param name="description">Description of the <see cref="FirmwareImage"/></param>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
         /// try
         /// {
-        ///     var image = updateApI.AddFirmwareImage("FirmwareImage file path", "name of image");
+        ///     var image = updateApI.AddFirmwareImage("FirmwareImage file path", "name of image", "image description");
         ///     return image;
         /// }
         /// catch (CloudApiException)
@@ -134,13 +135,13 @@ namespace MbedCloudSDK.Update.Api
         /// }
         /// </code>
         /// </example>
-        public FirmwareImage AddFirmwareImage(string dataFile, string name)
+        public FirmwareImage AddFirmwareImage(string dataFile, string name, string description = null)
         {
             try
             {
                 using (var fs = File.OpenRead(dataFile))
                 {
-                    var result = FirmwareImage.Map(api.FirmwareImageCreate(fs, name));
+                    var result = FirmwareImage.Map(api.FirmwareImageCreate(fs, name, description));
                     return result;
                 }
             }

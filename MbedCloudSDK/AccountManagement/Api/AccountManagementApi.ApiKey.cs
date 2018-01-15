@@ -4,6 +4,7 @@
 
 namespace MbedCloudSDK.AccountManagement.Api
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using MbedCloudSDK.AccountManagement.Model.ApiKey;
@@ -44,7 +45,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <returns>A paginated response containing <see cref="ApiKey"/></returns>
         /// <param name="options"><see cref="QueryOptions"/></param>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public PaginatedResponse<ApiKey> ListApiKeys(QueryOptions options = null)
+        public PaginatedResponse<QueryOptions, ApiKey> ListApiKeys(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -53,7 +54,7 @@ namespace MbedCloudSDK.AccountManagement.Api
 
             try
             {
-                return new PaginatedResponse<ApiKey>(ListApiKeysFunc, options);
+                return new PaginatedResponse<QueryOptions, ApiKey>(ListApiKeysFunc, options);
             }
             catch (CloudApiException)
             {
@@ -70,7 +71,7 @@ namespace MbedCloudSDK.AccountManagement.Api
 
             try
             {
-                var resp = developerApi.GetAllApiKeys(limit: options.Limit, after: options.After, order: options.Order, include: options.Include, ownerEq: options.Filter?.FilterString);
+                var resp = developerApi.GetAllApiKeys(limit: options.Limit, after: options.After, order: options.Order, include: options.Include, ownerEq: options.Filter.GetFirstValueByKey("owner_id"));
                 var respKeys = new ResponsePage<ApiKey>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var key in resp.Data)
                 {

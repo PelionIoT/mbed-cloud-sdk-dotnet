@@ -45,7 +45,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             device_directory.Client.Configuration.Default.ApiClient = new ApiClient(config.Host);
             device_directory.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
             device_directory.Client.Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            device_directory.Client.Configuration.Default.DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
+            device_directory.Client.Configuration.Default.DateTimeFormat = "yyyy-MM-dd";
 
             api = new device_directory.Api.DefaultApi();
         }

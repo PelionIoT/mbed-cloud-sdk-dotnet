@@ -5,6 +5,7 @@
 namespace MbedCloudSDK.Connect.Api
 {
     using System.Collections.Generic;
+    using MbedCloudSDK.Common;
     using MbedCloudSDK.Connect.Model.Metric;
     using MbedCloudSDK.Exceptions;
 
@@ -40,7 +41,7 @@ namespace MbedCloudSDK.Connect.Api
         /// }
         /// </code>
         /// </example>
-        public List<Metric> ListMetrics(MetricQueryOptions options = null)
+        public PaginatedResponse<MetricQueryOptions, Metric> ListMetrics(MetricQueryOptions options = null)
         {
             if (options == null)
             {
@@ -54,24 +55,36 @@ namespace MbedCloudSDK.Connect.Api
 
             try
             {
-                var response = statisticsApi.V3MetricsGet(
+                return new PaginatedResponse<MetricQueryOptions, Metric>(ListMetricsFunc, options);
+            }
+            catch (CloudApiException)
+            {
+                throw;
+            }
+        }
+
+        private ResponsePage<Metric> ListMetricsFunc(MetricQueryOptions options)
+        {
+            try
+            {
+                var resp = statisticsApi.V3MetricsGet(
                     include: options.Include,
-                    interval: options.Interval,
-                    start: options.Start,
-                    end: options.End,
-                    period: options.Period,
-                    limit: options.Limit,
-                    after: options.After,
-                    order: options.Order);
-                var statisticsList = new List<Metric>();
-                foreach (var data in response.Data)
+                        interval: options.Interval,
+                        start: options.Start,
+                        end: options.End,
+                        period: options.Period,
+                        limit: options.Limit,
+                        after: options.After,
+                        order: options.Order);
+                var respMetrics = new ResponsePage<Metric>(after: resp.After, hasMore: resp.HasMore, limit: resp.Limit, order: null, totalCount: resp.TotalCount);
+                foreach (var metric in resp.Data)
                 {
-                    statisticsList.Add(Metric.Map(data));
+                    respMetrics.Data.Add(Metric.Map(metric));
                 }
 
-                return statisticsList;
+                return respMetrics;
             }
-            catch (iam.Client.ApiException e)
+            catch (statistics.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }

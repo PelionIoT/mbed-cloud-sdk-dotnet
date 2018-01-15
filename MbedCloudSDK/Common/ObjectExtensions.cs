@@ -4,6 +4,7 @@
 
 namespace MbedCloudSDK.Common
 {
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -25,6 +26,21 @@ namespace MbedCloudSDK.Common
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Convert a nullable date to universal time
+        /// </summary>
+        /// <param name="date">The date to convert</param>
+        /// <returns>The date in universal time or null</returns>
+        public static DateTime? ToNullableUniversalTime(this DateTime? date)
+        {
+            if (date.HasValue)
+            {
+                return date.Value.ToUniversalTime();
+            }
+
+            return null;
         }
     }
 }

@@ -55,7 +55,7 @@ namespace MbedCloudSDK.Test.Common.Filter
             filter.Add("key", "value", FilterOperator.Equals);
             filter.Add("error", "found", FilterOperator.NotEqual);
             filter.Add("range", new FilterAttribute("10", FilterOperator.LessOrEqual), new FilterAttribute("2", FilterOperator.GreaterOrEqual));
-            Assert.AreEqual("{\"key\":{\"$eq\":\"value\"},\"error\":{\"$ne\":\"found\"},\"range\":{\"$lte\":\"10\",\"$gte\":\"2\"}}", filter.FilterJson.ToString(Formatting.None));
+            Assert.AreEqual("{\"key\":{\"$eq\":\"value\"},\"error\":{\"$neq\":\"found\"},\"range\":{\"$lte\":\"10\",\"$gte\":\"2\"}}", filter.FilterJson.ToString(Formatting.None));
         }
 
         [Test]
@@ -106,7 +106,7 @@ namespace MbedCloudSDK.Test.Common.Filter
         [Test]
         public void ShouldEncodeFilterFromJson()
         {
-            var filterString = "{\"key\": {\"$eq\": \"value\"}, \"error\": {\"$ne\": \"found\"}, \"range\": {\"$lte\": \"10\", \"$gte\": \"2\"}}";
+            var filterString = "{\"key\": {\"$eq\": \"value\"}, \"error\": {\"$neq\": \"found\"}, \"range\": {\"$lte\": \"10\", \"$gte\": \"2\"}}";
             var filter = new MbedCloudSDK.Common.Filter.Filter(filterString);
             Assert.AreEqual("key=value&error__neq=found&range__lte=10&range__gte=2", filter.FilterString);
         }
@@ -114,7 +114,7 @@ namespace MbedCloudSDK.Test.Common.Filter
         [Test]
         public void ShouldEncodeBareFilterFromJson()
         {
-            var filterString = "{\"key\": \"value\", \"error\": {\"$ne\": \"found\"}, \"range\": {\"$lte\": \"10\", \"$gte\": \"2\"}}";
+            var filterString = "{\"key\": \"value\", \"error\": {\"$neq\": \"found\"}, \"range\": {\"$lte\": \"10\", \"$gte\": \"2\"}}";
             var filter = new MbedCloudSDK.Common.Filter.Filter(filterString);
             Assert.AreEqual("key=value&error__neq=found&range__lte=10&range__gte=2", filter.FilterString);
         }
@@ -122,7 +122,7 @@ namespace MbedCloudSDK.Test.Common.Filter
         [Test]
         public void ShouldEncodeFilterFromJsonWithCustomAttributes()
         {
-            var filterString = "{\"key\": {\"$eq\": \"value\"}, \"error\": {\"$ne\": \"found\"}, \"range\": {\"$lte\": \"10\", \"$gte\": \"2\"}, \"custom_attributes\": {\"custom_1\": {\"$eq\": \"custom_value_1\"}, \"custom_2\": {\"$ne\": \"custom_value_2\"}}}";
+            var filterString = "{\"key\": {\"$eq\": \"value\"}, \"error\": {\"$neq\": \"found\"}, \"range\": {\"$lte\": \"10\", \"$gte\": \"2\"}, \"custom_attributes\": {\"custom_1\": {\"$eq\": \"custom_value_1\"}, \"custom_2\": {\"$neq\": \"custom_value_2\"}}}";
             var filter = new MbedCloudSDK.Common.Filter.Filter(filterString);
             Assert.AreEqual("key=value&error__neq=found&range__lte=10&range__gte=2&custom_attribute__custom_1=custom_value_1&custom_attribute__custom_2__neq=custom_value_2", filter.FilterString);
         }

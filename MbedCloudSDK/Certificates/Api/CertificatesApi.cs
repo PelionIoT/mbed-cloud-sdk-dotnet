@@ -5,6 +5,7 @@
 namespace MbedCloudSDK.Certificates.Api
 {
     using System;
+    using System.Globalization;
     using System.Linq;
     using connector_ca.Api;
     using connector_ca.Client;
@@ -59,19 +60,19 @@ namespace MbedCloudSDK.Certificates.Api
             iamAccountApi = new AccountAdminApi();
             developerApi = new DeveloperApi();
 
-            BootstrapServerUri = serverCredentialsApi.V3ServerCredentialsBootstrapGet(auth).ServerUri;
-            Lmw2mServerUri = serverCredentialsApi.V3ServerCredentialsLwm2mGet(auth).ServerUri;
+            BootstrapServerCredentials = serverCredentialsApi.V3ServerCredentialsBootstrapGet(auth);
+            Lmw2mServerCredentials = serverCredentialsApi.V3ServerCredentialsLwm2mGet(auth);
         }
 
         /// <summary>
         /// Gets Bootstrap server uri
         /// </summary>
-        public string BootstrapServerUri { get; private set; }
+        public connector_ca.Model.ServerCredentialsResponseData BootstrapServerCredentials { get; private set; }
 
         /// <summary>
         /// Gets lmw2m server Uri
         /// </summary>
-        public string Lmw2mServerUri { get; private set; }
+        public connector_ca.Model.ServerCredentialsResponseData Lmw2mServerCredentials { get; private set; }
 
         /// <summary>
         /// Get meta data for the last Mbed Cloud API call
@@ -113,7 +114,7 @@ namespace MbedCloudSDK.Certificates.Api
         /// <returns>Paginated response with <see cref="Certificate"/></returns>
         /// <param name="options"><see cref="QueryOptions"/></param>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public PaginatedResponse<Certificate> ListCertificates(QueryOptions options = null)
+        public PaginatedResponse<QueryOptions, Certificate> ListCertificates(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -122,7 +123,7 @@ namespace MbedCloudSDK.Certificates.Api
 
             try
             {
-                return new PaginatedResponse<Certificate>(ListCertificatesFunc, options);
+                return new PaginatedResponse<QueryOptions, Certificate>(ListCertificatesFunc, options);
             }
             catch (iam.Client.ApiException e)
             {
@@ -139,7 +140,11 @@ namespace MbedCloudSDK.Certificates.Api
 
             try
             {
-                var resp = developerApi.GetAllCertificates(limit: options.Limit, after: options.After, order: options.Order, include: options.Include);
+                var type = options.Filter.GetFirstValueByKey("type") ?? options.Filter.GetFirstValueByKey("event_type");
+                var serviceEq = (type == "developer") ? "bootstrap" : type;
+                var executionMode = (type == "developer") ? new int?(1) : null;
+                var expiredParsed = int.TryParse(options.Filter.GetFirstValueByKey("expires"), NumberStyles.None, null, out int expires);
+                var resp = developerApi.GetAllCertificates(limit: options.Limit, after: options.After, order: options.Order, include: options.Include, serviceEq: serviceEq, expireEq: expiredParsed ? new int?(expires) : null, deviceExecutionModeEq: executionMode, ownerEq: options.Filter.GetFirstValueByKey("owner_id"));
                 var respCertificates = new ResponsePage<Certificate>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var certificate in resp.Data)
                 {
@@ -244,7 +249,7 @@ namespace MbedCloudSDK.Certificates.Api
             try
             {
                 var resp = iamAccountApi.AddCertificate(new TrustedCertificateReq(Certificate: certificateData, Name: certificate.Name, Service: serviceEnum, Signature: signature, Description: certificate.Description));
-                return Certificate.MapTrustedCert(resp);
+                return GetCertificate(resp.Id);
             }
             catch (iam.Client.ApiException ex)
             {

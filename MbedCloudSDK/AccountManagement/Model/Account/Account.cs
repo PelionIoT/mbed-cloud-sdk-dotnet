@@ -94,7 +94,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         /// Gets flag (true/false) indicating whether Factory Tool is allowed to download or not.
         /// </summary>
         [JsonProperty]
-        public bool? ProvisisioningAllowed { get; private set; }
+        public bool? ProvisioningAllowed { get; private set; }
 
         /// <summary>
         /// Gets or sets the company email address for this account.
@@ -177,15 +177,15 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
                 AddressLine1 = accountInfo.AddressLine1,
                 DisplayName = accountInfo.DisplayName,
                 State = accountInfo.State,
-                ProvisisioningAllowed = accountInfo.IsProvisioningAllowed,
+                ProvisioningAllowed = accountInfo.IsProvisioningAllowed,
                 Email = accountInfo.Email,
                 Status = accountStatus,
                 Company = accountInfo.Company,
-                UpgradedAt = accountInfo.UpgradedAt,
+                UpgradedAt = accountInfo.UpgradedAt.ToNullableUniversalTime(),
                 Tier = accountInfo.Tier,
                 Limits = accountInfo.Limits != null ? accountInfo.Limits : new Dictionary<string, string>(),
                 Country = accountInfo.Country,
-                CreatedAt = accountInfo.CreatedAt,
+                CreatedAt = accountInfo.CreatedAt.ToNullableUniversalTime(),
                 Contact = accountInfo.Contact,
                 TemplateId = accountInfo.TemplateId,
                 Policies = accountInfo.Policies != null ? accountInfo.Policies.Select(p => { return Policy.Policy.Map(p); }).ToList() : Enumerable.Empty<Policy.Policy>().ToList(),
@@ -211,7 +211,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
             sb.Append("  AddressLine1: ").Append(AddressLine1).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
-            sb.Append("  ProvisisioningAllowed: ").Append(ProvisisioningAllowed).Append("\n");
+            sb.Append("  ProvisioningAllowed: ").Append(ProvisioningAllowed).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");

@@ -206,6 +206,7 @@
     <Compile Include="Common\Filter\Filter.cs" />
     <Compile Include="Common\Filter\FilterAttribute.cs" />
     <Compile Include="Common\Filter\FilterOperator.cs" />
+    <Compile Include="Common\Filter\Maps\MapKeys.cs" />
     <Compile Include="Common\Filter\Maps\DeviceFilterMapEnum.cs" />
     <Compile Include="Common\Filter\Maps\UpdateFilterMapEnum.cs" />
     <Compile Include="Common\Tlv\EnumerableExtensions.cs" />
