@@ -68,11 +68,12 @@ namespace TestServer
         }
 
         [HttpGet]
-        public void Exit()
+        public string Exit()
         {
             _moduleRepository.Create().StopNotifications();
             Console.WriteLine("Finished...");
             Program.shutDown.Set();
+            return "bye";
         }
 
         [HttpGet]
