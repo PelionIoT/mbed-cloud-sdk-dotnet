@@ -18,5 +18,5 @@ then
     exit 0
 fi
 echo The CLI has been installed.
-LOCALDOTNET="$INSTALLDIR/dotnet"
+dotnet="$INSTALLDIR/dotnet"
 # Run the build process now. Implement your build script here.
