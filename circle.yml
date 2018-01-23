@@ -40,3 +40,21 @@ checkout:
 dependencies:
   pre:
     - docker pull ${TESTRUNNER_DOCKER_IMAGE}
+    - ./dotnet.sh
+    # Add artful repo to get latest doxygen
+    - sudo apt-get install software-properties-common python-software-properties
+    - sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu/ artful main"
+    - sudo apt-get update
+    - sudo apt-get install doxygen
+    - mkdir -p ${SDK_DOCS}
+    - mkdir -p ${SDK_REPORTS}
+    - mkdir -p ${SDK_COVERAGE_REPORTS}
+  post:
+    - npm install -g ansi-html-stream
+compile:
+  override:
+    - dotnet restore
+    - dotnet build
+test:
+  override:
+    - echo "test"
