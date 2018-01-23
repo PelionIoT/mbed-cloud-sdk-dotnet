@@ -59,7 +59,7 @@ namespace TestServer
         private Dictionary<string, object> InitalizeModules()
         {
             var apiKey = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_HOST");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
             var config = new Config(apiKey: apiKey, host: host, forceClear: true, autostartNotifications: false);
 
             var dict = new Dictionary<string, object>();

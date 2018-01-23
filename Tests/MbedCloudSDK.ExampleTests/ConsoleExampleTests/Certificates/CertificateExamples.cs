@@ -18,7 +18,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Certificates
         public void ListAllCertificates()
         {
             var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_HOST");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
             var config = new Config(key, host);
             var certificatesApi = new ConsoleExamples.Examples.Certificates.CertificateExamples(config);
             var certificates = certificatesApi.ListAllCertificates();
@@ -29,7 +29,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Certificates
         public void CreateCertificate()
         {
             var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_HOST");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
             var config = new Config(key, host);
             var certificatesApi = new ConsoleExamples.Examples.Certificates.CertificateExamples(config);
             var certificate = certificatesApi.CreateCertificate();

@@ -18,7 +18,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Update
         public void CreateUpdateCampaign()
         {
             var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_HOST");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
             var config = new Config(key, host);
             var createUpdateCampaign = new ConsoleExamples.Examples.Update.UpdateExamples(config);
             var campaign = createUpdateCampaign.CreateCampaign();
@@ -29,7 +29,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Update
         public void ListFirmwareImages()
         {
             var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_HOST");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
             var config = new Config(key, host);
             var listImages = new ConsoleExamples.Examples.Update.UpdateExamples(config);
             var images = listImages.ListImages();
@@ -40,7 +40,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Update
         public void ListFirmwareManifests()
         {
             var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_HOST");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
             var config = new Config(key, host);
             var listManifests = new ConsoleExamples.Examples.Update.UpdateExamples(config);
             var manifests = listManifests.ListManifests();
@@ -51,7 +51,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.Update
         public void ListUpdateCampaigns()
         {
             var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_HOST");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
             var config = new Config(key, host);
             var listCampaigns = new ConsoleExamples.Examples.Update.UpdateExamples(config);
             var campaigns = listCampaigns.ListCampaigns();

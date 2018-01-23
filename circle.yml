@@ -57,8 +57,8 @@ dependencies:
     - npm install -g ansi-html-stream
 compile:
   override:
-    - dotnet restore
     - dotnet build
 test:
   override:
-    - echo "test"
+    - dotnet test Tests/MbedCloudSDK.UnitTests
+    - dotnet test Tests/MbedCloudSDK.ExampleTests

@@ -20,10 +20,10 @@ namespace MbedCloudSDK.ExampleTests
                         var reader = new JsonTextReader(file);
                         var jObject = JObject.Load(reader);
                         var key = jObject.GetValue("MBED_CLOUD_API_KEY");
-                        var host = jObject.GetValue("MBED_CLOUD_HOST");
+                        var host = jObject.GetValue("MBED_CLOUD_API_HOST");
 
                         Environment.SetEnvironmentVariable("MBED_CLOUD_API_KEY", key.Value<string>());
-                        Environment.SetEnvironmentVariable("MBED_CLOUD_HOST", host.Value<string>());
+                        Environment.SetEnvironmentVariable("MBED_CLOUD_API_HOST", host.Value<string>());
                     }
                 }
             }
