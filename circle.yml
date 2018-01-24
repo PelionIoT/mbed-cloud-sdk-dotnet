@@ -62,3 +62,4 @@ test:
   override:
     - dotnet test Tests/MbedCloudSDK.UnitTests
     - dotnet test Tests/MbedCloudSDK.ExampleTests
+    - ./scripts/test.sh

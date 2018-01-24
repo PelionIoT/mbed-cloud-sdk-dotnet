@@ -15,6 +15,7 @@ using MbedCloudSDK.Common.Filter;
 using MbedCloudSDK.Connect.Model.ConnectedDevice;
 using MbedCloudSDK.Connect.Model.Subscription;
 using MbedCloudSDK.Exceptions;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -25,10 +26,12 @@ namespace TestServer
     public class HomeController : Controller
     {
         private SingletonModuleInstance _moduleRepository;
+        private IApplicationLifetime _life;
 
-        public HomeController()
+        public HomeController(IApplicationLifetime life)
         {
             _moduleRepository = new SingletonModuleInstance();
+            _life = life;
         }
 
         [HttpGet]
@@ -43,7 +46,7 @@ namespace TestServer
         {
             _moduleRepository.Create().StopNotifications();
             Console.WriteLine("Finished...");
-            // Program.shutDown.Set();
+            _life.StopApplication();
             return "bye";
         }
 

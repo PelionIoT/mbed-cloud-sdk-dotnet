@@ -21,6 +21,7 @@ namespace ConsoleExamples.Examples.DeviceDirectory
         /// <returns>List of device events</returns>
         public List<DeviceEvent> ListDevicesLogs()
         {
+            /*
             var options = new QueryOptions
             {
                 Limit = 5,
@@ -37,6 +38,8 @@ namespace ConsoleExamples.Examples.DeviceDirectory
             }
 
             return logs;
+            */
+            return null;
         }
 
         /// <summary>
