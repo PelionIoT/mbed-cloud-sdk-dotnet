@@ -10,7 +10,7 @@ if [ -z $API_KEY ]; then
   exit 1;
 fi
 
-dotnet run Tests/MbedCloudSDK.IntegrationTests &
+dotnet run --project Tests/MbedCloudSDK.IntegrationTests/MbedCloudSDK.IntegrationTests.csproj &
 
 sleep 2
 
