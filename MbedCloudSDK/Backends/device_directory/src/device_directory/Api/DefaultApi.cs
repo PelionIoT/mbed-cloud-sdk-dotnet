@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RestSharp.Portable;
+using RestSharp;
 using device_directory.Client;
 using device_directory.Model;
 
@@ -200,29 +200,6 @@ namespace device_directory.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Update device fields.
-        /// </remarks>
-        /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of the device.</param>
-        /// <param name="device"></param>
-        /// <returns>DeviceData</returns>
-        DeviceData DevicePartialUpdate (string id, DeviceDataPatchRequest device);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Update device fields.
-        /// </remarks>
-        /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of the device.</param>
-        /// <param name="device"></param>
-        /// <returns>ApiResponse of DeviceData</returns>
-        ApiResponse<DeviceData> DevicePartialUpdateWithHttpInfo (string id, DeviceDataPatchRequest device);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
         /// Create device query.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
@@ -290,29 +267,6 @@ namespace device_directory.Api
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: &#x60;total_count&#x60;. (optional)</param>
         /// <returns>ApiResponse of DeviceQueryPage</returns>
         ApiResponse<DeviceQueryPage> DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Update device query fields.
-        /// </remarks>
-        /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="queryId"></param>
-        /// <param name="deviceQuery"></param>
-        /// <returns>DeviceQuery</returns>
-        DeviceQuery DeviceQueryPartialUpdate (string queryId, DeviceQueryPatchRequest deviceQuery);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Update device query fields.
-        /// </remarks>
-        /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="queryId"></param>
-        /// <param name="deviceQuery"></param>
-        /// <returns>ApiResponse of DeviceQuery</returns>
-        ApiResponse<DeviceQuery> DeviceQueryPartialUpdateWithHttpInfo (string queryId, DeviceQueryPatchRequest deviceQuery);
         /// <summary>
         /// 
         /// </summary>
@@ -578,29 +532,6 @@ namespace device_directory.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Update device fields.
-        /// </remarks>
-        /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of the device.</param>
-        /// <param name="device"></param>
-        /// <returns>Task of DeviceData</returns>
-        System.Threading.Tasks.Task<DeviceData> DevicePartialUpdateAsync (string id, DeviceDataPatchRequest device);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Update device fields.
-        /// </remarks>
-        /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of the device.</param>
-        /// <param name="device"></param>
-        /// <returns>Task of ApiResponse (DeviceData)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceData>> DevicePartialUpdateAsyncWithHttpInfo (string id, DeviceDataPatchRequest device);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
         /// Create device query.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
@@ -668,29 +599,6 @@ namespace device_directory.Api
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: &#x60;total_count&#x60;. (optional)</param>
         /// <returns>Task of ApiResponse (DeviceQueryPage)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeviceQueryPage>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Update device query fields.
-        /// </remarks>
-        /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="queryId"></param>
-        /// <param name="deviceQuery"></param>
-        /// <returns>Task of DeviceQuery</returns>
-        System.Threading.Tasks.Task<DeviceQuery> DeviceQueryPartialUpdateAsync (string queryId, DeviceQueryPatchRequest deviceQuery);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Update device query fields.
-        /// </remarks>
-        /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="queryId"></param>
-        /// <param name="deviceQuery"></param>
-        /// <returns>Task of ApiResponse (DeviceQuery)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryPartialUpdateAsyncWithHttpInfo (string queryId, DeviceQueryPatchRequest deviceQuery);
         /// <summary>
         /// 
         /// </summary>
@@ -915,7 +823,7 @@ namespace device_directory.Api
             if (device == null)
                 throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DeviceCreate");
 
-            var localVarPath = "./v3/devices/";
+            var localVarPath = "/v3/devices/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -966,7 +874,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceData>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceData)));
         }
 
@@ -995,7 +903,7 @@ namespace device_directory.Api
             if (device == null)
                 throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DeviceCreate");
 
-            var localVarPath = "./v3/devices/";
+            var localVarPath = "/v3/devices/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1045,7 +953,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceData>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceData)));
         }
 
@@ -1072,7 +980,7 @@ namespace device_directory.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->DeviceDestroy");
 
-            var localVarPath = "./v3/devices/{id}/";
+            var localVarPath = "/v3/devices/{id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1116,7 +1024,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1144,7 +1052,7 @@ namespace device_directory.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->DeviceDestroy");
 
-            var localVarPath = "./v3/devices/{id}/";
+            var localVarPath = "/v3/devices/{id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1187,7 +1095,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1220,7 +1128,7 @@ namespace device_directory.Api
         public ApiResponse< DeviceEventPage > DeviceEventListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
-            var localVarPath = "./v3/device-events/";
+            var localVarPath = "/v3/device-events/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1268,7 +1176,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceEventPage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceEventPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceEventPage)));
         }
 
@@ -1302,7 +1210,7 @@ namespace device_directory.Api
         public async System.Threading.Tasks.Task<ApiResponse<DeviceEventPage>> DeviceEventListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
-            var localVarPath = "./v3/device-events/";
+            var localVarPath = "/v3/device-events/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1349,7 +1257,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceEventPage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceEventPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceEventPage)));
         }
 
@@ -1377,7 +1285,7 @@ namespace device_directory.Api
             if (deviceEventId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceEventId' when calling DefaultApi->DeviceEventRetrieve");
 
-            var localVarPath = "./v3/device-events/{device_event_id}/";
+            var localVarPath = "/v3/device-events/{device_event_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1421,7 +1329,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceEventData>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceEventData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceEventData)));
         }
 
@@ -1450,7 +1358,7 @@ namespace device_directory.Api
             if (deviceEventId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceEventId' when calling DefaultApi->DeviceEventRetrieve");
 
-            var localVarPath = "./v3/device-events/{device_event_id}/";
+            var localVarPath = "/v3/device-events/{device_event_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1493,7 +1401,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceEventData>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceEventData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceEventData)));
         }
 
@@ -1526,7 +1434,7 @@ namespace device_directory.Api
         public ApiResponse< DevicePage > DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
-            var localVarPath = "./v3/devices/";
+            var localVarPath = "/v3/devices/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1574,7 +1482,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DevicePage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DevicePage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DevicePage)));
         }
 
@@ -1608,7 +1516,7 @@ namespace device_directory.Api
         public async System.Threading.Tasks.Task<ApiResponse<DevicePage>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
-            var localVarPath = "./v3/devices/";
+            var localVarPath = "/v3/devices/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1655,7 +1563,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DevicePage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DevicePage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DevicePage)));
         }
 
@@ -1688,7 +1596,7 @@ namespace device_directory.Api
         public ApiResponse< DeviceEventPage > DeviceLogListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
-            var localVarPath = "./v3/devicelog/";
+            var localVarPath = "/v3/devicelog/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1736,7 +1644,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceEventPage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceEventPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceEventPage)));
         }
 
@@ -1770,7 +1678,7 @@ namespace device_directory.Api
         public async System.Threading.Tasks.Task<ApiResponse<DeviceEventPage>> DeviceLogListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
-            var localVarPath = "./v3/devicelog/";
+            var localVarPath = "/v3/devicelog/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1817,7 +1725,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceEventPage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceEventPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceEventPage)));
         }
 
@@ -1845,7 +1753,7 @@ namespace device_directory.Api
             if (deviceEventId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceEventId' when calling DefaultApi->DeviceLogRetrieve");
 
-            var localVarPath = "./v3/devicelog/{device_event_id}/";
+            var localVarPath = "/v3/devicelog/{device_event_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1889,7 +1797,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceEventData>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceEventData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceEventData)));
         }
 
@@ -1918,7 +1826,7 @@ namespace device_directory.Api
             if (deviceEventId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceEventId' when calling DefaultApi->DeviceLogRetrieve");
 
-            var localVarPath = "./v3/devicelog/{device_event_id}/";
+            var localVarPath = "/v3/devicelog/{device_event_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1961,178 +1869,8 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceEventData>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceEventData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceEventData)));
-        }
-
-        /// <summary>
-        ///  Update device fields.
-        /// </summary>
-        /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of the device.</param>
-        /// <param name="device"></param>
-        /// <returns>DeviceData</returns>
-        public DeviceData DevicePartialUpdate (string id, DeviceDataPatchRequest device)
-        {
-             ApiResponse<DeviceData> localVarResponse = DevicePartialUpdateWithHttpInfo(id, device);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Update device fields.
-        /// </summary>
-        /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of the device.</param>
-        /// <param name="device"></param>
-        /// <returns>ApiResponse of DeviceData</returns>
-        public ApiResponse< DeviceData > DevicePartialUpdateWithHttpInfo (string id, DeviceDataPatchRequest device)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->DevicePartialUpdate");
-            // verify the required parameter 'device' is set
-            if (device == null)
-                throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DevicePartialUpdate");
-
-            var localVarPath = "./v3/devices/{id}/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
-            if (device != null && device.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(device); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = device; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DevicePartialUpdate", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<DeviceData>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                (DeviceData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceData)));
-        }
-
-        /// <summary>
-        ///  Update device fields.
-        /// </summary>
-        /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of the device.</param>
-        /// <param name="device"></param>
-        /// <returns>Task of DeviceData</returns>
-        public async System.Threading.Tasks.Task<DeviceData> DevicePartialUpdateAsync (string id, DeviceDataPatchRequest device)
-        {
-             ApiResponse<DeviceData> localVarResponse = await DevicePartialUpdateAsyncWithHttpInfo(id, device);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        ///  Update device fields.
-        /// </summary>
-        /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of the device.</param>
-        /// <param name="device"></param>
-        /// <returns>Task of ApiResponse (DeviceData)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceData>> DevicePartialUpdateAsyncWithHttpInfo (string id, DeviceDataPatchRequest device)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->DevicePartialUpdate");
-            // verify the required parameter 'device' is set
-            if (device == null)
-                throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DevicePartialUpdate");
-
-            var localVarPath = "./v3/devices/{id}/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
-            if (device != null && device.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(device); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = device; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DevicePartialUpdate", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<DeviceData>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                (DeviceData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceData)));
         }
 
         /// <summary>
@@ -2159,7 +1897,7 @@ namespace device_directory.Api
             if (device == null)
                 throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DeviceQueryCreate");
 
-            var localVarPath = "./v3/device-queries/";
+            var localVarPath = "/v3/device-queries/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2210,7 +1948,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceQuery>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceQuery) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuery)));
         }
 
@@ -2239,7 +1977,7 @@ namespace device_directory.Api
             if (device == null)
                 throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DeviceQueryCreate");
 
-            var localVarPath = "./v3/device-queries/";
+            var localVarPath = "/v3/device-queries/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2289,7 +2027,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceQuery>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceQuery) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuery)));
         }
 
@@ -2316,7 +2054,7 @@ namespace device_directory.Api
             if (queryId == null)
                 throw new ApiException(400, "Missing required parameter 'queryId' when calling DefaultApi->DeviceQueryDestroy");
 
-            var localVarPath = "./v3/device-queries/{query_id}/";
+            var localVarPath = "/v3/device-queries/{query_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2360,7 +2098,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -2388,7 +2126,7 @@ namespace device_directory.Api
             if (queryId == null)
                 throw new ApiException(400, "Missing required parameter 'queryId' when calling DefaultApi->DeviceQueryDestroy");
 
-            var localVarPath = "./v3/device-queries/{query_id}/";
+            var localVarPath = "/v3/device-queries/{query_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2431,7 +2169,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -2464,7 +2202,7 @@ namespace device_directory.Api
         public ApiResponse< DeviceQueryPage > DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
-            var localVarPath = "./v3/device-queries/";
+            var localVarPath = "/v3/device-queries/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2512,7 +2250,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceQueryPage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceQueryPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQueryPage)));
         }
 
@@ -2546,7 +2284,7 @@ namespace device_directory.Api
         public async System.Threading.Tasks.Task<ApiResponse<DeviceQueryPage>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
-            var localVarPath = "./v3/device-queries/";
+            var localVarPath = "/v3/device-queries/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2593,178 +2331,8 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceQueryPage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceQueryPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQueryPage)));
-        }
-
-        /// <summary>
-        ///  Update device query fields.
-        /// </summary>
-        /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="queryId"></param>
-        /// <param name="deviceQuery"></param>
-        /// <returns>DeviceQuery</returns>
-        public DeviceQuery DeviceQueryPartialUpdate (string queryId, DeviceQueryPatchRequest deviceQuery)
-        {
-             ApiResponse<DeviceQuery> localVarResponse = DeviceQueryPartialUpdateWithHttpInfo(queryId, deviceQuery);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Update device query fields.
-        /// </summary>
-        /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="queryId"></param>
-        /// <param name="deviceQuery"></param>
-        /// <returns>ApiResponse of DeviceQuery</returns>
-        public ApiResponse< DeviceQuery > DeviceQueryPartialUpdateWithHttpInfo (string queryId, DeviceQueryPatchRequest deviceQuery)
-        {
-            // verify the required parameter 'queryId' is set
-            if (queryId == null)
-                throw new ApiException(400, "Missing required parameter 'queryId' when calling DefaultApi->DeviceQueryPartialUpdate");
-            // verify the required parameter 'deviceQuery' is set
-            if (deviceQuery == null)
-                throw new ApiException(400, "Missing required parameter 'deviceQuery' when calling DefaultApi->DeviceQueryPartialUpdate");
-
-            var localVarPath = "./v3/device-queries/{query_id}/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (queryId != null) localVarPathParams.Add("query_id", Configuration.ApiClient.ParameterToString(queryId)); // path parameter
-            if (deviceQuery != null && deviceQuery.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(deviceQuery); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = deviceQuery; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DeviceQueryPartialUpdate", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<DeviceQuery>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                (DeviceQuery) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuery)));
-        }
-
-        /// <summary>
-        ///  Update device query fields.
-        /// </summary>
-        /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="queryId"></param>
-        /// <param name="deviceQuery"></param>
-        /// <returns>Task of DeviceQuery</returns>
-        public async System.Threading.Tasks.Task<DeviceQuery> DeviceQueryPartialUpdateAsync (string queryId, DeviceQueryPatchRequest deviceQuery)
-        {
-             ApiResponse<DeviceQuery> localVarResponse = await DeviceQueryPartialUpdateAsyncWithHttpInfo(queryId, deviceQuery);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        ///  Update device query fields.
-        /// </summary>
-        /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="queryId"></param>
-        /// <param name="deviceQuery"></param>
-        /// <returns>Task of ApiResponse (DeviceQuery)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryPartialUpdateAsyncWithHttpInfo (string queryId, DeviceQueryPatchRequest deviceQuery)
-        {
-            // verify the required parameter 'queryId' is set
-            if (queryId == null)
-                throw new ApiException(400, "Missing required parameter 'queryId' when calling DefaultApi->DeviceQueryPartialUpdate");
-            // verify the required parameter 'deviceQuery' is set
-            if (deviceQuery == null)
-                throw new ApiException(400, "Missing required parameter 'deviceQuery' when calling DefaultApi->DeviceQueryPartialUpdate");
-
-            var localVarPath = "./v3/device-queries/{query_id}/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (queryId != null) localVarPathParams.Add("query_id", Configuration.ApiClient.ParameterToString(queryId)); // path parameter
-            if (deviceQuery != null && deviceQuery.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(deviceQuery); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = deviceQuery; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DeviceQueryPartialUpdate", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<DeviceQuery>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                (DeviceQuery) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuery)));
         }
 
         /// <summary>
@@ -2791,7 +2359,7 @@ namespace device_directory.Api
             if (queryId == null)
                 throw new ApiException(400, "Missing required parameter 'queryId' when calling DefaultApi->DeviceQueryRetrieve");
 
-            var localVarPath = "./v3/device-queries/{query_id}/";
+            var localVarPath = "/v3/device-queries/{query_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2835,7 +2403,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceQuery>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceQuery) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuery)));
         }
 
@@ -2864,7 +2432,7 @@ namespace device_directory.Api
             if (queryId == null)
                 throw new ApiException(400, "Missing required parameter 'queryId' when calling DefaultApi->DeviceQueryRetrieve");
 
-            var localVarPath = "./v3/device-queries/{query_id}/";
+            var localVarPath = "/v3/device-queries/{query_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2907,7 +2475,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceQuery>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceQuery) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuery)));
         }
 
@@ -2940,7 +2508,7 @@ namespace device_directory.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling DefaultApi->DeviceQueryUpdate");
 
-            var localVarPath = "./v3/device-queries/{query_id}/";
+            var localVarPath = "/v3/device-queries/{query_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2992,7 +2560,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceQuery>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceQuery) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuery)));
         }
 
@@ -3026,7 +2594,7 @@ namespace device_directory.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling DefaultApi->DeviceQueryUpdate");
 
-            var localVarPath = "./v3/device-queries/{query_id}/";
+            var localVarPath = "/v3/device-queries/{query_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3077,7 +2645,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceQuery>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceQuery) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceQuery)));
         }
 
@@ -3105,7 +2673,7 @@ namespace device_directory.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->DeviceRetrieve");
 
-            var localVarPath = "./v3/devices/{id}/";
+            var localVarPath = "/v3/devices/{id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3149,7 +2717,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceData>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceData)));
         }
 
@@ -3178,7 +2746,7 @@ namespace device_directory.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->DeviceRetrieve");
 
-            var localVarPath = "./v3/devices/{id}/";
+            var localVarPath = "/v3/devices/{id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3221,7 +2789,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceData>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceData)));
         }
 
@@ -3254,7 +2822,7 @@ namespace device_directory.Api
             if (device == null)
                 throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DeviceUpdate");
 
-            var localVarPath = "./v3/devices/{id}/";
+            var localVarPath = "/v3/devices/{id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3306,7 +2874,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceData>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceData)));
         }
 
@@ -3340,7 +2908,7 @@ namespace device_directory.Api
             if (device == null)
                 throw new ApiException(400, "Missing required parameter 'device' when calling DefaultApi->DeviceUpdate");
 
-            var localVarPath = "./v3/devices/{id}/";
+            var localVarPath = "/v3/devices/{id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3391,7 +2959,7 @@ namespace device_directory.Api
             }
 
             return new ApiResponse<DeviceData>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeviceData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeviceData)));
         }
 

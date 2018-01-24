@@ -13,12 +13,14 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = update_service.Client.SwaggerDateConverter;
 
 namespace update_service.Model
@@ -27,7 +29,7 @@ namespace update_service.Model
     /// FirmwareImagePage
     /// </summary>
     [DataContract]
-    public partial class FirmwareImagePage :  IEquatable<FirmwareImagePage>
+    public partial class FirmwareImagePage :  IEquatable<FirmwareImagePage>, IValidatableObject
     {
         /// <summary>
         /// The order of the records based on creation time, &#x60;ASC&#x60; or &#x60;DESC&#x60;; by default &#x60;ASC&#x60;.
@@ -229,6 +231,16 @@ namespace update_service.Model
                     hash = hash * 59 + this.Order.GetHashCode();
                 return hash;
             }
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
         }
     }
 

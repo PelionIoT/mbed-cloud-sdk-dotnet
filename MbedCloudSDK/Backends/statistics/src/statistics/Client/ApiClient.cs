@@ -15,12 +15,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.IO;
+using System.Web;
 using System.Linq;
 using System.Net;
 using System.Text;
 using Newtonsoft.Json;
-using RestSharp.Portable;
-using RestSharp.Portable.HttpClient;
+using RestSharp;
 
 namespace statistics.Client
 {
@@ -58,7 +58,6 @@ namespace statistics.Client
         {
             Configuration = Configuration.Default;
             RestClient = new RestClient("https://api.us-east-1.mbedcloud.com");
-            RestClient.IgnoreResponseStatusCode = true;
             LastApiResponse = new List<IRestResponse>();
         }
 
@@ -75,7 +74,6 @@ namespace statistics.Client
                 Configuration = config;
 
             RestClient = new RestClient("https://api.us-east-1.mbedcloud.com");
-            RestClient.IgnoreResponseStatusCode = true;
             LastApiResponse = new List<IRestResponse>();
         }
 
@@ -90,7 +88,6 @@ namespace statistics.Client
                 throw new ArgumentException("basePath cannot be empty");
 
             RestClient = new RestClient(basePath);
-            RestClient.IgnoreResponseStatusCode = true;
             Configuration = Configuration.Default;
             LastApiResponse = new List<IRestResponse>();
         }
@@ -122,18 +119,16 @@ namespace statistics.Client
 
         // Creates and sets up a RestRequest prior to a call.
         private RestRequest PrepareRequest(
-            String path, Method method, Dictionary<String, String> queryParams, Object postBody,
+            String path, RestSharp.Method method, Dictionary<String, String> queryParams, Object postBody,
             Dictionary<String, String> headerParams, Dictionary<String, String> formParams,
             Dictionary<String, FileParameter> fileParams, Dictionary<String, String> pathParams,
             String contentType)
         {
-            var request = new RestRequest(path, method);
-            // disable ResetSharp.Portable built-in serialization
-            request.Serializer = null;
-
             // add path parameter, if any
-            foreach(var param in pathParams)
-                request.AddParameter(param.Key, param.Value, ParameterType.UrlSegment);
+            foreach (var param in pathParams)
+                path = path.Replace("{" + param.Key + "}" , param.Value);
+
+            var request = new RestRequest(path, method);
 
             // add header parameter, if any
             foreach(var param in headerParams)
@@ -150,18 +145,25 @@ namespace statistics.Client
             // add file parameter, if any
             foreach(var param in fileParams)
             {
-                request.AddFile(param.Value);
+                request.Files.Add(new FileParameter
+                {
+                    Name = param.Value.Name,
+                    Writer = param.Value.Writer,
+                    FileName = param.Value.ContentType,
+                    ContentType = param.Value.ContentType,
+                    ContentLength = param.Value.ContentLength
+                });
             }
 
             if (postBody != null) // http body (model or byte[]) parameter
             {
                 if (postBody.GetType() == typeof(String))
                 {
-                    request.AddParameter(new Parameter { Value = postBody, Type = ParameterType.RequestBody, ContentType = "application/json" });
+                    request.AddParameter("application/json", postBody, ParameterType.RequestBody);
                 }
                 else if (postBody.GetType() == typeof(byte[]))
                 {
-                    request.AddParameter(new Parameter { Value = postBody, Type = ParameterType.RequestBody, ContentType = contentType });
+                    request.AddParameter(contentType, postBody, ParameterType.RequestBody);
                 }
             }
 
@@ -182,7 +184,7 @@ namespace statistics.Client
         /// <param name="contentType">Content Type of the request</param>
         /// <returns>Object</returns>
         public Object CallApi(
-            String path, Method method, Dictionary<String, String> queryParams, Object postBody,
+            String path, RestSharp.Method method, Dictionary<String, String> queryParams, Object postBody,
             Dictionary<String, String> headerParams, Dictionary<String, String> formParams,
             Dictionary<String, FileParameter> fileParams, Dictionary<String, String> pathParams,
             String contentType)
@@ -197,7 +199,7 @@ namespace statistics.Client
             RestClient.UserAgent = Configuration.UserAgent;
 
             InterceptRequest(request);
-            var response = RestClient.Execute(request).Result;
+            var response = RestClient.Execute(request);
             InterceptResponse(request, response);
 
             return (Object) response;
@@ -216,7 +218,7 @@ namespace statistics.Client
         /// <param name="contentType">Content type.</param>
         /// <returns>The Task instance.</returns>
         public async System.Threading.Tasks.Task<Object> CallApiAsync(
-            String path, Method method, Dictionary<String, String> queryParams, Object postBody,
+            String path, RestSharp.Method method, Dictionary<String, String> queryParams, Object postBody,
             Dictionary<String, String> headerParams, Dictionary<String, String> formParams,
             Dictionary<String, FileParameter> fileParams, Dictionary<String, String> pathParams,
             String contentType)
@@ -225,7 +227,7 @@ namespace statistics.Client
                 path, method, queryParams, postBody, headerParams, formParams, fileParams,
                 pathParams, contentType);
             InterceptRequest(request);
-            var response = await RestClient.Execute(request);
+            var response = await RestClient.ExecuteTaskAsync(request);
             InterceptResponse(request, response);
             return (Object)response;
         }
@@ -249,9 +251,9 @@ namespace statistics.Client
         public FileParameter ParameterToFile(string name, Stream stream)
         {
             if (stream is FileStream)
-                return FileParameter.Create(name, ReadAsBytes(stream), Path.GetFileName(((FileStream)stream).Name));
+                return FileParameter.Create(name, ReadAsBytes(stream), Path.GetFileName(((FileStream)stream).Name), "multipart/form-data");
             else
-                return FileParameter.Create(name, ReadAsBytes(stream), "no_file_name_provided");
+                return FileParameter.Create(name, ReadAsBytes(stream), "no_file_name_provided", "multipart/form-data");
         }
 
         /// <summary>
@@ -298,7 +300,7 @@ namespace statistics.Client
         /// <returns>Object representation of the JSON string.</returns>
         public object Deserialize(IRestResponse response, Type type)
         {
-            IHttpHeaders headers = response.Headers;
+            IList<Parameter> headers = response.Headers;
             if (type == typeof(byte[])) // return byte array
             {
                 return response.RawBytes;
@@ -357,7 +359,11 @@ namespace statistics.Client
         {
             try
             {
-                return obj != null ? JsonConvert.SerializeObject(obj) : null;
+                var settings = new JsonSerializerSettings
+                {
+                    DateFormatString = Configuration.DateTimeFormat
+                };
+                return obj != null ? JsonConvert.SerializeObject(obj, settings) : null;
             }
             catch (Exception e)
             {
@@ -495,40 +501,6 @@ namespace statistics.Client
             {
                 return filename;
             }
-        }
-
-        /// <summary>
-        /// Convert params to key/value pairs. 
-        /// Use collectionFormat to properly format lists and collections.
-        /// </summary>
-        /// <param name="name">Key name.</param>
-        /// <param name="value">Value object.</param>
-        /// <returns>A list of KeyValuePairs</returns>
-        public IEnumerable<KeyValuePair<string, string>> ParameterToKeyValuePairs(string collectionFormat, string name, object value)
-        {
-            var parameters = new List<KeyValuePair<string, string>>();
-
-            if (IsCollection(value) && collectionFormat == "multi")
-            {
-                var valueCollection = value as IEnumerable;
-                parameters.AddRange(from object item in valueCollection select new KeyValuePair<string, string>(name, ParameterToString(item)));
-            }
-            else
-            {
-                parameters.Add(new KeyValuePair<string, string>(name, ParameterToString(value)));
-            }
-
-            return parameters;
-        }
-
-        /// <summary>
-        /// Check if generic object is a collection.
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns>True if object is a collection type</returns>
-        private static bool IsCollection(object value)
-        {
-            return value is IList || value is ICollection;
         }
     }
 }

@@ -11,11 +11,9 @@ Method | HTTP request | Description
 [**DeviceList**](DefaultApi.md#devicelist) | **GET** /v3/devices/ | 
 [**DeviceLogList**](DefaultApi.md#deviceloglist) | **GET** /v3/devicelog/ | 
 [**DeviceLogRetrieve**](DefaultApi.md#devicelogretrieve) | **GET** /v3/devicelog/{device_event_id}/ | 
-[**DevicePartialUpdate**](DefaultApi.md#devicepartialupdate) | **PATCH** /v3/devices/{id}/ | 
 [**DeviceQueryCreate**](DefaultApi.md#devicequerycreate) | **POST** /v3/device-queries/ | 
 [**DeviceQueryDestroy**](DefaultApi.md#devicequerydestroy) | **DELETE** /v3/device-queries/{query_id}/ | 
 [**DeviceQueryList**](DefaultApi.md#devicequerylist) | **GET** /v3/device-queries/ | 
-[**DeviceQueryPartialUpdate**](DefaultApi.md#devicequerypartialupdate) | **PATCH** /v3/device-queries/{query_id}/ | 
 [**DeviceQueryRetrieve**](DefaultApi.md#devicequeryretrieve) | **GET** /v3/device-queries/{query_id}/ | 
 [**DeviceQueryUpdate**](DefaultApi.md#devicequeryupdate) | **PUT** /v3/device-queries/{query_id}/ | 
 [**DeviceRetrieve**](DefaultApi.md#deviceretrieve) | **GET** /v3/devices/{id}/ | 
@@ -500,73 +498,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="devicepartialupdate"></a>
-# **DevicePartialUpdate**
-> DeviceData DevicePartialUpdate (string id, DeviceDataPatchRequest device)
-
-
-
-Update device fields.
-
-### Example
-```csharp
-using System;
-using System.Diagnostics;
-using device_directory.Api;
-using device_directory.Client;
-using device_directory.Model;
-
-namespace Example
-{
-    public class DevicePartialUpdateExample
-    {
-        public void main()
-        {
-            // Configure API key authorization: Bearer
-            Configuration.Default.ApiKey.Add("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
-
-            var apiInstance = new DefaultApi();
-            var id = id_example;  // string | The ID of the device.
-            var device = new DeviceDataPatchRequest(); // DeviceDataPatchRequest | 
-
-            try
-            {
-                DeviceData result = apiInstance.DevicePartialUpdate(id, device);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.DevicePartialUpdate: " + e.Message );
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| The ID of the device. | 
- **device** | [**DeviceDataPatchRequest**](DeviceDataPatchRequest.md)|  | 
-
-### Return type
-
-[**DeviceData**](DeviceData.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 <a name="devicequerycreate"></a>
 # **DeviceQueryCreate**
 > DeviceQuery DeviceQueryCreate (DeviceQueryPostPutRequest device)
@@ -757,73 +688,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DeviceQueryPage**](DeviceQueryPage.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="devicequerypartialupdate"></a>
-# **DeviceQueryPartialUpdate**
-> DeviceQuery DeviceQueryPartialUpdate (string queryId, DeviceQueryPatchRequest deviceQuery)
-
-
-
-Update device query fields.
-
-### Example
-```csharp
-using System;
-using System.Diagnostics;
-using device_directory.Api;
-using device_directory.Client;
-using device_directory.Model;
-
-namespace Example
-{
-    public class DeviceQueryPartialUpdateExample
-    {
-        public void main()
-        {
-            // Configure API key authorization: Bearer
-            Configuration.Default.ApiKey.Add("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
-
-            var apiInstance = new DefaultApi();
-            var queryId = queryId_example;  // string | 
-            var deviceQuery = new DeviceQueryPatchRequest(); // DeviceQueryPatchRequest | 
-
-            try
-            {
-                DeviceQuery result = apiInstance.DeviceQueryPartialUpdate(queryId, deviceQuery);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.DeviceQueryPartialUpdate: " + e.Message );
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **queryId** | **string**|  | 
- **deviceQuery** | [**DeviceQueryPatchRequest**](DeviceQueryPatchRequest.md)|  | 
-
-### Return type
-
-[**DeviceQuery**](DeviceQuery.md)
 
 ### Authorization
 

@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RestSharp.Portable;
+using RestSharp;
 using iam.Client;
 using iam.Model;
 
@@ -631,7 +631,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->AddCertificate");
 
-            var localVarPath = "./v3/trusted-certificates";
+            var localVarPath = "/v3/trusted-certificates";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -683,7 +683,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<TrustedCertificateResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (TrustedCertificateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateResp)));
         }
 
@@ -712,7 +712,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->AddCertificate");
 
-            var localVarPath = "./v3/trusted-certificates";
+            var localVarPath = "/v3/trusted-certificates";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -763,7 +763,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<TrustedCertificateResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (TrustedCertificateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateResp)));
         }
 
@@ -796,7 +796,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->AddSubjectsToGroup");
 
-            var localVarPath = "./v3/policy-groups/{groupID}";
+            var localVarPath = "/v3/policy-groups/{groupID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -849,7 +849,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
         }
 
@@ -883,7 +883,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->AddSubjectsToGroup");
 
-            var localVarPath = "./v3/policy-groups/{groupID}";
+            var localVarPath = "/v3/policy-groups/{groupID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -935,7 +935,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
         }
 
@@ -965,7 +965,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->CreateUser");
 
-            var localVarPath = "./v3/users";
+            var localVarPath = "/v3/users";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1018,7 +1018,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<UserInfoResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoResp)));
         }
 
@@ -1049,7 +1049,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->CreateUser");
 
-            var localVarPath = "./v3/users";
+            var localVarPath = "/v3/users";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1101,7 +1101,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<UserInfoResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoResp)));
         }
 
@@ -1128,7 +1128,7 @@ namespace iam.Api
             if (userId == null)
                 throw new ApiException(400, "Missing required parameter 'userId' when calling AccountAdminApi->DeleteUser");
 
-            var localVarPath = "./v3/users/{user-id}";
+            var localVarPath = "/v3/users/{user-id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1172,7 +1172,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1200,7 +1200,7 @@ namespace iam.Api
             if (userId == null)
                 throw new ApiException(400, "Missing required parameter 'userId' when calling AccountAdminApi->DeleteUser");
 
-            var localVarPath = "./v3/users/{user-id}";
+            var localVarPath = "/v3/users/{user-id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1243,7 +1243,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1276,7 +1276,7 @@ namespace iam.Api
         public ApiResponse< UserInfoRespList > GetAllUsersWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string statusEq = null)
         {
 
-            var localVarPath = "./v3/users";
+            var localVarPath = "/v3/users";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1324,7 +1324,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<UserInfoRespList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UserInfoRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoRespList)));
         }
 
@@ -1358,7 +1358,7 @@ namespace iam.Api
         public async System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetAllUsersAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string statusEq = null)
         {
 
-            var localVarPath = "./v3/users";
+            var localVarPath = "/v3/users";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1405,7 +1405,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<UserInfoRespList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UserInfoRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoRespList)));
         }
 
@@ -1433,7 +1433,7 @@ namespace iam.Api
             if (userId == null)
                 throw new ApiException(400, "Missing required parameter 'userId' when calling AccountAdminApi->GetUser");
 
-            var localVarPath = "./v3/users/{user-id}";
+            var localVarPath = "/v3/users/{user-id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1477,7 +1477,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<UserInfoResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoResp)));
         }
 
@@ -1506,7 +1506,7 @@ namespace iam.Api
             if (userId == null)
                 throw new ApiException(400, "Missing required parameter 'userId' when calling AccountAdminApi->GetUser");
 
-            var localVarPath = "./v3/users/{user-id}";
+            var localVarPath = "/v3/users/{user-id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1549,7 +1549,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<UserInfoResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoResp)));
         }
 
@@ -1585,7 +1585,7 @@ namespace iam.Api
             if (groupID == null)
                 throw new ApiException(400, "Missing required parameter 'groupID' when calling AccountAdminApi->GetUsersOfGroup");
 
-            var localVarPath = "./v3/policy-groups/{groupID}/users";
+            var localVarPath = "/v3/policy-groups/{groupID}/users";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1633,7 +1633,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<UserInfoRespList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UserInfoRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoRespList)));
         }
 
@@ -1670,7 +1670,7 @@ namespace iam.Api
             if (groupID == null)
                 throw new ApiException(400, "Missing required parameter 'groupID' when calling AccountAdminApi->GetUsersOfGroup");
 
-            var localVarPath = "./v3/policy-groups/{groupID}/users";
+            var localVarPath = "/v3/policy-groups/{groupID}/users";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1717,7 +1717,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<UserInfoRespList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UserInfoRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoRespList)));
         }
 
@@ -1750,7 +1750,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->RemoveUsersFromGroup");
 
-            var localVarPath = "./v3/policy-groups/{groupID}/users";
+            var localVarPath = "/v3/policy-groups/{groupID}/users";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1803,7 +1803,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
         }
 
@@ -1837,7 +1837,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->RemoveUsersFromGroup");
 
-            var localVarPath = "./v3/policy-groups/{groupID}/users";
+            var localVarPath = "/v3/policy-groups/{groupID}/users";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1889,7 +1889,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
         }
 
@@ -1917,7 +1917,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->UpdateMyAccount");
 
-            var localVarPath = "./v3/accounts/me";
+            var localVarPath = "/v3/accounts/me";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1969,7 +1969,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<AccountInfo>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AccountInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountInfo)));
         }
 
@@ -1998,7 +1998,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->UpdateMyAccount");
 
-            var localVarPath = "./v3/accounts/me";
+            var localVarPath = "/v3/accounts/me";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2049,7 +2049,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<AccountInfo>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AccountInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountInfo)));
         }
 
@@ -2082,7 +2082,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->UpdateUser");
 
-            var localVarPath = "./v3/users/{user-id}";
+            var localVarPath = "/v3/users/{user-id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2135,7 +2135,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<UserInfoResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoResp)));
         }
 
@@ -2169,7 +2169,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling AccountAdminApi->UpdateUser");
 
-            var localVarPath = "./v3/users/{user-id}";
+            var localVarPath = "/v3/users/{user-id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2221,7 +2221,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<UserInfoResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoResp)));
         }
 

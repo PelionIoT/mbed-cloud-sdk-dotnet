@@ -13,12 +13,14 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = mds.Client.SwaggerDateConverter;
 
 namespace mds.Model
@@ -27,7 +29,7 @@ namespace mds.Model
     /// PresubscriptionArray
     /// </summary>
     [DataContract]
-    public partial class PresubscriptionArray : List<Presubscription>,  IEquatable<PresubscriptionArray>
+    public partial class PresubscriptionArray : List<Presubscription>,  IEquatable<PresubscriptionArray>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PresubscriptionArray" /> class.
@@ -96,6 +98,16 @@ namespace mds.Model
                 // Suitable nullity checks etc, of course :)
                 return hash;
             }
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
         }
     }
 

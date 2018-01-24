@@ -13,12 +13,14 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = iam.Client.SwaggerDateConverter;
 
 namespace iam.Model
@@ -27,7 +29,7 @@ namespace iam.Model
     /// This object represents user details.
     /// </summary>
     [DataContract]
-    public partial class MyUserInfoResp :  IEquatable<MyUserInfoResp>
+    public partial class MyUserInfoResp :  IEquatable<MyUserInfoResp>, IValidatableObject
     {
         /// <summary>
         /// The status of the user. ENROLLING state indicates that the user is in the middle of the enrollment process. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately. INACTIVE users are locked out and not permitted to use the system.
@@ -618,6 +620,16 @@ namespace iam.Model
                     hash = hash * 59 + this.PasswordChangedTime.GetHashCode();
                 return hash;
             }
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
         }
     }
 

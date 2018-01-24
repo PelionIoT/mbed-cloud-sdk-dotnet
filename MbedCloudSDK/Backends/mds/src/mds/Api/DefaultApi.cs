@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RestSharp.Portable;
+using RestSharp;
 using mds.Client;
 using mds.Model;
 
@@ -233,7 +233,7 @@ namespace mds.Api
         public ApiResponse<Object> V2NotificationCallbackDeleteWithHttpInfo ()
         {
 
-            var localVarPath = "./v2/notification/callback";
+            var localVarPath = "/v2/notification/callback";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -275,7 +275,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -298,7 +298,7 @@ namespace mds.Api
         public async System.Threading.Tasks.Task<ApiResponse<Object>> V2NotificationCallbackDeleteAsyncWithHttpInfo ()
         {
 
-            var localVarPath = "./v2/notification/callback";
+            var localVarPath = "/v2/notification/callback";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -339,7 +339,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -362,7 +362,7 @@ namespace mds.Api
         public ApiResponse< Webhook > V2NotificationCallbackGetWithHttpInfo ()
         {
 
-            var localVarPath = "./v2/notification/callback";
+            var localVarPath = "/v2/notification/callback";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -405,7 +405,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<Webhook>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Webhook) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Webhook)));
         }
 
@@ -429,7 +429,7 @@ namespace mds.Api
         public async System.Threading.Tasks.Task<ApiResponse<Webhook>> V2NotificationCallbackGetAsyncWithHttpInfo ()
         {
 
-            var localVarPath = "./v2/notification/callback";
+            var localVarPath = "/v2/notification/callback";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -471,7 +471,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<Webhook>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Webhook) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Webhook)));
         }
 

@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RestSharp.Portable;
+using RestSharp;
 using connector_ca.Client;
 using connector_ca.Model;
 
@@ -247,7 +247,7 @@ namespace connector_ca.Api
             if (authorization == null)
                 throw new ApiException(400, "Missing required parameter 'authorization' when calling ServerCredentialsApi->V3ServerCredentialsBootstrapGet");
 
-            var localVarPath = "./v3/server-credentials/bootstrap";
+            var localVarPath = "/v3/server-credentials/bootstrap";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -291,7 +291,7 @@ namespace connector_ca.Api
             }
 
             return new ApiResponse<ServerCredentialsResponseData>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ServerCredentialsResponseData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ServerCredentialsResponseData)));
         }
 
@@ -320,7 +320,7 @@ namespace connector_ca.Api
             if (authorization == null)
                 throw new ApiException(400, "Missing required parameter 'authorization' when calling ServerCredentialsApi->V3ServerCredentialsBootstrapGet");
 
-            var localVarPath = "./v3/server-credentials/bootstrap";
+            var localVarPath = "/v3/server-credentials/bootstrap";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -363,7 +363,7 @@ namespace connector_ca.Api
             }
 
             return new ApiResponse<ServerCredentialsResponseData>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ServerCredentialsResponseData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ServerCredentialsResponseData)));
         }
 
@@ -391,7 +391,7 @@ namespace connector_ca.Api
             if (authorization == null)
                 throw new ApiException(400, "Missing required parameter 'authorization' when calling ServerCredentialsApi->V3ServerCredentialsLwm2mGet");
 
-            var localVarPath = "./v3/server-credentials/lwm2m";
+            var localVarPath = "/v3/server-credentials/lwm2m";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -435,7 +435,7 @@ namespace connector_ca.Api
             }
 
             return new ApiResponse<ServerCredentialsResponseData>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ServerCredentialsResponseData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ServerCredentialsResponseData)));
         }
 
@@ -464,7 +464,7 @@ namespace connector_ca.Api
             if (authorization == null)
                 throw new ApiException(400, "Missing required parameter 'authorization' when calling ServerCredentialsApi->V3ServerCredentialsLwm2mGet");
 
-            var localVarPath = "./v3/server-credentials/lwm2m";
+            var localVarPath = "/v3/server-credentials/lwm2m";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -507,7 +507,7 @@ namespace connector_ca.Api
             }
 
             return new ApiResponse<ServerCredentialsResponseData>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ServerCredentialsResponseData) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ServerCredentialsResponseData)));
         }
 

@@ -13,12 +13,14 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = device_directory.Client.SwaggerDateConverter;
 
 namespace device_directory.Model
@@ -27,7 +29,7 @@ namespace device_directory.Model
     /// DeviceDataPatchRequest
     /// </summary>
     [DataContract]
-    public partial class DeviceDataPatchRequest :  IEquatable<DeviceDataPatchRequest>
+    public partial class DeviceDataPatchRequest :  IEquatable<DeviceDataPatchRequest>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceDataPatchRequest" /> class.
@@ -282,6 +284,52 @@ namespace device_directory.Model
                     hash = hash * 59 + this.Name.GetHashCode();
                 return hash;
             }
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            // Description (string) maxLength
+            if(this.Description != null && this.Description.Length > 2000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be less than 2000.", new [] { "Description" });
+            }
+
+            // EndpointName (string) maxLength
+            if(this.EndpointName != null && this.EndpointName.Length > 64)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EndpointName, length must be less than 64.", new [] { "EndpointName" });
+            }
+
+            // DeviceKey (string) maxLength
+            if(this.DeviceKey != null && this.DeviceKey.Length > 512)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DeviceKey, length must be less than 512.", new [] { "DeviceKey" });
+            }
+
+            // EndpointType (string) maxLength
+            if(this.EndpointType != null && this.EndpointType.Length > 64)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EndpointType, length must be less than 64.", new [] { "EndpointType" });
+            }
+
+            // CaId (string) maxLength
+            if(this.CaId != null && this.CaId.Length > 500)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CaId, length must be less than 500.", new [] { "CaId" });
+            }
+
+            // Name (string) maxLength
+            if(this.Name != null && this.Name.Length > 128)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 128.", new [] { "Name" });
+            }
+
+            yield break;
         }
     }
 

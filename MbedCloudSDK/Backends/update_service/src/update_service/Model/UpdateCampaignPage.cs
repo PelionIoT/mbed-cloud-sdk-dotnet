@@ -13,12 +13,14 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = update_service.Client.SwaggerDateConverter;
 
 namespace update_service.Model
@@ -27,7 +29,7 @@ namespace update_service.Model
     /// UpdateCampaignPage
     /// </summary>
     [DataContract]
-    public partial class UpdateCampaignPage :  IEquatable<UpdateCampaignPage>
+    public partial class UpdateCampaignPage :  IEquatable<UpdateCampaignPage>, IValidatableObject
     {
         /// <summary>
         /// The order of the records to return. Acceptable values: ASC, DESC. Default: ASC
@@ -229,6 +231,16 @@ namespace update_service.Model
                     hash = hash * 59 + this.Order.GetHashCode();
                 return hash;
             }
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
         }
     }
 

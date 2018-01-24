@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RestSharp.Portable;
+using RestSharp;
 using mds.Client;
 using mds.Model;
 
@@ -382,7 +382,7 @@ namespace mds.Api
             if (resourcePath == null)
                 throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathDelete");
 
-            var localVarPath = "./v2/endpoints/{device-id}/{resourcePath}";
+            var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -427,7 +427,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<AsyncID>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AsyncID) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AsyncID)));
         }
 
@@ -463,7 +463,7 @@ namespace mds.Api
             if (resourcePath == null)
                 throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathDelete");
 
-            var localVarPath = "./v2/endpoints/{device-id}/{resourcePath}";
+            var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -507,7 +507,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<AsyncID>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AsyncID) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AsyncID)));
         }
 
@@ -544,7 +544,7 @@ namespace mds.Api
             if (resourcePath == null)
                 throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathGet");
 
-            var localVarPath = "./v2/endpoints/{device-id}/{resourcePath}";
+            var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -590,7 +590,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<AsyncID>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AsyncID) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AsyncID)));
         }
 
@@ -628,7 +628,7 @@ namespace mds.Api
             if (resourcePath == null)
                 throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathGet");
 
-            var localVarPath = "./v2/endpoints/{device-id}/{resourcePath}";
+            var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -673,7 +673,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<AsyncID>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AsyncID) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AsyncID)));
         }
 
@@ -710,7 +710,7 @@ namespace mds.Api
             if (resourcePath == null)
                 throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathPost");
 
-            var localVarPath = "./v2/endpoints/{device-id}/{resourcePath}";
+            var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -775,7 +775,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<AsyncID>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AsyncID) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AsyncID)));
         }
 
@@ -813,7 +813,7 @@ namespace mds.Api
             if (resourcePath == null)
                 throw new ApiException(400, "Missing required parameter 'resourcePath' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathPost");
 
-            var localVarPath = "./v2/endpoints/{device-id}/{resourcePath}";
+            var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -877,7 +877,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<AsyncID>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AsyncID) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AsyncID)));
         }
 
@@ -917,7 +917,7 @@ namespace mds.Api
             if (resourceValue == null)
                 throw new ApiException(400, "Missing required parameter 'resourceValue' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathPut");
 
-            var localVarPath = "./v2/endpoints/{device-id}/{resourcePath}";
+            var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -982,7 +982,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<AsyncID>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AsyncID) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AsyncID)));
         }
 
@@ -1023,7 +1023,7 @@ namespace mds.Api
             if (resourceValue == null)
                 throw new ApiException(400, "Missing required parameter 'resourceValue' when calling ResourcesApi->V2EndpointsDeviceIdResourcePathPut");
 
-            var localVarPath = "./v2/endpoints/{device-id}/{resourcePath}";
+            var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1087,7 +1087,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<AsyncID>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AsyncID) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AsyncID)));
         }
 

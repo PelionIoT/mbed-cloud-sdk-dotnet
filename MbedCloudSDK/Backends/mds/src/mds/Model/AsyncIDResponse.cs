@@ -13,12 +13,14 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = mds.Client.SwaggerDateConverter;
 
 namespace mds.Model
@@ -27,7 +29,7 @@ namespace mds.Model
     /// AsyncIDResponse
     /// </summary>
     [DataContract]
-    public partial class AsyncIDResponse :  IEquatable<AsyncIDResponse>
+    public partial class AsyncIDResponse :  IEquatable<AsyncIDResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AsyncIDResponse" /> class.
@@ -197,6 +199,16 @@ namespace mds.Model
                     hash = hash * 59 + this.Ct.GetHashCode();
                 return hash;
             }
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
         }
     }
 

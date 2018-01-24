@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RestSharp.Portable;
+using RestSharp;
 using statistics.Client;
 using statistics.Model;
 
@@ -250,7 +250,7 @@ namespace statistics.Api
             if (interval == null)
                 throw new ApiException(400, "Missing required parameter 'interval' when calling AccountApi->V3MetricsGet");
 
-            var localVarPath = "./v3/metrics";
+            var localVarPath = "/v3/metrics";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -301,7 +301,7 @@ namespace statistics.Api
             }
 
             return new ApiResponse<SuccessfulResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (SuccessfulResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(SuccessfulResponse)));
         }
 
@@ -347,7 +347,7 @@ namespace statistics.Api
             if (interval == null)
                 throw new ApiException(400, "Missing required parameter 'interval' when calling AccountApi->V3MetricsGet");
 
-            var localVarPath = "./v3/metrics";
+            var localVarPath = "/v3/metrics";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -397,7 +397,7 @@ namespace statistics.Api
             }
 
             return new ApiResponse<SuccessfulResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (SuccessfulResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(SuccessfulResponse)));
         }
 

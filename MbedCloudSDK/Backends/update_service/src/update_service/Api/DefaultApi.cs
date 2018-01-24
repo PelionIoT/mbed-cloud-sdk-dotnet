@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RestSharp.Portable;
+using RestSharp;
 using update_service.Client;
 using update_service.Model;
 
@@ -934,7 +934,7 @@ namespace update_service.Api
             if (name == null)
                 throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->FirmwareImageCreate");
 
-            var localVarPath = "./v3/firmware-images/";
+            var localVarPath = "/v3/firmware-images/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -981,7 +981,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<FirmwareImage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareImage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImage)));
         }
 
@@ -1017,7 +1017,7 @@ namespace update_service.Api
             if (name == null)
                 throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->FirmwareImageCreate");
 
-            var localVarPath = "./v3/firmware-images/";
+            var localVarPath = "/v3/firmware-images/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1063,7 +1063,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<FirmwareImage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareImage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImage)));
         }
 
@@ -1090,7 +1090,7 @@ namespace update_service.Api
             if (imageId == null)
                 throw new ApiException(400, "Missing required parameter 'imageId' when calling DefaultApi->FirmwareImageDestroy");
 
-            var localVarPath = "./v3/firmware-images/{image_id}/";
+            var localVarPath = "/v3/firmware-images/{image_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1134,7 +1134,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1162,7 +1162,7 @@ namespace update_service.Api
             if (imageId == null)
                 throw new ApiException(400, "Missing required parameter 'imageId' when calling DefaultApi->FirmwareImageDestroy");
 
-            var localVarPath = "./v3/firmware-images/{image_id}/";
+            var localVarPath = "/v3/firmware-images/{image_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1205,7 +1205,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1238,7 +1238,7 @@ namespace update_service.Api
         public ApiResponse< FirmwareImagePage > FirmwareImageListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
-            var localVarPath = "./v3/firmware-images/";
+            var localVarPath = "/v3/firmware-images/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1286,7 +1286,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<FirmwareImagePage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareImagePage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImagePage)));
         }
 
@@ -1320,7 +1320,7 @@ namespace update_service.Api
         public async System.Threading.Tasks.Task<ApiResponse<FirmwareImagePage>> FirmwareImageListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
-            var localVarPath = "./v3/firmware-images/";
+            var localVarPath = "/v3/firmware-images/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1367,7 +1367,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<FirmwareImagePage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareImagePage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImagePage)));
         }
 
@@ -1395,7 +1395,7 @@ namespace update_service.Api
             if (imageId == null)
                 throw new ApiException(400, "Missing required parameter 'imageId' when calling DefaultApi->FirmwareImageRetrieve");
 
-            var localVarPath = "./v3/firmware-images/{image_id}/";
+            var localVarPath = "/v3/firmware-images/{image_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1439,7 +1439,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<FirmwareImage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareImage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImage)));
         }
 
@@ -1468,7 +1468,7 @@ namespace update_service.Api
             if (imageId == null)
                 throw new ApiException(400, "Missing required parameter 'imageId' when calling DefaultApi->FirmwareImageRetrieve");
 
-            var localVarPath = "./v3/firmware-images/{image_id}/";
+            var localVarPath = "/v3/firmware-images/{image_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1511,7 +1511,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<FirmwareImage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareImage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareImage)));
         }
 
@@ -1546,7 +1546,7 @@ namespace update_service.Api
             if (name == null)
                 throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->FirmwareManifestCreate");
 
-            var localVarPath = "./v3/firmware-manifests/";
+            var localVarPath = "/v3/firmware-manifests/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1593,7 +1593,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<FirmwareManifest>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareManifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifest)));
         }
 
@@ -1629,7 +1629,7 @@ namespace update_service.Api
             if (name == null)
                 throw new ApiException(400, "Missing required parameter 'name' when calling DefaultApi->FirmwareManifestCreate");
 
-            var localVarPath = "./v3/firmware-manifests/";
+            var localVarPath = "/v3/firmware-manifests/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1675,7 +1675,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<FirmwareManifest>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareManifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifest)));
         }
 
@@ -1702,7 +1702,7 @@ namespace update_service.Api
             if (manifestId == null)
                 throw new ApiException(400, "Missing required parameter 'manifestId' when calling DefaultApi->FirmwareManifestDestroy");
 
-            var localVarPath = "./v3/firmware-manifests/{manifest_id}/";
+            var localVarPath = "/v3/firmware-manifests/{manifest_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1746,7 +1746,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1774,7 +1774,7 @@ namespace update_service.Api
             if (manifestId == null)
                 throw new ApiException(400, "Missing required parameter 'manifestId' when calling DefaultApi->FirmwareManifestDestroy");
 
-            var localVarPath = "./v3/firmware-manifests/{manifest_id}/";
+            var localVarPath = "/v3/firmware-manifests/{manifest_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1817,7 +1817,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1850,7 +1850,7 @@ namespace update_service.Api
         public ApiResponse< FirmwareManifestPage > FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
-            var localVarPath = "./v3/firmware-manifests/";
+            var localVarPath = "/v3/firmware-manifests/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1898,7 +1898,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<FirmwareManifestPage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareManifestPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifestPage)));
         }
 
@@ -1932,7 +1932,7 @@ namespace update_service.Api
         public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifestPage>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
-            var localVarPath = "./v3/firmware-manifests/";
+            var localVarPath = "/v3/firmware-manifests/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1979,7 +1979,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<FirmwareManifestPage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareManifestPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifestPage)));
         }
 
@@ -2007,7 +2007,7 @@ namespace update_service.Api
             if (manifestId == null)
                 throw new ApiException(400, "Missing required parameter 'manifestId' when calling DefaultApi->FirmwareManifestRetrieve");
 
-            var localVarPath = "./v3/firmware-manifests/{manifest_id}/";
+            var localVarPath = "/v3/firmware-manifests/{manifest_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2051,7 +2051,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<FirmwareManifest>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareManifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifest)));
         }
 
@@ -2080,7 +2080,7 @@ namespace update_service.Api
             if (manifestId == null)
                 throw new ApiException(400, "Missing required parameter 'manifestId' when calling DefaultApi->FirmwareManifestRetrieve");
 
-            var localVarPath = "./v3/firmware-manifests/{manifest_id}/";
+            var localVarPath = "/v3/firmware-manifests/{manifest_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2123,7 +2123,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<FirmwareManifest>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (FirmwareManifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FirmwareManifest)));
         }
 
@@ -2151,7 +2151,7 @@ namespace update_service.Api
             if (campaign == null)
                 throw new ApiException(400, "Missing required parameter 'campaign' when calling DefaultApi->UpdateCampaignCreate");
 
-            var localVarPath = "./v3/update-campaigns/";
+            var localVarPath = "/v3/update-campaigns/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2202,7 +2202,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<UpdateCampaign>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
         }
 
@@ -2231,7 +2231,7 @@ namespace update_service.Api
             if (campaign == null)
                 throw new ApiException(400, "Missing required parameter 'campaign' when calling DefaultApi->UpdateCampaignCreate");
 
-            var localVarPath = "./v3/update-campaigns/";
+            var localVarPath = "/v3/update-campaigns/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2281,7 +2281,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<UpdateCampaign>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
         }
 
@@ -2308,7 +2308,7 @@ namespace update_service.Api
             if (campaignId == null)
                 throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->UpdateCampaignDestroy");
 
-            var localVarPath = "./v3/update-campaigns/{campaign_id}/";
+            var localVarPath = "/v3/update-campaigns/{campaign_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2352,7 +2352,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -2380,7 +2380,7 @@ namespace update_service.Api
             if (campaignId == null)
                 throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->UpdateCampaignDestroy");
 
-            var localVarPath = "./v3/update-campaigns/{campaign_id}/";
+            var localVarPath = "/v3/update-campaigns/{campaign_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2423,7 +2423,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -2456,7 +2456,7 @@ namespace update_service.Api
         public ApiResponse< UpdateCampaignPage > UpdateCampaignListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
-            var localVarPath = "./v3/update-campaigns/";
+            var localVarPath = "/v3/update-campaigns/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2504,7 +2504,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<UpdateCampaignPage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdateCampaignPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaignPage)));
         }
 
@@ -2538,7 +2538,7 @@ namespace update_service.Api
         public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPage>> UpdateCampaignListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
         {
 
-            var localVarPath = "./v3/update-campaigns/";
+            var localVarPath = "/v3/update-campaigns/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2585,7 +2585,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<UpdateCampaignPage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdateCampaignPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaignPage)));
         }
 
@@ -2618,7 +2618,7 @@ namespace update_service.Api
             if (campaign == null)
                 throw new ApiException(400, "Missing required parameter 'campaign' when calling DefaultApi->UpdateCampaignPartialUpdate");
 
-            var localVarPath = "./v3/update-campaigns/{campaign_id}/";
+            var localVarPath = "/v3/update-campaigns/{campaign_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2670,7 +2670,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<UpdateCampaign>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
         }
 
@@ -2704,7 +2704,7 @@ namespace update_service.Api
             if (campaign == null)
                 throw new ApiException(400, "Missing required parameter 'campaign' when calling DefaultApi->UpdateCampaignPartialUpdate");
 
-            var localVarPath = "./v3/update-campaigns/{campaign_id}/";
+            var localVarPath = "/v3/update-campaigns/{campaign_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2755,7 +2755,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<UpdateCampaign>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
         }
 
@@ -2783,7 +2783,7 @@ namespace update_service.Api
             if (campaignId == null)
                 throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->UpdateCampaignRetrieve");
 
-            var localVarPath = "./v3/update-campaigns/{campaign_id}/";
+            var localVarPath = "/v3/update-campaigns/{campaign_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2827,7 +2827,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<UpdateCampaign>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
         }
 
@@ -2856,7 +2856,7 @@ namespace update_service.Api
             if (campaignId == null)
                 throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->UpdateCampaignRetrieve");
 
-            var localVarPath = "./v3/update-campaigns/{campaign_id}/";
+            var localVarPath = "/v3/update-campaigns/{campaign_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2899,7 +2899,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<UpdateCampaign>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
         }
 
@@ -2932,7 +2932,7 @@ namespace update_service.Api
             if (campaign == null)
                 throw new ApiException(400, "Missing required parameter 'campaign' when calling DefaultApi->UpdateCampaignUpdate");
 
-            var localVarPath = "./v3/update-campaigns/{campaign_id}/";
+            var localVarPath = "/v3/update-campaigns/{campaign_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2984,7 +2984,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<UpdateCampaign>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
         }
 
@@ -3018,7 +3018,7 @@ namespace update_service.Api
             if (campaign == null)
                 throw new ApiException(400, "Missing required parameter 'campaign' when calling DefaultApi->UpdateCampaignUpdate");
 
-            var localVarPath = "./v3/update-campaigns/{campaign_id}/";
+            var localVarPath = "/v3/update-campaigns/{campaign_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3069,7 +3069,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<UpdateCampaign>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
         }
 
@@ -3102,7 +3102,7 @@ namespace update_service.Api
             if (campaignDeviceMetadataId == null)
                 throw new ApiException(400, "Missing required parameter 'campaignDeviceMetadataId' when calling DefaultApi->V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGet");
 
-            var localVarPath = "./v3/update-campaigns/{campaign_id}/campaign-device-metadata/{campaign_device_metadata_id}/";
+            var localVarPath = "/v3/update-campaigns/{campaign_id}/campaign-device-metadata/{campaign_device_metadata_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3147,7 +3147,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<CampaignDeviceMetadata>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (CampaignDeviceMetadata) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CampaignDeviceMetadata)));
         }
 
@@ -3181,7 +3181,7 @@ namespace update_service.Api
             if (campaignDeviceMetadataId == null)
                 throw new ApiException(400, "Missing required parameter 'campaignDeviceMetadataId' when calling DefaultApi->V3UpdateCampaignsCampaignIdCampaignDeviceMetadataCampaignDeviceMetadataIdGet");
 
-            var localVarPath = "./v3/update-campaigns/{campaign_id}/campaign-device-metadata/{campaign_device_metadata_id}/";
+            var localVarPath = "/v3/update-campaigns/{campaign_id}/campaign-device-metadata/{campaign_device_metadata_id}/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3225,7 +3225,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<CampaignDeviceMetadata>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (CampaignDeviceMetadata) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CampaignDeviceMetadata)));
         }
 
@@ -3261,7 +3261,7 @@ namespace update_service.Api
             if (campaignId == null)
                 throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGet");
 
-            var localVarPath = "./v3/update-campaigns/{campaign_id}/campaign-device-metadata/";
+            var localVarPath = "/v3/update-campaigns/{campaign_id}/campaign-device-metadata/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3309,7 +3309,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<CampaignDeviceMetadataPage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (CampaignDeviceMetadataPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CampaignDeviceMetadataPage)));
         }
 
@@ -3346,7 +3346,7 @@ namespace update_service.Api
             if (campaignId == null)
                 throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGet");
 
-            var localVarPath = "./v3/update-campaigns/{campaign_id}/campaign-device-metadata/";
+            var localVarPath = "/v3/update-campaigns/{campaign_id}/campaign-device-metadata/";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3393,7 +3393,7 @@ namespace update_service.Api
             }
 
             return new ApiResponse<CampaignDeviceMetadataPage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (CampaignDeviceMetadataPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CampaignDeviceMetadataPage)));
         }
 

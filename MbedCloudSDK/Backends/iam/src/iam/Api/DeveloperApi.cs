@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RestSharp.Portable;
+using RestSharp;
 using iam.Client;
 using iam.Model;
 
@@ -999,7 +999,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->CreateApiKey");
 
-            var localVarPath = "./v3/api-keys";
+            var localVarPath = "/v3/api-keys";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1051,7 +1051,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
         }
 
@@ -1080,7 +1080,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->CreateApiKey");
 
-            var localVarPath = "./v3/api-keys";
+            var localVarPath = "/v3/api-keys";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1131,7 +1131,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
         }
 
@@ -1158,7 +1158,7 @@ namespace iam.Api
             if (apiKey == null)
                 throw new ApiException(400, "Missing required parameter 'apiKey' when calling DeveloperApi->DeleteApiKey");
 
-            var localVarPath = "./v3/api-keys/{apiKey}";
+            var localVarPath = "/v3/api-keys/{apiKey}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1202,7 +1202,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1230,7 +1230,7 @@ namespace iam.Api
             if (apiKey == null)
                 throw new ApiException(400, "Missing required parameter 'apiKey' when calling DeveloperApi->DeleteApiKey");
 
-            var localVarPath = "./v3/api-keys/{apiKey}";
+            var localVarPath = "/v3/api-keys/{apiKey}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1273,7 +1273,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1300,7 +1300,7 @@ namespace iam.Api
             if (certId == null)
                 throw new ApiException(400, "Missing required parameter 'certId' when calling DeveloperApi->DeleteCertificate");
 
-            var localVarPath = "./v3/trusted-certificates/{cert-id}";
+            var localVarPath = "/v3/trusted-certificates/{cert-id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1344,7 +1344,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1372,7 +1372,7 @@ namespace iam.Api
             if (certId == null)
                 throw new ApiException(400, "Missing required parameter 'certId' when calling DeveloperApi->DeleteCertificate");
 
-            var localVarPath = "./v3/trusted-certificates/{cert-id}";
+            var localVarPath = "/v3/trusted-certificates/{cert-id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1415,7 +1415,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1448,7 +1448,7 @@ namespace iam.Api
         public ApiResponse< ApiKeyInfoRespList > GetAllApiKeysWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string ownerEq = null)
         {
 
-            var localVarPath = "./v3/api-keys";
+            var localVarPath = "/v3/api-keys";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1496,7 +1496,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<ApiKeyInfoRespList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ApiKeyInfoRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoRespList)));
         }
 
@@ -1530,7 +1530,7 @@ namespace iam.Api
         public async System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoRespList>> GetAllApiKeysAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string ownerEq = null)
         {
 
-            var localVarPath = "./v3/api-keys";
+            var localVarPath = "/v3/api-keys";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1577,7 +1577,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<ApiKeyInfoRespList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ApiKeyInfoRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoRespList)));
         }
 
@@ -1616,7 +1616,7 @@ namespace iam.Api
         public ApiResponse< TrustedCertificateRespList > GetAllCertificatesWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null)
         {
 
-            var localVarPath = "./v3/trusted-certificates";
+            var localVarPath = "/v3/trusted-certificates";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1667,7 +1667,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<TrustedCertificateRespList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (TrustedCertificateRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateRespList)));
         }
 
@@ -1707,7 +1707,7 @@ namespace iam.Api
         public async System.Threading.Tasks.Task<ApiResponse<TrustedCertificateRespList>> GetAllCertificatesAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null)
         {
 
-            var localVarPath = "./v3/trusted-certificates";
+            var localVarPath = "/v3/trusted-certificates";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1757,7 +1757,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<TrustedCertificateRespList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (TrustedCertificateRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateRespList)));
         }
 
@@ -1788,7 +1788,7 @@ namespace iam.Api
         public ApiResponse< GroupSummaryList > GetAllGroupsWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null)
         {
 
-            var localVarPath = "./v3/policy-groups";
+            var localVarPath = "/v3/policy-groups";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1835,7 +1835,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<GroupSummaryList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (GroupSummaryList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GroupSummaryList)));
         }
 
@@ -1867,7 +1867,7 @@ namespace iam.Api
         public async System.Threading.Tasks.Task<ApiResponse<GroupSummaryList>> GetAllGroupsAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null)
         {
 
-            var localVarPath = "./v3/policy-groups";
+            var localVarPath = "/v3/policy-groups";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1913,7 +1913,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<GroupSummaryList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (GroupSummaryList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GroupSummaryList)));
         }
 
@@ -1941,7 +1941,7 @@ namespace iam.Api
             if (apiKey == null)
                 throw new ApiException(400, "Missing required parameter 'apiKey' when calling DeveloperApi->GetApiKey");
 
-            var localVarPath = "./v3/api-keys/{apiKey}";
+            var localVarPath = "/v3/api-keys/{apiKey}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1985,7 +1985,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
         }
 
@@ -2014,7 +2014,7 @@ namespace iam.Api
             if (apiKey == null)
                 throw new ApiException(400, "Missing required parameter 'apiKey' when calling DeveloperApi->GetApiKey");
 
-            var localVarPath = "./v3/api-keys/{apiKey}";
+            var localVarPath = "/v3/api-keys/{apiKey}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2057,7 +2057,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
         }
 
@@ -2093,7 +2093,7 @@ namespace iam.Api
             if (groupID == null)
                 throw new ApiException(400, "Missing required parameter 'groupID' when calling DeveloperApi->GetApiKeysOfGroup");
 
-            var localVarPath = "./v3/policy-groups/{groupID}/api-keys";
+            var localVarPath = "/v3/policy-groups/{groupID}/api-keys";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2141,7 +2141,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<ApiKeyInfoRespList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ApiKeyInfoRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoRespList)));
         }
 
@@ -2178,7 +2178,7 @@ namespace iam.Api
             if (groupID == null)
                 throw new ApiException(400, "Missing required parameter 'groupID' when calling DeveloperApi->GetApiKeysOfGroup");
 
-            var localVarPath = "./v3/policy-groups/{groupID}/api-keys";
+            var localVarPath = "/v3/policy-groups/{groupID}/api-keys";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2225,7 +2225,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<ApiKeyInfoRespList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ApiKeyInfoRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoRespList)));
         }
 
@@ -2253,7 +2253,7 @@ namespace iam.Api
             if (certId == null)
                 throw new ApiException(400, "Missing required parameter 'certId' when calling DeveloperApi->GetCertificate");
 
-            var localVarPath = "./v3/trusted-certificates/{cert-id}";
+            var localVarPath = "/v3/trusted-certificates/{cert-id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2297,7 +2297,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<TrustedCertificateResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (TrustedCertificateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateResp)));
         }
 
@@ -2326,7 +2326,7 @@ namespace iam.Api
             if (certId == null)
                 throw new ApiException(400, "Missing required parameter 'certId' when calling DeveloperApi->GetCertificate");
 
-            var localVarPath = "./v3/trusted-certificates/{cert-id}";
+            var localVarPath = "/v3/trusted-certificates/{cert-id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2369,7 +2369,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<TrustedCertificateResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (TrustedCertificateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateResp)));
         }
 
@@ -2397,7 +2397,7 @@ namespace iam.Api
             if (groupID == null)
                 throw new ApiException(400, "Missing required parameter 'groupID' when calling DeveloperApi->GetGroupSummary");
 
-            var localVarPath = "./v3/policy-groups/{groupID}";
+            var localVarPath = "/v3/policy-groups/{groupID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2441,7 +2441,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<GroupSummary>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (GroupSummary) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GroupSummary)));
         }
 
@@ -2470,7 +2470,7 @@ namespace iam.Api
             if (groupID == null)
                 throw new ApiException(400, "Missing required parameter 'groupID' when calling DeveloperApi->GetGroupSummary");
 
-            var localVarPath = "./v3/policy-groups/{groupID}";
+            var localVarPath = "/v3/policy-groups/{groupID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2513,7 +2513,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<GroupSummary>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (GroupSummary) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GroupSummary)));
         }
 
@@ -2538,7 +2538,7 @@ namespace iam.Api
         public ApiResponse< AccountInfo > GetMyAccountInfoWithHttpInfo (string include = null)
         {
 
-            var localVarPath = "./v3/accounts/me";
+            var localVarPath = "/v3/accounts/me";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2582,7 +2582,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<AccountInfo>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AccountInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountInfo)));
         }
 
@@ -2608,7 +2608,7 @@ namespace iam.Api
         public async System.Threading.Tasks.Task<ApiResponse<AccountInfo>> GetMyAccountInfoAsyncWithHttpInfo (string include = null)
         {
 
-            var localVarPath = "./v3/accounts/me";
+            var localVarPath = "/v3/accounts/me";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2651,7 +2651,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<AccountInfo>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (AccountInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccountInfo)));
         }
 
@@ -2674,7 +2674,7 @@ namespace iam.Api
         public ApiResponse< ApiKeyInfoResp > GetMyApiKeyWithHttpInfo ()
         {
 
-            var localVarPath = "./v3/api-keys/me";
+            var localVarPath = "/v3/api-keys/me";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2717,7 +2717,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
         }
 
@@ -2741,7 +2741,7 @@ namespace iam.Api
         public async System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoResp>> GetMyApiKeyAsyncWithHttpInfo ()
         {
 
-            var localVarPath = "./v3/api-keys/me";
+            var localVarPath = "/v3/api-keys/me";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2783,7 +2783,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
         }
 
@@ -2808,7 +2808,7 @@ namespace iam.Api
         public ApiResponse< MyUserInfoResp > GetMyUserWithHttpInfo (string scratchCodes = null)
         {
 
-            var localVarPath = "./v3/users/me";
+            var localVarPath = "/v3/users/me";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2852,7 +2852,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<MyUserInfoResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (MyUserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(MyUserInfoResp)));
         }
 
@@ -2878,7 +2878,7 @@ namespace iam.Api
         public async System.Threading.Tasks.Task<ApiResponse<MyUserInfoResp>> GetMyUserAsyncWithHttpInfo (string scratchCodes = null)
         {
 
-            var localVarPath = "./v3/users/me";
+            var localVarPath = "/v3/users/me";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2921,7 +2921,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<MyUserInfoResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (MyUserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(MyUserInfoResp)));
         }
 
@@ -2954,7 +2954,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->RemoveApiKeysFromGroup");
 
-            var localVarPath = "./v3/policy-groups/{groupID}/api-keys";
+            var localVarPath = "/v3/policy-groups/{groupID}/api-keys";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3007,7 +3007,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
         }
 
@@ -3041,7 +3041,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->RemoveApiKeysFromGroup");
 
-            var localVarPath = "./v3/policy-groups/{groupID}/api-keys";
+            var localVarPath = "/v3/policy-groups/{groupID}/api-keys";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3093,7 +3093,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
         }
 
@@ -3126,7 +3126,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->UpdateApiKey");
 
-            var localVarPath = "./v3/api-keys/{apiKey}";
+            var localVarPath = "/v3/api-keys/{apiKey}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3178,7 +3178,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
         }
 
@@ -3212,7 +3212,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->UpdateApiKey");
 
-            var localVarPath = "./v3/api-keys/{apiKey}";
+            var localVarPath = "/v3/api-keys/{apiKey}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3263,7 +3263,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
         }
 
@@ -3296,7 +3296,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->UpdateCertificate");
 
-            var localVarPath = "./v3/trusted-certificates/{cert-id}";
+            var localVarPath = "/v3/trusted-certificates/{cert-id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3349,7 +3349,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<TrustedCertificateResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (TrustedCertificateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateResp)));
         }
 
@@ -3383,7 +3383,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->UpdateCertificate");
 
-            var localVarPath = "./v3/trusted-certificates/{cert-id}";
+            var localVarPath = "/v3/trusted-certificates/{cert-id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3435,7 +3435,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<TrustedCertificateResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (TrustedCertificateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrustedCertificateResp)));
         }
 
@@ -3463,7 +3463,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->UpdateMyApiKey");
 
-            var localVarPath = "./v3/api-keys/me";
+            var localVarPath = "/v3/api-keys/me";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3514,7 +3514,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
         }
 
@@ -3543,7 +3543,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->UpdateMyApiKey");
 
-            var localVarPath = "./v3/api-keys/me";
+            var localVarPath = "/v3/api-keys/me";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3593,7 +3593,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
         }
 
@@ -3621,7 +3621,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->UpdateMyUser");
 
-            var localVarPath = "./v3/users/me";
+            var localVarPath = "/v3/users/me";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3673,7 +3673,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<UserUpdateResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UserUpdateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserUpdateResp)));
         }
 
@@ -3702,7 +3702,7 @@ namespace iam.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->UpdateMyUser");
 
-            var localVarPath = "./v3/users/me";
+            var localVarPath = "/v3/users/me";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3753,7 +3753,7 @@ namespace iam.Api
             }
 
             return new ApiResponse<UserUpdateResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UserUpdateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserUpdateResp)));
         }
 

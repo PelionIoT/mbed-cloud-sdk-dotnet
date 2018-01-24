@@ -8,7 +8,7 @@ namespace MbedCloudSDK.Common
     using System.Collections.Generic;
     using System.Net;
     using Newtonsoft.Json.Linq;
-    using RestSharp.Portable;
+    using RestSharp;
 
     /// <summary>
     /// Api meta data
@@ -76,7 +76,7 @@ namespace MbedCloudSDK.Common
                 metadata.Headers = new Dictionary<string, string>();
                 foreach (var header in response.Headers)
                 {
-                    metadata.Headers.Add(header.Key, header.Value.ToString());
+                    metadata.Headers.Add(header.Name, header.Value.ToString());
                 }
 
                 metadata.Date = metadata.Headers.ContainsKey(nameof(Date)) ? DateTime.Parse(metadata.Headers[nameof(Date)]) : DateTime.Now;

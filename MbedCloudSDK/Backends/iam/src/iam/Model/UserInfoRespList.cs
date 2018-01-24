@@ -13,12 +13,14 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = iam.Client.SwaggerDateConverter;
 
 namespace iam.Model
@@ -27,7 +29,7 @@ namespace iam.Model
     /// UserInfoRespList
     /// </summary>
     [DataContract]
-    public partial class UserInfoRespList :  IEquatable<UserInfoRespList>
+    public partial class UserInfoRespList :  IEquatable<UserInfoRespList>, IValidatableObject
     {
         /// <summary>
         /// Entity name: always &#39;list&#39;
@@ -337,6 +339,16 @@ namespace iam.Model
                     hash = hash * 59 + this.Order.GetHashCode();
                 return hash;
             }
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
         }
     }
 

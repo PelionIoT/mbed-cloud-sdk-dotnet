@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RestSharp.Portable;
+using RestSharp;
 using mds.Client;
 using mds.Model;
 
@@ -280,7 +280,7 @@ namespace mds.Api
             if (webhook == null)
                 throw new ApiException(400, "Missing required parameter 'webhook' when calling NotificationsApi->V2NotificationCallbackPut");
 
-            var localVarPath = "./v2/notification/callback";
+            var localVarPath = "/v2/notification/callback";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -331,7 +331,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -359,7 +359,7 @@ namespace mds.Api
             if (webhook == null)
                 throw new ApiException(400, "Missing required parameter 'webhook' when calling NotificationsApi->V2NotificationCallbackPut");
 
-            var localVarPath = "./v2/notification/callback";
+            var localVarPath = "/v2/notification/callback";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -409,7 +409,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -431,7 +431,7 @@ namespace mds.Api
         public ApiResponse<Object> V2NotificationPullDeleteWithHttpInfo ()
         {
 
-            var localVarPath = "./v2/notification/pull";
+            var localVarPath = "/v2/notification/pull";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -473,7 +473,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -496,7 +496,7 @@ namespace mds.Api
         public async System.Threading.Tasks.Task<ApiResponse<Object>> V2NotificationPullDeleteAsyncWithHttpInfo ()
         {
 
-            var localVarPath = "./v2/notification/pull";
+            var localVarPath = "/v2/notification/pull";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -537,7 +537,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -560,7 +560,7 @@ namespace mds.Api
         public ApiResponse< NotificationMessage > V2NotificationPullGetWithHttpInfo ()
         {
 
-            var localVarPath = "./v2/notification/pull";
+            var localVarPath = "/v2/notification/pull";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -603,7 +603,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<NotificationMessage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (NotificationMessage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(NotificationMessage)));
         }
 
@@ -627,7 +627,7 @@ namespace mds.Api
         public async System.Threading.Tasks.Task<ApiResponse<NotificationMessage>> V2NotificationPullGetAsyncWithHttpInfo ()
         {
 
-            var localVarPath = "./v2/notification/pull";
+            var localVarPath = "/v2/notification/pull";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -669,7 +669,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<NotificationMessage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (NotificationMessage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(NotificationMessage)));
         }
 

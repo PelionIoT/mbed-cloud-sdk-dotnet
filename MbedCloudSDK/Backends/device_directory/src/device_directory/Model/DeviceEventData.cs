@@ -13,12 +13,14 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = device_directory.Client.SwaggerDateConverter;
 
 namespace device_directory.Model
@@ -27,7 +29,7 @@ namespace device_directory.Model
     /// DeviceEventData
     /// </summary>
     [DataContract]
-    public partial class DeviceEventData :  IEquatable<DeviceEventData>
+    public partial class DeviceEventData :  IEquatable<DeviceEventData>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceEventData" /> class.
@@ -260,6 +262,22 @@ namespace device_directory.Model
                     hash = hash * 59 + this.DeviceId.GetHashCode();
                 return hash;
             }
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            // EventType (string) maxLength
+            if(this.EventType != null && this.EventType.Length > 100)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EventType, length must be less than 100.", new [] { "EventType" });
+            }
+
+            yield break;
         }
     }
 

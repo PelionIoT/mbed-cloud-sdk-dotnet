@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RestSharp.Portable;
+using RestSharp;
 using mds.Client;
 using mds.Model;
 
@@ -247,7 +247,7 @@ namespace mds.Api
             if (deviceId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceId' when calling EndpointsApi->V2EndpointsDeviceIdGet");
 
-            var localVarPath = "./v2/endpoints/{device-id}";
+            var localVarPath = "/v2/endpoints/{device-id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -291,7 +291,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<List<Resource>>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<Resource>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Resource>)));
         }
 
@@ -320,7 +320,7 @@ namespace mds.Api
             if (deviceId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceId' when calling EndpointsApi->V2EndpointsDeviceIdGet");
 
-            var localVarPath = "./v2/endpoints/{device-id}";
+            var localVarPath = "/v2/endpoints/{device-id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -363,7 +363,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<List<Resource>>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<Resource>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Resource>)));
         }
 
@@ -388,7 +388,7 @@ namespace mds.Api
         public ApiResponse< List<Endpoint> > V2EndpointsGetWithHttpInfo (string type = null)
         {
 
-            var localVarPath = "./v2/endpoints";
+            var localVarPath = "/v2/endpoints";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -432,7 +432,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<List<Endpoint>>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<Endpoint>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Endpoint>)));
         }
 
@@ -458,7 +458,7 @@ namespace mds.Api
         public async System.Threading.Tasks.Task<ApiResponse<List<Endpoint>>> V2EndpointsGetAsyncWithHttpInfo (string type = null)
         {
 
-            var localVarPath = "./v2/endpoints";
+            var localVarPath = "/v2/endpoints";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -501,7 +501,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<List<Endpoint>>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<Endpoint>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Endpoint>)));
         }
 

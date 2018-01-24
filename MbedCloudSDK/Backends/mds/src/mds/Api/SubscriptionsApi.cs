@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RestSharp.Portable;
+using RestSharp;
 using mds.Client;
 using mds.Model;
 
@@ -497,7 +497,7 @@ namespace mds.Api
         public ApiResponse<Object> V2SubscriptionsDeleteWithHttpInfo ()
         {
 
-            var localVarPath = "./v2/subscriptions";
+            var localVarPath = "/v2/subscriptions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -539,7 +539,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -562,7 +562,7 @@ namespace mds.Api
         public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeleteAsyncWithHttpInfo ()
         {
 
-            var localVarPath = "./v2/subscriptions";
+            var localVarPath = "/v2/subscriptions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -603,7 +603,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -630,7 +630,7 @@ namespace mds.Api
             if (deviceId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdDelete");
 
-            var localVarPath = "./v2/subscriptions/{device-id}";
+            var localVarPath = "/v2/subscriptions/{device-id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -673,7 +673,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -701,7 +701,7 @@ namespace mds.Api
             if (deviceId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdDelete");
 
-            var localVarPath = "./v2/subscriptions/{device-id}";
+            var localVarPath = "/v2/subscriptions/{device-id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -743,7 +743,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -771,7 +771,7 @@ namespace mds.Api
             if (deviceId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdGet");
 
-            var localVarPath = "./v2/subscriptions/{device-id}";
+            var localVarPath = "/v2/subscriptions/{device-id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -815,7 +815,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<string>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (string) Configuration.ApiClient.Deserialize(localVarResponse, typeof(string)));
         }
 
@@ -844,7 +844,7 @@ namespace mds.Api
             if (deviceId == null)
                 throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdGet");
 
-            var localVarPath = "./v2/subscriptions/{device-id}";
+            var localVarPath = "/v2/subscriptions/{device-id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -887,7 +887,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<string>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (string) Configuration.ApiClient.Deserialize(localVarResponse, typeof(string)));
         }
 
@@ -919,7 +919,7 @@ namespace mds.Api
             if (resourcePath == null)
                 throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathDelete");
 
-            var localVarPath = "./v2/subscriptions/{device-id}/{resourcePath}";
+            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -963,7 +963,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -996,7 +996,7 @@ namespace mds.Api
             if (resourcePath == null)
                 throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathDelete");
 
-            var localVarPath = "./v2/subscriptions/{device-id}/{resourcePath}";
+            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1039,7 +1039,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1071,7 +1071,7 @@ namespace mds.Api
             if (resourcePath == null)
                 throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathGet");
 
-            var localVarPath = "./v2/subscriptions/{device-id}/{resourcePath}";
+            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1115,7 +1115,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1148,7 +1148,7 @@ namespace mds.Api
             if (resourcePath == null)
                 throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathGet");
 
-            var localVarPath = "./v2/subscriptions/{device-id}/{resourcePath}";
+            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1191,7 +1191,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1223,7 +1223,7 @@ namespace mds.Api
             if (resourcePath == null)
                 throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathPut");
 
-            var localVarPath = "./v2/subscriptions/{device-id}/{resourcePath}";
+            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1268,7 +1268,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1301,7 +1301,7 @@ namespace mds.Api
             if (resourcePath == null)
                 throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathPut");
 
-            var localVarPath = "./v2/subscriptions/{device-id}/{resourcePath}";
+            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1345,7 +1345,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1368,7 +1368,7 @@ namespace mds.Api
         public ApiResponse< PresubscriptionArray > V2SubscriptionsGetWithHttpInfo ()
         {
 
-            var localVarPath = "./v2/subscriptions";
+            var localVarPath = "/v2/subscriptions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1411,7 +1411,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<PresubscriptionArray>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (PresubscriptionArray) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PresubscriptionArray)));
         }
 
@@ -1435,7 +1435,7 @@ namespace mds.Api
         public async System.Threading.Tasks.Task<ApiResponse<PresubscriptionArray>> V2SubscriptionsGetAsyncWithHttpInfo ()
         {
 
-            var localVarPath = "./v2/subscriptions";
+            var localVarPath = "/v2/subscriptions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1477,7 +1477,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<PresubscriptionArray>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (PresubscriptionArray) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PresubscriptionArray)));
         }
 
@@ -1504,7 +1504,7 @@ namespace mds.Api
             if (presubsription == null)
                 throw new ApiException(400, "Missing required parameter 'presubsription' when calling SubscriptionsApi->V2SubscriptionsPut");
 
-            var localVarPath = "./v2/subscriptions";
+            var localVarPath = "/v2/subscriptions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1556,7 +1556,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1584,7 +1584,7 @@ namespace mds.Api
             if (presubsription == null)
                 throw new ApiException(400, "Missing required parameter 'presubsription' when calling SubscriptionsApi->V2SubscriptionsPut");
 
-            var localVarPath = "./v2/subscriptions";
+            var localVarPath = "/v2/subscriptions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1635,7 +1635,7 @@ namespace mds.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 

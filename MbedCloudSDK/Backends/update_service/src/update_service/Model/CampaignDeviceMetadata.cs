@@ -13,12 +13,14 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = update_service.Client.SwaggerDateConverter;
 
 namespace update_service.Model
@@ -27,7 +29,7 @@ namespace update_service.Model
     /// CampaignDeviceMetadata
     /// </summary>
     [DataContract]
-    public partial class CampaignDeviceMetadata :  IEquatable<CampaignDeviceMetadata>
+    public partial class CampaignDeviceMetadata :  IEquatable<CampaignDeviceMetadata>, IValidatableObject
     {
         /// <summary>
         /// The state of the update campaign on the device
@@ -344,6 +346,28 @@ namespace update_service.Model
                     hash = hash * 59 + this.DeviceId.GetHashCode();
                 return hash;
             }
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            // Description (string) maxLength
+            if(this.Description != null && this.Description.Length > 2000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be less than 2000.", new [] { "Description" });
+            }
+
+            // Name (string) maxLength
+            if(this.Name != null && this.Name.Length > 128)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 128.", new [] { "Name" });
+            }
+
+            yield break;
         }
     }
 

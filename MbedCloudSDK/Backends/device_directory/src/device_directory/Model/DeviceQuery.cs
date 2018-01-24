@@ -13,12 +13,14 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = device_directory.Client.SwaggerDateConverter;
 
 namespace device_directory.Model
@@ -27,7 +29,7 @@ namespace device_directory.Model
     /// DeviceQuery
     /// </summary>
     [DataContract]
-    public partial class DeviceQuery :  IEquatable<DeviceQuery>
+    public partial class DeviceQuery :  IEquatable<DeviceQuery>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceQuery" /> class.
@@ -275,6 +277,16 @@ namespace device_directory.Model
                     hash = hash * 59 + this.Id.GetHashCode();
                 return hash;
             }
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
         }
     }
 

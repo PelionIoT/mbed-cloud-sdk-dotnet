@@ -11,7 +11,7 @@
  */
 
 using System;
-using RestSharp.Portable;
+using RestSharp;
 
 namespace mds.Client
 {
