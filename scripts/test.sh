@@ -12,7 +12,7 @@ fi
 
 dotnet run --project Tests/MbedCloudSDK.IntegrationTests/MbedCloudSDK.IntegrationTests.csproj &
 
-sleep 2
+sleep 5
 
 # Start the test runner
 docker run --rm --net=host --name=testrunner_container \
