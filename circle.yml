@@ -57,9 +57,10 @@ dependencies:
     - npm install -g ansi-html-stream
 compile:
   override:
-    - dotnet build
+    - dotnet build -c Release
+    - dotnet pack MbedCloudSDK -c Release --include-symbols --no-build --no-restore
 test:
   override:
-    - dotnet test Tests/MbedCloudSDK.UnitTests
-    - dotnet test Tests/MbedCloudSDK.ExampleTests
+    - dotnet test Tests/MbedCloudSDK.UnitTests -c Release --no-build --no-restore
+    - dotnet test Tests/MbedCloudSDK.ExampleTests -c Release --no-build --no-restore
     - ./scripts/test.sh
