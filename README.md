@@ -13,16 +13,25 @@ greatly appreciated and you can read more about the process
 ## Installation
 
 1. Download the .NET Core SDK from [here](https://www.microsoft.com/net/download). There are installers for Windows, Linux and Mac.
-2. In your project, run
+2. To create a new console application, run
+
+```
+dotnet new console -o myApp
+cd myApp
+```
+
+3. To install the MbedCloudSDK in your project, run
 
 ```
 dotnet add package Mbed.Cloud.SDK
+dotnet build
 ```
+
+4. To use the SDK you'll need an Api Key, which you can get from the [Mbed Cloud Portal](https://portal.mbedcloud.com/).
 
 ## Example Usage
 
-1. Create API key in the [Mbed Cloud Portal](https://portal.mbedcloud.com/).
-2. In your project, follow the sample below:
+The following sample lists the first five devices in your Device Directory.
 
     ```csharp
     using MbedCloudSDK.Common;
@@ -49,7 +58,7 @@ dotnet add package Mbed.Cloud.SDK
     }
     ```
 
-Further examples can be viewed in the ConsoleExamples folder of this repo.
+Further examples can be viewed in the Examples/ConsoleExamples folder of this repo.
 
 ## Documentation
 
