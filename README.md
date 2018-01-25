@@ -13,14 +13,14 @@ greatly appreciated and you can read more about the process
 ## Installation
 
 1. Download the .NET Core SDK from [here](https://www.microsoft.com/net/download). There are installers for Windows, Linux and Mac.
-2. To create a new console application, run
+2. Create a new console application
 
 ```
 dotnet new console -o myApp
 cd myApp
 ```
 
-3. To install the MbedCloudSDK in your project, run
+3. Install the MbedCloudSDK in your project
 
 ```
 dotnet add package Mbed.Cloud.SDK
