@@ -33,30 +33,30 @@ dotnet build
 
 The following sample lists the first five devices in your Device Directory.
 
-    ```csharp
-    using MbedCloudSDK.Common;
-    using MbedCloudSDK.Common.Query;
-    using MbedCloudSDK.DeviceDirectory.Api;
+```csharp
+using MbedCloudSDK.Common;
+using MbedCloudSDK.Common.Query;
+using MbedCloudSDK.DeviceDirectory.Api;
 
-    var apiKey = "<your Mbed Cloud api key>";
-    // create a config object with your api key
-    var config = new Config(apiKey);
-    // Instantiate the Device Directory Api
-    var deviceApi = new DeviceDirectoryApi(config);
+var apiKey = "<your Mbed Cloud api key>";
+// create a config object with your api key
+var config = new Config(apiKey);
+// Instantiate the Device Directory Api
+var deviceApi = new DeviceDirectoryApi(config);
 
-    // Options for the query. The Limit defines the number of results returned
-    var options = new QueryOptions()
-    {
-        Limit = 5,
-    };
+// Options for the query. The Limit defines the number of results returned
+var options = new QueryOptions()
+{
+    Limit = 5,
+};
 
-    // List devices from the Device Directory
-    var devices = deviceApi.ListDevices(options).Data;
-    foreach (var device in devices)
-    {
-        // Use the device object here
-    }
-    ```
+// List devices from the Device Directory
+var devices = deviceApi.ListDevices(options).Data;
+foreach (var device in devices)
+{
+    // Use the device object here
+}
+```
 
 Further examples can be viewed in the Examples/ConsoleExamples folder of this repo.
 
