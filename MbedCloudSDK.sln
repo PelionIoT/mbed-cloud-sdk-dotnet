@@ -13,11 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleExamples", "Examples
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CD44A263-F1FC-48C0-A68A-A59C3453462A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MbedCloudSDK.UnitTests", "Tests\MbedCloudSDK.UnitTests\MbedCloudSDK.UnitTests.csproj", "{91B6F8BE-F75B-4414-BAA4-966E1F76BC24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MbedCloudSDK.UnitTests", "Tests\MbedCloudSDK.UnitTests\MbedCloudSDK.UnitTests.csproj", "{91B6F8BE-F75B-4414-BAA4-966E1F76BC24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MbedCloudSDK.IntegrationTests", "Tests\MbedCloudSDK.IntegrationTests\MbedCloudSDK.IntegrationTests.csproj", "{C5AC23C6-1F58-4259-B290-BBA2B74CC87D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MbedCloudSDK.IntegrationTests", "Tests\MbedCloudSDK.IntegrationTests\MbedCloudSDK.IntegrationTests.csproj", "{C5AC23C6-1F58-4259-B290-BBA2B74CC87D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MbedCloudSDK.ExampleTests", "Tests\MbedCloudSDK.ExampleTests\MbedCloudSDK.ExampleTests.csproj", "{90EA0303-F578-4058-9C3F-D881792508BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MbedCloudSDK.ExampleTests", "Tests\MbedCloudSDK.ExampleTests\MbedCloudSDK.ExampleTests.csproj", "{90EA0303-F578-4058-9C3F-D881792508BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectedDevicesTemplate", "Templates\ConnectedDevicesTemplate\ConnectedDevicesTemplate.csproj", "{4802FA41-03F5-40D6-B01B-427E2FE53AF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{90EA0303-F578-4058-9C3F-D881792508BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90EA0303-F578-4058-9C3F-D881792508BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90EA0303-F578-4058-9C3F-D881792508BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4802FA41-03F5-40D6-B01B-427E2FE53AF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4802FA41-03F5-40D6-B01B-427E2FE53AF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4802FA41-03F5-40D6-B01B-427E2FE53AF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4802FA41-03F5-40D6-B01B-427E2FE53AF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +60,7 @@ Global
 		{91B6F8BE-F75B-4414-BAA4-966E1F76BC24} = {CD44A263-F1FC-48C0-A68A-A59C3453462A}
 		{C5AC23C6-1F58-4259-B290-BBA2B74CC87D} = {CD44A263-F1FC-48C0-A68A-A59C3453462A}
 		{90EA0303-F578-4058-9C3F-D881792508BF} = {CD44A263-F1FC-48C0-A68A-A59C3453462A}
+		{4802FA41-03F5-40D6-B01B-427E2FE53AF4} = {0E9711E6-FEC8-4DDB-B1C4-ECA8FA8CA719}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9F9FD089-BBBB-4F23-83F8-97E8B482DA37}
