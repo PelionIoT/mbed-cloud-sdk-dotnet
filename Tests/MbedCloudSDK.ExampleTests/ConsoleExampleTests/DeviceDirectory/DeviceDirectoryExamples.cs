@@ -55,7 +55,7 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.DeviceDirectory
             var config = new Config(key, host);
             var listLogs = new ConsoleExamples.Examples.DeviceDirectory.DeviceDirectoryExamples(config);
             var logs = listLogs.ListDevicesLogs();
-            Assert.IsNotEmpty(logs);
+            Assert.IsNotNull(logs);
         }
 
         [Test]

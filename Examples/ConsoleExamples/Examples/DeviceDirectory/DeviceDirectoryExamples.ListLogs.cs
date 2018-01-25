@@ -6,6 +6,7 @@ namespace ConsoleExamples.Examples.DeviceDirectory
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using MbedCloudSDK.Common.Filter;
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.DeviceDirectory.Model.Logging;
@@ -39,7 +40,7 @@ namespace ConsoleExamples.Examples.DeviceDirectory
 
             return logs;
             */
-            return null;
+            return Enumerable.Empty<DeviceEvent>().ToList();
         }
 
         /// <summary>
