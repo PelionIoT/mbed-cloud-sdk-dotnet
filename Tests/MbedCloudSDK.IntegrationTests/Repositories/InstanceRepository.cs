@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using MbedCloudSDK.AccountManagement.Api;
 using MbedCloudSDK.Certificates.Api;
 using MbedCloudSDK.Common;
@@ -31,9 +32,15 @@ namespace MbedCloudSDK.IntegrationTests.Repositories
             }
         }
 
-        internal Instance AddModuleInstance(ModuleEnum module, InstanceConfiguration instanceConfiguration)
+        public Instance AddModuleInstance(ModuleEnum module, InstanceConfiguration instanceConfiguration)
         {
-            var config = new Config(instanceConfiguration.ApiKey, instanceConfiguration.Host, autostartNotifications: instanceConfiguration.AutostartDaemon);
+            var additionalProperties = instanceConfiguration.GetHashtable();
+            var config = new Config(
+                apiKey: instanceConfiguration.ApiKey,
+                host: instanceConfiguration.Host,
+                autostartNotifications: instanceConfiguration.AutostartDaemon,
+                forceClear: Convert.ToBoolean(additionalProperties["force_clear"] ?? false));
+        
             var instance = new Instance { Id = Guid.NewGuid().ToString(), Module = module, CreatedAt = DateTime.Now };
             switch (module)
             {
@@ -62,6 +69,26 @@ namespace MbedCloudSDK.IntegrationTests.Repositories
             }
 
             return instance;
+        }
+
+        internal void DeleteInstance(Instance instance)
+        {
+            Instances.Remove(instance);
+        }
+
+        internal Instance GetInstance(string instanceId)
+        {
+            return Instances.Keys.Where(k => k.Id == instanceId).FirstOrDefault();
+        }
+
+        public List<Instance> GetAllInstances()
+        {
+            return Instances.Keys.ToList();
+        }
+
+        public List<Instance> ListModuleInstances(ModuleEnum module)
+        {
+            return Instances.Keys.Where(k => k.Module == module).ToList();
         }
     }
 }

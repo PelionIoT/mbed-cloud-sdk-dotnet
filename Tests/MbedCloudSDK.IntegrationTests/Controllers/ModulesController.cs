@@ -32,7 +32,9 @@ namespace MbedCloudSDK.IntegrationTests.Controllers
                 {
                     return NotFound();
                 }
-                return Ok();
+
+                var modules = _instanceService.ListModuleInstances(module);
+                return Json(modules);
             }
             catch (Exception e)
             {
@@ -46,6 +48,7 @@ namespace MbedCloudSDK.IntegrationTests.Controllers
         {
             try
             {
+                instanceConfiguration.ReverseMap();
                 var module = ModuleEnumHelpers.Map(moduleId);
                 if (module == ModuleEnum.None)
                 {

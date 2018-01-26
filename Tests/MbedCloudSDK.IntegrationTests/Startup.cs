@@ -26,7 +26,7 @@ namespace MbedCloudSDK.IntegrationTests
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc()
-                .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
+                .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver { NamingStrategy = new SnakeCaseNamingStrategy() });
 
             services.AddSingleton<IInstanceService, InstanceService>();
         }
