@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MbedCloudSDK.IntegrationTests.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Serialization;
 
 namespace MbedCloudSDK.IntegrationTests
 {
@@ -23,7 +25,10 @@ namespace MbedCloudSDK.IntegrationTests
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc()
+                .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
+
+            services.AddSingleton<IInstanceService, InstanceService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,26 +39,7 @@ namespace MbedCloudSDK.IntegrationTests
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{module}/{method}",
-                    defaults: new { controller = "Home", action = "TestModuleMethod" }
-                    );
-
-                routes.MapRoute(
-                    name: "Init",
-                    template: "_init",
-                    defaults: new { controller = "Home", action = "Init" }
-                    );
-
-                routes.MapRoute(
-                    name: "Exit",
-                    template: "_exit",
-                    defaults: new { controller = "Home", action = "Exit" }
-                    );
-            });
+            app.UseMvc();
         }
     }
 }
