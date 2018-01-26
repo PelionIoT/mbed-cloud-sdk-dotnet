@@ -157,8 +157,10 @@ namespace MbedCloudSDK.Connect.Api
             try
             {
                 subscriptionsApi.V2SubscriptionsDeviceIdDelete(deviceId);
-                var keys = ResourceSubscribtions.Keys.Where(k => k.Contains(deviceId)).ToList();
-                keys.ForEach(d => ResourceSubscribtions.Remove(d));
+                ResourceSubscribtions.Keys
+                    .Where(k => k.Contains(deviceId))
+                    .ToList()
+                    .ForEach(d => ResourceSubscribtions.Remove(d));
             }
             catch (mds.Client.ApiException e)
             {

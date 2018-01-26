@@ -12,7 +12,6 @@ namespace MbedCloudSDK.Common.Filter
     using MbedCloudSDK.Common.Filter.Maps;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
-    using RestSharp.Extensions.MonoHttp;
 
     /// <summary>
     /// Filter object

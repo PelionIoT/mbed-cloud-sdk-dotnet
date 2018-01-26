@@ -188,19 +188,7 @@ namespace MbedCloudSDK.Connect.Api
                         }
                     }
 
-                    var webhook = new Webhook();
-                    try
-                    {
-                        webhook = GetWebhook();
-                    }
-                    catch (CloudApiException e)
-                    {
-                        if (e.ErrorCode != 404)
-                        {
-                            throw;
-                        }
-                    }
-
+                    var webhook = GetWebhook() ?? new Webhook();
                     if (webhook?.Url != null)
                     {
                         Console.WriteLine($"Webhook already exists at {webhook.Url}");

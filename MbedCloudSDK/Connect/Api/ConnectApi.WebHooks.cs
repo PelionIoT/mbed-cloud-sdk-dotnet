@@ -39,6 +39,12 @@ namespace MbedCloudSDK.Connect.Api
             }
             catch (mds.Client.ApiException ex)
             {
+                if (ex.ErrorCode == 404)
+                {
+                    // no webhook
+                    return null;
+                }
+
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
         }

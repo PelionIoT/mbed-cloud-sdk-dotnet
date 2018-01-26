@@ -72,7 +72,7 @@ namespace MbedCloudSDK.Common
             if (response != null)
             {
                 metadata.StatusCode = response.StatusCode;
-                metadata.ErrorMessage = response.ErrorMessage;
+                metadata.ErrorMessage = response.StatusDescription;
                 metadata.Headers = new Dictionary<string, string>();
                 foreach (var header in response.Headers)
                 {

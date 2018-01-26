@@ -13,9 +13,9 @@ machine:
     UNITTEST_REPORT: ${SDK_REPORTS}/unittests.html
     INTTEST_REPORT: ${SDK_REPORTS}/inttests.html
     RAW_REPORT: ${SDK_REPORTS}/raw.txt
-    NUGET_NAME: Mbed.Cloud.SDK.1.2.3.nupkg
+    NUGET_NAME: Mbed.Cloud.SDK.1.2.4.nupkg
     ARTIFACTORY_URL: http://localhost:5000/artifactory/
-    TESTRUNNER_DOCKER_IMAGE : 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
+    TESTRUNNER_DOCKER_IMAGE : 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:3126695136f9ce02d351b7f35564c6227a1b0bb8
   services:
     - docker
 checkout:
@@ -40,11 +40,11 @@ checkout:
 dependencies:
   pre:
     - docker pull ${TESTRUNNER_DOCKER_IMAGE}
-    - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-    - echo "deb http://download.mono-project.com/repo/ubuntu trusty main" | sudo tee /etc/apt/sources.list.d/mono-official.list
+    - curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+    - sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+    - sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-trusty-prod trusty main" > /etc/apt/sources.list.d/dotnetdev.list'
     - sudo apt-get update
-    - sudo apt-get install mono-complete
-    - sudo apt-get install xsltproc
+    - sudo apt-get install dotnet-sdk-2.1.4
     # Add artful repo to get latest doxygen
     - sudo apt-get install software-properties-common python-software-properties
     - sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu/ artful main"
@@ -55,57 +55,35 @@ dependencies:
     - mkdir -p ${SDK_COVERAGE_REPORTS}
   post:
     - npm install -g ansi-html-stream
-    - ./scripts/setNugetCerts.sh
-    - wget https://dist.nuget.org/win-x86-commandline/v4.3.0/nuget.exe
-    - mono --runtime=v4.0 nuget.exe restore MbedCloudSDK/packages.config -PackagesDirectory packages
-    - mono --runtime=v4.0 nuget.exe restore TestServer/packages.config -PackagesDirectory packages
-    - mono --runtime=v4.0 nuget.exe restore MbedCloudSDK.Test/packages.config -PackagesDirectory packages
-    - mono --runtime=v4.0 nuget.exe restore ConsoleExamples/packages.config -PackagesDirectory packages
-    - sudo mono --runtime=v4.0 nuget.exe setapikey ${NUGET_KEY} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
-    - curl -s https://codecov.io/bash > codecov
-    - chmod +x codecov
 compile:
   override:
-    - msbuild /p:Configuration=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
-    - msbuild | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
-    - mono --runtime=v4.0 nuget.exe pack MbedCloudSDK/MbedCloudSDK.csproj -MSBuildPath "/usr/lib/mono/msbuild/15.0/bin" -Prop Configuration=Release | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+    - dotnet build -c Release
+    - dotnet pack MbedCloudSDK -c Release --no-build --no-restore
 test:
   override:
     - echo "<h1>${SDK_NAME} Unit Tests (build ${CIRCLE_BUILD_NUM})</h1>" >> ${UNITTEST_REPORT}
-    - mono --debug --profile=log:coverage,covfilter=+[MbedCloudSDK]MbedCloudSDK packages/NUnit.ConsoleRunner.3.7.0/tools/nunit3-console.exe --noh --inprocess MbedCloudSDK.Test/MbedCloudSDK.Test.csproj --params=mbed_cloud_sdk_api_key=${MBED_CLOUD_API_KEY} --params=mbed_cloud_sdk_host=${MBED_CLOUD_API_HOST} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
-    - mprof-report --out=coverage-report --coverage-out=coverage-report.xml output.mlpd | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
-    # - ./codecov -f "coverage-report.xml" -t ${CODECOV_TOKEN}
-    - xsltproc scripts/nunit3-junit.xslt TestResult.xml >> junit.xml
-    - mkdir -p ${CIRCLE_TEST_REPORTS}/junit
-    - cp junit.xml $CIRCLE_TEST_REPORTS/junit/test-results.xml
-    - xsltproc scripts/text-report.xslt TestResult.xml | tee /dev/tty | ansi-html >> ${UNITTEST_REPORT}
-    - cat ${UNITTEST_REPORT} | grep 'Test Count' >> ${RAW_REPORT}
+    - dotnet test Tests/MbedCloudSDK.UnitTests -c Release --no-build --no-restore | ansi-html >> ${UNITTEST_REPORT}
+    - dotnet test Tests/MbedCloudSDK.ExampleTests -c Release --no-build --no-restore | ansi-html >> ${UNITTEST_REPORT}
+    - cat ${UNITTEST_REPORT} | grep 'Total tests:' >> ${RAW_REPORT}
     - echo "<h1>${SDK_NAME} Integration Tests (build ${CIRCLE_BUILD_NUM})</h2>" >> ${INTTEST_REPORT}
     - set -o pipefail && bash scripts/test.sh 2>&1 | tee /dev/tty | ansi-html >> ${INTTEST_REPORT}
-    - mprof-report --out=int-coverage-report --coverage-out=int-coverage-report.xml int-output.mlpd | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
-    # - ./codecov -f "int-coverage-report.xml" -t ${CODECOV_TOKEN}
-    - mono packages/ReportGenerator.3.0.2/tools/ReportGenerator.exe -reports:*-report.xml -targetdir:${SDK_COVERAGE_REPORTS} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
-    - cat ${SDK_COVERAGE_REPORTS}/index.htm | grep '<tr><th>Line coverage:' >> ${RAW_REPORT}
     - cat ${INTTEST_REPORT} | grep 'seconds ====' >> ${RAW_REPORT}
-    - mv MbedCloudSDK/tpip.csv ${SDK_REPORTS}
     - echo "finished"
-
   post:
     - docker run -d -p 5000:80 artifactory; sleep 10
 deployment:
   master:
-    branch: master
+    branch: net-standard
     commands:
       - ./scripts/generate-docs.sh
-      - ./scripts/uploadArtifactsMaster.sh
-      - mono --runtime=v4.0 nuget.exe sources Add -Name ArtifactorySnapshot -Source ${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-snapshots | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
-      - sudo mono --runtime=v4.0 nuget.exe setapikey ${ARTIFACTORY_API_KEY} -Source ArtifactorySnapshot | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
-      - mono --runtime=v4.0 nuget.exe push ${NUGET_NAME} -Source ArtifactorySnapshot -Verbosity detailed -ApiKey ${ARTIFACTORY_API_KEY} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+      - echo "Uploading to latest"
+      - aws s3 sync --delete --cache-control max-age=3600 ${SDK_DOCS} s3://mbed-cloud-sdk-dotnet-dist/latest/docs
+      - aws s3 sync --delete --cache-control max-age=3600 ${SDK_REPORTS} s3://mbed-cloud-sdk-dotnet-dist/latest/reports
+      - dotnet nuget push MbedCloudSDK/bin/Release/${NUGET_NAME} -k ${ARTIFACTORY_API_KEY} -s ${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-snapshots
   release:
     branch: /[0-9]+\.[0-9]+.*/
     commands:
       - echo Tagging $SDK_NAME in GitHub...
       - git tag ${SDK_TAG}
       - git push --tags
-      - ./scripts/uploadArtifacts.sh
-      - mono --runtime=v4.0 nuget.exe push ${NUGET_NAME} -Source https://api.nuget.org/v3/index.json -Verbosity detailed -ApiKey ${NUGET_KEY} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+      - dotnet nuget push MbedCloudSDK/bin/Release/${NUGET_NAME} -k ${NUGET_KEY} -s https://api.nuget.org/v3/index.json

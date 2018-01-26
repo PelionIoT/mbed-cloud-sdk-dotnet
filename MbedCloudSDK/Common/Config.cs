@@ -23,6 +23,7 @@ namespace MbedCloudSDK.Common
         /// <param name="setSecurity">If true, SecurityProtocol will be set. Required for .NET 4.6 but depreciated in .NET Core. If using .NET Core, set to false.</param>
         public Config(string apiKey, string host = "https://api.us-east-1.mbedcloud.com", bool forceClear = false, bool autostartNotifications = false, bool setSecurity = true, string authorizationPrefix = "Bearer")
         {
+            /*
             if (setSecurity)
             {
                 try
@@ -35,6 +36,7 @@ namespace MbedCloudSDK.Common
                     Console.WriteLine(e);
                 }
             }
+            */
 
             AuthorizationPrefix = authorizationPrefix;
             ApiKey = apiKey;

@@ -92,8 +92,8 @@ namespace MbedCloudSDK.Connect.Api
         /// <summary>
         /// Unsubscribe from device and/or resource_path updates.
         /// </summary>
-        /// <param name="deviceId">device to unsubscribe events from. If not provided, all registered devices will be unsubscribed</param>
-        /// <param name="resourcePath">resource_path to unsubscribe events from. If not provided, all resource paths will be unsubscribed.</param>
+        /// <param name="deviceId">device to unsubscribe events from.</param>
+        /// <param name="resourcePath">resource_path to unsubscribe events from.</param>
         /// <example>
         /// <code>
         /// try
@@ -107,25 +107,14 @@ namespace MbedCloudSDK.Connect.Api
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public void DeleteResourceSubscription(string deviceId = null, string resourcePath = null)
+        public void DeleteResourceSubscription(string deviceId, string resourcePath)
         {
             try
             {
                 var fixedPath = FixedPath(resourcePath);
-                if (deviceId == null)
-                {
-                    foreach (var resource in ResourceSubscribtions)
-                    {
-                        subscriptionsApi.V2SubscriptionsDeviceIdResourcePathDelete(resource.Key, resource.Value.Path);
-                        ResourceSubscribtions.Clear();
-                    }
-                }
-                else
-                {
-                    subscriptionsApi.V2SubscriptionsDeviceIdResourcePathDelete(deviceId, fixedPath);
-                    var subscribePath = deviceId + resourcePath;
-                    ResourceSubscribtions.Remove(subscribePath);
-                }
+                subscriptionsApi.V2SubscriptionsDeviceIdResourcePathDelete(deviceId, fixedPath);
+                var subscribePath = deviceId + resourcePath;
+                ResourceSubscribtions.Remove(subscribePath);
             }
             catch (mds.Client.ApiException ex)
             {

@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-BACKEND_URL="http://localhost:3000";
+BACKEND_URL="http://localhost:5000";
 
 # Ensure we have API key
 API_KEY="${MBED_CLOUD_API_KEY}"
@@ -10,9 +10,9 @@ if [ -z $API_KEY ]; then
   exit 1;
 fi
 
-mono --debug --profile=log:coverage,covfilter=+[MbedCloudSDK]MbedCloudSDK,output=int-output.mlpd TestServer/bin/Debug/TestServer.exe ${MBED_CLOUD_API_KEY} ${MBED_CLOUD_API_HOST} &
+dotnet run --project Tests/MbedCloudSDK.IntegrationTests/MbedCloudSDK.IntegrationTests.csproj -c Release --no-build --no-restore &
 
-sleep 2
+sleep 5
 
 # Start the test runner
 docker run --rm --net=host --name=testrunner_container \
@@ -23,6 +23,6 @@ docker run --rm --net=host --name=testrunner_container \
 ${TESTRUNNER_DOCKER_IMAGE}
 RET_CODE=$?
 
-curl -X GET http://localhost:3000/_exit
+curl -X GET http://localhost:5000/_exit
 
 exit $RET_CODE

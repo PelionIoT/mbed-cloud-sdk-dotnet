@@ -4,63 +4,61 @@
 [![CircleCI](https://circleci.com/gh/ARMmbed/mbed-cloud-sdk-dotnet.svg?style=shield&circle-token=68538baa897f82e3dcc38a48315e9ba24977b183)](https://circleci.com/gh/ARMmbed/mbed-cloud-sdk-dotnet)
 [![codecov](https://codecov.io/gh/ARMmbed/mbed-cloud-sdk-dotnet/branch/master/graph/badge.svg?token=r8Bg3F9X7V)](https://codecov.io/gh/ARMmbed/mbed-cloud-sdk-dotnet)
 
-The Mbed Cloud SDK gives developers access to the full Mbed suite using .Net 4.61.
+The Mbed Cloud SDK gives developers access to the full Mbed suite using .NET Core 2.0.
 
 If you want to contribute to creating a SDK for another language the work is
 greatly appreciated and you can read more about the process
 [here](https://github.com/ARMmbed/mbed-cloud-sdk-codegen/blob/master/docs/create-new-language.md).
 
-## Installation (Windows - Visual Studio)
+## Installation
 
-1. Install Visual Studio Community 2017 from [here](https://www.visualstudio.com/).
-2. Open Visual Studio and create a new project.
-3. Go to Visual C# -> Windows Classic Desktop and create a new Console App. Make sure the target framework is set to .Net Framework 4.6.1.
-4. Go to Tools -> NuGet Package Manager and select the package manager console.
-5. Run the following command to install the package.
+1. Download the .NET Core SDK from [here](https://www.microsoft.com/net/download). There are installers for Windows, Linux and Mac.
+2. Create a new console application
 
 ```
-PM> Install-Package Mbed.Cloud.SDK
+dotnet new console -o myApp
+cd myApp
 ```
 
-## Installation (Mac - Visual Studio Community)
+3. Install the MbedCloudSDK in your project
 
-1. Install Visual Studio Community 2017 from [here](https://www.visualstudio.com/).
-2. Open Visual Studio and create a new solution.
-3. From the list of templates, select other -> .Net and create a new Console Application (or anything that supports .Net 4.61).
-4. Go to project -> Add NuGet Packages.
-5. Search for Mbed.Cloud.SDK and install the package.
+```
+dotnet add package Mbed.Cloud.SDK
+dotnet build
+```
+
+4. To use the SDK you'll need an Api Key, which you can get from the [Mbed Cloud Portal](https://portal.mbedcloud.com/).
 
 ## Example Usage
 
-1. Create API key in the [Mbed Cloud Portal](https://portal.mbedcloud.com/).
-2. In your project, follow the sample below:
+The following sample lists the first five devices in your Device Directory.
 
-    ```csharp
-    using MbedCloudSDK.Common;
-    using MbedCloudSDK.Common.Query;
-    using MbedCloudSDK.DeviceDirectory.Api;
+```csharp
+using MbedCloudSDK.Common;
+using MbedCloudSDK.Common.Query;
+using MbedCloudSDK.DeviceDirectory.Api;
 
-    var apiKey = "<your Mbed Cloud api key>";
-    // create a config object with your api key
-    var config = new Config(apiKey);
-    // Instantiate the Device Directory Api
-    var deviceApi = new DeviceDirectoryApi(config);
+var apiKey = "<your Mbed Cloud api key>";
+// create a config object with your api key
+var config = new Config(apiKey);
+// Instantiate the Device Directory Api
+var deviceApi = new DeviceDirectoryApi(config);
 
-    // Options for the query. The Limit defines the number of results returned
-    var options = new QueryOptions()
-    {
-        Limit = 5,
-    };
+// Options for the query. The Limit defines the number of results returned
+var options = new QueryOptions()
+{
+    Limit = 5,
+};
 
-    // List devices from the Device Directory
-    var devices = deviceApi.ListDevices(options).Data;
-    foreach (var device in devices)
-    {
-        // Use the device object here
-    }
-    ```
+// List devices from the Device Directory
+var devices = deviceApi.ListDevices(options).Data;
+foreach (var device in devices)
+{
+    // Use the device object here
+}
+```
 
-Further examples can be viewed in the ConsoleExamples folder of this repo.
+Further examples can be viewed in the Examples/ConsoleExamples folder of this repo.
 
 ## Documentation
 

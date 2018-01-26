@@ -1,125 +1,33 @@
 # Mbed Cloud SDK for .Net
 
-The Mbed Cloud SDK gives developers access to the full Mbed suite using .Net 4.61.
+The Mbed Cloud SDK gives developers access to the full Mbed suite using .NET Core 2.0.
 
-## Prerequisites
+If you want to contribute to creating a SDK for another language the work is
+greatly appreciated and you can read more about the process
+[here](https://github.com/ARMmbed/mbed-cloud-sdk-codegen/blob/master/docs/create-new-language.md).
 
-### Windows
+## Installation
 
-.Net v4.61
-
-### Mac/Linux
-
-[Mono v5.2.0](http://www.mono-project.com/download/)
-
-[Nuget v4.3.0](https://docs.microsoft.com/en-us/nuget/tools/nuget-exe-cli-reference)
-
-## Installation (Windows - Visual Studio)
-
-1. Install Visual Studio Community 2017 from [here](https://www.visualstudio.com/).
-2. Open Visual Studio and create a new project.
-3. Go to Visual C# -> Windows Classic Desktop and create a new Console App. Make sure the target framework is set to .Net Framework 4.6.1.
-4. Go to Tools -> NuGet Package Manager and select the package manager console.
-5. Run the following command to install the package:
+1. Download the .NET Core SDK from [here](https://www.microsoft.com/net/download). There are installers for Windows, Linux and Mac.
+2. Create a new console application
 
 \code{.sh}
-    PM> Install-Package Mbed.Cloud.SDK
+dotnet new console -o myApp
+cd myApp
 \endcode
 
-## Installation (Mac - Visual Studio Community)
-
-1. Install Visual Studio Community 2017 from [here](https://www.visualstudio.com/).
-2. Open Visual Studio and create a new solution.
-3. From the list of templates, select other -> .Net and create a new Console Application (or anything that supports .Net 4.61).
-4. Go to project -> Add NuGet Packages.
-5. Search for Mbed.Cloud.SDK and install the package.
-
-### Switch mac project to Visual Studio Code
-
-If you do not use Visual Studio for Mac, then you can open the project you just created in Visual Studio Code. To run your project you need to:
-
-1. Make sure you have the latest version of Mono installed
+3. Install the MbedCloudSDK in your project
 
 \code{.sh}
-    $ Mono -v
+dotnet add package Mbed.Cloud.SDK
+dotnet build
 \endcode
 
-2. Download the latest version of NuGet from [here](https://dist.nuget.org/win-x86-commandline/latest/nuget.exe).
-3. Download Visual Studio Code from [here](https://code.visualstudio.com/?wt.mc_id=DX_841432).
-4. Open the root of the project in VSCode.
-5. Install the Mono Debug extension from the extensions tab.
-6. Create a .vscode directory at the root of the project and create a launch.json file.
-7. In your launch.json, insert the following:
-
-\code{.json}
-{
-        "version": "0.2.0",
-        "configurations": [
-            {
-                "name": "Launch",
-                "type": "mono",
-                "request": "launch",
-                "program": "${workspaceRoot}/Path/To/Your/.exe",
-                "cwd": "${workspaceRoot}",
-                "args": ["any cmd arguments"]
-            },
-            {
-                "name": "Attach",
-                "type": "mono",
-                "request": "attach",
-                "address": "localhost",
-                "port": 5000
-            }
-        ]
-    }
-\endcode
-
-8. Now create a tasks.json file and insert the following:
-
-\code{.json}
-    {
-        "version": "2.0.0",
-        "tasks": [
-            {
-                "taskName": "build",
-                "type": "process",
-                "command": "msbuild",
-                "args": [
-                    "/property:GenerateFullPaths=true",
-                    "/t:build"
-                ],
-                "group": "build",
-                "presentation": {
-                    "reveal": "silent"
-                },
-                "problemMatcher": "$msCompile"
-            },
-        ]
-     }
-\endcode
-
-9. To resort your project packages, run the following NuGet command:
-
-    \code{.sh}
-    $ mono nuget.exe restore YourProject/packages.config -PackagesDirectory pathToYourPackagesFolder
-    \endcode
-
-10. Now pressing Cmd + Shift + B runs the build task. Verify that it was successful by checking the output in the integrated terminal.
-
-11. To build from the command line, use `msbuild` in the root of the project
-
-    \code{.sh}
-    $ msbuild
-    \endcode
-
-12. After a build has been successful, press f5 to launch debugging, or Shift + f5 to start without debugging. Any output should appear in the debug console tab of the integrated terminal.
-
-13. Simple! For more information on VSCode tasks, got to the [docs](https://code.visualstudio.com/docs/editor/tasks).
+4. To use the SDK you'll need an Api Key, which you can get from the [Mbed Cloud Portal](https://portal.mbedcloud.com/).
 
 ## Example Usage
 
-1. Create API key in the [Mbed Cloud Portal](https://portal.mbedcloud.com/).
-2. In your project, follow the sample below.
+The following sample lists the first five devices in your Device Directory.
 
     \code{.cs}
     using MbedCloudSDK.Common;
@@ -135,7 +43,7 @@ If you do not use Visual Studio for Mac, then you can open the project you just 
     // Options for the query. The Limit defines the number of results returned
     var options = new QueryOptions()
     {
-         Limit = 5,
+        Limit = 5,
     };
 
     // List devices from the Device Directory
@@ -146,8 +54,18 @@ If you do not use Visual Studio for Mac, then you can open the project you just 
     }
     \endcode
 
-## Api Keys
+Further examples can be viewed in the Examples/ConsoleExamples folder of this repo.
 
-Before using the SDK, you need to obtain an API key for use with Mbed Cloud.
+## Documentation
 
-You can generate this through the Mbed Cloud management console.
+See full [documentation and API reference here](https://cloud.mbed.com/docs/v1.2/mbed-cloud-sdk-dotnet/index.html).
+
+## Contributing
+
+Mbed Cloud SDK for .Net is open source and we would like your help; there is a
+brief guide on how to get started in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Licence
+
+Mbed Cloud SDK for .Net is free-to-use and licensed under the **Apache License
+2.0**. See [LICENSE](LICENSE) file for more information.

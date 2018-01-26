@@ -40,9 +40,8 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Logging
         /// <summary>
         /// Gets EventType
         /// </summary>
-        [JsonConverter(typeof(EventTypeEnumConverter))]
         [JsonProperty]
-        public EventType Type { get; private set; }
+        public string Type { get; private set; }
 
         /// <summary>
         /// Gets EventDate
@@ -109,12 +108,8 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Logging
                 Id = deviceLogSerializer.Id,
                 TypeDescription = deviceLogSerializer.EventTypeDescription,
                 StateChanged = deviceLogSerializer.StateChange,
-                Type = Utils.ParseEnum<EventType>(deviceLogSerializer.EventType)
+                Type = deviceLogSerializer.EventType,
             };
-            if (Enum.TryParse<EventType>(deviceLogSerializer.EventType.ToString(), out EventType eventType))
-            {
-                deviceLog.Type = eventType;
-            }
 
             return deviceLog;
         }
