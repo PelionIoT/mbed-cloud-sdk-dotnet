@@ -192,6 +192,18 @@ namespace MbedCloudSDK.Certificates.Model
         public string OwnerId { get; private set; }
 
         /// <summary>
+        /// Gets the API resource entity version.
+        /// </summary>
+        /// <value>The API resource entity version..</value>
+        public string Etag { get; private set; }
+
+        /// <summary>
+        /// Gets the Entity name
+        /// </summary>
+        /// <value>The Entity name</value>
+        public string Object { get; private set; }
+
+        /// <summary>
         /// Gets Content of the security.c file that will be flashed into the device to provide the security credentials.
         /// </summary>
         [JsonProperty]
@@ -344,10 +356,12 @@ namespace MbedCloudSDK.Certificates.Model
             certificate.CertificateData = trustedCertificate.Certificate;
             certificate.Id = trustedCertificate.Id;
             certificate.Name = trustedCertificate.Name;
-            certificate.Description = trustedCertificate.Description;
+            certificate.Description = trustedCertificate.Description ?? string.Empty;
             certificate.CreatedAt = trustedCertificate.CreatedAt;
             certificate.Status = Utils.ParseEnum<CertificateStatus>(trustedCertificate.Status);
             certificate.OwnerId = trustedCertificate.OwnerId;
+            certificate.Etag = trustedCertificate.Etag;
+            certificate.Object = Utils.GetEnumMemberValue(typeof(TrustedCertificateResp.ObjectEnum), Convert.ToString(trustedCertificate._Object));
             return certificate;
         }
 
@@ -366,16 +380,25 @@ namespace MbedCloudSDK.Certificates.Model
 
             certificate.Type = CertificateType.Developer;
             certificate.DeviceExecutionMode = 0;
-            certificate.SecurityFileContent = developerCertificateData.SecurityFileContent;
+            certificate.SecurityFileContent = developerCertificateData.SecurityFileContent ?? string.Empty;
             certificate.Description = developerCertificateData.Description;
             certificate.DeveloperCertificate = developerCertificateData.DeveloperCertificate;
-            certificate.ServerUri = developerCertificateData.ServerUri;
+            certificate.ServerUri = developerCertificateData.ServerUri ?? string.Empty;
             certificate.AccountId = developerCertificateData.AccountId;
             certificate.DeveloperPrivateKey = developerCertificateData.DeveloperPrivateKey;
-            certificate.ServerCertificate = developerCertificateData.ServerCertificate;
+            certificate.ServerCertificate = developerCertificateData.ServerCertificate ?? string.Empty;
             certificate.Id = developerCertificateData.Id;
             certificate.Name = developerCertificateData.Name;
             certificate.CreatedAt = DateTime.Parse(developerCertificateData.CreatedAt);
+            certificate.Etag = developerCertificateData.Etag;
+            certificate.Object = developerCertificateData._Object;
+            certificate.HeaderFile = certificate.SecurityFileContent;
+            certificate.Status = CertificateStatus.Active;
+            certificate.Issuer = string.Empty;
+            certificate.Subject = string.Empty;
+            certificate.Validity = DateTime.Now;
+            certificate.CertificateData = string.Empty;
+            certificate.OwnerId = string.Empty;
             return certificate;
         }
 
