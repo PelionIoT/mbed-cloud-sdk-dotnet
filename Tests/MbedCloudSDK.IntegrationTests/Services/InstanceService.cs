@@ -8,6 +8,8 @@ using MbedCloudSDK.DeviceDirectory.Api;
 using MbedCloudSDK.IntegrationTests.Models;
 using MbedCloudSDK.IntegrationTests.Repositories;
 using MbedCloudSDK.Update.Api;
+using Microsoft.AspNetCore.Mvc;
+using TestServer;
 
 namespace MbedCloudSDK.IntegrationTests.Services
 {
@@ -16,10 +18,12 @@ namespace MbedCloudSDK.IntegrationTests.Services
         void ResetInstances();
         Instance AddModuleInstance(ModuleEnum module, InstanceConfiguration instanceConfiguration);
         List<Instance> ListModuleInstances(ModuleEnum module);
+        List<string> ListModules();
         List<Instance> GetAllInstances();
         Instance GetInstance(string instanceId);
         void DeleteInstance(Instance instance);
-        List<string> ListInstanceMethods(Instance instance);
+        List<SdkApi> ListInstanceMethods(Instance instance);
+        object GetInstanceObject(Instance instance);
     }
 
     public class InstanceService : IInstanceService
@@ -79,7 +83,7 @@ namespace MbedCloudSDK.IntegrationTests.Services
             }
         }
 
-        public List<string> ListInstanceMethods(Instance instance)
+        public List<SdkApi> ListInstanceMethods(Instance instance)
         {
             try
             {
@@ -94,11 +98,11 @@ namespace MbedCloudSDK.IntegrationTests.Services
                     case ModuleEnum.DeviceDirectoryApi:
                         return GetMethods(typeof(DeviceDirectoryApi));
                     case ModuleEnum.StubAPI:
-                        return Enumerable.Empty<string>().ToList();
+                        return GetMethods(typeof(StubApi));
                     case ModuleEnum.UpdateApi:
                         return GetMethods(typeof(UpdateApi));
                     default:
-                        return Enumerable.Empty<string>().ToList();
+                        return Enumerable.Empty<SdkApi>().ToList();
                 }
             }
             catch (Exception e)
@@ -107,19 +111,9 @@ namespace MbedCloudSDK.IntegrationTests.Services
             }
         }
 
-        private List<string> GetMethods(Type type)
+        private List<SdkApi> GetMethods(Type type)
         {
-            return type.GetMethods().Select(m => m.Name).ToList();
-            /*
-            var methodList = new List<string>();
-            foreach (var method in type.GetMethods())
-            {
-                var parameters = method.GetParameters();
-                var parameterDescriptions = string.Join(", ", parameters.Select(p => $"{p.ParameterType} {p.Name}").ToArray());
-                methodList.Add($"{method.ReturnType} {method.Name} {parameterDescriptions}");
-            }
-            return methodList;
-            */
+            return type.GetMethods().Select(m => new SdkApi{ Name = Utils.CamelToSnake(m.Name)}).ToList();
         }
 
         public List<Instance> ListModuleInstances(ModuleEnum module)
@@ -139,6 +133,23 @@ namespace MbedCloudSDK.IntegrationTests.Services
             try
             {
                 _instanceRepository.ResetInstances();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public List<string> ListModules()
+        {
+            return ModuleEnumHelpers.Modules.Keys.ToList();
+        }
+
+        public object GetInstanceObject(Instance instance)
+        {
+            try
+            {
+                return _instanceRepository.GetInstanceObject(instance);
             }
             catch (Exception e)
             {

@@ -51,14 +51,14 @@ namespace TestServer
             return string.Concat(input.Select((x, i) => i > 0 && char.IsUpper(x) ? "_" + x.ToString() : x.ToString())).ToLower();
         }
 
-        public static Dictionary<string, object> SnakeToCamelDict(Dictionary<string, Microsoft.Extensions.Primitives.StringValues> nameValueCollection)
+        public static Dictionary<string, object> SnakeToCamelDict(Dictionary<string, object> nameValueCollection)
         {
             var dict = new Dictionary<string, object>();
 
             foreach(var k in nameValueCollection.Keys)
             {
                 var key = SnakeToCamel(k).ToUpper();
-                dict.Add(key, nameValueCollection[k].FirstOrDefault());
+                dict.Add(key, nameValueCollection[k]);
             }
 
             return dict;

@@ -39,8 +39,8 @@ namespace MbedCloudSDK.IntegrationTests.Repositories
                 apiKey: instanceConfiguration.ApiKey,
                 host: instanceConfiguration.Host,
                 autostartNotifications: instanceConfiguration.AutostartDaemon,
-                forceClear: Convert.ToBoolean(additionalProperties["force_clear"] ?? false));
-        
+                forceClear: true); // Convert.ToBoolean(additionalProperties["force_clear"] ?? false));
+
             var instance = new Instance { Id = Guid.NewGuid().ToString(), Module = module, CreatedAt = DateTime.Now };
             switch (module)
             {
@@ -61,6 +61,8 @@ namespace MbedCloudSDK.IntegrationTests.Repositories
                     Instances.Add(instance, deviceApi);
                     break;
                 case ModuleEnum.StubAPI:
+                    var stubApi = new StubApi(config);
+                    Instances.Add(instance, stubApi);
                     break;
                 case ModuleEnum.UpdateApi:
                     var updateApi = new UpdateApi(config);
@@ -89,6 +91,11 @@ namespace MbedCloudSDK.IntegrationTests.Repositories
         public List<Instance> ListModuleInstances(ModuleEnum module)
         {
             return Instances.Keys.Where(k => k.Module == module).ToList();
+        }
+
+        public object GetInstanceObject(Instance instance)
+        {
+            return Instances[instance];
         }
     }
 }

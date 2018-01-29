@@ -1,79 +1,45 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Globalization;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using MbedCloudSDK.AccountManagement.Api;
-using MbedCloudSDK.AccountManagement.Model.Account;
-using MbedCloudSDK.AccountManagement.Model.ApiKey;
 using MbedCloudSDK.Common;
 using MbedCloudSDK.Common.Filter;
 using MbedCloudSDK.Connect.Model.ConnectedDevice;
 using MbedCloudSDK.Connect.Model.Subscription;
-using MbedCloudSDK.Exceptions;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+using MbedCloudSDK.IntegrationTests.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
+using TestServer;
 
-namespace TestServer
+namespace MbedCloudSDK.IntegrationTests.Services
 {
-    public class HomeController : Controller
+    public interface IMethodRunnerService
     {
-        private SingletonModuleInstance _moduleRepository;
-        private IApplicationLifetime _life;
-
-        public HomeController(IApplicationLifetime life)
+        object TestModuleMethod(Instance module, object moduleInstance, string method, Dictionary<string, object> args = null);
+    }
+    public class MethodRunnerService : IMethodRunnerService
+    {
+        public object TestModuleMethod(Instance module, object moduleInstance, string method, Dictionary<string, object> args = null)
         {
-            _moduleRepository = new SingletonModuleInstance();
-            _life = life;
-        }
-
-        [HttpGet]
-        public IActionResult Init()
-        {
-            _moduleRepository.Create();
-            return Ok("Init");
-        }
-
-        [HttpGet]
-        public string Exit()
-        {
-            _moduleRepository.Create().StopNotifications();
-            Console.WriteLine("Finished...");
-            _life.StopApplication();
-            return "bye";
-        }
-
-        [HttpGet]
-        public IActionResult TestModuleMethod(string module, string method, [FromQuery] string args = "")
-        {
-            var camelModule = Utils.SnakeToCamel(module);
-            var camelMethod = Utils.SnakeToCamel(method);
+            var camelMethod = TestServer.Utils.SnakeToCamel(method);
 
             var argsJsonObj = new JObject();
-            if (!string.IsNullOrEmpty(args))
+            if (args != null)
             {
-                var dict = Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(args);
-                var camelDict = Utils.SnakeToCamelDict(dict);
+                var camelDict = TestServer.Utils.SnakeToCamelDict(args);
                 var argsJson = JsonConvert.SerializeObject(camelDict, GetDateSettings());
                 argsJsonObj = JObject.Parse(argsJson);
             }
 
-            var moduleInstance = _moduleRepository.Create().GetModules()[camelModule];
             var moduleType = moduleInstance.GetType();
 
             //get params for current method
             var methodInfo = moduleType.GetMethod(camelMethod);
             if (methodInfo == null)
             {
-                Response.StatusCode = 500;
-                return Json("No method found");
+                throw new Exception("no method found");
             }
 
             try
@@ -85,7 +51,7 @@ namespace TestServer
                     if (invokedMethod.GetType() == typeof(AsyncConsumer<string>))
                     {
                         var asyncConsumer = invokedMethod as AsyncConsumer<string>;
-                        return Ok(asyncConsumer.ToString());
+                        return asyncConsumer.ToString();
                     }
                     if (invokedMethod.GetType().GetProperties().Select(p => p.Name).Contains("DeviceFilter"))
                     {
@@ -98,46 +64,28 @@ namespace TestServer
 
                         foreach (var row in returnedJson)
                         {
-                            tempJson.Add(Utils.CamelToSnake(row.Key), row.Value);
+                            tempJson.Add(TestServer.Utils.CamelToSnake(row.Key), row.Value);
                         }
 
-                        return Ok(tempJson);
+                        return tempJson;
                     }
 
                 }
                 var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, GetSnakeJsonSettings());
                 if (result == null || result == "null")
                 {
-                    return Ok(new object());
+                    return new object();
                 }
 
-                return Ok(JsonConvert.DeserializeObject(result));
+                return JsonConvert.DeserializeObject(result);
             }
             catch (TargetInvocationException e)
             {
-                if (e.InnerException.GetType().GetProperty("ErrorCode") != null)
-                {
-                    dynamic innerException = e.InnerException;
-                    if (innerException.ErrorCode == 400)
-                    {
-                        return BadRequest(innerException);
-                    }
-                    else if (innerException.ErrorCode == 404)
-                    {
-                        return NotFound(innerException);
-                    }
-
-                    Response.StatusCode = 500;
-                    return Json(innerException);
-                }
-
-                Response.StatusCode = 500;
-                return Json(e.InnerException.Message);
+                throw e;
             }
             catch (Exception e)
             {
-                Response.StatusCode = 500;
-                return Json(e.Message);
+                throw e;
             }
         }
 
@@ -210,6 +158,20 @@ namespace TestServer
                             presubList.Add(presub);
                         }
                         serialisedParams.Add(presubList.ToArray());
+                    }
+                }
+                else if (paramType == typeof(DateTime))
+                {
+                    var val = argsJsonObj[p.Name.ToUpper()].Value<string>();
+                    var isDate = DateTime.TryParseExact(val, "MM/dd/yyyy HH:mm:ss", null, DateTimeStyles.None, out DateTime dateValue);
+                    if (isDate)
+                    {
+                        var dateWithMilli = argsJsonObj[p.Name.ToUpper()].Value<DateTime>();
+                        serialisedParams.Add(dateWithMilli);
+                    }
+                    else
+                    {
+                        serialisedParams.Add(null);
                     }
                 }
                 else

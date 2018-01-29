@@ -7,7 +7,7 @@ namespace MbedCloudSDK.IntegrationTests.Models
     public class Instance
     {
         public string Id { get; set; }
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(ModuleEnumConverter))]
         public ModuleEnum Module { get; set; }
         public DateTime CreatedAt { get; set; }
     }

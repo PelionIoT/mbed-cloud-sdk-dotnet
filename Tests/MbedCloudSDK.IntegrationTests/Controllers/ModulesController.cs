@@ -18,8 +18,15 @@ namespace MbedCloudSDK.IntegrationTests.Controllers
         [HttpGet("modules")]
         public IActionResult ListModules()
         {
-            // list modules
-            return Ok();
+            try
+            {
+                return Json(_instanceService.ListModules());
+            }
+            catch (Exception e)
+            {
+                Response.StatusCode = 500;
+                return Json(ErrorMessage.Map(e));
+            }
         }
 
         [HttpGet("modules/{moduleId}/instances")]
@@ -30,7 +37,8 @@ namespace MbedCloudSDK.IntegrationTests.Controllers
                 var module = ModuleEnumHelpers.Map(moduleId);
                 if (module == ModuleEnum.None)
                 {
-                    return NotFound();
+                    Response.StatusCode = 404;
+                    return Json(new ErrorMessage { Message = "No module instances found", Traceback = "" });
                 }
 
                 var modules = _instanceService.ListModuleInstances(module);
@@ -52,7 +60,8 @@ namespace MbedCloudSDK.IntegrationTests.Controllers
                 var module = ModuleEnumHelpers.Map(moduleId);
                 if (module == ModuleEnum.None)
                 {
-                    return NotFound();
+                    Response.StatusCode = 404;
+                    return Json(new ErrorMessage { Message = "No module found", Traceback = "" });
                 }
 
                 var instance = _instanceService.AddModuleInstance(module, instanceConfiguration);

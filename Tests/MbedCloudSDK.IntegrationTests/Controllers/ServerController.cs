@@ -20,7 +20,7 @@ namespace MbedCloudSDK.IntegrationTests.Controllers
         [HttpGet("ping")]
         public IActionResult Ping()
         {
-            return Ok("pong");
+            return Json("pong");
         }
 
         [HttpPost("reset")]

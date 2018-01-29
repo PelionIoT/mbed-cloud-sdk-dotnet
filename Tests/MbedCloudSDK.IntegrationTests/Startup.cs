@@ -29,6 +29,7 @@ namespace MbedCloudSDK.IntegrationTests
                 .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver { NamingStrategy = new SnakeCaseNamingStrategy() });
 
             services.AddSingleton<IInstanceService, InstanceService>();
+            services.AddScoped<IMethodRunnerService, MethodRunnerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

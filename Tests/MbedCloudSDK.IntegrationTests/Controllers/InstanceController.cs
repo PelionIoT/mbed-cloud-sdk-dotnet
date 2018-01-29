@@ -10,10 +10,12 @@ namespace MbedCloudSDK.IntegrationTests.Controllers
     public class InstanceController : Controller
     {
         private IInstanceService _instanceService;
+        private IMethodRunnerService _methodRunnerService;
 
-        public InstanceController(IInstanceService instanceService)
+        public InstanceController(IInstanceService instanceService, IMethodRunnerService methodRunnerService)
         {
             _instanceService = instanceService;
+            _methodRunnerService = methodRunnerService;
         }
 
         [HttpGet("instances")]
@@ -38,7 +40,8 @@ namespace MbedCloudSDK.IntegrationTests.Controllers
                 var instance = _instanceService.GetInstance(instanceId);
                 if (instance == null)
                 {
-                    return NotFound();
+                    Response.StatusCode = 404;
+                    return Json(new ErrorMessage { Message = "No instances found", Traceback = "" });
                 }
 
                 return Json(instance);
@@ -58,11 +61,12 @@ namespace MbedCloudSDK.IntegrationTests.Controllers
                 var instance = _instanceService.GetInstance(instanceId);
                 if (instance == null)
                 {
-                    return NotFound();
+                    Response.StatusCode = 404;
+                    return Json(new ErrorMessage { Message = "No instance found", Traceback = "" });
                 }
 
                 _instanceService.DeleteInstance(instance);
-                return Ok();
+                return Json(true);
             }
             catch (Exception e)
             {
@@ -79,7 +83,8 @@ namespace MbedCloudSDK.IntegrationTests.Controllers
                 var instance = _instanceService.GetInstance(instanceId);
                 if (instance == null)
                 {
-                    return NotFound();
+                    Response.StatusCode = 404;
+                    return Json(new ErrorMessage { Message = "No methods found", Traceback = "" });
                 }
 
                 return Json(_instanceService.ListInstanceMethods(instance));
@@ -92,24 +97,30 @@ namespace MbedCloudSDK.IntegrationTests.Controllers
         }
 
         [HttpPost("instances/{instanceId}/methods/{methodId}")]
-        public IActionResult RunMethod(string instanceId, string methodId, [FromBody] object parameters)
+        public IActionResult RunMethod(string instanceId, string methodId, [FromBody] Dictionary<string, object> parameters = null)
         {
             try
             {
                 var instance = _instanceService.GetInstance(instanceId);
                 if (instance == null)
                 {
-                    return NotFound();
+                    Response.StatusCode = 404;
+                    return Json(new ErrorMessage { Message = "no such instance", Traceback = "" });
                 }
 
                 var methods = _instanceService.ListInstanceMethods(instance);
 
-                if (string.IsNullOrEmpty(methods.FirstOrDefault(m => m == methodId)))
+                if (methods.FirstOrDefault(m => m.Name == methodId) == null)
                 {
-                    return NotFound();
+                    Response.StatusCode = 404;
+                    return Json(new ErrorMessage { Message = "no such method", Traceback = "" });
                 }
 
-                return Json(_instanceService.ListInstanceMethods(instance));
+                var instanceObject = _instanceService.GetInstanceObject(instance);
+
+                var result = _methodRunnerService.TestModuleMethod(instance, instanceObject, methodId, parameters);
+
+                return Json(new ApiResult { Payload = result});
             }
             catch (Exception e)
             {
