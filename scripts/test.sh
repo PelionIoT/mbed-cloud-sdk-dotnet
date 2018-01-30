@@ -23,6 +23,6 @@ docker run --rm --net=host --name=testrunner_container \
 ${TESTRUNNER_DOCKER_IMAGE}
 RET_CODE=$?
 
-curl -X GET http://localhost:5000/shutdown
+curl -X POST http://localhost:5000/shutdown -d '{}' -H "Content-Type: application/json"
 
 exit $RET_CODE
