@@ -285,6 +285,14 @@ namespace MbedCloudSDK.IntegrationTests.Services
                 obj = argsJsonObj[p.Name.ToUpper()] as JValue;
             }
 
+            // if obj is nested obj
+            if (obj == null)
+            {
+                var token = argsJsonObj[p.Name.ToUpper()] as JToken;
+                if (token != null)
+                    return token.ToString();
+            }
+
             if (obj != null)
             {
                 if (paramType == typeof(int))
