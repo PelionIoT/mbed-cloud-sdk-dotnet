@@ -18,18 +18,18 @@ namespace ConsoleExamples
 
         public static void Main(string[] args)
         {
-            if (args == null || args.Length == 0)
+            var apiKey = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
+            if (string.IsNullOrEmpty(apiKey))
             {
                 Console.Error.WriteLine("API key is required!!!");
                 Console.ReadKey();
                 return;
             }
 
-            var apiKey = args[0];
-            var host = "https://api.us-east-1.mbedcloud.com";
-            if (args.Length >= 2)
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            if (string.IsNullOrEmpty(host))
             {
-                host = args[1];
+                host = "https://api.us-east-1.mbedcloud.com";
             }
 
             var config = new Config(apiKey: apiKey, host: host, forceClear: true, autostartNotifications: true);

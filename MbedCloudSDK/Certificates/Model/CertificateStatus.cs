@@ -14,13 +14,13 @@ namespace MbedCloudSDK.Certificates.Model
         /// <summary>
         /// Enum Bootstrap for "active"
         /// </summary>
-        [EnumMember(Value = "active")]
+        [EnumMember(Value = "ACTIVE")]
         Active,
 
         /// <summary>
         /// Enum Bootstrap for "inactive"
         /// </summary>
-        [EnumMember(Value = "inactive")]
+        [EnumMember(Value = "INACTIVE")]
         Inactive
     }
 }
