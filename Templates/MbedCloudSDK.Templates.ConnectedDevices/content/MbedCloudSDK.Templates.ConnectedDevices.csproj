@@ -6,11 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include=".template.config\template.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\MbedCloudSDK\MbedCloudSDK.csproj" />
+    <PackageReference Include="Mbed.Cloud.SDK" Version="1.2.4" />
   </ItemGroup>
 
 </Project>
