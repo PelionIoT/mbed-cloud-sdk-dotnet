@@ -1,7 +1,7 @@
-﻿using MbedCloudSDK.Common;
+﻿using System;
+using MbedCloudSDK.Common;
 using MbedCloudSDK.Common.Query;
 using MbedCloudSDK.Connect.Api;
-using System;
 
 namespace ConnectedDevicesTemplate
 {

@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MbedCloudSDK.IntegrationTes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MbedCloudSDK.ExampleTests", "Tests\MbedCloudSDK.ExampleTests\MbedCloudSDK.ExampleTests.csproj", "{90EA0303-F578-4058-9C3F-D881792508BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectedDevicesTemplate", "Templates\ConnectedDevicesTemplate\ConnectedDevicesTemplate.csproj", "{4802FA41-03F5-40D6-B01B-427E2FE53AF4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MbedCloudSDK.Templates.ConnectedDevices", "Templates\MbedCloudSDK.Templates.ConnectedDevices\content\MbedCloudSDK.Templates.ConnectedDevices.csproj", "{4802FA41-03F5-40D6-B01B-427E2FE53AF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
