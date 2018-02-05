@@ -52,6 +52,36 @@ namespace update_service.Model
             Scheduled,
             
             /// <summary>
+            /// Enum Allocatingquota for "allocatingquota"
+            /// </summary>
+            [EnumMember(Value = "allocatingquota")]
+            Allocatingquota,
+            
+            /// <summary>
+            /// Enum Allocatedquota for "allocatedquota"
+            /// </summary>
+            [EnumMember(Value = "allocatedquota")]
+            Allocatedquota,
+            
+            /// <summary>
+            /// Enum Insufficientquota for "insufficientquota"
+            /// </summary>
+            [EnumMember(Value = "insufficientquota")]
+            Insufficientquota,
+            
+            /// <summary>
+            /// Enum Checkingmanifest for "checkingmanifest"
+            /// </summary>
+            [EnumMember(Value = "checkingmanifest")]
+            Checkingmanifest,
+            
+            /// <summary>
+            /// Enum Checkedmanifest for "checkedmanifest"
+            /// </summary>
+            [EnumMember(Value = "checkedmanifest")]
+            Checkedmanifest,
+            
+            /// <summary>
             /// Enum Devicefetch for "devicefetch"
             /// </summary>
             [EnumMember(Value = "devicefetch")]
@@ -62,6 +92,12 @@ namespace update_service.Model
             /// </summary>
             [EnumMember(Value = "devicecopy")]
             Devicecopy,
+            
+            /// <summary>
+            /// Enum Devicecheck for "devicecheck"
+            /// </summary>
+            [EnumMember(Value = "devicecheck")]
+            Devicecheck,
             
             /// <summary>
             /// Enum Publishing for "publishing"
@@ -91,7 +127,31 @@ namespace update_service.Model
             /// Enum Expired for "expired"
             /// </summary>
             [EnumMember(Value = "expired")]
-            Expired
+            Expired,
+            
+            /// <summary>
+            /// Enum Stopping for "stopping"
+            /// </summary>
+            [EnumMember(Value = "stopping")]
+            Stopping,
+            
+            /// <summary>
+            /// Enum Autostopped for "autostopped"
+            /// </summary>
+            [EnumMember(Value = "autostopped")]
+            Autostopped,
+            
+            /// <summary>
+            /// Enum Userstopped for "userstopped"
+            /// </summary>
+            [EnumMember(Value = "userstopped")]
+            Userstopped,
+            
+            /// <summary>
+            /// Enum Conflict for "conflict"
+            /// </summary>
+            [EnumMember(Value = "conflict")]
+            Conflict
         }
 
         /// <summary>

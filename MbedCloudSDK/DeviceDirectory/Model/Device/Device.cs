@@ -203,6 +203,11 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         public string DeviceType { get; set; }
 
         /// <summary>
+        /// Gets the claim date/time
+        /// </summary>
+        public DateTime? EnrolmentListTimestamp { get; internal set; }
+
+        /// <summary>
         /// Map to Device object.
         /// </summary>
         /// <param name="deviceData">DeviceDetal response object.</param>
@@ -241,6 +246,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
                 FirmwareChecksum = deviceData.FirmwareChecksum,
                 DeviceType = deviceData.EndpointType,
                 ManifestTimestamp = deviceData.ManifestTimestamp.ToNullableUniversalTime(),
+                EnrolmentListTimestamp = deviceData.EnrolmentListTimestamp,
             };
             return device;
         }
@@ -275,7 +281,8 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
                 Name = device.Name,
                 DeviceKey = device.CertificateFingerprint,
                 Manifest = device.Manifest,
-                CaId = device.CertificateIssuerId
+                CaId = device.CertificateIssuerId,
+                EnrolmentListTimestamp = device.EnrolmentListTimestamp,
             };
 
             return deviceDataPostRequest;
@@ -296,7 +303,8 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
                 HostGateway = device.HostGateway,
                 CustomAttributes = device.CustomAttributes,
                 EndpointType = device.DeviceType,
-                Name = device.Name
+                Name = device.Name,
+                EnrolmentListTimestamp = device.EnrolmentListTimestamp,
             };
 
             return deviceDataPutRequest;
@@ -339,6 +347,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
             sb.Append("  DeviceExecutionMode: ").Append(DeviceExecutionMode).Append("\n");
             sb.Append("  FirmwareChecksum: ").Append(FirmwareChecksum).Append("\n");
             sb.Append("  DeviceType: ").Append(DeviceType).Append("\n");
+            sb.Append("  EnrolmentListTimestamp: ").Append(EnrolmentListTimestamp).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

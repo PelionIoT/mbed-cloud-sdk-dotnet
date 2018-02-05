@@ -69,6 +69,66 @@ namespace MbedCloudSDK.Update.Model.Campaign
         /// Enum Expired for "expired"
         /// </summary>
         [EnumMember(Value = "expired")]
-        Expired
+        Expired,
+
+        /// <summary>
+        /// Enum Allocatingquota for "Allocatingquota"
+        /// </summary>
+        [EnumMember(Value = "allocatingquota")]
+        Allocatingquota,
+
+        /// <summary>
+        /// Enum Allocatedquota for "Allocatedquota"
+        /// </summary>
+        [EnumMember(Value = "allocatedquota")]
+        Allocatedquota,
+
+        /// <summary>
+        /// Enum Insufficientquota for "Insufficientquota"
+        /// </summary>
+        [EnumMember(Value = "insufficientquota")]
+        Insufficientquota,
+
+        /// <summary>
+        /// Enum Checkingmanifest for "Checkingmanifest"
+        /// </summary>
+        [EnumMember(Value = "checkingmanifest")]
+        Checkingmanifest,
+
+        /// <summary>
+        /// Enum Checkedmanifest for "Checkedmanifest"
+        /// </summary>
+        [EnumMember(Value = "checkedmanifest")]
+        Checkedmanifest,
+
+        /// <summary>
+        /// Enum Devicecheck for "Devicecheck"
+        /// </summary>
+        [EnumMember(Value = "devicecheck")]
+        Devicecheck,
+
+        /// <summary>
+        /// Enum Stopping for "Stopping"
+        /// </summary>
+        [EnumMember(Value = "stopping")]
+        Stopping,
+
+        /// <summary>
+        /// Enum Autostopped for "Autostopped"
+        /// </summary>
+        [EnumMember(Value = "autostopped")]
+        Autostopped,
+
+        /// <summary>
+        /// Enum Userstopped for "Userstopped"
+        /// </summary>
+        [EnumMember(Value = "userstopped")]
+        Userstopped,
+
+        /// <summary>
+        /// Enum Conflict for "Conflict"
+        /// </summary>
+        [EnumMember(Value = "conflict")]
+        Conflict
     }
 }

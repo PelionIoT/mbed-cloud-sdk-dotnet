@@ -160,10 +160,11 @@ namespace device_directory.Model
         /// <param name="MechanismUrl">The address of the connector to use..</param>
         /// <param name="Name">The name of the device..</param>
         /// <param name="DeviceKey">The fingerprint of the device certificate..</param>
-        /// <param name="CreatedAt">The timestamp of when the device was created in the device directory..</param>
+        /// <param name="EnrolmentListTimestamp">The claim date/time..</param>
         /// <param name="Manifest">DEPRECATED: The URL for the current device manifest..</param>
         /// <param name="CustomAttributes">Up to five custom key-value attributes..</param>
-        public DeviceData(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), string CaId = default(string), string DeviceClass = default(string), string Id = default(string), string AccountId = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), int? DeviceExecutionMode = default(int?), MechanismEnum? Mechanism = default(MechanismEnum?), StateEnum? State = default(StateEnum?), DateTime? Etag = default(DateTime?), string SerialNumber = default(string), string FirmwareChecksum = default(string), DateTime? ManifestTimestamp = default(DateTime?), string VendorId = default(string), string Description = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string _Object = default(string), string EndpointType = default(string), string Deployment = default(string), string MechanismUrl = default(string), string Name = default(string), string DeviceKey = default(string), DateTime? CreatedAt = default(DateTime?), string Manifest = default(string), Dictionary<string, string> CustomAttributes = default(Dictionary<string, string>))
+        /// <param name="CreatedAt">The timestamp of when the device was created in the device directory..</param>
+        public DeviceData(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), string CaId = default(string), string DeviceClass = default(string), string Id = default(string), string AccountId = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), int? DeviceExecutionMode = default(int?), MechanismEnum? Mechanism = default(MechanismEnum?), StateEnum? State = default(StateEnum?), DateTime? Etag = default(DateTime?), string SerialNumber = default(string), string FirmwareChecksum = default(string), DateTime? ManifestTimestamp = default(DateTime?), string VendorId = default(string), string Description = default(string), DeployedStateEnum? DeployedState = default(DeployedStateEnum?), string _Object = default(string), string EndpointType = default(string), string Deployment = default(string), string MechanismUrl = default(string), string Name = default(string), string DeviceKey = default(string), DateTime? EnrolmentListTimestamp = default(DateTime?), string Manifest = default(string), Dictionary<string, string> CustomAttributes = default(Dictionary<string, string>), DateTime? CreatedAt = default(DateTime?))
         {
             this.BootstrapExpirationDate = BootstrapExpirationDate;
             this.BootstrappedTimestamp = BootstrappedTimestamp;
@@ -192,9 +193,10 @@ namespace device_directory.Model
             this.MechanismUrl = MechanismUrl;
             this.Name = Name;
             this.DeviceKey = DeviceKey;
-            this.CreatedAt = CreatedAt;
+            this.EnrolmentListTimestamp = EnrolmentListTimestamp;
             this.Manifest = Manifest;
             this.CustomAttributes = CustomAttributes;
+            this.CreatedAt = CreatedAt;
         }
         
         /// <summary>
@@ -369,11 +371,11 @@ namespace device_directory.Model
         public string DeviceKey { get; set; }
 
         /// <summary>
-        /// The timestamp of when the device was created in the device directory.
+        /// The claim date/time.
         /// </summary>
-        /// <value>The timestamp of when the device was created in the device directory.</value>
-        [DataMember(Name="created_at", EmitDefaultValue=false)]
-        public DateTime? CreatedAt { get; set; }
+        /// <value>The claim date/time.</value>
+        [DataMember(Name="enrolment_list_timestamp", EmitDefaultValue=false)]
+        public DateTime? EnrolmentListTimestamp { get; set; }
 
         /// <summary>
         /// DEPRECATED: The URL for the current device manifest.
@@ -388,6 +390,13 @@ namespace device_directory.Model
         /// <value>Up to five custom key-value attributes.</value>
         [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
         public Dictionary<string, string> CustomAttributes { get; set; }
+
+        /// <summary>
+        /// The timestamp of when the device was created in the device directory.
+        /// </summary>
+        /// <value>The timestamp of when the device was created in the device directory.</value>
+        [DataMember(Name="created_at", EmitDefaultValue=false)]
+        public DateTime? CreatedAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -424,9 +433,10 @@ namespace device_directory.Model
             sb.Append("  MechanismUrl: ").Append(MechanismUrl).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  DeviceKey: ").Append(DeviceKey).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
+            sb.Append("  EnrolmentListTimestamp: ").Append(EnrolmentListTimestamp).Append("\n");
             sb.Append("  Manifest: ").Append(Manifest).Append("\n");
             sb.Append("  CustomAttributes: ").Append(CustomAttributes).Append("\n");
+            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -599,9 +609,9 @@ namespace device_directory.Model
                     this.DeviceKey.Equals(other.DeviceKey)
                 ) && 
                 (
-                    this.CreatedAt == other.CreatedAt ||
-                    this.CreatedAt != null &&
-                    this.CreatedAt.Equals(other.CreatedAt)
+                    this.EnrolmentListTimestamp == other.EnrolmentListTimestamp ||
+                    this.EnrolmentListTimestamp != null &&
+                    this.EnrolmentListTimestamp.Equals(other.EnrolmentListTimestamp)
                 ) && 
                 (
                     this.Manifest == other.Manifest ||
@@ -612,6 +622,11 @@ namespace device_directory.Model
                     this.CustomAttributes == other.CustomAttributes ||
                     this.CustomAttributes != null &&
                     this.CustomAttributes.SequenceEqual(other.CustomAttributes)
+                ) && 
+                (
+                    this.CreatedAt == other.CreatedAt ||
+                    this.CreatedAt != null &&
+                    this.CreatedAt.Equals(other.CreatedAt)
                 );
         }
 
@@ -680,12 +695,14 @@ namespace device_directory.Model
                     hash = hash * 59 + this.Name.GetHashCode();
                 if (this.DeviceKey != null)
                     hash = hash * 59 + this.DeviceKey.GetHashCode();
-                if (this.CreatedAt != null)
-                    hash = hash * 59 + this.CreatedAt.GetHashCode();
+                if (this.EnrolmentListTimestamp != null)
+                    hash = hash * 59 + this.EnrolmentListTimestamp.GetHashCode();
                 if (this.Manifest != null)
                     hash = hash * 59 + this.Manifest.GetHashCode();
                 if (this.CustomAttributes != null)
                     hash = hash * 59 + this.CustomAttributes.GetHashCode();
+                if (this.CreatedAt != null)
+                    hash = hash * 59 + this.CreatedAt.GetHashCode();
                 return hash;
             }
         }

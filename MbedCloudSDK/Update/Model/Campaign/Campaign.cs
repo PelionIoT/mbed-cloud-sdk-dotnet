@@ -174,7 +174,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
             };
             return request;
         }
-        
+
         /// <summary>
         /// Create Put Request
         /// </summary>
