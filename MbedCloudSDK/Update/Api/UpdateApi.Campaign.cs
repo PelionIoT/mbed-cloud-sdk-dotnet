@@ -255,7 +255,7 @@ namespace MbedCloudSDK.Update.Api
             try
             {
                 campaign.State = CampaignStateEnum.Scheduled;
-                var resp = api.UpdateCampaignPartialUpdate(campaignId, campaign.CreatePatchRequest());
+                var resp = api.UpdateCampaignUpdate(campaignId, campaign.CreatePutRequest());
                 return Campaign.Map(resp);
             }
             catch (update_service.Client.ApiException e)
@@ -292,7 +292,7 @@ namespace MbedCloudSDK.Update.Api
             try
             {
                 campaign.State = CampaignStateEnum.Draft;
-                var resp = api.UpdateCampaignPartialUpdate(campaignId, campaign.CreatePatchRequest());
+                var resp = api.UpdateCampaignUpdate(campaignId, campaign.CreatePutRequest());
                 return Campaign.Map(resp);
             }
             catch (update_service.Client.ApiException e)
@@ -331,7 +331,7 @@ namespace MbedCloudSDK.Update.Api
             try
             {
                 var stateEnum = Utils.ParseEnum<update_service.Model.UpdateCampaignPatchRequest.StateEnum>(campaign.State);
-                var response = api.UpdateCampaignPartialUpdate(campaignId, campaign.CreatePatchRequest());
+                var response = api.UpdateCampaignUpdate(campaignId, campaign.CreatePutRequest());
                 return Campaign.Map(response);
             }
             catch (update_service.Client.ApiException e)

@@ -174,43 +174,24 @@ namespace MbedCloudSDK.Update.Model.Campaign
             };
             return request;
         }
-
+        
         /// <summary>
         /// Create Put Request
         /// </summary>
         /// <returns>Update campaign put request</returns>
         public UpdateCampaignPutRequest CreatePutRequest()
         {
-            var updateCampaignStatus = Utils.ParseEnum<UpdateCampaignPutRequest.StateEnum>(State);
-            var request = new UpdateCampaignPutRequest(
-                Description: Description,
-                RootManifestId: ManifestId,
-                When: ScheduledAt ?? DateTime.Now.ToUniversalTime(),
-                State: updateCampaignStatus,
-                DeviceFilter: DeviceFilter.FilterString,
-                Name: Name);
-
-            return request;
-        }
-
-        /// <summary>
-        /// Create patch request
-        /// </summary>
-        /// <returns>An UpdateCampaignPatchRequest</returns>
-        public UpdateCampaignPatchRequest CreatePatchRequest()
-        {
-            var updateCampaignStatus = Utils.ParseEnum<update_service.Model.UpdateCampaignPatchRequest.StateEnum>(State);
-            var updateCampaignPatchRequest = new update_service.Model.UpdateCampaignPatchRequest
+            var updateCampaignPutRequest = new UpdateCampaignPutRequest
             {
                 Description = Description,
                 RootManifestId = ManifestId,
-                When = ScheduledAt ?? DateTime.Now.ToUniversalTime(),
-                State = updateCampaignStatus,
+                When = ScheduledAt ?? DateTime.Now,
                 DeviceFilter = DeviceFilter?.FilterString,
                 Name = Name,
+                State = Utils.ParseEnum<UpdateCampaignPutRequest.StateEnum>(State),
             };
 
-            return updateCampaignPatchRequest;
+            return updateCampaignPutRequest;
         }
     }
 }
