@@ -205,7 +205,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// <summary>
         /// Gets the claim date/time
         /// </summary>
-        public DateTime? EnrolmentListTimestamp { get; internal set; }
+        public DateTime? ClaimedAt { get; internal set; }
 
         /// <summary>
         /// Map to Device object.
@@ -246,7 +246,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
                 FirmwareChecksum = deviceData.FirmwareChecksum,
                 DeviceType = deviceData.EndpointType,
                 ManifestTimestamp = deviceData.ManifestTimestamp.ToNullableUniversalTime(),
-                EnrolmentListTimestamp = deviceData.EnrolmentListTimestamp,
+                ClaimedAt = deviceData.EnrolmentListTimestamp,
             };
             return device;
         }
@@ -282,7 +282,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
                 DeviceKey = device.CertificateFingerprint,
                 Manifest = device.Manifest,
                 CaId = device.CertificateIssuerId,
-                EnrolmentListTimestamp = device.EnrolmentListTimestamp,
+                EnrolmentListTimestamp = device.ClaimedAt,
             };
 
             return deviceDataPostRequest;
@@ -304,7 +304,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
                 CustomAttributes = device.CustomAttributes,
                 EndpointType = device.DeviceType,
                 Name = device.Name,
-                EnrolmentListTimestamp = device.EnrolmentListTimestamp,
+                EnrolmentListTimestamp = device.ClaimedAt,
             };
 
             return deviceDataPutRequest;
@@ -347,7 +347,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
             sb.Append("  DeviceExecutionMode: ").Append(DeviceExecutionMode).Append("\n");
             sb.Append("  FirmwareChecksum: ").Append(FirmwareChecksum).Append("\n");
             sb.Append("  DeviceType: ").Append(DeviceType).Append("\n");
-            sb.Append("  EnrolmentListTimestamp: ").Append(EnrolmentListTimestamp).Append("\n");
+            sb.Append("  EnrolmentListTimestamp: ").Append(ClaimedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

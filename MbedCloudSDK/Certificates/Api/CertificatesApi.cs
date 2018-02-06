@@ -111,6 +111,21 @@ namespace MbedCloudSDK.Certificates.Api
         /// }
         /// </code>
         /// </example>
+        /// <example>
+        /// Currently returns partially populated certificates. To obtain the full certificate object:
+        /// <code>
+        /// try
+        /// {
+        ///     var list = certificatesApi.ListCertificates().Data
+        ///         .Select(cert => certificatesApi.GetCertificate(cert.Id))
+        ///         .ToList();
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
         /// <returns>Paginated response with <see cref="Certificate"/></returns>
         /// <param name="options"><see cref="QueryOptions"/></param>
         /// <exception cref="CloudApiException">CloudApiException</exception>
