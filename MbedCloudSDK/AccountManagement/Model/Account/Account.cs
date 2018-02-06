@@ -159,16 +159,6 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         public string Reason { get; set; }
 
         /// <summary>
-        /// Gets the
-        /// </summary>
-        public string Object { get; private set; }
-
-        /// <summary>
-        /// Gets the
-        /// </summary>
-        public string Etag { get; private set; }
-
-        /// <summary>
         /// Map to Account object.
         /// </summary>
         /// <param name="accountInfo">Identity and Account Manangement (IAM) information</param>
@@ -200,8 +190,6 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
                 TemplateId = accountInfo.TemplateId,
                 Policies = accountInfo.Policies != null ? accountInfo.Policies.Select(p => { return Policy.Policy.Map(p); }).ToList() : Enumerable.Empty<Policy.Policy>().ToList(),
                 Reason = accountInfo.Reason,
-                Etag = accountInfo.Etag,
-                Object = Utils.GetEnumMemberValue(typeof(iam.Model.AccountInfo.ObjectEnum), Convert.ToString(accountInfo._Object)),
             };
             return account;
         }
