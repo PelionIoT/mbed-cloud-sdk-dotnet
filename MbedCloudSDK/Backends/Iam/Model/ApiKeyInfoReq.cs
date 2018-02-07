@@ -136,45 +136,43 @@ namespace iam.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as ApiKeyInfoReq);
+            return this.Equals(input as ApiKeyInfoReq);
         }
 
         /// <summary>
         /// Returns true if ApiKeyInfoReq instances are equal
         /// </summary>
-        /// <param name="other">Instance of ApiKeyInfoReq to be compared</param>
+        /// <param name="input">Instance of ApiKeyInfoReq to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ApiKeyInfoReq other)
+        public bool Equals(ApiKeyInfoReq input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.Owner == other.Owner ||
-                    this.Owner != null &&
-                    this.Owner.Equals(other.Owner)
+                    this.Owner == input.Owner ||
+                    (this.Owner != null &&
+                    this.Owner.Equals(input.Owner))
                 ) && 
                 (
-                    this.Status == other.Status ||
-                    this.Status != null &&
-                    this.Status.Equals(other.Status)
+                    this.Status == input.Status ||
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
-                    this.Name == other.Name ||
-                    this.Name != null &&
-                    this.Name.Equals(other.Name)
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
                 ) && 
                 (
-                    this.Groups == other.Groups ||
+                    this.Groups == input.Groups ||
                     this.Groups != null &&
-                    this.Groups.SequenceEqual(other.Groups)
+                    this.Groups.SequenceEqual(input.Groups)
                 );
         }
 
@@ -184,20 +182,18 @@ namespace iam.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.Owner != null)
-                    hash = hash * 59 + this.Owner.GetHashCode();
+                    hashCode = hashCode * 59 + this.Owner.GetHashCode();
                 if (this.Status != null)
-                    hash = hash * 59 + this.Status.GetHashCode();
+                    hashCode = hashCode * 59 + this.Status.GetHashCode();
                 if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
                 if (this.Groups != null)
-                    hash = hash * 59 + this.Groups.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.Groups.GetHashCode();
+                return hashCode;
             }
         }
 

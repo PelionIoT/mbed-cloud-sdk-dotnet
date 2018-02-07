@@ -111,50 +111,48 @@ namespace mds.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as EndpointData);
+            return this.Equals(input as EndpointData);
         }
 
         /// <summary>
         /// Returns true if EndpointData instances are equal
         /// </summary>
-        /// <param name="other">Instance of EndpointData to be compared</param>
+        /// <param name="input">Instance of EndpointData to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(EndpointData other)
+        public bool Equals(EndpointData input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.Q == other.Q ||
-                    this.Q != null &&
-                    this.Q.Equals(other.Q)
+                    this.Q == input.Q ||
+                    (this.Q != null &&
+                    this.Q.Equals(input.Q))
                 ) && 
                 (
-                    this.Ept == other.Ept ||
-                    this.Ept != null &&
-                    this.Ept.Equals(other.Ept)
+                    this.Ept == input.Ept ||
+                    (this.Ept != null &&
+                    this.Ept.Equals(input.Ept))
                 ) && 
                 (
-                    this.OriginalEp == other.OriginalEp ||
-                    this.OriginalEp != null &&
-                    this.OriginalEp.Equals(other.OriginalEp)
+                    this.OriginalEp == input.OriginalEp ||
+                    (this.OriginalEp != null &&
+                    this.OriginalEp.Equals(input.OriginalEp))
                 ) && 
                 (
-                    this.Resources == other.Resources ||
+                    this.Resources == input.Resources ||
                     this.Resources != null &&
-                    this.Resources.SequenceEqual(other.Resources)
+                    this.Resources.SequenceEqual(input.Resources)
                 ) && 
                 (
-                    this.Ep == other.Ep ||
-                    this.Ep != null &&
-                    this.Ep.Equals(other.Ep)
+                    this.Ep == input.Ep ||
+                    (this.Ep != null &&
+                    this.Ep.Equals(input.Ep))
                 );
         }
 
@@ -164,22 +162,20 @@ namespace mds.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.Q != null)
-                    hash = hash * 59 + this.Q.GetHashCode();
+                    hashCode = hashCode * 59 + this.Q.GetHashCode();
                 if (this.Ept != null)
-                    hash = hash * 59 + this.Ept.GetHashCode();
+                    hashCode = hashCode * 59 + this.Ept.GetHashCode();
                 if (this.OriginalEp != null)
-                    hash = hash * 59 + this.OriginalEp.GetHashCode();
+                    hashCode = hashCode * 59 + this.OriginalEp.GetHashCode();
                 if (this.Resources != null)
-                    hash = hash * 59 + this.Resources.GetHashCode();
+                    hashCode = hashCode * 59 + this.Resources.GetHashCode();
                 if (this.Ep != null)
-                    hash = hash * 59 + this.Ep.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.Ep.GetHashCode();
+                return hashCode;
             }
         }
 

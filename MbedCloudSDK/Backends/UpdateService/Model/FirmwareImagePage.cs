@@ -147,60 +147,58 @@ namespace update_service.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as FirmwareImagePage);
+            return this.Equals(input as FirmwareImagePage);
         }
 
         /// <summary>
         /// Returns true if FirmwareImagePage instances are equal
         /// </summary>
-        /// <param name="other">Instance of FirmwareImagePage to be compared</param>
+        /// <param name="input">Instance of FirmwareImagePage to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(FirmwareImagePage other)
+        public bool Equals(FirmwareImagePage input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this._Object == other._Object ||
-                    this._Object != null &&
-                    this._Object.Equals(other._Object)
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
                 ) && 
                 (
-                    this.HasMore == other.HasMore ||
-                    this.HasMore != null &&
-                    this.HasMore.Equals(other.HasMore)
+                    this.HasMore == input.HasMore ||
+                    (this.HasMore != null &&
+                    this.HasMore.Equals(input.HasMore))
                 ) && 
                 (
-                    this.TotalCount == other.TotalCount ||
-                    this.TotalCount != null &&
-                    this.TotalCount.Equals(other.TotalCount)
+                    this.TotalCount == input.TotalCount ||
+                    (this.TotalCount != null &&
+                    this.TotalCount.Equals(input.TotalCount))
                 ) && 
                 (
-                    this.After == other.After ||
-                    this.After != null &&
-                    this.After.Equals(other.After)
+                    this.After == input.After ||
+                    (this.After != null &&
+                    this.After.Equals(input.After))
                 ) && 
                 (
-                    this.Limit == other.Limit ||
-                    this.Limit != null &&
-                    this.Limit.Equals(other.Limit)
+                    this.Limit == input.Limit ||
+                    (this.Limit != null &&
+                    this.Limit.Equals(input.Limit))
                 ) && 
                 (
-                    this.Data == other.Data ||
+                    this.Data == input.Data ||
                     this.Data != null &&
-                    this.Data.SequenceEqual(other.Data)
+                    this.Data.SequenceEqual(input.Data)
                 ) && 
                 (
-                    this.Order == other.Order ||
-                    this.Order != null &&
-                    this.Order.Equals(other.Order)
+                    this.Order == input.Order ||
+                    (this.Order != null &&
+                    this.Order.Equals(input.Order))
                 );
         }
 
@@ -210,26 +208,24 @@ namespace update_service.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this._Object != null)
-                    hash = hash * 59 + this._Object.GetHashCode();
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.HasMore != null)
-                    hash = hash * 59 + this.HasMore.GetHashCode();
+                    hashCode = hashCode * 59 + this.HasMore.GetHashCode();
                 if (this.TotalCount != null)
-                    hash = hash * 59 + this.TotalCount.GetHashCode();
+                    hashCode = hashCode * 59 + this.TotalCount.GetHashCode();
                 if (this.After != null)
-                    hash = hash * 59 + this.After.GetHashCode();
+                    hashCode = hashCode * 59 + this.After.GetHashCode();
                 if (this.Limit != null)
-                    hash = hash * 59 + this.Limit.GetHashCode();
+                    hashCode = hashCode * 59 + this.Limit.GetHashCode();
                 if (this.Data != null)
-                    hash = hash * 59 + this.Data.GetHashCode();
+                    hashCode = hashCode * 59 + this.Data.GetHashCode();
                 if (this.Order != null)
-                    hash = hash * 59 + this.Order.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.Order.GetHashCode();
+                return hashCode;
             }
         }
 

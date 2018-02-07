@@ -122,55 +122,53 @@ namespace connector_ca.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as ServerCredentialsResponseData);
+            return this.Equals(input as ServerCredentialsResponseData);
         }
 
         /// <summary>
         /// Returns true if ServerCredentialsResponseData instances are equal
         /// </summary>
-        /// <param name="other">Instance of ServerCredentialsResponseData to be compared</param>
+        /// <param name="input">Instance of ServerCredentialsResponseData to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ServerCredentialsResponseData other)
+        public bool Equals(ServerCredentialsResponseData input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.ServerUri == other.ServerUri ||
-                    this.ServerUri != null &&
-                    this.ServerUri.Equals(other.ServerUri)
+                    this.ServerUri == input.ServerUri ||
+                    (this.ServerUri != null &&
+                    this.ServerUri.Equals(input.ServerUri))
                 ) && 
                 (
-                    this.CreatedAt == other.CreatedAt ||
-                    this.CreatedAt != null &&
-                    this.CreatedAt.Equals(other.CreatedAt)
+                    this.CreatedAt == input.CreatedAt ||
+                    (this.CreatedAt != null &&
+                    this.CreatedAt.Equals(input.CreatedAt))
                 ) && 
                 (
-                    this._Object == other._Object ||
-                    this._Object != null &&
-                    this._Object.Equals(other._Object)
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
                 ) && 
                 (
-                    this.ServerCertificate == other.ServerCertificate ||
-                    this.ServerCertificate != null &&
-                    this.ServerCertificate.Equals(other.ServerCertificate)
+                    this.ServerCertificate == input.ServerCertificate ||
+                    (this.ServerCertificate != null &&
+                    this.ServerCertificate.Equals(input.ServerCertificate))
                 ) && 
                 (
-                    this.Etag == other.Etag ||
-                    this.Etag != null &&
-                    this.Etag.Equals(other.Etag)
+                    this.Etag == input.Etag ||
+                    (this.Etag != null &&
+                    this.Etag.Equals(input.Etag))
                 ) && 
                 (
-                    this.Id == other.Id ||
-                    this.Id != null &&
-                    this.Id.Equals(other.Id)
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
                 );
         }
 
@@ -180,24 +178,22 @@ namespace connector_ca.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.ServerUri != null)
-                    hash = hash * 59 + this.ServerUri.GetHashCode();
+                    hashCode = hashCode * 59 + this.ServerUri.GetHashCode();
                 if (this.CreatedAt != null)
-                    hash = hash * 59 + this.CreatedAt.GetHashCode();
+                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
                 if (this._Object != null)
-                    hash = hash * 59 + this._Object.GetHashCode();
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.ServerCertificate != null)
-                    hash = hash * 59 + this.ServerCertificate.GetHashCode();
+                    hashCode = hashCode * 59 + this.ServerCertificate.GetHashCode();
                 if (this.Etag != null)
-                    hash = hash * 59 + this.Etag.GetHashCode();
+                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
                 if (this.Id != null)
-                    hash = hash * 59 + this.Id.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                return hashCode;
             }
         }
 

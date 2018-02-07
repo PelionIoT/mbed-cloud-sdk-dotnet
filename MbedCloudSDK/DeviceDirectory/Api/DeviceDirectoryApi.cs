@@ -42,12 +42,16 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         public DeviceDirectoryApi(Config config)
             : base(config)
         {
-            device_directory.Client.Configuration.Default.ApiClient = new ApiClient(config.Host);
-            device_directory.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
-            device_directory.Client.Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            device_directory.Client.Configuration.Default.DateTimeFormat = "yyyy-MM-dd";
+            var deviceConfig = new device_directory.Client.Configuration
+            {
+                BasePath = config.Host,
+                DateTimeFormat = "yyyy-MM-dd",
+            };
+            deviceConfig.AddApiKey("Authorization", config.ApiKey);
+            deviceConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
+            deviceConfig.CreateApiClient();
 
-            api = new device_directory.Api.DefaultApi();
+            api = new device_directory.Api.DefaultApi(deviceConfig);
         }
 
         /// <summary>

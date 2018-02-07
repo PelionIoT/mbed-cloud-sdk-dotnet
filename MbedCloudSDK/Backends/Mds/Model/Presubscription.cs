@@ -90,40 +90,38 @@ namespace mds.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as Presubscription);
+            return this.Equals(input as Presubscription);
         }
 
         /// <summary>
         /// Returns true if Presubscription instances are equal
         /// </summary>
-        /// <param name="other">Instance of Presubscription to be compared</param>
+        /// <param name="input">Instance of Presubscription to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Presubscription other)
+        public bool Equals(Presubscription input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.EndpointName == other.EndpointName ||
-                    this.EndpointName != null &&
-                    this.EndpointName.Equals(other.EndpointName)
+                    this.EndpointName == input.EndpointName ||
+                    (this.EndpointName != null &&
+                    this.EndpointName.Equals(input.EndpointName))
                 ) && 
                 (
-                    this.EndpointType == other.EndpointType ||
-                    this.EndpointType != null &&
-                    this.EndpointType.Equals(other.EndpointType)
+                    this.EndpointType == input.EndpointType ||
+                    (this.EndpointType != null &&
+                    this.EndpointType.Equals(input.EndpointType))
                 ) && 
                 (
-                    this.ResourcePath == other.ResourcePath ||
+                    this.ResourcePath == input.ResourcePath ||
                     this.ResourcePath != null &&
-                    this.ResourcePath.SequenceEqual(other.ResourcePath)
+                    this.ResourcePath.SequenceEqual(input.ResourcePath)
                 );
         }
 
@@ -133,18 +131,16 @@ namespace mds.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.EndpointName != null)
-                    hash = hash * 59 + this.EndpointName.GetHashCode();
+                    hashCode = hashCode * 59 + this.EndpointName.GetHashCode();
                 if (this.EndpointType != null)
-                    hash = hash * 59 + this.EndpointType.GetHashCode();
+                    hashCode = hashCode * 59 + this.EndpointType.GetHashCode();
                 if (this.ResourcePath != null)
-                    hash = hash * 59 + this.ResourcePath.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.ResourcePath.GetHashCode();
+                return hashCode;
             }
         }
 

@@ -82,35 +82,33 @@ namespace device_directory.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as DeviceQueryPatchRequest);
+            return this.Equals(input as DeviceQueryPatchRequest);
         }
 
         /// <summary>
         /// Returns true if DeviceQueryPatchRequest instances are equal
         /// </summary>
-        /// <param name="other">Instance of DeviceQueryPatchRequest to be compared</param>
+        /// <param name="input">Instance of DeviceQueryPatchRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DeviceQueryPatchRequest other)
+        public bool Equals(DeviceQueryPatchRequest input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.Query == other.Query ||
-                    this.Query != null &&
-                    this.Query.Equals(other.Query)
+                    this.Query == input.Query ||
+                    (this.Query != null &&
+                    this.Query.Equals(input.Query))
                 ) && 
                 (
-                    this.Name == other.Name ||
-                    this.Name != null &&
-                    this.Name.Equals(other.Name)
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
                 );
         }
 
@@ -120,16 +118,14 @@ namespace device_directory.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.Query != null)
-                    hash = hash * 59 + this.Query.GetHashCode();
+                    hashCode = hashCode * 59 + this.Query.GetHashCode();
                 if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                return hashCode;
             }
         }
 

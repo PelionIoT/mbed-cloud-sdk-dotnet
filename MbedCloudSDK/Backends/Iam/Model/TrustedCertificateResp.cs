@@ -88,10 +88,10 @@ namespace iam.Model
             User,
             
             /// <summary>
-            /// Enum Apikey for "api-key"
+            /// Enum ApiKey for "api-key"
             /// </summary>
             [EnumMember(Value = "api-key")]
-            Apikey,
+            ApiKey,
             
             /// <summary>
             /// Enum Group for "group"
@@ -106,16 +106,16 @@ namespace iam.Model
             Account,
             
             /// <summary>
-            /// Enum Accounttemplate for "account-template"
+            /// Enum AccountTemplate for "account-template"
             /// </summary>
             [EnumMember(Value = "account-template")]
-            Accounttemplate,
+            AccountTemplate,
             
             /// <summary>
-            /// Enum Trustedcert for "trusted-cert"
+            /// Enum TrustedCert for "trusted-cert"
             /// </summary>
             [EnumMember(Value = "trusted-cert")]
-            Trustedcert,
+            TrustedCert,
             
             /// <summary>
             /// Enum List for "list"
@@ -396,100 +396,98 @@ namespace iam.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as TrustedCertificateResp);
+            return this.Equals(input as TrustedCertificateResp);
         }
 
         /// <summary>
         /// Returns true if TrustedCertificateResp instances are equal
         /// </summary>
-        /// <param name="other">Instance of TrustedCertificateResp to be compared</param>
+        /// <param name="input">Instance of TrustedCertificateResp to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TrustedCertificateResp other)
+        public bool Equals(TrustedCertificateResp input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.Service == other.Service ||
-                    this.Service != null &&
-                    this.Service.Equals(other.Service)
+                    this.Service == input.Service ||
+                    (this.Service != null &&
+                    this.Service.Equals(input.Service))
                 ) && 
                 (
-                    this.Status == other.Status ||
-                    this.Status != null &&
-                    this.Status.Equals(other.Status)
+                    this.Status == input.Status ||
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
-                    this.Description == other.Description ||
-                    this.Description != null &&
-                    this.Description.Equals(other.Description)
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
                 ) && 
                 (
-                    this.Certificate == other.Certificate ||
-                    this.Certificate != null &&
-                    this.Certificate.Equals(other.Certificate)
+                    this.Certificate == input.Certificate ||
+                    (this.Certificate != null &&
+                    this.Certificate.Equals(input.Certificate))
                 ) && 
                 (
-                    this.Issuer == other.Issuer ||
-                    this.Issuer != null &&
-                    this.Issuer.Equals(other.Issuer)
+                    this.Issuer == input.Issuer ||
+                    (this.Issuer != null &&
+                    this.Issuer.Equals(input.Issuer))
                 ) && 
                 (
-                    this.DeviceExecutionMode == other.DeviceExecutionMode ||
-                    this.DeviceExecutionMode != null &&
-                    this.DeviceExecutionMode.Equals(other.DeviceExecutionMode)
+                    this.DeviceExecutionMode == input.DeviceExecutionMode ||
+                    (this.DeviceExecutionMode != null &&
+                    this.DeviceExecutionMode.Equals(input.DeviceExecutionMode))
                 ) && 
                 (
-                    this.CreatedAt == other.CreatedAt ||
-                    this.CreatedAt != null &&
-                    this.CreatedAt.Equals(other.CreatedAt)
+                    this.CreatedAt == input.CreatedAt ||
+                    (this.CreatedAt != null &&
+                    this.CreatedAt.Equals(input.CreatedAt))
                 ) && 
                 (
-                    this._Object == other._Object ||
-                    this._Object != null &&
-                    this._Object.Equals(other._Object)
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
                 ) && 
                 (
-                    this.Subject == other.Subject ||
-                    this.Subject != null &&
-                    this.Subject.Equals(other.Subject)
+                    this.Subject == input.Subject ||
+                    (this.Subject != null &&
+                    this.Subject.Equals(input.Subject))
                 ) && 
                 (
-                    this.AccountId == other.AccountId ||
-                    this.AccountId != null &&
-                    this.AccountId.Equals(other.AccountId)
+                    this.AccountId == input.AccountId ||
+                    (this.AccountId != null &&
+                    this.AccountId.Equals(input.AccountId))
                 ) && 
                 (
-                    this.Etag == other.Etag ||
-                    this.Etag != null &&
-                    this.Etag.Equals(other.Etag)
+                    this.Etag == input.Etag ||
+                    (this.Etag != null &&
+                    this.Etag.Equals(input.Etag))
                 ) && 
                 (
-                    this.Validity == other.Validity ||
-                    this.Validity != null &&
-                    this.Validity.Equals(other.Validity)
+                    this.Validity == input.Validity ||
+                    (this.Validity != null &&
+                    this.Validity.Equals(input.Validity))
                 ) && 
                 (
-                    this.OwnerId == other.OwnerId ||
-                    this.OwnerId != null &&
-                    this.OwnerId.Equals(other.OwnerId)
+                    this.OwnerId == input.OwnerId ||
+                    (this.OwnerId != null &&
+                    this.OwnerId.Equals(input.OwnerId))
                 ) && 
                 (
-                    this.Id == other.Id ||
-                    this.Id != null &&
-                    this.Id.Equals(other.Id)
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
                 ) && 
                 (
-                    this.Name == other.Name ||
-                    this.Name != null &&
-                    this.Name.Equals(other.Name)
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
                 );
         }
 
@@ -499,42 +497,40 @@ namespace iam.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.Service != null)
-                    hash = hash * 59 + this.Service.GetHashCode();
+                    hashCode = hashCode * 59 + this.Service.GetHashCode();
                 if (this.Status != null)
-                    hash = hash * 59 + this.Status.GetHashCode();
+                    hashCode = hashCode * 59 + this.Status.GetHashCode();
                 if (this.Description != null)
-                    hash = hash * 59 + this.Description.GetHashCode();
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.Certificate != null)
-                    hash = hash * 59 + this.Certificate.GetHashCode();
+                    hashCode = hashCode * 59 + this.Certificate.GetHashCode();
                 if (this.Issuer != null)
-                    hash = hash * 59 + this.Issuer.GetHashCode();
+                    hashCode = hashCode * 59 + this.Issuer.GetHashCode();
                 if (this.DeviceExecutionMode != null)
-                    hash = hash * 59 + this.DeviceExecutionMode.GetHashCode();
+                    hashCode = hashCode * 59 + this.DeviceExecutionMode.GetHashCode();
                 if (this.CreatedAt != null)
-                    hash = hash * 59 + this.CreatedAt.GetHashCode();
+                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
                 if (this._Object != null)
-                    hash = hash * 59 + this._Object.GetHashCode();
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.Subject != null)
-                    hash = hash * 59 + this.Subject.GetHashCode();
+                    hashCode = hashCode * 59 + this.Subject.GetHashCode();
                 if (this.AccountId != null)
-                    hash = hash * 59 + this.AccountId.GetHashCode();
+                    hashCode = hashCode * 59 + this.AccountId.GetHashCode();
                 if (this.Etag != null)
-                    hash = hash * 59 + this.Etag.GetHashCode();
+                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
                 if (this.Validity != null)
-                    hash = hash * 59 + this.Validity.GetHashCode();
+                    hashCode = hashCode * 59 + this.Validity.GetHashCode();
                 if (this.OwnerId != null)
-                    hash = hash * 59 + this.OwnerId.GetHashCode();
+                    hashCode = hashCode * 59 + this.OwnerId.GetHashCode();
                 if (this.Id != null)
-                    hash = hash * 59 + this.Id.GetHashCode();
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                return hashCode;
             }
         }
 

@@ -115,45 +115,43 @@ namespace mds.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as Resource);
+            return this.Equals(input as Resource);
         }
 
         /// <summary>
         /// Returns true if Resource instances are equal
         /// </summary>
-        /// <param name="other">Instance of Resource to be compared</param>
+        /// <param name="input">Instance of Resource to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Resource other)
+        public bool Equals(Resource input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.Rt == other.Rt ||
-                    this.Rt != null &&
-                    this.Rt.Equals(other.Rt)
+                    this.Rt == input.Rt ||
+                    (this.Rt != null &&
+                    this.Rt.Equals(input.Rt))
                 ) && 
                 (
-                    this.Type == other.Type ||
-                    this.Type != null &&
-                    this.Type.Equals(other.Type)
+                    this.Type == input.Type ||
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 ) && 
                 (
-                    this.Uri == other.Uri ||
-                    this.Uri != null &&
-                    this.Uri.Equals(other.Uri)
+                    this.Uri == input.Uri ||
+                    (this.Uri != null &&
+                    this.Uri.Equals(input.Uri))
                 ) && 
                 (
-                    this.Obs == other.Obs ||
-                    this.Obs != null &&
-                    this.Obs.Equals(other.Obs)
+                    this.Obs == input.Obs ||
+                    (this.Obs != null &&
+                    this.Obs.Equals(input.Obs))
                 );
         }
 
@@ -163,20 +161,18 @@ namespace mds.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.Rt != null)
-                    hash = hash * 59 + this.Rt.GetHashCode();
+                    hashCode = hashCode * 59 + this.Rt.GetHashCode();
                 if (this.Type != null)
-                    hash = hash * 59 + this.Type.GetHashCode();
+                    hashCode = hashCode * 59 + this.Type.GetHashCode();
                 if (this.Uri != null)
-                    hash = hash * 59 + this.Uri.GetHashCode();
+                    hashCode = hashCode * 59 + this.Uri.GetHashCode();
                 if (this.Obs != null)
-                    hash = hash * 59 + this.Obs.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.Obs.GetHashCode();
+                return hashCode;
             }
         }
 

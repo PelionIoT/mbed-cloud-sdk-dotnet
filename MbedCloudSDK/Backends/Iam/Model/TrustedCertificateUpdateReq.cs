@@ -164,55 +164,53 @@ namespace iam.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as TrustedCertificateUpdateReq);
+            return this.Equals(input as TrustedCertificateUpdateReq);
         }
 
         /// <summary>
         /// Returns true if TrustedCertificateUpdateReq instances are equal
         /// </summary>
-        /// <param name="other">Instance of TrustedCertificateUpdateReq to be compared</param>
+        /// <param name="input">Instance of TrustedCertificateUpdateReq to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TrustedCertificateUpdateReq other)
+        public bool Equals(TrustedCertificateUpdateReq input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.Status == other.Status ||
-                    this.Status != null &&
-                    this.Status.Equals(other.Status)
+                    this.Status == input.Status ||
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
-                    this.Certificate == other.Certificate ||
-                    this.Certificate != null &&
-                    this.Certificate.Equals(other.Certificate)
+                    this.Certificate == input.Certificate ||
+                    (this.Certificate != null &&
+                    this.Certificate.Equals(input.Certificate))
                 ) && 
                 (
-                    this.Name == other.Name ||
-                    this.Name != null &&
-                    this.Name.Equals(other.Name)
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
                 ) && 
                 (
-                    this.Service == other.Service ||
-                    this.Service != null &&
-                    this.Service.Equals(other.Service)
+                    this.Service == input.Service ||
+                    (this.Service != null &&
+                    this.Service.Equals(input.Service))
                 ) && 
                 (
-                    this.Signature == other.Signature ||
-                    this.Signature != null &&
-                    this.Signature.Equals(other.Signature)
+                    this.Signature == input.Signature ||
+                    (this.Signature != null &&
+                    this.Signature.Equals(input.Signature))
                 ) && 
                 (
-                    this.Description == other.Description ||
-                    this.Description != null &&
-                    this.Description.Equals(other.Description)
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
                 );
         }
 
@@ -222,24 +220,22 @@ namespace iam.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.Status != null)
-                    hash = hash * 59 + this.Status.GetHashCode();
+                    hashCode = hashCode * 59 + this.Status.GetHashCode();
                 if (this.Certificate != null)
-                    hash = hash * 59 + this.Certificate.GetHashCode();
+                    hashCode = hashCode * 59 + this.Certificate.GetHashCode();
                 if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
                 if (this.Service != null)
-                    hash = hash * 59 + this.Service.GetHashCode();
+                    hashCode = hashCode * 59 + this.Service.GetHashCode();
                 if (this.Signature != null)
-                    hash = hash * 59 + this.Signature.GetHashCode();
+                    hashCode = hashCode * 59 + this.Signature.GetHashCode();
                 if (this.Description != null)
-                    hash = hash * 59 + this.Description.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                return hashCode;
             }
         }
 

@@ -45,20 +45,28 @@ namespace MbedCloudSDK.Certificates.Api
         {
             auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);
 
-            connector_ca.Client.Configuration.Default.ApiClient = new ApiClient(config.Host);
-            connector_ca.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
-            connector_ca.Client.Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            connector_ca.Client.Configuration.Default.DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
+            var connectorConfig = new connector_ca.Client.Configuration
+            {
+                BasePath = config.Host,
+                DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
+            };
+            connectorConfig.AddApiKey("Authorization", config.ApiKey);
+            connectorConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
+            connectorConfig.CreateApiClient();
 
-            iam.Client.Configuration.Default.ApiClient = new iam.Client.ApiClient(config.Host);
-            iam.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
-            iam.Client.Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            iam.Client.Configuration.Default.DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
+            var iamConfig = new iam.Client.Configuration
+            {
+                BasePath = config.Host,
+                DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
+            };
+            iamConfig.AddApiKey("Authorization", config.ApiKey);
+            iamConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
+            iamConfig.CreateApiClient();
 
-            developerCertificateApi = new DeveloperCertificateApi();
-            serverCredentialsApi = new ServerCredentialsApi();
-            iamAccountApi = new AccountAdminApi();
-            developerApi = new DeveloperApi();
+            developerCertificateApi = new DeveloperCertificateApi(connectorConfig);
+            serverCredentialsApi = new ServerCredentialsApi(connectorConfig);
+            iamAccountApi = new AccountAdminApi(iamConfig);
+            developerApi = new DeveloperApi(iamConfig);
 
             BootstrapServerCredentials = serverCredentialsApi.V3ServerCredentialsBootstrapGet(auth);
             Lmw2mServerCredentials = serverCredentialsApi.V3ServerCredentialsLwm2mGet(auth);

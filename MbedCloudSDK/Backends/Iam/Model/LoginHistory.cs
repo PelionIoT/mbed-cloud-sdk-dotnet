@@ -139,45 +139,43 @@ namespace iam.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as LoginHistory);
+            return this.Equals(input as LoginHistory);
         }
 
         /// <summary>
         /// Returns true if LoginHistory instances are equal
         /// </summary>
-        /// <param name="other">Instance of LoginHistory to be compared</param>
+        /// <param name="input">Instance of LoginHistory to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(LoginHistory other)
+        public bool Equals(LoginHistory input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.Date == other.Date ||
-                    this.Date != null &&
-                    this.Date.Equals(other.Date)
+                    this.Date == input.Date ||
+                    (this.Date != null &&
+                    this.Date.Equals(input.Date))
                 ) && 
                 (
-                    this.IpAddress == other.IpAddress ||
-                    this.IpAddress != null &&
-                    this.IpAddress.Equals(other.IpAddress)
+                    this.IpAddress == input.IpAddress ||
+                    (this.IpAddress != null &&
+                    this.IpAddress.Equals(input.IpAddress))
                 ) && 
                 (
-                    this.UserAgent == other.UserAgent ||
-                    this.UserAgent != null &&
-                    this.UserAgent.Equals(other.UserAgent)
+                    this.UserAgent == input.UserAgent ||
+                    (this.UserAgent != null &&
+                    this.UserAgent.Equals(input.UserAgent))
                 ) && 
                 (
-                    this.Success == other.Success ||
-                    this.Success != null &&
-                    this.Success.Equals(other.Success)
+                    this.Success == input.Success ||
+                    (this.Success != null &&
+                    this.Success.Equals(input.Success))
                 );
         }
 
@@ -187,20 +185,18 @@ namespace iam.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.Date != null)
-                    hash = hash * 59 + this.Date.GetHashCode();
+                    hashCode = hashCode * 59 + this.Date.GetHashCode();
                 if (this.IpAddress != null)
-                    hash = hash * 59 + this.IpAddress.GetHashCode();
+                    hashCode = hashCode * 59 + this.IpAddress.GetHashCode();
                 if (this.UserAgent != null)
-                    hash = hash * 59 + this.UserAgent.GetHashCode();
+                    hashCode = hashCode * 59 + this.UserAgent.GetHashCode();
                 if (this.Success != null)
-                    hash = hash * 59 + this.Success.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.Success.GetHashCode();
+                return hashCode;
             }
         }
 

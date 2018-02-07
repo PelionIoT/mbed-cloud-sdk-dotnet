@@ -165,70 +165,68 @@ namespace iam.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as UserInfoReq);
+            return this.Equals(input as UserInfoReq);
         }
 
         /// <summary>
         /// Returns true if UserInfoReq instances are equal
         /// </summary>
-        /// <param name="other">Instance of UserInfoReq to be compared</param>
+        /// <param name="input">Instance of UserInfoReq to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(UserInfoReq other)
+        public bool Equals(UserInfoReq input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.PhoneNumber == other.PhoneNumber ||
-                    this.PhoneNumber != null &&
-                    this.PhoneNumber.Equals(other.PhoneNumber)
+                    this.PhoneNumber == input.PhoneNumber ||
+                    (this.PhoneNumber != null &&
+                    this.PhoneNumber.Equals(input.PhoneNumber))
                 ) && 
                 (
-                    this.Username == other.Username ||
-                    this.Username != null &&
-                    this.Username.Equals(other.Username)
+                    this.Username == input.Username ||
+                    (this.Username != null &&
+                    this.Username.Equals(input.Username))
                 ) && 
                 (
-                    this.Groups == other.Groups ||
+                    this.Groups == input.Groups ||
                     this.Groups != null &&
-                    this.Groups.SequenceEqual(other.Groups)
+                    this.Groups.SequenceEqual(input.Groups)
                 ) && 
                 (
-                    this.IsGtcAccepted == other.IsGtcAccepted ||
-                    this.IsGtcAccepted != null &&
-                    this.IsGtcAccepted.Equals(other.IsGtcAccepted)
+                    this.IsGtcAccepted == input.IsGtcAccepted ||
+                    (this.IsGtcAccepted != null &&
+                    this.IsGtcAccepted.Equals(input.IsGtcAccepted))
                 ) && 
                 (
-                    this.FullName == other.FullName ||
-                    this.FullName != null &&
-                    this.FullName.Equals(other.FullName)
+                    this.FullName == input.FullName ||
+                    (this.FullName != null &&
+                    this.FullName.Equals(input.FullName))
                 ) && 
                 (
-                    this.IsMarketingAccepted == other.IsMarketingAccepted ||
-                    this.IsMarketingAccepted != null &&
-                    this.IsMarketingAccepted.Equals(other.IsMarketingAccepted)
+                    this.IsMarketingAccepted == input.IsMarketingAccepted ||
+                    (this.IsMarketingAccepted != null &&
+                    this.IsMarketingAccepted.Equals(input.IsMarketingAccepted))
                 ) && 
                 (
-                    this.Address == other.Address ||
-                    this.Address != null &&
-                    this.Address.Equals(other.Address)
+                    this.Address == input.Address ||
+                    (this.Address != null &&
+                    this.Address.Equals(input.Address))
                 ) && 
                 (
-                    this.Password == other.Password ||
-                    this.Password != null &&
-                    this.Password.Equals(other.Password)
+                    this.Password == input.Password ||
+                    (this.Password != null &&
+                    this.Password.Equals(input.Password))
                 ) && 
                 (
-                    this.Email == other.Email ||
-                    this.Email != null &&
-                    this.Email.Equals(other.Email)
+                    this.Email == input.Email ||
+                    (this.Email != null &&
+                    this.Email.Equals(input.Email))
                 );
         }
 
@@ -238,30 +236,28 @@ namespace iam.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.PhoneNumber != null)
-                    hash = hash * 59 + this.PhoneNumber.GetHashCode();
+                    hashCode = hashCode * 59 + this.PhoneNumber.GetHashCode();
                 if (this.Username != null)
-                    hash = hash * 59 + this.Username.GetHashCode();
+                    hashCode = hashCode * 59 + this.Username.GetHashCode();
                 if (this.Groups != null)
-                    hash = hash * 59 + this.Groups.GetHashCode();
+                    hashCode = hashCode * 59 + this.Groups.GetHashCode();
                 if (this.IsGtcAccepted != null)
-                    hash = hash * 59 + this.IsGtcAccepted.GetHashCode();
+                    hashCode = hashCode * 59 + this.IsGtcAccepted.GetHashCode();
                 if (this.FullName != null)
-                    hash = hash * 59 + this.FullName.GetHashCode();
+                    hashCode = hashCode * 59 + this.FullName.GetHashCode();
                 if (this.IsMarketingAccepted != null)
-                    hash = hash * 59 + this.IsMarketingAccepted.GetHashCode();
+                    hashCode = hashCode * 59 + this.IsMarketingAccepted.GetHashCode();
                 if (this.Address != null)
-                    hash = hash * 59 + this.Address.GetHashCode();
+                    hashCode = hashCode * 59 + this.Address.GetHashCode();
                 if (this.Password != null)
-                    hash = hash * 59 + this.Password.GetHashCode();
+                    hashCode = hashCode * 59 + this.Password.GetHashCode();
                 if (this.Email != null)
-                    hash = hash * 59 + this.Email.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.Email.GetHashCode();
+                return hashCode;
             }
         }
 

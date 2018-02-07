@@ -172,80 +172,78 @@ namespace device_directory.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as DeviceDataPatchRequest);
+            return this.Equals(input as DeviceDataPatchRequest);
         }
 
         /// <summary>
         /// Returns true if DeviceDataPatchRequest instances are equal
         /// </summary>
-        /// <param name="other">Instance of DeviceDataPatchRequest to be compared</param>
+        /// <param name="input">Instance of DeviceDataPatchRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DeviceDataPatchRequest other)
+        public bool Equals(DeviceDataPatchRequest input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.Description == other.Description ||
-                    this.Description != null &&
-                    this.Description.Equals(other.Description)
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
                 ) && 
                 (
-                    this.EndpointName == other.EndpointName ||
-                    this.EndpointName != null &&
-                    this.EndpointName.Equals(other.EndpointName)
+                    this.EndpointName == input.EndpointName ||
+                    (this.EndpointName != null &&
+                    this.EndpointName.Equals(input.EndpointName))
                 ) && 
                 (
-                    this.AutoUpdate == other.AutoUpdate ||
-                    this.AutoUpdate != null &&
-                    this.AutoUpdate.Equals(other.AutoUpdate)
+                    this.AutoUpdate == input.AutoUpdate ||
+                    (this.AutoUpdate != null &&
+                    this.AutoUpdate.Equals(input.AutoUpdate))
                 ) && 
                 (
-                    this.HostGateway == other.HostGateway ||
-                    this.HostGateway != null &&
-                    this.HostGateway.Equals(other.HostGateway)
+                    this.HostGateway == input.HostGateway ||
+                    (this.HostGateway != null &&
+                    this.HostGateway.Equals(input.HostGateway))
                 ) && 
                 (
-                    this.EnrolmentListTimestamp == other.EnrolmentListTimestamp ||
-                    this.EnrolmentListTimestamp != null &&
-                    this.EnrolmentListTimestamp.Equals(other.EnrolmentListTimestamp)
+                    this.EnrolmentListTimestamp == input.EnrolmentListTimestamp ||
+                    (this.EnrolmentListTimestamp != null &&
+                    this.EnrolmentListTimestamp.Equals(input.EnrolmentListTimestamp))
                 ) && 
                 (
-                    this._Object == other._Object ||
-                    this._Object != null &&
-                    this._Object.Equals(other._Object)
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
                 ) && 
                 (
-                    this.CustomAttributes == other.CustomAttributes ||
+                    this.CustomAttributes == input.CustomAttributes ||
                     this.CustomAttributes != null &&
-                    this.CustomAttributes.SequenceEqual(other.CustomAttributes)
+                    this.CustomAttributes.SequenceEqual(input.CustomAttributes)
                 ) && 
                 (
-                    this.DeviceKey == other.DeviceKey ||
-                    this.DeviceKey != null &&
-                    this.DeviceKey.Equals(other.DeviceKey)
+                    this.DeviceKey == input.DeviceKey ||
+                    (this.DeviceKey != null &&
+                    this.DeviceKey.Equals(input.DeviceKey))
                 ) && 
                 (
-                    this.EndpointType == other.EndpointType ||
-                    this.EndpointType != null &&
-                    this.EndpointType.Equals(other.EndpointType)
+                    this.EndpointType == input.EndpointType ||
+                    (this.EndpointType != null &&
+                    this.EndpointType.Equals(input.EndpointType))
                 ) && 
                 (
-                    this.CaId == other.CaId ||
-                    this.CaId != null &&
-                    this.CaId.Equals(other.CaId)
+                    this.CaId == input.CaId ||
+                    (this.CaId != null &&
+                    this.CaId.Equals(input.CaId))
                 ) && 
                 (
-                    this.Name == other.Name ||
-                    this.Name != null &&
-                    this.Name.Equals(other.Name)
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
                 );
         }
 
@@ -255,34 +253,32 @@ namespace device_directory.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.Description != null)
-                    hash = hash * 59 + this.Description.GetHashCode();
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.EndpointName != null)
-                    hash = hash * 59 + this.EndpointName.GetHashCode();
+                    hashCode = hashCode * 59 + this.EndpointName.GetHashCode();
                 if (this.AutoUpdate != null)
-                    hash = hash * 59 + this.AutoUpdate.GetHashCode();
+                    hashCode = hashCode * 59 + this.AutoUpdate.GetHashCode();
                 if (this.HostGateway != null)
-                    hash = hash * 59 + this.HostGateway.GetHashCode();
+                    hashCode = hashCode * 59 + this.HostGateway.GetHashCode();
                 if (this.EnrolmentListTimestamp != null)
-                    hash = hash * 59 + this.EnrolmentListTimestamp.GetHashCode();
+                    hashCode = hashCode * 59 + this.EnrolmentListTimestamp.GetHashCode();
                 if (this._Object != null)
-                    hash = hash * 59 + this._Object.GetHashCode();
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.CustomAttributes != null)
-                    hash = hash * 59 + this.CustomAttributes.GetHashCode();
+                    hashCode = hashCode * 59 + this.CustomAttributes.GetHashCode();
                 if (this.DeviceKey != null)
-                    hash = hash * 59 + this.DeviceKey.GetHashCode();
+                    hashCode = hashCode * 59 + this.DeviceKey.GetHashCode();
                 if (this.EndpointType != null)
-                    hash = hash * 59 + this.EndpointType.GetHashCode();
+                    hashCode = hashCode * 59 + this.EndpointType.GetHashCode();
                 if (this.CaId != null)
-                    hash = hash * 59 + this.CaId.GetHashCode();
+                    hashCode = hashCode * 59 + this.CaId.GetHashCode();
                 if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                return hashCode;
             }
         }
 

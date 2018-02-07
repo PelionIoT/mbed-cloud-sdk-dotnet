@@ -453,180 +453,178 @@ namespace device_directory.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as DeviceData);
+            return this.Equals(input as DeviceData);
         }
 
         /// <summary>
         /// Returns true if DeviceData instances are equal
         /// </summary>
-        /// <param name="other">Instance of DeviceData to be compared</param>
+        /// <param name="input">Instance of DeviceData to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DeviceData other)
+        public bool Equals(DeviceData input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.BootstrapExpirationDate == other.BootstrapExpirationDate ||
-                    this.BootstrapExpirationDate != null &&
-                    this.BootstrapExpirationDate.Equals(other.BootstrapExpirationDate)
+                    this.BootstrapExpirationDate == input.BootstrapExpirationDate ||
+                    (this.BootstrapExpirationDate != null &&
+                    this.BootstrapExpirationDate.Equals(input.BootstrapExpirationDate))
                 ) && 
                 (
-                    this.BootstrappedTimestamp == other.BootstrappedTimestamp ||
-                    this.BootstrappedTimestamp != null &&
-                    this.BootstrappedTimestamp.Equals(other.BootstrappedTimestamp)
+                    this.BootstrappedTimestamp == input.BootstrappedTimestamp ||
+                    (this.BootstrappedTimestamp != null &&
+                    this.BootstrappedTimestamp.Equals(input.BootstrappedTimestamp))
                 ) && 
                 (
-                    this.ConnectorExpirationDate == other.ConnectorExpirationDate ||
-                    this.ConnectorExpirationDate != null &&
-                    this.ConnectorExpirationDate.Equals(other.ConnectorExpirationDate)
+                    this.ConnectorExpirationDate == input.ConnectorExpirationDate ||
+                    (this.ConnectorExpirationDate != null &&
+                    this.ConnectorExpirationDate.Equals(input.ConnectorExpirationDate))
                 ) && 
                 (
-                    this.UpdatedAt == other.UpdatedAt ||
-                    this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(other.UpdatedAt)
+                    this.UpdatedAt == input.UpdatedAt ||
+                    (this.UpdatedAt != null &&
+                    this.UpdatedAt.Equals(input.UpdatedAt))
                 ) && 
                 (
-                    this.CaId == other.CaId ||
-                    this.CaId != null &&
-                    this.CaId.Equals(other.CaId)
+                    this.CaId == input.CaId ||
+                    (this.CaId != null &&
+                    this.CaId.Equals(input.CaId))
                 ) && 
                 (
-                    this.DeviceClass == other.DeviceClass ||
-                    this.DeviceClass != null &&
-                    this.DeviceClass.Equals(other.DeviceClass)
+                    this.DeviceClass == input.DeviceClass ||
+                    (this.DeviceClass != null &&
+                    this.DeviceClass.Equals(input.DeviceClass))
                 ) && 
                 (
-                    this.Id == other.Id ||
-                    this.Id != null &&
-                    this.Id.Equals(other.Id)
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
                 ) && 
                 (
-                    this.AccountId == other.AccountId ||
-                    this.AccountId != null &&
-                    this.AccountId.Equals(other.AccountId)
+                    this.AccountId == input.AccountId ||
+                    (this.AccountId != null &&
+                    this.AccountId.Equals(input.AccountId))
                 ) && 
                 (
-                    this.EndpointName == other.EndpointName ||
-                    this.EndpointName != null &&
-                    this.EndpointName.Equals(other.EndpointName)
+                    this.EndpointName == input.EndpointName ||
+                    (this.EndpointName != null &&
+                    this.EndpointName.Equals(input.EndpointName))
                 ) && 
                 (
-                    this.AutoUpdate == other.AutoUpdate ||
-                    this.AutoUpdate != null &&
-                    this.AutoUpdate.Equals(other.AutoUpdate)
+                    this.AutoUpdate == input.AutoUpdate ||
+                    (this.AutoUpdate != null &&
+                    this.AutoUpdate.Equals(input.AutoUpdate))
                 ) && 
                 (
-                    this.HostGateway == other.HostGateway ||
-                    this.HostGateway != null &&
-                    this.HostGateway.Equals(other.HostGateway)
+                    this.HostGateway == input.HostGateway ||
+                    (this.HostGateway != null &&
+                    this.HostGateway.Equals(input.HostGateway))
                 ) && 
                 (
-                    this.DeviceExecutionMode == other.DeviceExecutionMode ||
-                    this.DeviceExecutionMode != null &&
-                    this.DeviceExecutionMode.Equals(other.DeviceExecutionMode)
+                    this.DeviceExecutionMode == input.DeviceExecutionMode ||
+                    (this.DeviceExecutionMode != null &&
+                    this.DeviceExecutionMode.Equals(input.DeviceExecutionMode))
                 ) && 
                 (
-                    this.Mechanism == other.Mechanism ||
-                    this.Mechanism != null &&
-                    this.Mechanism.Equals(other.Mechanism)
+                    this.Mechanism == input.Mechanism ||
+                    (this.Mechanism != null &&
+                    this.Mechanism.Equals(input.Mechanism))
                 ) && 
                 (
-                    this.State == other.State ||
-                    this.State != null &&
-                    this.State.Equals(other.State)
+                    this.State == input.State ||
+                    (this.State != null &&
+                    this.State.Equals(input.State))
                 ) && 
                 (
-                    this.Etag == other.Etag ||
-                    this.Etag != null &&
-                    this.Etag.Equals(other.Etag)
+                    this.Etag == input.Etag ||
+                    (this.Etag != null &&
+                    this.Etag.Equals(input.Etag))
                 ) && 
                 (
-                    this.SerialNumber == other.SerialNumber ||
-                    this.SerialNumber != null &&
-                    this.SerialNumber.Equals(other.SerialNumber)
+                    this.SerialNumber == input.SerialNumber ||
+                    (this.SerialNumber != null &&
+                    this.SerialNumber.Equals(input.SerialNumber))
                 ) && 
                 (
-                    this.FirmwareChecksum == other.FirmwareChecksum ||
-                    this.FirmwareChecksum != null &&
-                    this.FirmwareChecksum.Equals(other.FirmwareChecksum)
+                    this.FirmwareChecksum == input.FirmwareChecksum ||
+                    (this.FirmwareChecksum != null &&
+                    this.FirmwareChecksum.Equals(input.FirmwareChecksum))
                 ) && 
                 (
-                    this.ManifestTimestamp == other.ManifestTimestamp ||
-                    this.ManifestTimestamp != null &&
-                    this.ManifestTimestamp.Equals(other.ManifestTimestamp)
+                    this.ManifestTimestamp == input.ManifestTimestamp ||
+                    (this.ManifestTimestamp != null &&
+                    this.ManifestTimestamp.Equals(input.ManifestTimestamp))
                 ) && 
                 (
-                    this.VendorId == other.VendorId ||
-                    this.VendorId != null &&
-                    this.VendorId.Equals(other.VendorId)
+                    this.VendorId == input.VendorId ||
+                    (this.VendorId != null &&
+                    this.VendorId.Equals(input.VendorId))
                 ) && 
                 (
-                    this.Description == other.Description ||
-                    this.Description != null &&
-                    this.Description.Equals(other.Description)
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
                 ) && 
                 (
-                    this.DeployedState == other.DeployedState ||
-                    this.DeployedState != null &&
-                    this.DeployedState.Equals(other.DeployedState)
+                    this.DeployedState == input.DeployedState ||
+                    (this.DeployedState != null &&
+                    this.DeployedState.Equals(input.DeployedState))
                 ) && 
                 (
-                    this._Object == other._Object ||
-                    this._Object != null &&
-                    this._Object.Equals(other._Object)
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
                 ) && 
                 (
-                    this.EndpointType == other.EndpointType ||
-                    this.EndpointType != null &&
-                    this.EndpointType.Equals(other.EndpointType)
+                    this.EndpointType == input.EndpointType ||
+                    (this.EndpointType != null &&
+                    this.EndpointType.Equals(input.EndpointType))
                 ) && 
                 (
-                    this.Deployment == other.Deployment ||
-                    this.Deployment != null &&
-                    this.Deployment.Equals(other.Deployment)
+                    this.Deployment == input.Deployment ||
+                    (this.Deployment != null &&
+                    this.Deployment.Equals(input.Deployment))
                 ) && 
                 (
-                    this.MechanismUrl == other.MechanismUrl ||
-                    this.MechanismUrl != null &&
-                    this.MechanismUrl.Equals(other.MechanismUrl)
+                    this.MechanismUrl == input.MechanismUrl ||
+                    (this.MechanismUrl != null &&
+                    this.MechanismUrl.Equals(input.MechanismUrl))
                 ) && 
                 (
-                    this.Name == other.Name ||
-                    this.Name != null &&
-                    this.Name.Equals(other.Name)
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
                 ) && 
                 (
-                    this.DeviceKey == other.DeviceKey ||
-                    this.DeviceKey != null &&
-                    this.DeviceKey.Equals(other.DeviceKey)
+                    this.DeviceKey == input.DeviceKey ||
+                    (this.DeviceKey != null &&
+                    this.DeviceKey.Equals(input.DeviceKey))
                 ) && 
                 (
-                    this.EnrolmentListTimestamp == other.EnrolmentListTimestamp ||
-                    this.EnrolmentListTimestamp != null &&
-                    this.EnrolmentListTimestamp.Equals(other.EnrolmentListTimestamp)
+                    this.EnrolmentListTimestamp == input.EnrolmentListTimestamp ||
+                    (this.EnrolmentListTimestamp != null &&
+                    this.EnrolmentListTimestamp.Equals(input.EnrolmentListTimestamp))
                 ) && 
                 (
-                    this.Manifest == other.Manifest ||
-                    this.Manifest != null &&
-                    this.Manifest.Equals(other.Manifest)
+                    this.Manifest == input.Manifest ||
+                    (this.Manifest != null &&
+                    this.Manifest.Equals(input.Manifest))
                 ) && 
                 (
-                    this.CustomAttributes == other.CustomAttributes ||
+                    this.CustomAttributes == input.CustomAttributes ||
                     this.CustomAttributes != null &&
-                    this.CustomAttributes.SequenceEqual(other.CustomAttributes)
+                    this.CustomAttributes.SequenceEqual(input.CustomAttributes)
                 ) && 
                 (
-                    this.CreatedAt == other.CreatedAt ||
-                    this.CreatedAt != null &&
-                    this.CreatedAt.Equals(other.CreatedAt)
+                    this.CreatedAt == input.CreatedAt ||
+                    (this.CreatedAt != null &&
+                    this.CreatedAt.Equals(input.CreatedAt))
                 );
         }
 
@@ -636,74 +634,72 @@ namespace device_directory.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.BootstrapExpirationDate != null)
-                    hash = hash * 59 + this.BootstrapExpirationDate.GetHashCode();
+                    hashCode = hashCode * 59 + this.BootstrapExpirationDate.GetHashCode();
                 if (this.BootstrappedTimestamp != null)
-                    hash = hash * 59 + this.BootstrappedTimestamp.GetHashCode();
+                    hashCode = hashCode * 59 + this.BootstrappedTimestamp.GetHashCode();
                 if (this.ConnectorExpirationDate != null)
-                    hash = hash * 59 + this.ConnectorExpirationDate.GetHashCode();
+                    hashCode = hashCode * 59 + this.ConnectorExpirationDate.GetHashCode();
                 if (this.UpdatedAt != null)
-                    hash = hash * 59 + this.UpdatedAt.GetHashCode();
+                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
                 if (this.CaId != null)
-                    hash = hash * 59 + this.CaId.GetHashCode();
+                    hashCode = hashCode * 59 + this.CaId.GetHashCode();
                 if (this.DeviceClass != null)
-                    hash = hash * 59 + this.DeviceClass.GetHashCode();
+                    hashCode = hashCode * 59 + this.DeviceClass.GetHashCode();
                 if (this.Id != null)
-                    hash = hash * 59 + this.Id.GetHashCode();
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.AccountId != null)
-                    hash = hash * 59 + this.AccountId.GetHashCode();
+                    hashCode = hashCode * 59 + this.AccountId.GetHashCode();
                 if (this.EndpointName != null)
-                    hash = hash * 59 + this.EndpointName.GetHashCode();
+                    hashCode = hashCode * 59 + this.EndpointName.GetHashCode();
                 if (this.AutoUpdate != null)
-                    hash = hash * 59 + this.AutoUpdate.GetHashCode();
+                    hashCode = hashCode * 59 + this.AutoUpdate.GetHashCode();
                 if (this.HostGateway != null)
-                    hash = hash * 59 + this.HostGateway.GetHashCode();
+                    hashCode = hashCode * 59 + this.HostGateway.GetHashCode();
                 if (this.DeviceExecutionMode != null)
-                    hash = hash * 59 + this.DeviceExecutionMode.GetHashCode();
+                    hashCode = hashCode * 59 + this.DeviceExecutionMode.GetHashCode();
                 if (this.Mechanism != null)
-                    hash = hash * 59 + this.Mechanism.GetHashCode();
+                    hashCode = hashCode * 59 + this.Mechanism.GetHashCode();
                 if (this.State != null)
-                    hash = hash * 59 + this.State.GetHashCode();
+                    hashCode = hashCode * 59 + this.State.GetHashCode();
                 if (this.Etag != null)
-                    hash = hash * 59 + this.Etag.GetHashCode();
+                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
                 if (this.SerialNumber != null)
-                    hash = hash * 59 + this.SerialNumber.GetHashCode();
+                    hashCode = hashCode * 59 + this.SerialNumber.GetHashCode();
                 if (this.FirmwareChecksum != null)
-                    hash = hash * 59 + this.FirmwareChecksum.GetHashCode();
+                    hashCode = hashCode * 59 + this.FirmwareChecksum.GetHashCode();
                 if (this.ManifestTimestamp != null)
-                    hash = hash * 59 + this.ManifestTimestamp.GetHashCode();
+                    hashCode = hashCode * 59 + this.ManifestTimestamp.GetHashCode();
                 if (this.VendorId != null)
-                    hash = hash * 59 + this.VendorId.GetHashCode();
+                    hashCode = hashCode * 59 + this.VendorId.GetHashCode();
                 if (this.Description != null)
-                    hash = hash * 59 + this.Description.GetHashCode();
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.DeployedState != null)
-                    hash = hash * 59 + this.DeployedState.GetHashCode();
+                    hashCode = hashCode * 59 + this.DeployedState.GetHashCode();
                 if (this._Object != null)
-                    hash = hash * 59 + this._Object.GetHashCode();
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.EndpointType != null)
-                    hash = hash * 59 + this.EndpointType.GetHashCode();
+                    hashCode = hashCode * 59 + this.EndpointType.GetHashCode();
                 if (this.Deployment != null)
-                    hash = hash * 59 + this.Deployment.GetHashCode();
+                    hashCode = hashCode * 59 + this.Deployment.GetHashCode();
                 if (this.MechanismUrl != null)
-                    hash = hash * 59 + this.MechanismUrl.GetHashCode();
+                    hashCode = hashCode * 59 + this.MechanismUrl.GetHashCode();
                 if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
                 if (this.DeviceKey != null)
-                    hash = hash * 59 + this.DeviceKey.GetHashCode();
+                    hashCode = hashCode * 59 + this.DeviceKey.GetHashCode();
                 if (this.EnrolmentListTimestamp != null)
-                    hash = hash * 59 + this.EnrolmentListTimestamp.GetHashCode();
+                    hashCode = hashCode * 59 + this.EnrolmentListTimestamp.GetHashCode();
                 if (this.Manifest != null)
-                    hash = hash * 59 + this.Manifest.GetHashCode();
+                    hashCode = hashCode * 59 + this.Manifest.GetHashCode();
                 if (this.CustomAttributes != null)
-                    hash = hash * 59 + this.CustomAttributes.GetHashCode();
+                    hashCode = hashCode * 59 + this.CustomAttributes.GetHashCode();
                 if (this.CreatedAt != null)
-                    hash = hash * 59 + this.CreatedAt.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
+                return hashCode;
             }
         }
 

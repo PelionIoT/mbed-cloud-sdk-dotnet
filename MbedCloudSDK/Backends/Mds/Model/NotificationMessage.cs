@@ -116,55 +116,53 @@ namespace mds.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as NotificationMessage);
+            return this.Equals(input as NotificationMessage);
         }
 
         /// <summary>
         /// Returns true if NotificationMessage instances are equal
         /// </summary>
-        /// <param name="other">Instance of NotificationMessage to be compared</param>
+        /// <param name="input">Instance of NotificationMessage to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(NotificationMessage other)
+        public bool Equals(NotificationMessage input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.AsyncResponses == other.AsyncResponses ||
+                    this.AsyncResponses == input.AsyncResponses ||
                     this.AsyncResponses != null &&
-                    this.AsyncResponses.SequenceEqual(other.AsyncResponses)
+                    this.AsyncResponses.SequenceEqual(input.AsyncResponses)
                 ) && 
                 (
-                    this.DeRegistrations == other.DeRegistrations ||
+                    this.DeRegistrations == input.DeRegistrations ||
                     this.DeRegistrations != null &&
-                    this.DeRegistrations.SequenceEqual(other.DeRegistrations)
+                    this.DeRegistrations.SequenceEqual(input.DeRegistrations)
                 ) && 
                 (
-                    this.RegUpdates == other.RegUpdates ||
+                    this.RegUpdates == input.RegUpdates ||
                     this.RegUpdates != null &&
-                    this.RegUpdates.SequenceEqual(other.RegUpdates)
+                    this.RegUpdates.SequenceEqual(input.RegUpdates)
                 ) && 
                 (
-                    this.Registrations == other.Registrations ||
+                    this.Registrations == input.Registrations ||
                     this.Registrations != null &&
-                    this.Registrations.SequenceEqual(other.Registrations)
+                    this.Registrations.SequenceEqual(input.Registrations)
                 ) && 
                 (
-                    this.Notifications == other.Notifications ||
+                    this.Notifications == input.Notifications ||
                     this.Notifications != null &&
-                    this.Notifications.SequenceEqual(other.Notifications)
+                    this.Notifications.SequenceEqual(input.Notifications)
                 ) && 
                 (
-                    this.RegistrationsExpired == other.RegistrationsExpired ||
+                    this.RegistrationsExpired == input.RegistrationsExpired ||
                     this.RegistrationsExpired != null &&
-                    this.RegistrationsExpired.SequenceEqual(other.RegistrationsExpired)
+                    this.RegistrationsExpired.SequenceEqual(input.RegistrationsExpired)
                 );
         }
 
@@ -174,24 +172,22 @@ namespace mds.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.AsyncResponses != null)
-                    hash = hash * 59 + this.AsyncResponses.GetHashCode();
+                    hashCode = hashCode * 59 + this.AsyncResponses.GetHashCode();
                 if (this.DeRegistrations != null)
-                    hash = hash * 59 + this.DeRegistrations.GetHashCode();
+                    hashCode = hashCode * 59 + this.DeRegistrations.GetHashCode();
                 if (this.RegUpdates != null)
-                    hash = hash * 59 + this.RegUpdates.GetHashCode();
+                    hashCode = hashCode * 59 + this.RegUpdates.GetHashCode();
                 if (this.Registrations != null)
-                    hash = hash * 59 + this.Registrations.GetHashCode();
+                    hashCode = hashCode * 59 + this.Registrations.GetHashCode();
                 if (this.Notifications != null)
-                    hash = hash * 59 + this.Notifications.GetHashCode();
+                    hashCode = hashCode * 59 + this.Notifications.GetHashCode();
                 if (this.RegistrationsExpired != null)
-                    hash = hash * 59 + this.RegistrationsExpired.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.RegistrationsExpired.GetHashCode();
+                return hashCode;
             }
         }
 

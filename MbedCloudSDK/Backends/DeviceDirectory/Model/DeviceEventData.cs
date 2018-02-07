@@ -164,70 +164,68 @@ namespace device_directory.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as DeviceEventData);
+            return this.Equals(input as DeviceEventData);
         }
 
         /// <summary>
         /// Returns true if DeviceEventData instances are equal
         /// </summary>
-        /// <param name="other">Instance of DeviceEventData to be compared</param>
+        /// <param name="input">Instance of DeviceEventData to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DeviceEventData other)
+        public bool Equals(DeviceEventData input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.DateTime == other.DateTime ||
-                    this.DateTime != null &&
-                    this.DateTime.Equals(other.DateTime)
+                    this.DateTime == input.DateTime ||
+                    (this.DateTime != null &&
+                    this.DateTime.Equals(input.DateTime))
                 ) && 
                 (
-                    this.StateChange == other.StateChange ||
-                    this.StateChange != null &&
-                    this.StateChange.Equals(other.StateChange)
+                    this.StateChange == input.StateChange ||
+                    (this.StateChange != null &&
+                    this.StateChange.Equals(input.StateChange))
                 ) && 
                 (
-                    this.Description == other.Description ||
-                    this.Description != null &&
-                    this.Description.Equals(other.Description)
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
                 ) && 
                 (
-                    this.Changes == other.Changes ||
-                    this.Changes != null &&
-                    this.Changes.Equals(other.Changes)
+                    this.Changes == input.Changes ||
+                    (this.Changes != null &&
+                    this.Changes.Equals(input.Changes))
                 ) && 
                 (
-                    this.EventTypeDescription == other.EventTypeDescription ||
-                    this.EventTypeDescription != null &&
-                    this.EventTypeDescription.Equals(other.EventTypeDescription)
+                    this.EventTypeDescription == input.EventTypeDescription ||
+                    (this.EventTypeDescription != null &&
+                    this.EventTypeDescription.Equals(input.EventTypeDescription))
                 ) && 
                 (
-                    this.EventType == other.EventType ||
-                    this.EventType != null &&
-                    this.EventType.Equals(other.EventType)
+                    this.EventType == input.EventType ||
+                    (this.EventType != null &&
+                    this.EventType.Equals(input.EventType))
                 ) && 
                 (
-                    this.Data == other.Data ||
-                    this.Data != null &&
-                    this.Data.Equals(other.Data)
+                    this.Data == input.Data ||
+                    (this.Data != null &&
+                    this.Data.Equals(input.Data))
                 ) && 
                 (
-                    this.Id == other.Id ||
-                    this.Id != null &&
-                    this.Id.Equals(other.Id)
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
                 ) && 
                 (
-                    this.DeviceId == other.DeviceId ||
-                    this.DeviceId != null &&
-                    this.DeviceId.Equals(other.DeviceId)
+                    this.DeviceId == input.DeviceId ||
+                    (this.DeviceId != null &&
+                    this.DeviceId.Equals(input.DeviceId))
                 );
         }
 
@@ -237,30 +235,28 @@ namespace device_directory.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.DateTime != null)
-                    hash = hash * 59 + this.DateTime.GetHashCode();
+                    hashCode = hashCode * 59 + this.DateTime.GetHashCode();
                 if (this.StateChange != null)
-                    hash = hash * 59 + this.StateChange.GetHashCode();
+                    hashCode = hashCode * 59 + this.StateChange.GetHashCode();
                 if (this.Description != null)
-                    hash = hash * 59 + this.Description.GetHashCode();
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.Changes != null)
-                    hash = hash * 59 + this.Changes.GetHashCode();
+                    hashCode = hashCode * 59 + this.Changes.GetHashCode();
                 if (this.EventTypeDescription != null)
-                    hash = hash * 59 + this.EventTypeDescription.GetHashCode();
+                    hashCode = hashCode * 59 + this.EventTypeDescription.GetHashCode();
                 if (this.EventType != null)
-                    hash = hash * 59 + this.EventType.GetHashCode();
+                    hashCode = hashCode * 59 + this.EventType.GetHashCode();
                 if (this.Data != null)
-                    hash = hash * 59 + this.Data.GetHashCode();
+                    hashCode = hashCode * 59 + this.Data.GetHashCode();
                 if (this.Id != null)
-                    hash = hash * 59 + this.Id.GetHashCode();
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.DeviceId != null)
-                    hash = hash * 59 + this.DeviceId.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.DeviceId.GetHashCode();
+                return hashCode;
             }
         }
 

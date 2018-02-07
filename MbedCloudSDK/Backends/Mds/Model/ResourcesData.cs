@@ -112,50 +112,48 @@ namespace mds.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as ResourcesData);
+            return this.Equals(input as ResourcesData);
         }
 
         /// <summary>
         /// Returns true if ResourcesData instances are equal
         /// </summary>
-        /// <param name="other">Instance of ResourcesData to be compared</param>
+        /// <param name="input">Instance of ResourcesData to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ResourcesData other)
+        public bool Equals(ResourcesData input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.Path == other.Path ||
-                    this.Path != null &&
-                    this.Path.Equals(other.Path)
+                    this.Path == input.Path ||
+                    (this.Path != null &&
+                    this.Path.Equals(input.Path))
                 ) && 
                 (
-                    this.Rf == other.Rf ||
-                    this.Rf != null &&
-                    this.Rf.Equals(other.Rf)
+                    this.Rf == input.Rf ||
+                    (this.Rf != null &&
+                    this.Rf.Equals(input.Rf))
                 ) && 
                 (
-                    this.Ct == other.Ct ||
-                    this.Ct != null &&
-                    this.Ct.Equals(other.Ct)
+                    this.Ct == input.Ct ||
+                    (this.Ct != null &&
+                    this.Ct.Equals(input.Ct))
                 ) && 
                 (
-                    this.Obs == other.Obs ||
-                    this.Obs != null &&
-                    this.Obs.Equals(other.Obs)
+                    this.Obs == input.Obs ||
+                    (this.Obs != null &&
+                    this.Obs.Equals(input.Obs))
                 ) && 
                 (
-                    this._If == other._If ||
-                    this._If != null &&
-                    this._If.Equals(other._If)
+                    this._If == input._If ||
+                    (this._If != null &&
+                    this._If.Equals(input._If))
                 );
         }
 
@@ -165,22 +163,20 @@ namespace mds.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.Path != null)
-                    hash = hash * 59 + this.Path.GetHashCode();
+                    hashCode = hashCode * 59 + this.Path.GetHashCode();
                 if (this.Rf != null)
-                    hash = hash * 59 + this.Rf.GetHashCode();
+                    hashCode = hashCode * 59 + this.Rf.GetHashCode();
                 if (this.Ct != null)
-                    hash = hash * 59 + this.Ct.GetHashCode();
+                    hashCode = hashCode * 59 + this.Ct.GetHashCode();
                 if (this.Obs != null)
-                    hash = hash * 59 + this.Obs.GetHashCode();
+                    hashCode = hashCode * 59 + this.Obs.GetHashCode();
                 if (this._If != null)
-                    hash = hash * 59 + this._If.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this._If.GetHashCode();
+                return hashCode;
             }
         }
 

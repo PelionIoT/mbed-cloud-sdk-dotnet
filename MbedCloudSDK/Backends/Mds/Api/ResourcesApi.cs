@@ -255,15 +255,9 @@ namespace mds.Api
         /// <returns></returns>
         public ResourcesApi(String basePath)
         {
-            this.Configuration = new Configuration(new ApiClient(basePath));
+            this.Configuration = new Configuration { BasePath = basePath };
 
             ExceptionFactory = mds.Client.Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                this.Configuration.ApiClient.Configuration = this.Configuration;
-            }
         }
 
         /// <summary>
@@ -280,12 +274,6 @@ namespace mds.Api
                 this.Configuration = configuration;
 
             ExceptionFactory = mds.Client.Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                this.Configuration.ApiClient.Configuration = this.Configuration;
-            }
         }
 
         /// <summary>
@@ -334,9 +322,9 @@ namespace mds.Api
         /// </summary>
         /// <returns>Dictionary of HTTP header</returns>
         [Obsolete("DefaultHeader is deprecated, please use Configuration.DefaultHeader instead.")]
-        public Dictionary<String, String> DefaultHeader()
+        public IDictionary<String, String> DefaultHeader()
         {
-            return this.Configuration.DefaultHeader;
+            return new ReadOnlyDictionary<string, string>(this.Configuration.DefaultHeader);
         }
 
         /// <summary>
@@ -384,7 +372,7 @@ namespace mds.Api
 
             var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -404,14 +392,13 @@ namespace mds.Api
 
             if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
-            if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
+            if (noResp != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "noResp", noResp)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
             {
                 localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
             }
-
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -465,7 +452,7 @@ namespace mds.Api
 
             var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -485,7 +472,7 @@ namespace mds.Api
 
             if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
-            if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
+            if (noResp != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "noResp", noResp)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -546,7 +533,7 @@ namespace mds.Api
 
             var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -566,15 +553,14 @@ namespace mds.Api
 
             if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
-            if (cacheOnly != null) localVarQueryParams.Add("cacheOnly", Configuration.ApiClient.ParameterToString(cacheOnly)); // query parameter
-            if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
+            if (cacheOnly != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "cacheOnly", cacheOnly)); // query parameter
+            if (noResp != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "noResp", noResp)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
             {
                 localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
             }
-
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -630,7 +616,7 @@ namespace mds.Api
 
             var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -650,8 +636,8 @@ namespace mds.Api
 
             if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
-            if (cacheOnly != null) localVarQueryParams.Add("cacheOnly", Configuration.ApiClient.ParameterToString(cacheOnly)); // query parameter
-            if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
+            if (cacheOnly != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "cacheOnly", cacheOnly)); // query parameter
+            if (noResp != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "noResp", noResp)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -712,7 +698,7 @@ namespace mds.Api
 
             var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -744,7 +730,7 @@ namespace mds.Api
 
             if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
-            if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
+            if (noResp != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "noResp", noResp)); // query parameter
             if (resourceFunction != null && resourceFunction.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(resourceFunction); // http body (model) parameter
@@ -759,7 +745,6 @@ namespace mds.Api
             {
                 localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
             }
-
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -815,7 +800,7 @@ namespace mds.Api
 
             var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -847,7 +832,7 @@ namespace mds.Api
 
             if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
-            if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
+            if (noResp != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "noResp", noResp)); // query parameter
             if (resourceFunction != null && resourceFunction.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(resourceFunction); // http body (model) parameter
@@ -919,7 +904,7 @@ namespace mds.Api
 
             var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -951,7 +936,7 @@ namespace mds.Api
 
             if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
-            if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
+            if (noResp != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "noResp", noResp)); // query parameter
             if (resourceValue != null && resourceValue.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(resourceValue); // http body (model) parameter
@@ -966,7 +951,6 @@ namespace mds.Api
             {
                 localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
             }
-
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
@@ -1025,7 +1009,7 @@ namespace mds.Api
 
             var localVarPath = "/v2/endpoints/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1057,7 +1041,7 @@ namespace mds.Api
 
             if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
             if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
-            if (noResp != null) localVarQueryParams.Add("noResp", Configuration.ApiClient.ParameterToString(noResp)); // query parameter
+            if (noResp != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "noResp", noResp)); // query parameter
             if (resourceValue != null && resourceValue.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(resourceValue); // http body (model) parameter

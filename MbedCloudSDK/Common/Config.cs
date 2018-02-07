@@ -20,24 +20,8 @@ namespace MbedCloudSDK.Common
         /// <param name="authorizationPrefix">Authorization prefix</param>
         /// <param name="forceClear">Force clear notification channel. If true, when adding a webhook, notifications will be stopped.</param>
         /// <param name="autostartNotifications">Auto start notifications. If true, notifications will start automatically when required.</param>
-        /// <param name="setSecurity">If true, SecurityProtocol will be set. Required for .NET 4.6 but depreciated in .NET Core. If using .NET Core, set to false.</param>
-        public Config(string apiKey, string host = "https://api.us-east-1.mbedcloud.com", bool forceClear = false, bool autostartNotifications = false, bool setSecurity = true, string authorizationPrefix = "Bearer")
+        public Config(string apiKey, string host = "https://api.us-east-1.mbedcloud.com", bool forceClear = false, bool autostartNotifications = false, string authorizationPrefix = "Bearer")
         {
-            /*
-            if (setSecurity)
-            {
-                try
-                {
-                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("ServicePointManager depreciated in .NET Core");
-                    Console.WriteLine(e);
-                }
-            }
-            */
-
             AuthorizationPrefix = authorizationPrefix;
             ApiKey = apiKey;
             Host = host;

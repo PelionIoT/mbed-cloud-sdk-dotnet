@@ -227,85 +227,83 @@ namespace update_service.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as CampaignDeviceMetadata);
+            return this.Equals(input as CampaignDeviceMetadata);
         }
 
         /// <summary>
         /// Returns true if CampaignDeviceMetadata instances are equal
         /// </summary>
-        /// <param name="other">Instance of CampaignDeviceMetadata to be compared</param>
+        /// <param name="input">Instance of CampaignDeviceMetadata to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CampaignDeviceMetadata other)
+        public bool Equals(CampaignDeviceMetadata input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.Description == other.Description ||
-                    this.Description != null &&
-                    this.Description.Equals(other.Description)
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
                 ) && 
                 (
-                    this.Campaign == other.Campaign ||
-                    this.Campaign != null &&
-                    this.Campaign.Equals(other.Campaign)
+                    this.Campaign == input.Campaign ||
+                    (this.Campaign != null &&
+                    this.Campaign.Equals(input.Campaign))
                 ) && 
                 (
-                    this.CreatedAt == other.CreatedAt ||
-                    this.CreatedAt != null &&
-                    this.CreatedAt.Equals(other.CreatedAt)
+                    this.CreatedAt == input.CreatedAt ||
+                    (this.CreatedAt != null &&
+                    this.CreatedAt.Equals(input.CreatedAt))
                 ) && 
                 (
-                    this._Object == other._Object ||
-                    this._Object != null &&
-                    this._Object.Equals(other._Object)
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
                 ) && 
                 (
-                    this.UpdatedAt == other.UpdatedAt ||
-                    this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(other.UpdatedAt)
+                    this.UpdatedAt == input.UpdatedAt ||
+                    (this.UpdatedAt != null &&
+                    this.UpdatedAt.Equals(input.UpdatedAt))
                 ) && 
                 (
-                    this.Mechanism == other.Mechanism ||
-                    this.Mechanism != null &&
-                    this.Mechanism.Equals(other.Mechanism)
+                    this.Mechanism == input.Mechanism ||
+                    (this.Mechanism != null &&
+                    this.Mechanism.Equals(input.Mechanism))
                 ) && 
                 (
-                    this.Name == other.Name ||
-                    this.Name != null &&
-                    this.Name.Equals(other.Name)
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
                 ) && 
                 (
-                    this.Etag == other.Etag ||
-                    this.Etag != null &&
-                    this.Etag.Equals(other.Etag)
+                    this.Etag == input.Etag ||
+                    (this.Etag != null &&
+                    this.Etag.Equals(input.Etag))
                 ) && 
                 (
-                    this.MechanismUrl == other.MechanismUrl ||
-                    this.MechanismUrl != null &&
-                    this.MechanismUrl.Equals(other.MechanismUrl)
+                    this.MechanismUrl == input.MechanismUrl ||
+                    (this.MechanismUrl != null &&
+                    this.MechanismUrl.Equals(input.MechanismUrl))
                 ) && 
                 (
-                    this.DeploymentState == other.DeploymentState ||
-                    this.DeploymentState != null &&
-                    this.DeploymentState.Equals(other.DeploymentState)
+                    this.DeploymentState == input.DeploymentState ||
+                    (this.DeploymentState != null &&
+                    this.DeploymentState.Equals(input.DeploymentState))
                 ) && 
                 (
-                    this.Id == other.Id ||
-                    this.Id != null &&
-                    this.Id.Equals(other.Id)
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
                 ) && 
                 (
-                    this.DeviceId == other.DeviceId ||
-                    this.DeviceId != null &&
-                    this.DeviceId.Equals(other.DeviceId)
+                    this.DeviceId == input.DeviceId ||
+                    (this.DeviceId != null &&
+                    this.DeviceId.Equals(input.DeviceId))
                 );
         }
 
@@ -315,36 +313,34 @@ namespace update_service.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.Description != null)
-                    hash = hash * 59 + this.Description.GetHashCode();
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.Campaign != null)
-                    hash = hash * 59 + this.Campaign.GetHashCode();
+                    hashCode = hashCode * 59 + this.Campaign.GetHashCode();
                 if (this.CreatedAt != null)
-                    hash = hash * 59 + this.CreatedAt.GetHashCode();
+                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
                 if (this._Object != null)
-                    hash = hash * 59 + this._Object.GetHashCode();
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.UpdatedAt != null)
-                    hash = hash * 59 + this.UpdatedAt.GetHashCode();
+                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
                 if (this.Mechanism != null)
-                    hash = hash * 59 + this.Mechanism.GetHashCode();
+                    hashCode = hashCode * 59 + this.Mechanism.GetHashCode();
                 if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
                 if (this.Etag != null)
-                    hash = hash * 59 + this.Etag.GetHashCode();
+                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
                 if (this.MechanismUrl != null)
-                    hash = hash * 59 + this.MechanismUrl.GetHashCode();
+                    hashCode = hashCode * 59 + this.MechanismUrl.GetHashCode();
                 if (this.DeploymentState != null)
-                    hash = hash * 59 + this.DeploymentState.GetHashCode();
+                    hashCode = hashCode * 59 + this.DeploymentState.GetHashCode();
                 if (this.Id != null)
-                    hash = hash * 59 + this.Id.GetHashCode();
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.DeviceId != null)
-                    hash = hash * 59 + this.DeviceId.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.DeviceId.GetHashCode();
+                return hashCode;
             }
         }
 

@@ -139,7 +139,7 @@ namespace MbedCloudSDK.Update.Api
 
             try
             {
-                var resp = api.V3UpdateCampaignsCampaignIdCampaignDeviceMetadataGet(campaignId: options.Id, limit: options.Limit, order: options.Order, after: options.After, include: options.Include);
+                var resp = api.UpdateCampaignMetadataList(campaignId: options.Id, limit: options.Limit, order: options.Order, after: options.After, include: options.Include);
                 var respStates = new ResponsePage<CampaignDeviceState>(after: resp.After, hasMore: resp.HasMore, limit: resp.Limit, order: Convert.ToString(resp.Order), totalCount: resp.TotalCount);
                 foreach (var state in resp.Data)
                 {

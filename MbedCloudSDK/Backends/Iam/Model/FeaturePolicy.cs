@@ -102,45 +102,43 @@ namespace iam.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as FeaturePolicy);
+            return this.Equals(input as FeaturePolicy);
         }
 
         /// <summary>
         /// Returns true if FeaturePolicy instances are equal
         /// </summary>
-        /// <param name="other">Instance of FeaturePolicy to be compared</param>
+        /// <param name="input">Instance of FeaturePolicy to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(FeaturePolicy other)
+        public bool Equals(FeaturePolicy input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.Action == other.Action ||
-                    this.Action != null &&
-                    this.Action.Equals(other.Action)
+                    this.Action == input.Action ||
+                    (this.Action != null &&
+                    this.Action.Equals(input.Action))
                 ) && 
                 (
-                    this.Resource == other.Resource ||
-                    this.Resource != null &&
-                    this.Resource.Equals(other.Resource)
+                    this.Resource == input.Resource ||
+                    (this.Resource != null &&
+                    this.Resource.Equals(input.Resource))
                 ) && 
                 (
-                    this.Feature == other.Feature ||
-                    this.Feature != null &&
-                    this.Feature.Equals(other.Feature)
+                    this.Feature == input.Feature ||
+                    (this.Feature != null &&
+                    this.Feature.Equals(input.Feature))
                 ) && 
                 (
-                    this.Allow == other.Allow ||
-                    this.Allow != null &&
-                    this.Allow.Equals(other.Allow)
+                    this.Allow == input.Allow ||
+                    (this.Allow != null &&
+                    this.Allow.Equals(input.Allow))
                 );
         }
 
@@ -150,20 +148,18 @@ namespace iam.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.Action != null)
-                    hash = hash * 59 + this.Action.GetHashCode();
+                    hashCode = hashCode * 59 + this.Action.GetHashCode();
                 if (this.Resource != null)
-                    hash = hash * 59 + this.Resource.GetHashCode();
+                    hashCode = hashCode * 59 + this.Resource.GetHashCode();
                 if (this.Feature != null)
-                    hash = hash * 59 + this.Feature.GetHashCode();
+                    hashCode = hashCode * 59 + this.Feature.GetHashCode();
                 if (this.Allow != null)
-                    hash = hash * 59 + this.Allow.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.Allow.GetHashCode();
+                return hashCode;
             }
         }
 

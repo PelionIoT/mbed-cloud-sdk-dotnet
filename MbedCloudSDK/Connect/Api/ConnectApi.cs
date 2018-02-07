@@ -69,31 +69,43 @@ namespace MbedCloudSDK.Connect.Api
             ResourceSubscribtions = new Dictionary<string, Resource>();
 
             var dateFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
-
             auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);
-            statistics.Client.Configuration.Default.ApiClient = new statistics.Client.ApiClient(config.Host);
-            statistics.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
-            statistics.Client.Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            statistics.Client.Configuration.Default.DateTimeFormat = dateFormat;
 
-            mds.Client.Configuration.Default.ApiClient = new mds.Client.ApiClient(config.Host);
-            mds.Client.Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
-            mds.Client.Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            mds.Client.Configuration.Default.DateTimeFormat = dateFormat;
+            var statsConfig = new statistics.Client.Configuration
+            {
+                BasePath = config.Host,
+                DateTimeFormat = dateFormat,
+            };
+            statsConfig.AddApiKey("Authorization", config.ApiKey);
+            statsConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
+            statsConfig.CreateApiClient();
 
-            Configuration.Default.ApiClient = new ApiClient(config.Host);
-            Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
-            Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            Configuration.Default.DateTimeFormat = dateFormat;
+            var mdsConfig = new mds.Client.Configuration
+            {
+                BasePath = config.Host,
+                DateTimeFormat = dateFormat,
+            };
+            mdsConfig.AddApiKey("Authorization", config.ApiKey);
+            mdsConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
+            mdsConfig.CreateApiClient();
 
-            deviceDirectoryApi = new device_directory.Api.DefaultApi();
-            statisticsApi = new statistics.Api.StatisticsApi();
-            subscriptionsApi = new SubscriptionsApi();
-            resourcesApi = new ResourcesApi();
-            endpointsApi = new EndpointsApi();
-            accountApi = new statistics.Api.AccountApi();
-            notificationsApi = new NotificationsApi();
-            defaultApi = new DefaultApi();
+            var deviceConfig = new device_directory.Client.Configuration
+            {
+                BasePath = config.Host,
+                DateTimeFormat = dateFormat,
+            };
+            deviceConfig.AddApiKey("Authorization", config.ApiKey);
+            deviceConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
+            deviceConfig.CreateApiClient();
+
+            deviceDirectoryApi = new device_directory.Api.DefaultApi(deviceConfig);
+            statisticsApi = new statistics.Api.StatisticsApi(statsConfig);
+            subscriptionsApi = new SubscriptionsApi(mdsConfig);
+            resourcesApi = new ResourcesApi(mdsConfig);
+            endpointsApi = new EndpointsApi(mdsConfig);
+            accountApi = new statistics.Api.AccountApi(statsConfig);
+            notificationsApi = new NotificationsApi(mdsConfig);
+            defaultApi = new DefaultApi(mdsConfig);
         }
 
         /// <summary>

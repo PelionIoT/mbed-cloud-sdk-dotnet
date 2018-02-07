@@ -52,6 +52,36 @@ namespace update_service.Model
             Scheduled,
             
             /// <summary>
+            /// Enum Allocatingquota for "allocatingquota"
+            /// </summary>
+            [EnumMember(Value = "allocatingquota")]
+            Allocatingquota,
+            
+            /// <summary>
+            /// Enum Allocatedquota for "allocatedquota"
+            /// </summary>
+            [EnumMember(Value = "allocatedquota")]
+            Allocatedquota,
+            
+            /// <summary>
+            /// Enum Insufficientquota for "insufficientquota"
+            /// </summary>
+            [EnumMember(Value = "insufficientquota")]
+            Insufficientquota,
+            
+            /// <summary>
+            /// Enum Checkingmanifest for "checkingmanifest"
+            /// </summary>
+            [EnumMember(Value = "checkingmanifest")]
+            Checkingmanifest,
+            
+            /// <summary>
+            /// Enum Checkedmanifest for "checkedmanifest"
+            /// </summary>
+            [EnumMember(Value = "checkedmanifest")]
+            Checkedmanifest,
+            
+            /// <summary>
             /// Enum Devicefetch for "devicefetch"
             /// </summary>
             [EnumMember(Value = "devicefetch")]
@@ -62,6 +92,12 @@ namespace update_service.Model
             /// </summary>
             [EnumMember(Value = "devicecopy")]
             Devicecopy,
+            
+            /// <summary>
+            /// Enum Devicecheck for "devicecheck"
+            /// </summary>
+            [EnumMember(Value = "devicecheck")]
+            Devicecheck,
             
             /// <summary>
             /// Enum Publishing for "publishing"
@@ -91,7 +127,31 @@ namespace update_service.Model
             /// Enum Expired for "expired"
             /// </summary>
             [EnumMember(Value = "expired")]
-            Expired
+            Expired,
+            
+            /// <summary>
+            /// Enum Stopping for "stopping"
+            /// </summary>
+            [EnumMember(Value = "stopping")]
+            Stopping,
+            
+            /// <summary>
+            /// Enum Autostopped for "autostopped"
+            /// </summary>
+            [EnumMember(Value = "autostopped")]
+            Autostopped,
+            
+            /// <summary>
+            /// Enum Userstopped for "userstopped"
+            /// </summary>
+            [EnumMember(Value = "userstopped")]
+            Userstopped,
+            
+            /// <summary>
+            /// Enum Conflict for "conflict"
+            /// </summary>
+            [EnumMember(Value = "conflict")]
+            Conflict
         }
 
         /// <summary>
@@ -194,60 +254,58 @@ namespace update_service.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as UpdateCampaignPatchRequest);
+            return this.Equals(input as UpdateCampaignPatchRequest);
         }
 
         /// <summary>
         /// Returns true if UpdateCampaignPatchRequest instances are equal
         /// </summary>
-        /// <param name="other">Instance of UpdateCampaignPatchRequest to be compared</param>
+        /// <param name="input">Instance of UpdateCampaignPatchRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(UpdateCampaignPatchRequest other)
+        public bool Equals(UpdateCampaignPatchRequest input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.Description == other.Description ||
-                    this.Description != null &&
-                    this.Description.Equals(other.Description)
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
                 ) && 
                 (
-                    this.RootManifestId == other.RootManifestId ||
-                    this.RootManifestId != null &&
-                    this.RootManifestId.Equals(other.RootManifestId)
+                    this.RootManifestId == input.RootManifestId ||
+                    (this.RootManifestId != null &&
+                    this.RootManifestId.Equals(input.RootManifestId))
                 ) && 
                 (
-                    this._Object == other._Object ||
-                    this._Object != null &&
-                    this._Object.Equals(other._Object)
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
                 ) && 
                 (
-                    this.When == other.When ||
-                    this.When != null &&
-                    this.When.Equals(other.When)
+                    this.When == input.When ||
+                    (this.When != null &&
+                    this.When.Equals(input.When))
                 ) && 
                 (
-                    this.State == other.State ||
-                    this.State != null &&
-                    this.State.Equals(other.State)
+                    this.State == input.State ||
+                    (this.State != null &&
+                    this.State.Equals(input.State))
                 ) && 
                 (
-                    this.DeviceFilter == other.DeviceFilter ||
-                    this.DeviceFilter != null &&
-                    this.DeviceFilter.Equals(other.DeviceFilter)
+                    this.DeviceFilter == input.DeviceFilter ||
+                    (this.DeviceFilter != null &&
+                    this.DeviceFilter.Equals(input.DeviceFilter))
                 ) && 
                 (
-                    this.Name == other.Name ||
-                    this.Name != null &&
-                    this.Name.Equals(other.Name)
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
                 );
         }
 
@@ -257,26 +315,24 @@ namespace update_service.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.Description != null)
-                    hash = hash * 59 + this.Description.GetHashCode();
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.RootManifestId != null)
-                    hash = hash * 59 + this.RootManifestId.GetHashCode();
+                    hashCode = hashCode * 59 + this.RootManifestId.GetHashCode();
                 if (this._Object != null)
-                    hash = hash * 59 + this._Object.GetHashCode();
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.When != null)
-                    hash = hash * 59 + this.When.GetHashCode();
+                    hashCode = hashCode * 59 + this.When.GetHashCode();
                 if (this.State != null)
-                    hash = hash * 59 + this.State.GetHashCode();
+                    hashCode = hashCode * 59 + this.State.GetHashCode();
                 if (this.DeviceFilter != null)
-                    hash = hash * 59 + this.DeviceFilter.GetHashCode();
+                    hashCode = hashCode * 59 + this.DeviceFilter.GetHashCode();
                 if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                return hashCode;
             }
         }
 

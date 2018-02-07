@@ -155,11 +155,80 @@ namespace update_service.Model
         }
 
         /// <summary>
+        /// The phase of the campaign
+        /// </summary>
+        /// <value>The phase of the campaign</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum PhaseEnum
+        {
+            
+            /// <summary>
+            /// Enum Draft for "draft"
+            /// </summary>
+            [EnumMember(Value = "draft")]
+            Draft,
+            
+            /// <summary>
+            /// Enum Setup for "setup"
+            /// </summary>
+            [EnumMember(Value = "setup")]
+            Setup,
+            
+            /// <summary>
+            /// Enum Awaitingapproval for "awaiting_approval"
+            /// </summary>
+            [EnumMember(Value = "awaiting_approval")]
+            Awaitingapproval,
+            
+            /// <summary>
+            /// Enum Timed for "timed"
+            /// </summary>
+            [EnumMember(Value = "timed")]
+            Timed,
+            
+            /// <summary>
+            /// Enum Starting for "starting"
+            /// </summary>
+            [EnumMember(Value = "starting")]
+            Starting,
+            
+            /// <summary>
+            /// Enum Active for "active"
+            /// </summary>
+            [EnumMember(Value = "active")]
+            Active,
+            
+            /// <summary>
+            /// Enum Stopping for "stopping"
+            /// </summary>
+            [EnumMember(Value = "stopping")]
+            Stopping,
+            
+            /// <summary>
+            /// Enum Stopped for "stopped"
+            /// </summary>
+            [EnumMember(Value = "stopped")]
+            Stopped,
+            
+            /// <summary>
+            /// Enum Archived for "archived"
+            /// </summary>
+            [EnumMember(Value = "archived")]
+            Archived
+        }
+
+        /// <summary>
         /// The state of the campaign
         /// </summary>
         /// <value>The state of the campaign</value>
         [DataMember(Name="state", EmitDefaultValue=false)]
         public StateEnum? State { get; set; }
+        /// <summary>
+        /// The phase of the campaign
+        /// </summary>
+        /// <value>The phase of the campaign</value>
+        [DataMember(Name="phase", EmitDefaultValue=false)]
+        public PhaseEnum? Phase { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateCampaign" /> class.
         /// </summary>
@@ -173,11 +242,12 @@ namespace update_service.Model
         /// <param name="Etag">The entity instance signature.</param>
         /// <param name="Finished">The campaign finish timestamp.</param>
         /// <param name="RootManifestUrl">RootManifestUrl.</param>
+        /// <param name="Phase">The phase of the campaign.</param>
         /// <param name="StartedAt">StartedAt.</param>
         /// <param name="Id">The campaign ID.</param>
         /// <param name="DeviceFilter">The filter for the devices the campaign will target.</param>
         /// <param name="Name">The campaign name.</param>
-        public UpdateCampaign(string Description = default(string), string RootManifestId = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? When = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), StateEnum? State = default(StateEnum?), string Etag = default(string), DateTime? Finished = default(DateTime?), string RootManifestUrl = default(string), DateTime? StartedAt = default(DateTime?), string Id = default(string), string DeviceFilter = default(string), string Name = default(string))
+        public UpdateCampaign(string Description = default(string), string RootManifestId = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? When = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), StateEnum? State = default(StateEnum?), string Etag = default(string), DateTime? Finished = default(DateTime?), string RootManifestUrl = default(string), PhaseEnum? Phase = default(PhaseEnum?), DateTime? StartedAt = default(DateTime?), string Id = default(string), string DeviceFilter = default(string), string Name = default(string))
         {
             this.Description = Description;
             this.RootManifestId = RootManifestId;
@@ -189,6 +259,7 @@ namespace update_service.Model
             this.Etag = Etag;
             this.Finished = Finished;
             this.RootManifestUrl = RootManifestUrl;
+            this.Phase = Phase;
             this.StartedAt = StartedAt;
             this.Id = Id;
             this.DeviceFilter = DeviceFilter;
@@ -257,6 +328,7 @@ namespace update_service.Model
         [DataMember(Name="root_manifest_url", EmitDefaultValue=false)]
         public string RootManifestUrl { get; set; }
 
+
         /// <summary>
         /// Gets or Sets StartedAt
         /// </summary>
@@ -302,6 +374,7 @@ namespace update_service.Model
             sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  Finished: ").Append(Finished).Append("\n");
             sb.Append("  RootManifestUrl: ").Append(RootManifestUrl).Append("\n");
+            sb.Append("  Phase: ").Append(Phase).Append("\n");
             sb.Append("  StartedAt: ").Append(StartedAt).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  DeviceFilter: ").Append(DeviceFilter).Append("\n");
@@ -322,95 +395,98 @@ namespace update_service.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as UpdateCampaign);
+            return this.Equals(input as UpdateCampaign);
         }
 
         /// <summary>
         /// Returns true if UpdateCampaign instances are equal
         /// </summary>
-        /// <param name="other">Instance of UpdateCampaign to be compared</param>
+        /// <param name="input">Instance of UpdateCampaign to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(UpdateCampaign other)
+        public bool Equals(UpdateCampaign input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.Description == other.Description ||
-                    this.Description != null &&
-                    this.Description.Equals(other.Description)
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
                 ) && 
                 (
-                    this.RootManifestId == other.RootManifestId ||
-                    this.RootManifestId != null &&
-                    this.RootManifestId.Equals(other.RootManifestId)
+                    this.RootManifestId == input.RootManifestId ||
+                    (this.RootManifestId != null &&
+                    this.RootManifestId.Equals(input.RootManifestId))
                 ) && 
                 (
-                    this.CreatedAt == other.CreatedAt ||
-                    this.CreatedAt != null &&
-                    this.CreatedAt.Equals(other.CreatedAt)
+                    this.CreatedAt == input.CreatedAt ||
+                    (this.CreatedAt != null &&
+                    this.CreatedAt.Equals(input.CreatedAt))
                 ) && 
                 (
-                    this._Object == other._Object ||
-                    this._Object != null &&
-                    this._Object.Equals(other._Object)
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
                 ) && 
                 (
-                    this.When == other.When ||
-                    this.When != null &&
-                    this.When.Equals(other.When)
+                    this.When == input.When ||
+                    (this.When != null &&
+                    this.When.Equals(input.When))
                 ) && 
                 (
-                    this.UpdatedAt == other.UpdatedAt ||
-                    this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(other.UpdatedAt)
+                    this.UpdatedAt == input.UpdatedAt ||
+                    (this.UpdatedAt != null &&
+                    this.UpdatedAt.Equals(input.UpdatedAt))
                 ) && 
                 (
-                    this.State == other.State ||
-                    this.State != null &&
-                    this.State.Equals(other.State)
+                    this.State == input.State ||
+                    (this.State != null &&
+                    this.State.Equals(input.State))
                 ) && 
                 (
-                    this.Etag == other.Etag ||
-                    this.Etag != null &&
-                    this.Etag.Equals(other.Etag)
+                    this.Etag == input.Etag ||
+                    (this.Etag != null &&
+                    this.Etag.Equals(input.Etag))
                 ) && 
                 (
-                    this.Finished == other.Finished ||
-                    this.Finished != null &&
-                    this.Finished.Equals(other.Finished)
+                    this.Finished == input.Finished ||
+                    (this.Finished != null &&
+                    this.Finished.Equals(input.Finished))
                 ) && 
                 (
-                    this.RootManifestUrl == other.RootManifestUrl ||
-                    this.RootManifestUrl != null &&
-                    this.RootManifestUrl.Equals(other.RootManifestUrl)
+                    this.RootManifestUrl == input.RootManifestUrl ||
+                    (this.RootManifestUrl != null &&
+                    this.RootManifestUrl.Equals(input.RootManifestUrl))
                 ) && 
                 (
-                    this.StartedAt == other.StartedAt ||
-                    this.StartedAt != null &&
-                    this.StartedAt.Equals(other.StartedAt)
+                    this.Phase == input.Phase ||
+                    (this.Phase != null &&
+                    this.Phase.Equals(input.Phase))
                 ) && 
                 (
-                    this.Id == other.Id ||
-                    this.Id != null &&
-                    this.Id.Equals(other.Id)
+                    this.StartedAt == input.StartedAt ||
+                    (this.StartedAt != null &&
+                    this.StartedAt.Equals(input.StartedAt))
                 ) && 
                 (
-                    this.DeviceFilter == other.DeviceFilter ||
-                    this.DeviceFilter != null &&
-                    this.DeviceFilter.Equals(other.DeviceFilter)
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
                 ) && 
                 (
-                    this.Name == other.Name ||
-                    this.Name != null &&
-                    this.Name.Equals(other.Name)
+                    this.DeviceFilter == input.DeviceFilter ||
+                    (this.DeviceFilter != null &&
+                    this.DeviceFilter.Equals(input.DeviceFilter))
+                ) && 
+                (
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
                 );
         }
 
@@ -420,40 +496,40 @@ namespace update_service.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.Description != null)
-                    hash = hash * 59 + this.Description.GetHashCode();
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.RootManifestId != null)
-                    hash = hash * 59 + this.RootManifestId.GetHashCode();
+                    hashCode = hashCode * 59 + this.RootManifestId.GetHashCode();
                 if (this.CreatedAt != null)
-                    hash = hash * 59 + this.CreatedAt.GetHashCode();
+                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
                 if (this._Object != null)
-                    hash = hash * 59 + this._Object.GetHashCode();
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.When != null)
-                    hash = hash * 59 + this.When.GetHashCode();
+                    hashCode = hashCode * 59 + this.When.GetHashCode();
                 if (this.UpdatedAt != null)
-                    hash = hash * 59 + this.UpdatedAt.GetHashCode();
+                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
                 if (this.State != null)
-                    hash = hash * 59 + this.State.GetHashCode();
+                    hashCode = hashCode * 59 + this.State.GetHashCode();
                 if (this.Etag != null)
-                    hash = hash * 59 + this.Etag.GetHashCode();
+                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
                 if (this.Finished != null)
-                    hash = hash * 59 + this.Finished.GetHashCode();
+                    hashCode = hashCode * 59 + this.Finished.GetHashCode();
                 if (this.RootManifestUrl != null)
-                    hash = hash * 59 + this.RootManifestUrl.GetHashCode();
+                    hashCode = hashCode * 59 + this.RootManifestUrl.GetHashCode();
+                if (this.Phase != null)
+                    hashCode = hashCode * 59 + this.Phase.GetHashCode();
                 if (this.StartedAt != null)
-                    hash = hash * 59 + this.StartedAt.GetHashCode();
+                    hashCode = hashCode * 59 + this.StartedAt.GetHashCode();
                 if (this.Id != null)
-                    hash = hash * 59 + this.Id.GetHashCode();
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.DeviceFilter != null)
-                    hash = hash * 59 + this.DeviceFilter.GetHashCode();
+                    hashCode = hashCode * 59 + this.DeviceFilter.GetHashCode();
                 if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                return hashCode;
             }
         }
 

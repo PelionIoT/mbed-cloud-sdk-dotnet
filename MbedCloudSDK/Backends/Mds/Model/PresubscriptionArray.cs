@@ -35,7 +35,7 @@ namespace mds.Model
         /// Initializes a new instance of the <see cref="PresubscriptionArray" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        public PresubscriptionArray()
+        public PresubscriptionArray() : base()
         {
         }
         
@@ -47,6 +47,7 @@ namespace mds.Model
         {
             var sb = new StringBuilder();
             sb.Append("class PresubscriptionArray {\n");
+            sb.Append("  ").Append(base.ToString().Replace("\n", "\n  ")).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -55,7 +56,7 @@ namespace mds.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public  new string ToJson()
+        public string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -63,26 +64,24 @@ namespace mds.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as PresubscriptionArray);
+            return this.Equals(input as PresubscriptionArray);
         }
 
         /// <summary>
         /// Returns true if PresubscriptionArray instances are equal
         /// </summary>
-        /// <param name="other">Instance of PresubscriptionArray to be compared</param>
+        /// <param name="input">Instance of PresubscriptionArray to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PresubscriptionArray other)
+        public bool Equals(PresubscriptionArray input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
-            return false;
+            return base.Equals(input);
         }
 
         /// <summary>
@@ -91,12 +90,10 @@ namespace mds.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
-                return hash;
+                int hashCode = base.GetHashCode();
+                return hashCode;
             }
         }
 

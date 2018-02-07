@@ -112,50 +112,48 @@ namespace mds.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as NotificationData);
+            return this.Equals(input as NotificationData);
         }
 
         /// <summary>
         /// Returns true if NotificationData instances are equal
         /// </summary>
-        /// <param name="other">Instance of NotificationData to be compared</param>
+        /// <param name="input">Instance of NotificationData to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(NotificationData other)
+        public bool Equals(NotificationData input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.Path == other.Path ||
-                    this.Path != null &&
-                    this.Path.Equals(other.Path)
+                    this.Path == input.Path ||
+                    (this.Path != null &&
+                    this.Path.Equals(input.Path))
                 ) && 
                 (
-                    this.MaxAge == other.MaxAge ||
-                    this.MaxAge != null &&
-                    this.MaxAge.Equals(other.MaxAge)
+                    this.MaxAge == input.MaxAge ||
+                    (this.MaxAge != null &&
+                    this.MaxAge.Equals(input.MaxAge))
                 ) && 
                 (
-                    this.Payload == other.Payload ||
-                    this.Payload != null &&
-                    this.Payload.Equals(other.Payload)
+                    this.Payload == input.Payload ||
+                    (this.Payload != null &&
+                    this.Payload.Equals(input.Payload))
                 ) && 
                 (
-                    this.Ep == other.Ep ||
-                    this.Ep != null &&
-                    this.Ep.Equals(other.Ep)
+                    this.Ep == input.Ep ||
+                    (this.Ep != null &&
+                    this.Ep.Equals(input.Ep))
                 ) && 
                 (
-                    this.Ct == other.Ct ||
-                    this.Ct != null &&
-                    this.Ct.Equals(other.Ct)
+                    this.Ct == input.Ct ||
+                    (this.Ct != null &&
+                    this.Ct.Equals(input.Ct))
                 );
         }
 
@@ -165,22 +163,20 @@ namespace mds.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.Path != null)
-                    hash = hash * 59 + this.Path.GetHashCode();
+                    hashCode = hashCode * 59 + this.Path.GetHashCode();
                 if (this.MaxAge != null)
-                    hash = hash * 59 + this.MaxAge.GetHashCode();
+                    hashCode = hashCode * 59 + this.MaxAge.GetHashCode();
                 if (this.Payload != null)
-                    hash = hash * 59 + this.Payload.GetHashCode();
+                    hashCode = hashCode * 59 + this.Payload.GetHashCode();
                 if (this.Ep != null)
-                    hash = hash * 59 + this.Ep.GetHashCode();
+                    hashCode = hashCode * 59 + this.Ep.GetHashCode();
                 if (this.Ct != null)
-                    hash = hash * 59 + this.Ct.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.Ct.GetHashCode();
+                return hashCode;
             }
         }
 

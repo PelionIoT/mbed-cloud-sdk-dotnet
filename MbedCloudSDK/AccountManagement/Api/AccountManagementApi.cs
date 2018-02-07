@@ -34,17 +34,17 @@ namespace MbedCloudSDK.AccountManagement.Api
         public AccountManagementApi(Config config)
          : base(config)
         {
-            if (!string.IsNullOrEmpty(config.Host))
+            var iamConfig = new iam.Client.Configuration
             {
-                Configuration.Default.ApiClient = new ApiClient(config.Host);
-            }
+                BasePath = config.Host,
+                DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
+            };
+            iamConfig.AddApiKey("Authorization", config.ApiKey);
+            iamConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
+            iamConfig.CreateApiClient();
 
-            Configuration.Default.ApiKey["Authorization"] = config.ApiKey;
-            Configuration.Default.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            Configuration.Default.DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
-
-            developerApi = new DeveloperApi();
-            adminApi = new AccountAdminApi();
+            developerApi = new DeveloperApi(iamConfig);
+            adminApi = new AccountAdminApi(iamConfig);
         }
 
         /// <summary>

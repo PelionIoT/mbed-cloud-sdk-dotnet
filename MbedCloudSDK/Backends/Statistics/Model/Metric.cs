@@ -242,115 +242,113 @@ namespace statistics.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as Metric);
+            return this.Equals(input as Metric);
         }
 
         /// <summary>
         /// Returns true if Metric instances are equal
         /// </summary>
-        /// <param name="other">Instance of Metric to be compared</param>
+        /// <param name="input">Instance of Metric to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Metric other)
+        public bool Equals(Metric input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.RegistrationUpdates == other.RegistrationUpdates ||
-                    this.RegistrationUpdates != null &&
-                    this.RegistrationUpdates.Equals(other.RegistrationUpdates)
+                    this.RegistrationUpdates == input.RegistrationUpdates ||
+                    (this.RegistrationUpdates != null &&
+                    this.RegistrationUpdates.Equals(input.RegistrationUpdates))
                 ) && 
                 (
-                    this.ConnectRestApiSuccess == other.ConnectRestApiSuccess ||
-                    this.ConnectRestApiSuccess != null &&
-                    this.ConnectRestApiSuccess.Equals(other.ConnectRestApiSuccess)
+                    this.ConnectRestApiSuccess == input.ConnectRestApiSuccess ||
+                    (this.ConnectRestApiSuccess != null &&
+                    this.ConnectRestApiSuccess.Equals(input.ConnectRestApiSuccess))
                 ) && 
                 (
-                    this.BootstrapsFailed == other.BootstrapsFailed ||
-                    this.BootstrapsFailed != null &&
-                    this.BootstrapsFailed.Equals(other.BootstrapsFailed)
+                    this.BootstrapsFailed == input.BootstrapsFailed ||
+                    (this.BootstrapsFailed != null &&
+                    this.BootstrapsFailed.Equals(input.BootstrapsFailed))
                 ) && 
                 (
-                    this.Transactions == other.Transactions ||
-                    this.Transactions != null &&
-                    this.Transactions.Equals(other.Transactions)
+                    this.Transactions == input.Transactions ||
+                    (this.Transactions != null &&
+                    this.Transactions.Equals(input.Transactions))
                 ) && 
                 (
-                    this.Timestamp == other.Timestamp ||
-                    this.Timestamp != null &&
-                    this.Timestamp.Equals(other.Timestamp)
+                    this.Timestamp == input.Timestamp ||
+                    (this.Timestamp != null &&
+                    this.Timestamp.Equals(input.Timestamp))
                 ) && 
                 (
-                    this.DeviceSubscriptionRequestError == other.DeviceSubscriptionRequestError ||
-                    this.DeviceSubscriptionRequestError != null &&
-                    this.DeviceSubscriptionRequestError.Equals(other.DeviceSubscriptionRequestError)
+                    this.DeviceSubscriptionRequestError == input.DeviceSubscriptionRequestError ||
+                    (this.DeviceSubscriptionRequestError != null &&
+                    this.DeviceSubscriptionRequestError.Equals(input.DeviceSubscriptionRequestError))
                 ) && 
                 (
-                    this.BootstrapsPending == other.BootstrapsPending ||
-                    this.BootstrapsPending != null &&
-                    this.BootstrapsPending.Equals(other.BootstrapsPending)
+                    this.BootstrapsPending == input.BootstrapsPending ||
+                    (this.BootstrapsPending != null &&
+                    this.BootstrapsPending.Equals(input.BootstrapsPending))
                 ) && 
                 (
-                    this.DeviceProxyRequestSuccess == other.DeviceProxyRequestSuccess ||
-                    this.DeviceProxyRequestSuccess != null &&
-                    this.DeviceProxyRequestSuccess.Equals(other.DeviceProxyRequestSuccess)
+                    this.DeviceProxyRequestSuccess == input.DeviceProxyRequestSuccess ||
+                    (this.DeviceProxyRequestSuccess != null &&
+                    this.DeviceProxyRequestSuccess.Equals(input.DeviceProxyRequestSuccess))
                 ) && 
                 (
-                    this.BootstrapsSuccessful == other.BootstrapsSuccessful ||
-                    this.BootstrapsSuccessful != null &&
-                    this.BootstrapsSuccessful.Equals(other.BootstrapsSuccessful)
+                    this.BootstrapsSuccessful == input.BootstrapsSuccessful ||
+                    (this.BootstrapsSuccessful != null &&
+                    this.BootstrapsSuccessful.Equals(input.BootstrapsSuccessful))
                 ) && 
                 (
-                    this.FullRegistrations == other.FullRegistrations ||
-                    this.FullRegistrations != null &&
-                    this.FullRegistrations.Equals(other.FullRegistrations)
+                    this.FullRegistrations == input.FullRegistrations ||
+                    (this.FullRegistrations != null &&
+                    this.FullRegistrations.Equals(input.FullRegistrations))
                 ) && 
                 (
-                    this.DeviceSubscriptionRequestSuccess == other.DeviceSubscriptionRequestSuccess ||
-                    this.DeviceSubscriptionRequestSuccess != null &&
-                    this.DeviceSubscriptionRequestSuccess.Equals(other.DeviceSubscriptionRequestSuccess)
+                    this.DeviceSubscriptionRequestSuccess == input.DeviceSubscriptionRequestSuccess ||
+                    (this.DeviceSubscriptionRequestSuccess != null &&
+                    this.DeviceSubscriptionRequestSuccess.Equals(input.DeviceSubscriptionRequestSuccess))
                 ) && 
                 (
-                    this.ExpiredRegistrations == other.ExpiredRegistrations ||
-                    this.ExpiredRegistrations != null &&
-                    this.ExpiredRegistrations.Equals(other.ExpiredRegistrations)
+                    this.ExpiredRegistrations == input.ExpiredRegistrations ||
+                    (this.ExpiredRegistrations != null &&
+                    this.ExpiredRegistrations.Equals(input.ExpiredRegistrations))
                 ) && 
                 (
-                    this.HandshakesSuccessful == other.HandshakesSuccessful ||
-                    this.HandshakesSuccessful != null &&
-                    this.HandshakesSuccessful.Equals(other.HandshakesSuccessful)
+                    this.HandshakesSuccessful == input.HandshakesSuccessful ||
+                    (this.HandshakesSuccessful != null &&
+                    this.HandshakesSuccessful.Equals(input.HandshakesSuccessful))
                 ) && 
                 (
-                    this.DeviceObservations == other.DeviceObservations ||
-                    this.DeviceObservations != null &&
-                    this.DeviceObservations.Equals(other.DeviceObservations)
+                    this.DeviceObservations == input.DeviceObservations ||
+                    (this.DeviceObservations != null &&
+                    this.DeviceObservations.Equals(input.DeviceObservations))
                 ) && 
                 (
-                    this.DeviceProxyRequestError == other.DeviceProxyRequestError ||
-                    this.DeviceProxyRequestError != null &&
-                    this.DeviceProxyRequestError.Equals(other.DeviceProxyRequestError)
+                    this.DeviceProxyRequestError == input.DeviceProxyRequestError ||
+                    (this.DeviceProxyRequestError != null &&
+                    this.DeviceProxyRequestError.Equals(input.DeviceProxyRequestError))
                 ) && 
                 (
-                    this.DeletedRegistrations == other.DeletedRegistrations ||
-                    this.DeletedRegistrations != null &&
-                    this.DeletedRegistrations.Equals(other.DeletedRegistrations)
+                    this.DeletedRegistrations == input.DeletedRegistrations ||
+                    (this.DeletedRegistrations != null &&
+                    this.DeletedRegistrations.Equals(input.DeletedRegistrations))
                 ) && 
                 (
-                    this.ConnectRestApiError == other.ConnectRestApiError ||
-                    this.ConnectRestApiError != null &&
-                    this.ConnectRestApiError.Equals(other.ConnectRestApiError)
+                    this.ConnectRestApiError == input.ConnectRestApiError ||
+                    (this.ConnectRestApiError != null &&
+                    this.ConnectRestApiError.Equals(input.ConnectRestApiError))
                 ) && 
                 (
-                    this.Id == other.Id ||
-                    this.Id != null &&
-                    this.Id.Equals(other.Id)
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
                 );
         }
 
@@ -360,48 +358,46 @@ namespace statistics.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.RegistrationUpdates != null)
-                    hash = hash * 59 + this.RegistrationUpdates.GetHashCode();
+                    hashCode = hashCode * 59 + this.RegistrationUpdates.GetHashCode();
                 if (this.ConnectRestApiSuccess != null)
-                    hash = hash * 59 + this.ConnectRestApiSuccess.GetHashCode();
+                    hashCode = hashCode * 59 + this.ConnectRestApiSuccess.GetHashCode();
                 if (this.BootstrapsFailed != null)
-                    hash = hash * 59 + this.BootstrapsFailed.GetHashCode();
+                    hashCode = hashCode * 59 + this.BootstrapsFailed.GetHashCode();
                 if (this.Transactions != null)
-                    hash = hash * 59 + this.Transactions.GetHashCode();
+                    hashCode = hashCode * 59 + this.Transactions.GetHashCode();
                 if (this.Timestamp != null)
-                    hash = hash * 59 + this.Timestamp.GetHashCode();
+                    hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
                 if (this.DeviceSubscriptionRequestError != null)
-                    hash = hash * 59 + this.DeviceSubscriptionRequestError.GetHashCode();
+                    hashCode = hashCode * 59 + this.DeviceSubscriptionRequestError.GetHashCode();
                 if (this.BootstrapsPending != null)
-                    hash = hash * 59 + this.BootstrapsPending.GetHashCode();
+                    hashCode = hashCode * 59 + this.BootstrapsPending.GetHashCode();
                 if (this.DeviceProxyRequestSuccess != null)
-                    hash = hash * 59 + this.DeviceProxyRequestSuccess.GetHashCode();
+                    hashCode = hashCode * 59 + this.DeviceProxyRequestSuccess.GetHashCode();
                 if (this.BootstrapsSuccessful != null)
-                    hash = hash * 59 + this.BootstrapsSuccessful.GetHashCode();
+                    hashCode = hashCode * 59 + this.BootstrapsSuccessful.GetHashCode();
                 if (this.FullRegistrations != null)
-                    hash = hash * 59 + this.FullRegistrations.GetHashCode();
+                    hashCode = hashCode * 59 + this.FullRegistrations.GetHashCode();
                 if (this.DeviceSubscriptionRequestSuccess != null)
-                    hash = hash * 59 + this.DeviceSubscriptionRequestSuccess.GetHashCode();
+                    hashCode = hashCode * 59 + this.DeviceSubscriptionRequestSuccess.GetHashCode();
                 if (this.ExpiredRegistrations != null)
-                    hash = hash * 59 + this.ExpiredRegistrations.GetHashCode();
+                    hashCode = hashCode * 59 + this.ExpiredRegistrations.GetHashCode();
                 if (this.HandshakesSuccessful != null)
-                    hash = hash * 59 + this.HandshakesSuccessful.GetHashCode();
+                    hashCode = hashCode * 59 + this.HandshakesSuccessful.GetHashCode();
                 if (this.DeviceObservations != null)
-                    hash = hash * 59 + this.DeviceObservations.GetHashCode();
+                    hashCode = hashCode * 59 + this.DeviceObservations.GetHashCode();
                 if (this.DeviceProxyRequestError != null)
-                    hash = hash * 59 + this.DeviceProxyRequestError.GetHashCode();
+                    hashCode = hashCode * 59 + this.DeviceProxyRequestError.GetHashCode();
                 if (this.DeletedRegistrations != null)
-                    hash = hash * 59 + this.DeletedRegistrations.GetHashCode();
+                    hashCode = hashCode * 59 + this.DeletedRegistrations.GetHashCode();
                 if (this.ConnectRestApiError != null)
-                    hash = hash * 59 + this.ConnectRestApiError.GetHashCode();
+                    hashCode = hashCode * 59 + this.ConnectRestApiError.GetHashCode();
                 if (this.Id != null)
-                    hash = hash * 59 + this.Id.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                return hashCode;
             }
         }
 

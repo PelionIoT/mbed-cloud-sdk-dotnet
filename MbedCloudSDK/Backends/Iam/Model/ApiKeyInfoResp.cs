@@ -67,10 +67,10 @@ namespace iam.Model
             User,
             
             /// <summary>
-            /// Enum Apikey for "api-key"
+            /// Enum ApiKey for "api-key"
             /// </summary>
             [EnumMember(Value = "api-key")]
-            Apikey,
+            ApiKey,
             
             /// <summary>
             /// Enum Group for "group"
@@ -85,16 +85,16 @@ namespace iam.Model
             Account,
             
             /// <summary>
-            /// Enum Accounttemplate for "account-template"
+            /// Enum AccountTemplate for "account-template"
             /// </summary>
             [EnumMember(Value = "account-template")]
-            Accounttemplate,
+            AccountTemplate,
             
             /// <summary>
-            /// Enum Trustedcert for "trusted-cert"
+            /// Enum TrustedCert for "trusted-cert"
             /// </summary>
             [EnumMember(Value = "trusted-cert")]
-            Trustedcert,
+            TrustedCert,
             
             /// <summary>
             /// Enum List for "list"
@@ -295,80 +295,78 @@ namespace iam.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as ApiKeyInfoResp);
+            return this.Equals(input as ApiKeyInfoResp);
         }
 
         /// <summary>
         /// Returns true if ApiKeyInfoResp instances are equal
         /// </summary>
-        /// <param name="other">Instance of ApiKeyInfoResp to be compared</param>
+        /// <param name="input">Instance of ApiKeyInfoResp to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ApiKeyInfoResp other)
+        public bool Equals(ApiKeyInfoResp input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.Groups == other.Groups ||
+                    this.Groups == input.Groups ||
                     this.Groups != null &&
-                    this.Groups.SequenceEqual(other.Groups)
+                    this.Groups.SequenceEqual(input.Groups)
                 ) && 
                 (
-                    this.Status == other.Status ||
-                    this.Status != null &&
-                    this.Status.Equals(other.Status)
+                    this.Status == input.Status ||
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
-                    this.Name == other.Name ||
-                    this.Name != null &&
-                    this.Name.Equals(other.Name)
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
                 ) && 
                 (
-                    this.CreatedAt == other.CreatedAt ||
-                    this.CreatedAt != null &&
-                    this.CreatedAt.Equals(other.CreatedAt)
+                    this.CreatedAt == input.CreatedAt ||
+                    (this.CreatedAt != null &&
+                    this.CreatedAt.Equals(input.CreatedAt))
                 ) && 
                 (
-                    this._Object == other._Object ||
-                    this._Object != null &&
-                    this._Object.Equals(other._Object)
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
                 ) && 
                 (
-                    this.CreationTime == other.CreationTime ||
-                    this.CreationTime != null &&
-                    this.CreationTime.Equals(other.CreationTime)
+                    this.CreationTime == input.CreationTime ||
+                    (this.CreationTime != null &&
+                    this.CreationTime.Equals(input.CreationTime))
                 ) && 
                 (
-                    this.Etag == other.Etag ||
-                    this.Etag != null &&
-                    this.Etag.Equals(other.Etag)
+                    this.Etag == input.Etag ||
+                    (this.Etag != null &&
+                    this.Etag.Equals(input.Etag))
                 ) && 
                 (
-                    this.Key == other.Key ||
-                    this.Key != null &&
-                    this.Key.Equals(other.Key)
+                    this.Key == input.Key ||
+                    (this.Key != null &&
+                    this.Key.Equals(input.Key))
                 ) && 
                 (
-                    this.Owner == other.Owner ||
-                    this.Owner != null &&
-                    this.Owner.Equals(other.Owner)
+                    this.Owner == input.Owner ||
+                    (this.Owner != null &&
+                    this.Owner.Equals(input.Owner))
                 ) && 
                 (
-                    this.Id == other.Id ||
-                    this.Id != null &&
-                    this.Id.Equals(other.Id)
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
                 ) && 
                 (
-                    this.LastLoginTime == other.LastLoginTime ||
-                    this.LastLoginTime != null &&
-                    this.LastLoginTime.Equals(other.LastLoginTime)
+                    this.LastLoginTime == input.LastLoginTime ||
+                    (this.LastLoginTime != null &&
+                    this.LastLoginTime.Equals(input.LastLoginTime))
                 );
         }
 
@@ -378,34 +376,32 @@ namespace iam.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.Groups != null)
-                    hash = hash * 59 + this.Groups.GetHashCode();
+                    hashCode = hashCode * 59 + this.Groups.GetHashCode();
                 if (this.Status != null)
-                    hash = hash * 59 + this.Status.GetHashCode();
+                    hashCode = hashCode * 59 + this.Status.GetHashCode();
                 if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
                 if (this.CreatedAt != null)
-                    hash = hash * 59 + this.CreatedAt.GetHashCode();
+                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
                 if (this._Object != null)
-                    hash = hash * 59 + this._Object.GetHashCode();
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.CreationTime != null)
-                    hash = hash * 59 + this.CreationTime.GetHashCode();
+                    hashCode = hashCode * 59 + this.CreationTime.GetHashCode();
                 if (this.Etag != null)
-                    hash = hash * 59 + this.Etag.GetHashCode();
+                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
                 if (this.Key != null)
-                    hash = hash * 59 + this.Key.GetHashCode();
+                    hashCode = hashCode * 59 + this.Key.GetHashCode();
                 if (this.Owner != null)
-                    hash = hash * 59 + this.Owner.GetHashCode();
+                    hashCode = hashCode * 59 + this.Owner.GetHashCode();
                 if (this.Id != null)
-                    hash = hash * 59 + this.Id.GetHashCode();
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.LastLoginTime != null)
-                    hash = hash * 59 + this.LastLoginTime.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.LastLoginTime.GetHashCode();
+                return hashCode;
             }
         }
 

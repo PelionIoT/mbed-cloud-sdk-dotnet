@@ -82,35 +82,33 @@ namespace iam.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as SubjectList);
+            return this.Equals(input as SubjectList);
         }
 
         /// <summary>
         /// Returns true if SubjectList instances are equal
         /// </summary>
-        /// <param name="other">Instance of SubjectList to be compared</param>
+        /// <param name="input">Instance of SubjectList to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SubjectList other)
+        public bool Equals(SubjectList input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.Apikeys == other.Apikeys ||
+                    this.Apikeys == input.Apikeys ||
                     this.Apikeys != null &&
-                    this.Apikeys.SequenceEqual(other.Apikeys)
+                    this.Apikeys.SequenceEqual(input.Apikeys)
                 ) && 
                 (
-                    this.Users == other.Users ||
+                    this.Users == input.Users ||
                     this.Users != null &&
-                    this.Users.SequenceEqual(other.Users)
+                    this.Users.SequenceEqual(input.Users)
                 );
         }
 
@@ -120,16 +118,14 @@ namespace iam.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.Apikeys != null)
-                    hash = hash * 59 + this.Apikeys.GetHashCode();
+                    hashCode = hashCode * 59 + this.Apikeys.GetHashCode();
                 if (this.Users != null)
-                    hash = hash * 59 + this.Users.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.Users.GetHashCode();
+                return hashCode;
             }
         }
 

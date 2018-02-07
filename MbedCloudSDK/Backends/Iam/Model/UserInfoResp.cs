@@ -85,10 +85,10 @@ namespace iam.Model
             User,
             
             /// <summary>
-            /// Enum Apikey for "api-key"
+            /// Enum ApiKey for "api-key"
             /// </summary>
             [EnumMember(Value = "api-key")]
-            Apikey,
+            ApiKey,
             
             /// <summary>
             /// Enum Group for "group"
@@ -103,16 +103,16 @@ namespace iam.Model
             Account,
             
             /// <summary>
-            /// Enum Accounttemplate for "account-template"
+            /// Enum AccountTemplate for "account-template"
             /// </summary>
             [EnumMember(Value = "account-template")]
-            Accounttemplate,
+            AccountTemplate,
             
             /// <summary>
-            /// Enum Trustedcert for "trusted-cert"
+            /// Enum TrustedCert for "trusted-cert"
             /// </summary>
             [EnumMember(Value = "trusted-cert")]
-            Trustedcert,
+            TrustedCert,
             
             /// <summary>
             /// Enum List for "list"
@@ -421,130 +421,128 @@ namespace iam.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as UserInfoResp);
+            return this.Equals(input as UserInfoResp);
         }
 
         /// <summary>
         /// Returns true if UserInfoResp instances are equal
         /// </summary>
-        /// <param name="other">Instance of UserInfoResp to be compared</param>
+        /// <param name="input">Instance of UserInfoResp to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(UserInfoResp other)
+        public bool Equals(UserInfoResp input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.Status == other.Status ||
-                    this.Status != null &&
-                    this.Status.Equals(other.Status)
+                    this.Status == input.Status ||
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
-                    this.Username == other.Username ||
-                    this.Username != null &&
-                    this.Username.Equals(other.Username)
+                    this.Username == input.Username ||
+                    (this.Username != null &&
+                    this.Username.Equals(input.Username))
                 ) && 
                 (
-                    this.Groups == other.Groups ||
+                    this.Groups == input.Groups ||
                     this.Groups != null &&
-                    this.Groups.SequenceEqual(other.Groups)
+                    this.Groups.SequenceEqual(input.Groups)
                 ) && 
                 (
-                    this.PasswordChangedTime == other.PasswordChangedTime ||
-                    this.PasswordChangedTime != null &&
-                    this.PasswordChangedTime.Equals(other.PasswordChangedTime)
+                    this.PasswordChangedTime == input.PasswordChangedTime ||
+                    (this.PasswordChangedTime != null &&
+                    this.PasswordChangedTime.Equals(input.PasswordChangedTime))
                 ) && 
                 (
-                    this.EmailVerified == other.EmailVerified ||
-                    this.EmailVerified != null &&
-                    this.EmailVerified.Equals(other.EmailVerified)
+                    this.EmailVerified == input.EmailVerified ||
+                    (this.EmailVerified != null &&
+                    this.EmailVerified.Equals(input.EmailVerified))
                 ) && 
                 (
-                    this.CreatedAt == other.CreatedAt ||
-                    this.CreatedAt != null &&
-                    this.CreatedAt.Equals(other.CreatedAt)
+                    this.CreatedAt == input.CreatedAt ||
+                    (this.CreatedAt != null &&
+                    this.CreatedAt.Equals(input.CreatedAt))
                 ) && 
                 (
-                    this._Object == other._Object ||
-                    this._Object != null &&
-                    this._Object.Equals(other._Object)
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
                 ) && 
                 (
-                    this.IsGtcAccepted == other.IsGtcAccepted ||
-                    this.IsGtcAccepted != null &&
-                    this.IsGtcAccepted.Equals(other.IsGtcAccepted)
+                    this.IsGtcAccepted == input.IsGtcAccepted ||
+                    (this.IsGtcAccepted != null &&
+                    this.IsGtcAccepted.Equals(input.IsGtcAccepted))
                 ) && 
                 (
-                    this.AccountId == other.AccountId ||
-                    this.AccountId != null &&
-                    this.AccountId.Equals(other.AccountId)
+                    this.AccountId == input.AccountId ||
+                    (this.AccountId != null &&
+                    this.AccountId.Equals(input.AccountId))
                 ) && 
                 (
-                    this.Email == other.Email ||
-                    this.Email != null &&
-                    this.Email.Equals(other.Email)
+                    this.Email == input.Email ||
+                    (this.Email != null &&
+                    this.Email.Equals(input.Email))
                 ) && 
                 (
-                    this.LoginHistory == other.LoginHistory ||
+                    this.LoginHistory == input.LoginHistory ||
                     this.LoginHistory != null &&
-                    this.LoginHistory.SequenceEqual(other.LoginHistory)
+                    this.LoginHistory.SequenceEqual(input.LoginHistory)
                 ) && 
                 (
-                    this.IsTotpEnabled == other.IsTotpEnabled ||
-                    this.IsTotpEnabled != null &&
-                    this.IsTotpEnabled.Equals(other.IsTotpEnabled)
+                    this.IsTotpEnabled == input.IsTotpEnabled ||
+                    (this.IsTotpEnabled != null &&
+                    this.IsTotpEnabled.Equals(input.IsTotpEnabled))
                 ) && 
                 (
-                    this.IsMarketingAccepted == other.IsMarketingAccepted ||
-                    this.IsMarketingAccepted != null &&
-                    this.IsMarketingAccepted.Equals(other.IsMarketingAccepted)
+                    this.IsMarketingAccepted == input.IsMarketingAccepted ||
+                    (this.IsMarketingAccepted != null &&
+                    this.IsMarketingAccepted.Equals(input.IsMarketingAccepted))
                 ) && 
                 (
-                    this.Etag == other.Etag ||
-                    this.Etag != null &&
-                    this.Etag.Equals(other.Etag)
+                    this.Etag == input.Etag ||
+                    (this.Etag != null &&
+                    this.Etag.Equals(input.Etag))
                 ) && 
                 (
-                    this.FullName == other.FullName ||
-                    this.FullName != null &&
-                    this.FullName.Equals(other.FullName)
+                    this.FullName == input.FullName ||
+                    (this.FullName != null &&
+                    this.FullName.Equals(input.FullName))
                 ) && 
                 (
-                    this.Address == other.Address ||
-                    this.Address != null &&
-                    this.Address.Equals(other.Address)
+                    this.Address == input.Address ||
+                    (this.Address != null &&
+                    this.Address.Equals(input.Address))
                 ) && 
                 (
-                    this.CreationTime == other.CreationTime ||
-                    this.CreationTime != null &&
-                    this.CreationTime.Equals(other.CreationTime)
+                    this.CreationTime == input.CreationTime ||
+                    (this.CreationTime != null &&
+                    this.CreationTime.Equals(input.CreationTime))
                 ) && 
                 (
-                    this.Password == other.Password ||
-                    this.Password != null &&
-                    this.Password.Equals(other.Password)
+                    this.Password == input.Password ||
+                    (this.Password != null &&
+                    this.Password.Equals(input.Password))
                 ) && 
                 (
-                    this.PhoneNumber == other.PhoneNumber ||
-                    this.PhoneNumber != null &&
-                    this.PhoneNumber.Equals(other.PhoneNumber)
+                    this.PhoneNumber == input.PhoneNumber ||
+                    (this.PhoneNumber != null &&
+                    this.PhoneNumber.Equals(input.PhoneNumber))
                 ) && 
                 (
-                    this.Id == other.Id ||
-                    this.Id != null &&
-                    this.Id.Equals(other.Id)
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
                 ) && 
                 (
-                    this.LastLoginTime == other.LastLoginTime ||
-                    this.LastLoginTime != null &&
-                    this.LastLoginTime.Equals(other.LastLoginTime)
+                    this.LastLoginTime == input.LastLoginTime ||
+                    (this.LastLoginTime != null &&
+                    this.LastLoginTime.Equals(input.LastLoginTime))
                 );
         }
 
@@ -554,54 +552,52 @@ namespace iam.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.Status != null)
-                    hash = hash * 59 + this.Status.GetHashCode();
+                    hashCode = hashCode * 59 + this.Status.GetHashCode();
                 if (this.Username != null)
-                    hash = hash * 59 + this.Username.GetHashCode();
+                    hashCode = hashCode * 59 + this.Username.GetHashCode();
                 if (this.Groups != null)
-                    hash = hash * 59 + this.Groups.GetHashCode();
+                    hashCode = hashCode * 59 + this.Groups.GetHashCode();
                 if (this.PasswordChangedTime != null)
-                    hash = hash * 59 + this.PasswordChangedTime.GetHashCode();
+                    hashCode = hashCode * 59 + this.PasswordChangedTime.GetHashCode();
                 if (this.EmailVerified != null)
-                    hash = hash * 59 + this.EmailVerified.GetHashCode();
+                    hashCode = hashCode * 59 + this.EmailVerified.GetHashCode();
                 if (this.CreatedAt != null)
-                    hash = hash * 59 + this.CreatedAt.GetHashCode();
+                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
                 if (this._Object != null)
-                    hash = hash * 59 + this._Object.GetHashCode();
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.IsGtcAccepted != null)
-                    hash = hash * 59 + this.IsGtcAccepted.GetHashCode();
+                    hashCode = hashCode * 59 + this.IsGtcAccepted.GetHashCode();
                 if (this.AccountId != null)
-                    hash = hash * 59 + this.AccountId.GetHashCode();
+                    hashCode = hashCode * 59 + this.AccountId.GetHashCode();
                 if (this.Email != null)
-                    hash = hash * 59 + this.Email.GetHashCode();
+                    hashCode = hashCode * 59 + this.Email.GetHashCode();
                 if (this.LoginHistory != null)
-                    hash = hash * 59 + this.LoginHistory.GetHashCode();
+                    hashCode = hashCode * 59 + this.LoginHistory.GetHashCode();
                 if (this.IsTotpEnabled != null)
-                    hash = hash * 59 + this.IsTotpEnabled.GetHashCode();
+                    hashCode = hashCode * 59 + this.IsTotpEnabled.GetHashCode();
                 if (this.IsMarketingAccepted != null)
-                    hash = hash * 59 + this.IsMarketingAccepted.GetHashCode();
+                    hashCode = hashCode * 59 + this.IsMarketingAccepted.GetHashCode();
                 if (this.Etag != null)
-                    hash = hash * 59 + this.Etag.GetHashCode();
+                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
                 if (this.FullName != null)
-                    hash = hash * 59 + this.FullName.GetHashCode();
+                    hashCode = hashCode * 59 + this.FullName.GetHashCode();
                 if (this.Address != null)
-                    hash = hash * 59 + this.Address.GetHashCode();
+                    hashCode = hashCode * 59 + this.Address.GetHashCode();
                 if (this.CreationTime != null)
-                    hash = hash * 59 + this.CreationTime.GetHashCode();
+                    hashCode = hashCode * 59 + this.CreationTime.GetHashCode();
                 if (this.Password != null)
-                    hash = hash * 59 + this.Password.GetHashCode();
+                    hashCode = hashCode * 59 + this.Password.GetHashCode();
                 if (this.PhoneNumber != null)
-                    hash = hash * 59 + this.PhoneNumber.GetHashCode();
+                    hashCode = hashCode * 59 + this.PhoneNumber.GetHashCode();
                 if (this.Id != null)
-                    hash = hash * 59 + this.Id.GetHashCode();
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.LastLoginTime != null)
-                    hash = hash * 59 + this.LastLoginTime.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.LastLoginTime.GetHashCode();
+                return hashCode;
             }
         }
 

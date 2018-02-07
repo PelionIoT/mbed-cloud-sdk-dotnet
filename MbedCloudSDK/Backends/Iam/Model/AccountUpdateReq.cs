@@ -212,100 +212,98 @@ namespace iam.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as AccountUpdateReq);
+            return this.Equals(input as AccountUpdateReq);
         }
 
         /// <summary>
         /// Returns true if AccountUpdateReq instances are equal
         /// </summary>
-        /// <param name="other">Instance of AccountUpdateReq to be compared</param>
+        /// <param name="input">Instance of AccountUpdateReq to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AccountUpdateReq other)
+        public bool Equals(AccountUpdateReq input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.AddressLine2 == other.AddressLine2 ||
-                    this.AddressLine2 != null &&
-                    this.AddressLine2.Equals(other.AddressLine2)
+                    this.AddressLine2 == input.AddressLine2 ||
+                    (this.AddressLine2 != null &&
+                    this.AddressLine2.Equals(input.AddressLine2))
                 ) && 
                 (
-                    this.City == other.City ||
-                    this.City != null &&
-                    this.City.Equals(other.City)
+                    this.City == input.City ||
+                    (this.City != null &&
+                    this.City.Equals(input.City))
                 ) && 
                 (
-                    this.AddressLine1 == other.AddressLine1 ||
-                    this.AddressLine1 != null &&
-                    this.AddressLine1.Equals(other.AddressLine1)
+                    this.AddressLine1 == input.AddressLine1 ||
+                    (this.AddressLine1 != null &&
+                    this.AddressLine1.Equals(input.AddressLine1))
                 ) && 
                 (
-                    this.DisplayName == other.DisplayName ||
-                    this.DisplayName != null &&
-                    this.DisplayName.Equals(other.DisplayName)
+                    this.DisplayName == input.DisplayName ||
+                    (this.DisplayName != null &&
+                    this.DisplayName.Equals(input.DisplayName))
                 ) && 
                 (
-                    this.Country == other.Country ||
-                    this.Country != null &&
-                    this.Country.Equals(other.Country)
+                    this.Country == input.Country ||
+                    (this.Country != null &&
+                    this.Country.Equals(input.Country))
                 ) && 
                 (
-                    this.Company == other.Company ||
-                    this.Company != null &&
-                    this.Company.Equals(other.Company)
+                    this.Company == input.Company ||
+                    (this.Company != null &&
+                    this.Company.Equals(input.Company))
                 ) && 
                 (
-                    this.IdleTimeout == other.IdleTimeout ||
-                    this.IdleTimeout != null &&
-                    this.IdleTimeout.Equals(other.IdleTimeout)
+                    this.IdleTimeout == input.IdleTimeout ||
+                    (this.IdleTimeout != null &&
+                    this.IdleTimeout.Equals(input.IdleTimeout))
                 ) && 
                 (
-                    this.State == other.State ||
-                    this.State != null &&
-                    this.State.Equals(other.State)
+                    this.State == input.State ||
+                    (this.State != null &&
+                    this.State.Equals(input.State))
                 ) && 
                 (
-                    this.Contact == other.Contact ||
-                    this.Contact != null &&
-                    this.Contact.Equals(other.Contact)
+                    this.Contact == input.Contact ||
+                    (this.Contact != null &&
+                    this.Contact.Equals(input.Contact))
                 ) && 
                 (
-                    this.PostalCode == other.PostalCode ||
-                    this.PostalCode != null &&
-                    this.PostalCode.Equals(other.PostalCode)
+                    this.PostalCode == input.PostalCode ||
+                    (this.PostalCode != null &&
+                    this.PostalCode.Equals(input.PostalCode))
                 ) && 
                 (
-                    this.PasswordPolicy == other.PasswordPolicy ||
-                    this.PasswordPolicy != null &&
-                    this.PasswordPolicy.Equals(other.PasswordPolicy)
+                    this.PasswordPolicy == input.PasswordPolicy ||
+                    (this.PasswordPolicy != null &&
+                    this.PasswordPolicy.Equals(input.PasswordPolicy))
                 ) && 
                 (
-                    this.EndMarket == other.EndMarket ||
-                    this.EndMarket != null &&
-                    this.EndMarket.Equals(other.EndMarket)
+                    this.EndMarket == input.EndMarket ||
+                    (this.EndMarket != null &&
+                    this.EndMarket.Equals(input.EndMarket))
                 ) && 
                 (
-                    this.PhoneNumber == other.PhoneNumber ||
-                    this.PhoneNumber != null &&
-                    this.PhoneNumber.Equals(other.PhoneNumber)
+                    this.PhoneNumber == input.PhoneNumber ||
+                    (this.PhoneNumber != null &&
+                    this.PhoneNumber.Equals(input.PhoneNumber))
                 ) && 
                 (
-                    this.Email == other.Email ||
-                    this.Email != null &&
-                    this.Email.Equals(other.Email)
+                    this.Email == input.Email ||
+                    (this.Email != null &&
+                    this.Email.Equals(input.Email))
                 ) && 
                 (
-                    this.Aliases == other.Aliases ||
+                    this.Aliases == input.Aliases ||
                     this.Aliases != null &&
-                    this.Aliases.SequenceEqual(other.Aliases)
+                    this.Aliases.SequenceEqual(input.Aliases)
                 );
         }
 
@@ -315,42 +313,40 @@ namespace iam.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.AddressLine2 != null)
-                    hash = hash * 59 + this.AddressLine2.GetHashCode();
+                    hashCode = hashCode * 59 + this.AddressLine2.GetHashCode();
                 if (this.City != null)
-                    hash = hash * 59 + this.City.GetHashCode();
+                    hashCode = hashCode * 59 + this.City.GetHashCode();
                 if (this.AddressLine1 != null)
-                    hash = hash * 59 + this.AddressLine1.GetHashCode();
+                    hashCode = hashCode * 59 + this.AddressLine1.GetHashCode();
                 if (this.DisplayName != null)
-                    hash = hash * 59 + this.DisplayName.GetHashCode();
+                    hashCode = hashCode * 59 + this.DisplayName.GetHashCode();
                 if (this.Country != null)
-                    hash = hash * 59 + this.Country.GetHashCode();
+                    hashCode = hashCode * 59 + this.Country.GetHashCode();
                 if (this.Company != null)
-                    hash = hash * 59 + this.Company.GetHashCode();
+                    hashCode = hashCode * 59 + this.Company.GetHashCode();
                 if (this.IdleTimeout != null)
-                    hash = hash * 59 + this.IdleTimeout.GetHashCode();
+                    hashCode = hashCode * 59 + this.IdleTimeout.GetHashCode();
                 if (this.State != null)
-                    hash = hash * 59 + this.State.GetHashCode();
+                    hashCode = hashCode * 59 + this.State.GetHashCode();
                 if (this.Contact != null)
-                    hash = hash * 59 + this.Contact.GetHashCode();
+                    hashCode = hashCode * 59 + this.Contact.GetHashCode();
                 if (this.PostalCode != null)
-                    hash = hash * 59 + this.PostalCode.GetHashCode();
+                    hashCode = hashCode * 59 + this.PostalCode.GetHashCode();
                 if (this.PasswordPolicy != null)
-                    hash = hash * 59 + this.PasswordPolicy.GetHashCode();
+                    hashCode = hashCode * 59 + this.PasswordPolicy.GetHashCode();
                 if (this.EndMarket != null)
-                    hash = hash * 59 + this.EndMarket.GetHashCode();
+                    hashCode = hashCode * 59 + this.EndMarket.GetHashCode();
                 if (this.PhoneNumber != null)
-                    hash = hash * 59 + this.PhoneNumber.GetHashCode();
+                    hashCode = hashCode * 59 + this.PhoneNumber.GetHashCode();
                 if (this.Email != null)
-                    hash = hash * 59 + this.Email.GetHashCode();
+                    hashCode = hashCode * 59 + this.Email.GetHashCode();
                 if (this.Aliases != null)
-                    hash = hash * 59 + this.Aliases.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.Aliases.GetHashCode();
+                return hashCode;
             }
         }
 

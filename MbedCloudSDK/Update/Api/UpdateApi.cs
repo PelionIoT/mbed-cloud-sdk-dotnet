@@ -31,15 +31,16 @@ namespace MbedCloudSDK.Update.Api
         public UpdateApi(Config config)
             : base(config)
         {
-            if (config.Host != string.Empty)
+            var updateConfig = new Configuration
             {
-                Configuration.Default.ApiClient = new ApiClient(config.Host);
-            }
+                BasePath = config.Host,
+                DateTimeFormat = "yyyy-MM-ddTHH:mm:ss.ffffffZ",
+            };
+            updateConfig.AddApiKey("Authorization", config.ApiKey);
+            updateConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
+            updateConfig.CreateApiClient();
 
-            api = new update_service.Api.DefaultApi();
-            api.Configuration.ApiKey["Authorization"] = config.ApiKey;
-            api.Configuration.ApiKeyPrefix["Authorization"] = config.AuthorizationPrefix;
-            api.Configuration.DateTimeFormat = "yyyy-MM-ddTHH:mm:ss.ffffffZ";
+            api = new update_service.Api.DefaultApi(updateConfig);
         }
 
         /// <summary>
@@ -48,7 +49,7 @@ namespace MbedCloudSDK.Update.Api
         /// <returns><see cref="ApiMetadata"/></returns>
         public static ApiMetadata GetLastApiMetadata()
         {
-            return ApiMetadata.Map(update_service.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
+            return ApiMetadata.Map(Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
         }
     }
 }

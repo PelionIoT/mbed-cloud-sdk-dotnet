@@ -257,80 +257,78 @@ namespace update_service.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as FirmwareManifest);
+            return this.Equals(input as FirmwareManifest);
         }
 
         /// <summary>
         /// Returns true if FirmwareManifest instances are equal
         /// </summary>
-        /// <param name="other">Instance of FirmwareManifest to be compared</param>
+        /// <param name="input">Instance of FirmwareManifest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(FirmwareManifest other)
+        public bool Equals(FirmwareManifest input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.Datafile == other.Datafile ||
-                    this.Datafile != null &&
-                    this.Datafile.Equals(other.Datafile)
+                    this.Datafile == input.Datafile ||
+                    (this.Datafile != null &&
+                    this.Datafile.Equals(input.Datafile))
                 ) && 
                 (
-                    this.Description == other.Description ||
-                    this.Description != null &&
-                    this.Description.Equals(other.Description)
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
                 ) && 
                 (
-                    this.Timestamp == other.Timestamp ||
-                    this.Timestamp != null &&
-                    this.Timestamp.Equals(other.Timestamp)
+                    this.Timestamp == input.Timestamp ||
+                    (this.Timestamp != null &&
+                    this.Timestamp.Equals(input.Timestamp))
                 ) && 
                 (
-                    this.CreatedAt == other.CreatedAt ||
-                    this.CreatedAt != null &&
-                    this.CreatedAt.Equals(other.CreatedAt)
+                    this.CreatedAt == input.CreatedAt ||
+                    (this.CreatedAt != null &&
+                    this.CreatedAt.Equals(input.CreatedAt))
                 ) && 
                 (
-                    this._Object == other._Object ||
-                    this._Object != null &&
-                    this._Object.Equals(other._Object)
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
                 ) && 
                 (
-                    this.UpdatedAt == other.UpdatedAt ||
-                    this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(other.UpdatedAt)
+                    this.UpdatedAt == input.UpdatedAt ||
+                    (this.UpdatedAt != null &&
+                    this.UpdatedAt.Equals(input.UpdatedAt))
                 ) && 
                 (
-                    this.Etag == other.Etag ||
-                    this.Etag != null &&
-                    this.Etag.Equals(other.Etag)
+                    this.Etag == input.Etag ||
+                    (this.Etag != null &&
+                    this.Etag.Equals(input.Etag))
                 ) && 
                 (
-                    this.DeviceClass == other.DeviceClass ||
-                    this.DeviceClass != null &&
-                    this.DeviceClass.Equals(other.DeviceClass)
+                    this.DeviceClass == input.DeviceClass ||
+                    (this.DeviceClass != null &&
+                    this.DeviceClass.Equals(input.DeviceClass))
                 ) && 
                 (
-                    this.DatafileSize == other.DatafileSize ||
-                    this.DatafileSize != null &&
-                    this.DatafileSize.Equals(other.DatafileSize)
+                    this.DatafileSize == input.DatafileSize ||
+                    (this.DatafileSize != null &&
+                    this.DatafileSize.Equals(input.DatafileSize))
                 ) && 
                 (
-                    this.Id == other.Id ||
-                    this.Id != null &&
-                    this.Id.Equals(other.Id)
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
                 ) && 
                 (
-                    this.Name == other.Name ||
-                    this.Name != null &&
-                    this.Name.Equals(other.Name)
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
                 );
         }
 
@@ -340,34 +338,32 @@ namespace update_service.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.Datafile != null)
-                    hash = hash * 59 + this.Datafile.GetHashCode();
+                    hashCode = hashCode * 59 + this.Datafile.GetHashCode();
                 if (this.Description != null)
-                    hash = hash * 59 + this.Description.GetHashCode();
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.Timestamp != null)
-                    hash = hash * 59 + this.Timestamp.GetHashCode();
+                    hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
                 if (this.CreatedAt != null)
-                    hash = hash * 59 + this.CreatedAt.GetHashCode();
+                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
                 if (this._Object != null)
-                    hash = hash * 59 + this._Object.GetHashCode();
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.UpdatedAt != null)
-                    hash = hash * 59 + this.UpdatedAt.GetHashCode();
+                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
                 if (this.Etag != null)
-                    hash = hash * 59 + this.Etag.GetHashCode();
+                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
                 if (this.DeviceClass != null)
-                    hash = hash * 59 + this.DeviceClass.GetHashCode();
+                    hashCode = hashCode * 59 + this.DeviceClass.GetHashCode();
                 if (this.DatafileSize != null)
-                    hash = hash * 59 + this.DatafileSize.GetHashCode();
+                    hashCode = hashCode * 59 + this.DatafileSize.GetHashCode();
                 if (this.Id != null)
-                    hash = hash * 59 + this.Id.GetHashCode();
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                return hashCode;
             }
         }
 
