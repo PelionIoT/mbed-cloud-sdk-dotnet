@@ -38,20 +38,18 @@ namespace device_directory.Model
         /// <param name="EndpointName">The endpoint name given to the device..</param>
         /// <param name="AutoUpdate">DEPRECATED: Mark this device for automatic firmware update..</param>
         /// <param name="HostGateway">The &#x60;endpoint_name&#x60; of the host gateway, if appropriate..</param>
-        /// <param name="EnrolmentListTimestamp">The claim date/time..</param>
         /// <param name="_Object">The API resource entity..</param>
         /// <param name="CustomAttributes">Up to five custom key-value attributes. Note that keys cannot start with a number..</param>
         /// <param name="DeviceKey">The fingerprint of the device certificate..</param>
         /// <param name="EndpointType">The endpoint type of the device. For example, the device is a gateway..</param>
         /// <param name="CaId">The certificate issuer&#39;s ID..</param>
         /// <param name="Name">The name of the device..</param>
-        public DeviceDataPatchRequest(string Description = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), DateTime? EnrolmentListTimestamp = default(DateTime?), string _Object = default(string), Dictionary<string, string> CustomAttributes = default(Dictionary<string, string>), string DeviceKey = default(string), string EndpointType = default(string), string CaId = default(string), string Name = default(string))
+        public DeviceDataPatchRequest(string Description = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), string _Object = default(string), Dictionary<string, string> CustomAttributes = default(Dictionary<string, string>), string DeviceKey = default(string), string EndpointType = default(string), string CaId = default(string), string Name = default(string))
         {
             this.Description = Description;
             this.EndpointName = EndpointName;
             this.AutoUpdate = AutoUpdate;
             this.HostGateway = HostGateway;
-            this.EnrolmentListTimestamp = EnrolmentListTimestamp;
             this._Object = _Object;
             this.CustomAttributes = CustomAttributes;
             this.DeviceKey = DeviceKey;
@@ -87,13 +85,6 @@ namespace device_directory.Model
         /// <value>The &#x60;endpoint_name&#x60; of the host gateway, if appropriate.</value>
         [DataMember(Name="host_gateway", EmitDefaultValue=false)]
         public string HostGateway { get; set; }
-
-        /// <summary>
-        /// The claim date/time.
-        /// </summary>
-        /// <value>The claim date/time.</value>
-        [DataMember(Name="enrolment_list_timestamp", EmitDefaultValue=false)]
-        public DateTime? EnrolmentListTimestamp { get; set; }
 
         /// <summary>
         /// The API resource entity.
@@ -149,7 +140,6 @@ namespace device_directory.Model
             sb.Append("  EndpointName: ").Append(EndpointName).Append("\n");
             sb.Append("  AutoUpdate: ").Append(AutoUpdate).Append("\n");
             sb.Append("  HostGateway: ").Append(HostGateway).Append("\n");
-            sb.Append("  EnrolmentListTimestamp: ").Append(EnrolmentListTimestamp).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  CustomAttributes: ").Append(CustomAttributes).Append("\n");
             sb.Append("  DeviceKey: ").Append(DeviceKey).Append("\n");
@@ -211,11 +201,6 @@ namespace device_directory.Model
                     this.HostGateway.Equals(input.HostGateway))
                 ) && 
                 (
-                    this.EnrolmentListTimestamp == input.EnrolmentListTimestamp ||
-                    (this.EnrolmentListTimestamp != null &&
-                    this.EnrolmentListTimestamp.Equals(input.EnrolmentListTimestamp))
-                ) && 
-                (
                     this._Object == input._Object ||
                     (this._Object != null &&
                     this._Object.Equals(input._Object))
@@ -264,8 +249,6 @@ namespace device_directory.Model
                     hashCode = hashCode * 59 + this.AutoUpdate.GetHashCode();
                 if (this.HostGateway != null)
                     hashCode = hashCode * 59 + this.HostGateway.GetHashCode();
-                if (this.EnrolmentListTimestamp != null)
-                    hashCode = hashCode * 59 + this.EnrolmentListTimestamp.GetHashCode();
                 if (this._Object != null)
                     hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.CustomAttributes != null)

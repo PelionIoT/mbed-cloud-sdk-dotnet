@@ -282,7 +282,6 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
                 DeviceKey = device.CertificateFingerprint,
                 Manifest = device.Manifest,
                 CaId = device.CertificateIssuerId,
-                EnrolmentListTimestamp = device.ClaimedAt,
             };
 
             return deviceDataPostRequest;
@@ -304,7 +303,6 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
                 CustomAttributes = device.CustomAttributes,
                 EndpointType = device.DeviceType,
                 Name = device.Name,
-                EnrolmentListTimestamp = device.ClaimedAt,
             };
 
             return deviceDataPutRequest;

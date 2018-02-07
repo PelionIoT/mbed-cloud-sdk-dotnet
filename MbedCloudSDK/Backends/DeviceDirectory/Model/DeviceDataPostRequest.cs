@@ -127,10 +127,9 @@ namespace device_directory.Model
         /// <param name="MechanismUrl">The address of the connector to use..</param>
         /// <param name="Name">The name of the device..</param>
         /// <param name="DeviceKey">The fingerprint of the device certificate..</param>
-        /// <param name="EnrolmentListTimestamp">The claim date/time..</param>
         /// <param name="Manifest">DEPRECATED: The URL for the current device manifest..</param>
         /// <param name="CaId">The certificate issuer&#39;s ID..</param>
-        public DeviceDataPostRequest(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), MechanismEnum? Mechanism = default(MechanismEnum?), string DeviceClass = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), int? DeviceExecutionMode = default(int?), Dictionary<string, string> CustomAttributes = default(Dictionary<string, string>), StateEnum? State = default(StateEnum?), string SerialNumber = default(string), string FirmwareChecksum = default(string), string _Object = default(string), string Description = default(string), string VendorId = default(string), string EndpointType = default(string), string Deployment = default(string), string MechanismUrl = default(string), string Name = default(string), string DeviceKey = default(string), DateTime? EnrolmentListTimestamp = default(DateTime?), string Manifest = default(string), string CaId = default(string))
+        public DeviceDataPostRequest(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), MechanismEnum? Mechanism = default(MechanismEnum?), string DeviceClass = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), int? DeviceExecutionMode = default(int?), Dictionary<string, string> CustomAttributes = default(Dictionary<string, string>), StateEnum? State = default(StateEnum?), string SerialNumber = default(string), string FirmwareChecksum = default(string), string _Object = default(string), string Description = default(string), string VendorId = default(string), string EndpointType = default(string), string Deployment = default(string), string MechanismUrl = default(string), string Name = default(string), string DeviceKey = default(string), string Manifest = default(string), string CaId = default(string))
         {
             this.BootstrapExpirationDate = BootstrapExpirationDate;
             this.BootstrappedTimestamp = BootstrappedTimestamp;
@@ -153,7 +152,6 @@ namespace device_directory.Model
             this.MechanismUrl = MechanismUrl;
             this.Name = Name;
             this.DeviceKey = DeviceKey;
-            this.EnrolmentListTimestamp = EnrolmentListTimestamp;
             this.Manifest = Manifest;
             this.CaId = CaId;
         }
@@ -294,13 +292,6 @@ namespace device_directory.Model
         public string DeviceKey { get; set; }
 
         /// <summary>
-        /// The claim date/time.
-        /// </summary>
-        /// <value>The claim date/time.</value>
-        [DataMember(Name="enrolment_list_timestamp", EmitDefaultValue=false)]
-        public DateTime? EnrolmentListTimestamp { get; set; }
-
-        /// <summary>
         /// DEPRECATED: The URL for the current device manifest.
         /// </summary>
         /// <value>DEPRECATED: The URL for the current device manifest.</value>
@@ -343,7 +334,6 @@ namespace device_directory.Model
             sb.Append("  MechanismUrl: ").Append(MechanismUrl).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  DeviceKey: ").Append(DeviceKey).Append("\n");
-            sb.Append("  EnrolmentListTimestamp: ").Append(EnrolmentListTimestamp).Append("\n");
             sb.Append("  Manifest: ").Append(Manifest).Append("\n");
             sb.Append("  CaId: ").Append(CaId).Append("\n");
             sb.Append("}\n");
@@ -486,11 +476,6 @@ namespace device_directory.Model
                     this.DeviceKey.Equals(input.DeviceKey))
                 ) && 
                 (
-                    this.EnrolmentListTimestamp == input.EnrolmentListTimestamp ||
-                    (this.EnrolmentListTimestamp != null &&
-                    this.EnrolmentListTimestamp.Equals(input.EnrolmentListTimestamp))
-                ) && 
-                (
                     this.Manifest == input.Manifest ||
                     (this.Manifest != null &&
                     this.Manifest.Equals(input.Manifest))
@@ -553,8 +538,6 @@ namespace device_directory.Model
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
                 if (this.DeviceKey != null)
                     hashCode = hashCode * 59 + this.DeviceKey.GetHashCode();
-                if (this.EnrolmentListTimestamp != null)
-                    hashCode = hashCode * 59 + this.EnrolmentListTimestamp.GetHashCode();
                 if (this.Manifest != null)
                     hashCode = hashCode * 59 + this.Manifest.GetHashCode();
                 if (this.CaId != null)
