@@ -4,13 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Mbed.Cloud.SDK</PackageId>
     <Title>Mbed Cloud SDK for .NET</Title>
-    <PackageVersion>1.2.4</PackageVersion>
+    <PackageVersion>1.2.5</PackageVersion>
     <Authors>Alex Logan</Authors>
     <Description>The Mbed Cloud SDK provides a simplified interface to the Mbed Cloud APIs by exposing functionality using conventions and paradigms familiar to .NET developers.</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>None</PackageReleaseNotes>
+    <PackageReleaseNotes>Added 'ClaimedAt' field to Device, various other minor bug fixes</PackageReleaseNotes>
     <Copyright>Copyright (c) 2017 Arm</Copyright>
-    <PackageTags>Mbed SDK</PackageTags>
+    <PackageTags>Mbed SDK IoT Arm</PackageTags>
     <PackageLicenseUrl>https://github.com/ARMmbed/mbed-cloud-sdk-dotnet/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/ARMmbed/mbed-cloud-sdk-dotnet</PackageProjectUrl>
     <PackageIconUrl>https://avatars2.githubusercontent.com/u/8916057</PackageIconUrl>

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.5
+
+### Changes
+
+- Added 'ClaimedAt' field to Device
+- Various other minor bug fixes
+
 ## 1.2.4
 
 ## Deliverables
@@ -14,7 +21,7 @@ $ dotnet add package Mbed.Cloud.SDK --version 1.2.4
 
 - Upgraded project to .NET Core 2.0!
 - Passing 50 new integration tests
-- Various bug fixes 
+- Various bug fixes
 
 ### Known Issues
 
