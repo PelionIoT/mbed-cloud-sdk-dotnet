@@ -29,10 +29,10 @@ namespace iam.Model
     /// This object represents a user in requests towards mbed Cloud.
     /// </summary>
     [DataContract]
-    public partial class UserUpdateReq :  IEquatable<UserUpdateReq>, IValidatableObject
+    public partial class AdminUserUpdateReq :  IEquatable<AdminUserUpdateReq>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserUpdateReq" /> class.
+        /// Initializes a new instance of the <see cref="AdminUserUpdateReq" /> class.
         /// </summary>
         /// <param name="PhoneNumber">Phone number, not longer than 100 characters..</param>
         /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long..</param>
@@ -40,12 +40,13 @@ namespace iam.Model
         /// <param name="UserProperties">User&#39;s account specific custom properties..</param>
         /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted..</param>
         /// <param name="IsTotpEnabled">A flag indicating whether 2-factor authentication (TOTP) has to be enabled or disabled..</param>
+        /// <param name="NotificationProperties">Users notification properties for root admins. Currently supported; &#39;agreement_acceptance_notification&#39;, which controls whether notification should be sent upon accepting an agreement in an account. Possible values are: &#39;always_notify&#39;, &#39;only_first&#39; and &#39;not_interested&#39;..</param>
         /// <param name="Status">The status of the user..</param>
         /// <param name="FullName">The full name of the user, not longer than 100 characters..</param>
         /// <param name="Address">Address, not longer than 100 characters..</param>
         /// <param name="Password">The password when creating a new user. It will be generated when not present in the request..</param>
         /// <param name="Email">The email address, not longer than 254 characters..</param>
-        public UserUpdateReq(string PhoneNumber = default(string), string Username = default(string), bool? IsMarketingAccepted = default(bool?), Dictionary<string, Dictionary<string, string>> UserProperties = default(Dictionary<string, Dictionary<string, string>>), bool? IsGtcAccepted = default(bool?), bool? IsTotpEnabled = default(bool?), string Status = default(string), string FullName = default(string), string Address = default(string), string Password = default(string), string Email = default(string))
+        public AdminUserUpdateReq(string PhoneNumber = default(string), string Username = default(string), bool? IsMarketingAccepted = default(bool?), Dictionary<string, Dictionary<string, string>> UserProperties = default(Dictionary<string, Dictionary<string, string>>), bool? IsGtcAccepted = default(bool?), bool? IsTotpEnabled = default(bool?), Dictionary<string, string> NotificationProperties = default(Dictionary<string, string>), string Status = default(string), string FullName = default(string), string Address = default(string), string Password = default(string), string Email = default(string))
         {
             this.PhoneNumber = PhoneNumber;
             this.Username = Username;
@@ -53,6 +54,7 @@ namespace iam.Model
             this.UserProperties = UserProperties;
             this.IsGtcAccepted = IsGtcAccepted;
             this.IsTotpEnabled = IsTotpEnabled;
+            this.NotificationProperties = NotificationProperties;
             this.Status = Status;
             this.FullName = FullName;
             this.Address = Address;
@@ -103,6 +105,13 @@ namespace iam.Model
         public bool? IsTotpEnabled { get; set; }
 
         /// <summary>
+        /// Users notification properties for root admins. Currently supported; &#39;agreement_acceptance_notification&#39;, which controls whether notification should be sent upon accepting an agreement in an account. Possible values are: &#39;always_notify&#39;, &#39;only_first&#39; and &#39;not_interested&#39;.
+        /// </summary>
+        /// <value>Users notification properties for root admins. Currently supported; &#39;agreement_acceptance_notification&#39;, which controls whether notification should be sent upon accepting an agreement in an account. Possible values are: &#39;always_notify&#39;, &#39;only_first&#39; and &#39;not_interested&#39;.</value>
+        [DataMember(Name="notification_properties", EmitDefaultValue=false)]
+        public Dictionary<string, string> NotificationProperties { get; set; }
+
+        /// <summary>
         /// The status of the user.
         /// </summary>
         /// <value>The status of the user.</value>
@@ -144,13 +153,14 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class UserUpdateReq {\n");
+            sb.Append("class AdminUserUpdateReq {\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("  IsMarketingAccepted: ").Append(IsMarketingAccepted).Append("\n");
             sb.Append("  UserProperties: ").Append(UserProperties).Append("\n");
             sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
             sb.Append("  IsTotpEnabled: ").Append(IsTotpEnabled).Append("\n");
+            sb.Append("  NotificationProperties: ").Append(NotificationProperties).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  FullName: ").Append(FullName).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
@@ -176,15 +186,15 @@ namespace iam.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as UserUpdateReq);
+            return this.Equals(input as AdminUserUpdateReq);
         }
 
         /// <summary>
-        /// Returns true if UserUpdateReq instances are equal
+        /// Returns true if AdminUserUpdateReq instances are equal
         /// </summary>
-        /// <param name="input">Instance of UserUpdateReq to be compared</param>
+        /// <param name="input">Instance of AdminUserUpdateReq to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(UserUpdateReq input)
+        public bool Equals(AdminUserUpdateReq input)
         {
             if (input == null)
                 return false;
@@ -219,6 +229,11 @@ namespace iam.Model
                     this.IsTotpEnabled == input.IsTotpEnabled ||
                     (this.IsTotpEnabled != null &&
                     this.IsTotpEnabled.Equals(input.IsTotpEnabled))
+                ) && 
+                (
+                    this.NotificationProperties == input.NotificationProperties ||
+                    this.NotificationProperties != null &&
+                    this.NotificationProperties.SequenceEqual(input.NotificationProperties)
                 ) && 
                 (
                     this.Status == input.Status ||
@@ -268,6 +283,8 @@ namespace iam.Model
                     hashCode = hashCode * 59 + this.IsGtcAccepted.GetHashCode();
                 if (this.IsTotpEnabled != null)
                     hashCode = hashCode * 59 + this.IsTotpEnabled.GetHashCode();
+                if (this.NotificationProperties != null)
+                    hashCode = hashCode * 59 + this.NotificationProperties.GetHashCode();
                 if (this.Status != null)
                     hashCode = hashCode * 59 + this.Status.GetHashCode();
                 if (this.FullName != null)

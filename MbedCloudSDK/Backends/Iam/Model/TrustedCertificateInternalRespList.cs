@@ -26,10 +26,10 @@ using SwaggerDateConverter = iam.Client.SwaggerDateConverter;
 namespace iam.Model
 {
     /// <summary>
-    /// UserInfoRespList
+    /// TrustedCertificateInternalRespList
     /// </summary>
     [DataContract]
-    public partial class UserInfoRespList :  IEquatable<UserInfoRespList>, IValidatableObject
+    public partial class TrustedCertificateInternalRespList :  IEquatable<TrustedCertificateInternalRespList>, IValidatableObject
     {
         /// <summary>
         /// Entity name: always &#39;list&#39;
@@ -134,12 +134,12 @@ namespace iam.Model
         [DataMember(Name="order", EmitDefaultValue=false)]
         public OrderEnum? Order { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserInfoRespList" /> class.
+        /// Initializes a new instance of the <see cref="TrustedCertificateInternalRespList" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected UserInfoRespList() { }
+        protected TrustedCertificateInternalRespList() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserInfoRespList" /> class.
+        /// Initializes a new instance of the <see cref="TrustedCertificateInternalRespList" /> class.
         /// </summary>
         /// <param name="After">The entity ID to fetch after the given one..</param>
         /// <param name="HasMore">Flag indicating whether there is more results. (required).</param>
@@ -148,12 +148,12 @@ namespace iam.Model
         /// <param name="Limit">The number of results to return, (range: 2-1000), or equals to &#x60;total_count&#x60; (required).</param>
         /// <param name="Data">A list of entities. (required).</param>
         /// <param name="Order">The order of the records to return based on creation time. Available values: ASC, DESC; by default ASC..</param>
-        public UserInfoRespList(string After = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), ObjectEnum? _Object = default(ObjectEnum?), int? Limit = default(int?), List<UserInfoResp> Data = default(List<UserInfoResp>), OrderEnum? Order = default(OrderEnum?))
+        public TrustedCertificateInternalRespList(string After = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), ObjectEnum? _Object = default(ObjectEnum?), int? Limit = default(int?), List<TrustedCertificateInternalResp> Data = default(List<TrustedCertificateInternalResp>), OrderEnum? Order = default(OrderEnum?))
         {
             // to ensure "HasMore" is required (not null)
             if (HasMore == null)
             {
-                throw new InvalidDataException("HasMore is a required property for UserInfoRespList and cannot be null");
+                throw new InvalidDataException("HasMore is a required property for TrustedCertificateInternalRespList and cannot be null");
             }
             else
             {
@@ -162,7 +162,7 @@ namespace iam.Model
             // to ensure "TotalCount" is required (not null)
             if (TotalCount == null)
             {
-                throw new InvalidDataException("TotalCount is a required property for UserInfoRespList and cannot be null");
+                throw new InvalidDataException("TotalCount is a required property for TrustedCertificateInternalRespList and cannot be null");
             }
             else
             {
@@ -171,7 +171,7 @@ namespace iam.Model
             // to ensure "_Object" is required (not null)
             if (_Object == null)
             {
-                throw new InvalidDataException("_Object is a required property for UserInfoRespList and cannot be null");
+                throw new InvalidDataException("_Object is a required property for TrustedCertificateInternalRespList and cannot be null");
             }
             else
             {
@@ -180,7 +180,7 @@ namespace iam.Model
             // to ensure "Limit" is required (not null)
             if (Limit == null)
             {
-                throw new InvalidDataException("Limit is a required property for UserInfoRespList and cannot be null");
+                throw new InvalidDataException("Limit is a required property for TrustedCertificateInternalRespList and cannot be null");
             }
             else
             {
@@ -189,7 +189,7 @@ namespace iam.Model
             // to ensure "Data" is required (not null)
             if (Data == null)
             {
-                throw new InvalidDataException("Data is a required property for UserInfoRespList and cannot be null");
+                throw new InvalidDataException("Data is a required property for TrustedCertificateInternalRespList and cannot be null");
             }
             else
             {
@@ -233,7 +233,7 @@ namespace iam.Model
         /// </summary>
         /// <value>A list of entities.</value>
         [DataMember(Name="data", EmitDefaultValue=false)]
-        public List<UserInfoResp> Data { get; set; }
+        public List<TrustedCertificateInternalResp> Data { get; set; }
 
 
         /// <summary>
@@ -243,7 +243,7 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class UserInfoRespList {\n");
+            sb.Append("class TrustedCertificateInternalRespList {\n");
             sb.Append("  After: ").Append(After).Append("\n");
             sb.Append("  HasMore: ").Append(HasMore).Append("\n");
             sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
@@ -271,15 +271,15 @@ namespace iam.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as UserInfoRespList);
+            return this.Equals(input as TrustedCertificateInternalRespList);
         }
 
         /// <summary>
-        /// Returns true if UserInfoRespList instances are equal
+        /// Returns true if TrustedCertificateInternalRespList instances are equal
         /// </summary>
-        /// <param name="input">Instance of UserInfoRespList to be compared</param>
+        /// <param name="input">Instance of TrustedCertificateInternalRespList to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(UserInfoRespList input)
+        public bool Equals(TrustedCertificateInternalRespList input)
         {
             if (input == null)
                 return false;

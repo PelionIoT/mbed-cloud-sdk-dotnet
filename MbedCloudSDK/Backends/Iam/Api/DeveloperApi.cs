@@ -26,6 +26,48 @@ namespace iam.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Add user to a list of groupS.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for adding user to groups.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>UpdatedResponse</returns>
+        UpdatedResponse AddMeToGroups (List<string> body);
+
+        /// <summary>
+        /// Add user to a list of groupS.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for adding user to groups.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>ApiResponse of UpdatedResponse</returns>
+        ApiResponse<UpdatedResponse> AddMeToGroupsWithHttpInfo (List<string> body);
+        /// <summary>
+        /// Add API key to a list of groups.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for adding API key to groups.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>UpdatedResponse</returns>
+        UpdatedResponse AddMyApiKeyToGroups (List<string> body);
+
+        /// <summary>
+        /// Add API key to a list of groups.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for adding API key to groups.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>ApiResponse of UpdatedResponse</returns>
+        ApiResponse<UpdatedResponse> AddMyApiKeyToGroupsWithHttpInfo (List<string> body);
+        /// <summary>
         /// Create a new API key.
         /// </summary>
         /// <remarks>
@@ -99,9 +141,10 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="keyEq">API key filter. (optional)</param>
         /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>ApiKeyInfoRespList</returns>
-        ApiKeyInfoRespList GetAllApiKeys (int? limit = null, string after = null, string order = null, string include = null, string ownerEq = null);
+        ApiKeyInfoRespList GetAllApiKeys (int? limit = null, string after = null, string order = null, string include = null, string keyEq = null, string ownerEq = null);
 
         /// <summary>
         /// Get all API keys
@@ -114,9 +157,10 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="keyEq">API key filter. (optional)</param>
         /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>ApiResponse of ApiKeyInfoRespList</returns>
-        ApiResponse<ApiKeyInfoRespList> GetAllApiKeysWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string ownerEq = null);
+        ApiResponse<ApiKeyInfoRespList> GetAllApiKeysWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string keyEq = null, string ownerEq = null);
         /// <summary>
         /// Get all trusted certificates.
         /// </summary>
@@ -128,12 +172,17 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="nameEq">Filter for certificate name (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
-        /// <param name="ownerEq">Owner ID filter (optional)</param>
+        /// <param name="deviceExecutionModeNeq">Device execution mode not equals filter (optional)</param>
+        /// <param name="ownerEq">Owner name filter (optional)</param>
+        /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
+        /// <param name="issuerLike">Issuer filter (optional)</param>
+        /// <param name="subjectLike">Subject filter (optional)</param>
         /// <returns>TrustedCertificateRespList</returns>
-        TrustedCertificateRespList GetAllCertificates (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null);
+        TrustedCertificateRespList GetAllCertificates (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null);
 
         /// <summary>
         /// Get all trusted certificates.
@@ -146,12 +195,17 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="nameEq">Filter for certificate name (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
-        /// <param name="ownerEq">Owner ID filter (optional)</param>
+        /// <param name="deviceExecutionModeNeq">Device execution mode not equals filter (optional)</param>
+        /// <param name="ownerEq">Owner name filter (optional)</param>
+        /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
+        /// <param name="issuerLike">Issuer filter (optional)</param>
+        /// <param name="subjectLike">Subject filter (optional)</param>
         /// <returns>ApiResponse of TrustedCertificateRespList</returns>
-        ApiResponse<TrustedCertificateRespList> GetAllCertificatesWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null);
+        ApiResponse<TrustedCertificateRespList> GetAllCertificatesWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null);
         /// <summary>
         /// Get all group information.
         /// </summary>
@@ -163,8 +217,9 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="nameEq">Filter for group name (optional)</param>
         /// <returns>GroupSummaryList</returns>
-        GroupSummaryList GetAllGroups (int? limit = null, string after = null, string order = null, string include = null);
+        GroupSummaryList GetAllGroups (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null);
 
         /// <summary>
         /// Get all group information.
@@ -177,8 +232,9 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="nameEq">Filter for group name (optional)</param>
         /// <returns>ApiResponse of GroupSummaryList</returns>
-        ApiResponse<GroupSummaryList> GetAllGroupsWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null);
+        ApiResponse<GroupSummaryList> GetAllGroupsWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null);
         /// <summary>
         /// Get API key details.
         /// </summary>
@@ -233,10 +289,10 @@ namespace iam.Api
         /// Get trusted certificate by ID.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving a trusted certificate by ID.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// An endpoint for retrieving a trusted certificate by ID.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <param name="certId">The ID of the trusted certificate to be retrieved.</param>
         /// <returns>TrustedCertificateResp</returns>
         TrustedCertificateResp GetCertificate (string certId);
 
@@ -244,10 +300,10 @@ namespace iam.Api
         /// Get trusted certificate by ID.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving a trusted certificate by ID.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// An endpoint for retrieving a trusted certificate by ID.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <param name="certId">The ID of the trusted certificate to be retrieved.</param>
         /// <returns>ApiResponse of TrustedCertificateResp</returns>
         ApiResponse<TrustedCertificateResp> GetCertificateWithHttpInfo (string certId);
         /// <summary>
@@ -257,7 +313,7 @@ namespace iam.Api
         /// An endpoint for getting general information about the group.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID or name of the group to be retrieved.</param>
+        /// <param name="groupID">The ID of the group to be retrieved.</param>
         /// <returns>GroupSummary</returns>
         GroupSummary GetGroupSummary (string groupID);
 
@@ -268,30 +324,59 @@ namespace iam.Api
         /// An endpoint for getting general information about the group.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID or name of the group to be retrieved.</param>
+        /// <param name="groupID">The ID of the group to be retrieved.</param>
         /// <returns>ApiResponse of GroupSummary</returns>
         ApiResponse<GroupSummary> GetGroupSummaryWithHttpInfo (string groupID);
+        /// <summary>
+        /// Get groups of the API key.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving groups of the API key.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <returns>GroupSummaryList</returns>
+        GroupSummaryList GetGroupsOfMyApiKey (int? limit = null, string after = null, string order = null, string include = null);
+
+        /// <summary>
+        /// Get groups of the API key.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving groups of the API key.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <returns>ApiResponse of GroupSummaryList</returns>
+        ApiResponse<GroupSummaryList> GetGroupsOfMyApiKeyWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null);
         /// <summary>
         /// Get account info.
         /// </summary>
         /// <remarks>
-        /// Returns detailed information about the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/me?include&#x3D;policies -H &#39;Authorization: Bearer API_KEY&#39;&#x60; .
+        /// Returns detailed information about the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/me?include&#x3D;policies -H &#39;Authorization: Bearer API_KEY&#39;&#x60;.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts. (optional)</param>
+        /// <param name="properties">Property name to be returned from account specific properties. (optional)</param>
         /// <returns>AccountInfo</returns>
-        AccountInfo GetMyAccountInfo (string include = null);
+        AccountInfo GetMyAccountInfo (string include = null, string properties = null);
 
         /// <summary>
         /// Get account info.
         /// </summary>
         /// <remarks>
-        /// Returns detailed information about the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/me?include&#x3D;policies -H &#39;Authorization: Bearer API_KEY&#39;&#x60; .
+        /// Returns detailed information about the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/me?include&#x3D;policies -H &#39;Authorization: Bearer API_KEY&#39;&#x60;.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts. (optional)</param>
+        /// <param name="properties">Property name to be returned from account specific properties. (optional)</param>
         /// <returns>ApiResponse of AccountInfo</returns>
-        ApiResponse<AccountInfo> GetMyAccountInfoWithHttpInfo (string include = null);
+        ApiResponse<AccountInfo> GetMyAccountInfoWithHttpInfo (string include = null, string properties = null);
         /// <summary>
         /// Get API key details.
         /// </summary>
@@ -312,26 +397,57 @@ namespace iam.Api
         /// <returns>ApiResponse of ApiKeyInfoResp</returns>
         ApiResponse<ApiKeyInfoResp> GetMyApiKeyWithHttpInfo ();
         /// <summary>
+        /// Get groups of the user.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving groups of the user.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <returns>GroupSummaryList</returns>
+        GroupSummaryList GetMyGroups (int? limit = null, string after = null, string order = null, string include = null);
+
+        /// <summary>
+        /// Get groups of the user.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving groups of the user.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <returns>ApiResponse of GroupSummaryList</returns>
+        ApiResponse<GroupSummaryList> GetMyGroupsWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null);
+        /// <summary>
         /// Details of the current user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
+        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: active_sessions (optional)</param>
         /// <returns>MyUserInfoResp</returns>
-        MyUserInfoResp GetMyUser (string scratchCodes = null);
+        MyUserInfoResp GetMyUser (string scratchCodes = null, string properties = null, string include = null);
 
         /// <summary>
         /// Details of the current user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
+        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: active_sessions (optional)</param>
         /// <returns>ApiResponse of MyUserInfoResp</returns>
-        ApiResponse<MyUserInfoResp> GetMyUserWithHttpInfo (string scratchCodes = null);
+        ApiResponse<MyUserInfoResp> GetMyUserWithHttpInfo (string scratchCodes = null, string properties = null, string include = null);
         /// <summary>
         /// Remove API keys from a group.
         /// </summary>
@@ -355,6 +471,48 @@ namespace iam.Api
         /// <param name="body">A list of API keys to be removed from the group.</param>
         /// <returns>ApiResponse of UpdatedResponse</returns>
         ApiResponse<UpdatedResponse> RemoveApiKeysFromGroupWithHttpInfo (string groupID, SubjectList body);
+        /// <summary>
+        /// Remove user from a group.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for removing user from groups.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>UpdatedResponse</returns>
+        UpdatedResponse RemoveMeFromGroups (List<string> body);
+
+        /// <summary>
+        /// Remove user from a group.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for removing user from groups.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>ApiResponse of UpdatedResponse</returns>
+        ApiResponse<UpdatedResponse> RemoveMeFromGroupsWithHttpInfo (List<string> body);
+        /// <summary>
+        /// Remove API key from groups.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for removing API key from groups.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>UpdatedResponse</returns>
+        UpdatedResponse RemoveMyApiKeyFromGroups (List<string> body);
+
+        /// <summary>
+        /// Remove API key from groups.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for removing API key from groups.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>ApiResponse of UpdatedResponse</returns>
+        ApiResponse<UpdatedResponse> RemoveMyApiKeyFromGroupsWithHttpInfo (List<string> body);
         /// <summary>
         /// Update API key details.
         /// </summary>
@@ -382,7 +540,7 @@ namespace iam.Api
         /// Update trusted certificate.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating existing trusted certificates.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// An endpoint for updating existing trusted certificates.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
@@ -394,7 +552,7 @@ namespace iam.Api
         /// Update trusted certificate.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating existing trusted certificates.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// An endpoint for updating existing trusted certificates.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
@@ -426,7 +584,7 @@ namespace iam.Api
         /// Update user details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
@@ -437,7 +595,7 @@ namespace iam.Api
         /// Update user details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
@@ -445,6 +603,48 @@ namespace iam.Api
         ApiResponse<UserUpdateResp> UpdateMyUserWithHttpInfo (UserUpdateReq body);
         #endregion Synchronous Operations
         #region Asynchronous Operations
+        /// <summary>
+        /// Add user to a list of groupS.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for adding user to groups.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>Task of UpdatedResponse</returns>
+        System.Threading.Tasks.Task<UpdatedResponse> AddMeToGroupsAsync (List<string> body);
+
+        /// <summary>
+        /// Add user to a list of groupS.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for adding user to groups.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> AddMeToGroupsAsyncWithHttpInfo (List<string> body);
+        /// <summary>
+        /// Add API key to a list of groups.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for adding API key to groups.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>Task of UpdatedResponse</returns>
+        System.Threading.Tasks.Task<UpdatedResponse> AddMyApiKeyToGroupsAsync (List<string> body);
+
+        /// <summary>
+        /// Add API key to a list of groups.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for adding API key to groups.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> AddMyApiKeyToGroupsAsyncWithHttpInfo (List<string> body);
         /// <summary>
         /// Create a new API key.
         /// </summary>
@@ -519,9 +719,10 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="keyEq">API key filter. (optional)</param>
         /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>Task of ApiKeyInfoRespList</returns>
-        System.Threading.Tasks.Task<ApiKeyInfoRespList> GetAllApiKeysAsync (int? limit = null, string after = null, string order = null, string include = null, string ownerEq = null);
+        System.Threading.Tasks.Task<ApiKeyInfoRespList> GetAllApiKeysAsync (int? limit = null, string after = null, string order = null, string include = null, string keyEq = null, string ownerEq = null);
 
         /// <summary>
         /// Get all API keys
@@ -534,9 +735,10 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="keyEq">API key filter. (optional)</param>
         /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>Task of ApiResponse (ApiKeyInfoRespList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoRespList>> GetAllApiKeysAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string ownerEq = null);
+        System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoRespList>> GetAllApiKeysAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string keyEq = null, string ownerEq = null);
         /// <summary>
         /// Get all trusted certificates.
         /// </summary>
@@ -548,12 +750,17 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="nameEq">Filter for certificate name (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
-        /// <param name="ownerEq">Owner ID filter (optional)</param>
+        /// <param name="deviceExecutionModeNeq">Device execution mode not equals filter (optional)</param>
+        /// <param name="ownerEq">Owner name filter (optional)</param>
+        /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
+        /// <param name="issuerLike">Issuer filter (optional)</param>
+        /// <param name="subjectLike">Subject filter (optional)</param>
         /// <returns>Task of TrustedCertificateRespList</returns>
-        System.Threading.Tasks.Task<TrustedCertificateRespList> GetAllCertificatesAsync (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null);
+        System.Threading.Tasks.Task<TrustedCertificateRespList> GetAllCertificatesAsync (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null);
 
         /// <summary>
         /// Get all trusted certificates.
@@ -566,12 +773,17 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="nameEq">Filter for certificate name (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
-        /// <param name="ownerEq">Owner ID filter (optional)</param>
+        /// <param name="deviceExecutionModeNeq">Device execution mode not equals filter (optional)</param>
+        /// <param name="ownerEq">Owner name filter (optional)</param>
+        /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
+        /// <param name="issuerLike">Issuer filter (optional)</param>
+        /// <param name="subjectLike">Subject filter (optional)</param>
         /// <returns>Task of ApiResponse (TrustedCertificateRespList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TrustedCertificateRespList>> GetAllCertificatesAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null);
+        System.Threading.Tasks.Task<ApiResponse<TrustedCertificateRespList>> GetAllCertificatesAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null);
         /// <summary>
         /// Get all group information.
         /// </summary>
@@ -583,8 +795,9 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="nameEq">Filter for group name (optional)</param>
         /// <returns>Task of GroupSummaryList</returns>
-        System.Threading.Tasks.Task<GroupSummaryList> GetAllGroupsAsync (int? limit = null, string after = null, string order = null, string include = null);
+        System.Threading.Tasks.Task<GroupSummaryList> GetAllGroupsAsync (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null);
 
         /// <summary>
         /// Get all group information.
@@ -597,8 +810,9 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="nameEq">Filter for group name (optional)</param>
         /// <returns>Task of ApiResponse (GroupSummaryList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GroupSummaryList>> GetAllGroupsAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null);
+        System.Threading.Tasks.Task<ApiResponse<GroupSummaryList>> GetAllGroupsAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null);
         /// <summary>
         /// Get API key details.
         /// </summary>
@@ -653,10 +867,10 @@ namespace iam.Api
         /// Get trusted certificate by ID.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving a trusted certificate by ID.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// An endpoint for retrieving a trusted certificate by ID.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <param name="certId">The ID of the trusted certificate to be retrieved.</param>
         /// <returns>Task of TrustedCertificateResp</returns>
         System.Threading.Tasks.Task<TrustedCertificateResp> GetCertificateAsync (string certId);
 
@@ -664,10 +878,10 @@ namespace iam.Api
         /// Get trusted certificate by ID.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving a trusted certificate by ID.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// An endpoint for retrieving a trusted certificate by ID.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <param name="certId">The ID of the trusted certificate to be retrieved.</param>
         /// <returns>Task of ApiResponse (TrustedCertificateResp)</returns>
         System.Threading.Tasks.Task<ApiResponse<TrustedCertificateResp>> GetCertificateAsyncWithHttpInfo (string certId);
         /// <summary>
@@ -677,7 +891,7 @@ namespace iam.Api
         /// An endpoint for getting general information about the group.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID or name of the group to be retrieved.</param>
+        /// <param name="groupID">The ID of the group to be retrieved.</param>
         /// <returns>Task of GroupSummary</returns>
         System.Threading.Tasks.Task<GroupSummary> GetGroupSummaryAsync (string groupID);
 
@@ -688,30 +902,59 @@ namespace iam.Api
         /// An endpoint for getting general information about the group.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID or name of the group to be retrieved.</param>
+        /// <param name="groupID">The ID of the group to be retrieved.</param>
         /// <returns>Task of ApiResponse (GroupSummary)</returns>
         System.Threading.Tasks.Task<ApiResponse<GroupSummary>> GetGroupSummaryAsyncWithHttpInfo (string groupID);
+        /// <summary>
+        /// Get groups of the API key.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving groups of the API key.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <returns>Task of GroupSummaryList</returns>
+        System.Threading.Tasks.Task<GroupSummaryList> GetGroupsOfMyApiKeyAsync (int? limit = null, string after = null, string order = null, string include = null);
+
+        /// <summary>
+        /// Get groups of the API key.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving groups of the API key.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <returns>Task of ApiResponse (GroupSummaryList)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GroupSummaryList>> GetGroupsOfMyApiKeyAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null);
         /// <summary>
         /// Get account info.
         /// </summary>
         /// <remarks>
-        /// Returns detailed information about the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/me?include&#x3D;policies -H &#39;Authorization: Bearer API_KEY&#39;&#x60; .
+        /// Returns detailed information about the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/me?include&#x3D;policies -H &#39;Authorization: Bearer API_KEY&#39;&#x60;.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts. (optional)</param>
+        /// <param name="properties">Property name to be returned from account specific properties. (optional)</param>
         /// <returns>Task of AccountInfo</returns>
-        System.Threading.Tasks.Task<AccountInfo> GetMyAccountInfoAsync (string include = null);
+        System.Threading.Tasks.Task<AccountInfo> GetMyAccountInfoAsync (string include = null, string properties = null);
 
         /// <summary>
         /// Get account info.
         /// </summary>
         /// <remarks>
-        /// Returns detailed information about the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/me?include&#x3D;policies -H &#39;Authorization: Bearer API_KEY&#39;&#x60; .
+        /// Returns detailed information about the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/me?include&#x3D;policies -H &#39;Authorization: Bearer API_KEY&#39;&#x60;.
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts. (optional)</param>
+        /// <param name="properties">Property name to be returned from account specific properties. (optional)</param>
         /// <returns>Task of ApiResponse (AccountInfo)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccountInfo>> GetMyAccountInfoAsyncWithHttpInfo (string include = null);
+        System.Threading.Tasks.Task<ApiResponse<AccountInfo>> GetMyAccountInfoAsyncWithHttpInfo (string include = null, string properties = null);
         /// <summary>
         /// Get API key details.
         /// </summary>
@@ -732,26 +975,57 @@ namespace iam.Api
         /// <returns>Task of ApiResponse (ApiKeyInfoResp)</returns>
         System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoResp>> GetMyApiKeyAsyncWithHttpInfo ();
         /// <summary>
+        /// Get groups of the user.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving groups of the user.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <returns>Task of GroupSummaryList</returns>
+        System.Threading.Tasks.Task<GroupSummaryList> GetMyGroupsAsync (int? limit = null, string after = null, string order = null, string include = null);
+
+        /// <summary>
+        /// Get groups of the user.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving groups of the user.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <returns>Task of ApiResponse (GroupSummaryList)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GroupSummaryList>> GetMyGroupsAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null);
+        /// <summary>
         /// Details of the current user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
+        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: active_sessions (optional)</param>
         /// <returns>Task of MyUserInfoResp</returns>
-        System.Threading.Tasks.Task<MyUserInfoResp> GetMyUserAsync (string scratchCodes = null);
+        System.Threading.Tasks.Task<MyUserInfoResp> GetMyUserAsync (string scratchCodes = null, string properties = null, string include = null);
 
         /// <summary>
         /// Details of the current user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
+        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: active_sessions (optional)</param>
         /// <returns>Task of ApiResponse (MyUserInfoResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<MyUserInfoResp>> GetMyUserAsyncWithHttpInfo (string scratchCodes = null);
+        System.Threading.Tasks.Task<ApiResponse<MyUserInfoResp>> GetMyUserAsyncWithHttpInfo (string scratchCodes = null, string properties = null, string include = null);
         /// <summary>
         /// Remove API keys from a group.
         /// </summary>
@@ -775,6 +1049,48 @@ namespace iam.Api
         /// <param name="body">A list of API keys to be removed from the group.</param>
         /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> RemoveApiKeysFromGroupAsyncWithHttpInfo (string groupID, SubjectList body);
+        /// <summary>
+        /// Remove user from a group.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for removing user from groups.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>Task of UpdatedResponse</returns>
+        System.Threading.Tasks.Task<UpdatedResponse> RemoveMeFromGroupsAsync (List<string> body);
+
+        /// <summary>
+        /// Remove user from a group.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for removing user from groups.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> RemoveMeFromGroupsAsyncWithHttpInfo (List<string> body);
+        /// <summary>
+        /// Remove API key from groups.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for removing API key from groups.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>Task of UpdatedResponse</returns>
+        System.Threading.Tasks.Task<UpdatedResponse> RemoveMyApiKeyFromGroupsAsync (List<string> body);
+
+        /// <summary>
+        /// Remove API key from groups.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for removing API key from groups.
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> RemoveMyApiKeyFromGroupsAsyncWithHttpInfo (List<string> body);
         /// <summary>
         /// Update API key details.
         /// </summary>
@@ -802,7 +1118,7 @@ namespace iam.Api
         /// Update trusted certificate.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating existing trusted certificates.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// An endpoint for updating existing trusted certificates.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
@@ -814,7 +1130,7 @@ namespace iam.Api
         /// Update trusted certificate.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating existing trusted certificates.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// An endpoint for updating existing trusted certificates.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
@@ -846,7 +1162,7 @@ namespace iam.Api
         /// Update user details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
@@ -857,7 +1173,7 @@ namespace iam.Api
         /// Update user details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
@@ -961,6 +1277,324 @@ namespace iam.Api
         public void AddDefaultHeader(string key, string value)
         {
             this.Configuration.AddDefaultHeader(key, value);
+        }
+
+        /// <summary>
+        /// Add user to a list of groupS. An endpoint for adding user to groups.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>UpdatedResponse</returns>
+        public UpdatedResponse AddMeToGroups (List<string> body)
+        {
+             ApiResponse<UpdatedResponse> localVarResponse = AddMeToGroupsWithHttpInfo(body);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Add user to a list of groupS. An endpoint for adding user to groups.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>ApiResponse of UpdatedResponse</returns>
+        public ApiResponse< UpdatedResponse > AddMeToGroupsWithHttpInfo (List<string> body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->AddMeToGroups");
+
+            var localVarPath = "/v3/users/me/groups";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("AddMeToGroups", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+        }
+
+        /// <summary>
+        /// Add user to a list of groupS. An endpoint for adding user to groups.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>Task of UpdatedResponse</returns>
+        public async System.Threading.Tasks.Task<UpdatedResponse> AddMeToGroupsAsync (List<string> body)
+        {
+             ApiResponse<UpdatedResponse> localVarResponse = await AddMeToGroupsAsyncWithHttpInfo(body);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Add user to a list of groupS. An endpoint for adding user to groups.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> AddMeToGroupsAsyncWithHttpInfo (List<string> body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->AddMeToGroups");
+
+            var localVarPath = "/v3/users/me/groups";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("AddMeToGroups", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+        }
+
+        /// <summary>
+        /// Add API key to a list of groups. An endpoint for adding API key to groups.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>UpdatedResponse</returns>
+        public UpdatedResponse AddMyApiKeyToGroups (List<string> body)
+        {
+             ApiResponse<UpdatedResponse> localVarResponse = AddMyApiKeyToGroupsWithHttpInfo(body);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Add API key to a list of groups. An endpoint for adding API key to groups.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>ApiResponse of UpdatedResponse</returns>
+        public ApiResponse< UpdatedResponse > AddMyApiKeyToGroupsWithHttpInfo (List<string> body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->AddMyApiKeyToGroups");
+
+            var localVarPath = "/v3/api-keys/me/groups";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("AddMyApiKeyToGroups", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+        }
+
+        /// <summary>
+        /// Add API key to a list of groups. An endpoint for adding API key to groups.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>Task of UpdatedResponse</returns>
+        public async System.Threading.Tasks.Task<UpdatedResponse> AddMyApiKeyToGroupsAsync (List<string> body)
+        {
+             ApiResponse<UpdatedResponse> localVarResponse = await AddMyApiKeyToGroupsAsyncWithHttpInfo(body);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Add API key to a list of groups. An endpoint for adding API key to groups.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> AddMyApiKeyToGroupsAsyncWithHttpInfo (List<string> body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->AddMyApiKeyToGroups");
+
+            var localVarPath = "/v3/api-keys/me/groups";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("AddMyApiKeyToGroups", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
         }
 
         /// <summary>
@@ -1412,11 +2046,12 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="keyEq">API key filter. (optional)</param>
         /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>ApiKeyInfoRespList</returns>
-        public ApiKeyInfoRespList GetAllApiKeys (int? limit = null, string after = null, string order = null, string include = null, string ownerEq = null)
+        public ApiKeyInfoRespList GetAllApiKeys (int? limit = null, string after = null, string order = null, string include = null, string keyEq = null, string ownerEq = null)
         {
-             ApiResponse<ApiKeyInfoRespList> localVarResponse = GetAllApiKeysWithHttpInfo(limit, after, order, include, ownerEq);
+             ApiResponse<ApiKeyInfoRespList> localVarResponse = GetAllApiKeysWithHttpInfo(limit, after, order, include, keyEq, ownerEq);
              return localVarResponse.Data;
         }
 
@@ -1428,9 +2063,10 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="keyEq">API key filter. (optional)</param>
         /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>ApiResponse of ApiKeyInfoRespList</returns>
-        public ApiResponse< ApiKeyInfoRespList > GetAllApiKeysWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string ownerEq = null)
+        public ApiResponse< ApiKeyInfoRespList > GetAllApiKeysWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string keyEq = null, string ownerEq = null)
         {
 
             var localVarPath = "/v3/api-keys";
@@ -1458,6 +2094,7 @@ namespace iam.Api
             if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
             if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
             if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
+            if (keyEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "key__eq", keyEq)); // query parameter
             if (ownerEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "owner__eq", ownerEq)); // query parameter
 
             // authentication (Bearer) required
@@ -1492,11 +2129,12 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="keyEq">API key filter. (optional)</param>
         /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>Task of ApiKeyInfoRespList</returns>
-        public async System.Threading.Tasks.Task<ApiKeyInfoRespList> GetAllApiKeysAsync (int? limit = null, string after = null, string order = null, string include = null, string ownerEq = null)
+        public async System.Threading.Tasks.Task<ApiKeyInfoRespList> GetAllApiKeysAsync (int? limit = null, string after = null, string order = null, string include = null, string keyEq = null, string ownerEq = null)
         {
-             ApiResponse<ApiKeyInfoRespList> localVarResponse = await GetAllApiKeysAsyncWithHttpInfo(limit, after, order, include, ownerEq);
+             ApiResponse<ApiKeyInfoRespList> localVarResponse = await GetAllApiKeysAsyncWithHttpInfo(limit, after, order, include, keyEq, ownerEq);
              return localVarResponse.Data;
 
         }
@@ -1509,9 +2147,10 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="keyEq">API key filter. (optional)</param>
         /// <param name="ownerEq">Owner name filter. (optional)</param>
         /// <returns>Task of ApiResponse (ApiKeyInfoRespList)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoRespList>> GetAllApiKeysAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string ownerEq = null)
+        public async System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoRespList>> GetAllApiKeysAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string keyEq = null, string ownerEq = null)
         {
 
             var localVarPath = "/v3/api-keys";
@@ -1539,6 +2178,7 @@ namespace iam.Api
             if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
             if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
             if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
+            if (keyEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "key__eq", keyEq)); // query parameter
             if (ownerEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "owner__eq", ownerEq)); // query parameter
 
             // authentication (Bearer) required
@@ -1573,14 +2213,19 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="nameEq">Filter for certificate name (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
-        /// <param name="ownerEq">Owner ID filter (optional)</param>
+        /// <param name="deviceExecutionModeNeq">Device execution mode not equals filter (optional)</param>
+        /// <param name="ownerEq">Owner name filter (optional)</param>
+        /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
+        /// <param name="issuerLike">Issuer filter (optional)</param>
+        /// <param name="subjectLike">Subject filter (optional)</param>
         /// <returns>TrustedCertificateRespList</returns>
-        public TrustedCertificateRespList GetAllCertificates (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null)
+        public TrustedCertificateRespList GetAllCertificates (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null)
         {
-             ApiResponse<TrustedCertificateRespList> localVarResponse = GetAllCertificatesWithHttpInfo(limit, after, order, include, serviceEq, expireEq, deviceExecutionModeEq, ownerEq);
+             ApiResponse<TrustedCertificateRespList> localVarResponse = GetAllCertificatesWithHttpInfo(limit, after, order, include, nameEq, serviceEq, expireEq, deviceExecutionModeEq, deviceExecutionModeNeq, ownerEq, enrollmentModeEq, issuerLike, subjectLike);
              return localVarResponse.Data;
         }
 
@@ -1592,12 +2237,17 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="nameEq">Filter for certificate name (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
-        /// <param name="ownerEq">Owner ID filter (optional)</param>
+        /// <param name="deviceExecutionModeNeq">Device execution mode not equals filter (optional)</param>
+        /// <param name="ownerEq">Owner name filter (optional)</param>
+        /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
+        /// <param name="issuerLike">Issuer filter (optional)</param>
+        /// <param name="subjectLike">Subject filter (optional)</param>
         /// <returns>ApiResponse of TrustedCertificateRespList</returns>
-        public ApiResponse< TrustedCertificateRespList > GetAllCertificatesWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null)
+        public ApiResponse< TrustedCertificateRespList > GetAllCertificatesWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null)
         {
 
             var localVarPath = "/v3/trusted-certificates";
@@ -1625,10 +2275,15 @@ namespace iam.Api
             if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
             if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
             if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
+            if (nameEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "name__eq", nameEq)); // query parameter
             if (serviceEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "service__eq", serviceEq)); // query parameter
             if (expireEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "expire__eq", expireEq)); // query parameter
             if (deviceExecutionModeEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "device_execution_mode__eq", deviceExecutionModeEq)); // query parameter
+            if (deviceExecutionModeNeq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "device_execution_mode__neq", deviceExecutionModeNeq)); // query parameter
             if (ownerEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "owner__eq", ownerEq)); // query parameter
+            if (enrollmentModeEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "enrollment_mode__eq", enrollmentModeEq)); // query parameter
+            if (issuerLike != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "issuer__like", issuerLike)); // query parameter
+            if (subjectLike != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "subject__like", subjectLike)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1662,14 +2317,19 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="nameEq">Filter for certificate name (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
-        /// <param name="ownerEq">Owner ID filter (optional)</param>
+        /// <param name="deviceExecutionModeNeq">Device execution mode not equals filter (optional)</param>
+        /// <param name="ownerEq">Owner name filter (optional)</param>
+        /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
+        /// <param name="issuerLike">Issuer filter (optional)</param>
+        /// <param name="subjectLike">Subject filter (optional)</param>
         /// <returns>Task of TrustedCertificateRespList</returns>
-        public async System.Threading.Tasks.Task<TrustedCertificateRespList> GetAllCertificatesAsync (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null)
+        public async System.Threading.Tasks.Task<TrustedCertificateRespList> GetAllCertificatesAsync (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null)
         {
-             ApiResponse<TrustedCertificateRespList> localVarResponse = await GetAllCertificatesAsyncWithHttpInfo(limit, after, order, include, serviceEq, expireEq, deviceExecutionModeEq, ownerEq);
+             ApiResponse<TrustedCertificateRespList> localVarResponse = await GetAllCertificatesAsyncWithHttpInfo(limit, after, order, include, nameEq, serviceEq, expireEq, deviceExecutionModeEq, deviceExecutionModeNeq, ownerEq, enrollmentModeEq, issuerLike, subjectLike);
              return localVarResponse.Data;
 
         }
@@ -1682,12 +2342,17 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="nameEq">Filter for certificate name (optional)</param>
         /// <param name="serviceEq">Service filter, either lwm2m or bootstrap (optional)</param>
         /// <param name="expireEq">Expire filter in days (optional)</param>
         /// <param name="deviceExecutionModeEq">Device execution mode, as 1 for developer certificates or as another natural integer value (optional)</param>
-        /// <param name="ownerEq">Owner ID filter (optional)</param>
+        /// <param name="deviceExecutionModeNeq">Device execution mode not equals filter (optional)</param>
+        /// <param name="ownerEq">Owner name filter (optional)</param>
+        /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
+        /// <param name="issuerLike">Issuer filter (optional)</param>
+        /// <param name="subjectLike">Subject filter (optional)</param>
         /// <returns>Task of ApiResponse (TrustedCertificateRespList)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<TrustedCertificateRespList>> GetAllCertificatesAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, string ownerEq = null)
+        public async System.Threading.Tasks.Task<ApiResponse<TrustedCertificateRespList>> GetAllCertificatesAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null)
         {
 
             var localVarPath = "/v3/trusted-certificates";
@@ -1715,10 +2380,15 @@ namespace iam.Api
             if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
             if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
             if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
+            if (nameEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "name__eq", nameEq)); // query parameter
             if (serviceEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "service__eq", serviceEq)); // query parameter
             if (expireEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "expire__eq", expireEq)); // query parameter
             if (deviceExecutionModeEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "device_execution_mode__eq", deviceExecutionModeEq)); // query parameter
+            if (deviceExecutionModeNeq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "device_execution_mode__neq", deviceExecutionModeNeq)); // query parameter
             if (ownerEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "owner__eq", ownerEq)); // query parameter
+            if (enrollmentModeEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "enrollment_mode__eq", enrollmentModeEq)); // query parameter
+            if (issuerLike != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "issuer__like", issuerLike)); // query parameter
+            if (subjectLike != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "subject__like", subjectLike)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1752,10 +2422,11 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="nameEq">Filter for group name (optional)</param>
         /// <returns>GroupSummaryList</returns>
-        public GroupSummaryList GetAllGroups (int? limit = null, string after = null, string order = null, string include = null)
+        public GroupSummaryList GetAllGroups (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null)
         {
-             ApiResponse<GroupSummaryList> localVarResponse = GetAllGroupsWithHttpInfo(limit, after, order, include);
+             ApiResponse<GroupSummaryList> localVarResponse = GetAllGroupsWithHttpInfo(limit, after, order, include, nameEq);
              return localVarResponse.Data;
         }
 
@@ -1767,8 +2438,9 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="nameEq">Filter for group name (optional)</param>
         /// <returns>ApiResponse of GroupSummaryList</returns>
-        public ApiResponse< GroupSummaryList > GetAllGroupsWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null)
+        public ApiResponse< GroupSummaryList > GetAllGroupsWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null)
         {
 
             var localVarPath = "/v3/policy-groups";
@@ -1796,6 +2468,7 @@ namespace iam.Api
             if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
             if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
             if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
+            if (nameEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "name__eq", nameEq)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1829,10 +2502,11 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="nameEq">Filter for group name (optional)</param>
         /// <returns>Task of GroupSummaryList</returns>
-        public async System.Threading.Tasks.Task<GroupSummaryList> GetAllGroupsAsync (int? limit = null, string after = null, string order = null, string include = null)
+        public async System.Threading.Tasks.Task<GroupSummaryList> GetAllGroupsAsync (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null)
         {
-             ApiResponse<GroupSummaryList> localVarResponse = await GetAllGroupsAsyncWithHttpInfo(limit, after, order, include);
+             ApiResponse<GroupSummaryList> localVarResponse = await GetAllGroupsAsyncWithHttpInfo(limit, after, order, include, nameEq);
              return localVarResponse.Data;
 
         }
@@ -1845,8 +2519,9 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="nameEq">Filter for group name (optional)</param>
         /// <returns>Task of ApiResponse (GroupSummaryList)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GroupSummaryList>> GetAllGroupsAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null)
+        public async System.Threading.Tasks.Task<ApiResponse<GroupSummaryList>> GetAllGroupsAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null)
         {
 
             var localVarPath = "/v3/policy-groups";
@@ -1874,6 +2549,7 @@ namespace iam.Api
             if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
             if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
             if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
+            if (nameEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "name__eq", nameEq)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2210,10 +2886,10 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// Get trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <param name="certId">The ID of the trusted certificate to be retrieved.</param>
         /// <returns>TrustedCertificateResp</returns>
         public TrustedCertificateResp GetCertificate (string certId)
         {
@@ -2222,10 +2898,10 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// Get trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <param name="certId">The ID of the trusted certificate to be retrieved.</param>
         /// <returns>ApiResponse of TrustedCertificateResp</returns>
         public ApiResponse< TrustedCertificateResp > GetCertificateWithHttpInfo (string certId)
         {
@@ -2281,10 +2957,10 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// Get trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <param name="certId">The ID of the trusted certificate to be retrieved.</param>
         /// <returns>Task of TrustedCertificateResp</returns>
         public async System.Threading.Tasks.Task<TrustedCertificateResp> GetCertificateAsync (string certId)
         {
@@ -2294,10 +2970,10 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// Get trusted certificate by ID. An endpoint for retrieving a trusted certificate by ID.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="certId">The ID or name of the trusted certificate to be retrieved.</param>
+        /// <param name="certId">The ID of the trusted certificate to be retrieved.</param>
         /// <returns>Task of ApiResponse (TrustedCertificateResp)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<TrustedCertificateResp>> GetCertificateAsyncWithHttpInfo (string certId)
         {
@@ -2356,7 +3032,7 @@ namespace iam.Api
         /// Get group information. An endpoint for getting general information about the group.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID or name of the group to be retrieved.</param>
+        /// <param name="groupID">The ID of the group to be retrieved.</param>
         /// <returns>GroupSummary</returns>
         public GroupSummary GetGroupSummary (string groupID)
         {
@@ -2368,7 +3044,7 @@ namespace iam.Api
         /// Get group information. An endpoint for getting general information about the group.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID or name of the group to be retrieved.</param>
+        /// <param name="groupID">The ID of the group to be retrieved.</param>
         /// <returns>ApiResponse of GroupSummary</returns>
         public ApiResponse< GroupSummary > GetGroupSummaryWithHttpInfo (string groupID)
         {
@@ -2427,7 +3103,7 @@ namespace iam.Api
         /// Get group information. An endpoint for getting general information about the group.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID or name of the group to be retrieved.</param>
+        /// <param name="groupID">The ID of the group to be retrieved.</param>
         /// <returns>Task of GroupSummary</returns>
         public async System.Threading.Tasks.Task<GroupSummary> GetGroupSummaryAsync (string groupID)
         {
@@ -2440,7 +3116,7 @@ namespace iam.Api
         /// Get group information. An endpoint for getting general information about the group.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="groupID">The ID or name of the group to be retrieved.</param>
+        /// <param name="groupID">The ID of the group to be retrieved.</param>
         /// <returns>Task of ApiResponse (GroupSummary)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<GroupSummary>> GetGroupSummaryAsyncWithHttpInfo (string groupID)
         {
@@ -2496,24 +3172,181 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get account info. Returns detailed information about the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/me?include&#x3D;policies -H &#39;Authorization: Bearer API_KEY&#39;&#x60; .
+        /// Get groups of the API key. An endpoint for retrieving groups of the API key.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts. (optional)</param>
-        /// <returns>AccountInfo</returns>
-        public AccountInfo GetMyAccountInfo (string include = null)
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <returns>GroupSummaryList</returns>
+        public GroupSummaryList GetGroupsOfMyApiKey (int? limit = null, string after = null, string order = null, string include = null)
         {
-             ApiResponse<AccountInfo> localVarResponse = GetMyAccountInfoWithHttpInfo(include);
+             ApiResponse<GroupSummaryList> localVarResponse = GetGroupsOfMyApiKeyWithHttpInfo(limit, after, order, include);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get account info. Returns detailed information about the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/me?include&#x3D;policies -H &#39;Authorization: Bearer API_KEY&#39;&#x60; .
+        /// Get groups of the API key. An endpoint for retrieving groups of the API key.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <returns>ApiResponse of GroupSummaryList</returns>
+        public ApiResponse< GroupSummaryList > GetGroupsOfMyApiKeyWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null)
+        {
+
+            var localVarPath = "/v3/api-keys/me/groups";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
+            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
+            if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
+            if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetGroupsOfMyApiKey", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<GroupSummaryList>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (GroupSummaryList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GroupSummaryList)));
+        }
+
+        /// <summary>
+        /// Get groups of the API key. An endpoint for retrieving groups of the API key.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <returns>Task of GroupSummaryList</returns>
+        public async System.Threading.Tasks.Task<GroupSummaryList> GetGroupsOfMyApiKeyAsync (int? limit = null, string after = null, string order = null, string include = null)
+        {
+             ApiResponse<GroupSummaryList> localVarResponse = await GetGroupsOfMyApiKeyAsyncWithHttpInfo(limit, after, order, include);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get groups of the API key. An endpoint for retrieving groups of the API key.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <returns>Task of ApiResponse (GroupSummaryList)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<GroupSummaryList>> GetGroupsOfMyApiKeyAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null)
+        {
+
+            var localVarPath = "/v3/api-keys/me/groups";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
+            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
+            if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
+            if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetGroupsOfMyApiKey", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<GroupSummaryList>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (GroupSummaryList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GroupSummaryList)));
+        }
+
+        /// <summary>
+        /// Get account info. Returns detailed information about the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/me?include&#x3D;policies -H &#39;Authorization: Bearer API_KEY&#39;&#x60;.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts. (optional)</param>
+        /// <param name="properties">Property name to be returned from account specific properties. (optional)</param>
+        /// <returns>AccountInfo</returns>
+        public AccountInfo GetMyAccountInfo (string include = null, string properties = null)
+        {
+             ApiResponse<AccountInfo> localVarResponse = GetMyAccountInfoWithHttpInfo(include, properties);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get account info. Returns detailed information about the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/me?include&#x3D;policies -H &#39;Authorization: Bearer API_KEY&#39;&#x60;.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts. (optional)</param>
+        /// <param name="properties">Property name to be returned from account specific properties. (optional)</param>
         /// <returns>ApiResponse of AccountInfo</returns>
-        public ApiResponse< AccountInfo > GetMyAccountInfoWithHttpInfo (string include = null)
+        public ApiResponse< AccountInfo > GetMyAccountInfoWithHttpInfo (string include = null, string properties = null)
         {
 
             var localVarPath = "/v3/accounts/me";
@@ -2538,6 +3371,7 @@ namespace iam.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
+            if (properties != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "properties", properties)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2564,25 +3398,27 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get account info. Returns detailed information about the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/me?include&#x3D;policies -H &#39;Authorization: Bearer API_KEY&#39;&#x60; .
+        /// Get account info. Returns detailed information about the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/me?include&#x3D;policies -H &#39;Authorization: Bearer API_KEY&#39;&#x60;.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts. (optional)</param>
+        /// <param name="properties">Property name to be returned from account specific properties. (optional)</param>
         /// <returns>Task of AccountInfo</returns>
-        public async System.Threading.Tasks.Task<AccountInfo> GetMyAccountInfoAsync (string include = null)
+        public async System.Threading.Tasks.Task<AccountInfo> GetMyAccountInfoAsync (string include = null, string properties = null)
         {
-             ApiResponse<AccountInfo> localVarResponse = await GetMyAccountInfoAsyncWithHttpInfo(include);
+             ApiResponse<AccountInfo> localVarResponse = await GetMyAccountInfoAsyncWithHttpInfo(include, properties);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Get account info. Returns detailed information about the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/me?include&#x3D;policies -H &#39;Authorization: Bearer API_KEY&#39;&#x60; .
+        /// Get account info. Returns detailed information about the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/me?include&#x3D;policies -H &#39;Authorization: Bearer API_KEY&#39;&#x60;.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="include">Comma separated additional data to return. Currently supported: limits, policies, sub_accounts. (optional)</param>
+        /// <param name="properties">Property name to be returned from account specific properties. (optional)</param>
         /// <returns>Task of ApiResponse (AccountInfo)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<AccountInfo>> GetMyAccountInfoAsyncWithHttpInfo (string include = null)
+        public async System.Threading.Tasks.Task<ApiResponse<AccountInfo>> GetMyAccountInfoAsyncWithHttpInfo (string include = null, string properties = null)
         {
 
             var localVarPath = "/v3/accounts/me";
@@ -2607,6 +3443,7 @@ namespace iam.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
+            if (properties != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "properties", properties)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2764,24 +3601,183 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Details of the current user. An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// Get groups of the user. An endpoint for retrieving groups of the user.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
-        /// <returns>MyUserInfoResp</returns>
-        public MyUserInfoResp GetMyUser (string scratchCodes = null)
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <returns>GroupSummaryList</returns>
+        public GroupSummaryList GetMyGroups (int? limit = null, string after = null, string order = null, string include = null)
         {
-             ApiResponse<MyUserInfoResp> localVarResponse = GetMyUserWithHttpInfo(scratchCodes);
+             ApiResponse<GroupSummaryList> localVarResponse = GetMyGroupsWithHttpInfo(limit, after, order, include);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Details of the current user. An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// Get groups of the user. An endpoint for retrieving groups of the user.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <returns>ApiResponse of GroupSummaryList</returns>
+        public ApiResponse< GroupSummaryList > GetMyGroupsWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null)
+        {
+
+            var localVarPath = "/v3/users/me/groups";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
+            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
+            if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
+            if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetMyGroups", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<GroupSummaryList>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (GroupSummaryList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GroupSummaryList)));
+        }
+
+        /// <summary>
+        /// Get groups of the user. An endpoint for retrieving groups of the user.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <returns>Task of GroupSummaryList</returns>
+        public async System.Threading.Tasks.Task<GroupSummaryList> GetMyGroupsAsync (int? limit = null, string after = null, string order = null, string include = null)
+        {
+             ApiResponse<GroupSummaryList> localVarResponse = await GetMyGroupsAsyncWithHttpInfo(limit, after, order, include);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get groups of the user. An endpoint for retrieving groups of the user.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <returns>Task of ApiResponse (GroupSummaryList)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<GroupSummaryList>> GetMyGroupsAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null)
+        {
+
+            var localVarPath = "/v3/users/me/groups";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
+            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
+            if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
+            if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetMyGroups", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<GroupSummaryList>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (GroupSummaryList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GroupSummaryList)));
+        }
+
+        /// <summary>
+        /// Details of the current user. An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
+        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: active_sessions (optional)</param>
+        /// <returns>MyUserInfoResp</returns>
+        public MyUserInfoResp GetMyUser (string scratchCodes = null, string properties = null, string include = null)
+        {
+             ApiResponse<MyUserInfoResp> localVarResponse = GetMyUserWithHttpInfo(scratchCodes, properties, include);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Details of the current user. An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
+        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: active_sessions (optional)</param>
         /// <returns>ApiResponse of MyUserInfoResp</returns>
-        public ApiResponse< MyUserInfoResp > GetMyUserWithHttpInfo (string scratchCodes = null)
+        public ApiResponse< MyUserInfoResp > GetMyUserWithHttpInfo (string scratchCodes = null, string properties = null, string include = null)
         {
 
             var localVarPath = "/v3/users/me";
@@ -2806,6 +3802,8 @@ namespace iam.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (scratchCodes != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "scratch_codes", scratchCodes)); // query parameter
+            if (properties != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "properties", properties)); // query parameter
+            if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2832,25 +3830,29 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Details of the current user. An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// Details of the current user. An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
+        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: active_sessions (optional)</param>
         /// <returns>Task of MyUserInfoResp</returns>
-        public async System.Threading.Tasks.Task<MyUserInfoResp> GetMyUserAsync (string scratchCodes = null)
+        public async System.Threading.Tasks.Task<MyUserInfoResp> GetMyUserAsync (string scratchCodes = null, string properties = null, string include = null)
         {
-             ApiResponse<MyUserInfoResp> localVarResponse = await GetMyUserAsyncWithHttpInfo(scratchCodes);
+             ApiResponse<MyUserInfoResp> localVarResponse = await GetMyUserAsyncWithHttpInfo(scratchCodes, properties, include);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Details of the current user. An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// Details of the current user. An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
+        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
+        /// <param name="include">Comma separated additional data to return. Currently supported: active_sessions (optional)</param>
         /// <returns>Task of ApiResponse (MyUserInfoResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<MyUserInfoResp>> GetMyUserAsyncWithHttpInfo (string scratchCodes = null)
+        public async System.Threading.Tasks.Task<ApiResponse<MyUserInfoResp>> GetMyUserAsyncWithHttpInfo (string scratchCodes = null, string properties = null, string include = null)
         {
 
             var localVarPath = "/v3/users/me";
@@ -2875,6 +3877,8 @@ namespace iam.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (scratchCodes != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "scratch_codes", scratchCodes)); // query parameter
+            if (properties != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "properties", properties)); // query parameter
+            if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -3072,6 +4076,324 @@ namespace iam.Api
         }
 
         /// <summary>
+        /// Remove user from a group. An endpoint for removing user from groups.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>UpdatedResponse</returns>
+        public UpdatedResponse RemoveMeFromGroups (List<string> body)
+        {
+             ApiResponse<UpdatedResponse> localVarResponse = RemoveMeFromGroupsWithHttpInfo(body);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove user from a group. An endpoint for removing user from groups.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>ApiResponse of UpdatedResponse</returns>
+        public ApiResponse< UpdatedResponse > RemoveMeFromGroupsWithHttpInfo (List<string> body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->RemoveMeFromGroups");
+
+            var localVarPath = "/v3/users/me/groups";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("RemoveMeFromGroups", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+        }
+
+        /// <summary>
+        /// Remove user from a group. An endpoint for removing user from groups.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>Task of UpdatedResponse</returns>
+        public async System.Threading.Tasks.Task<UpdatedResponse> RemoveMeFromGroupsAsync (List<string> body)
+        {
+             ApiResponse<UpdatedResponse> localVarResponse = await RemoveMeFromGroupsAsyncWithHttpInfo(body);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Remove user from a group. An endpoint for removing user from groups.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> RemoveMeFromGroupsAsyncWithHttpInfo (List<string> body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->RemoveMeFromGroups");
+
+            var localVarPath = "/v3/users/me/groups";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("RemoveMeFromGroups", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+        }
+
+        /// <summary>
+        /// Remove API key from groups. An endpoint for removing API key from groups.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>UpdatedResponse</returns>
+        public UpdatedResponse RemoveMyApiKeyFromGroups (List<string> body)
+        {
+             ApiResponse<UpdatedResponse> localVarResponse = RemoveMyApiKeyFromGroupsWithHttpInfo(body);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove API key from groups. An endpoint for removing API key from groups.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>ApiResponse of UpdatedResponse</returns>
+        public ApiResponse< UpdatedResponse > RemoveMyApiKeyFromGroupsWithHttpInfo (List<string> body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->RemoveMyApiKeyFromGroups");
+
+            var localVarPath = "/v3/api-keys/me/groups";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("RemoveMyApiKeyFromGroups", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+        }
+
+        /// <summary>
+        /// Remove API key from groups. An endpoint for removing API key from groups.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>Task of UpdatedResponse</returns>
+        public async System.Threading.Tasks.Task<UpdatedResponse> RemoveMyApiKeyFromGroupsAsync (List<string> body)
+        {
+             ApiResponse<UpdatedResponse> localVarResponse = await RemoveMyApiKeyFromGroupsAsyncWithHttpInfo(body);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Remove API key from groups. An endpoint for removing API key from groups.
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">A list of IDs of the groups to be updated.</param>
+        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> RemoveMyApiKeyFromGroupsAsyncWithHttpInfo (List<string> body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->RemoveMyApiKeyFromGroups");
+
+            var localVarPath = "/v3/api-keys/me/groups";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("RemoveMyApiKeyFromGroups", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
+        }
+
+        /// <summary>
         /// Update API key details. An endpoint for updating API key details.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
@@ -3241,7 +4563,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update trusted certificate. An endpoint for updating existing trusted certificates.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// Update trusted certificate. An endpoint for updating existing trusted certificates.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
@@ -3254,7 +4576,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update trusted certificate. An endpoint for updating existing trusted certificates.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// Update trusted certificate. An endpoint for updating existing trusted certificates.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
@@ -3326,7 +4648,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update trusted certificate. An endpoint for updating existing trusted certificates.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// Update trusted certificate. An endpoint for updating existing trusted certificates.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
@@ -3340,7 +4662,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update trusted certificate. An endpoint for updating existing trusted certificates.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// Update trusted certificate. An endpoint for updating existing trusted certificates.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -d {\&quot;description\&quot;: \&quot;very important cert\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be updated.</param>
@@ -3569,7 +4891,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update user details. An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// Update user details. An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
@@ -3581,7 +4903,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update user details. An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// Update user details. An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
@@ -3648,7 +4970,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update user details. An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// Update user details. An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>
@@ -3661,7 +4983,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update user details. An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60; 
+        /// Update user details. An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">New attributes for the logged in user.</param>

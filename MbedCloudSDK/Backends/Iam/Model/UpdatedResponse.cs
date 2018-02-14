@@ -32,9 +32,9 @@ namespace iam.Model
     public partial class UpdatedResponse :  IEquatable<UpdatedResponse>, IValidatableObject
     {
         /// <summary>
-        /// Entity name: &#39;user&#39;, &#39;apikey&#39;, &#39;group&#39; or &#39;account&#39;.
+        /// Entity name: &#39;user&#39;, &#39;apikey&#39;, &#39;group&#39;, &#39;policy&#39; or &#39;account&#39;.
         /// </summary>
-        /// <value>Entity name: &#39;user&#39;, &#39;apikey&#39;, &#39;group&#39; or &#39;account&#39;.</value>
+        /// <value>Entity name: &#39;user&#39;, &#39;apikey&#39;, &#39;group&#39;, &#39;policy&#39; or &#39;account&#39;.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ObjectEnum
         {
@@ -85,7 +85,19 @@ namespace iam.Model
             /// Enum Error for "error"
             /// </summary>
             [EnumMember(Value = "error")]
-            Error
+            Error,
+            
+            /// <summary>
+            /// Enum Policy for "policy"
+            /// </summary>
+            [EnumMember(Value = "policy")]
+            Policy,
+            
+            /// <summary>
+            /// Enum IdentityProvider for "identity-provider"
+            /// </summary>
+            [EnumMember(Value = "identity-provider")]
+            IdentityProvider
         }
 
         /// <summary>
@@ -212,9 +224,9 @@ namespace iam.Model
         }
 
         /// <summary>
-        /// Entity name: &#39;user&#39;, &#39;apikey&#39;, &#39;group&#39; or &#39;account&#39;.
+        /// Entity name: &#39;user&#39;, &#39;apikey&#39;, &#39;group&#39;, &#39;policy&#39; or &#39;account&#39;.
         /// </summary>
-        /// <value>Entity name: &#39;user&#39;, &#39;apikey&#39;, &#39;group&#39; or &#39;account&#39;.</value>
+        /// <value>Entity name: &#39;user&#39;, &#39;apikey&#39;, &#39;group&#39;, &#39;policy&#39; or &#39;account&#39;.</value>
         [DataMember(Name="object", EmitDefaultValue=false)]
         public ObjectEnum? _Object { get; set; }
         /// <summary>
@@ -232,7 +244,7 @@ namespace iam.Model
         /// Initializes a new instance of the <see cref="UpdatedResponse" /> class.
         /// </summary>
         /// <param name="Code">Response code. (required).</param>
-        /// <param name="_Object">Entity name: &#39;user&#39;, &#39;apikey&#39;, &#39;group&#39; or &#39;account&#39;. (required).</param>
+        /// <param name="_Object">Entity name: &#39;user&#39;, &#39;apikey&#39;, &#39;group&#39;, &#39;policy&#39; or &#39;account&#39;. (required).</param>
         /// <param name="RequestId">Request ID. (required).</param>
         /// <param name="Message">A human readable message with detailed info. (required).</param>
         /// <param name="Type">Response type: success. (required).</param>

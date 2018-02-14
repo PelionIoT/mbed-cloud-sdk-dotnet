@@ -26,10 +26,10 @@ using SwaggerDateConverter = iam.Client.SwaggerDateConverter;
 namespace iam.Model
 {
     /// <summary>
-    /// This object represents a trusted certificate in update requests.
+    /// This object represents a trusted certificate in upload requests.
     /// </summary>
     [DataContract]
-    public partial class TrustedCertificateUpdateReq :  IEquatable<TrustedCertificateUpdateReq>, IValidatableObject
+    public partial class TrustedCertificateRootReq :  IEquatable<TrustedCertificateRootReq>, IValidatableObject
     {
         /// <summary>
         /// Status of the certificate.
@@ -86,22 +86,51 @@ namespace iam.Model
         [DataMember(Name="service", EmitDefaultValue=false)]
         public ServiceEnum? Service { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="TrustedCertificateUpdateReq" /> class.
+        /// Initializes a new instance of the <see cref="TrustedCertificateRootReq" /> class.
+        /// </summary>
+        [JsonConstructorAttribute]
+        protected TrustedCertificateRootReq() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TrustedCertificateRootReq" /> class.
         /// </summary>
         /// <param name="Status">Status of the certificate..</param>
         /// <param name="EnrollmentMode">If true, signature parameter is not required. Default value is false..</param>
-        /// <param name="Certificate">X509.v3 trusted certificate in PEM format..</param>
-        /// <param name="Name">Certificate name, not longer than 100 characters..</param>
-        /// <param name="Service">Service name where the certificate must be used..</param>
-        /// <param name="Signature">Base64 encoded signature of the account ID signed by the certificate whose data to be updated. Signature must be hashed with SHA256..</param>
+        /// <param name="Certificate">X509.v3 trusted certificate in PEM format. (required).</param>
+        /// <param name="Name">Certificate name, not longer than 100 characters. (required).</param>
+        /// <param name="Service">Service name where the certificate must be used. (required).</param>
+        /// <param name="Signature">Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. Optional if enrollment_mode is &#39;true&#39;..</param>
         /// <param name="Description">Human readable description of this certificate, not longer than 500 characters..</param>
-        public TrustedCertificateUpdateReq(StatusEnum? Status = default(StatusEnum?), bool? EnrollmentMode = default(bool?), string Certificate = default(string), string Name = default(string), ServiceEnum? Service = default(ServiceEnum?), string Signature = default(string), string Description = default(string))
+        public TrustedCertificateRootReq(StatusEnum? Status = default(StatusEnum?), bool? EnrollmentMode = default(bool?), string Certificate = default(string), string Name = default(string), ServiceEnum? Service = default(ServiceEnum?), string Signature = default(string), string Description = default(string))
         {
+            // to ensure "Certificate" is required (not null)
+            if (Certificate == null)
+            {
+                throw new InvalidDataException("Certificate is a required property for TrustedCertificateRootReq and cannot be null");
+            }
+            else
+            {
+                this.Certificate = Certificate;
+            }
+            // to ensure "Name" is required (not null)
+            if (Name == null)
+            {
+                throw new InvalidDataException("Name is a required property for TrustedCertificateRootReq and cannot be null");
+            }
+            else
+            {
+                this.Name = Name;
+            }
+            // to ensure "Service" is required (not null)
+            if (Service == null)
+            {
+                throw new InvalidDataException("Service is a required property for TrustedCertificateRootReq and cannot be null");
+            }
+            else
+            {
+                this.Service = Service;
+            }
             this.Status = Status;
             this.EnrollmentMode = EnrollmentMode;
-            this.Certificate = Certificate;
-            this.Name = Name;
-            this.Service = Service;
             this.Signature = Signature;
             this.Description = Description;
         }
@@ -130,9 +159,9 @@ namespace iam.Model
 
 
         /// <summary>
-        /// Base64 encoded signature of the account ID signed by the certificate whose data to be updated. Signature must be hashed with SHA256.
+        /// Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. Optional if enrollment_mode is &#39;true&#39;.
         /// </summary>
-        /// <value>Base64 encoded signature of the account ID signed by the certificate whose data to be updated. Signature must be hashed with SHA256.</value>
+        /// <value>Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. Optional if enrollment_mode is &#39;true&#39;.</value>
         [DataMember(Name="signature", EmitDefaultValue=false)]
         public string Signature { get; set; }
 
@@ -150,7 +179,7 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class TrustedCertificateUpdateReq {\n");
+            sb.Append("class TrustedCertificateRootReq {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  EnrollmentMode: ").Append(EnrollmentMode).Append("\n");
             sb.Append("  Certificate: ").Append(Certificate).Append("\n");
@@ -178,15 +207,15 @@ namespace iam.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TrustedCertificateUpdateReq);
+            return this.Equals(input as TrustedCertificateRootReq);
         }
 
         /// <summary>
-        /// Returns true if TrustedCertificateUpdateReq instances are equal
+        /// Returns true if TrustedCertificateRootReq instances are equal
         /// </summary>
-        /// <param name="input">Instance of TrustedCertificateUpdateReq to be compared</param>
+        /// <param name="input">Instance of TrustedCertificateRootReq to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TrustedCertificateUpdateReq input)
+        public bool Equals(TrustedCertificateRootReq input)
         {
             if (input == null)
                 return false;

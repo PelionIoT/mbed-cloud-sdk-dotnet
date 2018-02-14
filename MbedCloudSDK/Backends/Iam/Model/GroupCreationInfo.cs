@@ -26,35 +26,48 @@ using SwaggerDateConverter = iam.Client.SwaggerDateConverter;
 namespace iam.Model
 {
     /// <summary>
-    /// This object represents arrays of user and API key IDs.
+    /// This object is used when creating new groups.
     /// </summary>
     [DataContract]
-    public partial class SubjectList :  IEquatable<SubjectList>, IValidatableObject
+    public partial class GroupCreationInfo :  IEquatable<GroupCreationInfo>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SubjectList" /> class.
+        /// Initializes a new instance of the <see cref="GroupCreationInfo" /> class.
         /// </summary>
-        /// <param name="Apikeys">An array of API key IDs..</param>
-        /// <param name="Users">An array of user IDs..</param>
-        public SubjectList(List<string> Apikeys = default(List<string>), List<string> Users = default(List<string>))
+        [JsonConstructorAttribute]
+        protected GroupCreationInfo() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GroupCreationInfo" /> class.
+        /// </summary>
+        /// <param name="Name">The group name, not longer than 100 characters. (required).</param>
+        /// <param name="Members">The members of the group as arrays of user and API key UUIDs..</param>
+        public GroupCreationInfo(string Name = default(string), SubjectList Members = default(SubjectList))
         {
-            this.Apikeys = Apikeys;
-            this.Users = Users;
+            // to ensure "Name" is required (not null)
+            if (Name == null)
+            {
+                throw new InvalidDataException("Name is a required property for GroupCreationInfo and cannot be null");
+            }
+            else
+            {
+                this.Name = Name;
+            }
+            this.Members = Members;
         }
         
         /// <summary>
-        /// An array of API key IDs.
+        /// The group name, not longer than 100 characters.
         /// </summary>
-        /// <value>An array of API key IDs.</value>
-        [DataMember(Name="apikeys", EmitDefaultValue=false)]
-        public List<string> Apikeys { get; set; }
+        /// <value>The group name, not longer than 100 characters.</value>
+        [DataMember(Name="name", EmitDefaultValue=false)]
+        public string Name { get; set; }
 
         /// <summary>
-        /// An array of user IDs.
+        /// The members of the group as arrays of user and API key UUIDs.
         /// </summary>
-        /// <value>An array of user IDs.</value>
-        [DataMember(Name="users", EmitDefaultValue=false)]
-        public List<string> Users { get; set; }
+        /// <value>The members of the group as arrays of user and API key UUIDs.</value>
+        [DataMember(Name="members", EmitDefaultValue=false)]
+        public SubjectList Members { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +76,9 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class SubjectList {\n");
-            sb.Append("  Apikeys: ").Append(Apikeys).Append("\n");
-            sb.Append("  Users: ").Append(Users).Append("\n");
+            sb.Append("class GroupCreationInfo {\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Members: ").Append(Members).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -86,29 +99,29 @@ namespace iam.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as SubjectList);
+            return this.Equals(input as GroupCreationInfo);
         }
 
         /// <summary>
-        /// Returns true if SubjectList instances are equal
+        /// Returns true if GroupCreationInfo instances are equal
         /// </summary>
-        /// <param name="input">Instance of SubjectList to be compared</param>
+        /// <param name="input">Instance of GroupCreationInfo to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SubjectList input)
+        public bool Equals(GroupCreationInfo input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.Apikeys == input.Apikeys ||
-                    this.Apikeys != null &&
-                    this.Apikeys.SequenceEqual(input.Apikeys)
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
                 ) && 
                 (
-                    this.Users == input.Users ||
-                    this.Users != null &&
-                    this.Users.SequenceEqual(input.Users)
+                    this.Members == input.Members ||
+                    (this.Members != null &&
+                    this.Members.Equals(input.Members))
                 );
         }
 
@@ -121,10 +134,10 @@ namespace iam.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Apikeys != null)
-                    hashCode = hashCode * 59 + this.Apikeys.GetHashCode();
-                if (this.Users != null)
-                    hashCode = hashCode * 59 + this.Users.GetHashCode();
+                if (this.Name != null)
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.Members != null)
+                    hashCode = hashCode * 59 + this.Members.GetHashCode();
                 return hashCode;
             }
         }

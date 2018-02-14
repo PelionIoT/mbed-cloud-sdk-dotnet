@@ -65,6 +65,33 @@ namespace iam.Model
         }
 
         /// <summary>
+        /// The enforcement status of the multi-factor authentication, either &#39;enforced&#39; or &#39;optional&#39;.
+        /// </summary>
+        /// <value>The enforcement status of the multi-factor authentication, either &#39;enforced&#39; or &#39;optional&#39;.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum MfaStatusEnum
+        {
+            
+            /// <summary>
+            /// Enum Enabled for "enabled"
+            /// </summary>
+            [EnumMember(Value = "enabled")]
+            Enabled,
+            
+            /// <summary>
+            /// Enum Enforced for "enforced"
+            /// </summary>
+            [EnumMember(Value = "enforced")]
+            Enforced,
+            
+            /// <summary>
+            /// Enum Optional for "optional"
+            /// </summary>
+            [EnumMember(Value = "optional")]
+            Optional
+        }
+
+        /// <summary>
         /// Entity name: always &#39;account&#39;
         /// </summary>
         /// <value>Entity name: always &#39;account&#39;</value>
@@ -118,7 +145,19 @@ namespace iam.Model
             /// Enum Error for "error"
             /// </summary>
             [EnumMember(Value = "error")]
-            Error
+            Error,
+            
+            /// <summary>
+            /// Enum Policy for "policy"
+            /// </summary>
+            [EnumMember(Value = "policy")]
+            Policy,
+            
+            /// <summary>
+            /// Enum IdentityProvider for "identity-provider"
+            /// </summary>
+            [EnumMember(Value = "identity-provider")]
+            IdentityProvider
         }
 
         /// <summary>
@@ -127,6 +166,12 @@ namespace iam.Model
         /// <value>The status of the account.</value>
         [DataMember(Name="status", EmitDefaultValue=false)]
         public StatusEnum? Status { get; set; }
+        /// <summary>
+        /// The enforcement status of the multi-factor authentication, either &#39;enforced&#39; or &#39;optional&#39;.
+        /// </summary>
+        /// <value>The enforcement status of the multi-factor authentication, either &#39;enforced&#39; or &#39;optional&#39;.</value>
+        [DataMember(Name="mfa_status", EmitDefaultValue=false)]
+        public MfaStatusEnum? MfaStatus { get; set; }
         /// <summary>
         /// Entity name: always &#39;account&#39;
         /// </summary>
@@ -144,19 +189,24 @@ namespace iam.Model
         /// <param name="EndMarket">Account end market. (required).</param>
         /// <param name="Status">The status of the account. (required).</param>
         /// <param name="PasswordPolicy">The password policy for this account..</param>
+        /// <param name="SalesContact">Email address of the sales contact..</param>
+        /// <param name="UpdatedAt">Last update UTC time RFC3339..</param>
         /// <param name="PostalCode">The postal code part of the postal address..</param>
+        /// <param name="AccountProperties">Account specific custom properties..</param>
+        /// <param name="CustomerNumber">Customer number of the customer..</param>
         /// <param name="Id">Account ID. (required).</param>
         /// <param name="Aliases">An array of aliases. (required).</param>
         /// <param name="AddressLine2">Postal address line 2..</param>
         /// <param name="City">The city part of the postal address..</param>
         /// <param name="AddressLine1">Postal address line 1..</param>
         /// <param name="DisplayName">The display name for the account..</param>
+        /// <param name="MfaStatus">The enforcement status of the multi-factor authentication, either &#39;enforced&#39; or &#39;optional&#39;..</param>
         /// <param name="ParentId">The ID of the parent account, if it has any..</param>
         /// <param name="State">The state part of the postal address..</param>
         /// <param name="Etag">API resource entity version. (required).</param>
-        /// <param name="IsProvisioningAllowed">Flag (true/false) indicating whether Factory Tool is allowed to download or not. (required).</param>
         /// <param name="Email">The company email address for this account..</param>
         /// <param name="PhoneNumber">The phone number of a representative of the company..</param>
+        /// <param name="ReferenceNote">A reference note for updating the status of the account.</param>
         /// <param name="Company">The name of the company..</param>
         /// <param name="_Object">Entity name: always &#39;account&#39; (required).</param>
         /// <param name="Reason">A reason note for updating the status of the account.</param>
@@ -167,10 +217,13 @@ namespace iam.Model
         /// <param name="Country">The country part of the postal address..</param>
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
         /// <param name="IdleTimeout">The reference token expiration time in minutes for this account..</param>
+        /// <param name="ContractNumber">Contract number of the customer..</param>
+        /// <param name="ExpirationWarningThreshold">Indicates how many days before the account expiration a notification email should be sent..</param>
         /// <param name="Contact">The name of the contact person for this account..</param>
         /// <param name="Policies">List of policies if requested..</param>
+        /// <param name="NotificationEmails">A list of notification email addresses..</param>
         /// <param name="TemplateId">Account template ID..</param>
-        public AccountInfo(string EndMarket = default(string), StatusEnum? Status = default(StatusEnum?), PasswordPolicy PasswordPolicy = default(PasswordPolicy), string PostalCode = default(string), string Id = default(string), List<string> Aliases = default(List<string>), string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string ParentId = default(string), string State = default(string), string Etag = default(string), bool? IsProvisioningAllowed = default(bool?), string Email = default(string), string PhoneNumber = default(string), string Company = default(string), ObjectEnum? _Object = default(ObjectEnum?), string Reason = default(string), DateTime? UpgradedAt = default(DateTime?), string Tier = default(string), List<AccountInfo> SubAccounts = default(List<AccountInfo>), Dictionary<string, string> Limits = default(Dictionary<string, string>), string Country = default(string), DateTime? CreatedAt = default(DateTime?), string IdleTimeout = default(string), string Contact = default(string), List<FeaturePolicy> Policies = default(List<FeaturePolicy>), string TemplateId = default(string))
+        public AccountInfo(string EndMarket = default(string), StatusEnum? Status = default(StatusEnum?), PasswordPolicy PasswordPolicy = default(PasswordPolicy), string SalesContact = default(string), DateTime? UpdatedAt = default(DateTime?), string PostalCode = default(string), Dictionary<string, Dictionary<string, string>> AccountProperties = default(Dictionary<string, Dictionary<string, string>>), string CustomerNumber = default(string), string Id = default(string), List<string> Aliases = default(List<string>), string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), MfaStatusEnum? MfaStatus = default(MfaStatusEnum?), string ParentId = default(string), string State = default(string), string Etag = default(string), string Email = default(string), string PhoneNumber = default(string), string ReferenceNote = default(string), string Company = default(string), ObjectEnum? _Object = default(ObjectEnum?), string Reason = default(string), DateTime? UpgradedAt = default(DateTime?), string Tier = default(string), List<AccountInfo> SubAccounts = default(List<AccountInfo>), Dictionary<string, string> Limits = default(Dictionary<string, string>), string Country = default(string), DateTime? CreatedAt = default(DateTime?), string IdleTimeout = default(string), string ContractNumber = default(string), string ExpirationWarningThreshold = default(string), string Contact = default(string), List<FeaturePolicy> Policies = default(List<FeaturePolicy>), List<string> NotificationEmails = default(List<string>), string TemplateId = default(string))
         {
             // to ensure "EndMarket" is required (not null)
             if (EndMarket == null)
@@ -217,15 +270,6 @@ namespace iam.Model
             {
                 this.Etag = Etag;
             }
-            // to ensure "IsProvisioningAllowed" is required (not null)
-            if (IsProvisioningAllowed == null)
-            {
-                throw new InvalidDataException("IsProvisioningAllowed is a required property for AccountInfo and cannot be null");
-            }
-            else
-            {
-                this.IsProvisioningAllowed = IsProvisioningAllowed;
-            }
             // to ensure "_Object" is required (not null)
             if (_Object == null)
             {
@@ -245,15 +289,21 @@ namespace iam.Model
                 this.Tier = Tier;
             }
             this.PasswordPolicy = PasswordPolicy;
+            this.SalesContact = SalesContact;
+            this.UpdatedAt = UpdatedAt;
             this.PostalCode = PostalCode;
+            this.AccountProperties = AccountProperties;
+            this.CustomerNumber = CustomerNumber;
             this.AddressLine2 = AddressLine2;
             this.City = City;
             this.AddressLine1 = AddressLine1;
             this.DisplayName = DisplayName;
+            this.MfaStatus = MfaStatus;
             this.ParentId = ParentId;
             this.State = State;
             this.Email = Email;
             this.PhoneNumber = PhoneNumber;
+            this.ReferenceNote = ReferenceNote;
             this.Company = Company;
             this.Reason = Reason;
             this.UpgradedAt = UpgradedAt;
@@ -262,8 +312,11 @@ namespace iam.Model
             this.Country = Country;
             this.CreatedAt = CreatedAt;
             this.IdleTimeout = IdleTimeout;
+            this.ContractNumber = ContractNumber;
+            this.ExpirationWarningThreshold = ExpirationWarningThreshold;
             this.Contact = Contact;
             this.Policies = Policies;
+            this.NotificationEmails = NotificationEmails;
             this.TemplateId = TemplateId;
         }
         
@@ -283,11 +336,39 @@ namespace iam.Model
         public PasswordPolicy PasswordPolicy { get; set; }
 
         /// <summary>
+        /// Email address of the sales contact.
+        /// </summary>
+        /// <value>Email address of the sales contact.</value>
+        [DataMember(Name="sales_contact", EmitDefaultValue=false)]
+        public string SalesContact { get; set; }
+
+        /// <summary>
+        /// Last update UTC time RFC3339.
+        /// </summary>
+        /// <value>Last update UTC time RFC3339.</value>
+        [DataMember(Name="updated_at", EmitDefaultValue=false)]
+        public DateTime? UpdatedAt { get; set; }
+
+        /// <summary>
         /// The postal code part of the postal address.
         /// </summary>
         /// <value>The postal code part of the postal address.</value>
         [DataMember(Name="postal_code", EmitDefaultValue=false)]
         public string PostalCode { get; set; }
+
+        /// <summary>
+        /// Account specific custom properties.
+        /// </summary>
+        /// <value>Account specific custom properties.</value>
+        [DataMember(Name="account_properties", EmitDefaultValue=false)]
+        public Dictionary<string, Dictionary<string, string>> AccountProperties { get; set; }
+
+        /// <summary>
+        /// Customer number of the customer.
+        /// </summary>
+        /// <value>Customer number of the customer.</value>
+        [DataMember(Name="customer_number", EmitDefaultValue=false)]
+        public string CustomerNumber { get; set; }
 
         /// <summary>
         /// Account ID.
@@ -331,6 +412,7 @@ namespace iam.Model
         [DataMember(Name="display_name", EmitDefaultValue=false)]
         public string DisplayName { get; set; }
 
+
         /// <summary>
         /// The ID of the parent account, if it has any.
         /// </summary>
@@ -353,13 +435,6 @@ namespace iam.Model
         public string Etag { get; set; }
 
         /// <summary>
-        /// Flag (true/false) indicating whether Factory Tool is allowed to download or not.
-        /// </summary>
-        /// <value>Flag (true/false) indicating whether Factory Tool is allowed to download or not.</value>
-        [DataMember(Name="is_provisioning_allowed", EmitDefaultValue=false)]
-        public bool? IsProvisioningAllowed { get; set; }
-
-        /// <summary>
         /// The company email address for this account.
         /// </summary>
         /// <value>The company email address for this account.</value>
@@ -372,6 +447,13 @@ namespace iam.Model
         /// <value>The phone number of a representative of the company.</value>
         [DataMember(Name="phone_number", EmitDefaultValue=false)]
         public string PhoneNumber { get; set; }
+
+        /// <summary>
+        /// A reference note for updating the status of the account
+        /// </summary>
+        /// <value>A reference note for updating the status of the account</value>
+        [DataMember(Name="reference_note", EmitDefaultValue=false)]
+        public string ReferenceNote { get; set; }
 
         /// <summary>
         /// The name of the company.
@@ -438,6 +520,20 @@ namespace iam.Model
         public string IdleTimeout { get; set; }
 
         /// <summary>
+        /// Contract number of the customer.
+        /// </summary>
+        /// <value>Contract number of the customer.</value>
+        [DataMember(Name="contract_number", EmitDefaultValue=false)]
+        public string ContractNumber { get; set; }
+
+        /// <summary>
+        /// Indicates how many days before the account expiration a notification email should be sent.
+        /// </summary>
+        /// <value>Indicates how many days before the account expiration a notification email should be sent.</value>
+        [DataMember(Name="expiration_warning_threshold", EmitDefaultValue=false)]
+        public string ExpirationWarningThreshold { get; set; }
+
+        /// <summary>
         /// The name of the contact person for this account.
         /// </summary>
         /// <value>The name of the contact person for this account.</value>
@@ -450,6 +546,13 @@ namespace iam.Model
         /// <value>List of policies if requested.</value>
         [DataMember(Name="policies", EmitDefaultValue=false)]
         public List<FeaturePolicy> Policies { get; set; }
+
+        /// <summary>
+        /// A list of notification email addresses.
+        /// </summary>
+        /// <value>A list of notification email addresses.</value>
+        [DataMember(Name="notification_emails", EmitDefaultValue=false)]
+        public List<string> NotificationEmails { get; set; }
 
         /// <summary>
         /// Account template ID.
@@ -469,19 +572,24 @@ namespace iam.Model
             sb.Append("  EndMarket: ").Append(EndMarket).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  PasswordPolicy: ").Append(PasswordPolicy).Append("\n");
+            sb.Append("  SalesContact: ").Append(SalesContact).Append("\n");
+            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");
+            sb.Append("  AccountProperties: ").Append(AccountProperties).Append("\n");
+            sb.Append("  CustomerNumber: ").Append(CustomerNumber).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Aliases: ").Append(Aliases).Append("\n");
             sb.Append("  AddressLine2: ").Append(AddressLine2).Append("\n");
             sb.Append("  City: ").Append(City).Append("\n");
             sb.Append("  AddressLine1: ").Append(AddressLine1).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
+            sb.Append("  MfaStatus: ").Append(MfaStatus).Append("\n");
             sb.Append("  ParentId: ").Append(ParentId).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
-            sb.Append("  IsProvisioningAllowed: ").Append(IsProvisioningAllowed).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
+            sb.Append("  ReferenceNote: ").Append(ReferenceNote).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  Reason: ").Append(Reason).Append("\n");
@@ -492,8 +600,11 @@ namespace iam.Model
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  IdleTimeout: ").Append(IdleTimeout).Append("\n");
+            sb.Append("  ContractNumber: ").Append(ContractNumber).Append("\n");
+            sb.Append("  ExpirationWarningThreshold: ").Append(ExpirationWarningThreshold).Append("\n");
             sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  Policies: ").Append(Policies).Append("\n");
+            sb.Append("  NotificationEmails: ").Append(NotificationEmails).Append("\n");
             sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -545,9 +656,29 @@ namespace iam.Model
                     this.PasswordPolicy.Equals(input.PasswordPolicy))
                 ) && 
                 (
+                    this.SalesContact == input.SalesContact ||
+                    (this.SalesContact != null &&
+                    this.SalesContact.Equals(input.SalesContact))
+                ) && 
+                (
+                    this.UpdatedAt == input.UpdatedAt ||
+                    (this.UpdatedAt != null &&
+                    this.UpdatedAt.Equals(input.UpdatedAt))
+                ) && 
+                (
                     this.PostalCode == input.PostalCode ||
                     (this.PostalCode != null &&
                     this.PostalCode.Equals(input.PostalCode))
+                ) && 
+                (
+                    this.AccountProperties == input.AccountProperties ||
+                    this.AccountProperties != null &&
+                    this.AccountProperties.SequenceEqual(input.AccountProperties)
+                ) && 
+                (
+                    this.CustomerNumber == input.CustomerNumber ||
+                    (this.CustomerNumber != null &&
+                    this.CustomerNumber.Equals(input.CustomerNumber))
                 ) && 
                 (
                     this.Id == input.Id ||
@@ -580,6 +711,11 @@ namespace iam.Model
                     this.DisplayName.Equals(input.DisplayName))
                 ) && 
                 (
+                    this.MfaStatus == input.MfaStatus ||
+                    (this.MfaStatus != null &&
+                    this.MfaStatus.Equals(input.MfaStatus))
+                ) && 
+                (
                     this.ParentId == input.ParentId ||
                     (this.ParentId != null &&
                     this.ParentId.Equals(input.ParentId))
@@ -595,11 +731,6 @@ namespace iam.Model
                     this.Etag.Equals(input.Etag))
                 ) && 
                 (
-                    this.IsProvisioningAllowed == input.IsProvisioningAllowed ||
-                    (this.IsProvisioningAllowed != null &&
-                    this.IsProvisioningAllowed.Equals(input.IsProvisioningAllowed))
-                ) && 
-                (
                     this.Email == input.Email ||
                     (this.Email != null &&
                     this.Email.Equals(input.Email))
@@ -608,6 +739,11 @@ namespace iam.Model
                     this.PhoneNumber == input.PhoneNumber ||
                     (this.PhoneNumber != null &&
                     this.PhoneNumber.Equals(input.PhoneNumber))
+                ) && 
+                (
+                    this.ReferenceNote == input.ReferenceNote ||
+                    (this.ReferenceNote != null &&
+                    this.ReferenceNote.Equals(input.ReferenceNote))
                 ) && 
                 (
                     this.Company == input.Company ||
@@ -660,6 +796,16 @@ namespace iam.Model
                     this.IdleTimeout.Equals(input.IdleTimeout))
                 ) && 
                 (
+                    this.ContractNumber == input.ContractNumber ||
+                    (this.ContractNumber != null &&
+                    this.ContractNumber.Equals(input.ContractNumber))
+                ) && 
+                (
+                    this.ExpirationWarningThreshold == input.ExpirationWarningThreshold ||
+                    (this.ExpirationWarningThreshold != null &&
+                    this.ExpirationWarningThreshold.Equals(input.ExpirationWarningThreshold))
+                ) && 
+                (
                     this.Contact == input.Contact ||
                     (this.Contact != null &&
                     this.Contact.Equals(input.Contact))
@@ -668,6 +814,11 @@ namespace iam.Model
                     this.Policies == input.Policies ||
                     this.Policies != null &&
                     this.Policies.SequenceEqual(input.Policies)
+                ) && 
+                (
+                    this.NotificationEmails == input.NotificationEmails ||
+                    this.NotificationEmails != null &&
+                    this.NotificationEmails.SequenceEqual(input.NotificationEmails)
                 ) && 
                 (
                     this.TemplateId == input.TemplateId ||
@@ -691,8 +842,16 @@ namespace iam.Model
                     hashCode = hashCode * 59 + this.Status.GetHashCode();
                 if (this.PasswordPolicy != null)
                     hashCode = hashCode * 59 + this.PasswordPolicy.GetHashCode();
+                if (this.SalesContact != null)
+                    hashCode = hashCode * 59 + this.SalesContact.GetHashCode();
+                if (this.UpdatedAt != null)
+                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
                 if (this.PostalCode != null)
                     hashCode = hashCode * 59 + this.PostalCode.GetHashCode();
+                if (this.AccountProperties != null)
+                    hashCode = hashCode * 59 + this.AccountProperties.GetHashCode();
+                if (this.CustomerNumber != null)
+                    hashCode = hashCode * 59 + this.CustomerNumber.GetHashCode();
                 if (this.Id != null)
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.Aliases != null)
@@ -705,18 +864,20 @@ namespace iam.Model
                     hashCode = hashCode * 59 + this.AddressLine1.GetHashCode();
                 if (this.DisplayName != null)
                     hashCode = hashCode * 59 + this.DisplayName.GetHashCode();
+                if (this.MfaStatus != null)
+                    hashCode = hashCode * 59 + this.MfaStatus.GetHashCode();
                 if (this.ParentId != null)
                     hashCode = hashCode * 59 + this.ParentId.GetHashCode();
                 if (this.State != null)
                     hashCode = hashCode * 59 + this.State.GetHashCode();
                 if (this.Etag != null)
                     hashCode = hashCode * 59 + this.Etag.GetHashCode();
-                if (this.IsProvisioningAllowed != null)
-                    hashCode = hashCode * 59 + this.IsProvisioningAllowed.GetHashCode();
                 if (this.Email != null)
                     hashCode = hashCode * 59 + this.Email.GetHashCode();
                 if (this.PhoneNumber != null)
                     hashCode = hashCode * 59 + this.PhoneNumber.GetHashCode();
+                if (this.ReferenceNote != null)
+                    hashCode = hashCode * 59 + this.ReferenceNote.GetHashCode();
                 if (this.Company != null)
                     hashCode = hashCode * 59 + this.Company.GetHashCode();
                 if (this._Object != null)
@@ -737,10 +898,16 @@ namespace iam.Model
                     hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
                 if (this.IdleTimeout != null)
                     hashCode = hashCode * 59 + this.IdleTimeout.GetHashCode();
+                if (this.ContractNumber != null)
+                    hashCode = hashCode * 59 + this.ContractNumber.GetHashCode();
+                if (this.ExpirationWarningThreshold != null)
+                    hashCode = hashCode * 59 + this.ExpirationWarningThreshold.GetHashCode();
                 if (this.Contact != null)
                     hashCode = hashCode * 59 + this.Contact.GetHashCode();
                 if (this.Policies != null)
                     hashCode = hashCode * 59 + this.Policies.GetHashCode();
+                if (this.NotificationEmails != null)
+                    hashCode = hashCode * 59 + this.NotificationEmails.GetHashCode();
                 if (this.TemplateId != null)
                     hashCode = hashCode * 59 + this.TemplateId.GetHashCode();
                 return hashCode;

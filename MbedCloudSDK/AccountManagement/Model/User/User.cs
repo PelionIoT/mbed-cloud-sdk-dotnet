@@ -146,6 +146,11 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         public List<LoginHistory> LoginHistory { get; private set; }
 
         /// <summary>
+        /// User's account specific custom properties.
+        /// </summary>
+        public Dictionary<string, Dictionary<string, string>> CustomProperties { get; private set; }
+
+        /// <summary>
         /// Map to User object.
         /// </summary>
         /// <param name="userInfo">Iam user object</param>
@@ -160,7 +165,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 EmailVerified = userInfo.EmailVerified,
                 AccountId = userInfo.AccountId,
                 PasswordChangedTime = userInfo.PasswordChangedTime,
-                Groups = userInfo.Groups != null ? userInfo.Groups : Enumerable.Empty<string>().ToList(),
+                Groups = userInfo.Groups ?? Enumerable.Empty<string>().ToList(),
                 CreatedAt = userInfo.CreatedAt.ToNullableUniversalTime(),
                 TermsAccepted = userInfo.IsGtcAccepted,
                 Email = userInfo.Email,
@@ -173,7 +178,8 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 Id = userInfo.Id,
                 LastLoginTime = userInfo.LastLoginTime,
                 TwoFactorAuthentication = userInfo.IsTotpEnabled,
-                LoginHistory = userInfo != null ? userInfo.LoginHistory.Select(l => { return Model.User.LoginHistory.Map(l); }).ToList() : Enumerable.Empty<LoginHistory>().ToList()
+                CustomProperties = userInfo.UserProperties,
+                LoginHistory = userInfo?.LoginHistory?.Select(l => { return Model.User.LoginHistory.Map(l); })?.ToList() ?? Enumerable.Empty<LoginHistory>().ToList()
             };
             return user;
         }
@@ -234,15 +240,19 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// <returns>User info request</returns>
         public iam.Model.UserUpdateReq CreatePutRequest()
         {
-            var request = new iam.Model.UserUpdateReq(Email: Email)
+            var request = new iam.Model.UserUpdateReq
             {
+                Email = Email,
                 PhoneNumber = PhoneNumber,
                 Username = Username,
                 IsGtcAccepted = TermsAccepted,
                 FullName = FullName,
                 Address = Address,
                 IsMarketingAccepted = MarketingAccepted,
-                Password = Password
+                Password = Password,
+                UserProperties = CustomProperties,
+                IsTotpEnabled = TwoFactorAuthentication,
+                Status = Utils.GetEnumMemberValue(typeof(UserStatus), Convert.ToString(Status)),
             };
 
             return request;

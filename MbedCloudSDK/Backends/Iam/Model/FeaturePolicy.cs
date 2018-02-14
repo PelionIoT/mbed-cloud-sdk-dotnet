@@ -38,12 +38,14 @@ namespace iam.Model
         /// <param name="Resource">Resource that is protected by this policy..</param>
         /// <param name="Feature">Feature name corresponding to this policy..</param>
         /// <param name="Allow">True or false controlling whether an action is allowed or not..</param>
-        public FeaturePolicy(string Action = default(string), string Resource = default(string), string Feature = default(string), bool? Allow = default(bool?))
+        /// <param name="Inherited">Flag indicating whether this feature is inherited or overwritten specifically..</param>
+        public FeaturePolicy(string Action = default(string), string Resource = default(string), string Feature = default(string), bool? Allow = default(bool?), bool? Inherited = default(bool?))
         {
             this.Action = Action;
             this.Resource = Resource;
             this.Feature = Feature;
             this.Allow = Allow;
+            this.Inherited = Inherited;
         }
         
         /// <summary>
@@ -75,6 +77,13 @@ namespace iam.Model
         public bool? Allow { get; set; }
 
         /// <summary>
+        /// Flag indicating whether this feature is inherited or overwritten specifically.
+        /// </summary>
+        /// <value>Flag indicating whether this feature is inherited or overwritten specifically.</value>
+        [DataMember(Name="inherited", EmitDefaultValue=false)]
+        public bool? Inherited { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -86,6 +95,7 @@ namespace iam.Model
             sb.Append("  Resource: ").Append(Resource).Append("\n");
             sb.Append("  Feature: ").Append(Feature).Append("\n");
             sb.Append("  Allow: ").Append(Allow).Append("\n");
+            sb.Append("  Inherited: ").Append(Inherited).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -139,6 +149,11 @@ namespace iam.Model
                     this.Allow == input.Allow ||
                     (this.Allow != null &&
                     this.Allow.Equals(input.Allow))
+                ) && 
+                (
+                    this.Inherited == input.Inherited ||
+                    (this.Inherited != null &&
+                    this.Inherited.Equals(input.Inherited))
                 );
         }
 
@@ -159,6 +174,8 @@ namespace iam.Model
                     hashCode = hashCode * 59 + this.Feature.GetHashCode();
                 if (this.Allow != null)
                     hashCode = hashCode * 59 + this.Allow.GetHashCode();
+                if (this.Inherited != null)
+                    hashCode = hashCode * 59 + this.Inherited.GetHashCode();
                 return hashCode;
             }
         }

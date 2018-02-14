@@ -85,7 +85,19 @@ namespace iam.Model
             /// Enum Error for "error"
             /// </summary>
             [EnumMember(Value = "error")]
-            Error
+            Error,
+            
+            /// <summary>
+            /// Enum Policy for "policy"
+            /// </summary>
+            [EnumMember(Value = "policy")]
+            Policy,
+            
+            /// <summary>
+            /// Enum IdentityProvider for "identity-provider"
+            /// </summary>
+            [EnumMember(Value = "identity-provider")]
+            IdentityProvider
         }
 
         /// <summary>

@@ -71,7 +71,7 @@ namespace MbedCloudSDK.IntegrationTests.Services
                     }
 
                 }
-                var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, GetSnakeJsonSettings());
+                var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, GetSerializerSettings());
                 if (result == null || result == "null")
                 {
                     return new object();
@@ -99,7 +99,7 @@ namespace MbedCloudSDK.IntegrationTests.Services
             return settings;
         }
 
-        private JsonSerializerSettings GetSnakeJsonSettings()
+        private JsonSerializerSettings GetSerializerSettings()
         {
             var settings = new JsonSerializerSettings()
             {
@@ -108,7 +108,7 @@ namespace MbedCloudSDK.IntegrationTests.Services
             };
             var contractResolver = new DefaultContractResolver
             {
-                NamingStrategy = new SnakeCaseNamingStrategy()
+                NamingStrategy = new SnakeCaseNamingStrategy(),
             };
             settings.ContractResolver = contractResolver;
             return settings;

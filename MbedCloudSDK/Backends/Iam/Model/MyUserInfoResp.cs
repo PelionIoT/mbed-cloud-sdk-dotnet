@@ -124,7 +124,19 @@ namespace iam.Model
             /// Enum Error for "error"
             /// </summary>
             [EnumMember(Value = "error")]
-            Error
+            Error,
+            
+            /// <summary>
+            /// Enum Policy for "policy"
+            /// </summary>
+            [EnumMember(Value = "policy")]
+            Policy,
+            
+            /// <summary>
+            /// Enum IdentityProvider for "identity-provider"
+            /// </summary>
+            [EnumMember(Value = "identity-provider")]
+            IdentityProvider
         }
 
         /// <summary>
@@ -148,8 +160,10 @@ namespace iam.Model
         /// Initializes a new instance of the <see cref="MyUserInfoResp" /> class.
         /// </summary>
         /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters..</param>
+        /// <param name="ActiveSessions">List of active user sessions..</param>
         /// <param name="LoginHistory">Timestamps, succeedings, IP addresses and user agent information of the last five logins of the user, with timestamps in RFC3339 format..</param>
         /// <param name="CreationTime">A timestamp of the user creation in the storage, in milliseconds..</param>
+        /// <param name="UpdatedAt">Last update UTC time RFC3339..</param>
         /// <param name="FullName">The full name of the user..</param>
         /// <param name="Id">The UUID of the user. (required).</param>
         /// <param name="LastLoginTime">A timestamp of the latest login of the user, in milliseconds..</param>
@@ -167,9 +181,10 @@ namespace iam.Model
         /// <param name="Password">The password when creating a new user. It will be generated when not present in the request..</param>
         /// <param name="EmailVerified">A flag indicating whether the user&#39;s email address has been verified or not..</param>
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
+        /// <param name="UserProperties">User&#39;s account specific custom properties..</param>
         /// <param name="IsTotpEnabled">A flag indicating whether 2-factor authentication (TOTP) has been enabled..</param>
         /// <param name="PasswordChangedTime">A timestamp of the latest change of the user password, in milliseconds..</param>
-        public MyUserInfoResp(string Username = default(string), List<LoginHistory> LoginHistory = default(List<LoginHistory>), long? CreationTime = default(long?), string FullName = default(string), string Id = default(string), long? LastLoginTime = default(long?), bool? IsGtcAccepted = default(bool?), string Etag = default(string), bool? IsMarketingAccepted = default(bool?), string PhoneNumber = default(string), string Email = default(string), StatusEnum? Status = default(StatusEnum?), string AccountId = default(string), List<string> TotpScratchCodes = default(List<string>), ObjectEnum? _Object = default(ObjectEnum?), List<string> Groups = default(List<string>), string Address = default(string), string Password = default(string), bool? EmailVerified = default(bool?), DateTime? CreatedAt = default(DateTime?), bool? IsTotpEnabled = default(bool?), long? PasswordChangedTime = default(long?))
+        public MyUserInfoResp(string Username = default(string), List<ActiveSession> ActiveSessions = default(List<ActiveSession>), List<LoginHistory> LoginHistory = default(List<LoginHistory>), long? CreationTime = default(long?), DateTime? UpdatedAt = default(DateTime?), string FullName = default(string), string Id = default(string), long? LastLoginTime = default(long?), bool? IsGtcAccepted = default(bool?), string Etag = default(string), bool? IsMarketingAccepted = default(bool?), string PhoneNumber = default(string), string Email = default(string), StatusEnum? Status = default(StatusEnum?), string AccountId = default(string), List<string> TotpScratchCodes = default(List<string>), ObjectEnum? _Object = default(ObjectEnum?), List<string> Groups = default(List<string>), string Address = default(string), string Password = default(string), bool? EmailVerified = default(bool?), DateTime? CreatedAt = default(DateTime?), Dictionary<string, Dictionary<string, string>> UserProperties = default(Dictionary<string, Dictionary<string, string>>), bool? IsTotpEnabled = default(bool?), long? PasswordChangedTime = default(long?))
         {
             // to ensure "Id" is required (not null)
             if (Id == null)
@@ -226,8 +241,10 @@ namespace iam.Model
                 this._Object = _Object;
             }
             this.Username = Username;
+            this.ActiveSessions = ActiveSessions;
             this.LoginHistory = LoginHistory;
             this.CreationTime = CreationTime;
+            this.UpdatedAt = UpdatedAt;
             this.FullName = FullName;
             this.LastLoginTime = LastLoginTime;
             this.IsGtcAccepted = IsGtcAccepted;
@@ -239,6 +256,7 @@ namespace iam.Model
             this.Password = Password;
             this.EmailVerified = EmailVerified;
             this.CreatedAt = CreatedAt;
+            this.UserProperties = UserProperties;
             this.IsTotpEnabled = IsTotpEnabled;
             this.PasswordChangedTime = PasswordChangedTime;
         }
@@ -249,6 +267,13 @@ namespace iam.Model
         /// <value>A username containing alphanumerical letters and -,._@+&#x3D; characters.</value>
         [DataMember(Name="username", EmitDefaultValue=false)]
         public string Username { get; set; }
+
+        /// <summary>
+        /// List of active user sessions.
+        /// </summary>
+        /// <value>List of active user sessions.</value>
+        [DataMember(Name="active_sessions", EmitDefaultValue=false)]
+        public List<ActiveSession> ActiveSessions { get; set; }
 
         /// <summary>
         /// Timestamps, succeedings, IP addresses and user agent information of the last five logins of the user, with timestamps in RFC3339 format.
@@ -263,6 +288,13 @@ namespace iam.Model
         /// <value>A timestamp of the user creation in the storage, in milliseconds.</value>
         [DataMember(Name="creation_time", EmitDefaultValue=false)]
         public long? CreationTime { get; set; }
+
+        /// <summary>
+        /// Last update UTC time RFC3339.
+        /// </summary>
+        /// <value>Last update UTC time RFC3339.</value>
+        [DataMember(Name="updated_at", EmitDefaultValue=false)]
+        public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// The full name of the user.
@@ -372,6 +404,13 @@ namespace iam.Model
         public DateTime? CreatedAt { get; set; }
 
         /// <summary>
+        /// User&#39;s account specific custom properties.
+        /// </summary>
+        /// <value>User&#39;s account specific custom properties.</value>
+        [DataMember(Name="user_properties", EmitDefaultValue=false)]
+        public Dictionary<string, Dictionary<string, string>> UserProperties { get; set; }
+
+        /// <summary>
         /// A flag indicating whether 2-factor authentication (TOTP) has been enabled.
         /// </summary>
         /// <value>A flag indicating whether 2-factor authentication (TOTP) has been enabled.</value>
@@ -394,8 +433,10 @@ namespace iam.Model
             var sb = new StringBuilder();
             sb.Append("class MyUserInfoResp {\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
+            sb.Append("  ActiveSessions: ").Append(ActiveSessions).Append("\n");
             sb.Append("  LoginHistory: ").Append(LoginHistory).Append("\n");
             sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
+            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  FullName: ").Append(FullName).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  LastLoginTime: ").Append(LastLoginTime).Append("\n");
@@ -413,6 +454,7 @@ namespace iam.Model
             sb.Append("  Password: ").Append(Password).Append("\n");
             sb.Append("  EmailVerified: ").Append(EmailVerified).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
+            sb.Append("  UserProperties: ").Append(UserProperties).Append("\n");
             sb.Append("  IsTotpEnabled: ").Append(IsTotpEnabled).Append("\n");
             sb.Append("  PasswordChangedTime: ").Append(PasswordChangedTime).Append("\n");
             sb.Append("}\n");
@@ -455,6 +497,11 @@ namespace iam.Model
                     this.Username.Equals(input.Username))
                 ) && 
                 (
+                    this.ActiveSessions == input.ActiveSessions ||
+                    this.ActiveSessions != null &&
+                    this.ActiveSessions.SequenceEqual(input.ActiveSessions)
+                ) && 
+                (
                     this.LoginHistory == input.LoginHistory ||
                     this.LoginHistory != null &&
                     this.LoginHistory.SequenceEqual(input.LoginHistory)
@@ -463,6 +510,11 @@ namespace iam.Model
                     this.CreationTime == input.CreationTime ||
                     (this.CreationTime != null &&
                     this.CreationTime.Equals(input.CreationTime))
+                ) && 
+                (
+                    this.UpdatedAt == input.UpdatedAt ||
+                    (this.UpdatedAt != null &&
+                    this.UpdatedAt.Equals(input.UpdatedAt))
                 ) && 
                 (
                     this.FullName == input.FullName ||
@@ -550,6 +602,11 @@ namespace iam.Model
                     this.CreatedAt.Equals(input.CreatedAt))
                 ) && 
                 (
+                    this.UserProperties == input.UserProperties ||
+                    this.UserProperties != null &&
+                    this.UserProperties.SequenceEqual(input.UserProperties)
+                ) && 
+                (
                     this.IsTotpEnabled == input.IsTotpEnabled ||
                     (this.IsTotpEnabled != null &&
                     this.IsTotpEnabled.Equals(input.IsTotpEnabled))
@@ -572,10 +629,14 @@ namespace iam.Model
                 int hashCode = 41;
                 if (this.Username != null)
                     hashCode = hashCode * 59 + this.Username.GetHashCode();
+                if (this.ActiveSessions != null)
+                    hashCode = hashCode * 59 + this.ActiveSessions.GetHashCode();
                 if (this.LoginHistory != null)
                     hashCode = hashCode * 59 + this.LoginHistory.GetHashCode();
                 if (this.CreationTime != null)
                     hashCode = hashCode * 59 + this.CreationTime.GetHashCode();
+                if (this.UpdatedAt != null)
+                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
                 if (this.FullName != null)
                     hashCode = hashCode * 59 + this.FullName.GetHashCode();
                 if (this.Id != null)
@@ -610,6 +671,8 @@ namespace iam.Model
                     hashCode = hashCode * 59 + this.EmailVerified.GetHashCode();
                 if (this.CreatedAt != null)
                     hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
+                if (this.UserProperties != null)
+                    hashCode = hashCode * 59 + this.UserProperties.GetHashCode();
                 if (this.IsTotpEnabled != null)
                     hashCode = hashCode * 59 + this.IsTotpEnabled.GetHashCode();
                 if (this.PasswordChangedTime != null)

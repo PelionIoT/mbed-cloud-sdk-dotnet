@@ -192,16 +192,15 @@ namespace MbedCloudSDK.Certificates.Model
         public string OwnerId { get; private set; }
 
         /// <summary>
-        /// Gets the API resource entity version.
+        /// Gets or sets the enrollment mode. If true, signature parameter is not required. Default value is false.
         /// </summary>
-        /// <value>The API resource entity version..</value>
-        public string Etag { get; private set; }
+        public bool? EnrollmentMode { get; set; } = false;
 
         /// <summary>
-        /// Gets the Entity name
+        /// Gets the time certificate was updated
         /// </summary>
-        /// <value>The Entity name</value>
-        public string Object { get; private set; }
+        [JsonProperty]
+        public DateTime? UpdatedAt { get; private set; }
 
         /// <summary>
         /// Gets Content of the security.c file that will be flashed into the device to provide the security credentials.
@@ -306,8 +305,9 @@ namespace MbedCloudSDK.Certificates.Model
         /// <param name="trustedCertificate">TrustedCertificate response object.</param>
         /// <param name="certificate">Certificate to be updated.</param>
         /// <param name="api">Certificate Api</param>
+        /// <param name="signature">Certificate signature</param>
         /// <returns>Certificate</returns>
-        public static Certificate MapTrustedCert(iam.Model.TrustedCertificateResp trustedCertificate, Certificate certificate = null, CertificatesApi api = null)
+        public static Certificate MapTrustedCert(iam.Model.TrustedCertificateResp trustedCertificate, Certificate certificate = null, CertificatesApi api = null, string signature = null)
         {
             if (certificate == null)
             {
@@ -356,12 +356,13 @@ namespace MbedCloudSDK.Certificates.Model
             certificate.CertificateData = trustedCertificate.Certificate;
             certificate.Id = trustedCertificate.Id;
             certificate.Name = trustedCertificate.Name;
-            certificate.Description = trustedCertificate.Description ?? string.Empty;
+            certificate.Description = trustedCertificate.Description;
             certificate.CreatedAt = trustedCertificate.CreatedAt;
             certificate.Status = Utils.ParseEnum<CertificateStatus>(trustedCertificate.Status);
             certificate.OwnerId = trustedCertificate.OwnerId;
-            certificate.Etag = trustedCertificate.Etag;
-            certificate.Object = Utils.GetEnumMemberValue(typeof(TrustedCertificateResp.ObjectEnum), Convert.ToString(trustedCertificate._Object));
+            certificate.EnrollmentMode = trustedCertificate.EnrollmentMode;
+            certificate.UpdatedAt = trustedCertificate.UpdatedAt;
+            certificate.Signature = signature;
             return certificate;
         }
 
@@ -379,19 +380,17 @@ namespace MbedCloudSDK.Certificates.Model
             }
 
             certificate.Type = CertificateType.Developer;
-            certificate.DeviceExecutionMode = 0;
-            certificate.SecurityFileContent = developerCertificateData.SecurityFileContent ?? string.Empty;
+            certificate.DeviceExecutionMode = 1;
+            certificate.SecurityFileContent = developerCertificateData.SecurityFileContent;
             certificate.Description = developerCertificateData.Description;
             certificate.DeveloperCertificate = developerCertificateData.DeveloperCertificate;
-            certificate.ServerUri = developerCertificateData.ServerUri ?? string.Empty;
+            certificate.ServerUri = developerCertificateData.ServerUri;
             certificate.AccountId = developerCertificateData.AccountId;
             certificate.DeveloperPrivateKey = developerCertificateData.DeveloperPrivateKey;
-            certificate.ServerCertificate = developerCertificateData.ServerCertificate ?? string.Empty;
+            certificate.ServerCertificate = developerCertificateData.ServerCertificate;
             certificate.Id = developerCertificateData.Id;
             certificate.Name = developerCertificateData.Name;
             certificate.CreatedAt = DateTime.Parse(developerCertificateData.CreatedAt);
-            certificate.Etag = developerCertificateData.Etag;
-            certificate.Object = developerCertificateData._Object;
             certificate.HeaderFile = certificate.SecurityFileContent;
             certificate.Status = CertificateStatus.Active;
             certificate.Issuer = string.Empty;

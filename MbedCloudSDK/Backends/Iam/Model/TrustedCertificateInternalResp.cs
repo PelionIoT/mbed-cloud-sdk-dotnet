@@ -29,7 +29,7 @@ namespace iam.Model
     /// This object represents a trusted certificate in responses.
     /// </summary>
     [DataContract]
-    public partial class TrustedCertificateResp :  IEquatable<TrustedCertificateResp>, IValidatableObject
+    public partial class TrustedCertificateInternalResp :  IEquatable<TrustedCertificateInternalResp>, IValidatableObject
     {
         /// <summary>
         /// Service name where the certificate is to be used.
@@ -161,15 +161,16 @@ namespace iam.Model
         [DataMember(Name="object", EmitDefaultValue=false)]
         public ObjectEnum? _Object { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="TrustedCertificateResp" /> class.
+        /// Initializes a new instance of the <see cref="TrustedCertificateInternalResp" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected TrustedCertificateResp() { }
+        protected TrustedCertificateInternalResp() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="TrustedCertificateResp" /> class.
+        /// Initializes a new instance of the <see cref="TrustedCertificateInternalResp" /> class.
         /// </summary>
         /// <param name="Service">Service name where the certificate is to be used. (required).</param>
         /// <param name="Status">Status of the certificate..</param>
+        /// <param name="PrivateKey">Private key of the certificate in PEM or base64 encoded DER format. (required).</param>
         /// <param name="Name">Certificate name. (required).</param>
         /// <param name="Certificate">X509.v3 trusted certificate in PEM format. (required).</param>
         /// <param name="EnrollmentMode">If true, signature is not required. Default value false..</param>
@@ -185,21 +186,30 @@ namespace iam.Model
         /// <param name="OwnerId">The UUID of the owner..</param>
         /// <param name="Id">Entity ID. (required).</param>
         /// <param name="Description">Human readable description of this certificate..</param>
-        public TrustedCertificateResp(ServiceEnum? Service = default(ServiceEnum?), StatusEnum? Status = default(StatusEnum?), string Name = default(string), string Certificate = default(string), bool? EnrollmentMode = default(bool?), string Issuer = default(string), int? DeviceExecutionMode = default(int?), DateTime? CreatedAt = default(DateTime?), ObjectEnum? _Object = default(ObjectEnum?), string Subject = default(string), DateTime? UpdatedAt = default(DateTime?), string AccountId = default(string), string Etag = default(string), DateTime? Validity = default(DateTime?), string OwnerId = default(string), string Id = default(string), string Description = default(string))
+        public TrustedCertificateInternalResp(ServiceEnum? Service = default(ServiceEnum?), StatusEnum? Status = default(StatusEnum?), string PrivateKey = default(string), string Name = default(string), string Certificate = default(string), bool? EnrollmentMode = default(bool?), string Issuer = default(string), int? DeviceExecutionMode = default(int?), DateTime? CreatedAt = default(DateTime?), ObjectEnum? _Object = default(ObjectEnum?), string Subject = default(string), DateTime? UpdatedAt = default(DateTime?), string AccountId = default(string), string Etag = default(string), DateTime? Validity = default(DateTime?), string OwnerId = default(string), string Id = default(string), string Description = default(string))
         {
             // to ensure "Service" is required (not null)
             if (Service == null)
             {
-                throw new InvalidDataException("Service is a required property for TrustedCertificateResp and cannot be null");
+                throw new InvalidDataException("Service is a required property for TrustedCertificateInternalResp and cannot be null");
             }
             else
             {
                 this.Service = Service;
             }
+            // to ensure "PrivateKey" is required (not null)
+            if (PrivateKey == null)
+            {
+                throw new InvalidDataException("PrivateKey is a required property for TrustedCertificateInternalResp and cannot be null");
+            }
+            else
+            {
+                this.PrivateKey = PrivateKey;
+            }
             // to ensure "Name" is required (not null)
             if (Name == null)
             {
-                throw new InvalidDataException("Name is a required property for TrustedCertificateResp and cannot be null");
+                throw new InvalidDataException("Name is a required property for TrustedCertificateInternalResp and cannot be null");
             }
             else
             {
@@ -208,7 +218,7 @@ namespace iam.Model
             // to ensure "Certificate" is required (not null)
             if (Certificate == null)
             {
-                throw new InvalidDataException("Certificate is a required property for TrustedCertificateResp and cannot be null");
+                throw new InvalidDataException("Certificate is a required property for TrustedCertificateInternalResp and cannot be null");
             }
             else
             {
@@ -217,7 +227,7 @@ namespace iam.Model
             // to ensure "Issuer" is required (not null)
             if (Issuer == null)
             {
-                throw new InvalidDataException("Issuer is a required property for TrustedCertificateResp and cannot be null");
+                throw new InvalidDataException("Issuer is a required property for TrustedCertificateInternalResp and cannot be null");
             }
             else
             {
@@ -226,7 +236,7 @@ namespace iam.Model
             // to ensure "_Object" is required (not null)
             if (_Object == null)
             {
-                throw new InvalidDataException("_Object is a required property for TrustedCertificateResp and cannot be null");
+                throw new InvalidDataException("_Object is a required property for TrustedCertificateInternalResp and cannot be null");
             }
             else
             {
@@ -235,7 +245,7 @@ namespace iam.Model
             // to ensure "Subject" is required (not null)
             if (Subject == null)
             {
-                throw new InvalidDataException("Subject is a required property for TrustedCertificateResp and cannot be null");
+                throw new InvalidDataException("Subject is a required property for TrustedCertificateInternalResp and cannot be null");
             }
             else
             {
@@ -244,7 +254,7 @@ namespace iam.Model
             // to ensure "AccountId" is required (not null)
             if (AccountId == null)
             {
-                throw new InvalidDataException("AccountId is a required property for TrustedCertificateResp and cannot be null");
+                throw new InvalidDataException("AccountId is a required property for TrustedCertificateInternalResp and cannot be null");
             }
             else
             {
@@ -253,7 +263,7 @@ namespace iam.Model
             // to ensure "Etag" is required (not null)
             if (Etag == null)
             {
-                throw new InvalidDataException("Etag is a required property for TrustedCertificateResp and cannot be null");
+                throw new InvalidDataException("Etag is a required property for TrustedCertificateInternalResp and cannot be null");
             }
             else
             {
@@ -262,7 +272,7 @@ namespace iam.Model
             // to ensure "Validity" is required (not null)
             if (Validity == null)
             {
-                throw new InvalidDataException("Validity is a required property for TrustedCertificateResp and cannot be null");
+                throw new InvalidDataException("Validity is a required property for TrustedCertificateInternalResp and cannot be null");
             }
             else
             {
@@ -271,7 +281,7 @@ namespace iam.Model
             // to ensure "Id" is required (not null)
             if (Id == null)
             {
-                throw new InvalidDataException("Id is a required property for TrustedCertificateResp and cannot be null");
+                throw new InvalidDataException("Id is a required property for TrustedCertificateInternalResp and cannot be null");
             }
             else
             {
@@ -287,6 +297,13 @@ namespace iam.Model
         }
         
 
+
+        /// <summary>
+        /// Private key of the certificate in PEM or base64 encoded DER format.
+        /// </summary>
+        /// <value>Private key of the certificate in PEM or base64 encoded DER format.</value>
+        [DataMember(Name="private_key", EmitDefaultValue=false)]
+        public string PrivateKey { get; set; }
 
         /// <summary>
         /// Certificate name.
@@ -394,9 +411,10 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class TrustedCertificateResp {\n");
+            sb.Append("class TrustedCertificateInternalResp {\n");
             sb.Append("  Service: ").Append(Service).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  PrivateKey: ").Append(PrivateKey).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Certificate: ").Append(Certificate).Append("\n");
             sb.Append("  EnrollmentMode: ").Append(EnrollmentMode).Append("\n");
@@ -432,15 +450,15 @@ namespace iam.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TrustedCertificateResp);
+            return this.Equals(input as TrustedCertificateInternalResp);
         }
 
         /// <summary>
-        /// Returns true if TrustedCertificateResp instances are equal
+        /// Returns true if TrustedCertificateInternalResp instances are equal
         /// </summary>
-        /// <param name="input">Instance of TrustedCertificateResp to be compared</param>
+        /// <param name="input">Instance of TrustedCertificateInternalResp to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TrustedCertificateResp input)
+        public bool Equals(TrustedCertificateInternalResp input)
         {
             if (input == null)
                 return false;
@@ -455,6 +473,11 @@ namespace iam.Model
                     this.Status == input.Status ||
                     (this.Status != null &&
                     this.Status.Equals(input.Status))
+                ) && 
+                (
+                    this.PrivateKey == input.PrivateKey ||
+                    (this.PrivateKey != null &&
+                    this.PrivateKey.Equals(input.PrivateKey))
                 ) && 
                 (
                     this.Name == input.Name ||
@@ -546,6 +569,8 @@ namespace iam.Model
                     hashCode = hashCode * 59 + this.Service.GetHashCode();
                 if (this.Status != null)
                     hashCode = hashCode * 59 + this.Status.GetHashCode();
+                if (this.PrivateKey != null)
+                    hashCode = hashCode * 59 + this.PrivateKey.GetHashCode();
                 if (this.Name != null)
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
                 if (this.Certificate != null)

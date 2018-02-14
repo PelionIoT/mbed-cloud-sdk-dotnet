@@ -94,12 +94,13 @@ namespace iam.Model
         /// Initializes a new instance of the <see cref="TrustedCertificateReq" /> class.
         /// </summary>
         /// <param name="Status">Status of the certificate..</param>
+        /// <param name="EnrollmentMode">If true, signature parameter is not required. Default value is false..</param>
         /// <param name="Certificate">X509.v3 trusted certificate in PEM format. (required).</param>
         /// <param name="Name">Certificate name, not longer than 100 characters. (required).</param>
         /// <param name="Service">Service name where the certificate must be used. (required).</param>
-        /// <param name="Signature">Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. (required).</param>
+        /// <param name="Signature">Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. Optional if enrollment_mode is &#39;true&#39;..</param>
         /// <param name="Description">Human readable description of this certificate, not longer than 500 characters..</param>
-        public TrustedCertificateReq(StatusEnum? Status = default(StatusEnum?), string Certificate = default(string), string Name = default(string), ServiceEnum? Service = default(ServiceEnum?), string Signature = default(string), string Description = default(string))
+        public TrustedCertificateReq(StatusEnum? Status = default(StatusEnum?), bool? EnrollmentMode = default(bool?), string Certificate = default(string), string Name = default(string), ServiceEnum? Service = default(ServiceEnum?), string Signature = default(string), string Description = default(string))
         {
             // to ensure "Certificate" is required (not null)
             if (Certificate == null)
@@ -128,19 +129,19 @@ namespace iam.Model
             {
                 this.Service = Service;
             }
-            // to ensure "Signature" is required (not null)
-            if (Signature == null)
-            {
-                throw new InvalidDataException("Signature is a required property for TrustedCertificateReq and cannot be null");
-            }
-            else
-            {
-                this.Signature = Signature;
-            }
             this.Status = Status;
+            this.EnrollmentMode = EnrollmentMode;
+            this.Signature = Signature;
             this.Description = Description;
         }
         
+
+        /// <summary>
+        /// If true, signature parameter is not required. Default value is false.
+        /// </summary>
+        /// <value>If true, signature parameter is not required. Default value is false.</value>
+        [DataMember(Name="enrollment_mode", EmitDefaultValue=false)]
+        public bool? EnrollmentMode { get; set; }
 
         /// <summary>
         /// X509.v3 trusted certificate in PEM format.
@@ -158,9 +159,9 @@ namespace iam.Model
 
 
         /// <summary>
-        /// Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256.
+        /// Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. Optional if enrollment_mode is &#39;true&#39;.
         /// </summary>
-        /// <value>Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256.</value>
+        /// <value>Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. Optional if enrollment_mode is &#39;true&#39;.</value>
         [DataMember(Name="signature", EmitDefaultValue=false)]
         public string Signature { get; set; }
 
@@ -180,6 +181,7 @@ namespace iam.Model
             var sb = new StringBuilder();
             sb.Append("class TrustedCertificateReq {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  EnrollmentMode: ").Append(EnrollmentMode).Append("\n");
             sb.Append("  Certificate: ").Append(Certificate).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Service: ").Append(Service).Append("\n");
@@ -225,6 +227,11 @@ namespace iam.Model
                     this.Status.Equals(input.Status))
                 ) && 
                 (
+                    this.EnrollmentMode == input.EnrollmentMode ||
+                    (this.EnrollmentMode != null &&
+                    this.EnrollmentMode.Equals(input.EnrollmentMode))
+                ) && 
+                (
                     this.Certificate == input.Certificate ||
                     (this.Certificate != null &&
                     this.Certificate.Equals(input.Certificate))
@@ -262,6 +269,8 @@ namespace iam.Model
                 int hashCode = 41;
                 if (this.Status != null)
                     hashCode = hashCode * 59 + this.Status.GetHashCode();
+                if (this.EnrollmentMode != null)
+                    hashCode = hashCode * 59 + this.EnrollmentMode.GetHashCode();
                 if (this.Certificate != null)
                     hashCode = hashCode * 59 + this.Certificate.GetHashCode();
                 if (this.Name != null)

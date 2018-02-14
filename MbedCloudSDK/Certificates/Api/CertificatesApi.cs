@@ -219,8 +219,8 @@ namespace MbedCloudSDK.Certificates.Api
                 {
                     try
                     {
-                    var devResponse = developerCertificateApi.V3DeveloperCertificatesMuuidGet(trustedCert.Id, auth);
-                    trustedCert = Certificate.MapDeveloperCert(devResponse, new Certificate());
+                        var devResponse = developerCertificateApi.V3DeveloperCertificatesMuuidGet(trustedCert.Id, auth);
+                        trustedCert = Certificate.MapDeveloperCert(devResponse, trustedCert);
                     }
                     catch (connector_ca.Client.ApiException ex)
                     {
@@ -263,16 +263,31 @@ namespace MbedCloudSDK.Certificates.Api
                 throw new CloudApiException(400, "Value of Certificate Type must be bootstrap or lwm2m");
             }
 
-            if (certificateData == null || signature == null)
+            if (certificateData == null)
             {
-                throw new ArgumentException("certificateData and signatureData are required when creating non developer certificate.");
+                throw new CloudApiException(400, "certificateData is required when creating non developer certificate.");
+            }
+
+            if (certificate.EnrollmentMode.HasValue)
+            {
+                if (!certificate.EnrollmentMode.Value && string.IsNullOrEmpty(certificate.Signature))
+                {
+                    throw new CloudApiException(400, "If enrollment mode is false, signature is required");
+                }
             }
 
             var serviceEnum = Certificate.GetServiceEnum(certificate.Type.Value);
             try
             {
-                var resp = iamAccountApi.AddCertificate(new TrustedCertificateReq(Certificate: certificateData, Name: certificate.Name, Service: serviceEnum, Signature: signature, Description: certificate.Description));
-                return GetCertificate(resp.Id);
+                var resp = iamAccountApi.AddCertificate(new TrustedCertificateReq(
+                    Certificate: certificateData,
+                    Status: Utils.ParseEnum<TrustedCertificateReq.StatusEnum>(certificate.Status),
+                    Name: certificate.Name,
+                    Service: serviceEnum,
+                    Signature: signature,
+                    Description: certificate.Description,
+                    EnrollmentMode: certificate.EnrollmentMode));
+                return Certificate.MapTrustedCert(resp, api: this);
             }
             catch (iam.Client.ApiException ex)
             {
@@ -381,7 +396,14 @@ namespace MbedCloudSDK.Certificates.Api
             var serviceEnum = Certificate.GetUpdateServiceEnum(certificate);
             var statusEnum = Certificate.GetUpdateStatusEnum(certificate);
 
-            var req = new TrustedCertificateUpdateReq(Status: statusEnum, Certificate: string.IsNullOrEmpty(updatedCertificate.CertificateData) ? null : certificate.CertificateData, Name: certificate.Name, Service: serviceEnum, Signature: string.IsNullOrEmpty(updatedCertificate.CertificateData) ? null : certificate.Signature, Description: certificate.Description);
+            var req = new TrustedCertificateUpdateReq(
+                    Status: statusEnum,
+                    Certificate: certificate.CertificateData,
+                    Name: certificate.Name,
+                    Service: serviceEnum,
+                    Signature: certificate.Signature,
+                    Description: certificate.Description,
+                    EnrollmentMode: certificate.EnrollmentMode);
 
             try
             {
