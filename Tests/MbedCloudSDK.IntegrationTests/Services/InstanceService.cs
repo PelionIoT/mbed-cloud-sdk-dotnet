@@ -5,6 +5,7 @@ using MbedCloudSDK.AccountManagement.Api;
 using MbedCloudSDK.Certificates.Api;
 using MbedCloudSDK.Connect.Api;
 using MbedCloudSDK.DeviceDirectory.Api;
+using MbedCloudSDK.Enrollment.Api;
 using MbedCloudSDK.IntegrationTests.Models;
 using MbedCloudSDK.IntegrationTests.Repositories;
 using MbedCloudSDK.Update.Api;
@@ -101,6 +102,8 @@ namespace MbedCloudSDK.IntegrationTests.Services
                         return GetMethods(typeof(StubApi));
                     case ModuleEnum.UpdateApi:
                         return GetMethods(typeof(UpdateApi));
+                    case ModuleEnum.EnrollmentApi:
+                        return GetMethods(typeof(EnrollmentApi));
                     default:
                         return Enumerable.Empty<SdkApi>().ToList();
                 }
