@@ -74,7 +74,7 @@ namespace MbedCloudSDK.IntegrationTests.Services
                 var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, GetSerializerSettings());
                 if (result == null || result == "null")
                 {
-                    return new object();
+                    return null;
                 }
 
                 return JsonConvert.DeserializeObject(result);

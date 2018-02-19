@@ -324,3 +324,4 @@ ASALocalRun/
 .vscode/launch.json
 Tests/MbedCloudSDK.ExampleTests/mbedKeys.json
 .DS_Store
+rpc_fixtures

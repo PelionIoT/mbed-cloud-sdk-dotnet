@@ -15,6 +15,7 @@ namespace MbedCloudSDK.Certificates.Api
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Exceptions;
+    using static MbedCloudSDK.Common.Utils;
 
     /// <summary>
     /// Certificates Api
@@ -212,10 +213,10 @@ namespace MbedCloudSDK.Certificates.Api
                 }
                 catch (iam.Client.ApiException ex)
                 {
-                    throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+                    HandleNotFound<Certificate, iam.Client.ApiException>(ex);
                 }
 
-                if (trustedCert.Type == CertificateType.Developer)
+                if (trustedCert?.Type == CertificateType.Developer)
                 {
                     try
                     {
@@ -224,7 +225,7 @@ namespace MbedCloudSDK.Certificates.Api
                     }
                     catch (connector_ca.Client.ApiException ex)
                     {
-                        throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+                        HandleNotFound<Certificate, iam.Client.ApiException>(ex);
                     }
                 }
 
@@ -357,7 +358,7 @@ namespace MbedCloudSDK.Certificates.Api
             }
             catch (iam.Client.ApiException ex)
             {
-                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+                HandleNotFound<string, iam.Client.ApiException>(ex);
             }
         }
 

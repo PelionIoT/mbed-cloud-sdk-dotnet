@@ -9,6 +9,7 @@ namespace MbedCloudSDK.Update.Api
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Exceptions;
     using MbedCloudSDK.Update.Model.Campaign;
+    using static MbedCloudSDK.Common.Utils;
 
     /// <summary>
     /// Update Api
@@ -182,7 +183,7 @@ namespace MbedCloudSDK.Update.Api
             }
             catch (update_service.Client.ApiException e)
             {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+                return HandleNotFound<Campaign, update_service.Client.ApiException>(e);
             }
         }
 
@@ -365,7 +366,7 @@ namespace MbedCloudSDK.Update.Api
             }
             catch (update_service.Client.ApiException e)
             {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+                HandleNotFound<Campaign, update_service.Client.ApiException>(e);
             }
         }
     }

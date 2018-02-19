@@ -11,6 +11,7 @@ namespace MbedCloudSDK.AccountManagement.Api
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Exceptions;
+    using static MbedCloudSDK.Common.Utils;
 
     /// <summary>
     /// Account Management api
@@ -173,7 +174,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             }
             catch (iam.Client.ApiException e)
             {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+                return HandleNotFound<ApiKey, iam.Client.ApiException>(e);
             }
         }
 
@@ -383,14 +384,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// <exception cref="CloudApiException">CloudApiException</exception>
         public void DeleteApiKey(string apiKeyId)
         {
-            try
-            {
-                developerApi.DeleteApiKey(apiKeyId);
-            }
-            catch (iam.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
+            DeleteApiKeyAsync(apiKeyId).Wait();
         }
 
         /// <summary>
@@ -421,7 +415,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             }
             catch (iam.Client.ApiException e)
             {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+                HandleNotFound<string, iam.Client.ApiException>(e);
             }
         }
     }

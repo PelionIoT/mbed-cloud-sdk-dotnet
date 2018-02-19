@@ -9,6 +9,7 @@ namespace MbedCloudSDK.Update.Api
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Exceptions;
     using MbedCloudSDK.Update.Model.FirmwareManifest;
+    using static MbedCloudSDK.Common.Utils;
 
     /// <summary>
     /// Update Api
@@ -110,7 +111,7 @@ namespace MbedCloudSDK.Update.Api
             }
             catch (update_service.Client.ApiException ex)
             {
-                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+                return HandleNotFound<FirmwareManifest, update_service.Client.ApiException>(ex);
             }
         }
 
@@ -176,7 +177,7 @@ namespace MbedCloudSDK.Update.Api
             }
             catch (update_service.Client.ApiException e)
             {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+                HandleNotFound<FirmwareManifest, update_service.Client.ApiException>(e);
             }
         }
     }
