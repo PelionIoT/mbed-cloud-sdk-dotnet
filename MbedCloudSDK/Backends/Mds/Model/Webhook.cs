@@ -40,7 +40,7 @@ namespace mds.Model
         /// Initializes a new instance of the <see cref="Webhook" /> class.
         /// </summary>
         /// <param name="Url">The URL to which the notifications are sent. We recommend that you serve this URL over HTTPS. (required).</param>
-        /// <param name="Headers">Headers (key/value) that are sent with the notification. Optional..</param>
+        /// <param name="Headers">The headers (key/value) sent with the notification. Optional..</param>
         public Webhook(string Url = default(string), Dictionary<string, string> Headers = default(Dictionary<string, string>))
         {
             // to ensure "Url" is required (not null)
@@ -63,9 +63,9 @@ namespace mds.Model
         public string Url { get; set; }
 
         /// <summary>
-        /// Headers (key/value) that are sent with the notification. Optional.
+        /// The headers (key/value) sent with the notification. Optional.
         /// </summary>
-        /// <value>Headers (key/value) that are sent with the notification. Optional.</value>
+        /// <value>The headers (key/value) sent with the notification. Optional.</value>
         [DataMember(Name="headers", EmitDefaultValue=false)]
         public Dictionary<string, string> Headers { get; set; }
 

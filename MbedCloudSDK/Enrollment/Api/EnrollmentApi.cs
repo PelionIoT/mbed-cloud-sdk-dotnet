@@ -12,6 +12,7 @@ namespace MbedCloudSDK.Enrollment.Api
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Exceptions;
+    using static MbedCloudSDK.Common.Utils;
 
     /// <summary>
     /// Exposing functionality from the following underlying services:
@@ -126,7 +127,14 @@ namespace MbedCloudSDK.Enrollment.Api
         /// <returns>The created enrollment</returns>
         public Enrollment AddEnrollmentClaim(string claimId)
         {
-            return AddEnrollmentClaimAsync(claimId).Result;
+            try
+            {
+                return AddEnrollmentClaimAsync(claimId).Result;
+            }
+            catch (CloudApiException)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -142,7 +150,7 @@ namespace MbedCloudSDK.Enrollment.Api
             }
             catch (enrollment.Client.ApiException e)
             {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+                return HandleNotFound<Enrollment, enrollment.Client.ApiException>(e);
             }
         }
 
@@ -153,7 +161,14 @@ namespace MbedCloudSDK.Enrollment.Api
         /// <returns>The enrollment</returns>
         public Enrollment GetEnrollmentClaim(string id)
         {
-            return GetEnrollmentClaimAsync(id).Result;
+            try
+            {
+                return GetEnrollmentClaimAsync(id).Result;
+            }
+            catch (CloudApiException)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -169,7 +184,7 @@ namespace MbedCloudSDK.Enrollment.Api
             }
             catch (enrollment.Client.ApiException e)
             {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+                HandleNotFound<string, enrollment.Client.ApiException>(e);
             }
         }
 
@@ -180,7 +195,14 @@ namespace MbedCloudSDK.Enrollment.Api
         /// <returns></returns>
         public void DeleteEnrollmentClaim(string id)
         {
-            DeleteEnrollmentClaimAsync(id);
+            try
+            {
+                DeleteEnrollmentClaimAsync(id);
+            }
+            catch (CloudApiException)
+            {
+                throw;
+            }
         }
     }
 }

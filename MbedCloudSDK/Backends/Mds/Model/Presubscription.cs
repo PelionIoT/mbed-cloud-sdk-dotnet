@@ -34,7 +34,7 @@ namespace mds.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Presubscription" /> class.
         /// </summary>
-        /// <param name="EndpointName">The Device ID.</param>
+        /// <param name="EndpointName">The device ID..</param>
         /// <param name="EndpointType">EndpointType.</param>
         /// <param name="ResourcePath">ResourcePath.</param>
         public Presubscription(string EndpointName = default(string), string EndpointType = default(string), List<string> ResourcePath = default(List<string>))
@@ -45,9 +45,9 @@ namespace mds.Model
         }
         
         /// <summary>
-        /// The Device ID
+        /// The device ID.
         /// </summary>
-        /// <value>The Device ID</value>
+        /// <value>The device ID.</value>
         [DataMember(Name="endpoint-name", EmitDefaultValue=false)]
         public string EndpointName { get; set; }
 

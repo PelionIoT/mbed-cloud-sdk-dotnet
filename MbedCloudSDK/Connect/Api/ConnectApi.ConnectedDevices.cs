@@ -370,18 +370,18 @@ namespace MbedCloudSDK.Connect.Api
         /// <returns>Async consumer with string</returns>
         public async System.Threading.Tasks.Task<AsyncConsumer<string>> ExecuteResourceAsync(string deviceId, string resourcePath, string functionName = null, bool? noResponse = null)
         {
+            if (Config.AutostartNotifications)
+            {
+                StartNotifications();
+            }
+
+            if (!handleNotifications)
+            {
+                throw new CloudApiException(400, "StartNotifications() needs to be called before executing a resource.");
+            }
+
             try
             {
-                if (Config.AutostartNotifications)
-                {
-                    StartNotifications();
-                }
-
-                if (!handleNotifications)
-                {
-                    throw new CloudApiException(400, "StartNotifications() needs to be called before executing a resource.");
-                }
-
                 var fixedPath = FixedPath(resourcePath);
                 var asyncID = await resourcesApi.V2EndpointsDeviceIdResourcePathPostAsync(deviceId, fixedPath, functionName, noResponse);
                 var collection = new AsyncProducerConsumerCollection<string>();
@@ -412,11 +412,20 @@ namespace MbedCloudSDK.Connect.Api
                 throw new CloudApiException(400, "StartNotifications() needs to be called before getting resource value.");
             }
 
-            var fixedPath = FixedPath(resourcePath);
-            var asyncID = await resourcesApi.V2EndpointsDeviceIdResourcePathGetAsync(deviceId, fixedPath);
-            var collection = new AsyncProducerConsumerCollection<string>();
-            AsyncResponses.Add(asyncID.AsyncResponseId, collection);
-            return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
+            try
+            {
+                var fixedPath = FixedPath(resourcePath);
+                var asyncId = Guid.NewGuid().ToString();
+                var deviceRequest = new mds.Model.DeviceRequest(Method: "GET", Uri: fixedPath);
+                await deviceRequestsApi.V2DeviceRequestsDeviceIdasyncIdasyncIdPostAsync(deviceId, asyncId, deviceRequest);
+                var collection = new AsyncProducerConsumerCollection<string>();
+                AsyncResponses.Add(asyncId, collection);
+                return new AsyncConsumer<string>(asyncId, collection);
+            }
+            catch (mds.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
         }
 
         /// <summary>
@@ -439,11 +448,18 @@ namespace MbedCloudSDK.Connect.Api
                 throw new CloudApiException(400, "StartNotifications() needs to be called before setting a resource value.");
             }
 
-            var fixedPath = FixedPath(resourcePath);
-            var asyncID = await resourcesApi.V2EndpointsDeviceIdResourcePathPutAsync(deviceId, fixedPath, resourceValue, noResponse);
-            var collection = new AsyncProducerConsumerCollection<string>();
-            AsyncResponses.Add(asyncID.AsyncResponseId, collection);
-            return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
+            try
+            {
+                var fixedPath = FixedPath(resourcePath);
+                var asyncID = await resourcesApi.V2EndpointsDeviceIdResourcePathPutAsync(deviceId, fixedPath, resourceValue, noResponse);
+                var collection = new AsyncProducerConsumerCollection<string>();
+                AsyncResponses.Add(asyncID.AsyncResponseId, collection);
+                return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
+            }
+            catch (mds.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
         }
     }
 }
