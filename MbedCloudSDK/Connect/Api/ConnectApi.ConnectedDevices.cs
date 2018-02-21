@@ -417,7 +417,7 @@ namespace MbedCloudSDK.Connect.Api
                 var fixedPath = FixedPath(resourcePath);
                 var asyncId = Guid.NewGuid().ToString();
                 var deviceRequest = new mds.Model.DeviceRequest(Method: "GET", Uri: fixedPath);
-                await deviceRequestsApi.V2DeviceRequestsDeviceIdasyncIdasyncIdPostAsync(deviceId, asyncId, deviceRequest);
+                await deviceRequestsApi.V2DeviceRequestsDeviceIdPostAsync(deviceId, asyncId, deviceRequest);
                 var collection = new AsyncProducerConsumerCollection<string>();
                 AsyncResponses.Add(asyncId, collection);
                 return new AsyncConsumer<string>(asyncId, collection);

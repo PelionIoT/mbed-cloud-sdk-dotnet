@@ -56,7 +56,7 @@ namespace MbedCloudSDK.Connect.Model.Notifications
             var resourcesData = new ResourcesData
             {
                 Path = data.Path,
-                ResourceType = data.Rf,
+                ResourceType = data.Rt,
                 ContentType = data.Ct,
                 Observable = data.Obs,
                 InterfaceDescription = data._If,

@@ -34,33 +34,33 @@ namespace mds.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ResourcesData" /> class.
         /// </summary>
+        /// <param name="Rt">Application specific resource type that describes this resource. [It is created by the client side application](/docs/v1.2/collecting/resource-setup-in-mbed-cloud-client.html). Not meant to be a human-readable name for the resource. Multiple resource types may be included, they are separated by a space..</param>
         /// <param name="Path">Resource&#39;s URI path..</param>
-        /// <param name="Rf">Resource type [created by the client side application](/docs/v1.2/collecting/resource-setup-in-mbed-cloud-client.html). For example \&quot;speed_sensor\&quot;.</param>
         /// <param name="Ct">Content type..</param>
         /// <param name="Obs">Whether the resource is observable or not (true/false)..</param>
-        /// <param name="_If">Interface description..</param>
-        public ResourcesData(string Path = default(string), string Rf = default(string), string Ct = default(string), bool? Obs = default(bool?), string _If = default(string))
+        /// <param name="_If">Interface description that defines a name or URI that indicates how to interact with the target resource. It describes a generic interface type, such as a \&quot;sensor\&quot;..</param>
+        public ResourcesData(string Rt = default(string), string Path = default(string), string Ct = default(string), bool? Obs = default(bool?), string _If = default(string))
         {
+            this.Rt = Rt;
             this.Path = Path;
-            this.Rf = Rf;
             this.Ct = Ct;
             this.Obs = Obs;
             this._If = _If;
         }
         
         /// <summary>
+        /// Application specific resource type that describes this resource. [It is created by the client side application](/docs/v1.2/collecting/resource-setup-in-mbed-cloud-client.html). Not meant to be a human-readable name for the resource. Multiple resource types may be included, they are separated by a space.
+        /// </summary>
+        /// <value>Application specific resource type that describes this resource. [It is created by the client side application](/docs/v1.2/collecting/resource-setup-in-mbed-cloud-client.html). Not meant to be a human-readable name for the resource. Multiple resource types may be included, they are separated by a space.</value>
+        [DataMember(Name="rt", EmitDefaultValue=false)]
+        public string Rt { get; set; }
+
+        /// <summary>
         /// Resource&#39;s URI path.
         /// </summary>
         /// <value>Resource&#39;s URI path.</value>
         [DataMember(Name="path", EmitDefaultValue=false)]
         public string Path { get; set; }
-
-        /// <summary>
-        /// Resource type [created by the client side application](/docs/v1.2/collecting/resource-setup-in-mbed-cloud-client.html). For example \&quot;speed_sensor\&quot;
-        /// </summary>
-        /// <value>Resource type [created by the client side application](/docs/v1.2/collecting/resource-setup-in-mbed-cloud-client.html). For example \&quot;speed_sensor\&quot;</value>
-        [DataMember(Name="rf", EmitDefaultValue=false)]
-        public string Rf { get; set; }
 
         /// <summary>
         /// Content type.
@@ -77,9 +77,9 @@ namespace mds.Model
         public bool? Obs { get; set; }
 
         /// <summary>
-        /// Interface description.
+        /// Interface description that defines a name or URI that indicates how to interact with the target resource. It describes a generic interface type, such as a \&quot;sensor\&quot;.
         /// </summary>
-        /// <value>Interface description.</value>
+        /// <value>Interface description that defines a name or URI that indicates how to interact with the target resource. It describes a generic interface type, such as a \&quot;sensor\&quot;.</value>
         [DataMember(Name="if", EmitDefaultValue=false)]
         public string _If { get; set; }
 
@@ -91,8 +91,8 @@ namespace mds.Model
         {
             var sb = new StringBuilder();
             sb.Append("class ResourcesData {\n");
+            sb.Append("  Rt: ").Append(Rt).Append("\n");
             sb.Append("  Path: ").Append(Path).Append("\n");
-            sb.Append("  Rf: ").Append(Rf).Append("\n");
             sb.Append("  Ct: ").Append(Ct).Append("\n");
             sb.Append("  Obs: ").Append(Obs).Append("\n");
             sb.Append("  _If: ").Append(_If).Append("\n");
@@ -131,14 +131,14 @@ namespace mds.Model
 
             return 
                 (
+                    this.Rt == input.Rt ||
+                    (this.Rt != null &&
+                    this.Rt.Equals(input.Rt))
+                ) && 
+                (
                     this.Path == input.Path ||
                     (this.Path != null &&
                     this.Path.Equals(input.Path))
-                ) && 
-                (
-                    this.Rf == input.Rf ||
-                    (this.Rf != null &&
-                    this.Rf.Equals(input.Rf))
                 ) && 
                 (
                     this.Ct == input.Ct ||
@@ -166,10 +166,10 @@ namespace mds.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Rt != null)
+                    hashCode = hashCode * 59 + this.Rt.GetHashCode();
                 if (this.Path != null)
                     hashCode = hashCode * 59 + this.Path.GetHashCode();
-                if (this.Rf != null)
-                    hashCode = hashCode * 59 + this.Rf.GetHashCode();
                 if (this.Ct != null)
                     hashCode = hashCode * 59 + this.Ct.GetHashCode();
                 if (this.Obs != null)

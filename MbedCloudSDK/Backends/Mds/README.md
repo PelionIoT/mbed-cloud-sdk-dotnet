@@ -81,11 +81,11 @@ namespace Example
             try
             {
                 // Send an async request to device
-                apiInstance.V2DeviceRequestsDeviceIdasyncIdasyncIdPost(deviceId, asyncId, body);
+                apiInstance.V2DeviceRequestsDeviceIdPost(deviceId, asyncId, body);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DeviceRequestsApi.V2DeviceRequestsDeviceIdasyncIdasyncIdPost: " + e.Message );
+                Debug.Print("Exception when calling DeviceRequestsApi.V2DeviceRequestsDeviceIdPost: " + e.Message );
             }
 
         }
@@ -100,7 +100,7 @@ All URIs are relative to *https://api.us-east-1.mbedcloud.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DeviceRequestsApi* | [**V2DeviceRequestsDeviceIdasyncIdasyncIdPost**](docs/DeviceRequestsApi.md#v2devicerequestsdeviceidasyncidasyncidpost) | **POST** /v2/device-requests/{deviceId}?async-id&#x3D;{asyncId} | Send an async request to device
+*DeviceRequestsApi* | [**V2DeviceRequestsDeviceIdPost**](docs/DeviceRequestsApi.md#v2devicerequestsdeviceidpost) | **POST** /v2/device-requests/{deviceId} | Send an async request to device
 *EndpointsApi* | [**V2EndpointsDeviceIdGet**](docs/EndpointsApi.md#v2endpointsdeviceidget) | **GET** /v2/endpoints/{device-id} | List the resources on an endpoint
 *EndpointsApi* | [**V2EndpointsGet**](docs/EndpointsApi.md#v2endpointsget) | **GET** /v2/endpoints | (DEPRECATED) List registered endpoints. The number of returned endpoints is currently limited to 200.
 *NotificationsApi* | [**V2NotificationCallbackDelete**](docs/NotificationsApi.md#v2notificationcallbackdelete) | **DELETE** /v2/notification/callback | Delete callback URL
