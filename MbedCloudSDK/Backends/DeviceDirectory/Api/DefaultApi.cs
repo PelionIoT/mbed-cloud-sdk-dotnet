@@ -26,10 +26,10 @@ namespace device_directory.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
+        /// Create a device
         /// </summary>
         /// <remarks>
-        /// Create device.
+        /// Create a new device.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
@@ -37,17 +37,17 @@ namespace device_directory.Api
         DeviceData DeviceCreate (DeviceDataPostRequest device);
 
         /// <summary>
-        /// 
+        /// Create a device
         /// </summary>
         /// <remarks>
-        /// Create device.
+        /// Create a new device.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceData</returns>
         ApiResponse<DeviceData> DeviceCreateWithHttpInfo (DeviceDataPostRequest device);
         /// <summary>
-        /// 
+        /// Delete a device.
         /// </summary>
         /// <remarks>
         /// Delete device. Only available for devices with a developer certificate. Attempts to delete a device with a production certicate will return a 400 response.
@@ -58,7 +58,7 @@ namespace device_directory.Api
         void DeviceDestroy (string id);
 
         /// <summary>
-        /// 
+        /// Delete a device.
         /// </summary>
         /// <remarks>
         /// Delete device. Only available for devices with a developer certificate. Attempts to delete a device with a production certicate will return a 400 response.
@@ -68,10 +68,10 @@ namespace device_directory.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> DeviceDestroyWithHttpInfo (string id);
         /// <summary>
-        /// 
+        /// List all device events.
         /// </summary>
         /// <remarks>
-        /// List all device events.
+        /// List all device events for an account.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
@@ -83,10 +83,10 @@ namespace device_directory.Api
         DeviceEventPage DeviceEventList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
-        /// 
+        /// List all device events.
         /// </summary>
         /// <remarks>
-        /// List all device events.
+        /// List all device events for an account.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
@@ -97,10 +97,10 @@ namespace device_directory.Api
         /// <returns>ApiResponse of DeviceEventPage</returns>
         ApiResponse<DeviceEventPage> DeviceEventListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
-        /// 
+        /// Retrieve a device event.
         /// </summary>
         /// <remarks>
-        /// Retrieve device event.
+        /// Retrieve a specific device event.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceEventId"></param>
@@ -108,17 +108,17 @@ namespace device_directory.Api
         DeviceEventData DeviceEventRetrieve (string deviceEventId);
 
         /// <summary>
-        /// 
+        /// Retrieve a device event.
         /// </summary>
         /// <remarks>
-        /// Retrieve device event.
+        /// Retrieve a specific device event.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceEventId"></param>
         /// <returns>ApiResponse of DeviceEventData</returns>
         ApiResponse<DeviceEventData> DeviceEventRetrieveWithHttpInfo (string deviceEventId);
         /// <summary>
-        /// 
+        /// List all devices.
         /// </summary>
         /// <remarks>
         /// List all devices.
@@ -133,7 +133,7 @@ namespace device_directory.Api
         DevicePage DeviceList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
-        /// 
+        /// List all devices.
         /// </summary>
         /// <remarks>
         /// List all devices.
@@ -147,7 +147,7 @@ namespace device_directory.Api
         /// <returns>ApiResponse of DevicePage</returns>
         ApiResponse<DevicePage> DeviceListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
-        /// 
+        /// DEPRECATED: List all device events.
         /// </summary>
         /// <remarks>
         /// DEPRECATED: List all device events. Use &#x60;/v3/device-events/&#x60; instead.
@@ -162,7 +162,7 @@ namespace device_directory.Api
         DeviceEventPage DeviceLogList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
-        /// 
+        /// DEPRECATED: List all device events.
         /// </summary>
         /// <remarks>
         /// DEPRECATED: List all device events. Use &#x60;/v3/device-events/&#x60; instead.
@@ -176,7 +176,7 @@ namespace device_directory.Api
         /// <returns>ApiResponse of DeviceEventPage</returns>
         ApiResponse<DeviceEventPage> DeviceLogListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
-        /// 
+        /// DEPRECATED: Retrieve a device event.
         /// </summary>
         /// <remarks>
         /// Retrieve device event (deprecated, use /v3/device-events/{device_event_id}/ instead)
@@ -187,7 +187,7 @@ namespace device_directory.Api
         DeviceEventData DeviceLogRetrieve (string deviceEventId);
 
         /// <summary>
-        /// 
+        /// DEPRECATED: Retrieve a device event.
         /// </summary>
         /// <remarks>
         /// Retrieve device event (deprecated, use /v3/device-events/{device_event_id}/ instead)
@@ -197,10 +197,10 @@ namespace device_directory.Api
         /// <returns>ApiResponse of DeviceEventData</returns>
         ApiResponse<DeviceEventData> DeviceLogRetrieveWithHttpInfo (string deviceEventId);
         /// <summary>
-        /// 
+        /// Create a device query
         /// </summary>
         /// <remarks>
-        /// Create device query.
+        /// Create a new device query.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
@@ -208,20 +208,20 @@ namespace device_directory.Api
         DeviceQuery DeviceQueryCreate (DeviceQueryPostPutRequest device);
 
         /// <summary>
-        /// 
+        /// Create a device query
         /// </summary>
         /// <remarks>
-        /// Create device query.
+        /// Create a new device query.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
         /// <returns>ApiResponse of DeviceQuery</returns>
         ApiResponse<DeviceQuery> DeviceQueryCreateWithHttpInfo (DeviceQueryPostPutRequest device);
         /// <summary>
-        /// 
+        /// Delete a device query
         /// </summary>
         /// <remarks>
-        /// Delete device query.
+        /// Delete a device query.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -229,17 +229,17 @@ namespace device_directory.Api
         void DeviceQueryDestroy (string queryId);
 
         /// <summary>
-        /// 
+        /// Delete a device query
         /// </summary>
         /// <remarks>
-        /// Delete device query.
+        /// Delete a device query.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> DeviceQueryDestroyWithHttpInfo (string queryId);
         /// <summary>
-        /// 
+        /// List device queries.
         /// </summary>
         /// <remarks>
         /// List all device queries. The result will be paged into pages of 100.
@@ -254,7 +254,7 @@ namespace device_directory.Api
         DeviceQueryPage DeviceQueryList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
-        /// 
+        /// List device queries.
         /// </summary>
         /// <remarks>
         /// List all device queries. The result will be paged into pages of 100.
@@ -268,10 +268,10 @@ namespace device_directory.Api
         /// <returns>ApiResponse of DeviceQueryPage</returns>
         ApiResponse<DeviceQueryPage> DeviceQueryListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
-        /// 
+        /// Retrieve a device query.
         /// </summary>
         /// <remarks>
-        /// Retrieve device query.
+        /// Retrieve a specific device query.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -279,20 +279,20 @@ namespace device_directory.Api
         DeviceQuery DeviceQueryRetrieve (string queryId);
 
         /// <summary>
-        /// 
+        /// Retrieve a device query.
         /// </summary>
         /// <remarks>
-        /// Retrieve device query.
+        /// Retrieve a specific device query.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
         /// <returns>ApiResponse of DeviceQuery</returns>
         ApiResponse<DeviceQuery> DeviceQueryRetrieveWithHttpInfo (string queryId);
         /// <summary>
-        /// 
+        /// Update a device query
         /// </summary>
         /// <remarks>
-        /// Update device query.
+        /// Update a specifc device query.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -301,10 +301,10 @@ namespace device_directory.Api
         DeviceQuery DeviceQueryUpdate (string queryId, DeviceQueryPostPutRequest body);
 
         /// <summary>
-        /// 
+        /// Update a device query
         /// </summary>
         /// <remarks>
-        /// Update device query.
+        /// Update a specifc device query.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -312,10 +312,10 @@ namespace device_directory.Api
         /// <returns>ApiResponse of DeviceQuery</returns>
         ApiResponse<DeviceQuery> DeviceQueryUpdateWithHttpInfo (string queryId, DeviceQueryPostPutRequest body);
         /// <summary>
-        /// 
+        /// Get a devices
         /// </summary>
         /// <remarks>
-        /// Retrieve device.
+        /// Retrieve information about a specific device.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -323,20 +323,20 @@ namespace device_directory.Api
         DeviceData DeviceRetrieve (string id);
 
         /// <summary>
-        /// 
+        /// Get a devices
         /// </summary>
         /// <remarks>
-        /// Retrieve device.
+        /// Retrieve information about a specific device.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <returns>ApiResponse of DeviceData</returns>
         ApiResponse<DeviceData> DeviceRetrieveWithHttpInfo (string id);
         /// <summary>
-        /// 
+        /// Update a device
         /// </summary>
         /// <remarks>
-        /// Update device.
+        /// Update a specific device.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the device.</param>
@@ -345,10 +345,10 @@ namespace device_directory.Api
         DeviceData DeviceUpdate (string id, DeviceDataPutRequest device);
 
         /// <summary>
-        /// 
+        /// Update a device
         /// </summary>
         /// <remarks>
-        /// Update device.
+        /// Update a specific device.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the device.</param>
@@ -358,10 +358,10 @@ namespace device_directory.Api
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Create a device
         /// </summary>
         /// <remarks>
-        /// Create device.
+        /// Create a new device.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
@@ -369,17 +369,17 @@ namespace device_directory.Api
         System.Threading.Tasks.Task<DeviceData> DeviceCreateAsync (DeviceDataPostRequest device);
 
         /// <summary>
-        /// 
+        /// Create a device
         /// </summary>
         /// <remarks>
-        /// Create device.
+        /// Create a new device.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceData)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceCreateAsyncWithHttpInfo (DeviceDataPostRequest device);
         /// <summary>
-        /// 
+        /// Delete a device.
         /// </summary>
         /// <remarks>
         /// Delete device. Only available for devices with a developer certificate. Attempts to delete a device with a production certicate will return a 400 response.
@@ -390,7 +390,7 @@ namespace device_directory.Api
         System.Threading.Tasks.Task DeviceDestroyAsync (string id);
 
         /// <summary>
-        /// 
+        /// Delete a device.
         /// </summary>
         /// <remarks>
         /// Delete device. Only available for devices with a developer certificate. Attempts to delete a device with a production certicate will return a 400 response.
@@ -400,10 +400,10 @@ namespace device_directory.Api
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> DeviceDestroyAsyncWithHttpInfo (string id);
         /// <summary>
-        /// 
+        /// List all device events.
         /// </summary>
         /// <remarks>
-        /// List all device events.
+        /// List all device events for an account.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
@@ -415,10 +415,10 @@ namespace device_directory.Api
         System.Threading.Tasks.Task<DeviceEventPage> DeviceEventListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
-        /// 
+        /// List all device events.
         /// </summary>
         /// <remarks>
-        /// List all device events.
+        /// List all device events for an account.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
@@ -429,10 +429,10 @@ namespace device_directory.Api
         /// <returns>Task of ApiResponse (DeviceEventPage)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeviceEventPage>> DeviceEventListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
-        /// 
+        /// Retrieve a device event.
         /// </summary>
         /// <remarks>
-        /// Retrieve device event.
+        /// Retrieve a specific device event.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceEventId"></param>
@@ -440,17 +440,17 @@ namespace device_directory.Api
         System.Threading.Tasks.Task<DeviceEventData> DeviceEventRetrieveAsync (string deviceEventId);
 
         /// <summary>
-        /// 
+        /// Retrieve a device event.
         /// </summary>
         /// <remarks>
-        /// Retrieve device event.
+        /// Retrieve a specific device event.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceEventId"></param>
         /// <returns>Task of ApiResponse (DeviceEventData)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeviceEventData>> DeviceEventRetrieveAsyncWithHttpInfo (string deviceEventId);
         /// <summary>
-        /// 
+        /// List all devices.
         /// </summary>
         /// <remarks>
         /// List all devices.
@@ -465,7 +465,7 @@ namespace device_directory.Api
         System.Threading.Tasks.Task<DevicePage> DeviceListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
-        /// 
+        /// List all devices.
         /// </summary>
         /// <remarks>
         /// List all devices.
@@ -479,7 +479,7 @@ namespace device_directory.Api
         /// <returns>Task of ApiResponse (DevicePage)</returns>
         System.Threading.Tasks.Task<ApiResponse<DevicePage>> DeviceListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
-        /// 
+        /// DEPRECATED: List all device events.
         /// </summary>
         /// <remarks>
         /// DEPRECATED: List all device events. Use &#x60;/v3/device-events/&#x60; instead.
@@ -494,7 +494,7 @@ namespace device_directory.Api
         System.Threading.Tasks.Task<DeviceEventPage> DeviceLogListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
-        /// 
+        /// DEPRECATED: List all device events.
         /// </summary>
         /// <remarks>
         /// DEPRECATED: List all device events. Use &#x60;/v3/device-events/&#x60; instead.
@@ -508,7 +508,7 @@ namespace device_directory.Api
         /// <returns>Task of ApiResponse (DeviceEventPage)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeviceEventPage>> DeviceLogListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
-        /// 
+        /// DEPRECATED: Retrieve a device event.
         /// </summary>
         /// <remarks>
         /// Retrieve device event (deprecated, use /v3/device-events/{device_event_id}/ instead)
@@ -519,7 +519,7 @@ namespace device_directory.Api
         System.Threading.Tasks.Task<DeviceEventData> DeviceLogRetrieveAsync (string deviceEventId);
 
         /// <summary>
-        /// 
+        /// DEPRECATED: Retrieve a device event.
         /// </summary>
         /// <remarks>
         /// Retrieve device event (deprecated, use /v3/device-events/{device_event_id}/ instead)
@@ -529,10 +529,10 @@ namespace device_directory.Api
         /// <returns>Task of ApiResponse (DeviceEventData)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeviceEventData>> DeviceLogRetrieveAsyncWithHttpInfo (string deviceEventId);
         /// <summary>
-        /// 
+        /// Create a device query
         /// </summary>
         /// <remarks>
-        /// Create device query.
+        /// Create a new device query.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
@@ -540,20 +540,20 @@ namespace device_directory.Api
         System.Threading.Tasks.Task<DeviceQuery> DeviceQueryCreateAsync (DeviceQueryPostPutRequest device);
 
         /// <summary>
-        /// 
+        /// Create a device query
         /// </summary>
         /// <remarks>
-        /// Create device query.
+        /// Create a new device query.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
         /// <returns>Task of ApiResponse (DeviceQuery)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryCreateAsyncWithHttpInfo (DeviceQueryPostPutRequest device);
         /// <summary>
-        /// 
+        /// Delete a device query
         /// </summary>
         /// <remarks>
-        /// Delete device query.
+        /// Delete a device query.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -561,17 +561,17 @@ namespace device_directory.Api
         System.Threading.Tasks.Task DeviceQueryDestroyAsync (string queryId);
 
         /// <summary>
-        /// 
+        /// Delete a device query
         /// </summary>
         /// <remarks>
-        /// Delete device query.
+        /// Delete a device query.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> DeviceQueryDestroyAsyncWithHttpInfo (string queryId);
         /// <summary>
-        /// 
+        /// List device queries.
         /// </summary>
         /// <remarks>
         /// List all device queries. The result will be paged into pages of 100.
@@ -586,7 +586,7 @@ namespace device_directory.Api
         System.Threading.Tasks.Task<DeviceQueryPage> DeviceQueryListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
-        /// 
+        /// List device queries.
         /// </summary>
         /// <remarks>
         /// List all device queries. The result will be paged into pages of 100.
@@ -600,10 +600,10 @@ namespace device_directory.Api
         /// <returns>Task of ApiResponse (DeviceQueryPage)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeviceQueryPage>> DeviceQueryListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
-        /// 
+        /// Retrieve a device query.
         /// </summary>
         /// <remarks>
-        /// Retrieve device query.
+        /// Retrieve a specific device query.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -611,20 +611,20 @@ namespace device_directory.Api
         System.Threading.Tasks.Task<DeviceQuery> DeviceQueryRetrieveAsync (string queryId);
 
         /// <summary>
-        /// 
+        /// Retrieve a device query.
         /// </summary>
         /// <remarks>
-        /// Retrieve device query.
+        /// Retrieve a specific device query.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
         /// <returns>Task of ApiResponse (DeviceQuery)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryRetrieveAsyncWithHttpInfo (string queryId);
         /// <summary>
-        /// 
+        /// Update a device query
         /// </summary>
         /// <remarks>
-        /// Update device query.
+        /// Update a specifc device query.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -633,10 +633,10 @@ namespace device_directory.Api
         System.Threading.Tasks.Task<DeviceQuery> DeviceQueryUpdateAsync (string queryId, DeviceQueryPostPutRequest body);
 
         /// <summary>
-        /// 
+        /// Update a device query
         /// </summary>
         /// <remarks>
-        /// Update device query.
+        /// Update a specifc device query.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -644,10 +644,10 @@ namespace device_directory.Api
         /// <returns>Task of ApiResponse (DeviceQuery)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeviceQuery>> DeviceQueryUpdateAsyncWithHttpInfo (string queryId, DeviceQueryPostPutRequest body);
         /// <summary>
-        /// 
+        /// Get a devices
         /// </summary>
         /// <remarks>
-        /// Retrieve device.
+        /// Retrieve information about a specific device.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -655,20 +655,20 @@ namespace device_directory.Api
         System.Threading.Tasks.Task<DeviceData> DeviceRetrieveAsync (string id);
 
         /// <summary>
-        /// 
+        /// Get a devices
         /// </summary>
         /// <remarks>
-        /// Retrieve device.
+        /// Retrieve information about a specific device.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <returns>Task of ApiResponse (DeviceData)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeviceData>> DeviceRetrieveAsyncWithHttpInfo (string id);
         /// <summary>
-        /// 
+        /// Update a device
         /// </summary>
         /// <remarks>
-        /// Update device.
+        /// Update a specific device.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the device.</param>
@@ -677,10 +677,10 @@ namespace device_directory.Api
         System.Threading.Tasks.Task<DeviceData> DeviceUpdateAsync (string id, DeviceDataPutRequest device);
 
         /// <summary>
-        /// 
+        /// Update a device
         /// </summary>
         /// <remarks>
-        /// Update device.
+        /// Update a specific device.
         /// </remarks>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the device.</param>
@@ -788,7 +788,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Create device.
+        /// Create a device Create a new device.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
@@ -800,7 +800,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Create device.
+        /// Create a device Create a new device.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
@@ -866,7 +866,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Create device.
+        /// Create a device Create a new device.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
@@ -879,7 +879,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Create device.
+        /// Create a device Create a new device.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
@@ -945,7 +945,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Delete device. Only available for devices with a developer certificate. Attempts to delete a device with a production certicate will return a 400 response.
+        /// Delete a device. Delete device. Only available for devices with a developer certificate. Attempts to delete a device with a production certicate will return a 400 response.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -956,7 +956,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Delete device. Only available for devices with a developer certificate. Attempts to delete a device with a production certicate will return a 400 response.
+        /// Delete a device. Delete device. Only available for devices with a developer certificate. Attempts to delete a device with a production certicate will return a 400 response.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1015,7 +1015,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Delete device. Only available for devices with a developer certificate. Attempts to delete a device with a production certicate will return a 400 response.
+        /// Delete a device. Delete device. Only available for devices with a developer certificate. Attempts to delete a device with a production certicate will return a 400 response.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1027,7 +1027,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Delete device. Only available for devices with a developer certificate. Attempts to delete a device with a production certicate will return a 400 response.
+        /// Delete a device. Delete device. Only available for devices with a developer certificate. Attempts to delete a device with a production certicate will return a 400 response.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1086,7 +1086,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  List all device events.
+        /// List all device events. List all device events for an account.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
@@ -1102,7 +1102,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  List all device events.
+        /// List all device events. List all device events for an account.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
@@ -1166,7 +1166,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  List all device events.
+        /// List all device events. List all device events for an account.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
@@ -1183,7 +1183,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  List all device events.
+        /// List all device events. List all device events for an account.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
@@ -1247,7 +1247,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Retrieve device event.
+        /// Retrieve a device event. Retrieve a specific device event.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceEventId"></param>
@@ -1259,7 +1259,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Retrieve device event.
+        /// Retrieve a device event. Retrieve a specific device event.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceEventId"></param>
@@ -1318,7 +1318,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Retrieve device event.
+        /// Retrieve a device event. Retrieve a specific device event.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceEventId"></param>
@@ -1331,7 +1331,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Retrieve device event.
+        /// Retrieve a device event. Retrieve a specific device event.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceEventId"></param>
@@ -1390,7 +1390,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  List all devices.
+        /// List all devices. List all devices.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
@@ -1406,7 +1406,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  List all devices.
+        /// List all devices. List all devices.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
@@ -1470,7 +1470,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  List all devices.
+        /// List all devices. List all devices.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
@@ -1487,7 +1487,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  List all devices.
+        /// List all devices. List all devices.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
@@ -1551,7 +1551,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  DEPRECATED: List all device events. Use &#x60;/v3/device-events/&#x60; instead.
+        /// DEPRECATED: List all device events. DEPRECATED: List all device events. Use &#x60;/v3/device-events/&#x60; instead.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
@@ -1567,7 +1567,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  DEPRECATED: List all device events. Use &#x60;/v3/device-events/&#x60; instead.
+        /// DEPRECATED: List all device events. DEPRECATED: List all device events. Use &#x60;/v3/device-events/&#x60; instead.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
@@ -1631,7 +1631,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  DEPRECATED: List all device events. Use &#x60;/v3/device-events/&#x60; instead.
+        /// DEPRECATED: List all device events. DEPRECATED: List all device events. Use &#x60;/v3/device-events/&#x60; instead.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
@@ -1648,7 +1648,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  DEPRECATED: List all device events. Use &#x60;/v3/device-events/&#x60; instead.
+        /// DEPRECATED: List all device events. DEPRECATED: List all device events. Use &#x60;/v3/device-events/&#x60; instead.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
@@ -1712,7 +1712,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Retrieve device event (deprecated, use /v3/device-events/{device_event_id}/ instead)
+        /// DEPRECATED: Retrieve a device event. Retrieve device event (deprecated, use /v3/device-events/{device_event_id}/ instead)
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceEventId"></param>
@@ -1724,7 +1724,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Retrieve device event (deprecated, use /v3/device-events/{device_event_id}/ instead)
+        /// DEPRECATED: Retrieve a device event. Retrieve device event (deprecated, use /v3/device-events/{device_event_id}/ instead)
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceEventId"></param>
@@ -1783,7 +1783,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Retrieve device event (deprecated, use /v3/device-events/{device_event_id}/ instead)
+        /// DEPRECATED: Retrieve a device event. Retrieve device event (deprecated, use /v3/device-events/{device_event_id}/ instead)
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceEventId"></param>
@@ -1796,7 +1796,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Retrieve device event (deprecated, use /v3/device-events/{device_event_id}/ instead)
+        /// DEPRECATED: Retrieve a device event. Retrieve device event (deprecated, use /v3/device-events/{device_event_id}/ instead)
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceEventId"></param>
@@ -1855,7 +1855,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Create device query.
+        /// Create a device query Create a new device query.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
@@ -1867,7 +1867,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Create device query.
+        /// Create a device query Create a new device query.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
@@ -1933,7 +1933,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Create device query.
+        /// Create a device query Create a new device query.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
@@ -1946,7 +1946,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Create device query.
+        /// Create a device query Create a new device query.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="device"></param>
@@ -2012,7 +2012,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Delete device query.
+        /// Delete a device query Delete a device query.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -2023,7 +2023,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Delete device query.
+        /// Delete a device query Delete a device query.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -2082,7 +2082,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Delete device query.
+        /// Delete a device query Delete a device query.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -2094,7 +2094,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Delete device query.
+        /// Delete a device query Delete a device query.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -2153,7 +2153,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  List all device queries. The result will be paged into pages of 100.
+        /// List device queries. List all device queries. The result will be paged into pages of 100.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
@@ -2169,7 +2169,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  List all device queries. The result will be paged into pages of 100.
+        /// List device queries. List all device queries. The result will be paged into pages of 100.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
@@ -2233,7 +2233,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  List all device queries. The result will be paged into pages of 100.
+        /// List device queries. List all device queries. The result will be paged into pages of 100.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
@@ -2250,7 +2250,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  List all device queries. The result will be paged into pages of 100.
+        /// List device queries. List all device queries. The result will be paged into pages of 100.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many objects to retrieve in the page. (optional)</param>
@@ -2314,7 +2314,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Retrieve device query.
+        /// Retrieve a device query. Retrieve a specific device query.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -2326,7 +2326,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Retrieve device query.
+        /// Retrieve a device query. Retrieve a specific device query.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -2385,7 +2385,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Retrieve device query.
+        /// Retrieve a device query. Retrieve a specific device query.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -2398,7 +2398,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Retrieve device query.
+        /// Retrieve a device query. Retrieve a specific device query.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -2457,7 +2457,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Update device query.
+        /// Update a device query Update a specifc device query.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -2470,7 +2470,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Update device query.
+        /// Update a device query Update a specifc device query.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -2541,7 +2541,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Update device query.
+        /// Update a device query Update a specifc device query.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -2555,7 +2555,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Update device query.
+        /// Update a device query Update a specifc device query.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryId"></param>
@@ -2626,7 +2626,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Retrieve device.
+        /// Get a devices Retrieve information about a specific device.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -2638,7 +2638,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Retrieve device.
+        /// Get a devices Retrieve information about a specific device.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -2697,7 +2697,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Retrieve device.
+        /// Get a devices Retrieve information about a specific device.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -2710,7 +2710,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Retrieve device.
+        /// Get a devices Retrieve information about a specific device.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -2769,7 +2769,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Update device.
+        /// Update a device Update a specific device.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the device.</param>
@@ -2782,7 +2782,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Update device.
+        /// Update a device Update a specific device.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the device.</param>
@@ -2853,7 +2853,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Update device.
+        /// Update a device Update a specific device.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the device.</param>
@@ -2867,7 +2867,7 @@ namespace device_directory.Api
         }
 
         /// <summary>
-        ///  Update device.
+        /// Update a device Update a specific device.
         /// </summary>
         /// <exception cref="device_directory.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the device.</param>
