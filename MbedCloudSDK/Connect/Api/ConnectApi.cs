@@ -174,7 +174,17 @@ namespace MbedCloudSDK.Connect.Api
             }
         }
 
-        private static string FixedPath(string path)
+        private static string RemoveLeadingSlash(string path)
+        {
+            if (path.StartsWith("/", StringComparison.OrdinalIgnoreCase))
+            {
+                path = path.Substring(1);
+            }
+
+            return path;
+        }
+
+        private static string AddLeadingSlash(string path)
         {
             if (!path.StartsWith("/", StringComparison.OrdinalIgnoreCase))
             {

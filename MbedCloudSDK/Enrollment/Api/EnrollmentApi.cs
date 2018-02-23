@@ -176,7 +176,7 @@ namespace MbedCloudSDK.Enrollment.Api
         /// </summary>
         /// <param name="id">The id of the enrollment</param>
         /// <returns></returns>
-        public async void DeleteEnrollmentClaimAsync(string id)
+        public async Task DeleteEnrollmentClaimAsync(string id)
         {
             try
             {
@@ -197,7 +197,7 @@ namespace MbedCloudSDK.Enrollment.Api
         {
             try
             {
-                DeleteEnrollmentClaimAsync(id);
+                DeleteEnrollmentClaimAsync(id).Wait();
             }
             catch (CloudApiException)
             {

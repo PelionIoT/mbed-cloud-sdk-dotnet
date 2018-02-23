@@ -29,194 +29,6 @@ namespace update_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Create an update campaign.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaign">Update campaign</param>
-        /// <returns>UpdateCampaign</returns>
-        UpdateCampaign CampaignCreate (UpdateCampaignPostRequest campaign);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Create an update campaign.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaign">Update campaign</param>
-        /// <returns>ApiResponse of UpdateCampaign</returns>
-        ApiResponse<UpdateCampaign> CampaignCreateWithHttpInfo (UpdateCampaignPostRequest campaign);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Delete an update campaign.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The ID of the update campaign</param>
-        /// <returns></returns>
-        void CampaignDestroy (string campaignId);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Delete an update campaign.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The ID of the update campaign</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> CampaignDestroyWithHttpInfo (string campaignId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Get update campaigns for devices specified by a filter.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">How many update campaigns to retrieve (optional)</param>
-        /// <param name="order">The order of the records. Acceptable values: ASC, DESC. Default: ASC (optional)</param>
-        /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;state__nin&#x3D;draft,scheduled,expired&#x60; (optional)</param>
-        /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <returns>UpdateCampaignPage</returns>
-        UpdateCampaignPage CampaignList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Get update campaigns for devices specified by a filter.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">How many update campaigns to retrieve (optional)</param>
-        /// <param name="order">The order of the records. Acceptable values: ASC, DESC. Default: ASC (optional)</param>
-        /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;state__nin&#x3D;draft,scheduled,expired&#x60; (optional)</param>
-        /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <returns>ApiResponse of UpdateCampaignPage</returns>
-        ApiResponse<UpdateCampaignPage> CampaignListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Get campaign device metadata.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The update campaign ID</param>
-        /// <param name="limit">How many objects to retrieve in the page (optional)</param>
-        /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <returns>CampaignDeviceMetadataPage</returns>
-        CampaignDeviceMetadataPage CampaignMetadataList (string campaignId, int? limit = null, string order = null, string after = null, string include = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Get campaign device metadata.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The update campaign ID</param>
-        /// <param name="limit">How many objects to retrieve in the page (optional)</param>
-        /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <returns>ApiResponse of CampaignDeviceMetadataPage</returns>
-        ApiResponse<CampaignDeviceMetadataPage> CampaignMetadataListWithHttpInfo (string campaignId, int? limit = null, string order = null, string after = null, string include = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Get update campaign metadata.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The update campaign ID</param>
-        /// <param name="campaignDeviceMetadataId">The campaign device metadata ID</param>
-        /// <returns>CampaignDeviceMetadata</returns>
-        CampaignDeviceMetadata CampaignMetadataRetreive (string campaignId, string campaignDeviceMetadataId);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Get update campaign metadata.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The update campaign ID</param>
-        /// <param name="campaignDeviceMetadataId">The campaign device metadata ID</param>
-        /// <returns>ApiResponse of CampaignDeviceMetadata</returns>
-        ApiResponse<CampaignDeviceMetadata> CampaignMetadataRetreiveWithHttpInfo (string campaignId, string campaignDeviceMetadataId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Get an update campaign.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The campaign ID</param>
-        /// <returns>UpdateCampaign</returns>
-        UpdateCampaign CampaignRetrieve (string campaignId);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Get an update campaign.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The campaign ID</param>
-        /// <returns>ApiResponse of UpdateCampaign</returns>
-        ApiResponse<UpdateCampaign> CampaignRetrieveWithHttpInfo (string campaignId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Stop a running update campaign.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The campaign ID</param>
-        /// <returns></returns>
-        void CampaignStop (string campaignId);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Stop a running update campaign.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The campaign ID</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> CampaignStopWithHttpInfo (string campaignId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Modify an update campaign.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId"></param>
-        /// <param name="campaign">Update campaign</param>
-        /// <returns>UpdateCampaign</returns>
-        UpdateCampaign CampaignUpdate (string campaignId, UpdateCampaignPutRequest campaign);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Modify an update campaign.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId"></param>
-        /// <param name="campaign">Update campaign</param>
-        /// <returns>ApiResponse of UpdateCampaign</returns>
-        ApiResponse<UpdateCampaign> CampaignUpdateWithHttpInfo (string campaignId, UpdateCampaignPutRequest campaign);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
         /// Create firmware image.
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
@@ -269,7 +81,7 @@ namespace update_service.Api
         /// <param name="limit">How many firmware images to retrieve (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by properties** &#x60;name&#x3D;myimage&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name&#x3D;myimage&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by properties** &#x60;name__eq&#x3D;myimage&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name__eq&#x3D;myimage&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>FirmwareImagePage</returns>
         FirmwareImagePage FirmwareImageList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
@@ -284,7 +96,7 @@ namespace update_service.Api
         /// <param name="limit">How many firmware images to retrieve (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by properties** &#x60;name&#x3D;myimage&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name&#x3D;myimage&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by properties** &#x60;name__eq&#x3D;myimage&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name__eq&#x3D;myimage&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of FirmwareImagePage</returns>
         ApiResponse<FirmwareImagePage> FirmwareImageListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
@@ -319,8 +131,9 @@ namespace update_service.Api
         /// <param name="datafile">The manifest file to create. The API gateway enforces the account-specific file size.</param>
         /// <param name="name">The name of the firmware manifest</param>
         /// <param name="description">The description of the firmware manifest (optional)</param>
+        /// <param name="keyTable">The key table of pre-shared keys for devices (optional)</param>
         /// <returns>FirmwareManifest</returns>
-        FirmwareManifest FirmwareManifestCreate (System.IO.Stream datafile, string name, string description = null);
+        FirmwareManifest FirmwareManifestCreate (System.IO.Stream datafile, string name, string description = null, System.IO.Stream keyTable = null);
 
         /// <summary>
         /// 
@@ -332,8 +145,9 @@ namespace update_service.Api
         /// <param name="datafile">The manifest file to create. The API gateway enforces the account-specific file size.</param>
         /// <param name="name">The name of the firmware manifest</param>
         /// <param name="description">The description of the firmware manifest (optional)</param>
+        /// <param name="keyTable">The key table of pre-shared keys for devices (optional)</param>
         /// <returns>ApiResponse of FirmwareManifest</returns>
-        ApiResponse<FirmwareManifest> FirmwareManifestCreateWithHttpInfo (System.IO.Stream datafile, string name, string description = null);
+        ApiResponse<FirmwareManifest> FirmwareManifestCreateWithHttpInfo (System.IO.Stream datafile, string name, string description = null, System.IO.Stream keyTable = null);
         /// <summary>
         /// 
         /// </summary>
@@ -365,7 +179,7 @@ namespace update_service.Api
         /// <param name="limit">How many firmware manifests to retrieve (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by properties** &#x60;name&#x3D;mymanifest&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name&#x3D;mymanifest&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-manifest1,fw-manifest2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1__eq&#x3D;value1&amp;key2__eq&#x3D;value2&amp;key3__eq&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by properties** &#x60;name__eq&#x3D;mymanifest&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name__eq&#x3D;mymanifest&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-manifest1,fw-manifest2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>FirmwareManifestPage</returns>
         FirmwareManifestPage FirmwareManifestList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
@@ -380,7 +194,7 @@ namespace update_service.Api
         /// <param name="limit">How many firmware manifests to retrieve (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by properties** &#x60;name&#x3D;mymanifest&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name&#x3D;mymanifest&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-manifest1,fw-manifest2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1__eq&#x3D;value1&amp;key2__eq&#x3D;value2&amp;key3__eq&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by properties** &#x60;name__eq&#x3D;mymanifest&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name__eq&#x3D;mymanifest&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-manifest1,fw-manifest2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of FirmwareManifestPage</returns>
         ApiResponse<FirmwareManifestPage> FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
@@ -457,7 +271,7 @@ namespace update_service.Api
         /// <param name="limit">How many update campaigns to retrieve (optional)</param>
         /// <param name="order">The order of the records. Acceptable values: ASC, DESC. Default: ASC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1__eq&#x3D;value1&amp;key2__eq&#x3D;value2&amp;key3__eq&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state__eq&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id__eq&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state__eq&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>UpdateCampaignPage</returns>
         UpdateCampaignPage UpdateCampaignList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
@@ -472,7 +286,7 @@ namespace update_service.Api
         /// <param name="limit">How many update campaigns to retrieve (optional)</param>
         /// <param name="order">The order of the records. Acceptable values: ASC, DESC. Default: ASC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1__eq&#x3D;value1&amp;key2__eq&#x3D;value2&amp;key3__eq&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state__eq&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id__eq&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state__eq&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of UpdateCampaignPage</returns>
         ApiResponse<UpdateCampaignPage> UpdateCampaignListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
@@ -599,194 +413,6 @@ namespace update_service.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Create an update campaign.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaign">Update campaign</param>
-        /// <returns>Task of UpdateCampaign</returns>
-        System.Threading.Tasks.Task<UpdateCampaign> CampaignCreateAsync (UpdateCampaignPostRequest campaign);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Create an update campaign.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaign">Update campaign</param>
-        /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> CampaignCreateAsyncWithHttpInfo (UpdateCampaignPostRequest campaign);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Delete an update campaign.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The ID of the update campaign</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task CampaignDestroyAsync (string campaignId);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Delete an update campaign.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The ID of the update campaign</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> CampaignDestroyAsyncWithHttpInfo (string campaignId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Get update campaigns for devices specified by a filter.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">How many update campaigns to retrieve (optional)</param>
-        /// <param name="order">The order of the records. Acceptable values: ASC, DESC. Default: ASC (optional)</param>
-        /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;state__nin&#x3D;draft,scheduled,expired&#x60; (optional)</param>
-        /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of UpdateCampaignPage</returns>
-        System.Threading.Tasks.Task<UpdateCampaignPage> CampaignListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Get update campaigns for devices specified by a filter.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">How many update campaigns to retrieve (optional)</param>
-        /// <param name="order">The order of the records. Acceptable values: ASC, DESC. Default: ASC (optional)</param>
-        /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;state__nin&#x3D;draft,scheduled,expired&#x60; (optional)</param>
-        /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of ApiResponse (UpdateCampaignPage)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPage>> CampaignListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Get campaign device metadata.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The update campaign ID</param>
-        /// <param name="limit">How many objects to retrieve in the page (optional)</param>
-        /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of CampaignDeviceMetadataPage</returns>
-        System.Threading.Tasks.Task<CampaignDeviceMetadataPage> CampaignMetadataListAsync (string campaignId, int? limit = null, string order = null, string after = null, string include = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Get campaign device metadata.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The update campaign ID</param>
-        /// <param name="limit">How many objects to retrieve in the page (optional)</param>
-        /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of ApiResponse (CampaignDeviceMetadataPage)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadataPage>> CampaignMetadataListAsyncWithHttpInfo (string campaignId, int? limit = null, string order = null, string after = null, string include = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Get update campaign metadata.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The update campaign ID</param>
-        /// <param name="campaignDeviceMetadataId">The campaign device metadata ID</param>
-        /// <returns>Task of CampaignDeviceMetadata</returns>
-        System.Threading.Tasks.Task<CampaignDeviceMetadata> CampaignMetadataRetreiveAsync (string campaignId, string campaignDeviceMetadataId);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Get update campaign metadata.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The update campaign ID</param>
-        /// <param name="campaignDeviceMetadataId">The campaign device metadata ID</param>
-        /// <returns>Task of ApiResponse (CampaignDeviceMetadata)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadata>> CampaignMetadataRetreiveAsyncWithHttpInfo (string campaignId, string campaignDeviceMetadataId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Get an update campaign.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The campaign ID</param>
-        /// <returns>Task of UpdateCampaign</returns>
-        System.Threading.Tasks.Task<UpdateCampaign> CampaignRetrieveAsync (string campaignId);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Get an update campaign.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The campaign ID</param>
-        /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> CampaignRetrieveAsyncWithHttpInfo (string campaignId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Stop a running update campaign.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The campaign ID</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task CampaignStopAsync (string campaignId);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Stop a running update campaign.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The campaign ID</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> CampaignStopAsyncWithHttpInfo (string campaignId);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Modify an update campaign.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId"></param>
-        /// <param name="campaign">Update campaign</param>
-        /// <returns>Task of UpdateCampaign</returns>
-        System.Threading.Tasks.Task<UpdateCampaign> CampaignUpdateAsync (string campaignId, UpdateCampaignPutRequest campaign);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Modify an update campaign.
-        /// </remarks>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId"></param>
-        /// <param name="campaign">Update campaign</param>
-        /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> CampaignUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignPutRequest campaign);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
         /// Create firmware image.
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
@@ -839,7 +465,7 @@ namespace update_service.Api
         /// <param name="limit">How many firmware images to retrieve (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by properties** &#x60;name&#x3D;myimage&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name&#x3D;myimage&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by properties** &#x60;name__eq&#x3D;myimage&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name__eq&#x3D;myimage&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of FirmwareImagePage</returns>
         System.Threading.Tasks.Task<FirmwareImagePage> FirmwareImageListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
@@ -854,7 +480,7 @@ namespace update_service.Api
         /// <param name="limit">How many firmware images to retrieve (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by properties** &#x60;name&#x3D;myimage&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name&#x3D;myimage&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by properties** &#x60;name__eq&#x3D;myimage&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name__eq&#x3D;myimage&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareImagePage)</returns>
         System.Threading.Tasks.Task<ApiResponse<FirmwareImagePage>> FirmwareImageListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
@@ -889,8 +515,9 @@ namespace update_service.Api
         /// <param name="datafile">The manifest file to create. The API gateway enforces the account-specific file size.</param>
         /// <param name="name">The name of the firmware manifest</param>
         /// <param name="description">The description of the firmware manifest (optional)</param>
+        /// <param name="keyTable">The key table of pre-shared keys for devices (optional)</param>
         /// <returns>Task of FirmwareManifest</returns>
-        System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestCreateAsync (System.IO.Stream datafile, string name, string description = null);
+        System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestCreateAsync (System.IO.Stream datafile, string name, string description = null, System.IO.Stream keyTable = null);
 
         /// <summary>
         /// 
@@ -902,8 +529,9 @@ namespace update_service.Api
         /// <param name="datafile">The manifest file to create. The API gateway enforces the account-specific file size.</param>
         /// <param name="name">The name of the firmware manifest</param>
         /// <param name="description">The description of the firmware manifest (optional)</param>
+        /// <param name="keyTable">The key table of pre-shared keys for devices (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareManifest)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestCreateAsyncWithHttpInfo (System.IO.Stream datafile, string name, string description = null);
+        System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestCreateAsyncWithHttpInfo (System.IO.Stream datafile, string name, string description = null, System.IO.Stream keyTable = null);
         /// <summary>
         /// 
         /// </summary>
@@ -935,7 +563,7 @@ namespace update_service.Api
         /// <param name="limit">How many firmware manifests to retrieve (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by properties** &#x60;name&#x3D;mymanifest&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name&#x3D;mymanifest&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-manifest1,fw-manifest2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1__eq&#x3D;value1&amp;key2__eq&#x3D;value2&amp;key3__eq&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by properties** &#x60;name__eq&#x3D;mymanifest&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name__eq&#x3D;mymanifest&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-manifest1,fw-manifest2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of FirmwareManifestPage</returns>
         System.Threading.Tasks.Task<FirmwareManifestPage> FirmwareManifestListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
@@ -950,7 +578,7 @@ namespace update_service.Api
         /// <param name="limit">How many firmware manifests to retrieve (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by properties** &#x60;name&#x3D;mymanifest&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name&#x3D;mymanifest&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-manifest1,fw-manifest2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1__eq&#x3D;value1&amp;key2__eq&#x3D;value2&amp;key3__eq&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by properties** &#x60;name__eq&#x3D;mymanifest&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name__eq&#x3D;mymanifest&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-manifest1,fw-manifest2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareManifestPage)</returns>
         System.Threading.Tasks.Task<ApiResponse<FirmwareManifestPage>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
@@ -1027,7 +655,7 @@ namespace update_service.Api
         /// <param name="limit">How many update campaigns to retrieve (optional)</param>
         /// <param name="order">The order of the records. Acceptable values: ASC, DESC. Default: ASC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1__eq&#x3D;value1&amp;key2__eq&#x3D;value2&amp;key3__eq&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state__eq&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id__eq&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state__eq&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of UpdateCampaignPage</returns>
         System.Threading.Tasks.Task<UpdateCampaignPage> UpdateCampaignListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
@@ -1042,7 +670,7 @@ namespace update_service.Api
         /// <param name="limit">How many update campaigns to retrieve (optional)</param>
         /// <param name="order">The order of the records. Acceptable values: ASC, DESC. Default: ASC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1__eq&#x3D;value1&amp;key2__eq&#x3D;value2&amp;key3__eq&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state__eq&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id__eq&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state__eq&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (UpdateCampaignPage)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPage>> UpdateCampaignListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
@@ -1261,1240 +889,6 @@ namespace update_service.Api
         public void AddDefaultHeader(string key, string value)
         {
             this.Configuration.AddDefaultHeader(key, value);
-        }
-
-        /// <summary>
-        ///  Create an update campaign.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaign">Update campaign</param>
-        /// <returns>UpdateCampaign</returns>
-        public UpdateCampaign CampaignCreate (UpdateCampaignPostRequest campaign)
-        {
-             ApiResponse<UpdateCampaign> localVarResponse = CampaignCreateWithHttpInfo(campaign);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Create an update campaign.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaign">Update campaign</param>
-        /// <returns>ApiResponse of UpdateCampaign</returns>
-        public ApiResponse< UpdateCampaign > CampaignCreateWithHttpInfo (UpdateCampaignPostRequest campaign)
-        {
-            // verify the required parameter 'campaign' is set
-            if (campaign == null)
-                throw new ApiException(400, "Missing required parameter 'campaign' when calling DefaultApi->CampaignCreate");
-
-            var localVarPath = "/v3/campaigns/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (campaign != null && campaign.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(campaign); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = campaign; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("CampaignCreate", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdateCampaign>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
-        }
-
-        /// <summary>
-        ///  Create an update campaign.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaign">Update campaign</param>
-        /// <returns>Task of UpdateCampaign</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaign> CampaignCreateAsync (UpdateCampaignPostRequest campaign)
-        {
-             ApiResponse<UpdateCampaign> localVarResponse = await CampaignCreateAsyncWithHttpInfo(campaign);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        ///  Create an update campaign.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaign">Update campaign</param>
-        /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> CampaignCreateAsyncWithHttpInfo (UpdateCampaignPostRequest campaign)
-        {
-            // verify the required parameter 'campaign' is set
-            if (campaign == null)
-                throw new ApiException(400, "Missing required parameter 'campaign' when calling DefaultApi->CampaignCreate");
-
-            var localVarPath = "/v3/campaigns/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (campaign != null && campaign.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(campaign); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = campaign; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("CampaignCreate", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdateCampaign>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
-        }
-
-        /// <summary>
-        ///  Delete an update campaign.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The ID of the update campaign</param>
-        /// <returns></returns>
-        public void CampaignDestroy (string campaignId)
-        {
-             CampaignDestroyWithHttpInfo(campaignId);
-        }
-
-        /// <summary>
-        ///  Delete an update campaign.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The ID of the update campaign</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> CampaignDestroyWithHttpInfo (string campaignId)
-        {
-            // verify the required parameter 'campaignId' is set
-            if (campaignId == null)
-                throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->CampaignDestroy");
-
-            var localVarPath = "/v3/campaigns/{campaign_id}/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("CampaignDestroy", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        ///  Delete an update campaign.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The ID of the update campaign</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task CampaignDestroyAsync (string campaignId)
-        {
-             await CampaignDestroyAsyncWithHttpInfo(campaignId);
-
-        }
-
-        /// <summary>
-        ///  Delete an update campaign.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The ID of the update campaign</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> CampaignDestroyAsyncWithHttpInfo (string campaignId)
-        {
-            // verify the required parameter 'campaignId' is set
-            if (campaignId == null)
-                throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->CampaignDestroy");
-
-            var localVarPath = "/v3/campaigns/{campaign_id}/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("CampaignDestroy", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        ///  Get update campaigns for devices specified by a filter.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">How many update campaigns to retrieve (optional)</param>
-        /// <param name="order">The order of the records. Acceptable values: ASC, DESC. Default: ASC (optional)</param>
-        /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;state__nin&#x3D;draft,scheduled,expired&#x60; (optional)</param>
-        /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <returns>UpdateCampaignPage</returns>
-        public UpdateCampaignPage CampaignList (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
-        {
-             ApiResponse<UpdateCampaignPage> localVarResponse = CampaignListWithHttpInfo(limit, order, after, filter, include);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Get update campaigns for devices specified by a filter.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">How many update campaigns to retrieve (optional)</param>
-        /// <param name="order">The order of the records. Acceptable values: ASC, DESC. Default: ASC (optional)</param>
-        /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;state__nin&#x3D;draft,scheduled,expired&#x60; (optional)</param>
-        /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <returns>ApiResponse of UpdateCampaignPage</returns>
-        public ApiResponse< UpdateCampaignPage > CampaignListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
-        {
-
-            var localVarPath = "/v3/campaigns/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
-            if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
-            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
-            if (filter != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "filter", filter)); // query parameter
-            if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("CampaignList", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdateCampaignPage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdateCampaignPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaignPage)));
-        }
-
-        /// <summary>
-        ///  Get update campaigns for devices specified by a filter.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">How many update campaigns to retrieve (optional)</param>
-        /// <param name="order">The order of the records. Acceptable values: ASC, DESC. Default: ASC (optional)</param>
-        /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;state__nin&#x3D;draft,scheduled,expired&#x60; (optional)</param>
-        /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of UpdateCampaignPage</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaignPage> CampaignListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
-        {
-             ApiResponse<UpdateCampaignPage> localVarResponse = await CampaignListAsyncWithHttpInfo(limit, order, after, filter, include);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        ///  Get update campaigns for devices specified by a filter.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">How many update campaigns to retrieve (optional)</param>
-        /// <param name="order">The order of the records. Acceptable values: ASC, DESC. Default: ASC (optional)</param>
-        /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;state__nin&#x3D;draft,scheduled,expired&#x60; (optional)</param>
-        /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of ApiResponse (UpdateCampaignPage)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPage>> CampaignListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
-        {
-
-            var localVarPath = "/v3/campaigns/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
-            if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
-            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
-            if (filter != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "filter", filter)); // query parameter
-            if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("CampaignList", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdateCampaignPage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdateCampaignPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaignPage)));
-        }
-
-        /// <summary>
-        ///  Get campaign device metadata.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The update campaign ID</param>
-        /// <param name="limit">How many objects to retrieve in the page (optional)</param>
-        /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <returns>CampaignDeviceMetadataPage</returns>
-        public CampaignDeviceMetadataPage CampaignMetadataList (string campaignId, int? limit = null, string order = null, string after = null, string include = null)
-        {
-             ApiResponse<CampaignDeviceMetadataPage> localVarResponse = CampaignMetadataListWithHttpInfo(campaignId, limit, order, after, include);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Get campaign device metadata.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The update campaign ID</param>
-        /// <param name="limit">How many objects to retrieve in the page (optional)</param>
-        /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <returns>ApiResponse of CampaignDeviceMetadataPage</returns>
-        public ApiResponse< CampaignDeviceMetadataPage > CampaignMetadataListWithHttpInfo (string campaignId, int? limit = null, string order = null, string after = null, string include = null)
-        {
-            // verify the required parameter 'campaignId' is set
-            if (campaignId == null)
-                throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->CampaignMetadataList");
-
-            var localVarPath = "/v3/campaigns/{campaign_id}/campaign-device-metadata/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
-            if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
-            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
-            if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("CampaignMetadataList", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<CampaignDeviceMetadataPage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (CampaignDeviceMetadataPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CampaignDeviceMetadataPage)));
-        }
-
-        /// <summary>
-        ///  Get campaign device metadata.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The update campaign ID</param>
-        /// <param name="limit">How many objects to retrieve in the page (optional)</param>
-        /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of CampaignDeviceMetadataPage</returns>
-        public async System.Threading.Tasks.Task<CampaignDeviceMetadataPage> CampaignMetadataListAsync (string campaignId, int? limit = null, string order = null, string after = null, string include = null)
-        {
-             ApiResponse<CampaignDeviceMetadataPage> localVarResponse = await CampaignMetadataListAsyncWithHttpInfo(campaignId, limit, order, after, include);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        ///  Get campaign device metadata.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The update campaign ID</param>
-        /// <param name="limit">How many objects to retrieve in the page (optional)</param>
-        /// <param name="order">ASC or DESC (optional)</param>
-        /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of ApiResponse (CampaignDeviceMetadataPage)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadataPage>> CampaignMetadataListAsyncWithHttpInfo (string campaignId, int? limit = null, string order = null, string after = null, string include = null)
-        {
-            // verify the required parameter 'campaignId' is set
-            if (campaignId == null)
-                throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->CampaignMetadataList");
-
-            var localVarPath = "/v3/campaigns/{campaign_id}/campaign-device-metadata/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
-            if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
-            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
-            if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("CampaignMetadataList", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<CampaignDeviceMetadataPage>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (CampaignDeviceMetadataPage) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CampaignDeviceMetadataPage)));
-        }
-
-        /// <summary>
-        ///  Get update campaign metadata.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The update campaign ID</param>
-        /// <param name="campaignDeviceMetadataId">The campaign device metadata ID</param>
-        /// <returns>CampaignDeviceMetadata</returns>
-        public CampaignDeviceMetadata CampaignMetadataRetreive (string campaignId, string campaignDeviceMetadataId)
-        {
-             ApiResponse<CampaignDeviceMetadata> localVarResponse = CampaignMetadataRetreiveWithHttpInfo(campaignId, campaignDeviceMetadataId);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Get update campaign metadata.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The update campaign ID</param>
-        /// <param name="campaignDeviceMetadataId">The campaign device metadata ID</param>
-        /// <returns>ApiResponse of CampaignDeviceMetadata</returns>
-        public ApiResponse< CampaignDeviceMetadata > CampaignMetadataRetreiveWithHttpInfo (string campaignId, string campaignDeviceMetadataId)
-        {
-            // verify the required parameter 'campaignId' is set
-            if (campaignId == null)
-                throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->CampaignMetadataRetreive");
-            // verify the required parameter 'campaignDeviceMetadataId' is set
-            if (campaignDeviceMetadataId == null)
-                throw new ApiException(400, "Missing required parameter 'campaignDeviceMetadataId' when calling DefaultApi->CampaignMetadataRetreive");
-
-            var localVarPath = "/v3/campaigns/{campaign_id}/campaign-device-metadata/{campaign_device_metadata_id}/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-            if (campaignDeviceMetadataId != null) localVarPathParams.Add("campaign_device_metadata_id", Configuration.ApiClient.ParameterToString(campaignDeviceMetadataId)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("CampaignMetadataRetreive", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<CampaignDeviceMetadata>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (CampaignDeviceMetadata) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CampaignDeviceMetadata)));
-        }
-
-        /// <summary>
-        ///  Get update campaign metadata.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The update campaign ID</param>
-        /// <param name="campaignDeviceMetadataId">The campaign device metadata ID</param>
-        /// <returns>Task of CampaignDeviceMetadata</returns>
-        public async System.Threading.Tasks.Task<CampaignDeviceMetadata> CampaignMetadataRetreiveAsync (string campaignId, string campaignDeviceMetadataId)
-        {
-             ApiResponse<CampaignDeviceMetadata> localVarResponse = await CampaignMetadataRetreiveAsyncWithHttpInfo(campaignId, campaignDeviceMetadataId);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        ///  Get update campaign metadata.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The update campaign ID</param>
-        /// <param name="campaignDeviceMetadataId">The campaign device metadata ID</param>
-        /// <returns>Task of ApiResponse (CampaignDeviceMetadata)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadata>> CampaignMetadataRetreiveAsyncWithHttpInfo (string campaignId, string campaignDeviceMetadataId)
-        {
-            // verify the required parameter 'campaignId' is set
-            if (campaignId == null)
-                throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->CampaignMetadataRetreive");
-            // verify the required parameter 'campaignDeviceMetadataId' is set
-            if (campaignDeviceMetadataId == null)
-                throw new ApiException(400, "Missing required parameter 'campaignDeviceMetadataId' when calling DefaultApi->CampaignMetadataRetreive");
-
-            var localVarPath = "/v3/campaigns/{campaign_id}/campaign-device-metadata/{campaign_device_metadata_id}/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-            if (campaignDeviceMetadataId != null) localVarPathParams.Add("campaign_device_metadata_id", Configuration.ApiClient.ParameterToString(campaignDeviceMetadataId)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("CampaignMetadataRetreive", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<CampaignDeviceMetadata>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (CampaignDeviceMetadata) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CampaignDeviceMetadata)));
-        }
-
-        /// <summary>
-        ///  Get an update campaign.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The campaign ID</param>
-        /// <returns>UpdateCampaign</returns>
-        public UpdateCampaign CampaignRetrieve (string campaignId)
-        {
-             ApiResponse<UpdateCampaign> localVarResponse = CampaignRetrieveWithHttpInfo(campaignId);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Get an update campaign.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The campaign ID</param>
-        /// <returns>ApiResponse of UpdateCampaign</returns>
-        public ApiResponse< UpdateCampaign > CampaignRetrieveWithHttpInfo (string campaignId)
-        {
-            // verify the required parameter 'campaignId' is set
-            if (campaignId == null)
-                throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->CampaignRetrieve");
-
-            var localVarPath = "/v3/campaigns/{campaign_id}/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("CampaignRetrieve", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdateCampaign>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
-        }
-
-        /// <summary>
-        ///  Get an update campaign.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The campaign ID</param>
-        /// <returns>Task of UpdateCampaign</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaign> CampaignRetrieveAsync (string campaignId)
-        {
-             ApiResponse<UpdateCampaign> localVarResponse = await CampaignRetrieveAsyncWithHttpInfo(campaignId);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        ///  Get an update campaign.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The campaign ID</param>
-        /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> CampaignRetrieveAsyncWithHttpInfo (string campaignId)
-        {
-            // verify the required parameter 'campaignId' is set
-            if (campaignId == null)
-                throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->CampaignRetrieve");
-
-            var localVarPath = "/v3/campaigns/{campaign_id}/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("CampaignRetrieve", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdateCampaign>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
-        }
-
-        /// <summary>
-        ///  Stop a running update campaign.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The campaign ID</param>
-        /// <returns></returns>
-        public void CampaignStop (string campaignId)
-        {
-             CampaignStopWithHttpInfo(campaignId);
-        }
-
-        /// <summary>
-        ///  Stop a running update campaign.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The campaign ID</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> CampaignStopWithHttpInfo (string campaignId)
-        {
-            // verify the required parameter 'campaignId' is set
-            if (campaignId == null)
-                throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->CampaignStop");
-
-            var localVarPath = "/v3/campaigns/{campaign_id}/stop";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("CampaignStop", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        ///  Stop a running update campaign.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The campaign ID</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task CampaignStopAsync (string campaignId)
-        {
-             await CampaignStopAsyncWithHttpInfo(campaignId);
-
-        }
-
-        /// <summary>
-        ///  Stop a running update campaign.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId">The campaign ID</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> CampaignStopAsyncWithHttpInfo (string campaignId)
-        {
-            // verify the required parameter 'campaignId' is set
-            if (campaignId == null)
-                throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->CampaignStop");
-
-            var localVarPath = "/v3/campaigns/{campaign_id}/stop";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("CampaignStop", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        ///  Modify an update campaign.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId"></param>
-        /// <param name="campaign">Update campaign</param>
-        /// <returns>UpdateCampaign</returns>
-        public UpdateCampaign CampaignUpdate (string campaignId, UpdateCampaignPutRequest campaign)
-        {
-             ApiResponse<UpdateCampaign> localVarResponse = CampaignUpdateWithHttpInfo(campaignId, campaign);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Modify an update campaign.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId"></param>
-        /// <param name="campaign">Update campaign</param>
-        /// <returns>ApiResponse of UpdateCampaign</returns>
-        public ApiResponse< UpdateCampaign > CampaignUpdateWithHttpInfo (string campaignId, UpdateCampaignPutRequest campaign)
-        {
-            // verify the required parameter 'campaignId' is set
-            if (campaignId == null)
-                throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->CampaignUpdate");
-            // verify the required parameter 'campaign' is set
-            if (campaign == null)
-                throw new ApiException(400, "Missing required parameter 'campaign' when calling DefaultApi->CampaignUpdate");
-
-            var localVarPath = "/v3/campaigns/{campaign_id}/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-            if (campaign != null && campaign.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(campaign); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = campaign; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("CampaignUpdate", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdateCampaign>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
-        }
-
-        /// <summary>
-        ///  Modify an update campaign.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId"></param>
-        /// <param name="campaign">Update campaign</param>
-        /// <returns>Task of UpdateCampaign</returns>
-        public async System.Threading.Tasks.Task<UpdateCampaign> CampaignUpdateAsync (string campaignId, UpdateCampaignPutRequest campaign)
-        {
-             ApiResponse<UpdateCampaign> localVarResponse = await CampaignUpdateAsyncWithHttpInfo(campaignId, campaign);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        ///  Modify an update campaign.
-        /// </summary>
-        /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="campaignId"></param>
-        /// <param name="campaign">Update campaign</param>
-        /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> CampaignUpdateAsyncWithHttpInfo (string campaignId, UpdateCampaignPutRequest campaign)
-        {
-            // verify the required parameter 'campaignId' is set
-            if (campaignId == null)
-                throw new ApiException(400, "Missing required parameter 'campaignId' when calling DefaultApi->CampaignUpdate");
-            // verify the required parameter 'campaign' is set
-            if (campaign == null)
-                throw new ApiException(400, "Missing required parameter 'campaign' when calling DefaultApi->CampaignUpdate");
-
-            var localVarPath = "/v3/campaigns/{campaign_id}/";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (campaignId != null) localVarPathParams.Add("campaign_id", Configuration.ApiClient.ParameterToString(campaignId)); // path parameter
-            if (campaign != null && campaign.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(campaign); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = campaign; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("CampaignUpdate", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdateCampaign>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdateCampaign) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdateCampaign)));
         }
 
         /// <summary>
@@ -2808,7 +1202,7 @@ namespace update_service.Api
         /// <param name="limit">How many firmware images to retrieve (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by properties** &#x60;name&#x3D;myimage&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name&#x3D;myimage&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by properties** &#x60;name__eq&#x3D;myimage&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name__eq&#x3D;myimage&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>FirmwareImagePage</returns>
         public FirmwareImagePage FirmwareImageList (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
@@ -2824,7 +1218,7 @@ namespace update_service.Api
         /// <param name="limit">How many firmware images to retrieve (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by properties** &#x60;name&#x3D;myimage&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name&#x3D;myimage&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by properties** &#x60;name__eq&#x3D;myimage&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name__eq&#x3D;myimage&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of FirmwareImagePage</returns>
         public ApiResponse< FirmwareImagePage > FirmwareImageListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
@@ -2888,7 +1282,7 @@ namespace update_service.Api
         /// <param name="limit">How many firmware images to retrieve (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by properties** &#x60;name&#x3D;myimage&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name&#x3D;myimage&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by properties** &#x60;name__eq&#x3D;myimage&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name__eq&#x3D;myimage&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of FirmwareImagePage</returns>
         public async System.Threading.Tasks.Task<FirmwareImagePage> FirmwareImageListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
@@ -2905,7 +1299,7 @@ namespace update_service.Api
         /// <param name="limit">How many firmware images to retrieve (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by properties** &#x60;name&#x3D;myimage&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name&#x3D;myimage&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by properties** &#x60;name__eq&#x3D;myimage&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name__eq&#x3D;myimage&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareImagePage)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<FirmwareImagePage>> FirmwareImageListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
@@ -3112,10 +1506,11 @@ namespace update_service.Api
         /// <param name="datafile">The manifest file to create. The API gateway enforces the account-specific file size.</param>
         /// <param name="name">The name of the firmware manifest</param>
         /// <param name="description">The description of the firmware manifest (optional)</param>
+        /// <param name="keyTable">The key table of pre-shared keys for devices (optional)</param>
         /// <returns>FirmwareManifest</returns>
-        public FirmwareManifest FirmwareManifestCreate (System.IO.Stream datafile, string name, string description = null)
+        public FirmwareManifest FirmwareManifestCreate (System.IO.Stream datafile, string name, string description = null, System.IO.Stream keyTable = null)
         {
-             ApiResponse<FirmwareManifest> localVarResponse = FirmwareManifestCreateWithHttpInfo(datafile, name, description);
+             ApiResponse<FirmwareManifest> localVarResponse = FirmwareManifestCreateWithHttpInfo(datafile, name, description, keyTable);
              return localVarResponse.Data;
         }
 
@@ -3126,8 +1521,9 @@ namespace update_service.Api
         /// <param name="datafile">The manifest file to create. The API gateway enforces the account-specific file size.</param>
         /// <param name="name">The name of the firmware manifest</param>
         /// <param name="description">The description of the firmware manifest (optional)</param>
+        /// <param name="keyTable">The key table of pre-shared keys for devices (optional)</param>
         /// <returns>ApiResponse of FirmwareManifest</returns>
-        public ApiResponse< FirmwareManifest > FirmwareManifestCreateWithHttpInfo (System.IO.Stream datafile, string name, string description = null)
+        public ApiResponse< FirmwareManifest > FirmwareManifestCreateWithHttpInfo (System.IO.Stream datafile, string name, string description = null, System.IO.Stream keyTable = null)
         {
             // verify the required parameter 'datafile' is set
             if (datafile == null)
@@ -3160,6 +1556,7 @@ namespace update_service.Api
 
             if (datafile != null) localVarFileParams.Add("datafile", Configuration.ApiClient.ParameterToFile("datafile", datafile));
             if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
+            if (keyTable != null) localVarFileParams.Add("key_table", Configuration.ApiClient.ParameterToFile("key_table", keyTable));
             if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
 
             // authentication (Bearer) required
@@ -3193,10 +1590,11 @@ namespace update_service.Api
         /// <param name="datafile">The manifest file to create. The API gateway enforces the account-specific file size.</param>
         /// <param name="name">The name of the firmware manifest</param>
         /// <param name="description">The description of the firmware manifest (optional)</param>
+        /// <param name="keyTable">The key table of pre-shared keys for devices (optional)</param>
         /// <returns>Task of FirmwareManifest</returns>
-        public async System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestCreateAsync (System.IO.Stream datafile, string name, string description = null)
+        public async System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestCreateAsync (System.IO.Stream datafile, string name, string description = null, System.IO.Stream keyTable = null)
         {
-             ApiResponse<FirmwareManifest> localVarResponse = await FirmwareManifestCreateAsyncWithHttpInfo(datafile, name, description);
+             ApiResponse<FirmwareManifest> localVarResponse = await FirmwareManifestCreateAsyncWithHttpInfo(datafile, name, description, keyTable);
              return localVarResponse.Data;
 
         }
@@ -3208,8 +1606,9 @@ namespace update_service.Api
         /// <param name="datafile">The manifest file to create. The API gateway enforces the account-specific file size.</param>
         /// <param name="name">The name of the firmware manifest</param>
         /// <param name="description">The description of the firmware manifest (optional)</param>
+        /// <param name="keyTable">The key table of pre-shared keys for devices (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareManifest)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestCreateAsyncWithHttpInfo (System.IO.Stream datafile, string name, string description = null)
+        public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestCreateAsyncWithHttpInfo (System.IO.Stream datafile, string name, string description = null, System.IO.Stream keyTable = null)
         {
             // verify the required parameter 'datafile' is set
             if (datafile == null)
@@ -3242,6 +1641,7 @@ namespace update_service.Api
 
             if (datafile != null) localVarFileParams.Add("datafile", Configuration.ApiClient.ParameterToFile("datafile", datafile));
             if (description != null) localVarFormParams.Add("description", Configuration.ApiClient.ParameterToString(description)); // form parameter
+            if (keyTable != null) localVarFileParams.Add("key_table", Configuration.ApiClient.ParameterToFile("key_table", keyTable));
             if (name != null) localVarFormParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // form parameter
 
             // authentication (Bearer) required
@@ -3416,7 +1816,7 @@ namespace update_service.Api
         /// <param name="limit">How many firmware manifests to retrieve (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by properties** &#x60;name&#x3D;mymanifest&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name&#x3D;mymanifest&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-manifest1,fw-manifest2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1__eq&#x3D;value1&amp;key2__eq&#x3D;value2&amp;key3__eq&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by properties** &#x60;name__eq&#x3D;mymanifest&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name__eq&#x3D;mymanifest&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-manifest1,fw-manifest2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>FirmwareManifestPage</returns>
         public FirmwareManifestPage FirmwareManifestList (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
@@ -3432,7 +1832,7 @@ namespace update_service.Api
         /// <param name="limit">How many firmware manifests to retrieve (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by properties** &#x60;name&#x3D;mymanifest&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name&#x3D;mymanifest&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-manifest1,fw-manifest2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1__eq&#x3D;value1&amp;key2__eq&#x3D;value2&amp;key3__eq&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by properties** &#x60;name__eq&#x3D;mymanifest&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name__eq&#x3D;mymanifest&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-manifest1,fw-manifest2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of FirmwareManifestPage</returns>
         public ApiResponse< FirmwareManifestPage > FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
@@ -3496,7 +1896,7 @@ namespace update_service.Api
         /// <param name="limit">How many firmware manifests to retrieve (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by properties** &#x60;name&#x3D;mymanifest&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name&#x3D;mymanifest&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-manifest1,fw-manifest2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1__eq&#x3D;value1&amp;key2__eq&#x3D;value2&amp;key3__eq&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by properties** &#x60;name__eq&#x3D;mymanifest&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name__eq&#x3D;mymanifest&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-manifest1,fw-manifest2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of FirmwareManifestPage</returns>
         public async System.Threading.Tasks.Task<FirmwareManifestPage> FirmwareManifestListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
@@ -3513,7 +1913,7 @@ namespace update_service.Api
         /// <param name="limit">How many firmware manifests to retrieve (optional)</param>
         /// <param name="order">ASC or DESC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page. (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by properties** &#x60;name&#x3D;mymanifest&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name&#x3D;mymanifest&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-manifest1,fw-manifest2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1__eq&#x3D;value1&amp;key2__eq&#x3D;value2&amp;key3__eq&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by properties** &#x60;name__eq&#x3D;mymanifest&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;name__eq&#x3D;mymanifest&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-manifest1,fw-manifest2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (FirmwareManifestPage)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<FirmwareManifestPage>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
@@ -4018,7 +2418,7 @@ namespace update_service.Api
         /// <param name="limit">How many update campaigns to retrieve (optional)</param>
         /// <param name="order">The order of the records. Acceptable values: ASC, DESC. Default: ASC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1__eq&#x3D;value1&amp;key2__eq&#x3D;value2&amp;key3__eq&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state__eq&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id__eq&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state__eq&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>UpdateCampaignPage</returns>
         public UpdateCampaignPage UpdateCampaignList (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
@@ -4034,7 +2434,7 @@ namespace update_service.Api
         /// <param name="limit">How many update campaigns to retrieve (optional)</param>
         /// <param name="order">The order of the records. Acceptable values: ASC, DESC. Default: ASC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1__eq&#x3D;value1&amp;key2__eq&#x3D;value2&amp;key3__eq&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state__eq&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id__eq&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state__eq&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of UpdateCampaignPage</returns>
         public ApiResponse< UpdateCampaignPage > UpdateCampaignListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
@@ -4098,7 +2498,7 @@ namespace update_service.Api
         /// <param name="limit">How many update campaigns to retrieve (optional)</param>
         /// <param name="order">The order of the records. Acceptable values: ASC, DESC. Default: ASC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1__eq&#x3D;value1&amp;key2__eq&#x3D;value2&amp;key3__eq&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state__eq&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id__eq&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state__eq&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of UpdateCampaignPage</returns>
         public async System.Threading.Tasks.Task<UpdateCampaignPage> UpdateCampaignListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null)
@@ -4115,7 +2515,7 @@ namespace update_service.Api
         /// <param name="limit">How many update campaigns to retrieve (optional)</param>
         /// <param name="order">The order of the records. Acceptable values: ASC, DESC. Default: ASC (optional)</param>
         /// <param name="after">The ID of the the item after which to retrieve the next page (optional)</param>
-        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1&#x3D;value1&amp;key2&#x3D;value2&amp;key3&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
+        /// <param name="filter">URL-encoded query string parameter to filter returned data  &#x60;?filter&#x3D;{URL-encoded query string}&#x60;  The query string is made up of key-value pairs separated by ampersands. For example, this query: &#x60;key1__eq&#x3D;value1&amp;key2__eq&#x3D;value2&amp;key3__eq&#x3D;value3&#x60;  would be URL-encoded as: &#x60;?filter&#x3D;key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3&#x60;   **Filtering by campaign properties** &#x60;state__eq&#x3D;[draft|scheduled|devicefectch|devicecopy|publishing|deploying|deployed|manifestremoved|expired]&#x60;  &#x60;root_manifest_id__eq&#x3D;43217771234242e594ddb433816c498a&#x60;  **Filtering on date-time fields**  Date-time fields should be specified in UTC RFC3339 format, &#x60;YYYY-MM-DDThh:mm:ss.msZ&#x60;. There are three permitted variations:  * UTC RFC3339 with milliseconds. Example: &#x60;2016-11-30T16:25:12.1234Z&#x60; * UTC RFC3339 without milliseconds. Example: &#x60;2016-11-30T16:25:12Z&#x60; * UTC RFC3339 shortened without milliseconds and punctuation. Example: &#x60;20161130T162512Z&#x60;  Date-time filtering supports three operators:  * equality by appending &#x60;__eq&#x60; to the field name * greater than or equal to by appending &#x60;__gte&#x60; to the field name * less than or equal to by appending &#x60;__lte&#x60; to the field name  &#x60;{field name}[|__eq|__lte|__gte]&#x3D;{UTC RFC3339 date-time}&#x60;  Time ranges may be specified by including both the &#x60;__gte&#x60; and &#x60;__lte&#x60; forms in the filter. For example:  &#x60;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering on multiple fields**  &#x60;state__eq&#x3D;deployed&amp;created_at__gte&#x3D;2016-11-30T16:25:12.1234Z&amp;created_at__lte&#x3D;2016-12-30T00:00:00Z&#x60;  **Filtering with filter operators**  String field filtering supports the following operators:  * equality: &#x60;__eq&#x60; * non-equality: &#x60;__neq&#x60; * in : &#x60;__in&#x60; * not in: &#x60;__nin&#x60;  For &#x60;__in&#x60; and &#x60;__nin&#x60; filters list of parameters must be comma-separated:  &#x60;name__in&#x3D;fw-image1,fw-image2&#x60; (optional)</param>
         /// <param name="include">Comma-separated list of data fields to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (UpdateCampaignPage)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPage>> UpdateCampaignListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null)

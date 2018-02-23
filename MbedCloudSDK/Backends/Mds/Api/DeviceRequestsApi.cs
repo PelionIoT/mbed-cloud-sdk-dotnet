@@ -324,7 +324,7 @@ namespace mds.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (deviceId != null) localVarPathParams.Add("deviceId", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
-            if (asyncId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "asyncId", asyncId)); // query parameter
+            if (asyncId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "async-id", asyncId)); // query parameter
             if (body != null && body.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter

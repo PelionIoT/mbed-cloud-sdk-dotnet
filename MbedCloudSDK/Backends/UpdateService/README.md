@@ -74,16 +74,18 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var campaign = new UpdateCampaignPostRequest(); // UpdateCampaignPostRequest | Update campaign
+            var datafile = new System.IO.Stream(); // System.IO.Stream | The firmware image file to upload
+            var name = name_example;  // string | The name of the firmware image
+            var description = description_example;  // string | The description of the firmware image (optional) 
 
             try
             {
-                UpdateCampaign result = apiInstance.CampaignCreate(campaign);
+                FirmwareImage result = apiInstance.FirmwareImageCreate(datafile, name, description);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.CampaignCreate: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.FirmwareImageCreate: " + e.Message );
             }
 
         }
@@ -98,14 +100,6 @@ All URIs are relative to *https://api.us-east-1.mbedcloud.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**CampaignCreate**](docs/DefaultApi.md#campaigncreate) | **POST** /v3/campaigns/ | 
-*DefaultApi* | [**CampaignDestroy**](docs/DefaultApi.md#campaigndestroy) | **DELETE** /v3/campaigns/{campaign_id}/ | 
-*DefaultApi* | [**CampaignList**](docs/DefaultApi.md#campaignlist) | **GET** /v3/campaigns/ | 
-*DefaultApi* | [**CampaignMetadataList**](docs/DefaultApi.md#campaignmetadatalist) | **GET** /v3/campaigns/{campaign_id}/campaign-device-metadata/ | 
-*DefaultApi* | [**CampaignMetadataRetreive**](docs/DefaultApi.md#campaignmetadataretreive) | **GET** /v3/campaigns/{campaign_id}/campaign-device-metadata/{campaign_device_metadata_id}/ | 
-*DefaultApi* | [**CampaignRetrieve**](docs/DefaultApi.md#campaignretrieve) | **GET** /v3/campaigns/{campaign_id}/ | 
-*DefaultApi* | [**CampaignStop**](docs/DefaultApi.md#campaignstop) | **POST** /v3/campaigns/{campaign_id}/stop | 
-*DefaultApi* | [**CampaignUpdate**](docs/DefaultApi.md#campaignupdate) | **PUT** /v3/campaigns/{campaign_id}/ | 
 *DefaultApi* | [**FirmwareImageCreate**](docs/DefaultApi.md#firmwareimagecreate) | **POST** /v3/firmware-images/ | 
 *DefaultApi* | [**FirmwareImageDestroy**](docs/DefaultApi.md#firmwareimagedestroy) | **DELETE** /v3/firmware-images/{image_id}/ | 
 *DefaultApi* | [**FirmwareImageList**](docs/DefaultApi.md#firmwareimagelist) | **GET** /v3/firmware-images/ | 
