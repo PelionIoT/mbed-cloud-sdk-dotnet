@@ -74,20 +74,17 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
 
             var apiInstance = new PublicAPIApi();
-            var limit = 56;  // int? | Number of results to be returned. Between 2 and 1000, inclusive. (optional) 
-            var after = after_example;  // string | Entity ID to fetch after. (optional) 
-            var order = order_example;  // string | ASC or DESC (optional)  (default to ASC)
-            var include = include_example;  // string | Comma separate additional data to return. Currently supported: total_count (optional) 
+            var enrollmentIdentity = new EnrollmentId(); // EnrollmentId | 
 
             try
             {
-                // Get enrollment list.
-                EnrollmentIdentities result = apiInstance.V3DeviceEnrollmentsGet(limit, after, order, include);
+                // Place an enrollment claim for one or several devices.
+                EnrollmentIdentity result = apiInstance.CreateDeviceEnrollment(enrollmentIdentity);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling PublicAPIApi.V3DeviceEnrollmentsGet: " + e.Message );
+                Debug.Print("Exception when calling PublicAPIApi.CreateDeviceEnrollment: " + e.Message );
             }
 
         }
@@ -102,10 +99,10 @@ All URIs are relative to *http://api.us-east-1.mbedcloud.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*PublicAPIApi* | [**V3DeviceEnrollmentsGet**](docs/PublicAPIApi.md#v3deviceenrollmentsget) | **GET** /v3/device-enrollments | Get enrollment list.
-*PublicAPIApi* | [**V3DeviceEnrollmentsIdDelete**](docs/PublicAPIApi.md#v3deviceenrollmentsiddelete) | **DELETE** /v3/device-enrollments/{id} | Delete an enrollment by ID.
-*PublicAPIApi* | [**V3DeviceEnrollmentsIdGet**](docs/PublicAPIApi.md#v3deviceenrollmentsidget) | **GET** /v3/device-enrollments/{id} | Get details of an enrollment by ID.
-*PublicAPIApi* | [**V3DeviceEnrollmentsPost**](docs/PublicAPIApi.md#v3deviceenrollmentspost) | **POST** /v3/device-enrollments | Place an enrollment claim for one or several devices.
+*PublicAPIApi* | [**CreateDeviceEnrollment**](docs/PublicAPIApi.md#createdeviceenrollment) | **POST** /v3/device-enrollments | Place an enrollment claim for one or several devices.
+*PublicAPIApi* | [**DeleteDeviceEnrollment**](docs/PublicAPIApi.md#deletedeviceenrollment) | **DELETE** /v3/device-enrollments/{id} | Delete an enrollment by ID.
+*PublicAPIApi* | [**GetDeviceEnrollment**](docs/PublicAPIApi.md#getdeviceenrollment) | **GET** /v3/device-enrollments/{id} | Get details of an enrollment by ID.
+*PublicAPIApi* | [**GetDeviceEnrollments**](docs/PublicAPIApi.md#getdeviceenrollments) | **GET** /v3/device-enrollments | Get enrollment list.
 
 
 <a name="documentation-for-models"></a>

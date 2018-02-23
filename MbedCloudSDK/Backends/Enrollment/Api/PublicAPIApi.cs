@@ -26,6 +26,69 @@ namespace enrollment.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Place an enrollment claim for one or several devices.
+        /// </summary>
+        /// <remarks>
+        /// When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
+        /// </remarks>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="enrollmentIdentity"></param>
+        /// <returns>EnrollmentIdentity</returns>
+        EnrollmentIdentity CreateDeviceEnrollment (EnrollmentId enrollmentIdentity);
+
+        /// <summary>
+        /// Place an enrollment claim for one or several devices.
+        /// </summary>
+        /// <remarks>
+        /// When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
+        /// </remarks>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="enrollmentIdentity"></param>
+        /// <returns>ApiResponse of EnrollmentIdentity</returns>
+        ApiResponse<EnrollmentIdentity> CreateDeviceEnrollmentWithHttpInfo (EnrollmentId enrollmentIdentity);
+        /// <summary>
+        /// Delete an enrollment by ID.
+        /// </summary>
+        /// <remarks>
+        /// To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
+        /// </remarks>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Enrollment identity internal id</param>
+        /// <returns></returns>
+        void DeleteDeviceEnrollment (string id);
+
+        /// <summary>
+        /// Delete an enrollment by ID.
+        /// </summary>
+        /// <remarks>
+        /// To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
+        /// </remarks>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Enrollment identity internal id</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> DeleteDeviceEnrollmentWithHttpInfo (string id);
+        /// <summary>
+        /// Get details of an enrollment by ID.
+        /// </summary>
+        /// <remarks>
+        /// To check the enrollment info in detail, for example claming date and expiration date.
+        /// </remarks>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Enrollment identity internal id</param>
+        /// <returns>EnrollmentIdentity</returns>
+        EnrollmentIdentity GetDeviceEnrollment (string id);
+
+        /// <summary>
+        /// Get details of an enrollment by ID.
+        /// </summary>
+        /// <remarks>
+        /// To check the enrollment info in detail, for example claming date and expiration date.
+        /// </remarks>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Enrollment identity internal id</param>
+        /// <returns>ApiResponse of EnrollmentIdentity</returns>
+        ApiResponse<EnrollmentIdentity> GetDeviceEnrollmentWithHttpInfo (string id);
+        /// <summary>
         /// Get enrollment list.
         /// </summary>
         /// <remarks>
@@ -37,7 +100,7 @@ namespace enrollment.Api
         /// <param name="order">ASC or DESC (optional, default to ASC)</param>
         /// <param name="include">Comma separate additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>EnrollmentIdentities</returns>
-        EnrollmentIdentities V3DeviceEnrollmentsGet (int? limit = null, string after = null, string order = null, string include = null);
+        EnrollmentIdentities GetDeviceEnrollments (int? limit = null, string after = null, string order = null, string include = null);
 
         /// <summary>
         /// Get enrollment list.
@@ -51,72 +114,72 @@ namespace enrollment.Api
         /// <param name="order">ASC or DESC (optional, default to ASC)</param>
         /// <param name="include">Comma separate additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of EnrollmentIdentities</returns>
-        ApiResponse<EnrollmentIdentities> V3DeviceEnrollmentsGetWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null);
-        /// <summary>
-        /// Delete an enrollment by ID.
-        /// </summary>
-        /// <remarks>
-        /// To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
-        /// </remarks>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
-        /// <returns></returns>
-        void V3DeviceEnrollmentsIdDelete (string id);
-
-        /// <summary>
-        /// Delete an enrollment by ID.
-        /// </summary>
-        /// <remarks>
-        /// To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
-        /// </remarks>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V3DeviceEnrollmentsIdDeleteWithHttpInfo (string id);
-        /// <summary>
-        /// Get details of an enrollment by ID.
-        /// </summary>
-        /// <remarks>
-        /// To check the enrollment info in detail, for example claming date and expiration date.
-        /// </remarks>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
-        /// <returns>EnrollmentIdentity</returns>
-        EnrollmentIdentity V3DeviceEnrollmentsIdGet (string id);
-
-        /// <summary>
-        /// Get details of an enrollment by ID.
-        /// </summary>
-        /// <remarks>
-        /// To check the enrollment info in detail, for example claming date and expiration date.
-        /// </remarks>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
-        /// <returns>ApiResponse of EnrollmentIdentity</returns>
-        ApiResponse<EnrollmentIdentity> V3DeviceEnrollmentsIdGetWithHttpInfo (string id);
-        /// <summary>
-        /// Place an enrollment claim for one or several devices.
-        /// </summary>
-        /// <remarks>
-        /// When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
-        /// </remarks>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="enrollmentIdentity"></param>
-        /// <returns>EnrollmentIdentity</returns>
-        EnrollmentIdentity V3DeviceEnrollmentsPost (EnrollmentId enrollmentIdentity);
-
-        /// <summary>
-        /// Place an enrollment claim for one or several devices.
-        /// </summary>
-        /// <remarks>
-        /// When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
-        /// </remarks>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="enrollmentIdentity"></param>
-        /// <returns>ApiResponse of EnrollmentIdentity</returns>
-        ApiResponse<EnrollmentIdentity> V3DeviceEnrollmentsPostWithHttpInfo (EnrollmentId enrollmentIdentity);
+        ApiResponse<EnrollmentIdentities> GetDeviceEnrollmentsWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
+        /// <summary>
+        /// Place an enrollment claim for one or several devices.
+        /// </summary>
+        /// <remarks>
+        /// When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
+        /// </remarks>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="enrollmentIdentity"></param>
+        /// <returns>Task of EnrollmentIdentity</returns>
+        System.Threading.Tasks.Task<EnrollmentIdentity> CreateDeviceEnrollmentAsync (EnrollmentId enrollmentIdentity);
+
+        /// <summary>
+        /// Place an enrollment claim for one or several devices.
+        /// </summary>
+        /// <remarks>
+        /// When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
+        /// </remarks>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="enrollmentIdentity"></param>
+        /// <returns>Task of ApiResponse (EnrollmentIdentity)</returns>
+        System.Threading.Tasks.Task<ApiResponse<EnrollmentIdentity>> CreateDeviceEnrollmentAsyncWithHttpInfo (EnrollmentId enrollmentIdentity);
+        /// <summary>
+        /// Delete an enrollment by ID.
+        /// </summary>
+        /// <remarks>
+        /// To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
+        /// </remarks>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Enrollment identity internal id</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task DeleteDeviceEnrollmentAsync (string id);
+
+        /// <summary>
+        /// Delete an enrollment by ID.
+        /// </summary>
+        /// <remarks>
+        /// To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
+        /// </remarks>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Enrollment identity internal id</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteDeviceEnrollmentAsyncWithHttpInfo (string id);
+        /// <summary>
+        /// Get details of an enrollment by ID.
+        /// </summary>
+        /// <remarks>
+        /// To check the enrollment info in detail, for example claming date and expiration date.
+        /// </remarks>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Enrollment identity internal id</param>
+        /// <returns>Task of EnrollmentIdentity</returns>
+        System.Threading.Tasks.Task<EnrollmentIdentity> GetDeviceEnrollmentAsync (string id);
+
+        /// <summary>
+        /// Get details of an enrollment by ID.
+        /// </summary>
+        /// <remarks>
+        /// To check the enrollment info in detail, for example claming date and expiration date.
+        /// </remarks>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Enrollment identity internal id</param>
+        /// <returns>Task of ApiResponse (EnrollmentIdentity)</returns>
+        System.Threading.Tasks.Task<ApiResponse<EnrollmentIdentity>> GetDeviceEnrollmentAsyncWithHttpInfo (string id);
         /// <summary>
         /// Get enrollment list.
         /// </summary>
@@ -129,7 +192,7 @@ namespace enrollment.Api
         /// <param name="order">ASC or DESC (optional, default to ASC)</param>
         /// <param name="include">Comma separate additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of EnrollmentIdentities</returns>
-        System.Threading.Tasks.Task<EnrollmentIdentities> V3DeviceEnrollmentsGetAsync (int? limit = null, string after = null, string order = null, string include = null);
+        System.Threading.Tasks.Task<EnrollmentIdentities> GetDeviceEnrollmentsAsync (int? limit = null, string after = null, string order = null, string include = null);
 
         /// <summary>
         /// Get enrollment list.
@@ -143,70 +206,7 @@ namespace enrollment.Api
         /// <param name="order">ASC or DESC (optional, default to ASC)</param>
         /// <param name="include">Comma separate additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (EnrollmentIdentities)</returns>
-        System.Threading.Tasks.Task<ApiResponse<EnrollmentIdentities>> V3DeviceEnrollmentsGetAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null);
-        /// <summary>
-        /// Delete an enrollment by ID.
-        /// </summary>
-        /// <remarks>
-        /// To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
-        /// </remarks>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V3DeviceEnrollmentsIdDeleteAsync (string id);
-
-        /// <summary>
-        /// Delete an enrollment by ID.
-        /// </summary>
-        /// <remarks>
-        /// To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
-        /// </remarks>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V3DeviceEnrollmentsIdDeleteAsyncWithHttpInfo (string id);
-        /// <summary>
-        /// Get details of an enrollment by ID.
-        /// </summary>
-        /// <remarks>
-        /// To check the enrollment info in detail, for example claming date and expiration date.
-        /// </remarks>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
-        /// <returns>Task of EnrollmentIdentity</returns>
-        System.Threading.Tasks.Task<EnrollmentIdentity> V3DeviceEnrollmentsIdGetAsync (string id);
-
-        /// <summary>
-        /// Get details of an enrollment by ID.
-        /// </summary>
-        /// <remarks>
-        /// To check the enrollment info in detail, for example claming date and expiration date.
-        /// </remarks>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
-        /// <returns>Task of ApiResponse (EnrollmentIdentity)</returns>
-        System.Threading.Tasks.Task<ApiResponse<EnrollmentIdentity>> V3DeviceEnrollmentsIdGetAsyncWithHttpInfo (string id);
-        /// <summary>
-        /// Place an enrollment claim for one or several devices.
-        /// </summary>
-        /// <remarks>
-        /// When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
-        /// </remarks>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="enrollmentIdentity"></param>
-        /// <returns>Task of EnrollmentIdentity</returns>
-        System.Threading.Tasks.Task<EnrollmentIdentity> V3DeviceEnrollmentsPostAsync (EnrollmentId enrollmentIdentity);
-
-        /// <summary>
-        /// Place an enrollment claim for one or several devices.
-        /// </summary>
-        /// <remarks>
-        /// When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
-        /// </remarks>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="enrollmentIdentity"></param>
-        /// <returns>Task of ApiResponse (EnrollmentIdentity)</returns>
-        System.Threading.Tasks.Task<ApiResponse<EnrollmentIdentity>> V3DeviceEnrollmentsPostAsyncWithHttpInfo (EnrollmentId enrollmentIdentity);
+        System.Threading.Tasks.Task<ApiResponse<EnrollmentIdentities>> GetDeviceEnrollmentsAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null);
         #endregion Asynchronous Operations
     }
 
@@ -308,6 +308,449 @@ namespace enrollment.Api
         }
 
         /// <summary>
+        /// Place an enrollment claim for one or several devices. When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
+        /// </summary>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="enrollmentIdentity"></param>
+        /// <returns>EnrollmentIdentity</returns>
+        public EnrollmentIdentity CreateDeviceEnrollment (EnrollmentId enrollmentIdentity)
+        {
+             ApiResponse<EnrollmentIdentity> localVarResponse = CreateDeviceEnrollmentWithHttpInfo(enrollmentIdentity);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Place an enrollment claim for one or several devices. When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
+        /// </summary>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="enrollmentIdentity"></param>
+        /// <returns>ApiResponse of EnrollmentIdentity</returns>
+        public ApiResponse< EnrollmentIdentity > CreateDeviceEnrollmentWithHttpInfo (EnrollmentId enrollmentIdentity)
+        {
+            // verify the required parameter 'enrollmentIdentity' is set
+            if (enrollmentIdentity == null)
+                throw new ApiException(400, "Missing required parameter 'enrollmentIdentity' when calling PublicAPIApi->CreateDeviceEnrollment");
+
+            var localVarPath = "/v3/device-enrollments";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (enrollmentIdentity != null && enrollmentIdentity.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(enrollmentIdentity); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = enrollmentIdentity; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateDeviceEnrollment", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<EnrollmentIdentity>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (EnrollmentIdentity) Configuration.ApiClient.Deserialize(localVarResponse, typeof(EnrollmentIdentity)));
+        }
+
+        /// <summary>
+        /// Place an enrollment claim for one or several devices. When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
+        /// </summary>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="enrollmentIdentity"></param>
+        /// <returns>Task of EnrollmentIdentity</returns>
+        public async System.Threading.Tasks.Task<EnrollmentIdentity> CreateDeviceEnrollmentAsync (EnrollmentId enrollmentIdentity)
+        {
+             ApiResponse<EnrollmentIdentity> localVarResponse = await CreateDeviceEnrollmentAsyncWithHttpInfo(enrollmentIdentity);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Place an enrollment claim for one or several devices. When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
+        /// </summary>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="enrollmentIdentity"></param>
+        /// <returns>Task of ApiResponse (EnrollmentIdentity)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<EnrollmentIdentity>> CreateDeviceEnrollmentAsyncWithHttpInfo (EnrollmentId enrollmentIdentity)
+        {
+            // verify the required parameter 'enrollmentIdentity' is set
+            if (enrollmentIdentity == null)
+                throw new ApiException(400, "Missing required parameter 'enrollmentIdentity' when calling PublicAPIApi->CreateDeviceEnrollment");
+
+            var localVarPath = "/v3/device-enrollments";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (enrollmentIdentity != null && enrollmentIdentity.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(enrollmentIdentity); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = enrollmentIdentity; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateDeviceEnrollment", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<EnrollmentIdentity>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (EnrollmentIdentity) Configuration.ApiClient.Deserialize(localVarResponse, typeof(EnrollmentIdentity)));
+        }
+
+        /// <summary>
+        /// Delete an enrollment by ID. To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
+        /// </summary>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Enrollment identity internal id</param>
+        /// <returns></returns>
+        public void DeleteDeviceEnrollment (string id)
+        {
+             DeleteDeviceEnrollmentWithHttpInfo(id);
+        }
+
+        /// <summary>
+        /// Delete an enrollment by ID. To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
+        /// </summary>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Enrollment identity internal id</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> DeleteDeviceEnrollmentWithHttpInfo (string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling PublicAPIApi->DeleteDeviceEnrollment");
+
+            var localVarPath = "/v3/device-enrollments/{id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteDeviceEnrollment", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Delete an enrollment by ID. To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
+        /// </summary>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Enrollment identity internal id</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task DeleteDeviceEnrollmentAsync (string id)
+        {
+             await DeleteDeviceEnrollmentAsyncWithHttpInfo(id);
+
+        }
+
+        /// <summary>
+        /// Delete an enrollment by ID. To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
+        /// </summary>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Enrollment identity internal id</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteDeviceEnrollmentAsyncWithHttpInfo (string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling PublicAPIApi->DeleteDeviceEnrollment");
+
+            var localVarPath = "/v3/device-enrollments/{id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteDeviceEnrollment", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Get details of an enrollment by ID. To check the enrollment info in detail, for example claming date and expiration date.
+        /// </summary>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Enrollment identity internal id</param>
+        /// <returns>EnrollmentIdentity</returns>
+        public EnrollmentIdentity GetDeviceEnrollment (string id)
+        {
+             ApiResponse<EnrollmentIdentity> localVarResponse = GetDeviceEnrollmentWithHttpInfo(id);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get details of an enrollment by ID. To check the enrollment info in detail, for example claming date and expiration date.
+        /// </summary>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Enrollment identity internal id</param>
+        /// <returns>ApiResponse of EnrollmentIdentity</returns>
+        public ApiResponse< EnrollmentIdentity > GetDeviceEnrollmentWithHttpInfo (string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling PublicAPIApi->GetDeviceEnrollment");
+
+            var localVarPath = "/v3/device-enrollments/{id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetDeviceEnrollment", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<EnrollmentIdentity>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (EnrollmentIdentity) Configuration.ApiClient.Deserialize(localVarResponse, typeof(EnrollmentIdentity)));
+        }
+
+        /// <summary>
+        /// Get details of an enrollment by ID. To check the enrollment info in detail, for example claming date and expiration date.
+        /// </summary>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Enrollment identity internal id</param>
+        /// <returns>Task of EnrollmentIdentity</returns>
+        public async System.Threading.Tasks.Task<EnrollmentIdentity> GetDeviceEnrollmentAsync (string id)
+        {
+             ApiResponse<EnrollmentIdentity> localVarResponse = await GetDeviceEnrollmentAsyncWithHttpInfo(id);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get details of an enrollment by ID. To check the enrollment info in detail, for example claming date and expiration date.
+        /// </summary>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Enrollment identity internal id</param>
+        /// <returns>Task of ApiResponse (EnrollmentIdentity)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<EnrollmentIdentity>> GetDeviceEnrollmentAsyncWithHttpInfo (string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling PublicAPIApi->GetDeviceEnrollment");
+
+            var localVarPath = "/v3/device-enrollments/{id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetDeviceEnrollment", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<EnrollmentIdentity>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (EnrollmentIdentity) Configuration.ApiClient.Deserialize(localVarResponse, typeof(EnrollmentIdentity)));
+        }
+
+        /// <summary>
         /// Get enrollment list. Provides a list of pending and claimed enrollments. Example usage: 
         /// </summary>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
@@ -316,9 +759,9 @@ namespace enrollment.Api
         /// <param name="order">ASC or DESC (optional, default to ASC)</param>
         /// <param name="include">Comma separate additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>EnrollmentIdentities</returns>
-        public EnrollmentIdentities V3DeviceEnrollmentsGet (int? limit = null, string after = null, string order = null, string include = null)
+        public EnrollmentIdentities GetDeviceEnrollments (int? limit = null, string after = null, string order = null, string include = null)
         {
-             ApiResponse<EnrollmentIdentities> localVarResponse = V3DeviceEnrollmentsGetWithHttpInfo(limit, after, order, include);
+             ApiResponse<EnrollmentIdentities> localVarResponse = GetDeviceEnrollmentsWithHttpInfo(limit, after, order, include);
              return localVarResponse.Data;
         }
 
@@ -331,7 +774,7 @@ namespace enrollment.Api
         /// <param name="order">ASC or DESC (optional, default to ASC)</param>
         /// <param name="include">Comma separate additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>ApiResponse of EnrollmentIdentities</returns>
-        public ApiResponse< EnrollmentIdentities > V3DeviceEnrollmentsGetWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null)
+        public ApiResponse< EnrollmentIdentities > GetDeviceEnrollmentsWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null)
         {
 
             var localVarPath = "/v3/device-enrollments";
@@ -375,7 +818,7 @@ namespace enrollment.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V3DeviceEnrollmentsGet", localVarResponse);
+                Exception exception = ExceptionFactory("GetDeviceEnrollments", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -393,9 +836,9 @@ namespace enrollment.Api
         /// <param name="order">ASC or DESC (optional, default to ASC)</param>
         /// <param name="include">Comma separate additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of EnrollmentIdentities</returns>
-        public async System.Threading.Tasks.Task<EnrollmentIdentities> V3DeviceEnrollmentsGetAsync (int? limit = null, string after = null, string order = null, string include = null)
+        public async System.Threading.Tasks.Task<EnrollmentIdentities> GetDeviceEnrollmentsAsync (int? limit = null, string after = null, string order = null, string include = null)
         {
-             ApiResponse<EnrollmentIdentities> localVarResponse = await V3DeviceEnrollmentsGetAsyncWithHttpInfo(limit, after, order, include);
+             ApiResponse<EnrollmentIdentities> localVarResponse = await GetDeviceEnrollmentsAsyncWithHttpInfo(limit, after, order, include);
              return localVarResponse.Data;
 
         }
@@ -409,7 +852,7 @@ namespace enrollment.Api
         /// <param name="order">ASC or DESC (optional, default to ASC)</param>
         /// <param name="include">Comma separate additional data to return. Currently supported: total_count (optional)</param>
         /// <returns>Task of ApiResponse (EnrollmentIdentities)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<EnrollmentIdentities>> V3DeviceEnrollmentsGetAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null)
+        public async System.Threading.Tasks.Task<ApiResponse<EnrollmentIdentities>> GetDeviceEnrollmentsAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null)
         {
 
             var localVarPath = "/v3/device-enrollments";
@@ -453,456 +896,13 @@ namespace enrollment.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V3DeviceEnrollmentsGet", localVarResponse);
+                Exception exception = ExceptionFactory("GetDeviceEnrollments", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<EnrollmentIdentities>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (EnrollmentIdentities) Configuration.ApiClient.Deserialize(localVarResponse, typeof(EnrollmentIdentities)));
-        }
-
-        /// <summary>
-        /// Delete an enrollment by ID. To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
-        /// </summary>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
-        /// <returns></returns>
-        public void V3DeviceEnrollmentsIdDelete (string id)
-        {
-             V3DeviceEnrollmentsIdDeleteWithHttpInfo(id);
-        }
-
-        /// <summary>
-        /// Delete an enrollment by ID. To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
-        /// </summary>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V3DeviceEnrollmentsIdDeleteWithHttpInfo (string id)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling PublicAPIApi->V3DeviceEnrollmentsIdDelete");
-
-            var localVarPath = "/v3/device-enrollments/{id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V3DeviceEnrollmentsIdDelete", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        /// Delete an enrollment by ID. To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
-        /// </summary>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V3DeviceEnrollmentsIdDeleteAsync (string id)
-        {
-             await V3DeviceEnrollmentsIdDeleteAsyncWithHttpInfo(id);
-
-        }
-
-        /// <summary>
-        /// Delete an enrollment by ID. To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
-        /// </summary>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V3DeviceEnrollmentsIdDeleteAsyncWithHttpInfo (string id)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling PublicAPIApi->V3DeviceEnrollmentsIdDelete");
-
-            var localVarPath = "/v3/device-enrollments/{id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V3DeviceEnrollmentsIdDelete", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        /// Get details of an enrollment by ID. To check the enrollment info in detail, for example claming date and expiration date.
-        /// </summary>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
-        /// <returns>EnrollmentIdentity</returns>
-        public EnrollmentIdentity V3DeviceEnrollmentsIdGet (string id)
-        {
-             ApiResponse<EnrollmentIdentity> localVarResponse = V3DeviceEnrollmentsIdGetWithHttpInfo(id);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Get details of an enrollment by ID. To check the enrollment info in detail, for example claming date and expiration date.
-        /// </summary>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
-        /// <returns>ApiResponse of EnrollmentIdentity</returns>
-        public ApiResponse< EnrollmentIdentity > V3DeviceEnrollmentsIdGetWithHttpInfo (string id)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling PublicAPIApi->V3DeviceEnrollmentsIdGet");
-
-            var localVarPath = "/v3/device-enrollments/{id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V3DeviceEnrollmentsIdGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<EnrollmentIdentity>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (EnrollmentIdentity) Configuration.ApiClient.Deserialize(localVarResponse, typeof(EnrollmentIdentity)));
-        }
-
-        /// <summary>
-        /// Get details of an enrollment by ID. To check the enrollment info in detail, for example claming date and expiration date.
-        /// </summary>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
-        /// <returns>Task of EnrollmentIdentity</returns>
-        public async System.Threading.Tasks.Task<EnrollmentIdentity> V3DeviceEnrollmentsIdGetAsync (string id)
-        {
-             ApiResponse<EnrollmentIdentity> localVarResponse = await V3DeviceEnrollmentsIdGetAsyncWithHttpInfo(id);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Get details of an enrollment by ID. To check the enrollment info in detail, for example claming date and expiration date.
-        /// </summary>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
-        /// <returns>Task of ApiResponse (EnrollmentIdentity)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<EnrollmentIdentity>> V3DeviceEnrollmentsIdGetAsyncWithHttpInfo (string id)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling PublicAPIApi->V3DeviceEnrollmentsIdGet");
-
-            var localVarPath = "/v3/device-enrollments/{id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V3DeviceEnrollmentsIdGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<EnrollmentIdentity>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (EnrollmentIdentity) Configuration.ApiClient.Deserialize(localVarResponse, typeof(EnrollmentIdentity)));
-        }
-
-        /// <summary>
-        /// Place an enrollment claim for one or several devices. When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
-        /// </summary>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="enrollmentIdentity"></param>
-        /// <returns>EnrollmentIdentity</returns>
-        public EnrollmentIdentity V3DeviceEnrollmentsPost (EnrollmentId enrollmentIdentity)
-        {
-             ApiResponse<EnrollmentIdentity> localVarResponse = V3DeviceEnrollmentsPostWithHttpInfo(enrollmentIdentity);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Place an enrollment claim for one or several devices. When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
-        /// </summary>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="enrollmentIdentity"></param>
-        /// <returns>ApiResponse of EnrollmentIdentity</returns>
-        public ApiResponse< EnrollmentIdentity > V3DeviceEnrollmentsPostWithHttpInfo (EnrollmentId enrollmentIdentity)
-        {
-            // verify the required parameter 'enrollmentIdentity' is set
-            if (enrollmentIdentity == null)
-                throw new ApiException(400, "Missing required parameter 'enrollmentIdentity' when calling PublicAPIApi->V3DeviceEnrollmentsPost");
-
-            var localVarPath = "/v3/device-enrollments";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (enrollmentIdentity != null && enrollmentIdentity.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(enrollmentIdentity); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = enrollmentIdentity; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V3DeviceEnrollmentsPost", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<EnrollmentIdentity>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (EnrollmentIdentity) Configuration.ApiClient.Deserialize(localVarResponse, typeof(EnrollmentIdentity)));
-        }
-
-        /// <summary>
-        /// Place an enrollment claim for one or several devices. When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
-        /// </summary>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="enrollmentIdentity"></param>
-        /// <returns>Task of EnrollmentIdentity</returns>
-        public async System.Threading.Tasks.Task<EnrollmentIdentity> V3DeviceEnrollmentsPostAsync (EnrollmentId enrollmentIdentity)
-        {
-             ApiResponse<EnrollmentIdentity> localVarResponse = await V3DeviceEnrollmentsPostAsyncWithHttpInfo(enrollmentIdentity);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Place an enrollment claim for one or several devices. When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
-        /// </summary>
-        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="enrollmentIdentity"></param>
-        /// <returns>Task of ApiResponse (EnrollmentIdentity)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<EnrollmentIdentity>> V3DeviceEnrollmentsPostAsyncWithHttpInfo (EnrollmentId enrollmentIdentity)
-        {
-            // verify the required parameter 'enrollmentIdentity' is set
-            if (enrollmentIdentity == null)
-                throw new ApiException(400, "Missing required parameter 'enrollmentIdentity' when calling PublicAPIApi->V3DeviceEnrollmentsPost");
-
-            var localVarPath = "/v3/device-enrollments";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (enrollmentIdentity != null && enrollmentIdentity.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(enrollmentIdentity); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = enrollmentIdentity; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V3DeviceEnrollmentsPost", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<EnrollmentIdentity>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (EnrollmentIdentity) Configuration.ApiClient.Deserialize(localVarResponse, typeof(EnrollmentIdentity)));
         }
 
     }

@@ -92,7 +92,7 @@ namespace MbedCloudSDK.Enrollment.Api
         {
             try
             {
-                var resp = api.V3DeviceEnrollmentsGet(limit: options.Limit, after: options.After, order: options.Order, include: options.Include);
+                var resp = api.GetDeviceEnrollments(limit: options.Limit, after: options.After, order: options.Order, include: options.Include);
                 var respEnrollments = new ResponsePage<Enrollment>(resp.After, resp.HasMore, resp.Limit, Convert.ToString(resp.Order), resp.TotalCount);
                 resp.Data.ForEach(enrollment => respEnrollments.Data.Add(Enrollment.Map(enrollment)));
                 return respEnrollments;
@@ -112,7 +112,7 @@ namespace MbedCloudSDK.Enrollment.Api
         {
             try
             {
-                return Enrollment.Map(await api.V3DeviceEnrollmentsPostAsync(new enrollment.Model.EnrollmentId(claimId)));
+                return Enrollment.Map(await api.CreateDeviceEnrollmentAsync(new enrollment.Model.EnrollmentId(claimId)));
             }
             catch (enrollment.Client.ApiException e)
             {
@@ -146,7 +146,7 @@ namespace MbedCloudSDK.Enrollment.Api
         {
             try
             {
-                return Enrollment.Map(await api.V3DeviceEnrollmentsIdGetAsync(id));
+                return Enrollment.Map(await api.GetDeviceEnrollmentAsync(id));
             }
             catch (enrollment.Client.ApiException e)
             {
@@ -180,7 +180,7 @@ namespace MbedCloudSDK.Enrollment.Api
         {
             try
             {
-                await api.V3DeviceEnrollmentsIdDeleteAsync(id);
+                await api.DeleteDeviceEnrollmentAsync(id);
             }
             catch (enrollment.Client.ApiException e)
             {
