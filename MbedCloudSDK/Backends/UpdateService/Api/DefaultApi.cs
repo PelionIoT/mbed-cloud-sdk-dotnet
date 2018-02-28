@@ -26,7 +26,7 @@ namespace update_service.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
+        /// Create an image
         /// </summary>
         /// <remarks>
         /// Create firmware image.
@@ -39,7 +39,7 @@ namespace update_service.Api
         FirmwareImage FirmwareImageCreate (System.IO.Stream datafile, string name, string description = null);
 
         /// <summary>
-        /// 
+        /// Create an image
         /// </summary>
         /// <remarks>
         /// Create firmware image.
@@ -51,7 +51,7 @@ namespace update_service.Api
         /// <returns>ApiResponse of FirmwareImage</returns>
         ApiResponse<FirmwareImage> FirmwareImageCreateWithHttpInfo (System.IO.Stream datafile, string name, string description = null);
         /// <summary>
-        /// 
+        /// Delete an image
         /// </summary>
         /// <remarks>
         /// Delete firmware image.
@@ -62,7 +62,7 @@ namespace update_service.Api
         void FirmwareImageDestroy (string imageId);
 
         /// <summary>
-        /// 
+        /// Delete an image
         /// </summary>
         /// <remarks>
         /// Delete firmware image.
@@ -72,7 +72,7 @@ namespace update_service.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> FirmwareImageDestroyWithHttpInfo (string imageId);
         /// <summary>
-        /// 
+        /// List all images
         /// </summary>
         /// <remarks>
         /// List all firmware images.
@@ -87,7 +87,7 @@ namespace update_service.Api
         FirmwareImagePage FirmwareImageList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
-        /// 
+        /// List all images
         /// </summary>
         /// <remarks>
         /// List all firmware images.
@@ -101,7 +101,7 @@ namespace update_service.Api
         /// <returns>ApiResponse of FirmwareImagePage</returns>
         ApiResponse<FirmwareImagePage> FirmwareImageListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
-        /// 
+        /// Get an image
         /// </summary>
         /// <remarks>
         /// Retrieve firmware image.
@@ -112,7 +112,7 @@ namespace update_service.Api
         FirmwareImage FirmwareImageRetrieve (string imageId);
 
         /// <summary>
-        /// 
+        /// Get an image
         /// </summary>
         /// <remarks>
         /// Retrieve firmware image.
@@ -122,7 +122,7 @@ namespace update_service.Api
         /// <returns>ApiResponse of FirmwareImage</returns>
         ApiResponse<FirmwareImage> FirmwareImageRetrieveWithHttpInfo (string imageId);
         /// <summary>
-        /// 
+        /// Create a manifest
         /// </summary>
         /// <remarks>
         /// Create firmware manifest.
@@ -136,7 +136,7 @@ namespace update_service.Api
         FirmwareManifest FirmwareManifestCreate (System.IO.Stream datafile, string name, string description = null, System.IO.Stream keyTable = null);
 
         /// <summary>
-        /// 
+        /// Create a manifest
         /// </summary>
         /// <remarks>
         /// Create firmware manifest.
@@ -149,7 +149,7 @@ namespace update_service.Api
         /// <returns>ApiResponse of FirmwareManifest</returns>
         ApiResponse<FirmwareManifest> FirmwareManifestCreateWithHttpInfo (System.IO.Stream datafile, string name, string description = null, System.IO.Stream keyTable = null);
         /// <summary>
-        /// 
+        /// Delete a manifest
         /// </summary>
         /// <remarks>
         /// Delete firmware manifest.
@@ -160,7 +160,7 @@ namespace update_service.Api
         void FirmwareManifestDestroy (string manifestId);
 
         /// <summary>
-        /// 
+        /// Delete a manifest
         /// </summary>
         /// <remarks>
         /// Delete firmware manifest.
@@ -170,7 +170,7 @@ namespace update_service.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> FirmwareManifestDestroyWithHttpInfo (string manifestId);
         /// <summary>
-        /// 
+        /// List manifests
         /// </summary>
         /// <remarks>
         /// List firmware manifests.
@@ -185,7 +185,7 @@ namespace update_service.Api
         FirmwareManifestPage FirmwareManifestList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
-        /// 
+        /// List manifests
         /// </summary>
         /// <remarks>
         /// List firmware manifests.
@@ -199,7 +199,7 @@ namespace update_service.Api
         /// <returns>ApiResponse of FirmwareManifestPage</returns>
         ApiResponse<FirmwareManifestPage> FirmwareManifestListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
-        /// 
+        /// Get a manifest
         /// </summary>
         /// <remarks>
         /// Retrieve firmware manifest.
@@ -210,7 +210,7 @@ namespace update_service.Api
         FirmwareManifest FirmwareManifestRetrieve (string manifestId);
 
         /// <summary>
-        /// 
+        /// Get a manifest
         /// </summary>
         /// <remarks>
         /// Retrieve firmware manifest.
@@ -220,7 +220,7 @@ namespace update_service.Api
         /// <returns>ApiResponse of FirmwareManifest</returns>
         ApiResponse<FirmwareManifest> FirmwareManifestRetrieveWithHttpInfo (string manifestId);
         /// <summary>
-        /// 
+        /// Create a campaign
         /// </summary>
         /// <remarks>
         /// Create an update campaign.
@@ -231,7 +231,7 @@ namespace update_service.Api
         UpdateCampaign UpdateCampaignCreate (UpdateCampaignPostRequest campaign);
 
         /// <summary>
-        /// 
+        /// Create a campaign
         /// </summary>
         /// <remarks>
         /// Create an update campaign.
@@ -241,7 +241,7 @@ namespace update_service.Api
         /// <returns>ApiResponse of UpdateCampaign</returns>
         ApiResponse<UpdateCampaign> UpdateCampaignCreateWithHttpInfo (UpdateCampaignPostRequest campaign);
         /// <summary>
-        /// 
+        /// Delete a campaign
         /// </summary>
         /// <remarks>
         /// Delete an update campaign.
@@ -252,7 +252,7 @@ namespace update_service.Api
         void UpdateCampaignDestroy (string campaignId);
 
         /// <summary>
-        /// 
+        /// Delete a campaign
         /// </summary>
         /// <remarks>
         /// Delete an update campaign.
@@ -262,10 +262,10 @@ namespace update_service.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> UpdateCampaignDestroyWithHttpInfo (string campaignId);
         /// <summary>
-        /// 
+        /// List all campaigns
         /// </summary>
         /// <remarks>
-        /// Get update campaigns for devices specified by a filter. Can also use the &#x60;/campaigns/&#x60; alias.
+        /// Get update campaigns for devices specified by a filter.
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many update campaigns to retrieve (optional)</param>
@@ -277,10 +277,10 @@ namespace update_service.Api
         UpdateCampaignPage UpdateCampaignList (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
-        /// 
+        /// List all campaigns
         /// </summary>
         /// <remarks>
-        /// Get update campaigns for devices specified by a filter. Can also use the &#x60;/campaigns/&#x60; alias.
+        /// Get update campaigns for devices specified by a filter.
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many update campaigns to retrieve (optional)</param>
@@ -291,7 +291,7 @@ namespace update_service.Api
         /// <returns>ApiResponse of UpdateCampaignPage</returns>
         ApiResponse<UpdateCampaignPage> UpdateCampaignListWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
-        /// 
+        /// List all campaign device metadata
         /// </summary>
         /// <remarks>
         /// Get campaign device metadata.
@@ -306,7 +306,7 @@ namespace update_service.Api
         CampaignDeviceMetadataPage UpdateCampaignMetadataList (string campaignId, int? limit = null, string order = null, string after = null, string include = null);
 
         /// <summary>
-        /// 
+        /// List all campaign device metadata
         /// </summary>
         /// <remarks>
         /// Get campaign device metadata.
@@ -320,7 +320,7 @@ namespace update_service.Api
         /// <returns>ApiResponse of CampaignDeviceMetadataPage</returns>
         ApiResponse<CampaignDeviceMetadataPage> UpdateCampaignMetadataListWithHttpInfo (string campaignId, int? limit = null, string order = null, string after = null, string include = null);
         /// <summary>
-        /// 
+        /// Get a campaign device metadata
         /// </summary>
         /// <remarks>
         /// Get update campaign metadata.
@@ -332,7 +332,7 @@ namespace update_service.Api
         CampaignDeviceMetadata UpdateCampaignMetadataRetrieve (string campaignId, string campaignDeviceMetadataId);
 
         /// <summary>
-        /// 
+        /// Get a campaign device metadata
         /// </summary>
         /// <remarks>
         /// Get update campaign metadata.
@@ -343,7 +343,7 @@ namespace update_service.Api
         /// <returns>ApiResponse of CampaignDeviceMetadata</returns>
         ApiResponse<CampaignDeviceMetadata> UpdateCampaignMetadataRetrieveWithHttpInfo (string campaignId, string campaignDeviceMetadataId);
         /// <summary>
-        /// 
+        /// Stop a running campaign
         /// </summary>
         /// <remarks>
         /// Stop a running update campaign.
@@ -354,7 +354,7 @@ namespace update_service.Api
         void UpdateCampaignMetadataStop (string campaignId);
 
         /// <summary>
-        /// 
+        /// Stop a running campaign
         /// </summary>
         /// <remarks>
         /// Stop a running update campaign.
@@ -364,7 +364,7 @@ namespace update_service.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> UpdateCampaignMetadataStopWithHttpInfo (string campaignId);
         /// <summary>
-        /// 
+        /// Get a campaign.
         /// </summary>
         /// <remarks>
         /// Get an update campaign.
@@ -375,7 +375,7 @@ namespace update_service.Api
         UpdateCampaign UpdateCampaignRetrieve (string campaignId);
 
         /// <summary>
-        /// 
+        /// Get a campaign.
         /// </summary>
         /// <remarks>
         /// Get an update campaign.
@@ -385,7 +385,7 @@ namespace update_service.Api
         /// <returns>ApiResponse of UpdateCampaign</returns>
         ApiResponse<UpdateCampaign> UpdateCampaignRetrieveWithHttpInfo (string campaignId);
         /// <summary>
-        /// 
+        /// Modify a campaign
         /// </summary>
         /// <remarks>
         /// Modify an update campaign.
@@ -397,7 +397,7 @@ namespace update_service.Api
         UpdateCampaign UpdateCampaignUpdate (string campaignId, UpdateCampaignPutRequest campaign);
 
         /// <summary>
-        /// 
+        /// Modify a campaign
         /// </summary>
         /// <remarks>
         /// Modify an update campaign.
@@ -410,7 +410,7 @@ namespace update_service.Api
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Create an image
         /// </summary>
         /// <remarks>
         /// Create firmware image.
@@ -423,7 +423,7 @@ namespace update_service.Api
         System.Threading.Tasks.Task<FirmwareImage> FirmwareImageCreateAsync (System.IO.Stream datafile, string name, string description = null);
 
         /// <summary>
-        /// 
+        /// Create an image
         /// </summary>
         /// <remarks>
         /// Create firmware image.
@@ -435,7 +435,7 @@ namespace update_service.Api
         /// <returns>Task of ApiResponse (FirmwareImage)</returns>
         System.Threading.Tasks.Task<ApiResponse<FirmwareImage>> FirmwareImageCreateAsyncWithHttpInfo (System.IO.Stream datafile, string name, string description = null);
         /// <summary>
-        /// 
+        /// Delete an image
         /// </summary>
         /// <remarks>
         /// Delete firmware image.
@@ -446,7 +446,7 @@ namespace update_service.Api
         System.Threading.Tasks.Task FirmwareImageDestroyAsync (string imageId);
 
         /// <summary>
-        /// 
+        /// Delete an image
         /// </summary>
         /// <remarks>
         /// Delete firmware image.
@@ -456,7 +456,7 @@ namespace update_service.Api
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> FirmwareImageDestroyAsyncWithHttpInfo (string imageId);
         /// <summary>
-        /// 
+        /// List all images
         /// </summary>
         /// <remarks>
         /// List all firmware images.
@@ -471,7 +471,7 @@ namespace update_service.Api
         System.Threading.Tasks.Task<FirmwareImagePage> FirmwareImageListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
-        /// 
+        /// List all images
         /// </summary>
         /// <remarks>
         /// List all firmware images.
@@ -485,7 +485,7 @@ namespace update_service.Api
         /// <returns>Task of ApiResponse (FirmwareImagePage)</returns>
         System.Threading.Tasks.Task<ApiResponse<FirmwareImagePage>> FirmwareImageListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
-        /// 
+        /// Get an image
         /// </summary>
         /// <remarks>
         /// Retrieve firmware image.
@@ -496,7 +496,7 @@ namespace update_service.Api
         System.Threading.Tasks.Task<FirmwareImage> FirmwareImageRetrieveAsync (string imageId);
 
         /// <summary>
-        /// 
+        /// Get an image
         /// </summary>
         /// <remarks>
         /// Retrieve firmware image.
@@ -506,7 +506,7 @@ namespace update_service.Api
         /// <returns>Task of ApiResponse (FirmwareImage)</returns>
         System.Threading.Tasks.Task<ApiResponse<FirmwareImage>> FirmwareImageRetrieveAsyncWithHttpInfo (string imageId);
         /// <summary>
-        /// 
+        /// Create a manifest
         /// </summary>
         /// <remarks>
         /// Create firmware manifest.
@@ -520,7 +520,7 @@ namespace update_service.Api
         System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestCreateAsync (System.IO.Stream datafile, string name, string description = null, System.IO.Stream keyTable = null);
 
         /// <summary>
-        /// 
+        /// Create a manifest
         /// </summary>
         /// <remarks>
         /// Create firmware manifest.
@@ -533,7 +533,7 @@ namespace update_service.Api
         /// <returns>Task of ApiResponse (FirmwareManifest)</returns>
         System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestCreateAsyncWithHttpInfo (System.IO.Stream datafile, string name, string description = null, System.IO.Stream keyTable = null);
         /// <summary>
-        /// 
+        /// Delete a manifest
         /// </summary>
         /// <remarks>
         /// Delete firmware manifest.
@@ -544,7 +544,7 @@ namespace update_service.Api
         System.Threading.Tasks.Task FirmwareManifestDestroyAsync (string manifestId);
 
         /// <summary>
-        /// 
+        /// Delete a manifest
         /// </summary>
         /// <remarks>
         /// Delete firmware manifest.
@@ -554,7 +554,7 @@ namespace update_service.Api
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> FirmwareManifestDestroyAsyncWithHttpInfo (string manifestId);
         /// <summary>
-        /// 
+        /// List manifests
         /// </summary>
         /// <remarks>
         /// List firmware manifests.
@@ -569,7 +569,7 @@ namespace update_service.Api
         System.Threading.Tasks.Task<FirmwareManifestPage> FirmwareManifestListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
-        /// 
+        /// List manifests
         /// </summary>
         /// <remarks>
         /// List firmware manifests.
@@ -583,7 +583,7 @@ namespace update_service.Api
         /// <returns>Task of ApiResponse (FirmwareManifestPage)</returns>
         System.Threading.Tasks.Task<ApiResponse<FirmwareManifestPage>> FirmwareManifestListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
-        /// 
+        /// Get a manifest
         /// </summary>
         /// <remarks>
         /// Retrieve firmware manifest.
@@ -594,7 +594,7 @@ namespace update_service.Api
         System.Threading.Tasks.Task<FirmwareManifest> FirmwareManifestRetrieveAsync (string manifestId);
 
         /// <summary>
-        /// 
+        /// Get a manifest
         /// </summary>
         /// <remarks>
         /// Retrieve firmware manifest.
@@ -604,7 +604,7 @@ namespace update_service.Api
         /// <returns>Task of ApiResponse (FirmwareManifest)</returns>
         System.Threading.Tasks.Task<ApiResponse<FirmwareManifest>> FirmwareManifestRetrieveAsyncWithHttpInfo (string manifestId);
         /// <summary>
-        /// 
+        /// Create a campaign
         /// </summary>
         /// <remarks>
         /// Create an update campaign.
@@ -615,7 +615,7 @@ namespace update_service.Api
         System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignCreateAsync (UpdateCampaignPostRequest campaign);
 
         /// <summary>
-        /// 
+        /// Create a campaign
         /// </summary>
         /// <remarks>
         /// Create an update campaign.
@@ -625,7 +625,7 @@ namespace update_service.Api
         /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignCreateAsyncWithHttpInfo (UpdateCampaignPostRequest campaign);
         /// <summary>
-        /// 
+        /// Delete a campaign
         /// </summary>
         /// <remarks>
         /// Delete an update campaign.
@@ -636,7 +636,7 @@ namespace update_service.Api
         System.Threading.Tasks.Task UpdateCampaignDestroyAsync (string campaignId);
 
         /// <summary>
-        /// 
+        /// Delete a campaign
         /// </summary>
         /// <remarks>
         /// Delete an update campaign.
@@ -646,10 +646,10 @@ namespace update_service.Api
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> UpdateCampaignDestroyAsyncWithHttpInfo (string campaignId);
         /// <summary>
-        /// 
+        /// List all campaigns
         /// </summary>
         /// <remarks>
-        /// Get update campaigns for devices specified by a filter. Can also use the &#x60;/campaigns/&#x60; alias.
+        /// Get update campaigns for devices specified by a filter.
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many update campaigns to retrieve (optional)</param>
@@ -661,10 +661,10 @@ namespace update_service.Api
         System.Threading.Tasks.Task<UpdateCampaignPage> UpdateCampaignListAsync (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
 
         /// <summary>
-        /// 
+        /// List all campaigns
         /// </summary>
         /// <remarks>
-        /// Get update campaigns for devices specified by a filter. Can also use the &#x60;/campaigns/&#x60; alias.
+        /// Get update campaigns for devices specified by a filter.
         /// </remarks>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many update campaigns to retrieve (optional)</param>
@@ -675,7 +675,7 @@ namespace update_service.Api
         /// <returns>Task of ApiResponse (UpdateCampaignPage)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateCampaignPage>> UpdateCampaignListAsyncWithHttpInfo (int? limit = null, string order = null, string after = null, string filter = null, string include = null);
         /// <summary>
-        /// 
+        /// List all campaign device metadata
         /// </summary>
         /// <remarks>
         /// Get campaign device metadata.
@@ -690,7 +690,7 @@ namespace update_service.Api
         System.Threading.Tasks.Task<CampaignDeviceMetadataPage> UpdateCampaignMetadataListAsync (string campaignId, int? limit = null, string order = null, string after = null, string include = null);
 
         /// <summary>
-        /// 
+        /// List all campaign device metadata
         /// </summary>
         /// <remarks>
         /// Get campaign device metadata.
@@ -704,7 +704,7 @@ namespace update_service.Api
         /// <returns>Task of ApiResponse (CampaignDeviceMetadataPage)</returns>
         System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadataPage>> UpdateCampaignMetadataListAsyncWithHttpInfo (string campaignId, int? limit = null, string order = null, string after = null, string include = null);
         /// <summary>
-        /// 
+        /// Get a campaign device metadata
         /// </summary>
         /// <remarks>
         /// Get update campaign metadata.
@@ -716,7 +716,7 @@ namespace update_service.Api
         System.Threading.Tasks.Task<CampaignDeviceMetadata> UpdateCampaignMetadataRetrieveAsync (string campaignId, string campaignDeviceMetadataId);
 
         /// <summary>
-        /// 
+        /// Get a campaign device metadata
         /// </summary>
         /// <remarks>
         /// Get update campaign metadata.
@@ -727,7 +727,7 @@ namespace update_service.Api
         /// <returns>Task of ApiResponse (CampaignDeviceMetadata)</returns>
         System.Threading.Tasks.Task<ApiResponse<CampaignDeviceMetadata>> UpdateCampaignMetadataRetrieveAsyncWithHttpInfo (string campaignId, string campaignDeviceMetadataId);
         /// <summary>
-        /// 
+        /// Stop a running campaign
         /// </summary>
         /// <remarks>
         /// Stop a running update campaign.
@@ -738,7 +738,7 @@ namespace update_service.Api
         System.Threading.Tasks.Task UpdateCampaignMetadataStopAsync (string campaignId);
 
         /// <summary>
-        /// 
+        /// Stop a running campaign
         /// </summary>
         /// <remarks>
         /// Stop a running update campaign.
@@ -748,7 +748,7 @@ namespace update_service.Api
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> UpdateCampaignMetadataStopAsyncWithHttpInfo (string campaignId);
         /// <summary>
-        /// 
+        /// Get a campaign.
         /// </summary>
         /// <remarks>
         /// Get an update campaign.
@@ -759,7 +759,7 @@ namespace update_service.Api
         System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignRetrieveAsync (string campaignId);
 
         /// <summary>
-        /// 
+        /// Get a campaign.
         /// </summary>
         /// <remarks>
         /// Get an update campaign.
@@ -769,7 +769,7 @@ namespace update_service.Api
         /// <returns>Task of ApiResponse (UpdateCampaign)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateCampaign>> UpdateCampaignRetrieveAsyncWithHttpInfo (string campaignId);
         /// <summary>
-        /// 
+        /// Modify a campaign
         /// </summary>
         /// <remarks>
         /// Modify an update campaign.
@@ -781,7 +781,7 @@ namespace update_service.Api
         System.Threading.Tasks.Task<UpdateCampaign> UpdateCampaignUpdateAsync (string campaignId, UpdateCampaignPutRequest campaign);
 
         /// <summary>
-        /// 
+        /// Modify a campaign
         /// </summary>
         /// <remarks>
         /// Modify an update campaign.
@@ -892,7 +892,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Create firmware image.
+        /// Create an image Create firmware image.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="datafile">The firmware image file to upload</param>
@@ -906,7 +906,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Create firmware image.
+        /// Create an image Create firmware image.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="datafile">The firmware image file to upload</param>
@@ -973,7 +973,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Create firmware image.
+        /// Create an image Create firmware image.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="datafile">The firmware image file to upload</param>
@@ -988,7 +988,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Create firmware image.
+        /// Create an image Create firmware image.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="datafile">The firmware image file to upload</param>
@@ -1055,7 +1055,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Delete firmware image.
+        /// Delete an image Delete firmware image.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The firmware image ID</param>
@@ -1066,7 +1066,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Delete firmware image.
+        /// Delete an image Delete firmware image.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The firmware image ID</param>
@@ -1125,7 +1125,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Delete firmware image.
+        /// Delete an image Delete firmware image.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The firmware image ID</param>
@@ -1137,7 +1137,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Delete firmware image.
+        /// Delete an image Delete firmware image.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The firmware image ID</param>
@@ -1196,7 +1196,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  List all firmware images.
+        /// List all images List all firmware images.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many firmware images to retrieve (optional)</param>
@@ -1212,7 +1212,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  List all firmware images.
+        /// List all images List all firmware images.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many firmware images to retrieve (optional)</param>
@@ -1276,7 +1276,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  List all firmware images.
+        /// List all images List all firmware images.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many firmware images to retrieve (optional)</param>
@@ -1293,7 +1293,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  List all firmware images.
+        /// List all images List all firmware images.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many firmware images to retrieve (optional)</param>
@@ -1357,7 +1357,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Retrieve firmware image.
+        /// Get an image Retrieve firmware image.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The firmware image ID</param>
@@ -1369,7 +1369,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Retrieve firmware image.
+        /// Get an image Retrieve firmware image.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The firmware image ID</param>
@@ -1428,7 +1428,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Retrieve firmware image.
+        /// Get an image Retrieve firmware image.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The firmware image ID</param>
@@ -1441,7 +1441,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Retrieve firmware image.
+        /// Get an image Retrieve firmware image.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="imageId">The firmware image ID</param>
@@ -1500,7 +1500,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Create firmware manifest.
+        /// Create a manifest Create firmware manifest.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="datafile">The manifest file to create. The API gateway enforces the account-specific file size.</param>
@@ -1515,7 +1515,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Create firmware manifest.
+        /// Create a manifest Create firmware manifest.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="datafile">The manifest file to create. The API gateway enforces the account-specific file size.</param>
@@ -1584,7 +1584,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Create firmware manifest.
+        /// Create a manifest Create firmware manifest.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="datafile">The manifest file to create. The API gateway enforces the account-specific file size.</param>
@@ -1600,7 +1600,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Create firmware manifest.
+        /// Create a manifest Create firmware manifest.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="datafile">The manifest file to create. The API gateway enforces the account-specific file size.</param>
@@ -1669,7 +1669,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Delete firmware manifest.
+        /// Delete a manifest Delete firmware manifest.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The firmware manifest ID</param>
@@ -1680,7 +1680,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Delete firmware manifest.
+        /// Delete a manifest Delete firmware manifest.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The firmware manifest ID</param>
@@ -1739,7 +1739,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Delete firmware manifest.
+        /// Delete a manifest Delete firmware manifest.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The firmware manifest ID</param>
@@ -1751,7 +1751,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Delete firmware manifest.
+        /// Delete a manifest Delete firmware manifest.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The firmware manifest ID</param>
@@ -1810,7 +1810,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  List firmware manifests.
+        /// List manifests List firmware manifests.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many firmware manifests to retrieve (optional)</param>
@@ -1826,7 +1826,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  List firmware manifests.
+        /// List manifests List firmware manifests.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many firmware manifests to retrieve (optional)</param>
@@ -1890,7 +1890,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  List firmware manifests.
+        /// List manifests List firmware manifests.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many firmware manifests to retrieve (optional)</param>
@@ -1907,7 +1907,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  List firmware manifests.
+        /// List manifests List firmware manifests.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many firmware manifests to retrieve (optional)</param>
@@ -1971,7 +1971,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Retrieve firmware manifest.
+        /// Get a manifest Retrieve firmware manifest.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The firmware manifest ID</param>
@@ -1983,7 +1983,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Retrieve firmware manifest.
+        /// Get a manifest Retrieve firmware manifest.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The firmware manifest ID</param>
@@ -2042,7 +2042,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Retrieve firmware manifest.
+        /// Get a manifest Retrieve firmware manifest.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The firmware manifest ID</param>
@@ -2055,7 +2055,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Retrieve firmware manifest.
+        /// Get a manifest Retrieve firmware manifest.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="manifestId">The firmware manifest ID</param>
@@ -2114,7 +2114,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Create an update campaign.
+        /// Create a campaign Create an update campaign.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaign">Update campaign</param>
@@ -2126,7 +2126,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Create an update campaign.
+        /// Create a campaign Create an update campaign.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaign">Update campaign</param>
@@ -2192,7 +2192,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Create an update campaign.
+        /// Create a campaign Create an update campaign.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaign">Update campaign</param>
@@ -2205,7 +2205,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Create an update campaign.
+        /// Create a campaign Create an update campaign.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaign">Update campaign</param>
@@ -2271,7 +2271,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Delete an update campaign.
+        /// Delete a campaign Delete an update campaign.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
@@ -2282,7 +2282,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Delete an update campaign.
+        /// Delete a campaign Delete an update campaign.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
@@ -2341,7 +2341,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Delete an update campaign.
+        /// Delete a campaign Delete an update campaign.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
@@ -2353,7 +2353,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Delete an update campaign.
+        /// Delete a campaign Delete an update campaign.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The ID of the update campaign</param>
@@ -2412,7 +2412,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Get update campaigns for devices specified by a filter. Can also use the &#x60;/campaigns/&#x60; alias.
+        /// List all campaigns Get update campaigns for devices specified by a filter.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many update campaigns to retrieve (optional)</param>
@@ -2428,7 +2428,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Get update campaigns for devices specified by a filter. Can also use the &#x60;/campaigns/&#x60; alias.
+        /// List all campaigns Get update campaigns for devices specified by a filter.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many update campaigns to retrieve (optional)</param>
@@ -2492,7 +2492,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Get update campaigns for devices specified by a filter. Can also use the &#x60;/campaigns/&#x60; alias.
+        /// List all campaigns Get update campaigns for devices specified by a filter.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many update campaigns to retrieve (optional)</param>
@@ -2509,7 +2509,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Get update campaigns for devices specified by a filter. Can also use the &#x60;/campaigns/&#x60; alias.
+        /// List all campaigns Get update campaigns for devices specified by a filter.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">How many update campaigns to retrieve (optional)</param>
@@ -2573,7 +2573,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Get campaign device metadata.
+        /// List all campaign device metadata Get campaign device metadata.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The update campaign ID</param>
@@ -2589,7 +2589,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Get campaign device metadata.
+        /// List all campaign device metadata Get campaign device metadata.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The update campaign ID</param>
@@ -2656,7 +2656,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Get campaign device metadata.
+        /// List all campaign device metadata Get campaign device metadata.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The update campaign ID</param>
@@ -2673,7 +2673,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Get campaign device metadata.
+        /// List all campaign device metadata Get campaign device metadata.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The update campaign ID</param>
@@ -2740,7 +2740,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Get update campaign metadata.
+        /// Get a campaign device metadata Get update campaign metadata.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The update campaign ID</param>
@@ -2753,7 +2753,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Get update campaign metadata.
+        /// Get a campaign device metadata Get update campaign metadata.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The update campaign ID</param>
@@ -2817,7 +2817,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Get update campaign metadata.
+        /// Get a campaign device metadata Get update campaign metadata.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The update campaign ID</param>
@@ -2831,7 +2831,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Get update campaign metadata.
+        /// Get a campaign device metadata Get update campaign metadata.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The update campaign ID</param>
@@ -2895,7 +2895,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Stop a running update campaign.
+        /// Stop a running campaign Stop a running update campaign.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The campaign ID</param>
@@ -2906,7 +2906,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Stop a running update campaign.
+        /// Stop a running campaign Stop a running update campaign.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The campaign ID</param>
@@ -2965,7 +2965,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Stop a running update campaign.
+        /// Stop a running campaign Stop a running update campaign.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The campaign ID</param>
@@ -2977,7 +2977,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Stop a running update campaign.
+        /// Stop a running campaign Stop a running update campaign.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The campaign ID</param>
@@ -3036,7 +3036,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Get an update campaign.
+        /// Get a campaign. Get an update campaign.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The campaign ID</param>
@@ -3048,7 +3048,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Get an update campaign.
+        /// Get a campaign. Get an update campaign.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The campaign ID</param>
@@ -3107,7 +3107,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Get an update campaign.
+        /// Get a campaign. Get an update campaign.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The campaign ID</param>
@@ -3120,7 +3120,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Get an update campaign.
+        /// Get a campaign. Get an update campaign.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">The campaign ID</param>
@@ -3179,7 +3179,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Modify an update campaign.
+        /// Modify a campaign Modify an update campaign.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
@@ -3192,7 +3192,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Modify an update campaign.
+        /// Modify a campaign Modify an update campaign.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
@@ -3263,7 +3263,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Modify an update campaign.
+        /// Modify a campaign Modify an update campaign.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>
@@ -3277,7 +3277,7 @@ namespace update_service.Api
         }
 
         /// <summary>
-        ///  Modify an update campaign.
+        /// Modify a campaign Modify an update campaign.
         /// </summary>
         /// <exception cref="update_service.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId"></param>

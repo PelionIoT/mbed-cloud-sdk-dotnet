@@ -80,6 +80,7 @@ namespace Example
 
             try
             {
+                // Create an image
                 FirmwareImage result = apiInstance.FirmwareImageCreate(datafile, name, description);
                 Debug.WriteLine(result);
             }
@@ -100,22 +101,22 @@ All URIs are relative to *https://api.us-east-1.mbedcloud.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**FirmwareImageCreate**](docs/DefaultApi.md#firmwareimagecreate) | **POST** /v3/firmware-images/ | 
-*DefaultApi* | [**FirmwareImageDestroy**](docs/DefaultApi.md#firmwareimagedestroy) | **DELETE** /v3/firmware-images/{image_id}/ | 
-*DefaultApi* | [**FirmwareImageList**](docs/DefaultApi.md#firmwareimagelist) | **GET** /v3/firmware-images/ | 
-*DefaultApi* | [**FirmwareImageRetrieve**](docs/DefaultApi.md#firmwareimageretrieve) | **GET** /v3/firmware-images/{image_id}/ | 
-*DefaultApi* | [**FirmwareManifestCreate**](docs/DefaultApi.md#firmwaremanifestcreate) | **POST** /v3/firmware-manifests/ | 
-*DefaultApi* | [**FirmwareManifestDestroy**](docs/DefaultApi.md#firmwaremanifestdestroy) | **DELETE** /v3/firmware-manifests/{manifest_id}/ | 
-*DefaultApi* | [**FirmwareManifestList**](docs/DefaultApi.md#firmwaremanifestlist) | **GET** /v3/firmware-manifests/ | 
-*DefaultApi* | [**FirmwareManifestRetrieve**](docs/DefaultApi.md#firmwaremanifestretrieve) | **GET** /v3/firmware-manifests/{manifest_id}/ | 
-*DefaultApi* | [**UpdateCampaignCreate**](docs/DefaultApi.md#updatecampaigncreate) | **POST** /v3/update-campaigns/ | 
-*DefaultApi* | [**UpdateCampaignDestroy**](docs/DefaultApi.md#updatecampaigndestroy) | **DELETE** /v3/update-campaigns/{campaign_id}/ | 
-*DefaultApi* | [**UpdateCampaignList**](docs/DefaultApi.md#updatecampaignlist) | **GET** /v3/update-campaigns/ | 
-*DefaultApi* | [**UpdateCampaignMetadataList**](docs/DefaultApi.md#updatecampaignmetadatalist) | **GET** /v3/update-campaigns/{campaign_id}/campaign-device-metadata/ | 
-*DefaultApi* | [**UpdateCampaignMetadataRetrieve**](docs/DefaultApi.md#updatecampaignmetadataretrieve) | **GET** /v3/update-campaigns/{campaign_id}/campaign-device-metadata/{campaign_device_metadata_id}/ | 
-*DefaultApi* | [**UpdateCampaignMetadataStop**](docs/DefaultApi.md#updatecampaignmetadatastop) | **POST** /v3/update-campaigns/{campaign_id}/stop | 
-*DefaultApi* | [**UpdateCampaignRetrieve**](docs/DefaultApi.md#updatecampaignretrieve) | **GET** /v3/update-campaigns/{campaign_id}/ | 
-*DefaultApi* | [**UpdateCampaignUpdate**](docs/DefaultApi.md#updatecampaignupdate) | **PUT** /v3/update-campaigns/{campaign_id}/ | 
+*DefaultApi* | [**FirmwareImageCreate**](docs/DefaultApi.md#firmwareimagecreate) | **POST** /v3/firmware-images/ | Create an image
+*DefaultApi* | [**FirmwareImageDestroy**](docs/DefaultApi.md#firmwareimagedestroy) | **DELETE** /v3/firmware-images/{image_id}/ | Delete an image
+*DefaultApi* | [**FirmwareImageList**](docs/DefaultApi.md#firmwareimagelist) | **GET** /v3/firmware-images/ | List all images
+*DefaultApi* | [**FirmwareImageRetrieve**](docs/DefaultApi.md#firmwareimageretrieve) | **GET** /v3/firmware-images/{image_id}/ | Get an image
+*DefaultApi* | [**FirmwareManifestCreate**](docs/DefaultApi.md#firmwaremanifestcreate) | **POST** /v3/firmware-manifests/ | Create a manifest
+*DefaultApi* | [**FirmwareManifestDestroy**](docs/DefaultApi.md#firmwaremanifestdestroy) | **DELETE** /v3/firmware-manifests/{manifest_id}/ | Delete a manifest
+*DefaultApi* | [**FirmwareManifestList**](docs/DefaultApi.md#firmwaremanifestlist) | **GET** /v3/firmware-manifests/ | List manifests
+*DefaultApi* | [**FirmwareManifestRetrieve**](docs/DefaultApi.md#firmwaremanifestretrieve) | **GET** /v3/firmware-manifests/{manifest_id}/ | Get a manifest
+*DefaultApi* | [**UpdateCampaignCreate**](docs/DefaultApi.md#updatecampaigncreate) | **POST** /v3/update-campaigns/ | Create a campaign
+*DefaultApi* | [**UpdateCampaignDestroy**](docs/DefaultApi.md#updatecampaigndestroy) | **DELETE** /v3/update-campaigns/{campaign_id}/ | Delete a campaign
+*DefaultApi* | [**UpdateCampaignList**](docs/DefaultApi.md#updatecampaignlist) | **GET** /v3/update-campaigns/ | List all campaigns
+*DefaultApi* | [**UpdateCampaignMetadataList**](docs/DefaultApi.md#updatecampaignmetadatalist) | **GET** /v3/update-campaigns/{campaign_id}/campaign-device-metadata/ | List all campaign device metadata
+*DefaultApi* | [**UpdateCampaignMetadataRetrieve**](docs/DefaultApi.md#updatecampaignmetadataretrieve) | **GET** /v3/update-campaigns/{campaign_id}/campaign-device-metadata/{campaign_device_metadata_id}/ | Get a campaign device metadata
+*DefaultApi* | [**UpdateCampaignMetadataStop**](docs/DefaultApi.md#updatecampaignmetadatastop) | **POST** /v3/update-campaigns/{campaign_id}/stop | Stop a running campaign
+*DefaultApi* | [**UpdateCampaignRetrieve**](docs/DefaultApi.md#updatecampaignretrieve) | **GET** /v3/update-campaigns/{campaign_id}/ | Get a campaign.
+*DefaultApi* | [**UpdateCampaignUpdate**](docs/DefaultApi.md#updatecampaignupdate) | **PUT** /v3/update-campaigns/{campaign_id}/ | Modify a campaign
 
 
 <a name="documentation-for-models"></a>
