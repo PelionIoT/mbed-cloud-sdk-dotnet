@@ -344,7 +344,7 @@ namespace enrollment.Model
             }
 
             // Etag (string) pattern
-            Regex regexEtag = new Regex(@"[A-Za-z0-9]{256}", RegexOptions.CultureInvariant);
+            Regex regexEtag = new Regex(@"[A-Za-z0-9]{1,256}", RegexOptions.CultureInvariant);
             if (false == regexEtag.Match(this.Etag).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Etag, must match a pattern of " + regexEtag, new [] { "Etag" });
