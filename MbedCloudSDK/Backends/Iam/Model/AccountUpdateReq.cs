@@ -74,7 +74,7 @@ namespace iam.Model
         /// <param name="Contact">The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="PostalCode">The postal code part of the postal address, not longer than 100 characters..</param>
         /// <param name="AccountProperties">Properties for this account..</param>
-        /// <param name="ExpirationWarningThreshold">Indicates how many days before the account expiration a notification email should be sent..</param>
+        /// <param name="ExpirationWarningThreshold">Indicates how many days before account expiration a notification email should be sent. Valid values are: 1-180..</param>
         /// <param name="PasswordPolicy">Password policy for this account..</param>
         /// <param name="EndMarket">The end market for this account, not longer than 100 characters..</param>
         /// <param name="PhoneNumber">The phone number of a representative of the company, not longer than 100 characters..</param>
@@ -189,9 +189,9 @@ namespace iam.Model
         public Dictionary<string, Dictionary<string, string>> AccountProperties { get; set; }
 
         /// <summary>
-        /// Indicates how many days before the account expiration a notification email should be sent.
+        /// Indicates how many days before account expiration a notification email should be sent. Valid values are: 1-180.
         /// </summary>
-        /// <value>Indicates how many days before the account expiration a notification email should be sent.</value>
+        /// <value>Indicates how many days before account expiration a notification email should be sent. Valid values are: 1-180.</value>
         [DataMember(Name="expiration_warning_threshold", EmitDefaultValue=false)]
         public string ExpirationWarningThreshold { get; set; }
 

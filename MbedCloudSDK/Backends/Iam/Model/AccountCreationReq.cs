@@ -45,6 +45,8 @@ namespace iam.Model
         /// <param name="DisplayName">The display name for the account, not longer than 100 characters..</param>
         /// <param name="Country">The country part of the postal address, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="Company">The name of the company, not longer than 100 characters. Required for commercial accounts only..</param>
+        /// <param name="CustomerNumber">Customer number of the customer..</param>
+        /// <param name="ContractNumber">Contract number of the customer..</param>
         /// <param name="State">The state part of the postal address, not longer than 100 characters..</param>
         /// <param name="Contact">The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="PostalCode">The postal code part of the postal address, not longer than 100 characters..</param>
@@ -56,7 +58,7 @@ namespace iam.Model
         /// <param name="PhoneNumber">The phone number of a representative of the company, not longer than 100 characters..</param>
         /// <param name="Email">The company email address for this account, not longer than 254 characters. Required for commercial accounts only..</param>
         /// <param name="Aliases">An array of aliases, not more than 10. An alias is not shorter than 8 and not longer than 100 characters..</param>
-        public AccountCreationReq(string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string Country = default(string), string Company = default(string), string State = default(string), string Contact = default(string), string PostalCode = default(string), string AdminPassword = default(string), string AdminName = default(string), string AdminFullName = default(string), string EndMarket = default(string), string AdminEmail = default(string), string PhoneNumber = default(string), string Email = default(string), List<string> Aliases = default(List<string>))
+        public AccountCreationReq(string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), string Country = default(string), string Company = default(string), string CustomerNumber = default(string), string ContractNumber = default(string), string State = default(string), string Contact = default(string), string PostalCode = default(string), string AdminPassword = default(string), string AdminName = default(string), string AdminFullName = default(string), string EndMarket = default(string), string AdminEmail = default(string), string PhoneNumber = default(string), string Email = default(string), List<string> Aliases = default(List<string>))
         {
             // to ensure "EndMarket" is required (not null)
             if (EndMarket == null)
@@ -73,6 +75,8 @@ namespace iam.Model
             this.DisplayName = DisplayName;
             this.Country = Country;
             this.Company = Company;
+            this.CustomerNumber = CustomerNumber;
+            this.ContractNumber = ContractNumber;
             this.State = State;
             this.Contact = Contact;
             this.PostalCode = PostalCode;
@@ -126,6 +130,20 @@ namespace iam.Model
         /// <value>The name of the company, not longer than 100 characters. Required for commercial accounts only.</value>
         [DataMember(Name="company", EmitDefaultValue=false)]
         public string Company { get; set; }
+
+        /// <summary>
+        /// Customer number of the customer.
+        /// </summary>
+        /// <value>Customer number of the customer.</value>
+        [DataMember(Name="customer_number", EmitDefaultValue=false)]
+        public string CustomerNumber { get; set; }
+
+        /// <summary>
+        /// Contract number of the customer.
+        /// </summary>
+        /// <value>Contract number of the customer.</value>
+        [DataMember(Name="contract_number", EmitDefaultValue=false)]
+        public string ContractNumber { get; set; }
 
         /// <summary>
         /// The state part of the postal address, not longer than 100 characters.
@@ -218,6 +236,8 @@ namespace iam.Model
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
+            sb.Append("  CustomerNumber: ").Append(CustomerNumber).Append("\n");
+            sb.Append("  ContractNumber: ").Append(ContractNumber).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");
@@ -292,6 +312,16 @@ namespace iam.Model
                     this.Company == input.Company ||
                     (this.Company != null &&
                     this.Company.Equals(input.Company))
+                ) && 
+                (
+                    this.CustomerNumber == input.CustomerNumber ||
+                    (this.CustomerNumber != null &&
+                    this.CustomerNumber.Equals(input.CustomerNumber))
+                ) && 
+                (
+                    this.ContractNumber == input.ContractNumber ||
+                    (this.ContractNumber != null &&
+                    this.ContractNumber.Equals(input.ContractNumber))
                 ) && 
                 (
                     this.State == input.State ||
@@ -371,6 +401,10 @@ namespace iam.Model
                     hashCode = hashCode * 59 + this.Country.GetHashCode();
                 if (this.Company != null)
                     hashCode = hashCode * 59 + this.Company.GetHashCode();
+                if (this.CustomerNumber != null)
+                    hashCode = hashCode * 59 + this.CustomerNumber.GetHashCode();
+                if (this.ContractNumber != null)
+                    hashCode = hashCode * 59 + this.ContractNumber.GetHashCode();
                 if (this.State != null)
                     hashCode = hashCode * 59 + this.State.GetHashCode();
                 if (this.Contact != null)

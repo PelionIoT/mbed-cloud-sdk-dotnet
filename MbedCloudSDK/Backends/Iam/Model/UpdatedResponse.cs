@@ -97,7 +97,13 @@ namespace iam.Model
             /// Enum IdentityProvider for "identity-provider"
             /// </summary>
             [EnumMember(Value = "identity-provider")]
-            IdentityProvider
+            IdentityProvider,
+            
+            /// <summary>
+            /// Enum UserSession for "user-session"
+            /// </summary>
+            [EnumMember(Value = "user-session")]
+            UserSession
         }
 
         /// <summary>
@@ -112,115 +118,7 @@ namespace iam.Model
             /// Enum Success for "success"
             /// </summary>
             [EnumMember(Value = "success")]
-            Success,
-            
-            /// <summary>
-            /// Enum Created for "created"
-            /// </summary>
-            [EnumMember(Value = "created")]
-            Created,
-            
-            /// <summary>
-            /// Enum Accepted for "accepted"
-            /// </summary>
-            [EnumMember(Value = "accepted")]
-            Accepted,
-            
-            /// <summary>
-            /// Enum Permanentlydeleted for "permanently_deleted"
-            /// </summary>
-            [EnumMember(Value = "permanently_deleted")]
-            Permanentlydeleted,
-            
-            /// <summary>
-            /// Enum Validationerror for "validation_error"
-            /// </summary>
-            [EnumMember(Value = "validation_error")]
-            Validationerror,
-            
-            /// <summary>
-            /// Enum Invalidtoken for "invalid_token"
-            /// </summary>
-            [EnumMember(Value = "invalid_token")]
-            Invalidtoken,
-            
-            /// <summary>
-            /// Enum Invalidapikey for "invalid_apikey"
-            /// </summary>
-            [EnumMember(Value = "invalid_apikey")]
-            Invalidapikey,
-            
-            /// <summary>
-            /// Enum Reauthrequired for "reauth_required"
-            /// </summary>
-            [EnumMember(Value = "reauth_required")]
-            Reauthrequired,
-            
-            /// <summary>
-            /// Enum Accessdenied for "access_denied"
-            /// </summary>
-            [EnumMember(Value = "access_denied")]
-            Accessdenied,
-            
-            /// <summary>
-            /// Enum Accountlimitexceeded for "account_limit_exceeded"
-            /// </summary>
-            [EnumMember(Value = "account_limit_exceeded")]
-            Accountlimitexceeded,
-            
-            /// <summary>
-            /// Enum Notfound for "not_found"
-            /// </summary>
-            [EnumMember(Value = "not_found")]
-            Notfound,
-            
-            /// <summary>
-            /// Enum Methodnotsupported for "method_not_supported"
-            /// </summary>
-            [EnumMember(Value = "method_not_supported")]
-            Methodnotsupported,
-            
-            /// <summary>
-            /// Enum Notacceptable for "not_acceptable"
-            /// </summary>
-            [EnumMember(Value = "not_acceptable")]
-            Notacceptable,
-            
-            /// <summary>
-            /// Enum Duplicate for "duplicate"
-            /// </summary>
-            [EnumMember(Value = "duplicate")]
-            Duplicate,
-            
-            /// <summary>
-            /// Enum Preconditionfailed for "precondition_failed"
-            /// </summary>
-            [EnumMember(Value = "precondition_failed")]
-            Preconditionfailed,
-            
-            /// <summary>
-            /// Enum Unsupportedmediatype for "unsupported_media_type"
-            /// </summary>
-            [EnumMember(Value = "unsupported_media_type")]
-            Unsupportedmediatype,
-            
-            /// <summary>
-            /// Enum Ratelimitexceeded for "rate_limit_exceeded"
-            /// </summary>
-            [EnumMember(Value = "rate_limit_exceeded")]
-            Ratelimitexceeded,
-            
-            /// <summary>
-            /// Enum Internalservererror for "internal_server_error"
-            /// </summary>
-            [EnumMember(Value = "internal_server_error")]
-            Internalservererror,
-            
-            /// <summary>
-            /// Enum Systemunavailable for "system_unavailable"
-            /// </summary>
-            [EnumMember(Value = "system_unavailable")]
-            Systemunavailable
+            Success
         }
 
         /// <summary>

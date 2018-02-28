@@ -80,7 +80,7 @@ namespace iam.Model
         /// <param name="IdleTimeout">The reference token expiration time in minutes for this account. Between 1 and 120 minutes..</param>
         /// <param name="Country">The country part of the postal address, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="CustomerNumber">Customer number of the customer..</param>
-        /// <param name="ExpirationWarningThreshold">Indicates how many days before the account expiration a notification email should be sent..</param>
+        /// <param name="ExpirationWarningThreshold">Indicates how many days before account expiration a notification email should be sent. Valid values are: 1-180..</param>
         /// <param name="Contact">The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="NotificationEmails">A list of notification email addresses..</param>
         public AccountUpdateRootReq(string EndMarket = default(string), PasswordPolicy PasswordPolicy = default(PasswordPolicy), string SalesContact = default(string), string Email = default(string), string PostalCode = default(string), Dictionary<string, Dictionary<string, string>> AccountProperties = default(Dictionary<string, Dictionary<string, string>>), List<string> Aliases = default(List<string>), string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), MfaStatusEnum? MfaStatus = default(MfaStatusEnum?), string State = default(string), string ContractNumber = default(string), string PhoneNumber = default(string), string Company = default(string), string IdleTimeout = default(string), string Country = default(string), string CustomerNumber = default(string), string ExpirationWarningThreshold = default(string), string Contact = default(string), List<string> NotificationEmails = default(List<string>))
@@ -237,9 +237,9 @@ namespace iam.Model
         public string CustomerNumber { get; set; }
 
         /// <summary>
-        /// Indicates how many days before the account expiration a notification email should be sent.
+        /// Indicates how many days before account expiration a notification email should be sent. Valid values are: 1-180.
         /// </summary>
-        /// <value>Indicates how many days before the account expiration a notification email should be sent.</value>
+        /// <value>Indicates how many days before account expiration a notification email should be sent. Valid values are: 1-180.</value>
         [DataMember(Name="expiration_warning_threshold", EmitDefaultValue=false)]
         public string ExpirationWarningThreshold { get; set; }
 

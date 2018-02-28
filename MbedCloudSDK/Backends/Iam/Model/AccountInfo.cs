@@ -73,12 +73,6 @@ namespace iam.Model
         {
             
             /// <summary>
-            /// Enum Enabled for "enabled"
-            /// </summary>
-            [EnumMember(Value = "enabled")]
-            Enabled,
-            
-            /// <summary>
             /// Enum Enforced for "enforced"
             /// </summary>
             [EnumMember(Value = "enforced")]
@@ -100,64 +94,10 @@ namespace iam.Model
         {
             
             /// <summary>
-            /// Enum User for "user"
-            /// </summary>
-            [EnumMember(Value = "user")]
-            User,
-            
-            /// <summary>
-            /// Enum ApiKey for "api-key"
-            /// </summary>
-            [EnumMember(Value = "api-key")]
-            ApiKey,
-            
-            /// <summary>
-            /// Enum Group for "group"
-            /// </summary>
-            [EnumMember(Value = "group")]
-            Group,
-            
-            /// <summary>
             /// Enum Account for "account"
             /// </summary>
             [EnumMember(Value = "account")]
-            Account,
-            
-            /// <summary>
-            /// Enum AccountTemplate for "account-template"
-            /// </summary>
-            [EnumMember(Value = "account-template")]
-            AccountTemplate,
-            
-            /// <summary>
-            /// Enum TrustedCert for "trusted-cert"
-            /// </summary>
-            [EnumMember(Value = "trusted-cert")]
-            TrustedCert,
-            
-            /// <summary>
-            /// Enum List for "list"
-            /// </summary>
-            [EnumMember(Value = "list")]
-            List,
-            
-            /// <summary>
-            /// Enum Error for "error"
-            /// </summary>
-            [EnumMember(Value = "error")]
-            Error,
-            
-            /// <summary>
-            /// Enum Policy for "policy"
-            /// </summary>
-            [EnumMember(Value = "policy")]
-            Policy,
-            
-            /// <summary>
-            /// Enum IdentityProvider for "identity-provider"
-            /// </summary>
-            [EnumMember(Value = "identity-provider")]
-            IdentityProvider
+            Account
         }
 
         /// <summary>
@@ -218,7 +158,7 @@ namespace iam.Model
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
         /// <param name="IdleTimeout">The reference token expiration time in minutes for this account..</param>
         /// <param name="ContractNumber">Contract number of the customer..</param>
-        /// <param name="ExpirationWarningThreshold">Indicates how many days before the account expiration a notification email should be sent..</param>
+        /// <param name="ExpirationWarningThreshold">Indicates how many days (1-180) before account expiration a notification email should be sent..</param>
         /// <param name="Contact">The name of the contact person for this account..</param>
         /// <param name="Policies">List of policies if requested..</param>
         /// <param name="NotificationEmails">A list of notification email addresses..</param>
@@ -527,9 +467,9 @@ namespace iam.Model
         public string ContractNumber { get; set; }
 
         /// <summary>
-        /// Indicates how many days before the account expiration a notification email should be sent.
+        /// Indicates how many days (1-180) before account expiration a notification email should be sent.
         /// </summary>
-        /// <value>Indicates how many days before the account expiration a notification email should be sent.</value>
+        /// <value>Indicates how many days (1-180) before account expiration a notification email should be sent.</value>
         [DataMember(Name="expiration_warning_threshold", EmitDefaultValue=false)]
         public string ExpirationWarningThreshold { get; set; }
 

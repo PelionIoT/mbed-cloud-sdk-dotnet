@@ -95,7 +95,7 @@ namespace iam.Model
         /// </summary>
         /// <param name="Status">Status of the certificate..</param>
         /// <param name="EnrollmentMode">If true, signature parameter is not required. Default value is false..</param>
-        /// <param name="Certificate">X509.v3 trusted certificate in PEM format. (required).</param>
+        /// <param name="Certificate">X509.v3 trusted certificate in PEM format. Chaining multiple certificates after one another is supported. (required).</param>
         /// <param name="Name">Certificate name, not longer than 100 characters. (required).</param>
         /// <param name="Service">Service name where the certificate must be used. (required).</param>
         /// <param name="Signature">Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. Optional if enrollment_mode is &#39;true&#39;..</param>
@@ -144,9 +144,9 @@ namespace iam.Model
         public bool? EnrollmentMode { get; set; }
 
         /// <summary>
-        /// X509.v3 trusted certificate in PEM format.
+        /// X509.v3 trusted certificate in PEM format. Chaining multiple certificates after one another is supported.
         /// </summary>
-        /// <value>X509.v3 trusted certificate in PEM format.</value>
+        /// <value>X509.v3 trusted certificate in PEM format. Chaining multiple certificates after one another is supported.</value>
         [DataMember(Name="certificate", EmitDefaultValue=false)]
         public string Certificate { get; set; }
 

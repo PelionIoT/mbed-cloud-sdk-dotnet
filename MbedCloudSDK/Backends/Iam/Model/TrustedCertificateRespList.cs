@@ -40,64 +40,10 @@ namespace iam.Model
         {
             
             /// <summary>
-            /// Enum User for "user"
-            /// </summary>
-            [EnumMember(Value = "user")]
-            User,
-            
-            /// <summary>
-            /// Enum ApiKey for "api-key"
-            /// </summary>
-            [EnumMember(Value = "api-key")]
-            ApiKey,
-            
-            /// <summary>
-            /// Enum Group for "group"
-            /// </summary>
-            [EnumMember(Value = "group")]
-            Group,
-            
-            /// <summary>
-            /// Enum Account for "account"
-            /// </summary>
-            [EnumMember(Value = "account")]
-            Account,
-            
-            /// <summary>
-            /// Enum AccountTemplate for "account-template"
-            /// </summary>
-            [EnumMember(Value = "account-template")]
-            AccountTemplate,
-            
-            /// <summary>
-            /// Enum TrustedCert for "trusted-cert"
-            /// </summary>
-            [EnumMember(Value = "trusted-cert")]
-            TrustedCert,
-            
-            /// <summary>
             /// Enum List for "list"
             /// </summary>
             [EnumMember(Value = "list")]
-            List,
-            
-            /// <summary>
-            /// Enum Error for "error"
-            /// </summary>
-            [EnumMember(Value = "error")]
-            Error,
-            
-            /// <summary>
-            /// Enum Policy for "policy"
-            /// </summary>
-            [EnumMember(Value = "policy")]
-            Policy,
-            
-            /// <summary>
-            /// Enum IdentityProvider for "identity-provider"
-            /// </summary>
-            [EnumMember(Value = "identity-provider")]
-            IdentityProvider
+            List
         }
 
         /// <summary>

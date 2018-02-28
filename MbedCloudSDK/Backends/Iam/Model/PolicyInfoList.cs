@@ -26,10 +26,10 @@ using SwaggerDateConverter = iam.Client.SwaggerDateConverter;
 namespace iam.Model
 {
     /// <summary>
-    /// ApiKeyInfoRespList
+    /// PolicyInfoList
     /// </summary>
     [DataContract]
-    public partial class ApiKeyInfoRespList :  IEquatable<ApiKeyInfoRespList>, IValidatableObject
+    public partial class PolicyInfoList :  IEquatable<PolicyInfoList>, IValidatableObject
     {
         /// <summary>
         /// Entity name: always &#39;list&#39;
@@ -80,12 +80,12 @@ namespace iam.Model
         [DataMember(Name="order", EmitDefaultValue=false)]
         public OrderEnum? Order { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiKeyInfoRespList" /> class.
+        /// Initializes a new instance of the <see cref="PolicyInfoList" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected ApiKeyInfoRespList() { }
+        protected PolicyInfoList() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiKeyInfoRespList" /> class.
+        /// Initializes a new instance of the <see cref="PolicyInfoList" /> class.
         /// </summary>
         /// <param name="After">The entity ID to fetch after the given one..</param>
         /// <param name="HasMore">Flag indicating whether there is more results. (required).</param>
@@ -94,12 +94,12 @@ namespace iam.Model
         /// <param name="Limit">The number of results to return, (range: 2-1000), or equals to &#x60;total_count&#x60; (required).</param>
         /// <param name="Data">A list of entities. (required).</param>
         /// <param name="Order">The order of the records to return based on creation time. Available values: ASC, DESC; by default ASC..</param>
-        public ApiKeyInfoRespList(string After = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), ObjectEnum? _Object = default(ObjectEnum?), int? Limit = default(int?), List<ApiKeyInfoResp> Data = default(List<ApiKeyInfoResp>), OrderEnum? Order = default(OrderEnum?))
+        public PolicyInfoList(string After = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), ObjectEnum? _Object = default(ObjectEnum?), int? Limit = default(int?), List<PolicyInfo> Data = default(List<PolicyInfo>), OrderEnum? Order = default(OrderEnum?))
         {
             // to ensure "HasMore" is required (not null)
             if (HasMore == null)
             {
-                throw new InvalidDataException("HasMore is a required property for ApiKeyInfoRespList and cannot be null");
+                throw new InvalidDataException("HasMore is a required property for PolicyInfoList and cannot be null");
             }
             else
             {
@@ -108,7 +108,7 @@ namespace iam.Model
             // to ensure "TotalCount" is required (not null)
             if (TotalCount == null)
             {
-                throw new InvalidDataException("TotalCount is a required property for ApiKeyInfoRespList and cannot be null");
+                throw new InvalidDataException("TotalCount is a required property for PolicyInfoList and cannot be null");
             }
             else
             {
@@ -117,7 +117,7 @@ namespace iam.Model
             // to ensure "_Object" is required (not null)
             if (_Object == null)
             {
-                throw new InvalidDataException("_Object is a required property for ApiKeyInfoRespList and cannot be null");
+                throw new InvalidDataException("_Object is a required property for PolicyInfoList and cannot be null");
             }
             else
             {
@@ -126,7 +126,7 @@ namespace iam.Model
             // to ensure "Limit" is required (not null)
             if (Limit == null)
             {
-                throw new InvalidDataException("Limit is a required property for ApiKeyInfoRespList and cannot be null");
+                throw new InvalidDataException("Limit is a required property for PolicyInfoList and cannot be null");
             }
             else
             {
@@ -135,7 +135,7 @@ namespace iam.Model
             // to ensure "Data" is required (not null)
             if (Data == null)
             {
-                throw new InvalidDataException("Data is a required property for ApiKeyInfoRespList and cannot be null");
+                throw new InvalidDataException("Data is a required property for PolicyInfoList and cannot be null");
             }
             else
             {
@@ -179,7 +179,7 @@ namespace iam.Model
         /// </summary>
         /// <value>A list of entities.</value>
         [DataMember(Name="data", EmitDefaultValue=false)]
-        public List<ApiKeyInfoResp> Data { get; set; }
+        public List<PolicyInfo> Data { get; set; }
 
 
         /// <summary>
@@ -189,7 +189,7 @@ namespace iam.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ApiKeyInfoRespList {\n");
+            sb.Append("class PolicyInfoList {\n");
             sb.Append("  After: ").Append(After).Append("\n");
             sb.Append("  HasMore: ").Append(HasMore).Append("\n");
             sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
@@ -217,15 +217,15 @@ namespace iam.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ApiKeyInfoRespList);
+            return this.Equals(input as PolicyInfoList);
         }
 
         /// <summary>
-        /// Returns true if ApiKeyInfoRespList instances are equal
+        /// Returns true if PolicyInfoList instances are equal
         /// </summary>
-        /// <param name="input">Instance of ApiKeyInfoRespList to be compared</param>
+        /// <param name="input">Instance of PolicyInfoList to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ApiKeyInfoRespList input)
+        public bool Equals(PolicyInfoList input)
         {
             if (input == null)
                 return false;

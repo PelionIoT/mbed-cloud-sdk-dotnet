@@ -32,6 +32,27 @@ namespace iam.Model
     public partial class ActiveSession :  IEquatable<ActiveSession>, IValidatableObject
     {
         /// <summary>
+        /// Entity name: always &#39;user-session&#39;
+        /// </summary>
+        /// <value>Entity name: always &#39;user-session&#39;</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ObjectEnum
+        {
+            
+            /// <summary>
+            /// Enum Session for "user-session"
+            /// </summary>
+            [EnumMember(Value = "user-session")]
+            Session
+        }
+
+        /// <summary>
+        /// Entity name: always &#39;user-session&#39;
+        /// </summary>
+        /// <value>Entity name: always &#39;user-session&#39;</value>
+        [DataMember(Name="object", EmitDefaultValue=false)]
+        public ObjectEnum? _Object { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="ActiveSession" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -39,13 +60,32 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ActiveSession" /> class.
         /// </summary>
+        /// <param name="AccountId">The UUID of the account. (required).</param>
+        /// <param name="_Object">Entity name: always &#39;user-session&#39; (required).</param>
         /// <param name="UserAgent">User Agent header from the login request. (required).</param>
         /// <param name="IpAddress">IP address of the client. (required).</param>
-        /// <param name="AccountId">The UUID of the account. (required).</param>
         /// <param name="ReferenceToken">The reference token. (required).</param>
         /// <param name="LoginTime">The login time of the user. (required).</param>
-        public ActiveSession(string UserAgent = default(string), string IpAddress = default(string), string AccountId = default(string), string ReferenceToken = default(string), DateTime? LoginTime = default(DateTime?))
+        public ActiveSession(string AccountId = default(string), ObjectEnum? _Object = default(ObjectEnum?), string UserAgent = default(string), string IpAddress = default(string), string ReferenceToken = default(string), DateTime? LoginTime = default(DateTime?))
         {
+            // to ensure "AccountId" is required (not null)
+            if (AccountId == null)
+            {
+                throw new InvalidDataException("AccountId is a required property for ActiveSession and cannot be null");
+            }
+            else
+            {
+                this.AccountId = AccountId;
+            }
+            // to ensure "_Object" is required (not null)
+            if (_Object == null)
+            {
+                throw new InvalidDataException("_Object is a required property for ActiveSession and cannot be null");
+            }
+            else
+            {
+                this._Object = _Object;
+            }
             // to ensure "UserAgent" is required (not null)
             if (UserAgent == null)
             {
@@ -63,15 +103,6 @@ namespace iam.Model
             else
             {
                 this.IpAddress = IpAddress;
-            }
-            // to ensure "AccountId" is required (not null)
-            if (AccountId == null)
-            {
-                throw new InvalidDataException("AccountId is a required property for ActiveSession and cannot be null");
-            }
-            else
-            {
-                this.AccountId = AccountId;
             }
             // to ensure "ReferenceToken" is required (not null)
             if (ReferenceToken == null)
@@ -94,6 +125,14 @@ namespace iam.Model
         }
         
         /// <summary>
+        /// The UUID of the account.
+        /// </summary>
+        /// <value>The UUID of the account.</value>
+        [DataMember(Name="account_id", EmitDefaultValue=false)]
+        public string AccountId { get; set; }
+
+
+        /// <summary>
         /// User Agent header from the login request.
         /// </summary>
         /// <value>User Agent header from the login request.</value>
@@ -106,13 +145,6 @@ namespace iam.Model
         /// <value>IP address of the client.</value>
         [DataMember(Name="ip_address", EmitDefaultValue=false)]
         public string IpAddress { get; set; }
-
-        /// <summary>
-        /// The UUID of the account.
-        /// </summary>
-        /// <value>The UUID of the account.</value>
-        [DataMember(Name="account_id", EmitDefaultValue=false)]
-        public string AccountId { get; set; }
 
         /// <summary>
         /// The reference token.
@@ -136,9 +168,10 @@ namespace iam.Model
         {
             var sb = new StringBuilder();
             sb.Append("class ActiveSession {\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  UserAgent: ").Append(UserAgent).Append("\n");
             sb.Append("  IpAddress: ").Append(IpAddress).Append("\n");
-            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  ReferenceToken: ").Append(ReferenceToken).Append("\n");
             sb.Append("  LoginTime: ").Append(LoginTime).Append("\n");
             sb.Append("}\n");
@@ -176,6 +209,16 @@ namespace iam.Model
 
             return 
                 (
+                    this.AccountId == input.AccountId ||
+                    (this.AccountId != null &&
+                    this.AccountId.Equals(input.AccountId))
+                ) && 
+                (
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
+                ) && 
+                (
                     this.UserAgent == input.UserAgent ||
                     (this.UserAgent != null &&
                     this.UserAgent.Equals(input.UserAgent))
@@ -184,11 +227,6 @@ namespace iam.Model
                     this.IpAddress == input.IpAddress ||
                     (this.IpAddress != null &&
                     this.IpAddress.Equals(input.IpAddress))
-                ) && 
-                (
-                    this.AccountId == input.AccountId ||
-                    (this.AccountId != null &&
-                    this.AccountId.Equals(input.AccountId))
                 ) && 
                 (
                     this.ReferenceToken == input.ReferenceToken ||
@@ -211,12 +249,14 @@ namespace iam.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.AccountId != null)
+                    hashCode = hashCode * 59 + this.AccountId.GetHashCode();
+                if (this._Object != null)
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.UserAgent != null)
                     hashCode = hashCode * 59 + this.UserAgent.GetHashCode();
                 if (this.IpAddress != null)
                     hashCode = hashCode * 59 + this.IpAddress.GetHashCode();
-                if (this.AccountId != null)
-                    hashCode = hashCode * 59 + this.AccountId.GetHashCode();
                 if (this.ReferenceToken != null)
                     hashCode = hashCode * 59 + this.ReferenceToken.GetHashCode();
                 if (this.LoginTime != null)
