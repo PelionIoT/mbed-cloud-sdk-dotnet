@@ -26,20 +26,20 @@ namespace mds.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Remove all subscriptions
+        /// Remove pre-subscriptions
         /// </summary>
         /// <remarks>
-        /// Removes subscriptions from every endpoint and resource. Note that this does not remove pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
         void V2SubscriptionsDelete ();
 
         /// <summary>
-        /// Remove all subscriptions
+        /// Remove pre-subscriptions
         /// </summary>
         /// <remarks>
-        /// Removes subscriptions from every endpoint and resource. Note that this does not remove pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -69,7 +69,7 @@ namespace mds.Api
         /// Read endpoints subscriptions
         /// </summary>
         /// <remarks>
-        /// Lists all subscribed resources from a single endpoint.  **Example usage:**      curl -X GET \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39;        
+        /// Lists all subscribed resources from a single endpoint.  **Example usage:**      curl -X GET \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
@@ -80,7 +80,7 @@ namespace mds.Api
         /// Read endpoints subscriptions
         /// </summary>
         /// <remarks>
-        /// Lists all subscribed resources from a single endpoint.  **Example usage:**      curl -X GET \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39;        
+        /// Lists all subscribed resources from a single endpoint.  **Example usage:**      curl -X GET \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
@@ -198,20 +198,20 @@ namespace mds.Api
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
-        /// Remove all subscriptions
+        /// Remove pre-subscriptions
         /// </summary>
         /// <remarks>
-        /// Removes subscriptions from every endpoint and resource. Note that this does not remove pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of void</returns>
         System.Threading.Tasks.Task V2SubscriptionsDeleteAsync ();
 
         /// <summary>
-        /// Remove all subscriptions
+        /// Remove pre-subscriptions
         /// </summary>
         /// <remarks>
-        /// Removes subscriptions from every endpoint and resource. Note that this does not remove pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse</returns>
@@ -241,7 +241,7 @@ namespace mds.Api
         /// Read endpoints subscriptions
         /// </summary>
         /// <remarks>
-        /// Lists all subscribed resources from a single endpoint.  **Example usage:**      curl -X GET \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39;        
+        /// Lists all subscribed resources from a single endpoint.  **Example usage:**      curl -X GET \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
@@ -252,7 +252,7 @@ namespace mds.Api
         /// Read endpoints subscriptions
         /// </summary>
         /// <remarks>
-        /// Lists all subscribed resources from a single endpoint.  **Example usage:**      curl -X GET \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39;        
+        /// Lists all subscribed resources from a single endpoint.  **Example usage:**      curl -X GET \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
@@ -468,7 +468,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Remove all subscriptions Removes subscriptions from every endpoint and resource. Note that this does not remove pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// Remove pre-subscriptions Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
@@ -478,7 +478,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Remove all subscriptions Removes subscriptions from every endpoint and resource. Note that this does not remove pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// Remove pre-subscriptions Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -531,7 +531,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Remove all subscriptions Removes subscriptions from every endpoint and resource. Note that this does not remove pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// Remove pre-subscriptions Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of void</returns>
@@ -542,7 +542,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Remove all subscriptions Removes subscriptions from every endpoint and resource. Note that this does not remove pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// Remove pre-subscriptions Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse</returns>
@@ -734,7 +734,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Read endpoints subscriptions Lists all subscribed resources from a single endpoint.  **Example usage:**      curl -X GET \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39;        
+        /// Read endpoints subscriptions Lists all subscribed resources from a single endpoint.  **Example usage:**      curl -X GET \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
@@ -746,7 +746,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Read endpoints subscriptions Lists all subscribed resources from a single endpoint.  **Example usage:**      curl -X GET \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39;        
+        /// Read endpoints subscriptions Lists all subscribed resources from a single endpoint.  **Example usage:**      curl -X GET \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
@@ -805,7 +805,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Read endpoints subscriptions Lists all subscribed resources from a single endpoint.  **Example usage:**      curl -X GET \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39;        
+        /// Read endpoints subscriptions Lists all subscribed resources from a single endpoint.  **Example usage:**      curl -X GET \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
@@ -818,7 +818,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Read endpoints subscriptions Lists all subscribed resources from a single endpoint.  **Example usage:**      curl -X GET \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39;        
+        /// Read endpoints subscriptions Lists all subscribed resources from a single endpoint.  **Example usage:**      curl -X GET \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>

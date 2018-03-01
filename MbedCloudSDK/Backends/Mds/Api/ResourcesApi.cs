@@ -26,10 +26,10 @@ namespace mds.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Delete a resource
+        /// Delete a resource path
         /// </summary>
         /// <remarks>
-        /// A request to delete a resource must be handled by both Mbed Cloud Client and Mbed Cloud Connect. The resource is not deleted from Mbed Cloud Connect until the request is handled by Mbed Cloud Client.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to Mbed Cloud Connect and there is an active notification channel.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/endpoints/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
+        /// A request to delete a resource path must be handled by both Mbed Cloud Client and Mbed Cloud Connect.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to Mbed Cloud Connect and there is an active notification channel.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/endpoints/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
@@ -39,10 +39,10 @@ namespace mds.Api
         AsyncID V2EndpointsDeviceIdResourcePathDelete (string deviceId, string resourcePath, bool? noResp = null);
 
         /// <summary>
-        /// Delete a resource
+        /// Delete a resource path
         /// </summary>
         /// <remarks>
-        /// A request to delete a resource must be handled by both Mbed Cloud Client and Mbed Cloud Connect. The resource is not deleted from Mbed Cloud Connect until the request is handled by Mbed Cloud Client.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to Mbed Cloud Connect and there is an active notification channel.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/endpoints/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
+        /// A request to delete a resource path must be handled by both Mbed Cloud Client and Mbed Cloud Connect.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to Mbed Cloud Connect and there is an active notification channel.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/endpoints/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
@@ -134,10 +134,10 @@ namespace mds.Api
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
-        /// Delete a resource
+        /// Delete a resource path
         /// </summary>
         /// <remarks>
-        /// A request to delete a resource must be handled by both Mbed Cloud Client and Mbed Cloud Connect. The resource is not deleted from Mbed Cloud Connect until the request is handled by Mbed Cloud Client.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to Mbed Cloud Connect and there is an active notification channel.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/endpoints/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
+        /// A request to delete a resource path must be handled by both Mbed Cloud Client and Mbed Cloud Connect.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to Mbed Cloud Connect and there is an active notification channel.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/endpoints/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
@@ -147,10 +147,10 @@ namespace mds.Api
         System.Threading.Tasks.Task<AsyncID> V2EndpointsDeviceIdResourcePathDeleteAsync (string deviceId, string resourcePath, bool? noResp = null);
 
         /// <summary>
-        /// Delete a resource
+        /// Delete a resource path
         /// </summary>
         /// <remarks>
-        /// A request to delete a resource must be handled by both Mbed Cloud Client and Mbed Cloud Connect. The resource is not deleted from Mbed Cloud Connect until the request is handled by Mbed Cloud Client.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to Mbed Cloud Connect and there is an active notification channel.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/endpoints/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
+        /// A request to delete a resource path must be handled by both Mbed Cloud Client and Mbed Cloud Connect.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to Mbed Cloud Connect and there is an active notification channel.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/endpoints/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
@@ -340,7 +340,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Delete a resource A request to delete a resource must be handled by both Mbed Cloud Client and Mbed Cloud Connect. The resource is not deleted from Mbed Cloud Connect until the request is handled by Mbed Cloud Client.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to Mbed Cloud Connect and there is an active notification channel.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/endpoints/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
+        /// Delete a resource path A request to delete a resource path must be handled by both Mbed Cloud Client and Mbed Cloud Connect.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to Mbed Cloud Connect and there is an active notification channel.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/endpoints/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
@@ -354,7 +354,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Delete a resource A request to delete a resource must be handled by both Mbed Cloud Client and Mbed Cloud Connect. The resource is not deleted from Mbed Cloud Connect until the request is handled by Mbed Cloud Client.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to Mbed Cloud Connect and there is an active notification channel.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/endpoints/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
+        /// Delete a resource path A request to delete a resource path must be handled by both Mbed Cloud Client and Mbed Cloud Connect.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to Mbed Cloud Connect and there is an active notification channel.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/endpoints/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
@@ -419,7 +419,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Delete a resource A request to delete a resource must be handled by both Mbed Cloud Client and Mbed Cloud Connect. The resource is not deleted from Mbed Cloud Connect until the request is handled by Mbed Cloud Client.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to Mbed Cloud Connect and there is an active notification channel.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/endpoints/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
+        /// Delete a resource path A request to delete a resource path must be handled by both Mbed Cloud Client and Mbed Cloud Connect.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to Mbed Cloud Connect and there is an active notification channel.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/endpoints/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
@@ -434,7 +434,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Delete a resource A request to delete a resource must be handled by both Mbed Cloud Client and Mbed Cloud Connect. The resource is not deleted from Mbed Cloud Connect until the request is handled by Mbed Cloud Client.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to Mbed Cloud Connect and there is an active notification channel.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/endpoints/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
+        /// Delete a resource path A request to delete a resource path must be handled by both Mbed Cloud Client and Mbed Cloud Connect.  All resource APIs are asynchronous. These APIs respond only if the device is turned on and connected to Mbed Cloud Connect and there is an active notification channel.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/endpoints/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>

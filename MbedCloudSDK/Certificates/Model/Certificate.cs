@@ -360,7 +360,7 @@ namespace MbedCloudSDK.Certificates.Model
             certificate.CreatedAt = trustedCertificate.CreatedAt;
             certificate.Status = Utils.ParseEnum<CertificateStatus>(trustedCertificate.Status);
             certificate.OwnerId = trustedCertificate.OwnerId;
-            certificate.EnrollmentMode = trustedCertificate.EnrollmentMode;
+            certificate.EnrollmentMode = trustedCertificate.EnrollmentMode ?? false;
             certificate.UpdatedAt = trustedCertificate.UpdatedAt;
             certificate.Signature = signature;
             return certificate;
