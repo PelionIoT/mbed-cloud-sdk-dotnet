@@ -84,12 +84,6 @@ namespace MbedCloudSDK.Update.Model.Campaign
         Allocatedquota,
 
         /// <summary>
-        /// Enum Insufficientquota for "Insufficientquota"
-        /// </summary>
-        [EnumMember(Value = "insufficientquota")]
-        Insufficientquota,
-
-        /// <summary>
         /// Enum Checkingmanifest for "Checkingmanifest"
         /// </summary>
         [EnumMember(Value = "checkingmanifest")]
@@ -129,6 +123,12 @@ namespace MbedCloudSDK.Update.Model.Campaign
         /// Enum Conflict for "Conflict"
         /// </summary>
         [EnumMember(Value = "conflict")]
-        Conflict
+        Conflict,
+
+        /// <summary>
+        /// Enum Quotaallocationfailed for "quotaallocationfailed"
+        /// </summary>
+        [EnumMember(Value = "quotaallocationfailed")]
+        Quotaallocationfailed,
     }
 }
