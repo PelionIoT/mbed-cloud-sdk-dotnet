@@ -8,6 +8,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using iam.Model;
     using MbedCloudSDK.Common;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -91,12 +92,6 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         public string State { get; set; }
 
         /// <summary>
-        /// Gets flag (true/false) indicating whether Factory Tool is allowed to download or not.
-        /// </summary>
-        [JsonProperty]
-        public bool? ProvisioningAllowed { get; private set; }
-
-        /// <summary>
         /// Gets or sets the company email address for this account.
         /// </summary>
         public string Email { get; set; }
@@ -156,7 +151,59 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         /// <summary>
         /// Gets or sets a reason note for updating the status of the account
         /// </summary>
+        [JsonProperty]
         public string Reason { get; set; }
+
+        /// <summary>
+        /// Gets the Contract number of the customer.
+        /// </summary>
+        [JsonProperty]
+        public string ContractNumber { get; private set; }
+
+        /// <summary>
+        /// Gets the Customer number of the customer.
+        /// </summary>
+        [JsonProperty]
+        public string CustomerNumber { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the number of days before the account expiration notification email should be sent.
+        /// </summary>
+        public string ExpiryWarning { get; set; }
+
+        /// <summary>
+        /// Gets or sets the The enforcement status of the multi-factor authentication.
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public MultifactorAuthenticationStatusEnum? MultifactorAuthenticationStatus { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of notification email addresses.
+        /// </summary>
+        public List<string> NotificationEmails { get; set; }
+
+        /// <summary>
+        /// Gets the reference note for updating the status of the account.
+        /// </summary>
+        [JsonProperty]
+        public string ReferenceNote { get; private set; }
+
+        /// <summary>
+        /// Gets the last update UTC time RFC3339.
+        /// </summary>
+        [JsonProperty]
+        public DateTime? UpdatedAt { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the account custom properties
+        /// </summary>
+        public Dictionary<string, Dictionary<string, string>> CustomProperties { get; set; }
+
+        /// <summary>
+        /// Gets the sales contact email
+        /// </summary>
+        [JsonProperty]
+        public string SalesContactEmail { get; private set; }
 
         /// <summary>
         /// Map to Account object.
@@ -171,25 +218,33 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
                 PhoneNumber = accountInfo.PhoneNumber,
                 Postcode = accountInfo.PostalCode,
                 Id = accountInfo.Id,
-                Aliases = accountInfo.Aliases != null ? accountInfo.Aliases : Enumerable.Empty<string>().ToList(),
+                Aliases = accountInfo.Aliases ?? Enumerable.Empty<string>().ToList(),
                 AddressLine2 = accountInfo.AddressLine2,
                 City = accountInfo.City,
                 AddressLine1 = accountInfo.AddressLine1,
                 DisplayName = accountInfo.DisplayName,
                 State = accountInfo.State,
-                ProvisioningAllowed = accountInfo.IsProvisioningAllowed,
                 Email = accountInfo.Email,
                 Status = accountStatus,
                 Company = accountInfo.Company,
                 UpgradedAt = accountInfo.UpgradedAt.ToNullableUniversalTime(),
                 Tier = accountInfo.Tier,
-                Limits = accountInfo.Limits != null ? accountInfo.Limits : new Dictionary<string, string>(),
+                Limits = accountInfo.Limits ?? new Dictionary<string, string>(),
                 Country = accountInfo.Country,
                 CreatedAt = accountInfo.CreatedAt.ToNullableUniversalTime(),
                 Contact = accountInfo.Contact,
+                ContractNumber = accountInfo.ContractNumber,
                 TemplateId = accountInfo.TemplateId,
-                Policies = accountInfo.Policies != null ? accountInfo.Policies.Select(p => { return Policy.Policy.Map(p); }).ToList() : Enumerable.Empty<Policy.Policy>().ToList(),
+                Policies = accountInfo?.Policies?.Select(p => { return Policy.Policy.Map(p); })?.ToList() ?? Enumerable.Empty<Policy.Policy>().ToList(),
                 Reason = accountInfo.Reason,
+                CustomerNumber = accountInfo.CustomerNumber,
+                ExpiryWarning = accountInfo.ExpirationWarningThreshold,
+                MultifactorAuthenticationStatus = Utils.ParseEnum<MultifactorAuthenticationStatusEnum>(accountInfo.MfaStatus),
+                NotificationEmails = accountInfo.NotificationEmails ?? Enumerable.Empty<string>().ToList(),
+                ReferenceNote = accountInfo.ReferenceNote,
+                UpdatedAt = accountInfo.UpdatedAt,
+                CustomProperties = accountInfo.AccountProperties,
+                SalesContactEmail = accountInfo.SalesContact,
             };
             return account;
         }
@@ -211,7 +266,6 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
             sb.Append("  AddressLine1: ").Append(AddressLine1).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
-            sb.Append("  ProvisioningAllowed: ").Append(ProvisioningAllowed).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
@@ -247,7 +301,11 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
                 Email = Email,
                 Company = Company,
                 Country = Country,
-                Contact = Contact
+                Contact = Contact,
+                MfaStatus = Utils.ParseEnum<AccountUpdateReq.MfaStatusEnum>(MultifactorAuthenticationStatus),
+                NotificationEmails = NotificationEmails,
+                ExpirationWarningThreshold = ExpiryWarning,
+                AccountProperties = CustomProperties,
             };
             return request;
         }

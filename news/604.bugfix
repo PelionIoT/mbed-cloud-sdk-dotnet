@@ -1,0 +1,2 @@
+ConnectApi:
+- Use a different backend api in GetResourceValue to fix the issue with getting a value from cache.

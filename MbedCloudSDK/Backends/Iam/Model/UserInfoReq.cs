@@ -42,13 +42,14 @@ namespace iam.Model
         /// <param name="PhoneNumber">Phone number, not longer than 100 characters..</param>
         /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long..</param>
         /// <param name="Groups">A list of IDs of the groups this user belongs to..</param>
+        /// <param name="UserProperties">User&#39;s account specific custom properties..</param>
         /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted..</param>
         /// <param name="FullName">The full name of the user, not longer than 100 characters..</param>
         /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted..</param>
         /// <param name="Address">Address, not longer than 100 characters..</param>
         /// <param name="Password">The password when creating a new user. It will be generated when not present in the request..</param>
         /// <param name="Email">The email address, not longer than 254 characters. (required).</param>
-        public UserInfoReq(string PhoneNumber = default(string), string Username = default(string), List<string> Groups = default(List<string>), bool? IsGtcAccepted = default(bool?), string FullName = default(string), bool? IsMarketingAccepted = default(bool?), string Address = default(string), string Password = default(string), string Email = default(string))
+        public UserInfoReq(string PhoneNumber = default(string), string Username = default(string), List<string> Groups = default(List<string>), Dictionary<string, Dictionary<string, string>> UserProperties = default(Dictionary<string, Dictionary<string, string>>), bool? IsGtcAccepted = default(bool?), string FullName = default(string), bool? IsMarketingAccepted = default(bool?), string Address = default(string), string Password = default(string), string Email = default(string))
         {
             // to ensure "Email" is required (not null)
             if (Email == null)
@@ -62,6 +63,7 @@ namespace iam.Model
             this.PhoneNumber = PhoneNumber;
             this.Username = Username;
             this.Groups = Groups;
+            this.UserProperties = UserProperties;
             this.IsGtcAccepted = IsGtcAccepted;
             this.FullName = FullName;
             this.IsMarketingAccepted = IsMarketingAccepted;
@@ -89,6 +91,13 @@ namespace iam.Model
         /// <value>A list of IDs of the groups this user belongs to.</value>
         [DataMember(Name="groups", EmitDefaultValue=false)]
         public List<string> Groups { get; set; }
+
+        /// <summary>
+        /// User&#39;s account specific custom properties.
+        /// </summary>
+        /// <value>User&#39;s account specific custom properties.</value>
+        [DataMember(Name="user_properties", EmitDefaultValue=false)]
+        public Dictionary<string, Dictionary<string, string>> UserProperties { get; set; }
 
         /// <summary>
         /// A flag indicating that the General Terms and Conditions has been accepted.
@@ -143,6 +152,7 @@ namespace iam.Model
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("  Groups: ").Append(Groups).Append("\n");
+            sb.Append("  UserProperties: ").Append(UserProperties).Append("\n");
             sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
             sb.Append("  FullName: ").Append(FullName).Append("\n");
             sb.Append("  IsMarketingAccepted: ").Append(IsMarketingAccepted).Append("\n");
@@ -199,6 +209,11 @@ namespace iam.Model
                     this.Groups.SequenceEqual(input.Groups)
                 ) && 
                 (
+                    this.UserProperties == input.UserProperties ||
+                    this.UserProperties != null &&
+                    this.UserProperties.SequenceEqual(input.UserProperties)
+                ) && 
+                (
                     this.IsGtcAccepted == input.IsGtcAccepted ||
                     (this.IsGtcAccepted != null &&
                     this.IsGtcAccepted.Equals(input.IsGtcAccepted))
@@ -245,6 +260,8 @@ namespace iam.Model
                     hashCode = hashCode * 59 + this.Username.GetHashCode();
                 if (this.Groups != null)
                     hashCode = hashCode * 59 + this.Groups.GetHashCode();
+                if (this.UserProperties != null)
+                    hashCode = hashCode * 59 + this.UserProperties.GetHashCode();
                 if (this.IsGtcAccepted != null)
                     hashCode = hashCode * 59 + this.IsGtcAccepted.GetHashCode();
                 if (this.FullName != null)

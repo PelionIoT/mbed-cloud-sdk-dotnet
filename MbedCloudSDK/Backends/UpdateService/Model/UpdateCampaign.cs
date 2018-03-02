@@ -64,10 +64,10 @@ namespace update_service.Model
             Allocatedquota,
             
             /// <summary>
-            /// Enum Insufficientquota for "insufficientquota"
+            /// Enum Quotaallocationfailed for "quotaallocationfailed"
             /// </summary>
-            [EnumMember(Value = "insufficientquota")]
-            Insufficientquota,
+            [EnumMember(Value = "quotaallocationfailed")]
+            Quotaallocationfailed,
             
             /// <summary>
             /// Enum Checkingmanifest for "checkingmanifest"
@@ -155,80 +155,11 @@ namespace update_service.Model
         }
 
         /// <summary>
-        /// The phase of the campaign
-        /// </summary>
-        /// <value>The phase of the campaign</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum PhaseEnum
-        {
-            
-            /// <summary>
-            /// Enum Draft for "draft"
-            /// </summary>
-            [EnumMember(Value = "draft")]
-            Draft,
-            
-            /// <summary>
-            /// Enum Setup for "setup"
-            /// </summary>
-            [EnumMember(Value = "setup")]
-            Setup,
-            
-            /// <summary>
-            /// Enum Awaitingapproval for "awaiting_approval"
-            /// </summary>
-            [EnumMember(Value = "awaiting_approval")]
-            Awaitingapproval,
-            
-            /// <summary>
-            /// Enum Timed for "timed"
-            /// </summary>
-            [EnumMember(Value = "timed")]
-            Timed,
-            
-            /// <summary>
-            /// Enum Starting for "starting"
-            /// </summary>
-            [EnumMember(Value = "starting")]
-            Starting,
-            
-            /// <summary>
-            /// Enum Active for "active"
-            /// </summary>
-            [EnumMember(Value = "active")]
-            Active,
-            
-            /// <summary>
-            /// Enum Stopping for "stopping"
-            /// </summary>
-            [EnumMember(Value = "stopping")]
-            Stopping,
-            
-            /// <summary>
-            /// Enum Stopped for "stopped"
-            /// </summary>
-            [EnumMember(Value = "stopped")]
-            Stopped,
-            
-            /// <summary>
-            /// Enum Archived for "archived"
-            /// </summary>
-            [EnumMember(Value = "archived")]
-            Archived
-        }
-
-        /// <summary>
         /// The state of the campaign
         /// </summary>
         /// <value>The state of the campaign</value>
         [DataMember(Name="state", EmitDefaultValue=false)]
         public StateEnum? State { get; set; }
-        /// <summary>
-        /// The phase of the campaign
-        /// </summary>
-        /// <value>The phase of the campaign</value>
-        [DataMember(Name="phase", EmitDefaultValue=false)]
-        public PhaseEnum? Phase { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateCampaign" /> class.
         /// </summary>
@@ -242,12 +173,11 @@ namespace update_service.Model
         /// <param name="Etag">The entity instance signature.</param>
         /// <param name="Finished">The campaign finish timestamp.</param>
         /// <param name="RootManifestUrl">RootManifestUrl.</param>
-        /// <param name="Phase">The phase of the campaign.</param>
         /// <param name="StartedAt">StartedAt.</param>
         /// <param name="Id">The campaign ID.</param>
         /// <param name="DeviceFilter">The filter for the devices the campaign will target.</param>
         /// <param name="Name">The campaign name.</param>
-        public UpdateCampaign(string Description = default(string), string RootManifestId = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? When = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), StateEnum? State = default(StateEnum?), string Etag = default(string), DateTime? Finished = default(DateTime?), string RootManifestUrl = default(string), PhaseEnum? Phase = default(PhaseEnum?), DateTime? StartedAt = default(DateTime?), string Id = default(string), string DeviceFilter = default(string), string Name = default(string))
+        public UpdateCampaign(string Description = default(string), string RootManifestId = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? When = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), StateEnum? State = default(StateEnum?), string Etag = default(string), DateTime? Finished = default(DateTime?), string RootManifestUrl = default(string), DateTime? StartedAt = default(DateTime?), string Id = default(string), string DeviceFilter = default(string), string Name = default(string))
         {
             this.Description = Description;
             this.RootManifestId = RootManifestId;
@@ -259,7 +189,6 @@ namespace update_service.Model
             this.Etag = Etag;
             this.Finished = Finished;
             this.RootManifestUrl = RootManifestUrl;
-            this.Phase = Phase;
             this.StartedAt = StartedAt;
             this.Id = Id;
             this.DeviceFilter = DeviceFilter;
@@ -328,7 +257,6 @@ namespace update_service.Model
         [DataMember(Name="root_manifest_url", EmitDefaultValue=false)]
         public string RootManifestUrl { get; set; }
 
-
         /// <summary>
         /// Gets or Sets StartedAt
         /// </summary>
@@ -374,7 +302,6 @@ namespace update_service.Model
             sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  Finished: ").Append(Finished).Append("\n");
             sb.Append("  RootManifestUrl: ").Append(RootManifestUrl).Append("\n");
-            sb.Append("  Phase: ").Append(Phase).Append("\n");
             sb.Append("  StartedAt: ").Append(StartedAt).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  DeviceFilter: ").Append(DeviceFilter).Append("\n");
@@ -464,11 +391,6 @@ namespace update_service.Model
                     this.RootManifestUrl.Equals(input.RootManifestUrl))
                 ) && 
                 (
-                    this.Phase == input.Phase ||
-                    (this.Phase != null &&
-                    this.Phase.Equals(input.Phase))
-                ) && 
-                (
                     this.StartedAt == input.StartedAt ||
                     (this.StartedAt != null &&
                     this.StartedAt.Equals(input.StartedAt))
@@ -519,8 +441,6 @@ namespace update_service.Model
                     hashCode = hashCode * 59 + this.Finished.GetHashCode();
                 if (this.RootManifestUrl != null)
                     hashCode = hashCode * 59 + this.RootManifestUrl.GetHashCode();
-                if (this.Phase != null)
-                    hashCode = hashCode * 59 + this.Phase.GetHashCode();
                 if (this.StartedAt != null)
                     hashCode = hashCode * 59 + this.StartedAt.GetHashCode();
                 if (this.Id != null)

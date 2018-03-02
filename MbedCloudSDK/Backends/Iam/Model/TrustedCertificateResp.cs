@@ -82,52 +82,10 @@ namespace iam.Model
         {
             
             /// <summary>
-            /// Enum User for "user"
-            /// </summary>
-            [EnumMember(Value = "user")]
-            User,
-            
-            /// <summary>
-            /// Enum ApiKey for "api-key"
-            /// </summary>
-            [EnumMember(Value = "api-key")]
-            ApiKey,
-            
-            /// <summary>
-            /// Enum Group for "group"
-            /// </summary>
-            [EnumMember(Value = "group")]
-            Group,
-            
-            /// <summary>
-            /// Enum Account for "account"
-            /// </summary>
-            [EnumMember(Value = "account")]
-            Account,
-            
-            /// <summary>
-            /// Enum AccountTemplate for "account-template"
-            /// </summary>
-            [EnumMember(Value = "account-template")]
-            AccountTemplate,
-            
-            /// <summary>
-            /// Enum TrustedCert for "trusted-cert"
+            /// Enum Cert for "trusted-cert"
             /// </summary>
             [EnumMember(Value = "trusted-cert")]
-            TrustedCert,
-            
-            /// <summary>
-            /// Enum List for "list"
-            /// </summary>
-            [EnumMember(Value = "list")]
-            List,
-            
-            /// <summary>
-            /// Enum Error for "error"
-            /// </summary>
-            [EnumMember(Value = "error")]
-            Error
+            Cert
         }
 
         /// <summary>
@@ -158,20 +116,22 @@ namespace iam.Model
         /// </summary>
         /// <param name="Service">Service name where the certificate is to be used. (required).</param>
         /// <param name="Status">Status of the certificate..</param>
-        /// <param name="Description">Human readable description of this certificate..</param>
+        /// <param name="Name">Certificate name. (required).</param>
         /// <param name="Certificate">X509.v3 trusted certificate in PEM format. (required).</param>
+        /// <param name="EnrollmentMode">If true, signature is not required. Default value false..</param>
         /// <param name="Issuer">Issuer of the certificate. (required).</param>
         /// <param name="DeviceExecutionMode">Device execution mode where 1 means a developer certificate..</param>
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
         /// <param name="_Object">Entity name: always &#39;trusted-cert&#39; (required).</param>
         /// <param name="Subject">Subject of the certificate. (required).</param>
+        /// <param name="UpdatedAt">Last update UTC time RFC3339..</param>
         /// <param name="AccountId">The UUID of the account. (required).</param>
         /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="Validity">Expiration time in UTC formatted as RFC3339. (required).</param>
         /// <param name="OwnerId">The UUID of the owner..</param>
         /// <param name="Id">Entity ID. (required).</param>
-        /// <param name="Name">Certificate name. (required).</param>
-        public TrustedCertificateResp(ServiceEnum? Service = default(ServiceEnum?), StatusEnum? Status = default(StatusEnum?), string Description = default(string), string Certificate = default(string), string Issuer = default(string), int? DeviceExecutionMode = default(int?), DateTime? CreatedAt = default(DateTime?), ObjectEnum? _Object = default(ObjectEnum?), string Subject = default(string), string AccountId = default(string), string Etag = default(string), DateTime? Validity = default(DateTime?), string OwnerId = default(string), string Id = default(string), string Name = default(string))
+        /// <param name="Description">Human readable description of this certificate..</param>
+        public TrustedCertificateResp(ServiceEnum? Service = default(ServiceEnum?), StatusEnum? Status = default(StatusEnum?), string Name = default(string), string Certificate = default(string), bool? EnrollmentMode = default(bool?), string Issuer = default(string), int? DeviceExecutionMode = default(int?), DateTime? CreatedAt = default(DateTime?), ObjectEnum? _Object = default(ObjectEnum?), string Subject = default(string), DateTime? UpdatedAt = default(DateTime?), string AccountId = default(string), string Etag = default(string), DateTime? Validity = default(DateTime?), string OwnerId = default(string), string Id = default(string), string Description = default(string))
         {
             // to ensure "Service" is required (not null)
             if (Service == null)
@@ -181,6 +141,15 @@ namespace iam.Model
             else
             {
                 this.Service = Service;
+            }
+            // to ensure "Name" is required (not null)
+            if (Name == null)
+            {
+                throw new InvalidDataException("Name is a required property for TrustedCertificateResp and cannot be null");
+            }
+            else
+            {
+                this.Name = Name;
             }
             // to ensure "Certificate" is required (not null)
             if (Certificate == null)
@@ -254,30 +223,23 @@ namespace iam.Model
             {
                 this.Id = Id;
             }
-            // to ensure "Name" is required (not null)
-            if (Name == null)
-            {
-                throw new InvalidDataException("Name is a required property for TrustedCertificateResp and cannot be null");
-            }
-            else
-            {
-                this.Name = Name;
-            }
             this.Status = Status;
-            this.Description = Description;
+            this.EnrollmentMode = EnrollmentMode;
             this.DeviceExecutionMode = DeviceExecutionMode;
             this.CreatedAt = CreatedAt;
+            this.UpdatedAt = UpdatedAt;
             this.OwnerId = OwnerId;
+            this.Description = Description;
         }
         
 
 
         /// <summary>
-        /// Human readable description of this certificate.
+        /// Certificate name.
         /// </summary>
-        /// <value>Human readable description of this certificate.</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
-        public string Description { get; set; }
+        /// <value>Certificate name.</value>
+        [DataMember(Name="name", EmitDefaultValue=false)]
+        public string Name { get; set; }
 
         /// <summary>
         /// X509.v3 trusted certificate in PEM format.
@@ -285,6 +247,13 @@ namespace iam.Model
         /// <value>X509.v3 trusted certificate in PEM format.</value>
         [DataMember(Name="certificate", EmitDefaultValue=false)]
         public string Certificate { get; set; }
+
+        /// <summary>
+        /// If true, signature is not required. Default value false.
+        /// </summary>
+        /// <value>If true, signature is not required. Default value false.</value>
+        [DataMember(Name="enrollment_mode", EmitDefaultValue=false)]
+        public bool? EnrollmentMode { get; set; }
 
         /// <summary>
         /// Issuer of the certificate.
@@ -314,6 +283,13 @@ namespace iam.Model
         /// <value>Subject of the certificate.</value>
         [DataMember(Name="subject", EmitDefaultValue=false)]
         public string Subject { get; set; }
+
+        /// <summary>
+        /// Last update UTC time RFC3339.
+        /// </summary>
+        /// <value>Last update UTC time RFC3339.</value>
+        [DataMember(Name="updated_at", EmitDefaultValue=false)]
+        public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// The UUID of the account.
@@ -351,11 +327,11 @@ namespace iam.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// Certificate name.
+        /// Human readable description of this certificate.
         /// </summary>
-        /// <value>Certificate name.</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
-        public string Name { get; set; }
+        /// <value>Human readable description of this certificate.</value>
+        [DataMember(Name="description", EmitDefaultValue=false)]
+        public string Description { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -367,19 +343,21 @@ namespace iam.Model
             sb.Append("class TrustedCertificateResp {\n");
             sb.Append("  Service: ").Append(Service).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Certificate: ").Append(Certificate).Append("\n");
+            sb.Append("  EnrollmentMode: ").Append(EnrollmentMode).Append("\n");
             sb.Append("  Issuer: ").Append(Issuer).Append("\n");
             sb.Append("  DeviceExecutionMode: ").Append(DeviceExecutionMode).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  Subject: ").Append(Subject).Append("\n");
+            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  Validity: ").Append(Validity).Append("\n");
             sb.Append("  OwnerId: ").Append(OwnerId).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -425,14 +403,19 @@ namespace iam.Model
                     this.Status.Equals(input.Status))
                 ) && 
                 (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
                 ) && 
                 (
                     this.Certificate == input.Certificate ||
                     (this.Certificate != null &&
                     this.Certificate.Equals(input.Certificate))
+                ) && 
+                (
+                    this.EnrollmentMode == input.EnrollmentMode ||
+                    (this.EnrollmentMode != null &&
+                    this.EnrollmentMode.Equals(input.EnrollmentMode))
                 ) && 
                 (
                     this.Issuer == input.Issuer ||
@@ -460,6 +443,11 @@ namespace iam.Model
                     this.Subject.Equals(input.Subject))
                 ) && 
                 (
+                    this.UpdatedAt == input.UpdatedAt ||
+                    (this.UpdatedAt != null &&
+                    this.UpdatedAt.Equals(input.UpdatedAt))
+                ) && 
+                (
                     this.AccountId == input.AccountId ||
                     (this.AccountId != null &&
                     this.AccountId.Equals(input.AccountId))
@@ -485,9 +473,9 @@ namespace iam.Model
                     this.Id.Equals(input.Id))
                 ) && 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
                 );
         }
 
@@ -504,10 +492,12 @@ namespace iam.Model
                     hashCode = hashCode * 59 + this.Service.GetHashCode();
                 if (this.Status != null)
                     hashCode = hashCode * 59 + this.Status.GetHashCode();
-                if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                if (this.Name != null)
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
                 if (this.Certificate != null)
                     hashCode = hashCode * 59 + this.Certificate.GetHashCode();
+                if (this.EnrollmentMode != null)
+                    hashCode = hashCode * 59 + this.EnrollmentMode.GetHashCode();
                 if (this.Issuer != null)
                     hashCode = hashCode * 59 + this.Issuer.GetHashCode();
                 if (this.DeviceExecutionMode != null)
@@ -518,6 +508,8 @@ namespace iam.Model
                     hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.Subject != null)
                     hashCode = hashCode * 59 + this.Subject.GetHashCode();
+                if (this.UpdatedAt != null)
+                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
                 if (this.AccountId != null)
                     hashCode = hashCode * 59 + this.AccountId.GetHashCode();
                 if (this.Etag != null)
@@ -528,8 +520,8 @@ namespace iam.Model
                     hashCode = hashCode * 59 + this.OwnerId.GetHashCode();
                 if (this.Id != null)
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.Description != null)
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
                 return hashCode;
             }
         }

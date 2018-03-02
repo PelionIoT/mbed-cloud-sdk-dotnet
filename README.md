@@ -34,27 +34,36 @@ dotnet build
 The following sample lists the first five devices in your Device Directory.
 
 ```csharp
-using MbedCloudSDK.Common;
-using MbedCloudSDK.Common.Query;
-using MbedCloudSDK.DeviceDirectory.Api;
-
-var apiKey = "<your Mbed Cloud api key>";
-// create a config object with your api key
-var config = new Config(apiKey);
-// Instantiate the Device Directory Api
-var deviceApi = new DeviceDirectoryApi(config);
-
-// Options for the query. The Limit defines the number of results returned
-var options = new QueryOptions()
+namespace demo
 {
-    Limit = 5,
-};
+    using System;
+    using System.Linq;
+    using MbedCloudSDK.Common;
+    using MbedCloudSDK.Connect.Api;
 
-// List devices from the Device Directory
-var devices = deviceApi.ListDevices(options).Data;
-foreach (var device in devices)
-{
-    // Use the device object here
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // create new configuration object. When autostartNotifications is true, you don't need to open a notification channel manually
+            var config = new Config(apiKey: "<your api key>", autostartNotifications: true);
+            var connect = new ConnectApi(config);
+
+            // lists the first 50 connectedDevices
+            var connectedDevices = connect.ListConnectedDevices().Data;
+
+            // get the first connected device
+            var val = connectedDevices.FirstOrDefault()
+                                        // list the resources
+                                        ?.ListResources()
+                                        // get the first resource that matches the path /3201/0/5853
+                                        ?.FirstOrDefault(d => d.Path == "/3201/0/5853")
+                                        // get the value of the resource
+                                        ?.GetResourceValue();
+
+            Console.WriteLine(val);
+        }
+    }
 }
 ```
 

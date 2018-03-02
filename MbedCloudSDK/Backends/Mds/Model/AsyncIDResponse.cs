@@ -34,12 +34,12 @@ namespace mds.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AsyncIDResponse" /> class.
         /// </summary>
-        /// <param name="Status">Asynchronous response status code for a device operation related to a proxy request or manual subscription..</param>
+        /// <param name="Status">The asynchronous response status code for a device operation related to a proxy request or manual subscription..</param>
         /// <param name="Payload">Requested data, base64 encoded..</param>
-        /// <param name="MaxAge">Determines how long this value will be valid in cache, in seconds. 0 means that value is not stored in cache..</param>
-        /// <param name="Error">Optional error message, describing the error..</param>
-        /// <param name="Id">Asynchronous response unique ID..</param>
-        /// <param name="Ct">Content type.</param>
+        /// <param name="MaxAge">Determines how long this value stays valid in the cache, in seconds. 0 means that the value is not stored in the cache..</param>
+        /// <param name="Error">An optional error message describing the error..</param>
+        /// <param name="Id">The unique ID of the asynchronous response..</param>
+        /// <param name="Ct">The content type..</param>
         public AsyncIDResponse(int? Status = default(int?), string Payload = default(string), string MaxAge = default(string), string Error = default(string), string Id = default(string), string Ct = default(string))
         {
             this.Status = Status;
@@ -51,9 +51,9 @@ namespace mds.Model
         }
         
         /// <summary>
-        /// Asynchronous response status code for a device operation related to a proxy request or manual subscription.
+        /// The asynchronous response status code for a device operation related to a proxy request or manual subscription.
         /// </summary>
-        /// <value>Asynchronous response status code for a device operation related to a proxy request or manual subscription.</value>
+        /// <value>The asynchronous response status code for a device operation related to a proxy request or manual subscription.</value>
         [DataMember(Name="status", EmitDefaultValue=false)]
         public int? Status { get; set; }
 
@@ -65,30 +65,30 @@ namespace mds.Model
         public string Payload { get; set; }
 
         /// <summary>
-        /// Determines how long this value will be valid in cache, in seconds. 0 means that value is not stored in cache.
+        /// Determines how long this value stays valid in the cache, in seconds. 0 means that the value is not stored in the cache.
         /// </summary>
-        /// <value>Determines how long this value will be valid in cache, in seconds. 0 means that value is not stored in cache.</value>
+        /// <value>Determines how long this value stays valid in the cache, in seconds. 0 means that the value is not stored in the cache.</value>
         [DataMember(Name="max-age", EmitDefaultValue=false)]
         public string MaxAge { get; set; }
 
         /// <summary>
-        /// Optional error message, describing the error.
+        /// An optional error message describing the error.
         /// </summary>
-        /// <value>Optional error message, describing the error.</value>
+        /// <value>An optional error message describing the error.</value>
         [DataMember(Name="error", EmitDefaultValue=false)]
         public string Error { get; set; }
 
         /// <summary>
-        /// Asynchronous response unique ID.
+        /// The unique ID of the asynchronous response.
         /// </summary>
-        /// <value>Asynchronous response unique ID.</value>
+        /// <value>The unique ID of the asynchronous response.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
 
         /// <summary>
-        /// Content type
+        /// The content type.
         /// </summary>
-        /// <value>Content type</value>
+        /// <value>The content type.</value>
         [DataMember(Name="ct", EmitDefaultValue=false)]
         public string Ct { get; set; }
 

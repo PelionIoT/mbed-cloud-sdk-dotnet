@@ -69,7 +69,8 @@ namespace iam.Model
         /// <param name="Owner">The owner of this API key..</param>
         /// <param name="Status">The status of the API key..</param>
         /// <param name="Name">The display name for the API key, not longer than 100 characters. (required).</param>
-        public ApiKeyUpdateReq(string Owner = default(string), StatusEnum? Status = default(StatusEnum?), string Name = default(string))
+        /// <param name="Groups">A list of group IDs this API key belongs to..</param>
+        public ApiKeyUpdateReq(string Owner = default(string), StatusEnum? Status = default(StatusEnum?), string Name = default(string), List<string> Groups = default(List<string>))
         {
             // to ensure "Name" is required (not null)
             if (Name == null)
@@ -82,6 +83,7 @@ namespace iam.Model
             }
             this.Owner = Owner;
             this.Status = Status;
+            this.Groups = Groups;
         }
         
         /// <summary>
@@ -100,6 +102,13 @@ namespace iam.Model
         public string Name { get; set; }
 
         /// <summary>
+        /// A list of group IDs this API key belongs to.
+        /// </summary>
+        /// <value>A list of group IDs this API key belongs to.</value>
+        [DataMember(Name="groups", EmitDefaultValue=false)]
+        public List<string> Groups { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -110,6 +119,7 @@ namespace iam.Model
             sb.Append("  Owner: ").Append(Owner).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Groups: ").Append(Groups).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -158,6 +168,11 @@ namespace iam.Model
                     this.Name == input.Name ||
                     (this.Name != null &&
                     this.Name.Equals(input.Name))
+                ) && 
+                (
+                    this.Groups == input.Groups ||
+                    this.Groups != null &&
+                    this.Groups.SequenceEqual(input.Groups)
                 );
         }
 
@@ -176,6 +191,8 @@ namespace iam.Model
                     hashCode = hashCode * 59 + this.Status.GetHashCode();
                 if (this.Name != null)
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.Groups != null)
+                    hashCode = hashCode * 59 + this.Groups.GetHashCode();
                 return hashCode;
             }
         }

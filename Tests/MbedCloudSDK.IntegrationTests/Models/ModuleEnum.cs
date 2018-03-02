@@ -13,7 +13,8 @@ namespace MbedCloudSDK.IntegrationTests.Models
         ConnectApi,
         DeviceDirectoryApi,
         StubAPI,
-        UpdateApi
+        UpdateApi,
+        EnrollmentApi,
     }
 
     public class ModuleEnumHelpers
@@ -23,8 +24,9 @@ namespace MbedCloudSDK.IntegrationTests.Models
                 {"certificates", ModuleEnum.CertificatesApi},
                 {"connect", ModuleEnum.ConnectApi},
                 {"device_directory", ModuleEnum.DeviceDirectoryApi},
+                {"enrollment", ModuleEnum.EnrollmentApi},
                 {"test_stub", ModuleEnum.StubAPI},
-                {"update", ModuleEnum.UpdateApi}
+                {"update", ModuleEnum.UpdateApi},
             };
         public static ModuleEnum Map(string value)
         {

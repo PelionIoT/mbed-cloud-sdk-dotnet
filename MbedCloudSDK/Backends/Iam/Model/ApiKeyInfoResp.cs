@@ -61,52 +61,10 @@ namespace iam.Model
         {
             
             /// <summary>
-            /// Enum User for "user"
-            /// </summary>
-            [EnumMember(Value = "user")]
-            User,
-            
-            /// <summary>
-            /// Enum ApiKey for "api-key"
+            /// Enum Key for "api-key"
             /// </summary>
             [EnumMember(Value = "api-key")]
-            ApiKey,
-            
-            /// <summary>
-            /// Enum Group for "group"
-            /// </summary>
-            [EnumMember(Value = "group")]
-            Group,
-            
-            /// <summary>
-            /// Enum Account for "account"
-            /// </summary>
-            [EnumMember(Value = "account")]
-            Account,
-            
-            /// <summary>
-            /// Enum AccountTemplate for "account-template"
-            /// </summary>
-            [EnumMember(Value = "account-template")]
-            AccountTemplate,
-            
-            /// <summary>
-            /// Enum TrustedCert for "trusted-cert"
-            /// </summary>
-            [EnumMember(Value = "trusted-cert")]
-            TrustedCert,
-            
-            /// <summary>
-            /// Enum List for "list"
-            /// </summary>
-            [EnumMember(Value = "list")]
-            List,
-            
-            /// <summary>
-            /// Enum Error for "error"
-            /// </summary>
-            [EnumMember(Value = "error")]
-            Error
+            Key
         }
 
         /// <summary>
@@ -135,12 +93,13 @@ namespace iam.Model
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
         /// <param name="_Object">Entity name: always &#39;api-key&#39; (required).</param>
         /// <param name="CreationTime">The timestamp of the API key creation in the storage, in milliseconds..</param>
+        /// <param name="UpdatedAt">Last update UTC time RFC3339..</param>
         /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="Key">The API key. (required).</param>
-        /// <param name="Owner">The owner of this API key..</param>
+        /// <param name="Owner">The owner of this API key, who is the creator by default..</param>
         /// <param name="Id">The UUID of the API key. (required).</param>
         /// <param name="LastLoginTime">The timestamp of the latest API key usage, in milliseconds..</param>
-        public ApiKeyInfoResp(List<string> Groups = default(List<string>), StatusEnum? Status = default(StatusEnum?), string Name = default(string), DateTime? CreatedAt = default(DateTime?), ObjectEnum? _Object = default(ObjectEnum?), long? CreationTime = default(long?), string Etag = default(string), string Key = default(string), string Owner = default(string), string Id = default(string), long? LastLoginTime = default(long?))
+        public ApiKeyInfoResp(List<string> Groups = default(List<string>), StatusEnum? Status = default(StatusEnum?), string Name = default(string), DateTime? CreatedAt = default(DateTime?), ObjectEnum? _Object = default(ObjectEnum?), long? CreationTime = default(long?), DateTime? UpdatedAt = default(DateTime?), string Etag = default(string), string Key = default(string), string Owner = default(string), string Id = default(string), long? LastLoginTime = default(long?))
         {
             // to ensure "Name" is required (not null)
             if (Name == null)
@@ -191,6 +150,7 @@ namespace iam.Model
             this.Status = Status;
             this.CreatedAt = CreatedAt;
             this.CreationTime = CreationTime;
+            this.UpdatedAt = UpdatedAt;
             this.Owner = Owner;
             this.LastLoginTime = LastLoginTime;
         }
@@ -226,6 +186,13 @@ namespace iam.Model
         public long? CreationTime { get; set; }
 
         /// <summary>
+        /// Last update UTC time RFC3339.
+        /// </summary>
+        /// <value>Last update UTC time RFC3339.</value>
+        [DataMember(Name="updated_at", EmitDefaultValue=false)]
+        public DateTime? UpdatedAt { get; set; }
+
+        /// <summary>
         /// API resource entity version.
         /// </summary>
         /// <value>API resource entity version.</value>
@@ -240,9 +207,9 @@ namespace iam.Model
         public string Key { get; set; }
 
         /// <summary>
-        /// The owner of this API key.
+        /// The owner of this API key, who is the creator by default.
         /// </summary>
-        /// <value>The owner of this API key.</value>
+        /// <value>The owner of this API key, who is the creator by default.</value>
         [DataMember(Name="owner", EmitDefaultValue=false)]
         public string Owner { get; set; }
 
@@ -274,6 +241,7 @@ namespace iam.Model
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
+            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  Key: ").Append(Key).Append("\n");
             sb.Append("  Owner: ").Append(Owner).Append("\n");
@@ -344,6 +312,11 @@ namespace iam.Model
                     this.CreationTime.Equals(input.CreationTime))
                 ) && 
                 (
+                    this.UpdatedAt == input.UpdatedAt ||
+                    (this.UpdatedAt != null &&
+                    this.UpdatedAt.Equals(input.UpdatedAt))
+                ) && 
+                (
                     this.Etag == input.Etag ||
                     (this.Etag != null &&
                     this.Etag.Equals(input.Etag))
@@ -391,6 +364,8 @@ namespace iam.Model
                     hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.CreationTime != null)
                     hashCode = hashCode * 59 + this.CreationTime.GetHashCode();
+                if (this.UpdatedAt != null)
+                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
                 if (this.Etag != null)
                     hashCode = hashCode * 59 + this.Etag.GetHashCode();
                 if (this.Key != null)

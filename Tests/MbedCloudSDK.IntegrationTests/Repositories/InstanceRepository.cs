@@ -6,6 +6,7 @@ using MbedCloudSDK.Certificates.Api;
 using MbedCloudSDK.Common;
 using MbedCloudSDK.Connect.Api;
 using MbedCloudSDK.DeviceDirectory.Api;
+using MbedCloudSDK.Enrollment.Api;
 using MbedCloudSDK.IntegrationTests.Models;
 using MbedCloudSDK.Update.Api;
 
@@ -67,6 +68,10 @@ namespace MbedCloudSDK.IntegrationTests.Repositories
                 case ModuleEnum.UpdateApi:
                     var updateApi = new UpdateApi(config);
                     Instances.Add(instance, updateApi);
+                    break;
+                case ModuleEnum.EnrollmentApi:
+                    var enrollmentApi = new EnrollmentApi(config);
+                    Instances.Add(instance, enrollmentApi);
                     break;
             }
 

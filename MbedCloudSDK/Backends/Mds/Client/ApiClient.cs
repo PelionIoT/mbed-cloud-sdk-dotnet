@@ -149,7 +149,7 @@ namespace mds.Client
                 {
                     Name = param.Value.Name,
                     Writer = param.Value.Writer,
-                    FileName = param.Value.ContentType,
+                    FileName = param.Value.FileName,
                     ContentType = param.Value.ContentType,
                     ContentLength = param.Value.ContentLength
                 });

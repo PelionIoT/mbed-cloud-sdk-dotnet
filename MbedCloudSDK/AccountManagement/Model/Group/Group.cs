@@ -47,12 +47,6 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
         public string Name { get; private set; }
 
         /// <summary>
-        /// Gets a timestamp of the latest group update, in milliseconds.
-        /// </summary>
-        [JsonProperty]
-        public long? LastUpdateTime { get; private set; }
-
-        /// <summary>
         /// Gets the number of API keys in this group.
         /// </summary>
         [JsonProperty]
@@ -63,12 +57,6 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
         /// </summary>
         [JsonProperty]
         public DateTime? CreatedAt { get; private set; }
-
-        /// <summary>
-        /// Gets or sets a timestamp of the group creation in the storage, in milliseconds.
-        /// </summary>
-        [JsonProperty]
-        public long? CreationTime { get; set; }
 
         /// <summary>
         /// Gets the UUID of the group.
@@ -83,6 +71,12 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
         public int? UserCount { get; private set; }
 
         /// <summary>
+        /// Gets the last updated UTC time
+        /// </summary>
+        [JsonProperty]
+        public DateTime? UpdatedAt { get; private set; }
+
+        /// <summary>
         /// Map to Group object
         /// </summary>
         /// <param name="groupInfo">Identity and Access Management (IAM) group summary</param>
@@ -92,13 +86,12 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
             var group = new Group
             {
                 Name = groupInfo.Name,
-                LastUpdateTime = groupInfo.LastUpdateTime,
                 ApiKeyCount = groupInfo.ApikeyCount,
                 CreatedAt = groupInfo.CreatedAt.ToNullableUniversalTime(),
-                CreationTime = groupInfo.CreationTime,
                 AccountId = groupInfo.AccountId,
                 Id = groupInfo.Id,
-                UserCount = groupInfo.UserCount
+                UserCount = groupInfo.UserCount,
+                UpdatedAt = groupInfo.UpdatedAt
             };
             return group;
         }
@@ -112,10 +105,8 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
             var sb = new StringBuilder();
             sb.Append("class Group {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  LastUpdateTime: ").Append(LastUpdateTime).Append("\n");
             sb.Append("  ApiKeyCount: ").Append(ApiKeyCount).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  UserCount: ").Append(UserCount).Append("\n");
             sb.Append("}\n");

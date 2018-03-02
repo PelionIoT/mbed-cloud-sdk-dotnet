@@ -42,7 +42,7 @@ namespace MbedCloudSDK.Connect.Api
             try
             {
                 StartNotifications();
-                var fixedPath = FixedPath(resourcePath);
+                var fixedPath = RemoveLeadingSlash(resourcePath);
                 subscriptionsApi.V2SubscriptionsDeviceIdResourcePathPut(deviceId, fixedPath);
                 var subscribePath = deviceId + resourcePath;
                 var resource = new Resource(deviceId, null, this);
@@ -79,7 +79,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                var fixedPath = FixedPath(resourcePath);
+                var fixedPath = RemoveLeadingSlash(resourcePath);
                 subscriptionsApi.V2SubscriptionsDeviceIdResourcePathGet(deviceId, fixedPath);
                 return true;
             }
@@ -111,7 +111,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                var fixedPath = FixedPath(resourcePath);
+                var fixedPath = RemoveLeadingSlash(resourcePath);
                 subscriptionsApi.V2SubscriptionsDeviceIdResourcePathDelete(deviceId, fixedPath);
                 var subscribePath = deviceId + resourcePath;
                 ResourceSubscribtions.Remove(subscribePath);

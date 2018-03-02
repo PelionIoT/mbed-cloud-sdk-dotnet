@@ -4,6 +4,7 @@
 
 namespace MbedCloudSDK.Connect.Api
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using MbedCloudSDK.Connect.Model.Subscription;
@@ -125,6 +126,9 @@ namespace MbedCloudSDK.Connect.Api
         /// <summary>
         /// Remove all subscriptions
         /// </summary>
+        /// <remarks>
+        /// Warning: This could be slow for large numbers of connected devices. If possible, explicitly delete subscriptions known to have been created.
+        /// </remarks>
         /// <example>
         /// <code>
         /// try
@@ -142,7 +146,18 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                subscriptionsApi.V2SubscriptionsDelete();
+                foreach (var item in ListConnectedDevices())
+                {
+                    try
+                    {
+                        DeleteDeviceSubscriptions(item.Id);
+                    }
+                    catch (CloudApiException)
+                    {
+                        Console.WriteLine("No subscriptions found for this device");
+                    }
+                }
+
                 ResourceSubscribtions.Clear();
             }
             catch (mds.Client.ApiException e)

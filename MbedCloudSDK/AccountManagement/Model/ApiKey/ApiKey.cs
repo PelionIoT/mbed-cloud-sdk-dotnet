@@ -105,7 +105,7 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
                 Name = apiKeyInfo.Name,
                 CreatedAt = apiKeyInfo.CreatedAt.ToNullableUniversalTime(),
                 CreationTime = apiKeyInfo.CreationTime,
-                Groups = apiKeyInfo.Groups != null ? apiKeyInfo.Groups : Enumerable.Empty<string>().ToList(),
+                Groups = apiKeyInfo.Groups ?? Enumerable.Empty<string>().ToList(),
                 OwnerId = apiKeyInfo.Owner,
                 Id = apiKeyInfo.Id,
                 LastLoginTime = apiKeyInfo.LastLoginTime

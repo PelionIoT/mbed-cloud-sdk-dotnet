@@ -10,6 +10,7 @@ namespace MbedCloudSDK.Common
     using System.Text;
     using MbedCloudSDK.Common.Tlv;
     using MbedCloudSDK.Connect.Model.Notifications;
+    using MbedCloudSDK.Exceptions;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
@@ -258,6 +259,17 @@ namespace MbedCloudSDK.Common
         public static string DecodeBase64(NotificationData notificationData)
         {
             return DecodeBase64(notificationData.ContentType, notificationData.Payload, new TlvDecoder());
+        }
+
+        public static T HandleNotFound<T, E>(dynamic e)
+         where E : Exception
+        {
+            if (e.ErrorCode == 404)
+            {
+                return default(T);
+            }
+
+            throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
         }
 
         private static string DecodeBase64(string contentType, string payload, TlvDecoder tlvDecoder)

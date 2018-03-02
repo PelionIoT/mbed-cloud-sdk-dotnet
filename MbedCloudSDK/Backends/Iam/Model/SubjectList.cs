@@ -26,7 +26,7 @@ using SwaggerDateConverter = iam.Client.SwaggerDateConverter;
 namespace iam.Model
 {
     /// <summary>
-    /// This object represents an array of users and API keys.
+    /// This object represents arrays of user and API key IDs.
     /// </summary>
     [DataContract]
     public partial class SubjectList :  IEquatable<SubjectList>, IValidatableObject
@@ -34,8 +34,8 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SubjectList" /> class.
         /// </summary>
-        /// <param name="Apikeys">An array of API keys..</param>
-        /// <param name="Users">An array of user names..</param>
+        /// <param name="Apikeys">An array of API key IDs..</param>
+        /// <param name="Users">An array of user IDs..</param>
         public SubjectList(List<string> Apikeys = default(List<string>), List<string> Users = default(List<string>))
         {
             this.Apikeys = Apikeys;
@@ -43,16 +43,16 @@ namespace iam.Model
         }
         
         /// <summary>
-        /// An array of API keys.
+        /// An array of API key IDs.
         /// </summary>
-        /// <value>An array of API keys.</value>
+        /// <value>An array of API key IDs.</value>
         [DataMember(Name="apikeys", EmitDefaultValue=false)]
         public List<string> Apikeys { get; set; }
 
         /// <summary>
-        /// An array of user names.
+        /// An array of user IDs.
         /// </summary>
-        /// <value>An array of user names.</value>
+        /// <value>An array of user IDs.</value>
         [DataMember(Name="users", EmitDefaultValue=false)]
         public List<string> Users { get; set; }
 

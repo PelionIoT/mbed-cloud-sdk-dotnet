@@ -89,14 +89,16 @@ namespace iam.Model
         /// Initializes a new instance of the <see cref="TrustedCertificateUpdateReq" /> class.
         /// </summary>
         /// <param name="Status">Status of the certificate..</param>
+        /// <param name="EnrollmentMode">If true, signature parameter is not required. Default value is false..</param>
         /// <param name="Certificate">X509.v3 trusted certificate in PEM format..</param>
         /// <param name="Name">Certificate name, not longer than 100 characters..</param>
         /// <param name="Service">Service name where the certificate must be used..</param>
         /// <param name="Signature">Base64 encoded signature of the account ID signed by the certificate whose data to be updated. Signature must be hashed with SHA256..</param>
         /// <param name="Description">Human readable description of this certificate, not longer than 500 characters..</param>
-        public TrustedCertificateUpdateReq(StatusEnum? Status = default(StatusEnum?), string Certificate = default(string), string Name = default(string), ServiceEnum? Service = default(ServiceEnum?), string Signature = default(string), string Description = default(string))
+        public TrustedCertificateUpdateReq(StatusEnum? Status = default(StatusEnum?), bool? EnrollmentMode = default(bool?), string Certificate = default(string), string Name = default(string), ServiceEnum? Service = default(ServiceEnum?), string Signature = default(string), string Description = default(string))
         {
             this.Status = Status;
+            this.EnrollmentMode = EnrollmentMode;
             this.Certificate = Certificate;
             this.Name = Name;
             this.Service = Service;
@@ -104,6 +106,13 @@ namespace iam.Model
             this.Description = Description;
         }
         
+
+        /// <summary>
+        /// If true, signature parameter is not required. Default value is false.
+        /// </summary>
+        /// <value>If true, signature parameter is not required. Default value is false.</value>
+        [DataMember(Name="enrollment_mode", EmitDefaultValue=false)]
+        public bool? EnrollmentMode { get; set; }
 
         /// <summary>
         /// X509.v3 trusted certificate in PEM format.
@@ -143,6 +152,7 @@ namespace iam.Model
             var sb = new StringBuilder();
             sb.Append("class TrustedCertificateUpdateReq {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  EnrollmentMode: ").Append(EnrollmentMode).Append("\n");
             sb.Append("  Certificate: ").Append(Certificate).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Service: ").Append(Service).Append("\n");
@@ -188,6 +198,11 @@ namespace iam.Model
                     this.Status.Equals(input.Status))
                 ) && 
                 (
+                    this.EnrollmentMode == input.EnrollmentMode ||
+                    (this.EnrollmentMode != null &&
+                    this.EnrollmentMode.Equals(input.EnrollmentMode))
+                ) && 
+                (
                     this.Certificate == input.Certificate ||
                     (this.Certificate != null &&
                     this.Certificate.Equals(input.Certificate))
@@ -225,6 +240,8 @@ namespace iam.Model
                 int hashCode = 41;
                 if (this.Status != null)
                     hashCode = hashCode * 59 + this.Status.GetHashCode();
+                if (this.EnrollmentMode != null)
+                    hashCode = hashCode * 59 + this.EnrollmentMode.GetHashCode();
                 if (this.Certificate != null)
                     hashCode = hashCode * 59 + this.Certificate.GetHashCode();
                 if (this.Name != null)

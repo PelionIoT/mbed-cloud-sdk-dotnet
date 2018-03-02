@@ -64,10 +64,10 @@ namespace update_service.Model
             Allocatedquota,
             
             /// <summary>
-            /// Enum Insufficientquota for "insufficientquota"
+            /// Enum Quotaallocationfailed for "quotaallocationfailed"
             /// </summary>
-            [EnumMember(Value = "insufficientquota")]
-            Insufficientquota,
+            [EnumMember(Value = "quotaallocationfailed")]
+            Quotaallocationfailed,
             
             /// <summary>
             /// Enum Checkingmanifest for "checkingmanifest"

@@ -56,7 +56,7 @@ namespace MbedCloudSDK.Connect.Api
         private ResourcesApi resourcesApi;
         private string auth;
         private NotificationsApi notificationsApi;
-        private DefaultApi defaultApi;
+        private DeviceRequestsApi deviceRequestsApi;
         private bool disposed;
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace MbedCloudSDK.Connect.Api
             endpointsApi = new EndpointsApi(mdsConfig);
             accountApi = new statistics.Api.AccountApi(statsConfig);
             notificationsApi = new NotificationsApi(mdsConfig);
-            defaultApi = new DefaultApi(mdsConfig);
+            deviceRequestsApi = new DeviceRequestsApi(mdsConfig);
         }
 
         /// <summary>
@@ -174,11 +174,21 @@ namespace MbedCloudSDK.Connect.Api
             }
         }
 
-        private static string FixedPath(string path)
+        private static string RemoveLeadingSlash(string path)
         {
             if (path.StartsWith("/", StringComparison.OrdinalIgnoreCase))
             {
                 path = path.Substring(1);
+            }
+
+            return path;
+        }
+
+        private static string AddLeadingSlash(string path)
+        {
+            if (!path.StartsWith("/", StringComparison.OrdinalIgnoreCase))
+            {
+                path = $"/{path}";
             }
 
             return path;
