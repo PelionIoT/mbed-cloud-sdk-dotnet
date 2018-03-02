@@ -229,7 +229,8 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 Password = Password,
                 PhoneNumber = PhoneNumber,
                 IsGtcAccepted = TermsAccepted,
-                IsMarketingAccepted = MarketingAccepted
+                IsMarketingAccepted = MarketingAccepted,
+                Groups = Groups,
             };
             return request;
         }
@@ -253,6 +254,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 UserProperties = CustomProperties,
                 IsTotpEnabled = TwoFactorAuthentication,
                 Status = Utils.GetEnumMemberValue(typeof(UserStatus), Convert.ToString(Status)),
+                Groups = Groups,
             };
 
             return request;
