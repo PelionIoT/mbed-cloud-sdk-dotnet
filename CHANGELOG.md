@@ -58,7 +58,7 @@ Features supported
 
 ### ConnectApi
 
-- DeleteSubscriptions now delete subscribtions by iterating connected devices.
+- DeleteSubscriptions now deletes subscribtions by iterating over connected devices.
 - Use a different backend api in GetResourceValue to fix the issue with getting a value from cache.
 
 ### All modules
