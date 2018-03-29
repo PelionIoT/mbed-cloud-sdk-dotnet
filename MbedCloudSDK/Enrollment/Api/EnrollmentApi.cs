@@ -31,7 +31,7 @@ namespace MbedCloudSDK.Enrollment.Api
         internal enrollment.Api.PublicAPIApi api;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceDirectoryApi"/> class.
+        /// Initializes a new instance of the <see cref="EnrollmentApi"/> class.
         /// </summary>
         /// <param name="config">Config.</param>
         /// <example>
@@ -202,7 +202,7 @@ namespace MbedCloudSDK.Enrollment.Api
         /// Delete an enrollment claim
         /// </summary>
         /// <param name="id">The id of the enrollment</param>
-        /// <returns></returns>
+        /// <returns>Task</returns>
         public async Task DeleteEnrollmentClaimAsync(string id)
         {
             try
@@ -219,7 +219,6 @@ namespace MbedCloudSDK.Enrollment.Api
         /// Delete an enrollment claim
         /// </summary>
         /// <param name="id">The id of the enrollment</param>
-        /// <returns></returns>
         public void DeleteEnrollmentClaim(string id)
         {
             try

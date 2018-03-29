@@ -10,7 +10,7 @@ namespace MbedCloudSDK.Common
     /// <summary>
     /// Object Extensions
     /// </summary>
-    public static class ObjectExtensions
+    internal static class ObjectExtensions
     {
         /// <summary>
         /// Get object properties as dictionary

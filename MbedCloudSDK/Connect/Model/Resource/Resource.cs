@@ -37,8 +37,8 @@ namespace MbedCloudSDK.Connect.Model.Resource
             IDictionary<string, object> options = null,
             ConnectApi api = null,
             Action<string> notificationHandler = null,
-            Action<EndpointData> registrationHandler = null,
-            Action<EndpointData> registrationUpdateHandler = null,
+            Action<DeviceEventData> registrationHandler = null,
+            Action<DeviceEventData> registrationUpdateHandler = null,
             Action<string> deRegistrationHandler = null,
             Action<string> registrationExpiredHandler = null)
         {
@@ -110,22 +110,22 @@ namespace MbedCloudSDK.Connect.Model.Resource
         /// <summary>
         /// Gets or sets the RegistrationQueue values.
         /// </summary>
-        public AsyncProducerConsumerCollection<EndpointData> RegistrationQueue { get; set; }
+        public AsyncProducerConsumerCollection<DeviceEventData> RegistrationQueue { get; set; }
 
         /// <summary>
         /// Gets or sets the RegistrationHandler
         /// </summary>
-        public Action<EndpointData> RegistrationHandler { get; set; }
+        public Action<DeviceEventData> RegistrationHandler { get; set; }
 
         /// <summary>
         /// Gets or sets the RegistrationUpdateQueue values.
         /// </summary>
-        public AsyncProducerConsumerCollection<EndpointData> RegistrationUpdateQueue { get; set; }
+        public AsyncProducerConsumerCollection<DeviceEventData> RegistrationUpdateQueue { get; set; }
 
         /// <summary>
         /// Gets or sets the RegistrationUpdateHandler
         /// </summary>
-        public Action<EndpointData> RegistrationUpdateHandler { get; set; }
+        public Action<DeviceEventData> RegistrationUpdateHandler { get; set; }
 
         /// <summary>
         /// Gets or sets the DeRegistrationQueue values.
@@ -230,8 +230,8 @@ namespace MbedCloudSDK.Connect.Model.Resource
         private void RegisterHandlers()
         {
             NotificationQueue = new AsyncProducerConsumerCollection<string>();
-            RegistrationQueue = new AsyncProducerConsumerCollection<EndpointData>();
-            RegistrationUpdateQueue = new AsyncProducerConsumerCollection<EndpointData>();
+            RegistrationQueue = new AsyncProducerConsumerCollection<DeviceEventData>();
+            RegistrationUpdateQueue = new AsyncProducerConsumerCollection<DeviceEventData>();
             DeRegistrationQueue = new AsyncProducerConsumerCollection<string>();
             RegistrationExpiredQueue = new AsyncProducerConsumerCollection<string>();
 

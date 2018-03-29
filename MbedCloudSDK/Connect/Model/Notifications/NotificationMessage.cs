@@ -5,6 +5,7 @@ namespace MbedCloudSDK.Connect.Model.Notifications
 {
     using System.Collections.Generic;
     using System.Linq;
+    using MbedCloudSDK.Connect.Api.Subscribe.Models;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -13,46 +14,78 @@ namespace MbedCloudSDK.Connect.Model.Notifications
     public class NotificationMessage
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="NotificationMessage"/> class.
+        /// </summary>
+        public NotificationMessage()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NotificationMessage"/> class.
+        /// </summary>
+        /// <param name="registrations">The registrations.</param>
+        /// <param name="asyncResponses">The asynchronous responses.</param>
+        /// <param name="deRegistrations">The de registrations.</param>
+        /// <param name="registrationUpdates">The registration updates.</param>
+        /// <param name="notifications">The notifications.</param>
+        /// <param name="registrationsExpired">The registrations expired.</param>
+        public NotificationMessage(
+            List<DeviceEventData> registrations = null,
+            List<AsyncIdResponse> asyncResponses = null,
+            List<DeviceEventData> deRegistrations = null,
+            List<DeviceEventData> registrationUpdates = null,
+            List<NotificationData> notifications = null,
+            List<DeviceEventData> registrationsExpired = null)
+        {
+            Registrations = registrations ?? new List<DeviceEventData>();
+            AsyncResponses = asyncResponses ?? new List<AsyncIdResponse>();
+            DeRegistrations = deRegistrations ?? new List<DeviceEventData>();
+            RegistrationUpdates = registrationUpdates ?? new List<DeviceEventData>();
+            Notifications = notifications ?? new List<NotificationData>();
+            RegistrationsExpired = registrationsExpired ?? new List<DeviceEventData>();
+        }
+
+        /// <summary>
         /// Gets the AsyncResponses
         /// </summary>
         /// <returns>AsyncResponses</returns>
         [JsonProperty("async-responses")]
-        public List<AsyncIdResponse> AsyncResponses { get; private set; }
+        public List<AsyncIdResponse> AsyncResponses { get; private set; } = new List<AsyncIdResponse>();
 
         /// <summary>
         /// Gets the DeRegistrations
         /// </summary>
         /// <returns>DeRegistrations</returns>
         [JsonProperty("de-registrations")]
-        public List<string> DeRegistrations { get; private set; }
+        public List<DeviceEventData> DeRegistrations { get; private set; } = new List<DeviceEventData>();
 
         /// <summary>
         /// Gets the RegistrationUpdates
         /// </summary>
         /// <returns>RegistrationUpdates</returns>
         [JsonProperty("reg-updates")]
-        public List<EndpointData> RegistrationUpdates { get; private set; }
+        public List<DeviceEventData> RegistrationUpdates { get; private set; } = new List<DeviceEventData>();
 
         /// <summary>
         /// Gets the Registrations
         /// </summary>
         /// <returns>Registrations</returns>
         [JsonProperty("registrations")]
-        public List<EndpointData> Registrations { get; private set; }
+        public List<DeviceEventData> Registrations { get; private set; } = new List<DeviceEventData>();
 
         /// <summary>
         /// Gets the Notifications
         /// </summary>
         /// <returns>Notifications</returns>
         [JsonProperty("notifications")]
-        public List<NotificationData> Notifications { get; private set; }
+        public List<NotificationData> Notifications { get; private set; } = new List<NotificationData>();
 
         /// <summary>
         /// Gets the RegistrationsExpired
         /// </summary>
         /// <returns>RegistrationsExpired</returns>
         [JsonProperty("registrations-expired")]
-        public List<string> RegistrationsExpired { get; private set; }
+        public List<DeviceEventData> RegistrationsExpired { get; private set; } = new List<DeviceEventData>();
 
         /// <summary>
         /// Map the notification message
@@ -64,11 +97,11 @@ namespace MbedCloudSDK.Connect.Model.Notifications
             var notificationMessage = new NotificationMessage
             {
                 AsyncResponses = data?.AsyncResponses?.Select(a => AsyncIdResponse.Map(a))?.ToList() ?? Enumerable.Empty<AsyncIdResponse>().ToList(),
-                DeRegistrations = data?.DeRegistrations ?? Enumerable.Empty<string>().ToList(),
-                RegistrationUpdates = data?.RegUpdates?.Select(r => EndpointData.Map(r))?.ToList() ?? Enumerable.Empty<EndpointData>().ToList(),
-                Registrations = data?.Registrations?.Select(r => EndpointData.Map(r))?.ToList() ?? Enumerable.Empty<EndpointData>().ToList(),
+                DeRegistrations = data?.DeRegistrations?.Select(r => new DeviceEventData { DeviceId = r, State = DeviceStateEnum.DeRegistration })?.ToList() ?? Enumerable.Empty<DeviceEventData>().ToList(),
+                RegistrationUpdates = data?.RegUpdates?.Select(r => DeviceEventData.Map(r, DeviceStateEnum.RegistrationUpdate))?.ToList() ?? Enumerable.Empty<DeviceEventData>().ToList(),
+                Registrations = data?.Registrations?.Select(r => DeviceEventData.Map(r, DeviceStateEnum.Registration))?.ToList() ?? Enumerable.Empty<DeviceEventData>().ToList(),
                 Notifications = data?.Notifications?.Select(n => NotificationData.Map(n))?.ToList() ?? Enumerable.Empty<NotificationData>().ToList(),
-                RegistrationsExpired = data?.RegistrationsExpired ?? Enumerable.Empty<string>().ToList(),
+                RegistrationsExpired = data?.RegistrationsExpired?.Select(r => new DeviceEventData { DeviceId = r, State = DeviceStateEnum.ExpiredRegistration })?.ToList() ?? Enumerable.Empty<DeviceEventData>().ToList(),
             };
 
             return notificationMessage;

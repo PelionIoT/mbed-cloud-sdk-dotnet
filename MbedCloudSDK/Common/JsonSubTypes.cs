@@ -13,7 +13,8 @@ namespace JsonSubTypes
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    public class JsonSubtypes : JsonConverter
+#pragma warning disable SA1600 // Elements must be documented
+    internal class JsonSubtypes : JsonConverter
     {
         private readonly string typeMappingPropertyName;
 
@@ -298,3 +299,4 @@ namespace JsonSubTypes
         }
     }
 }
+#pragma warning restore SA1600 // Elements must be documented

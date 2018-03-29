@@ -12,6 +12,7 @@ namespace MbedCloudSDK.Connect.Api
     using device_directory.Client;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
+    using MbedCloudSDK.Connect.Model.Notifications;
     using MbedCloudSDK.Connect.Model.Resource;
     using mds.Api;
 
@@ -36,16 +37,6 @@ namespace MbedCloudSDK.Connect.Api
     /// </summary>
     public partial class ConnectApi : BaseApi, IDisposable
     {
-        /// <summary>
-        /// Resources that are currently subscribed.
-        /// </summary>
-        private static Dictionary<string, Resource> resourceSubscribtions = new Dictionary<string, Resource>();
-
-        /// <summary>
-        /// Responses to async requests.
-        /// </summary>
-        private static Dictionary<string, AsyncProducerConsumerCollection<string>> asyncResponses = new Dictionary<string, AsyncProducerConsumerCollection<string>>();
-
         private Task notificationTask;
         private CancellationTokenSource cancellationToken;
         internal device_directory.Api.DefaultApi deviceDirectoryApi;
@@ -82,14 +73,24 @@ namespace MbedCloudSDK.Connect.Api
         }
 
         /// <summary>
-        /// Gets or sets async responses
+        /// Gets async responses
         /// </summary>
-        public static Dictionary<string, AsyncProducerConsumerCollection<string>> AsyncResponses { get => asyncResponses; set => asyncResponses = value; }
+        public Dictionary<string, AsyncProducerConsumerCollection<string>> AsyncResponses { get; } = new Dictionary<string, AsyncProducerConsumerCollection<string>>();
 
         /// <summary>
-        /// Gets or sets resource Subscriptions
+        /// Gets resource Subscriptions
         /// </summary>
-        public static Dictionary<string, Resource> ResourceSubscribtions { get => resourceSubscribtions; set => resourceSubscribtions = value; }
+        public Dictionary<string, Resource> ResourceSubscribtions { get; } = new Dictionary<string, Resource>();
+
+        /// <summary>
+        /// Gets NotificationQueue
+        /// </summary>
+        public Dictionary<string, AsyncProducerConsumerCollection<string>> NotificationQueue { get; } = new Dictionary<string, AsyncProducerConsumerCollection<string>>();
+
+        /// <summary>
+        /// Gets or sets the SubscribeManager
+        /// </summary>
+        public MbedCloudSDK.Connect.Api.Subscribe.Subscribe Subscribe { get; set; }
 
         /// <summary>
         /// Get meta data for the last Mbed Cloud API call

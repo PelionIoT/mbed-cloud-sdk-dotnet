@@ -2,6 +2,7 @@
 using ConsoleExamples.Examples.Certificates;
 using ConsoleExamples.Examples.Connect;
 using ConsoleExamples.Examples.DeviceDirectory;
+using ConsoleExamples.Examples.Subscribe;
 using ConsoleExamples.Examples.Update;
 using MbedCloudSDK.Common;
 using System;
@@ -15,6 +16,7 @@ namespace ConsoleExamples
         private static ConnectExamples connectExamples;
         private static DeviceDirectoryExamples deviceDirectoryExamples;
         private static UpdateExamples updateExamples;
+        private static SubscribeExamples subscribeExamples;
 
         public static void Main(string[] args)
         {
@@ -39,6 +41,7 @@ namespace ConsoleExamples
             connectExamples = new ConnectExamples(config);
             deviceDirectoryExamples = new DeviceDirectoryExamples(config);
             updateExamples = new UpdateExamples(config);
+            subscribeExamples = new SubscribeExamples(config);
 
             string example;
             while (true)
@@ -105,6 +108,12 @@ namespace ConsoleExamples
             Console.WriteLine($"{i++}. List update campaigns");
             Console.WriteLine($"{i++}. Add firmware image");
             Console.WriteLine($"{i++}. Add firmware manifest");
+            Console.WriteLine("---Subscribe---");
+            Console.WriteLine($"{i++}. Subscribe to all events");
+            Console.WriteLine($"{i++}. Subscribe to a device event");
+            Console.WriteLine($"{i++}. Subscribe to all events from a specific device by Id");
+            Console.WriteLine($"{i++}. Subscribe specific event from a specific device by Id");
+            Console.WriteLine($"{i++}. Subscribe with multiple observers");
             Console.WriteLine("---Press any other key to exit---");
             Console.WriteLine();
             return Console.ReadLine();
@@ -227,6 +236,21 @@ namespace ConsoleExamples
                     break;
                 case 38:
                     updateExamples.AddFirmwareManifest();
+                    break;
+                case 39:
+                    subscribeExamples.SubscribeToAll().Wait();
+                    break;
+                case 40:
+                    subscribeExamples.SubscribeToDeviceEvent().Wait();
+                    break;
+                case 41:
+                    subscribeExamples.SubscribeToDeviceId().Wait();
+                    break;
+                case 42:
+                    subscribeExamples.SubscribeToDeviceIdAndDeviceEvent().Wait();
+                    break;
+                case 43:
+                    subscribeExamples.SubscribeWithMultipleObservers();
                     break;
                 default:
                     break;

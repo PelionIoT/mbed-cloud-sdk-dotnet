@@ -1,16 +1,19 @@
-// <copyright file="EndpointData.cs" company="Arm">
+// <copyright file="DeviceEventData.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 namespace MbedCloudSDK.Connect.Model.Notifications
 {
     using System.Collections.Generic;
     using System.Linq;
+    using MbedCloudSDK.Common;
+    using MbedCloudSDK.Connect.Api.Subscribe.Models;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
 
     /// <summary>
     /// EndpointData
     /// </summary>
-    public class EndpointData
+    public class DeviceEventData
     {
         /// <summary>
         /// Gets or sets the QueueMode
@@ -48,22 +51,36 @@ namespace MbedCloudSDK.Connect.Model.Notifications
         public string DeviceId { get; set; }
 
         /// <summary>
+        /// Gets or sets the state
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public DeviceStateEnum State { get; set; }
+
+        /// <summary>
         /// Maps to EndpointData
         /// </summary>
         /// <param name="data">Mds Endpoint Data</param>
+        /// <param name="state">The device state</param>
         /// <returns>The EndpointData</returns>
-        public static EndpointData Map(mds.Model.EndpointData data)
+        public static DeviceEventData Map(mds.Model.EndpointData data, DeviceStateEnum state)
         {
-            var endpointData = new EndpointData
+            var endpointData = new DeviceEventData
             {
                 QueueMode = data.Q,
                 EndpointType = data.Ept,
                 OriginalEndpointType = data.OriginalEp,
                 Resources = data?.Resources?.Select(r => ResourcesData.Map(r))?.ToList(),
                 DeviceId = data.Ep,
+                State = state,
             };
 
             return endpointData;
+        }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this, new JsonSerializerSettings { ContractResolver = new LongNameContractResolver() });
         }
     }
 }

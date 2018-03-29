@@ -61,7 +61,6 @@ test:
   override:
     - echo "<h1>${SDK_NAME} Unit Tests (build ${CIRCLE_BUILD_NUM})</h1>" >> ${UNITTEST_REPORT}
     - dotnet test Tests/MbedCloudSDK.UnitTests -c Release --no-build --no-restore | ansi-html >> ${UNITTEST_REPORT}
-    - dotnet test Tests/MbedCloudSDK.ExampleTests -c Release --no-build --no-restore | ansi-html >> ${UNITTEST_REPORT}
     - cat ${UNITTEST_REPORT} | grep 'Total tests:' >> ${RAW_REPORT}
     - echo "<h1>${SDK_NAME} Integration Tests (build ${CIRCLE_BUILD_NUM})</h2>" >> ${INTTEST_REPORT}
     - set -o pipefail && bash scripts/test.sh 2>&1 | tee /dev/tty | ansi-html >> ${INTTEST_REPORT}
