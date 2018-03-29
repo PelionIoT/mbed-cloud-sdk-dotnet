@@ -29,6 +29,7 @@ https://github.com/warner/python-versioneer
 """
 import fileinput
 import os
+import sys
 import shlex
 import subprocess
 from xml.etree import ElementTree
@@ -80,4 +81,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    if len(sys.argv)==2 and sys.argv[1] == 'version':
+        print(get_csproj_version())
+    else:
+        main()
