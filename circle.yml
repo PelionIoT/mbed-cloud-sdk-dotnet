@@ -49,6 +49,8 @@ dependencies:
   post:
     - npm install -g ansi-html-stream
 compile:
+  pre:
+    - python scripts/dvcs_version.py
   override:
     - dotnet build -c Release
     - dotnet pack MbedCloudSDK -c Release --no-build --no-restore
