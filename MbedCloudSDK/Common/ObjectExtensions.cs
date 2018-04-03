@@ -6,6 +6,7 @@ namespace MbedCloudSDK.Common
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
 
     /// <summary>
     /// Object Extensions
@@ -22,7 +23,12 @@ namespace MbedCloudSDK.Common
             var result = new Dictionary<string, object>();
             foreach (var property in me.GetType().GetProperties())
             {
-                result.Add(property.Name, property.GetValue(me));
+                // Skip properties without or with non-public getters and with indexed parameters
+                // (which can't be inferred).
+                if (property.GetGetMethod() != null && property.GetIndexParameters().Length == 0)
+                {
+                    result.Add(property.Name, property.GetValue(me));
+                }
             }
 
             return result;
@@ -41,6 +47,33 @@ namespace MbedCloudSDK.Common
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Creates a text dump for all the properties of the specified object.
+        /// </summary>
+        /// <param name="me">An instance of an object to dump as its textual representation.</param>
+        /// <returns>
+        /// A textual representation of the object <paramref name="me"/>, useful for debugging.
+        /// </returns>
+        public static string DebugDump(this object me)
+        {
+            if (me == null)
+            {
+                return string.Empty;
+            }
+
+            var text = new StringBuilder();
+            text.AppendLine($"class {me.GetType().Name}SerializerData {{");
+
+            foreach (var property in me.GetProperties())
+            {
+                text.AppendLine($"    {property.Key}: {property.Value}");
+            }
+
+            text.AppendLine("}");
+
+            return text.ToString();
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using MbedCloudSDK.Certificates.Model;
 using MbedCloudSDK.Common;
@@ -92,12 +93,53 @@ namespace MbedCloudSDK.Test.Common
         [Test]
         public void GetPropertiesOfAnObjectShouldReturnCorrectDictionary()
         {
-            var obj = new { propertyOne = "one", propertyTwo = "two" };
-            var dict = obj.GetProperties();
-            var correctDict = new Dictionary<string, object>();
-            correctDict.Add("propertyOne", "one");
-            correctDict.Add("propertyTwo", "two");
-            Assert.AreEqual(correctDict, dict);
+            var obj = new ObjectWithKnownProperties();
+            Assert.AreEqual(obj.GetTestPropertiesAsDictionary(), obj.GetProperties());
+        }
+
+        [Test]
+        public void DebugDumptReturnsAnEmptyStringForNull()
+        {
+            object obj = null;
+            Assert.AreEqual(string.Empty, obj.DebugDump());
+        }
+
+        [Test]
+        public void DebugDumptReturnsExpectedResult()
+        {
+            var obj = new ObjectWithKnownProperties();
+            Assert.AreEqual(obj.GetTestDebugDump(), obj.DebugDump());
+        }
+
+        sealed class ObjectWithKnownProperties
+        {
+            public string One { get; } = OneDefaultValue;
+
+            public string Two { get; } = TwoDefaultValue;
+
+            public string ThisIsExcludedBecauseSetterOnly { set { } }
+
+            public string ThisIsExcludedBecauseNonPublicGetter { private get; set; }
+
+            internal string ThisIsExcludedBecauseNonPublic { get; set; }
+
+            public Dictionary<string, object> GetTestPropertiesAsDictionary()
+            {
+                return new Dictionary<string, object>
+                {
+                    { nameof(One), OneDefaultValue },
+                    { nameof(Two), TwoDefaultValue },
+                };
+            }
+
+            public string GetTestDebugDump()
+                => $"class {GetType().Name}SerializerData {{{Environment.NewLine}" +
+                    $"    {nameof(One)}: {OneDefaultValue}{Environment.NewLine}" +
+                    $"    {nameof(Two)}: {TwoDefaultValue}{Environment.NewLine}" +
+                    $"}}{Environment.NewLine}";
+
+            private const string OneDefaultValue = "one";
+            private const string TwoDefaultValue = "two";
         }
     }
 }
