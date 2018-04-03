@@ -16,6 +16,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
         /// <summary>
         /// Gets the URL of the firmware manifest binary.
         /// </summary>
+        [JsonProperty]
         public string Url { get; private set; }
 
         /// <summary>
@@ -32,6 +33,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
         /// Gets the URL of key table of pre-shared keys for devices.
         /// </summary>
         /// <value>The URL of key table of pre-shared keys for devices.</value>
+        [JsonProperty]
         public string KeyTableUrl { get; private set; }
 
         /// <summary>
