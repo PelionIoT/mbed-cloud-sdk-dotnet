@@ -129,6 +129,15 @@ namespace MbedCloudSDK.Test.Common
 
             public string Two { get; } = TwoDefaultValue;
 
+            // This is excluded because it's an indexer, note that in C# we can't create indexers
+            // for named properties (something similar to public string SomeProperty[string key] { get { ... } })
+            // but it's possible in other .NET languages (for example C++/CLI), we can't test it here but it should
+            // work as expected...
+            public string this[int index]
+            {
+                get => "";
+            }
+
             public string ThisIsExcludedBecauseSetterOnly { set { } }
 
             public string ThisIsExcludedBecauseNonPublicGetter { private get; set; }
