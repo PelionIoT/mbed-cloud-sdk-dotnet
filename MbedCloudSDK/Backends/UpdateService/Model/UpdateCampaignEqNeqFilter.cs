@@ -34,46 +34,34 @@ namespace update_service.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateCampaignEqNeqFilter" /> class.
         /// </summary>
-        /// <param name="Description">Description.</param>
-        /// <param name="RootManifestId">RootManifestId.</param>
         /// <param name="CreatedAt">CreatedAt.</param>
-        /// <param name="When">When.</param>
-        /// <param name="UpdatedAt">UpdatedAt.</param>
-        /// <param name="State">State.</param>
+        /// <param name="Description">Description.</param>
+        /// <param name="DeviceFilter">DeviceFilter.</param>
         /// <param name="Etag">Etag.</param>
         /// <param name="Finished">Finished.</param>
-        /// <param name="StartedAt">StartedAt.</param>
         /// <param name="Id">Id.</param>
-        /// <param name="DeviceFilter">DeviceFilter.</param>
         /// <param name="Name">Name.</param>
-        public UpdateCampaignEqNeqFilter(string Description = default(string), string RootManifestId = default(string), DateTime? CreatedAt = default(DateTime?), DateTime? When = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), string State = default(string), DateTime? Etag = default(DateTime?), DateTime? Finished = default(DateTime?), DateTime? StartedAt = default(DateTime?), string Id = default(string), string DeviceFilter = default(string), string Name = default(string))
+        /// <param name="RootManifestId">RootManifestId.</param>
+        /// <param name="StartedAt">StartedAt.</param>
+        /// <param name="State">State.</param>
+        /// <param name="UpdatedAt">UpdatedAt.</param>
+        /// <param name="When">When.</param>
+        public UpdateCampaignEqNeqFilter(DateTime? CreatedAt = default(DateTime?), string Description = default(string), string DeviceFilter = default(string), DateTime? Etag = default(DateTime?), DateTime? Finished = default(DateTime?), string Id = default(string), string Name = default(string), string RootManifestId = default(string), DateTime? StartedAt = default(DateTime?), string State = default(string), DateTime? UpdatedAt = default(DateTime?), DateTime? When = default(DateTime?))
         {
-            this.Description = Description;
-            this.RootManifestId = RootManifestId;
             this.CreatedAt = CreatedAt;
-            this.When = When;
-            this.UpdatedAt = UpdatedAt;
-            this.State = State;
+            this.Description = Description;
+            this.DeviceFilter = DeviceFilter;
             this.Etag = Etag;
             this.Finished = Finished;
-            this.StartedAt = StartedAt;
             this.Id = Id;
-            this.DeviceFilter = DeviceFilter;
             this.Name = Name;
+            this.RootManifestId = RootManifestId;
+            this.StartedAt = StartedAt;
+            this.State = State;
+            this.UpdatedAt = UpdatedAt;
+            this.When = When;
         }
         
-        /// <summary>
-        /// Gets or Sets Description
-        /// </summary>
-        [DataMember(Name="description", EmitDefaultValue=false)]
-        public string Description { get; set; }
-
-        /// <summary>
-        /// Gets or Sets RootManifestId
-        /// </summary>
-        [DataMember(Name="root_manifest_id", EmitDefaultValue=false)]
-        public string RootManifestId { get; set; }
-
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
@@ -81,22 +69,16 @@ namespace update_service.Model
         public DateTime? CreatedAt { get; set; }
 
         /// <summary>
-        /// Gets or Sets When
+        /// Gets or Sets Description
         /// </summary>
-        [DataMember(Name="when", EmitDefaultValue=false)]
-        public DateTime? When { get; set; }
+        [DataMember(Name="description", EmitDefaultValue=false)]
+        public string Description { get; set; }
 
         /// <summary>
-        /// Gets or Sets UpdatedAt
+        /// Gets or Sets DeviceFilter
         /// </summary>
-        [DataMember(Name="updated_at", EmitDefaultValue=false)]
-        public DateTime? UpdatedAt { get; set; }
-
-        /// <summary>
-        /// Gets or Sets State
-        /// </summary>
-        [DataMember(Name="state", EmitDefaultValue=false)]
-        public string State { get; set; }
+        [DataMember(Name="device_filter", EmitDefaultValue=false)]
+        public string DeviceFilter { get; set; }
 
         /// <summary>
         /// Gets or Sets Etag
@@ -111,28 +93,46 @@ namespace update_service.Model
         public DateTime? Finished { get; set; }
 
         /// <summary>
-        /// Gets or Sets StartedAt
-        /// </summary>
-        [DataMember(Name="started_at", EmitDefaultValue=false)]
-        public DateTime? StartedAt { get; set; }
-
-        /// <summary>
         /// Gets or Sets Id
         /// </summary>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets DeviceFilter
-        /// </summary>
-        [DataMember(Name="device_filter", EmitDefaultValue=false)]
-        public string DeviceFilter { get; set; }
-
-        /// <summary>
         /// Gets or Sets Name
         /// </summary>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or Sets RootManifestId
+        /// </summary>
+        [DataMember(Name="root_manifest_id", EmitDefaultValue=false)]
+        public string RootManifestId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets StartedAt
+        /// </summary>
+        [DataMember(Name="started_at", EmitDefaultValue=false)]
+        public DateTime? StartedAt { get; set; }
+
+        /// <summary>
+        /// Gets or Sets State
+        /// </summary>
+        [DataMember(Name="state", EmitDefaultValue=false)]
+        public string State { get; set; }
+
+        /// <summary>
+        /// Gets or Sets UpdatedAt
+        /// </summary>
+        [DataMember(Name="updated_at", EmitDefaultValue=false)]
+        public DateTime? UpdatedAt { get; set; }
+
+        /// <summary>
+        /// Gets or Sets When
+        /// </summary>
+        [DataMember(Name="when", EmitDefaultValue=false)]
+        public DateTime? When { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -142,18 +142,18 @@ namespace update_service.Model
         {
             var sb = new StringBuilder();
             sb.Append("class UpdateCampaignEqNeqFilter {\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  RootManifestId: ").Append(RootManifestId).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  When: ").Append(When).Append("\n");
-            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
-            sb.Append("  State: ").Append(State).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  DeviceFilter: ").Append(DeviceFilter).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  Finished: ").Append(Finished).Append("\n");
-            sb.Append("  StartedAt: ").Append(StartedAt).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  DeviceFilter: ").Append(DeviceFilter).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  RootManifestId: ").Append(RootManifestId).Append("\n");
+            sb.Append("  StartedAt: ").Append(StartedAt).Append("\n");
+            sb.Append("  State: ").Append(State).Append("\n");
+            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
+            sb.Append("  When: ").Append(When).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -189,34 +189,19 @@ namespace update_service.Model
 
             return 
                 (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
-                ) && 
-                (
-                    this.RootManifestId == input.RootManifestId ||
-                    (this.RootManifestId != null &&
-                    this.RootManifestId.Equals(input.RootManifestId))
-                ) && 
-                (
                     this.CreatedAt == input.CreatedAt ||
                     (this.CreatedAt != null &&
                     this.CreatedAt.Equals(input.CreatedAt))
                 ) && 
                 (
-                    this.When == input.When ||
-                    (this.When != null &&
-                    this.When.Equals(input.When))
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
                 ) && 
                 (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
-                ) && 
-                (
-                    this.State == input.State ||
-                    (this.State != null &&
-                    this.State.Equals(input.State))
+                    this.DeviceFilter == input.DeviceFilter ||
+                    (this.DeviceFilter != null &&
+                    this.DeviceFilter.Equals(input.DeviceFilter))
                 ) && 
                 (
                     this.Etag == input.Etag ||
@@ -229,24 +214,39 @@ namespace update_service.Model
                     this.Finished.Equals(input.Finished))
                 ) && 
                 (
-                    this.StartedAt == input.StartedAt ||
-                    (this.StartedAt != null &&
-                    this.StartedAt.Equals(input.StartedAt))
-                ) && 
-                (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
                 ) && 
                 (
-                    this.DeviceFilter == input.DeviceFilter ||
-                    (this.DeviceFilter != null &&
-                    this.DeviceFilter.Equals(input.DeviceFilter))
-                ) && 
-                (
                     this.Name == input.Name ||
                     (this.Name != null &&
                     this.Name.Equals(input.Name))
+                ) && 
+                (
+                    this.RootManifestId == input.RootManifestId ||
+                    (this.RootManifestId != null &&
+                    this.RootManifestId.Equals(input.RootManifestId))
+                ) && 
+                (
+                    this.StartedAt == input.StartedAt ||
+                    (this.StartedAt != null &&
+                    this.StartedAt.Equals(input.StartedAt))
+                ) && 
+                (
+                    this.State == input.State ||
+                    (this.State != null &&
+                    this.State.Equals(input.State))
+                ) && 
+                (
+                    this.UpdatedAt == input.UpdatedAt ||
+                    (this.UpdatedAt != null &&
+                    this.UpdatedAt.Equals(input.UpdatedAt))
+                ) && 
+                (
+                    this.When == input.When ||
+                    (this.When != null &&
+                    this.When.Equals(input.When))
                 );
         }
 
@@ -259,30 +259,30 @@ namespace update_service.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
-                if (this.RootManifestId != null)
-                    hashCode = hashCode * 59 + this.RootManifestId.GetHashCode();
                 if (this.CreatedAt != null)
                     hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
-                if (this.When != null)
-                    hashCode = hashCode * 59 + this.When.GetHashCode();
-                if (this.UpdatedAt != null)
-                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
-                if (this.State != null)
-                    hashCode = hashCode * 59 + this.State.GetHashCode();
+                if (this.Description != null)
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                if (this.DeviceFilter != null)
+                    hashCode = hashCode * 59 + this.DeviceFilter.GetHashCode();
                 if (this.Etag != null)
                     hashCode = hashCode * 59 + this.Etag.GetHashCode();
                 if (this.Finished != null)
                     hashCode = hashCode * 59 + this.Finished.GetHashCode();
-                if (this.StartedAt != null)
-                    hashCode = hashCode * 59 + this.StartedAt.GetHashCode();
                 if (this.Id != null)
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.DeviceFilter != null)
-                    hashCode = hashCode * 59 + this.DeviceFilter.GetHashCode();
                 if (this.Name != null)
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.RootManifestId != null)
+                    hashCode = hashCode * 59 + this.RootManifestId.GetHashCode();
+                if (this.StartedAt != null)
+                    hashCode = hashCode * 59 + this.StartedAt.GetHashCode();
+                if (this.State != null)
+                    hashCode = hashCode * 59 + this.State.GetHashCode();
+                if (this.UpdatedAt != null)
+                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
+                if (this.When != null)
+                    hashCode = hashCode * 59 + this.When.GetHashCode();
                 return hashCode;
             }
         }

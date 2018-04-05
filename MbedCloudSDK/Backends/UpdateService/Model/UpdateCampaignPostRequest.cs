@@ -169,13 +169,13 @@ namespace update_service.Model
         /// Initializes a new instance of the <see cref="UpdateCampaignPostRequest" /> class.
         /// </summary>
         /// <param name="Description">The optional description of the campaign.</param>
-        /// <param name="RootManifestId">RootManifestId.</param>
-        /// <param name="_Object">The API resource entity.</param>
-        /// <param name="When">The scheduled start time for the update campaign.</param>
-        /// <param name="State">The state of the campaign.</param>
         /// <param name="DeviceFilter">The filter for the devices the campaign will target (required).</param>
         /// <param name="Name">The name for this campaign (required).</param>
-        public UpdateCampaignPostRequest(string Description = default(string), string RootManifestId = default(string), string _Object = default(string), DateTime? When = default(DateTime?), StateEnum? State = default(StateEnum?), string DeviceFilter = default(string), string Name = default(string))
+        /// <param name="_Object">The API resource entity.</param>
+        /// <param name="RootManifestId">RootManifestId.</param>
+        /// <param name="State">The state of the campaign.</param>
+        /// <param name="When">The scheduled start time for the update campaign.</param>
+        public UpdateCampaignPostRequest(string Description = default(string), string DeviceFilter = default(string), string Name = default(string), string _Object = default(string), string RootManifestId = default(string), StateEnum? State = default(StateEnum?), DateTime? When = default(DateTime?))
         {
             // to ensure "DeviceFilter" is required (not null)
             if (DeviceFilter == null)
@@ -196,10 +196,10 @@ namespace update_service.Model
                 this.Name = Name;
             }
             this.Description = Description;
-            this.RootManifestId = RootManifestId;
             this._Object = _Object;
-            this.When = When;
+            this.RootManifestId = RootManifestId;
             this.State = State;
+            this.When = When;
         }
         
         /// <summary>
@@ -208,27 +208,6 @@ namespace update_service.Model
         /// <value>The optional description of the campaign</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
-
-        /// <summary>
-        /// Gets or Sets RootManifestId
-        /// </summary>
-        [DataMember(Name="root_manifest_id", EmitDefaultValue=false)]
-        public string RootManifestId { get; set; }
-
-        /// <summary>
-        /// The API resource entity
-        /// </summary>
-        /// <value>The API resource entity</value>
-        [DataMember(Name="object", EmitDefaultValue=false)]
-        public string _Object { get; set; }
-
-        /// <summary>
-        /// The scheduled start time for the update campaign
-        /// </summary>
-        /// <value>The scheduled start time for the update campaign</value>
-        [DataMember(Name="when", EmitDefaultValue=false)]
-        public DateTime? When { get; set; }
-
 
         /// <summary>
         /// The filter for the devices the campaign will target
@@ -245,6 +224,27 @@ namespace update_service.Model
         public string Name { get; set; }
 
         /// <summary>
+        /// The API resource entity
+        /// </summary>
+        /// <value>The API resource entity</value>
+        [DataMember(Name="object", EmitDefaultValue=false)]
+        public string _Object { get; set; }
+
+        /// <summary>
+        /// Gets or Sets RootManifestId
+        /// </summary>
+        [DataMember(Name="root_manifest_id", EmitDefaultValue=false)]
+        public string RootManifestId { get; set; }
+
+
+        /// <summary>
+        /// The scheduled start time for the update campaign
+        /// </summary>
+        /// <value>The scheduled start time for the update campaign</value>
+        [DataMember(Name="when", EmitDefaultValue=false)]
+        public DateTime? When { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -253,12 +253,12 @@ namespace update_service.Model
             var sb = new StringBuilder();
             sb.Append("class UpdateCampaignPostRequest {\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  RootManifestId: ").Append(RootManifestId).Append("\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
-            sb.Append("  When: ").Append(When).Append("\n");
-            sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  DeviceFilter: ").Append(DeviceFilter).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
+            sb.Append("  RootManifestId: ").Append(RootManifestId).Append("\n");
+            sb.Append("  State: ").Append(State).Append("\n");
+            sb.Append("  When: ").Append(When).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -299,26 +299,6 @@ namespace update_service.Model
                     this.Description.Equals(input.Description))
                 ) && 
                 (
-                    this.RootManifestId == input.RootManifestId ||
-                    (this.RootManifestId != null &&
-                    this.RootManifestId.Equals(input.RootManifestId))
-                ) && 
-                (
-                    this._Object == input._Object ||
-                    (this._Object != null &&
-                    this._Object.Equals(input._Object))
-                ) && 
-                (
-                    this.When == input.When ||
-                    (this.When != null &&
-                    this.When.Equals(input.When))
-                ) && 
-                (
-                    this.State == input.State ||
-                    (this.State != null &&
-                    this.State.Equals(input.State))
-                ) && 
-                (
                     this.DeviceFilter == input.DeviceFilter ||
                     (this.DeviceFilter != null &&
                     this.DeviceFilter.Equals(input.DeviceFilter))
@@ -327,6 +307,26 @@ namespace update_service.Model
                     this.Name == input.Name ||
                     (this.Name != null &&
                     this.Name.Equals(input.Name))
+                ) && 
+                (
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
+                ) && 
+                (
+                    this.RootManifestId == input.RootManifestId ||
+                    (this.RootManifestId != null &&
+                    this.RootManifestId.Equals(input.RootManifestId))
+                ) && 
+                (
+                    this.State == input.State ||
+                    (this.State != null &&
+                    this.State.Equals(input.State))
+                ) && 
+                (
+                    this.When == input.When ||
+                    (this.When != null &&
+                    this.When.Equals(input.When))
                 );
         }
 
@@ -341,18 +341,18 @@ namespace update_service.Model
                 int hashCode = 41;
                 if (this.Description != null)
                     hashCode = hashCode * 59 + this.Description.GetHashCode();
-                if (this.RootManifestId != null)
-                    hashCode = hashCode * 59 + this.RootManifestId.GetHashCode();
-                if (this._Object != null)
-                    hashCode = hashCode * 59 + this._Object.GetHashCode();
-                if (this.When != null)
-                    hashCode = hashCode * 59 + this.When.GetHashCode();
-                if (this.State != null)
-                    hashCode = hashCode * 59 + this.State.GetHashCode();
                 if (this.DeviceFilter != null)
                     hashCode = hashCode * 59 + this.DeviceFilter.GetHashCode();
                 if (this.Name != null)
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this._Object != null)
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
+                if (this.RootManifestId != null)
+                    hashCode = hashCode * 59 + this.RootManifestId.GetHashCode();
+                if (this.State != null)
+                    hashCode = hashCode * 59 + this.State.GetHashCode();
+                if (this.When != null)
+                    hashCode = hashCode * 59 + this.When.GetHashCode();
                 return hashCode;
             }
         }
@@ -370,16 +370,16 @@ namespace update_service.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be less than 2000.", new [] { "Description" });
             }
 
-            // RootManifestId (string) maxLength
-            if(this.RootManifestId != null && this.RootManifestId.Length > 32)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RootManifestId, length must be less than 32.", new [] { "RootManifestId" });
-            }
-
             // Name (string) maxLength
             if(this.Name != null && this.Name.Length > 128)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 128.", new [] { "Name" });
+            }
+
+            // RootManifestId (string) maxLength
+            if(this.RootManifestId != null && this.RootManifestId.Length > 32)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RootManifestId, length must be less than 32.", new [] { "RootManifestId" });
             }
 
             yield break;

@@ -85,41 +85,34 @@ namespace update_service.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CampaignDeviceMetadata" /> class.
         /// </summary>
-        /// <param name="Description">Description.</param>
         /// <param name="Campaign">The device&#39;s campaign ID.</param>
         /// <param name="CreatedAt">The time the campaign was created.</param>
+        /// <param name="DeploymentState">The state of the update campaign on the device.</param>
+        /// <param name="Description">Description.</param>
+        /// <param name="DeviceId">The device ID.</param>
+        /// <param name="Etag">API resource entity version.</param>
+        /// <param name="Id">The metadata record ID.</param>
+        /// <param name="Mechanism">How the firmware is delivered (connector or direct).</param>
+        /// <param name="MechanismUrl">The Cloud Connect URL.</param>
+        /// <param name="Name">The record name.</param>
         /// <param name="_Object">Entity name: always &#39;update-campaign-device-metadata&#39;.</param>
         /// <param name="UpdatedAt">This time this record was modified in the database format: date-time.</param>
-        /// <param name="Mechanism">How the firmware is delivered (connector or direct).</param>
-        /// <param name="Name">The record name.</param>
-        /// <param name="Etag">API resource entity version.</param>
-        /// <param name="MechanismUrl">The Cloud Connect URL.</param>
-        /// <param name="DeploymentState">The state of the update campaign on the device.</param>
-        /// <param name="Id">The metadata record ID.</param>
-        /// <param name="DeviceId">The device ID.</param>
-        public CampaignDeviceMetadata(string Description = default(string), string Campaign = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), string Mechanism = default(string), string Name = default(string), string Etag = default(string), string MechanismUrl = default(string), DeploymentStateEnum? DeploymentState = default(DeploymentStateEnum?), string Id = default(string), string DeviceId = default(string))
+        public CampaignDeviceMetadata(string Campaign = default(string), DateTime? CreatedAt = default(DateTime?), DeploymentStateEnum? DeploymentState = default(DeploymentStateEnum?), string Description = default(string), string DeviceId = default(string), string Etag = default(string), string Id = default(string), string Mechanism = default(string), string MechanismUrl = default(string), string Name = default(string), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?))
         {
-            this.Description = Description;
             this.Campaign = Campaign;
             this.CreatedAt = CreatedAt;
+            this.DeploymentState = DeploymentState;
+            this.Description = Description;
+            this.DeviceId = DeviceId;
+            this.Etag = Etag;
+            this.Id = Id;
+            this.Mechanism = Mechanism;
+            this.MechanismUrl = MechanismUrl;
+            this.Name = Name;
             this._Object = _Object;
             this.UpdatedAt = UpdatedAt;
-            this.Mechanism = Mechanism;
-            this.Name = Name;
-            this.Etag = Etag;
-            this.MechanismUrl = MechanismUrl;
-            this.DeploymentState = DeploymentState;
-            this.Id = Id;
-            this.DeviceId = DeviceId;
         }
         
-        /// <summary>
-        /// Description
-        /// </summary>
-        /// <value>Description</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
-        public string Description { get; set; }
-
         /// <summary>
         /// The device&#39;s campaign ID
         /// </summary>
@@ -133,6 +126,56 @@ namespace update_service.Model
         /// <value>The time the campaign was created</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
+
+
+        /// <summary>
+        /// Description
+        /// </summary>
+        /// <value>Description</value>
+        [DataMember(Name="description", EmitDefaultValue=false)]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// The device ID
+        /// </summary>
+        /// <value>The device ID</value>
+        [DataMember(Name="device_id", EmitDefaultValue=false)]
+        public string DeviceId { get; set; }
+
+        /// <summary>
+        /// API resource entity version
+        /// </summary>
+        /// <value>API resource entity version</value>
+        [DataMember(Name="etag", EmitDefaultValue=false)]
+        public string Etag { get; set; }
+
+        /// <summary>
+        /// The metadata record ID
+        /// </summary>
+        /// <value>The metadata record ID</value>
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public string Id { get; set; }
+
+        /// <summary>
+        /// How the firmware is delivered (connector or direct)
+        /// </summary>
+        /// <value>How the firmware is delivered (connector or direct)</value>
+        [DataMember(Name="mechanism", EmitDefaultValue=false)]
+        public string Mechanism { get; set; }
+
+        /// <summary>
+        /// The Cloud Connect URL
+        /// </summary>
+        /// <value>The Cloud Connect URL</value>
+        [DataMember(Name="mechanism_url", EmitDefaultValue=false)]
+        public string MechanismUrl { get; set; }
+
+        /// <summary>
+        /// The record name
+        /// </summary>
+        /// <value>The record name</value>
+        [DataMember(Name="name", EmitDefaultValue=false)]
+        public string Name { get; set; }
 
         /// <summary>
         /// Entity name: always &#39;update-campaign-device-metadata&#39;
@@ -149,49 +192,6 @@ namespace update_service.Model
         public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
-        /// How the firmware is delivered (connector or direct)
-        /// </summary>
-        /// <value>How the firmware is delivered (connector or direct)</value>
-        [DataMember(Name="mechanism", EmitDefaultValue=false)]
-        public string Mechanism { get; set; }
-
-        /// <summary>
-        /// The record name
-        /// </summary>
-        /// <value>The record name</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// API resource entity version
-        /// </summary>
-        /// <value>API resource entity version</value>
-        [DataMember(Name="etag", EmitDefaultValue=false)]
-        public string Etag { get; set; }
-
-        /// <summary>
-        /// The Cloud Connect URL
-        /// </summary>
-        /// <value>The Cloud Connect URL</value>
-        [DataMember(Name="mechanism_url", EmitDefaultValue=false)]
-        public string MechanismUrl { get; set; }
-
-
-        /// <summary>
-        /// The metadata record ID
-        /// </summary>
-        /// <value>The metadata record ID</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
-        public string Id { get; set; }
-
-        /// <summary>
-        /// The device ID
-        /// </summary>
-        /// <value>The device ID</value>
-        [DataMember(Name="device_id", EmitDefaultValue=false)]
-        public string DeviceId { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -199,18 +199,18 @@ namespace update_service.Model
         {
             var sb = new StringBuilder();
             sb.Append("class CampaignDeviceMetadata {\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Campaign: ").Append(Campaign).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
+            sb.Append("  DeploymentState: ").Append(DeploymentState).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
+            sb.Append("  Etag: ").Append(Etag).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Mechanism: ").Append(Mechanism).Append("\n");
+            sb.Append("  MechanismUrl: ").Append(MechanismUrl).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
-            sb.Append("  Mechanism: ").Append(Mechanism).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Etag: ").Append(Etag).Append("\n");
-            sb.Append("  MechanismUrl: ").Append(MechanismUrl).Append("\n");
-            sb.Append("  DeploymentState: ").Append(DeploymentState).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -246,11 +246,6 @@ namespace update_service.Model
 
             return 
                 (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
-                ) && 
-                (
                     this.Campaign == input.Campaign ||
                     (this.Campaign != null &&
                     this.Campaign.Equals(input.Campaign))
@@ -261,6 +256,46 @@ namespace update_service.Model
                     this.CreatedAt.Equals(input.CreatedAt))
                 ) && 
                 (
+                    this.DeploymentState == input.DeploymentState ||
+                    (this.DeploymentState != null &&
+                    this.DeploymentState.Equals(input.DeploymentState))
+                ) && 
+                (
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
+                ) && 
+                (
+                    this.DeviceId == input.DeviceId ||
+                    (this.DeviceId != null &&
+                    this.DeviceId.Equals(input.DeviceId))
+                ) && 
+                (
+                    this.Etag == input.Etag ||
+                    (this.Etag != null &&
+                    this.Etag.Equals(input.Etag))
+                ) && 
+                (
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.Mechanism == input.Mechanism ||
+                    (this.Mechanism != null &&
+                    this.Mechanism.Equals(input.Mechanism))
+                ) && 
+                (
+                    this.MechanismUrl == input.MechanismUrl ||
+                    (this.MechanismUrl != null &&
+                    this.MechanismUrl.Equals(input.MechanismUrl))
+                ) && 
+                (
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
+                ) && 
+                (
                     this._Object == input._Object ||
                     (this._Object != null &&
                     this._Object.Equals(input._Object))
@@ -269,41 +304,6 @@ namespace update_service.Model
                     this.UpdatedAt == input.UpdatedAt ||
                     (this.UpdatedAt != null &&
                     this.UpdatedAt.Equals(input.UpdatedAt))
-                ) && 
-                (
-                    this.Mechanism == input.Mechanism ||
-                    (this.Mechanism != null &&
-                    this.Mechanism.Equals(input.Mechanism))
-                ) && 
-                (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
-                ) && 
-                (
-                    this.Etag == input.Etag ||
-                    (this.Etag != null &&
-                    this.Etag.Equals(input.Etag))
-                ) && 
-                (
-                    this.MechanismUrl == input.MechanismUrl ||
-                    (this.MechanismUrl != null &&
-                    this.MechanismUrl.Equals(input.MechanismUrl))
-                ) && 
-                (
-                    this.DeploymentState == input.DeploymentState ||
-                    (this.DeploymentState != null &&
-                    this.DeploymentState.Equals(input.DeploymentState))
-                ) && 
-                (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
-                ) && 
-                (
-                    this.DeviceId == input.DeviceId ||
-                    (this.DeviceId != null &&
-                    this.DeviceId.Equals(input.DeviceId))
                 );
         }
 
@@ -316,30 +316,30 @@ namespace update_service.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.Campaign != null)
                     hashCode = hashCode * 59 + this.Campaign.GetHashCode();
                 if (this.CreatedAt != null)
                     hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
+                if (this.DeploymentState != null)
+                    hashCode = hashCode * 59 + this.DeploymentState.GetHashCode();
+                if (this.Description != null)
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                if (this.DeviceId != null)
+                    hashCode = hashCode * 59 + this.DeviceId.GetHashCode();
+                if (this.Etag != null)
+                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
+                if (this.Id != null)
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.Mechanism != null)
+                    hashCode = hashCode * 59 + this.Mechanism.GetHashCode();
+                if (this.MechanismUrl != null)
+                    hashCode = hashCode * 59 + this.MechanismUrl.GetHashCode();
+                if (this.Name != null)
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
                 if (this._Object != null)
                     hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.UpdatedAt != null)
                     hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
-                if (this.Mechanism != null)
-                    hashCode = hashCode * 59 + this.Mechanism.GetHashCode();
-                if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
-                if (this.Etag != null)
-                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
-                if (this.MechanismUrl != null)
-                    hashCode = hashCode * 59 + this.MechanismUrl.GetHashCode();
-                if (this.DeploymentState != null)
-                    hashCode = hashCode * 59 + this.DeploymentState.GetHashCode();
-                if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.DeviceId != null)
-                    hashCode = hashCode * 59 + this.DeviceId.GetHashCode();
                 return hashCode;
             }
         }

@@ -34,40 +34,28 @@ namespace update_service.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="FirmwareImageInNinFilter" /> class.
         /// </summary>
-        /// <param name="Datafile">Datafile.</param>
-        /// <param name="Description">Description.</param>
         /// <param name="CreatedAt">CreatedAt.</param>
-        /// <param name="UpdatedAt">UpdatedAt.</param>
-        /// <param name="Etag">Etag.</param>
+        /// <param name="Datafile">Datafile.</param>
         /// <param name="DatafileChecksum">DatafileChecksum.</param>
         /// <param name="DatafileSize">DatafileSize.</param>
+        /// <param name="Description">Description.</param>
+        /// <param name="Etag">Etag.</param>
         /// <param name="Id">Id.</param>
         /// <param name="Name">Name.</param>
-        public FirmwareImageInNinFilter(string Datafile = default(string), string Description = default(string), DateTime? CreatedAt = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), string DatafileChecksum = default(string), int? DatafileSize = default(int?), string Id = default(string), string Name = default(string))
+        /// <param name="UpdatedAt">UpdatedAt.</param>
+        public FirmwareImageInNinFilter(DateTime? CreatedAt = default(DateTime?), string Datafile = default(string), string DatafileChecksum = default(string), int? DatafileSize = default(int?), string Description = default(string), DateTime? Etag = default(DateTime?), string Id = default(string), string Name = default(string), DateTime? UpdatedAt = default(DateTime?))
         {
-            this.Datafile = Datafile;
-            this.Description = Description;
             this.CreatedAt = CreatedAt;
-            this.UpdatedAt = UpdatedAt;
-            this.Etag = Etag;
+            this.Datafile = Datafile;
             this.DatafileChecksum = DatafileChecksum;
             this.DatafileSize = DatafileSize;
+            this.Description = Description;
+            this.Etag = Etag;
             this.Id = Id;
             this.Name = Name;
+            this.UpdatedAt = UpdatedAt;
         }
         
-        /// <summary>
-        /// Gets or Sets Datafile
-        /// </summary>
-        [DataMember(Name="datafile", EmitDefaultValue=false)]
-        public string Datafile { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Description
-        /// </summary>
-        [DataMember(Name="description", EmitDefaultValue=false)]
-        public string Description { get; set; }
-
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
@@ -75,16 +63,10 @@ namespace update_service.Model
         public DateTime? CreatedAt { get; set; }
 
         /// <summary>
-        /// Gets or Sets UpdatedAt
+        /// Gets or Sets Datafile
         /// </summary>
-        [DataMember(Name="updated_at", EmitDefaultValue=false)]
-        public DateTime? UpdatedAt { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Etag
-        /// </summary>
-        [DataMember(Name="etag", EmitDefaultValue=false)]
-        public DateTime? Etag { get; set; }
+        [DataMember(Name="datafile", EmitDefaultValue=false)]
+        public string Datafile { get; set; }
 
         /// <summary>
         /// Gets or Sets DatafileChecksum
@@ -99,6 +81,18 @@ namespace update_service.Model
         public int? DatafileSize { get; set; }
 
         /// <summary>
+        /// Gets or Sets Description
+        /// </summary>
+        [DataMember(Name="description", EmitDefaultValue=false)]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Etag
+        /// </summary>
+        [DataMember(Name="etag", EmitDefaultValue=false)]
+        public DateTime? Etag { get; set; }
+
+        /// <summary>
         /// Gets or Sets Id
         /// </summary>
         [DataMember(Name="id", EmitDefaultValue=false)]
@@ -111,6 +105,12 @@ namespace update_service.Model
         public string Name { get; set; }
 
         /// <summary>
+        /// Gets or Sets UpdatedAt
+        /// </summary>
+        [DataMember(Name="updated_at", EmitDefaultValue=false)]
+        public DateTime? UpdatedAt { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -118,15 +118,15 @@ namespace update_service.Model
         {
             var sb = new StringBuilder();
             sb.Append("class FirmwareImageInNinFilter {\n");
-            sb.Append("  Datafile: ").Append(Datafile).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
-            sb.Append("  Etag: ").Append(Etag).Append("\n");
+            sb.Append("  Datafile: ").Append(Datafile).Append("\n");
             sb.Append("  DatafileChecksum: ").Append(DatafileChecksum).Append("\n");
             sb.Append("  DatafileSize: ").Append(DatafileSize).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -162,29 +162,14 @@ namespace update_service.Model
 
             return 
                 (
-                    this.Datafile == input.Datafile ||
-                    (this.Datafile != null &&
-                    this.Datafile.Equals(input.Datafile))
-                ) && 
-                (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
-                ) && 
-                (
                     this.CreatedAt == input.CreatedAt ||
                     (this.CreatedAt != null &&
                     this.CreatedAt.Equals(input.CreatedAt))
                 ) && 
                 (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
-                ) && 
-                (
-                    this.Etag == input.Etag ||
-                    (this.Etag != null &&
-                    this.Etag.Equals(input.Etag))
+                    this.Datafile == input.Datafile ||
+                    (this.Datafile != null &&
+                    this.Datafile.Equals(input.Datafile))
                 ) && 
                 (
                     this.DatafileChecksum == input.DatafileChecksum ||
@@ -197,6 +182,16 @@ namespace update_service.Model
                     this.DatafileSize.Equals(input.DatafileSize))
                 ) && 
                 (
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
+                ) && 
+                (
+                    this.Etag == input.Etag ||
+                    (this.Etag != null &&
+                    this.Etag.Equals(input.Etag))
+                ) && 
+                (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
@@ -205,6 +200,11 @@ namespace update_service.Model
                     this.Name == input.Name ||
                     (this.Name != null &&
                     this.Name.Equals(input.Name))
+                ) && 
+                (
+                    this.UpdatedAt == input.UpdatedAt ||
+                    (this.UpdatedAt != null &&
+                    this.UpdatedAt.Equals(input.UpdatedAt))
                 );
         }
 
@@ -217,24 +217,24 @@ namespace update_service.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Datafile != null)
-                    hashCode = hashCode * 59 + this.Datafile.GetHashCode();
-                if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.CreatedAt != null)
                     hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
-                if (this.UpdatedAt != null)
-                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
-                if (this.Etag != null)
-                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
+                if (this.Datafile != null)
+                    hashCode = hashCode * 59 + this.Datafile.GetHashCode();
                 if (this.DatafileChecksum != null)
                     hashCode = hashCode * 59 + this.DatafileChecksum.GetHashCode();
                 if (this.DatafileSize != null)
                     hashCode = hashCode * 59 + this.DatafileSize.GetHashCode();
+                if (this.Description != null)
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                if (this.Etag != null)
+                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
                 if (this.Id != null)
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.Name != null)
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.UpdatedAt != null)
+                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
                 return hashCode;
             }
         }
