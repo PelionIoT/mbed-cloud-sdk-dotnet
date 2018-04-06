@@ -35,19 +35,19 @@ namespace device_directory.Model
         /// Initializes a new instance of the <see cref="DeviceEventInNinFilter" /> class.
         /// </summary>
         /// <param name="DateTime">DateTime.</param>
-        /// <param name="StateChange">StateChange.</param>
         /// <param name="Description">Description.</param>
         /// <param name="DeviceId">DeviceId.</param>
-        /// <param name="Id">Id.</param>
         /// <param name="EventType">EventType.</param>
-        public DeviceEventInNinFilter(DateTime? DateTime = default(DateTime?), bool? StateChange = default(bool?), string Description = default(string), string DeviceId = default(string), string Id = default(string), string EventType = default(string))
+        /// <param name="Id">Id.</param>
+        /// <param name="StateChange">StateChange.</param>
+        public DeviceEventInNinFilter(DateTime? DateTime = default(DateTime?), string Description = default(string), string DeviceId = default(string), string EventType = default(string), string Id = default(string), bool? StateChange = default(bool?))
         {
             this.DateTime = DateTime;
-            this.StateChange = StateChange;
             this.Description = Description;
             this.DeviceId = DeviceId;
-            this.Id = Id;
             this.EventType = EventType;
+            this.Id = Id;
+            this.StateChange = StateChange;
         }
         
         /// <summary>
@@ -55,12 +55,6 @@ namespace device_directory.Model
         /// </summary>
         [DataMember(Name="date_time", EmitDefaultValue=false)]
         public DateTime? DateTime { get; set; }
-
-        /// <summary>
-        /// Gets or Sets StateChange
-        /// </summary>
-        [DataMember(Name="state_change", EmitDefaultValue=false)]
-        public bool? StateChange { get; set; }
 
         /// <summary>
         /// Gets or Sets Description
@@ -75,16 +69,22 @@ namespace device_directory.Model
         public string DeviceId { get; set; }
 
         /// <summary>
+        /// Gets or Sets EventType
+        /// </summary>
+        [DataMember(Name="event_type", EmitDefaultValue=false)]
+        public string EventType { get; set; }
+
+        /// <summary>
         /// Gets or Sets Id
         /// </summary>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets EventType
+        /// Gets or Sets StateChange
         /// </summary>
-        [DataMember(Name="event_type", EmitDefaultValue=false)]
-        public string EventType { get; set; }
+        [DataMember(Name="state_change", EmitDefaultValue=false)]
+        public bool? StateChange { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -95,11 +95,11 @@ namespace device_directory.Model
             var sb = new StringBuilder();
             sb.Append("class DeviceEventInNinFilter {\n");
             sb.Append("  DateTime: ").Append(DateTime).Append("\n");
-            sb.Append("  StateChange: ").Append(StateChange).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  EventType: ").Append(EventType).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  StateChange: ").Append(StateChange).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -140,11 +140,6 @@ namespace device_directory.Model
                     this.DateTime.Equals(input.DateTime))
                 ) && 
                 (
-                    this.StateChange == input.StateChange ||
-                    (this.StateChange != null &&
-                    this.StateChange.Equals(input.StateChange))
-                ) && 
-                (
                     this.Description == input.Description ||
                     (this.Description != null &&
                     this.Description.Equals(input.Description))
@@ -155,14 +150,19 @@ namespace device_directory.Model
                     this.DeviceId.Equals(input.DeviceId))
                 ) && 
                 (
+                    this.EventType == input.EventType ||
+                    (this.EventType != null &&
+                    this.EventType.Equals(input.EventType))
+                ) && 
+                (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
                 ) && 
                 (
-                    this.EventType == input.EventType ||
-                    (this.EventType != null &&
-                    this.EventType.Equals(input.EventType))
+                    this.StateChange == input.StateChange ||
+                    (this.StateChange != null &&
+                    this.StateChange.Equals(input.StateChange))
                 );
         }
 
@@ -177,16 +177,16 @@ namespace device_directory.Model
                 int hashCode = 41;
                 if (this.DateTime != null)
                     hashCode = hashCode * 59 + this.DateTime.GetHashCode();
-                if (this.StateChange != null)
-                    hashCode = hashCode * 59 + this.StateChange.GetHashCode();
                 if (this.Description != null)
                     hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.DeviceId != null)
                     hashCode = hashCode * 59 + this.DeviceId.GetHashCode();
-                if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.EventType != null)
                     hashCode = hashCode * 59 + this.EventType.GetHashCode();
+                if (this.Id != null)
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.StateChange != null)
+                    hashCode = hashCode * 59 + this.StateChange.GetHashCode();
                 return hashCode;
             }
         }

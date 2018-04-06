@@ -34,32 +34,26 @@ namespace device_directory.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceGteLteFilter" /> class.
         /// </summary>
-        /// <param name="ManifestTimestamp">ManifestTimestamp.</param>
         /// <param name="BootstrapExpirationDate">BootstrapExpirationDate.</param>
-        /// <param name="CreatedAt">CreatedAt.</param>
-        /// <param name="ConnectorExpirationDate">ConnectorExpirationDate.</param>
-        /// <param name="UpdatedAt">UpdatedAt.</param>
-        /// <param name="Etag">Etag.</param>
-        /// <param name="EnrolmentListTimestamp">EnrolmentListTimestamp.</param>
         /// <param name="BootstrappedTimestamp">BootstrappedTimestamp.</param>
-        public DeviceGteLteFilter(DateTime? ManifestTimestamp = default(DateTime?), DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? CreatedAt = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), DateTime? EnrolmentListTimestamp = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?))
+        /// <param name="ConnectorExpirationDate">ConnectorExpirationDate.</param>
+        /// <param name="CreatedAt">CreatedAt.</param>
+        /// <param name="EnrolmentListTimestamp">EnrolmentListTimestamp.</param>
+        /// <param name="Etag">Etag.</param>
+        /// <param name="ManifestTimestamp">ManifestTimestamp.</param>
+        /// <param name="UpdatedAt">UpdatedAt.</param>
+        public DeviceGteLteFilter(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), DateTime? CreatedAt = default(DateTime?), DateTime? EnrolmentListTimestamp = default(DateTime?), DateTime? Etag = default(DateTime?), DateTime? ManifestTimestamp = default(DateTime?), DateTime? UpdatedAt = default(DateTime?))
         {
-            this.ManifestTimestamp = ManifestTimestamp;
             this.BootstrapExpirationDate = BootstrapExpirationDate;
-            this.CreatedAt = CreatedAt;
-            this.ConnectorExpirationDate = ConnectorExpirationDate;
-            this.UpdatedAt = UpdatedAt;
-            this.Etag = Etag;
-            this.EnrolmentListTimestamp = EnrolmentListTimestamp;
             this.BootstrappedTimestamp = BootstrappedTimestamp;
+            this.ConnectorExpirationDate = ConnectorExpirationDate;
+            this.CreatedAt = CreatedAt;
+            this.EnrolmentListTimestamp = EnrolmentListTimestamp;
+            this.Etag = Etag;
+            this.ManifestTimestamp = ManifestTimestamp;
+            this.UpdatedAt = UpdatedAt;
         }
         
-        /// <summary>
-        /// Gets or Sets ManifestTimestamp
-        /// </summary>
-        [DataMember(Name="manifest_timestamp", EmitDefaultValue=false)]
-        public DateTime? ManifestTimestamp { get; set; }
-
         /// <summary>
         /// Gets or Sets BootstrapExpirationDate
         /// </summary>
@@ -67,10 +61,10 @@ namespace device_directory.Model
         public DateTime? BootstrapExpirationDate { get; set; }
 
         /// <summary>
-        /// Gets or Sets CreatedAt
+        /// Gets or Sets BootstrappedTimestamp
         /// </summary>
-        [DataMember(Name="created_at", EmitDefaultValue=false)]
-        public DateTime? CreatedAt { get; set; }
+        [DataMember(Name="bootstrapped_timestamp", EmitDefaultValue=false)]
+        public DateTime? BootstrappedTimestamp { get; set; }
 
         /// <summary>
         /// Gets or Sets ConnectorExpirationDate
@@ -79,16 +73,10 @@ namespace device_directory.Model
         public DateTime? ConnectorExpirationDate { get; set; }
 
         /// <summary>
-        /// Gets or Sets UpdatedAt
+        /// Gets or Sets CreatedAt
         /// </summary>
-        [DataMember(Name="updated_at", EmitDefaultValue=false)]
-        public DateTime? UpdatedAt { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Etag
-        /// </summary>
-        [DataMember(Name="etag", EmitDefaultValue=false)]
-        public DateTime? Etag { get; set; }
+        [DataMember(Name="created_at", EmitDefaultValue=false)]
+        public DateTime? CreatedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets EnrolmentListTimestamp
@@ -97,10 +85,22 @@ namespace device_directory.Model
         public DateTime? EnrolmentListTimestamp { get; set; }
 
         /// <summary>
-        /// Gets or Sets BootstrappedTimestamp
+        /// Gets or Sets Etag
         /// </summary>
-        [DataMember(Name="bootstrapped_timestamp", EmitDefaultValue=false)]
-        public DateTime? BootstrappedTimestamp { get; set; }
+        [DataMember(Name="etag", EmitDefaultValue=false)]
+        public DateTime? Etag { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ManifestTimestamp
+        /// </summary>
+        [DataMember(Name="manifest_timestamp", EmitDefaultValue=false)]
+        public DateTime? ManifestTimestamp { get; set; }
+
+        /// <summary>
+        /// Gets or Sets UpdatedAt
+        /// </summary>
+        [DataMember(Name="updated_at", EmitDefaultValue=false)]
+        public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -110,14 +110,14 @@ namespace device_directory.Model
         {
             var sb = new StringBuilder();
             sb.Append("class DeviceGteLteFilter {\n");
-            sb.Append("  ManifestTimestamp: ").Append(ManifestTimestamp).Append("\n");
             sb.Append("  BootstrapExpirationDate: ").Append(BootstrapExpirationDate).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  ConnectorExpirationDate: ").Append(ConnectorExpirationDate).Append("\n");
-            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
-            sb.Append("  Etag: ").Append(Etag).Append("\n");
-            sb.Append("  EnrolmentListTimestamp: ").Append(EnrolmentListTimestamp).Append("\n");
             sb.Append("  BootstrappedTimestamp: ").Append(BootstrappedTimestamp).Append("\n");
+            sb.Append("  ConnectorExpirationDate: ").Append(ConnectorExpirationDate).Append("\n");
+            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
+            sb.Append("  EnrolmentListTimestamp: ").Append(EnrolmentListTimestamp).Append("\n");
+            sb.Append("  Etag: ").Append(Etag).Append("\n");
+            sb.Append("  ManifestTimestamp: ").Append(ManifestTimestamp).Append("\n");
+            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -153,19 +153,14 @@ namespace device_directory.Model
 
             return 
                 (
-                    this.ManifestTimestamp == input.ManifestTimestamp ||
-                    (this.ManifestTimestamp != null &&
-                    this.ManifestTimestamp.Equals(input.ManifestTimestamp))
-                ) && 
-                (
                     this.BootstrapExpirationDate == input.BootstrapExpirationDate ||
                     (this.BootstrapExpirationDate != null &&
                     this.BootstrapExpirationDate.Equals(input.BootstrapExpirationDate))
                 ) && 
                 (
-                    this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    this.BootstrappedTimestamp == input.BootstrappedTimestamp ||
+                    (this.BootstrappedTimestamp != null &&
+                    this.BootstrappedTimestamp.Equals(input.BootstrappedTimestamp))
                 ) && 
                 (
                     this.ConnectorExpirationDate == input.ConnectorExpirationDate ||
@@ -173,14 +168,9 @@ namespace device_directory.Model
                     this.ConnectorExpirationDate.Equals(input.ConnectorExpirationDate))
                 ) && 
                 (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
-                ) && 
-                (
-                    this.Etag == input.Etag ||
-                    (this.Etag != null &&
-                    this.Etag.Equals(input.Etag))
+                    this.CreatedAt == input.CreatedAt ||
+                    (this.CreatedAt != null &&
+                    this.CreatedAt.Equals(input.CreatedAt))
                 ) && 
                 (
                     this.EnrolmentListTimestamp == input.EnrolmentListTimestamp ||
@@ -188,9 +178,19 @@ namespace device_directory.Model
                     this.EnrolmentListTimestamp.Equals(input.EnrolmentListTimestamp))
                 ) && 
                 (
-                    this.BootstrappedTimestamp == input.BootstrappedTimestamp ||
-                    (this.BootstrappedTimestamp != null &&
-                    this.BootstrappedTimestamp.Equals(input.BootstrappedTimestamp))
+                    this.Etag == input.Etag ||
+                    (this.Etag != null &&
+                    this.Etag.Equals(input.Etag))
+                ) && 
+                (
+                    this.ManifestTimestamp == input.ManifestTimestamp ||
+                    (this.ManifestTimestamp != null &&
+                    this.ManifestTimestamp.Equals(input.ManifestTimestamp))
+                ) && 
+                (
+                    this.UpdatedAt == input.UpdatedAt ||
+                    (this.UpdatedAt != null &&
+                    this.UpdatedAt.Equals(input.UpdatedAt))
                 );
         }
 
@@ -203,22 +203,22 @@ namespace device_directory.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.ManifestTimestamp != null)
-                    hashCode = hashCode * 59 + this.ManifestTimestamp.GetHashCode();
                 if (this.BootstrapExpirationDate != null)
                     hashCode = hashCode * 59 + this.BootstrapExpirationDate.GetHashCode();
-                if (this.CreatedAt != null)
-                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
-                if (this.ConnectorExpirationDate != null)
-                    hashCode = hashCode * 59 + this.ConnectorExpirationDate.GetHashCode();
-                if (this.UpdatedAt != null)
-                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
-                if (this.Etag != null)
-                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
-                if (this.EnrolmentListTimestamp != null)
-                    hashCode = hashCode * 59 + this.EnrolmentListTimestamp.GetHashCode();
                 if (this.BootstrappedTimestamp != null)
                     hashCode = hashCode * 59 + this.BootstrappedTimestamp.GetHashCode();
+                if (this.ConnectorExpirationDate != null)
+                    hashCode = hashCode * 59 + this.ConnectorExpirationDate.GetHashCode();
+                if (this.CreatedAt != null)
+                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
+                if (this.EnrolmentListTimestamp != null)
+                    hashCode = hashCode * 59 + this.EnrolmentListTimestamp.GetHashCode();
+                if (this.Etag != null)
+                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
+                if (this.ManifestTimestamp != null)
+                    hashCode = hashCode * 59 + this.ManifestTimestamp.GetHashCode();
+                if (this.UpdatedAt != null)
+                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
                 return hashCode;
             }
         }

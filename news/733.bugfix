@@ -1,2 +1,0 @@
-ConnectApi
-- DeleteSubscriptions now delete subscribtions by iterating connected devices.

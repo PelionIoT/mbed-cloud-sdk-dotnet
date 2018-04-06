@@ -35,19 +35,19 @@ namespace update_service.Model
         /// Initializes a new instance of the <see cref="UpdateCampaignGteLteFilter" /> class.
         /// </summary>
         /// <param name="CreatedAt">CreatedAt.</param>
-        /// <param name="When">When.</param>
-        /// <param name="UpdatedAt">UpdatedAt.</param>
-        /// <param name="Finished">Finished.</param>
         /// <param name="Etag">Etag.</param>
+        /// <param name="Finished">Finished.</param>
         /// <param name="StartedAt">StartedAt.</param>
-        public UpdateCampaignGteLteFilter(DateTime? CreatedAt = default(DateTime?), DateTime? When = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), DateTime? Finished = default(DateTime?), DateTime? Etag = default(DateTime?), DateTime? StartedAt = default(DateTime?))
+        /// <param name="UpdatedAt">UpdatedAt.</param>
+        /// <param name="When">When.</param>
+        public UpdateCampaignGteLteFilter(DateTime? CreatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), DateTime? Finished = default(DateTime?), DateTime? StartedAt = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), DateTime? When = default(DateTime?))
         {
             this.CreatedAt = CreatedAt;
-            this.When = When;
-            this.UpdatedAt = UpdatedAt;
-            this.Finished = Finished;
             this.Etag = Etag;
+            this.Finished = Finished;
             this.StartedAt = StartedAt;
+            this.UpdatedAt = UpdatedAt;
+            this.When = When;
         }
         
         /// <summary>
@@ -57,16 +57,10 @@ namespace update_service.Model
         public DateTime? CreatedAt { get; set; }
 
         /// <summary>
-        /// Gets or Sets When
+        /// Gets or Sets Etag
         /// </summary>
-        [DataMember(Name="when", EmitDefaultValue=false)]
-        public DateTime? When { get; set; }
-
-        /// <summary>
-        /// Gets or Sets UpdatedAt
-        /// </summary>
-        [DataMember(Name="updated_at", EmitDefaultValue=false)]
-        public DateTime? UpdatedAt { get; set; }
+        [DataMember(Name="etag", EmitDefaultValue=false)]
+        public DateTime? Etag { get; set; }
 
         /// <summary>
         /// Gets or Sets Finished
@@ -75,16 +69,22 @@ namespace update_service.Model
         public DateTime? Finished { get; set; }
 
         /// <summary>
-        /// Gets or Sets Etag
-        /// </summary>
-        [DataMember(Name="etag", EmitDefaultValue=false)]
-        public DateTime? Etag { get; set; }
-
-        /// <summary>
         /// Gets or Sets StartedAt
         /// </summary>
         [DataMember(Name="started_at", EmitDefaultValue=false)]
         public DateTime? StartedAt { get; set; }
+
+        /// <summary>
+        /// Gets or Sets UpdatedAt
+        /// </summary>
+        [DataMember(Name="updated_at", EmitDefaultValue=false)]
+        public DateTime? UpdatedAt { get; set; }
+
+        /// <summary>
+        /// Gets or Sets When
+        /// </summary>
+        [DataMember(Name="when", EmitDefaultValue=false)]
+        public DateTime? When { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -95,11 +95,11 @@ namespace update_service.Model
             var sb = new StringBuilder();
             sb.Append("class UpdateCampaignGteLteFilter {\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  When: ").Append(When).Append("\n");
-            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
-            sb.Append("  Finished: ").Append(Finished).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
+            sb.Append("  Finished: ").Append(Finished).Append("\n");
             sb.Append("  StartedAt: ").Append(StartedAt).Append("\n");
+            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
+            sb.Append("  When: ").Append(When).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -140,14 +140,9 @@ namespace update_service.Model
                     this.CreatedAt.Equals(input.CreatedAt))
                 ) && 
                 (
-                    this.When == input.When ||
-                    (this.When != null &&
-                    this.When.Equals(input.When))
-                ) && 
-                (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
+                    this.Etag == input.Etag ||
+                    (this.Etag != null &&
+                    this.Etag.Equals(input.Etag))
                 ) && 
                 (
                     this.Finished == input.Finished ||
@@ -155,14 +150,19 @@ namespace update_service.Model
                     this.Finished.Equals(input.Finished))
                 ) && 
                 (
-                    this.Etag == input.Etag ||
-                    (this.Etag != null &&
-                    this.Etag.Equals(input.Etag))
-                ) && 
-                (
                     this.StartedAt == input.StartedAt ||
                     (this.StartedAt != null &&
                     this.StartedAt.Equals(input.StartedAt))
+                ) && 
+                (
+                    this.UpdatedAt == input.UpdatedAt ||
+                    (this.UpdatedAt != null &&
+                    this.UpdatedAt.Equals(input.UpdatedAt))
+                ) && 
+                (
+                    this.When == input.When ||
+                    (this.When != null &&
+                    this.When.Equals(input.When))
                 );
         }
 
@@ -177,16 +177,16 @@ namespace update_service.Model
                 int hashCode = 41;
                 if (this.CreatedAt != null)
                     hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
-                if (this.When != null)
-                    hashCode = hashCode * 59 + this.When.GetHashCode();
-                if (this.UpdatedAt != null)
-                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
-                if (this.Finished != null)
-                    hashCode = hashCode * 59 + this.Finished.GetHashCode();
                 if (this.Etag != null)
                     hashCode = hashCode * 59 + this.Etag.GetHashCode();
+                if (this.Finished != null)
+                    hashCode = hashCode * 59 + this.Finished.GetHashCode();
                 if (this.StartedAt != null)
                     hashCode = hashCode * 59 + this.StartedAt.GetHashCode();
+                if (this.UpdatedAt != null)
+                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
+                if (this.When != null)
+                    hashCode = hashCode * 59 + this.When.GetHashCode();
                 return hashCode;
             }
         }

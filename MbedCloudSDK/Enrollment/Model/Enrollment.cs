@@ -13,43 +13,43 @@ namespace MbedCloudSDK.Enrollment.Model
     public class Enrollment
     {
         /// <summary>
-        /// Enrollment internal Id
+        /// Gets enrollment internal Id
         /// </summary>
         [JsonProperty]
         public string Id { get; private set; }
 
         /// <summary>
-        /// The id of the device in the device directory once it has been registered
+        /// Gets the id of the device in the device directory once it has been registered
         /// </summary>
         [JsonProperty]
         public string DeviceId { get; private set; }
 
         /// <summary>
-        /// The time the enrollment identity was created
+        /// Gets the time the enrollment identity was created
         /// </summary>
         [JsonProperty]
         public DateTime? CreatedAt { get; private set; }
 
         /// <summary>
-        /// The time of claiming the device to the account
+        /// Gets the time of claiming the device to the account
         /// </summary>
         [JsonProperty]
         public DateTime? ClaimedAt { get; private set; }
 
         /// <summary>
-        /// The id of the claim
+        /// Gets the id of the claim
         /// </summary>
         [JsonProperty]
         public string ClaimId { get; private set; }
 
         /// <summary>
-        /// The id of the account
+        /// Gets the id of the account
         /// </summary>
         [JsonProperty]
         public string AccountId { get; private set; }
 
         /// <summary>
-        /// The enrollment claim expiration time
+        /// Gets the enrollment claim expiration time
         /// </summary>
         [JsonProperty]
         public DateTime? ExpiresAt { get; private set; }

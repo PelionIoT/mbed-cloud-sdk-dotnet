@@ -34,24 +34,18 @@ namespace update_service.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="FirmwareManifestGteLteFilter" /> class.
         /// </summary>
-        /// <param name="Timestamp">Timestamp.</param>
         /// <param name="CreatedAt">CreatedAt.</param>
         /// <param name="Etag">Etag.</param>
+        /// <param name="Timestamp">Timestamp.</param>
         /// <param name="UpdatedAt">UpdatedAt.</param>
-        public FirmwareManifestGteLteFilter(DateTime? Timestamp = default(DateTime?), DateTime? CreatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), DateTime? UpdatedAt = default(DateTime?))
+        public FirmwareManifestGteLteFilter(DateTime? CreatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), DateTime? Timestamp = default(DateTime?), DateTime? UpdatedAt = default(DateTime?))
         {
-            this.Timestamp = Timestamp;
             this.CreatedAt = CreatedAt;
             this.Etag = Etag;
+            this.Timestamp = Timestamp;
             this.UpdatedAt = UpdatedAt;
         }
         
-        /// <summary>
-        /// Gets or Sets Timestamp
-        /// </summary>
-        [DataMember(Name="timestamp", EmitDefaultValue=false)]
-        public DateTime? Timestamp { get; set; }
-
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
@@ -63,6 +57,12 @@ namespace update_service.Model
         /// </summary>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public DateTime? Etag { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Timestamp
+        /// </summary>
+        [DataMember(Name="timestamp", EmitDefaultValue=false)]
+        public DateTime? Timestamp { get; set; }
 
         /// <summary>
         /// Gets or Sets UpdatedAt
@@ -78,9 +78,9 @@ namespace update_service.Model
         {
             var sb = new StringBuilder();
             sb.Append("class FirmwareManifestGteLteFilter {\n");
-            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
+            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -117,11 +117,6 @@ namespace update_service.Model
 
             return 
                 (
-                    this.Timestamp == input.Timestamp ||
-                    (this.Timestamp != null &&
-                    this.Timestamp.Equals(input.Timestamp))
-                ) && 
-                (
                     this.CreatedAt == input.CreatedAt ||
                     (this.CreatedAt != null &&
                     this.CreatedAt.Equals(input.CreatedAt))
@@ -130,6 +125,11 @@ namespace update_service.Model
                     this.Etag == input.Etag ||
                     (this.Etag != null &&
                     this.Etag.Equals(input.Etag))
+                ) && 
+                (
+                    this.Timestamp == input.Timestamp ||
+                    (this.Timestamp != null &&
+                    this.Timestamp.Equals(input.Timestamp))
                 ) && 
                 (
                     this.UpdatedAt == input.UpdatedAt ||
@@ -147,12 +147,12 @@ namespace update_service.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Timestamp != null)
-                    hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
                 if (this.CreatedAt != null)
                     hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
                 if (this.Etag != null)
                     hashCode = hashCode * 59 + this.Etag.GetHashCode();
+                if (this.Timestamp != null)
+                    hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
                 if (this.UpdatedAt != null)
                     hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
                 return hashCode;

@@ -18,7 +18,7 @@ namespace MbedCloudSDK.Common
     /// Utils
     /// A set of utility functions
     /// </summary>
-    public static class Utils
+    internal static class Utils
     {
         /// <summary>
         /// Map update object to original object.
@@ -261,6 +261,14 @@ namespace MbedCloudSDK.Common
             return DecodeBase64(notificationData.ContentType, notificationData.Payload, new TlvDecoder());
         }
 
+        /// <summary>
+        /// Handles the not found.
+        /// </summary>
+        /// <typeparam name="T">Return type</typeparam>
+        /// <typeparam name="E">The exception type</typeparam>
+        /// <param name="e">The exception.</param>
+        /// <returns>Return type</returns>
+        /// <exception cref="CloudApiException">The exception</exception>
         public static T HandleNotFound<T, E>(dynamic e)
          where E : Exception
         {

@@ -27,5 +27,11 @@ namespace MbedCloudSDK.Common
         /// Gets or sets config
         /// </summary>
         protected Config Config { get => config; set => config = value; }
+
+        /// <summary>
+        /// Gets UserAgent
+        /// </summary>
+        /// <returns></returns>
+        public static string UserAgent = $"mbed-cloud-sdk-dotnet/{Version.version}";
     }
 }

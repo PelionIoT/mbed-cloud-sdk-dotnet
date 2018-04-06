@@ -39,16 +39,16 @@ namespace device_directory.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceEventData" /> class.
         /// </summary>
-        /// <param name="DateTime">DateTime (required).</param>
-        /// <param name="StateChange">StateChange.</param>
-        /// <param name="Description">Description.</param>
         /// <param name="Changes">Changes.</param>
-        /// <param name="EventTypeDescription">EventTypeDescription.</param>
-        /// <param name="EventType">EventType.</param>
         /// <param name="Data">Data.</param>
-        /// <param name="Id">Id (required).</param>
+        /// <param name="DateTime">DateTime (required).</param>
+        /// <param name="Description">Description.</param>
         /// <param name="DeviceId">DeviceId.</param>
-        public DeviceEventData(DateTime? DateTime = default(DateTime?), bool? StateChange = default(bool?), string Description = default(string), Object Changes = default(Object), string EventTypeDescription = default(string), string EventType = default(string), Object Data = default(Object), string Id = default(string), string DeviceId = default(string))
+        /// <param name="EventType">EventType.</param>
+        /// <param name="EventTypeDescription">EventTypeDescription.</param>
+        /// <param name="Id">Id (required).</param>
+        /// <param name="StateChange">StateChange.</param>
+        public DeviceEventData(Object Changes = default(Object), Object Data = default(Object), DateTime? DateTime = default(DateTime?), string Description = default(string), string DeviceId = default(string), string EventType = default(string), string EventTypeDescription = default(string), string Id = default(string), bool? StateChange = default(bool?))
         {
             // to ensure "DateTime" is required (not null)
             if (DateTime == null)
@@ -68,50 +68,20 @@ namespace device_directory.Model
             {
                 this.Id = Id;
             }
-            this.StateChange = StateChange;
-            this.Description = Description;
             this.Changes = Changes;
-            this.EventTypeDescription = EventTypeDescription;
-            this.EventType = EventType;
             this.Data = Data;
+            this.Description = Description;
             this.DeviceId = DeviceId;
+            this.EventType = EventType;
+            this.EventTypeDescription = EventTypeDescription;
+            this.StateChange = StateChange;
         }
         
-        /// <summary>
-        /// Gets or Sets DateTime
-        /// </summary>
-        [DataMember(Name="date_time", EmitDefaultValue=false)]
-        public DateTime? DateTime { get; set; }
-
-        /// <summary>
-        /// Gets or Sets StateChange
-        /// </summary>
-        [DataMember(Name="state_change", EmitDefaultValue=false)]
-        public bool? StateChange { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Description
-        /// </summary>
-        [DataMember(Name="description", EmitDefaultValue=false)]
-        public string Description { get; set; }
-
         /// <summary>
         /// Gets or Sets Changes
         /// </summary>
         [DataMember(Name="changes", EmitDefaultValue=false)]
         public Object Changes { get; set; }
-
-        /// <summary>
-        /// Gets or Sets EventTypeDescription
-        /// </summary>
-        [DataMember(Name="event_type_description", EmitDefaultValue=false)]
-        public string EventTypeDescription { get; set; }
-
-        /// <summary>
-        /// Gets or Sets EventType
-        /// </summary>
-        [DataMember(Name="event_type", EmitDefaultValue=false)]
-        public string EventType { get; set; }
 
         /// <summary>
         /// Gets or Sets Data
@@ -120,16 +90,46 @@ namespace device_directory.Model
         public Object Data { get; set; }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// Gets or Sets DateTime
         /// </summary>
-        [DataMember(Name="id", EmitDefaultValue=false)]
-        public string Id { get; set; }
+        [DataMember(Name="date_time", EmitDefaultValue=false)]
+        public DateTime? DateTime { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Description
+        /// </summary>
+        [DataMember(Name="description", EmitDefaultValue=false)]
+        public string Description { get; set; }
 
         /// <summary>
         /// Gets or Sets DeviceId
         /// </summary>
         [DataMember(Name="device_id", EmitDefaultValue=false)]
         public string DeviceId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EventType
+        /// </summary>
+        [DataMember(Name="event_type", EmitDefaultValue=false)]
+        public string EventType { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EventTypeDescription
+        /// </summary>
+        [DataMember(Name="event_type_description", EmitDefaultValue=false)]
+        public string EventTypeDescription { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Id
+        /// </summary>
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Gets or Sets StateChange
+        /// </summary>
+        [DataMember(Name="state_change", EmitDefaultValue=false)]
+        public bool? StateChange { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -139,15 +139,15 @@ namespace device_directory.Model
         {
             var sb = new StringBuilder();
             sb.Append("class DeviceEventData {\n");
-            sb.Append("  DateTime: ").Append(DateTime).Append("\n");
-            sb.Append("  StateChange: ").Append(StateChange).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Changes: ").Append(Changes).Append("\n");
-            sb.Append("  EventTypeDescription: ").Append(EventTypeDescription).Append("\n");
-            sb.Append("  EventType: ").Append(EventType).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  DateTime: ").Append(DateTime).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
+            sb.Append("  EventType: ").Append(EventType).Append("\n");
+            sb.Append("  EventTypeDescription: ").Append(EventTypeDescription).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  StateChange: ").Append(StateChange).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -183,34 +183,9 @@ namespace device_directory.Model
 
             return 
                 (
-                    this.DateTime == input.DateTime ||
-                    (this.DateTime != null &&
-                    this.DateTime.Equals(input.DateTime))
-                ) && 
-                (
-                    this.StateChange == input.StateChange ||
-                    (this.StateChange != null &&
-                    this.StateChange.Equals(input.StateChange))
-                ) && 
-                (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
-                ) && 
-                (
                     this.Changes == input.Changes ||
                     (this.Changes != null &&
                     this.Changes.Equals(input.Changes))
-                ) && 
-                (
-                    this.EventTypeDescription == input.EventTypeDescription ||
-                    (this.EventTypeDescription != null &&
-                    this.EventTypeDescription.Equals(input.EventTypeDescription))
-                ) && 
-                (
-                    this.EventType == input.EventType ||
-                    (this.EventType != null &&
-                    this.EventType.Equals(input.EventType))
                 ) && 
                 (
                     this.Data == input.Data ||
@@ -218,14 +193,39 @@ namespace device_directory.Model
                     this.Data.Equals(input.Data))
                 ) && 
                 (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
+                    this.DateTime == input.DateTime ||
+                    (this.DateTime != null &&
+                    this.DateTime.Equals(input.DateTime))
+                ) && 
+                (
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
                 ) && 
                 (
                     this.DeviceId == input.DeviceId ||
                     (this.DeviceId != null &&
                     this.DeviceId.Equals(input.DeviceId))
+                ) && 
+                (
+                    this.EventType == input.EventType ||
+                    (this.EventType != null &&
+                    this.EventType.Equals(input.EventType))
+                ) && 
+                (
+                    this.EventTypeDescription == input.EventTypeDescription ||
+                    (this.EventTypeDescription != null &&
+                    this.EventTypeDescription.Equals(input.EventTypeDescription))
+                ) && 
+                (
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.StateChange == input.StateChange ||
+                    (this.StateChange != null &&
+                    this.StateChange.Equals(input.StateChange))
                 );
         }
 
@@ -238,24 +238,24 @@ namespace device_directory.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.DateTime != null)
-                    hashCode = hashCode * 59 + this.DateTime.GetHashCode();
-                if (this.StateChange != null)
-                    hashCode = hashCode * 59 + this.StateChange.GetHashCode();
-                if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.Changes != null)
                     hashCode = hashCode * 59 + this.Changes.GetHashCode();
-                if (this.EventTypeDescription != null)
-                    hashCode = hashCode * 59 + this.EventTypeDescription.GetHashCode();
-                if (this.EventType != null)
-                    hashCode = hashCode * 59 + this.EventType.GetHashCode();
                 if (this.Data != null)
                     hashCode = hashCode * 59 + this.Data.GetHashCode();
-                if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.DateTime != null)
+                    hashCode = hashCode * 59 + this.DateTime.GetHashCode();
+                if (this.Description != null)
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.DeviceId != null)
                     hashCode = hashCode * 59 + this.DeviceId.GetHashCode();
+                if (this.EventType != null)
+                    hashCode = hashCode * 59 + this.EventType.GetHashCode();
+                if (this.EventTypeDescription != null)
+                    hashCode = hashCode * 59 + this.EventTypeDescription.GetHashCode();
+                if (this.Id != null)
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.StateChange != null)
+                    hashCode = hashCode * 59 + this.StateChange.GetHashCode();
                 return hashCode;
             }
         }

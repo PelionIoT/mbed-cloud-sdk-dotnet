@@ -25,7 +25,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
     /// </example>
     public partial class DeviceDirectoryApi : BaseApi
     {
-        private device_directory.Api.DefaultApi api;
+        internal device_directory.Api.DefaultApi api;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceDirectoryApi"/> class.
@@ -42,16 +42,25 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         public DeviceDirectoryApi(Config config)
             : base(config)
         {
-            var deviceConfig = new device_directory.Client.Configuration
-            {
-                BasePath = config.Host,
-                DateTimeFormat = "yyyy-MM-dd",
-            };
-            deviceConfig.AddApiKey("Authorization", config.ApiKey);
-            deviceConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
-            deviceConfig.CreateApiClient();
+            SetUpApi(config);
+        }
 
-            api = new device_directory.Api.DefaultApi(deviceConfig);
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DeviceDirectoryApi"/> class.
+        /// </summary>
+        /// <param name="config">Config.</param>
+        /// <example>
+        /// This API is intialized with a <see cref="Config"/> object.
+        /// <code>
+        /// using MbedCloudSDK.Common;
+        /// var config = new config(apiKey);
+        /// var deviceApi = new DeviceDirectoryApi(config);
+        /// </code>
+        /// </example>
+        internal DeviceDirectoryApi(Config config, device_directory.Client.Configuration deviceConfig = null)
+            : base(config)
+        {
+            SetUpApi(config, deviceConfig);
         }
 
         /// <summary>
@@ -71,6 +80,24 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             }
 
             return path;
+        }
+
+        private void SetUpApi(Config config, device_directory.Client.Configuration deviceConfig = null)
+        {
+            if (deviceConfig == null)
+            {
+                deviceConfig = new device_directory.Client.Configuration
+                {
+                    BasePath = config.Host,
+                    DateTimeFormat = "yyyy-MM-dd",
+                    UserAgent = UserAgent,
+                };
+                deviceConfig.AddApiKey("Authorization", config.ApiKey);
+                deviceConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
+                deviceConfig.CreateApiClient();
+            }
+
+            api = new device_directory.Api.DefaultApi(deviceConfig);
         }
     }
 }

@@ -331,7 +331,6 @@ namespace MbedCloudSDK.Update.Api
         {
             try
             {
-                var stateEnum = Utils.ParseEnum<update_service.Model.UpdateCampaignPatchRequest.StateEnum>(campaign.State);
                 var response = api.UpdateCampaignUpdate(campaignId, campaign.CreatePutRequest());
                 return Campaign.Map(response);
             }

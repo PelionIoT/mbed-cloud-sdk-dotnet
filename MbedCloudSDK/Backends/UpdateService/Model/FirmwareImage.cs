@@ -39,18 +39,27 @@ namespace update_service.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="FirmwareImage" /> class.
         /// </summary>
-        /// <param name="Datafile">The firmware image file URL (required).</param>
-        /// <param name="Description">The description of the object (required).</param>
         /// <param name="CreatedAt">The time the object was created (required).</param>
-        /// <param name="_Object">The API resource entity (required).</param>
-        /// <param name="UpdatedAt">The time the object was updated (required).</param>
-        /// <param name="Etag">The entity instance signature (required).</param>
+        /// <param name="Datafile">The firmware image file URL (required).</param>
         /// <param name="DatafileChecksum">Checksum (sha256) generated for the datafile (required).</param>
         /// <param name="DatafileSize">Size of the datafile in bytes.</param>
+        /// <param name="Description">The description of the object (required).</param>
+        /// <param name="Etag">The entity instance signature (required).</param>
         /// <param name="Id">The firmware image ID (required).</param>
         /// <param name="Name">The firmware image name (required).</param>
-        public FirmwareImage(string Datafile = default(string), string Description = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), string DatafileChecksum = default(string), long? DatafileSize = default(long?), string Id = default(string), string Name = default(string))
+        /// <param name="_Object">The API resource entity (required).</param>
+        /// <param name="UpdatedAt">The time the object was updated (required).</param>
+        public FirmwareImage(DateTime? CreatedAt = default(DateTime?), string Datafile = default(string), string DatafileChecksum = default(string), long? DatafileSize = default(long?), string Description = default(string), DateTime? Etag = default(DateTime?), string Id = default(string), string Name = default(string), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?))
         {
+            // to ensure "CreatedAt" is required (not null)
+            if (CreatedAt == null)
+            {
+                throw new InvalidDataException("CreatedAt is a required property for FirmwareImage and cannot be null");
+            }
+            else
+            {
+                this.CreatedAt = CreatedAt;
+            }
             // to ensure "Datafile" is required (not null)
             if (Datafile == null)
             {
@@ -59,6 +68,15 @@ namespace update_service.Model
             else
             {
                 this.Datafile = Datafile;
+            }
+            // to ensure "DatafileChecksum" is required (not null)
+            if (DatafileChecksum == null)
+            {
+                throw new InvalidDataException("DatafileChecksum is a required property for FirmwareImage and cannot be null");
+            }
+            else
+            {
+                this.DatafileChecksum = DatafileChecksum;
             }
             // to ensure "Description" is required (not null)
             if (Description == null)
@@ -69,33 +87,6 @@ namespace update_service.Model
             {
                 this.Description = Description;
             }
-            // to ensure "CreatedAt" is required (not null)
-            if (CreatedAt == null)
-            {
-                throw new InvalidDataException("CreatedAt is a required property for FirmwareImage and cannot be null");
-            }
-            else
-            {
-                this.CreatedAt = CreatedAt;
-            }
-            // to ensure "_Object" is required (not null)
-            if (_Object == null)
-            {
-                throw new InvalidDataException("_Object is a required property for FirmwareImage and cannot be null");
-            }
-            else
-            {
-                this._Object = _Object;
-            }
-            // to ensure "UpdatedAt" is required (not null)
-            if (UpdatedAt == null)
-            {
-                throw new InvalidDataException("UpdatedAt is a required property for FirmwareImage and cannot be null");
-            }
-            else
-            {
-                this.UpdatedAt = UpdatedAt;
-            }
             // to ensure "Etag" is required (not null)
             if (Etag == null)
             {
@@ -104,15 +95,6 @@ namespace update_service.Model
             else
             {
                 this.Etag = Etag;
-            }
-            // to ensure "DatafileChecksum" is required (not null)
-            if (DatafileChecksum == null)
-            {
-                throw new InvalidDataException("DatafileChecksum is a required property for FirmwareImage and cannot be null");
-            }
-            else
-            {
-                this.DatafileChecksum = DatafileChecksum;
             }
             // to ensure "Id" is required (not null)
             if (Id == null)
@@ -132,23 +114,27 @@ namespace update_service.Model
             {
                 this.Name = Name;
             }
+            // to ensure "_Object" is required (not null)
+            if (_Object == null)
+            {
+                throw new InvalidDataException("_Object is a required property for FirmwareImage and cannot be null");
+            }
+            else
+            {
+                this._Object = _Object;
+            }
+            // to ensure "UpdatedAt" is required (not null)
+            if (UpdatedAt == null)
+            {
+                throw new InvalidDataException("UpdatedAt is a required property for FirmwareImage and cannot be null");
+            }
+            else
+            {
+                this.UpdatedAt = UpdatedAt;
+            }
             this.DatafileSize = DatafileSize;
         }
         
-        /// <summary>
-        /// The firmware image file URL
-        /// </summary>
-        /// <value>The firmware image file URL</value>
-        [DataMember(Name="datafile", EmitDefaultValue=false)]
-        public string Datafile { get; set; }
-
-        /// <summary>
-        /// The description of the object
-        /// </summary>
-        /// <value>The description of the object</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
-        public string Description { get; set; }
-
         /// <summary>
         /// The time the object was created
         /// </summary>
@@ -157,25 +143,11 @@ namespace update_service.Model
         public DateTime? CreatedAt { get; set; }
 
         /// <summary>
-        /// The API resource entity
+        /// The firmware image file URL
         /// </summary>
-        /// <value>The API resource entity</value>
-        [DataMember(Name="object", EmitDefaultValue=false)]
-        public string _Object { get; set; }
-
-        /// <summary>
-        /// The time the object was updated
-        /// </summary>
-        /// <value>The time the object was updated</value>
-        [DataMember(Name="updated_at", EmitDefaultValue=false)]
-        public DateTime? UpdatedAt { get; set; }
-
-        /// <summary>
-        /// The entity instance signature
-        /// </summary>
-        /// <value>The entity instance signature</value>
-        [DataMember(Name="etag", EmitDefaultValue=false)]
-        public DateTime? Etag { get; set; }
+        /// <value>The firmware image file URL</value>
+        [DataMember(Name="datafile", EmitDefaultValue=false)]
+        public string Datafile { get; set; }
 
         /// <summary>
         /// Checksum (sha256) generated for the datafile
@@ -192,6 +164,20 @@ namespace update_service.Model
         public long? DatafileSize { get; set; }
 
         /// <summary>
+        /// The description of the object
+        /// </summary>
+        /// <value>The description of the object</value>
+        [DataMember(Name="description", EmitDefaultValue=false)]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// The entity instance signature
+        /// </summary>
+        /// <value>The entity instance signature</value>
+        [DataMember(Name="etag", EmitDefaultValue=false)]
+        public DateTime? Etag { get; set; }
+
+        /// <summary>
         /// The firmware image ID
         /// </summary>
         /// <value>The firmware image ID</value>
@@ -206,6 +192,20 @@ namespace update_service.Model
         public string Name { get; set; }
 
         /// <summary>
+        /// The API resource entity
+        /// </summary>
+        /// <value>The API resource entity</value>
+        [DataMember(Name="object", EmitDefaultValue=false)]
+        public string _Object { get; set; }
+
+        /// <summary>
+        /// The time the object was updated
+        /// </summary>
+        /// <value>The time the object was updated</value>
+        [DataMember(Name="updated_at", EmitDefaultValue=false)]
+        public DateTime? UpdatedAt { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -213,16 +213,16 @@ namespace update_service.Model
         {
             var sb = new StringBuilder();
             sb.Append("class FirmwareImage {\n");
-            sb.Append("  Datafile: ").Append(Datafile).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
-            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
-            sb.Append("  Etag: ").Append(Etag).Append("\n");
+            sb.Append("  Datafile: ").Append(Datafile).Append("\n");
             sb.Append("  DatafileChecksum: ").Append(DatafileChecksum).Append("\n");
             sb.Append("  DatafileSize: ").Append(DatafileSize).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
+            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -258,34 +258,14 @@ namespace update_service.Model
 
             return 
                 (
-                    this.Datafile == input.Datafile ||
-                    (this.Datafile != null &&
-                    this.Datafile.Equals(input.Datafile))
-                ) && 
-                (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
-                ) && 
-                (
                     this.CreatedAt == input.CreatedAt ||
                     (this.CreatedAt != null &&
                     this.CreatedAt.Equals(input.CreatedAt))
                 ) && 
                 (
-                    this._Object == input._Object ||
-                    (this._Object != null &&
-                    this._Object.Equals(input._Object))
-                ) && 
-                (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
-                ) && 
-                (
-                    this.Etag == input.Etag ||
-                    (this.Etag != null &&
-                    this.Etag.Equals(input.Etag))
+                    this.Datafile == input.Datafile ||
+                    (this.Datafile != null &&
+                    this.Datafile.Equals(input.Datafile))
                 ) && 
                 (
                     this.DatafileChecksum == input.DatafileChecksum ||
@@ -298,6 +278,16 @@ namespace update_service.Model
                     this.DatafileSize.Equals(input.DatafileSize))
                 ) && 
                 (
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
+                ) && 
+                (
+                    this.Etag == input.Etag ||
+                    (this.Etag != null &&
+                    this.Etag.Equals(input.Etag))
+                ) && 
+                (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
@@ -306,6 +296,16 @@ namespace update_service.Model
                     this.Name == input.Name ||
                     (this.Name != null &&
                     this.Name.Equals(input.Name))
+                ) && 
+                (
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
+                ) && 
+                (
+                    this.UpdatedAt == input.UpdatedAt ||
+                    (this.UpdatedAt != null &&
+                    this.UpdatedAt.Equals(input.UpdatedAt))
                 );
         }
 
@@ -318,26 +318,26 @@ namespace update_service.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Datafile != null)
-                    hashCode = hashCode * 59 + this.Datafile.GetHashCode();
-                if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.CreatedAt != null)
                     hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
-                if (this._Object != null)
-                    hashCode = hashCode * 59 + this._Object.GetHashCode();
-                if (this.UpdatedAt != null)
-                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
-                if (this.Etag != null)
-                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
+                if (this.Datafile != null)
+                    hashCode = hashCode * 59 + this.Datafile.GetHashCode();
                 if (this.DatafileChecksum != null)
                     hashCode = hashCode * 59 + this.DatafileChecksum.GetHashCode();
                 if (this.DatafileSize != null)
                     hashCode = hashCode * 59 + this.DatafileSize.GetHashCode();
+                if (this.Description != null)
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                if (this.Etag != null)
+                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
                 if (this.Id != null)
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.Name != null)
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this._Object != null)
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
+                if (this.UpdatedAt != null)
+                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
                 return hashCode;
             }
         }

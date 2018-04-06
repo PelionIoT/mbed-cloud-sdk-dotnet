@@ -39,19 +39,10 @@ namespace device_directory.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceQueryPostPutRequest" /> class.
         /// </summary>
-        /// <param name="Query">The device query. (required).</param>
         /// <param name="Name">The name of the query. (required).</param>
-        public DeviceQueryPostPutRequest(string Query = default(string), string Name = default(string))
+        /// <param name="Query">The device query. (required).</param>
+        public DeviceQueryPostPutRequest(string Name = default(string), string Query = default(string))
         {
-            // to ensure "Query" is required (not null)
-            if (Query == null)
-            {
-                throw new InvalidDataException("Query is a required property for DeviceQueryPostPutRequest and cannot be null");
-            }
-            else
-            {
-                this.Query = Query;
-            }
             // to ensure "Name" is required (not null)
             if (Name == null)
             {
@@ -61,21 +52,30 @@ namespace device_directory.Model
             {
                 this.Name = Name;
             }
+            // to ensure "Query" is required (not null)
+            if (Query == null)
+            {
+                throw new InvalidDataException("Query is a required property for DeviceQueryPostPutRequest and cannot be null");
+            }
+            else
+            {
+                this.Query = Query;
+            }
         }
         
-        /// <summary>
-        /// The device query.
-        /// </summary>
-        /// <value>The device query.</value>
-        [DataMember(Name="query", EmitDefaultValue=false)]
-        public string Query { get; set; }
-
         /// <summary>
         /// The name of the query.
         /// </summary>
         /// <value>The name of the query.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
+
+        /// <summary>
+        /// The device query.
+        /// </summary>
+        /// <value>The device query.</value>
+        [DataMember(Name="query", EmitDefaultValue=false)]
+        public string Query { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,8 @@ namespace device_directory.Model
         {
             var sb = new StringBuilder();
             sb.Append("class DeviceQueryPostPutRequest {\n");
-            sb.Append("  Query: ").Append(Query).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Query: ").Append(Query).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -122,14 +122,14 @@ namespace device_directory.Model
 
             return 
                 (
-                    this.Query == input.Query ||
-                    (this.Query != null &&
-                    this.Query.Equals(input.Query))
-                ) && 
-                (
                     this.Name == input.Name ||
                     (this.Name != null &&
                     this.Name.Equals(input.Name))
+                ) && 
+                (
+                    this.Query == input.Query ||
+                    (this.Query != null &&
+                    this.Query.Equals(input.Query))
                 );
         }
 
@@ -142,10 +142,10 @@ namespace device_directory.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Query != null)
-                    hashCode = hashCode * 59 + this.Query.GetHashCode();
                 if (this.Name != null)
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.Query != null)
+                    hashCode = hashCode * 59 + this.Query.GetHashCode();
                 return hashCode;
             }
         }
@@ -157,16 +157,16 @@ namespace device_directory.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // Query (string) maxLength
-            if(this.Query != null && this.Query.Length > 1000)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Query, length must be less than 1000.", new [] { "Query" });
-            }
-
             // Name (string) maxLength
             if(this.Name != null && this.Name.Length > 200)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 200.", new [] { "Name" });
+            }
+
+            // Query (string) maxLength
+            if(this.Query != null && this.Query.Length > 1000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Query, length must be less than 1000.", new [] { "Query" });
             }
 
             yield break;

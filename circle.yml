@@ -13,7 +13,7 @@ machine:
     UNITTEST_REPORT: ${SDK_REPORTS}/unittests.html
     INTTEST_REPORT: ${SDK_REPORTS}/inttests.html
     RAW_REPORT: ${SDK_REPORTS}/raw.txt
-    NUGET_NAME: Mbed.Cloud.SDK.1.2.6.nupkg
+    NUGET_NAME: Mbed.Cloud.SDK.1.2.7.nupkg
     ARTIFACTORY_URL: http://localhost:5000/artifactory/
     TESTRUNNER_DOCKER_IMAGE : 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
   services:
@@ -49,6 +49,11 @@ dependencies:
   post:
     - npm install -g ansi-html-stream
 compile:
+  pre:
+    - python scripts/dvcs_version.py
+    - pip install -U git+https://github.com/davidhyman/towncrier.git@config-project-name
+    - cd scripts && towncrier --yes --name="" --version=$(python dvcs_version.py version)
+    - cp CHANGELOG.md ${CIRCLE_ARTIFACTS}/
   override:
     - dotnet build -c Release
     - dotnet pack MbedCloudSDK -c Release --no-build --no-restore
@@ -56,7 +61,6 @@ test:
   override:
     - echo "<h1>${SDK_NAME} Unit Tests (build ${CIRCLE_BUILD_NUM})</h1>" >> ${UNITTEST_REPORT}
     - dotnet test Tests/MbedCloudSDK.UnitTests -c Release --no-build --no-restore | ansi-html >> ${UNITTEST_REPORT}
-    - dotnet test Tests/MbedCloudSDK.ExampleTests -c Release --no-build --no-restore | ansi-html >> ${UNITTEST_REPORT}
     - cat ${UNITTEST_REPORT} | grep 'Total tests:' >> ${RAW_REPORT}
     - echo "<h1>${SDK_NAME} Integration Tests (build ${CIRCLE_BUILD_NUM})</h2>" >> ${INTTEST_REPORT}
     - set -o pipefail && bash scripts/test.sh 2>&1 | tee /dev/tty | ansi-html >> ${INTTEST_REPORT}
@@ -79,4 +83,7 @@ deployment:
       - echo Tagging $SDK_NAME in GitHub...
       - git tag ${SDK_TAG}
       - git push --tags
+      - git add CHANGELOG.md news/* 
+      - git commit -m ":newspaper: Hear yea, hear yea. News O'Clock. [skip ci]" 
+      - git push 
       - dotnet nuget push MbedCloudSDK/bin/Release/${NUGET_NAME} -k ${NUGET_KEY} -s https://api.nuget.org/v3/index.json

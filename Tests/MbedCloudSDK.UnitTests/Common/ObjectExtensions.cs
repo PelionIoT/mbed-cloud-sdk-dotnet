@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using MbedCloudSDK.Certificates.Model;
 using MbedCloudSDK.Common;
@@ -92,12 +93,74 @@ namespace MbedCloudSDK.Test.Common
         [Test]
         public void GetPropertiesOfAnObjectShouldReturnCorrectDictionary()
         {
-            var obj = new { propertyOne = "one", propertyTwo = "two" };
-            var dict = obj.GetProperties();
-            var correctDict = new Dictionary<string, object>();
-            correctDict.Add("propertyOne", "one");
-            correctDict.Add("propertyTwo", "two");
-            Assert.AreEqual(correctDict, dict);
+            var obj = new ObjectWithKnownProperties();
+            Assert.AreEqual(obj.GetTestPropertiesAsDictionary(), obj.GetProperties());
+        }
+
+        [Test]
+        public void DebugDumptReturnsAnEmptyStringForNull()
+        {
+            object obj = null;
+            Assert.AreEqual(string.Empty, obj.DebugDump(MbedCloudSDK.Common.ObjectExtensions.DumpFormat.Text));
+            Assert.AreEqual(string.Empty, obj.DebugDump(MbedCloudSDK.Common.ObjectExtensions.DumpFormat.Json));
+        }
+
+        [Test]
+        public void DebugDumpReturnsExpectedTextResult()
+        {
+            var obj = new ObjectWithKnownProperties();
+            Assert.AreEqual(obj.GetTestDebugDump(), obj.DebugDump(MbedCloudSDK.Common.ObjectExtensions.DumpFormat.Text));
+        }
+
+        [Test]
+        public void DebugDumpReturnsValidJsonResult()
+        {
+            var obj = new ObjectWithKnownProperties();
+            var json = obj.DebugDump(MbedCloudSDK.Common.ObjectExtensions.DumpFormat.Json);
+
+            // We just need to check that DumpFormat.Json is used, no need to test if underlying JSON serializer
+            // works as expected...
+            Assert.IsTrue(Utils.IsValidJson(json));
+        }
+
+        sealed class ObjectWithKnownProperties
+        {
+            public string One { get; } = OneDefaultValue;
+
+            public string Two { get; } = TwoDefaultValue;
+
+            // This is excluded because it's an indexer, note that in C# we can't create indexers
+            // for named properties (something similar to public string SomeProperty[string key] { get { ... } })
+            // but it's possible in other .NET languages (for example C++/CLI), we can't test it here but it should
+            // work as expected...
+            public string this[int index]
+            {
+                get => "";
+            }
+
+            public string ThisIsExcludedBecauseSetterOnly { set { } }
+
+            public string ThisIsExcludedBecauseNonPublicGetter { private get; set; }
+
+            internal string ThisIsExcludedBecauseNonPublic { get; set; }
+
+            public Dictionary<string, object> GetTestPropertiesAsDictionary()
+            {
+                return new Dictionary<string, object>
+                {
+                    { nameof(One), OneDefaultValue },
+                    { nameof(Two), TwoDefaultValue },
+                };
+            }
+
+            public string GetTestDebugDump()
+                => $"class {GetType().Name}SerializerData {{{Environment.NewLine}" +
+                    $"    {nameof(One)}: {OneDefaultValue}{Environment.NewLine}" +
+                    $"    {nameof(Two)}: {TwoDefaultValue}{Environment.NewLine}" +
+                    $"}}{Environment.NewLine}";
+
+            private const string OneDefaultValue = "one";
+            private const string TwoDefaultValue = "two";
         }
     }
 }

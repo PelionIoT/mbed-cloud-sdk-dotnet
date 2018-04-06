@@ -4,6 +4,7 @@
 
 namespace MbedCloudSDK.AccountManagement.Api
 {
+    using System.Collections.Generic;
     using System.Linq;
     using iam.Api;
     using iam.Client;
@@ -22,8 +23,8 @@ namespace MbedCloudSDK.AccountManagement.Api
     /// </example>
     public partial class AccountManagementApi : BaseApi
     {
-        private DeveloperApi developerApi;
-        private AccountAdminApi adminApi;
+        internal DeveloperApi developerApi;
+        internal AccountAdminApi adminApi;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountManagementApi"/> class.
@@ -34,17 +35,19 @@ namespace MbedCloudSDK.AccountManagement.Api
         public AccountManagementApi(Config config)
          : base(config)
         {
-            var iamConfig = new iam.Client.Configuration
-            {
-                BasePath = config.Host,
-                DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
-            };
-            iamConfig.AddApiKey("Authorization", config.ApiKey);
-            iamConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
-            iamConfig.CreateApiClient();
+            SetUpApi(config);
+        }
 
-            developerApi = new DeveloperApi(iamConfig);
-            adminApi = new AccountAdminApi(iamConfig);
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountManagementApi"/> class.
+        /// Exposing functionality from the following underlying services:
+        /// - IAM
+        /// </summary>
+        /// <param name="config"><see cref="Config"/></param>
+        internal AccountManagementApi(Config config, Configuration iamConfig = null)
+         : base(config)
+        {
+            SetUpApi(config, iamConfig);
         }
 
         /// <summary>
@@ -60,6 +63,25 @@ namespace MbedCloudSDK.AccountManagement.Api
         public static ApiMetadata GetLastApiMetadata()
         {
             return ApiMetadata.Map(Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
+        }
+
+        private void SetUpApi(Config config, Configuration iamConfig = null)
+        {
+            if (iamConfig == null)
+            {
+                iamConfig = new iam.Client.Configuration
+                {
+                    BasePath = config.Host,
+                    DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
+                    UserAgent = UserAgent,
+                };
+                iamConfig.AddApiKey("Authorization", config.ApiKey);
+                iamConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
+                iamConfig.CreateApiClient();
+            }
+
+            developerApi = new DeveloperApi(iamConfig);
+            adminApi = new AccountAdminApi(iamConfig);
         }
     }
 }

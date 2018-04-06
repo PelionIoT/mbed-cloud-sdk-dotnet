@@ -28,10 +28,10 @@ namespace MbedCloudSDK.Enrollment.Api
     /// </example>
     public partial class EnrollmentApi : BaseApi
     {
-        private enrollment.Api.PublicAPIApi api;
+        internal enrollment.Api.PublicAPIApi api;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceDirectoryApi"/> class.
+        /// Initializes a new instance of the <see cref="EnrollmentApi"/> class.
         /// </summary>
         /// <param name="config">Config.</param>
         /// <example>
@@ -45,14 +45,41 @@ namespace MbedCloudSDK.Enrollment.Api
         public EnrollmentApi(Config config)
             : base(config)
         {
-            var enrollmentConfig = new enrollment.Client.Configuration
+            SetUpApi(config);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DeviceDirectoryApi"/> class.
+        /// </summary>
+        /// <param name="config">Config.</param>
+        /// <example>
+        /// This API is intialized with a <see cref="Config"/> object.
+        /// <code>
+        /// using MbedCloudSDK.Common;
+        /// var config = new config(apiKey);
+        /// var enrollmentApi = new EnrollmentApi(config);
+        /// </code>
+        /// </example>
+        internal EnrollmentApi(Config config, enrollment.Client.Configuration enrollmentConfig = null)
+            : base(config)
+        {
+            SetUpApi(config, enrollmentConfig);
+        }
+
+        private void SetUpApi(Config config, enrollment.Client.Configuration enrollmentConfig = null)
+        {
+            if (enrollmentConfig == null)
             {
-                BasePath = config.Host,
-                DateTimeFormat = "yyyy-MM-dd",
-            };
-            enrollmentConfig.AddApiKey("Authorization", config.ApiKey);
-            enrollmentConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
-            enrollmentConfig.CreateApiClient();
+                enrollmentConfig = new enrollment.Client.Configuration
+                {
+                    BasePath = config.Host,
+                    DateTimeFormat = "yyyy-MM-dd",
+                    UserAgent = UserAgent,
+                };
+                enrollmentConfig.AddApiKey("Authorization", config.ApiKey);
+                enrollmentConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
+                enrollmentConfig.CreateApiClient();
+            }
 
             api = new enrollment.Api.PublicAPIApi(enrollmentConfig);
         }
@@ -175,7 +202,7 @@ namespace MbedCloudSDK.Enrollment.Api
         /// Delete an enrollment claim
         /// </summary>
         /// <param name="id">The id of the enrollment</param>
-        /// <returns></returns>
+        /// <returns>Task</returns>
         public async Task DeleteEnrollmentClaimAsync(string id)
         {
             try
@@ -192,7 +219,6 @@ namespace MbedCloudSDK.Enrollment.Api
         /// Delete an enrollment claim
         /// </summary>
         /// <param name="id">The id of the enrollment</param>
-        /// <returns></returns>
         public void DeleteEnrollmentClaim(string id)
         {
             try

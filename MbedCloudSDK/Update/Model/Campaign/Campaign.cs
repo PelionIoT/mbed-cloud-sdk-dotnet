@@ -181,15 +181,14 @@ namespace MbedCloudSDK.Update.Model.Campaign
         /// <returns>Update campaign put request</returns>
         public UpdateCampaignPutRequest CreatePutRequest()
         {
-            var updateCampaignPutRequest = new UpdateCampaignPutRequest
-            {
-                Description = Description,
-                RootManifestId = ManifestId,
-                When = ScheduledAt ?? DateTime.Now,
-                DeviceFilter = DeviceFilter?.FilterString,
-                Name = Name,
-                State = Utils.ParseEnum<UpdateCampaignPutRequest.StateEnum>(State),
-            };
+            var updateCampaignPutRequest = new UpdateCampaignPutRequest(
+                Description: Description,
+                RootManifestId: ManifestId,
+                When: ScheduledAt ?? DateTime.Now,
+                State: Utils.ParseEnum<UpdateCampaignPutRequest.StateEnum>(State),
+                DeviceFilter: DeviceFilter?.FilterString,
+                Name: Name,
+                _Object: string.Empty);
 
             return updateCampaignPutRequest;
         }

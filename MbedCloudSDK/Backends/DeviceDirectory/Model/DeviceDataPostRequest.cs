@@ -106,56 +106,63 @@ namespace device_directory.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceDataPostRequest" /> class.
         /// </summary>
+        /// <param name="AutoUpdate">DEPRECATED: Mark this device for automatic firmware update..</param>
         /// <param name="BootstrapExpirationDate">The expiration date of the certificate used to connect to bootstrap server..</param>
         /// <param name="BootstrappedTimestamp">The timestamp of the device&#39;s most recent bootstrap process..</param>
+        /// <param name="CaId">The certificate issuer&#39;s ID..</param>
         /// <param name="ConnectorExpirationDate">The expiration date of the certificate used to connect to the LWM2M server..</param>
-        /// <param name="Mechanism">The ID of the channel used to communicate with the device..</param>
-        /// <param name="DeviceClass">An ID representing the model and hardware revision of the device..</param>
-        /// <param name="EndpointName">The endpoint name given to the device..</param>
-        /// <param name="AutoUpdate">DEPRECATED: Mark this device for automatic firmware update..</param>
-        /// <param name="HostGateway">The &#x60;endpoint_name&#x60; of the host gateway, if appropriate..</param>
-        /// <param name="DeviceExecutionMode">The execution mode from the certificate of the device. Permitted values:   - 0 - unspecified execution mode (default)   - 1 - development devices   - 5 - production devices.</param>
         /// <param name="CustomAttributes">Up to five custom key-value attributes. Note that keys cannot start with a number..</param>
-        /// <param name="State">The current state of the device..</param>
-        /// <param name="SerialNumber">The serial number of the device..</param>
-        /// <param name="FirmwareChecksum">The SHA256 checksum of the current firmware image..</param>
-        /// <param name="_Object">The API resource entity..</param>
-        /// <param name="Description">The description of the device..</param>
-        /// <param name="VendorId">The device vendor ID..</param>
-        /// <param name="EndpointType">The endpoint type of the device. For example, the device is a gateway..</param>
         /// <param name="Deployment">DEPRECATED: The last deployment used on the device..</param>
+        /// <param name="Description">The description of the device..</param>
+        /// <param name="DeviceClass">An ID representing the model and hardware revision of the device..</param>
+        /// <param name="DeviceExecutionMode">The execution mode from the certificate of the device. Permitted values:   - 0 - unspecified execution mode (default)   - 1 - development devices   - 5 - production devices.</param>
+        /// <param name="DeviceKey">The fingerprint of the device certificate..</param>
+        /// <param name="EndpointName">The endpoint name given to the device..</param>
+        /// <param name="EndpointType">The endpoint type of the device. For example, the device is a gateway..</param>
+        /// <param name="FirmwareChecksum">The SHA256 checksum of the current firmware image..</param>
+        /// <param name="HostGateway">The &#x60;endpoint_name&#x60; of the host gateway, if appropriate..</param>
+        /// <param name="Manifest">DEPRECATED: The URL for the current device manifest..</param>
+        /// <param name="Mechanism">The ID of the channel used to communicate with the device..</param>
         /// <param name="MechanismUrl">The address of the connector to use..</param>
         /// <param name="Name">The name of the device..</param>
-        /// <param name="DeviceKey">The fingerprint of the device certificate..</param>
-        /// <param name="Manifest">DEPRECATED: The URL for the current device manifest..</param>
-        /// <param name="CaId">The certificate issuer&#39;s ID..</param>
-        public DeviceDataPostRequest(DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), DateTime? ConnectorExpirationDate = default(DateTime?), MechanismEnum? Mechanism = default(MechanismEnum?), string DeviceClass = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), int? DeviceExecutionMode = default(int?), Dictionary<string, string> CustomAttributes = default(Dictionary<string, string>), StateEnum? State = default(StateEnum?), string SerialNumber = default(string), string FirmwareChecksum = default(string), string _Object = default(string), string Description = default(string), string VendorId = default(string), string EndpointType = default(string), string Deployment = default(string), string MechanismUrl = default(string), string Name = default(string), string DeviceKey = default(string), string Manifest = default(string), string CaId = default(string))
+        /// <param name="_Object">The API resource entity..</param>
+        /// <param name="SerialNumber">The serial number of the device..</param>
+        /// <param name="State">The current state of the device..</param>
+        /// <param name="VendorId">The device vendor ID..</param>
+        public DeviceDataPostRequest(bool? AutoUpdate = default(bool?), DateTime? BootstrapExpirationDate = default(DateTime?), DateTime? BootstrappedTimestamp = default(DateTime?), string CaId = default(string), DateTime? ConnectorExpirationDate = default(DateTime?), Dictionary<string, string> CustomAttributes = default(Dictionary<string, string>), string Deployment = default(string), string Description = default(string), string DeviceClass = default(string), int? DeviceExecutionMode = default(int?), string DeviceKey = default(string), string EndpointName = default(string), string EndpointType = default(string), string FirmwareChecksum = default(string), string HostGateway = default(string), string Manifest = default(string), MechanismEnum? Mechanism = default(MechanismEnum?), string MechanismUrl = default(string), string Name = default(string), string _Object = default(string), string SerialNumber = default(string), StateEnum? State = default(StateEnum?), string VendorId = default(string))
         {
+            this.AutoUpdate = AutoUpdate;
             this.BootstrapExpirationDate = BootstrapExpirationDate;
             this.BootstrappedTimestamp = BootstrappedTimestamp;
+            this.CaId = CaId;
             this.ConnectorExpirationDate = ConnectorExpirationDate;
-            this.Mechanism = Mechanism;
-            this.DeviceClass = DeviceClass;
-            this.EndpointName = EndpointName;
-            this.AutoUpdate = AutoUpdate;
-            this.HostGateway = HostGateway;
-            this.DeviceExecutionMode = DeviceExecutionMode;
             this.CustomAttributes = CustomAttributes;
-            this.State = State;
-            this.SerialNumber = SerialNumber;
-            this.FirmwareChecksum = FirmwareChecksum;
-            this._Object = _Object;
-            this.Description = Description;
-            this.VendorId = VendorId;
-            this.EndpointType = EndpointType;
             this.Deployment = Deployment;
+            this.Description = Description;
+            this.DeviceClass = DeviceClass;
+            this.DeviceExecutionMode = DeviceExecutionMode;
+            this.DeviceKey = DeviceKey;
+            this.EndpointName = EndpointName;
+            this.EndpointType = EndpointType;
+            this.FirmwareChecksum = FirmwareChecksum;
+            this.HostGateway = HostGateway;
+            this.Manifest = Manifest;
+            this.Mechanism = Mechanism;
             this.MechanismUrl = MechanismUrl;
             this.Name = Name;
-            this.DeviceKey = DeviceKey;
-            this.Manifest = Manifest;
-            this.CaId = CaId;
+            this._Object = _Object;
+            this.SerialNumber = SerialNumber;
+            this.State = State;
+            this.VendorId = VendorId;
         }
         
+        /// <summary>
+        /// DEPRECATED: Mark this device for automatic firmware update.
+        /// </summary>
+        /// <value>DEPRECATED: Mark this device for automatic firmware update.</value>
+        [DataMember(Name="auto_update", EmitDefaultValue=false)]
+        public bool? AutoUpdate { get; set; }
+
         /// <summary>
         /// The expiration date of the certificate used to connect to bootstrap server.
         /// </summary>
@@ -171,47 +178,18 @@ namespace device_directory.Model
         public DateTime? BootstrappedTimestamp { get; set; }
 
         /// <summary>
+        /// The certificate issuer&#39;s ID.
+        /// </summary>
+        /// <value>The certificate issuer&#39;s ID.</value>
+        [DataMember(Name="ca_id", EmitDefaultValue=false)]
+        public string CaId { get; set; }
+
+        /// <summary>
         /// The expiration date of the certificate used to connect to the LWM2M server.
         /// </summary>
         /// <value>The expiration date of the certificate used to connect to the LWM2M server.</value>
         [DataMember(Name="connector_expiration_date", EmitDefaultValue=false)]
         public DateTime? ConnectorExpirationDate { get; set; }
-
-
-        /// <summary>
-        /// An ID representing the model and hardware revision of the device.
-        /// </summary>
-        /// <value>An ID representing the model and hardware revision of the device.</value>
-        [DataMember(Name="device_class", EmitDefaultValue=false)]
-        public string DeviceClass { get; set; }
-
-        /// <summary>
-        /// The endpoint name given to the device.
-        /// </summary>
-        /// <value>The endpoint name given to the device.</value>
-        [DataMember(Name="endpoint_name", EmitDefaultValue=false)]
-        public string EndpointName { get; set; }
-
-        /// <summary>
-        /// DEPRECATED: Mark this device for automatic firmware update.
-        /// </summary>
-        /// <value>DEPRECATED: Mark this device for automatic firmware update.</value>
-        [DataMember(Name="auto_update", EmitDefaultValue=false)]
-        public bool? AutoUpdate { get; set; }
-
-        /// <summary>
-        /// The &#x60;endpoint_name&#x60; of the host gateway, if appropriate.
-        /// </summary>
-        /// <value>The &#x60;endpoint_name&#x60; of the host gateway, if appropriate.</value>
-        [DataMember(Name="host_gateway", EmitDefaultValue=false)]
-        public string HostGateway { get; set; }
-
-        /// <summary>
-        /// The execution mode from the certificate of the device. Permitted values:   - 0 - unspecified execution mode (default)   - 1 - development devices   - 5 - production devices
-        /// </summary>
-        /// <value>The execution mode from the certificate of the device. Permitted values:   - 0 - unspecified execution mode (default)   - 1 - development devices   - 5 - production devices</value>
-        [DataMember(Name="device_execution_mode", EmitDefaultValue=false)]
-        public int? DeviceExecutionMode { get; set; }
 
         /// <summary>
         /// Up to five custom key-value attributes. Note that keys cannot start with a number.
@@ -220,27 +198,12 @@ namespace device_directory.Model
         [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
         public Dictionary<string, string> CustomAttributes { get; set; }
 
-
         /// <summary>
-        /// The serial number of the device.
+        /// DEPRECATED: The last deployment used on the device.
         /// </summary>
-        /// <value>The serial number of the device.</value>
-        [DataMember(Name="serial_number", EmitDefaultValue=false)]
-        public string SerialNumber { get; set; }
-
-        /// <summary>
-        /// The SHA256 checksum of the current firmware image.
-        /// </summary>
-        /// <value>The SHA256 checksum of the current firmware image.</value>
-        [DataMember(Name="firmware_checksum", EmitDefaultValue=false)]
-        public string FirmwareChecksum { get; set; }
-
-        /// <summary>
-        /// The API resource entity.
-        /// </summary>
-        /// <value>The API resource entity.</value>
-        [DataMember(Name="object", EmitDefaultValue=false)]
-        public string _Object { get; set; }
+        /// <value>DEPRECATED: The last deployment used on the device.</value>
+        [DataMember(Name="deployment", EmitDefaultValue=false)]
+        public string Deployment { get; set; }
 
         /// <summary>
         /// The description of the device.
@@ -250,11 +213,32 @@ namespace device_directory.Model
         public string Description { get; set; }
 
         /// <summary>
-        /// The device vendor ID.
+        /// An ID representing the model and hardware revision of the device.
         /// </summary>
-        /// <value>The device vendor ID.</value>
-        [DataMember(Name="vendor_id", EmitDefaultValue=false)]
-        public string VendorId { get; set; }
+        /// <value>An ID representing the model and hardware revision of the device.</value>
+        [DataMember(Name="device_class", EmitDefaultValue=false)]
+        public string DeviceClass { get; set; }
+
+        /// <summary>
+        /// The execution mode from the certificate of the device. Permitted values:   - 0 - unspecified execution mode (default)   - 1 - development devices   - 5 - production devices
+        /// </summary>
+        /// <value>The execution mode from the certificate of the device. Permitted values:   - 0 - unspecified execution mode (default)   - 1 - development devices   - 5 - production devices</value>
+        [DataMember(Name="device_execution_mode", EmitDefaultValue=false)]
+        public int? DeviceExecutionMode { get; set; }
+
+        /// <summary>
+        /// The fingerprint of the device certificate.
+        /// </summary>
+        /// <value>The fingerprint of the device certificate.</value>
+        [DataMember(Name="device_key", EmitDefaultValue=false)]
+        public string DeviceKey { get; set; }
+
+        /// <summary>
+        /// The endpoint name given to the device.
+        /// </summary>
+        /// <value>The endpoint name given to the device.</value>
+        [DataMember(Name="endpoint_name", EmitDefaultValue=false)]
+        public string EndpointName { get; set; }
 
         /// <summary>
         /// The endpoint type of the device. For example, the device is a gateway.
@@ -264,11 +248,26 @@ namespace device_directory.Model
         public string EndpointType { get; set; }
 
         /// <summary>
-        /// DEPRECATED: The last deployment used on the device.
+        /// The SHA256 checksum of the current firmware image.
         /// </summary>
-        /// <value>DEPRECATED: The last deployment used on the device.</value>
-        [DataMember(Name="deployment", EmitDefaultValue=false)]
-        public string Deployment { get; set; }
+        /// <value>The SHA256 checksum of the current firmware image.</value>
+        [DataMember(Name="firmware_checksum", EmitDefaultValue=false)]
+        public string FirmwareChecksum { get; set; }
+
+        /// <summary>
+        /// The &#x60;endpoint_name&#x60; of the host gateway, if appropriate.
+        /// </summary>
+        /// <value>The &#x60;endpoint_name&#x60; of the host gateway, if appropriate.</value>
+        [DataMember(Name="host_gateway", EmitDefaultValue=false)]
+        public string HostGateway { get; set; }
+
+        /// <summary>
+        /// DEPRECATED: The URL for the current device manifest.
+        /// </summary>
+        /// <value>DEPRECATED: The URL for the current device manifest.</value>
+        [DataMember(Name="manifest", EmitDefaultValue=false)]
+        public string Manifest { get; set; }
+
 
         /// <summary>
         /// The address of the connector to use.
@@ -285,25 +284,26 @@ namespace device_directory.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// The fingerprint of the device certificate.
+        /// The API resource entity.
         /// </summary>
-        /// <value>The fingerprint of the device certificate.</value>
-        [DataMember(Name="device_key", EmitDefaultValue=false)]
-        public string DeviceKey { get; set; }
+        /// <value>The API resource entity.</value>
+        [DataMember(Name="object", EmitDefaultValue=false)]
+        public string _Object { get; set; }
 
         /// <summary>
-        /// DEPRECATED: The URL for the current device manifest.
+        /// The serial number of the device.
         /// </summary>
-        /// <value>DEPRECATED: The URL for the current device manifest.</value>
-        [DataMember(Name="manifest", EmitDefaultValue=false)]
-        public string Manifest { get; set; }
+        /// <value>The serial number of the device.</value>
+        [DataMember(Name="serial_number", EmitDefaultValue=false)]
+        public string SerialNumber { get; set; }
+
 
         /// <summary>
-        /// The certificate issuer&#39;s ID.
+        /// The device vendor ID.
         /// </summary>
-        /// <value>The certificate issuer&#39;s ID.</value>
-        [DataMember(Name="ca_id", EmitDefaultValue=false)]
-        public string CaId { get; set; }
+        /// <value>The device vendor ID.</value>
+        [DataMember(Name="vendor_id", EmitDefaultValue=false)]
+        public string VendorId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -313,29 +313,29 @@ namespace device_directory.Model
         {
             var sb = new StringBuilder();
             sb.Append("class DeviceDataPostRequest {\n");
+            sb.Append("  AutoUpdate: ").Append(AutoUpdate).Append("\n");
             sb.Append("  BootstrapExpirationDate: ").Append(BootstrapExpirationDate).Append("\n");
             sb.Append("  BootstrappedTimestamp: ").Append(BootstrappedTimestamp).Append("\n");
+            sb.Append("  CaId: ").Append(CaId).Append("\n");
             sb.Append("  ConnectorExpirationDate: ").Append(ConnectorExpirationDate).Append("\n");
-            sb.Append("  Mechanism: ").Append(Mechanism).Append("\n");
-            sb.Append("  DeviceClass: ").Append(DeviceClass).Append("\n");
-            sb.Append("  EndpointName: ").Append(EndpointName).Append("\n");
-            sb.Append("  AutoUpdate: ").Append(AutoUpdate).Append("\n");
-            sb.Append("  HostGateway: ").Append(HostGateway).Append("\n");
-            sb.Append("  DeviceExecutionMode: ").Append(DeviceExecutionMode).Append("\n");
             sb.Append("  CustomAttributes: ").Append(CustomAttributes).Append("\n");
-            sb.Append("  State: ").Append(State).Append("\n");
-            sb.Append("  SerialNumber: ").Append(SerialNumber).Append("\n");
-            sb.Append("  FirmwareChecksum: ").Append(FirmwareChecksum).Append("\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  VendorId: ").Append(VendorId).Append("\n");
-            sb.Append("  EndpointType: ").Append(EndpointType).Append("\n");
             sb.Append("  Deployment: ").Append(Deployment).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  DeviceClass: ").Append(DeviceClass).Append("\n");
+            sb.Append("  DeviceExecutionMode: ").Append(DeviceExecutionMode).Append("\n");
+            sb.Append("  DeviceKey: ").Append(DeviceKey).Append("\n");
+            sb.Append("  EndpointName: ").Append(EndpointName).Append("\n");
+            sb.Append("  EndpointType: ").Append(EndpointType).Append("\n");
+            sb.Append("  FirmwareChecksum: ").Append(FirmwareChecksum).Append("\n");
+            sb.Append("  HostGateway: ").Append(HostGateway).Append("\n");
+            sb.Append("  Manifest: ").Append(Manifest).Append("\n");
+            sb.Append("  Mechanism: ").Append(Mechanism).Append("\n");
             sb.Append("  MechanismUrl: ").Append(MechanismUrl).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  DeviceKey: ").Append(DeviceKey).Append("\n");
-            sb.Append("  Manifest: ").Append(Manifest).Append("\n");
-            sb.Append("  CaId: ").Append(CaId).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
+            sb.Append("  SerialNumber: ").Append(SerialNumber).Append("\n");
+            sb.Append("  State: ").Append(State).Append("\n");
+            sb.Append("  VendorId: ").Append(VendorId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -371,6 +371,11 @@ namespace device_directory.Model
 
             return 
                 (
+                    this.AutoUpdate == input.AutoUpdate ||
+                    (this.AutoUpdate != null &&
+                    this.AutoUpdate.Equals(input.AutoUpdate))
+                ) && 
+                (
                     this.BootstrapExpirationDate == input.BootstrapExpirationDate ||
                     (this.BootstrapExpirationDate != null &&
                     this.BootstrapExpirationDate.Equals(input.BootstrapExpirationDate))
@@ -381,39 +386,14 @@ namespace device_directory.Model
                     this.BootstrappedTimestamp.Equals(input.BootstrappedTimestamp))
                 ) && 
                 (
+                    this.CaId == input.CaId ||
+                    (this.CaId != null &&
+                    this.CaId.Equals(input.CaId))
+                ) && 
+                (
                     this.ConnectorExpirationDate == input.ConnectorExpirationDate ||
                     (this.ConnectorExpirationDate != null &&
                     this.ConnectorExpirationDate.Equals(input.ConnectorExpirationDate))
-                ) && 
-                (
-                    this.Mechanism == input.Mechanism ||
-                    (this.Mechanism != null &&
-                    this.Mechanism.Equals(input.Mechanism))
-                ) && 
-                (
-                    this.DeviceClass == input.DeviceClass ||
-                    (this.DeviceClass != null &&
-                    this.DeviceClass.Equals(input.DeviceClass))
-                ) && 
-                (
-                    this.EndpointName == input.EndpointName ||
-                    (this.EndpointName != null &&
-                    this.EndpointName.Equals(input.EndpointName))
-                ) && 
-                (
-                    this.AutoUpdate == input.AutoUpdate ||
-                    (this.AutoUpdate != null &&
-                    this.AutoUpdate.Equals(input.AutoUpdate))
-                ) && 
-                (
-                    this.HostGateway == input.HostGateway ||
-                    (this.HostGateway != null &&
-                    this.HostGateway.Equals(input.HostGateway))
-                ) && 
-                (
-                    this.DeviceExecutionMode == input.DeviceExecutionMode ||
-                    (this.DeviceExecutionMode != null &&
-                    this.DeviceExecutionMode.Equals(input.DeviceExecutionMode))
                 ) && 
                 (
                     this.CustomAttributes == input.CustomAttributes ||
@@ -421,24 +401,9 @@ namespace device_directory.Model
                     this.CustomAttributes.SequenceEqual(input.CustomAttributes)
                 ) && 
                 (
-                    this.State == input.State ||
-                    (this.State != null &&
-                    this.State.Equals(input.State))
-                ) && 
-                (
-                    this.SerialNumber == input.SerialNumber ||
-                    (this.SerialNumber != null &&
-                    this.SerialNumber.Equals(input.SerialNumber))
-                ) && 
-                (
-                    this.FirmwareChecksum == input.FirmwareChecksum ||
-                    (this.FirmwareChecksum != null &&
-                    this.FirmwareChecksum.Equals(input.FirmwareChecksum))
-                ) && 
-                (
-                    this._Object == input._Object ||
-                    (this._Object != null &&
-                    this._Object.Equals(input._Object))
+                    this.Deployment == input.Deployment ||
+                    (this.Deployment != null &&
+                    this.Deployment.Equals(input.Deployment))
                 ) && 
                 (
                     this.Description == input.Description ||
@@ -446,9 +411,24 @@ namespace device_directory.Model
                     this.Description.Equals(input.Description))
                 ) && 
                 (
-                    this.VendorId == input.VendorId ||
-                    (this.VendorId != null &&
-                    this.VendorId.Equals(input.VendorId))
+                    this.DeviceClass == input.DeviceClass ||
+                    (this.DeviceClass != null &&
+                    this.DeviceClass.Equals(input.DeviceClass))
+                ) && 
+                (
+                    this.DeviceExecutionMode == input.DeviceExecutionMode ||
+                    (this.DeviceExecutionMode != null &&
+                    this.DeviceExecutionMode.Equals(input.DeviceExecutionMode))
+                ) && 
+                (
+                    this.DeviceKey == input.DeviceKey ||
+                    (this.DeviceKey != null &&
+                    this.DeviceKey.Equals(input.DeviceKey))
+                ) && 
+                (
+                    this.EndpointName == input.EndpointName ||
+                    (this.EndpointName != null &&
+                    this.EndpointName.Equals(input.EndpointName))
                 ) && 
                 (
                     this.EndpointType == input.EndpointType ||
@@ -456,9 +436,24 @@ namespace device_directory.Model
                     this.EndpointType.Equals(input.EndpointType))
                 ) && 
                 (
-                    this.Deployment == input.Deployment ||
-                    (this.Deployment != null &&
-                    this.Deployment.Equals(input.Deployment))
+                    this.FirmwareChecksum == input.FirmwareChecksum ||
+                    (this.FirmwareChecksum != null &&
+                    this.FirmwareChecksum.Equals(input.FirmwareChecksum))
+                ) && 
+                (
+                    this.HostGateway == input.HostGateway ||
+                    (this.HostGateway != null &&
+                    this.HostGateway.Equals(input.HostGateway))
+                ) && 
+                (
+                    this.Manifest == input.Manifest ||
+                    (this.Manifest != null &&
+                    this.Manifest.Equals(input.Manifest))
+                ) && 
+                (
+                    this.Mechanism == input.Mechanism ||
+                    (this.Mechanism != null &&
+                    this.Mechanism.Equals(input.Mechanism))
                 ) && 
                 (
                     this.MechanismUrl == input.MechanismUrl ||
@@ -471,19 +466,24 @@ namespace device_directory.Model
                     this.Name.Equals(input.Name))
                 ) && 
                 (
-                    this.DeviceKey == input.DeviceKey ||
-                    (this.DeviceKey != null &&
-                    this.DeviceKey.Equals(input.DeviceKey))
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
                 ) && 
                 (
-                    this.Manifest == input.Manifest ||
-                    (this.Manifest != null &&
-                    this.Manifest.Equals(input.Manifest))
+                    this.SerialNumber == input.SerialNumber ||
+                    (this.SerialNumber != null &&
+                    this.SerialNumber.Equals(input.SerialNumber))
                 ) && 
                 (
-                    this.CaId == input.CaId ||
-                    (this.CaId != null &&
-                    this.CaId.Equals(input.CaId))
+                    this.State == input.State ||
+                    (this.State != null &&
+                    this.State.Equals(input.State))
+                ) && 
+                (
+                    this.VendorId == input.VendorId ||
+                    (this.VendorId != null &&
+                    this.VendorId.Equals(input.VendorId))
                 );
         }
 
@@ -496,52 +496,52 @@ namespace device_directory.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.AutoUpdate != null)
+                    hashCode = hashCode * 59 + this.AutoUpdate.GetHashCode();
                 if (this.BootstrapExpirationDate != null)
                     hashCode = hashCode * 59 + this.BootstrapExpirationDate.GetHashCode();
                 if (this.BootstrappedTimestamp != null)
                     hashCode = hashCode * 59 + this.BootstrappedTimestamp.GetHashCode();
+                if (this.CaId != null)
+                    hashCode = hashCode * 59 + this.CaId.GetHashCode();
                 if (this.ConnectorExpirationDate != null)
                     hashCode = hashCode * 59 + this.ConnectorExpirationDate.GetHashCode();
-                if (this.Mechanism != null)
-                    hashCode = hashCode * 59 + this.Mechanism.GetHashCode();
-                if (this.DeviceClass != null)
-                    hashCode = hashCode * 59 + this.DeviceClass.GetHashCode();
-                if (this.EndpointName != null)
-                    hashCode = hashCode * 59 + this.EndpointName.GetHashCode();
-                if (this.AutoUpdate != null)
-                    hashCode = hashCode * 59 + this.AutoUpdate.GetHashCode();
-                if (this.HostGateway != null)
-                    hashCode = hashCode * 59 + this.HostGateway.GetHashCode();
-                if (this.DeviceExecutionMode != null)
-                    hashCode = hashCode * 59 + this.DeviceExecutionMode.GetHashCode();
                 if (this.CustomAttributes != null)
                     hashCode = hashCode * 59 + this.CustomAttributes.GetHashCode();
-                if (this.State != null)
-                    hashCode = hashCode * 59 + this.State.GetHashCode();
-                if (this.SerialNumber != null)
-                    hashCode = hashCode * 59 + this.SerialNumber.GetHashCode();
-                if (this.FirmwareChecksum != null)
-                    hashCode = hashCode * 59 + this.FirmwareChecksum.GetHashCode();
-                if (this._Object != null)
-                    hashCode = hashCode * 59 + this._Object.GetHashCode();
-                if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
-                if (this.VendorId != null)
-                    hashCode = hashCode * 59 + this.VendorId.GetHashCode();
-                if (this.EndpointType != null)
-                    hashCode = hashCode * 59 + this.EndpointType.GetHashCode();
                 if (this.Deployment != null)
                     hashCode = hashCode * 59 + this.Deployment.GetHashCode();
+                if (this.Description != null)
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                if (this.DeviceClass != null)
+                    hashCode = hashCode * 59 + this.DeviceClass.GetHashCode();
+                if (this.DeviceExecutionMode != null)
+                    hashCode = hashCode * 59 + this.DeviceExecutionMode.GetHashCode();
+                if (this.DeviceKey != null)
+                    hashCode = hashCode * 59 + this.DeviceKey.GetHashCode();
+                if (this.EndpointName != null)
+                    hashCode = hashCode * 59 + this.EndpointName.GetHashCode();
+                if (this.EndpointType != null)
+                    hashCode = hashCode * 59 + this.EndpointType.GetHashCode();
+                if (this.FirmwareChecksum != null)
+                    hashCode = hashCode * 59 + this.FirmwareChecksum.GetHashCode();
+                if (this.HostGateway != null)
+                    hashCode = hashCode * 59 + this.HostGateway.GetHashCode();
+                if (this.Manifest != null)
+                    hashCode = hashCode * 59 + this.Manifest.GetHashCode();
+                if (this.Mechanism != null)
+                    hashCode = hashCode * 59 + this.Mechanism.GetHashCode();
                 if (this.MechanismUrl != null)
                     hashCode = hashCode * 59 + this.MechanismUrl.GetHashCode();
                 if (this.Name != null)
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
-                if (this.DeviceKey != null)
-                    hashCode = hashCode * 59 + this.DeviceKey.GetHashCode();
-                if (this.Manifest != null)
-                    hashCode = hashCode * 59 + this.Manifest.GetHashCode();
-                if (this.CaId != null)
-                    hashCode = hashCode * 59 + this.CaId.GetHashCode();
+                if (this._Object != null)
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
+                if (this.SerialNumber != null)
+                    hashCode = hashCode * 59 + this.SerialNumber.GetHashCode();
+                if (this.State != null)
+                    hashCode = hashCode * 59 + this.State.GetHashCode();
+                if (this.VendorId != null)
+                    hashCode = hashCode * 59 + this.VendorId.GetHashCode();
                 return hashCode;
             }
         }
@@ -553,28 +553,10 @@ namespace device_directory.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // DeviceClass (string) maxLength
-            if(this.DeviceClass != null && this.DeviceClass.Length > 32)
+            // CaId (string) maxLength
+            if(this.CaId != null && this.CaId.Length > 500)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DeviceClass, length must be less than 32.", new [] { "DeviceClass" });
-            }
-
-            // EndpointName (string) maxLength
-            if(this.EndpointName != null && this.EndpointName.Length > 64)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EndpointName, length must be less than 64.", new [] { "EndpointName" });
-            }
-
-            // SerialNumber (string) maxLength
-            if(this.SerialNumber != null && this.SerialNumber.Length > 64)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SerialNumber, length must be less than 64.", new [] { "SerialNumber" });
-            }
-
-            // FirmwareChecksum (string) maxLength
-            if(this.FirmwareChecksum != null && this.FirmwareChecksum.Length > 64)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FirmwareChecksum, length must be less than 64.", new [] { "FirmwareChecksum" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CaId, length must be less than 500.", new [] { "CaId" });
             }
 
             // Description (string) maxLength
@@ -583,22 +565,10 @@ namespace device_directory.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be less than 2000.", new [] { "Description" });
             }
 
-            // VendorId (string) maxLength
-            if(this.VendorId != null && this.VendorId.Length > 255)
+            // DeviceClass (string) maxLength
+            if(this.DeviceClass != null && this.DeviceClass.Length > 32)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for VendorId, length must be less than 255.", new [] { "VendorId" });
-            }
-
-            // EndpointType (string) maxLength
-            if(this.EndpointType != null && this.EndpointType.Length > 64)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EndpointType, length must be less than 64.", new [] { "EndpointType" });
-            }
-
-            // Name (string) maxLength
-            if(this.Name != null && this.Name.Length > 128)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 128.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DeviceClass, length must be less than 32.", new [] { "DeviceClass" });
             }
 
             // DeviceKey (string) maxLength
@@ -607,10 +577,40 @@ namespace device_directory.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DeviceKey, length must be less than 512.", new [] { "DeviceKey" });
             }
 
-            // CaId (string) maxLength
-            if(this.CaId != null && this.CaId.Length > 500)
+            // EndpointName (string) maxLength
+            if(this.EndpointName != null && this.EndpointName.Length > 64)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CaId, length must be less than 500.", new [] { "CaId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EndpointName, length must be less than 64.", new [] { "EndpointName" });
+            }
+
+            // EndpointType (string) maxLength
+            if(this.EndpointType != null && this.EndpointType.Length > 64)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EndpointType, length must be less than 64.", new [] { "EndpointType" });
+            }
+
+            // FirmwareChecksum (string) maxLength
+            if(this.FirmwareChecksum != null && this.FirmwareChecksum.Length > 64)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FirmwareChecksum, length must be less than 64.", new [] { "FirmwareChecksum" });
+            }
+
+            // Name (string) maxLength
+            if(this.Name != null && this.Name.Length > 128)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 128.", new [] { "Name" });
+            }
+
+            // SerialNumber (string) maxLength
+            if(this.SerialNumber != null && this.SerialNumber.Length > 64)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SerialNumber, length must be less than 64.", new [] { "SerialNumber" });
+            }
+
+            // VendorId (string) maxLength
+            if(this.VendorId != null && this.VendorId.Length > 255)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for VendorId, length must be less than 255.", new [] { "VendorId" });
             }
 
             yield break;

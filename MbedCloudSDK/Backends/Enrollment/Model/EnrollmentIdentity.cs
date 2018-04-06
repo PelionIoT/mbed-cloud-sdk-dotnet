@@ -58,17 +58,17 @@ namespace enrollment.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EnrollmentIdentity" /> class.
         /// </summary>
-        /// <param name="_EnrollmentIdentity">Enrollment identity..</param>
-        /// <param name="_Object">_Object.</param>
         /// <param name="AccountId">muuid (required).</param>
-        /// <param name="CreatedAt">The time of the enrollment identity creation. (required).</param>
         /// <param name="ClaimedAt">The time of claiming the device to be assigned to the account..</param>
-        /// <param name="ExpiresAt">The enrollment claim expiration time. If the device does not connect to Mbed Cloud before the expiration, the claim is removed without a separate notice (required).</param>
-        /// <param name="EnrolledDeviceId">Enrolled device internal ID.</param>
-        /// <param name="Etag">Etag (required).</param>
-        /// <param name="Id">Enrollment identity internal id (required).</param>
+        /// <param name="CreatedAt">The time of the enrollment identity creation. (required).</param>
         /// <param name="DeviceId">The ID of the device in the Device Directory once it has been registered..</param>
-        public EnrollmentIdentity(string _EnrollmentIdentity = default(string), ObjectEnum? _Object = default(ObjectEnum?), string AccountId = default(string), DateTime? CreatedAt = default(DateTime?), DateTime? ClaimedAt = default(DateTime?), DateTime? ExpiresAt = default(DateTime?), string EnrolledDeviceId = default(string), string Etag = default(string), string Id = default(string), string DeviceId = default(string))
+        /// <param name="EnrolledDeviceId">Enrolled device internal ID.</param>
+        /// <param name="_EnrollmentIdentity">Enrollment identity..</param>
+        /// <param name="Etag">Etag (required).</param>
+        /// <param name="ExpiresAt">The enrollment claim expiration time. If the device does not connect to Mbed Cloud before the expiration, the claim is removed without a separate notice (required).</param>
+        /// <param name="Id">Enrollment identity internal id (required).</param>
+        /// <param name="_Object">_Object.</param>
+        public EnrollmentIdentity(string AccountId = default(string), DateTime? ClaimedAt = default(DateTime?), DateTime? CreatedAt = default(DateTime?), string DeviceId = default(string), string EnrolledDeviceId = default(string), string _EnrollmentIdentity = default(string), string Etag = default(string), DateTime? ExpiresAt = default(DateTime?), string Id = default(string), ObjectEnum? _Object = default(ObjectEnum?))
         {
             // to ensure "AccountId" is required (not null)
             if (AccountId == null)
@@ -88,15 +88,6 @@ namespace enrollment.Model
             {
                 this.CreatedAt = CreatedAt;
             }
-            // to ensure "ExpiresAt" is required (not null)
-            if (ExpiresAt == null)
-            {
-                throw new InvalidDataException("ExpiresAt is a required property for EnrollmentIdentity and cannot be null");
-            }
-            else
-            {
-                this.ExpiresAt = ExpiresAt;
-            }
             // to ensure "Etag" is required (not null)
             if (Etag == null)
             {
@@ -105,6 +96,15 @@ namespace enrollment.Model
             else
             {
                 this.Etag = Etag;
+            }
+            // to ensure "ExpiresAt" is required (not null)
+            if (ExpiresAt == null)
+            {
+                throw new InvalidDataException("ExpiresAt is a required property for EnrollmentIdentity and cannot be null");
+            }
+            else
+            {
+                this.ExpiresAt = ExpiresAt;
             }
             // to ensure "Id" is required (not null)
             if (Id == null)
@@ -115,34 +115,19 @@ namespace enrollment.Model
             {
                 this.Id = Id;
             }
+            this.ClaimedAt = ClaimedAt;
+            this.DeviceId = DeviceId;
+            this.EnrolledDeviceId = EnrolledDeviceId;
             this._EnrollmentIdentity = _EnrollmentIdentity;
             this._Object = _Object;
-            this.ClaimedAt = ClaimedAt;
-            this.EnrolledDeviceId = EnrolledDeviceId;
-            this.DeviceId = DeviceId;
         }
         
-        /// <summary>
-        /// Enrollment identity.
-        /// </summary>
-        /// <value>Enrollment identity.</value>
-        [DataMember(Name="enrollment_identity", EmitDefaultValue=false)]
-        public string _EnrollmentIdentity { get; set; }
-
-
         /// <summary>
         /// muuid
         /// </summary>
         /// <value>muuid</value>
         [DataMember(Name="account_id", EmitDefaultValue=false)]
         public string AccountId { get; set; }
-
-        /// <summary>
-        /// The time of the enrollment identity creation.
-        /// </summary>
-        /// <value>The time of the enrollment identity creation.</value>
-        [DataMember(Name="created_at", EmitDefaultValue=false)]
-        public DateTime? CreatedAt { get; set; }
 
         /// <summary>
         /// The time of claiming the device to be assigned to the account.
@@ -152,31 +137,11 @@ namespace enrollment.Model
         public DateTime? ClaimedAt { get; set; }
 
         /// <summary>
-        /// The enrollment claim expiration time. If the device does not connect to Mbed Cloud before the expiration, the claim is removed without a separate notice
+        /// The time of the enrollment identity creation.
         /// </summary>
-        /// <value>The enrollment claim expiration time. If the device does not connect to Mbed Cloud before the expiration, the claim is removed without a separate notice</value>
-        [DataMember(Name="expires_at", EmitDefaultValue=false)]
-        public DateTime? ExpiresAt { get; set; }
-
-        /// <summary>
-        /// Enrolled device internal ID
-        /// </summary>
-        /// <value>Enrolled device internal ID</value>
-        [DataMember(Name="enrolled_device_id", EmitDefaultValue=false)]
-        public string EnrolledDeviceId { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Etag
-        /// </summary>
-        [DataMember(Name="etag", EmitDefaultValue=false)]
-        public string Etag { get; set; }
-
-        /// <summary>
-        /// Enrollment identity internal id
-        /// </summary>
-        /// <value>Enrollment identity internal id</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
-        public string Id { get; set; }
+        /// <value>The time of the enrollment identity creation.</value>
+        [DataMember(Name="created_at", EmitDefaultValue=false)]
+        public DateTime? CreatedAt { get; set; }
 
         /// <summary>
         /// The ID of the device in the Device Directory once it has been registered.
@@ -186,6 +151,41 @@ namespace enrollment.Model
         public string DeviceId { get; set; }
 
         /// <summary>
+        /// Enrolled device internal ID
+        /// </summary>
+        /// <value>Enrolled device internal ID</value>
+        [DataMember(Name="enrolled_device_id", EmitDefaultValue=false)]
+        public string EnrolledDeviceId { get; set; }
+
+        /// <summary>
+        /// Enrollment identity.
+        /// </summary>
+        /// <value>Enrollment identity.</value>
+        [DataMember(Name="enrollment_identity", EmitDefaultValue=false)]
+        public string _EnrollmentIdentity { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Etag
+        /// </summary>
+        [DataMember(Name="etag", EmitDefaultValue=false)]
+        public string Etag { get; set; }
+
+        /// <summary>
+        /// The enrollment claim expiration time. If the device does not connect to Mbed Cloud before the expiration, the claim is removed without a separate notice
+        /// </summary>
+        /// <value>The enrollment claim expiration time. If the device does not connect to Mbed Cloud before the expiration, the claim is removed without a separate notice</value>
+        [DataMember(Name="expires_at", EmitDefaultValue=false)]
+        public DateTime? ExpiresAt { get; set; }
+
+        /// <summary>
+        /// Enrollment identity internal id
+        /// </summary>
+        /// <value>Enrollment identity internal id</value>
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public string Id { get; set; }
+
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -193,16 +193,16 @@ namespace enrollment.Model
         {
             var sb = new StringBuilder();
             sb.Append("class EnrollmentIdentity {\n");
-            sb.Append("  _EnrollmentIdentity: ").Append(_EnrollmentIdentity).Append("\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  ClaimedAt: ").Append(ClaimedAt).Append("\n");
-            sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
-            sb.Append("  EnrolledDeviceId: ").Append(EnrolledDeviceId).Append("\n");
-            sb.Append("  Etag: ").Append(Etag).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
+            sb.Append("  EnrolledDeviceId: ").Append(EnrolledDeviceId).Append("\n");
+            sb.Append("  _EnrollmentIdentity: ").Append(_EnrollmentIdentity).Append("\n");
+            sb.Append("  Etag: ").Append(Etag).Append("\n");
+            sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -238,24 +238,9 @@ namespace enrollment.Model
 
             return 
                 (
-                    this._EnrollmentIdentity == input._EnrollmentIdentity ||
-                    (this._EnrollmentIdentity != null &&
-                    this._EnrollmentIdentity.Equals(input._EnrollmentIdentity))
-                ) && 
-                (
-                    this._Object == input._Object ||
-                    (this._Object != null &&
-                    this._Object.Equals(input._Object))
-                ) && 
-                (
                     this.AccountId == input.AccountId ||
                     (this.AccountId != null &&
                     this.AccountId.Equals(input.AccountId))
-                ) && 
-                (
-                    this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
                 ) && 
                 (
                     this.ClaimedAt == input.ClaimedAt ||
@@ -263,9 +248,14 @@ namespace enrollment.Model
                     this.ClaimedAt.Equals(input.ClaimedAt))
                 ) && 
                 (
-                    this.ExpiresAt == input.ExpiresAt ||
-                    (this.ExpiresAt != null &&
-                    this.ExpiresAt.Equals(input.ExpiresAt))
+                    this.CreatedAt == input.CreatedAt ||
+                    (this.CreatedAt != null &&
+                    this.CreatedAt.Equals(input.CreatedAt))
+                ) && 
+                (
+                    this.DeviceId == input.DeviceId ||
+                    (this.DeviceId != null &&
+                    this.DeviceId.Equals(input.DeviceId))
                 ) && 
                 (
                     this.EnrolledDeviceId == input.EnrolledDeviceId ||
@@ -273,9 +263,19 @@ namespace enrollment.Model
                     this.EnrolledDeviceId.Equals(input.EnrolledDeviceId))
                 ) && 
                 (
+                    this._EnrollmentIdentity == input._EnrollmentIdentity ||
+                    (this._EnrollmentIdentity != null &&
+                    this._EnrollmentIdentity.Equals(input._EnrollmentIdentity))
+                ) && 
+                (
                     this.Etag == input.Etag ||
                     (this.Etag != null &&
                     this.Etag.Equals(input.Etag))
+                ) && 
+                (
+                    this.ExpiresAt == input.ExpiresAt ||
+                    (this.ExpiresAt != null &&
+                    this.ExpiresAt.Equals(input.ExpiresAt))
                 ) && 
                 (
                     this.Id == input.Id ||
@@ -283,9 +283,9 @@ namespace enrollment.Model
                     this.Id.Equals(input.Id))
                 ) && 
                 (
-                    this.DeviceId == input.DeviceId ||
-                    (this.DeviceId != null &&
-                    this.DeviceId.Equals(input.DeviceId))
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
                 );
         }
 
@@ -298,26 +298,26 @@ namespace enrollment.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this._EnrollmentIdentity != null)
-                    hashCode = hashCode * 59 + this._EnrollmentIdentity.GetHashCode();
-                if (this._Object != null)
-                    hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.AccountId != null)
                     hashCode = hashCode * 59 + this.AccountId.GetHashCode();
-                if (this.CreatedAt != null)
-                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
                 if (this.ClaimedAt != null)
                     hashCode = hashCode * 59 + this.ClaimedAt.GetHashCode();
-                if (this.ExpiresAt != null)
-                    hashCode = hashCode * 59 + this.ExpiresAt.GetHashCode();
-                if (this.EnrolledDeviceId != null)
-                    hashCode = hashCode * 59 + this.EnrolledDeviceId.GetHashCode();
-                if (this.Etag != null)
-                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
-                if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.CreatedAt != null)
+                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
                 if (this.DeviceId != null)
                     hashCode = hashCode * 59 + this.DeviceId.GetHashCode();
+                if (this.EnrolledDeviceId != null)
+                    hashCode = hashCode * 59 + this.EnrolledDeviceId.GetHashCode();
+                if (this._EnrollmentIdentity != null)
+                    hashCode = hashCode * 59 + this._EnrollmentIdentity.GetHashCode();
+                if (this.Etag != null)
+                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
+                if (this.ExpiresAt != null)
+                    hashCode = hashCode * 59 + this.ExpiresAt.GetHashCode();
+                if (this.Id != null)
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this._Object != null)
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
                 return hashCode;
             }
         }
@@ -329,18 +329,18 @@ namespace enrollment.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // _EnrollmentIdentity (string) pattern
-            Regex regex_EnrollmentIdentity = new Regex(@"^A-[A-Za-z0-9:]{95}$", RegexOptions.CultureInvariant);
-            if (false == regex_EnrollmentIdentity.Match(this._EnrollmentIdentity).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for _EnrollmentIdentity, must match a pattern of " + regex_EnrollmentIdentity, new [] { "_EnrollmentIdentity" });
-            }
-
             // EnrolledDeviceId (string) pattern
             Regex regexEnrolledDeviceId = new Regex(@"^[A-Za-z0-9]{32}", RegexOptions.CultureInvariant);
             if (false == regexEnrolledDeviceId.Match(this.EnrolledDeviceId).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EnrolledDeviceId, must match a pattern of " + regexEnrolledDeviceId, new [] { "EnrolledDeviceId" });
+            }
+
+            // _EnrollmentIdentity (string) pattern
+            Regex regex_EnrollmentIdentity = new Regex(@"^A-[A-Za-z0-9:]{95}$", RegexOptions.CultureInvariant);
+            if (false == regex_EnrollmentIdentity.Match(this._EnrollmentIdentity).Success)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for _EnrollmentIdentity, must match a pattern of " + regex_EnrollmentIdentity, new [] { "_EnrollmentIdentity" });
             }
 
             // Etag (string) pattern

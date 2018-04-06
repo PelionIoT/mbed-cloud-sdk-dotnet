@@ -1,10 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
+  <PropertyGroup Label="NuGet">
     <TargetFramework>netstandard2.0</TargetFramework>
+    <IsPackable>true</IsPackable>
     <PackageId>Mbed.Cloud.SDK</PackageId>
     <Title>Mbed Cloud SDK for .NET</Title>
-    <PackageVersion>1.2.6</PackageVersion>
+    <AssemblyTitle>MbedCloudSDK</AssemblyTitle>
+    <AssemblyName>MbedCloudSDK</AssemblyName>
+    <VersionPrefix>1.2.7</VersionPrefix>
+    <VersionSuffix></VersionSuffix>
     <Authors>Alex Logan</Authors>
     <Description>The Mbed Cloud SDK provides a simplified interface to the Mbed Cloud APIs by exposing functionality using conventions and paradigms familiar to .NET developers.</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -14,6 +18,10 @@
     <PackageLicenseUrl>https://github.com/ARMmbed/mbed-cloud-sdk-dotnet/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/ARMmbed/mbed-cloud-sdk-dotnet</PackageProjectUrl>
     <PackageIconUrl>https://avatars2.githubusercontent.com/u/8916057</PackageIconUrl>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <RepositoryUrl>https://github.com/ARMmbed/mbed-cloud-sdk-dotnet</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

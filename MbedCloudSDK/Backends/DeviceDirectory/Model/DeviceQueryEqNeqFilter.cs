@@ -34,39 +34,27 @@ namespace device_directory.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceQueryEqNeqFilter" /> class.
         /// </summary>
-        /// <param name="Name">Name.</param>
         /// <param name="CreatedAt">CreatedAt.</param>
-        /// <param name="UpdatedAt">UpdatedAt.</param>
         /// <param name="Etag">Etag.</param>
-        /// <param name="Query">Query.</param>
         /// <param name="Id">Id.</param>
-        public DeviceQueryEqNeqFilter(string Name = default(string), DateTime? CreatedAt = default(DateTime?), DateTime? UpdatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), string Query = default(string), string Id = default(string))
+        /// <param name="Name">Name.</param>
+        /// <param name="Query">Query.</param>
+        /// <param name="UpdatedAt">UpdatedAt.</param>
+        public DeviceQueryEqNeqFilter(DateTime? CreatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), string Id = default(string), string Name = default(string), string Query = default(string), DateTime? UpdatedAt = default(DateTime?))
         {
-            this.Name = Name;
             this.CreatedAt = CreatedAt;
-            this.UpdatedAt = UpdatedAt;
             this.Etag = Etag;
-            this.Query = Query;
             this.Id = Id;
+            this.Name = Name;
+            this.Query = Query;
+            this.UpdatedAt = UpdatedAt;
         }
         
-        /// <summary>
-        /// Gets or Sets Name
-        /// </summary>
-        [DataMember(Name="name", EmitDefaultValue=false)]
-        public string Name { get; set; }
-
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
-
-        /// <summary>
-        /// Gets or Sets UpdatedAt
-        /// </summary>
-        [DataMember(Name="updated_at", EmitDefaultValue=false)]
-        public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets Etag
@@ -75,16 +63,28 @@ namespace device_directory.Model
         public DateTime? Etag { get; set; }
 
         /// <summary>
+        /// Gets or Sets Id
+        /// </summary>
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Name
+        /// </summary>
+        [DataMember(Name="name", EmitDefaultValue=false)]
+        public string Name { get; set; }
+
+        /// <summary>
         /// Gets or Sets Query
         /// </summary>
         [DataMember(Name="query", EmitDefaultValue=false)]
         public string Query { get; set; }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// Gets or Sets UpdatedAt
         /// </summary>
-        [DataMember(Name="id", EmitDefaultValue=false)]
-        public string Id { get; set; }
+        [DataMember(Name="updated_at", EmitDefaultValue=false)]
+        public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -94,12 +94,12 @@ namespace device_directory.Model
         {
             var sb = new StringBuilder();
             sb.Append("class DeviceQueryEqNeqFilter {\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
-            sb.Append("  Query: ").Append(Query).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Query: ").Append(Query).Append("\n");
+            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -135,19 +135,9 @@ namespace device_directory.Model
 
             return 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
-                ) && 
-                (
                     this.CreatedAt == input.CreatedAt ||
                     (this.CreatedAt != null &&
                     this.CreatedAt.Equals(input.CreatedAt))
-                ) && 
-                (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
                 ) && 
                 (
                     this.Etag == input.Etag ||
@@ -155,14 +145,24 @@ namespace device_directory.Model
                     this.Etag.Equals(input.Etag))
                 ) && 
                 (
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
+                ) && 
+                (
                     this.Query == input.Query ||
                     (this.Query != null &&
                     this.Query.Equals(input.Query))
                 ) && 
                 (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
+                    this.UpdatedAt == input.UpdatedAt ||
+                    (this.UpdatedAt != null &&
+                    this.UpdatedAt.Equals(input.UpdatedAt))
                 );
         }
 
@@ -175,18 +175,18 @@ namespace device_directory.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
                 if (this.CreatedAt != null)
                     hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
-                if (this.UpdatedAt != null)
-                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
                 if (this.Etag != null)
                     hashCode = hashCode * 59 + this.Etag.GetHashCode();
-                if (this.Query != null)
-                    hashCode = hashCode * 59 + this.Query.GetHashCode();
                 if (this.Id != null)
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.Name != null)
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.Query != null)
+                    hashCode = hashCode * 59 + this.Query.GetHashCode();
+                if (this.UpdatedAt != null)
+                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
                 return hashCode;
             }
         }

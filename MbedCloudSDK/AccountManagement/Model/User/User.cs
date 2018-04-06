@@ -146,8 +146,11 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         public List<LoginHistory> LoginHistory { get; private set; }
 
         /// <summary>
-        /// User's account specific custom properties.
+        /// Gets the User's account specific custom properties.
         /// </summary>
+        /// <value>
+        /// The custom properties.
+        /// </value>
         public Dictionary<string, Dictionary<string, string>> CustomProperties { get; private set; }
 
         /// <summary>

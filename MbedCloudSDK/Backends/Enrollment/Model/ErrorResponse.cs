@@ -195,14 +195,15 @@ namespace enrollment.Model
         /// </summary>
         /// <param name="Code">Response code..</param>
         /// <param name="Fields">Failed input fields during request object validation..</param>
+        /// <param name="Message">A human readable message with detailed info..</param>
         /// <param name="_Object">Entity name, always &#39;error&#39;. (default to ObjectEnum.Error).</param>
         /// <param name="RequestId">Request ID (muuid)..</param>
-        /// <param name="Message">A human readable message with detailed info..</param>
         /// <param name="Type">Error type..</param>
-        public ErrorResponse(CodeEnum? Code = default(CodeEnum?), List<Field> Fields = default(List<Field>), ObjectEnum? _Object = ObjectEnum.Error, string RequestId = default(string), string Message = default(string), TypeEnum? Type = default(TypeEnum?))
+        public ErrorResponse(CodeEnum? Code = default(CodeEnum?), List<Field> Fields = default(List<Field>), string Message = default(string), ObjectEnum? _Object = ObjectEnum.Error, string RequestId = default(string), TypeEnum? Type = default(TypeEnum?))
         {
             this.Code = Code;
             this.Fields = Fields;
+            this.Message = Message;
             // use default value if no "_Object" provided
             if (_Object == null)
             {
@@ -213,7 +214,6 @@ namespace enrollment.Model
                 this._Object = _Object;
             }
             this.RequestId = RequestId;
-            this.Message = Message;
             this.Type = Type;
         }
         
@@ -225,6 +225,13 @@ namespace enrollment.Model
         [DataMember(Name="fields", EmitDefaultValue=false)]
         public List<Field> Fields { get; set; }
 
+        /// <summary>
+        /// A human readable message with detailed info.
+        /// </summary>
+        /// <value>A human readable message with detailed info.</value>
+        [DataMember(Name="message", EmitDefaultValue=false)]
+        public string Message { get; set; }
+
 
         /// <summary>
         /// Request ID (muuid).
@@ -232,13 +239,6 @@ namespace enrollment.Model
         /// <value>Request ID (muuid).</value>
         [DataMember(Name="request_id", EmitDefaultValue=false)]
         public string RequestId { get; set; }
-
-        /// <summary>
-        /// A human readable message with detailed info.
-        /// </summary>
-        /// <value>A human readable message with detailed info.</value>
-        [DataMember(Name="message", EmitDefaultValue=false)]
-        public string Message { get; set; }
 
 
         /// <summary>
@@ -251,9 +251,9 @@ namespace enrollment.Model
             sb.Append("class ErrorResponse {\n");
             sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("  Fields: ").Append(Fields).Append("\n");
+            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  RequestId: ").Append(RequestId).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -300,6 +300,11 @@ namespace enrollment.Model
                     this.Fields.SequenceEqual(input.Fields)
                 ) && 
                 (
+                    this.Message == input.Message ||
+                    (this.Message != null &&
+                    this.Message.Equals(input.Message))
+                ) && 
+                (
                     this._Object == input._Object ||
                     (this._Object != null &&
                     this._Object.Equals(input._Object))
@@ -308,11 +313,6 @@ namespace enrollment.Model
                     this.RequestId == input.RequestId ||
                     (this.RequestId != null &&
                     this.RequestId.Equals(input.RequestId))
-                ) && 
-                (
-                    this.Message == input.Message ||
-                    (this.Message != null &&
-                    this.Message.Equals(input.Message))
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -334,12 +334,12 @@ namespace enrollment.Model
                     hashCode = hashCode * 59 + this.Code.GetHashCode();
                 if (this.Fields != null)
                     hashCode = hashCode * 59 + this.Fields.GetHashCode();
+                if (this.Message != null)
+                    hashCode = hashCode * 59 + this.Message.GetHashCode();
                 if (this._Object != null)
                     hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.RequestId != null)
                     hashCode = hashCode * 59 + this.RequestId.GetHashCode();
-                if (this.Message != null)
-                    hashCode = hashCode * 59 + this.Message.GetHashCode();
                 if (this.Type != null)
                     hashCode = hashCode * 59 + this.Type.GetHashCode();
                 return hashCode;

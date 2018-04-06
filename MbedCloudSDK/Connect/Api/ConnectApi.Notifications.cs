@@ -11,6 +11,7 @@ namespace MbedCloudSDK.Connect.Api
     using System.Threading.Tasks;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Tlv;
+    using MbedCloudSDK.Connect.Api.Subscribe.Models;
     using MbedCloudSDK.Connect.Model.Notifications;
     using MbedCloudSDK.Connect.Model.Webhook;
     using MbedCloudSDK.Exceptions;
@@ -28,7 +29,7 @@ namespace MbedCloudSDK.Connect.Api
         /// Notify
         /// </summary>
         /// <param name="notification">The Notification Message as a <see cref="NotificationMessage"/></param>
-        public static void Notify(NotificationMessage notification)
+        public void Notify(NotificationMessage notification)
         {
             NotifyFunc(notification);
         }
@@ -37,13 +38,13 @@ namespace MbedCloudSDK.Connect.Api
         /// Notify
         /// </summary>
         /// <param name="notification">The Notification Message as a string.</param>
-        public static void Notify(string notification)
+        public void Notify(string notification)
         {
             var message = JsonConvert.DeserializeObject<NotificationMessage>(notification);
             NotifyFunc(message);
         }
 
-        private static void NotifyFunc(NotificationMessage notification)
+        private void NotifyFunc(NotificationMessage notification)
         {
             if (notification.AsyncResponses.Any())
             {
@@ -67,65 +68,46 @@ namespace MbedCloudSDK.Connect.Api
                     var payload = Utils.DecodeBase64(item);
 
                     var resourceSubs = item.DeviceId + item.Path;
-                    if (ResourceSubscribtions.ContainsKey(resourceSubs))
+                    if (NotificationQueue.ContainsKey(resourceSubs))
                     {
-                        ResourceSubscribtions[resourceSubs].NotificationQueue.Add(payload);
+                        NotificationQueue[resourceSubs].Add(payload);
                     }
                 }
             }
 
-            if (notification.Registrations.Any())
+            if (Subscribe != null)
             {
-                notification.Registrations.ForEach(r =>
-                    {
-                        r.Resources.ForEach(res =>
+                if (notification.Registrations.Any())
+                {
+                    notification.Registrations.ForEach(r =>
                         {
-                            var key = r.DeviceId + res.Path;
-                            if (ResourceSubscribtions.ContainsKey(key))
-                            {
-                                ResourceSubscribtions[key].RegistrationQueue.Add(r);
-                            }
+                            Subscribe.Notify(r);
                         });
+                }
+
+                if (notification.RegistrationUpdates.Any())
+                {
+                    notification.RegistrationUpdates.ForEach(r =>
+                    {
+                        Subscribe.Notify(r);
                     });
-            }
+                }
 
-            if (notification.RegistrationUpdates.Any())
-            {
-                notification.RegistrationUpdates.ForEach(r =>
+                if (notification.DeRegistrations.Any())
                 {
-                    r.Resources.ForEach(res =>
+                    notification.DeRegistrations.ForEach(d =>
                     {
-                        var key = r.DeviceId + res.Path;
-                        if (ResourceSubscribtions.ContainsKey(key))
-                        {
-                            ResourceSubscribtions[key].RegistrationUpdateQueue.Add(r);
-                        }
+                        Subscribe.Notify(d);
                     });
-                });
-            }
+                }
 
-            if (notification.DeRegistrations.Any())
-            {
-                notification.DeRegistrations.ForEach(d =>
+                if (notification.RegistrationsExpired.Any())
                 {
-                    var matchingSubs = resourceSubscribtions.Where(s => s.Key.Contains(d)).ToDictionary(r => r.Key, r => r.Value);
-                    foreach (var item in matchingSubs)
+                    notification.RegistrationsExpired.ForEach(d =>
                     {
-                        item.Value.DeRegistrationQueue.Add(d);
-                    }
-                });
-            }
-
-            if (notification.RegistrationsExpired.Any())
-            {
-                notification.RegistrationsExpired.ForEach(d =>
-                {
-                    var matchingSubs = resourceSubscribtions.Where(s => s.Key.Contains(d)).ToDictionary(r => r.Key, r => r.Value);
-                    foreach (var item in matchingSubs)
-                    {
-                        item.Value.RegistrationExpiredQueue.Add(d);
-                    }
-                });
+                        Subscribe.Notify(d);
+                    });
+                }
             }
         }
 
@@ -268,6 +250,15 @@ namespace MbedCloudSDK.Connect.Api
             }
 
             handleNotifications = false;
+        }
+
+        /// <summary>
+        /// Check if  notifications have been started
+        /// </summary>
+        /// <returns>True if started</returns>
+        public bool IsNotificationsStarted()
+        {
+            return handleNotifications;
         }
     }
 }

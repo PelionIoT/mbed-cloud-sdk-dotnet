@@ -12,6 +12,7 @@ namespace MbedCloudSDK.Connect.Api
     using device_directory.Client;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
+    using MbedCloudSDK.Connect.Model.Notifications;
     using MbedCloudSDK.Connect.Model.Resource;
     using mds.Api;
 
@@ -36,27 +37,17 @@ namespace MbedCloudSDK.Connect.Api
     /// </summary>
     public partial class ConnectApi : BaseApi, IDisposable
     {
-        /// <summary>
-        /// Resources that are currently subscribed.
-        /// </summary>
-        private static Dictionary<string, Resource> resourceSubscribtions = new Dictionary<string, Resource>();
-
-        /// <summary>
-        /// Responses to async requests.
-        /// </summary>
-        private static Dictionary<string, AsyncProducerConsumerCollection<string>> asyncResponses = new Dictionary<string, AsyncProducerConsumerCollection<string>>();
-
         private Task notificationTask;
         private CancellationTokenSource cancellationToken;
-        private device_directory.Api.DefaultApi deviceDirectoryApi;
-        private statistics.Api.StatisticsApi statisticsApi;
-        private EndpointsApi endpointsApi;
-        private statistics.Api.AccountApi accountApi;
-        private SubscriptionsApi subscriptionsApi;
-        private ResourcesApi resourcesApi;
+        internal device_directory.Api.DefaultApi deviceDirectoryApi;
+        internal statistics.Api.StatisticsApi statisticsApi;
+        internal EndpointsApi endpointsApi;
+        internal statistics.Api.AccountApi accountApi;
+        internal SubscriptionsApi subscriptionsApi;
+        internal ResourcesApi resourcesApi;
         private string auth;
-        private NotificationsApi notificationsApi;
-        private DeviceRequestsApi deviceRequestsApi;
+        internal NotificationsApi notificationsApi;
+        internal DeviceRequestsApi deviceRequestsApi;
         private bool disposed;
 
         /// <summary>
@@ -67,56 +58,39 @@ namespace MbedCloudSDK.Connect.Api
             : base(config)
         {
             ResourceSubscribtions = new Dictionary<string, Resource>();
-
-            var dateFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
-            auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);
-
-            var statsConfig = new statistics.Client.Configuration
-            {
-                BasePath = config.Host,
-                DateTimeFormat = dateFormat,
-            };
-            statsConfig.AddApiKey("Authorization", config.ApiKey);
-            statsConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
-            statsConfig.CreateApiClient();
-
-            var mdsConfig = new mds.Client.Configuration
-            {
-                BasePath = config.Host,
-                DateTimeFormat = dateFormat,
-            };
-            mdsConfig.AddApiKey("Authorization", config.ApiKey);
-            mdsConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
-            mdsConfig.CreateApiClient();
-
-            var deviceConfig = new device_directory.Client.Configuration
-            {
-                BasePath = config.Host,
-                DateTimeFormat = dateFormat,
-            };
-            deviceConfig.AddApiKey("Authorization", config.ApiKey);
-            deviceConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
-            deviceConfig.CreateApiClient();
-
-            deviceDirectoryApi = new device_directory.Api.DefaultApi(deviceConfig);
-            statisticsApi = new statistics.Api.StatisticsApi(statsConfig);
-            subscriptionsApi = new SubscriptionsApi(mdsConfig);
-            resourcesApi = new ResourcesApi(mdsConfig);
-            endpointsApi = new EndpointsApi(mdsConfig);
-            accountApi = new statistics.Api.AccountApi(statsConfig);
-            notificationsApi = new NotificationsApi(mdsConfig);
-            deviceRequestsApi = new DeviceRequestsApi(mdsConfig);
+            SetUpApi(config);
         }
 
         /// <summary>
-        /// Gets or sets async responses
+        /// Initializes a new instance of the <see cref="ConnectApi"/> class.
         /// </summary>
-        public static Dictionary<string, AsyncProducerConsumerCollection<string>> AsyncResponses { get => asyncResponses; set => asyncResponses = value; }
+        /// <param name="config"><see cref="Config"/></param>
+        internal ConnectApi(Config config, statistics.Client.Configuration statsConfig = null, mds.Client.Configuration mdsConfig = null, device_directory.Client.Configuration deviceConfig = null)
+            : base(config)
+        {
+            ResourceSubscribtions = new Dictionary<string, Resource>();
+            SetUpApi(config, statsConfig, mdsConfig, deviceConfig);
+        }
 
         /// <summary>
-        /// Gets or sets resource Subscriptions
+        /// Gets async responses
         /// </summary>
-        public static Dictionary<string, Resource> ResourceSubscribtions { get => resourceSubscribtions; set => resourceSubscribtions = value; }
+        public Dictionary<string, AsyncProducerConsumerCollection<string>> AsyncResponses { get; } = new Dictionary<string, AsyncProducerConsumerCollection<string>>();
+
+        /// <summary>
+        /// Gets resource Subscriptions
+        /// </summary>
+        public Dictionary<string, Resource> ResourceSubscribtions { get; } = new Dictionary<string, Resource>();
+
+        /// <summary>
+        /// Gets NotificationQueue
+        /// </summary>
+        public Dictionary<string, AsyncProducerConsumerCollection<string>> NotificationQueue { get; } = new Dictionary<string, AsyncProducerConsumerCollection<string>>();
+
+        /// <summary>
+        /// Gets or sets the SubscribeManager
+        /// </summary>
+        public MbedCloudSDK.Connect.Api.Subscribe.Subscribe Subscribe { get; set; }
 
         /// <summary>
         /// Get meta data for the last Mbed Cloud API call
@@ -172,6 +146,60 @@ namespace MbedCloudSDK.Connect.Api
             {
                 throw new ObjectDisposedException(GetType().FullName);
             }
+        }
+
+        private void SetUpApi(Config config, statistics.Client.Configuration statsConfig = null, mds.Client.Configuration mdsConfig = null, device_directory.Client.Configuration deviceConfig = null)
+        {
+            var dateFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
+            auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);
+
+            if (statsConfig == null)
+            {
+                statsConfig = new statistics.Client.Configuration
+                {
+                    BasePath = config.Host,
+                    DateTimeFormat = dateFormat,
+                    UserAgent = UserAgent,
+                };
+                statsConfig.AddApiKey("Authorization", config.ApiKey);
+                statsConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
+                statsConfig.CreateApiClient();
+            }
+
+            if (mdsConfig == null)
+            {
+                mdsConfig = new mds.Client.Configuration
+                {
+                    BasePath = config.Host,
+                    DateTimeFormat = dateFormat,
+                    UserAgent = UserAgent,
+                };
+                mdsConfig.AddApiKey("Authorization", config.ApiKey);
+                mdsConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
+                mdsConfig.CreateApiClient();
+            }
+
+            if (deviceConfig == null)
+            {
+                deviceConfig = new device_directory.Client.Configuration
+                {
+                    BasePath = config.Host,
+                    DateTimeFormat = dateFormat,
+                    UserAgent = UserAgent,
+                };
+                deviceConfig.AddApiKey("Authorization", config.ApiKey);
+                deviceConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
+                deviceConfig.CreateApiClient();
+            }
+
+            deviceDirectoryApi = new device_directory.Api.DefaultApi(deviceConfig);
+            statisticsApi = new statistics.Api.StatisticsApi(statsConfig);
+            subscriptionsApi = new SubscriptionsApi(mdsConfig);
+            resourcesApi = new ResourcesApi(mdsConfig);
+            endpointsApi = new EndpointsApi(mdsConfig);
+            accountApi = new statistics.Api.AccountApi(statsConfig);
+            notificationsApi = new NotificationsApi(mdsConfig);
+            deviceRequestsApi = new DeviceRequestsApi(mdsConfig);
         }
 
         private static string RemoveLeadingSlash(string path)

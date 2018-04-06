@@ -30,10 +30,10 @@ namespace MbedCloudSDK.Certificates.Api
     /// </example>
     public class CertificatesApi : BaseApi
     {
-        private DeveloperCertificateApi developerCertificateApi;
-        private ServerCredentialsApi serverCredentialsApi;
-        private AccountAdminApi iamAccountApi;
-        private DeveloperApi developerApi;
+        internal DeveloperCertificateApi developerCertificateApi;
+        internal ServerCredentialsApi serverCredentialsApi;
+        internal AccountAdminApi iamAccountApi;
+        internal DeveloperApi developerApi;
         private string auth;
 
         /// <summary>
@@ -46,31 +46,63 @@ namespace MbedCloudSDK.Certificates.Api
         {
             auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);
 
-            var connectorConfig = new connector_ca.Client.Configuration
-            {
-                BasePath = config.Host,
-                DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
-            };
-            connectorConfig.AddApiKey("Authorization", config.ApiKey);
-            connectorConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
-            connectorConfig.CreateApiClient();
+            SetUpApi(config);
 
-            var iamConfig = new iam.Client.Configuration
+            BootstrapServerCredentials = serverCredentialsApi.V3ServerCredentialsBootstrapGet(auth);
+            Lmw2mServerCredentials = serverCredentialsApi.V3ServerCredentialsLwm2mGet(auth);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CertificatesApi"/> class.
+        /// Initalize certificates api
+        /// </summary>
+        /// <param name="config"><see cref="Config"/></param>
+        internal CertificatesApi(Config config, connector_ca.Client.Configuration connectorConfig = null, iam.Client.Configuration iamConfig = null, bool setCerts = false)
+            : base(config)
+        {
+            auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);
+
+            SetUpApi(config, connectorConfig, iamConfig);
+
+            if (setCerts)
             {
-                BasePath = config.Host,
-                DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
-            };
-            iamConfig.AddApiKey("Authorization", config.ApiKey);
-            iamConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
-            iamConfig.CreateApiClient();
+                BootstrapServerCredentials = serverCredentialsApi.V3ServerCredentialsBootstrapGet(auth);
+                Lmw2mServerCredentials = serverCredentialsApi.V3ServerCredentialsLwm2mGet(auth);
+            }
+        }
+
+        private void SetUpApi(Config config, connector_ca.Client.Configuration connectorConfig = null, iam.Client.Configuration iamConfig = null)
+        {
+            if (connectorConfig == null)
+            {
+                connectorConfig = new connector_ca.Client.Configuration
+                {
+                    BasePath = config.Host,
+                    DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
+                    UserAgent = UserAgent,
+                };
+                connectorConfig.AddApiKey("Authorization", config.ApiKey);
+                connectorConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
+                connectorConfig.CreateApiClient();
+            }
+
+            if (iamConfig == null)
+            {
+                iamConfig = new iam.Client.Configuration
+                {
+                    BasePath = config.Host,
+                    DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
+                    UserAgent = UserAgent,
+                };
+                iamConfig.AddApiKey("Authorization", config.ApiKey);
+                iamConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
+                iamConfig.CreateApiClient();
+            }
 
             developerCertificateApi = new DeveloperCertificateApi(connectorConfig);
             serverCredentialsApi = new ServerCredentialsApi(connectorConfig);
             iamAccountApi = new AccountAdminApi(iamConfig);
             developerApi = new DeveloperApi(iamConfig);
-
-            BootstrapServerCredentials = serverCredentialsApi.V3ServerCredentialsBootstrapGet(auth);
-            Lmw2mServerCredentials = serverCredentialsApi.V3ServerCredentialsLwm2mGet(auth);
         }
 
         /// <summary>

@@ -84,13 +84,13 @@ namespace enrollment.Model
         /// Initializes a new instance of the <see cref="EnrollmentIdentities" /> class.
         /// </summary>
         /// <param name="After">muuid (required).</param>
-        /// <param name="HasMore">HasMore (required).</param>
-        /// <param name="TotalCount">TotalCount (required).</param>
-        /// <param name="_Object">_Object (required).</param>
-        /// <param name="Limit">Range 2-1000, or default. (required).</param>
         /// <param name="Data">Data (required).</param>
+        /// <param name="HasMore">HasMore (required).</param>
+        /// <param name="Limit">Range 2-1000, or default. (required).</param>
+        /// <param name="_Object">_Object (required).</param>
         /// <param name="Order">Order (required) (default to OrderEnum.ASC).</param>
-        public EnrollmentIdentities(string After = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), ObjectEnum? _Object = default(ObjectEnum?), int? Limit = default(int?), List<EnrollmentIdentity> Data = default(List<EnrollmentIdentity>), OrderEnum? Order = OrderEnum.ASC)
+        /// <param name="TotalCount">TotalCount (required).</param>
+        public EnrollmentIdentities(string After = default(string), List<EnrollmentIdentity> Data = default(List<EnrollmentIdentity>), bool? HasMore = default(bool?), int? Limit = default(int?), ObjectEnum? _Object = default(ObjectEnum?), OrderEnum? Order = OrderEnum.ASC, int? TotalCount = default(int?))
         {
             // to ensure "After" is required (not null)
             if (After == null)
@@ -101,6 +101,15 @@ namespace enrollment.Model
             {
                 this.After = After;
             }
+            // to ensure "Data" is required (not null)
+            if (Data == null)
+            {
+                throw new InvalidDataException("Data is a required property for EnrollmentIdentities and cannot be null");
+            }
+            else
+            {
+                this.Data = Data;
+            }
             // to ensure "HasMore" is required (not null)
             if (HasMore == null)
             {
@@ -109,24 +118,6 @@ namespace enrollment.Model
             else
             {
                 this.HasMore = HasMore;
-            }
-            // to ensure "TotalCount" is required (not null)
-            if (TotalCount == null)
-            {
-                throw new InvalidDataException("TotalCount is a required property for EnrollmentIdentities and cannot be null");
-            }
-            else
-            {
-                this.TotalCount = TotalCount;
-            }
-            // to ensure "_Object" is required (not null)
-            if (_Object == null)
-            {
-                throw new InvalidDataException("_Object is a required property for EnrollmentIdentities and cannot be null");
-            }
-            else
-            {
-                this._Object = _Object;
             }
             // to ensure "Limit" is required (not null)
             if (Limit == null)
@@ -137,14 +128,14 @@ namespace enrollment.Model
             {
                 this.Limit = Limit;
             }
-            // to ensure "Data" is required (not null)
-            if (Data == null)
+            // to ensure "_Object" is required (not null)
+            if (_Object == null)
             {
-                throw new InvalidDataException("Data is a required property for EnrollmentIdentities and cannot be null");
+                throw new InvalidDataException("_Object is a required property for EnrollmentIdentities and cannot be null");
             }
             else
             {
-                this.Data = Data;
+                this._Object = _Object;
             }
             // to ensure "Order" is required (not null)
             if (Order == null)
@@ -154,6 +145,15 @@ namespace enrollment.Model
             else
             {
                 this.Order = Order;
+            }
+            // to ensure "TotalCount" is required (not null)
+            if (TotalCount == null)
+            {
+                throw new InvalidDataException("TotalCount is a required property for EnrollmentIdentities and cannot be null");
+            }
+            else
+            {
+                this.TotalCount = TotalCount;
             }
         }
         
@@ -165,17 +165,16 @@ namespace enrollment.Model
         public string After { get; set; }
 
         /// <summary>
+        /// Gets or Sets Data
+        /// </summary>
+        [DataMember(Name="data", EmitDefaultValue=false)]
+        public List<EnrollmentIdentity> Data { get; set; }
+
+        /// <summary>
         /// Gets or Sets HasMore
         /// </summary>
         [DataMember(Name="has_more", EmitDefaultValue=false)]
         public bool? HasMore { get; set; }
-
-        /// <summary>
-        /// Gets or Sets TotalCount
-        /// </summary>
-        [DataMember(Name="total_count", EmitDefaultValue=false)]
-        public int? TotalCount { get; set; }
-
 
         /// <summary>
         /// Range 2-1000, or default.
@@ -184,12 +183,13 @@ namespace enrollment.Model
         [DataMember(Name="limit", EmitDefaultValue=false)]
         public int? Limit { get; set; }
 
-        /// <summary>
-        /// Gets or Sets Data
-        /// </summary>
-        [DataMember(Name="data", EmitDefaultValue=false)]
-        public List<EnrollmentIdentity> Data { get; set; }
 
+
+        /// <summary>
+        /// Gets or Sets TotalCount
+        /// </summary>
+        [DataMember(Name="total_count", EmitDefaultValue=false)]
+        public int? TotalCount { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -200,12 +200,12 @@ namespace enrollment.Model
             var sb = new StringBuilder();
             sb.Append("class EnrollmentIdentities {\n");
             sb.Append("  After: ").Append(After).Append("\n");
-            sb.Append("  HasMore: ").Append(HasMore).Append("\n");
-            sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
-            sb.Append("  Limit: ").Append(Limit).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  HasMore: ").Append(HasMore).Append("\n");
+            sb.Append("  Limit: ").Append(Limit).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  Order: ").Append(Order).Append("\n");
+            sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -246,19 +246,14 @@ namespace enrollment.Model
                     this.After.Equals(input.After))
                 ) && 
                 (
+                    this.Data == input.Data ||
+                    this.Data != null &&
+                    this.Data.SequenceEqual(input.Data)
+                ) && 
+                (
                     this.HasMore == input.HasMore ||
                     (this.HasMore != null &&
                     this.HasMore.Equals(input.HasMore))
-                ) && 
-                (
-                    this.TotalCount == input.TotalCount ||
-                    (this.TotalCount != null &&
-                    this.TotalCount.Equals(input.TotalCount))
-                ) && 
-                (
-                    this._Object == input._Object ||
-                    (this._Object != null &&
-                    this._Object.Equals(input._Object))
                 ) && 
                 (
                     this.Limit == input.Limit ||
@@ -266,14 +261,19 @@ namespace enrollment.Model
                     this.Limit.Equals(input.Limit))
                 ) && 
                 (
-                    this.Data == input.Data ||
-                    this.Data != null &&
-                    this.Data.SequenceEqual(input.Data)
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
                 ) && 
                 (
                     this.Order == input.Order ||
                     (this.Order != null &&
                     this.Order.Equals(input.Order))
+                ) && 
+                (
+                    this.TotalCount == input.TotalCount ||
+                    (this.TotalCount != null &&
+                    this.TotalCount.Equals(input.TotalCount))
                 );
         }
 
@@ -288,18 +288,18 @@ namespace enrollment.Model
                 int hashCode = 41;
                 if (this.After != null)
                     hashCode = hashCode * 59 + this.After.GetHashCode();
-                if (this.HasMore != null)
-                    hashCode = hashCode * 59 + this.HasMore.GetHashCode();
-                if (this.TotalCount != null)
-                    hashCode = hashCode * 59 + this.TotalCount.GetHashCode();
-                if (this._Object != null)
-                    hashCode = hashCode * 59 + this._Object.GetHashCode();
-                if (this.Limit != null)
-                    hashCode = hashCode * 59 + this.Limit.GetHashCode();
                 if (this.Data != null)
                     hashCode = hashCode * 59 + this.Data.GetHashCode();
+                if (this.HasMore != null)
+                    hashCode = hashCode * 59 + this.HasMore.GetHashCode();
+                if (this.Limit != null)
+                    hashCode = hashCode * 59 + this.Limit.GetHashCode();
+                if (this._Object != null)
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.Order != null)
                     hashCode = hashCode * 59 + this.Order.GetHashCode();
+                if (this.TotalCount != null)
+                    hashCode = hashCode * 59 + this.TotalCount.GetHashCode();
                 return hashCode;
             }
         }
@@ -318,12 +318,6 @@ namespace enrollment.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for After, must match a pattern of " + regexAfter, new [] { "After" });
             }
 
-            // TotalCount (int?) minimum
-            if(this.TotalCount < (int?)1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TotalCount, must be a value greater than or equal to 1.", new [] { "TotalCount" });
-            }
-
             // Limit (int?) maximum
             if(this.Limit > (int?)1000)
             {
@@ -334,6 +328,12 @@ namespace enrollment.Model
             if(this.Limit < (int?)2)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Limit, must be a value greater than or equal to 2.", new [] { "Limit" });
+            }
+
+            // TotalCount (int?) minimum
+            if(this.TotalCount < (int?)1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TotalCount, must be a value greater than or equal to 1.", new [] { "TotalCount" });
             }
 
             yield break;
