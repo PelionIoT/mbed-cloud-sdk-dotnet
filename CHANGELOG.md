@@ -1,3 +1,15 @@
+ (2018-04-06)
+=============
+
+### Features
+
+- The HTTP header User-Agent is now configured by to contain SDK version
+  information, which is passed to the Mbed Cloud. (#634)
+
+- Add ability to subscribe to devicve events using the Subscribe interface. See
+  Examples folder for usage. (#722)
+
+
 # Changelog
  
 The application is hosted on Nuget at https://www.nuget.org/packages/Mbed.Cloud.SDK and can be installed using the dotnet cli:
