@@ -34,42 +34,28 @@ namespace mds.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AsyncIDResponse" /> class.
         /// </summary>
-        /// <param name="Status">The asynchronous response status code for a device operation related to a proxy request or manual subscription..</param>
-        /// <param name="Payload">Requested data, base64 encoded..</param>
-        /// <param name="MaxAge">Determines how long this value stays valid in the cache, in seconds. 0 means that the value is not stored in the cache..</param>
+        /// <param name="Ct">The content type..</param>
         /// <param name="Error">An optional error message describing the error..</param>
         /// <param name="Id">The unique ID of the asynchronous response..</param>
-        /// <param name="Ct">The content type..</param>
-        public AsyncIDResponse(int? Status = default(int?), string Payload = default(string), string MaxAge = default(string), string Error = default(string), string Id = default(string), string Ct = default(string))
+        /// <param name="MaxAge">Determines how long this value stays valid in the cache, in seconds. 0 means that the value is not stored in the cache..</param>
+        /// <param name="Payload">Requested data, base64 encoded..</param>
+        /// <param name="Status">The asynchronous response status code for a device operation related to a proxy request or manual subscription..</param>
+        public AsyncIDResponse(string Ct = default(string), string Error = default(string), string Id = default(string), string MaxAge = default(string), string Payload = default(string), int? Status = default(int?))
         {
-            this.Status = Status;
-            this.Payload = Payload;
-            this.MaxAge = MaxAge;
+            this.Ct = Ct;
             this.Error = Error;
             this.Id = Id;
-            this.Ct = Ct;
+            this.MaxAge = MaxAge;
+            this.Payload = Payload;
+            this.Status = Status;
         }
         
         /// <summary>
-        /// The asynchronous response status code for a device operation related to a proxy request or manual subscription.
+        /// The content type.
         /// </summary>
-        /// <value>The asynchronous response status code for a device operation related to a proxy request or manual subscription.</value>
-        [DataMember(Name="status", EmitDefaultValue=false)]
-        public int? Status { get; set; }
-
-        /// <summary>
-        /// Requested data, base64 encoded.
-        /// </summary>
-        /// <value>Requested data, base64 encoded.</value>
-        [DataMember(Name="payload", EmitDefaultValue=false)]
-        public string Payload { get; set; }
-
-        /// <summary>
-        /// Determines how long this value stays valid in the cache, in seconds. 0 means that the value is not stored in the cache.
-        /// </summary>
-        /// <value>Determines how long this value stays valid in the cache, in seconds. 0 means that the value is not stored in the cache.</value>
-        [DataMember(Name="max-age", EmitDefaultValue=false)]
-        public string MaxAge { get; set; }
+        /// <value>The content type.</value>
+        [DataMember(Name="ct", EmitDefaultValue=false)]
+        public string Ct { get; set; }
 
         /// <summary>
         /// An optional error message describing the error.
@@ -86,11 +72,25 @@ namespace mds.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// The content type.
+        /// Determines how long this value stays valid in the cache, in seconds. 0 means that the value is not stored in the cache.
         /// </summary>
-        /// <value>The content type.</value>
-        [DataMember(Name="ct", EmitDefaultValue=false)]
-        public string Ct { get; set; }
+        /// <value>Determines how long this value stays valid in the cache, in seconds. 0 means that the value is not stored in the cache.</value>
+        [DataMember(Name="max-age", EmitDefaultValue=false)]
+        public string MaxAge { get; set; }
+
+        /// <summary>
+        /// Requested data, base64 encoded.
+        /// </summary>
+        /// <value>Requested data, base64 encoded.</value>
+        [DataMember(Name="payload", EmitDefaultValue=false)]
+        public string Payload { get; set; }
+
+        /// <summary>
+        /// The asynchronous response status code for a device operation related to a proxy request or manual subscription.
+        /// </summary>
+        /// <value>The asynchronous response status code for a device operation related to a proxy request or manual subscription.</value>
+        [DataMember(Name="status", EmitDefaultValue=false)]
+        public int? Status { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,12 +100,12 @@ namespace mds.Model
         {
             var sb = new StringBuilder();
             sb.Append("class AsyncIDResponse {\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  Payload: ").Append(Payload).Append("\n");
-            sb.Append("  MaxAge: ").Append(MaxAge).Append("\n");
+            sb.Append("  Ct: ").Append(Ct).Append("\n");
             sb.Append("  Error: ").Append(Error).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Ct: ").Append(Ct).Append("\n");
+            sb.Append("  MaxAge: ").Append(MaxAge).Append("\n");
+            sb.Append("  Payload: ").Append(Payload).Append("\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -141,19 +141,9 @@ namespace mds.Model
 
             return 
                 (
-                    this.Status == input.Status ||
-                    (this.Status != null &&
-                    this.Status.Equals(input.Status))
-                ) && 
-                (
-                    this.Payload == input.Payload ||
-                    (this.Payload != null &&
-                    this.Payload.Equals(input.Payload))
-                ) && 
-                (
-                    this.MaxAge == input.MaxAge ||
-                    (this.MaxAge != null &&
-                    this.MaxAge.Equals(input.MaxAge))
+                    this.Ct == input.Ct ||
+                    (this.Ct != null &&
+                    this.Ct.Equals(input.Ct))
                 ) && 
                 (
                     this.Error == input.Error ||
@@ -166,9 +156,19 @@ namespace mds.Model
                     this.Id.Equals(input.Id))
                 ) && 
                 (
-                    this.Ct == input.Ct ||
-                    (this.Ct != null &&
-                    this.Ct.Equals(input.Ct))
+                    this.MaxAge == input.MaxAge ||
+                    (this.MaxAge != null &&
+                    this.MaxAge.Equals(input.MaxAge))
+                ) && 
+                (
+                    this.Payload == input.Payload ||
+                    (this.Payload != null &&
+                    this.Payload.Equals(input.Payload))
+                ) && 
+                (
+                    this.Status == input.Status ||
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 );
         }
 
@@ -181,18 +181,18 @@ namespace mds.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Status != null)
-                    hashCode = hashCode * 59 + this.Status.GetHashCode();
-                if (this.Payload != null)
-                    hashCode = hashCode * 59 + this.Payload.GetHashCode();
-                if (this.MaxAge != null)
-                    hashCode = hashCode * 59 + this.MaxAge.GetHashCode();
+                if (this.Ct != null)
+                    hashCode = hashCode * 59 + this.Ct.GetHashCode();
                 if (this.Error != null)
                     hashCode = hashCode * 59 + this.Error.GetHashCode();
                 if (this.Id != null)
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.Ct != null)
-                    hashCode = hashCode * 59 + this.Ct.GetHashCode();
+                if (this.MaxAge != null)
+                    hashCode = hashCode * 59 + this.MaxAge.GetHashCode();
+                if (this.Payload != null)
+                    hashCode = hashCode * 59 + this.Payload.GetHashCode();
+                if (this.Status != null)
+                    hashCode = hashCode * 59 + this.Status.GetHashCode();
                 return hashCode;
             }
         }

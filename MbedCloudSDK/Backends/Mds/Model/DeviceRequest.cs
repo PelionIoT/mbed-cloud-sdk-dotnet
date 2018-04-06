@@ -39,12 +39,12 @@ namespace mds.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceRequest" /> class.
         /// </summary>
-        /// <param name="PayloadB64">The base64 encoded payload to be sent to the device..</param>
+        /// <param name="Accept">The content type of an accepted response..</param>
         /// <param name="ContentType">The content type of the payload..</param>
         /// <param name="Method">The CoAP request method. Allowed values are GET, POST, PUT and DELETE. (required).</param>
-        /// <param name="Accept">The content type of an accepted response..</param>
+        /// <param name="PayloadB64">The base64 encoded payload to be sent to the device..</param>
         /// <param name="Uri">The URI path of the requested resource. (required).</param>
-        public DeviceRequest(string PayloadB64 = default(string), string ContentType = default(string), string Method = default(string), string Accept = default(string), string Uri = default(string))
+        public DeviceRequest(string Accept = default(string), string ContentType = default(string), string Method = default(string), string PayloadB64 = default(string), string Uri = default(string))
         {
             // to ensure "Method" is required (not null)
             if (Method == null)
@@ -64,17 +64,17 @@ namespace mds.Model
             {
                 this.Uri = Uri;
             }
-            this.PayloadB64 = PayloadB64;
-            this.ContentType = ContentType;
             this.Accept = Accept;
+            this.ContentType = ContentType;
+            this.PayloadB64 = PayloadB64;
         }
         
         /// <summary>
-        /// The base64 encoded payload to be sent to the device.
+        /// The content type of an accepted response.
         /// </summary>
-        /// <value>The base64 encoded payload to be sent to the device.</value>
-        [DataMember(Name="payload-b64", EmitDefaultValue=false)]
-        public string PayloadB64 { get; set; }
+        /// <value>The content type of an accepted response.</value>
+        [DataMember(Name="accept", EmitDefaultValue=false)]
+        public string Accept { get; set; }
 
         /// <summary>
         /// The content type of the payload.
@@ -91,11 +91,11 @@ namespace mds.Model
         public string Method { get; set; }
 
         /// <summary>
-        /// The content type of an accepted response.
+        /// The base64 encoded payload to be sent to the device.
         /// </summary>
-        /// <value>The content type of an accepted response.</value>
-        [DataMember(Name="accept", EmitDefaultValue=false)]
-        public string Accept { get; set; }
+        /// <value>The base64 encoded payload to be sent to the device.</value>
+        [DataMember(Name="payload-b64", EmitDefaultValue=false)]
+        public string PayloadB64 { get; set; }
 
         /// <summary>
         /// The URI path of the requested resource.
@@ -112,10 +112,10 @@ namespace mds.Model
         {
             var sb = new StringBuilder();
             sb.Append("class DeviceRequest {\n");
-            sb.Append("  PayloadB64: ").Append(PayloadB64).Append("\n");
+            sb.Append("  Accept: ").Append(Accept).Append("\n");
             sb.Append("  ContentType: ").Append(ContentType).Append("\n");
             sb.Append("  Method: ").Append(Method).Append("\n");
-            sb.Append("  Accept: ").Append(Accept).Append("\n");
+            sb.Append("  PayloadB64: ").Append(PayloadB64).Append("\n");
             sb.Append("  Uri: ").Append(Uri).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -152,9 +152,9 @@ namespace mds.Model
 
             return 
                 (
-                    this.PayloadB64 == input.PayloadB64 ||
-                    (this.PayloadB64 != null &&
-                    this.PayloadB64.Equals(input.PayloadB64))
+                    this.Accept == input.Accept ||
+                    (this.Accept != null &&
+                    this.Accept.Equals(input.Accept))
                 ) && 
                 (
                     this.ContentType == input.ContentType ||
@@ -167,9 +167,9 @@ namespace mds.Model
                     this.Method.Equals(input.Method))
                 ) && 
                 (
-                    this.Accept == input.Accept ||
-                    (this.Accept != null &&
-                    this.Accept.Equals(input.Accept))
+                    this.PayloadB64 == input.PayloadB64 ||
+                    (this.PayloadB64 != null &&
+                    this.PayloadB64.Equals(input.PayloadB64))
                 ) && 
                 (
                     this.Uri == input.Uri ||
@@ -187,14 +187,14 @@ namespace mds.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.PayloadB64 != null)
-                    hashCode = hashCode * 59 + this.PayloadB64.GetHashCode();
+                if (this.Accept != null)
+                    hashCode = hashCode * 59 + this.Accept.GetHashCode();
                 if (this.ContentType != null)
                     hashCode = hashCode * 59 + this.ContentType.GetHashCode();
                 if (this.Method != null)
                     hashCode = hashCode * 59 + this.Method.GetHashCode();
-                if (this.Accept != null)
-                    hashCode = hashCode * 59 + this.Accept.GetHashCode();
+                if (this.PayloadB64 != null)
+                    hashCode = hashCode * 59 + this.PayloadB64.GetHashCode();
                 if (this.Uri != null)
                     hashCode = hashCode * 59 + this.Uri.GetHashCode();
                 return hashCode;

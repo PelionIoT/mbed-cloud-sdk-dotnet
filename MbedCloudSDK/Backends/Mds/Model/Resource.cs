@@ -39,11 +39,11 @@ namespace mds.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Resource" /> class.
         /// </summary>
+        /// <param name="Obs">Observable determines whether you can subscribe to changes for this resource. It can have values \&quot;true\&quot; or \&quot;false\&quot;. .</param>
         /// <param name="Rt">Application specific resource type that describes this resource. [It is created by the client side application](/docs/v1.2/collecting/resource-setup-in-mbed-cloud-client.html). Not meant to be a human-readable name for the resource. Multiple resource types may be included, they are separated by a space..</param>
         /// <param name="Type">The content type of the resource. &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Important&lt;/b&gt;&lt;br/&gt; You are encouraged to use the resource types listed in the [LwM2M specification](http://technical.openmobilealliance.org/Technical/technical-information/omna/lightweight-m2m-lwm2m-object-registry). .</param>
         /// <param name="Uri">The URL of the resource. (required).</param>
-        /// <param name="Obs">Observable determines whether you can subscribe to changes for this resource. It can have values \&quot;true\&quot; or \&quot;false\&quot;. .</param>
-        public Resource(string Rt = default(string), string Type = default(string), string Uri = default(string), bool? Obs = default(bool?))
+        public Resource(bool? Obs = default(bool?), string Rt = default(string), string Type = default(string), string Uri = default(string))
         {
             // to ensure "Uri" is required (not null)
             if (Uri == null)
@@ -54,11 +54,18 @@ namespace mds.Model
             {
                 this.Uri = Uri;
             }
+            this.Obs = Obs;
             this.Rt = Rt;
             this.Type = Type;
-            this.Obs = Obs;
         }
         
+        /// <summary>
+        /// Observable determines whether you can subscribe to changes for this resource. It can have values \&quot;true\&quot; or \&quot;false\&quot;. 
+        /// </summary>
+        /// <value>Observable determines whether you can subscribe to changes for this resource. It can have values \&quot;true\&quot; or \&quot;false\&quot;. </value>
+        [DataMember(Name="obs", EmitDefaultValue=false)]
+        public bool? Obs { get; set; }
+
         /// <summary>
         /// Application specific resource type that describes this resource. [It is created by the client side application](/docs/v1.2/collecting/resource-setup-in-mbed-cloud-client.html). Not meant to be a human-readable name for the resource. Multiple resource types may be included, they are separated by a space.
         /// </summary>
@@ -81,13 +88,6 @@ namespace mds.Model
         public string Uri { get; set; }
 
         /// <summary>
-        /// Observable determines whether you can subscribe to changes for this resource. It can have values \&quot;true\&quot; or \&quot;false\&quot;. 
-        /// </summary>
-        /// <value>Observable determines whether you can subscribe to changes for this resource. It can have values \&quot;true\&quot; or \&quot;false\&quot;. </value>
-        [DataMember(Name="obs", EmitDefaultValue=false)]
-        public bool? Obs { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -95,10 +95,10 @@ namespace mds.Model
         {
             var sb = new StringBuilder();
             sb.Append("class Resource {\n");
+            sb.Append("  Obs: ").Append(Obs).Append("\n");
             sb.Append("  Rt: ").Append(Rt).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Uri: ").Append(Uri).Append("\n");
-            sb.Append("  Obs: ").Append(Obs).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -134,6 +134,11 @@ namespace mds.Model
 
             return 
                 (
+                    this.Obs == input.Obs ||
+                    (this.Obs != null &&
+                    this.Obs.Equals(input.Obs))
+                ) && 
+                (
                     this.Rt == input.Rt ||
                     (this.Rt != null &&
                     this.Rt.Equals(input.Rt))
@@ -147,11 +152,6 @@ namespace mds.Model
                     this.Uri == input.Uri ||
                     (this.Uri != null &&
                     this.Uri.Equals(input.Uri))
-                ) && 
-                (
-                    this.Obs == input.Obs ||
-                    (this.Obs != null &&
-                    this.Obs.Equals(input.Obs))
                 );
         }
 
@@ -164,14 +164,14 @@ namespace mds.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Obs != null)
+                    hashCode = hashCode * 59 + this.Obs.GetHashCode();
                 if (this.Rt != null)
                     hashCode = hashCode * 59 + this.Rt.GetHashCode();
                 if (this.Type != null)
                     hashCode = hashCode * 59 + this.Type.GetHashCode();
                 if (this.Uri != null)
                     hashCode = hashCode * 59 + this.Uri.GetHashCode();
-                if (this.Obs != null)
-                    hashCode = hashCode * 59 + this.Obs.GetHashCode();
                 return hashCode;
             }
         }

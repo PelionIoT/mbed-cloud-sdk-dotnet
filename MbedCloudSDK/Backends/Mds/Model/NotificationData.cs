@@ -34,40 +34,26 @@ namespace mds.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NotificationData" /> class.
         /// </summary>
-        /// <param name="Path">URI path..</param>
-        /// <param name="MaxAge">Max age value is an integer number of seconds between 0 and 2^32-1 but the actual maximum cache time is limited to 3 days. A default value of 60 seconds is assumed in the absence of the option. .</param>
-        /// <param name="Payload">Base64 encoded payload..</param>
-        /// <param name="Ep">Mbed Cloud Device ID..</param>
         /// <param name="Ct">Content type..</param>
-        public NotificationData(string Path = default(string), string MaxAge = default(string), string Payload = default(string), string Ep = default(string), string Ct = default(string))
+        /// <param name="Ep">Mbed Cloud Device ID..</param>
+        /// <param name="MaxAge">Max age value is an integer number of seconds between 0 and 2^32-1 but the actual maximum cache time is limited to 3 days. A default value of 60 seconds is assumed in the absence of the option. .</param>
+        /// <param name="Path">URI path..</param>
+        /// <param name="Payload">Base64 encoded payload..</param>
+        public NotificationData(string Ct = default(string), string Ep = default(string), string MaxAge = default(string), string Path = default(string), string Payload = default(string))
         {
-            this.Path = Path;
-            this.MaxAge = MaxAge;
-            this.Payload = Payload;
-            this.Ep = Ep;
             this.Ct = Ct;
+            this.Ep = Ep;
+            this.MaxAge = MaxAge;
+            this.Path = Path;
+            this.Payload = Payload;
         }
         
         /// <summary>
-        /// URI path.
+        /// Content type.
         /// </summary>
-        /// <value>URI path.</value>
-        [DataMember(Name="path", EmitDefaultValue=false)]
-        public string Path { get; set; }
-
-        /// <summary>
-        /// Max age value is an integer number of seconds between 0 and 2^32-1 but the actual maximum cache time is limited to 3 days. A default value of 60 seconds is assumed in the absence of the option. 
-        /// </summary>
-        /// <value>Max age value is an integer number of seconds between 0 and 2^32-1 but the actual maximum cache time is limited to 3 days. A default value of 60 seconds is assumed in the absence of the option. </value>
-        [DataMember(Name="max-age", EmitDefaultValue=false)]
-        public string MaxAge { get; set; }
-
-        /// <summary>
-        /// Base64 encoded payload.
-        /// </summary>
-        /// <value>Base64 encoded payload.</value>
-        [DataMember(Name="payload", EmitDefaultValue=false)]
-        public string Payload { get; set; }
+        /// <value>Content type.</value>
+        [DataMember(Name="ct", EmitDefaultValue=false)]
+        public string Ct { get; set; }
 
         /// <summary>
         /// Mbed Cloud Device ID.
@@ -77,11 +63,25 @@ namespace mds.Model
         public string Ep { get; set; }
 
         /// <summary>
-        /// Content type.
+        /// Max age value is an integer number of seconds between 0 and 2^32-1 but the actual maximum cache time is limited to 3 days. A default value of 60 seconds is assumed in the absence of the option. 
         /// </summary>
-        /// <value>Content type.</value>
-        [DataMember(Name="ct", EmitDefaultValue=false)]
-        public string Ct { get; set; }
+        /// <value>Max age value is an integer number of seconds between 0 and 2^32-1 but the actual maximum cache time is limited to 3 days. A default value of 60 seconds is assumed in the absence of the option. </value>
+        [DataMember(Name="max-age", EmitDefaultValue=false)]
+        public string MaxAge { get; set; }
+
+        /// <summary>
+        /// URI path.
+        /// </summary>
+        /// <value>URI path.</value>
+        [DataMember(Name="path", EmitDefaultValue=false)]
+        public string Path { get; set; }
+
+        /// <summary>
+        /// Base64 encoded payload.
+        /// </summary>
+        /// <value>Base64 encoded payload.</value>
+        [DataMember(Name="payload", EmitDefaultValue=false)]
+        public string Payload { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -91,11 +91,11 @@ namespace mds.Model
         {
             var sb = new StringBuilder();
             sb.Append("class NotificationData {\n");
-            sb.Append("  Path: ").Append(Path).Append("\n");
-            sb.Append("  MaxAge: ").Append(MaxAge).Append("\n");
-            sb.Append("  Payload: ").Append(Payload).Append("\n");
-            sb.Append("  Ep: ").Append(Ep).Append("\n");
             sb.Append("  Ct: ").Append(Ct).Append("\n");
+            sb.Append("  Ep: ").Append(Ep).Append("\n");
+            sb.Append("  MaxAge: ").Append(MaxAge).Append("\n");
+            sb.Append("  Path: ").Append(Path).Append("\n");
+            sb.Append("  Payload: ").Append(Payload).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -131,19 +131,9 @@ namespace mds.Model
 
             return 
                 (
-                    this.Path == input.Path ||
-                    (this.Path != null &&
-                    this.Path.Equals(input.Path))
-                ) && 
-                (
-                    this.MaxAge == input.MaxAge ||
-                    (this.MaxAge != null &&
-                    this.MaxAge.Equals(input.MaxAge))
-                ) && 
-                (
-                    this.Payload == input.Payload ||
-                    (this.Payload != null &&
-                    this.Payload.Equals(input.Payload))
+                    this.Ct == input.Ct ||
+                    (this.Ct != null &&
+                    this.Ct.Equals(input.Ct))
                 ) && 
                 (
                     this.Ep == input.Ep ||
@@ -151,9 +141,19 @@ namespace mds.Model
                     this.Ep.Equals(input.Ep))
                 ) && 
                 (
-                    this.Ct == input.Ct ||
-                    (this.Ct != null &&
-                    this.Ct.Equals(input.Ct))
+                    this.MaxAge == input.MaxAge ||
+                    (this.MaxAge != null &&
+                    this.MaxAge.Equals(input.MaxAge))
+                ) && 
+                (
+                    this.Path == input.Path ||
+                    (this.Path != null &&
+                    this.Path.Equals(input.Path))
+                ) && 
+                (
+                    this.Payload == input.Payload ||
+                    (this.Payload != null &&
+                    this.Payload.Equals(input.Payload))
                 );
         }
 
@@ -166,16 +166,16 @@ namespace mds.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Path != null)
-                    hashCode = hashCode * 59 + this.Path.GetHashCode();
-                if (this.MaxAge != null)
-                    hashCode = hashCode * 59 + this.MaxAge.GetHashCode();
-                if (this.Payload != null)
-                    hashCode = hashCode * 59 + this.Payload.GetHashCode();
-                if (this.Ep != null)
-                    hashCode = hashCode * 59 + this.Ep.GetHashCode();
                 if (this.Ct != null)
                     hashCode = hashCode * 59 + this.Ct.GetHashCode();
+                if (this.Ep != null)
+                    hashCode = hashCode * 59 + this.Ep.GetHashCode();
+                if (this.MaxAge != null)
+                    hashCode = hashCode * 59 + this.MaxAge.GetHashCode();
+                if (this.Path != null)
+                    hashCode = hashCode * 59 + this.Path.GetHashCode();
+                if (this.Payload != null)
+                    hashCode = hashCode * 59 + this.Payload.GetHashCode();
                 return hashCode;
             }
         }
