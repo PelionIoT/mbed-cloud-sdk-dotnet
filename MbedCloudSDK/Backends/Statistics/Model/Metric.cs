@@ -34,87 +34,52 @@ namespace statistics.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Metric" /> class.
         /// </summary>
-        /// <param name="RegistrationUpdates">The number of registration updates linked to the account. Registration update is the process of updating the registration status with the Mbed Cloud Connect to update or extend the lifetime of the device..</param>
-        /// <param name="ConnectRestApiSuccess">The number of successful [Connect API](/docs/v1.2/service-api-references/connect-api.html) requests the account has performed. The metric do not consider the actual response from the device and it includes only the result of the http request used to subscibe to the device resources..</param>
         /// <param name="BootstrapsFailed">The number of failed bootstraps the account has performed. Bootstrap is the process of provisioning a Lightweight Machine to Machine Client to a state where it can initiate a management session to a new Lightweight Machine to Machine Server..</param>
-        /// <param name="Transactions">The number of transaction events from or to devices linked to the account. A transaction is a 512-byte block of data processed by Mbed Cloud Connect. It can be either sent by the device (device - -&gt; Mbed Cloud Connect) or received by the device (Mbed Cloud Connect - -&gt; device). A transaction does not include IP, TCP or UDP, TLS or DTLS packet overhead. It only contains the packet payload (full CoAP packet including CoAP headers). The Registration (full registration or registration update) and Deregistration events from device to Mbed Cloud Connect are not counted as a transaction. The observation event (resource change notifications) from device to Mbed Cloud Connect is counted as a transaction. The proxy and subscription request from Mbed Cloud Connect to the device is counted as a transaction and the access to Mbed Cloud Connect cache without contacting the actual device may also add to transaction count..</param>
-        /// <param name="Timestamp">UTC time in RFC3339 format. The timestamp is the starting point of the interval for which the data is aggregated. Each interval includes data for the time greater than or equal to the timestamp and less than the next interval&#39;s starting point..</param>
-        /// <param name="DeviceSubscriptionRequestError">**(Beta)** The number of failed subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/service-api-references/connect-api.html) endpoints. .</param>
         /// <param name="BootstrapsPending">The number of pending bootstraps the account has performed. Bootstrap is the process of provisioning a Lightweight Machine to Machine Client to a state where it can initiate a management session to a new Lightweight Machine to Machine Server..</param>
-        /// <param name="DeviceProxyRequestSuccess">**(Beta)** The number of successful proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from Mbed Cloud Connect to devices when you try to read or write values to device resources using [Connect API](/docs/v1.2/service-api-references/connect-api.html) endpoints. .</param>
         /// <param name="BootstrapsSuccessful">The number of successful bootstraps the account has performed. Bootstrap is the process of provisioning a Lightweight Machine to Machine Client to a state where it can initiate a management session to a new Lightweight Machine to Machine Server..</param>
-        /// <param name="FullRegistrations">The number of full registrations linked to the account. Full registration is the process of registering a device with the Mbed Cloud Connect by providing its lifetime and capabilities such as the resource structure.The registered status of the device does not guarantee that the device is active and accessible from Mebd Cloud Connect at any point of time..</param>
-        /// <param name="DeviceSubscriptionRequestSuccess">**(Beta)** The number of successful subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/service-api-references/connect-api.html) endpoints. .</param>
-        /// <param name="ExpiredRegistrations">The number of expired registrations linked to the account. Mbed Cloud Connect removes the device registrations when the devices cannot update their registration before the expiry of the lifetime. Mbed Cloud Connect no longer handles requests for a device whose registration has expired already..</param>
-        /// <param name="HandshakesSuccessful">The number of successful TLS handshakes the account has performed. The SSL or TLS handshake enables the SSL or TLS client and server to establish the secret keys with which they communicate. A successful TLS handshake is required for establishing a connection with Mbed Cloud Connect for any operaton such as registration, registration update and deregistration..</param>
+        /// <param name="ConnectRestApiError">The number of failed [Connect API](/docs/v1.2/service-api-references/connect-api.html) requests the account has performed.The metric do not consider the actual response from the device and it includes only the result of the http request used to subscibe to the device resources..</param>
+        /// <param name="ConnectRestApiSuccess">The number of successful [Connect API](/docs/v1.2/service-api-references/connect-api.html) requests the account has performed. The metric do not consider the actual response from the device and it includes only the result of the http request used to subscibe to the device resources..</param>
+        /// <param name="DeletedRegistrations">The number of deleted registrations (deregistrations) linked to the account. Deregistration is the process of removing the device registration from the Mbed Cloud Connect registry. The deregistration is usually initiated by the device. Mbed Cloud Connect no longer handles requests for a deregistered device..</param>
         /// <param name="DeviceObservations">**(Beta)** The number of observations received by Mbed Cloud Connect from the devices linked to the account. The observations are pushed from the device to Mbed Cloud Connect when you have successfully subscribed to the device resources using [Connect API](/docs/v1.2/service-api-references/connect-api.html) endpoints. .</param>
         /// <param name="DeviceProxyRequestError">**(Beta)** The number of failed proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from Mbed Cloud Connect to devices when you try to read or write values to device resources using [Connect API](/docs/v1.2/service-api-references/connect-api.html) endpoints. .</param>
-        /// <param name="DeletedRegistrations">The number of deleted registrations (deregistrations) linked to the account. Deregistration is the process of removing the device registration from the Mbed Cloud Connect registry. The deregistration is usually initiated by the device. Mbed Cloud Connect no longer handles requests for a deregistered device..</param>
-        /// <param name="ConnectRestApiError">The number of failed [Connect API](/docs/v1.2/service-api-references/connect-api.html) requests the account has performed.The metric do not consider the actual response from the device and it includes only the result of the http request used to subscibe to the device resources..</param>
+        /// <param name="DeviceProxyRequestSuccess">**(Beta)** The number of successful proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from Mbed Cloud Connect to devices when you try to read or write values to device resources using [Connect API](/docs/v1.2/service-api-references/connect-api.html) endpoints. .</param>
+        /// <param name="DeviceSubscriptionRequestError">**(Beta)** The number of failed subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/service-api-references/connect-api.html) endpoints. .</param>
+        /// <param name="DeviceSubscriptionRequestSuccess">**(Beta)** The number of successful subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/service-api-references/connect-api.html) endpoints. .</param>
+        /// <param name="ExpiredRegistrations">The number of expired registrations linked to the account. Mbed Cloud Connect removes the device registrations when the devices cannot update their registration before the expiry of the lifetime. Mbed Cloud Connect no longer handles requests for a device whose registration has expired already..</param>
+        /// <param name="FullRegistrations">The number of full registrations linked to the account. Full registration is the process of registering a device with the Mbed Cloud Connect by providing its lifetime and capabilities such as the resource structure.The registered status of the device does not guarantee that the device is active and accessible from Mebd Cloud Connect at any point of time..</param>
+        /// <param name="HandshakesSuccessful">The number of successful TLS handshakes the account has performed. The SSL or TLS handshake enables the SSL or TLS client and server to establish the secret keys with which they communicate. A successful TLS handshake is required for establishing a connection with Mbed Cloud Connect for any operaton such as registration, registration update and deregistration..</param>
         /// <param name="Id">A unique metric ID..</param>
-        public Metric(long? RegistrationUpdates = default(long?), long? ConnectRestApiSuccess = default(long?), long? BootstrapsFailed = default(long?), long? Transactions = default(long?), DateTime? Timestamp = default(DateTime?), long? DeviceSubscriptionRequestError = default(long?), long? BootstrapsPending = default(long?), long? DeviceProxyRequestSuccess = default(long?), long? BootstrapsSuccessful = default(long?), long? FullRegistrations = default(long?), long? DeviceSubscriptionRequestSuccess = default(long?), long? ExpiredRegistrations = default(long?), long? HandshakesSuccessful = default(long?), long? DeviceObservations = default(long?), long? DeviceProxyRequestError = default(long?), long? DeletedRegistrations = default(long?), long? ConnectRestApiError = default(long?), string Id = default(string))
+        /// <param name="RegistrationUpdates">The number of registration updates linked to the account. Registration update is the process of updating the registration status with the Mbed Cloud Connect to update or extend the lifetime of the device..</param>
+        /// <param name="Timestamp">UTC time in RFC3339 format. The timestamp is the starting point of the interval for which the data is aggregated. Each interval includes data for the time greater than or equal to the timestamp and less than the next interval&#39;s starting point..</param>
+        /// <param name="Transactions">The number of transaction events from or to devices linked to the account. A transaction is a 512-byte block of data processed by Mbed Cloud Connect. It can be either sent by the device (device - -&gt; Mbed Cloud Connect) or received by the device (Mbed Cloud Connect - -&gt; device). A transaction does not include IP, TCP or UDP, TLS or DTLS packet overhead. It only contains the packet payload (full CoAP packet including CoAP headers). The Registration (full registration or registration update) and Deregistration events from device to Mbed Cloud Connect are not counted as a transaction. The observation event (resource change notifications) from device to Mbed Cloud Connect is counted as a transaction. The proxy and subscription request from Mbed Cloud Connect to the device is counted as a transaction and the access to Mbed Cloud Connect cache without contacting the actual device may also add to transaction count..</param>
+        public Metric(long? BootstrapsFailed = default(long?), long? BootstrapsPending = default(long?), long? BootstrapsSuccessful = default(long?), long? ConnectRestApiError = default(long?), long? ConnectRestApiSuccess = default(long?), long? DeletedRegistrations = default(long?), long? DeviceObservations = default(long?), long? DeviceProxyRequestError = default(long?), long? DeviceProxyRequestSuccess = default(long?), long? DeviceSubscriptionRequestError = default(long?), long? DeviceSubscriptionRequestSuccess = default(long?), long? ExpiredRegistrations = default(long?), long? FullRegistrations = default(long?), long? HandshakesSuccessful = default(long?), string Id = default(string), long? RegistrationUpdates = default(long?), DateTime? Timestamp = default(DateTime?), long? Transactions = default(long?))
         {
-            this.RegistrationUpdates = RegistrationUpdates;
-            this.ConnectRestApiSuccess = ConnectRestApiSuccess;
             this.BootstrapsFailed = BootstrapsFailed;
-            this.Transactions = Transactions;
-            this.Timestamp = Timestamp;
-            this.DeviceSubscriptionRequestError = DeviceSubscriptionRequestError;
             this.BootstrapsPending = BootstrapsPending;
-            this.DeviceProxyRequestSuccess = DeviceProxyRequestSuccess;
             this.BootstrapsSuccessful = BootstrapsSuccessful;
-            this.FullRegistrations = FullRegistrations;
-            this.DeviceSubscriptionRequestSuccess = DeviceSubscriptionRequestSuccess;
-            this.ExpiredRegistrations = ExpiredRegistrations;
-            this.HandshakesSuccessful = HandshakesSuccessful;
+            this.ConnectRestApiError = ConnectRestApiError;
+            this.ConnectRestApiSuccess = ConnectRestApiSuccess;
+            this.DeletedRegistrations = DeletedRegistrations;
             this.DeviceObservations = DeviceObservations;
             this.DeviceProxyRequestError = DeviceProxyRequestError;
-            this.DeletedRegistrations = DeletedRegistrations;
-            this.ConnectRestApiError = ConnectRestApiError;
+            this.DeviceProxyRequestSuccess = DeviceProxyRequestSuccess;
+            this.DeviceSubscriptionRequestError = DeviceSubscriptionRequestError;
+            this.DeviceSubscriptionRequestSuccess = DeviceSubscriptionRequestSuccess;
+            this.ExpiredRegistrations = ExpiredRegistrations;
+            this.FullRegistrations = FullRegistrations;
+            this.HandshakesSuccessful = HandshakesSuccessful;
             this.Id = Id;
+            this.RegistrationUpdates = RegistrationUpdates;
+            this.Timestamp = Timestamp;
+            this.Transactions = Transactions;
         }
         
-        /// <summary>
-        /// The number of registration updates linked to the account. Registration update is the process of updating the registration status with the Mbed Cloud Connect to update or extend the lifetime of the device.
-        /// </summary>
-        /// <value>The number of registration updates linked to the account. Registration update is the process of updating the registration status with the Mbed Cloud Connect to update or extend the lifetime of the device.</value>
-        [DataMember(Name="registration_updates", EmitDefaultValue=false)]
-        public long? RegistrationUpdates { get; set; }
-
-        /// <summary>
-        /// The number of successful [Connect API](/docs/v1.2/service-api-references/connect-api.html) requests the account has performed. The metric do not consider the actual response from the device and it includes only the result of the http request used to subscibe to the device resources.
-        /// </summary>
-        /// <value>The number of successful [Connect API](/docs/v1.2/service-api-references/connect-api.html) requests the account has performed. The metric do not consider the actual response from the device and it includes only the result of the http request used to subscibe to the device resources.</value>
-        [DataMember(Name="connect_rest_api_success", EmitDefaultValue=false)]
-        public long? ConnectRestApiSuccess { get; set; }
-
         /// <summary>
         /// The number of failed bootstraps the account has performed. Bootstrap is the process of provisioning a Lightweight Machine to Machine Client to a state where it can initiate a management session to a new Lightweight Machine to Machine Server.
         /// </summary>
         /// <value>The number of failed bootstraps the account has performed. Bootstrap is the process of provisioning a Lightweight Machine to Machine Client to a state where it can initiate a management session to a new Lightweight Machine to Machine Server.</value>
         [DataMember(Name="bootstraps_failed", EmitDefaultValue=false)]
         public long? BootstrapsFailed { get; set; }
-
-        /// <summary>
-        /// The number of transaction events from or to devices linked to the account. A transaction is a 512-byte block of data processed by Mbed Cloud Connect. It can be either sent by the device (device - -&gt; Mbed Cloud Connect) or received by the device (Mbed Cloud Connect - -&gt; device). A transaction does not include IP, TCP or UDP, TLS or DTLS packet overhead. It only contains the packet payload (full CoAP packet including CoAP headers). The Registration (full registration or registration update) and Deregistration events from device to Mbed Cloud Connect are not counted as a transaction. The observation event (resource change notifications) from device to Mbed Cloud Connect is counted as a transaction. The proxy and subscription request from Mbed Cloud Connect to the device is counted as a transaction and the access to Mbed Cloud Connect cache without contacting the actual device may also add to transaction count.
-        /// </summary>
-        /// <value>The number of transaction events from or to devices linked to the account. A transaction is a 512-byte block of data processed by Mbed Cloud Connect. It can be either sent by the device (device - -&gt; Mbed Cloud Connect) or received by the device (Mbed Cloud Connect - -&gt; device). A transaction does not include IP, TCP or UDP, TLS or DTLS packet overhead. It only contains the packet payload (full CoAP packet including CoAP headers). The Registration (full registration or registration update) and Deregistration events from device to Mbed Cloud Connect are not counted as a transaction. The observation event (resource change notifications) from device to Mbed Cloud Connect is counted as a transaction. The proxy and subscription request from Mbed Cloud Connect to the device is counted as a transaction and the access to Mbed Cloud Connect cache without contacting the actual device may also add to transaction count.</value>
-        [DataMember(Name="transactions", EmitDefaultValue=false)]
-        public long? Transactions { get; set; }
-
-        /// <summary>
-        /// UTC time in RFC3339 format. The timestamp is the starting point of the interval for which the data is aggregated. Each interval includes data for the time greater than or equal to the timestamp and less than the next interval&#39;s starting point.
-        /// </summary>
-        /// <value>UTC time in RFC3339 format. The timestamp is the starting point of the interval for which the data is aggregated. Each interval includes data for the time greater than or equal to the timestamp and less than the next interval&#39;s starting point.</value>
-        [DataMember(Name="timestamp", EmitDefaultValue=false)]
-        public DateTime? Timestamp { get; set; }
-
-        /// <summary>
-        /// **(Beta)** The number of failed subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/service-api-references/connect-api.html) endpoints. 
-        /// </summary>
-        /// <value>**(Beta)** The number of failed subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/service-api-references/connect-api.html) endpoints. </value>
-        [DataMember(Name="device_subscription_request_error", EmitDefaultValue=false)]
-        public long? DeviceSubscriptionRequestError { get; set; }
 
         /// <summary>
         /// The number of pending bootstraps the account has performed. Bootstrap is the process of provisioning a Lightweight Machine to Machine Client to a state where it can initiate a management session to a new Lightweight Machine to Machine Server.
@@ -124,13 +89,6 @@ namespace statistics.Model
         public long? BootstrapsPending { get; set; }
 
         /// <summary>
-        /// **(Beta)** The number of successful proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from Mbed Cloud Connect to devices when you try to read or write values to device resources using [Connect API](/docs/v1.2/service-api-references/connect-api.html) endpoints. 
-        /// </summary>
-        /// <value>**(Beta)** The number of successful proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from Mbed Cloud Connect to devices when you try to read or write values to device resources using [Connect API](/docs/v1.2/service-api-references/connect-api.html) endpoints. </value>
-        [DataMember(Name="device_proxy_request_success", EmitDefaultValue=false)]
-        public long? DeviceProxyRequestSuccess { get; set; }
-
-        /// <summary>
         /// The number of successful bootstraps the account has performed. Bootstrap is the process of provisioning a Lightweight Machine to Machine Client to a state where it can initiate a management session to a new Lightweight Machine to Machine Server.
         /// </summary>
         /// <value>The number of successful bootstraps the account has performed. Bootstrap is the process of provisioning a Lightweight Machine to Machine Client to a state where it can initiate a management session to a new Lightweight Machine to Machine Server.</value>
@@ -138,32 +96,25 @@ namespace statistics.Model
         public long? BootstrapsSuccessful { get; set; }
 
         /// <summary>
-        /// The number of full registrations linked to the account. Full registration is the process of registering a device with the Mbed Cloud Connect by providing its lifetime and capabilities such as the resource structure.The registered status of the device does not guarantee that the device is active and accessible from Mebd Cloud Connect at any point of time.
+        /// The number of failed [Connect API](/docs/v1.2/service-api-references/connect-api.html) requests the account has performed.The metric do not consider the actual response from the device and it includes only the result of the http request used to subscibe to the device resources.
         /// </summary>
-        /// <value>The number of full registrations linked to the account. Full registration is the process of registering a device with the Mbed Cloud Connect by providing its lifetime and capabilities such as the resource structure.The registered status of the device does not guarantee that the device is active and accessible from Mebd Cloud Connect at any point of time.</value>
-        [DataMember(Name="full_registrations", EmitDefaultValue=false)]
-        public long? FullRegistrations { get; set; }
+        /// <value>The number of failed [Connect API](/docs/v1.2/service-api-references/connect-api.html) requests the account has performed.The metric do not consider the actual response from the device and it includes only the result of the http request used to subscibe to the device resources.</value>
+        [DataMember(Name="connect_rest_api_error", EmitDefaultValue=false)]
+        public long? ConnectRestApiError { get; set; }
 
         /// <summary>
-        /// **(Beta)** The number of successful subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/service-api-references/connect-api.html) endpoints. 
+        /// The number of successful [Connect API](/docs/v1.2/service-api-references/connect-api.html) requests the account has performed. The metric do not consider the actual response from the device and it includes only the result of the http request used to subscibe to the device resources.
         /// </summary>
-        /// <value>**(Beta)** The number of successful subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/service-api-references/connect-api.html) endpoints. </value>
-        [DataMember(Name="device_subscription_request_success", EmitDefaultValue=false)]
-        public long? DeviceSubscriptionRequestSuccess { get; set; }
+        /// <value>The number of successful [Connect API](/docs/v1.2/service-api-references/connect-api.html) requests the account has performed. The metric do not consider the actual response from the device and it includes only the result of the http request used to subscibe to the device resources.</value>
+        [DataMember(Name="connect_rest_api_success", EmitDefaultValue=false)]
+        public long? ConnectRestApiSuccess { get; set; }
 
         /// <summary>
-        /// The number of expired registrations linked to the account. Mbed Cloud Connect removes the device registrations when the devices cannot update their registration before the expiry of the lifetime. Mbed Cloud Connect no longer handles requests for a device whose registration has expired already.
+        /// The number of deleted registrations (deregistrations) linked to the account. Deregistration is the process of removing the device registration from the Mbed Cloud Connect registry. The deregistration is usually initiated by the device. Mbed Cloud Connect no longer handles requests for a deregistered device.
         /// </summary>
-        /// <value>The number of expired registrations linked to the account. Mbed Cloud Connect removes the device registrations when the devices cannot update their registration before the expiry of the lifetime. Mbed Cloud Connect no longer handles requests for a device whose registration has expired already.</value>
-        [DataMember(Name="expired_registrations", EmitDefaultValue=false)]
-        public long? ExpiredRegistrations { get; set; }
-
-        /// <summary>
-        /// The number of successful TLS handshakes the account has performed. The SSL or TLS handshake enables the SSL or TLS client and server to establish the secret keys with which they communicate. A successful TLS handshake is required for establishing a connection with Mbed Cloud Connect for any operaton such as registration, registration update and deregistration.
-        /// </summary>
-        /// <value>The number of successful TLS handshakes the account has performed. The SSL or TLS handshake enables the SSL or TLS client and server to establish the secret keys with which they communicate. A successful TLS handshake is required for establishing a connection with Mbed Cloud Connect for any operaton such as registration, registration update and deregistration.</value>
-        [DataMember(Name="handshakes_successful", EmitDefaultValue=false)]
-        public long? HandshakesSuccessful { get; set; }
+        /// <value>The number of deleted registrations (deregistrations) linked to the account. Deregistration is the process of removing the device registration from the Mbed Cloud Connect registry. The deregistration is usually initiated by the device. Mbed Cloud Connect no longer handles requests for a deregistered device.</value>
+        [DataMember(Name="deleted_registrations", EmitDefaultValue=false)]
+        public long? DeletedRegistrations { get; set; }
 
         /// <summary>
         /// **(Beta)** The number of observations received by Mbed Cloud Connect from the devices linked to the account. The observations are pushed from the device to Mbed Cloud Connect when you have successfully subscribed to the device resources using [Connect API](/docs/v1.2/service-api-references/connect-api.html) endpoints. 
@@ -180,18 +131,46 @@ namespace statistics.Model
         public long? DeviceProxyRequestError { get; set; }
 
         /// <summary>
-        /// The number of deleted registrations (deregistrations) linked to the account. Deregistration is the process of removing the device registration from the Mbed Cloud Connect registry. The deregistration is usually initiated by the device. Mbed Cloud Connect no longer handles requests for a deregistered device.
+        /// **(Beta)** The number of successful proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from Mbed Cloud Connect to devices when you try to read or write values to device resources using [Connect API](/docs/v1.2/service-api-references/connect-api.html) endpoints. 
         /// </summary>
-        /// <value>The number of deleted registrations (deregistrations) linked to the account. Deregistration is the process of removing the device registration from the Mbed Cloud Connect registry. The deregistration is usually initiated by the device. Mbed Cloud Connect no longer handles requests for a deregistered device.</value>
-        [DataMember(Name="deleted_registrations", EmitDefaultValue=false)]
-        public long? DeletedRegistrations { get; set; }
+        /// <value>**(Beta)** The number of successful proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from Mbed Cloud Connect to devices when you try to read or write values to device resources using [Connect API](/docs/v1.2/service-api-references/connect-api.html) endpoints. </value>
+        [DataMember(Name="device_proxy_request_success", EmitDefaultValue=false)]
+        public long? DeviceProxyRequestSuccess { get; set; }
 
         /// <summary>
-        /// The number of failed [Connect API](/docs/v1.2/service-api-references/connect-api.html) requests the account has performed.The metric do not consider the actual response from the device and it includes only the result of the http request used to subscibe to the device resources.
+        /// **(Beta)** The number of failed subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/service-api-references/connect-api.html) endpoints. 
         /// </summary>
-        /// <value>The number of failed [Connect API](/docs/v1.2/service-api-references/connect-api.html) requests the account has performed.The metric do not consider the actual response from the device and it includes only the result of the http request used to subscibe to the device resources.</value>
-        [DataMember(Name="connect_rest_api_error", EmitDefaultValue=false)]
-        public long? ConnectRestApiError { get; set; }
+        /// <value>**(Beta)** The number of failed subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/service-api-references/connect-api.html) endpoints. </value>
+        [DataMember(Name="device_subscription_request_error", EmitDefaultValue=false)]
+        public long? DeviceSubscriptionRequestError { get; set; }
+
+        /// <summary>
+        /// **(Beta)** The number of successful subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/service-api-references/connect-api.html) endpoints. 
+        /// </summary>
+        /// <value>**(Beta)** The number of successful subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from Mbed Cloud Connect to devices when you try to subscribe to a resource path using [Connect API](/docs/v1.2/service-api-references/connect-api.html) endpoints. </value>
+        [DataMember(Name="device_subscription_request_success", EmitDefaultValue=false)]
+        public long? DeviceSubscriptionRequestSuccess { get; set; }
+
+        /// <summary>
+        /// The number of expired registrations linked to the account. Mbed Cloud Connect removes the device registrations when the devices cannot update their registration before the expiry of the lifetime. Mbed Cloud Connect no longer handles requests for a device whose registration has expired already.
+        /// </summary>
+        /// <value>The number of expired registrations linked to the account. Mbed Cloud Connect removes the device registrations when the devices cannot update their registration before the expiry of the lifetime. Mbed Cloud Connect no longer handles requests for a device whose registration has expired already.</value>
+        [DataMember(Name="expired_registrations", EmitDefaultValue=false)]
+        public long? ExpiredRegistrations { get; set; }
+
+        /// <summary>
+        /// The number of full registrations linked to the account. Full registration is the process of registering a device with the Mbed Cloud Connect by providing its lifetime and capabilities such as the resource structure.The registered status of the device does not guarantee that the device is active and accessible from Mebd Cloud Connect at any point of time.
+        /// </summary>
+        /// <value>The number of full registrations linked to the account. Full registration is the process of registering a device with the Mbed Cloud Connect by providing its lifetime and capabilities such as the resource structure.The registered status of the device does not guarantee that the device is active and accessible from Mebd Cloud Connect at any point of time.</value>
+        [DataMember(Name="full_registrations", EmitDefaultValue=false)]
+        public long? FullRegistrations { get; set; }
+
+        /// <summary>
+        /// The number of successful TLS handshakes the account has performed. The SSL or TLS handshake enables the SSL or TLS client and server to establish the secret keys with which they communicate. A successful TLS handshake is required for establishing a connection with Mbed Cloud Connect for any operaton such as registration, registration update and deregistration.
+        /// </summary>
+        /// <value>The number of successful TLS handshakes the account has performed. The SSL or TLS handshake enables the SSL or TLS client and server to establish the secret keys with which they communicate. A successful TLS handshake is required for establishing a connection with Mbed Cloud Connect for any operaton such as registration, registration update and deregistration.</value>
+        [DataMember(Name="handshakes_successful", EmitDefaultValue=false)]
+        public long? HandshakesSuccessful { get; set; }
 
         /// <summary>
         /// A unique metric ID.
@@ -201,6 +180,27 @@ namespace statistics.Model
         public string Id { get; set; }
 
         /// <summary>
+        /// The number of registration updates linked to the account. Registration update is the process of updating the registration status with the Mbed Cloud Connect to update or extend the lifetime of the device.
+        /// </summary>
+        /// <value>The number of registration updates linked to the account. Registration update is the process of updating the registration status with the Mbed Cloud Connect to update or extend the lifetime of the device.</value>
+        [DataMember(Name="registration_updates", EmitDefaultValue=false)]
+        public long? RegistrationUpdates { get; set; }
+
+        /// <summary>
+        /// UTC time in RFC3339 format. The timestamp is the starting point of the interval for which the data is aggregated. Each interval includes data for the time greater than or equal to the timestamp and less than the next interval&#39;s starting point.
+        /// </summary>
+        /// <value>UTC time in RFC3339 format. The timestamp is the starting point of the interval for which the data is aggregated. Each interval includes data for the time greater than or equal to the timestamp and less than the next interval&#39;s starting point.</value>
+        [DataMember(Name="timestamp", EmitDefaultValue=false)]
+        public DateTime? Timestamp { get; set; }
+
+        /// <summary>
+        /// The number of transaction events from or to devices linked to the account. A transaction is a 512-byte block of data processed by Mbed Cloud Connect. It can be either sent by the device (device - -&gt; Mbed Cloud Connect) or received by the device (Mbed Cloud Connect - -&gt; device). A transaction does not include IP, TCP or UDP, TLS or DTLS packet overhead. It only contains the packet payload (full CoAP packet including CoAP headers). The Registration (full registration or registration update) and Deregistration events from device to Mbed Cloud Connect are not counted as a transaction. The observation event (resource change notifications) from device to Mbed Cloud Connect is counted as a transaction. The proxy and subscription request from Mbed Cloud Connect to the device is counted as a transaction and the access to Mbed Cloud Connect cache without contacting the actual device may also add to transaction count.
+        /// </summary>
+        /// <value>The number of transaction events from or to devices linked to the account. A transaction is a 512-byte block of data processed by Mbed Cloud Connect. It can be either sent by the device (device - -&gt; Mbed Cloud Connect) or received by the device (Mbed Cloud Connect - -&gt; device). A transaction does not include IP, TCP or UDP, TLS or DTLS packet overhead. It only contains the packet payload (full CoAP packet including CoAP headers). The Registration (full registration or registration update) and Deregistration events from device to Mbed Cloud Connect are not counted as a transaction. The observation event (resource change notifications) from device to Mbed Cloud Connect is counted as a transaction. The proxy and subscription request from Mbed Cloud Connect to the device is counted as a transaction and the access to Mbed Cloud Connect cache without contacting the actual device may also add to transaction count.</value>
+        [DataMember(Name="transactions", EmitDefaultValue=false)]
+        public long? Transactions { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -208,24 +208,24 @@ namespace statistics.Model
         {
             var sb = new StringBuilder();
             sb.Append("class Metric {\n");
-            sb.Append("  RegistrationUpdates: ").Append(RegistrationUpdates).Append("\n");
-            sb.Append("  ConnectRestApiSuccess: ").Append(ConnectRestApiSuccess).Append("\n");
             sb.Append("  BootstrapsFailed: ").Append(BootstrapsFailed).Append("\n");
-            sb.Append("  Transactions: ").Append(Transactions).Append("\n");
-            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
-            sb.Append("  DeviceSubscriptionRequestError: ").Append(DeviceSubscriptionRequestError).Append("\n");
             sb.Append("  BootstrapsPending: ").Append(BootstrapsPending).Append("\n");
-            sb.Append("  DeviceProxyRequestSuccess: ").Append(DeviceProxyRequestSuccess).Append("\n");
             sb.Append("  BootstrapsSuccessful: ").Append(BootstrapsSuccessful).Append("\n");
-            sb.Append("  FullRegistrations: ").Append(FullRegistrations).Append("\n");
-            sb.Append("  DeviceSubscriptionRequestSuccess: ").Append(DeviceSubscriptionRequestSuccess).Append("\n");
-            sb.Append("  ExpiredRegistrations: ").Append(ExpiredRegistrations).Append("\n");
-            sb.Append("  HandshakesSuccessful: ").Append(HandshakesSuccessful).Append("\n");
+            sb.Append("  ConnectRestApiError: ").Append(ConnectRestApiError).Append("\n");
+            sb.Append("  ConnectRestApiSuccess: ").Append(ConnectRestApiSuccess).Append("\n");
+            sb.Append("  DeletedRegistrations: ").Append(DeletedRegistrations).Append("\n");
             sb.Append("  DeviceObservations: ").Append(DeviceObservations).Append("\n");
             sb.Append("  DeviceProxyRequestError: ").Append(DeviceProxyRequestError).Append("\n");
-            sb.Append("  DeletedRegistrations: ").Append(DeletedRegistrations).Append("\n");
-            sb.Append("  ConnectRestApiError: ").Append(ConnectRestApiError).Append("\n");
+            sb.Append("  DeviceProxyRequestSuccess: ").Append(DeviceProxyRequestSuccess).Append("\n");
+            sb.Append("  DeviceSubscriptionRequestError: ").Append(DeviceSubscriptionRequestError).Append("\n");
+            sb.Append("  DeviceSubscriptionRequestSuccess: ").Append(DeviceSubscriptionRequestSuccess).Append("\n");
+            sb.Append("  ExpiredRegistrations: ").Append(ExpiredRegistrations).Append("\n");
+            sb.Append("  FullRegistrations: ").Append(FullRegistrations).Append("\n");
+            sb.Append("  HandshakesSuccessful: ").Append(HandshakesSuccessful).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  RegistrationUpdates: ").Append(RegistrationUpdates).Append("\n");
+            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
+            sb.Append("  Transactions: ").Append(Transactions).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -261,34 +261,9 @@ namespace statistics.Model
 
             return 
                 (
-                    this.RegistrationUpdates == input.RegistrationUpdates ||
-                    (this.RegistrationUpdates != null &&
-                    this.RegistrationUpdates.Equals(input.RegistrationUpdates))
-                ) && 
-                (
-                    this.ConnectRestApiSuccess == input.ConnectRestApiSuccess ||
-                    (this.ConnectRestApiSuccess != null &&
-                    this.ConnectRestApiSuccess.Equals(input.ConnectRestApiSuccess))
-                ) && 
-                (
                     this.BootstrapsFailed == input.BootstrapsFailed ||
                     (this.BootstrapsFailed != null &&
                     this.BootstrapsFailed.Equals(input.BootstrapsFailed))
-                ) && 
-                (
-                    this.Transactions == input.Transactions ||
-                    (this.Transactions != null &&
-                    this.Transactions.Equals(input.Transactions))
-                ) && 
-                (
-                    this.Timestamp == input.Timestamp ||
-                    (this.Timestamp != null &&
-                    this.Timestamp.Equals(input.Timestamp))
-                ) && 
-                (
-                    this.DeviceSubscriptionRequestError == input.DeviceSubscriptionRequestError ||
-                    (this.DeviceSubscriptionRequestError != null &&
-                    this.DeviceSubscriptionRequestError.Equals(input.DeviceSubscriptionRequestError))
                 ) && 
                 (
                     this.BootstrapsPending == input.BootstrapsPending ||
@@ -296,34 +271,24 @@ namespace statistics.Model
                     this.BootstrapsPending.Equals(input.BootstrapsPending))
                 ) && 
                 (
-                    this.DeviceProxyRequestSuccess == input.DeviceProxyRequestSuccess ||
-                    (this.DeviceProxyRequestSuccess != null &&
-                    this.DeviceProxyRequestSuccess.Equals(input.DeviceProxyRequestSuccess))
-                ) && 
-                (
                     this.BootstrapsSuccessful == input.BootstrapsSuccessful ||
                     (this.BootstrapsSuccessful != null &&
                     this.BootstrapsSuccessful.Equals(input.BootstrapsSuccessful))
                 ) && 
                 (
-                    this.FullRegistrations == input.FullRegistrations ||
-                    (this.FullRegistrations != null &&
-                    this.FullRegistrations.Equals(input.FullRegistrations))
+                    this.ConnectRestApiError == input.ConnectRestApiError ||
+                    (this.ConnectRestApiError != null &&
+                    this.ConnectRestApiError.Equals(input.ConnectRestApiError))
                 ) && 
                 (
-                    this.DeviceSubscriptionRequestSuccess == input.DeviceSubscriptionRequestSuccess ||
-                    (this.DeviceSubscriptionRequestSuccess != null &&
-                    this.DeviceSubscriptionRequestSuccess.Equals(input.DeviceSubscriptionRequestSuccess))
+                    this.ConnectRestApiSuccess == input.ConnectRestApiSuccess ||
+                    (this.ConnectRestApiSuccess != null &&
+                    this.ConnectRestApiSuccess.Equals(input.ConnectRestApiSuccess))
                 ) && 
                 (
-                    this.ExpiredRegistrations == input.ExpiredRegistrations ||
-                    (this.ExpiredRegistrations != null &&
-                    this.ExpiredRegistrations.Equals(input.ExpiredRegistrations))
-                ) && 
-                (
-                    this.HandshakesSuccessful == input.HandshakesSuccessful ||
-                    (this.HandshakesSuccessful != null &&
-                    this.HandshakesSuccessful.Equals(input.HandshakesSuccessful))
+                    this.DeletedRegistrations == input.DeletedRegistrations ||
+                    (this.DeletedRegistrations != null &&
+                    this.DeletedRegistrations.Equals(input.DeletedRegistrations))
                 ) && 
                 (
                     this.DeviceObservations == input.DeviceObservations ||
@@ -336,19 +301,54 @@ namespace statistics.Model
                     this.DeviceProxyRequestError.Equals(input.DeviceProxyRequestError))
                 ) && 
                 (
-                    this.DeletedRegistrations == input.DeletedRegistrations ||
-                    (this.DeletedRegistrations != null &&
-                    this.DeletedRegistrations.Equals(input.DeletedRegistrations))
+                    this.DeviceProxyRequestSuccess == input.DeviceProxyRequestSuccess ||
+                    (this.DeviceProxyRequestSuccess != null &&
+                    this.DeviceProxyRequestSuccess.Equals(input.DeviceProxyRequestSuccess))
                 ) && 
                 (
-                    this.ConnectRestApiError == input.ConnectRestApiError ||
-                    (this.ConnectRestApiError != null &&
-                    this.ConnectRestApiError.Equals(input.ConnectRestApiError))
+                    this.DeviceSubscriptionRequestError == input.DeviceSubscriptionRequestError ||
+                    (this.DeviceSubscriptionRequestError != null &&
+                    this.DeviceSubscriptionRequestError.Equals(input.DeviceSubscriptionRequestError))
+                ) && 
+                (
+                    this.DeviceSubscriptionRequestSuccess == input.DeviceSubscriptionRequestSuccess ||
+                    (this.DeviceSubscriptionRequestSuccess != null &&
+                    this.DeviceSubscriptionRequestSuccess.Equals(input.DeviceSubscriptionRequestSuccess))
+                ) && 
+                (
+                    this.ExpiredRegistrations == input.ExpiredRegistrations ||
+                    (this.ExpiredRegistrations != null &&
+                    this.ExpiredRegistrations.Equals(input.ExpiredRegistrations))
+                ) && 
+                (
+                    this.FullRegistrations == input.FullRegistrations ||
+                    (this.FullRegistrations != null &&
+                    this.FullRegistrations.Equals(input.FullRegistrations))
+                ) && 
+                (
+                    this.HandshakesSuccessful == input.HandshakesSuccessful ||
+                    (this.HandshakesSuccessful != null &&
+                    this.HandshakesSuccessful.Equals(input.HandshakesSuccessful))
                 ) && 
                 (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.RegistrationUpdates == input.RegistrationUpdates ||
+                    (this.RegistrationUpdates != null &&
+                    this.RegistrationUpdates.Equals(input.RegistrationUpdates))
+                ) && 
+                (
+                    this.Timestamp == input.Timestamp ||
+                    (this.Timestamp != null &&
+                    this.Timestamp.Equals(input.Timestamp))
+                ) && 
+                (
+                    this.Transactions == input.Transactions ||
+                    (this.Transactions != null &&
+                    this.Transactions.Equals(input.Transactions))
                 );
         }
 
@@ -361,42 +361,42 @@ namespace statistics.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.RegistrationUpdates != null)
-                    hashCode = hashCode * 59 + this.RegistrationUpdates.GetHashCode();
-                if (this.ConnectRestApiSuccess != null)
-                    hashCode = hashCode * 59 + this.ConnectRestApiSuccess.GetHashCode();
                 if (this.BootstrapsFailed != null)
                     hashCode = hashCode * 59 + this.BootstrapsFailed.GetHashCode();
-                if (this.Transactions != null)
-                    hashCode = hashCode * 59 + this.Transactions.GetHashCode();
-                if (this.Timestamp != null)
-                    hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
-                if (this.DeviceSubscriptionRequestError != null)
-                    hashCode = hashCode * 59 + this.DeviceSubscriptionRequestError.GetHashCode();
                 if (this.BootstrapsPending != null)
                     hashCode = hashCode * 59 + this.BootstrapsPending.GetHashCode();
-                if (this.DeviceProxyRequestSuccess != null)
-                    hashCode = hashCode * 59 + this.DeviceProxyRequestSuccess.GetHashCode();
                 if (this.BootstrapsSuccessful != null)
                     hashCode = hashCode * 59 + this.BootstrapsSuccessful.GetHashCode();
-                if (this.FullRegistrations != null)
-                    hashCode = hashCode * 59 + this.FullRegistrations.GetHashCode();
-                if (this.DeviceSubscriptionRequestSuccess != null)
-                    hashCode = hashCode * 59 + this.DeviceSubscriptionRequestSuccess.GetHashCode();
-                if (this.ExpiredRegistrations != null)
-                    hashCode = hashCode * 59 + this.ExpiredRegistrations.GetHashCode();
-                if (this.HandshakesSuccessful != null)
-                    hashCode = hashCode * 59 + this.HandshakesSuccessful.GetHashCode();
+                if (this.ConnectRestApiError != null)
+                    hashCode = hashCode * 59 + this.ConnectRestApiError.GetHashCode();
+                if (this.ConnectRestApiSuccess != null)
+                    hashCode = hashCode * 59 + this.ConnectRestApiSuccess.GetHashCode();
+                if (this.DeletedRegistrations != null)
+                    hashCode = hashCode * 59 + this.DeletedRegistrations.GetHashCode();
                 if (this.DeviceObservations != null)
                     hashCode = hashCode * 59 + this.DeviceObservations.GetHashCode();
                 if (this.DeviceProxyRequestError != null)
                     hashCode = hashCode * 59 + this.DeviceProxyRequestError.GetHashCode();
-                if (this.DeletedRegistrations != null)
-                    hashCode = hashCode * 59 + this.DeletedRegistrations.GetHashCode();
-                if (this.ConnectRestApiError != null)
-                    hashCode = hashCode * 59 + this.ConnectRestApiError.GetHashCode();
+                if (this.DeviceProxyRequestSuccess != null)
+                    hashCode = hashCode * 59 + this.DeviceProxyRequestSuccess.GetHashCode();
+                if (this.DeviceSubscriptionRequestError != null)
+                    hashCode = hashCode * 59 + this.DeviceSubscriptionRequestError.GetHashCode();
+                if (this.DeviceSubscriptionRequestSuccess != null)
+                    hashCode = hashCode * 59 + this.DeviceSubscriptionRequestSuccess.GetHashCode();
+                if (this.ExpiredRegistrations != null)
+                    hashCode = hashCode * 59 + this.ExpiredRegistrations.GetHashCode();
+                if (this.FullRegistrations != null)
+                    hashCode = hashCode * 59 + this.FullRegistrations.GetHashCode();
+                if (this.HandshakesSuccessful != null)
+                    hashCode = hashCode * 59 + this.HandshakesSuccessful.GetHashCode();
                 if (this.Id != null)
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.RegistrationUpdates != null)
+                    hashCode = hashCode * 59 + this.RegistrationUpdates.GetHashCode();
+                if (this.Timestamp != null)
+                    hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
+                if (this.Transactions != null)
+                    hashCode = hashCode * 59 + this.Transactions.GetHashCode();
                 return hashCode;
             }
         }

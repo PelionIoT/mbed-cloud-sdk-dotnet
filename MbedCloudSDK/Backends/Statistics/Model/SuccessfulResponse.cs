@@ -35,19 +35,19 @@ namespace statistics.Model
         /// Initializes a new instance of the <see cref="SuccessfulResponse" /> class.
         /// </summary>
         /// <param name="After">The metric ID included in the request or null..</param>
-        /// <param name="HasMore">Indicates whether there are more results for you to fetch in the next page..</param>
-        /// <param name="TotalCount">The total number of records available..</param>
-        /// <param name="_Object">API resource name..</param>
-        /// <param name="Limit">The limit used in the request to retrieve the results..</param>
         /// <param name="Data">Data.</param>
-        public SuccessfulResponse(string After = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), string _Object = default(string), int? Limit = default(int?), List<Metric> Data = default(List<Metric>))
+        /// <param name="HasMore">Indicates whether there are more results for you to fetch in the next page..</param>
+        /// <param name="Limit">The limit used in the request to retrieve the results..</param>
+        /// <param name="_Object">API resource name..</param>
+        /// <param name="TotalCount">The total number of records available..</param>
+        public SuccessfulResponse(string After = default(string), List<Metric> Data = default(List<Metric>), bool? HasMore = default(bool?), int? Limit = default(int?), string _Object = default(string), int? TotalCount = default(int?))
         {
             this.After = After;
-            this.HasMore = HasMore;
-            this.TotalCount = TotalCount;
-            this._Object = _Object;
-            this.Limit = Limit;
             this.Data = Data;
+            this.HasMore = HasMore;
+            this.Limit = Limit;
+            this._Object = _Object;
+            this.TotalCount = TotalCount;
         }
         
         /// <summary>
@@ -58,25 +58,17 @@ namespace statistics.Model
         public string After { get; set; }
 
         /// <summary>
+        /// Gets or Sets Data
+        /// </summary>
+        [DataMember(Name="data", EmitDefaultValue=false)]
+        public List<Metric> Data { get; set; }
+
+        /// <summary>
         /// Indicates whether there are more results for you to fetch in the next page.
         /// </summary>
         /// <value>Indicates whether there are more results for you to fetch in the next page.</value>
         [DataMember(Name="has_more", EmitDefaultValue=false)]
         public bool? HasMore { get; set; }
-
-        /// <summary>
-        /// The total number of records available.
-        /// </summary>
-        /// <value>The total number of records available.</value>
-        [DataMember(Name="total_count", EmitDefaultValue=false)]
-        public int? TotalCount { get; set; }
-
-        /// <summary>
-        /// API resource name.
-        /// </summary>
-        /// <value>API resource name.</value>
-        [DataMember(Name="object", EmitDefaultValue=false)]
-        public string _Object { get; set; }
 
         /// <summary>
         /// The limit used in the request to retrieve the results.
@@ -86,10 +78,18 @@ namespace statistics.Model
         public int? Limit { get; set; }
 
         /// <summary>
-        /// Gets or Sets Data
+        /// API resource name.
         /// </summary>
-        [DataMember(Name="data", EmitDefaultValue=false)]
-        public List<Metric> Data { get; set; }
+        /// <value>API resource name.</value>
+        [DataMember(Name="object", EmitDefaultValue=false)]
+        public string _Object { get; set; }
+
+        /// <summary>
+        /// The total number of records available.
+        /// </summary>
+        /// <value>The total number of records available.</value>
+        [DataMember(Name="total_count", EmitDefaultValue=false)]
+        public int? TotalCount { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,11 +100,11 @@ namespace statistics.Model
             var sb = new StringBuilder();
             sb.Append("class SuccessfulResponse {\n");
             sb.Append("  After: ").Append(After).Append("\n");
-            sb.Append("  HasMore: ").Append(HasMore).Append("\n");
-            sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
-            sb.Append("  Limit: ").Append(Limit).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  HasMore: ").Append(HasMore).Append("\n");
+            sb.Append("  Limit: ").Append(Limit).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
+            sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -145,19 +145,14 @@ namespace statistics.Model
                     this.After.Equals(input.After))
                 ) && 
                 (
+                    this.Data == input.Data ||
+                    this.Data != null &&
+                    this.Data.SequenceEqual(input.Data)
+                ) && 
+                (
                     this.HasMore == input.HasMore ||
                     (this.HasMore != null &&
                     this.HasMore.Equals(input.HasMore))
-                ) && 
-                (
-                    this.TotalCount == input.TotalCount ||
-                    (this.TotalCount != null &&
-                    this.TotalCount.Equals(input.TotalCount))
-                ) && 
-                (
-                    this._Object == input._Object ||
-                    (this._Object != null &&
-                    this._Object.Equals(input._Object))
                 ) && 
                 (
                     this.Limit == input.Limit ||
@@ -165,9 +160,14 @@ namespace statistics.Model
                     this.Limit.Equals(input.Limit))
                 ) && 
                 (
-                    this.Data == input.Data ||
-                    this.Data != null &&
-                    this.Data.SequenceEqual(input.Data)
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
+                ) && 
+                (
+                    this.TotalCount == input.TotalCount ||
+                    (this.TotalCount != null &&
+                    this.TotalCount.Equals(input.TotalCount))
                 );
         }
 
@@ -182,16 +182,16 @@ namespace statistics.Model
                 int hashCode = 41;
                 if (this.After != null)
                     hashCode = hashCode * 59 + this.After.GetHashCode();
-                if (this.HasMore != null)
-                    hashCode = hashCode * 59 + this.HasMore.GetHashCode();
-                if (this.TotalCount != null)
-                    hashCode = hashCode * 59 + this.TotalCount.GetHashCode();
-                if (this._Object != null)
-                    hashCode = hashCode * 59 + this._Object.GetHashCode();
-                if (this.Limit != null)
-                    hashCode = hashCode * 59 + this.Limit.GetHashCode();
                 if (this.Data != null)
                     hashCode = hashCode * 59 + this.Data.GetHashCode();
+                if (this.HasMore != null)
+                    hashCode = hashCode * 59 + this.HasMore.GetHashCode();
+                if (this.Limit != null)
+                    hashCode = hashCode * 59 + this.Limit.GetHashCode();
+                if (this._Object != null)
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
+                if (this.TotalCount != null)
+                    hashCode = hashCode * 59 + this.TotalCount.GetHashCode();
                 return hashCode;
             }
         }

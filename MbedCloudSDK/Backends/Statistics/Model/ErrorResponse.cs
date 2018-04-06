@@ -36,17 +36,17 @@ namespace statistics.Model
         /// </summary>
         /// <param name="Code">HTTP response code..</param>
         /// <param name="Fields">Details of the error fields..</param>
+        /// <param name="Message">Description of the error..</param>
         /// <param name="_Object">Response type, always \&quot;error\&quot;..</param>
         /// <param name="RequestId">Request ID..</param>
-        /// <param name="Message">Description of the error..</param>
         /// <param name="Type">Type of error..</param>
-        public ErrorResponse(int? Code = default(int?), List<Fields> Fields = default(List<Fields>), string _Object = default(string), string RequestId = default(string), string Message = default(string), string Type = default(string))
+        public ErrorResponse(int? Code = default(int?), List<Fields> Fields = default(List<Fields>), string Message = default(string), string _Object = default(string), string RequestId = default(string), string Type = default(string))
         {
             this.Code = Code;
             this.Fields = Fields;
+            this.Message = Message;
             this._Object = _Object;
             this.RequestId = RequestId;
-            this.Message = Message;
             this.Type = Type;
         }
         
@@ -65,6 +65,13 @@ namespace statistics.Model
         public List<Fields> Fields { get; set; }
 
         /// <summary>
+        /// Description of the error.
+        /// </summary>
+        /// <value>Description of the error.</value>
+        [DataMember(Name="message", EmitDefaultValue=false)]
+        public string Message { get; set; }
+
+        /// <summary>
         /// Response type, always \&quot;error\&quot;.
         /// </summary>
         /// <value>Response type, always \&quot;error\&quot;.</value>
@@ -77,13 +84,6 @@ namespace statistics.Model
         /// <value>Request ID.</value>
         [DataMember(Name="request_id", EmitDefaultValue=false)]
         public string RequestId { get; set; }
-
-        /// <summary>
-        /// Description of the error.
-        /// </summary>
-        /// <value>Description of the error.</value>
-        [DataMember(Name="message", EmitDefaultValue=false)]
-        public string Message { get; set; }
 
         /// <summary>
         /// Type of error.
@@ -102,9 +102,9 @@ namespace statistics.Model
             sb.Append("class ErrorResponse {\n");
             sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("  Fields: ").Append(Fields).Append("\n");
+            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  RequestId: ").Append(RequestId).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -151,6 +151,11 @@ namespace statistics.Model
                     this.Fields.SequenceEqual(input.Fields)
                 ) && 
                 (
+                    this.Message == input.Message ||
+                    (this.Message != null &&
+                    this.Message.Equals(input.Message))
+                ) && 
+                (
                     this._Object == input._Object ||
                     (this._Object != null &&
                     this._Object.Equals(input._Object))
@@ -159,11 +164,6 @@ namespace statistics.Model
                     this.RequestId == input.RequestId ||
                     (this.RequestId != null &&
                     this.RequestId.Equals(input.RequestId))
-                ) && 
-                (
-                    this.Message == input.Message ||
-                    (this.Message != null &&
-                    this.Message.Equals(input.Message))
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -185,12 +185,12 @@ namespace statistics.Model
                     hashCode = hashCode * 59 + this.Code.GetHashCode();
                 if (this.Fields != null)
                     hashCode = hashCode * 59 + this.Fields.GetHashCode();
+                if (this.Message != null)
+                    hashCode = hashCode * 59 + this.Message.GetHashCode();
                 if (this._Object != null)
                     hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.RequestId != null)
                     hashCode = hashCode * 59 + this.RequestId.GetHashCode();
-                if (this.Message != null)
-                    hashCode = hashCode * 59 + this.Message.GetHashCode();
                 if (this.Type != null)
                     hashCode = hashCode * 59 + this.Type.GetHashCode();
                 return hashCode;
