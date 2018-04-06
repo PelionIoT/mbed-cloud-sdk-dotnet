@@ -34,85 +34,36 @@ namespace device_directory.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceDataPutRequest" /> class.
         /// </summary>
-        /// <param name="Description">The description of the device..</param>
-        /// <param name="EndpointName">The endpoint name given to the device..</param>
         /// <param name="AutoUpdate">DEPRECATED: Mark this device for automatic firmware update..</param>
-        /// <param name="HostGateway">The &#x60;endpoint_name&#x60; of the host gateway, if appropriate..</param>
-        /// <param name="_Object">The API resource entity..</param>
-        /// <param name="CustomAttributes">Up to five custom key-value attributes. Note that keys cannot start with a number..</param>
-        /// <param name="DeviceKey">The fingerprint of the device certificate..</param>
-        /// <param name="EndpointType">The endpoint type of the device. For example, the device is a gateway..</param>
         /// <param name="CaId">The certificate issuer&#39;s ID..</param>
+        /// <param name="CustomAttributes">Up to five custom key-value attributes. Note that keys cannot start with a number..</param>
+        /// <param name="Description">The description of the device..</param>
+        /// <param name="DeviceKey">The fingerprint of the device certificate..</param>
+        /// <param name="EndpointName">The endpoint name given to the device..</param>
+        /// <param name="EndpointType">The endpoint type of the device. For example, the device is a gateway..</param>
+        /// <param name="HostGateway">The &#x60;endpoint_name&#x60; of the host gateway, if appropriate..</param>
         /// <param name="Name">The name of the device..</param>
-        public DeviceDataPutRequest(string Description = default(string), string EndpointName = default(string), bool? AutoUpdate = default(bool?), string HostGateway = default(string), string _Object = default(string), Dictionary<string, string> CustomAttributes = default(Dictionary<string, string>), string DeviceKey = default(string), string EndpointType = default(string), string CaId = default(string), string Name = default(string))
+        /// <param name="_Object">The API resource entity..</param>
+        public DeviceDataPutRequest(bool? AutoUpdate = default(bool?), string CaId = default(string), Dictionary<string, string> CustomAttributes = default(Dictionary<string, string>), string Description = default(string), string DeviceKey = default(string), string EndpointName = default(string), string EndpointType = default(string), string HostGateway = default(string), string Name = default(string), string _Object = default(string))
         {
-            this.Description = Description;
-            this.EndpointName = EndpointName;
             this.AutoUpdate = AutoUpdate;
-            this.HostGateway = HostGateway;
-            this._Object = _Object;
-            this.CustomAttributes = CustomAttributes;
-            this.DeviceKey = DeviceKey;
-            this.EndpointType = EndpointType;
             this.CaId = CaId;
+            this.CustomAttributes = CustomAttributes;
+            this.Description = Description;
+            this.DeviceKey = DeviceKey;
+            this.EndpointName = EndpointName;
+            this.EndpointType = EndpointType;
+            this.HostGateway = HostGateway;
             this.Name = Name;
+            this._Object = _Object;
         }
         
-        /// <summary>
-        /// The description of the device.
-        /// </summary>
-        /// <value>The description of the device.</value>
-        [DataMember(Name="description", EmitDefaultValue=false)]
-        public string Description { get; set; }
-
-        /// <summary>
-        /// The endpoint name given to the device.
-        /// </summary>
-        /// <value>The endpoint name given to the device.</value>
-        [DataMember(Name="endpoint_name", EmitDefaultValue=false)]
-        public string EndpointName { get; set; }
-
         /// <summary>
         /// DEPRECATED: Mark this device for automatic firmware update.
         /// </summary>
         /// <value>DEPRECATED: Mark this device for automatic firmware update.</value>
         [DataMember(Name="auto_update", EmitDefaultValue=false)]
         public bool? AutoUpdate { get; set; }
-
-        /// <summary>
-        /// The &#x60;endpoint_name&#x60; of the host gateway, if appropriate.
-        /// </summary>
-        /// <value>The &#x60;endpoint_name&#x60; of the host gateway, if appropriate.</value>
-        [DataMember(Name="host_gateway", EmitDefaultValue=false)]
-        public string HostGateway { get; set; }
-
-        /// <summary>
-        /// The API resource entity.
-        /// </summary>
-        /// <value>The API resource entity.</value>
-        [DataMember(Name="object", EmitDefaultValue=false)]
-        public string _Object { get; set; }
-
-        /// <summary>
-        /// Up to five custom key-value attributes. Note that keys cannot start with a number.
-        /// </summary>
-        /// <value>Up to five custom key-value attributes. Note that keys cannot start with a number.</value>
-        [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
-        public Dictionary<string, string> CustomAttributes { get; set; }
-
-        /// <summary>
-        /// The fingerprint of the device certificate.
-        /// </summary>
-        /// <value>The fingerprint of the device certificate.</value>
-        [DataMember(Name="device_key", EmitDefaultValue=false)]
-        public string DeviceKey { get; set; }
-
-        /// <summary>
-        /// The endpoint type of the device. For example, the device is a gateway.
-        /// </summary>
-        /// <value>The endpoint type of the device. For example, the device is a gateway.</value>
-        [DataMember(Name="endpoint_type", EmitDefaultValue=false)]
-        public string EndpointType { get; set; }
 
         /// <summary>
         /// The certificate issuer&#39;s ID.
@@ -122,11 +73,60 @@ namespace device_directory.Model
         public string CaId { get; set; }
 
         /// <summary>
+        /// Up to five custom key-value attributes. Note that keys cannot start with a number.
+        /// </summary>
+        /// <value>Up to five custom key-value attributes. Note that keys cannot start with a number.</value>
+        [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
+        public Dictionary<string, string> CustomAttributes { get; set; }
+
+        /// <summary>
+        /// The description of the device.
+        /// </summary>
+        /// <value>The description of the device.</value>
+        [DataMember(Name="description", EmitDefaultValue=false)]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// The fingerprint of the device certificate.
+        /// </summary>
+        /// <value>The fingerprint of the device certificate.</value>
+        [DataMember(Name="device_key", EmitDefaultValue=false)]
+        public string DeviceKey { get; set; }
+
+        /// <summary>
+        /// The endpoint name given to the device.
+        /// </summary>
+        /// <value>The endpoint name given to the device.</value>
+        [DataMember(Name="endpoint_name", EmitDefaultValue=false)]
+        public string EndpointName { get; set; }
+
+        /// <summary>
+        /// The endpoint type of the device. For example, the device is a gateway.
+        /// </summary>
+        /// <value>The endpoint type of the device. For example, the device is a gateway.</value>
+        [DataMember(Name="endpoint_type", EmitDefaultValue=false)]
+        public string EndpointType { get; set; }
+
+        /// <summary>
+        /// The &#x60;endpoint_name&#x60; of the host gateway, if appropriate.
+        /// </summary>
+        /// <value>The &#x60;endpoint_name&#x60; of the host gateway, if appropriate.</value>
+        [DataMember(Name="host_gateway", EmitDefaultValue=false)]
+        public string HostGateway { get; set; }
+
+        /// <summary>
         /// The name of the device.
         /// </summary>
         /// <value>The name of the device.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
+
+        /// <summary>
+        /// The API resource entity.
+        /// </summary>
+        /// <value>The API resource entity.</value>
+        [DataMember(Name="object", EmitDefaultValue=false)]
+        public string _Object { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -136,16 +136,16 @@ namespace device_directory.Model
         {
             var sb = new StringBuilder();
             sb.Append("class DeviceDataPutRequest {\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  EndpointName: ").Append(EndpointName).Append("\n");
             sb.Append("  AutoUpdate: ").Append(AutoUpdate).Append("\n");
-            sb.Append("  HostGateway: ").Append(HostGateway).Append("\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
-            sb.Append("  CustomAttributes: ").Append(CustomAttributes).Append("\n");
-            sb.Append("  DeviceKey: ").Append(DeviceKey).Append("\n");
-            sb.Append("  EndpointType: ").Append(EndpointType).Append("\n");
             sb.Append("  CaId: ").Append(CaId).Append("\n");
+            sb.Append("  CustomAttributes: ").Append(CustomAttributes).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  DeviceKey: ").Append(DeviceKey).Append("\n");
+            sb.Append("  EndpointName: ").Append(EndpointName).Append("\n");
+            sb.Append("  EndpointType: ").Append(EndpointType).Append("\n");
+            sb.Append("  HostGateway: ").Append(HostGateway).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -181,44 +181,9 @@ namespace device_directory.Model
 
             return 
                 (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
-                ) && 
-                (
-                    this.EndpointName == input.EndpointName ||
-                    (this.EndpointName != null &&
-                    this.EndpointName.Equals(input.EndpointName))
-                ) && 
-                (
                     this.AutoUpdate == input.AutoUpdate ||
                     (this.AutoUpdate != null &&
                     this.AutoUpdate.Equals(input.AutoUpdate))
-                ) && 
-                (
-                    this.HostGateway == input.HostGateway ||
-                    (this.HostGateway != null &&
-                    this.HostGateway.Equals(input.HostGateway))
-                ) && 
-                (
-                    this._Object == input._Object ||
-                    (this._Object != null &&
-                    this._Object.Equals(input._Object))
-                ) && 
-                (
-                    this.CustomAttributes == input.CustomAttributes ||
-                    this.CustomAttributes != null &&
-                    this.CustomAttributes.SequenceEqual(input.CustomAttributes)
-                ) && 
-                (
-                    this.DeviceKey == input.DeviceKey ||
-                    (this.DeviceKey != null &&
-                    this.DeviceKey.Equals(input.DeviceKey))
-                ) && 
-                (
-                    this.EndpointType == input.EndpointType ||
-                    (this.EndpointType != null &&
-                    this.EndpointType.Equals(input.EndpointType))
                 ) && 
                 (
                     this.CaId == input.CaId ||
@@ -226,9 +191,44 @@ namespace device_directory.Model
                     this.CaId.Equals(input.CaId))
                 ) && 
                 (
+                    this.CustomAttributes == input.CustomAttributes ||
+                    this.CustomAttributes != null &&
+                    this.CustomAttributes.SequenceEqual(input.CustomAttributes)
+                ) && 
+                (
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
+                ) && 
+                (
+                    this.DeviceKey == input.DeviceKey ||
+                    (this.DeviceKey != null &&
+                    this.DeviceKey.Equals(input.DeviceKey))
+                ) && 
+                (
+                    this.EndpointName == input.EndpointName ||
+                    (this.EndpointName != null &&
+                    this.EndpointName.Equals(input.EndpointName))
+                ) && 
+                (
+                    this.EndpointType == input.EndpointType ||
+                    (this.EndpointType != null &&
+                    this.EndpointType.Equals(input.EndpointType))
+                ) && 
+                (
+                    this.HostGateway == input.HostGateway ||
+                    (this.HostGateway != null &&
+                    this.HostGateway.Equals(input.HostGateway))
+                ) && 
+                (
                     this.Name == input.Name ||
                     (this.Name != null &&
                     this.Name.Equals(input.Name))
+                ) && 
+                (
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
                 );
         }
 
@@ -241,26 +241,26 @@ namespace device_directory.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
-                if (this.EndpointName != null)
-                    hashCode = hashCode * 59 + this.EndpointName.GetHashCode();
                 if (this.AutoUpdate != null)
                     hashCode = hashCode * 59 + this.AutoUpdate.GetHashCode();
-                if (this.HostGateway != null)
-                    hashCode = hashCode * 59 + this.HostGateway.GetHashCode();
-                if (this._Object != null)
-                    hashCode = hashCode * 59 + this._Object.GetHashCode();
-                if (this.CustomAttributes != null)
-                    hashCode = hashCode * 59 + this.CustomAttributes.GetHashCode();
-                if (this.DeviceKey != null)
-                    hashCode = hashCode * 59 + this.DeviceKey.GetHashCode();
-                if (this.EndpointType != null)
-                    hashCode = hashCode * 59 + this.EndpointType.GetHashCode();
                 if (this.CaId != null)
                     hashCode = hashCode * 59 + this.CaId.GetHashCode();
+                if (this.CustomAttributes != null)
+                    hashCode = hashCode * 59 + this.CustomAttributes.GetHashCode();
+                if (this.Description != null)
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                if (this.DeviceKey != null)
+                    hashCode = hashCode * 59 + this.DeviceKey.GetHashCode();
+                if (this.EndpointName != null)
+                    hashCode = hashCode * 59 + this.EndpointName.GetHashCode();
+                if (this.EndpointType != null)
+                    hashCode = hashCode * 59 + this.EndpointType.GetHashCode();
+                if (this.HostGateway != null)
+                    hashCode = hashCode * 59 + this.HostGateway.GetHashCode();
                 if (this.Name != null)
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this._Object != null)
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
                 return hashCode;
             }
         }
@@ -272,16 +272,16 @@ namespace device_directory.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // CaId (string) maxLength
+            if(this.CaId != null && this.CaId.Length > 500)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CaId, length must be less than 500.", new [] { "CaId" });
+            }
+
             // Description (string) maxLength
             if(this.Description != null && this.Description.Length > 2000)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be less than 2000.", new [] { "Description" });
-            }
-
-            // EndpointName (string) maxLength
-            if(this.EndpointName != null && this.EndpointName.Length > 64)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EndpointName, length must be less than 64.", new [] { "EndpointName" });
             }
 
             // DeviceKey (string) maxLength
@@ -290,16 +290,16 @@ namespace device_directory.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DeviceKey, length must be less than 512.", new [] { "DeviceKey" });
             }
 
+            // EndpointName (string) maxLength
+            if(this.EndpointName != null && this.EndpointName.Length > 64)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EndpointName, length must be less than 64.", new [] { "EndpointName" });
+            }
+
             // EndpointType (string) maxLength
             if(this.EndpointType != null && this.EndpointType.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EndpointType, length must be less than 64.", new [] { "EndpointType" });
-            }
-
-            // CaId (string) maxLength
-            if(this.CaId != null && this.CaId.Length > 500)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CaId, length must be less than 500.", new [] { "CaId" });
             }
 
             // Name (string) maxLength

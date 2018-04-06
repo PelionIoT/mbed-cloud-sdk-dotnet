@@ -231,9 +231,6 @@ namespace device_directory.Client
         public virtual string BasePath {
             get { return _basePath; }
             set {
-                if (value == null)
-                    throw new ArgumentNullException("API base URL cannot be a null value.", nameof(value));
-
                 _basePath = value;
                 // pass-through to ApiClient if it's set.
                 if(_apiClient != null) {

@@ -39,24 +39,15 @@ namespace device_directory.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceQuery" /> class.
         /// </summary>
-        /// <param name="Name">The name of the query. (required).</param>
         /// <param name="CreatedAt">The timestamp of when the device was created in the device directory. (required).</param>
-        /// <param name="_Object">The API resource entity. (required).</param>
-        /// <param name="UpdatedAt">The time the object was updated. (required).</param>
         /// <param name="Etag">The entity instance signature. (required).</param>
-        /// <param name="Query">The device query. (required).</param>
         /// <param name="Id">The ID of the query. (required).</param>
-        public DeviceQuery(string Name = default(string), DateTime? CreatedAt = default(DateTime?), string _Object = default(string), DateTime? UpdatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), string Query = default(string), string Id = default(string))
+        /// <param name="Name">The name of the query. (required).</param>
+        /// <param name="_Object">The API resource entity. (required).</param>
+        /// <param name="Query">The device query. (required).</param>
+        /// <param name="UpdatedAt">The time the object was updated. (required).</param>
+        public DeviceQuery(DateTime? CreatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), string Id = default(string), string Name = default(string), string _Object = default(string), string Query = default(string), DateTime? UpdatedAt = default(DateTime?))
         {
-            // to ensure "Name" is required (not null)
-            if (Name == null)
-            {
-                throw new InvalidDataException("Name is a required property for DeviceQuery and cannot be null");
-            }
-            else
-            {
-                this.Name = Name;
-            }
             // to ensure "CreatedAt" is required (not null)
             if (CreatedAt == null)
             {
@@ -65,24 +56,6 @@ namespace device_directory.Model
             else
             {
                 this.CreatedAt = CreatedAt;
-            }
-            // to ensure "_Object" is required (not null)
-            if (_Object == null)
-            {
-                throw new InvalidDataException("_Object is a required property for DeviceQuery and cannot be null");
-            }
-            else
-            {
-                this._Object = _Object;
-            }
-            // to ensure "UpdatedAt" is required (not null)
-            if (UpdatedAt == null)
-            {
-                throw new InvalidDataException("UpdatedAt is a required property for DeviceQuery and cannot be null");
-            }
-            else
-            {
-                this.UpdatedAt = UpdatedAt;
             }
             // to ensure "Etag" is required (not null)
             if (Etag == null)
@@ -93,15 +66,6 @@ namespace device_directory.Model
             {
                 this.Etag = Etag;
             }
-            // to ensure "Query" is required (not null)
-            if (Query == null)
-            {
-                throw new InvalidDataException("Query is a required property for DeviceQuery and cannot be null");
-            }
-            else
-            {
-                this.Query = Query;
-            }
             // to ensure "Id" is required (not null)
             if (Id == null)
             {
@@ -111,35 +75,50 @@ namespace device_directory.Model
             {
                 this.Id = Id;
             }
+            // to ensure "Name" is required (not null)
+            if (Name == null)
+            {
+                throw new InvalidDataException("Name is a required property for DeviceQuery and cannot be null");
+            }
+            else
+            {
+                this.Name = Name;
+            }
+            // to ensure "_Object" is required (not null)
+            if (_Object == null)
+            {
+                throw new InvalidDataException("_Object is a required property for DeviceQuery and cannot be null");
+            }
+            else
+            {
+                this._Object = _Object;
+            }
+            // to ensure "Query" is required (not null)
+            if (Query == null)
+            {
+                throw new InvalidDataException("Query is a required property for DeviceQuery and cannot be null");
+            }
+            else
+            {
+                this.Query = Query;
+            }
+            // to ensure "UpdatedAt" is required (not null)
+            if (UpdatedAt == null)
+            {
+                throw new InvalidDataException("UpdatedAt is a required property for DeviceQuery and cannot be null");
+            }
+            else
+            {
+                this.UpdatedAt = UpdatedAt;
+            }
         }
         
-        /// <summary>
-        /// The name of the query.
-        /// </summary>
-        /// <value>The name of the query.</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
-        public string Name { get; set; }
-
         /// <summary>
         /// The timestamp of when the device was created in the device directory.
         /// </summary>
         /// <value>The timestamp of when the device was created in the device directory.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
-
-        /// <summary>
-        /// The API resource entity.
-        /// </summary>
-        /// <value>The API resource entity.</value>
-        [DataMember(Name="object", EmitDefaultValue=false)]
-        public string _Object { get; set; }
-
-        /// <summary>
-        /// The time the object was updated.
-        /// </summary>
-        /// <value>The time the object was updated.</value>
-        [DataMember(Name="updated_at", EmitDefaultValue=false)]
-        public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// The entity instance signature.
@@ -149,6 +128,27 @@ namespace device_directory.Model
         public DateTime? Etag { get; set; }
 
         /// <summary>
+        /// The ID of the query.
+        /// </summary>
+        /// <value>The ID of the query.</value>
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public string Id { get; set; }
+
+        /// <summary>
+        /// The name of the query.
+        /// </summary>
+        /// <value>The name of the query.</value>
+        [DataMember(Name="name", EmitDefaultValue=false)]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// The API resource entity.
+        /// </summary>
+        /// <value>The API resource entity.</value>
+        [DataMember(Name="object", EmitDefaultValue=false)]
+        public string _Object { get; set; }
+
+        /// <summary>
         /// The device query.
         /// </summary>
         /// <value>The device query.</value>
@@ -156,11 +156,11 @@ namespace device_directory.Model
         public string Query { get; set; }
 
         /// <summary>
-        /// The ID of the query.
+        /// The time the object was updated.
         /// </summary>
-        /// <value>The ID of the query.</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
-        public string Id { get; set; }
+        /// <value>The time the object was updated.</value>
+        [DataMember(Name="updated_at", EmitDefaultValue=false)]
+        public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -170,13 +170,13 @@ namespace device_directory.Model
         {
             var sb = new StringBuilder();
             sb.Append("class DeviceQuery {\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
-            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
-            sb.Append("  Query: ").Append(Query).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
+            sb.Append("  Query: ").Append(Query).Append("\n");
+            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -212,24 +212,9 @@ namespace device_directory.Model
 
             return 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
-                ) && 
-                (
                     this.CreatedAt == input.CreatedAt ||
                     (this.CreatedAt != null &&
                     this.CreatedAt.Equals(input.CreatedAt))
-                ) && 
-                (
-                    this._Object == input._Object ||
-                    (this._Object != null &&
-                    this._Object.Equals(input._Object))
-                ) && 
-                (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
                 ) && 
                 (
                     this.Etag == input.Etag ||
@@ -237,14 +222,29 @@ namespace device_directory.Model
                     this.Etag.Equals(input.Etag))
                 ) && 
                 (
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
+                ) && 
+                (
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
+                ) && 
+                (
                     this.Query == input.Query ||
                     (this.Query != null &&
                     this.Query.Equals(input.Query))
                 ) && 
                 (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
+                    this.UpdatedAt == input.UpdatedAt ||
+                    (this.UpdatedAt != null &&
+                    this.UpdatedAt.Equals(input.UpdatedAt))
                 );
         }
 
@@ -257,20 +257,20 @@ namespace device_directory.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
                 if (this.CreatedAt != null)
                     hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
-                if (this._Object != null)
-                    hashCode = hashCode * 59 + this._Object.GetHashCode();
-                if (this.UpdatedAt != null)
-                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
                 if (this.Etag != null)
                     hashCode = hashCode * 59 + this.Etag.GetHashCode();
-                if (this.Query != null)
-                    hashCode = hashCode * 59 + this.Query.GetHashCode();
                 if (this.Id != null)
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.Name != null)
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this._Object != null)
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
+                if (this.Query != null)
+                    hashCode = hashCode * 59 + this.Query.GetHashCode();
+                if (this.UpdatedAt != null)
+                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
                 return hashCode;
             }
         }

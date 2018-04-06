@@ -34,53 +34,29 @@ namespace device_directory.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DevicePage" /> class.
         /// </summary>
-        /// <param name="_Object">_Object.</param>
-        /// <param name="HasMore">HasMore.</param>
-        /// <param name="TotalCount">TotalCount.</param>
         /// <param name="After">After.</param>
-        /// <param name="Limit">Limit.</param>
         /// <param name="Data">Data.</param>
+        /// <param name="HasMore">HasMore.</param>
+        /// <param name="Limit">Limit.</param>
+        /// <param name="_Object">_Object.</param>
         /// <param name="Order">Order.</param>
-        public DevicePage(string _Object = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), string After = default(string), int? Limit = default(int?), List<DeviceData> Data = default(List<DeviceData>), string Order = default(string))
+        /// <param name="TotalCount">TotalCount.</param>
+        public DevicePage(string After = default(string), List<DeviceData> Data = default(List<DeviceData>), bool? HasMore = default(bool?), int? Limit = default(int?), string _Object = default(string), string Order = default(string), int? TotalCount = default(int?))
         {
-            this._Object = _Object;
-            this.HasMore = HasMore;
-            this.TotalCount = TotalCount;
             this.After = After;
-            this.Limit = Limit;
             this.Data = Data;
+            this.HasMore = HasMore;
+            this.Limit = Limit;
+            this._Object = _Object;
             this.Order = Order;
+            this.TotalCount = TotalCount;
         }
         
-        /// <summary>
-        /// Gets or Sets _Object
-        /// </summary>
-        [DataMember(Name="object", EmitDefaultValue=false)]
-        public string _Object { get; set; }
-
-        /// <summary>
-        /// Gets or Sets HasMore
-        /// </summary>
-        [DataMember(Name="has_more", EmitDefaultValue=false)]
-        public bool? HasMore { get; set; }
-
-        /// <summary>
-        /// Gets or Sets TotalCount
-        /// </summary>
-        [DataMember(Name="total_count", EmitDefaultValue=false)]
-        public int? TotalCount { get; set; }
-
         /// <summary>
         /// Gets or Sets After
         /// </summary>
         [DataMember(Name="after", EmitDefaultValue=false)]
         public string After { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Limit
-        /// </summary>
-        [DataMember(Name="limit", EmitDefaultValue=false)]
-        public int? Limit { get; set; }
 
         /// <summary>
         /// Gets or Sets Data
@@ -89,10 +65,34 @@ namespace device_directory.Model
         public List<DeviceData> Data { get; set; }
 
         /// <summary>
+        /// Gets or Sets HasMore
+        /// </summary>
+        [DataMember(Name="has_more", EmitDefaultValue=false)]
+        public bool? HasMore { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Limit
+        /// </summary>
+        [DataMember(Name="limit", EmitDefaultValue=false)]
+        public int? Limit { get; set; }
+
+        /// <summary>
+        /// Gets or Sets _Object
+        /// </summary>
+        [DataMember(Name="object", EmitDefaultValue=false)]
+        public string _Object { get; set; }
+
+        /// <summary>
         /// Gets or Sets Order
         /// </summary>
         [DataMember(Name="order", EmitDefaultValue=false)]
         public string Order { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TotalCount
+        /// </summary>
+        [DataMember(Name="total_count", EmitDefaultValue=false)]
+        public int? TotalCount { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,13 +102,13 @@ namespace device_directory.Model
         {
             var sb = new StringBuilder();
             sb.Append("class DevicePage {\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
-            sb.Append("  HasMore: ").Append(HasMore).Append("\n");
-            sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
             sb.Append("  After: ").Append(After).Append("\n");
-            sb.Append("  Limit: ").Append(Limit).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  HasMore: ").Append(HasMore).Append("\n");
+            sb.Append("  Limit: ").Append(Limit).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  Order: ").Append(Order).Append("\n");
+            sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -144,29 +144,9 @@ namespace device_directory.Model
 
             return 
                 (
-                    this._Object == input._Object ||
-                    (this._Object != null &&
-                    this._Object.Equals(input._Object))
-                ) && 
-                (
-                    this.HasMore == input.HasMore ||
-                    (this.HasMore != null &&
-                    this.HasMore.Equals(input.HasMore))
-                ) && 
-                (
-                    this.TotalCount == input.TotalCount ||
-                    (this.TotalCount != null &&
-                    this.TotalCount.Equals(input.TotalCount))
-                ) && 
-                (
                     this.After == input.After ||
                     (this.After != null &&
                     this.After.Equals(input.After))
-                ) && 
-                (
-                    this.Limit == input.Limit ||
-                    (this.Limit != null &&
-                    this.Limit.Equals(input.Limit))
                 ) && 
                 (
                     this.Data == input.Data ||
@@ -174,9 +154,29 @@ namespace device_directory.Model
                     this.Data.SequenceEqual(input.Data)
                 ) && 
                 (
+                    this.HasMore == input.HasMore ||
+                    (this.HasMore != null &&
+                    this.HasMore.Equals(input.HasMore))
+                ) && 
+                (
+                    this.Limit == input.Limit ||
+                    (this.Limit != null &&
+                    this.Limit.Equals(input.Limit))
+                ) && 
+                (
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
+                ) && 
+                (
                     this.Order == input.Order ||
                     (this.Order != null &&
                     this.Order.Equals(input.Order))
+                ) && 
+                (
+                    this.TotalCount == input.TotalCount ||
+                    (this.TotalCount != null &&
+                    this.TotalCount.Equals(input.TotalCount))
                 );
         }
 
@@ -189,20 +189,20 @@ namespace device_directory.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this._Object != null)
-                    hashCode = hashCode * 59 + this._Object.GetHashCode();
-                if (this.HasMore != null)
-                    hashCode = hashCode * 59 + this.HasMore.GetHashCode();
-                if (this.TotalCount != null)
-                    hashCode = hashCode * 59 + this.TotalCount.GetHashCode();
                 if (this.After != null)
                     hashCode = hashCode * 59 + this.After.GetHashCode();
-                if (this.Limit != null)
-                    hashCode = hashCode * 59 + this.Limit.GetHashCode();
                 if (this.Data != null)
                     hashCode = hashCode * 59 + this.Data.GetHashCode();
+                if (this.HasMore != null)
+                    hashCode = hashCode * 59 + this.HasMore.GetHashCode();
+                if (this.Limit != null)
+                    hashCode = hashCode * 59 + this.Limit.GetHashCode();
+                if (this._Object != null)
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.Order != null)
                     hashCode = hashCode * 59 + this.Order.GetHashCode();
+                if (this.TotalCount != null)
+                    hashCode = hashCode * 59 + this.TotalCount.GetHashCode();
                 return hashCode;
             }
         }
