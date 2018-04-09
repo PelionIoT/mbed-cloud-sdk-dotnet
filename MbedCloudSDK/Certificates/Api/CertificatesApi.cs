@@ -48,8 +48,7 @@ namespace MbedCloudSDK.Certificates.Api
 
             SetUpApi(config);
 
-            BootstrapServerCredentials = serverCredentialsApi.V3ServerCredentialsBootstrapGet(auth);
-            Lmw2mServerCredentials = serverCredentialsApi.V3ServerCredentialsLwm2mGet(auth);
+            SetCerverCredentials(auth);
         }
 
         /// <summary>
@@ -66,9 +65,15 @@ namespace MbedCloudSDK.Certificates.Api
 
             if (setCerts)
             {
-                BootstrapServerCredentials = serverCredentialsApi.V3ServerCredentialsBootstrapGet(auth);
-                Lmw2mServerCredentials = serverCredentialsApi.V3ServerCredentialsLwm2mGet(auth);
+                SetCerverCredentials(auth);
             }
+        }
+
+        private void SetCerverCredentials(string auth)
+        {
+            var serverCredentials = serverCredentialsApi.GetAllServerCredentials(auth);
+            BootstrapServerCredentials = serverCredentials.Bootstrap;
+            Lmw2mServerCredentials = serverCredentials.Lwm2m;
         }
 
         private void SetUpApi(Config config, connector_ca.Client.Configuration connectorConfig = null, iam.Client.Configuration iamConfig = null)
@@ -108,12 +113,12 @@ namespace MbedCloudSDK.Certificates.Api
         /// <summary>
         /// Gets Bootstrap server uri
         /// </summary>
-        public connector_ca.Model.ServerCredentialsResponseData BootstrapServerCredentials { get; private set; }
+        public connector_ca.Model.CredentialsResponseData BootstrapServerCredentials { get; private set; }
 
         /// <summary>
         /// Gets lmw2m server Uri
         /// </summary>
-        public connector_ca.Model.ServerCredentialsResponseData Lmw2mServerCredentials { get; private set; }
+        public connector_ca.Model.CredentialsResponseData Lmw2mServerCredentials { get; private set; }
 
         /// <summary>
         /// Get meta data for the last Mbed Cloud API call
@@ -252,7 +257,7 @@ namespace MbedCloudSDK.Certificates.Api
                 {
                     try
                     {
-                        var devResponse = developerCertificateApi.V3DeveloperCertificatesMuuidGet(trustedCert.Id, auth);
+                        var devResponse = developerCertificateApi.GetDeveloperCertificate(trustedCert.Id, auth);
                         trustedCert = Certificate.MapDeveloperCert(devResponse, trustedCert);
                     }
                     catch (connector_ca.Client.ApiException ex)
@@ -353,10 +358,10 @@ namespace MbedCloudSDK.Certificates.Api
         /// <exception cref="CloudApiException">CloudApiException</exception>
         public Certificate AddDeveloperCertificate(Certificate certificate)
         {
-            var body = new connector_ca.Model.DeveloperCertificateRequestData(certificate.Name, certificate.Description);
+            var body = new connector_ca.Model.DeveloperCertificateRequestData(Name: certificate.Name, Description: certificate.Description);
             try
             {
-                var response = developerCertificateApi.V3DeveloperCertificatesPost(auth, body);
+                var response = developerCertificateApi.CreateDeveloperCertificate(auth, body);
                 return Certificate.MapDeveloperCert(response);
             }
             catch (connector_ca.Client.ApiException ex)
