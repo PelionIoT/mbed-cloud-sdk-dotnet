@@ -15,16 +15,22 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
     /// Observer
     /// </summary>
     /// <typeparam name="T">Type stored in observer</typeparam>
-    /// <seealso cref="MbedCloudSDK.Connect.Api.Subscribe.Observers.IObserver{T}" />
-    public abstract class Observer<T> : IObserver<T>
+    /// <typeparam name="F">The type passed into the filter function</typeparam>
+    /// <seealso cref="MbedCloudSDK.Connect.Api.Subscribe.Observers.IObserver{T, F}" />
+    public abstract class Observer<T, F> : IObserver<T, F>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Observer{T}"/> class.
+        /// Initializes a new instance of the <see cref="Observer{T, F}"/> class.
         /// </summary>
         protected Observer()
         {
-            AddHandler();
         }
+
+        /// <summary>
+        /// Delegate used for the OnNotify event
+        /// </summary>
+        /// <param name="data">The data to pass to event handler</param>
+        public delegate void NotifyRaiser(T data);
 
         /// <summary>
         /// Gets the collection.
@@ -32,7 +38,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         /// <value>
         /// The collection.
         /// </value>
-        public ObservableCollection<T> Collection { get; } = new ObservableCollection<T>();
+        public ObservableCollection<T> NotificationQueue { get; } = new ObservableCollection<T>();
 
         /// <summary>
         /// Gets the waiting
@@ -43,30 +49,33 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         public Queue<TaskCompletionSource<T>> Waiting { get; } = new Queue<TaskCompletionSource<T>>();
 
         /// <summary>
-        /// Gets the callbacks.
+        /// Gets the list containing the functions used for filtering
         /// </summary>
-        /// <value>
-        /// The callbacks.
-        /// </value>
-        public List<Action<T>> Callbacks { get; } = new List<Action<T>>();
+        /// <returns>List of filter functions</returns>
+        public List<Func<F, bool>> FilterFuncs { get; } = new List<Func<F, bool>>();
 
         /// <summary>
-        /// Gets or sets a value indicating whether the observer has been disposed
+        /// The OnNotify event
         /// </summary>
-        public bool Disposed { get; set; } = false;
+        public event NotifyRaiser OnNotify;
+
+        /// <summary>
+        /// Gets a value indicating whether the observer is subscribed
+        /// </summary>
+        public bool Subscribed { get; private set; } = true;
 
         /// <summary>
         /// Take this instance.
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-        public Task<T> Take()
+        public Task<T> Next()
         {
-            lock (Collection)
+            lock (NotificationQueue)
             {
-                if (Collection.Count > 0)
+                if (NotificationQueue.Count > 0)
                 {
-                    var first = Collection.FirstOrDefault();
-                    Collection.Remove(first);
+                    var first = NotificationQueue.FirstOrDefault();
+                    NotificationQueue.Remove(first);
                     return Task.FromResult(first);
                 }
                 else
@@ -79,59 +88,35 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         }
 
         /// <summary>
-        /// Removes the callback.
-        /// </summary>
-        /// <param name="callback">The callback.</param>
-        public void RemoveCallback(Action<T> callback = null)
-        {
-            if (callback != null)
-            {
-                Callbacks.Remove(callback);
-            }
-            else
-            {
-                Callbacks.Clear();
-            }
-        }
-
-        /// <summary>
-        /// Adds the callback.
-        /// </summary>
-        /// <param name="callback">The callback.</param>
-        public void AddCallback(Action<T> callback)
-        {
-            Callbacks.Add(callback);
-        }
-
-        /// <summary>
         /// Notifies the specified data.
         /// </summary>
         /// <param name="data">The data.</param>
         public void Notify(T data)
         {
-            TaskCompletionSource<T> tcs = null;
-            lock (Collection)
+            if (Subscribed)
             {
-                if (Waiting.Count > 0)
+                if (OnNotify != null)
                 {
-                    tcs = Waiting.Dequeue();
+                    OnNotify(data);
                 }
-                else
-                {
-                    Collection.Add(data);
-                }
-            }
 
-            if (tcs != null)
-            {
-                tcs.TrySetResult(data);
-                Callbacks.ForEach(c =>
+                TaskCompletionSource<T> tcs = null;
+                lock (NotificationQueue)
                 {
-                    if (c != null)
+                    if (Waiting.Count > 0)
                     {
-                        c(data);
+                        tcs = Waiting.Dequeue();
                     }
-                });
+                    else
+                    {
+                        NotificationQueue.Add(data);
+                    }
+                }
+
+                if (tcs != null)
+                {
+                    tcs.TrySetResult(data);
+                }
             }
         }
 
@@ -140,31 +125,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         /// </summary>
         public void Unsubscribe()
         {
-            RemoveCallback();
-        }
-
-        /// <summary>
-        /// Add a handler to consumer
-        /// </summary>
-        private void AddHandler()
-        {
-            Collection.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler((object sender, NotifyCollectionChangedEventArgs e) =>
-            {
-                if (e.Action == NotifyCollectionChangedAction.Add)
-                {
-                    var res = Collection.LastOrDefault();
-                    if (Callbacks != null)
-                    {
-                        Callbacks.ForEach(c =>
-                        {
-                            if (c != null)
-                            {
-                                c(res);
-                            }
-                        });
-                    }
-                }
-            });
+            Subscribed = false;
         }
     }
 }

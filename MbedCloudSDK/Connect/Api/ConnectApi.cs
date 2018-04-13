@@ -59,6 +59,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             ResourceSubscribtions = new Dictionary<string, Resource>();
             SetUpApi(config);
+            Subscribe = new Subscribe.Subscribe(this);
         }
 
         /// <summary>

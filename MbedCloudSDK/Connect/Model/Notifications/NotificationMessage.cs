@@ -97,11 +97,11 @@ namespace MbedCloudSDK.Connect.Model.Notifications
             var notificationMessage = new NotificationMessage
             {
                 AsyncResponses = data?.AsyncResponses?.Select(a => AsyncIdResponse.Map(a))?.ToList() ?? Enumerable.Empty<AsyncIdResponse>().ToList(),
-                DeRegistrations = data?.DeRegistrations?.Select(r => new DeviceEventData { DeviceId = r, State = DeviceStateEnum.DeRegistration })?.ToList() ?? Enumerable.Empty<DeviceEventData>().ToList(),
-                RegistrationUpdates = data?.RegUpdates?.Select(r => DeviceEventData.Map(r, DeviceStateEnum.RegistrationUpdate))?.ToList() ?? Enumerable.Empty<DeviceEventData>().ToList(),
-                Registrations = data?.Registrations?.Select(r => DeviceEventData.Map(r, DeviceStateEnum.Registration))?.ToList() ?? Enumerable.Empty<DeviceEventData>().ToList(),
+                DeRegistrations = data?.DeRegistrations?.Select(r => new DeviceEventData { DeviceId = r, State = DeviceEventEnum.DeRegistration })?.ToList() ?? Enumerable.Empty<DeviceEventData>().ToList(),
+                RegistrationUpdates = data?.RegUpdates?.Select(r => DeviceEventData.Map(r, DeviceEventEnum.RegistrationUpdate))?.ToList() ?? Enumerable.Empty<DeviceEventData>().ToList(),
+                Registrations = data?.Registrations?.Select(r => DeviceEventData.Map(r, DeviceEventEnum.Registration))?.ToList() ?? Enumerable.Empty<DeviceEventData>().ToList(),
                 Notifications = data?.Notifications?.Select(n => NotificationData.Map(n))?.ToList() ?? Enumerable.Empty<NotificationData>().ToList(),
-                RegistrationsExpired = data?.RegistrationsExpired?.Select(r => new DeviceEventData { DeviceId = r, State = DeviceStateEnum.ExpiredRegistration })?.ToList() ?? Enumerable.Empty<DeviceEventData>().ToList(),
+                RegistrationsExpired = data?.RegistrationsExpired?.Select(r => new DeviceEventData { DeviceId = r, State = DeviceEventEnum.ExpiredRegistration })?.ToList() ?? Enumerable.Empty<DeviceEventData>().ToList(),
             };
 
             return notificationMessage;

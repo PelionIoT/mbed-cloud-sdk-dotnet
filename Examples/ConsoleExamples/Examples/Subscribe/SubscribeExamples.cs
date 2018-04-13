@@ -23,13 +23,13 @@ namespace ConsoleExamples.Examples.Subscribe
         public async Task SubscribeToAll()
         {
             // create a new subscription with no filter
-            var subscription = connect.Subscribe.DeviceState();
-            // add a callback to print message when recieved
-            subscription.AddCallback((res) => Console.WriteLine(res));
+            var subscription = connect.Subscribe.DeviceEvents();
+
+            subscription.OnNotify += (res) => { Console.WriteLine(res); };
 
             // take two values
-            var firstValue = subscription.Take();
-            var secondValue = subscription.Take();
+            var firstValue = subscription.Next();
+            var secondValue = subscription.Next();
 
             // mock some notification messages
             MockNotification(connect.Subscribe);
@@ -42,18 +42,15 @@ namespace ConsoleExamples.Examples.Subscribe
 
         public async Task SubscribeToDeviceEvent()
         {
-            var subscription = connect.Subscribe.DeviceState();
-
             // subscribe to Deregistration and Registration events
-            subscription.Filter.Add(DeviceStateEnum.DeRegistration)
-                               .Add(DeviceStateEnum.Registration);
+            var subscription = connect.Subscribe.DeviceEvents().Where(f => f.Event == DeviceEventEnum.DeRegistration || f.Event == DeviceEventEnum.Registration);
 
             // add a callback to print message when recieved
-            subscription.AddCallback((res) => Console.WriteLine(res));
+            subscription.OnNotify += (res) => Console.WriteLine(res);
 
             // take two values
-            var firstValue = subscription.Take();
-            var secondValue = subscription.Take();
+            var firstValue = subscription.Next();
+            var secondValue = subscription.Next();
 
             // mock some notification messages
             MockNotification(connect.Subscribe);
@@ -66,18 +63,15 @@ namespace ConsoleExamples.Examples.Subscribe
 
         public async Task SubscribeToDeviceId()
         {
-            var subscription = connect.Subscribe.DeviceState();
-
             // subscribe to events from devices with id "1" and "2"
-            subscription.Filter.Add("1")
-                               .Add("2");
+            var subscription = connect.Subscribe.DeviceEvents().Where(f => f.Id == "1" || f.Id == "2");
 
             // add a callback to print message when recieved
-            subscription.AddCallback((res) => Console.WriteLine(res));
+            subscription.OnNotify += (res) => Console.WriteLine(res);
 
             // take two values
-            var firstValue = subscription.Take();
-            var secondValue = subscription.Take();
+            var firstValue = subscription.Next();
+            var secondValue = subscription.Next();
 
             // mock some notification messages
             MockNotification(connect.Subscribe);
@@ -90,20 +84,15 @@ namespace ConsoleExamples.Examples.Subscribe
 
         public async Task SubscribeToDeviceIdAndDeviceEvent()
         {
-            var subscription = connect.Subscribe.DeviceState();
-
             // subscribe to DeRegistration and Registration events from devices with id "1" and "2"
-            subscription.Filter.Add("1")
-                               .Add("2")
-                               .Add(DeviceStateEnum.DeRegistration)
-                               .Add(DeviceStateEnum.Registration);
+            var subscription = connect.Subscribe.DeviceEvents().Where(f => (f.Id == "1" || f.Id == "2") && (f.Event == DeviceEventEnum.DeRegistration || f.Event == DeviceEventEnum.Registration));
 
             // add a callback to print message when recieved
-            subscription.AddCallback((res) => Console.WriteLine(res));
+            subscription.OnNotify += (res) => Console.WriteLine(res);
 
             // take two values
-            var firstValue = subscription.Take();
-            var secondValue = subscription.Take();
+            var firstValue = subscription.Next();
+            var secondValue = subscription.Next();
 
             // mock some notification messages
             MockNotification(connect.Subscribe);
@@ -117,16 +106,15 @@ namespace ConsoleExamples.Examples.Subscribe
         public void SubscribeWithMultipleObservers()
         {
             // create a subscription with no filter
-            var firstSubscription = connect.Subscribe.DeviceState();
+            var firstSubscription = connect.Subscribe.DeviceEvents();
 
             // add a callback to print message when recieved
-            firstSubscription.AddCallback((res) => Console.WriteLine($"First observer - {res}"));
+            firstSubscription.OnNotify += (res) => Console.WriteLine($"First observer - {res}");
 
             // create a second subscription with filter on device with id "1"
-            var secondSubscription = connect.Subscribe.DeviceState();
-            secondSubscription.Filter.Add("1");
+            var secondSubscription = connect.Subscribe.DeviceEvents().Where(f => f.Id == "1");
 
-            secondSubscription.AddCallback((res) => Console.WriteLine($"Second observver - {res}"));
+            secondSubscription.OnNotify += (res) => Console.WriteLine($"Second observver - {res}");
 
             // mock some notification messages
             MockNotification(connect.Subscribe);
@@ -145,44 +133,44 @@ namespace ConsoleExamples.Examples.Subscribe
         {
             var regList = new List<DeviceEventData>()
             {
-                new DeviceEventData() { DeviceId = "1", State = DeviceStateEnum.Registration },
-                new DeviceEventData() { DeviceId = "1", State = DeviceStateEnum.Registration },
-                new DeviceEventData() { DeviceId = "1", State = DeviceStateEnum.Registration },
-                new DeviceEventData() { DeviceId = "2", State = DeviceStateEnum.Registration },
-                new DeviceEventData() { DeviceId = "2", State = DeviceStateEnum.Registration },
-                new DeviceEventData() { DeviceId = "3", State = DeviceStateEnum.Registration },
-                new DeviceEventData() { DeviceId = "3", State = DeviceStateEnum.Registration },
-                new DeviceEventData() { DeviceId = "4", State = DeviceStateEnum.Registration },
-                new DeviceEventData() { DeviceId = "4", State = DeviceStateEnum.Registration },
-                new DeviceEventData() { DeviceId = "5", State = DeviceStateEnum.Registration },
-                new DeviceEventData() { DeviceId = "1", State = DeviceStateEnum.DeRegistration },
-                new DeviceEventData() { DeviceId = "1", State = DeviceStateEnum.DeRegistration },
-                new DeviceEventData() { DeviceId = "1", State = DeviceStateEnum.DeRegistration },
-                new DeviceEventData() { DeviceId = "2", State = DeviceStateEnum.DeRegistration },
-                new DeviceEventData() { DeviceId = "2", State = DeviceStateEnum.DeRegistration },
-                new DeviceEventData() { DeviceId = "3", State = DeviceStateEnum.DeRegistration },
-                new DeviceEventData() { DeviceId = "3", State = DeviceStateEnum.DeRegistration },
-                new DeviceEventData() { DeviceId = "4", State = DeviceStateEnum.DeRegistration },
-                new DeviceEventData() { DeviceId = "4", State = DeviceStateEnum.DeRegistration },
-                new DeviceEventData() { DeviceId = "5", State = DeviceStateEnum.DeRegistration },
-                new DeviceEventData() { DeviceId = "1", State = DeviceStateEnum.RegistrationUpdate },
-                new DeviceEventData() { DeviceId = "1", State = DeviceStateEnum.RegistrationUpdate },
-                new DeviceEventData() { DeviceId = "2", State = DeviceStateEnum.RegistrationUpdate },
-                new DeviceEventData() { DeviceId = "2", State = DeviceStateEnum.RegistrationUpdate },
-                new DeviceEventData() { DeviceId = "3", State = DeviceStateEnum.RegistrationUpdate },
-                new DeviceEventData() { DeviceId = "3", State = DeviceStateEnum.RegistrationUpdate },
-                new DeviceEventData() { DeviceId = "4", State = DeviceStateEnum.RegistrationUpdate },
-                new DeviceEventData() { DeviceId = "4", State = DeviceStateEnum.RegistrationUpdate },
-                new DeviceEventData() { DeviceId = "5", State = DeviceStateEnum.RegistrationUpdate },
-                new DeviceEventData() { DeviceId = "1", State = DeviceStateEnum.ExpiredRegistration },
-                new DeviceEventData() { DeviceId = "1", State = DeviceStateEnum.ExpiredRegistration },
-                new DeviceEventData() { DeviceId = "2", State = DeviceStateEnum.ExpiredRegistration },
-                new DeviceEventData() { DeviceId = "2", State = DeviceStateEnum.ExpiredRegistration },
-                new DeviceEventData() { DeviceId = "3", State = DeviceStateEnum.ExpiredRegistration },
-                new DeviceEventData() { DeviceId = "3", State = DeviceStateEnum.ExpiredRegistration },
-                new DeviceEventData() { DeviceId = "4", State = DeviceStateEnum.ExpiredRegistration },
-                new DeviceEventData() { DeviceId = "4", State = DeviceStateEnum.ExpiredRegistration },
-                new DeviceEventData() { DeviceId = "5", State = DeviceStateEnum.ExpiredRegistration },
+                new DeviceEventData() { DeviceId = "1", State = DeviceEventEnum.Registration },
+                new DeviceEventData() { DeviceId = "1", State = DeviceEventEnum.Registration },
+                new DeviceEventData() { DeviceId = "1", State = DeviceEventEnum.Registration },
+                new DeviceEventData() { DeviceId = "2", State = DeviceEventEnum.Registration },
+                new DeviceEventData() { DeviceId = "2", State = DeviceEventEnum.Registration },
+                new DeviceEventData() { DeviceId = "3", State = DeviceEventEnum.Registration },
+                new DeviceEventData() { DeviceId = "3", State = DeviceEventEnum.Registration },
+                new DeviceEventData() { DeviceId = "4", State = DeviceEventEnum.Registration },
+                new DeviceEventData() { DeviceId = "4", State = DeviceEventEnum.Registration },
+                new DeviceEventData() { DeviceId = "5", State = DeviceEventEnum.Registration },
+                new DeviceEventData() { DeviceId = "1", State = DeviceEventEnum.DeRegistration },
+                new DeviceEventData() { DeviceId = "1", State = DeviceEventEnum.DeRegistration },
+                new DeviceEventData() { DeviceId = "1", State = DeviceEventEnum.DeRegistration },
+                new DeviceEventData() { DeviceId = "2", State = DeviceEventEnum.DeRegistration },
+                new DeviceEventData() { DeviceId = "2", State = DeviceEventEnum.DeRegistration },
+                new DeviceEventData() { DeviceId = "3", State = DeviceEventEnum.DeRegistration },
+                new DeviceEventData() { DeviceId = "3", State = DeviceEventEnum.DeRegistration },
+                new DeviceEventData() { DeviceId = "4", State = DeviceEventEnum.DeRegistration },
+                new DeviceEventData() { DeviceId = "4", State = DeviceEventEnum.DeRegistration },
+                new DeviceEventData() { DeviceId = "5", State = DeviceEventEnum.DeRegistration },
+                new DeviceEventData() { DeviceId = "1", State = DeviceEventEnum.RegistrationUpdate },
+                new DeviceEventData() { DeviceId = "1", State = DeviceEventEnum.RegistrationUpdate },
+                new DeviceEventData() { DeviceId = "2", State = DeviceEventEnum.RegistrationUpdate },
+                new DeviceEventData() { DeviceId = "2", State = DeviceEventEnum.RegistrationUpdate },
+                new DeviceEventData() { DeviceId = "3", State = DeviceEventEnum.RegistrationUpdate },
+                new DeviceEventData() { DeviceId = "3", State = DeviceEventEnum.RegistrationUpdate },
+                new DeviceEventData() { DeviceId = "4", State = DeviceEventEnum.RegistrationUpdate },
+                new DeviceEventData() { DeviceId = "4", State = DeviceEventEnum.RegistrationUpdate },
+                new DeviceEventData() { DeviceId = "5", State = DeviceEventEnum.RegistrationUpdate },
+                new DeviceEventData() { DeviceId = "1", State = DeviceEventEnum.ExpiredRegistration },
+                new DeviceEventData() { DeviceId = "1", State = DeviceEventEnum.ExpiredRegistration },
+                new DeviceEventData() { DeviceId = "2", State = DeviceEventEnum.ExpiredRegistration },
+                new DeviceEventData() { DeviceId = "2", State = DeviceEventEnum.ExpiredRegistration },
+                new DeviceEventData() { DeviceId = "3", State = DeviceEventEnum.ExpiredRegistration },
+                new DeviceEventData() { DeviceId = "3", State = DeviceEventEnum.ExpiredRegistration },
+                new DeviceEventData() { DeviceId = "4", State = DeviceEventEnum.ExpiredRegistration },
+                new DeviceEventData() { DeviceId = "4", State = DeviceEventEnum.ExpiredRegistration },
+                new DeviceEventData() { DeviceId = "5", State = DeviceEventEnum.ExpiredRegistration },
             };
 
             foreach (var item in regList)
