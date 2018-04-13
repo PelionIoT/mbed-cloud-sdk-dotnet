@@ -6,6 +6,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Text;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Filter;
@@ -44,6 +45,12 @@ namespace MbedCloudSDK.Update.Model.Campaign
         public CampaignStateEnum? State { get; set; }
 
         /// <summary>
+        /// Gets the campaign phase.
+        /// </summary>
+        [JsonProperty]
+        public string Phase { get; private set; }
+
+        /// <summary>
         /// Gets or sets an optional description of the campaign
         /// </summary>
         public string Description { get; set; }
@@ -62,6 +69,8 @@ namespace MbedCloudSDK.Update.Model.Campaign
         /// <summary>
         /// Gets or sets DEPRECATED: The ID of the campaign
         /// </summary>
+        [Obsolete("This property is deprecated, use Id instead.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string CampaignId { get; set; }
 
         /// <summary>
@@ -128,6 +137,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
                 ManifestId = data.RootManifestId,
                 ManifestUrl = data.RootManifestUrl,
                 State = updateCampaignStatus,
+                Phase = data.Phase,
                 ScheduledAt = data.When.ToNullableUniversalTime(),
                 StartedAt = data.StartedAt,
                 UpdatedAt = data.UpdatedAt,
@@ -140,23 +150,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class UpdateCampaignSerializer {\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  State: ").Append(State).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  ManifestId: ").Append(ManifestId).Append("\n");
-            sb.Append("  StartedAt: ").Append(StartedAt).Append("\n");
-            sb.Append("  ScheduledAt: ").Append(ScheduledAt).Append("\n");
-            sb.Append("  FinishedAt: ").Append(FinishedAt).Append("\n");
-            sb.Append("  ManifestUrl: ").Append(ManifestUrl).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  DeviceFilter: ").Append(Convert.ToString(DeviceFilter?.FilterJson)).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+            => this.DebugDump();
 
         /// <summary>
         /// Create Post Request

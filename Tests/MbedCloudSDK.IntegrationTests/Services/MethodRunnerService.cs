@@ -36,7 +36,7 @@ namespace MbedCloudSDK.IntegrationTests.Services
             var moduleType = moduleInstance.GetType();
 
             //get params for current method
-            var methodInfo = moduleType.GetMethod(camelMethod);
+            var methodInfo = moduleType.GetMethods().Where(m => m.Name == camelMethod).FirstOrDefault();
             if (methodInfo == null)
             {
                 throw new Exception("no method found");

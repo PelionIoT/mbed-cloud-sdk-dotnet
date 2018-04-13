@@ -15,9 +15,9 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         [Test]
         public void TestSubscribeFirst()
         {
-            var observer = new TestObserver<string>();
-            var a = observer.Take();
-            var b = observer.Take();
+            var observer = new TestObserver<string, string>();
+            var a = observer.Next();
+            var b = observer.Next();
             observer.Notify("a");
             observer.Notify("b");
             observer.Notify("c");
@@ -29,12 +29,12 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         [Test]
         public void TestNotifyFirst()
         {
-            var observer = new TestObserver<string>();
+            var observer = new TestObserver<string, string>();
             observer.Notify("a");
             observer.Notify("b");
             observer.Notify("c");
-            var a = observer.Take();
-            var b = observer.Take();
+            var a = observer.Next();
+            var b = observer.Next();
             Assert.AreNotEqual(a, b);
             Assert.AreEqual(a.Result, "a");
             Assert.AreEqual(b.Result, "b");
@@ -43,17 +43,17 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         [Test]
         public void TestInterleaved()
         {
-            var observer = new TestObserver<string>();
+            var observer = new TestObserver<string, string>();
             observer.Notify("a");
-            var a = observer.Take();
-            var b = observer.Take();
-            var c = observer.Take();
+            var a = observer.Next();
+            var b = observer.Next();
+            var c = observer.Next();
             observer.Notify("b");
-            var d = observer.Take();
+            var d = observer.Next();
             observer.Notify("c");
             observer.Notify("d");
             observer.Notify("e");
-            var e = observer.Take();
+            var e = observer.Next();
             Assert.AreEqual(a.Result, "a");
             Assert.AreEqual(b.Result, "b");
             Assert.AreEqual(c.Result, "c");
@@ -65,43 +65,23 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestCallback()
         {
             var x = 1;
-            var observer = new TestObserver<int>();
-            observer.AddCallback((res) => x += res);
-            observer.AddCallback((res) => x += (res * 2));
+            var observer = new TestObserver<int, string>();
+            observer.OnNotify += res => x += res;
+            observer.OnNotify += res => x += res * 2;
             observer.Notify(3);
             Assert.AreEqual(x, 10);
         }
 
         [Test]
-        public void TestAddRemoveCallbacks()
-        {
-            var observer = new TestObserver<string>();
-            Action<string> f = (res) => { };
-            Action<string> g = (res) => { };
-            observer.AddCallback(f);
-            observer.AddCallback(g);
-
-            Assert.AreEqual(observer.Callbacks, new List<Action<string>>() { f, g });
-
-            observer.RemoveCallback(f);
-
-            Assert.AreEqual(observer.Callbacks, new List<Action<string>>() { g });
-
-            observer.RemoveCallback();
-
-            Assert.AreEqual(observer.Callbacks, new List<Action<string>>());
-        }
-
-        [Test]
         public void TestCollection()
         {
-            var observer = new TestObserver<int>();
+            var observer = new TestObserver<int, string>();
             for (int i = 0; i < 10; i++)
             {
                 observer.Notify(i);
             }
             var items = new List<int>();
-            foreach (var item in observer.Collection)
+            foreach (var item in observer.NotificationQueue)
             {
                 items.Add(item);
             }
@@ -110,7 +90,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         }
     }
 
-    public class TestObserver<T> : Observer<T>
+    public class TestObserver<T, F> : Observer<T, F>
     {
     }
 }

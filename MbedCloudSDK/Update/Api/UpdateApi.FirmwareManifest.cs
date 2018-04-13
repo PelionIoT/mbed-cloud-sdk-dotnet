@@ -4,6 +4,7 @@
 
 namespace MbedCloudSDK.Update.Api
 {
+    using System;
     using System.IO;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Query;
@@ -118,6 +119,90 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// Add Firmware Manifest.
         /// </summary>
+        /// <param name="info">
+        /// Entity with all the properties required to create a new firmware manifest.
+        /// <see cref="FirmwareManifestInfo.DataFile"/> and <see cref="FirmwareManifestInfo.Name"/>
+        /// are mandatory.
+        /// </param>
+        /// <returns>The newly create firmware manifest.</returns>
+        /// <exception cref="CloudApiException">
+        /// If the operation cannot be completed because of a server-side error (caused, for example,
+        /// by an invalid parameter value).
+        /// </exception>
+        /// <exception cref="IOException">
+        /// If an I/O error occured when reading <c>FirmwareManifestInfo.DataFilePath</c>
+        /// or <c>FirmwareManifestInfo.KeyTableFilePath</c>.
+        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">
+        /// If current user has not the permission to read file specified in
+        /// <c>FirmwareManifestInfo.DataFilePath</c> or <c>FirmwareManifestInfo.KeyTableFilePath</c>.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        /// If <paramref name="info"/> is <see langword="null"/>.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// If <see cref="FirmwareManifestInfo.DataFile"/> is a <see langword="null"/> or blank string.
+        /// <br/>-Or-<br/>
+        /// If <see cref="FirmwareManifestInfo.Name"/> is a <see langword="null"/> or blank string.
+        /// </exception>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     return updateApi.AddFirmwareManifest(new FirmwareManifestInfo
+        ///     {
+        ///         DataFilePath = "path to the file",
+        ///         Name = "description of the manifest"
+        ///     });
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        public FirmwareManifest AddFirmwareManifest(FirmwareManifestInfo info)
+        {
+            if (info == null)
+            {
+                throw new ArgumentNullException(nameof(info));
+            }
+
+            if (string.IsNullOrWhiteSpace(info.DataFile))
+            {
+                throw new ArgumentException($"{nameof(FirmwareManifestInfo)}.{nameof(FirmwareManifestInfo.DataFile)} cannot be empty");
+            }
+
+            if (string.IsNullOrWhiteSpace(info.Name))
+            {
+                throw new ArgumentException($"{nameof(FirmwareManifestInfo)}.{nameof(FirmwareManifestInfo.Name)} cannot be empty");
+            }
+
+            using (var dataFileStream = File.OpenRead(info.DataFile))
+            {
+                var keyTableFileStream = OpenKeyTableStream();
+                try
+                {
+                    var response = api.FirmwareManifestCreate(dataFileStream, info.Name, info.Description, keyTableFileStream);
+                    return FirmwareManifest.Map(response);
+                }
+                catch (update_service.Client.ApiException e)
+                {
+                    throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+                }
+                finally
+                {
+                    keyTableFileStream?.Close();
+                }
+            }
+
+            FileStream OpenKeyTableStream()
+                => string.IsNullOrWhiteSpace(info.KeyTable) ? null : File.OpenRead(info.KeyTable);
+        }
+
+        /// <summary>
+        /// Add Firmware Manifest.
+        /// </summary>
         /// <param name="dataFile">Path to the manifest file</param>
         /// <param name="name">Name of the firmware manifest.</param>
         /// <param name="description">Description for the firmware manifest.</param>
@@ -127,7 +212,7 @@ namespace MbedCloudSDK.Update.Api
         /// <code>
         /// try
         /// {
-        ///     var manifest = updateApI.AddFirmwareManifest("FirmwareManifest file path", "name of manifest");
+        ///     var manifest = updateApi.AddFirmwareManifest("FirmwareManifest file path", "name of manifest");
         ///     return manifest;
         /// }
         /// catch (CloudApiException)
@@ -138,18 +223,12 @@ namespace MbedCloudSDK.Update.Api
         /// </example>
         public FirmwareManifest AddFirmwareManifest(string dataFile, string name, string description = null)
         {
-            try
+            return AddFirmwareManifest(new FirmwareManifestInfo
             {
-                using (var fs = File.OpenRead(dataFile))
-                {
-                    var result = api.FirmwareManifestCreate(fs, name, description);
-                    return FirmwareManifest.Map(result);
-                }
-            }
-            catch (update_service.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
+                DataFile = dataFile,
+                Name = name,
+                Description = description
+            });
         }
 
         /// <summary>

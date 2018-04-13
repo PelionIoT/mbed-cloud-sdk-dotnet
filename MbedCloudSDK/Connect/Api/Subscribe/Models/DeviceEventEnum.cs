@@ -1,4 +1,4 @@
-// <copyright file="DeviceStateEnum.cs" company="Arm">
+// <copyright file="DeviceEventEnum.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
@@ -7,7 +7,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Models
     /// <summary>
     /// Enum describing the device states
     /// </summary>
-    public enum DeviceStateEnum
+    public enum DeviceEventEnum
     {
         /// <summary>
         /// Registration

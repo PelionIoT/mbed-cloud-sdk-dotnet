@@ -34,7 +34,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
         /// </summary>
         /// <value>The URL of key table of pre-shared keys for devices.</value>
         [JsonProperty]
-        public string KeyTableUrl { get; private set; }
+        public string KeyTable { get; private set; }
 
         /// <summary>
         /// Gets or sets the description of the object.
@@ -93,7 +93,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
                 CreatedAt = data.CreatedAt.ToNullableUniversalTime(),
                 Url = data.Datafile,
                 DatafileSize = data.DatafileSize,
-                KeyTableUrl = data.KeyTable,
+                KeyTable = data.KeyTable,
                 Description = data.Description,
                 DeviceClass = data.DeviceClass,
                 Id = data.Id,

@@ -10,7 +10,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
     using MbedCloudSDK.Connect.Api;
     using MbedCloudSDK.Connect.Api.Subscribe.Models;
     using MbedCloudSDK.Connect.Api.Subscribe.Observers;
-    using MbedCloudSDK.Connect.Api.Subscribe.Observers.DeviceState;
+    using MbedCloudSDK.Connect.Api.Subscribe.Observers.DeviceEvent;
     using MbedCloudSDK.Connect.Model.Notifications;
     using MbedCloudSDK.Exceptions;
 
@@ -42,16 +42,16 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// <value>
         /// The device state observers.
         /// </value>
-        public List<DeviceStateObserver> DeviceStateObservers { get; set; } = new List<DeviceStateObserver>();
+        public List<DeviceEventObserver> DeviceEventObservers { get; set; } = new List<DeviceEventObserver>();
 
         /// <summary>
         /// Devices the state.
         /// </summary>
         /// <returns>An observer</returns>
-        public DeviceStateObserver DeviceState()
+        public DeviceEventObserver DeviceEvents()
         {
-            var observer = new DeviceStateObserver(this);
-            DeviceStateObservers.Add(observer);
+            var observer = new DeviceEventObserver();
+            DeviceEventObservers.Add(observer);
             if (ConnectApi != null)
             {
                 if (!ConnectApi.IsNotificationsStarted())
@@ -67,9 +67,9 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// Lists all.
         /// </summary>
         /// <returns>List of observers</returns>
-        public List<DeviceStateObserver> ListAll()
+        public List<DeviceEventObserver> ListAll()
         {
-            return DeviceStateObservers;
+            return DeviceEventObservers;
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// <param name="data">The data.</param>
         public void Notify(DeviceEventData data)
         {
-            DeviceStateObservers.Where(d => !d.Disposed).ToList().ForEach(o =>
+            DeviceEventObservers.ForEach(o =>
             {
                 o.Notify(data);
             });

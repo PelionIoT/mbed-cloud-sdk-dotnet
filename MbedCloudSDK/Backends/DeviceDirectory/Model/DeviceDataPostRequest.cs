@@ -111,7 +111,7 @@ namespace device_directory.Model
         /// <param name="BootstrappedTimestamp">The timestamp of the device&#39;s most recent bootstrap process..</param>
         /// <param name="CaId">The certificate issuer&#39;s ID..</param>
         /// <param name="ConnectorExpirationDate">The expiration date of the certificate used to connect to the LWM2M server..</param>
-        /// <param name="CustomAttributes">Up to five custom key-value attributes. Note that keys cannot start with a number..</param>
+        /// <param name="CustomAttributes">Up to five custom key-value attributes. Note that keys cannot start with a number. Both keys and values are limited to 128 characters..</param>
         /// <param name="Deployment">DEPRECATED: The last deployment used on the device..</param>
         /// <param name="Description">The description of the device..</param>
         /// <param name="DeviceClass">An ID representing the model and hardware revision of the device..</param>
@@ -192,9 +192,9 @@ namespace device_directory.Model
         public DateTime? ConnectorExpirationDate { get; set; }
 
         /// <summary>
-        /// Up to five custom key-value attributes. Note that keys cannot start with a number.
+        /// Up to five custom key-value attributes. Note that keys cannot start with a number. Both keys and values are limited to 128 characters.
         /// </summary>
-        /// <value>Up to five custom key-value attributes. Note that keys cannot start with a number.</value>
+        /// <value>Up to five custom key-value attributes. Note that keys cannot start with a number. Both keys and values are limited to 128 characters.</value>
         [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
         public Dictionary<string, string> CustomAttributes { get; set; }
 

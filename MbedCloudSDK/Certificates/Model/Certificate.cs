@@ -337,12 +337,12 @@ namespace MbedCloudSDK.Certificates.Model
                     switch (certificate.Type)
                     {
                         case CertificateType.Bootstrap:
-                            certificate.ServerUri = api.BootstrapServerCredentials.ServerUri;
-                            certificate.ServerCertificate = api.BootstrapServerCredentials.ServerCertificate;
+                            certificate.ServerUri = api.BootstrapServerCredentials.Url;
+                            certificate.ServerCertificate = api.BootstrapServerCredentials.Url;
                             break;
                         case CertificateType.Lwm2m:
-                            certificate.ServerUri = api.Lmw2mServerCredentials.ServerUri;
-                            certificate.ServerCertificate = api.Lmw2mServerCredentials.ServerCertificate;
+                            certificate.ServerUri = api.Lmw2mServerCredentials.Url;
+                            certificate.ServerCertificate = api.Lmw2mServerCredentials.Url;
                             break;
                     }
                 }
@@ -384,13 +384,11 @@ namespace MbedCloudSDK.Certificates.Model
             certificate.SecurityFileContent = developerCertificateData.SecurityFileContent;
             certificate.Description = developerCertificateData.Description;
             certificate.DeveloperCertificate = developerCertificateData.DeveloperCertificate;
-            certificate.ServerUri = developerCertificateData.ServerUri;
             certificate.AccountId = developerCertificateData.AccountId;
             certificate.DeveloperPrivateKey = developerCertificateData.DeveloperPrivateKey;
-            certificate.ServerCertificate = developerCertificateData.ServerCertificate;
+            certificate.CreatedAt = developerCertificateData.CreatedAt;
             certificate.Id = developerCertificateData.Id;
             certificate.Name = developerCertificateData.Name;
-            certificate.CreatedAt = DateTime.Parse(developerCertificateData.CreatedAt);
             certificate.HeaderFile = certificate.SecurityFileContent;
             certificate.Status = CertificateStatus.Active;
             certificate.Issuer = string.Empty;

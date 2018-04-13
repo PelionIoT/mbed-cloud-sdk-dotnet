@@ -13,7 +13,8 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
     /// Observer
     /// </summary>
     /// <typeparam name="T">Type stored</typeparam>
-    public interface IObserver<T>
+    /// <typeparam name="F">The type passed into the filter function</typeparam>
+    public interface IObserver<T, F>
     {
         /// <summary>
         /// Gets the collection.
@@ -21,7 +22,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         /// <value>
         /// The collection.
         /// </value>
-        ObservableCollection<T> Collection { get; }
+        ObservableCollection<T> NotificationQueue { get; }
 
         /// <summary>
         /// Gets the waiting
@@ -32,35 +33,15 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         Queue<TaskCompletionSource<T>> Waiting { get; }
 
         /// <summary>
-        /// Gets the callbacks.
+        /// Gets a value indicating whether the observer has been disposed
         /// </summary>
-        /// <value>
-        /// The callbacks.
-        /// </value>
-        List<Action<T>> Callbacks { get; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the observer has been disposed
-        /// </summary>
-        bool Disposed { get; set; }
+        bool Subscribed { get; }
 
         /// <summary>
         /// Takes this instance.
         /// </summary>
         /// <returns>Task of T</returns>
-        Task<T> Take();
-
-        /// <summary>
-        /// Removes the callback.
-        /// </summary>
-        /// <param name="callback">The callback.</param>
-        void RemoveCallback(Action<T> callback = null);
-
-        /// <summary>
-        /// Adds the callback.
-        /// </summary>
-        /// <param name="callback">The callback.</param>
-        void AddCallback(Action<T> callback);
+        Task<T> Next();
 
         /// <summary>
         /// Notifies the specified data.
