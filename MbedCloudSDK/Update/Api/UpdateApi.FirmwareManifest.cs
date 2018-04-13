@@ -119,9 +119,9 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// Add Firmware Manifest.
         /// </summary>
-        /// <param name="info">
+        /// <param name="manifest">
         /// Entity with all the properties required to create a new firmware manifest.
-        /// <see cref="FirmwareManifestInfo.DataFile"/> and <see cref="FirmwareManifestInfo.Name"/>
+        /// <see cref="FirmwareManifest.DataFile"/> and <see cref="FirmwareManifest.Name"/>
         /// are mandatory.
         /// </param>
         /// <returns>The newly create firmware manifest.</returns>
@@ -138,18 +138,18 @@ namespace MbedCloudSDK.Update.Api
         /// <c>FirmwareManifestInfo.DataFilePath</c> or <c>FirmwareManifestInfo.KeyTableFilePath</c>.
         /// </exception>
         /// <exception cref="ArgumentNullException">
-        /// If <paramref name="info"/> is <see langword="null"/>.
+        /// If <paramref name="manifest"/> is <see langword="null"/>.
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// If <see cref="FirmwareManifestInfo.DataFile"/> is a <see langword="null"/> or blank string.
+        /// If <see cref="FirmwareManifest.DataFile"/> is a <see langword="null"/> or blank string.
         /// <br/>-Or-<br/>
-        /// If <see cref="FirmwareManifestInfo.Name"/> is a <see langword="null"/> or blank string.
+        /// If <see cref="FirmwareManifest.Name"/> is a <see langword="null"/> or blank string.
         /// </exception>
         /// <example>
         /// <code>
         /// try
         /// {
-        ///     return updateApi.AddFirmwareManifest(new FirmwareManifestInfo
+        ///     return updateApi.AddFirmwareManifest(new FirmwareManifest
         ///     {
         ///         DataFilePath = "path to the file",
         ///         Name = "description of the manifest"
@@ -161,29 +161,29 @@ namespace MbedCloudSDK.Update.Api
         /// }
         /// </code>
         /// </example>
-        public FirmwareManifest AddFirmwareManifest(FirmwareManifestInfo info)
+        public FirmwareManifest AddFirmwareManifest(FirmwareManifest manifest)
         {
-            if (info == null)
+            if (manifest == null)
             {
-                throw new ArgumentNullException(nameof(info));
+                throw new ArgumentNullException(nameof(manifest));
             }
 
-            if (string.IsNullOrWhiteSpace(info.DataFile))
+            if (string.IsNullOrWhiteSpace(manifest.DataFile))
             {
-                throw new ArgumentException($"{nameof(FirmwareManifestInfo)}.{nameof(FirmwareManifestInfo.DataFile)} cannot be empty");
+                throw new ArgumentException($"{nameof(FirmwareManifest)}.{nameof(FirmwareManifest.DataFile)} cannot be empty");
             }
 
-            if (string.IsNullOrWhiteSpace(info.Name))
+            if (string.IsNullOrWhiteSpace(manifest.Name))
             {
-                throw new ArgumentException($"{nameof(FirmwareManifestInfo)}.{nameof(FirmwareManifestInfo.Name)} cannot be empty");
+                throw new ArgumentException($"{nameof(FirmwareManifest)}.{nameof(FirmwareManifest.Name)} cannot be empty");
             }
 
-            using (var dataFileStream = File.OpenRead(info.DataFile))
+            using (var dataFileStream = File.OpenRead(manifest.DataFile))
             {
                 var keyTableFileStream = OpenKeyTableStream();
                 try
                 {
-                    var response = api.FirmwareManifestCreate(dataFileStream, info.Name, info.Description, keyTableFileStream);
+                    var response = api.FirmwareManifestCreate(dataFileStream, manifest.Name, manifest.Description, keyTableFileStream);
                     return FirmwareManifest.Map(response);
                 }
                 catch (update_service.Client.ApiException e)
@@ -197,7 +197,7 @@ namespace MbedCloudSDK.Update.Api
             }
 
             FileStream OpenKeyTableStream()
-                => string.IsNullOrWhiteSpace(info.KeyTable) ? null : File.OpenRead(info.KeyTable);
+                => string.IsNullOrWhiteSpace(manifest.KeyTableFile) ? null : File.OpenRead(manifest.KeyTableFile);
         }
 
         /// <summary>
@@ -223,7 +223,7 @@ namespace MbedCloudSDK.Update.Api
         /// </example>
         public FirmwareManifest AddFirmwareManifest(string dataFile, string name, string description = null)
         {
-            return AddFirmwareManifest(new FirmwareManifestInfo
+            return AddFirmwareManifest(new FirmwareManifest
             {
                 DataFile = dataFile,
                 Name = name,
