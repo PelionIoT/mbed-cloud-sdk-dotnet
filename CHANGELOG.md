@@ -1,4 +1,13 @@
- (2018-04-06)
+ (2018-04-13)
+=============
+
+### Features
+
+- Add ability to subscribe to devicve events using the Subscribe interface. See
+  Examples folder for usage. (#722)
+
+
+(2018-04-06)
 =============
 
 ### Features
