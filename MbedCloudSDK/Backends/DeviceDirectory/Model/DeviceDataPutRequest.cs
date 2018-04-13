@@ -36,7 +36,7 @@ namespace device_directory.Model
         /// </summary>
         /// <param name="AutoUpdate">DEPRECATED: Mark this device for automatic firmware update..</param>
         /// <param name="CaId">The certificate issuer&#39;s ID..</param>
-        /// <param name="CustomAttributes">Up to five custom key-value attributes. Note that keys cannot start with a number..</param>
+        /// <param name="CustomAttributes">Up to five custom key-value attributes. Note that keys cannot start with a number. Both keys and values are limited to 128 characters..</param>
         /// <param name="Description">The description of the device..</param>
         /// <param name="DeviceKey">The fingerprint of the device certificate..</param>
         /// <param name="EndpointName">The endpoint name given to the device..</param>
@@ -73,9 +73,9 @@ namespace device_directory.Model
         public string CaId { get; set; }
 
         /// <summary>
-        /// Up to five custom key-value attributes. Note that keys cannot start with a number.
+        /// Up to five custom key-value attributes. Note that keys cannot start with a number. Both keys and values are limited to 128 characters.
         /// </summary>
-        /// <value>Up to five custom key-value attributes. Note that keys cannot start with a number.</value>
+        /// <value>Up to five custom key-value attributes. Note that keys cannot start with a number. Both keys and values are limited to 128 characters.</value>
         [DataMember(Name="custom_attributes", EmitDefaultValue=false)]
         public Dictionary<string, string> CustomAttributes { get; set; }
 
