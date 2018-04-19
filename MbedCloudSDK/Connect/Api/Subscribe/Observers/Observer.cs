@@ -24,6 +24,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         /// </summary>
         protected Observer()
         {
+            Id = Guid.NewGuid().ToString();
         }
 
         /// <summary>
@@ -31,6 +32,10 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         /// </summary>
         /// <param name="data">The data to pass to event handler</param>
         public delegate void NotifyRaiser(T data);
+
+        public delegate void UnsubscribedRaiser(string Id);
+
+        public string Id { get; set; }
 
         /// <summary>
         /// Gets the collection.
@@ -58,6 +63,8 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         /// The OnNotify event
         /// </summary>
         public event NotifyRaiser OnNotify;
+
+        public event UnsubscribedRaiser OnUnsubscribed;
 
         /// <summary>
         /// Gets a value indicating whether the observer is subscribed
@@ -126,6 +133,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         public void Unsubscribe()
         {
             Subscribed = false;
+            OnUnsubscribed(Id);
         }
     }
 }

@@ -8,11 +8,13 @@ namespace MbedCloudSDK.Connect.Model.Subscription
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using MbedCloudSDK.Common.Extensions;
+    using MbedCloudSDK.Connect.Model.Notifications;
 
     /// <summary>
     /// Presubscription
     /// </summary>
-    public class Presubscription
+    public class Presubscription : IEquatable<NotificationData>
     {
         /// <summary>
         /// Gets or sets the Device ID
@@ -28,7 +30,7 @@ namespace MbedCloudSDK.Connect.Model.Subscription
         /// <summary>
         /// Gets or sets gets or Sets ResourcePath
         /// </summary>
-        public List<string> ResourcePaths { get; set; }
+        public List<string> ResourcePaths { get; set; } = new List<string>();
 
         /// <summary>
         /// Map presubscription object
@@ -59,6 +61,11 @@ namespace MbedCloudSDK.Connect.Model.Subscription
             sb.Append("  ResourcePaths: ").Append(string.Join(", ", ResourcePaths?.Select(r => { return Convert.ToString(r); }))).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
+        }
+
+        public bool Equals(NotificationData other)
+        {
+            return (DeviceId.MatchWithWildcard(other.DeviceId)) && (ResourcePaths.Any() ? ResourcePaths.Any(r => r.MatchWithWildcard(other.Path)) : true);
         }
     }
 }

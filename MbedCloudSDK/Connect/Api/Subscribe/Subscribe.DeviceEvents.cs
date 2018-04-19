@@ -11,13 +11,15 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
     using MbedCloudSDK.Connect.Api.Subscribe.Models;
     using MbedCloudSDK.Connect.Api.Subscribe.Observers;
     using MbedCloudSDK.Connect.Api.Subscribe.Observers.DeviceEvent;
+    using MbedCloudSDK.Connect.Api.Subscribe.Observers.Subscriptions;
     using MbedCloudSDK.Connect.Model.Notifications;
+    using MbedCloudSDK.Connect.Model.Subscription;
     using MbedCloudSDK.Exceptions;
 
     /// <summary>
     /// Subscribe
     /// </summary>
-    public class Subscribe
+    public partial class Subscribe
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Subscribe"/> class.
@@ -52,24 +54,10 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         {
             var observer = new DeviceEventObserver();
             DeviceEventObservers.Add(observer);
-            if (ConnectApi != null)
-            {
-                if (!ConnectApi.IsNotificationsStarted())
-                {
-                    ConnectApi.StartNotifications();
-                }
-            }
+            observer.OnUnsubscribed += (Id) => UnsubscribeDeviceEvents(Id);
+            StartNotifications();
 
             return observer;
-        }
-
-        /// <summary>
-        /// Lists all.
-        /// </summary>
-        /// <returns>List of observers</returns>
-        public List<DeviceEventObserver> ListAll()
-        {
-            return DeviceEventObservers;
         }
 
         /// <summary>
@@ -82,6 +70,22 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
             {
                 o.Notify(data);
             });
+        }
+
+        private void UnsubscribeDeviceEvents(string Id)
+        {
+            DeviceEventObservers.RemoveAll(d => d.Id == Id);
+        }
+
+        private void StartNotifications()
+        {
+            if (ConnectApi != null)
+            {
+                if (!ConnectApi.IsNotificationsStarted())
+                {
+                    ConnectApi.StartNotifications();
+                }
+            }
         }
     }
 }
