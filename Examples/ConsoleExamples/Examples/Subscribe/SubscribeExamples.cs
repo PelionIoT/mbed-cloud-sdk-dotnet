@@ -8,6 +8,7 @@ using MbedCloudSDK.Connect.Api.Subscribe;
 using MbedCloudSDK.Connect.Api.Subscribe.Models;
 using MbedCloudSDK.Connect.Api.Subscribe.Observers;
 using System.Threading.Tasks;
+using MbedCloudSDK.Connect.Model.Subscription;
 
 namespace ConsoleExamples.Examples.Subscribe
 {
@@ -18,6 +19,16 @@ namespace ConsoleExamples.Examples.Subscribe
         public SubscribeExamples(Config config)
         {
             connect = new ConnectApi(config);
+        }
+
+        public async Task PreSubscription()
+        {
+            var sub = connect.Subscribe.ResourceValueChanges().Where(new Presubscription() { DeviceId = "*", ResourcePaths = new List<string>() { "/3200/0/5501" } });
+            sub.OnNotify += (res) => Console.WriteLine(res);
+
+            var nextValue = await sub.Next();
+
+            Console.WriteLine(nextValue);
         }
 
         public async Task SubscribeToAll()

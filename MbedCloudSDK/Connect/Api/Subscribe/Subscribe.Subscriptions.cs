@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using MbedCloudSDK.Common.Extensions;
 using MbedCloudSDK.Connect.Api.Subscribe.Observers.Subscriptions;
 using MbedCloudSDK.Connect.Model.Notifications;
 using MbedCloudSDK.Connect.Model.Subscription;
@@ -51,7 +53,26 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
 
             if (ConnectApi != null)
             {
+                Console.WriteLine("updating presubscriptions");
                 ConnectApi.UpdatePresubscriptions(presubs.ToArray());
+
+                Console.WriteLine("Adding subscriptions");
+                Presubscriptions.ForEach(s =>
+                {
+                    var data = ConnectApi.ListConnectedDevices().Data;
+                    var a = data.Where(d => s.DeviceId.MatchWithWildcard(d.Id)).ToList();
+                    a.ForEach(m => {
+                        var c = m.ListResources();
+                        c.ForEach(r => {
+                            if (!s.ResourcePaths.Any() || s.ResourcePaths.Any(p => p.MatchWithWildcard(r.Path))) ConnectApi.AddResourceSubscription(r.DeviceId, r.Path);
+                        });
+                        var subs = ConnectApi.ListDeviceSubscriptions(m.Id);
+                        foreach (var item in subs)
+                        {
+                            Console.WriteLine(item);
+                        }
+                    });
+                });
             }
         }
     }

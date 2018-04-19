@@ -114,6 +114,7 @@ namespace ConsoleExamples
             Console.WriteLine($"{i++}. Subscribe to all events from a specific device by Id");
             Console.WriteLine($"{i++}. Subscribe specific event from a specific device by Id");
             Console.WriteLine($"{i++}. Subscribe with multiple observers");
+            Console.WriteLine($"{i++}. Presubscription");
             Console.WriteLine("---Press any other key to exit---");
             Console.WriteLine();
             return Console.ReadLine();
@@ -251,6 +252,9 @@ namespace ConsoleExamples
                     break;
                 case 43:
                     subscribeExamples.SubscribeWithMultipleObservers();
+                    break;
+                case 44:
+                    await subscribeExamples.PreSubscription();
                     break;
                 default:
                     break;

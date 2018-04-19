@@ -65,6 +65,7 @@ namespace MbedCloudSDK.Connect.Api
             {
                 foreach (var item in notification.Notifications)
                 {
+                    Subscribe.Notify(item);
                     var payload = Utils.DecodeBase64(item);
 
                     var resourceSubs = item.DeviceId + item.Path;

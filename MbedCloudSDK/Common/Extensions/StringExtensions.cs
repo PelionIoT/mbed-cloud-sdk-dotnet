@@ -1,3 +1,5 @@
+using System;
+
 namespace MbedCloudSDK.Common.Extensions
 {
     /// <summary>

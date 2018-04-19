@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MbedCloudSDK.Common;
 using MbedCloudSDK.Connect.Model.Notifications;
 using MbedCloudSDK.Connect.Model.Subscription;
 
@@ -9,7 +10,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.Subscriptions
     /// <summary>
     /// <see cref="SubscriptionObserver"/>
     /// </summary>
-    public class SubscriptionObserver : Observer<NotificationData, string>
+    public class SubscriptionObserver : Observer<string, string>
     {
         public delegate void PresubAddedRaiser();
 
@@ -21,7 +22,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.Subscriptions
         {
             if (!Presubscriptions.Any() || Presubscriptions.FirstOrDefault(p => p.Equals(data)) != null)
             {
-                base.Notify(data);
+                base.Notify(Utils.DecodeBase64(data));
             }
         }
 

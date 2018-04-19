@@ -12,7 +12,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestAllNotifications()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<NotificationData>();
+            var items = new List<string>();
             var observer = subscribe.ResourceValueChanges();
             observer.OnNotify += res => items.Add(res);
 
@@ -26,7 +26,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestUnsubscribe()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<NotificationData>();
+            var items = new List<string>();
             var observer1 = subscribe.ResourceValueChanges();
             observer1.OnNotify += res => items.Add(res);
             var observer2 = subscribe.ResourceValueChanges();
@@ -72,7 +72,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestSubscribingToOneDevice()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<NotificationData>();
+            var items = new List<string>();
             var observer = subscribe.ResourceValueChanges().Where(new Presubscription { DeviceId = "1" });
             observer.OnNotify += res => items.Add(res);
 
@@ -86,7 +86,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestSubscribingToMultipleDevices()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<NotificationData>();
+            var items = new List<string>();
             var observer = subscribe.ResourceValueChanges().Where(new Presubscription { DeviceId = "1" })
                                                            .Where(new Presubscription { DeviceId = "2" });
             observer.OnNotify += res => items.Add(res);
@@ -101,7 +101,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestSubscribingToResourcePath()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<NotificationData>();
+            var items = new List<string>();
             var observer = subscribe.ResourceValueChanges().Where(new Presubscription { ResourcePaths = new List<string>() { "/3/0/0" } });
             observer.OnNotify += res => items.Add(res);
 
@@ -115,7 +115,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestSubscribingToMultipleResourcePaths()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<NotificationData>();
+            var items = new List<string>();
             var observer = subscribe.ResourceValueChanges().Where(new Presubscription { ResourcePaths = new List<string>() { "/3/0/0", "/3/0/1" } })
                                                            .Where(new Presubscription { ResourcePaths = new List<string>() { "/3/0/2" } });
             observer.OnNotify += res => items.Add(res);
@@ -130,7 +130,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestSubscribingToMultipleResourcePathsNoStacking()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<NotificationData>();
+            var items = new List<string>();
             var observer = subscribe.ResourceValueChanges().Where(new Presubscription { ResourcePaths = new List<string>() { "/3/0/0", "/3/0/1" } })
                                                            .Where(new Presubscription { ResourcePaths = new List<string>() { "/3/0/1" } });
             observer.OnNotify += res => items.Add(res);
@@ -145,7 +145,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestSubscribingToOneDeviceAndPath()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<NotificationData>();
+            var items = new List<string>();
             var observer = subscribe.ResourceValueChanges().Where(new Presubscription { DeviceId = "2", ResourcePaths = new List<string>() { "/3/0/0" } });
             observer.OnNotify += res => items.Add(res);
 
@@ -159,7 +159,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestSubscribingToOneDeviceAndPaths()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<NotificationData>();
+            var items = new List<string>();
             var observer = subscribe.ResourceValueChanges().Where(new Presubscription { DeviceId = "2", ResourcePaths = new List<string>() { "/3/0/0", "/3/0/1" } });
             observer.OnNotify += res => items.Add(res);
 
@@ -173,7 +173,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestSubscribingToMultipleDevicesAndPath()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<NotificationData>();
+            var items = new List<string>();
             var observer = subscribe.ResourceValueChanges().Where(new Presubscription { DeviceId = "2", ResourcePaths = new List<string>() { "/3/0/0" } })
                                                            .Where(new Presubscription { DeviceId = "3", ResourcePaths = new List<string>() { "/3/0/0" } });
             observer.OnNotify += res => items.Add(res);
@@ -188,7 +188,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestSubscribingToMultipleDevicesAndPaths()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<NotificationData>();
+            var items = new List<string>();
             var observer = subscribe.ResourceValueChanges().Where(new Presubscription { DeviceId = "2", ResourcePaths = new List<string>() { "/3/0/0", "/3/0/2" } })
                                                            .Where(new Presubscription { DeviceId = "3", ResourcePaths = new List<string>() { "/3/0/0", "/3/0/1" } });
             observer.OnNotify += res => items.Add(res);
@@ -203,7 +203,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestSubscribingToAllWithWildcard()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<NotificationData>();
+            var items = new List<string>();
             var observer = subscribe.ResourceValueChanges().Where(new Presubscription { DeviceId = "*" });
             observer.OnNotify += res => items.Add(res);
 
@@ -217,7 +217,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestSubscribingToAllDevicesAndSpecificPathsWithWildcard()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<NotificationData>();
+            var items = new List<string>();
             var observer = subscribe.ResourceValueChanges().Where(new Presubscription { DeviceId = "2", ResourcePaths = new List<string>() { "/3/*" } });
             observer.OnNotify += res => items.Add(res);
 
@@ -231,21 +231,21 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var notificationList = new List<NotificationData>()
             {
-                new NotificationData() { DeviceId = "1", Path = "/3/0/0", Payload = "Hi" },
-                new NotificationData() { DeviceId = "1", Path = "/3/0/1", Payload = "Hi" },
-                new NotificationData() { DeviceId = "1", Path = "/3/0/2", Payload = "Hi" },
-                new NotificationData() { DeviceId = "2", Path = "/3/0/0", Payload = "Hi" },
-                new NotificationData() { DeviceId = "2", Path = "/3/0/1", Payload = "Hi" },
-                new NotificationData() { DeviceId = "2", Path = "/3/0/2", Payload = "Hi" },
-                new NotificationData() { DeviceId = "3", Path = "/3/0/0", Payload = "Hi" },
-                new NotificationData() { DeviceId = "3", Path = "/3/0/1", Payload = "Hi" },
-                new NotificationData() { DeviceId = "3", Path = "/3/0/2", Payload = "Hi" },
-                new NotificationData() { DeviceId = "4", Path = "/3/0/0", Payload = "Hi" },
-                new NotificationData() { DeviceId = "4", Path = "/3/0/1", Payload = "Hi" },
-                new NotificationData() { DeviceId = "4", Path = "/3/0/2", Payload = "Hi" },
-                new NotificationData() { DeviceId = "5", Path = "/3/0/0", Payload = "Hi" },
-                new NotificationData() { DeviceId = "5", Path = "/3/0/1", Payload = "Hi" },
-                new NotificationData() { DeviceId = "5", Path = "/3/0/2", Payload = "Hi" },
+                new NotificationData() { DeviceId = "1", Path = "/3/0/0", Payload = "SGk=" },
+                new NotificationData() { DeviceId = "1", Path = "/3/0/1", Payload = "SGk=" },
+                new NotificationData() { DeviceId = "1", Path = "/3/0/2", Payload = "SGk=" },
+                new NotificationData() { DeviceId = "2", Path = "/3/0/0", Payload = "SGk=" },
+                new NotificationData() { DeviceId = "2", Path = "/3/0/1", Payload = "SGk=" },
+                new NotificationData() { DeviceId = "2", Path = "/3/0/2", Payload = "SGk=" },
+                new NotificationData() { DeviceId = "3", Path = "/3/0/0", Payload = "SGk=" },
+                new NotificationData() { DeviceId = "3", Path = "/3/0/1", Payload = "SGk=" },
+                new NotificationData() { DeviceId = "3", Path = "/3/0/2", Payload = "SGk=" },
+                new NotificationData() { DeviceId = "4", Path = "/3/0/0", Payload = "SGk=" },
+                new NotificationData() { DeviceId = "4", Path = "/3/0/1", Payload = "SGk=" },
+                new NotificationData() { DeviceId = "4", Path = "/3/0/2", Payload = "SGk=" },
+                new NotificationData() { DeviceId = "5", Path = "/3/0/0", Payload = "SGk=" },
+                new NotificationData() { DeviceId = "5", Path = "/3/0/1", Payload = "SGk=" },
+                new NotificationData() { DeviceId = "5", Path = "/3/0/2", Payload = "SGk=" },
             };
 
             notificationList.ForEach(n =>
