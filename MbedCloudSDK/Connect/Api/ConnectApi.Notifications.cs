@@ -130,8 +130,6 @@ namespace MbedCloudSDK.Connect.Api
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
-                    Console.WriteLine("Multiple notification channels open");
-                    StopNotifications();
                 }
             }
         }

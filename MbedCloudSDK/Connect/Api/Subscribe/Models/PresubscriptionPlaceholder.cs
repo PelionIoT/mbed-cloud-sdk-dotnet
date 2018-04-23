@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MbedCloudSDK.Common;
 using MbedCloudSDK.Common.Extensions;
 using MbedCloudSDK.Connect.Model.Notifications;
 using MbedCloudSDK.Connect.Model.Subscription;
@@ -33,5 +34,12 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Models
                 ResourcePaths = presub.ResourcePaths,
             };
         }
+
+        /// <summary>
+        /// Returns the string presentation of the object.
+        /// </summary>
+        /// <returns>String presentation of the object.</returns>
+        public override string ToString()
+            => this.DebugDump();
     }
 }
