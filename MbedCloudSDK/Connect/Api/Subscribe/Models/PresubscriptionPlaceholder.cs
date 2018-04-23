@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using MbedCloudSDK.Common.Extensions;
+using MbedCloudSDK.Connect.Model.Notifications;
+using MbedCloudSDK.Connect.Model.Subscription;
+
+namespace MbedCloudSDK.Connect.Api.Subscribe.Models
+{
+    public class PresubscriptionPlaceholder : IEquatable<NotificationData>
+    {
+        /// <summary>
+        /// Gets or sets the Device ID
+        /// </summary>
+        /// <value>The Device ID</value>
+        public string DeviceId { get; set; }
+
+        /// <summary>
+        /// Gets or sets gets or Sets ResourcePath
+        /// </summary>
+        public List<string> ResourcePaths { get; set; } = new List<string>();
+
+        public bool Equals(NotificationData other)
+        {
+            return (DeviceId.MatchWithWildcard(other.DeviceId)) && (ResourcePaths.Any() ? ResourcePaths.Any(r => r.MatchWithWildcard(other.Path)) : true);
+        }
+
+        public static Presubscription Map(PresubscriptionPlaceholder presub)
+        {
+            return new Presubscription
+            {
+                DeviceId = presub.DeviceId,
+                ResourcePaths = presub.ResourcePaths,
+            };
+        }
+    }
+}

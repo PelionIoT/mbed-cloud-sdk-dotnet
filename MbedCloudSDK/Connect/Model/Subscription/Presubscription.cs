@@ -14,7 +14,7 @@ namespace MbedCloudSDK.Connect.Model.Subscription
     /// <summary>
     /// Presubscription
     /// </summary>
-    public class Presubscription : IEquatable<NotificationData>
+    public class Presubscription
     {
         /// <summary>
         /// Gets or sets the Device ID
@@ -61,11 +61,6 @@ namespace MbedCloudSDK.Connect.Model.Subscription
             sb.Append("  ResourcePaths: ").Append(string.Join(", ", ResourcePaths?.Select(r => { return Convert.ToString(r); }))).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        public bool Equals(NotificationData other)
-        {
-            return (DeviceId.MatchWithWildcard(other.DeviceId)) && (ResourcePaths.Any() ? ResourcePaths.Any(r => r.MatchWithWildcard(other.Path)) : true);
         }
     }
 }

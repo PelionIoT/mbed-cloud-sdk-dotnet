@@ -23,7 +23,7 @@ namespace ConsoleExamples.Examples.Subscribe
 
         public async Task PreSubscription()
         {
-            var sub = connect.Subscribe.ResourceValueChanges().Where(new Presubscription() { DeviceId = "*", ResourcePaths = new List<string>() { "/3200/0/5501" } });
+            var sub = connect.Subscribe.ResourceValueChanges().Where(new PresubscriptionPlaceholder() { DeviceId = "*", ResourcePaths = new List<string>() { "/3200/0/5501" } });
             sub.OnNotify += (res) => Console.WriteLine(res);
 
             var nextValue = await sub.Next();
