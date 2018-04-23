@@ -71,7 +71,7 @@ Further examples can be viewed in the Examples/ConsoleExamples folder of this re
 
 ## Documentation
 
-See full [documentation and API reference here](https://cloud.mbed.com/docs/v1.2/mbed-cloud-sdk-dotnet/index.html).
+See full [documentation and API reference here](https://cloud.mbed.com/docs/latest/mbed-cloud-sdk-dotnet/index.html).
 
 ## Contributing
 
