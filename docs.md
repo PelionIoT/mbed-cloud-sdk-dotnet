@@ -68,4 +68,4 @@ brief guide on how to get started in [CONTRIBUTING.md](CONTRIBUTING.md).
 ## Licence
 
 Mbed Cloud SDK for .Net is free-to-use and licensed under the **Apache License
-2.0**. See [LICENSE](LICENSE) file for more information.
+2.0**. See [LICENSE](https://github.com/ARMmbed/mbed-cloud-sdk-dotnet-private/blob/master/LICENSE) file for more information.
