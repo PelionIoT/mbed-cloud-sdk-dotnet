@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using MbedCloudSDK.Common;
 using MbedCloudSDK.Connect.Api.Subscribe.Models;
 using MbedCloudSDK.Connect.Model.Notifications;
@@ -31,6 +32,18 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.Subscriptions
         {
             Presubscriptions.Add(subscription);
             OnPresubAdded();
+            return this;
+        }
+
+        public SubscriptionObserver Where(Expression<Func<ResourceValueChangeFilter, bool>> predicate)
+        {
+            if (predicate.Body.NodeType == ExpressionType.OrElse)
+            {
+                // central or so split into left and right
+                var body = predicate.Body as BinaryExpression;
+                var left = body.Left;
+                var right = body.Right;
+            }
             return this;
         }
     }
