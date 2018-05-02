@@ -13,8 +13,8 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestAllNotifications()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<PresubscriptionReturnPlaceholder>();
-            var observer = subscribe.ResourceValueChanges();
+            var items = new List<ResourceValueChange>();
+            var observer = subscribe.ResourceValues();
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -27,12 +27,12 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestUnsubscribe()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<PresubscriptionReturnPlaceholder>();
-            var observer1 = subscribe.ResourceValueChanges();
+            var items = new List<ResourceValueChange>();
+            var observer1 = subscribe.ResourceValues();
             observer1.OnNotify += res => items.Add(res);
-            var observer2 = subscribe.ResourceValueChanges();
+            var observer2 = subscribe.ResourceValues();
             observer2.OnNotify += res => items.Add(res);
-            var observer3 = subscribe.ResourceValueChanges();
+            var observer3 = subscribe.ResourceValues();
             observer3.OnNotify += res => items.Add(res);
             MockNotification(subscribe);
             MockNotification(subscribe);
@@ -57,24 +57,24 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestPresubscriptionRefresh()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            Assert.IsEmpty(subscribe.Presubscriptions);
-            var observer1 = subscribe.ResourceValueChanges().Where(new PresubscriptionPlaceholder { DeviceId = "1", ResourcePaths = new List<string>() { "3/0/0", "3/0/1"}});
-            var observer2 = subscribe.ResourceValueChanges().Where(new PresubscriptionPlaceholder { DeviceId = "2", ResourcePaths = new List<string>() { "3/0/0", "3/0/1" } })
-                                                            .Where(new PresubscriptionPlaceholder { DeviceId = "3", ResourcePaths = new List<string>() { "3/0/0", "3/0/1" } });
+            Assert.IsEmpty(subscribe.AllLocalSubscriptions);
+            var observer1 = subscribe.ResourceValues().Where(new ResourceValuesFilter { DeviceId = "1", ResourcePaths = new List<string>() { "3/0/0", "3/0/1"}});
+            var observer2 = subscribe.ResourceValues().Where(new ResourceValuesFilter { DeviceId = "2", ResourcePaths = new List<string>() { "3/0/0", "3/0/1" } })
+                                                            .Where(new ResourceValuesFilter { DeviceId = "3", ResourcePaths = new List<string>() { "3/0/0", "3/0/1" } });
 
-            Assert.AreEqual(3, subscribe.Presubscriptions.Count);
+            Assert.AreEqual(3, subscribe.AllLocalSubscriptions.Count);
 
             observer1.Unsubscribe();
 
-            Assert.AreEqual(2, subscribe.Presubscriptions.Count);
+            Assert.AreEqual(2, subscribe.AllLocalSubscriptions.Count);
         }
 
         [Test]
         public void TestSubscribingToOneDevice()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<PresubscriptionReturnPlaceholder>();
-            var observer = subscribe.ResourceValueChanges().Where(new PresubscriptionPlaceholder { DeviceId = "1" });
+            var items = new List<ResourceValueChange>();
+            var observer = subscribe.ResourceValues().Where(new ResourceValuesFilter { DeviceId = "1" });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -87,9 +87,9 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestSubscribingToMultipleDevices()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<PresubscriptionReturnPlaceholder>();
-            var observer = subscribe.ResourceValueChanges().Where(new PresubscriptionPlaceholder { DeviceId = "1" })
-                                                           .Where(new PresubscriptionPlaceholder { DeviceId = "2" });
+            var items = new List<ResourceValueChange>();
+            var observer = subscribe.ResourceValues().Where(new ResourceValuesFilter { DeviceId = "1" })
+                                                           .Where(new ResourceValuesFilter { DeviceId = "2" });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -102,8 +102,8 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestSubscribingToResourcePath()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<PresubscriptionReturnPlaceholder>();
-            var observer = subscribe.ResourceValueChanges().Where(new PresubscriptionPlaceholder { ResourcePaths = new List<string>() { "/3/0/0" } });
+            var items = new List<ResourceValueChange>();
+            var observer = subscribe.ResourceValues().Where(new ResourceValuesFilter { ResourcePaths = new List<string>() { "/3/0/0" } });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -116,9 +116,9 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestSubscribingToMultipleResourcePaths()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<PresubscriptionReturnPlaceholder>();
-            var observer = subscribe.ResourceValueChanges().Where(new PresubscriptionPlaceholder { ResourcePaths = new List<string>() { "/3/0/0", "/3/0/1" } })
-                                                           .Where(new PresubscriptionPlaceholder { ResourcePaths = new List<string>() { "/3/0/2" } });
+            var items = new List<ResourceValueChange>();
+            var observer = subscribe.ResourceValues().Where(new ResourceValuesFilter { ResourcePaths = new List<string>() { "/3/0/0", "/3/0/1" } })
+                                                           .Where(new ResourceValuesFilter { ResourcePaths = new List<string>() { "/3/0/2" } });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -131,9 +131,9 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestSubscribingToMultipleResourcePathsNoStacking()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<PresubscriptionReturnPlaceholder>();
-            var observer = subscribe.ResourceValueChanges().Where(new PresubscriptionPlaceholder { ResourcePaths = new List<string>() { "/3/0/0", "/3/0/1" } })
-                                                           .Where(new PresubscriptionPlaceholder { ResourcePaths = new List<string>() { "/3/0/1" } });
+            var items = new List<ResourceValueChange>();
+            var observer = subscribe.ResourceValues().Where(new ResourceValuesFilter { ResourcePaths = new List<string>() { "/3/0/0", "/3/0/1" } })
+                                                           .Where(new ResourceValuesFilter { ResourcePaths = new List<string>() { "/3/0/1" } });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -146,8 +146,8 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestSubscribingToOneDeviceAndPath()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<PresubscriptionReturnPlaceholder>();
-            var observer = subscribe.ResourceValueChanges().Where(new PresubscriptionPlaceholder { DeviceId = "2", ResourcePaths = new List<string>() { "/3/0/0" } });
+            var items = new List<ResourceValueChange>();
+            var observer = subscribe.ResourceValues().Where(new ResourceValuesFilter { DeviceId = "2", ResourcePaths = new List<string>() { "/3/0/0" } });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -160,8 +160,8 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestSubscribingToOneDeviceAndPaths()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<PresubscriptionReturnPlaceholder>();
-            var observer = subscribe.ResourceValueChanges().Where(new PresubscriptionPlaceholder { DeviceId = "2", ResourcePaths = new List<string>() { "/3/0/0", "/3/0/1" } });
+            var items = new List<ResourceValueChange>();
+            var observer = subscribe.ResourceValues().Where(new ResourceValuesFilter { DeviceId = "2", ResourcePaths = new List<string>() { "/3/0/0", "/3/0/1" } });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -174,9 +174,9 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestSubscribingToMultipleDevicesAndPath()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<PresubscriptionReturnPlaceholder>();
-            var observer = subscribe.ResourceValueChanges().Where(new PresubscriptionPlaceholder { DeviceId = "2", ResourcePaths = new List<string>() { "/3/0/0" } })
-                                                           .Where(new PresubscriptionPlaceholder { DeviceId = "3", ResourcePaths = new List<string>() { "/3/0/0" } });
+            var items = new List<ResourceValueChange>();
+            var observer = subscribe.ResourceValues().Where(new ResourceValuesFilter { DeviceId = "2", ResourcePaths = new List<string>() { "/3/0/0" } })
+                                                           .Where(new ResourceValuesFilter { DeviceId = "3", ResourcePaths = new List<string>() { "/3/0/0" } });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -189,9 +189,9 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestSubscribingToMultipleDevicesAndPaths()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<PresubscriptionReturnPlaceholder>();
-            var observer = subscribe.ResourceValueChanges().Where(new PresubscriptionPlaceholder { DeviceId = "2", ResourcePaths = new List<string>() { "/3/0/0", "/3/0/2" } })
-                                                           .Where(new PresubscriptionPlaceholder { DeviceId = "3", ResourcePaths = new List<string>() { "/3/0/0", "/3/0/1" } });
+            var items = new List<ResourceValueChange>();
+            var observer = subscribe.ResourceValues().Where(new ResourceValuesFilter { DeviceId = "2", ResourcePaths = new List<string>() { "/3/0/0", "/3/0/2" } })
+                                                           .Where(new ResourceValuesFilter { DeviceId = "3", ResourcePaths = new List<string>() { "/3/0/0", "/3/0/1" } });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -204,8 +204,8 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestSubscribingToAllWithWildcard()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<PresubscriptionReturnPlaceholder>();
-            var observer = subscribe.ResourceValueChanges().Where(new PresubscriptionPlaceholder { DeviceId = "*" });
+            var items = new List<ResourceValueChange>();
+            var observer = subscribe.ResourceValues().Where(new ResourceValuesFilter { DeviceId = "*" });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -218,8 +218,8 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         public void TestSubscribingToAllDevicesAndSpecificPathsWithWildcard()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
-            var items = new List<PresubscriptionReturnPlaceholder>();
-            var observer = subscribe.ResourceValueChanges().Where(new PresubscriptionPlaceholder { DeviceId = "2", ResourcePaths = new List<string>() { "/3/*" } });
+            var items = new List<ResourceValueChange>();
+            var observer = subscribe.ResourceValues().Where(new ResourceValuesFilter { DeviceId = "2", ResourcePaths = new List<string>() { "/3/*" } });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);

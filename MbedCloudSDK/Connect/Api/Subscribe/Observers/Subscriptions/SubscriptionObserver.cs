@@ -13,101 +13,77 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.Subscriptions
     /// <summary>
     /// <see cref="SubscriptionObserver"/>
     /// </summary>
-    public class SubscriptionObserver : Observer<PresubscriptionReturnPlaceholder, string>
+    public class SubscriptionObserver : Observer<ResourceValueChange, string>
     {
-        public delegate void PresubAddedRaiser();
+        public delegate void SubAddedRaiser();
 
-        public event PresubAddedRaiser OnPresubAdded;
+        public event SubAddedRaiser OnSubAdded;
 
-        public List<PresubscriptionPlaceholder> Presubscriptions { get; } = new List<PresubscriptionPlaceholder>();
+        public List<ResourceValuesFilter> ResourceValueSubscriptions { get; } = new List<ResourceValuesFilter>();
+
+        public List<Func<ResourceValuesFilter, bool>> LocalFilters { get; } = new List<Func<ResourceValuesFilter, bool>>();
+
+        public SubscriptionObserver() { }
+
+        public SubscriptionObserver(string DeviceId, List<string> ResourcePaths)
+         : this(new List<string>() { DeviceId }, ResourcePaths) { }
+
+        public SubscriptionObserver(List<string> DeviceIds, string ResourcePath)
+         : this(DeviceIds, new List<string>() { ResourcePath }) { }
+
+        public SubscriptionObserver(string DeviceId, string ResourcePath)
+         : this(new List<string>() { DeviceId }, new List<string>() { ResourcePath }) { }
+
+        public SubscriptionObserver(List<string> DeviceIds, List<string> ResourcePaths)
+        {
+            DeviceIds.ForEach(r => {
+                var sub = new ResourceValuesFilter() { DeviceId = r, ResourcePaths = ResourcePaths };
+                ResourceValueSubscriptions.Add(sub);
+            });
+
+            OnSubAdded();
+        }
 
         public new void Notify(NotificationData data)
         {
-            if (!Presubscriptions.Any() || Presubscriptions.FirstOrDefault(p => p.Equals(data)) != null)
+            if (!ResourceValueSubscriptions.Any() || ResourceValueSubscriptions.FirstOrDefault(p => p.Equals(data)) != null)
             {
-                base.Notify(PresubscriptionReturnPlaceholder.Map(data));
+                if (RunLocalFilters(data))
+                {
+                    base.Notify(ResourceValueChange.Map(data));
+                }
             }
         }
 
-        public SubscriptionObserver Where(PresubscriptionPlaceholder subscription)
+        private bool RunLocalFilters(NotificationData data)
         {
-            Presubscriptions.Add(subscription);
-            OnPresubAdded();
+            if (LocalFilters.Any())
+            {
+                return LocalFilters.TrueForAll(f => f.Invoke(new ResourceValuesFilter() { DeviceId = data.DeviceId, ResourcePaths = new List<string>() { data.Path } }));
+            }
+
+            return true;
+        }
+
+        public SubscriptionObserver Where(ResourceValuesFilter subscription)
+        {
+            ResourceValueSubscriptions.Add(subscription);
+            OnSubAdded();
             return this;
         }
 
         public SubscriptionObserver Where(string DeviceId, params string[] ResourcePaths)
         {
-            var sub = new PresubscriptionPlaceholder() { DeviceId = DeviceId, ResourcePaths = ResourcePaths.ToList() };
-            Presubscriptions.Add(sub);
-            OnPresubAdded();
+            var sub = new ResourceValuesFilter() { DeviceId = DeviceId, ResourcePaths = ResourcePaths.ToList() };
+            ResourceValueSubscriptions.Add(sub);
+            OnSubAdded();
             return this;
         }
 
-        public SubscriptionObserver Where(Expression<Func<ResourceValueChangeFilter, bool>> predicate)
+        public SubscriptionObserver Where(Func<ResourceValuesFilter, bool> predicate)
         {
-            if (predicate.Body.NodeType == ExpressionType.OrElse)
-            {
-                // central or so split into left and right
-                var body = predicate.Body as BinaryExpression;
-
-                var left = body.Left;
-                var leftSub = ConstructSubscription(left);
-                var right = body.Right;
-                var rightSub = ConstructSubscription(right);
-
-                Presubscriptions.Add(leftSub);
-                Presubscriptions.Add(rightSub);
-                OnPresubAdded();
-            }
+            LocalFilters.Add(predicate);
             return this;
-        }
-
-        private PresubscriptionPlaceholder ConstructSubscription(Expression exp)
-        {
-            if (exp.NodeType == ExpressionType.AndAlso)
-            {
-                var subDict = new Dictionary<string, object>();
-
-                var binExp = exp as BinaryExpression;
-                ExtractProperty(binExp.Left, subDict);
-                ExtractProperty(binExp.Right, subDict);
-
-                var sub = JsonConvert.DeserializeObject<PresubscriptionPlaceholder>(JsonConvert.SerializeObject(subDict));
-                return sub;
-            }
-
-            return default(PresubscriptionPlaceholder);
-        }
-
-        private void ExtractProperty(Expression exp, Dictionary<string, object> dict)
-        {
-            if (exp as BinaryExpression != null)
-            {
-                if (exp.NodeType == ExpressionType.Equal)
-                {
-                    var binExp = exp as BinaryExpression;
-                    var prop = binExp.Left as MemberExpression;
-                    var value = binExp.Right as ConstantExpression;
-
-                    dict.Add(prop.Member.Name, value.Value);
-                }
-            }
-
-            // types don't seem to match even though they should...
-            if (exp as MethodCallExpression != null)
-            {
-                if (exp.NodeType == ExpressionType.Call)
-                {
-                    var callExp = exp as MethodCallExpression;
-                    if (callExp.Method.Name == "Contains")
-                    {
-                        var propExp = callExp.Object as MemberExpression;
-                        var value = (ConstantExpression)callExp.Arguments.FirstOrDefault();
-                        dict.Add(propExp.Member.Name, new List<string> { (string)value.Value });
-                    }
-                }
-            }
         }
     }
 }

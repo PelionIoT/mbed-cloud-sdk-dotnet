@@ -13,12 +13,15 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
     {
         public List<SubscriptionObserver> SubscriptionObservers { get; set; } = new List<SubscriptionObserver>();
 
-        public List<PresubscriptionPlaceholder> Presubscriptions { get; set; } = new List<PresubscriptionPlaceholder>();
+        public List<ResourceValuesFilter> AllLocalSubscriptions { get; set; } = new List<ResourceValuesFilter>();
 
-        public SubscriptionObserver ResourceValueChanges()
+        public ImmediacyEnum Immediacy { get; private set; }
+
+        public SubscriptionObserver ResourceValues(ImmediacyEnum Immediacy = ImmediacyEnum.OnRegistration)
         {
+            this.Immediacy = Immediacy;
             var observer = new SubscriptionObserver();
-            observer.OnPresubAdded += () => ConstructPresubArray();
+            observer.OnSubAdded += () => ConstructPresubArray();
             observer.OnUnsubscribed += (Id) => UnsubscribeSubscriptions(Id);
             SubscriptionObservers.Add(observer);
             StartNotifications();
@@ -41,36 +44,41 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
 
         private void ConstructPresubArray()
         {
-            var presubs = new List<PresubscriptionPlaceholder>();
+            var presubs = new List<ResourceValuesFilter>();
             SubscriptionObservers.ForEach(s =>
             {
-                s.Presubscriptions.ForEach(p =>
+                s.ResourceValueSubscriptions.ForEach(p =>
                 {
                     presubs.Add(p);
                 });
             });
 
-            Presubscriptions = presubs;
+            AllLocalSubscriptions = presubs;
 
-            if (ConnectApi != null)
+            if (Immediacy == ImmediacyEnum.OnValueUpdate)
             {
-                ConnectApi.UpdatePresubscriptions(presubs.Select(p => PresubscriptionPlaceholder.Map(p)).ToArray());
-
-                Presubscriptions.ForEach(s =>
+                if (ConnectApi != null)
                 {
-                    ConnectApi.ListConnectedDevices().Data
-                        .Where(d => s.DeviceId.MatchWithWildcard(d.Id))
-                            .ToList()
-                            .ForEach(m => {
-                                m.ListResources()
-                                    .ForEach(r => {
-                                        if (!s.ResourcePaths.Any() || s.ResourcePaths.Any(p => p.MatchWithWildcard(r.Path)))
+                    ConnectApi.UpdatePresubscriptions(presubs.Select(p => ResourceValuesFilter.Map(p)).ToArray());
+
+                    AllLocalSubscriptions.ForEach(s =>
+                    {
+                        ConnectApi.ListConnectedDevices().Data
+                            .Where(d => s.DeviceId.MatchWithWildcard(d.Id))
+                                .ToList()
+                                .ForEach(m =>
+                                {
+                                    m.ListResources()
+                                        .ForEach(r =>
                                         {
-                                            ConnectApi.AddResourceSubscription(r.DeviceId, r.Path);
-                                        }
-                                    });
+                                            if (!s.ResourcePaths.Any() || s.ResourcePaths.Any(p => p.MatchWithWildcard(r.Path)))
+                                            {
+                                                ConnectApi.AddResourceSubscription(r.DeviceId, r.Path);
+                                            }
+                                        });
+                                });
                     });
-                });
+                }
             }
         }
     }

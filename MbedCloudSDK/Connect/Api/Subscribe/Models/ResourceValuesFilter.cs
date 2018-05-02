@@ -8,7 +8,7 @@ using MbedCloudSDK.Connect.Model.Subscription;
 
 namespace MbedCloudSDK.Connect.Api.Subscribe.Models
 {
-    public class PresubscriptionPlaceholder : IEquatable<NotificationData>
+    public class ResourceValuesFilter : IEquatable<NotificationData>, IEquatable<ResourceValuesFilter>
     {
         /// <summary>
         /// Gets or sets the Device ID
@@ -26,7 +26,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Models
             return (DeviceId.MatchWithWildcard(other.DeviceId)) && (ResourcePaths.Any() ? ResourcePaths.Any(r => r.MatchWithWildcard(other.Path)) : true);
         }
 
-        public static Presubscription Map(PresubscriptionPlaceholder presub)
+        public static Presubscription Map(ResourceValuesFilter presub)
         {
             return new Presubscription
             {
@@ -41,5 +41,10 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Models
         /// <returns>String presentation of the object.</returns>
         public override string ToString()
             => this.DebugDump();
+
+        public bool Equals(ResourceValuesFilter other)
+        {
+            return this.DeviceId == other.DeviceId && this.ResourcePaths.SequenceEqual(other.ResourcePaths);
+        }
     }
 }
