@@ -1,4 +1,6 @@
-using System;
+// <copyright file="StringExtensions.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Common.Extensions
 {
@@ -12,7 +14,7 @@ namespace MbedCloudSDK.Common.Extensions
         /// </summary>
         /// <param name="input">The wildcard string</param>
         /// <param name="matchWith">The string to match</param>
-        /// <returns></returns>
+        /// <returns>True if matches</returns>
         public static bool MatchWithWildcard(this string input, string matchWith)
         {
             // match is true if no wildcard or wildcard is matching on anything

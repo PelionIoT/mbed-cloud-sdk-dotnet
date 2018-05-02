@@ -1,20 +1,13 @@
-// <copyright file="Subscribe.cs" company="Arm">
+// <copyright file="Subscribe.DeviceEvents.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
 namespace MbedCloudSDK.Connect.Api.Subscribe
 {
     using System.Collections.Generic;
-    using System.Linq;
-    using MbedCloudSDK.Common;
     using MbedCloudSDK.Connect.Api;
-    using MbedCloudSDK.Connect.Api.Subscribe.Models;
-    using MbedCloudSDK.Connect.Api.Subscribe.Observers;
     using MbedCloudSDK.Connect.Api.Subscribe.Observers.DeviceEvent;
-    using MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues;
     using MbedCloudSDK.Connect.Model.Notifications;
-    using MbedCloudSDK.Connect.Model.Subscription;
-    using MbedCloudSDK.Exceptions;
 
     /// <summary>
     /// Subscribe
@@ -54,7 +47,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         {
             var observer = new DeviceEventObserver();
             DeviceEventObservers.Add(observer);
-            observer.OnUnsubscribed += (Id) => UnsubscribeDeviceEvents(Id);
+            observer.OnUnsubscribed += (id) => UnsubscribeDeviceEvents(id);
             StartNotifications();
 
             return observer;
@@ -72,9 +65,9 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
             });
         }
 
-        private void UnsubscribeDeviceEvents(string Id)
+        private void UnsubscribeDeviceEvents(string id)
         {
-            DeviceEventObservers.RemoveAll(d => d.Id == Id);
+            DeviceEventObservers.RemoveAll(d => d.Id == id);
         }
 
         private void StartNotifications()

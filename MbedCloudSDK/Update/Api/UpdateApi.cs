@@ -38,6 +38,7 @@ namespace MbedCloudSDK.Update.Api
         /// Initializes a new instance of the <see cref="UpdateApi"/> class.
         /// </summary>
         /// <param name="config"><see cref="Config"/></param>
+        /// <param name="updateConfig">The update config</param>
         /// <example>
         /// This API is intialized with a <see cref="Config"/> object.
         /// <code>

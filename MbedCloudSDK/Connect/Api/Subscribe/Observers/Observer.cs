@@ -7,7 +7,6 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Collections.Specialized;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -33,8 +32,34 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         /// <param name="data">The data to pass to event handler</param>
         public delegate void NotifyRaiser(T data);
 
-        public delegate void UnsubscribedRaiser(string Id);
+        /// <summary>
+        /// UnsubscribedRaiser
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        public delegate void UnsubscribedRaiser(string id);
 
+        /// <summary>
+        /// The OnNotify event
+        /// </summary>
+        public event NotifyRaiser OnNotify;
+
+        /// <summary>
+        /// Occurs when [on unsubscribed].
+        /// </summary>
+        public event UnsubscribedRaiser OnUnsubscribed;
+
+        /// <summary>
+        /// Gets the list containing the functions used for filtering
+        /// </summary>
+        /// <returns>List of filter functions</returns>
+        public List<Func<F, bool>> FilterFuncs { get; } = new List<Func<F, bool>>();
+
+        /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
         public string Id { get; set; }
 
         /// <summary>
@@ -46,30 +71,17 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         public ObservableCollection<T> NotificationQueue { get; } = new ObservableCollection<T>();
 
         /// <summary>
+        /// Gets a value indicating whether the observer is subscribed
+        /// </summary>
+        public bool Subscribed { get; private set; } = true;
+
+        /// <summary>
         /// Gets the waiting
         /// </summary>
         /// <value>
         /// The waiting
         /// </value>
         public Queue<TaskCompletionSource<T>> Waiting { get; } = new Queue<TaskCompletionSource<T>>();
-
-        /// <summary>
-        /// Gets the list containing the functions used for filtering
-        /// </summary>
-        /// <returns>List of filter functions</returns>
-        public List<Func<F, bool>> FilterFuncs { get; } = new List<Func<F, bool>>();
-
-        /// <summary>
-        /// The OnNotify event
-        /// </summary>
-        public event NotifyRaiser OnNotify;
-
-        public event UnsubscribedRaiser OnUnsubscribed;
-
-        /// <summary>
-        /// Gets a value indicating whether the observer is subscribed
-        /// </summary>
-        public bool Subscribed { get; private set; } = true;
 
         /// <summary>
         /// Take this instance.
@@ -102,10 +114,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         {
             if (Subscribed)
             {
-                if (OnNotify != null)
-                {
-                    OnNotify(data);
-                }
+                OnNotify?.Invoke(data);
 
                 TaskCompletionSource<T> tcs = null;
                 lock (NotificationQueue)
@@ -133,7 +142,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         public void Unsubscribe()
         {
             Subscribed = false;
-            OnUnsubscribed(Id);
+            OnUnsubscribed?.Invoke(Id);
         }
     }
 }

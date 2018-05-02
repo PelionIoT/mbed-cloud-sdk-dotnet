@@ -1,33 +1,49 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using MbedCloudSDK.Common.Extensions;
-using MbedCloudSDK.Connect.Api.Subscribe.Models;
-using MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues;
-using MbedCloudSDK.Connect.Model.Notifications;
-using MbedCloudSDK.Connect.Model.Subscription;
+// <copyright file="Subscribe.ResourceValues.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Connect.Api.Subscribe
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using MbedCloudSDK.Common.Extensions;
+    using MbedCloudSDK.Connect.Api.Subscribe.Models;
+    using MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues;
+    using MbedCloudSDK.Connect.Model.Notifications;
+
+    /// <summary>
+    /// Subscribe
+    /// </summary>
     public partial class Subscribe
     {
-        public List<ResourceValuesObserver> ResourceValueObservers { get; private set; } = new List<ResourceValuesObserver>();
-
+        /// <summary>
+        /// Gets all local subscriptions.
+        /// </summary>
+        /// <value>
+        /// All local subscriptions.
+        /// </value>
         public List<ResourceValuesFilter> AllLocalSubscriptions { get; private set; } = new List<ResourceValuesFilter>();
 
+        /// <summary>
+        /// Gets the immediacy.
+        /// </summary>
+        /// <value>
+        /// The immediacy.
+        /// </value>
         public ImmediacyEnum Immediacy { get; private set; }
 
-        public ResourceValuesObserver ResourceValues(ImmediacyEnum Immediacy = ImmediacyEnum.OnRegistration)
-        {
-            this.Immediacy = Immediacy;
-            var observer = new ResourceValuesObserver();
-            observer.OnSubAdded += () => ConstructPresubArray();
-            observer.OnUnsubscribed += (Id) => UnsubscribeSubscriptions(Id);
-            ResourceValueObservers.Add(observer);
-            StartNotifications();
-            return observer;
-        }
+        /// <summary>
+        /// Gets the resource value observers.
+        /// </summary>
+        /// <value>
+        /// The resource value observers.
+        /// </value>
+        public List<ResourceValuesObserver> ResourceValueObservers { get; private set; } = new List<ResourceValuesObserver>();
 
+        /// <summary>
+        /// Notifies the specified data.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void Notify(NotificationData data)
         {
             ResourceValueObservers.ForEach(o =>
@@ -36,10 +52,20 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
             });
         }
 
-        private void UnsubscribeSubscriptions(string Id)
+        /// <summary>
+        /// Resources the values.
+        /// </summary>
+        /// <param name="immediacy">The immediacy.</param>
+        /// <returns>A ResourceValueObserver</returns>
+        public ResourceValuesObserver ResourceValues(ImmediacyEnum immediacy = ImmediacyEnum.OnRegistration)
         {
-            ResourceValueObservers.RemoveAll(d => d.Id == Id);
-            ConstructPresubArray();
+            Immediacy = immediacy;
+            var observer = new ResourceValuesObserver();
+            observer.OnSubAdded += () => ConstructPresubArray();
+            observer.OnUnsubscribed += (id) => UnsubscribeSubscriptions(id);
+            ResourceValueObservers.Add(observer);
+            StartNotifications();
+            return observer;
         }
 
         private void ConstructPresubArray()
@@ -80,6 +106,12 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
                     });
                 }
             }
+        }
+
+        private void UnsubscribeSubscriptions(string id)
+        {
+            ResourceValueObservers.RemoveAll(d => d.Id == id);
+            ConstructPresubArray();
         }
     }
 }
