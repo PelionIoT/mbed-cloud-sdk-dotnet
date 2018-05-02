@@ -17,7 +17,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Models
     /// </summary>
     /// <seealso cref="System.IEquatable{Model.Notifications.NotificationData}" />
     /// <seealso cref="System.IEquatable{Models.ResourceValuesFilter}" />
-    public class ResourceValuesFilter : IEquatable<NotificationData>, IEquatable<ResourceValuesFilter>
+    public class ResourceValuesFilter : IEquatable<NotificationData>, IEquatable<ResourceValuesFilter>, IEquatable<Presubscription>
     {
         /// <summary>
         /// Gets or sets the Device ID
@@ -28,7 +28,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Models
         /// <summary>
         /// Gets or sets gets or Sets ResourcePath
         /// </summary>
-        public List<string> ResourcePaths { get; set; } = new List<string>();
+        public IEnumerable<string> ResourcePaths { get; set; } = new List<string>();
 
         /// <summary>
         /// Maps the specified presub.
@@ -68,11 +68,36 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Models
             return DeviceId == other.DeviceId && ResourcePaths.SequenceEqual(other.ResourcePaths);
         }
 
+        public bool Equals(Presubscription other)
+        {
+            return DeviceId == other.DeviceId && ResourcePaths.SequenceEqual(other.ResourcePaths);
+        }
+
         /// <summary>
         /// Returns the string presentation of the object.
         /// </summary>
         /// <returns>String presentation of the object.</returns>
         public override string ToString()
             => this.DebugDump();
+    }
+
+    public class ResourceValuesFilterComparer : IEqualityComparer<ResourceValuesFilter>
+    {
+        public bool Equals(ResourceValuesFilter x, ResourceValuesFilter y)
+        {
+            return x.DeviceId == y.DeviceId && x.ResourcePaths.SequenceEqual(y.ResourcePaths);
+        }
+
+        public int GetHashCode(ResourceValuesFilter obj)
+        {
+            unchecked // Overflow is fine, just wrap
+            {
+                int hash = 17;
+                // Suitable nullity checks etc, of course :)
+                hash = hash * 23 + obj.DeviceId.GetHashCode();
+                hash = hash * 23 + obj.ResourcePaths.GetHashCode();
+                return hash;
+            }
+        }
     }
 }

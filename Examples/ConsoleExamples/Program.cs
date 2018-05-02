@@ -254,7 +254,7 @@ namespace ConsoleExamples
                     subscribeExamples.SubscribeWithMultipleObservers();
                     break;
                 case 44:
-                    await subscribeExamples.PreSubscription();
+                    await subscribeExamples.ResourceValues();
                     break;
                 default:
                     break;

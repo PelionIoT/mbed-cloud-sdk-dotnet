@@ -13,7 +13,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
     /// <summary>
     /// <see cref="ResourceValuesObserver"/>
     /// </summary>
-    public class ResourceValuesObserver : Observer<ResourceValueChange, string>
+    public class ResourceValuesObserver : Observer<ResourceValueChange, ResourceValuesFilter>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ResourceValuesObserver"/> class.
@@ -27,7 +27,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         /// </summary>
         /// <param name="deviceId">The device identifier.</param>
         /// <param name="resourcePaths">The resource paths.</param>
-        public ResourceValuesObserver(string deviceId, List<string> resourcePaths)
+        public ResourceValuesObserver(string deviceId, IEnumerable<string> resourcePaths)
          : this(new List<string> { deviceId }, resourcePaths)
         {
         }
@@ -37,7 +37,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         /// </summary>
         /// <param name="deviceIds">The device ids.</param>
         /// <param name="resourcePath">The resource path.</param>
-        public ResourceValuesObserver(List<string> deviceIds, string resourcePath)
+        public ResourceValuesObserver(IEnumerable<string> deviceIds, string resourcePath)
          : this(deviceIds, new List<string> { resourcePath })
         {
         }
@@ -57,9 +57,9 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         /// </summary>
         /// <param name="deviceIds">The device ids.</param>
         /// <param name="resourcePaths">The resource paths.</param>
-        public ResourceValuesObserver(List<string> deviceIds, List<string> resourcePaths)
+        public ResourceValuesObserver(IEnumerable<string> deviceIds, IEnumerable<string> resourcePaths)
         {
-            deviceIds.ForEach(r =>
+            deviceIds.ToList().ForEach(r =>
             {
                 var sub = new ResourceValuesFilter { DeviceId = r, ResourcePaths = resourcePaths };
                 ResourceValueSubscriptions.Add(sub);
@@ -79,20 +79,12 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         public event SubAddedRaiser OnSubAdded;
 
         /// <summary>
-        /// Gets the local filters.
-        /// </summary>
-        /// <value>
-        /// The local filters.
-        /// </value>
-        public List<Func<ResourceValuesFilter, bool>> LocalFilters { get; } = new List<Func<ResourceValuesFilter, bool>>();
-
-        /// <summary>
         /// Gets the resource value subscriptions.
         /// </summary>
         /// <value>
         /// The resource value subscriptions.
         /// </value>
-        public List<ResourceValuesFilter> ResourceValueSubscriptions { get; } = new List<ResourceValuesFilter>();
+        public HashSet<ResourceValuesFilter> ResourceValueSubscriptions { get; } = new HashSet<ResourceValuesFilter>();
 
         /// <summary>
         /// Notifies the specified data.
@@ -142,15 +134,15 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         /// <returns>ResourceValueObserver</returns>
         public ResourceValuesObserver Where(Func<ResourceValuesFilter, bool> predicate)
         {
-            LocalFilters.Add(predicate);
+            FilterFuncs.Add(predicate);
             return this;
         }
 
         private bool RunLocalFilters(NotificationData data)
         {
-            if (LocalFilters.Any())
+            if (FilterFuncs.Any())
             {
-                return LocalFilters.TrueForAll(f => f.Invoke(new ResourceValuesFilter { DeviceId = data.DeviceId, ResourcePaths = new List<string> { data.Path } }));
+                return FilterFuncs.TrueForAll(f => f.Invoke(new ResourceValuesFilter { DeviceId = data.DeviceId, ResourcePaths = new List<string> { data.Path } }));
             }
 
             return true;

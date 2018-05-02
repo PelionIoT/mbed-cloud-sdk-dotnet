@@ -14,7 +14,7 @@ namespace MbedCloudSDK.Connect.Model.Subscription
     /// <summary>
     /// Presubscription
     /// </summary>
-    public class Presubscription
+    public class Presubscription : IEquatable<Presubscription>
     {
         /// <summary>
         /// Gets or sets the Device ID
@@ -30,7 +30,7 @@ namespace MbedCloudSDK.Connect.Model.Subscription
         /// <summary>
         /// Gets or sets gets or Sets ResourcePath
         /// </summary>
-        public List<string> ResourcePaths { get; set; } = new List<string>();
+        public IEnumerable<string> ResourcePaths { get; set; } = new List<string>();
 
         /// <summary>
         /// Map presubscription object
@@ -48,6 +48,11 @@ namespace MbedCloudSDK.Connect.Model.Subscription
             return substriction;
         }
 
+        public bool Equals(Presubscription other)
+        {
+            return DeviceId == other.DeviceId && DeviceType == other.DeviceType && ResourcePaths.SequenceEqual(other.ResourcePaths);
+        }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -61,6 +66,27 @@ namespace MbedCloudSDK.Connect.Model.Subscription
             sb.Append("  ResourcePaths: ").Append(string.Join(", ", ResourcePaths?.Select(r => { return Convert.ToString(r); }))).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
+        }
+    }
+
+    public class PresubscriptionComparer : IEqualityComparer<Presubscription>
+    {
+        public bool Equals(Presubscription x, Presubscription y)
+        {
+            return x.DeviceId == y.DeviceId && x.ResourcePaths.SequenceEqual(y.ResourcePaths);
+        }
+
+        public int GetHashCode(Presubscription obj)
+        {
+            unchecked // Overflow is fine, just wrap
+            {
+                int hash = 17;
+                // Suitable nullity checks etc, of course :)
+                hash = hash * 23 + obj.DeviceId.GetHashCode();
+                hash = hash * 23 + obj.DeviceType.GetHashCode();
+                hash = hash * 23 + obj.ResourcePaths.GetHashCode();
+                return hash;
+            }
         }
     }
 }

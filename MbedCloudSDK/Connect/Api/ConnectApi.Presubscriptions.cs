@@ -47,7 +47,7 @@ namespace MbedCloudSDK.Connect.Api
             var presubscriptionArray = new mds.Model.PresubscriptionArray();
             foreach (var presubscription in presubscriptions)
             {
-                var updatedPresubscription = new mds.Model.Presubscription(presubscription.DeviceId, presubscription.DeviceType, presubscription.ResourcePaths);
+                var updatedPresubscription = new mds.Model.Presubscription(presubscription.DeviceId, presubscription.DeviceType, presubscription.ResourcePaths.ToList());
                 presubscriptionArray.Add(updatedPresubscription);
             }
 
