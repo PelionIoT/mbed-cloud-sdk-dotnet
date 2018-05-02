@@ -11,7 +11,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
     using MbedCloudSDK.Connect.Api.Subscribe.Models;
     using MbedCloudSDK.Connect.Api.Subscribe.Observers;
     using MbedCloudSDK.Connect.Api.Subscribe.Observers.DeviceEvent;
-    using MbedCloudSDK.Connect.Api.Subscribe.Observers.Subscriptions;
+    using MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues;
     using MbedCloudSDK.Connect.Model.Notifications;
     using MbedCloudSDK.Connect.Model.Subscription;
     using MbedCloudSDK.Exceptions;

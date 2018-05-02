@@ -8,12 +8,12 @@ using MbedCloudSDK.Connect.Model.Notifications;
 using MbedCloudSDK.Connect.Model.Subscription;
 using Newtonsoft.Json;
 
-namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.Subscriptions
+namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
 {
     /// <summary>
-    /// <see cref="SubscriptionObserver"/>
+    /// <see cref="ResourceValuesObserver"/>
     /// </summary>
-    public class SubscriptionObserver : Observer<ResourceValueChange, string>
+    public class ResourceValuesObserver : Observer<ResourceValueChange, string>
     {
         public delegate void SubAddedRaiser();
 
@@ -23,18 +23,18 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.Subscriptions
 
         public List<Func<ResourceValuesFilter, bool>> LocalFilters { get; } = new List<Func<ResourceValuesFilter, bool>>();
 
-        public SubscriptionObserver() { }
+        public ResourceValuesObserver() { }
 
-        public SubscriptionObserver(string DeviceId, List<string> ResourcePaths)
+        public ResourceValuesObserver(string DeviceId, List<string> ResourcePaths)
          : this(new List<string>() { DeviceId }, ResourcePaths) { }
 
-        public SubscriptionObserver(List<string> DeviceIds, string ResourcePath)
+        public ResourceValuesObserver(List<string> DeviceIds, string ResourcePath)
          : this(DeviceIds, new List<string>() { ResourcePath }) { }
 
-        public SubscriptionObserver(string DeviceId, string ResourcePath)
+        public ResourceValuesObserver(string DeviceId, string ResourcePath)
          : this(new List<string>() { DeviceId }, new List<string>() { ResourcePath }) { }
 
-        public SubscriptionObserver(List<string> DeviceIds, List<string> ResourcePaths)
+        public ResourceValuesObserver(List<string> DeviceIds, List<string> ResourcePaths)
         {
             DeviceIds.ForEach(r => {
                 var sub = new ResourceValuesFilter() { DeviceId = r, ResourcePaths = ResourcePaths };
@@ -65,14 +65,14 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.Subscriptions
             return true;
         }
 
-        public SubscriptionObserver Where(ResourceValuesFilter subscription)
+        public ResourceValuesObserver Where(ResourceValuesFilter subscription)
         {
             ResourceValueSubscriptions.Add(subscription);
             OnSubAdded();
             return this;
         }
 
-        public SubscriptionObserver Where(string DeviceId, params string[] ResourcePaths)
+        public ResourceValuesObserver Where(string DeviceId, params string[] ResourcePaths)
         {
             var sub = new ResourceValuesFilter() { DeviceId = DeviceId, ResourcePaths = ResourcePaths.ToList() };
             ResourceValueSubscriptions.Add(sub);
@@ -80,7 +80,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.Subscriptions
             return this;
         }
 
-        public SubscriptionObserver Where(Func<ResourceValuesFilter, bool> predicate)
+        public ResourceValuesObserver Where(Func<ResourceValuesFilter, bool> predicate)
         {
             LocalFilters.Add(predicate);
             return this;

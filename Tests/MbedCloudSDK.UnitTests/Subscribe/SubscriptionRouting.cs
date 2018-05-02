@@ -37,7 +37,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
             MockNotification(subscribe);
             MockNotification(subscribe);
 
-            Assert.AreEqual(subscribe.SubscriptionObservers.Count, 3);
+            Assert.AreEqual(subscribe.ResourceValueObservers.Count, 3);
 
             Assert.AreEqual(items.Count, 90);
 
@@ -48,7 +48,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
             MockNotification(subscribe);
             MockNotification(subscribe);
 
-            Assert.AreEqual(subscribe.SubscriptionObservers.Count, 2);
+            Assert.AreEqual(subscribe.ResourceValueObservers.Count, 2);
 
             Assert.AreEqual(items.Count, 60);
         }
