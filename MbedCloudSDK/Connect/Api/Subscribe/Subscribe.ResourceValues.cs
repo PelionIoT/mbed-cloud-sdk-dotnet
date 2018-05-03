@@ -53,62 +53,98 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
             });
         }
 
+        /// <summary>
+        /// Resources the values.
+        /// </summary>
+        /// <param name="immediacy">The immediacy.</param>
+        /// <returns>ResourceValueObserver</returns>
         public ResourceValuesObserver ResourceValues(ImmediacyEnum immediacy = ImmediacyEnum.OnRegistration)
         {
             var observer = new ResourceValuesObserver();
-            return resourceValues(observer, immediacy);
-        }
-
-        public ResourceValuesObserver ResourceValues(string deviceId, ImmediacyEnum immediacy = ImmediacyEnum.OnRegistration)
-        {
-            var observer = new ResourceValuesObserver(deviceId, Enumerable.Empty<string>());
-            return resourceValues(observer, immediacy);
-        }
-
-        public ResourceValuesObserver ResourceValues(List<string> resourcePaths, ImmediacyEnum immediacy = ImmediacyEnum.OnRegistration)
-        {
-            var observer = new ResourceValuesObserver("*", resourcePaths);
-            return resourceValues(observer, immediacy);
+            return ResourceValues(observer, immediacy);
         }
 
         /// <summary>
         /// Resources the values.
         /// </summary>
+        /// <param name="deviceId">The device identifier.</param>
         /// <param name="immediacy">The immediacy.</param>
-        /// <returns>A ResourceValueObserver</returns>
+        /// <returns>ResourceValueObserver</returns>
+        public ResourceValuesObserver ResourceValues(string deviceId, ImmediacyEnum immediacy = ImmediacyEnum.OnRegistration)
+        {
+            var observer = new ResourceValuesObserver(deviceId, Enumerable.Empty<string>());
+            return ResourceValues(observer, immediacy);
+        }
+
+        /// <summary>
+        /// Resources the values.
+        /// </summary>
+        /// <param name="resourcePaths">The resource paths.</param>
+        /// <param name="immediacy">The immediacy.</param>
+        /// <returns>ResourceValueObserver</returns>
+        public ResourceValuesObserver ResourceValues(List<string> resourcePaths, ImmediacyEnum immediacy = ImmediacyEnum.OnRegistration)
+        {
+            var observer = new ResourceValuesObserver("*", resourcePaths);
+            return ResourceValues(observer, immediacy);
+        }
+
+        /// <summary>
+        /// Resources the values.
+        /// </summary>
+        /// <param name="deviceIds">The device ids.</param>
+        /// <param name="resourcePaths">The resource paths.</param>
+        /// <param name="immediacy">The immediacy.</param>
+        /// <returns>
+        /// A ResourceValueObserver
+        /// </returns>
         public ResourceValuesObserver ResourceValues(List<string> deviceIds, List<string> resourcePaths, ImmediacyEnum immediacy = ImmediacyEnum.OnRegistration)
         {
             var observer = new ResourceValuesObserver(deviceIds, resourcePaths);
-            return resourceValues(observer, immediacy);
+            return ResourceValues(observer, immediacy);
         }
 
+        /// <summary>
+        /// Resources the values.
+        /// </summary>
+        /// <param name="deviceId">The device identifier.</param>
+        /// <param name="resourcePaths">The resource paths.</param>
+        /// <param name="immediacy">The immediacy.</param>
+        /// <returns>ResourceValueObserver</returns>
         public ResourceValuesObserver ResourceValues(string deviceId, List<string> resourcePaths, ImmediacyEnum immediacy = ImmediacyEnum.OnRegistration)
         {
             var observer = new ResourceValuesObserver(deviceId, resourcePaths);
-            return resourceValues(observer, immediacy);
+            return ResourceValues(observer, immediacy);
         }
 
+        /// <summary>
+        /// Resources the values.
+        /// </summary>
+        /// <param name="deviceIds">The device ids.</param>
+        /// <param name="resourcePath">The resource path.</param>
+        /// <param name="immediacy">The immediacy.</param>
+        /// <returns>ResourceValueObserver</returns>
         public ResourceValuesObserver ResourceValues(List<string> deviceIds, string resourcePath, ImmediacyEnum immediacy = ImmediacyEnum.OnRegistration)
         {
             var observer = new ResourceValuesObserver(deviceIds, resourcePath);
-            return resourceValues(observer, immediacy);
+            return ResourceValues(observer, immediacy);
         }
 
+        /// <summary>
+        /// Resources the values.
+        /// </summary>
+        /// <param name="deviceId">The device identifier.</param>
+        /// <param name="resourcePath">The resource path.</param>
+        /// <param name="immediacy">The immediacy.</param>
+        /// <returns>ResourceValueObserver</returns>
         public ResourceValuesObserver ResourceValues(string deviceId, string resourcePath, ImmediacyEnum immediacy = ImmediacyEnum.OnRegistration)
         {
             var observer = new ResourceValuesObserver(deviceId, resourcePath);
-            return resourceValues(observer, immediacy);
+            return ResourceValues(observer, immediacy);
         }
 
-        private ResourceValuesObserver resourceValues(ResourceValuesObserver observer, ImmediacyEnum immediacy)
+        private static Presubscription[] MergeLocalAndServerLists(IEnumerable<Presubscription> local, IEnumerable<Presubscription> server)
         {
-            Immediacy = immediacy;
-            observer.OnSubAdded += () => ConstructPresubArray();
-            observer.OnUnsubscribed += (id) => UnsubscribeSubscriptions(id);
-            ResourceValueObservers.Add(observer);
-            ConstructPresubArray();
-            StartNotifications();
-            return observer;
+            return local.Union(server, new PresubscriptionComparer()).ToArray();
         }
 
         private void ConstructPresubArray()
@@ -155,17 +191,21 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
             }
         }
 
-
+        private ResourceValuesObserver ResourceValues(ResourceValuesObserver observer, ImmediacyEnum immediacy)
+        {
+            Immediacy = immediacy;
+            observer.OnSubAdded += () => ConstructPresubArray();
+            observer.OnUnsubscribed += (id) => UnsubscribeSubscriptions(id);
+            ResourceValueObservers.Add(observer);
+            ConstructPresubArray();
+            StartNotifications();
+            return observer;
+        }
 
         private void UnsubscribeSubscriptions(string id)
         {
             ResourceValueObservers.RemoveAll(d => d.Id == id);
             ConstructPresubArray();
-        }
-
-        private Presubscription[] MergeLocalAndServerLists(IEnumerable<Presubscription> local, IEnumerable<Presubscription> server)
-        {
-            return local.Union(server, new PresubscriptionComparer()).ToArray();
         }
     }
 }
