@@ -36,7 +36,7 @@ def main(news_dir=None):
         cwd=news_dir
     ).decode().strip()
 
-    print('Finding news in `%s` to add to remote `%s`' % (current_branch, origin))
+    print('🔎 Finding news in `%s` to add to remote `%s`' % (current_branch, origin))
     diff_command = ['git', 'diff', '%s...%s' % (origin, current_branch), '--name-status', news_dir]
     file_diff = subprocess.check_output(
         diff_command,
@@ -52,8 +52,8 @@ def main(news_dir=None):
     # pass or fail
     if not added_news:
         print(
-            'Error: Uh-oh, did not find any news files!\n'
-            'Please add a news file to `%s`\n'
+            '🚫️ Error: Uh-oh, did not find any news files!\n'
+            '❗ Please add a news file to `%s`\n'
             '± File diff:\n%s\n'
             '{} Git diff command:\n`%s`\n' % (news_dir, file_diff.strip(), subprocess.list2cmdline(diff_command))
         )
@@ -64,3 +64,4 @@ def main(news_dir=None):
 if __name__ == '__main__':
     news_dir = sys.argv[1] if len(sys.argv) > 1 else None
     main(news_dir)
+    
