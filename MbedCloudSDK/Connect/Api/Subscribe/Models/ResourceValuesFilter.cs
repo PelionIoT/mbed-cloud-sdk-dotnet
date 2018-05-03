@@ -40,7 +40,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Models
             return new Presubscription
             {
                 DeviceId = presub.DeviceId,
-                ResourcePaths = presub.ResourcePaths,
+                ResourcePaths = presub.ResourcePaths ?? new List<string>(),
             };
         }
 

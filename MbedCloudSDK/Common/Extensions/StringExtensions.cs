@@ -17,15 +17,16 @@ namespace MbedCloudSDK.Common.Extensions
         /// <returns>True if matches</returns>
         public static bool MatchWithWildcard(this string input, string matchWith)
         {
+            // nothing to match with
+            if (string.IsNullOrEmpty(matchWith))
+            {
+                return false;
+            }
+
             // match is true if no wildcard or wildcard is matching on anything
             if (string.IsNullOrEmpty(input) || input == "*")
             {
                 return true;
-            }
-
-            if (string.IsNullOrEmpty(matchWith))
-            {
-                return false;
             }
 
             // check string has wildcard condition
