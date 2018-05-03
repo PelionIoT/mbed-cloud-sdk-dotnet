@@ -53,6 +53,15 @@ namespace MbedCloudSDK.Connect.Model.Subscription
             return DeviceId == other.DeviceId && DeviceType == other.DeviceType && ResourcePaths.SequenceEqual(other.ResourcePaths);
         }
 
+        public override int GetHashCode()
+        {
+            var hashCode = 1311603952;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(DeviceId);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(DeviceType);
+            ResourcePaths.ToList().ForEach(r => hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(r));
+            return hashCode;
+        }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -78,15 +87,8 @@ namespace MbedCloudSDK.Connect.Model.Subscription
 
         public int GetHashCode(Presubscription obj)
         {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hash = 17;
-                // Suitable nullity checks etc, of course :)
-                hash = hash * 23 + obj.DeviceId.GetHashCode();
-                hash = hash * 23 + obj.DeviceType.GetHashCode();
-                hash = hash * 23 + obj.ResourcePaths.GetHashCode();
-                return hash;
-            }
+            Console.WriteLine(obj.GetHashCode());
+            return obj.GetHashCode();
         }
     }
 }

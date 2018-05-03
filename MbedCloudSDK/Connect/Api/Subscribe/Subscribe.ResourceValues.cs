@@ -65,9 +65,9 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
             return resourceValues(observer, immediacy);
         }
 
-        public ResourceValuesObserver ResourceValues(List<string> resourcePAths, ImmediacyEnum immediacy = ImmediacyEnum.OnRegistration)
+        public ResourceValuesObserver ResourceValues(List<string> resourcePaths, ImmediacyEnum immediacy = ImmediacyEnum.OnRegistration)
         {
-            var observer = new ResourceValuesObserver();
+            var observer = new ResourceValuesObserver("*", resourcePaths);
             return resourceValues(observer, immediacy);
         }
 
@@ -113,6 +113,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
 
         private void ConstructPresubArray()
         {
+            // get the union of all the local subscriptions
             var presubs = new HashSet<ResourceValuesFilter>();
             ResourceValueObservers.ForEach(s =>
             {
@@ -123,6 +124,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
 
             if (ConnectApi != null)
             {
+                // get the union of the local subscriptions and the online subscriptions
                 var mappedSubs = presubs.Select(p => ResourceValuesFilter.Map(p)).ToArray();
                 var serverSubs = ConnectApi.ListPresubscriptions();
                 var merged = MergeLocalAndServerLists(mappedSubs, serverSubs);
@@ -133,6 +135,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
                 {
                     AllLocalSubscriptions.ToList().ForEach(s =>
                     {
+                        // add resource subscriptions for all matching resources on connected devices
                         ConnectApi.ListConnectedDevices().Data
                             .Where(d => s.DeviceId.MatchWithWildcard(d.Id))
                                 .ToList()

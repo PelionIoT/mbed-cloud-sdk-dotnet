@@ -24,7 +24,7 @@ namespace ConsoleExamples.Examples.Subscribe
 
         public async Task ResourceValues()
         {
-            var sub = connect.Subscribe.ResourceValues("*", "3/0/1");
+            var sub = connect.Subscribe.ResourceValues(new List<string>() { "1", "2", "2" }, "3/0/1");
 
             var nextValue = await sub.Next();
 

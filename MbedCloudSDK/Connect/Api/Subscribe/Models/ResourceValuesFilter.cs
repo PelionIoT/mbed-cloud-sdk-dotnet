@@ -73,6 +73,14 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Models
             return DeviceId == other.DeviceId && ResourcePaths.SequenceEqual(other.ResourcePaths);
         }
 
+        public override int GetHashCode()
+        {
+            var hashCode = 1311603952;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(DeviceId);
+            ResourcePaths.ToList().ForEach(r => hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(r));
+            return hashCode;
+        }
+
         /// <summary>
         /// Returns the string presentation of the object.
         /// </summary>
@@ -90,14 +98,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Models
 
         public int GetHashCode(ResourceValuesFilter obj)
         {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hash = 17;
-                // Suitable nullity checks etc, of course :)
-                hash = hash * 23 + obj.DeviceId.GetHashCode();
-                hash = hash * 23 + obj.ResourcePaths.GetHashCode();
-                return hash;
-            }
+            return obj.GetHashCode();
         }
     }
 }
