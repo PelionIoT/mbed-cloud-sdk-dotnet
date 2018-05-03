@@ -48,17 +48,30 @@ namespace MbedCloudSDK.Connect.Model.Subscription
             return substriction;
         }
 
+        /// <summary>
+        /// Indicates whether the current object is equal to another object of the same type.
+        /// </summary>
+        /// <param name="other">An object to compare with this object.</param>
+        /// <returns>
+        /// true if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, false.
+        /// </returns>
         public bool Equals(Presubscription other)
         {
             return DeviceId == other.DeviceId && DeviceType == other.DeviceType && ResourcePaths.SequenceEqual(other.ResourcePaths);
         }
 
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+        /// </returns>
         public override int GetHashCode()
         {
             var hashCode = 1311603952;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(DeviceId);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(DeviceType);
-            ResourcePaths.ToList().ForEach(r => hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(r));
+            hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(DeviceId);
+            hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(DeviceType);
+            ResourcePaths.ToList().ForEach(r => hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(r));
             return hashCode;
         }
 
@@ -75,20 +88,6 @@ namespace MbedCloudSDK.Connect.Model.Subscription
             sb.Append("  ResourcePaths: ").Append(string.Join(", ", ResourcePaths?.Select(r => { return Convert.ToString(r); }))).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-    }
-
-    public class PresubscriptionComparer : IEqualityComparer<Presubscription>
-    {
-        public bool Equals(Presubscription x, Presubscription y)
-        {
-            return x.DeviceId == y.DeviceId && x.ResourcePaths.SequenceEqual(y.ResourcePaths);
-        }
-
-        public int GetHashCode(Presubscription obj)
-        {
-            Console.WriteLine(obj.GetHashCode());
-            return obj.GetHashCode();
         }
     }
 }

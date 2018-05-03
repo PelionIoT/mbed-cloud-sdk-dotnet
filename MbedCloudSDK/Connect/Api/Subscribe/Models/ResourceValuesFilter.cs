@@ -15,8 +15,6 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Models
     /// <summary>
     /// ResourceValueFilter
     /// </summary>
-    /// <seealso cref="System.IEquatable{Model.Notifications.NotificationData}" />
-    /// <seealso cref="System.IEquatable{Models.ResourceValuesFilter}" />
     public class ResourceValuesFilter : IEquatable<NotificationData>, IEquatable<ResourceValuesFilter>, IEquatable<Presubscription>
     {
         /// <summary>
@@ -68,16 +66,29 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Models
             return DeviceId == other.DeviceId && ResourcePaths.SequenceEqual(other.ResourcePaths);
         }
 
+        /// <summary>
+        /// Indicates whether the current object is equal to another object of the same type.
+        /// </summary>
+        /// <param name="other">An object to compare with this object.</param>
+        /// <returns>
+        /// true if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, false.
+        /// </returns>
         public bool Equals(Presubscription other)
         {
             return DeviceId == other.DeviceId && ResourcePaths.SequenceEqual(other.ResourcePaths);
         }
 
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+        /// </returns>
         public override int GetHashCode()
         {
             var hashCode = 1311603952;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(DeviceId);
-            ResourcePaths.ToList().ForEach(r => hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(r));
+            hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(DeviceId);
+            ResourcePaths.ToList().ForEach(r => hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(r));
             return hashCode;
         }
 
@@ -87,18 +98,5 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Models
         /// <returns>String presentation of the object.</returns>
         public override string ToString()
             => this.DebugDump();
-    }
-
-    public class ResourceValuesFilterComparer : IEqualityComparer<ResourceValuesFilter>
-    {
-        public bool Equals(ResourceValuesFilter x, ResourceValuesFilter y)
-        {
-            return x.DeviceId == y.DeviceId && x.ResourcePaths.SequenceEqual(y.ResourcePaths);
-        }
-
-        public int GetHashCode(ResourceValuesFilter obj)
-        {
-            return obj.GetHashCode();
-        }
     }
 }
