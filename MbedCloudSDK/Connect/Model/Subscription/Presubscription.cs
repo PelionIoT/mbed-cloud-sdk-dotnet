@@ -41,10 +41,10 @@ namespace MbedCloudSDK.Connect.Model.Subscription
         {
             var substriction = new Presubscription
             {
-                DeviceId = subscriptionData.EndpointName,
-                DeviceType = subscriptionData.EndpointType,
-                ResourcePaths = subscriptionData.ResourcePath.Select((s) => { return s.ToString(); }).ToList()
-            };
+                DeviceId = subscriptionData?.EndpointName,
+                DeviceType = subscriptionData?.EndpointType,
+                ResourcePaths = subscriptionData?.ResourcePath?.ToList() ?? new List<string>()
+        };
             return substriction;
         }
 

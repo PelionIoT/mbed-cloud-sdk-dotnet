@@ -87,7 +87,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                return subscriptionsApi.V2SubscriptionsGet().Select(p => Presubscription.Map(p)).ToArray();
+                return subscriptionsApi.V2SubscriptionsGet()?.Select(p => Presubscription.Map(p))?.ToArray();
             }
             catch (mds.Client.ApiException ex)
             {

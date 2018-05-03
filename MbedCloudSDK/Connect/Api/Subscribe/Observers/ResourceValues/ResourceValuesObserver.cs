@@ -19,6 +19,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         /// Initializes a new instance of the <see cref="ResourceValuesObserver"/> class.
         /// </summary>
         public ResourceValuesObserver()
+         : this("*", Enumerable.Empty<string>())
         {
         }
 

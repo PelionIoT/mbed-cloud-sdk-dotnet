@@ -4,6 +4,7 @@
 
 namespace MbedCloudSDK.Connect.Api.Subscribe.Models
 {
+    using MbedCloudSDK.Common;
     using MbedCloudSDK.Connect.Model.Notifications;
 
     /// <summary>
@@ -49,5 +50,12 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Models
                 Payload = data.Payload,
             };
         }
+
+        /// <summary>
+        /// Returns the string presentation of the object.
+        /// </summary>
+        /// <returns>String presentation of the object.</returns>
+        public override string ToString()
+            => this.DebugDump();
     }
 }
