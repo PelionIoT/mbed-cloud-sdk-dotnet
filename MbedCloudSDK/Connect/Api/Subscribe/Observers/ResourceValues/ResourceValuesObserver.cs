@@ -13,7 +13,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
     /// <summary>
     /// <see cref="ResourceValuesObserver"/>
     /// </summary>
-    public class ResourceValuesObserver : Observer<ResourceValueChange, ResourceValuesFilter>
+    public class ResourceValuesObserver : Observer<ResourceValueChange, ResourceValueChange>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ResourceValuesObserver"/> class.
@@ -133,7 +133,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         /// </summary>
         /// <param name="predicate">The predicate.</param>
         /// <returns>ResourceValueObserver</returns>
-        public ResourceValuesObserver Where(Func<ResourceValuesFilter, bool> predicate)
+        public ResourceValuesObserver Where(Func<ResourceValueChange, bool> predicate)
         {
             FilterFuncs.Add(predicate);
             return this;
@@ -143,7 +143,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         {
             if (FilterFuncs.Any())
             {
-                return FilterFuncs.TrueForAll(f => f.Invoke(new ResourceValuesFilter { DeviceId = data.DeviceId, ResourcePaths = new List<string> { data.Path } }));
+                return FilterFuncs.TrueForAll(f => f.Invoke(ResourceValueChange.Map(data)));
             }
 
             return true;

@@ -24,11 +24,30 @@ namespace ConsoleExamples.Examples.Subscribe
 
         public async Task ResourceValues()
         {
-            var sub = connect.Subscribe.ResourceValues(ImmediacyEnum.OnValueUpdate);
+            // subscribe to everything
+            var blankSub = connect.Subscribe.ResourceValues();
 
-            sub.OnNotify += (res) => Console.WriteLine(res);
+            // gives resourcevalues as soon as they're values update, however this is expensive.
+            var blankSubImmediate = connect.Subscribe.ResourceValues(ImmediacyEnum.OnValueUpdate);
 
-            var nextValue = await sub.Next();
+            // subscribe to one resource on a device
+            var deviceIdSub = connect.Subscribe.ResourceValues("1", "3/0/1");
+
+            // subscribe to multiple resources on a device
+            var deviceIdSub2 = connect.Subscribe.ResourceValues("1", new List<string> { "3/0/1, 3/0/2" });
+
+            // use wildcard for resource paths
+            var deviceIdSub3 = connect.Subscribe.ResourceValues("1", "3/0/*");
+
+            // can add further filters
+            deviceIdSub3.Where("1", "4/0/1");
+
+            // add a local filter on the data notified
+            var deviceIdSub4 = connect.Subscribe.ResourceValues("1").Where(f => int.Parse(f.Payload) > 5);
+
+            blankSub.OnNotify += (res) => Console.WriteLine(res);
+
+            var nextValue = await blankSub.Next();
 
             Console.WriteLine(nextValue);
         }
