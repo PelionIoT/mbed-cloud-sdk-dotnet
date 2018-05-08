@@ -1,10 +1,10 @@
-# Mbed Cloud SDK for .Net
+# Mbed Cloud SDK for .NET
 
 The Mbed Cloud SDK gives developers access to the full Mbed suite using .NET Core 2.0.
 
 If you want to contribute to creating a SDK for another language the work is
 greatly appreciated and you can read more about the process
-[here](https://github.com/ARMmbed/mbed-cloud-sdk-codegen/blob/master/docs/create-new-language.md).
+[here](https://github.com/ARMmbed/mbed-cloud-sdk-codegen/blob/master/docs/create-new-language.md/).
 
 ## Installation
 
@@ -29,43 +29,48 @@ dotnet build
 
 The following sample lists the first five devices in your Device Directory.
 
-    \code{.cs}
+\code{.cs}
+namespace demo
+{
+    using System;
+    using System.Linq;
     using MbedCloudSDK.Common;
-    using MbedCloudSDK.Common.Query;
-    using MbedCloudSDK.DeviceDirectory.Api;
+    using MbedCloudSDK.Connect.Api;
 
-    var apiKey = "<your Mbed Cloud api key>";
-    // create a config object with your api key
-    var config = new Config(apiKey);
-    // Instantiate the Device Directory Api
-    var deviceApi = new DeviceDirectoryApi(config);
-
-    // Options for the query. The Limit defines the number of results returned
-    var options = new QueryOptions()
+    class Program
     {
-        Limit = 5,
-    };
+        static void Main(string[] args)
+        {
+            // create new configuration object. When autostartNotifications is true, you don't need to open a notification channel manually
+            var config = new Config(apiKey: "<your api key>", autostartNotifications: true);
+            var connect = new ConnectApi(config);
 
-    // List devices from the Device Directory
-    var devices = deviceApi.ListDevices(options).Data;
-    foreach (var device in devices)
-    {
-        // Use the device object here
+            // lists the first 50 connectedDevices
+            var connectedDevices = connect.ListConnectedDevices().Data;
+
+            // get the first connected device
+            var val = connectedDevices.FirstOrDefault()
+                                        // list the resources
+                                        ?.ListResources()
+                                        // get the first resource that matches the path /3201/0/5853
+                                        ?.FirstOrDefault(d => d.Path == "/3201/0/5853")
+                                        // get the value of the resource
+                                        ?.GetResourceValue();
+
+            Console.WriteLine(val);
+        }
     }
-    \endcode
+}
+\endcode
 
-Further examples can be viewed in the Examples/ConsoleExamples folder of this repo.
-
-## Documentation
-
-See full [documentation and API reference here](https://cloud.mbed.com/docs/v1.2/mbed-cloud-sdk-dotnet/index.html).
+Further examples can be found in the [Examples](https://github.com/ARMmbed/mbed-cloud-sdk-dotnet/tree/master/Examples) folder of the GitHub repository.
 
 ## Contributing
 
-Mbed Cloud SDK for .Net is open source and we would like your help; there is a
-brief guide on how to get started in [CONTRIBUTING.md](CONTRIBUTING.md).
+Mbed Cloud SDK for .NET is open source and we would like your help; there is a
+brief guide on how to get started in [CONTRIBUTING](https://github.com/ARMmbed/mbed-cloud-sdk-dotnet/blob/master/CONTRIBUTING.md/).
 
 ## Licence
 
-Mbed Cloud SDK for .Net is free-to-use and licensed under the **Apache License
-2.0**. See [LICENSE](https://github.com/ARMmbed/mbed-cloud-sdk-dotnet-private/blob/master/LICENSE) file for more information.
+Mbed Cloud SDK for .NET is free-to-use and licensed under the **Apache License 2.0**.
+Please See [LICENSE](https://github.com/ARMmbed/mbed-cloud-sdk-dotnet/blob/master/LICENSE) file for more information.
