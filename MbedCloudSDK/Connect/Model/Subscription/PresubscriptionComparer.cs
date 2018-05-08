@@ -20,7 +20,6 @@ namespace MbedCloudSDK.Connect.Model.Subscription
 
         public int GetHashCode(Presubscription obj)
         {
-            Console.WriteLine(obj.GetHashCode());
             return obj.GetHashCode();
         }
     }

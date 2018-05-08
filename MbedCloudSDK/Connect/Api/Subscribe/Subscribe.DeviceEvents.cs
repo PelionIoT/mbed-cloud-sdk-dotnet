@@ -29,7 +29,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// <value>
         /// The connect API.
         /// </value>
-        public ConnectApi ConnectApi { get; }
+        internal ConnectApi ConnectApi { get; }
 
         /// <summary>
         /// Gets or sets the device state observers.
@@ -37,7 +37,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// <value>
         /// The device state observers.
         /// </value>
-        public List<DeviceEventObserver> DeviceEventObservers { get; set; } = new List<DeviceEventObserver>();
+        internal List<DeviceEventObserver> DeviceEventObservers { get; set; } = new List<DeviceEventObserver>();
 
         /// <summary>
         /// Devices the state.

@@ -23,7 +23,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// <value>
         /// All local subscriptions.
         /// </value>
-        public HashSet<ResourceValuesFilter> AllLocalSubscriptions { get; private set; } = new HashSet<ResourceValuesFilter>(new ResourceValuesFilterComparer());
+        internal HashSet<ResourceValuesFilter> AllLocalSubscriptions { get; private set; } = new HashSet<ResourceValuesFilter>(new ResourceValuesFilterComparer());
 
         /// <summary>
         /// Gets the immediacy.
@@ -39,7 +39,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// <value>
         /// The resource value observers.
         /// </value>
-        public List<ResourceValuesObserver> ResourceValueObservers { get; private set; } = new List<ResourceValuesObserver>();
+        internal List<ResourceValuesObserver> ResourceValueObservers { get; private set; } = new List<ResourceValuesObserver>();
 
         /// <summary>
         /// Notifies the specified data.
