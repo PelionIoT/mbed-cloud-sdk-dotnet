@@ -31,7 +31,7 @@ namespace MbedCloudSDK.Common
         /// <summary>
         /// Gets UserAgent
         /// </summary>
-        /// <returns></returns>
-        public static string UserAgent = $"mbed-cloud-sdk-dotnet/{Version.version}";
+        /// <returns>UserAgent</returns>
+        public static string UserAgent = $"mbed-cloud-sdk-dotnet/{Version.VersionValue}";
     }
 }

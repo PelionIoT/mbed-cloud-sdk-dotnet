@@ -66,6 +66,8 @@ namespace MbedCloudSDK.Connect.Api
                 foreach (var item in notification.Notifications)
                 {
                     var payload = Utils.DecodeBase64(item);
+                    item.Payload = payload;
+                    Subscribe.Notify(item);
 
                     var resourceSubs = item.DeviceId + item.Path;
                     if (NotificationQueue.ContainsKey(resourceSubs))
@@ -128,8 +130,6 @@ namespace MbedCloudSDK.Connect.Api
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
-                    Console.WriteLine("Multiple notification channels open");
-                    StopNotifications();
                 }
             }
         }
