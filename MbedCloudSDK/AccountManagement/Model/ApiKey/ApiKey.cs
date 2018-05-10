@@ -97,10 +97,9 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
         /// <returns>api key</returns>
         public static ApiKey Map(ApiKeyInfoResp apiKeyInfo)
         {
-            var apiKeyStatus = Utils.ParseEnum<ApiKeyStatus>(apiKeyInfo.Status);
             var apiKey = new ApiKey
             {
-                Status = apiKeyStatus,
+                Status = Utils.ParseEnum<ApiKeyStatus>(apiKeyInfo.Status),
                 Key = apiKeyInfo.Key,
                 Name = apiKeyInfo.Name,
                 CreatedAt = apiKeyInfo.CreatedAt.ToNullableUniversalTime(),
@@ -140,7 +139,10 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
         /// <returns>Api key info</returns>
         public ApiKeyInfoReq CreatePostRequest()
         {
-            var request = new ApiKeyInfoReq(Owner: OwnerId, Status: Utils.ParseEnum<ApiKeyInfoReq.StatusEnum>(Status), Name: Name, Groups: Groups);
+            ApiKeyInfoReq.StatusEnum? status = null;
+            if (Status.HasValue) status = Utils.ParseEnum<ApiKeyInfoReq.StatusEnum>(Status);
+
+            var request = new ApiKeyInfoReq(Owner: OwnerId, Status: status, Name: Name, Groups: Groups);
             return request;
         }
 
