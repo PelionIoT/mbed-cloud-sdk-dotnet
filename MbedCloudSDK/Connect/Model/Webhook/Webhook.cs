@@ -67,7 +67,6 @@ namespace MbedCloudSDK.Connect.Model.Webhook
         public static mds.Model.Webhook MapToApiWebook(Webhook data)
         {
             var webhook = new mds.Model.Webhook(Headers: null, Url: data.Url)
-
             {
                 Headers = data.Headers
             };

@@ -39,6 +39,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <exception cref="CloudApiException">CloudApiException</exception>
         public Resource AddResourceSubscription(string deviceId, string resourcePath)
         {
+            Console.WriteLine($"Adding subscription for {deviceId} at path {resourcePath}");
             try
             {
                 StartNotifications();

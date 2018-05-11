@@ -8,11 +8,13 @@ namespace MbedCloudSDK.Connect.Model.Subscription
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using MbedCloudSDK.Common.Extensions;
+    using MbedCloudSDK.Connect.Model.Notifications;
 
     /// <summary>
     /// Presubscription
     /// </summary>
-    public class Presubscription
+    public class Presubscription : IEquatable<Presubscription>
     {
         /// <summary>
         /// Gets or sets the Device ID
@@ -28,7 +30,7 @@ namespace MbedCloudSDK.Connect.Model.Subscription
         /// <summary>
         /// Gets or sets gets or Sets ResourcePath
         /// </summary>
-        public List<string> ResourcePaths { get; set; }
+        public IEnumerable<string> ResourcePaths { get; set; } = new List<string>();
 
         /// <summary>
         /// Map presubscription object
@@ -39,11 +41,38 @@ namespace MbedCloudSDK.Connect.Model.Subscription
         {
             var substriction = new Presubscription
             {
-                DeviceId = subscriptionData.EndpointName,
-                DeviceType = subscriptionData.EndpointType,
-                ResourcePaths = subscriptionData.ResourcePath.Select((s) => { return s.ToString(); }).ToList()
-            };
+                DeviceId = subscriptionData?.EndpointName,
+                DeviceType = subscriptionData?.EndpointType,
+                ResourcePaths = subscriptionData?.ResourcePath?.ToList() ?? new List<string>()
+        };
             return substriction;
+        }
+
+        /// <summary>
+        /// Indicates whether the current object is equal to another object of the same type.
+        /// </summary>
+        /// <param name="other">An object to compare with this object.</param>
+        /// <returns>
+        /// true if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, false.
+        /// </returns>
+        public bool Equals(Presubscription other)
+        {
+            return DeviceId == other.DeviceId && DeviceType == other.DeviceType && ResourcePaths.SequenceEqual(other.ResourcePaths);
+        }
+
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+        /// </returns>
+        public override int GetHashCode()
+        {
+            var hashCode = 1311603952;
+            hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(DeviceId);
+            hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(DeviceType);
+            ResourcePaths.ToList().ForEach(r => hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(r));
+            return hashCode;
         }
 
         /// <summary>

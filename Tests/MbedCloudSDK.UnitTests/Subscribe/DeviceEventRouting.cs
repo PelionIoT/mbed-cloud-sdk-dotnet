@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace MbedCloudSDK.UnitTests.Subscribe
 {
     [TestFixture]
-    public class Routing
+    public class DeviceEventRouting
     {
         [Test]
         public void TestAllEvents()
@@ -24,6 +24,36 @@ namespace MbedCloudSDK.UnitTests.Subscribe
             MockNotification(subscribe);
 
             Assert.AreEqual(72, items.Count);
+        }
+
+        [Test]
+        public void TestUnsubscribe()
+        {
+            var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
+            var items = new List<DeviceEventData>();
+            var observer1 = subscribe.DeviceEvents();
+            observer1.OnNotify += res => items.Add(res);
+            var observer2 = subscribe.DeviceEvents();
+            observer2.OnNotify += res => items.Add(res);
+            var observer3 = subscribe.DeviceEvents();
+            observer3.OnNotify += res => items.Add(res);
+            MockNotification(subscribe);
+            MockNotification(subscribe);
+
+            Assert.AreEqual(subscribe.DeviceEventObservers.Count, 3);
+
+            Assert.AreEqual(items.Count, 216);
+
+            items.Clear();
+
+            observer1.Unsubscribe();
+
+            MockNotification(subscribe);
+            MockNotification(subscribe);
+
+            Assert.AreEqual(subscribe.DeviceEventObservers.Count, 2);
+
+            Assert.AreEqual(items.Count, 144);
         }
 
         [Test]
