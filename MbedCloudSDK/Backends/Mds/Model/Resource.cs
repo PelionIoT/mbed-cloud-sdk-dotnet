@@ -40,7 +40,7 @@ namespace mds.Model
         /// Initializes a new instance of the <see cref="Resource" /> class.
         /// </summary>
         /// <param name="Obs">Observable determines whether you can subscribe to changes for this resource. It can have values \&quot;true\&quot; or \&quot;false\&quot;. .</param>
-        /// <param name="Rt">Application specific resource type that describes this resource. [It is created by the client side application](/docs/v1.2/collecting/resource-setup-in-mbed-cloud-client.html). Not meant to be a human-readable name for the resource. Multiple resource types may be included, they are separated by a space..</param>
+        /// <param name="Rt">Application specific resource type that describes this resource. [It is created by the client side application](/docs/current/connecting/resource-setup-in-mbed-cloud-client.html). Not meant to be a human-readable name for the resource. Multiple resource types may be included, they are separated by a space..</param>
         /// <param name="Type">The content type of the resource. &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Important&lt;/b&gt;&lt;br/&gt; You are encouraged to use the resource types listed in the [LwM2M specification](http://technical.openmobilealliance.org/Technical/technical-information/omna/lightweight-m2m-lwm2m-object-registry). .</param>
         /// <param name="Uri">The URL of the resource. (required).</param>
         public Resource(bool? Obs = default(bool?), string Rt = default(string), string Type = default(string), string Uri = default(string))
@@ -67,9 +67,9 @@ namespace mds.Model
         public bool? Obs { get; set; }
 
         /// <summary>
-        /// Application specific resource type that describes this resource. [It is created by the client side application](/docs/v1.2/collecting/resource-setup-in-mbed-cloud-client.html). Not meant to be a human-readable name for the resource. Multiple resource types may be included, they are separated by a space.
+        /// Application specific resource type that describes this resource. [It is created by the client side application](/docs/current/connecting/resource-setup-in-mbed-cloud-client.html). Not meant to be a human-readable name for the resource. Multiple resource types may be included, they are separated by a space.
         /// </summary>
-        /// <value>Application specific resource type that describes this resource. [It is created by the client side application](/docs/v1.2/collecting/resource-setup-in-mbed-cloud-client.html). Not meant to be a human-readable name for the resource. Multiple resource types may be included, they are separated by a space.</value>
+        /// <value>Application specific resource type that describes this resource. [It is created by the client side application](/docs/current/connecting/resource-setup-in-mbed-cloud-client.html). Not meant to be a human-readable name for the resource. Multiple resource types may be included, they are separated by a space.</value>
         [DataMember(Name="rt", EmitDefaultValue=false)]
         public string Rt { get; set; }
 

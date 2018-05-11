@@ -12,12 +12,6 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
     public enum MultifactorAuthenticationStatusEnum
     {
         /// <summary>
-        /// Enum Enabled for "enabled"
-        /// </summary>
-        [EnumMember(Value = "enabled")]
-        Enabled,
-
-        /// <summary>
         /// Enum Enforced for "enforced"
         /// </summary>
         [EnumMember(Value = "enforced")]

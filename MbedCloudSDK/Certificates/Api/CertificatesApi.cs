@@ -317,9 +317,12 @@ namespace MbedCloudSDK.Certificates.Api
             var serviceEnum = Certificate.GetServiceEnum(certificate.Type.Value);
             try
             {
+                TrustedCertificateReq.StatusEnum? status = null;
+                if (certificate.Status.HasValue) status = Utils.ParseEnum<TrustedCertificateReq.StatusEnum>(certificate.Status);
+
                 var resp = iamAccountApi.AddCertificate(new TrustedCertificateReq(
                     Certificate: certificateData,
-                    Status: Utils.ParseEnum<TrustedCertificateReq.StatusEnum>(certificate.Status),
+                    Status: status,
                     Name: certificate.Name,
                     Service: serviceEnum,
                     Signature: signature,
