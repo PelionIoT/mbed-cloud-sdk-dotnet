@@ -1,26 +1,34 @@
-﻿// <copyright file="Presubscription.cs" company="Arm">
+﻿// <copyright file="PresubscriptionComparer.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
 namespace MbedCloudSDK.Connect.Model.Subscription
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using MbedCloudSDK.Common.Extensions;
-    using MbedCloudSDK.Connect.Model.Notifications;
 
+    /// <summary>
+    /// PresubscriptionComparer
+    /// </summary>
     public class PresubscriptionComparer : IEqualityComparer<Presubscription>
     {
-        public bool Equals(Presubscription x, Presubscription y)
-        {
-            return x.DeviceId == y.DeviceId && x.ResourcePaths.SequenceEqual(y.ResourcePaths);
-        }
+        /// <summary>
+        /// Determines whether the specified objects are equal.
+        /// </summary>
+        /// <param name="x">The first object of type T to compare.</param>
+        /// <param name="y">The second object of type T to compare.</param>
+        /// <returns>
+        /// true if the specified objects are equal; otherwise, false.
+        /// </returns>
+        public bool Equals(Presubscription x, Presubscription y) => x.DeviceId == y.DeviceId && x.ResourcePaths.SequenceEqual(y.ResourcePaths);
 
-        public int GetHashCode(Presubscription obj)
-        {
-            return obj.GetHashCode();
-        }
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+        /// </returns>
+        public int GetHashCode(Presubscription obj) => obj.GetHashCode();
     }
 }

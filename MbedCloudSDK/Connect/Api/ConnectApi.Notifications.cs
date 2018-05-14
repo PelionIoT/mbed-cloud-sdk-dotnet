@@ -22,8 +22,8 @@ namespace MbedCloudSDK.Connect.Api
     /// </summary>
     public partial class ConnectApi
     {
-        private TlvDecoder tlvDecoder = new TlvDecoder();
-        private bool handleNotifications = false;
+        private readonly TlvDecoder tlvDecoder = new TlvDecoder();
+        private bool handleNotifications;
 
         /// <summary>
         /// Notify
@@ -119,7 +119,7 @@ namespace MbedCloudSDK.Connect.Api
             {
                 try
                 {
-                    var resp = notificationsApi.V2NotificationPullGet();
+                    var resp = NotificationsApi.V2NotificationPullGet();
                     if (resp == null)
                     {
                         continue;
@@ -234,7 +234,7 @@ namespace MbedCloudSDK.Connect.Api
 
             try
             {
-                notificationsApi.V2NotificationPullDelete();
+                NotificationsApi.V2NotificationPullDelete();
             }
             catch (mds.Client.ApiException e)
             {

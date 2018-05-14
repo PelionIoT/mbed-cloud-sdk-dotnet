@@ -71,7 +71,7 @@ namespace MbedCloudSDK.AccountManagement.Api
 
             try
             {
-                var resp = adminApi.GetAllUsers(limit: options.Limit, order: options.Order, after: options.After, include: options.Include, statusEq: options.Filter.GetFirstValueByKey("status"));
+                var resp = AdminApi.GetAllUsers(limit: options.Limit, order: options.Order, after: options.After, include: options.Include, statusEq: options.Filter.GetFirstValueByKey("status"));
                 var respUsers = new ResponsePage<User>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
                 foreach (var user in resp.Data)
                 {
@@ -135,7 +135,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                var user = await adminApi.GetUserAsync(userId);
+                var user = await AdminApi.GetUserAsync(userId);
                 return User.Map(user);
             }
             catch (iam.Client.ApiException e)
@@ -206,7 +206,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             try
             {
                 var req = user.CreatePostRequest();
-                return User.Map(await adminApi.CreateUserAsync(req));
+                return User.Map(await AdminApi.CreateUserAsync(req));
             }
             catch (iam.Client.ApiException e)
             {
@@ -276,7 +276,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             try
             {
                 var req = user.CreatePutRequest();
-                var userData = await adminApi.UpdateUserAsync(userId, req);
+                var userData = await AdminApi.UpdateUserAsync(userId, req);
                 return User.Map(userData);
             }
             catch (iam.Client.ApiException e)
@@ -331,7 +331,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                await adminApi.DeleteUserAsync(userId);
+                await AdminApi.DeleteUserAsync(userId);
             }
             catch (iam.Client.ApiException e)
             {

@@ -72,7 +72,7 @@ namespace MbedCloudSDK.AccountManagement.Api
 
             try
             {
-                var resp = developerApi.GetAllApiKeys(limit: options.Limit, after: options.After, order: options.Order, include: options.Include, ownerEq: options.Filter.GetFirstValueByKey("owner_id"));
+                var resp = DeveloperApi.GetAllApiKeys(limit: options.Limit, after: options.After, order: options.Order, include: options.Include, ownerEq: options.Filter.GetFirstValueByKey("owner_id"));
                 var respKeys = new ResponsePage<ApiKey>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var key in resp.Data)
                 {
@@ -124,7 +124,7 @@ namespace MbedCloudSDK.AccountManagement.Api
 
             try
             {
-                var apiKeysInfo = await developerApi.GetAllApiKeysAsync(limit: options.Limit, after: options.After, order: options.Order, include: options.Include, ownerEq: options.Filter?.FilterString);
+                var apiKeysInfo = await DeveloperApi.GetAllApiKeysAsync(limit: options.Limit, after: options.After, order: options.Order, include: options.Include, ownerEq: options.Filter?.FilterString);
                 var apiKeys = new List<ApiKey>();
                 foreach (var key in apiKeysInfo.Data)
                 {
@@ -165,11 +165,11 @@ namespace MbedCloudSDK.AccountManagement.Api
             {
                 if (!string.IsNullOrEmpty(apiKeyId))
                 {
-                    return ApiKey.Map(developerApi.GetApiKey(apiKeyId));
+                    return ApiKey.Map(DeveloperApi.GetApiKey(apiKeyId));
                 }
                 else
                 {
-                    return ApiKey.Map(developerApi.GetMyApiKey());
+                    return ApiKey.Map(DeveloperApi.GetMyApiKey());
                 }
             }
             catch (iam.Client.ApiException e)
@@ -204,11 +204,11 @@ namespace MbedCloudSDK.AccountManagement.Api
             {
                 if (!string.IsNullOrEmpty(apiKeyId))
                 {
-                    return ApiKey.Map(await developerApi.GetApiKeyAsync(apiKeyId));
+                    return ApiKey.Map(await DeveloperApi.GetApiKeyAsync(apiKeyId));
                 }
                 else
                 {
-                    return ApiKey.Map(await developerApi.GetMyApiKeyAsync());
+                    return ApiKey.Map(await DeveloperApi.GetMyApiKeyAsync());
                 }
             }
             catch (iam.Client.ApiException e)
@@ -246,7 +246,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             try
             {
                 var keyBody = key.CreatePostRequest();
-                return ApiKey.Map(developerApi.CreateApiKey(keyBody));
+                return ApiKey.Map(DeveloperApi.CreateApiKey(keyBody));
             }
             catch (iam.Client.ApiException e)
             {
@@ -283,7 +283,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             try
             {
                 var keyBody = key.CreatePostRequest();
-                return ApiKey.Map(await developerApi.CreateApiKeyAsync(keyBody));
+                return ApiKey.Map(await DeveloperApi.CreateApiKeyAsync(keyBody));
             }
             catch (iam.Client.ApiException e)
             {
@@ -319,7 +319,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             try
             {
                 var req = key.CreatePutRequest();
-                return ApiKey.Map(developerApi.UpdateApiKey(apiKeyId, req));
+                return ApiKey.Map(DeveloperApi.UpdateApiKey(apiKeyId, req));
             }
             catch (iam.Client.ApiException e)
             {
@@ -355,7 +355,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             try
             {
                 var req = key.CreatePutRequest();
-                return ApiKey.Map(await developerApi.UpdateApiKeyAsync(apiKeyId, req));
+                return ApiKey.Map(await DeveloperApi.UpdateApiKeyAsync(apiKeyId, req));
             }
             catch (iam.Client.ApiException e)
             {
@@ -411,7 +411,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                await developerApi.DeleteApiKeyAsync(apiKeyId);
+                await DeveloperApi.DeleteApiKeyAsync(apiKeyId);
             }
             catch (iam.Client.ApiException e)
             {

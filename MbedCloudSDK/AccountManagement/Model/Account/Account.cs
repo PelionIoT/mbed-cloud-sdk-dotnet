@@ -306,7 +306,10 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
                 AccountProperties = CustomProperties,
             };
 
-            if (MultifactorAuthenticationStatus.HasValue) request.MfaStatus = Utils.ParseEnum<AccountUpdateReq.MfaStatusEnum>(MultifactorAuthenticationStatus);
+            if (MultifactorAuthenticationStatus.HasValue)
+            {
+                request.MfaStatus = Utils.ParseEnum<AccountUpdateReq.MfaStatusEnum>(MultifactorAuthenticationStatus);
+            }
 
             return request;
         }

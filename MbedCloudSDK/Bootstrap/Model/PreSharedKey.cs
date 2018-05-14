@@ -1,3 +1,7 @@
+// <copyright file="PreSharedKey.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
 namespace MbedCloudSDK.Bootstrap.Model
 {
     /// <summary>

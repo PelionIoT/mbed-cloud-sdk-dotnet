@@ -70,7 +70,7 @@ namespace MbedCloudSDK.Update.Api
 
             try
             {
-                var resp = api.FirmwareManifestList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
+                var resp = Api.FirmwareManifestList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
                 var respManifests = new ResponsePage<FirmwareManifest>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var manifest in resp.Data)
                 {
@@ -108,7 +108,7 @@ namespace MbedCloudSDK.Update.Api
         {
             try
             {
-                return FirmwareManifest.Map(api.FirmwareManifestRetrieve(manifestId));
+                return FirmwareManifest.Map(Api.FirmwareManifestRetrieve(manifestId));
             }
             catch (update_service.Client.ApiException ex)
             {
@@ -183,7 +183,7 @@ namespace MbedCloudSDK.Update.Api
                 var keyTableFileStream = OpenKeyTableStream();
                 try
                 {
-                    var response = api.FirmwareManifestCreate(dataFileStream, manifest.Name, manifest.Description, keyTableFileStream);
+                    var response = Api.FirmwareManifestCreate(dataFileStream, manifest.Name, manifest.Description, keyTableFileStream);
                     return FirmwareManifest.Map(response);
                 }
                 catch (update_service.Client.ApiException e)
@@ -252,7 +252,7 @@ namespace MbedCloudSDK.Update.Api
         {
             try
             {
-                api.FirmwareManifestDestroy(manifestId);
+                Api.FirmwareManifestDestroy(manifestId);
             }
             catch (update_service.Client.ApiException e)
             {
