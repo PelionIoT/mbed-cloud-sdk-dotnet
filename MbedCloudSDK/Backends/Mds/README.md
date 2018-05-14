@@ -81,11 +81,11 @@ namespace Example
             try
             {
                 // Send an async request to device
-                apiInstance.V2DeviceRequestsDeviceIdPost(deviceId, asyncId, body);
+                apiInstance.CreateAsyncRequest(deviceId, asyncId, body);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DeviceRequestsApi.V2DeviceRequestsDeviceIdPost: " + e.Message );
+                Debug.Print("Exception when calling DeviceRequestsApi.CreateAsyncRequest: " + e.Message );
             }
 
         }
@@ -100,26 +100,26 @@ All URIs are relative to *https://api.us-east-1.mbedcloud.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DeviceRequestsApi* | [**V2DeviceRequestsDeviceIdPost**](docs/DeviceRequestsApi.md#v2devicerequestsdeviceidpost) | **POST** /v2/device-requests/{device-id} | Send an async request to device
-*EndpointsApi* | [**V2EndpointsDeviceIdGet**](docs/EndpointsApi.md#v2endpointsdeviceidget) | **GET** /v2/endpoints/{device-id} | List the resources on an endpoint
-*EndpointsApi* | [**V2EndpointsGet**](docs/EndpointsApi.md#v2endpointsget) | **GET** /v2/endpoints | (DEPRECATED) List registered endpoints. The number of returned endpoints is currently limited to 200.
-*NotificationsApi* | [**V2NotificationCallbackDelete**](docs/NotificationsApi.md#v2notificationcallbackdelete) | **DELETE** /v2/notification/callback | Delete callback URL
-*NotificationsApi* | [**V2NotificationCallbackGet**](docs/NotificationsApi.md#v2notificationcallbackget) | **GET** /v2/notification/callback | Check callback URL
-*NotificationsApi* | [**V2NotificationCallbackPut**](docs/NotificationsApi.md#v2notificationcallbackput) | **PUT** /v2/notification/callback | Register a callback URL
-*NotificationsApi* | [**V2NotificationPullDelete**](docs/NotificationsApi.md#v2notificationpulldelete) | **DELETE** /v2/notification/pull | Delete notification Long Poll channel
-*NotificationsApi* | [**V2NotificationPullGet**](docs/NotificationsApi.md#v2notificationpullget) | **GET** /v2/notification/pull | Get notifications using Long Poll
-*ResourcesApi* | [**V2EndpointsDeviceIdResourcePathDelete**](docs/ResourcesApi.md#v2endpointsdeviceidresourcepathdelete) | **DELETE** /v2/endpoints/{device-id}/{resourcePath} | Delete a resource path
-*ResourcesApi* | [**V2EndpointsDeviceIdResourcePathGet**](docs/ResourcesApi.md#v2endpointsdeviceidresourcepathget) | **GET** /v2/endpoints/{device-id}/{resourcePath} | Read from a resource
-*ResourcesApi* | [**V2EndpointsDeviceIdResourcePathPost**](docs/ResourcesApi.md#v2endpointsdeviceidresourcepathpost) | **POST** /v2/endpoints/{device-id}/{resourcePath} | Execute a function on a Resource or create new Object instance
-*ResourcesApi* | [**V2EndpointsDeviceIdResourcePathPut**](docs/ResourcesApi.md#v2endpointsdeviceidresourcepathput) | **PUT** /v2/endpoints/{device-id}/{resourcePath} | Write to a resource or use write-attributes for a resource
-*SubscriptionsApi* | [**V2SubscriptionsDelete**](docs/SubscriptionsApi.md#v2subscriptionsdelete) | **DELETE** /v2/subscriptions | Remove pre-subscriptions
-*SubscriptionsApi* | [**V2SubscriptionsDeviceIdDelete**](docs/SubscriptionsApi.md#v2subscriptionsdeviceiddelete) | **DELETE** /v2/subscriptions/{device-id} | Delete subscriptions from an endpoint
-*SubscriptionsApi* | [**V2SubscriptionsDeviceIdGet**](docs/SubscriptionsApi.md#v2subscriptionsdeviceidget) | **GET** /v2/subscriptions/{device-id} | Read endpoints subscriptions
-*SubscriptionsApi* | [**V2SubscriptionsDeviceIdResourcePathDelete**](docs/SubscriptionsApi.md#v2subscriptionsdeviceidresourcepathdelete) | **DELETE** /v2/subscriptions/{device-id}/{resourcePath} | Remove a subscription
-*SubscriptionsApi* | [**V2SubscriptionsDeviceIdResourcePathGet**](docs/SubscriptionsApi.md#v2subscriptionsdeviceidresourcepathget) | **GET** /v2/subscriptions/{device-id}/{resourcePath} | Read subscription status
-*SubscriptionsApi* | [**V2SubscriptionsDeviceIdResourcePathPut**](docs/SubscriptionsApi.md#v2subscriptionsdeviceidresourcepathput) | **PUT** /v2/subscriptions/{device-id}/{resourcePath} | Subscribe to a resource path
-*SubscriptionsApi* | [**V2SubscriptionsGet**](docs/SubscriptionsApi.md#v2subscriptionsget) | **GET** /v2/subscriptions | Get pre-subscriptions
-*SubscriptionsApi* | [**V2SubscriptionsPut**](docs/SubscriptionsApi.md#v2subscriptionsput) | **PUT** /v2/subscriptions | Set pre-subscriptions
+*DeviceRequestsApi* | [**CreateAsyncRequest**](docs/DeviceRequestsApi.md#createasyncrequest) | **POST** /v2/device-requests/{device-id} | Send an async request to device
+*EndpointsApi* | [**GetConnectedEndpoints**](docs/EndpointsApi.md#getconnectedendpoints) | **GET** /v2/endpoints | (DEPRECATED) List registered endpoints. The number of returned endpoints is currently limited to 200.
+*EndpointsApi* | [**GetEndpointResources**](docs/EndpointsApi.md#getendpointresources) | **GET** /v2/endpoints/{device-id} | List the resources on an endpoint
+*NotificationsApi* | [**DeleteLongPollChannel**](docs/NotificationsApi.md#deletelongpollchannel) | **DELETE** /v2/notification/pull | Delete notification Long Poll channel
+*NotificationsApi* | [**DeregisterWebhook**](docs/NotificationsApi.md#deregisterwebhook) | **DELETE** /v2/notification/callback | Delete callback URL
+*NotificationsApi* | [**GetWebhook**](docs/NotificationsApi.md#getwebhook) | **GET** /v2/notification/callback | Check callback URL
+*NotificationsApi* | [**LongPollNotifications**](docs/NotificationsApi.md#longpollnotifications) | **GET** /v2/notification/pull | Get notifications using Long Poll
+*NotificationsApi* | [**RegisterWebhook**](docs/NotificationsApi.md#registerwebhook) | **PUT** /v2/notification/callback | Register a callback URL
+*ResourcesApi* | [**DeleteResourcePath**](docs/ResourcesApi.md#deleteresourcepath) | **DELETE** /v2/endpoints/{device-id}/{resourcePath} | Delete a resource path
+*ResourcesApi* | [**ExecuteOrCreateResource**](docs/ResourcesApi.md#executeorcreateresource) | **POST** /v2/endpoints/{device-id}/{resourcePath} | Execute a function on a Resource or create new Object instance
+*ResourcesApi* | [**GetResourceValue**](docs/ResourcesApi.md#getresourcevalue) | **GET** /v2/endpoints/{device-id}/{resourcePath} | Read from a resource
+*ResourcesApi* | [**UpdateResourceValue**](docs/ResourcesApi.md#updateresourcevalue) | **PUT** /v2/endpoints/{device-id}/{resourcePath} | Write to a resource or use write-attributes for a resource
+*SubscriptionsApi* | [**AddResourceSubscription**](docs/SubscriptionsApi.md#addresourcesubscription) | **PUT** /v2/subscriptions/{device-id}/{resourcePath} | Subscribe to a resource path
+*SubscriptionsApi* | [**CheckResourceSubscription**](docs/SubscriptionsApi.md#checkresourcesubscription) | **GET** /v2/subscriptions/{device-id}/{resourcePath} | Read subscription status
+*SubscriptionsApi* | [**DeleteEndpointSubscriptions**](docs/SubscriptionsApi.md#deleteendpointsubscriptions) | **DELETE** /v2/subscriptions/{device-id} | Delete subscriptions from an endpoint
+*SubscriptionsApi* | [**DeletePreSubscriptions**](docs/SubscriptionsApi.md#deletepresubscriptions) | **DELETE** /v2/subscriptions | Remove pre-subscriptions
+*SubscriptionsApi* | [**DeleteResourceSubscription**](docs/SubscriptionsApi.md#deleteresourcesubscription) | **DELETE** /v2/subscriptions/{device-id}/{resourcePath} | Remove a subscription
+*SubscriptionsApi* | [**GetEndpointSubscriptions**](docs/SubscriptionsApi.md#getendpointsubscriptions) | **GET** /v2/subscriptions/{device-id} | Read endpoints subscriptions
+*SubscriptionsApi* | [**GetPreSubscriptions**](docs/SubscriptionsApi.md#getpresubscriptions) | **GET** /v2/subscriptions | Get pre-subscriptions
+*SubscriptionsApi* | [**UpdatePreSubscriptions**](docs/SubscriptionsApi.md#updatepresubscriptions) | **PUT** /v2/subscriptions | Set pre-subscriptions
 
 
 <a name="documentation-for-models"></a>

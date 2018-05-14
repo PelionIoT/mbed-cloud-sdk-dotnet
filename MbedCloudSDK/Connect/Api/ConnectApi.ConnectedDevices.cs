@@ -115,7 +115,7 @@ namespace MbedCloudSDK.Connect.Api
             string subscriptionsString;
             try
             {
-                subscriptionsString = SubscriptionsApi.V2SubscriptionsDeviceIdGet(deviceId);
+                subscriptionsString = SubscriptionsApi.GetEndpointSubscriptions(deviceId);
             }
             catch (mds.Client.ApiException e)
             {
@@ -156,7 +156,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                SubscriptionsApi.V2SubscriptionsDeviceIdDelete(deviceId);
+                SubscriptionsApi.DeleteEndpointSubscriptions(deviceId);
                 ResourceSubscribtions.Keys
                     .Where(k => k.Contains(deviceId))
                     .ToList()
@@ -195,7 +195,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                return EndpointsApi.V2EndpointsDeviceIdGet(deviceId)
+                return EndpointsApi.GetEndpointResources(deviceId)
                 .Select(r => Resource.Map(deviceId, r, this))
                 .ToList();
             }
@@ -383,7 +383,7 @@ namespace MbedCloudSDK.Connect.Api
             try
             {
                 var fixedPath = RemoveLeadingSlash(resourcePath);
-                var asyncID = await ResourcesApi.V2EndpointsDeviceIdResourcePathPostAsync(deviceId, fixedPath, functionName, noResponse);
+                var asyncID = await ResourcesApi.ExecuteOrCreateResourceAsync(deviceId, fixedPath, functionName, noResponse);
                 var collection = new AsyncProducerConsumerCollection<string>();
                 AsyncResponses.Add(asyncID.AsyncResponseId, collection);
                 return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
@@ -417,7 +417,7 @@ namespace MbedCloudSDK.Connect.Api
                 var fixedPath = AddLeadingSlash(resourcePath);
                 var asyncId = Guid.NewGuid().ToString();
                 var deviceRequest = new mds.Model.DeviceRequest(Method: "GET", Uri: fixedPath);
-                await DeviceRequestsApi.V2DeviceRequestsDeviceIdPostAsync(deviceId, asyncId, deviceRequest);
+                await DeviceRequestsApi.CreateAsyncRequestAsync(deviceId, asyncId, deviceRequest);
                 var collection = new AsyncProducerConsumerCollection<string>();
                 AsyncResponses.Add(asyncId, collection);
                 return new AsyncConsumer<string>(asyncId, collection);
@@ -451,7 +451,7 @@ namespace MbedCloudSDK.Connect.Api
             try
             {
                 var fixedPath = RemoveLeadingSlash(resourcePath);
-                var asyncID = await ResourcesApi.V2EndpointsDeviceIdResourcePathPutAsync(deviceId, fixedPath, resourceValue, noResponse);
+                var asyncID = await ResourcesApi.UpdateResourceValueAsync(deviceId, fixedPath, resourceValue, noResponse);
                 var collection = new AsyncProducerConsumerCollection<string>();
                 AsyncResponses.Add(asyncID.AsyncResponseId, collection);
                 return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);

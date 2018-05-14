@@ -26,45 +26,114 @@ namespace mds.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Subscribe to a resource path
+        /// </summary>
+        /// <remarks>
+        /// The Mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated solution-dependent logic. The OMA LwM2M resource model including objects, object instances, resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device to provide value change notifications to Mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get Mbed Cloud Connect to push notifications of the resource changes.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  All manual subscriptions are removed during a full device registration and applications need to re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription.  **Example usage:**      curl -X PUT \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns></returns>
+        void AddResourceSubscription (string deviceId, string resourcePath);
+
+        /// <summary>
+        /// Subscribe to a resource path
+        /// </summary>
+        /// <remarks>
+        /// The Mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated solution-dependent logic. The OMA LwM2M resource model including objects, object instances, resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device to provide value change notifications to Mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get Mbed Cloud Connect to push notifications of the resource changes.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  All manual subscriptions are removed during a full device registration and applications need to re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription.  **Example usage:**      curl -X PUT \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> AddResourceSubscriptionWithHttpInfo (string deviceId, string resourcePath);
+        /// <summary>
+        /// Read subscription status
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns></returns>
+        void CheckResourceSubscription (string deviceId, string resourcePath);
+
+        /// <summary>
+        /// Read subscription status
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> CheckResourceSubscriptionWithHttpInfo (string deviceId, string resourcePath);
+        /// <summary>
+        /// Delete subscriptions from an endpoint
+        /// </summary>
+        /// <remarks>
+        /// Deletes all resource subscriptions in a single endpoint.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <returns></returns>
+        void DeleteEndpointSubscriptions (string deviceId);
+
+        /// <summary>
+        /// Delete subscriptions from an endpoint
+        /// </summary>
+        /// <remarks>
+        /// Deletes all resource subscriptions in a single endpoint.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> DeleteEndpointSubscriptionsWithHttpInfo (string deviceId);
+        /// <summary>
         /// Remove pre-subscriptions
         /// </summary>
         /// <remarks>
-        /// Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
-        void V2SubscriptionsDelete ();
+        void DeletePreSubscriptions ();
 
         /// <summary>
         /// Remove pre-subscriptions
         /// </summary>
         /// <remarks>
-        /// Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V2SubscriptionsDeleteWithHttpInfo ();
+        ApiResponse<Object> DeletePreSubscriptionsWithHttpInfo ();
         /// <summary>
-        /// Delete subscriptions from an endpoint
+        /// Remove a subscription
         /// </summary>
         /// <remarks>
-        /// Deletes all resource subscriptions in a single endpoint.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39;        
+        /// To remove an existing subscription from a resource path.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns></returns>
-        void V2SubscriptionsDeviceIdDelete (string deviceId);
+        void DeleteResourceSubscription (string deviceId, string resourcePath);
 
         /// <summary>
-        /// Delete subscriptions from an endpoint
+        /// Remove a subscription
         /// </summary>
         /// <remarks>
-        /// Deletes all resource subscriptions in a single endpoint.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39;        
+        /// To remove an existing subscription from a resource path.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V2SubscriptionsDeviceIdDeleteWithHttpInfo (string deviceId);
+        ApiResponse<Object> DeleteResourceSubscriptionWithHttpInfo (string deviceId, string resourcePath);
         /// <summary>
         /// Read endpoints subscriptions
         /// </summary>
@@ -74,7 +143,7 @@ namespace mds.Api
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>string</returns>
-        string V2SubscriptionsDeviceIdGet (string deviceId);
+        string GetEndpointSubscriptions (string deviceId);
 
         /// <summary>
         /// Read endpoints subscriptions
@@ -85,158 +154,158 @@ namespace mds.Api
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>ApiResponse of string</returns>
-        ApiResponse<string> V2SubscriptionsDeviceIdGetWithHttpInfo (string deviceId);
-        /// <summary>
-        /// Remove a subscription
-        /// </summary>
-        /// <remarks>
-        /// To remove an existing subscription from a resource path.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39;        
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns></returns>
-        void V2SubscriptionsDeviceIdResourcePathDelete (string deviceId, string resourcePath);
-
-        /// <summary>
-        /// Remove a subscription
-        /// </summary>
-        /// <remarks>
-        /// To remove an existing subscription from a resource path.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39;        
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V2SubscriptionsDeviceIdResourcePathDeleteWithHttpInfo (string deviceId, string resourcePath);
-        /// <summary>
-        /// Read subscription status
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns></returns>
-        void V2SubscriptionsDeviceIdResourcePathGet (string deviceId, string resourcePath);
-
-        /// <summary>
-        /// Read subscription status
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V2SubscriptionsDeviceIdResourcePathGetWithHttpInfo (string deviceId, string resourcePath);
-        /// <summary>
-        /// Subscribe to a resource path
-        /// </summary>
-        /// <remarks>
-        /// The Mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LwM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to Mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get Mbed Cloud Connect to push notifications of the resource changes.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  All manual subscriptions are removed during a full device registration and applications need to  re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription.  **Example usage:**      curl -X PUT \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns></returns>
-        void V2SubscriptionsDeviceIdResourcePathPut (string deviceId, string resourcePath);
-
-        /// <summary>
-        /// Subscribe to a resource path
-        /// </summary>
-        /// <remarks>
-        /// The Mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LwM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to Mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get Mbed Cloud Connect to push notifications of the resource changes.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  All manual subscriptions are removed during a full device registration and applications need to  re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription.  **Example usage:**      curl -X PUT \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V2SubscriptionsDeviceIdResourcePathPutWithHttpInfo (string deviceId, string resourcePath);
+        ApiResponse<string> GetEndpointSubscriptionsWithHttpInfo (string deviceId);
         /// <summary>
         /// Get pre-subscriptions
         /// </summary>
         /// <remarks>
-        /// You can retrieve the pre-subscription data with the GET operation. The server returns with the same JSON structure  as described above. If there are no pre-subscribed resources, it returns with an empty array.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// You can retrieve the pre-subscription data with the GET operation. The server returns with the same JSON structure as described above. If there are no pre-subscribed resources, it returns with an empty array.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>PresubscriptionArray</returns>
-        PresubscriptionArray V2SubscriptionsGet ();
+        PresubscriptionArray GetPreSubscriptions ();
 
         /// <summary>
         /// Get pre-subscriptions
         /// </summary>
         /// <remarks>
-        /// You can retrieve the pre-subscription data with the GET operation. The server returns with the same JSON structure  as described above. If there are no pre-subscribed resources, it returns with an empty array.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// You can retrieve the pre-subscription data with the GET operation. The server returns with the same JSON structure as described above. If there are no pre-subscribed resources, it returns with an empty array.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of PresubscriptionArray</returns>
-        ApiResponse<PresubscriptionArray> V2SubscriptionsGetWithHttpInfo ();
+        ApiResponse<PresubscriptionArray> GetPreSubscriptionsWithHttpInfo ();
         /// <summary>
         /// Set pre-subscriptions
         /// </summary>
         /// <remarks>
-        /// Pre-subscription is a set of rules and patterns put by the application. When an endpoint registers  and its ID, type and registered resources match the pre-subscription data, Mbed Cloud Connect sends  subscription requests to the device automatically. The pattern may include the endpoint ID  (optionally having an &#x60;*&#x60; character at the end), endpoint type, a list of resources or expressions with an &#x60;*&#x60; character at the end. Subscriptions based on pre-subscriptions are done when device registers or does register update. To remove the pre-subscription data, put an empty array as a rule.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  **Limits**:  - The maximum length of the endpoint name and endpoint type is 64 characters. - The maximum length of the resource path is 128 characters. - You can listen to 256 separate resource paths. - The maximum number of pre-subscription entries is 1024.          **Example request:**  &#x60;&#x60;&#x60; curl -X PUT \\   https://api.us-east-1.mbedcloud.com/v2/subscriptions \\   -H &#39;authorization: Bearer {api-key}&#39; \\   -H &#39;content-type: application/json&#39; \\   -d &#39;[          {            \&quot;endpoint-name\&quot;: \&quot;node-001\&quot;,            \&quot;resource-path\&quot;: [\&quot;/dev\&quot;]          },          {            \&quot;endpoint-type\&quot;: \&quot;Light\&quot;,            \&quot;resource-path\&quot;: [\&quot;/sen/_*\&quot;]          },          {            \&quot;endpoint-name\&quot;: \&quot;node*\&quot;          },          {            \&quot;endpoint-type\&quot;: \&quot;Sensor\&quot;          },          {            \&quot;resource-path\&quot;: [\&quot;/dev/temp\&quot;,\&quot;/dev/hum\&quot;]          }       ]&#39; &#x60;&#x60;&#x60;  - Subscribe to &#x60;/dev&#x60; resource of endpoint named &#x60;node-001&#x60;. - Subscribe to &#x60;Light&#x60; type of endpoints and their resources prefixed with &#x60;/sen/&#x60;. - Subscribe to all observable resources of endpoint names prefixed with &#x60;node&#x60;. - Subscribe to all observable resources of &#x60;Sensor&#x60; type endpoints. - Subscribe to &#x60;/dev/temp&#x60; and &#x60;/dev/hum&#x60; resources of all endpoints.  **Note**: For efficiency reasons, you should use resource path patterns in the pre-subscription data. This prevents the notification flow from unwanted resources. 
+        /// Pre-subscription is a set of rules and patterns put by the application. When an endpoint registers and its ID, type and registered resources match the pre-subscription data, Mbed Cloud Connect sends subscription requests to the device automatically. The pattern may include the endpoint ID (optionally having an &#x60;*&#x60; character at the end), endpoint type, a list of resources or expressions with an &#x60;*&#x60; character at the end. Subscriptions based on pre-subscriptions are done when device registers or does register update. To remove the pre-subscription data, put an empty array as a rule.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  **Limits**:  - The maximum length of the endpoint name and endpoint type is 64 characters. - The maximum length of the resource path is 128 characters. - You can listen to 256 separate resource paths. - The maximum number of pre-subscription entries is 1024.  **Example request:**  &#x60;&#x60;&#x60; curl -X PUT \\   https://api.us-east-1.mbedcloud.com/v2/subscriptions \\   -H &#39;authorization: Bearer {api-key}&#39; \\   -H &#39;content-type: application/json&#39; \\   -d &#39;[          {            \&quot;endpoint-name\&quot;: \&quot;node-001\&quot;,            \&quot;resource-path\&quot;: [\&quot;/dev\&quot;]          },          {            \&quot;endpoint-type\&quot;: \&quot;Light\&quot;,            \&quot;resource-path\&quot;: [\&quot;/sen/_*\&quot;]          },          {            \&quot;endpoint-name\&quot;: \&quot;node*\&quot;          },          {            \&quot;endpoint-type\&quot;: \&quot;Sensor\&quot;          },          {            \&quot;resource-path\&quot;: [\&quot;/dev/temp\&quot;,\&quot;/dev/hum\&quot;]          }       ]&#39; &#x60;&#x60;&#x60;  - Subscribe to &#x60;/dev&#x60; resource of endpoint named &#x60;node-001&#x60;. - Subscribe to &#x60;Light&#x60; type of endpoints and their resources prefixed with &#x60;/sen/&#x60;. - Subscribe to all observable resources of endpoint names prefixed with &#x60;node&#x60;. - Subscribe to all observable resources of &#x60;Sensor&#x60; type endpoints. - Subscribe to &#x60;/dev/temp&#x60; and &#x60;/dev/hum&#x60; resources of all endpoints.  **Note**: For efficiency reasons, you should use resource path patterns in the pre-subscription data. This prevents the notification flow from unwanted resources. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="presubsription">Array of pre-subscriptions.</param>
         /// <returns></returns>
-        void V2SubscriptionsPut (PresubscriptionArray presubsription);
+        void UpdatePreSubscriptions (PresubscriptionArray presubsription);
 
         /// <summary>
         /// Set pre-subscriptions
         /// </summary>
         /// <remarks>
-        /// Pre-subscription is a set of rules and patterns put by the application. When an endpoint registers  and its ID, type and registered resources match the pre-subscription data, Mbed Cloud Connect sends  subscription requests to the device automatically. The pattern may include the endpoint ID  (optionally having an &#x60;*&#x60; character at the end), endpoint type, a list of resources or expressions with an &#x60;*&#x60; character at the end. Subscriptions based on pre-subscriptions are done when device registers or does register update. To remove the pre-subscription data, put an empty array as a rule.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  **Limits**:  - The maximum length of the endpoint name and endpoint type is 64 characters. - The maximum length of the resource path is 128 characters. - You can listen to 256 separate resource paths. - The maximum number of pre-subscription entries is 1024.          **Example request:**  &#x60;&#x60;&#x60; curl -X PUT \\   https://api.us-east-1.mbedcloud.com/v2/subscriptions \\   -H &#39;authorization: Bearer {api-key}&#39; \\   -H &#39;content-type: application/json&#39; \\   -d &#39;[          {            \&quot;endpoint-name\&quot;: \&quot;node-001\&quot;,            \&quot;resource-path\&quot;: [\&quot;/dev\&quot;]          },          {            \&quot;endpoint-type\&quot;: \&quot;Light\&quot;,            \&quot;resource-path\&quot;: [\&quot;/sen/_*\&quot;]          },          {            \&quot;endpoint-name\&quot;: \&quot;node*\&quot;          },          {            \&quot;endpoint-type\&quot;: \&quot;Sensor\&quot;          },          {            \&quot;resource-path\&quot;: [\&quot;/dev/temp\&quot;,\&quot;/dev/hum\&quot;]          }       ]&#39; &#x60;&#x60;&#x60;  - Subscribe to &#x60;/dev&#x60; resource of endpoint named &#x60;node-001&#x60;. - Subscribe to &#x60;Light&#x60; type of endpoints and their resources prefixed with &#x60;/sen/&#x60;. - Subscribe to all observable resources of endpoint names prefixed with &#x60;node&#x60;. - Subscribe to all observable resources of &#x60;Sensor&#x60; type endpoints. - Subscribe to &#x60;/dev/temp&#x60; and &#x60;/dev/hum&#x60; resources of all endpoints.  **Note**: For efficiency reasons, you should use resource path patterns in the pre-subscription data. This prevents the notification flow from unwanted resources. 
+        /// Pre-subscription is a set of rules and patterns put by the application. When an endpoint registers and its ID, type and registered resources match the pre-subscription data, Mbed Cloud Connect sends subscription requests to the device automatically. The pattern may include the endpoint ID (optionally having an &#x60;*&#x60; character at the end), endpoint type, a list of resources or expressions with an &#x60;*&#x60; character at the end. Subscriptions based on pre-subscriptions are done when device registers or does register update. To remove the pre-subscription data, put an empty array as a rule.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  **Limits**:  - The maximum length of the endpoint name and endpoint type is 64 characters. - The maximum length of the resource path is 128 characters. - You can listen to 256 separate resource paths. - The maximum number of pre-subscription entries is 1024.  **Example request:**  &#x60;&#x60;&#x60; curl -X PUT \\   https://api.us-east-1.mbedcloud.com/v2/subscriptions \\   -H &#39;authorization: Bearer {api-key}&#39; \\   -H &#39;content-type: application/json&#39; \\   -d &#39;[          {            \&quot;endpoint-name\&quot;: \&quot;node-001\&quot;,            \&quot;resource-path\&quot;: [\&quot;/dev\&quot;]          },          {            \&quot;endpoint-type\&quot;: \&quot;Light\&quot;,            \&quot;resource-path\&quot;: [\&quot;/sen/_*\&quot;]          },          {            \&quot;endpoint-name\&quot;: \&quot;node*\&quot;          },          {            \&quot;endpoint-type\&quot;: \&quot;Sensor\&quot;          },          {            \&quot;resource-path\&quot;: [\&quot;/dev/temp\&quot;,\&quot;/dev/hum\&quot;]          }       ]&#39; &#x60;&#x60;&#x60;  - Subscribe to &#x60;/dev&#x60; resource of endpoint named &#x60;node-001&#x60;. - Subscribe to &#x60;Light&#x60; type of endpoints and their resources prefixed with &#x60;/sen/&#x60;. - Subscribe to all observable resources of endpoint names prefixed with &#x60;node&#x60;. - Subscribe to all observable resources of &#x60;Sensor&#x60; type endpoints. - Subscribe to &#x60;/dev/temp&#x60; and &#x60;/dev/hum&#x60; resources of all endpoints.  **Note**: For efficiency reasons, you should use resource path patterns in the pre-subscription data. This prevents the notification flow from unwanted resources. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="presubsription">Array of pre-subscriptions.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V2SubscriptionsPutWithHttpInfo (PresubscriptionArray presubsription);
+        ApiResponse<Object> UpdatePreSubscriptionsWithHttpInfo (PresubscriptionArray presubsription);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
+        /// Subscribe to a resource path
+        /// </summary>
+        /// <remarks>
+        /// The Mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated solution-dependent logic. The OMA LwM2M resource model including objects, object instances, resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device to provide value change notifications to Mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get Mbed Cloud Connect to push notifications of the resource changes.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  All manual subscriptions are removed during a full device registration and applications need to re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription.  **Example usage:**      curl -X PUT \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task AddResourceSubscriptionAsync (string deviceId, string resourcePath);
+
+        /// <summary>
+        /// Subscribe to a resource path
+        /// </summary>
+        /// <remarks>
+        /// The Mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated solution-dependent logic. The OMA LwM2M resource model including objects, object instances, resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device to provide value change notifications to Mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get Mbed Cloud Connect to push notifications of the resource changes.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  All manual subscriptions are removed during a full device registration and applications need to re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription.  **Example usage:**      curl -X PUT \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> AddResourceSubscriptionAsyncWithHttpInfo (string deviceId, string resourcePath);
+        /// <summary>
+        /// Read subscription status
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task CheckResourceSubscriptionAsync (string deviceId, string resourcePath);
+
+        /// <summary>
+        /// Read subscription status
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> CheckResourceSubscriptionAsyncWithHttpInfo (string deviceId, string resourcePath);
+        /// <summary>
+        /// Delete subscriptions from an endpoint
+        /// </summary>
+        /// <remarks>
+        /// Deletes all resource subscriptions in a single endpoint.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task DeleteEndpointSubscriptionsAsync (string deviceId);
+
+        /// <summary>
+        /// Delete subscriptions from an endpoint
+        /// </summary>
+        /// <remarks>
+        /// Deletes all resource subscriptions in a single endpoint.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteEndpointSubscriptionsAsyncWithHttpInfo (string deviceId);
+        /// <summary>
         /// Remove pre-subscriptions
         /// </summary>
         /// <remarks>
-        /// Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V2SubscriptionsDeleteAsync ();
+        System.Threading.Tasks.Task DeletePreSubscriptionsAsync ();
 
         /// <summary>
         /// Remove pre-subscriptions
         /// </summary>
         /// <remarks>
-        /// Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeleteAsyncWithHttpInfo ();
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeletePreSubscriptionsAsyncWithHttpInfo ();
         /// <summary>
-        /// Delete subscriptions from an endpoint
+        /// Remove a subscription
         /// </summary>
         /// <remarks>
-        /// Deletes all resource subscriptions in a single endpoint.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39;        
+        /// To remove an existing subscription from a resource path.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V2SubscriptionsDeviceIdDeleteAsync (string deviceId);
+        System.Threading.Tasks.Task DeleteResourceSubscriptionAsync (string deviceId, string resourcePath);
 
         /// <summary>
-        /// Delete subscriptions from an endpoint
+        /// Remove a subscription
         /// </summary>
         /// <remarks>
-        /// Deletes all resource subscriptions in a single endpoint.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39;        
+        /// To remove an existing subscription from a resource path.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeviceIdDeleteAsyncWithHttpInfo (string deviceId);
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteResourceSubscriptionAsyncWithHttpInfo (string deviceId, string resourcePath);
         /// <summary>
         /// Read endpoints subscriptions
         /// </summary>
@@ -246,7 +315,7 @@ namespace mds.Api
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of string</returns>
-        System.Threading.Tasks.Task<string> V2SubscriptionsDeviceIdGetAsync (string deviceId);
+        System.Threading.Tasks.Task<string> GetEndpointSubscriptionsAsync (string deviceId);
 
         /// <summary>
         /// Read endpoints subscriptions
@@ -257,116 +326,47 @@ namespace mds.Api
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of ApiResponse (string)</returns>
-        System.Threading.Tasks.Task<ApiResponse<string>> V2SubscriptionsDeviceIdGetAsyncWithHttpInfo (string deviceId);
-        /// <summary>
-        /// Remove a subscription
-        /// </summary>
-        /// <remarks>
-        /// To remove an existing subscription from a resource path.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39;        
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V2SubscriptionsDeviceIdResourcePathDeleteAsync (string deviceId, string resourcePath);
-
-        /// <summary>
-        /// Remove a subscription
-        /// </summary>
-        /// <remarks>
-        /// To remove an existing subscription from a resource path.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39;        
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeviceIdResourcePathDeleteAsyncWithHttpInfo (string deviceId, string resourcePath);
-        /// <summary>
-        /// Read subscription status
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V2SubscriptionsDeviceIdResourcePathGetAsync (string deviceId, string resourcePath);
-
-        /// <summary>
-        /// Read subscription status
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeviceIdResourcePathGetAsyncWithHttpInfo (string deviceId, string resourcePath);
-        /// <summary>
-        /// Subscribe to a resource path
-        /// </summary>
-        /// <remarks>
-        /// The Mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LwM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to Mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get Mbed Cloud Connect to push notifications of the resource changes.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  All manual subscriptions are removed during a full device registration and applications need to  re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription.  **Example usage:**      curl -X PUT \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V2SubscriptionsDeviceIdResourcePathPutAsync (string deviceId, string resourcePath);
-
-        /// <summary>
-        /// Subscribe to a resource path
-        /// </summary>
-        /// <remarks>
-        /// The Mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LwM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to Mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get Mbed Cloud Connect to push notifications of the resource changes.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  All manual subscriptions are removed during a full device registration and applications need to  re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription.  **Example usage:**      curl -X PUT \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
-        /// </remarks>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeviceIdResourcePathPutAsyncWithHttpInfo (string deviceId, string resourcePath);
+        System.Threading.Tasks.Task<ApiResponse<string>> GetEndpointSubscriptionsAsyncWithHttpInfo (string deviceId);
         /// <summary>
         /// Get pre-subscriptions
         /// </summary>
         /// <remarks>
-        /// You can retrieve the pre-subscription data with the GET operation. The server returns with the same JSON structure  as described above. If there are no pre-subscribed resources, it returns with an empty array.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// You can retrieve the pre-subscription data with the GET operation. The server returns with the same JSON structure as described above. If there are no pre-subscribed resources, it returns with an empty array.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of PresubscriptionArray</returns>
-        System.Threading.Tasks.Task<PresubscriptionArray> V2SubscriptionsGetAsync ();
+        System.Threading.Tasks.Task<PresubscriptionArray> GetPreSubscriptionsAsync ();
 
         /// <summary>
         /// Get pre-subscriptions
         /// </summary>
         /// <remarks>
-        /// You can retrieve the pre-subscription data with the GET operation. The server returns with the same JSON structure  as described above. If there are no pre-subscribed resources, it returns with an empty array.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// You can retrieve the pre-subscription data with the GET operation. The server returns with the same JSON structure as described above. If there are no pre-subscribed resources, it returns with an empty array.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse (PresubscriptionArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PresubscriptionArray>> V2SubscriptionsGetAsyncWithHttpInfo ();
+        System.Threading.Tasks.Task<ApiResponse<PresubscriptionArray>> GetPreSubscriptionsAsyncWithHttpInfo ();
         /// <summary>
         /// Set pre-subscriptions
         /// </summary>
         /// <remarks>
-        /// Pre-subscription is a set of rules and patterns put by the application. When an endpoint registers  and its ID, type and registered resources match the pre-subscription data, Mbed Cloud Connect sends  subscription requests to the device automatically. The pattern may include the endpoint ID  (optionally having an &#x60;*&#x60; character at the end), endpoint type, a list of resources or expressions with an &#x60;*&#x60; character at the end. Subscriptions based on pre-subscriptions are done when device registers or does register update. To remove the pre-subscription data, put an empty array as a rule.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  **Limits**:  - The maximum length of the endpoint name and endpoint type is 64 characters. - The maximum length of the resource path is 128 characters. - You can listen to 256 separate resource paths. - The maximum number of pre-subscription entries is 1024.          **Example request:**  &#x60;&#x60;&#x60; curl -X PUT \\   https://api.us-east-1.mbedcloud.com/v2/subscriptions \\   -H &#39;authorization: Bearer {api-key}&#39; \\   -H &#39;content-type: application/json&#39; \\   -d &#39;[          {            \&quot;endpoint-name\&quot;: \&quot;node-001\&quot;,            \&quot;resource-path\&quot;: [\&quot;/dev\&quot;]          },          {            \&quot;endpoint-type\&quot;: \&quot;Light\&quot;,            \&quot;resource-path\&quot;: [\&quot;/sen/_*\&quot;]          },          {            \&quot;endpoint-name\&quot;: \&quot;node*\&quot;          },          {            \&quot;endpoint-type\&quot;: \&quot;Sensor\&quot;          },          {            \&quot;resource-path\&quot;: [\&quot;/dev/temp\&quot;,\&quot;/dev/hum\&quot;]          }       ]&#39; &#x60;&#x60;&#x60;  - Subscribe to &#x60;/dev&#x60; resource of endpoint named &#x60;node-001&#x60;. - Subscribe to &#x60;Light&#x60; type of endpoints and their resources prefixed with &#x60;/sen/&#x60;. - Subscribe to all observable resources of endpoint names prefixed with &#x60;node&#x60;. - Subscribe to all observable resources of &#x60;Sensor&#x60; type endpoints. - Subscribe to &#x60;/dev/temp&#x60; and &#x60;/dev/hum&#x60; resources of all endpoints.  **Note**: For efficiency reasons, you should use resource path patterns in the pre-subscription data. This prevents the notification flow from unwanted resources. 
+        /// Pre-subscription is a set of rules and patterns put by the application. When an endpoint registers and its ID, type and registered resources match the pre-subscription data, Mbed Cloud Connect sends subscription requests to the device automatically. The pattern may include the endpoint ID (optionally having an &#x60;*&#x60; character at the end), endpoint type, a list of resources or expressions with an &#x60;*&#x60; character at the end. Subscriptions based on pre-subscriptions are done when device registers or does register update. To remove the pre-subscription data, put an empty array as a rule.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  **Limits**:  - The maximum length of the endpoint name and endpoint type is 64 characters. - The maximum length of the resource path is 128 characters. - You can listen to 256 separate resource paths. - The maximum number of pre-subscription entries is 1024.  **Example request:**  &#x60;&#x60;&#x60; curl -X PUT \\   https://api.us-east-1.mbedcloud.com/v2/subscriptions \\   -H &#39;authorization: Bearer {api-key}&#39; \\   -H &#39;content-type: application/json&#39; \\   -d &#39;[          {            \&quot;endpoint-name\&quot;: \&quot;node-001\&quot;,            \&quot;resource-path\&quot;: [\&quot;/dev\&quot;]          },          {            \&quot;endpoint-type\&quot;: \&quot;Light\&quot;,            \&quot;resource-path\&quot;: [\&quot;/sen/_*\&quot;]          },          {            \&quot;endpoint-name\&quot;: \&quot;node*\&quot;          },          {            \&quot;endpoint-type\&quot;: \&quot;Sensor\&quot;          },          {            \&quot;resource-path\&quot;: [\&quot;/dev/temp\&quot;,\&quot;/dev/hum\&quot;]          }       ]&#39; &#x60;&#x60;&#x60;  - Subscribe to &#x60;/dev&#x60; resource of endpoint named &#x60;node-001&#x60;. - Subscribe to &#x60;Light&#x60; type of endpoints and their resources prefixed with &#x60;/sen/&#x60;. - Subscribe to all observable resources of endpoint names prefixed with &#x60;node&#x60;. - Subscribe to all observable resources of &#x60;Sensor&#x60; type endpoints. - Subscribe to &#x60;/dev/temp&#x60; and &#x60;/dev/hum&#x60; resources of all endpoints.  **Note**: For efficiency reasons, you should use resource path patterns in the pre-subscription data. This prevents the notification flow from unwanted resources. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="presubsription">Array of pre-subscriptions.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V2SubscriptionsPutAsync (PresubscriptionArray presubsription);
+        System.Threading.Tasks.Task UpdatePreSubscriptionsAsync (PresubscriptionArray presubsription);
 
         /// <summary>
         /// Set pre-subscriptions
         /// </summary>
         /// <remarks>
-        /// Pre-subscription is a set of rules and patterns put by the application. When an endpoint registers  and its ID, type and registered resources match the pre-subscription data, Mbed Cloud Connect sends  subscription requests to the device automatically. The pattern may include the endpoint ID  (optionally having an &#x60;*&#x60; character at the end), endpoint type, a list of resources or expressions with an &#x60;*&#x60; character at the end. Subscriptions based on pre-subscriptions are done when device registers or does register update. To remove the pre-subscription data, put an empty array as a rule.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  **Limits**:  - The maximum length of the endpoint name and endpoint type is 64 characters. - The maximum length of the resource path is 128 characters. - You can listen to 256 separate resource paths. - The maximum number of pre-subscription entries is 1024.          **Example request:**  &#x60;&#x60;&#x60; curl -X PUT \\   https://api.us-east-1.mbedcloud.com/v2/subscriptions \\   -H &#39;authorization: Bearer {api-key}&#39; \\   -H &#39;content-type: application/json&#39; \\   -d &#39;[          {            \&quot;endpoint-name\&quot;: \&quot;node-001\&quot;,            \&quot;resource-path\&quot;: [\&quot;/dev\&quot;]          },          {            \&quot;endpoint-type\&quot;: \&quot;Light\&quot;,            \&quot;resource-path\&quot;: [\&quot;/sen/_*\&quot;]          },          {            \&quot;endpoint-name\&quot;: \&quot;node*\&quot;          },          {            \&quot;endpoint-type\&quot;: \&quot;Sensor\&quot;          },          {            \&quot;resource-path\&quot;: [\&quot;/dev/temp\&quot;,\&quot;/dev/hum\&quot;]          }       ]&#39; &#x60;&#x60;&#x60;  - Subscribe to &#x60;/dev&#x60; resource of endpoint named &#x60;node-001&#x60;. - Subscribe to &#x60;Light&#x60; type of endpoints and their resources prefixed with &#x60;/sen/&#x60;. - Subscribe to all observable resources of endpoint names prefixed with &#x60;node&#x60;. - Subscribe to all observable resources of &#x60;Sensor&#x60; type endpoints. - Subscribe to &#x60;/dev/temp&#x60; and &#x60;/dev/hum&#x60; resources of all endpoints.  **Note**: For efficiency reasons, you should use resource path patterns in the pre-subscription data. This prevents the notification flow from unwanted resources. 
+        /// Pre-subscription is a set of rules and patterns put by the application. When an endpoint registers and its ID, type and registered resources match the pre-subscription data, Mbed Cloud Connect sends subscription requests to the device automatically. The pattern may include the endpoint ID (optionally having an &#x60;*&#x60; character at the end), endpoint type, a list of resources or expressions with an &#x60;*&#x60; character at the end. Subscriptions based on pre-subscriptions are done when device registers or does register update. To remove the pre-subscription data, put an empty array as a rule.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  **Limits**:  - The maximum length of the endpoint name and endpoint type is 64 characters. - The maximum length of the resource path is 128 characters. - You can listen to 256 separate resource paths. - The maximum number of pre-subscription entries is 1024.  **Example request:**  &#x60;&#x60;&#x60; curl -X PUT \\   https://api.us-east-1.mbedcloud.com/v2/subscriptions \\   -H &#39;authorization: Bearer {api-key}&#39; \\   -H &#39;content-type: application/json&#39; \\   -d &#39;[          {            \&quot;endpoint-name\&quot;: \&quot;node-001\&quot;,            \&quot;resource-path\&quot;: [\&quot;/dev\&quot;]          },          {            \&quot;endpoint-type\&quot;: \&quot;Light\&quot;,            \&quot;resource-path\&quot;: [\&quot;/sen/_*\&quot;]          },          {            \&quot;endpoint-name\&quot;: \&quot;node*\&quot;          },          {            \&quot;endpoint-type\&quot;: \&quot;Sensor\&quot;          },          {            \&quot;resource-path\&quot;: [\&quot;/dev/temp\&quot;,\&quot;/dev/hum\&quot;]          }       ]&#39; &#x60;&#x60;&#x60;  - Subscribe to &#x60;/dev&#x60; resource of endpoint named &#x60;node-001&#x60;. - Subscribe to &#x60;Light&#x60; type of endpoints and their resources prefixed with &#x60;/sen/&#x60;. - Subscribe to all observable resources of endpoint names prefixed with &#x60;node&#x60;. - Subscribe to all observable resources of &#x60;Sensor&#x60; type endpoints. - Subscribe to &#x60;/dev/temp&#x60; and &#x60;/dev/hum&#x60; resources of all endpoints.  **Note**: For efficiency reasons, you should use resource path patterns in the pre-subscription data. This prevents the notification flow from unwanted resources. 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="presubsription">Array of pre-subscriptions.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsPutAsyncWithHttpInfo (PresubscriptionArray presubsription);
+        System.Threading.Tasks.Task<ApiResponse<Object>> UpdatePreSubscriptionsAsyncWithHttpInfo (PresubscriptionArray presubsription);
         #endregion Asynchronous Operations
     }
 
@@ -468,24 +468,34 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Remove pre-subscriptions Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// Subscribe to a resource path The Mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated solution-dependent logic. The OMA LwM2M resource model including objects, object instances, resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device to provide value change notifications to Mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get Mbed Cloud Connect to push notifications of the resource changes.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  All manual subscriptions are removed during a full device registration and applications need to re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription.  **Example usage:**      curl -X PUT \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns></returns>
-        public void V2SubscriptionsDelete ()
+        public void AddResourceSubscription (string deviceId, string resourcePath)
         {
-             V2SubscriptionsDeleteWithHttpInfo();
+             AddResourceSubscriptionWithHttpInfo(deviceId, resourcePath);
         }
 
         /// <summary>
-        /// Remove pre-subscriptions Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// Subscribe to a resource path The Mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated solution-dependent logic. The OMA LwM2M resource model including objects, object instances, resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device to provide value change notifications to Mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get Mbed Cloud Connect to push notifications of the resource changes.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  All manual subscriptions are removed during a full device registration and applications need to re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription.  **Example usage:**      curl -X PUT \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V2SubscriptionsDeleteWithHttpInfo ()
+        public ApiResponse<Object> AddResourceSubscriptionWithHttpInfo (string deviceId, string resourcePath)
         {
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->AddResourceSubscription");
+            // verify the required parameter 'resourcePath' is set
+            if (resourcePath == null)
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->AddResourceSubscription");
 
-            var localVarPath = "/v2/subscriptions";
+            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -500,11 +510,14 @@ namespace mds.Api
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
             };
             String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -514,14 +527,14 @@ namespace mds.Api
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2SubscriptionsDelete", localVarResponse);
+                Exception exception = ExceptionFactory("AddResourceSubscription", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -531,25 +544,111 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Remove pre-subscriptions Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// Subscribe to a resource path The Mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated solution-dependent logic. The OMA LwM2M resource model including objects, object instances, resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device to provide value change notifications to Mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get Mbed Cloud Connect to push notifications of the resource changes.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  All manual subscriptions are removed during a full device registration and applications need to re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription.  **Example usage:**      curl -X PUT \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V2SubscriptionsDeleteAsync ()
+        public async System.Threading.Tasks.Task AddResourceSubscriptionAsync (string deviceId, string resourcePath)
         {
-             await V2SubscriptionsDeleteAsyncWithHttpInfo();
+             await AddResourceSubscriptionAsyncWithHttpInfo(deviceId, resourcePath);
 
         }
 
         /// <summary>
-        /// Remove pre-subscriptions Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// Subscribe to a resource path The Mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated solution-dependent logic. The OMA LwM2M resource model including objects, object instances, resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device to provide value change notifications to Mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get Mbed Cloud Connect to push notifications of the resource changes.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  All manual subscriptions are removed during a full device registration and applications need to re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription.  **Example usage:**      curl -X PUT \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeleteAsyncWithHttpInfo ()
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> AddResourceSubscriptionAsyncWithHttpInfo (string deviceId, string resourcePath)
         {
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->AddResourceSubscription");
+            // verify the required parameter 'resourcePath' is set
+            if (resourcePath == null)
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->AddResourceSubscription");
 
-            var localVarPath = "/v2/subscriptions";
+            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("AddResourceSubscription", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Read subscription status 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns></returns>
+        public void CheckResourceSubscription (string deviceId, string resourcePath)
+        {
+             CheckResourceSubscriptionWithHttpInfo(deviceId, resourcePath);
+        }
+
+        /// <summary>
+        /// Read subscription status 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> CheckResourceSubscriptionWithHttpInfo (string deviceId, string resourcePath)
+        {
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->CheckResourceSubscription");
+            // verify the required parameter 'resourcePath' is set
+            if (resourcePath == null)
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->CheckResourceSubscription");
+
+            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -569,6 +668,8 @@ namespace mds.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -577,15 +678,15 @@ namespace mds.Api
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2SubscriptionsDelete", localVarResponse);
+                Exception exception = ExceptionFactory("CheckResourceSubscription", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -595,27 +696,103 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Delete subscriptions from an endpoint Deletes all resource subscriptions in a single endpoint.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39;        
+        /// Read subscription status 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task CheckResourceSubscriptionAsync (string deviceId, string resourcePath)
+        {
+             await CheckResourceSubscriptionAsyncWithHttpInfo(deviceId, resourcePath);
+
+        }
+
+        /// <summary>
+        /// Read subscription status 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> CheckResourceSubscriptionAsyncWithHttpInfo (string deviceId, string resourcePath)
+        {
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->CheckResourceSubscription");
+            // verify the required parameter 'resourcePath' is set
+            if (resourcePath == null)
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->CheckResourceSubscription");
+
+            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CheckResourceSubscription", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Delete subscriptions from an endpoint Deletes all resource subscriptions in a single endpoint.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns></returns>
-        public void V2SubscriptionsDeviceIdDelete (string deviceId)
+        public void DeleteEndpointSubscriptions (string deviceId)
         {
-             V2SubscriptionsDeviceIdDeleteWithHttpInfo(deviceId);
+             DeleteEndpointSubscriptionsWithHttpInfo(deviceId);
         }
 
         /// <summary>
-        /// Delete subscriptions from an endpoint Deletes all resource subscriptions in a single endpoint.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39;        
+        /// Delete subscriptions from an endpoint Deletes all resource subscriptions in a single endpoint.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V2SubscriptionsDeviceIdDeleteWithHttpInfo (string deviceId)
+        public ApiResponse<Object> DeleteEndpointSubscriptionsWithHttpInfo (string deviceId)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdDelete");
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->DeleteEndpointSubscriptions");
 
             var localVarPath = "/v2/subscriptions/{device-id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -654,7 +831,7 @@ namespace mds.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2SubscriptionsDeviceIdDelete", localVarResponse);
+                Exception exception = ExceptionFactory("DeleteEndpointSubscriptions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -664,28 +841,28 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Delete subscriptions from an endpoint Deletes all resource subscriptions in a single endpoint.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39;        
+        /// Delete subscriptions from an endpoint Deletes all resource subscriptions in a single endpoint.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V2SubscriptionsDeviceIdDeleteAsync (string deviceId)
+        public async System.Threading.Tasks.Task DeleteEndpointSubscriptionsAsync (string deviceId)
         {
-             await V2SubscriptionsDeviceIdDeleteAsyncWithHttpInfo(deviceId);
+             await DeleteEndpointSubscriptionsAsyncWithHttpInfo(deviceId);
 
         }
 
         /// <summary>
-        /// Delete subscriptions from an endpoint Deletes all resource subscriptions in a single endpoint.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39;        
+        /// Delete subscriptions from an endpoint Deletes all resource subscriptions in a single endpoint.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id} \\       -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeviceIdDeleteAsyncWithHttpInfo (string deviceId)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteEndpointSubscriptionsAsyncWithHttpInfo (string deviceId)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdDelete");
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->DeleteEndpointSubscriptions");
 
             var localVarPath = "/v2/subscriptions/{device-id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -724,7 +901,285 @@ namespace mds.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2SubscriptionsDeviceIdDelete", localVarResponse);
+                Exception exception = ExceptionFactory("DeleteEndpointSubscriptions", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Remove pre-subscriptions Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        public void DeletePreSubscriptions ()
+        {
+             DeletePreSubscriptionsWithHttpInfo();
+        }
+
+        /// <summary>
+        /// Remove pre-subscriptions Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> DeletePreSubscriptionsWithHttpInfo ()
+        {
+
+            var localVarPath = "/v2/subscriptions";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeletePreSubscriptions", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Remove pre-subscriptions Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task DeletePreSubscriptionsAsync ()
+        {
+             await DeletePreSubscriptionsAsyncWithHttpInfo();
+
+        }
+
+        /// <summary>
+        /// Remove pre-subscriptions Removes pre-subscriptions.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeletePreSubscriptionsAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/v2/subscriptions";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeletePreSubscriptions", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Remove a subscription To remove an existing subscription from a resource path.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns></returns>
+        public void DeleteResourceSubscription (string deviceId, string resourcePath)
+        {
+             DeleteResourceSubscriptionWithHttpInfo(deviceId, resourcePath);
+        }
+
+        /// <summary>
+        /// Remove a subscription To remove an existing subscription from a resource path.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> DeleteResourceSubscriptionWithHttpInfo (string deviceId, string resourcePath)
+        {
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->DeleteResourceSubscription");
+            // verify the required parameter 'resourcePath' is set
+            if (resourcePath == null)
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->DeleteResourceSubscription");
+
+            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteResourceSubscription", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Remove a subscription To remove an existing subscription from a resource path.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task DeleteResourceSubscriptionAsync (string deviceId, string resourcePath)
+        {
+             await DeleteResourceSubscriptionAsyncWithHttpInfo(deviceId, resourcePath);
+
+        }
+
+        /// <summary>
+        /// Remove a subscription To remove an existing subscription from a resource path.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
+        /// <param name="resourcePath">The URL of the resource. </param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteResourceSubscriptionAsyncWithHttpInfo (string deviceId, string resourcePath)
+        {
+            // verify the required parameter 'deviceId' is set
+            if (deviceId == null)
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->DeleteResourceSubscription");
+            // verify the required parameter 'resourcePath' is set
+            if (resourcePath == null)
+                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->DeleteResourceSubscription");
+
+            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
+            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteResourceSubscription", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -739,9 +1194,9 @@ namespace mds.Api
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>string</returns>
-        public string V2SubscriptionsDeviceIdGet (string deviceId)
+        public string GetEndpointSubscriptions (string deviceId)
         {
-             ApiResponse<string> localVarResponse = V2SubscriptionsDeviceIdGetWithHttpInfo(deviceId);
+             ApiResponse<string> localVarResponse = GetEndpointSubscriptionsWithHttpInfo(deviceId);
              return localVarResponse.Data;
         }
 
@@ -751,11 +1206,11 @@ namespace mds.Api
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>ApiResponse of string</returns>
-        public ApiResponse< string > V2SubscriptionsDeviceIdGetWithHttpInfo (string deviceId)
+        public ApiResponse< string > GetEndpointSubscriptionsWithHttpInfo (string deviceId)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdGet");
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->GetEndpointSubscriptions");
 
             var localVarPath = "/v2/subscriptions/{device-id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -795,7 +1250,7 @@ namespace mds.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2SubscriptionsDeviceIdGet", localVarResponse);
+                Exception exception = ExceptionFactory("GetEndpointSubscriptions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -810,9 +1265,9 @@ namespace mds.Api
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of string</returns>
-        public async System.Threading.Tasks.Task<string> V2SubscriptionsDeviceIdGetAsync (string deviceId)
+        public async System.Threading.Tasks.Task<string> GetEndpointSubscriptionsAsync (string deviceId)
         {
-             ApiResponse<string> localVarResponse = await V2SubscriptionsDeviceIdGetAsyncWithHttpInfo(deviceId);
+             ApiResponse<string> localVarResponse = await GetEndpointSubscriptionsAsyncWithHttpInfo(deviceId);
              return localVarResponse.Data;
 
         }
@@ -823,11 +1278,11 @@ namespace mds.Api
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that ID must be an exact match. You cannot use wildcards here. </param>
         /// <returns>Task of ApiResponse (string)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<string>> V2SubscriptionsDeviceIdGetAsyncWithHttpInfo (string deviceId)
+        public async System.Threading.Tasks.Task<ApiResponse<string>> GetEndpointSubscriptionsAsyncWithHttpInfo (string deviceId)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdGet");
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->GetEndpointSubscriptions");
 
             var localVarPath = "/v2/subscriptions/{device-id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -867,7 +1322,7 @@ namespace mds.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2SubscriptionsDeviceIdGet", localVarResponse);
+                Exception exception = ExceptionFactory("GetEndpointSubscriptions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -877,477 +1332,22 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Remove a subscription To remove an existing subscription from a resource path.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39;        
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns></returns>
-        public void V2SubscriptionsDeviceIdResourcePathDelete (string deviceId, string resourcePath)
-        {
-             V2SubscriptionsDeviceIdResourcePathDeleteWithHttpInfo(deviceId, resourcePath);
-        }
-
-        /// <summary>
-        /// Remove a subscription To remove an existing subscription from a resource path.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39;        
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V2SubscriptionsDeviceIdResourcePathDeleteWithHttpInfo (string deviceId, string resourcePath)
-        {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathDelete");
-            // verify the required parameter 'resourcePath' is set
-            if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathDelete");
-
-            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
-            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2SubscriptionsDeviceIdResourcePathDelete", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        /// Remove a subscription To remove an existing subscription from a resource path.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39;        
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V2SubscriptionsDeviceIdResourcePathDeleteAsync (string deviceId, string resourcePath)
-        {
-             await V2SubscriptionsDeviceIdResourcePathDeleteAsyncWithHttpInfo(deviceId, resourcePath);
-
-        }
-
-        /// <summary>
-        /// Remove a subscription To remove an existing subscription from a resource path.  **Example usage:**      curl -X DELETE \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39;        
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeviceIdResourcePathDeleteAsyncWithHttpInfo (string deviceId, string resourcePath)
-        {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathDelete");
-            // verify the required parameter 'resourcePath' is set
-            if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathDelete");
-
-            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
-            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2SubscriptionsDeviceIdResourcePathDelete", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        /// Read subscription status 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns></returns>
-        public void V2SubscriptionsDeviceIdResourcePathGet (string deviceId, string resourcePath)
-        {
-             V2SubscriptionsDeviceIdResourcePathGetWithHttpInfo(deviceId, resourcePath);
-        }
-
-        /// <summary>
-        /// Read subscription status 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V2SubscriptionsDeviceIdResourcePathGetWithHttpInfo (string deviceId, string resourcePath)
-        {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathGet");
-            // verify the required parameter 'resourcePath' is set
-            if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathGet");
-
-            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
-            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2SubscriptionsDeviceIdResourcePathGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        /// Read subscription status 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V2SubscriptionsDeviceIdResourcePathGetAsync (string deviceId, string resourcePath)
-        {
-             await V2SubscriptionsDeviceIdResourcePathGetAsyncWithHttpInfo(deviceId, resourcePath);
-
-        }
-
-        /// <summary>
-        /// Read subscription status 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeviceIdResourcePathGetAsyncWithHttpInfo (string deviceId, string resourcePath)
-        {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathGet");
-            // verify the required parameter 'resourcePath' is set
-            if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathGet");
-
-            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
-            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2SubscriptionsDeviceIdResourcePathGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        /// Subscribe to a resource path The Mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LwM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to Mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get Mbed Cloud Connect to push notifications of the resource changes.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  All manual subscriptions are removed during a full device registration and applications need to  re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription.  **Example usage:**      curl -X PUT \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns></returns>
-        public void V2SubscriptionsDeviceIdResourcePathPut (string deviceId, string resourcePath)
-        {
-             V2SubscriptionsDeviceIdResourcePathPutWithHttpInfo(deviceId, resourcePath);
-        }
-
-        /// <summary>
-        /// Subscribe to a resource path The Mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LwM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to Mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get Mbed Cloud Connect to push notifications of the resource changes.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  All manual subscriptions are removed during a full device registration and applications need to  re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription.  **Example usage:**      curl -X PUT \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V2SubscriptionsDeviceIdResourcePathPutWithHttpInfo (string deviceId, string resourcePath)
-        {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathPut");
-            // verify the required parameter 'resourcePath' is set
-            if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathPut");
-
-            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
-            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2SubscriptionsDeviceIdResourcePathPut", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        /// Subscribe to a resource path The Mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LwM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to Mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get Mbed Cloud Connect to push notifications of the resource changes.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  All manual subscriptions are removed during a full device registration and applications need to  re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription.  **Example usage:**      curl -X PUT \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V2SubscriptionsDeviceIdResourcePathPutAsync (string deviceId, string resourcePath)
-        {
-             await V2SubscriptionsDeviceIdResourcePathPutAsyncWithHttpInfo(deviceId, resourcePath);
-
-        }
-
-        /// <summary>
-        /// Subscribe to a resource path The Mbed Cloud Connect eventing model consists of observable resources.  This means that endpoints can deliver updated resource content, periodically or with a more sophisticated  solution-dependent logic. The OMA LwM2M resource model including objects, object instances,  resources and resource instances is also supported.  Applications can subscribe to objects, object instances or individual resources to make the device  to provide value change notifications to Mbed Cloud Connect service. An application needs to call a &#x60;/notification/callback&#x60; method to get Mbed Cloud Connect to push notifications of the resource changes.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  All manual subscriptions are removed during a full device registration and applications need to  re-subscribe at that point. To avoid this, you can use &#x60;/subscriptions&#x60; to set a pre-subscription.  **Example usage:**      curl -X PUT \\       https://api.us-east-1.mbedcloud.com/v2/subscriptions/{device-id}/{resourcePath} \\       -H &#39;authorization: Bearer {api-key}&#39; 
-        /// </summary>
-        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="deviceId">A unique Mbed Cloud device ID for the endpoint. Note that the ID must be an exact match. You cannot use wildcards here. </param>
-        /// <param name="resourcePath">The URL of the resource. </param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsDeviceIdResourcePathPutAsyncWithHttpInfo (string deviceId, string resourcePath)
-        {
-            // verify the required parameter 'deviceId' is set
-            if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathPut");
-            // verify the required parameter 'resourcePath' is set
-            if (resourcePath == null)
-                throw new ApiException(400, "Missing required parameter 'resourcePath' when calling SubscriptionsApi->V2SubscriptionsDeviceIdResourcePathPut");
-
-            var localVarPath = "/v2/subscriptions/{device-id}/{resourcePath}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (deviceId != null) localVarPathParams.Add("device-id", Configuration.ApiClient.ParameterToString(deviceId)); // path parameter
-            if (resourcePath != null) localVarPathParams.Add("resourcePath", Configuration.ApiClient.ParameterToString(resourcePath)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2SubscriptionsDeviceIdResourcePathPut", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        /// Get pre-subscriptions You can retrieve the pre-subscription data with the GET operation. The server returns with the same JSON structure  as described above. If there are no pre-subscribed resources, it returns with an empty array.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// Get pre-subscriptions You can retrieve the pre-subscription data with the GET operation. The server returns with the same JSON structure as described above. If there are no pre-subscribed resources, it returns with an empty array.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>PresubscriptionArray</returns>
-        public PresubscriptionArray V2SubscriptionsGet ()
+        public PresubscriptionArray GetPreSubscriptions ()
         {
-             ApiResponse<PresubscriptionArray> localVarResponse = V2SubscriptionsGetWithHttpInfo();
+             ApiResponse<PresubscriptionArray> localVarResponse = GetPreSubscriptionsWithHttpInfo();
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get pre-subscriptions You can retrieve the pre-subscription data with the GET operation. The server returns with the same JSON structure  as described above. If there are no pre-subscribed resources, it returns with an empty array.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// Get pre-subscriptions You can retrieve the pre-subscription data with the GET operation. The server returns with the same JSON structure as described above. If there are no pre-subscribed resources, it returns with an empty array.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of PresubscriptionArray</returns>
-        public ApiResponse< PresubscriptionArray > V2SubscriptionsGetWithHttpInfo ()
+        public ApiResponse< PresubscriptionArray > GetPreSubscriptionsWithHttpInfo ()
         {
 
             var localVarPath = "/v2/subscriptions";
@@ -1387,7 +1387,7 @@ namespace mds.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2SubscriptionsGet", localVarResponse);
+                Exception exception = ExceptionFactory("GetPreSubscriptions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1397,23 +1397,23 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Get pre-subscriptions You can retrieve the pre-subscription data with the GET operation. The server returns with the same JSON structure  as described above. If there are no pre-subscribed resources, it returns with an empty array.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// Get pre-subscriptions You can retrieve the pre-subscription data with the GET operation. The server returns with the same JSON structure as described above. If there are no pre-subscribed resources, it returns with an empty array.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of PresubscriptionArray</returns>
-        public async System.Threading.Tasks.Task<PresubscriptionArray> V2SubscriptionsGetAsync ()
+        public async System.Threading.Tasks.Task<PresubscriptionArray> GetPreSubscriptionsAsync ()
         {
-             ApiResponse<PresubscriptionArray> localVarResponse = await V2SubscriptionsGetAsyncWithHttpInfo();
+             ApiResponse<PresubscriptionArray> localVarResponse = await GetPreSubscriptionsAsyncWithHttpInfo();
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Get pre-subscriptions You can retrieve the pre-subscription data with the GET operation. The server returns with the same JSON structure  as described above. If there are no pre-subscribed resources, it returns with an empty array.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39;      
+        /// Get pre-subscriptions You can retrieve the pre-subscription data with the GET operation. The server returns with the same JSON structure as described above. If there are no pre-subscribed resources, it returns with an empty array.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/subscriptions -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse (PresubscriptionArray)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<PresubscriptionArray>> V2SubscriptionsGetAsyncWithHttpInfo ()
+        public async System.Threading.Tasks.Task<ApiResponse<PresubscriptionArray>> GetPreSubscriptionsAsyncWithHttpInfo ()
         {
 
             var localVarPath = "/v2/subscriptions";
@@ -1453,7 +1453,7 @@ namespace mds.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2SubscriptionsGet", localVarResponse);
+                Exception exception = ExceptionFactory("GetPreSubscriptions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1463,27 +1463,27 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Set pre-subscriptions Pre-subscription is a set of rules and patterns put by the application. When an endpoint registers  and its ID, type and registered resources match the pre-subscription data, Mbed Cloud Connect sends  subscription requests to the device automatically. The pattern may include the endpoint ID  (optionally having an &#x60;*&#x60; character at the end), endpoint type, a list of resources or expressions with an &#x60;*&#x60; character at the end. Subscriptions based on pre-subscriptions are done when device registers or does register update. To remove the pre-subscription data, put an empty array as a rule.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  **Limits**:  - The maximum length of the endpoint name and endpoint type is 64 characters. - The maximum length of the resource path is 128 characters. - You can listen to 256 separate resource paths. - The maximum number of pre-subscription entries is 1024.          **Example request:**  &#x60;&#x60;&#x60; curl -X PUT \\   https://api.us-east-1.mbedcloud.com/v2/subscriptions \\   -H &#39;authorization: Bearer {api-key}&#39; \\   -H &#39;content-type: application/json&#39; \\   -d &#39;[          {            \&quot;endpoint-name\&quot;: \&quot;node-001\&quot;,            \&quot;resource-path\&quot;: [\&quot;/dev\&quot;]          },          {            \&quot;endpoint-type\&quot;: \&quot;Light\&quot;,            \&quot;resource-path\&quot;: [\&quot;/sen/_*\&quot;]          },          {            \&quot;endpoint-name\&quot;: \&quot;node*\&quot;          },          {            \&quot;endpoint-type\&quot;: \&quot;Sensor\&quot;          },          {            \&quot;resource-path\&quot;: [\&quot;/dev/temp\&quot;,\&quot;/dev/hum\&quot;]          }       ]&#39; &#x60;&#x60;&#x60;  - Subscribe to &#x60;/dev&#x60; resource of endpoint named &#x60;node-001&#x60;. - Subscribe to &#x60;Light&#x60; type of endpoints and their resources prefixed with &#x60;/sen/&#x60;. - Subscribe to all observable resources of endpoint names prefixed with &#x60;node&#x60;. - Subscribe to all observable resources of &#x60;Sensor&#x60; type endpoints. - Subscribe to &#x60;/dev/temp&#x60; and &#x60;/dev/hum&#x60; resources of all endpoints.  **Note**: For efficiency reasons, you should use resource path patterns in the pre-subscription data. This prevents the notification flow from unwanted resources. 
+        /// Set pre-subscriptions Pre-subscription is a set of rules and patterns put by the application. When an endpoint registers and its ID, type and registered resources match the pre-subscription data, Mbed Cloud Connect sends subscription requests to the device automatically. The pattern may include the endpoint ID (optionally having an &#x60;*&#x60; character at the end), endpoint type, a list of resources or expressions with an &#x60;*&#x60; character at the end. Subscriptions based on pre-subscriptions are done when device registers or does register update. To remove the pre-subscription data, put an empty array as a rule.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  **Limits**:  - The maximum length of the endpoint name and endpoint type is 64 characters. - The maximum length of the resource path is 128 characters. - You can listen to 256 separate resource paths. - The maximum number of pre-subscription entries is 1024.  **Example request:**  &#x60;&#x60;&#x60; curl -X PUT \\   https://api.us-east-1.mbedcloud.com/v2/subscriptions \\   -H &#39;authorization: Bearer {api-key}&#39; \\   -H &#39;content-type: application/json&#39; \\   -d &#39;[          {            \&quot;endpoint-name\&quot;: \&quot;node-001\&quot;,            \&quot;resource-path\&quot;: [\&quot;/dev\&quot;]          },          {            \&quot;endpoint-type\&quot;: \&quot;Light\&quot;,            \&quot;resource-path\&quot;: [\&quot;/sen/_*\&quot;]          },          {            \&quot;endpoint-name\&quot;: \&quot;node*\&quot;          },          {            \&quot;endpoint-type\&quot;: \&quot;Sensor\&quot;          },          {            \&quot;resource-path\&quot;: [\&quot;/dev/temp\&quot;,\&quot;/dev/hum\&quot;]          }       ]&#39; &#x60;&#x60;&#x60;  - Subscribe to &#x60;/dev&#x60; resource of endpoint named &#x60;node-001&#x60;. - Subscribe to &#x60;Light&#x60; type of endpoints and their resources prefixed with &#x60;/sen/&#x60;. - Subscribe to all observable resources of endpoint names prefixed with &#x60;node&#x60;. - Subscribe to all observable resources of &#x60;Sensor&#x60; type endpoints. - Subscribe to &#x60;/dev/temp&#x60; and &#x60;/dev/hum&#x60; resources of all endpoints.  **Note**: For efficiency reasons, you should use resource path patterns in the pre-subscription data. This prevents the notification flow from unwanted resources. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="presubsription">Array of pre-subscriptions.</param>
         /// <returns></returns>
-        public void V2SubscriptionsPut (PresubscriptionArray presubsription)
+        public void UpdatePreSubscriptions (PresubscriptionArray presubsription)
         {
-             V2SubscriptionsPutWithHttpInfo(presubsription);
+             UpdatePreSubscriptionsWithHttpInfo(presubsription);
         }
 
         /// <summary>
-        /// Set pre-subscriptions Pre-subscription is a set of rules and patterns put by the application. When an endpoint registers  and its ID, type and registered resources match the pre-subscription data, Mbed Cloud Connect sends  subscription requests to the device automatically. The pattern may include the endpoint ID  (optionally having an &#x60;*&#x60; character at the end), endpoint type, a list of resources or expressions with an &#x60;*&#x60; character at the end. Subscriptions based on pre-subscriptions are done when device registers or does register update. To remove the pre-subscription data, put an empty array as a rule.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  **Limits**:  - The maximum length of the endpoint name and endpoint type is 64 characters. - The maximum length of the resource path is 128 characters. - You can listen to 256 separate resource paths. - The maximum number of pre-subscription entries is 1024.          **Example request:**  &#x60;&#x60;&#x60; curl -X PUT \\   https://api.us-east-1.mbedcloud.com/v2/subscriptions \\   -H &#39;authorization: Bearer {api-key}&#39; \\   -H &#39;content-type: application/json&#39; \\   -d &#39;[          {            \&quot;endpoint-name\&quot;: \&quot;node-001\&quot;,            \&quot;resource-path\&quot;: [\&quot;/dev\&quot;]          },          {            \&quot;endpoint-type\&quot;: \&quot;Light\&quot;,            \&quot;resource-path\&quot;: [\&quot;/sen/_*\&quot;]          },          {            \&quot;endpoint-name\&quot;: \&quot;node*\&quot;          },          {            \&quot;endpoint-type\&quot;: \&quot;Sensor\&quot;          },          {            \&quot;resource-path\&quot;: [\&quot;/dev/temp\&quot;,\&quot;/dev/hum\&quot;]          }       ]&#39; &#x60;&#x60;&#x60;  - Subscribe to &#x60;/dev&#x60; resource of endpoint named &#x60;node-001&#x60;. - Subscribe to &#x60;Light&#x60; type of endpoints and their resources prefixed with &#x60;/sen/&#x60;. - Subscribe to all observable resources of endpoint names prefixed with &#x60;node&#x60;. - Subscribe to all observable resources of &#x60;Sensor&#x60; type endpoints. - Subscribe to &#x60;/dev/temp&#x60; and &#x60;/dev/hum&#x60; resources of all endpoints.  **Note**: For efficiency reasons, you should use resource path patterns in the pre-subscription data. This prevents the notification flow from unwanted resources. 
+        /// Set pre-subscriptions Pre-subscription is a set of rules and patterns put by the application. When an endpoint registers and its ID, type and registered resources match the pre-subscription data, Mbed Cloud Connect sends subscription requests to the device automatically. The pattern may include the endpoint ID (optionally having an &#x60;*&#x60; character at the end), endpoint type, a list of resources or expressions with an &#x60;*&#x60; character at the end. Subscriptions based on pre-subscriptions are done when device registers or does register update. To remove the pre-subscription data, put an empty array as a rule.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  **Limits**:  - The maximum length of the endpoint name and endpoint type is 64 characters. - The maximum length of the resource path is 128 characters. - You can listen to 256 separate resource paths. - The maximum number of pre-subscription entries is 1024.  **Example request:**  &#x60;&#x60;&#x60; curl -X PUT \\   https://api.us-east-1.mbedcloud.com/v2/subscriptions \\   -H &#39;authorization: Bearer {api-key}&#39; \\   -H &#39;content-type: application/json&#39; \\   -d &#39;[          {            \&quot;endpoint-name\&quot;: \&quot;node-001\&quot;,            \&quot;resource-path\&quot;: [\&quot;/dev\&quot;]          },          {            \&quot;endpoint-type\&quot;: \&quot;Light\&quot;,            \&quot;resource-path\&quot;: [\&quot;/sen/_*\&quot;]          },          {            \&quot;endpoint-name\&quot;: \&quot;node*\&quot;          },          {            \&quot;endpoint-type\&quot;: \&quot;Sensor\&quot;          },          {            \&quot;resource-path\&quot;: [\&quot;/dev/temp\&quot;,\&quot;/dev/hum\&quot;]          }       ]&#39; &#x60;&#x60;&#x60;  - Subscribe to &#x60;/dev&#x60; resource of endpoint named &#x60;node-001&#x60;. - Subscribe to &#x60;Light&#x60; type of endpoints and their resources prefixed with &#x60;/sen/&#x60;. - Subscribe to all observable resources of endpoint names prefixed with &#x60;node&#x60;. - Subscribe to all observable resources of &#x60;Sensor&#x60; type endpoints. - Subscribe to &#x60;/dev/temp&#x60; and &#x60;/dev/hum&#x60; resources of all endpoints.  **Note**: For efficiency reasons, you should use resource path patterns in the pre-subscription data. This prevents the notification flow from unwanted resources. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="presubsription">Array of pre-subscriptions.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V2SubscriptionsPutWithHttpInfo (PresubscriptionArray presubsription)
+        public ApiResponse<Object> UpdatePreSubscriptionsWithHttpInfo (PresubscriptionArray presubsription)
         {
             // verify the required parameter 'presubsription' is set
             if (presubsription == null)
-                throw new ApiException(400, "Missing required parameter 'presubsription' when calling SubscriptionsApi->V2SubscriptionsPut");
+                throw new ApiException(400, "Missing required parameter 'presubsription' when calling SubscriptionsApi->UpdatePreSubscriptions");
 
             var localVarPath = "/v2/subscriptions";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1531,7 +1531,7 @@ namespace mds.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2SubscriptionsPut", localVarResponse);
+                Exception exception = ExceptionFactory("UpdatePreSubscriptions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1541,28 +1541,28 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Set pre-subscriptions Pre-subscription is a set of rules and patterns put by the application. When an endpoint registers  and its ID, type and registered resources match the pre-subscription data, Mbed Cloud Connect sends  subscription requests to the device automatically. The pattern may include the endpoint ID  (optionally having an &#x60;*&#x60; character at the end), endpoint type, a list of resources or expressions with an &#x60;*&#x60; character at the end. Subscriptions based on pre-subscriptions are done when device registers or does register update. To remove the pre-subscription data, put an empty array as a rule.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  **Limits**:  - The maximum length of the endpoint name and endpoint type is 64 characters. - The maximum length of the resource path is 128 characters. - You can listen to 256 separate resource paths. - The maximum number of pre-subscription entries is 1024.          **Example request:**  &#x60;&#x60;&#x60; curl -X PUT \\   https://api.us-east-1.mbedcloud.com/v2/subscriptions \\   -H &#39;authorization: Bearer {api-key}&#39; \\   -H &#39;content-type: application/json&#39; \\   -d &#39;[          {            \&quot;endpoint-name\&quot;: \&quot;node-001\&quot;,            \&quot;resource-path\&quot;: [\&quot;/dev\&quot;]          },          {            \&quot;endpoint-type\&quot;: \&quot;Light\&quot;,            \&quot;resource-path\&quot;: [\&quot;/sen/_*\&quot;]          },          {            \&quot;endpoint-name\&quot;: \&quot;node*\&quot;          },          {            \&quot;endpoint-type\&quot;: \&quot;Sensor\&quot;          },          {            \&quot;resource-path\&quot;: [\&quot;/dev/temp\&quot;,\&quot;/dev/hum\&quot;]          }       ]&#39; &#x60;&#x60;&#x60;  - Subscribe to &#x60;/dev&#x60; resource of endpoint named &#x60;node-001&#x60;. - Subscribe to &#x60;Light&#x60; type of endpoints and their resources prefixed with &#x60;/sen/&#x60;. - Subscribe to all observable resources of endpoint names prefixed with &#x60;node&#x60;. - Subscribe to all observable resources of &#x60;Sensor&#x60; type endpoints. - Subscribe to &#x60;/dev/temp&#x60; and &#x60;/dev/hum&#x60; resources of all endpoints.  **Note**: For efficiency reasons, you should use resource path patterns in the pre-subscription data. This prevents the notification flow from unwanted resources. 
+        /// Set pre-subscriptions Pre-subscription is a set of rules and patterns put by the application. When an endpoint registers and its ID, type and registered resources match the pre-subscription data, Mbed Cloud Connect sends subscription requests to the device automatically. The pattern may include the endpoint ID (optionally having an &#x60;*&#x60; character at the end), endpoint type, a list of resources or expressions with an &#x60;*&#x60; character at the end. Subscriptions based on pre-subscriptions are done when device registers or does register update. To remove the pre-subscription data, put an empty array as a rule.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  **Limits**:  - The maximum length of the endpoint name and endpoint type is 64 characters. - The maximum length of the resource path is 128 characters. - You can listen to 256 separate resource paths. - The maximum number of pre-subscription entries is 1024.  **Example request:**  &#x60;&#x60;&#x60; curl -X PUT \\   https://api.us-east-1.mbedcloud.com/v2/subscriptions \\   -H &#39;authorization: Bearer {api-key}&#39; \\   -H &#39;content-type: application/json&#39; \\   -d &#39;[          {            \&quot;endpoint-name\&quot;: \&quot;node-001\&quot;,            \&quot;resource-path\&quot;: [\&quot;/dev\&quot;]          },          {            \&quot;endpoint-type\&quot;: \&quot;Light\&quot;,            \&quot;resource-path\&quot;: [\&quot;/sen/_*\&quot;]          },          {            \&quot;endpoint-name\&quot;: \&quot;node*\&quot;          },          {            \&quot;endpoint-type\&quot;: \&quot;Sensor\&quot;          },          {            \&quot;resource-path\&quot;: [\&quot;/dev/temp\&quot;,\&quot;/dev/hum\&quot;]          }       ]&#39; &#x60;&#x60;&#x60;  - Subscribe to &#x60;/dev&#x60; resource of endpoint named &#x60;node-001&#x60;. - Subscribe to &#x60;Light&#x60; type of endpoints and their resources prefixed with &#x60;/sen/&#x60;. - Subscribe to all observable resources of endpoint names prefixed with &#x60;node&#x60;. - Subscribe to all observable resources of &#x60;Sensor&#x60; type endpoints. - Subscribe to &#x60;/dev/temp&#x60; and &#x60;/dev/hum&#x60; resources of all endpoints.  **Note**: For efficiency reasons, you should use resource path patterns in the pre-subscription data. This prevents the notification flow from unwanted resources. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="presubsription">Array of pre-subscriptions.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V2SubscriptionsPutAsync (PresubscriptionArray presubsription)
+        public async System.Threading.Tasks.Task UpdatePreSubscriptionsAsync (PresubscriptionArray presubsription)
         {
-             await V2SubscriptionsPutAsyncWithHttpInfo(presubsription);
+             await UpdatePreSubscriptionsAsyncWithHttpInfo(presubsription);
 
         }
 
         /// <summary>
-        /// Set pre-subscriptions Pre-subscription is a set of rules and patterns put by the application. When an endpoint registers  and its ID, type and registered resources match the pre-subscription data, Mbed Cloud Connect sends  subscription requests to the device automatically. The pattern may include the endpoint ID  (optionally having an &#x60;*&#x60; character at the end), endpoint type, a list of resources or expressions with an &#x60;*&#x60; character at the end. Subscriptions based on pre-subscriptions are done when device registers or does register update. To remove the pre-subscription data, put an empty array as a rule.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  **Limits**:  - The maximum length of the endpoint name and endpoint type is 64 characters. - The maximum length of the resource path is 128 characters. - You can listen to 256 separate resource paths. - The maximum number of pre-subscription entries is 1024.          **Example request:**  &#x60;&#x60;&#x60; curl -X PUT \\   https://api.us-east-1.mbedcloud.com/v2/subscriptions \\   -H &#39;authorization: Bearer {api-key}&#39; \\   -H &#39;content-type: application/json&#39; \\   -d &#39;[          {            \&quot;endpoint-name\&quot;: \&quot;node-001\&quot;,            \&quot;resource-path\&quot;: [\&quot;/dev\&quot;]          },          {            \&quot;endpoint-type\&quot;: \&quot;Light\&quot;,            \&quot;resource-path\&quot;: [\&quot;/sen/_*\&quot;]          },          {            \&quot;endpoint-name\&quot;: \&quot;node*\&quot;          },          {            \&quot;endpoint-type\&quot;: \&quot;Sensor\&quot;          },          {            \&quot;resource-path\&quot;: [\&quot;/dev/temp\&quot;,\&quot;/dev/hum\&quot;]          }       ]&#39; &#x60;&#x60;&#x60;  - Subscribe to &#x60;/dev&#x60; resource of endpoint named &#x60;node-001&#x60;. - Subscribe to &#x60;Light&#x60; type of endpoints and their resources prefixed with &#x60;/sen/&#x60;. - Subscribe to all observable resources of endpoint names prefixed with &#x60;node&#x60;. - Subscribe to all observable resources of &#x60;Sensor&#x60; type endpoints. - Subscribe to &#x60;/dev/temp&#x60; and &#x60;/dev/hum&#x60; resources of all endpoints.  **Note**: For efficiency reasons, you should use resource path patterns in the pre-subscription data. This prevents the notification flow from unwanted resources. 
+        /// Set pre-subscriptions Pre-subscription is a set of rules and patterns put by the application. When an endpoint registers and its ID, type and registered resources match the pre-subscription data, Mbed Cloud Connect sends subscription requests to the device automatically. The pattern may include the endpoint ID (optionally having an &#x60;*&#x60; character at the end), endpoint type, a list of resources or expressions with an &#x60;*&#x60; character at the end. Subscriptions based on pre-subscriptions are done when device registers or does register update. To remove the pre-subscription data, put an empty array as a rule.  **Notification rules**  A web application can place dynamic observation rules for individual Object Instances and Resources to define when the device sends observations. More information in [Notification rules](/docs/current/connecting/resource-change-webapp.html).  **Limits**:  - The maximum length of the endpoint name and endpoint type is 64 characters. - The maximum length of the resource path is 128 characters. - You can listen to 256 separate resource paths. - The maximum number of pre-subscription entries is 1024.  **Example request:**  &#x60;&#x60;&#x60; curl -X PUT \\   https://api.us-east-1.mbedcloud.com/v2/subscriptions \\   -H &#39;authorization: Bearer {api-key}&#39; \\   -H &#39;content-type: application/json&#39; \\   -d &#39;[          {            \&quot;endpoint-name\&quot;: \&quot;node-001\&quot;,            \&quot;resource-path\&quot;: [\&quot;/dev\&quot;]          },          {            \&quot;endpoint-type\&quot;: \&quot;Light\&quot;,            \&quot;resource-path\&quot;: [\&quot;/sen/_*\&quot;]          },          {            \&quot;endpoint-name\&quot;: \&quot;node*\&quot;          },          {            \&quot;endpoint-type\&quot;: \&quot;Sensor\&quot;          },          {            \&quot;resource-path\&quot;: [\&quot;/dev/temp\&quot;,\&quot;/dev/hum\&quot;]          }       ]&#39; &#x60;&#x60;&#x60;  - Subscribe to &#x60;/dev&#x60; resource of endpoint named &#x60;node-001&#x60;. - Subscribe to &#x60;Light&#x60; type of endpoints and their resources prefixed with &#x60;/sen/&#x60;. - Subscribe to all observable resources of endpoint names prefixed with &#x60;node&#x60;. - Subscribe to all observable resources of &#x60;Sensor&#x60; type endpoints. - Subscribe to &#x60;/dev/temp&#x60; and &#x60;/dev/hum&#x60; resources of all endpoints.  **Note**: For efficiency reasons, you should use resource path patterns in the pre-subscription data. This prevents the notification flow from unwanted resources. 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="presubsription">Array of pre-subscriptions.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2SubscriptionsPutAsyncWithHttpInfo (PresubscriptionArray presubsription)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> UpdatePreSubscriptionsAsyncWithHttpInfo (PresubscriptionArray presubsription)
         {
             // verify the required parameter 'presubsription' is set
             if (presubsription == null)
-                throw new ApiException(400, "Missing required parameter 'presubsription' when calling SubscriptionsApi->V2SubscriptionsPut");
+                throw new ApiException(400, "Missing required parameter 'presubsription' when calling SubscriptionsApi->UpdatePreSubscriptions");
 
             var localVarPath = "/v2/subscriptions";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1610,7 +1610,7 @@ namespace mds.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2SubscriptionsPut", localVarResponse);
+                Exception exception = ExceptionFactory("UpdatePreSubscriptions", localVarResponse);
                 if (exception != null) throw exception;
             }
 

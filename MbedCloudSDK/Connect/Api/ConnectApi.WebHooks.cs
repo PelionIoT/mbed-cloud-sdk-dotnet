@@ -35,7 +35,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                return Webhook.Map(NotificationsApi.V2NotificationCallbackGet());
+                return Webhook.Map(NotificationsApi.GetWebhook());
             }
             catch (mds.Client.ApiException ex)
             {
@@ -79,7 +79,7 @@ namespace MbedCloudSDK.Connect.Api
                     StopNotifications();
                 }
 
-                NotificationsApi.V2NotificationCallbackPut(Webhook.MapToApiWebook(webhook));
+                NotificationsApi.RegisterWebhook(Webhook.MapToApiWebook(webhook));
             }
             catch (mds.Client.ApiException ex)
             {
@@ -107,7 +107,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                NotificationsApi.V2NotificationCallbackDelete();
+                NotificationsApi.DeregisterWebhook();
                 ResourceSubscribtions.Clear();
             }
             catch (mds.Client.ApiException ex)

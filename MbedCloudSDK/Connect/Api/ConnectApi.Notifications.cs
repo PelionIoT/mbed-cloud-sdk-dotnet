@@ -119,7 +119,7 @@ namespace MbedCloudSDK.Connect.Api
             {
                 try
                 {
-                    var resp = NotificationsApi.V2NotificationPullGet();
+                    var resp = NotificationsApi.LongPollNotifications();
                     if (resp == null)
                     {
                         continue;
@@ -130,6 +130,7 @@ namespace MbedCloudSDK.Connect.Api
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
+                    StopNotifications();
                 }
             }
         }
@@ -234,7 +235,7 @@ namespace MbedCloudSDK.Connect.Api
 
             try
             {
-                NotificationsApi.V2NotificationPullDelete();
+                NotificationsApi.DeleteLongPollChannel();
             }
             catch (mds.Client.ApiException e)
             {

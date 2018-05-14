@@ -53,7 +53,7 @@ namespace MbedCloudSDK.Connect.Api
 
             try
             {
-                SubscriptionsApi.V2SubscriptionsPut(presubscriptionArray);
+                SubscriptionsApi.UpdatePreSubscriptions(presubscriptionArray);
             }
             catch (mds.Client.ApiException ex)
             {
@@ -87,7 +87,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                return SubscriptionsApi.V2SubscriptionsGet()?.Select(p => Presubscription.Map(p))?.ToArray();
+                return SubscriptionsApi.GetPreSubscriptions()?.Select(p => Presubscription.Map(p))?.ToArray();
             }
             catch (mds.Client.ApiException ex)
             {
@@ -115,7 +115,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                SubscriptionsApi.V2SubscriptionsPut(new mds.Model.PresubscriptionArray());
+                SubscriptionsApi.DeletePreSubscriptions();
             }
             catch (mds.Client.ApiException ex)
             {
