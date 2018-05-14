@@ -165,7 +165,7 @@ namespace connector_bootstrap.Model
             }
 
             // SecretHex (string) pattern
-            Regex regexSecretHex = new Regex(@"^(0[xX])?[0-9a-fA-F]{16,64}$", RegexOptions.CultureInvariant);
+            Regex regexSecretHex = new Regex(@"^(0[xX])?[0-9a-fA-F]{32,64}$", RegexOptions.CultureInvariant);
             if (false == regexSecretHex.Match(this.SecretHex).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SecretHex, must match a pattern of " + regexSecretHex, new [] { "SecretHex" });
