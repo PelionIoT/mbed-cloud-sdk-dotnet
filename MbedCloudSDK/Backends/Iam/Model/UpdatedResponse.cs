@@ -142,12 +142,12 @@ namespace iam.Model
         /// Initializes a new instance of the <see cref="UpdatedResponse" /> class.
         /// </summary>
         /// <param name="Code">Response code. (required).</param>
+        /// <param name="Id">Entity ID. (required).</param>
+        /// <param name="Message">A human readable message with detailed info. (required).</param>
         /// <param name="_Object">Entity name: &#39;user&#39;, &#39;apikey&#39;, &#39;group&#39;, &#39;policy&#39; or &#39;account&#39;. (required).</param>
         /// <param name="RequestId">Request ID. (required).</param>
-        /// <param name="Message">A human readable message with detailed info. (required).</param>
         /// <param name="Type">Response type: success. (required).</param>
-        /// <param name="Id">Entity ID. (required).</param>
-        public UpdatedResponse(int? Code = default(int?), ObjectEnum? _Object = default(ObjectEnum?), string RequestId = default(string), string Message = default(string), TypeEnum? Type = default(TypeEnum?), string Id = default(string))
+        public UpdatedResponse(int? Code = default(int?), string Id = default(string), string Message = default(string), ObjectEnum? _Object = default(ObjectEnum?), string RequestId = default(string), TypeEnum? Type = default(TypeEnum?))
         {
             // to ensure "Code" is required (not null)
             if (Code == null)
@@ -157,6 +157,24 @@ namespace iam.Model
             else
             {
                 this.Code = Code;
+            }
+            // to ensure "Id" is required (not null)
+            if (Id == null)
+            {
+                throw new InvalidDataException("Id is a required property for UpdatedResponse and cannot be null");
+            }
+            else
+            {
+                this.Id = Id;
+            }
+            // to ensure "Message" is required (not null)
+            if (Message == null)
+            {
+                throw new InvalidDataException("Message is a required property for UpdatedResponse and cannot be null");
+            }
+            else
+            {
+                this.Message = Message;
             }
             // to ensure "_Object" is required (not null)
             if (_Object == null)
@@ -176,15 +194,6 @@ namespace iam.Model
             {
                 this.RequestId = RequestId;
             }
-            // to ensure "Message" is required (not null)
-            if (Message == null)
-            {
-                throw new InvalidDataException("Message is a required property for UpdatedResponse and cannot be null");
-            }
-            else
-            {
-                this.Message = Message;
-            }
             // to ensure "Type" is required (not null)
             if (Type == null)
             {
@@ -193,15 +202,6 @@ namespace iam.Model
             else
             {
                 this.Type = Type;
-            }
-            // to ensure "Id" is required (not null)
-            if (Id == null)
-            {
-                throw new InvalidDataException("Id is a required property for UpdatedResponse and cannot be null");
-            }
-            else
-            {
-                this.Id = Id;
             }
         }
         
@@ -212,13 +212,12 @@ namespace iam.Model
         [DataMember(Name="code", EmitDefaultValue=false)]
         public int? Code { get; set; }
 
-
         /// <summary>
-        /// Request ID.
+        /// Entity ID.
         /// </summary>
-        /// <value>Request ID.</value>
-        [DataMember(Name="request_id", EmitDefaultValue=false)]
-        public string RequestId { get; set; }
+        /// <value>Entity ID.</value>
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public string Id { get; set; }
 
         /// <summary>
         /// A human readable message with detailed info.
@@ -229,11 +228,12 @@ namespace iam.Model
 
 
         /// <summary>
-        /// Entity ID.
+        /// Request ID.
         /// </summary>
-        /// <value>Entity ID.</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
-        public string Id { get; set; }
+        /// <value>Request ID.</value>
+        [DataMember(Name="request_id", EmitDefaultValue=false)]
+        public string RequestId { get; set; }
+
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -244,11 +244,11 @@ namespace iam.Model
             var sb = new StringBuilder();
             sb.Append("class UpdatedResponse {\n");
             sb.Append("  Code: ").Append(Code).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  RequestId: ").Append(RequestId).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -289,6 +289,16 @@ namespace iam.Model
                     this.Code.Equals(input.Code))
                 ) && 
                 (
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.Message == input.Message ||
+                    (this.Message != null &&
+                    this.Message.Equals(input.Message))
+                ) && 
+                (
                     this._Object == input._Object ||
                     (this._Object != null &&
                     this._Object.Equals(input._Object))
@@ -299,19 +309,9 @@ namespace iam.Model
                     this.RequestId.Equals(input.RequestId))
                 ) && 
                 (
-                    this.Message == input.Message ||
-                    (this.Message != null &&
-                    this.Message.Equals(input.Message))
-                ) && 
-                (
                     this.Type == input.Type ||
                     (this.Type != null &&
                     this.Type.Equals(input.Type))
-                ) && 
-                (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
                 );
         }
 
@@ -326,16 +326,16 @@ namespace iam.Model
                 int hashCode = 41;
                 if (this.Code != null)
                     hashCode = hashCode * 59 + this.Code.GetHashCode();
+                if (this.Id != null)
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.Message != null)
+                    hashCode = hashCode * 59 + this.Message.GetHashCode();
                 if (this._Object != null)
                     hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.RequestId != null)
                     hashCode = hashCode * 59 + this.RequestId.GetHashCode();
-                if (this.Message != null)
-                    hashCode = hashCode * 59 + this.Message.GetHashCode();
                 if (this.Type != null)
                     hashCode = hashCode * 59 + this.Type.GetHashCode();
-                if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
                 return hashCode;
             }
         }

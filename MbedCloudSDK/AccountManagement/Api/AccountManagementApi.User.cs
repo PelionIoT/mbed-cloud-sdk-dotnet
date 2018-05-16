@@ -8,6 +8,7 @@ namespace MbedCloudSDK.AccountManagement.Api
     using System.Threading.Tasks;
     using MbedCloudSDK.AccountManagement.Model.User;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Filter;
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Exceptions;
     using static MbedCloudSDK.Common.Utils;
@@ -71,7 +72,7 @@ namespace MbedCloudSDK.AccountManagement.Api
 
             try
             {
-                var resp = AdminApi.GetAllUsers(limit: options.Limit, order: options.Order, after: options.After, include: options.Include, statusEq: options.Filter.GetFirstValueByKey("status"));
+                var resp = adminApi.GetAllUsers(limit: options.Limit, order: options.Order, after: options.After, include: options.Include, statusEq: options.Filter.GetFirstValueByKey("status", FilterOperator.Equals), statusIn: options.Filter.GetFirstValueByKey("status", FilterOperator.In), statusNin: options.Filter.GetFirstValueByKey("status", FilterOperator.NotIn));
                 var respUsers = new ResponsePage<User>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
                 foreach (var user in resp.Data)
                 {

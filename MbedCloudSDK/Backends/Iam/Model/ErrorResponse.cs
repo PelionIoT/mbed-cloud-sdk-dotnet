@@ -191,11 +191,11 @@ namespace iam.Model
         /// </summary>
         /// <param name="Code">Response code. (required).</param>
         /// <param name="Fields">Failed input fields during request object validation..</param>
+        /// <param name="Message">A human readable message with detailed info. (required).</param>
         /// <param name="_Object">Entity name, always &#39;error&#39;. (required).</param>
         /// <param name="RequestId">Request ID. (required).</param>
-        /// <param name="Message">A human readable message with detailed info. (required).</param>
         /// <param name="Type">Error type. (required).</param>
-        public ErrorResponse(int? Code = default(int?), List<Field> Fields = default(List<Field>), ObjectEnum? _Object = default(ObjectEnum?), string RequestId = default(string), string Message = default(string), TypeEnum? Type = default(TypeEnum?))
+        public ErrorResponse(int? Code = default(int?), List<Field> Fields = default(List<Field>), string Message = default(string), ObjectEnum? _Object = default(ObjectEnum?), string RequestId = default(string), TypeEnum? Type = default(TypeEnum?))
         {
             // to ensure "Code" is required (not null)
             if (Code == null)
@@ -205,6 +205,15 @@ namespace iam.Model
             else
             {
                 this.Code = Code;
+            }
+            // to ensure "Message" is required (not null)
+            if (Message == null)
+            {
+                throw new InvalidDataException("Message is a required property for ErrorResponse and cannot be null");
+            }
+            else
+            {
+                this.Message = Message;
             }
             // to ensure "_Object" is required (not null)
             if (_Object == null)
@@ -223,15 +232,6 @@ namespace iam.Model
             else
             {
                 this.RequestId = RequestId;
-            }
-            // to ensure "Message" is required (not null)
-            if (Message == null)
-            {
-                throw new InvalidDataException("Message is a required property for ErrorResponse and cannot be null");
-            }
-            else
-            {
-                this.Message = Message;
             }
             // to ensure "Type" is required (not null)
             if (Type == null)
@@ -259,6 +259,13 @@ namespace iam.Model
         [DataMember(Name="fields", EmitDefaultValue=false)]
         public List<Field> Fields { get; set; }
 
+        /// <summary>
+        /// A human readable message with detailed info.
+        /// </summary>
+        /// <value>A human readable message with detailed info.</value>
+        [DataMember(Name="message", EmitDefaultValue=false)]
+        public string Message { get; set; }
+
 
         /// <summary>
         /// Request ID.
@@ -266,13 +273,6 @@ namespace iam.Model
         /// <value>Request ID.</value>
         [DataMember(Name="request_id", EmitDefaultValue=false)]
         public string RequestId { get; set; }
-
-        /// <summary>
-        /// A human readable message with detailed info.
-        /// </summary>
-        /// <value>A human readable message with detailed info.</value>
-        [DataMember(Name="message", EmitDefaultValue=false)]
-        public string Message { get; set; }
 
 
         /// <summary>
@@ -285,9 +285,9 @@ namespace iam.Model
             sb.Append("class ErrorResponse {\n");
             sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("  Fields: ").Append(Fields).Append("\n");
+            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  RequestId: ").Append(RequestId).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -334,6 +334,11 @@ namespace iam.Model
                     this.Fields.SequenceEqual(input.Fields)
                 ) && 
                 (
+                    this.Message == input.Message ||
+                    (this.Message != null &&
+                    this.Message.Equals(input.Message))
+                ) && 
+                (
                     this._Object == input._Object ||
                     (this._Object != null &&
                     this._Object.Equals(input._Object))
@@ -342,11 +347,6 @@ namespace iam.Model
                     this.RequestId == input.RequestId ||
                     (this.RequestId != null &&
                     this.RequestId.Equals(input.RequestId))
-                ) && 
-                (
-                    this.Message == input.Message ||
-                    (this.Message != null &&
-                    this.Message.Equals(input.Message))
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -368,12 +368,12 @@ namespace iam.Model
                     hashCode = hashCode * 59 + this.Code.GetHashCode();
                 if (this.Fields != null)
                     hashCode = hashCode * 59 + this.Fields.GetHashCode();
+                if (this.Message != null)
+                    hashCode = hashCode * 59 + this.Message.GetHashCode();
                 if (this._Object != null)
                     hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.RequestId != null)
                     hashCode = hashCode * 59 + this.RequestId.GetHashCode();
-                if (this.Message != null)
-                    hashCode = hashCode * 59 + this.Message.GetHashCode();
                 if (this.Type != null)
                     hashCode = hashCode * 59 + this.Type.GetHashCode();
                 return hashCode;
