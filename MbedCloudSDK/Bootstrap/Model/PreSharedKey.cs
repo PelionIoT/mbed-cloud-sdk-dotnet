@@ -7,17 +7,32 @@ namespace MbedCloudSDK.Bootstrap.Model
     /// <summary>
     /// PreSharedKey
     /// </summary>
+    /// <para>
+    /// For more information about such keys, have a look at <a href="https://cloud.mbed.com/docs/latest/connecting/mbed-client-lite-security-considerations.html"/>
+    /// </para>
     public class PreSharedKey
     {
         /// <summary>
         /// Gets or sets the EndpointName
         /// </summary>
+        /// <para>
+        /// Note: It has to be 16-64 <a href="https://en.wikipedia.org/wiki/ASCII#Printable_characters">printable</a> (non-control) ASCII characters. It also must be globally unique. Consider using vendor-MAC-ID-device-model.
+        /// </para>
+        /// <example>
+        /// "myEndpoint.host.com"
+        /// </example>
         /// <returns>The Endpoint Name</returns>
         public string EndpointName { get; set; }
 
         /// <summary>
         /// Gets or sets the secret hex
         /// </summary>
+        /// <para>
+        ///  Note: It is not case sensitive; 4a is same as 4A, and it is allowed with or without 0x in the beginning. The minimum length of the secret is 128 bits and maximum 256 bits.
+        /// </para>
+        /// <example>
+        /// "4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a"
+        /// </example>
         /// <returns>The Secret hex</returns>
         public string SecretHex { get; set; }
 
