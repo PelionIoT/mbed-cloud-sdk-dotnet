@@ -935,7 +935,7 @@ namespace iam.Api
         /// <param name="userId">The ID of the user to be updated.</param>
         /// <param name="body">A user object with attributes.</param>
         /// <returns>UserUpdateResp</returns>
-        UserUpdateResp UpdateAccountUser (string accountID, string userId, AdminUserUpdateReq body);
+        UserUpdateResp UpdateAccountUser (string accountID, string userId, UserUpdateReq body);
 
         /// <summary>
         /// Update user details.
@@ -948,7 +948,7 @@ namespace iam.Api
         /// <param name="userId">The ID of the user to be updated.</param>
         /// <param name="body">A user object with attributes.</param>
         /// <returns>ApiResponse of UserUpdateResp</returns>
-        ApiResponse<UserUpdateResp> UpdateAccountUserWithHttpInfo (string accountID, string userId, AdminUserUpdateReq body);
+        ApiResponse<UserUpdateResp> UpdateAccountUserWithHttpInfo (string accountID, string userId, UserUpdateReq body);
         /// <summary>
         /// Validate the user email.
         /// </summary>
@@ -1884,7 +1884,7 @@ namespace iam.Api
         /// <param name="userId">The ID of the user to be updated.</param>
         /// <param name="body">A user object with attributes.</param>
         /// <returns>Task of UserUpdateResp</returns>
-        System.Threading.Tasks.Task<UserUpdateResp> UpdateAccountUserAsync (string accountID, string userId, AdminUserUpdateReq body);
+        System.Threading.Tasks.Task<UserUpdateResp> UpdateAccountUserAsync (string accountID, string userId, UserUpdateReq body);
 
         /// <summary>
         /// Update user details.
@@ -1897,7 +1897,7 @@ namespace iam.Api
         /// <param name="userId">The ID of the user to be updated.</param>
         /// <param name="body">A user object with attributes.</param>
         /// <returns>Task of ApiResponse (UserUpdateResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UserUpdateResp>> UpdateAccountUserAsyncWithHttpInfo (string accountID, string userId, AdminUserUpdateReq body);
+        System.Threading.Tasks.Task<ApiResponse<UserUpdateResp>> UpdateAccountUserAsyncWithHttpInfo (string accountID, string userId, UserUpdateReq body);
         /// <summary>
         /// Validate the user email.
         /// </summary>
@@ -7772,7 +7772,7 @@ namespace iam.Api
         /// <param name="userId">The ID of the user to be updated.</param>
         /// <param name="body">A user object with attributes.</param>
         /// <returns>UserUpdateResp</returns>
-        public UserUpdateResp UpdateAccountUser (string accountID, string userId, AdminUserUpdateReq body)
+        public UserUpdateResp UpdateAccountUser (string accountID, string userId, UserUpdateReq body)
         {
              ApiResponse<UserUpdateResp> localVarResponse = UpdateAccountUserWithHttpInfo(accountID, userId, body);
              return localVarResponse.Data;
@@ -7786,7 +7786,7 @@ namespace iam.Api
         /// <param name="userId">The ID of the user to be updated.</param>
         /// <param name="body">A user object with attributes.</param>
         /// <returns>ApiResponse of UserUpdateResp</returns>
-        public ApiResponse< UserUpdateResp > UpdateAccountUserWithHttpInfo (string accountID, string userId, AdminUserUpdateReq body)
+        public ApiResponse< UserUpdateResp > UpdateAccountUserWithHttpInfo (string accountID, string userId, UserUpdateReq body)
         {
             // verify the required parameter 'accountID' is set
             if (accountID == null)
@@ -7863,7 +7863,7 @@ namespace iam.Api
         /// <param name="userId">The ID of the user to be updated.</param>
         /// <param name="body">A user object with attributes.</param>
         /// <returns>Task of UserUpdateResp</returns>
-        public async System.Threading.Tasks.Task<UserUpdateResp> UpdateAccountUserAsync (string accountID, string userId, AdminUserUpdateReq body)
+        public async System.Threading.Tasks.Task<UserUpdateResp> UpdateAccountUserAsync (string accountID, string userId, UserUpdateReq body)
         {
              ApiResponse<UserUpdateResp> localVarResponse = await UpdateAccountUserAsyncWithHttpInfo(accountID, userId, body);
              return localVarResponse.Data;
@@ -7878,7 +7878,7 @@ namespace iam.Api
         /// <param name="userId">The ID of the user to be updated.</param>
         /// <param name="body">A user object with attributes.</param>
         /// <returns>Task of ApiResponse (UserUpdateResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UserUpdateResp>> UpdateAccountUserAsyncWithHttpInfo (string accountID, string userId, AdminUserUpdateReq body)
+        public async System.Threading.Tasks.Task<ApiResponse<UserUpdateResp>> UpdateAccountUserAsyncWithHttpInfo (string accountID, string userId, UserUpdateReq body)
         {
             // verify the required parameter 'accountID' is set
             if (accountID == null)
