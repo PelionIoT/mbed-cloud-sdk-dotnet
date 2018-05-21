@@ -27,8 +27,8 @@ namespace ConsoleExamples.Examples.Subscribe
             // subscribe to everything
             var blankSub = connect.Subscribe.ResourceValues();
 
-            // gives resourcevalues as soon as they're values update, however this is expensive.
-            var blankSubImmediate = connect.Subscribe.ResourceValues(FirstValueEnum.OnValueUpdate);
+            // by default, ResourceValues() will create subscriptions for all matching resources. To turn this off set first value to "OnRegistration".
+            var blankSubImmediate = connect.Subscribe.ResourceValues(FirstValueEnum.OnRegistration);
 
             // subscribe to one resource on a device
             var deviceIdSub = connect.Subscribe.ResourceValues("1", "3/0/1");
