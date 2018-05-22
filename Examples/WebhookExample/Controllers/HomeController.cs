@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using MbedCloudSDK.Connect.Model.Notifications;
+using MbedCloudSDK.Connect.Model.Webhook;
+using MbedCloudSDK.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using WebhookExample.Models;
 using WebhookExample.Services;
@@ -24,9 +26,45 @@ namespace WebhookExample.Controllers
         }
 
         [HttpPost("/subscribe")]
-        public IActionResult Subscribe(string deviceId = "*", string[] resourcePaths = null)
+        public IActionResult Subscribe([FromBody] SubscribeModel model)
         {
-            _connectService.SubscribeToResourceValues(deviceId, resourcePaths.ToList());
+            var observer = _connectService.connect.Subscribe.ResourceValues(model.DeviceId, model.ResourcePaths);
+            observer.OnNotify += (res) => Console.WriteLine(res);
+            return Ok();
+        }
+
+        [HttpPost("/register")]
+        public IActionResult RegisterWebhook([FromBody] RegisterModel model)
+        {
+            try
+            {
+                var webhook = _connectService.connect.GetWebhook();
+                if (webhook != null)
+                {
+                    if (webhook.Url == model.Url)
+                    {
+                        Console.WriteLine($"Webhook already set to {model.Url}");
+                        return Ok();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Webhook currently set to {webhook.Url}, changing to {model.Url}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"No webhook currently registered, setting to {model.Url}");
+                }
+
+                _connectService.connect.UpdateWebhook(new Webhook(model.Url));
+            }
+            catch (CloudApiException e)
+            {
+                Console.WriteLine(e);
+                RedirectToAction("Error");
+            }
+
+
             return Ok();
         }
 
